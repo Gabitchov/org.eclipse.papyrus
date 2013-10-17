@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -39,6 +40,7 @@ public class ConstraintParameterEditHelperAdvice extends AbstractEditHelperAdvic
 						Type type = constraintProperty.getType();
 						if (type != null && type instanceof Class && UMLUtil.getStereotypeApplication(type, ConstraintBlock.class) != null) {
 							((Class)type).getOwnedAttributes().add((Property)elementToConfigure);
+							((Property)elementToConfigure).setAggregation(AggregationKind.COMPOSITE_LITERAL);
 						}
 					}
 				}

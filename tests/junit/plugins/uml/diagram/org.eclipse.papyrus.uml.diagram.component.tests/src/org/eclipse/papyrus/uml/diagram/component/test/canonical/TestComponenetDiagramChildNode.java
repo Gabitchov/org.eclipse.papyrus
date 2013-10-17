@@ -78,7 +78,7 @@ public class TestComponenetDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageInterface() {
-		testToManageNode(UMLElementTypes.Interface_3072, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_3076, true);
+		testToManageNode(UMLElementTypes.Interface_3078, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_3076, true);
 	}
 
 	/**

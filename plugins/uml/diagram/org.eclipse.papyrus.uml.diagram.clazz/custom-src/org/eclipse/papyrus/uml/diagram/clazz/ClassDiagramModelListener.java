@@ -20,7 +20,5 @@ public class ClassDiagramModelListener implements IPapyrusListener {
 
 	public void notifyChanged(Notification notification) {
 		// TODO Auto-generated method stub
-
 	}
-
 }

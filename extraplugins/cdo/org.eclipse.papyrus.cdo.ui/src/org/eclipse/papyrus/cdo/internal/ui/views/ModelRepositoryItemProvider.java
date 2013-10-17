@@ -12,13 +12,18 @@
 package org.eclipse.papyrus.cdo.internal.ui.views;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.ui.CDOItemProvider;
+import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.net4j.util.ui.views.IElementFilter;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
+import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.SharedImages;
 import org.eclipse.swt.graphics.Image;
@@ -36,6 +41,7 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 
 	private final Predicate<Object> isDIResource = new Predicate<Object>() {
 
+		@Override
 		public boolean apply(Object input) {
 			return (input instanceof CDOResource) && DIResourceQuery.getDIResources(((CDOResource)input).cdoView()).contains(input);
 		}
@@ -43,8 +49,9 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 
 	private final Predicate<Object> isUnaffiliatedResource = new Predicate<Object>() {
 
+		@Override
 		public boolean apply(Object input) {
-			return (input instanceof CDOResource) && DIResourceQuery.isUnaffiliatedResource((CDOResource)input);
+			return !(input instanceof CDOResource) || DIResourceQuery.isUnaffiliatedResource((CDOResource)input);
 		}
 	};
 
@@ -53,6 +60,7 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 
 	private final Function<Object, Object> resourceNodeTransformer = new Function<Object, Object>() {
 
+		@Override
 		public Object apply(Object input) {
 			if(isDIResource.apply(input)) {
 				return DIModel.getInstance((CDOResource)input, true);
@@ -71,8 +79,22 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 		extensibleFilter = ItemProviderFilterRegistry.INSTANCE.createFilter(this);
 	}
 
+	public ModelRepositoryItemProvider(IWorkbenchPage page, Object rootElementToShow) {
+		this(page, Collections.singleton(rootElementToShow));
+	}
+
+	public ModelRepositoryItemProvider(IWorkbenchPage page, final Collection<?> rootElementsToShow) {
+		this(page, new IElementFilter() {
+
+			@Override
+			public boolean filter(Object element) {
+				return rootElementsToShow.contains(element);
+			}
+		});
+	}
+
 	public ModelRepositoryItemProvider(IWorkbenchPage page) {
-		this(page, null);
+		this(page, (IElementFilter)null);
 	}
 
 	@Override
@@ -113,9 +135,24 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 				result = super.getParent(element);
 			}
 		} else if(element instanceof DIModel) {
-			result = super.getParent(((DIModel)element).getResource());
+			CDOResource resource = ((DIModel)element).getResource();
+			CDOView view = resource.cdoView();
+
+			// can't query the parent of an object in a closed view
+			result = ((view != null) && view.isClosed()) ? null : super.getParent(resource);
 		} else {
-			result = super.getParent(element);
+			CDOView view = null;
+			if(element instanceof CDOObject) {
+				view = ((CDOObject)element).cdoView();
+			}
+
+			// can't query the parent of an object in a closed view
+			result = ((view != null) && view.isClosed()) ? null : super.getParent(element);
+
+			// we don't show the view
+			if(result instanceof CDOView) {
+				result = PapyrusRepositoryManager.INSTANCE.getRepository((CDOView)result);
+			}
 		}
 
 		return result;

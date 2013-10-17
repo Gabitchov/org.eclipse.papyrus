@@ -20,8 +20,6 @@ import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.RedefinesRule;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.SubsetsRule;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.UmlPortPackage;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.xtext.validation.Check;
 
@@ -32,39 +30,6 @@ import org.eclipse.xtext.validation.Check;
  */
 public class UmlPortJavaValidator extends org.eclipse.papyrus.uml.textedit.port.xtext.validation.AbstractUmlPortJavaValidator {
 
-	private static Namespace model;
-
-	private static Element contextElement;
-
-	// private variables for semantic error management (See IXtextSemanticValidator from org.eclipse.xtext.gmf.glue)
-	private static boolean valid_MultiplicityRule = true;
-
-	private static boolean valid_RedefinesRule = true;
-
-	private static boolean valid_SubsetsRule = true;
-
-	public static void init(Element _contextElement) {
-		contextElement = _contextElement;
-		if(contextElement != null) {
-			Element elem = contextElement.getOwner();
-			while(elem.getOwner() != null) {
-				elem = elem.getOwner();
-			}
-			model = (Namespace)elem;
-		}
-	}
-
-	public static Namespace getModel() {
-		return model;
-	}
-
-	public static Element getContextElement() {
-		return contextElement;
-	}
-
-	public static boolean validate() {
-		return valid_MultiplicityRule && valid_RedefinesRule && valid_SubsetsRule;
-	}
 
 	/**
 	 * Custom validation for multiplicities. Raises an error in the case where the lower bound is upper than the upper bound.
@@ -82,9 +47,6 @@ public class UmlPortJavaValidator extends org.eclipse.papyrus.uml.textedit.port.
 				if((lowerValue == -1 && upperValue != -1) || (lowerValue > upperValue && upperValue != -1)) {
 					error(errorMessage, UmlPortPackage.eINSTANCE.getBoundSpecification_Value());
 					//error(errorMessage, rule, UmlPropertyPackage.BOUND_SPECIFICATION__VALUE) ;
-					valid_MultiplicityRule = false;
-				} else {
-					valid_MultiplicityRule = true;
 				}
 			}
 		} catch (Exception e) {
@@ -115,7 +77,7 @@ public class UmlPortJavaValidator extends org.eclipse.papyrus.uml.textedit.port.
 			Classifier typeOfRedefiningProperty = propertyRule.getType().getType();
 			boolean isRedefiningPropertyDerived = propertyRule.getIsDerived() != null && propertyRule.getIsDerived().equals("/");
 
-			valid_RedefinesRule = typeOfRedefiningProperty.conformsTo(redefinedProperty.getType());
+			boolean valid_RedefinesRule = typeOfRedefiningProperty.conformsTo(redefinedProperty.getType());
 			if(!valid_RedefinesRule) {
 				error(typeErrorMessage, UmlPortPackage.eINSTANCE.getRedefinesRule_Port());
 				//error(typeErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
@@ -187,7 +149,7 @@ public class UmlPortJavaValidator extends org.eclipse.papyrus.uml.textedit.port.
 			PortRule propertyRule = (PortRule)container;
 			Classifier typeOfSubsettingProperty = propertyRule.getType().getType();
 
-			valid_SubsetsRule = typeOfSubsettingProperty.conformsTo(subsettedProperty.getType());
+			boolean valid_SubsetsRule = typeOfSubsettingProperty.conformsTo(subsettedProperty.getType());
 			if(!valid_SubsetsRule) {
 				error(multiplicityErrorMessage, UmlPortPackage.eINSTANCE.getSubsetsRule_Port());
 				//error(typeErrorMessage, rule, UmlPropertyPackage.SUBSETS_RULE__PROPERTY) ;

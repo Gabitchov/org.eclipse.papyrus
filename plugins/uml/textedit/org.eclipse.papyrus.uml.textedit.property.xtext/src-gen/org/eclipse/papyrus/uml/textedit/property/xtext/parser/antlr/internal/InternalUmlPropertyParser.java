@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  CEA LIST - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.property.xtext.parser.antlr.internal; 
 
 import org.eclipse.xtext.*;
@@ -35,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'/'", "':'", "'<Undefined>'", "'::'", "'['", "'..'", "']'", "'*'", "'{'", "','", "'}'", "'redefines'", "'subsets'", "'='", "'+'", "'-'", "'#'", "'~'", "'readOnly'", "'union'", "'ordered'", "'unique'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INTEGER_VALUE", "RULE_WS", "RULE_ANY_OTHER", "'/'", "':'", "'<Undefined>'", "'::'", "'['", "'..'", "']'", "'*'", "'{'", "','", "'}'", "'redefines'", "'subsets'", "'='", "'+'", "'-'", "'#'", "'~'", "'readOnly'", "'union'", "'ordered'", "'unique'"
     };
     public static final int RULE_ID=4;
     public static final int T__29=29;
@@ -46,9 +33,10 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
     public static final int T__24=24;
     public static final int T__23=23;
     public static final int T__22=22;
-    public static final int RULE_ANY_OTHER=10;
+    public static final int RULE_ANY_OTHER=11;
     public static final int T__21=21;
     public static final int T__20=20;
+    public static final int RULE_INTEGER_VALUE=9;
     public static final int RULE_SL_COMMENT=8;
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
@@ -57,16 +45,16 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
     public static final int T__31=31;
     public static final int RULE_STRING=6;
     public static final int T__32=32;
+    public static final int T__33=33;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
     public static final int T__17=17;
     public static final int T__12=12;
-    public static final int T__11=11;
     public static final int T__14=14;
     public static final int T__13=13;
     public static final int RULE_INT=5;
-    public static final int RULE_WS=9;
+    public static final int RULE_WS=10;
 
     // delegates
     // delegators
@@ -206,7 +194,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==11) ) {
+            if ( (LA1_0==12) ) {
                 alt1=1;
             }
             switch (alt1) {
@@ -216,7 +204,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:100:1: (lv_isDerived_1_0= '/' )
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:101:3: lv_isDerived_1_0= '/'
                     {
-                    lv_isDerived_1_0=(Token)match(input,11,FOLLOW_11_in_rulePropertyRule149); 
+                    lv_isDerived_1_0=(Token)match(input,12,FOLLOW_12_in_rulePropertyRule149); 
 
                             newLeafNode(lv_isDerived_1_0, grammarAccess.getPropertyRuleAccess().getIsDerivedSolidusKeyword_1_0());
                         
@@ -261,7 +249,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,12,FOLLOW_12_in_rulePropertyRule197); 
+            otherlv_3=(Token)match(input,13,FOLLOW_13_in_rulePropertyRule197); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getPropertyRuleAccess().getColonKeyword_3());
                 
@@ -272,7 +260,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             if ( (LA2_0==RULE_ID) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==13) ) {
+            else if ( (LA2_0==14) ) {
                 alt2=2;
             }
             else {
@@ -322,7 +310,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:155:7: otherlv_5= '<Undefined>'
                     {
-                    otherlv_5=(Token)match(input,13,FOLLOW_13_in_rulePropertyRule237); 
+                    otherlv_5=(Token)match(input,14,FOLLOW_14_in_rulePropertyRule237); 
 
                         	newLeafNode(otherlv_5, grammarAccess.getPropertyRuleAccess().getUndefinedKeyword_4_1());
                         
@@ -336,7 +324,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             int alt3=2;
             int LA3_0 = input.LA(1);
 
-            if ( (LA3_0==15) ) {
+            if ( (LA3_0==16) ) {
                 alt3=1;
             }
             switch (alt3) {
@@ -378,7 +366,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==19) ) {
+            if ( (LA4_0==20) ) {
                 alt4=1;
             }
             switch (alt4) {
@@ -420,7 +408,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==24) ) {
+            if ( (LA5_0==25) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -539,7 +527,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             if ( (LA6_0==RULE_ID) ) {
                 int LA6_1 = input.LA(2);
 
-                if ( (LA6_1==14) ) {
+                if ( (LA6_1==15) ) {
                     alt6=1;
                 }
             }
@@ -695,7 +683,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,14,FOLLOW_14_in_ruleQualifiedName520); 
+            otherlv_1=(Token)match(input,15,FOLLOW_15_in_ruleQualifiedName520); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1());
                 
@@ -706,7 +694,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             if ( (LA7_0==RULE_ID) ) {
                 int LA7_1 = input.LA(2);
 
-                if ( (LA7_1==14) ) {
+                if ( (LA7_1==15) ) {
                     alt7=1;
                 }
             }
@@ -823,7 +811,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:342:1: (otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']' )
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:342:3: otherlv_0= '[' ( (lv_bounds_1_0= ruleBoundSpecification ) ) (otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) ) )? otherlv_4= ']'
             {
-            otherlv_0=(Token)match(input,15,FOLLOW_15_in_ruleMultiplicityRule625); 
+            otherlv_0=(Token)match(input,16,FOLLOW_16_in_ruleMultiplicityRule625); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getMultiplicityRuleAccess().getLeftSquareBracketKeyword_0());
                 
@@ -862,14 +850,14 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( (LA8_0==16) ) {
+            if ( (LA8_0==17) ) {
                 alt8=1;
             }
             switch (alt8) {
                 case 1 :
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:364:4: otherlv_2= '..' ( (lv_bounds_3_0= ruleBoundSpecification ) )
                     {
-                    otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleMultiplicityRule659); 
+                    otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleMultiplicityRule659); 
 
                         	newLeafNode(otherlv_2, grammarAccess.getMultiplicityRuleAccess().getFullStopFullStopKeyword_2_0());
                         
@@ -910,7 +898,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,17,FOLLOW_17_in_ruleMultiplicityRule694); 
+            otherlv_4=(Token)match(input,18,FOLLOW_18_in_ruleMultiplicityRule694); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getMultiplicityRuleAccess().getRightSquareBracketKeyword_3());
                 
@@ -1089,7 +1077,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             if ( (LA9_0==RULE_INT) ) {
                 alt9=1;
             }
-            else if ( (LA9_0==18) ) {
+            else if ( (LA9_0==19) ) {
                 alt9=2;
             }
             else {
@@ -1115,7 +1103,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:459:2: kw= '*'
                     {
-                    kw=(Token)match(input,18,FOLLOW_18_in_ruleUnlimitedLiteral896); 
+                    kw=(Token)match(input,19,FOLLOW_19_in_ruleUnlimitedLiteral896); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
@@ -1201,7 +1189,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:485:1: (otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}' )
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:485:3: otherlv_0= '{' ( (lv_values_1_0= ruleModifierSpecification ) ) (otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) ) )* otherlv_4= '}'
             {
-            otherlv_0=(Token)match(input,19,FOLLOW_19_in_ruleModifiersRule983); 
+            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleModifiersRule983); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getModifiersRuleAccess().getLeftCurlyBracketKeyword_0());
                 
@@ -1242,7 +1230,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                 int alt10=2;
                 int LA10_0 = input.LA(1);
 
-                if ( (LA10_0==20) ) {
+                if ( (LA10_0==21) ) {
                     alt10=1;
                 }
 
@@ -1251,7 +1239,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:507:4: otherlv_2= ',' ( (lv_values_3_0= ruleModifierSpecification ) )
             	    {
-            	    otherlv_2=(Token)match(input,20,FOLLOW_20_in_ruleModifiersRule1017); 
+            	    otherlv_2=(Token)match(input,21,FOLLOW_21_in_ruleModifiersRule1017); 
 
             	        	newLeafNode(otherlv_2, grammarAccess.getModifiersRuleAccess().getCommaKeyword_2_0());
             	        
@@ -1295,7 +1283,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_4=(Token)match(input,21,FOLLOW_21_in_ruleModifiersRule1052); 
+            otherlv_4=(Token)match(input,22,FOLLOW_22_in_ruleModifiersRule1052); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getModifiersRuleAccess().getRightCurlyBracketKeyword_3());
                 
@@ -1376,20 +1364,20 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:554:1: ( ( (lv_value_0_0= ruleModifierKind ) ) | ( (lv_redefines_1_0= ruleRedefinesRule ) ) | ( (lv_subsets_2_0= ruleSubsetsRule ) ) )
             int alt11=3;
             switch ( input.LA(1) ) {
-            case 29:
             case 30:
             case 31:
             case 32:
+            case 33:
                 {
                 alt11=1;
                 }
                 break;
-            case 22:
+            case 23:
                 {
                 alt11=2;
                 }
                 break;
-            case 23:
+            case 24:
                 {
                 alt11=3;
                 }
@@ -1586,7 +1574,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:631:1: (otherlv_0= 'redefines' ( (otherlv_1= RULE_ID ) ) )
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:631:3: otherlv_0= 'redefines' ( (otherlv_1= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,22,FOLLOW_22_in_ruleRedefinesRule1281); 
+            otherlv_0=(Token)match(input,23,FOLLOW_23_in_ruleRedefinesRule1281); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getRedefinesRuleAccess().getRedefinesKeyword_0());
                 
@@ -1684,7 +1672,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:669:1: (otherlv_0= 'subsets' ( (otherlv_1= RULE_ID ) ) )
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:669:3: otherlv_0= 'subsets' ( (otherlv_1= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,23,FOLLOW_23_in_ruleSubsetsRule1384); 
+            otherlv_0=(Token)match(input,24,FOLLOW_24_in_ruleSubsetsRule1384); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getSubsetsRuleAccess().getSubsetsKeyword_0());
                 
@@ -1782,7 +1770,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:707:1: (otherlv_0= '=' ( (lv_default_1_0= RULE_STRING ) ) )
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:707:3: otherlv_0= '=' ( (lv_default_1_0= RULE_STRING ) )
             {
-            otherlv_0=(Token)match(input,24,FOLLOW_24_in_ruleDefaultValueRule1487); 
+            otherlv_0=(Token)match(input,25,FOLLOW_25_in_ruleDefaultValueRule1487); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getDefaultValueRuleAccess().getEqualsSignKeyword_0());
                 
@@ -1850,22 +1838,22 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:740:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
             int alt12=4;
             switch ( input.LA(1) ) {
-            case 25:
+            case 26:
                 {
                 alt12=1;
                 }
                 break;
-            case 26:
+            case 27:
                 {
                 alt12=2;
                 }
                 break;
-            case 27:
+            case 28:
                 {
                 alt12=3;
                 }
                 break;
-            case 28:
+            case 29:
                 {
                 alt12=4;
                 }
@@ -1884,7 +1872,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:740:2: (enumLiteral_0= '+' )
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:740:4: enumLiteral_0= '+'
                     {
-                    enumLiteral_0=(Token)match(input,25,FOLLOW_25_in_ruleVisibilityKind1559); 
+                    enumLiteral_0=(Token)match(input,26,FOLLOW_26_in_ruleVisibilityKind1559); 
 
                             current = grammarAccess.getVisibilityKindAccess().getPublicEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getVisibilityKindAccess().getPublicEnumLiteralDeclaration_0()); 
@@ -1901,7 +1889,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:746:6: (enumLiteral_1= '-' )
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:746:8: enumLiteral_1= '-'
                     {
-                    enumLiteral_1=(Token)match(input,26,FOLLOW_26_in_ruleVisibilityKind1576); 
+                    enumLiteral_1=(Token)match(input,27,FOLLOW_27_in_ruleVisibilityKind1576); 
 
                             current = grammarAccess.getVisibilityKindAccess().getPrivateEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getVisibilityKindAccess().getPrivateEnumLiteralDeclaration_1()); 
@@ -1918,7 +1906,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:752:6: (enumLiteral_2= '#' )
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:752:8: enumLiteral_2= '#'
                     {
-                    enumLiteral_2=(Token)match(input,27,FOLLOW_27_in_ruleVisibilityKind1593); 
+                    enumLiteral_2=(Token)match(input,28,FOLLOW_28_in_ruleVisibilityKind1593); 
 
                             current = grammarAccess.getVisibilityKindAccess().getProtectedEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getVisibilityKindAccess().getProtectedEnumLiteralDeclaration_2()); 
@@ -1935,7 +1923,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:758:6: (enumLiteral_3= '~' )
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:758:8: enumLiteral_3= '~'
                     {
-                    enumLiteral_3=(Token)match(input,28,FOLLOW_28_in_ruleVisibilityKind1610); 
+                    enumLiteral_3=(Token)match(input,29,FOLLOW_29_in_ruleVisibilityKind1610); 
 
                             current = grammarAccess.getVisibilityKindAccess().getPackageEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getVisibilityKindAccess().getPackageEnumLiteralDeclaration_3()); 
@@ -1984,22 +1972,22 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:771:1: ( (enumLiteral_0= 'readOnly' ) | (enumLiteral_1= 'union' ) | (enumLiteral_2= 'ordered' ) | (enumLiteral_3= 'unique' ) )
             int alt13=4;
             switch ( input.LA(1) ) {
-            case 29:
+            case 30:
                 {
                 alt13=1;
                 }
                 break;
-            case 30:
+            case 31:
                 {
                 alt13=2;
                 }
                 break;
-            case 31:
+            case 32:
                 {
                 alt13=3;
                 }
                 break;
-            case 32:
+            case 33:
                 {
                 alt13=4;
                 }
@@ -2018,7 +2006,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:771:2: (enumLiteral_0= 'readOnly' )
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:771:4: enumLiteral_0= 'readOnly'
                     {
-                    enumLiteral_0=(Token)match(input,29,FOLLOW_29_in_ruleModifierKind1655); 
+                    enumLiteral_0=(Token)match(input,30,FOLLOW_30_in_ruleModifierKind1655); 
 
                             current = grammarAccess.getModifierKindAccess().getReadOnlyEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getModifierKindAccess().getReadOnlyEnumLiteralDeclaration_0()); 
@@ -2035,7 +2023,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:777:6: (enumLiteral_1= 'union' )
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:777:8: enumLiteral_1= 'union'
                     {
-                    enumLiteral_1=(Token)match(input,30,FOLLOW_30_in_ruleModifierKind1672); 
+                    enumLiteral_1=(Token)match(input,31,FOLLOW_31_in_ruleModifierKind1672); 
 
                             current = grammarAccess.getModifierKindAccess().getUnionEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getModifierKindAccess().getUnionEnumLiteralDeclaration_1()); 
@@ -2052,7 +2040,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:783:6: (enumLiteral_2= 'ordered' )
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:783:8: enumLiteral_2= 'ordered'
                     {
-                    enumLiteral_2=(Token)match(input,31,FOLLOW_31_in_ruleModifierKind1689); 
+                    enumLiteral_2=(Token)match(input,32,FOLLOW_32_in_ruleModifierKind1689); 
 
                             current = grammarAccess.getModifierKindAccess().getOrderedEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getModifierKindAccess().getOrderedEnumLiteralDeclaration_2()); 
@@ -2069,7 +2057,7 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:789:6: (enumLiteral_3= 'unique' )
                     // ../org.eclipse.papyrus.uml.textedit.property.xtext/src-gen/org/eclipse/papyrus/uml/textedit/property/xtext/parser/antlr/internal/InternalUmlProperty.g:789:8: enumLiteral_3= 'unique'
                     {
-                    enumLiteral_3=(Token)match(input,32,FOLLOW_32_in_ruleModifierKind1706); 
+                    enumLiteral_3=(Token)match(input,33,FOLLOW_33_in_ruleModifierKind1706); 
 
                             current = grammarAccess.getModifierKindAccess().getUniqueEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getModifierKindAccess().getUniqueEnumLiteralDeclaration_3()); 
@@ -2106,14 +2094,14 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_rulePropertyRule_in_entryRulePropertyRule75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePropertyRule85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVisibilityKind_in_rulePropertyRule131 = new BitSet(new long[]{0x0000000000000810L});
-    public static final BitSet FOLLOW_11_in_rulePropertyRule149 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyRule180 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_12_in_rulePropertyRule197 = new BitSet(new long[]{0x0000000000002010L});
-    public static final BitSet FOLLOW_ruleTypeRule_in_rulePropertyRule219 = new BitSet(new long[]{0x0000000001088002L});
-    public static final BitSet FOLLOW_13_in_rulePropertyRule237 = new BitSet(new long[]{0x0000000001088002L});
-    public static final BitSet FOLLOW_ruleMultiplicityRule_in_rulePropertyRule259 = new BitSet(new long[]{0x0000000001080002L});
-    public static final BitSet FOLLOW_ruleModifiersRule_in_rulePropertyRule281 = new BitSet(new long[]{0x0000000001000002L});
+    public static final BitSet FOLLOW_ruleVisibilityKind_in_rulePropertyRule131 = new BitSet(new long[]{0x0000000000001010L});
+    public static final BitSet FOLLOW_12_in_rulePropertyRule149 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyRule180 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_rulePropertyRule197 = new BitSet(new long[]{0x0000000000004010L});
+    public static final BitSet FOLLOW_ruleTypeRule_in_rulePropertyRule219 = new BitSet(new long[]{0x0000000002110002L});
+    public static final BitSet FOLLOW_14_in_rulePropertyRule237 = new BitSet(new long[]{0x0000000002110002L});
+    public static final BitSet FOLLOW_ruleMultiplicityRule_in_rulePropertyRule259 = new BitSet(new long[]{0x0000000002100002L});
+    public static final BitSet FOLLOW_ruleModifiersRule_in_rulePropertyRule281 = new BitSet(new long[]{0x0000000002000002L});
     public static final BitSet FOLLOW_ruleDefaultValueRule_in_rulePropertyRule303 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTypeRule_in_entryRuleTypeRule340 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleTypeRule350 = new BitSet(new long[]{0x0000000000000002L});
@@ -2121,30 +2109,30 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_ID_in_ruleTypeRule417 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName453 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName463 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName508 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleQualifiedName520 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName508 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleQualifiedName520 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedName541 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMultiplicityRule_in_entryRuleMultiplicityRule578 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicityRule588 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_ruleMultiplicityRule625 = new BitSet(new long[]{0x0000000000040020L});
-    public static final BitSet FOLLOW_ruleBoundSpecification_in_ruleMultiplicityRule646 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_16_in_ruleMultiplicityRule659 = new BitSet(new long[]{0x0000000000040020L});
-    public static final BitSet FOLLOW_ruleBoundSpecification_in_ruleMultiplicityRule680 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleMultiplicityRule694 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_ruleMultiplicityRule625 = new BitSet(new long[]{0x0000000000080020L});
+    public static final BitSet FOLLOW_ruleBoundSpecification_in_ruleMultiplicityRule646 = new BitSet(new long[]{0x0000000000060000L});
+    public static final BitSet FOLLOW_17_in_ruleMultiplicityRule659 = new BitSet(new long[]{0x0000000000080020L});
+    public static final BitSet FOLLOW_ruleBoundSpecification_in_ruleMultiplicityRule680 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleMultiplicityRule694 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBoundSpecification_in_entryRuleBoundSpecification730 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleBoundSpecification740 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnlimitedLiteral_in_ruleBoundSpecification785 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnlimitedLiteral_in_entryRuleUnlimitedLiteral821 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUnlimitedLiteral832 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_ruleUnlimitedLiteral872 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleUnlimitedLiteral896 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleUnlimitedLiteral896 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleModifiersRule_in_entryRuleModifiersRule936 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleModifiersRule946 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleModifiersRule983 = new BitSet(new long[]{0x00000001E0C00000L});
-    public static final BitSet FOLLOW_ruleModifierSpecification_in_ruleModifiersRule1004 = new BitSet(new long[]{0x0000000000300000L});
-    public static final BitSet FOLLOW_20_in_ruleModifiersRule1017 = new BitSet(new long[]{0x00000001E0C00000L});
-    public static final BitSet FOLLOW_ruleModifierSpecification_in_ruleModifiersRule1038 = new BitSet(new long[]{0x0000000000300000L});
-    public static final BitSet FOLLOW_21_in_ruleModifiersRule1052 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleModifiersRule983 = new BitSet(new long[]{0x00000003C1800000L});
+    public static final BitSet FOLLOW_ruleModifierSpecification_in_ruleModifiersRule1004 = new BitSet(new long[]{0x0000000000600000L});
+    public static final BitSet FOLLOW_21_in_ruleModifiersRule1017 = new BitSet(new long[]{0x00000003C1800000L});
+    public static final BitSet FOLLOW_ruleModifierSpecification_in_ruleModifiersRule1038 = new BitSet(new long[]{0x0000000000600000L});
+    public static final BitSet FOLLOW_22_in_ruleModifiersRule1052 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleModifierSpecification_in_entryRuleModifierSpecification1088 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleModifierSpecification1098 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleModifierKind_in_ruleModifierSpecification1144 = new BitSet(new long[]{0x0000000000000002L});
@@ -2152,23 +2140,23 @@ public class InternalUmlPropertyParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleSubsetsRule_in_ruleModifierSpecification1198 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRedefinesRule_in_entryRuleRedefinesRule1234 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleRedefinesRule1244 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_ruleRedefinesRule1281 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_23_in_ruleRedefinesRule1281 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleRedefinesRule1301 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSubsetsRule_in_entryRuleSubsetsRule1337 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSubsetsRule1347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleSubsetsRule1384 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_24_in_ruleSubsetsRule1384 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleSubsetsRule1404 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDefaultValueRule_in_entryRuleDefaultValueRule1440 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDefaultValueRule1450 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleDefaultValueRule1487 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_25_in_ruleDefaultValueRule1487 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleDefaultValueRule1504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_ruleVisibilityKind1559 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleVisibilityKind1576 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_ruleVisibilityKind1593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleVisibilityKind1610 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleModifierKind1655 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleModifierKind1672 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleModifierKind1689 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleModifierKind1706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleVisibilityKind1559 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ruleVisibilityKind1576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleVisibilityKind1593 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleVisibilityKind1610 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleModifierKind1655 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleModifierKind1672 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleModifierKind1689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleModifierKind1706 = new BitSet(new long[]{0x0000000000000002L});
 
 }

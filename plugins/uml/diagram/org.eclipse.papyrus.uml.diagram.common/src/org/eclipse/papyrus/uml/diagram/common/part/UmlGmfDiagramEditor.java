@@ -62,8 +62,6 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 		// account.
 		ISaveAndDirtyService saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 		saveAndDirtyService.registerIsaveablePart(this);
-
-		// TODO: unregister when editor is disposed !
 	}
 
 	/**
@@ -102,6 +100,14 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor {
 		partNameSynchronizer = null;
 		diagram = null;
 		servicesRegistry = null;
+	}
+
+	@Override
+	public Object getAdapter(Class type) {
+		if(type == ServicesRegistry.class) {
+			return servicesRegistry;
+		}
+		return super.getAdapter(type);
 	}
 
 	@Override

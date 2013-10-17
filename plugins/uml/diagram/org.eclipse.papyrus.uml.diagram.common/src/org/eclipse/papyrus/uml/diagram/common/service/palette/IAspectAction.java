@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.diagram.common.service.palette;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.gef.EditPart;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -85,5 +85,13 @@ public interface IAspectAction {
 	 * @return the id of the factory in charge of the creation of this action
 	 */
 	public String getFactoryId();
+
+	/**
+	 * Sets the ServicesRegistry for this action. It can be used to retrieve the execution context during customization
+	 * At runtime, this is not called (Use the ViewAdapter instead)
+	 * 
+	 * @param registry
+	 */
+	public void setServicesRegistry(ServicesRegistry registry);
 
 }

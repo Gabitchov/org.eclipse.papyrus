@@ -1,3 +1,14 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.constraints.runtime;
 
 import java.io.IOException;
@@ -46,11 +57,11 @@ public class ConstraintsManager {
 
 		for(IConfigurationElement e : config) {
 			final String environmentResource = e.getAttribute("environmentModel"); //$NON-NLS-1$
-			URI uri = URI.createURI("platform:/plugin/" + e.getContributor().getName() + "/" + environmentResource); //$NON-NLS-1$ //$NON-NLS-2$
+			URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + environmentResource, true); //$NON-NLS-1$ 
 			try {
 				addEnvironment(uri);
 			} catch (IOException ex) {
-				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid " + "extension for " + EXTENSION_ID, ex); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid extension for " + EXTENSION_ID, ex); //$NON-NLS-1$//$NON-NLS-2$
 			}
 		}
 	}

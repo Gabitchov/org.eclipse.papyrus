@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
-<environment:ConstraintEnvironment
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:environment="http://www.eclipse.org/papyrus/constraints/environment/0.9">
-  <constraintTypes
-      label="EMF Instance Of"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint"/>
-  <constraintTypes
-      label="True constraint"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.TrueConstraint"/>
-  <constraintTypes
-      label="EMF Query"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFQueryConstraint"/>
-  <constraintTypes
-      label="Java Instance Of"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaInstanceOf"/>
-  <constraintTypes
-      label="Java Query"
-      constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaQueryConstraint"/>
+<environment:ConstraintEnvironment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/constraints/environment/0.9">
+  <constraintTypes label="EMF Instance Of" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint"/>
+  <constraintTypes label="True constraint" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.TrueConstraint"/>
+  <constraintTypes label="EMF Query" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.EMFQueryConstraint"/>
+  <constraintTypes label="Java Instance Of" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaInstanceOf"/>
+  <constraintTypes label="Java Query" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.JavaQueryConstraint"/>
+  <constraintTypes label="Has EAnnotation" constraintClass="org.eclipse.papyrus.infra.constraints.constraints.HasEAnnotationConstraint"/>
 </environment:ConstraintEnvironment>

@@ -56,7 +56,6 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusElementP
 		 * {@inheritDoc}
 		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
-
 		}
 
 		/**
@@ -65,7 +64,6 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusElementP
 		public void widgetSelected(SelectionEvent e) {
 			// add or remove the flag to the display property value (invert the current value)
 			propertyValue = propertyValue ^ style;
-
 			// refresh buttons at the end
 			refreshButtons();
 		}
@@ -75,19 +73,15 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusElementP
 	 * @generated
 	 */
 	public static void initDefaults(IPreferenceStore store) {
-
 		String elementName = "InstanceSpecification";
 		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(177, 207, 229));
-
 		// Set the default for the gradient
 		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY), false);
 		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
-
 		// custom code
 		store.setDefault(IPapyrusInstancePreferencesConstant.INSTANCESPECIFICATION_LABEL_DISPLAY_PREFERENCE, ICustomAppearence.DEFAULT_UML_INSTANCESPECIFICATION);
-
 	}
 
 	/** buttons to select the display kind for the label of the {@link InstanceSpecification} */
@@ -125,22 +119,17 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusElementP
 		Group group = new Group(parent, SWT.SHADOW_NONE);
 		group.setText("Label Display");
 		group.setLayout(new FormLayout());
-
 		FormData data;
-
-
 		displName = createCheckButton(group, "Name", ICustomAppearence.DISP_NAME);
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.top = new FormAttachment(0, 0);
 		displName.setLayoutData(data);
-
 		displType = createCheckButton(group, "Type", ICustomAppearence.DISP_TYPE);
 		data = new FormData();
 		data.left = new FormAttachment(displName, 85);
 		data.top = new FormAttachment(0, 0);
 		displType.setLayoutData(data);
-
 	}
 
 	/**
@@ -149,10 +138,8 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusElementP
 	@Override
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
-
 		// adds the label preferences checkboxes
 		createLabelPreferencesButtons(parent);
-
 		refreshButtons();
 	}
 
@@ -200,7 +187,6 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusElementP
 		// if (proper == 0) {
 		// displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
 		// }
-
 		displName.setSelection((propertyValue & ICustomAppearence.DISP_NAME) == ICustomAppearence.DISP_NAME);
 		displType.setSelection((propertyValue & ICustomAppearence.DISP_TYPE) == ICustomAppearence.DISP_TYPE);
 	}

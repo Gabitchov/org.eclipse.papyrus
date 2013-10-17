@@ -60,12 +60,14 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPartPC
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Behavior;
@@ -194,6 +196,11 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			return dropAbstraction(dropRequest, semanticElement, linkVISUALID);
 		case SubstitutionEditPart.VISUAL_ID:
 			return dropAsNormalBinaryLink(dropRequest, semanticElement, linkVISUALID);
+		case InterfaceRealizationEditPart.VISUAL_ID:
+			return dropAsNormalBinaryLink(dropRequest, semanticElement, linkVISUALID);
+		case UsageEditPart.VISUAL_ID:
+			return dropAsNormalBinaryLink(dropRequest, semanticElement, linkVISUALID);
+
 
 		default:
 			// Switch test over nodeVISUALID

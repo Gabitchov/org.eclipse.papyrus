@@ -32,6 +32,16 @@ Workflow {
         registerGenModelFile = "platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel"	
 		registerGenModelFile = "platform:/resource/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel"
 		
+		//Types
+       	uriMap = { 
+			from = "platform:/plugin/org.eclipse.uml2.types/model/Types.ecore"
+           	to = "platform:/resource/org.eclipse.uml2.types/model/Types.ecore"
+       	}   	
+       	uriMap = { 
+			from = "platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel"
+           	to = "platform:/resource/org.eclipse.uml2.types/model/Types.genmodel"
+       	}
+       	
 		//load UML
 		
         uriMap = {

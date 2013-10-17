@@ -15,6 +15,7 @@ import org.eclipse.papyrus.C_Cpp.Array;
 import org.eclipse.papyrus.C_Cpp.Const;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
+import org.eclipse.papyrus.acceleo.GenUtils;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Element;
@@ -23,6 +24,7 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -70,7 +72,7 @@ public class Modifier {
 	public static void update(Element propertyOperationOrParameter) {
 
 		// Pointer
-		Ptr cppPtr = GenUtils.getApplication(propertyOperationOrParameter, Ptr.class);
+		Ptr cppPtr = UMLUtil.getStereotypeApplication(propertyOperationOrParameter, Ptr.class);
 		if(cppPtr != null) {
 			ptr = (cppPtr.getDeclaration() != null) ? cppPtr.getDeclaration() : "*"; //$NON-NLS-1$
 		} else {
@@ -87,7 +89,7 @@ public class Modifier {
 			GenUtils.hasStereotype(propertyOperationOrParameter, Ptr.class);
 
 		// Array
-		Array cppArray = GenUtils.getApplication(propertyOperationOrParameter, Array.class);
+		Array cppArray = UMLUtil.getStereotypeApplication(propertyOperationOrParameter, Array.class);
 		if(cppArray != null) {
 			// explicit array definition
 			array = (cppArray.getDefinition() != null) ? cppArray.getDefinition() : "[]"; //$NON-NLS-1$

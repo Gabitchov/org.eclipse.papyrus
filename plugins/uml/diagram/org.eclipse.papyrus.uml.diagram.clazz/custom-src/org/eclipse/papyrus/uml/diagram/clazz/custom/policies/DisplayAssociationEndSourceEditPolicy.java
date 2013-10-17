@@ -25,7 +25,6 @@ public class DisplayAssociationEndSourceEditPolicy extends DisplayAssociationEnd
 		// adds a listener to the element itself, and to linked elements, like Type
 		if(getView().eContainer() != null) {
 			getDiagramEventBroker().addNotificationListener(getView().eContainer(), this);
-
 		}
 	}
 
@@ -36,6 +35,4 @@ public class DisplayAssociationEndSourceEditPolicy extends DisplayAssociationEnd
 		super();
 		propertyLabelHelper = AssociationEndSourceLabelHelper.getInstance();
 	}
-
-
 }

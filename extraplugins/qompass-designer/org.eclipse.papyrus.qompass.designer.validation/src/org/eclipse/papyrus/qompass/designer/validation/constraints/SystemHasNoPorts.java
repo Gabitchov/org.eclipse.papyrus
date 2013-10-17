@@ -1,31 +1,32 @@
-/*******************************************************************************
- * Copyright (c) 2008-2009 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
- * are property of the CEA, their use is subject to specific agreement 
- * with the CEA.
- * 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
  * Contributors:
- *    CEA LIST - initial API and implementation
- *******************************************************************************/
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.validation.constraints;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.papyrus.FCM.DeploymentPlan;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.papyrus.FCM.DeploymentPlan;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * Check whether system has no port. This is a particular test, since it should be applied
- * whenever the user selects a "system" class for creating a deployment plan.
- * However, it is also useful to check at any time whether an mainInstance (in a deployment plan)
- * references a class that has ports.
- * 
- * @author ansgar
+ * Check whether the specific system class. This class can be identified, since it is the
+ * classifier of the "main-instance" referenced by a deployment plan.
  *
  */
 public class SystemHasNoPorts extends AbstractModelConstraint {
@@ -35,7 +36,7 @@ public class SystemHasNoPorts extends AbstractModelConstraint {
 	{
 		Package pkg = (Package) ctx.getTarget ();
 		
-		DeploymentPlan cdp = StUtils.getApplication(pkg, DeploymentPlan.class);
+		DeploymentPlan cdp = UMLUtil.getStereotypeApplication(pkg, DeploymentPlan.class);
 			
 		if (cdp != null) {
 			InstanceSpecification mi =  cdp.getMainInstance();

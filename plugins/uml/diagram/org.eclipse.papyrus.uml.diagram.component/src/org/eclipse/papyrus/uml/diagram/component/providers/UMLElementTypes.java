@@ -43,14 +43,20 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPa
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfacePortLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.LinkDescriptorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.OperationForInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
@@ -106,11 +112,6 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interface_2003 = getElementType("org.eclipse.papyrus.uml.diagram.component.Interface_2003"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType Package_3200 = getElementType("org.eclipse.papyrus.uml.diagram.component.Package_3200"); //$NON-NLS-1$
 
 	/**
@@ -126,7 +127,17 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Interface_3205 = getElementType("org.eclipse.papyrus.uml.diagram.component.Interface_3205"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType NamedElement_3204 = getElementType("org.eclipse.papyrus.uml.diagram.component.DefaultNamedElement_3204"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType NamedElement_2003 = getElementType("org.eclipse.papyrus.uml.diagram.component.Interface_2003"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -142,6 +153,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Package_3076 = getElementType("org.eclipse.papyrus.uml.diagram.component.Package_3076"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Interface_3078 = getElementType("org.eclipse.papyrus.uml.diagram.component.Interface_3078"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -167,6 +183,21 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Constraint_3075 = getElementType("org.eclipse.papyrus.uml.diagram.component.Constraint_3075"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Property_1 = getElementType("org.eclipse.papyrus.uml.diagram.component.Property_1"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Operation_5 = getElementType("org.eclipse.papyrus.uml.diagram.component.Operation_5"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Reception_6 = getElementType("org.eclipse.papyrus.uml.diagram.component.Reception_6"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -231,6 +262,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Link_4018 = getElementType("org.eclipse.papyrus.uml.diagram.component.Link_4018"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		return elementTypeImages.getImageDescriptor(element);
 	}
@@ -270,18 +306,23 @@ public class UMLElementTypes {
 			elements.put(Component_2002, UMLPackage.eINSTANCE.getComponent());
 			elements.put(Model_3202, UMLPackage.eINSTANCE.getModel());
 			elements.put(Package_3200, UMLPackage.eINSTANCE.getPackage());
-			elements.put(Interface_2003, UMLPackage.eINSTANCE.getInterface());
+			elements.put(Interface_3205, UMLPackage.eINSTANCE.getInterface());
 			elements.put(Comment_3201, UMLPackage.eINSTANCE.getComment());
 			elements.put(Constraint_3199, UMLPackage.eINSTANCE.getConstraint());
 			elements.put(NamedElement_3204, UMLPackage.eINSTANCE.getNamedElement());
+			elements.put(NamedElement_2003, UMLPackage.eINSTANCE.getNamedElement());
 			elements.put(Port_3069, UMLPackage.eINSTANCE.getPort());
 			elements.put(Model_3077, UMLPackage.eINSTANCE.getModel());
 			elements.put(Package_3076, UMLPackage.eINSTANCE.getPackage());
+			elements.put(Interface_3078, UMLPackage.eINSTANCE.getInterface());
 			elements.put(Component_3070, UMLPackage.eINSTANCE.getComponent());
 			elements.put(Component_3071, UMLPackage.eINSTANCE.getComponent());
-			elements.put(Interface_3072, UMLPackage.eINSTANCE.getInterface());
 			elements.put(Comment_3074, UMLPackage.eINSTANCE.getComment());
 			elements.put(Constraint_3075, UMLPackage.eINSTANCE.getConstraint());
+			elements.put(Property_1, UMLPackage.eINSTANCE.getProperty());
+			elements.put(Operation_5, UMLPackage.eINSTANCE.getOperation());
+			elements.put(Reception_6, UMLPackage.eINSTANCE.getReception());
+			elements.put(Interface_3072, UMLPackage.eINSTANCE.getInterface());
 			elements.put(Usage_4001, UMLPackage.eINSTANCE.getUsage());
 			elements.put(InterfaceRealization_4006, UMLPackage.eINSTANCE.getInterfaceRealization());
 			elements.put(Generalization_4003, UMLPackage.eINSTANCE.getGeneralization());
@@ -315,18 +356,23 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Component_2002);
 			KNOWN_ELEMENT_TYPES.add(Model_3202);
 			KNOWN_ELEMENT_TYPES.add(Package_3200);
-			KNOWN_ELEMENT_TYPES.add(Interface_2003);
+			KNOWN_ELEMENT_TYPES.add(Interface_3205);
 			KNOWN_ELEMENT_TYPES.add(Comment_3201);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3199);
 			KNOWN_ELEMENT_TYPES.add(NamedElement_3204);
+			KNOWN_ELEMENT_TYPES.add(NamedElement_2003);
 			KNOWN_ELEMENT_TYPES.add(Port_3069);
 			KNOWN_ELEMENT_TYPES.add(Model_3077);
 			KNOWN_ELEMENT_TYPES.add(Package_3076);
+			KNOWN_ELEMENT_TYPES.add(Interface_3078);
 			KNOWN_ELEMENT_TYPES.add(Component_3070);
 			KNOWN_ELEMENT_TYPES.add(Component_3071);
-			KNOWN_ELEMENT_TYPES.add(Interface_3072);
 			KNOWN_ELEMENT_TYPES.add(Comment_3074);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3075);
+			KNOWN_ELEMENT_TYPES.add(Property_1);
+			KNOWN_ELEMENT_TYPES.add(Operation_5);
+			KNOWN_ELEMENT_TYPES.add(Reception_6);
+			KNOWN_ELEMENT_TYPES.add(Interface_3072);
 			KNOWN_ELEMENT_TYPES.add(Usage_4001);
 			KNOWN_ELEMENT_TYPES.add(InterfaceRealization_4006);
 			KNOWN_ELEMENT_TYPES.add(Generalization_4003);
@@ -339,6 +385,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4009);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4010);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4017);
+			KNOWN_ELEMENT_TYPES.add(Link_4018);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -358,30 +405,40 @@ public class UMLElementTypes {
 			return Model_3202;
 		case PackageEditPart.VISUAL_ID:
 			return Package_3200;
-		case InterfaceEditPart.VISUAL_ID:
-			return Interface_2003;
+		case RectangleInterfaceEditPart.VISUAL_ID:
+			return Interface_3205;
 		case CommentEditPart.VISUAL_ID:
 			return Comment_3201;
 		case ConstraintEditPart.VISUAL_ID:
 			return Constraint_3199;
 		case DefaultNamedElementEditPart.VISUAL_ID:
 			return NamedElement_3204;
+		case InterfaceEditPart.VISUAL_ID:
+			return NamedElement_2003;
 		case PortEditPart.VISUAL_ID:
 			return Port_3069;
 		case ModelEditPartCN.VISUAL_ID:
 			return Model_3077;
 		case PackageEditPartCN.VISUAL_ID:
 			return Package_3076;
+		case RectangleInterfaceEditPartCN.VISUAL_ID:
+			return Interface_3078;
 		case ComponentEditPartCN.VISUAL_ID:
 			return Component_3070;
 		case ComponentEditPartPCN.VISUAL_ID:
 			return Component_3071;
-		case InterfaceEditPartPCN.VISUAL_ID:
-			return Interface_3072;
 		case CommentEditPartPCN.VISUAL_ID:
 			return Comment_3074;
 		case ConstraintEditPartPCN.VISUAL_ID:
 			return Constraint_3075;
+		case PropertyForInterfaceEditPart.VISUAL_ID:
+			return Property_1;
+		case OperationForInterfaceEditPart.VISUAL_ID:
+			return Operation_5;
+		case ReceptionInInterfaceEditPart.VISUAL_ID:
+			return Reception_6;
+		case InterfaceEditPartPCN.VISUAL_ID:
+			return Interface_3072;
 		case UsageEditPart.VISUAL_ID:
 			return Usage_4001;
 		case InterfaceRealizationEditPart.VISUAL_ID:
@@ -406,6 +463,8 @@ public class UMLElementTypes {
 			return Dependency_4010;
 		case DependencyBranchEditPart.VISUAL_ID:
 			return Dependency_4017;
+		case InterfacePortLinkEditPart.VISUAL_ID:
+			return Link_4018;
 		}
 		return null;
 	}

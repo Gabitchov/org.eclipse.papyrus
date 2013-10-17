@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Group text="Paste Column Axis">
+		<Group.layout>
+			<ppel:PropertiesLayout makeColumnsEqualWidth="true"
+				numColumns="3"></ppel:PropertiesLayout>
+		</Group.layout>
+		<ppe:BooleanCheckbox input="{Binding}"
+			property="nattable:Table:localColumnHeaderAxisConfiguration.detachedMode"
+			customLabel="Detached Mode"></ppe:BooleanCheckbox>
+		<ppe:StringCombo input="{Binding}"
+			property="nattable:Table:localColumnHeaderAxisConfiguration.pastedEObjectId"
+			customLabel="Pasted Element Id"></ppe:StringCombo>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="nattable:Table:localColumnHeaderAxisConfiguration.pastedEObjectContainmentFeature"
+			customLabel="Containment Feature"></ppe:ReferenceDialog>
+		<ppe:MultiReference input="{Binding}"
+			property="nattable:Table:localColumnHeaderAxisConfiguration.postActions"
+			customLabel="Post Actions"></ppe:MultiReference>
+	</Group>
+</Composite>

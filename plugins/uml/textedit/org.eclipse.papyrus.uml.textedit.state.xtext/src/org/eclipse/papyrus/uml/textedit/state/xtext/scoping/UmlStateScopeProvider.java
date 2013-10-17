@@ -19,10 +19,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule;
-import org.eclipse.papyrus.uml.textedit.state.xtext.validation.UmlStateJavaValidator;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
@@ -56,7 +56,8 @@ public class UmlStateScopeProvider extends AbstractDeclarativeScopeProvider {
 	
 	private IScope create___SubmachineRule_submachine___Scope(SubmachineRule ctx) {
 		if (ctx.getPath() == null) {
-			Iterator<EObject> i = PopupXtextEditorHelper.context.eResource().getAllContents() ;
+			EObject contextElement = ContextElementUtil.getContextElement(ctx.eResource());
+			Iterator<EObject> i = contextElement.eResource().getAllContents() ;
 			List<EObject> allContent = new ArrayList<EObject>() ;
 			while (i.hasNext()) {
 				EObject object = i.next() ;
@@ -110,8 +111,10 @@ public class UmlStateScopeProvider extends AbstractDeclarativeScopeProvider {
 			visibleNamespaces.addAll(new Visitor_GetOwnedNamespacesAndImportedNamespaces().visit(parentNameSpace)) ;
 		}
 		else {
-			visibleNamespaces.add(UmlStateJavaValidator.getModel()) ;
-			visibleNamespaces.addAll(new Visitor_GetImportedNamespaces().visit(UmlStateJavaValidator.getModel())) ;
+			EObject contextElement = ContextElementUtil.getContextElement(ctx.eResource());
+			Namespace root = (Namespace) EcoreUtil.getRootContainer(contextElement);
+			visibleNamespaces.add(root) ;
+			visibleNamespaces.addAll(new Visitor_GetImportedNamespaces().visit(root)) ;
 		}
 		Iterable<IEObjectDescription> iterableIEobjectDescription = Scopes.scopedElementsFor(visibleNamespaces) ;		
 		return new SimpleScope(iterableIEobjectDescription) ;

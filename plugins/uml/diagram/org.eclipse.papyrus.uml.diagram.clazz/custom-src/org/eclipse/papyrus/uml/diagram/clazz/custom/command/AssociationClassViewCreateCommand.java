@@ -74,7 +74,6 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 			}
 			return null;
 		}
-
 	}
 
 	/** The node. */
@@ -127,7 +126,6 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 		this.preferenceHint = preferencesHint;
 		this.createConnectionViewAndElementRequest = createConnectionViewAndElementRequest;
 		this.location = point;
-
 	}
 
 	/**
@@ -138,7 +136,6 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 		// / get the factory of the viewer
 		// AssociationClassViewFactory factory = new
 		// AssociationClassViewFactory();
-
 		// creation of the element
 		CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest)createConnectionViewAndElementRequest).getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest)requestAdapter.getAdapter(CreateRelationshipRequest.class);
@@ -182,5 +179,4 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 	public View getNode() {
 		return node;
 	}
-
 }

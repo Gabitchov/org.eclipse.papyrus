@@ -35,7 +35,6 @@ import org.eclipse.uml2.uml.Namespace;
  */
 public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 
-
 	public CustomContextLinkCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request, source, target);
 	}
@@ -81,8 +80,8 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 				}
 			}
 		}
+		if(resolveTargetNamespace() != null && (resolveTargetNamespace().getOwnedRules().contains(resolveTargetNamespace()))) {
 				
-		if(getTarget() != null && (getTarget().getOwnedRules().contains(getTarget()))) {
 			return false;
 		}
 		return true;

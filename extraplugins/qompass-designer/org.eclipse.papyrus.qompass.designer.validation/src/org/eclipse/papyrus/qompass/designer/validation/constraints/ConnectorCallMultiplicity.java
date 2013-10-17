@@ -1,23 +1,29 @@
-/*******************************************************************************
- * Copyright (c) 2008-2010 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
- * are property of the CEA, their use is subject to specific agreement 
- * with the CEA.
- * 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
  * Contributors:
- *    CEA LIST - initial API and implementation
- *******************************************************************************/
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.validation.constraints;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.papyrus.FCM.DerivedElement;
+import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
-
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 
 /**
  * Check whether the multiplicity of the ports (of a part) are consistent with the defined connectors, in particular whether a
@@ -31,9 +37,14 @@ public class ConnectorCallMultiplicity extends AbstractModelConstraint
 	@Override
 	public IStatus validate (IValidationContext ctx)
 	{
-		String portsStr = "";
+		String portsStr = ""; //$NON-NLS-1$
 		
 		Property part = (Property) ctx.getTarget();
+		if (!StereotypeUtil.isApplicable(part, DerivedElement.class)) {
+			// make rule Qompass specific: only perform check, if the FCM profile is applied (checked via applicability
+			// the DerviedElement stereotype)
+			return ctx.createSuccessStatus();
+		}
 		Class owner = part.getClass_ ();
 		if (owner != null) {
 			if (part.getType () instanceof Class) {
@@ -49,7 +60,7 @@ public class ConnectorCallMultiplicity extends AbstractModelConstraint
 						}
 						if (connections > port.getUpper ()) {
 							if (portsStr.length () != 0) {
-								portsStr += ", ";
+								portsStr += ", "; //$NON-NLS-1$
 							}
 							portsStr += port.getName ();
 						}
@@ -58,7 +69,8 @@ public class ConnectorCallMultiplicity extends AbstractModelConstraint
 			}
 		}
 		if (portsStr.length () > 0) {
-			return ctx.createFailureStatus ("The port(s) '" + portsStr + "' with a required interface of part '" + part.getName () + "' have more connections than their multiplicty within composite '" + owner.getQualifiedName () + "'");
+			return ctx.createFailureStatus ("The port(s) '" + portsStr + "' with a required interface of part '" + part.getName () +
+					"' have more connections than their multiplicty within composite '" + owner.getQualifiedName () + "'");
 
 		}
 		else {

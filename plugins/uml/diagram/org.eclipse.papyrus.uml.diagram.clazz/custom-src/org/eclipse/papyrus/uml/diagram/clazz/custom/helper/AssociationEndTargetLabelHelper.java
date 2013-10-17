@@ -49,7 +49,6 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 			if(!(container instanceof Edge)) {
 				return null; //Happens e.g. when redoing the suppression of an association's end. The association is contained in a ChangeDescription
 			}
-
 			if(((Edge)((View)editPart.getModel()).eContainer()).getTarget() == null) {
 				return null;
 			}
@@ -57,9 +56,7 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 			Property propertyToDisplay = null;
 			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
-
 				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement()).getMemberEnds().iterator();
-
 				//find the last
 				while(propertiesIterator.hasNext()) {
 					Property currentProperty = propertiesIterator.next();
@@ -67,20 +64,16 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 						propertyToDisplay = currentProperty;
 					}
 				}
-
 			}
 			if(propertyToDisplay != null) {
 				return propertyToDisplay;
 			}
 			///in the case of reorient the property must be not found,
 			// so we have to find the property that is different from the source.
-
 			Classifier source = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getSource().getElement();
 			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {
 				// look for the property that is typed by the classifier
-
 				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement()).getMemberEnds().iterator();
-
 				//find the last
 				while(propertiesIterator.hasNext()) {
 					Property currentProperty = propertiesIterator.next();
@@ -88,10 +81,8 @@ public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
 						propertyToDisplay = currentProperty;
 					}
 				}
-
 			}
 			return propertyToDisplay;
-
 		}
 		return null;
 	}

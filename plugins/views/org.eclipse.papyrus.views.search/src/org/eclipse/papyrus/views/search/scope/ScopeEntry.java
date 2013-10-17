@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,8 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Fix leaking of all UML models in search results
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.scope;
@@ -16,17 +18,14 @@ package org.eclipse.papyrus.views.search.scope;
 import java.util.Collection;
 import java.util.HashSet;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -35,13 +34,13 @@ import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService
 import org.eclipse.papyrus.infra.services.openelement.service.impl.OpenElementServiceImpl;
 import org.eclipse.papyrus.views.search.Activator;
 import org.eclipse.papyrus.views.search.Messages;
+import org.eclipse.papyrus.views.search.utils.IServiceRegistryTracker;
 import org.eclipse.papyrus.views.search.utils.ModelUtils;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.ide.ResourceUtil;
 
 /**
  * 
@@ -49,6 +48,11 @@ import org.eclipse.ui.ide.ResourceUtil;
  * 
  */
 public class ScopeEntry {
+	/**
+	 * Tracks service registries created implicitly (not borrowed from editors) by scope entries, so that they may
+	 * be properly shut down when no longer needed.
+	 */
+	private final IServiceRegistryTracker serviceRegistryTracker;
 
 	/**
 	 * The modelSet that contains the model element
@@ -61,30 +65,32 @@ public class ScopeEntry {
 	private ServicesRegistry servicesRegistry;
 
 	/**
-	 * The resource that contains the element that raised a match
+	 * The URI of the resource that contains the element that raised a match.
 	 */
-	//	private IResource resource;
-
-	private IPath pathResource;
+	private URI resourceURI;
 
 
-	public ScopeEntry(IResource resource) {
+	public ScopeEntry(URI resourceURI) {
+		this(resourceURI, (IServiceRegistryTracker) null);
+	}
+
+	public ScopeEntry(URI resourceURI, IServiceRegistryTracker serviceRegistryTracker) {
 		super();
-		//		this.resource = resource;
-
-		this.pathResource = resource.getFullPath();
+		
+		this.serviceRegistryTracker = serviceRegistryTracker;
+		this.resourceURI = resourceURI;
 		this.modelSet = getModelSet();
 		this.servicesRegistry = getServicesRegistry();
 	}
 
-	//	public boolean isOpen() {
-	//		return isOpen;
-	//	}
-	//
-	//
-	//	public void setOpen(boolean isOpen) {
-	//		this.isOpen = isOpen;
-	//	}
+	public ScopeEntry(URI resourceURI, ServicesRegistry servicesRegistry) {
+		super();
+		
+		this.serviceRegistryTracker = null;
+		this.resourceURI = resourceURI;
+		this.servicesRegistry = servicesRegistry;
+		this.modelSet = getModelSet();
+	}
 
 	private Collection<IEditorPart> getEditors() {
 		Collection<IEditorPart> results = new HashSet<IEditorPart>();
@@ -115,6 +121,11 @@ public class ScopeEntry {
 			//			serviceRegistry.add(IPageIconsRegistry.class, 10, new PageIconRegistryServiceFactory());
 			serviceRegistry.startRegistry();
 
+			if(serviceRegistryTracker != null) {
+				// register this service registry for automatic shut-down when it is no longer needed
+				serviceRegistryTracker.track(this, serviceRegistry);
+			}
+			
 			return serviceRegistry;
 		} catch (ServiceException e) {
 			Activator.log.error(Messages.ScopeEntry_0, e);
@@ -131,12 +142,12 @@ public class ScopeEntry {
 				//Create one
 				try {
 
-					modelSet = ModelUtils.openFile(this.getResource());
+					modelSet = ModelUtils.openResource(getResourceURI());
 					getServicesRegistry().add(ModelSet.class, 10, modelSet);
 					getServicesRegistry().add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
 					getServicesRegistry().startServicesByClassKeys(ModelSet.class, ServiceUtilsForResourceInitializerService.class);
 				} catch (ModelMultiException modelMultiException) {
-					Activator.log.error(Messages.ScopeEntry_1 + this.getResource(), modelMultiException);
+					Activator.log.error(Messages.ScopeEntry_1 + this.getResourceURI(), modelMultiException);
 				} catch (ServiceMultiException e1) {
 					Activator.log.error(e1);
 				} catch (ServiceNotFoundException e1) {
@@ -147,17 +158,13 @@ public class ScopeEntry {
 		return modelSet;
 	}
 
-	public void setModelSet(ModelSet modelSet) {
-		this.modelSet = modelSet;
-	}
-
 	private IEditorPart editorOnResource() {
 		Collection<IEditorPart> editors = getEditors();
 
 		for(IEditorPart editor : editors) {
 
 			if(editor != null) {
-				if(ResourceUtil.getResource(editor.getEditorInput()).equals(this.getResource())) {
+				if(getResourceURI().equals(EditorUtils.getResourceURI(editor))) {
 					return editor;
 				}
 			}
@@ -193,10 +200,8 @@ public class ScopeEntry {
 				}
 
 				servicesRegistry = registry;
-				//				this.isOpen = true;
 
 			} else {
-				//				this.isOpen = false;
 				servicesRegistry = createServicesRegistry();
 			}
 		}
@@ -204,31 +209,12 @@ public class ScopeEntry {
 		return servicesRegistry;
 	}
 
-	public void setServicesRegistry(ServicesRegistry servicesRegistry) {
-		this.servicesRegistry = servicesRegistry;
+	public URI getResourceURI() {
+		return resourceURI;
 	}
-
-	public IResource getResource() {
-
-
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		IFile file = root.getFile(pathResource);
-
-		return (IResource)file;
-		//		if(this.uriResource != null) {
-		//
-		//			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		//
-		//
-		//			IPath path = new Path(this.uriResource.getPath());
-		//			return root.getFile(path);
-		//		} else {
-		//			return null;
-		//		}
-	}
-
-	public void setResource(IResource resource) {
-		this.pathResource = resource.getFullPath();
+	
+	public void setResourceURI(URI resourceURI) {
+		this.resourceURI = resourceURI;
 	}
 
 }

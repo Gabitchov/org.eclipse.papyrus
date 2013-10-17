@@ -8,27 +8,28 @@
  *******************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.commands;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
-import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
-import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
+import org.eclipse.papyrus.sysml.diagram.common.utils.ConstraintBlockHelper;
 import org.eclipse.papyrus.uml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
@@ -60,26 +61,41 @@ public class CustomBindingConnectorCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if (this.source != null && this.target != null) {
-			return isConstraintParameter((Element)source, RequestParameterUtils.getSourceView(getRequest())) 
-					|| isConstraintParameter((Element)target, RequestParameterUtils.getTargetView(getRequest()));
+			
+			boolean hasEncapsulationViolation = !checkEncapsulationCrossing();		
+			
+			return hasEncapsulationViolation ? false :
+					// one of the end must be a ConstraintParameter	
+					ConstraintBlockHelper.isConstraintParameter((Element)source, RequestParameterUtils.getSourceView(getRequest()))
+					|| ConstraintBlockHelper.isConstraintParameter((Element)target, RequestParameterUtils.getTargetView(getRequest()));
 		}
 		return false;
 	}
 
-	private boolean isConstraintParameter(Element element, View view) {
-		if (element instanceof Property) {
-			Property property = (Property) element;
-			Element ownerConstraintBlock = property.getOwner();
-			if (ownerConstraintBlock instanceof org.eclipse.uml2.uml.Class && UMLUtil.getStereotypeApplication(ownerConstraintBlock, ConstraintBlock.class) != null) {
-				// check for graphics : owned by a constraintProperty
-				View containerView = ViewUtil.getContainerView(view);
-				Element containerElement = (Element)containerView.getElement();
-				return containerElement instanceof Property 
-						&& UMLUtil.getStereotypeApplication(containerElement, ConstraintProperty.class) != null 
-						&& ((Property)containerElement).getType() == ownerConstraintBlock;
+	private boolean checkEncapsulationCrossing() {
+		org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils util = new org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils();
+		List<Property> nestedPropertyPath = util.getNestedPropertyPath(RequestParameterUtils.getSourceView(getRequest()), RequestParameterUtils.getTargetView(getRequest()));
+		for (Property property : nestedPropertyPath) {
+			Type type = property.getType();
+			Block stereotypeApplication = UMLUtil.getStereotypeApplication(type, Block.class);
+			if (stereotypeApplication != null) {
+				if (stereotypeApplication.isEncapsulated()) {
+					return false;
+				}
 			}
 		}
-		return false;
+		
+		nestedPropertyPath = util.getNestedPropertyPath(RequestParameterUtils.getTargetView(getRequest()), RequestParameterUtils.getSourceView(getRequest()));
+		for (Property property : nestedPropertyPath) {
+			Type type = property.getType();
+			Block stereotypeApplication = UMLUtil.getStereotypeApplication(type, Block.class);
+			if (stereotypeApplication != null) {
+				if (stereotypeApplication.isEncapsulated()) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	@Override

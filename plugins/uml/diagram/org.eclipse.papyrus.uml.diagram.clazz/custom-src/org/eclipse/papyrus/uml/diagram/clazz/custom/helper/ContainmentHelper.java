@@ -71,9 +71,7 @@ public class ContainmentHelper extends ElementHelper {
 
 	protected static final String CREATE_CONTAINMENT = "Create Containment";
 
-
 	public static final String CONTAINMENT_CIRCLE_POSITION = "ContainmentCirclePosition";
-
 
 	/** The Constant CONNECTION_VIEW. */
 	public static final String KEY_CONNECTION_VIEW = "connection_view"; //$NON-NLS-1$
@@ -101,28 +99,22 @@ public class ContainmentHelper extends ElementHelper {
 	 */
 	public Command getCreateContainmentCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
 		CompositeCommand compoundCommand = new CompositeCommand(CREATE_CONTAINMENT);
-
-
 		IGraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
 		View sourceView = (View)sourceEditPart.getModel();
 		EditPartViewer editPartViewer = (EditPartViewer)sourceEditPart.getViewer();
 		PreferencesHint preferencesHint = sourceEditPart.getDiagramPreferencesHint();
-
 		String linkHint = ((IHintedType)UMLElementTypes.Link_4022).getSemanticHint();
 		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes.Link_4022, ((IHintedType)org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes.Link_4022).getSemanticHint(), sourceEditPart.getDiagramPreferencesHint());
 		View targetView = (View)createConnectionViewRequest.getTargetEditPart().getModel();
 		IAdaptable targetViewAdapter = new SemanticAdapter(null, targetView);
 		IAdaptable circleAdapter = null;
 		ContainmentCircleViewCreateCommand circleCommand = null;
-
 		deleteIncomingContainmentLinksFor(compoundCommand, targetView);
-
 		//detect if we draw a containment link between the node of containment and the target class or package
 		if(ContainmentCircleEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(sourceEditPart.getNotationView())) {
 			circleAdapter = new SemanticAdapter(null, sourceEditPart.getNotationView());
 			sourceView = (View)sourceEditPart.getParent().getModel();
 		} else {
-
 			//detect if we draw a containment link between two class or packages
 			circleCommand = new ContainmentCircleViewCreateCommand(createConnectionViewRequest, getEditingDomain(), sourceView, editPartViewer, preferencesHint);
 			compoundCommand.add(circleCommand);
@@ -130,17 +122,11 @@ public class ContainmentHelper extends ElementHelper {
 				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), createConnectionViewRequest.getLocation());
 				compoundCommand.add(setBoundsCommand);
 			}
-
 		}
-
-
 		ICommand dashedLineCmd = new CustomCreateContainmentLinkCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
 		compoundCommand.add(dashedLineCmd);
-
-
 		return new ICommandProxy(compoundCommand);
 	}
-
 
 	/**
 	 * Delete all incoming link that go this node
@@ -185,10 +171,7 @@ public class ContainmentHelper extends ElementHelper {
 				}
 			}
 		}
-
 	}
-
-
 
 	/**
 	 * DragDrop the contained class from the modelexplorer to the diagram and from the compartment to the diagram.
@@ -230,13 +213,11 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return the command
 	 */
 	public Command dropElementToDiagram(PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
-
 		//0 what is the context of this call
 		//- drop from the model explorer
 		//- drop intra diagram form its container to outside of this class
 		// - the edit part of a the dropped element already exist?
 		EditPart droppedElementEditPart = findEditPartFor(viewer.getEditPartRegistry(), droppedElement);
-
 		//Is is contained into a class ?
 		Element owner = (Element)droppedElement.getOwner();
 		//the container editpart is the the class that can contained the dropped element.
@@ -248,7 +229,6 @@ public class ContainmentHelper extends ElementHelper {
 				containerEditpart = parentEP;
 			}
 		}
-
 		CompositeCommand cc = new CompositeCommand("drop");
 		// in the context of a drop from the model explorer -> create only a view for this element
 		if(containerEditpart == null) {
@@ -279,15 +259,11 @@ public class ContainmentHelper extends ElementHelper {
 	 */
 	protected void dropElementToDiagram(CompositeCommand cc, PackageableElement droppedElement, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 		ViewDescriptor droppedElementDescriptor = new ViewDescriptor(new EObjectAdapter(droppedElement), Node.class, null, ViewUtil.APPEND, true, diagramPreferencesHint);
-
 		CreateCommand containedNodeCreationCommand = new CreateCommand(this.editDomain, droppedElementDescriptor, containerView);
 		cc.add(containedNodeCreationCommand);
 		cc.add(new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100)));
-
 		addStereotypeLabelToDroppedElement(cc, droppedElement, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue());
-
 	}
-
 
 	/**
 	 * TO DO: to investigate about the use of this code
@@ -308,8 +284,6 @@ public class ContainmentHelper extends ElementHelper {
 		Iterator<Stereotype> stereotypeAppliedIterator = stereotypeAppliedList.iterator();
 		while(stereotypeAppliedIterator.hasNext()) {
 			Stereotype stereotype = (Stereotype)stereotypeAppliedIterator.next();
-
-
 			String profileApplied = "\"" + stereotype.getProfile() + "\"::";
 			cc.add(new CustomDropAppliedStereotypeCommand(this.editDomain, createdEditPartAdapter, profileApplied, UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION));
 		}
@@ -539,7 +513,6 @@ public class ContainmentHelper extends ElementHelper {
 
 	private boolean canHaveContainmentLink(EditPart currentEditPart) {
 		return currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof PackageEditPart || currentEditPart instanceof ModelEditPartTN || currentEditPart instanceof NestedClassForClassEditPart || currentEditPart instanceof ModelEditPartCN;
-
 	}
 
 	/**
@@ -609,7 +582,6 @@ public class ContainmentHelper extends ElementHelper {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -687,6 +659,4 @@ public class ContainmentHelper extends ElementHelper {
 		from.getNestedClassifiers().remove(clazz);
 		to.getNestedClassifiers().add(clazz);
 	}
-
-
 }

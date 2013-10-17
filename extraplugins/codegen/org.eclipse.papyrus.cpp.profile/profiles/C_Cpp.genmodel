@@ -17,11 +17,9 @@
       <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EAccessKind/readWrite"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="C_Cpp.ecore#//EStorageClass">
-      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/auto"/>
+      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/volatile"/>
       <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/register"/>
       <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/extern"/>
-      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/static"/>
-      <genEnumLiterals ecoreEnumLiteral="C_Cpp.ecore#//EStorageClass/inline"/>
     </genEnums>
     <genClasses ecoreClass="C_Cpp.ecore#//Ptr">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ptr/base_parameter"/>
@@ -41,7 +39,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ManualGeneration/base_Class"/>
     </genClasses>
     <genClasses ecoreClass="C_Cpp.ecore#//ExternLibrary">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/includePaths"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//ExternLibrary/base_package"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/libPaths"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ExternLibrary/macros"/>
@@ -64,11 +62,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Const/base_parameter"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Const/base_property"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Const/base_operation"/>
-    </genClasses>
-    <genClasses ecoreClass="C_Cpp.ecore#//Default">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//Default/value"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Default/base_parameter"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Default/base_property"/>
     </genClasses>
     <genClasses ecoreClass="C_Cpp.ecore#//Ref">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Ref/base_parameter"/>

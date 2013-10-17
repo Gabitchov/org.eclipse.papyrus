@@ -82,7 +82,7 @@ public abstract class ParametricAndListeningHandler extends GraphicalCommandHand
 	 * @throws ExecutionException
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		addSelectionListener();
 		return UnexecutableCommand.INSTANCE;
 	}

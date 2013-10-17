@@ -1,5 +1,6 @@
 [module CppTemplates('http://www.eclipse.org/uml2/4.0.0/UML')/]
-[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::acceleo::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::CppGenUtils/]
 
 
 [query public CppTemplateBindingParameter(tps : TemplateParameterSubstitution) : String =
@@ -17,14 +18,14 @@ endif
 
 [template public templateSignature(class : Classifier)]
 [if isTemplate()]
-template<[for (getTemplateParameters()) separator(', ')][getType()/][/for]>
+template<[for (getTemplateParameters()) separator(', ')][getTemplateTypeName()/][/for]>
 [/if]
 [/template]
 
 
 [template public templateShortSignature(class : Classifier)]
 [if isTemplate()]
-<[for (getTemplateParameters()) separator(', ')][getName()/][/for]> [/if]
+<[for (getTemplateParameters()) separator(', ')][getTemplateName()/][/for]> [/if]
 [/template]
 
 

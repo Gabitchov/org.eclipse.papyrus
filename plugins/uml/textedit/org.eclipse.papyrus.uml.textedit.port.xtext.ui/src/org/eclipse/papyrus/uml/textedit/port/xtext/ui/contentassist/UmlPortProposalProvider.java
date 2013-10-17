@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
 import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CustomCompletionProposal;
@@ -28,7 +29,7 @@ import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.MultiplicityRule;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.PortRule;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.TypeRule;
-import org.eclipse.papyrus.uml.textedit.port.xtext.validation.UmlPortJavaValidator;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -58,12 +59,14 @@ public class UmlPortProposalProvider extends org.eclipse.papyrus.uml.textedit.po
 	@Override
 	public void completePortRule_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		List<Classifier> allClassifiers = new ArrayList<Classifier>();
-		allClassifiers.addAll(getRecursivelyOwnedClassifiers(UmlPortJavaValidator.getModel()));
-		allClassifiers.addAll(getRecursivelyImportedClassifiers(UmlPortJavaValidator.getModel()));
+		Namespace namespace = (Namespace) EcoreUtil.getRootContainer(ContextElementUtil.getContextElement(model
+				.eResource()));
+		allClassifiers.addAll(getRecursivelyOwnedClassifiers(namespace));
+		allClassifiers.addAll(getRecursivelyImportedClassifiers(namespace));
 		for(Classifier c : allClassifiers) {
 			if(c.getQualifiedName().toLowerCase().contains(context.getPrefix().toLowerCase())) {
 				String displayString = c.getQualifiedName();
-				String completionString = CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(c, UmlPortJavaValidator.getModel());
+				String completionString = CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(c, namespace);
 				ICompletionProposal completionProposal = CompletionProposalUtils.createCompletionProposalWithReplacementOfPrefix(c, completionString, displayString, context);
 				acceptor.accept(completionProposal);
 			}
@@ -79,7 +82,8 @@ public class UmlPortProposalProvider extends org.eclipse.papyrus.uml.textedit.po
 	 */
 	@Override
 	public void completeTypeRule_Path(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		Namespace root = UmlPortJavaValidator.getModel();
+		Namespace root = (Namespace) EcoreUtil
+				.getRootContainer(ContextElementUtil.getContextElement(model.eResource()));
 
 		if(root == null) {
 			return;
@@ -116,7 +120,7 @@ public class UmlPortProposalProvider extends org.eclipse.papyrus.uml.textedit.po
 	@Override
 	public void completeTypeRule_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 
-		Namespace namespace = ((Property)UmlPortJavaValidator.getContextElement()).getNamespace();
+		Namespace namespace = ((Property) ContextElementUtil.getContextElement(model.eResource())).getNamespace();
 		if(model instanceof TypeRule) {
 			TypeRule typeRule = (TypeRule)model;
 			QualifiedName path = typeRule.getPath();

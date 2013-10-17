@@ -15,15 +15,15 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.UseInstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.Activator;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerContext;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -48,7 +48,7 @@ public class InstanceConfigurator {
 	 */
 	public static void configureInstance(InstanceSpecification instance, Property componentPart, ContainerContext containerContext) {
 		Classifier component = DepUtils.getClassifier(instance);
-		UseInstanceConfigurator useInstanceConfigurator = StUtils.getApplication(component, UseInstanceConfigurator.class);
+		UseInstanceConfigurator useInstanceConfigurator = UMLUtil.getStereotypeApplication(component, UseInstanceConfigurator.class);
 		configureInstance(useInstanceConfigurator, instance, componentPart, containerContext);
 	}
 
@@ -66,7 +66,7 @@ public class InstanceConfigurator {
 	 *        a port within the context of container
 	 */
 	public static void configureInstance(ContainerRule rule, InstanceSpecification instance, Property componentPart, ContainerContext containerContext) {
-		UseInstanceConfigurator useInstanceConfigurator = StUtils.getApplication(rule.getBase_Class(), UseInstanceConfigurator.class);
+		UseInstanceConfigurator useInstanceConfigurator = UMLUtil.getStereotypeApplication(rule.getBase_Class(), UseInstanceConfigurator.class);
 		configureInstance(useInstanceConfigurator, instance, componentPart, containerContext);
 	}
 

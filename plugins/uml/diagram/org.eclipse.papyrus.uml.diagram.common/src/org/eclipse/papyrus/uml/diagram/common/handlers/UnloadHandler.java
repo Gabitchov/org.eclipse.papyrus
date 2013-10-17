@@ -28,11 +28,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.resourceloading.util.LoadingUtils;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Handler for the load resource action. This actions load a resource in the
@@ -89,36 +84,6 @@ public class UnloadHandler extends GraphicalCommandHandler {
 			return command;
 		}
 		return UnexecutableCommand.INSTANCE;
-	}
-
-	/**
-	 * Get currently opened editor
-	 * 
-	 * @return editor
-	 */
-	protected IEditorPart getEditor() {
-		IEditorPart editor = null;
-		IWorkbenchWindow activeWorkbenchWindow = getActiveWorkbenchWindow();
-		if(activeWorkbenchWindow != null) {
-			IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
-			if(activePage != null) {
-				editor = activePage.getActiveEditor();
-			}
-		}
-		return editor;
-	}
-
-	/**
-	 * Get the active workbench window
-	 * 
-	 * @return window
-	 */
-	protected IWorkbenchWindow getActiveWorkbenchWindow() {
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		if(workbench != null) {
-			return workbench.getActiveWorkbenchWindow();
-		}
-		return null;
 	}
 
 }

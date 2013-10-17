@@ -44,7 +44,7 @@ public interface RuleApplication extends EObject {
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getRuleApplication_Base_Class()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	org.eclipse.uml2.uml.Class getBase_Class();
@@ -86,7 +86,7 @@ public interface RuleApplication extends EObject {
 	 * @return the value of the '<em>Base Package</em>' reference.
 	 * @see #setBase_Package(org.eclipse.uml2.uml.Package)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getRuleApplication_Base_Package()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	org.eclipse.uml2.uml.Package getBase_Package();

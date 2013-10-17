@@ -33,6 +33,10 @@ public class DataTypeUtil {
 	public static boolean isDataTypeDefinition(EClass eclass){
 		if(eclass.getEAnnotations().size() > 0) {
 			UMLPackage.eINSTANCE.getNsURI();
+			//Use to detect in static profil if the Eclass is a datatype
+			if( eclass.getEAnnotation("DataType")!=null){
+				return true;
+			}
 			EAnnotation eAnnotation = eclass.getEAnnotation(UMLUtil.UML2_UML_PACKAGE_2_0_NS_URI);
 			if(eAnnotation!=null) {
 				if((eAnnotation.getReferences().get(0) instanceof org.eclipse.uml2.uml.DataType)) {

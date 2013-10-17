@@ -1,5 +1,8 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.adltool.command,
+Export-Package: org.eclipse.papyrus.adltool,
+ org.eclipse.papyrus.adltool.command,
+ org.eclipse.papyrus.adltool.designer,
+ org.eclipse.papyrus.adltool.designer.bundle,
  org.eclipse.papyrus.adltool.designer.wizard
 Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName

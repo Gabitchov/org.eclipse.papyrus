@@ -112,12 +112,6 @@ public class C_CppSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case C_CppPackage.DEFAULT: {
-				Default default_ = (Default)theEObject;
-				T result = caseDefault(default_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case C_CppPackage.REF: {
 				Ref ref = (Ref)theEObject;
 				T result = caseRef(ref);
@@ -278,21 +272,6 @@ public class C_CppSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConst(Const object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Default</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Default</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDefault(Default object) {
 		return null;
 	}
 

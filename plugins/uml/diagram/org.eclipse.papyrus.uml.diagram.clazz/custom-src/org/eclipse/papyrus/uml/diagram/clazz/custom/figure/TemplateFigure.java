@@ -58,6 +58,5 @@ public class TemplateFigure extends PapyrusNodeFigure {
 
 	public RectangleFigure getTemplateParameterRectangle() {
 		return templateParameterRectangle;
-
 	}
 }

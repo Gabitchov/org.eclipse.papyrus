@@ -121,6 +121,8 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_te7YAMtkEd2H_o0jIC6qDQ" name="RuleApplication">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_8Rw6MctkEd2H_o0jIC6qDQ" name="base_Class" isUnique="false" association="_8QuYYMtkEd2H_o0jIC6qDQ">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Rbw4gBufEeOHaItjCC-qsA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Rb3mMBufEeOHaItjCC-qsA" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_r2VLUJD2Ed-I9dVdNhZAGQ" name="containerRule" visibility="public" type="_5SI38AAhEd-0dMgailnZgA" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zTT6QJD2Ed-I9dVdNhZAGQ"/>
@@ -131,6 +133,8 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_DZQuYCNaEeKGuM7MKNu-KA" name="base_Package" association="_DaA8UCNaEeKGuM7MKNu-KA">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Sk0yUBufEeOHaItjCC-qsA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Sk7gABufEeOHaItjCC-qsA" value="1"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_UvJO8PupEd6Ur5Lh7TH4tA" content="71%73%70%56%57%97%16%0%16%0%-29%12%0%20%30%100%29%39%109%39%49%119%40%50%120%49%59%-127%60%70%-116%80%90%-101%80%90%-100%120%-126%-70%120%-126%-69%-106%-96%-46%-76%-76%-76%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%-1%33%-7%4%1%10%0%15%0%44%0%0%0%0%16%0%16%0%0%4%50%-16%-55%73%-21%92%56%107%76%-105%-19%-109%33%126%-110%39%25%-117%-15%108%-100%-7%-120%-22%5%-54%115%25%-114%-76%125%-90%-11%122%-57%-70%-96%-81%-25%26%-110%-118%69%11%-110%36%100%-79%-104%-52%8%0%59%">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VsSzsPupEd6Ur5Lh7TH4tA" source="image_papyrus">
@@ -230,6 +234,8 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <generalization xmi:type="uml:Generalization" xmi:id="_EfZpAMtwEd2H_o0jIC6qDQ" general="_d1T90MtvEd2H_o0jIC6qDQ"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_jHWxIcttEd2H_o0jIC6qDQ" name="base_Connector" isUnique="false" association="_jDoHsMttEd2H_o0jIC6qDQ">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Connector"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HobWMBufEeOHaItjCC-qsA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HolHMBufEeOHaItjCC-qsA" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_lznjEMttEd2H_o0jIC6qDQ" name="ic" visibility="public" type="_Z1W68MtlEd2H_o0jIC6qDQ" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9HGQoMttEd2H_o0jIC6qDQ"/>
@@ -240,6 +246,8 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_GEXGkMtuEd2H_o0jIC6qDQ" name="base_Property" isUnique="false" association="_F_vFQMtuEd2H_o0jIC6qDQ">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IuwFEBufEeOHaItjCC-qsA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Iu5PABufEeOHaItjCC-qsA" value="1"/>
       </ownedAttribute>
       <icon xmi:type="uml:Image" xmi:id="_TLgoYFyXEeGSFubOzJOnSg" content="-119%80%78%71%13%10%26%10%0%0%0%13%73%72%68%82%0%0%0%20%0%0%0%12%8%0%0%0%0%71%103%-62%39%0%0%0%-85%73%68%65%84%8%-103%99%-8%15%4%91%61%94%-2%7%-125%57%-119%111%64%20%3%16%111%22%-13%-4%0%17%-36%40%28%-4%22%34%-72%85%-36%-27%49%68%-20%-1%-17%-123%66%-95%-17%64%-126%59%-60%44%54%-99%-127%-127%19%53%66%-31%-17%-2%51%-20%18%-77%-97%33%38%0%7%54%-45%4%35%-34%51%-56%40%63%124%-65%103%39%28%-100%-5%-35%-57%84%-49%16%-64%-65%-14%108%-80%47%28%84%62%13%18%-34%-64%-16%-50%91%-96%-36%-41%11%14%-94%-4%-124%22%3%45%122%-25%37%-72%-26%47%-44%-10%-1%-81%-62%4%23%-126%-99%-12%-42%67%112%29%84%-12%77%-104%-64%66%-88%-29%-33%-70%75%60%-123%8%-74%9%-52%-121%-7%-24%-1%-5%13%-33%33%-126%-41%15%-128%41%0%-105%3%-94%-119%-59%-55%85%100%0%0%0%0%73%69%78%68%-82%66%96%-126%" format="Papyrus">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TLgoYVyXEeGSFubOzJOnSg" source="image_papyrus">
@@ -518,7 +526,7 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
         </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_8g_IsNTGEeKiLbHSN_MIRQ" name="compiler" visibility="public" type="_iDiaINRxEeKiLbHSN_MIRQ">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AIgB8NTHEeKiLbHSN_MIRQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AIgB8NTHEeKiLbHSN_MIRQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AJC0gNTHEeKiLbHSN_MIRQ" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_AKHykNTHEeKiLbHSN_MIRQ">
           <value xsi:nil="true"/>

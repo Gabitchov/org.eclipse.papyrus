@@ -37,15 +37,9 @@
       <command
             description="Generate C++ code"
             id="org.eclipse.papyrus.cpp.codegen.command"
-            name="dummy">
+            defaultHandler="org.eclipse.papyrus.cpp.codegen.ui.handler.GenerateCodeHandler"
+            name="Generate C++ code">
       </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.handlers">
-      <handler
-            class="org.eclipse.papyrus.cpp.codegen.ui.handler.GenerateCodeHandler"
-            commandId="org.eclipse.papyrus.cpp.codegen.command">
-      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">

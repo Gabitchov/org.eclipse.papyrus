@@ -169,15 +169,26 @@ public class ConnectorUtils {
 	 * @param composite A composite class
 	 * @param partA	A part within the composite
 	 * @param partB Another part within the composite
+	 * @return a connector, if it connects the parts A and B could within the passed composite, or null if no
+	 *    such connector exists
+	 */
+	public static Connector getConnector(Class composite, Property partA, Property partB) {
+		for (Connector connector : composite.getOwnedConnectors()) {
+			if (ConnectorUtils.connectsPart(connector, partA) && ConnectorUtils.connectsPart(connector, partB)) {
+				return connector;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * @param composite A composite class
+	 * @param partA	A part within the composite
+	 * @param partB Another part within the composite
 	 * @return true, if a connector between the parts A and B could be
 	 *    found within the passed composite
 	 */
 	public static boolean existsConnector(Class composite, Property partA, Property partB) {
-		for (Connector connector : composite.getOwnedConnectors()) {
-			if (ConnectorUtils.connectsPart(connector, partA) && ConnectorUtils.connectsPart(connector, partB)) {
-				return true;
-			}
-		}
-		return false;
+		return getConnector(composite, partA, partB) != null;
 	}
 }

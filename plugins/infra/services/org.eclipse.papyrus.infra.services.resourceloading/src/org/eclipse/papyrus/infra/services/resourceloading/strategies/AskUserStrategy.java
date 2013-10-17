@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 ATOS ORIGIN, CEA LIST, and others.
+ * Copyright (c) 2010, 2013 ATOS ORIGIN, CEA LIST, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Tristan Faure (ATOS ORIGIN INTEGRATION) tristan.faure@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
+ *  Christian W. Damus (CEA LIST) - support control mode in CDO resources
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.strategies;
@@ -36,6 +37,7 @@ import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.SWT;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IPartListener;
@@ -102,7 +104,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 	 */
 	public boolean loadResource(ModelSet modelSet, URI uri) {
 		// pathmap resource are always loaded
-		boolean result = !uri.isPlatform() && !uri.isFile();
+		boolean result = !modelSet.isUserModelResource(uri);
 		URI initialURI = modelSet.getURIWithoutExtension();
 		// if no listener is registered, a listener is added on the editor to remove the notifications 
 		// when the editor is closed the listener removes too the choices made by the user.
@@ -471,14 +473,11 @@ public class AskUserStrategy implements ILoadingStrategy {
 				// search the editor which opened the given URI
 				for(IEditorReference ref : activePage.getEditorReferences()) {
 					try {
-						IFile file = (IFile)ref.getEditorInput().getAdapter(IFile.class);
-						if(file != null) {
-							URI createPlatformResourceURI = URI.createPlatformResourceURI(file.getFullPath().removeFileExtension().toString(), true);
-							if(createPlatformResourceURI != null && createPlatformResourceURI.equals(initialURI)) {
-								IEditorPart part = (IEditorPart)ref.getPart(false);
-								manageRefresh(ref, part);
-								// add the uris to load in authorized list
-							}
+						URI uri = getURI(ref.getEditorInput());
+						if((uri != null) && uri.trimFileExtension().equals(initialURI)) {
+							IEditorPart part = (IEditorPart)ref.getPart(false);
+							manageRefresh(ref, part);
+							// add the uris to load in authorized list
 						}
 					} catch (PartInitException e) {
 						e.printStackTrace();
@@ -591,6 +590,19 @@ public class AskUserStrategy implements ILoadingStrategy {
 		uris.add(toAutorized);
 	}
 
+	protected static URI getURI(final IEditorInput input) {
+		URI result;
+		
+		IFile file = (IFile)input.getAdapter(IFile.class);
+		if((file != null) && (file.getFullPath() != null)) {
+			result = URI.createPlatformResourceURI(file.getFullPath().removeFileExtension().toString(), true);
+		} else {
+			result = (URI) input.getAdapter(URI.class);
+		}
+
+		return result;
+	}
+	
 	/**
 	 * Notification containing the {@link URI} loaded
 	 * 
@@ -684,14 +696,13 @@ public class AskUserStrategy implements ILoadingStrategy {
 			super.partClosed(part);
 			if(part instanceof CoreMultiDiagramEditor) {
 				CoreMultiDiagramEditor editor = (CoreMultiDiagramEditor)part;
-				IFile file = (IFile)editor.getEditorInput().getAdapter(IFile.class);
-				if(file != null) {
-					if(file.getFullPath() != null) {
-						final URI uri = URI.createPlatformResourceURI(file.getFullPath().removeFileExtension().toString(), true);
-						addPerspectiveListener(new EditorClosePerspectiveListener(uri));
-						removePageListener(this);
-						listeners.remove(uri);
-					}
+				
+				URI uri = getURI(editor.getEditorInput());
+				if (uri != null) {
+					uri = uri.trimFileExtension();
+					addPerspectiveListener(new EditorClosePerspectiveListener(uri));
+					removePageListener(this);
+					listeners.remove(uri);
 				}
 			}
 		}

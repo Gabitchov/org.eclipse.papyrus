@@ -24,28 +24,25 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.C_Cpp.External;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Typedef;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Type;
-import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -187,48 +184,6 @@ public class UMLTool {
 	}
 
 	/**
-	 * This method returns all parameters of an operation in a flat way,
-	 * i.e. for parameters typed by a data-type, multiple parameters are
-	 * returned.
-	 * TODO: support arbitrary nesting (recursive function)
-	 */
-	public EList<Parameter> flatParameters(Operation operation) {
-		EList<Parameter> parameters = new BasicEList<Parameter>();
-
-		for(Parameter parameter : operation.getOwnedParameters()) {
-			Type type = parameter.getType();
-			if(parameter.getUpper() == -1) {
-				// multiplicity = "*"
-				Parameter containedParam = UMLFactory.eINSTANCE.createParameter();
-				containedParam.setName(parameter.getName() + "_length");
-				NamedElement basicTypes = type.getModel().getMember("CORBA");
-				if(basicTypes instanceof Package) {
-					NamedElement ulong = ((Package)basicTypes).getMember("ULong");
-					if(ulong instanceof Type) {
-						containedParam.setType((Type)ulong);
-					}
-				}
-				parameters.add(containedParam);
-			}
-			if((type instanceof PrimitiveType) || (type instanceof Enumeration)) {
-				// these two are sub-types of DataType and are therefore checked before 
-				parameters.add(parameter);
-			}
-			if(type instanceof DataType) {
-				for(Property property : ((DataType)type).getAttributes()) {
-					Parameter containedParam = UMLFactory.eINSTANCE.createParameter();
-					containedParam.setName(parameter.getName() + "_" + property.getName());
-					containedParam.setType(property.getType());
-					parameters.add(containedParam);
-				}
-			} else {
-				parameters.add(parameter);
-			}
-		}
-		return parameters;
-	}
-
-	/**
 	 * This method returns all types that are referenced by a classifier. This includes
 	 * attribute types, types within operations as well as inherited types.
 	 * This is useful to generate the #includes
@@ -267,7 +222,7 @@ public class UMLTool {
 	 * @return
 	 */
 	public static String cppQName(NamedElement ne) {
-		if((StUtils.isApplied(ne, External.class)) || (StUtils.isApplied(ne, NoCodeGen.class))) {
+		if((StereotypeUtil.isApplied(ne, External.class)) || (StereotypeUtil.isApplied(ne, NoCodeGen.class))) {
 			return ne.getName();
 		} else {
 			String qName = ne.getName();
@@ -290,7 +245,7 @@ public class UMLTool {
 	 */
 	public static String paramName(Parameter parameter) {
 		if(parameter.getDirection().getValue() == ParameterDirectionKind.RETURN) {
-			return "retValue";
+			return "retValue"; //$NON-NLS-1$
 		} else {
 			return parameter.getName();
 		}
@@ -409,7 +364,7 @@ public class UMLTool {
 	 */
 	public static String dereferenceTypedef(Type type) {
 		if(type instanceof PrimitiveType) {
-			Typedef cppType = StUtils.getApplication(type, Typedef.class);
+			Typedef cppType = UMLUtil.getStereotypeApplication(type, Typedef.class);
 			if(cppType != null) {
 				return cppType.getDefinition();
 			}
@@ -420,11 +375,13 @@ public class UMLTool {
 
 	public static String encodeID(String uri) {
 		// _ becomes escape character. original _ is __, '-' becomes _M
-		return uri.replace("_", "__").replace("-", "_M");
+		return uri.
+				replace("_", "__"). //$NON-NLS-1$ //$NON-NLS-2$
+				replace("-", "_M"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public static String decodeID(String encodedURI) {
-		String result = "";
+		String result = ""; //$NON-NLS-1$
 		for(int i = 0; i < encodedURI.length(); i++) {
 			char c = encodedURI.charAt(i);
 			if(c == '_') {

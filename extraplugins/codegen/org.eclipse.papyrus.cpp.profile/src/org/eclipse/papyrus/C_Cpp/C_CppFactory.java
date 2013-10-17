@@ -67,15 +67,6 @@ public interface C_CppFactory extends EFactory {
 	Const createConst();
 
 	/**
-	 * Returns a new object of class '<em>Default</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Default</em>'.
-	 * @generated
-	 */
-	Default createDefault();
-
-	/**
 	 * Returns a new object of class '<em>Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

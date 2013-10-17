@@ -373,7 +373,7 @@
                   </iterate>
                   <test
                         forcePluginActivation="true"
-                        property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllNotLoaded"
+                        property="org.eclipse.papyrus.infra.core.resourceloading.tester.isAllNotLoaded"
                         value="true" />
               </and>
            </with>
@@ -405,7 +405,7 @@
                   </iterate>
                   <test
                         forcePluginActivation="true"
-                        property="org.eclipse.papyrus.infra.services.resourceloading.tester.isAllLoaded"
+                        property="org.eclipse.papyrus.infra.core.resourceloading.tester.isAllLoaded"
                         value="true" />
               </and>
            </with>

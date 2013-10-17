@@ -68,6 +68,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPar
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelPackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
@@ -120,6 +121,53 @@ public class ModelItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
+					case RectangleInterfaceEditPartCN.VISUAL_ID:
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentAnnotatedElementEditPart.VISUAL_ID:
+							case ConstraintConstrainedElementEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+								break;
+							case UsageEditPart.VISUAL_ID:
+							case InterfaceRealizationEditPart.VISUAL_ID:
+							case GeneralizationEditPart.VISUAL_ID:
+							case SubstitutionEditPart.VISUAL_ID:
+							case ManifestationEditPart.VISUAL_ID:
+							case ComponentRealizationEditPart.VISUAL_ID:
+							case AbstractionEditPart.VISUAL_ID:
+							case DependencyEditPart.VISUAL_ID:
+							case DependencyBranchEditPart.VISUAL_ID:
+								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(destroyEltReq));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+								break;
+							}
+						}
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+							case UsageEditPart.VISUAL_ID:
+							case InterfaceRealizationEditPart.VISUAL_ID:
+							case GeneralizationEditPart.VISUAL_ID:
+							case SubstitutionEditPart.VISUAL_ID:
+							case ManifestationEditPart.VISUAL_ID:
+							case ComponentRealizationEditPart.VISUAL_ID:
+							case AbstractionEditPart.VISUAL_ID:
+							case DependencyEditPart.VISUAL_ID:
+							case DependencyBranchEditPart.VISUAL_ID:
+								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(destroyEltReq));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
+								break;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
 					case ModelEditPartCN.VISUAL_ID:
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -254,53 +302,6 @@ public class ModelItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
-					case InterfaceEditPartPCN.VISUAL_ID:
-						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
-							Edge incomingLink = (Edge)it.next();
-							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
-							case CommentAnnotatedElementEditPart.VISUAL_ID:
-							case ConstraintConstrainedElementEditPart.VISUAL_ID:
-								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-								cmd.add(new DestroyReferenceCommand(destroyRefReq));
-								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
-								break;
-							case UsageEditPart.VISUAL_ID:
-							case InterfaceRealizationEditPart.VISUAL_ID:
-							case GeneralizationEditPart.VISUAL_ID:
-							case SubstitutionEditPart.VISUAL_ID:
-							case ManifestationEditPart.VISUAL_ID:
-							case ComponentRealizationEditPart.VISUAL_ID:
-							case AbstractionEditPart.VISUAL_ID:
-							case DependencyEditPart.VISUAL_ID:
-							case DependencyBranchEditPart.VISUAL_ID:
-								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
-								cmd.add(new DestroyElementCommand(destroyEltReq));
-								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
-								break;
-							}
-						}
-						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
-							Edge outgoingLink = (Edge)it.next();
-							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
-							case UsageEditPart.VISUAL_ID:
-							case InterfaceRealizationEditPart.VISUAL_ID:
-							case GeneralizationEditPart.VISUAL_ID:
-							case SubstitutionEditPart.VISUAL_ID:
-							case ManifestationEditPart.VISUAL_ID:
-							case ComponentRealizationEditPart.VISUAL_ID:
-							case AbstractionEditPart.VISUAL_ID:
-							case DependencyEditPart.VISUAL_ID:
-							case DependencyBranchEditPart.VISUAL_ID:
-								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
-								cmd.add(new DestroyElementCommand(destroyEltReq));
-								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
-								break;
-							}
-						}
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
-						break;
 					case CommentEditPartPCN.VISUAL_ID:
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
@@ -360,6 +361,53 @@ public class ModelItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolicy
 								break;
 							case UsageEditPart.VISUAL_ID:
 							case InterfaceRealizationEditPart.VISUAL_ID:
+							case SubstitutionEditPart.VISUAL_ID:
+							case ManifestationEditPart.VISUAL_ID:
+							case ComponentRealizationEditPart.VISUAL_ID:
+							case AbstractionEditPart.VISUAL_ID:
+							case DependencyEditPart.VISUAL_ID:
+							case DependencyBranchEditPart.VISUAL_ID:
+								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(destroyEltReq));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
+								break;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case InterfaceEditPartPCN.VISUAL_ID:
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+							case CommentAnnotatedElementEditPart.VISUAL_ID:
+							case ConstraintConstrainedElementEditPart.VISUAL_ID:
+								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(destroyRefReq));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+								break;
+							case UsageEditPart.VISUAL_ID:
+							case InterfaceRealizationEditPart.VISUAL_ID:
+							case GeneralizationEditPart.VISUAL_ID:
+							case SubstitutionEditPart.VISUAL_ID:
+							case ManifestationEditPart.VISUAL_ID:
+							case ComponentRealizationEditPart.VISUAL_ID:
+							case AbstractionEditPart.VISUAL_ID:
+							case DependencyEditPart.VISUAL_ID:
+							case DependencyBranchEditPart.VISUAL_ID:
+								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(destroyEltReq));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+								break;
+							}
+						}
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+							case UsageEditPart.VISUAL_ID:
+							case InterfaceRealizationEditPart.VISUAL_ID:
+							case GeneralizationEditPart.VISUAL_ID:
 							case SubstitutionEditPart.VISUAL_ID:
 							case ManifestationEditPart.VISUAL_ID:
 							case ComponentRealizationEditPart.VISUAL_ID:

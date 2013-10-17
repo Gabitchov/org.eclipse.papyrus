@@ -46,8 +46,10 @@ import org.eclipse.papyrus.qompass.designer.core.generate.GenerateCode;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerationOptions;
 import org.eclipse.papyrus.qompass.designer.core.templates.InstantiateCppIncludeWOB;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterComments;
+import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterRuleApplication;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterStateMachines;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterTemplate;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Classifier;
@@ -57,6 +59,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class executes all transformations during the instantiation of a
@@ -96,8 +99,8 @@ public class InstantiateDepPlan {
 		if(cdpOrConfig instanceof Package) {
 			cdp = (Package)cdpOrConfig;
 			MainModelTrafo.setConfiguration(null);
-		} else if(StUtils.isApplied(cdpOrConfig, Configuration.class)) {
-			configuration = StUtils.getApplication(cdpOrConfig, Configuration.class);
+		} else if(StereotypeUtil.isApplied(cdpOrConfig, Configuration.class)) {
+			configuration = UMLUtil.getStereotypeApplication(cdpOrConfig, Configuration.class);
 			DeploymentPlan fcmCDP = configuration.getDeploymentPlan();
 			if(fcmCDP == null) {
 				final NamedElement config = (NamedElement)cdpOrConfig;
@@ -224,6 +227,7 @@ public class InstantiateDepPlan {
 					Copy targetCopy = new Copy(tmpModel, genModel, true);
 					// TODO: distribution to nodes is currently not done. How can it be realized with a copy filter ?
 					targetCopy.preCopyListeners.add(FilterStateMachines.getInstance());
+					targetCopy.preCopyListeners.add(FilterRuleApplication.getInstance());
 					targetCopy.postCopyListeners.add(InstantiateCppIncludeWOB.getInstance());
 
 					monitor.setTaskName("deploying for node " + node.getName());

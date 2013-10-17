@@ -34,7 +34,7 @@ public class DropDownToolBarSameSizeHandler extends GraphicalCommandHandler {
 	 * @throws ExecutionException
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		SizeAction action = new SizeAction(SizeAction.PARAMETER_BOTH, getSelectedElements());
 		return action.getCommand();
 	}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Atos.
+ * Copyright (c) 2012, 2013 Atos, CEA LIST, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Devernay (Atos) laurent.devernay@atos.net
+ *  Christian W. Damus (CEA LIST) - support control mode in CDO resources
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.preferences;
@@ -147,7 +148,10 @@ public class LoadedAuthorizedResourceManager implements IPropertyChangeListener 
 		loadedAuthorizedResources.clear();
 		loadedAuthorizedResourcesSet.clear();
 
-		IFile currentFile = LoadingUtils.getFile(mainUri);
+		// the mainUri may not yet be known because, depending on the order in which
+		// models are initialized, the loading of an earlier model than the main DI
+		// model may trigger proxy resolutions in the UML CacheAdapter's crawl
+		IFile currentFile = (mainUri == null) ? null : LoadingUtils.getFile(mainUri);
 		if(currentFile != null) {
 			IProject project = currentFile.getProject();
 			IEclipsePreferences root = Platform.getPreferencesService().getRootNode();

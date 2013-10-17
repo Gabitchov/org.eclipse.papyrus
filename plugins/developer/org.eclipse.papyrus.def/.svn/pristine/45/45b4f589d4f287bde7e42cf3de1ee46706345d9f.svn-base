@@ -1,0 +1,60 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ *    Emilien Perico (Atos Origin) - update template from ext to qvto for GMF 2.2 compliance
+ */
+modeltype gmfgen uses "http://www.eclipse.org/gmf/2009/GenModel";
+
+library ViewInfoUtils;
+
+
+helper diagramViewInfoGetterName(diagram : gmfgen::GenDiagram) : String {
+	return cleanString("get"+diagram.domainDiagramElement.ecoreClass.name+"_"+diagram.visualID.toString()+"ViewInfo")
+}
+
+helper nodeViewInfoGetterName(node : gmfgen::GenNode) : String {
+	return cleanString("get"+node.modelFacet.metaClass.ecoreClass.name+"_"+node.visualID.toString()+"ViewInfo")
+}
+
+helper nodeViewInfoGetterName(compartment : gmfgen::GenCompartment) : String {
+	return cleanString("get"+compartment.title+"_"+compartment.visualID.toString()+"ViewInfo")
+}
+
+helper linkViewInfoGetterName(link : gmfgen::GenLink) : String {
+	return cleanString("get"+linkEClass(link.modelFacet)+"_"+link.visualID.toString()+"ViewInfo")
+}
+
+helper linkEClass(facet : gmfgen::TypeModelFacet) : String {
+	return cleanString(facet.metaClass.ecoreClass.name)
+}
+
+helper linkEClass(facet : gmfgen::ModelFacet) : String {
+	return ""
+}
+
+helper featureForLinkGetter(facet : gmfgen::ModelFacet) : String {
+	return ""
+}
+
+helper featureForLinkGetter(facet : gmfgen::FeatureLinkModelFacet) : String {
+	return cleanString(facet.metaFeature.ecoreFeature.name)
+}
+
+helper cleanString(string : String) : String {
+	return string.replace(" ", "_")
+}
+
+helper getContainerVidualID(node : gmfgen::GenNode) : String {
+	return node.visualID.toString()
+}
+
+helper getContainerVidualID(compartment : gmfgen::GenCompartment) : String {
+	return compartment.node.visualID.toString()
+}

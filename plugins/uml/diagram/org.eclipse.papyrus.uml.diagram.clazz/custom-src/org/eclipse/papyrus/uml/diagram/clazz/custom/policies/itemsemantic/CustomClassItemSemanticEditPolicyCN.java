@@ -80,7 +80,6 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 		case TemplateBindingEditPart.VISUAL_ID:
 			return UnexecutableCommand.INSTANCE;
 		}
-
 		return super.getReorientRelationshipCommand(req);
 	}
 
@@ -102,7 +101,6 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return getGEFWrapper(new CTemplateBindingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-
 		return super.getStartCreateRelationshipCommand(req);
 	}
 
@@ -146,7 +144,6 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 		return super.getReorientRefRelationshipSourceCommand(request);
 	}
 
-
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -155,7 +152,6 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 		ICommandProxy command = (ICommandProxy)super.getDestroyElementCommand(req);
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.add(command.getICommand());
-
 		addDestroyIncomingContainmentLinksCommand(cmd);
 		ContainmentHelper.addDeleteOutgoingContainmentLinkViewCommands(getEditingDomain(), (View)getHost().getModel(), cmd);
 		return getGEFWrapper(cmd.reduce());
@@ -176,6 +172,4 @@ public class CustomClassItemSemanticEditPolicyCN extends ClassItemSemanticEditPo
 			}
 		}
 	}
-
-
 }

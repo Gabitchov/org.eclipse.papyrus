@@ -7,10 +7,10 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
     </input>
-    <imports href="../../../utils/GenUtils.emtl#/0"/>
+    <imports href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
     <imports href="../operation/CppOperations.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="286" endPosition="405" value=" implementations of a classifier, parameter controls whether only inline (or only not inline) operations&#xA;  are produced"/>
+      <body startPosition="274" endPosition="393" value=" implementations of a classifier, parameter controls whether only inline (or only not inline) operations&#xA;  are produced"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="CppClassOperationsImplementation" visibility="Public">
       <body xsi:type="mtl:ForBlock">
@@ -38,7 +38,7 @@
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
                 <source xsi:type="mtl:QueryInvocation">
                   <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-                  <definition href="../../../utils/GenUtils.emtl#/0/hasStereotype.1"/>
+                  <definition href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
                   <argument xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/CppClassOperationsImplementation/%/select/temp1">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
                   </argument>
@@ -61,7 +61,7 @@
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
               <source xsi:type="mtl:QueryInvocation">
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-                <definition href="../../../utils/GenUtils.emtl#/0/hasStereotype.1"/>
+                <definition href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
                 <argument xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/CppClassOperationsImplementation/%/select/temp1">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
                 </argument>
@@ -127,13 +127,13 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../utils/GenUtils.emtl#/0/hasStereotype.1"/>
+          <references href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
         <eParameters name="arg0">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
         </eParameters>
-        <eParameters name="arg1">
+        <eParameters name="definition">
           <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
         </eParameters>
       </eOperations>
@@ -175,6 +175,11 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Class_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TemplateParameter_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateParameter"/>
@@ -195,19 +200,9 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Class_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
-      </eAnnotations>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Operation_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//PrimitiveType"/>
       </eAnnotations>
     </eClassifiers>
   </ecore:EPackage>
@@ -256,28 +251,28 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/%">
-      <details key="start" value="278"/>
-      <details key="end" value="407"/>
+      <details key="start" value="266"/>
+      <details key="end" value="395"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/CppClassOperationsImplementation">
-      <details key="start" value="408"/>
-      <details key="end" value="677"/>
+      <details key="start" value="396"/>
+      <details key="end" value="665"/>
       <details key="line" value="8"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/CppClassOperationsImplementation/%">
-      <details key="start" value="497"/>
-      <details key="end" value="665"/>
+      <details key="start" value="485"/>
+      <details key="end" value="653"/>
       <details key="line" value="9"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/CppClassOperationsImplementation/%/%">
-      <details key="start" value="626"/>
-      <details key="end" value="627"/>
+      <details key="start" value="614"/>
+      <details key="end" value="615"/>
       <details key="line" value="12"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/CppClassOperationsImplementation/%/%.1">
-      <details key="start" value="628"/>
-      <details key="end" value="656"/>
+      <details key="start" value="616"/>
+      <details key="end" value="644"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/CppClassOperationsImplementation/%/%.1/self">
@@ -286,18 +281,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/CppClassOperationsImplementation/%/%.2">
-      <details key="start" value="658"/>
-      <details key="end" value="659"/>
+      <details key="start" value="646"/>
+      <details key="end" value="647"/>
       <details key="line" value="14"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/CppClassOperationsImplementation/%/select">
-      <details key="start" value="503"/>
-      <details key="end" value="623"/>
+      <details key="start" value="491"/>
+      <details key="end" value="611"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/CppClassOperationsImplementation/%/select/%">
-      <details key="start" value="503"/>
-      <details key="end" value="518"/>
+      <details key="start" value="491"/>
+      <details key="end" value="506"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/CppClassOperationsImplementation/%/select/%/self">
@@ -306,23 +301,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/CppClassOperationsImplementation/%/select/%.1">
-      <details key="start" value="530"/>
-      <details key="end" value="622"/>
+      <details key="start" value="518"/>
+      <details key="end" value="610"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/CppClassOperationsImplementation/%/select/%.1/%">
-      <details key="start" value="530"/>
-      <details key="end" value="576"/>
+      <details key="start" value="518"/>
+      <details key="end" value="564"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%">
-      <details key="start" value="535"/>
-      <details key="end" value="575"/>
+      <details key="start" value="523"/>
+      <details key="end" value="563"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%">
-      <details key="start" value="536"/>
-      <details key="end" value="560"/>
+      <details key="start" value="524"/>
+      <details key="end" value="548"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%/temp1">
@@ -331,13 +326,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%/%">
-      <details key="start" value="550"/>
-      <details key="end" value="559"/>
+      <details key="start" value="538"/>
+      <details key="end" value="547"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%.1">
-      <details key="start" value="564"/>
-      <details key="end" value="574"/>
+      <details key="start" value="552"/>
+      <details key="end" value="562"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%.1/temp1">
@@ -346,13 +341,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1">
-      <details key="start" value="583"/>
-      <details key="end" value="622"/>
+      <details key="start" value="571"/>
+      <details key="end" value="610"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1/%">
-      <details key="start" value="584"/>
-      <details key="end" value="612"/>
+      <details key="start" value="572"/>
+      <details key="end" value="600"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.20" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1/%/temp1">
@@ -361,13 +356,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1/%/%">
-      <details key="start" value="598"/>
-      <details key="end" value="611"/>
+      <details key="start" value="586"/>
+      <details key="end" value="599"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1/inline">
-      <details key="start" value="615"/>
-      <details key="end" value="621"/>
+      <details key="start" value="603"/>
+      <details key="end" value="609"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/CppClassOperationsImplementation/%/select/temp1">
@@ -376,13 +371,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/CppClassOperationsImplementation/class">
-      <details key="start" value="458"/>
-      <details key="end" value="476"/>
+      <details key="start" value="446"/>
+      <details key="end" value="464"/>
       <details key="line" value="8"/>
     </eAnnotations>
     <eAnnotations source="positions.25" references="/0/CppClassOperationsImplementation/inline">
-      <details key="start" value="478"/>
-      <details key="end" value="494"/>
+      <details key="start" value="466"/>
+      <details key="end" value="482"/>
       <details key="line" value="8"/>
     </eAnnotations>
   </ecore:EAnnotation>

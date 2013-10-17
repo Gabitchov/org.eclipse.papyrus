@@ -21,7 +21,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageNodePlateFigure;
 
-
 /**
  * The Class ContainmentCircleOnPackageLocator.
  */
@@ -77,7 +76,6 @@ public class ContainmentCircleOnPackageLocator extends BorderItemLocator {
 	 * 
 	 * @param theConstraint
 	 */
-
 	@Override
 	public void setConstraint(Rectangle theConstraint) {
 		super.setConstraint(new Rectangle(theConstraint.getTopLeft(), DEFAULT_SIZE));
@@ -92,7 +90,6 @@ public class ContainmentCircleOnPackageLocator extends BorderItemLocator {
 	 * @param borderItem
 	 * @return
 	 */
-
 	@Override
 	protected Point locateOnParent(Point suggestedLocation, int suggestedSide, IFigure borderItem) {
 		PackageNodePlateFigure parent = (PackageNodePlateFigure)getParentFigure();
@@ -119,6 +116,4 @@ public class ContainmentCircleOnPackageLocator extends BorderItemLocator {
 	private boolean isOnHeader(Point p, Rectangle headerBounds) {
 		return p.x < headerBounds.getTopRight().x;
 	}
-
-
 }

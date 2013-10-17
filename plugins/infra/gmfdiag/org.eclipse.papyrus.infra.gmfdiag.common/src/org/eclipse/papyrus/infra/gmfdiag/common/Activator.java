@@ -35,43 +35,22 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-/**
- * @generated
- */
 public class Activator extends AbstractUIPlugin {
 
-	/**
-	 * @generated
-	 */
 	public static final String ID = "org.eclipse.papyrus.infra.gmfdiag.common"; //$NON-NLS-1$
 
-	/**
-	 * @generated
-	 */
 	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(ID);
 
-	/**
-	 * @generated
-	 */
 	private static Activator instance;
 
-	/**
-	 * @generated
-	 */
 	private ComposedAdapterFactory adapterFactory;
 
-	/**
-	 * @generated
-	 */
 	public Activator() {
 	}
 
 	/** Logging helper */
 	public static LogHelper log;
 
-	/**
-	 * @generated
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -82,9 +61,6 @@ public class Activator extends AbstractUIPlugin {
 		adapterFactory = createAdapterFactory();
 	}
 
-	/**
-	 * @generated
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
@@ -94,26 +70,17 @@ public class Activator extends AbstractUIPlugin {
 		super.stop(context);
 	}
 
-	/**
-	 * @generated
-	 */
 	public static Activator getInstance() {
 		return instance;
 	}
 
-	/**
-	 * @generated
-	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
-		List factories = new ArrayList();
+		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		// fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
 
-	/**
-	 * @generated
-	 */
-	protected void fillItemProviderFactoriesGen(List factories) {
+	protected void fillItemProviderFactoriesGen(List<AdapterFactory> factories) {
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());
@@ -123,23 +90,16 @@ public class Activator extends AbstractUIPlugin {
 	 * Use alternative UMLItemProviderAdapterFactory insteadof UMLItemProviderAdapterFactory
 	 * 
 	 * @see org.eclipse.emf.edit.provider.ComposedAdapterFactory#getFactoryForTypes(java.util.Collection)
-	 * @generated NOT
 	 */
 	// protected void fillItemProviderFactories(List factories) {
 	// factories.add(new AlternativeUMLItemProviderAdapterFactory(getPreferenceStore()));
 	// fillItemProviderFactoriesGen(factories);
 	// }
 
-	/**
-	 * @generated
-	 */
 	public AdapterFactory getItemProvidersAdapterFactory() {
 		return adapterFactory;
 	}
 
-	/**
-	 * @generated
-	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
 		IItemLabelProvider labelProvider = (IItemLabelProvider)adapterFactory.adapt(item, IItemLabelProvider.class);
 		if(labelProvider != null) {
@@ -151,7 +111,6 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * Returns an image descriptor for the image file at the given plug-in relative path.
 	 * 
-	 * @generated
 	 * @param path
 	 *        the path
 	 * @return the image descriptor
@@ -165,7 +124,6 @@ public class Activator extends AbstractUIPlugin {
 	 * for the image, otherwise, for absolute path, first segment is taken as id of plug-in with
 	 * image
 	 * 
-	 * @generated
 	 * @param path
 	 *        the path to image, either absolute (with plug-in id as first segment), or relative
 	 *        for bundled images
@@ -174,8 +132,7 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if(p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute()
-				.toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -183,8 +140,6 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns string from plug-in's resource bundle
-	 * 
-	 * @generated
 	 */
 	public static String getString(String key) {
 		return Platform.getResourceString(getInstance().getBundle(), "%" + key); //$NON-NLS-1$
@@ -194,7 +149,6 @@ public class Activator extends AbstractUIPlugin {
 	 * Returns an image for the image file at the given plug-in relative path. Client do not need to
 	 * dispose this image. Images will be disposed automatically.
 	 * 
-	 * @generated
 	 * @param path
 	 *        the path
 	 * @return image instance
@@ -208,9 +162,6 @@ public class Activator extends AbstractUIPlugin {
 		return image;
 	}
 
-	/**
-	 * @generated
-	 */
 	public void logError(String error) {
 		logError(error, null);
 	}
@@ -218,7 +169,6 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * @param throwable
 	 *        actual error or null could be passed
-	 * @generated
 	 */
 	public void logError(String error, Throwable throwable) {
 		if(error == null && throwable != null) {
@@ -228,9 +178,6 @@ public class Activator extends AbstractUIPlugin {
 		debug(error, throwable);
 	}
 
-	/**
-	 * @generated
-	 */
 	public void logInfo(String message) {
 		logInfo(message, null);
 	}
@@ -238,7 +185,6 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * @param throwable
 	 *        actual error or null could be passed
-	 * @generated
 	 */
 	public void logInfo(String message, Throwable throwable) {
 		if(message == null && throwable != null) {
@@ -248,9 +194,6 @@ public class Activator extends AbstractUIPlugin {
 		debug(message, throwable);
 	}
 
-	/**
-	 * @generated
-	 */
 	private void debug(String message, Throwable throwable) {
 		if(!isDebugging()) {
 			return;

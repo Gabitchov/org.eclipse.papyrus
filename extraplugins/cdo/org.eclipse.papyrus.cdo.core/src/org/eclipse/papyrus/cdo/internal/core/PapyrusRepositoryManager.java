@@ -71,6 +71,8 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		this.repositories = initializeRepositories();
 
 		activate();
+
+		container.putElement(PRODUCT_GROUP, MANAGER_FACTORY, null, this);
 	}
 
 	public void dispose() {
@@ -85,15 +87,18 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		return result;
 	}
 
+	@Override
 	public IManagedContainer getSessionsContainer() {
 		return container;
 	}
 
-	public Collection<? extends IPapyrusRepository> getRepositories() {
+	@Override
+	public Collection<? extends IInternalPapyrusRepository> getRepositories() {
 		return Collections.unmodifiableCollection(repositories.values());
 	}
 
-	public IPapyrusRepository createRepository(String url) {
+	@Override
+	public IInternalPapyrusRepository createRepository(String url) {
 		if(getRepository(url) != null) {
 			throw new IllegalArgumentException("repository already exists"); //$NON-NLS-1$
 		}
@@ -110,6 +115,7 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		return result;
 	}
 
+	@Override
 	public void setURL(IPapyrusRepository repository, String url) {
 		if(!Objects.equal(repository.getURL(), url)) {
 			if(getRepository(url) != null) {
@@ -127,6 +133,7 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		}
 	}
 
+	@Override
 	public void removeRepository(IPapyrusRepository repository) {
 		if(repository.isConnected()) {
 			throw new IllegalArgumentException("repository is still connected"); //$NON-NLS-1$
@@ -138,12 +145,19 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		fireElementRemovedEvent(repository);
 	}
 
-	public IPapyrusRepository getRepository(String url) {
+	@Override
+	public IInternalPapyrusRepository getRepository(String url) {
 		return repositories.get(url);
 	}
 
-	public IPapyrusRepository getRepositoryForURI(URI uri) {
-		IPapyrusRepository result = null;
+	@Override
+	public IInternalPapyrusRepository getRepositoryForURI(URI uri) {
+		return getRepositoryForURI(uri, true);
+	}
+
+	@Override
+	public IInternalPapyrusRepository getRepositoryForURI(URI uri, boolean connectedOnly) {
+		IInternalPapyrusRepository result = null;
 
 		if(CDOUtils.isCDOURI(uri)) {
 			String uuid = CDOURIUtil.extractRepositoryUUID(uri);
@@ -151,9 +165,19 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 			for(IInternalPapyrusRepository next : repositories.values()) {
 				CDOSession session = next.getCDOSession();
 				if((session != null) && Objects.equal(uuid, session.getRepositoryInfo().getUUID())) {
-
 					result = next;
 					break;
+				}
+			}
+
+			if((result == null) && !connectedOnly) {
+				// guess based on the last known UUIDs
+				for(IInternalPapyrusRepository next : repositories.values()) {
+					PapyrusRepository repo = CDOUtils.tryCast(next, PapyrusRepository.class);
+					if((repo != null) && Objects.equal(uuid, repo.getModel().getUUID())) {
+						result = next;
+						break;
+					}
 				}
 			}
 		}
@@ -161,6 +185,7 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		return result;
 	}
 
+	@Override
 	public void saveRepositories() {
 		if(storage != null) {
 			try {
@@ -248,15 +273,18 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		return result;
 	}
 
+	@Override
 	public ICredentialsProviderFactory getCredentialsProviderFactory() {
 		return credentialsProviderFactory;
 	}
 
+	@Override
 	public void setCredentialsProviderFactory(ICredentialsProviderFactory credentialsProviderFactory) {
 
 		this.credentialsProviderFactory = credentialsProviderFactory;
 	}
 
+	@Override
 	public IInternalPapyrusRepository getRepository(CDOView view) {
 		IInternalPapyrusRepository result = null;
 
@@ -284,6 +312,7 @@ public class PapyrusRepositoryManager extends Container<IPapyrusRepository> impl
 		return !isActive() || repositories.isEmpty();
 	}
 
+	@Override
 	public IPapyrusRepository[] getElements() {
 		return Iterables.toArray(repositories.values(), IPapyrusRepository.class);
 	}

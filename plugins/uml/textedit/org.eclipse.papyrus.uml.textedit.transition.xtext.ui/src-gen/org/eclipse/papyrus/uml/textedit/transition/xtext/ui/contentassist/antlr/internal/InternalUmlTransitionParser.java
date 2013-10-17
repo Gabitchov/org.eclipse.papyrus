@@ -22,12 +22,14 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlTransitionParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Activity'", "'StateMachine'", "'OpaqueBehavior'", "','", "'after'", "'at'", "'when'", "'['", "']'", "'/'", "'all'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INTEGER_VALUE", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INT", "RULE_WS", "RULE_ANY_OTHER", "'Activity'", "'StateMachine'", "'OpaqueBehavior'", "','", "'after'", "'at'", "'when'", "'['", "']'", "'/'", "'all'"
     };
     public static final int RULE_ID=4;
-    public static final int RULE_ANY_OTHER=10;
+    public static final int T__22=22;
+    public static final int RULE_ANY_OTHER=11;
     public static final int T__21=21;
     public static final int T__20=20;
+    public static final int RULE_INTEGER_VALUE=6;
     public static final int EOF=-1;
     public static final int RULE_SL_COMMENT=8;
     public static final int RULE_ML_COMMENT=7;
@@ -38,11 +40,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
     public static final int T__18=18;
     public static final int T__17=17;
     public static final int T__12=12;
-    public static final int T__11=11;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_INT=6;
-    public static final int RULE_WS=9;
+    public static final int RULE_INT=9;
+    public static final int RULE_WS=10;
 
     // delegates
     // delegators
@@ -913,18 +914,18 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                 alt1=1;
                 }
                 break;
-            case 21:
+            case 22:
                 {
                 alt1=2;
                 }
                 break;
-            case 15:
             case 16:
+            case 17:
                 {
                 alt1=3;
                 }
                 break;
-            case 17:
+            case 18:
                 {
                 alt1=4;
                 }
@@ -1041,10 +1042,10 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==15) ) {
+            if ( (LA2_0==16) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==16) ) {
+            else if ( (LA2_0==17) ) {
                 alt2=2;
             }
             else {
@@ -1119,17 +1120,17 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:419:1: ( ( ( 'Activity' ) ) | ( ( 'StateMachine' ) ) | ( ( 'OpaqueBehavior' ) ) )
             int alt3=3;
             switch ( input.LA(1) ) {
-            case 11:
+            case 12:
                 {
                 alt3=1;
                 }
                 break;
-            case 12:
+            case 13:
                 {
                 alt3=2;
                 }
                 break;
-            case 13:
+            case 14:
                 {
                 alt3=3;
                 }
@@ -1152,7 +1153,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                     // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:422:1: ( 'Activity' )
                     // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:422:3: 'Activity'
                     {
-                    match(input,11,FOLLOW_11_in_rule__BehaviorKind__Alternatives839); 
+                    match(input,12,FOLLOW_12_in_rule__BehaviorKind__Alternatives839); 
 
                     }
 
@@ -1173,7 +1174,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                     // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:429:1: ( 'StateMachine' )
                     // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:429:3: 'StateMachine'
                     {
-                    match(input,12,FOLLOW_12_in_rule__BehaviorKind__Alternatives860); 
+                    match(input,13,FOLLOW_13_in_rule__BehaviorKind__Alternatives860); 
 
                     }
 
@@ -1194,7 +1195,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                     // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:436:1: ( 'OpaqueBehavior' )
                     // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:436:3: 'OpaqueBehavior'
                     {
-                    match(input,13,FOLLOW_13_in_rule__BehaviorKind__Alternatives881); 
+                    match(input,14,FOLLOW_14_in_rule__BehaviorKind__Alternatives881); 
 
                     }
 
@@ -1278,7 +1279,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==RULE_ID||(LA4_0>=15 && LA4_0<=17)||LA4_0==21) ) {
+            if ( (LA4_0==RULE_ID||(LA4_0>=16 && LA4_0<=18)||LA4_0==22) ) {
                 alt4=1;
             }
             switch (alt4) {
@@ -1374,7 +1375,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==18) ) {
+            if ( (LA5_0==19) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -1465,7 +1466,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( (LA6_0==20) ) {
+            if ( (LA6_0==21) ) {
                 alt6=1;
             }
             switch (alt6) {
@@ -1643,7 +1644,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
                 int alt7=2;
                 int LA7_0 = input.LA(1);
 
-                if ( (LA7_0==14) ) {
+                if ( (LA7_0==15) ) {
                     alt7=1;
                 }
 
@@ -1740,7 +1741,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:619:1: ','
             {
              before(grammarAccess.getTransitionRuleAccess().getCommaKeyword_0_1_0()); 
-            match(input,14,FOLLOW_14_in_rule__TransitionRule__Group_0_1__0__Impl1253); 
+            match(input,15,FOLLOW_15_in_rule__TransitionRule__Group_0_1__0__Impl1253); 
              after(grammarAccess.getTransitionRuleAccess().getCommaKeyword_0_1_0()); 
 
             }
@@ -1895,7 +1896,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:682:1: 'after'
             {
              before(grammarAccess.getRelativeTimeEventRuleAccess().getAfterKeyword_0()); 
-            match(input,15,FOLLOW_15_in_rule__RelativeTimeEventRule__Group__0__Impl1376); 
+            match(input,16,FOLLOW_16_in_rule__RelativeTimeEventRule__Group__0__Impl1376); 
              after(grammarAccess.getRelativeTimeEventRuleAccess().getAfterKeyword_0()); 
 
             }
@@ -2050,7 +2051,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:745:1: 'at'
             {
              before(grammarAccess.getAbsoluteTimeEventRuleAccess().getAtKeyword_0()); 
-            match(input,16,FOLLOW_16_in_rule__AbsoluteTimeEventRule__Group__0__Impl1499); 
+            match(input,17,FOLLOW_17_in_rule__AbsoluteTimeEventRule__Group__0__Impl1499); 
              after(grammarAccess.getAbsoluteTimeEventRuleAccess().getAtKeyword_0()); 
 
             }
@@ -2205,7 +2206,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:808:1: 'when'
             {
              before(grammarAccess.getChangeEventRuleAccess().getWhenKeyword_0()); 
-            match(input,17,FOLLOW_17_in_rule__ChangeEventRule__Group__0__Impl1622); 
+            match(input,18,FOLLOW_18_in_rule__ChangeEventRule__Group__0__Impl1622); 
              after(grammarAccess.getChangeEventRuleAccess().getWhenKeyword_0()); 
 
             }
@@ -2360,7 +2361,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:871:1: '['
             {
              before(grammarAccess.getGuardRuleAccess().getLeftSquareBracketKeyword_0()); 
-            match(input,18,FOLLOW_18_in_rule__GuardRule__Group__0__Impl1745); 
+            match(input,19,FOLLOW_19_in_rule__GuardRule__Group__0__Impl1745); 
              after(grammarAccess.getGuardRuleAccess().getLeftSquareBracketKeyword_0()); 
 
             }
@@ -2515,7 +2516,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:930:1: ']'
             {
              before(grammarAccess.getGuardRuleAccess().getRightSquareBracketKeyword_2()); 
-            match(input,19,FOLLOW_19_in_rule__GuardRule__Group__2__Impl1864); 
+            match(input,20,FOLLOW_20_in_rule__GuardRule__Group__2__Impl1864); 
              after(grammarAccess.getGuardRuleAccess().getRightSquareBracketKeyword_2()); 
 
             }
@@ -2590,7 +2591,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:967:1: '/'
             {
              before(grammarAccess.getEffectRuleAccess().getSolidusKeyword_0()); 
-            match(input,20,FOLLOW_20_in_rule__EffectRule__Group__0__Impl1932); 
+            match(input,21,FOLLOW_21_in_rule__EffectRule__Group__0__Impl1932); 
              after(grammarAccess.getEffectRuleAccess().getSolidusKeyword_0()); 
 
             }
@@ -3005,7 +3006,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
             // ../org.eclipse.papyrus.uml.textedit.transition.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/transition/xtext/ui/contentassist/antlr/internal/InternalUmlTransition.g:1131:1: 'all'
             {
              before(grammarAccess.getAnyReceiveEventRuleAccess().getIsAReceiveEventAllKeyword_0()); 
-            match(input,21,FOLLOW_21_in_rule__AnyReceiveEventRule__IsAReceiveEventAssignment2259); 
+            match(input,22,FOLLOW_22_in_rule__AnyReceiveEventRule__IsAReceiveEventAssignment2259); 
              after(grammarAccess.getAnyReceiveEventRuleAccess().getIsAReceiveEventAllKeyword_0()); 
 
             }
@@ -3299,53 +3300,53 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
     public static final BitSet FOLLOW_ruleChangeEventRule_in_rule__EventRule__Alternatives757 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRelativeTimeEventRule_in_rule__TimeEventRule__Alternatives789 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAbsoluteTimeEventRule_in_rule__TimeEventRule__Alternatives806 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rule__BehaviorKind__Alternatives839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__BehaviorKind__Alternatives860 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__BehaviorKind__Alternatives881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TransitionRule__Group__0__Impl_in_rule__TransitionRule__Group__0914 = new BitSet(new long[]{0x0000000000140000L});
+    public static final BitSet FOLLOW_12_in_rule__BehaviorKind__Alternatives839 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__BehaviorKind__Alternatives860 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__BehaviorKind__Alternatives881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TransitionRule__Group__0__Impl_in_rule__TransitionRule__Group__0914 = new BitSet(new long[]{0x0000000000280000L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group__1_in_rule__TransitionRule__Group__0917 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group_0__0_in_rule__TransitionRule__Group__0__Impl944 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TransitionRule__Group__1__Impl_in_rule__TransitionRule__Group__1975 = new BitSet(new long[]{0x0000000000140000L});
+    public static final BitSet FOLLOW_rule__TransitionRule__Group__1__Impl_in_rule__TransitionRule__Group__1975 = new BitSet(new long[]{0x0000000000280000L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group__2_in_rule__TransitionRule__Group__1978 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__GuardAssignment_1_in_rule__TransitionRule__Group__1__Impl1005 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group__2__Impl_in_rule__TransitionRule__Group__21036 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__EffectAssignment_2_in_rule__TransitionRule__Group__2__Impl1063 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TransitionRule__Group_0__0__Impl_in_rule__TransitionRule__Group_0__01100 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__TransitionRule__Group_0__0__Impl_in_rule__TransitionRule__Group_0__01100 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group_0__1_in_rule__TransitionRule__Group_0__01103 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__TriggersAssignment_0_0_in_rule__TransitionRule__Group_0__0__Impl1130 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group_0__1__Impl_in_rule__TransitionRule__Group_0__11160 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TransitionRule__Group_0_1__0_in_rule__TransitionRule__Group_0__1__Impl1187 = new BitSet(new long[]{0x0000000000004002L});
-    public static final BitSet FOLLOW_rule__TransitionRule__Group_0_1__0__Impl_in_rule__TransitionRule__Group_0_1__01222 = new BitSet(new long[]{0x0000000000238010L});
+    public static final BitSet FOLLOW_rule__TransitionRule__Group_0_1__0_in_rule__TransitionRule__Group_0__1__Impl1187 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_rule__TransitionRule__Group_0_1__0__Impl_in_rule__TransitionRule__Group_0_1__01222 = new BitSet(new long[]{0x0000000000470010L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group_0_1__1_in_rule__TransitionRule__Group_0_1__01225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__TransitionRule__Group_0_1__0__Impl1253 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__TransitionRule__Group_0_1__0__Impl1253 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__Group_0_1__1__Impl_in_rule__TransitionRule__Group_0_1__11284 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TransitionRule__TriggersAssignment_0_1_1_in_rule__TransitionRule__Group_0_1__1__Impl1311 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelativeTimeEventRule__Group__0__Impl_in_rule__RelativeTimeEventRule__Group__01345 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__RelativeTimeEventRule__Group__1_in_rule__RelativeTimeEventRule__Group__01348 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__RelativeTimeEventRule__Group__0__Impl1376 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__RelativeTimeEventRule__Group__0__Impl1376 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelativeTimeEventRule__Group__1__Impl_in_rule__RelativeTimeEventRule__Group__11407 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelativeTimeEventRule__ExprAssignment_1_in_rule__RelativeTimeEventRule__Group__1__Impl1434 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbsoluteTimeEventRule__Group__0__Impl_in_rule__AbsoluteTimeEventRule__Group__01468 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__AbsoluteTimeEventRule__Group__1_in_rule__AbsoluteTimeEventRule__Group__01471 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__AbsoluteTimeEventRule__Group__0__Impl1499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__AbsoluteTimeEventRule__Group__0__Impl1499 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbsoluteTimeEventRule__Group__1__Impl_in_rule__AbsoluteTimeEventRule__Group__11530 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbsoluteTimeEventRule__ExprAssignment_1_in_rule__AbsoluteTimeEventRule__Group__1__Impl1557 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ChangeEventRule__Group__0__Impl_in_rule__ChangeEventRule__Group__01591 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__ChangeEventRule__Group__1_in_rule__ChangeEventRule__Group__01594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__ChangeEventRule__Group__0__Impl1622 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_rule__ChangeEventRule__Group__0__Impl1622 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ChangeEventRule__Group__1__Impl_in_rule__ChangeEventRule__Group__11653 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ChangeEventRule__ExpAssignment_1_in_rule__ChangeEventRule__Group__1__Impl1680 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__GuardRule__Group__0__Impl_in_rule__GuardRule__Group__01714 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__GuardRule__Group__1_in_rule__GuardRule__Group__01717 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_rule__GuardRule__Group__0__Impl1745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__GuardRule__Group__1__Impl_in_rule__GuardRule__Group__11776 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_rule__GuardRule__Group__0__Impl1745 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__GuardRule__Group__1__Impl_in_rule__GuardRule__Group__11776 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_rule__GuardRule__Group__2_in_rule__GuardRule__Group__11779 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__GuardRule__ConstraintAssignment_1_in_rule__GuardRule__Group__1__Impl1806 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__GuardRule__Group__2__Impl_in_rule__GuardRule__Group__21836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_rule__GuardRule__Group__2__Impl1864 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EffectRule__Group__0__Impl_in_rule__EffectRule__Group__01901 = new BitSet(new long[]{0x0000000000003800L});
+    public static final BitSet FOLLOW_20_in_rule__GuardRule__Group__2__Impl1864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EffectRule__Group__0__Impl_in_rule__EffectRule__Group__01901 = new BitSet(new long[]{0x0000000000007000L});
     public static final BitSet FOLLOW_rule__EffectRule__Group__1_in_rule__EffectRule__Group__01904 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__EffectRule__Group__0__Impl1932 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__EffectRule__Group__0__Impl1932 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EffectRule__Group__1__Impl_in_rule__EffectRule__Group__11963 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__EffectRule__Group__2_in_rule__EffectRule__Group__11966 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EffectRule__KindAssignment_1_in_rule__EffectRule__Group__1__Impl1993 = new BitSet(new long[]{0x0000000000000002L});
@@ -3356,7 +3357,7 @@ public class InternalUmlTransitionParser extends AbstractInternalContentAssistPa
     public static final BitSet FOLLOW_ruleGuardRule_in_rule__TransitionRule__GuardAssignment_12153 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEffectRule_in_rule__TransitionRule__EffectAssignment_22184 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__CallOrSignalEventRule__OperationOrSignalAssignment2219 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_rule__AnyReceiveEventRule__IsAReceiveEventAssignment2259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_rule__AnyReceiveEventRule__IsAReceiveEventAssignment2259 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__RelativeTimeEventRule__ExprAssignment_12298 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__AbsoluteTimeEventRule__ExprAssignment_12329 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__ChangeEventRule__ExpAssignment_12360 = new BitSet(new long[]{0x0000000000000002L});

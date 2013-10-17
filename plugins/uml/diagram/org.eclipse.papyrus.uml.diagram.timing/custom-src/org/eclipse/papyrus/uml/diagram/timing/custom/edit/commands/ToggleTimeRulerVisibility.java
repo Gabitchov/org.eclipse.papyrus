@@ -37,7 +37,7 @@ import org.eclipse.papyrus.uml.diagram.timing.edit.parts.LifelineEditPart;
 public class ToggleTimeRulerVisibility extends GraphicalCommandHandler {
 
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		final CompoundCommand cmd = new CompoundCommand(Messages.ToggleTimeRulerVisibility_ToggleTimeRulerVisibility);
 		final List<IGraphicalEditPart> selectedElements = getSelectedElements();
 		boolean first = true;

@@ -22,7 +22,6 @@ import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.constraints.constraints.JavaQuery;
 import org.eclipse.swt.graphics.Image;
@@ -198,7 +197,6 @@ public class DirectEditorExtensionPoint {
 		}
 		directEditorConfiguration.setLanguage(language);
 
-
 		// retrieve the bundle loader of the plugin that declares the extension
 		try {
 			String pluginID = configElt.getContributor().getName();
@@ -305,8 +303,8 @@ public class DirectEditorExtensionPoint {
 	}
 
 	///////////////////////////////// TODO:(done) Method added for the case of popup editors
-	protected static IPopupEditorConfiguration getPopupDirectEditorConfigurationClass(IConfigurationElement configElement) {
-		IPopupEditorConfiguration configuration = null;
+	protected static IDirectEditorConfiguration getPopupDirectEditorConfigurationClass(IConfigurationElement configElement) {
+		IDirectEditorConfiguration configuration = null;
 		try {
 			for(IConfigurationElement childConfigElement : configElement.getChildren(IDirectEditorConfigurationIds.TAG_POPUP_EDITOR)) {
 				for(String attname : childConfigElement.getAttributeNames()) {
@@ -314,8 +312,8 @@ public class DirectEditorExtensionPoint {
 				}
 
 				Object config = childConfigElement.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
-				if(config instanceof IPopupEditorConfiguration) {
-					configuration = (IPopupEditorConfiguration)config;
+				if(config instanceof IDirectEditorConfiguration) {
+					configuration = (IDirectEditorConfiguration)config;
 				}
 			}
 

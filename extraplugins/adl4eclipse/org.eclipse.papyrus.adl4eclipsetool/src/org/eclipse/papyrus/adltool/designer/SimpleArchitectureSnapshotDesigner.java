@@ -16,7 +16,6 @@ package org.eclipse.papyrus.adltool.designer;
 import java.util.ArrayList;
 
 import org.eclipse.uml2.uml.Package;
-import org.osgi.framework.Bundle;
 
 
 /**
@@ -25,38 +24,25 @@ import org.osgi.framework.Bundle;
  */
 public class SimpleArchitectureSnapshotDesigner extends ArchitectureSnapshotDesigner {
 
-	protected Package architecture;
-	protected Package platform;
-	protected Package architecturefeature;
-	protected Package platformfeature;
 	
-	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param rootPackage the root package where the sub-packages "Architecture" and "platform" will be created
+	 * @param bundleInitialList the list of bundle that will be retro engineered.
+	 */
 	public SimpleArchitectureSnapshotDesigner(Package rootPackage, ArrayList<Object>bundleInitialList) {
 		super(rootPackage, bundleInitialList);
-	}
-	
-	@Override
-	protected void initModel() {
-		super.initModel();
-		architecture=rootPackage.createNestedPackage("Architecture");
-		platform=rootPackage.createNestedPackage("Platform");
-		
+		// the simple user cannot choose the level of dependency it has only the level 1
+		dependencyLevelMax=1;
 	}
 	
 	@Override
 	public void runImportBundles() {
 		initModel();
-		modelBundles(architecture);
+		modelBundles(rootPackage);
 	
 	}
 		
-	@Override
-	protected void modelBundle(Package pluginPackage, Object bundleProject) {
-		if (bundleProject instanceof Bundle){
-			super.modelBundle(platform, bundleProject);
-		}
-		else{
-			super.modelBundle(architecture, bundleProject);
-		}
-	}
 }

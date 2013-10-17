@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.views.search.scopeProviders">
+      <scopeProvider
+            class="org.eclipse.papyrus.cdo.uml.search.internal.ui.scope.CDOScopeProvider"
+            priority="255">
+      </scopeProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.search.ui.queryProviders">
+      <queryProvider
+            class="org.eclipse.papyrus.cdo.uml.search.internal.ui.query.CDOSearchQueryProvider"
+            priority="255">
+      </queryProvider>
+   </extension>
+
+</plugin>

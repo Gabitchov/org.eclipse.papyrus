@@ -5,12 +5,13 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml;bundle-version="4.0.2",
  org.eclipse.core.filesystem;bundle-version="1.3.200"
 Export-Package: org.eclipse.papyrus.acceleo
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.1.qualifier
-Bundle-Name: Acceleo Integration (Incubation)
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.acceleo.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.acceleo
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
 

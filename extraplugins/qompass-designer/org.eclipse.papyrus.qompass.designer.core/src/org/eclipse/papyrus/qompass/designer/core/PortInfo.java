@@ -23,9 +23,30 @@ import org.eclipse.uml2.uml.Port;
  * port into account
  */
 public class PortInfo {
+	/**
+	 * Create a new portInfo.
+	 * @param port
+	 * @param parentPort optional parent port (null, if no parent port exist, i.e. if this is not an extended port)
+	 */
 	public PortInfo (Port port, Port parentPort) {
 		this.port = port;
 		this.parentPort = parentPort;
+	}
+	
+	/**
+	 * Create a new port info for a combination of Port and sub-port. Compared to the constructor,
+	 * the order of sub and parent port is inverted. The function is useful, if the sub-port is optional
+	 * @param port a port
+	 * @param subPort an optional supPort.
+	 * @return
+	 */
+	public static PortInfo fromSubPort(Port port, Port subPort) {
+		if (subPort != null) {
+			return new PortInfo(subPort, port);
+		}
+		else {
+			return new PortInfo (port, null);
+		}
 	}
 	
 	/**
@@ -86,7 +107,7 @@ public class PortInfo {
 	}
 	
 	/**
-	 * @return the describe port or sub-port
+	 * @return the described port or sub-port
 	 */
 	public Port getPort() {
 		return port;

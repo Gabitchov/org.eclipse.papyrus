@@ -17,7 +17,7 @@ import com.google.inject.Injector;
 public class UmlTransitionStandaloneSetupGenerated implements ISetup {
 
 	public Injector createInjectorAndDoEMFRegistration() {
-		org.eclipse.xtext.common.TerminalsStandaloneSetup.doSetup();
+		org.eclipse.papyrus.uml.alf.CommonStandaloneSetup.doSetup();
 
 		Injector injector = createInjector();
 		register(injector);

@@ -1936,7 +1936,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x968ksniEeCWXsgs0yuyKQ"/>
       </children>
       <element xmi:type="uml:Stereotype" href="FCM.profile.uml#_0KEH0JOCEd-5qPBhYeIVtw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x935QcniEeCWXsgs0yuyKQ" x="111" y="253" width="214" height="135"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_x935QcniEeCWXsgs0yuyKQ" x="111" y="253" width="223" height="135"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_0A7WIMniEeCWXsgs0yuyKQ" type="1031" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0A7WIsniEeCWXsgs0yuyKQ" source="ShadowFigure">
@@ -1950,7 +1950,7 @@
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_0A79NcniEeCWXsgs0yuyKQ" type="1084"/>
       <element xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Node"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0A7WIcniEeCWXsgs0yuyKQ" x="108" y="126" width="217"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0A7WIcniEeCWXsgs0yuyKQ" x="108" y="126" width="226"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_7VhVgLMkEeKKMNfz1DLnog" type="1026" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7VkY0LMkEeKKMNfz1DLnog" source="ShadowFigure">

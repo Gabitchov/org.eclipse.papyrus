@@ -39,5 +39,4 @@ public class InformationFlowFigure extends DashedEdgeFigure {
 		conveyedLabel.setFont(getNameLabel().getFont());
 		add(conveyedLabel, 0);
 	}
-
 }

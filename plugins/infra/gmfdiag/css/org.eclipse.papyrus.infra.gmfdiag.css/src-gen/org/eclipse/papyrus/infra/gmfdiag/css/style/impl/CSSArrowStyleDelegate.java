@@ -50,4 +50,5 @@ public class CSSArrowStyleDelegate implements CSSArrowStyle {
 		}
 		return ArrowType.get(cssValue.getCssText());
 	}
+
 }

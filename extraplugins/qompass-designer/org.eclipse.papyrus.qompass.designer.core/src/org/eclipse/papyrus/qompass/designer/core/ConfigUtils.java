@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.ConfigurationProperty;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -53,7 +54,7 @@ public class ConfigUtils {
 				list.add(part);
 			}
 			// otherwise add only attributes tagged as configuration properties
-			else if(StUtils.isApplied(part, ConfigurationProperty.class)) {
+			else if(StereotypeUtil.isApplied(part, ConfigurationProperty.class)) {
 				list.add(part);
 			}
 		}
@@ -79,7 +80,7 @@ public class ConfigUtils {
 				continue;
 			}
 			Type type = part.getType();
-			if(StUtils.isApplied(part, ConfigurationProperty.class)) {
+			if(StereotypeUtil.isApplied(part, ConfigurationProperty.class)) {
 				list.add(part);
 			}
 			if(type instanceof Class) {

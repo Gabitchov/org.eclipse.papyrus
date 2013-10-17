@@ -37,7 +37,7 @@ public class CDOPredicates {
 
 	public static Predicate<CDOResourceNode> hasURIPrefix(URI prefix) {
 		if(!prefix.isPrefix()) {
-			throw new IllegalArgumentException("not a URI prefix");
+			throw new IllegalArgumentException("not a URI prefix"); //$NON-NLS-1$
 		}
 
 		return new HasURIPrefix(prefix);

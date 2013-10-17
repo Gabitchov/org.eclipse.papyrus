@@ -31,10 +31,20 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.osgi.framework.Constants;
 
-
+/**
+ * class used to obtain information about bundle that is a project in the workspace
+ */
 
 public class WorkspaceBundleDescriptionDesigner extends AbstractBundleDescriptionDesigner {
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.adltool.designer.bundle.AbstractBundleDescriptionDesigner#getBundleValue(java.lang.Object, java.lang.String)
+	 *
+	 * @param bundleProject
+	 * @param key
+	 * @return the value that corresponds to the key
+	 */
 	public String  getBundleValue(Object bundleProject, String key){
 		String valueFromDescription=null;
 		if(bundleProject instanceof IBundleProjectDescription){
@@ -92,7 +102,6 @@ public class WorkspaceBundleDescriptionDesigner extends AbstractBundleDescriptio
 					Stereotype exportedPackageStereotype=UMLPackage.getApplicableStereotype(IADL4ECLIPSE_Stereotype.ECLIPSEEXPORTEDPACKAGE_STEREOTYPE);
 					UMLPackage.applyStereotype(exportedPackageStereotype);
 					UMLPackage.setValue(exportedPackageStereotype, IADL4ECLIPSE_Stereotype.ECLIPSEEXPORTEDPACKAGE_ISINTERNAL_ATT, !packageExportDescription[i].isApi());
-					//TODO:friends
 					if(packageExportDescription[i].getVersion()!=null){
 						UMLPackage.setValue(exportedPackageStereotype, IOSGIStereotype.VERSIONRANGE_ATLEAST_ATT, packageExportDescription[i].getVersion().toString());
 					}
@@ -103,7 +112,10 @@ public class WorkspaceBundleDescriptionDesigner extends AbstractBundleDescriptio
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
 	public ArrayList<ReferencedOSGIElement> getRequiredBundle(Component bundleComponent, Object bundleProject) {
 		ArrayList<ReferencedOSGIElement> bundleRefList=new ArrayList<ReferencedOSGIElement>();
 		if(bundleProject instanceof IBundleProjectDescription){
@@ -118,6 +130,11 @@ public class WorkspaceBundleDescriptionDesigner extends AbstractBundleDescriptio
 		}
 		return bundleRefList;
 	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
 	public String getSymbolicName(Object bundleProject) {
 		if(bundleProject instanceof IBundleProjectDescription){
 			return ((IBundleProjectDescription) bundleProject).getSymbolicName();
@@ -125,9 +142,13 @@ public class WorkspaceBundleDescriptionDesigner extends AbstractBundleDescriptio
 		return null;
 	}
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
 	public String getName(Object bundleProject) {
 		return this.getBundleValue(bundleProject, org.osgi.framework.Constants.BUNDLE_NAME);
 	}
 
-	
+
 }

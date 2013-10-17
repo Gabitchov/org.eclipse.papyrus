@@ -31,10 +31,15 @@ import org.eclipse.uml2.uml.Package;
 
 /**
  * this handler is used to generate the feature and plugin architecture from workspace
- *
+ *@deprecated
  */
 public class ModelCompleteFeatureArchitectureHandler extends ADLToolAbstractHandler {
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
 	public ModelCompleteFeatureArchitectureHandler() {
 	}
 
@@ -67,9 +72,7 @@ public class ModelCompleteFeatureArchitectureHandler extends ADLToolAbstractHand
 	}
 	/**
 	 * 
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 * 
-	 * @return
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isEnabled() {

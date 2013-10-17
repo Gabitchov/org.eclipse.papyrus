@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.stereotypecollector;
@@ -29,11 +30,11 @@ import org.eclipse.emf.common.util.URI;
  */
 public class UMLResourceVisitor implements IResourceProxyVisitor {
 
-	private Collection<IResource> participants;
+	private Collection<URI> participantURIs;
 
 	public UMLResourceVisitor() {
 		super();
-		this.participants = new HashSet<IResource>();
+		this.participantURIs = new HashSet<URI>();
 	}
 
 	public boolean visit(IResourceProxy proxy) throws CoreException {
@@ -44,7 +45,7 @@ public class UMLResourceVisitor implements IResourceProxyVisitor {
 			URI uri = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
 
 			if("uml".equals(uri.fileExtension())) { //$NON-NLS-1$
-				participants.add(resource);
+				participantURIs.add(uri);
 
 			}
 
@@ -55,8 +56,8 @@ public class UMLResourceVisitor implements IResourceProxyVisitor {
 		return true;
 	}
 
-	public Collection<IResource> getParticipants() {
-		return participants;
+	public Collection<URI> getParticipantURIs() {
+		return participantURIs;
 	}
 
 }

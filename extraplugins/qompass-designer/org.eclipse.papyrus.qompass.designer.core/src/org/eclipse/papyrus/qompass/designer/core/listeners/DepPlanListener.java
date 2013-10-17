@@ -17,9 +17,9 @@ package org.eclipse.papyrus.qompass.designer.core.listeners;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * A model listener that updates a deployment plan, e.g. add, remove or
@@ -44,7 +44,7 @@ public class DepPlanListener implements IPapyrusListener {
 		if(evtType == Notification.SET) {
 			// Object oldValue = notification.getOldValue ();
 			if(notifier instanceof Package) {
-				DeploymentPlan de = StUtils.getApplication((Package) notifier, DeploymentPlan.class);
+				DeploymentPlan de = UMLUtil.getStereotypeApplication((Package) notifier, DeploymentPlan.class);
 				Object mainInstance = (de != null) ? de.getMainInstance() : null;
 				if(mainInstance instanceof InstanceSpecification) {
 					// TODO user wants to declare the system component, the instance specification should be created

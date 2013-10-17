@@ -14,13 +14,14 @@ package org.eclipse.papyrus.views.panels;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.papyrus.C_Cpp.Include;
-import org.eclipse.papyrus.cpp.profile.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 
@@ -136,9 +137,9 @@ public class CppClassPanel extends CppAbstractPanel {
 				public void run() {
 					if(headerDocument.get().equals("")
 						&& bodyDocument.get().equals("")) {
-						StUtils.unapply(selectedClass, Include.class);
+						StereotypeUtil.unapply(selectedClass, Include.class);
 					} else {
-						Include cppInclude = StUtils.applyApp(selectedClass, Include.class);
+						Include cppInclude = StereotypeUtil.applyApp(selectedClass, Include.class);
 						cppInclude.setHeader(headerDocument.get());
 						cppInclude.setBody(bodyDocument.get());
 					}
@@ -167,7 +168,7 @@ public class CppClassPanel extends CppAbstractPanel {
 		String headerInModel = "";
 		String bodyInModel = "";
 
-		Include cppInclude = StUtils.getApplication(selectedClass, Include.class);
+		Include cppInclude = UMLUtil.getStereotypeApplication(selectedClass, Include.class);
 		if(cppInclude != null) {
 			headerInModel = cppInclude.getHeader();
 			bodyInModel = cppInclude.getBody();
@@ -189,7 +190,7 @@ public class CppClassPanel extends CppAbstractPanel {
 		if(selectedClass == null) {
 		}
 		else {
-			Include cppInclude = StUtils.getApplication(selectedClass, Include.class);
+			Include cppInclude = UMLUtil.getStereotypeApplication(selectedClass, Include.class);
 			if(cppInclude != null) {
 				// get the text in the tagged value
 				String currentHI = cppInclude.getHeader();

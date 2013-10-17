@@ -1,5 +1,6 @@
 [module CppOperations('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/papyrus/C_Cpp/1', 'http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2')/]
-[import org::eclipse::papyrus::cpp::codegen::utils::GenUtils/]
+[import org::eclipse::papyrus::acceleo::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::CppGenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::utils::Modifier/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppDocumentation/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::operation::CppParameter/]
@@ -32,7 +33,7 @@ else
 endif/]
 
 [template public CppReturnSpec(operation : Operation)]
-[if (type = null)][ConsDestructorOrVoid()/][else][returnResult().modConst()/] [type.qualifiedName()/] [/if][returnResult().modPtr()/][returnResult().modRef()/]
+[if (type = null)][ConsDestructorOrVoid()/][else][returnResult().modConst()/] [type.cppQualifiedName()/] [/if][returnResult().modPtr()/][returnResult().modRef()/]
 [/template]
 
 

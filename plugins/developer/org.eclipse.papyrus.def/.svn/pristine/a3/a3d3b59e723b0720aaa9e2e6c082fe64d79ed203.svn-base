@@ -1,0 +1,86 @@
+﻿/*
+ * Copyright (c) 2010 Artem Tikhomirov and others
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Artem Tikhomirov (independent) - initial API and implementation
+ *    modificiation by Patrick Tessier (CEA LIST)
+ */
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«EXTENSION xpt::GenEditorGenerator»
+// Generic types
+«DEFINE G(String type) FOR gmfgen::GenCommonBase»«IF self.jdkComplianceLevel() > 4»<«type»>«ELSE»/*[«type»]*/«ENDIF»«ENDDEFINE»
+«DEFINE G2(String type1, String type2) FOR gmfgen::GenCommonBase»«IF self.jdkComplianceLevel() > 4»<«type1», «type2»>«ELSE»/*[«type1», «type2»]*/«ENDIF»«ENDDEFINE»
+«DEFINE _g2_3(String t, String a, String b, String c) FOR gmfgen::GenCommonBase»«t»«IF self.jdkComplianceLevel() > 4»<«a», «b»<«c»>>«ELSE»/*[«a», «b»[«c»]]*/«ENDIF»«ENDDEFINE»
+
+// e.g. java.util.List<String>
+«DEFINE G(String type, String typeArgument) FOR gmfgen::GenCommonBase»«type»«EXPAND G(typeArgument)»«ENDDEFINE»
+// e.g. java.util.Map<String, Integer>
+«DEFINE G2(String type, String typeArgument1, String typeArgument2) FOR gmfgen::GenCommonBase»«type»«EXPAND G2(typeArgument1, typeArgument2)»«ENDDEFINE»
+
+// java.util.List<String> varName = new Type<TypeArgument>
+// note, no constructor parameters, callers should add (); or whatever they think is reasonable
+// XXX perhaps, varName should go first, to be consistent with iterate?
+«DEFINE newGenericInstance(String varName, String type, String typeArgument) FOR gmfgen::GenCommonBase»«EXPAND G(type, typeArgument)» «varName» = new «EXPAND G(type, typeArgument)»«ENDDEFINE»
+
+// new HashMap<Object, String>
+«DEFINE newGenericInstance2(String varName, String type, String typeArgument1, String typeArgument2) FOR gmfgen::GenCommonBase»«EXPAND G2(type, typeArgument1, typeArgument2)» «varName»= new «EXPAND G2(type, typeArgument1, typeArgument2)»«ENDDEFINE»
+
+// new HashMap<Object, List<String>>
+«DEFINE newGenericInstance2(String varName, String type, String typeArgument1, String typeArgument2, String typeArgument3) FOR gmfgen::GenCommonBase»«EXPAND _g2_3(type, typeArgument1, typeArgument2, typeArgument3)» «varName»= new «EXPAND _g2_3(type, typeArgument1, typeArgument2, typeArgument3)»«ENDDEFINE»
+
+// iterate cycle with explicit iterator variable
+// use this one if you need access to iterator (i.e. remove elements) or when there's no java.lang.Iterable source (i.e. some API gives Iterator right away)
+«DEFINE iterate(String elementVar, String elementType, String iteratorVar, String iterationSource) FOR gmfgen::GenCommonBase-»
+for («EXPAND G('java.util.Iterator', elementType)» «iteratorVar» = «iterationSource»; «iteratorVar».hasNext();) {
+	«elementType» «elementVar» = «IF 'Object' <> elementType /*cast to Object is implicit*/ and not (self.jdkComplianceLevel() > 4) /*generics are not used then, should cast. Using 'not greater 4' instead of 'less than 5' to handle null/undefined case correctly*/»(«elementType») «ENDIF»«iteratorVar».next();
+«ENDDEFINE»
+
+//
+// generates Java5-style iterate cycle (no explicit iterator), if possibl, otherwise uses default iterator name, 'it'
+// beware of nested cycles using same 'it' name (relevant for Java 1.4)
+«DEFINE iterate(String elementVar, String elementType, String iterable /*java.lang.Iterable*/) FOR gmfgen::GenCommonBase-»
+«IF self.jdkComplianceLevel() > 4 -»
+for («elementType» «elementVar» : «iterable») {
+«ELSE-»
+«EXPAND iterate(elementVar, elementType, 'it', iterable.concat('.iterator()'))-»
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE emptyList FOR gmfgen::GenCommonBase-»
+«IF self.jdkComplianceLevel() > 4 -»
+java.util.Collections.emptyList()«ELSE-»
+java.util.Collections.EMPTY_LIST«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE emptyMap(String genericTypes) FOR gmfgen::GenCommonBase-»
+«IF self.jdkComplianceLevel() > 4 -»
+java.util.Collections.<«genericTypes»>emptyMap()«ELSE-»
+java.util.Collections.EMPTY_MAP«ENDIF-»
+«ENDDEFINE»
+
+// when need to cast 1.5-typed variable to be usable in 1.4 code. does nothing for 1.5 and greater. I.e.
+//   List/*[String]*/ coll = ...
+//   String aaa = (String) coll.get(0);
+// cast to string is needed in 1.4
+«DEFINE castTyped(String type) FOR gmfgen::GenCommonBase»«IF not (self.jdkComplianceLevel() > 4)»(«type») «ENDIF»«ENDDEFINE»
+
+// annotations are from Java 5 and above
+«DEFINE SuppressWarnings(String warnToken) FOR gmfgen::GenEditorGenerator»«EXPAND SuppressWarnings(warnToken) FOR diagram»«ENDDEFINE»
+«DEFINE SuppressWarnings(String warnToken) FOR gmfgen::GenCommonBase-»
+«IF self.jdkComplianceLevel() > 4 -»
+@SuppressWarnings(«warnToken»)
+«ENDIF-»
+«ENDDEFINE»
+
+
+«AROUND override FOR gmfgen::GenCommonBase-»
+«IF self.jdkComplianceLevel() > 5-»
+@Override
+«ENDIF-»
+«ENDAROUND»

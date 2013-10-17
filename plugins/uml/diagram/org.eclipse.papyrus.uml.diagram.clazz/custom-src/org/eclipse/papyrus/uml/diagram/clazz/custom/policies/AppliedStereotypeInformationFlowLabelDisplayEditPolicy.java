@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.uml2.uml.InformationFlow;
 
-
 /**
  * Edit Policy for Applied Stereotype Label for {@link InformationFlow}.
  */
@@ -28,5 +27,4 @@ public class AppliedStereotypeInformationFlowLabelDisplayEditPolicy extends Appl
 	public AppliedStereotypeInformationFlowLabelDisplayEditPolicy() {
 		super("flow"); //$NON-NLS-1$
 	}
-
 }

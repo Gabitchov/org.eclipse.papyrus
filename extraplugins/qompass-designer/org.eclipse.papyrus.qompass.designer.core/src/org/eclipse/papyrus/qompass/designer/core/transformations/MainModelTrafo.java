@@ -44,6 +44,7 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -59,6 +60,7 @@ import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class executes the main model transformation. It traverses the
@@ -284,7 +286,7 @@ public class MainModelTrafo {
 							}
 
 							Package smCDP = smIS.getNearestPackage();
-							DeploymentPlan smFCM_CDP = StUtils.getApplication(smCDP, DeploymentPlan.class);
+							DeploymentPlan smFCM_CDP = UMLUtil.getStereotypeApplication(smCDP, DeploymentPlan.class);
 
 							for(ContainerRule rule : hwRules) {
 								if(isRuleActive(rule)) {
@@ -334,7 +336,7 @@ public class MainModelTrafo {
 						+ smIS.getName() + "\"");
 			}
 			StructuralFeature smPartDF = slot.getDefiningFeature();
-			if(StUtils.isApplied(smPartDF.getType(), InteractionComponent.class)) {
+			if(StereotypeUtil.isApplied(smPartDF.getType(), InteractionComponent.class)) {
 				if(smPartDF instanceof Property) {
 					Property tmPart = ConnectorReification.reifyConnector(copy, tmComponent, (Property)smPartDF, tmIS, null);
 					// update value specification (to the one just created)
@@ -446,7 +448,7 @@ public class MainModelTrafo {
 		 * for(Property part : smComponent.getOwnedAttributes()) {
 		 * Type type = part.getType();
 		 * if(type != null) {
-		 * if(StUtils.isApplied(type, InteractionComponent.class)) {
+		 * if(StereotypeUtil.isApplied(type, InteractionComponent.class)) {
 		 * ConnectorReification.reifyConnector(copy, tmComponent, part, tmIS, null);
 		 * }
 		 * }
@@ -455,7 +457,9 @@ public class MainModelTrafo {
 
 		// needs to be called independently
 		// propagateNodeAllocation (cdp, compositeInstance);
-
+		AllocTransfo at = new AllocTransfo();
+		at.transformAllocs(copy, tmComponent);
+		
 		if(containerTrafo != null) {
 			// return containerIS
 			containerTrafo.moveSlots();

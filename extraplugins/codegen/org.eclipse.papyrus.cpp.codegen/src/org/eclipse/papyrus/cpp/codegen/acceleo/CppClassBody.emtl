@@ -4,7 +4,8 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
     </input>
-    <imports href="../utils/GenUtils.emtl#/0"/>
+    <imports href="../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
+    <imports href="../utils/CppGenUtils.emtl#/0"/>
     <imports href="../utils/ClassUtils.emtl#/0"/>
     <imports href="Constants.emtl#/0"/>
     <imports href="CppIncludeUtils.emtl#/0"/>
@@ -16,7 +17,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="#define "/>
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../utils/GenUtils.emtl#/0/getFullName"/>
+        <definition href="../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullName"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/6">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
         </argument>
@@ -48,7 +49,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;#include &lt;"/>
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../utils/GenUtils.emtl#/0/getFullPath"/>
+        <definition href="../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullPath"/>
         <argument xsi:type="ocl.ecore:PropertyCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
           <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/10">
@@ -100,7 +101,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;"/>
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../utils/GenUtils.emtl#/0/openNS"/>
+        <definition href="../utils/CppGenUtils.emtl#/0/openNS"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="class" referredVariable="/0/CppClassBody/class">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
         </argument>
@@ -140,7 +141,7 @@
       </body>
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../utils/GenUtils.emtl#/0/closeNS"/>
+        <definition href="../utils/CppGenUtils.emtl#/0/closeNS"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="class" referredVariable="/0/CppClassBody/class">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
         </argument>
@@ -194,7 +195,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../utils/GenUtils.emtl#/0/getFullName"/>
+          <references href="../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullName"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -206,7 +207,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../utils/GenUtils.emtl#/0/getFullPath"/>
+          <references href="../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullPath"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -218,7 +219,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../utils/GenUtils.emtl#/0/openNS"/>
+          <references href="../utils/CppGenUtils.emtl#/0/openNS"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -230,7 +231,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../utils/GenUtils.emtl#/0/closeNS"/>
+          <references href="../utils/CppGenUtils.emtl#/0/closeNS"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -359,6 +360,11 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Class_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TemplateParameter_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateParameter"/>
@@ -377,11 +383,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="Package_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Class_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Operation_Class">
@@ -465,18 +466,18 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/CppClassBody">
-      <details key="start" value="686"/>
-      <details key="end" value="1460"/>
-      <details key="line" value="12"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1" references="/0/CppClassBody/%">
-      <details key="start" value="737"/>
-      <details key="end" value="745"/>
+      <details key="start" value="740"/>
+      <details key="end" value="1514"/>
       <details key="line" value="13"/>
     </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/CppClassBody/%">
+      <details key="start" value="791"/>
+      <details key="end" value="799"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
     <eAnnotations source="positions.2" references="/0/CppClassBody/%.1">
-      <details key="start" value="746"/>
-      <details key="end" value="759"/>
+      <details key="start" value="800"/>
+      <details key="end" value="813"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/CppClassBody/%.1/self">
@@ -485,28 +486,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/CppClassBody/%.2">
-      <details key="start" value="761"/>
-      <details key="end" value="844"/>
-      <details key="line" value="13"/>
+      <details key="start" value="815"/>
+      <details key="end" value="898"/>
+      <details key="line" value="14"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/CppClassBody/%.3">
-      <details key="start" value="845"/>
-      <details key="end" value="855"/>
+      <details key="start" value="899"/>
+      <details key="end" value="909"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/CppClassBody/%.3/class">
-      <details key="start" value="845"/>
-      <details key="end" value="850"/>
+      <details key="start" value="899"/>
+      <details key="end" value="904"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/CppClassBody/%.4">
-      <details key="start" value="857"/>
-      <details key="end" value="933"/>
-      <details key="line" value="16"/>
+      <details key="start" value="911"/>
+      <details key="end" value="987"/>
+      <details key="line" value="17"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/CppClassBody/%.5">
-      <details key="start" value="934"/>
-      <details key="end" value="953"/>
+      <details key="start" value="988"/>
+      <details key="end" value="1007"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/CppClassBody/%.5/self">
@@ -515,13 +516,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/CppClassBody/%.6">
-      <details key="start" value="955"/>
-      <details key="end" value="957"/>
-      <details key="line" value="20"/>
+      <details key="start" value="1009"/>
+      <details key="end" value="1011"/>
+      <details key="line" value="21"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/CppClassBody/%.7">
-      <details key="start" value="958"/>
-      <details key="end" value="977"/>
+      <details key="start" value="1012"/>
+      <details key="end" value="1031"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/CppClassBody/%.7/self">
@@ -530,18 +531,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/CppClassBody/%.8">
-      <details key="start" value="979"/>
-      <details key="end" value="990"/>
-      <details key="line" value="22"/>
+      <details key="start" value="1033"/>
+      <details key="end" value="1044"/>
+      <details key="line" value="23"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/CppClassBody/%.9">
-      <details key="start" value="991"/>
-      <details key="end" value="1013"/>
+      <details key="start" value="1045"/>
+      <details key="end" value="1067"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/CppClassBody/%.9/%">
-      <details key="start" value="991"/>
-      <details key="end" value="999"/>
+      <details key="start" value="1045"/>
+      <details key="end" value="1053"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/CppClassBody/%.9/%/self">
@@ -550,28 +551,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/CppClassBody/%.10">
-      <details key="start" value="1015"/>
-      <details key="end" value="1016"/>
-      <details key="line" value="22"/>
+      <details key="start" value="1069"/>
+      <details key="end" value="1070"/>
+      <details key="line" value="23"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/CppClassBody/%.11">
-      <details key="start" value="1017"/>
-      <details key="end" value="1027"/>
+      <details key="start" value="1071"/>
+      <details key="end" value="1081"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/CppClassBody/%.11/class">
-      <details key="start" value="1017"/>
-      <details key="end" value="1022"/>
+      <details key="start" value="1071"/>
+      <details key="end" value="1076"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.20" references="/0/CppClassBody/%.12">
-      <details key="start" value="1029"/>
-      <details key="end" value="1030"/>
-      <details key="line" value="22"/>
+      <details key="start" value="1083"/>
+      <details key="end" value="1084"/>
+      <details key="line" value="23"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/CppClassBody/%.13">
-      <details key="start" value="1031"/>
-      <details key="end" value="1048"/>
+      <details key="start" value="1085"/>
+      <details key="end" value="1102"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/CppClassBody/%.13/self">
@@ -580,13 +581,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/CppClassBody/%.14">
-      <details key="start" value="1050"/>
-      <details key="end" value="1053"/>
-      <details key="line" value="22"/>
+      <details key="start" value="1104"/>
+      <details key="end" value="1107"/>
+      <details key="line" value="23"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/CppClassBody/%.15">
-      <details key="start" value="1054"/>
-      <details key="end" value="1070"/>
+      <details key="start" value="1108"/>
+      <details key="end" value="1124"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.25" references="/0/CppClassBody/%.15/self">
@@ -595,13 +596,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.26" references="/0/CppClassBody/%.16">
-      <details key="start" value="1072"/>
-      <details key="end" value="1074"/>
-      <details key="line" value="25"/>
+      <details key="start" value="1126"/>
+      <details key="end" value="1128"/>
+      <details key="line" value="26"/>
     </eAnnotations>
     <eAnnotations source="positions.27" references="/0/CppClassBody/%.17">
-      <details key="start" value="1075"/>
-      <details key="end" value="1097"/>
+      <details key="start" value="1129"/>
+      <details key="end" value="1151"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.28" references="/0/CppClassBody/%.17/self">
@@ -610,13 +611,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.29" references="/0/CppClassBody/%.18">
-      <details key="start" value="1099"/>
-      <details key="end" value="1100"/>
-      <details key="line" value="27"/>
+      <details key="start" value="1153"/>
+      <details key="end" value="1154"/>
+      <details key="line" value="28"/>
     </eAnnotations>
     <eAnnotations source="positions.30" references="/0/CppClassBody/%.19">
-      <details key="start" value="1101"/>
-      <details key="end" value="1137"/>
+      <details key="start" value="1155"/>
+      <details key="end" value="1191"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/CppClassBody/%.19/self">
@@ -625,48 +626,48 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/CppClassBody/%.20">
-      <details key="start" value="1139"/>
-      <details key="end" value="1141"/>
-      <details key="line" value="28"/>
+      <details key="start" value="1193"/>
+      <details key="end" value="1195"/>
+      <details key="line" value="29"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/CppClassBody/%.21">
-      <details key="start" value="1142"/>
-      <details key="end" value="1155"/>
+      <details key="start" value="1196"/>
+      <details key="end" value="1209"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/CppClassBody/%.21/class">
-      <details key="start" value="1149"/>
-      <details key="end" value="1154"/>
+      <details key="start" value="1203"/>
+      <details key="end" value="1208"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/CppClassBody/%.22">
-      <details key="start" value="1157"/>
-      <details key="end" value="1158"/>
-      <details key="line" value="30"/>
+      <details key="start" value="1211"/>
+      <details key="end" value="1212"/>
+      <details key="line" value="31"/>
     </eAnnotations>
     <eAnnotations source="positions.36" references="/0/CppClassBody/%.23">
-      <details key="start" value="1159"/>
-      <details key="end" value="1185"/>
+      <details key="start" value="1213"/>
+      <details key="end" value="1239"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.37" references="/0/CppClassBody/%.23/class">
-      <details key="start" value="1179"/>
-      <details key="end" value="1184"/>
+      <details key="start" value="1233"/>
+      <details key="end" value="1238"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.38" references="/0/CppClassBody/%.24">
-      <details key="start" value="1187"/>
-      <details key="end" value="1188"/>
-      <details key="line" value="31"/>
+      <details key="start" value="1241"/>
+      <details key="end" value="1242"/>
+      <details key="line" value="32"/>
     </eAnnotations>
     <eAnnotations source="positions.39" references="/0/CppClassBody/%.25">
-      <details key="start" value="1188"/>
-      <details key="end" value="1258"/>
-      <details key="line" value="31"/>
+      <details key="start" value="1242"/>
+      <details key="end" value="1312"/>
+      <details key="line" value="32"/>
     </eAnnotations>
     <eAnnotations source="positions.40" references="/0/CppClassBody/%.25/%">
-      <details key="start" value="1211"/>
-      <details key="end" value="1250"/>
+      <details key="start" value="1265"/>
+      <details key="end" value="1304"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.41" references="/0/CppClassBody/%.25/%/self">
@@ -675,23 +676,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.42" references="/0/CppClassBody/%.25/%/%">
-      <details key="start" value="1244"/>
-      <details key="end" value="1249"/>
+      <details key="start" value="1298"/>
+      <details key="end" value="1303"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.43" references="/0/CppClassBody/%.25/%.1">
-      <details key="start" value="1252"/>
-      <details key="end" value="1253"/>
-      <details key="line" value="33"/>
+      <details key="start" value="1306"/>
+      <details key="end" value="1307"/>
+      <details key="line" value="34"/>
     </eAnnotations>
     <eAnnotations source="positions.44" references="/0/CppClassBody/%.25/%.2">
-      <details key="start" value="1192"/>
-      <details key="end" value="1208"/>
+      <details key="start" value="1246"/>
+      <details key="end" value="1262"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.45" references="/0/CppClassBody/%.25/%.2/%">
-      <details key="start" value="1196"/>
-      <details key="end" value="1208"/>
+      <details key="start" value="1250"/>
+      <details key="end" value="1262"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.46" references="/0/CppClassBody/%.25/%.2/%/self">
@@ -700,39 +701,39 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.47" references="/0/CppClassBody/%.26">
-      <details key="start" value="1260"/>
-      <details key="end" value="1274"/>
+      <details key="start" value="1314"/>
+      <details key="end" value="1328"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.48" references="/0/CppClassBody/%.26/class">
-      <details key="start" value="1268"/>
-      <details key="end" value="1273"/>
+      <details key="start" value="1322"/>
+      <details key="end" value="1327"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.49" references="/0/CppClassBody/%.27">
-      <details key="start" value="1276"/>
-      <details key="end" value="1361"/>
-      <details key="line" value="35"/>
+      <details key="start" value="1330"/>
+      <details key="end" value="1415"/>
+      <details key="line" value="36"/>
     </eAnnotations>
     <eAnnotations source="positions.50" references="/0/CppClassBody/%.28">
-      <details key="start" value="1362"/>
-      <details key="end" value="1372"/>
+      <details key="start" value="1416"/>
+      <details key="end" value="1426"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.51" references="/0/CppClassBody/%.28/class">
-      <details key="start" value="1362"/>
-      <details key="end" value="1367"/>
+      <details key="start" value="1416"/>
+      <details key="end" value="1421"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.52" references="/0/CppClassBody/%.29">
-      <details key="start" value="1374"/>
-      <details key="end" value="1448"/>
-      <details key="line" value="37"/>
+      <details key="start" value="1428"/>
+      <details key="end" value="1502"/>
+      <details key="line" value="38"/>
     </eAnnotations>
     <eAnnotations source="positions.53" references="/0/CppClassBody/class">
-      <details key="start" value="716"/>
-      <details key="end" value="734"/>
-      <details key="line" value="12"/>
+      <details key="start" value="770"/>
+      <details key="end" value="788"/>
+      <details key="line" value="13"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

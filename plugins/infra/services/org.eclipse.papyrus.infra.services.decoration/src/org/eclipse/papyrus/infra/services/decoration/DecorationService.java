@@ -255,5 +255,10 @@ public class DecorationService extends Observable implements IDecorationService 
 		return true;
 	}
 
-
+	/**
+	 * The decoration service allows for associating an initial message with each element.
+	 */
+	public String initialMessage(Object obj) {
+		return ""; //$NON-NLS-1$
+	}
 }

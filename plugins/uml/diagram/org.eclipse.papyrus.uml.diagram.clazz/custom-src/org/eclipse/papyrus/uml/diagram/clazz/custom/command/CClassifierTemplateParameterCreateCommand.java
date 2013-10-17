@@ -26,7 +26,6 @@ import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
-
 public class CClassifierTemplateParameterCreateCommand extends ClassifierTemplateParameterCreateCommand {
 
 	public CClassifierTemplateParameterCreateCommand(CreateElementRequest req) {
@@ -37,9 +36,7 @@ public class CClassifierTemplateParameterCreateCommand extends ClassifierTemplat
 	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		ClassifierTemplateParameter newElement = UMLFactory.eINSTANCE.createClassifierTemplateParameter();
-
 		TemplateSignature owner = (TemplateSignature)getElementToEdit();
 		owner.getOwnedParameters().add(newElement);
 		TemplateSignature childHolder = (TemplateSignature)getElementToEdit();
@@ -50,7 +47,6 @@ public class CClassifierTemplateParameterCreateCommand extends ClassifierTemplat
 		newElement.setParameteredElement(configurationDialog.getParameterableElement());
 		newElement.setDefault(configurationDialog.getDefaultparameterableElement());
 		doConfigure(newElement, monitor, info);
-
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}

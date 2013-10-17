@@ -171,6 +171,7 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 
 	public ShapeNamedElementFigure() {
 		this(null);
+		this.setBorder(null);
 	}
 
 	/**
@@ -183,7 +184,8 @@ public class ShapeNamedElementFigure extends PapyrusNodeFigure implements IPapyr
 	public void setIcon(String path) throws MalformedURLException {
 		this.originalimage = null;
 		URL url = new URL(path);//$NON-NLS-1$
-		scalableImageFigure = new ScalableImageFigure(RenderedImageFactory.getInstance(url), true, true, true);
+		scalableImageFigure = new ScalableImageFigure(RenderedImageFactory.getInstance(url), false, true, true);
+		scalableImageFigure.setMaintainAspectRatio(false);
 		this.add(scalableImageFigure);
 	}
 

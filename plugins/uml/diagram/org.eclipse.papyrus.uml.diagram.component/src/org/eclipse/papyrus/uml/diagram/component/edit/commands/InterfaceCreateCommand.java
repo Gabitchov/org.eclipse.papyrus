@@ -87,10 +87,6 @@ public class InterfaceCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		// Creation constraint for TopLevelNodes
-		if(!(getElementToEdit() instanceof Package)) {
-			return false;
-		}
 		return true;
 	}
 
@@ -101,7 +97,7 @@ public class InterfaceCreateCommand extends EditElementCommand {
 		Interface newElement = UMLFactory.eINSTANCE.createInterface();
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
-		ElementInitializers.getInstance().init_Interface_2003(newElement);
+		ElementInitializers.getInstance().init_Interface_3078(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

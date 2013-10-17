@@ -40,7 +40,7 @@ public class LoadedBundleDescriptionDesigner extends AbstractBundleDescriptionDe
 	 *
 	 * @param bundleProject
 	 * @param key
-	 * @return
+	 * @return the value that correspond to the key
 	 */
 	public String getBundleValue(Object bundleProject, String key) {
 		if(bundleProject instanceof Bundle){
@@ -67,7 +67,7 @@ public class LoadedBundleDescriptionDesigner extends AbstractBundleDescriptionDe
 						Package UMLPackage=UMLFactory.eINSTANCE.createPackage();
 						UMLPackage.setName(manisfests[i].getValue());
 						bundleComponent.getPackagedElements().add(UMLPackage);
-						
+
 						Stereotype exportedPackageStereotype=UMLPackage.getApplicableStereotype(IADL4ECLIPSE_Stereotype.ECLIPSEEXPORTEDPACKAGE_STEREOTYPE);
 						UMLPackage.applyStereotype(exportedPackageStereotype);	
 						if((manisfests[i].getDirective("x-internal"))!=null){
@@ -78,12 +78,12 @@ public class LoadedBundleDescriptionDesigner extends AbstractBundleDescriptionDe
 						if((manisfests[i].getDirective("x-friends"))!=null){
 							//TODO: xfriends
 						}
-						
+
 						if( manisfests[i].getAttribute("version")!=null){
 							VersionRange version= new VersionRange( manisfests[i].getAttribute("version"));
 							newRefElement.setVersion(version);
 							UMLPackage.setValue(exportedPackageStereotype, IOSGIStereotype.VERSIONRANGE_ATLEAST_ATT, version.toString());
-							
+
 						}
 						exportedPackages.add(UMLPackage.getStereotypeApplication(exportedPackageStereotype));
 					}
@@ -101,7 +101,7 @@ public class LoadedBundleDescriptionDesigner extends AbstractBundleDescriptionDe
 	 *
 	 * @param bundleComponent
 	 * @param bundleProject
-	 * @return
+	 * @return the list of required bundle
 	 */
 	public ArrayList<ReferencedOSGIElement> getRequiredBundle(Component bundleComponent, Object bundleProject) {
 		ArrayList<ReferencedOSGIElement> bundleListName=new ArrayList<ReferencedOSGIElement>();
@@ -121,7 +121,7 @@ public class LoadedBundleDescriptionDesigner extends AbstractBundleDescriptionDe
 						}
 					}
 					bundleListName.add(newRefElement);
-			
+
 				}
 			}
 		} catch (BundleException e) {
@@ -135,7 +135,7 @@ public class LoadedBundleDescriptionDesigner extends AbstractBundleDescriptionDe
 	 * @see org.eclipse.papyrus.adltool.designer.bundle.IBundleDescriptionDesigner#getSymbolicName(java.lang.Object)
 	 *
 	 * @param bundleProject
-	 * @return
+	 * @return a string for the symbolic name
 	 */
 	public String getSymbolicName(Object bundleProject) {
 

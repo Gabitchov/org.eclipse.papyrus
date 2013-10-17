@@ -41,7 +41,6 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 	public DragTracker getDragTracker(Request req) {
 		if(!supportsDragSelection())
 			return super.getDragTracker(req);
-
 		if(req instanceof SelectionRequest && ((SelectionRequest)req).getLastButtonPressed() == 3)
 			return new DeselectAllTracker(this) {
 
@@ -50,7 +49,6 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 					return true;
 				}
 			};
-
 		return new RubberbandDragTracker() {
 
 			/*

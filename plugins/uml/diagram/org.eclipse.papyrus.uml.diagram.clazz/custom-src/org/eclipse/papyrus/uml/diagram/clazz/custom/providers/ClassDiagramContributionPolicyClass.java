@@ -46,5 +46,4 @@ public class ClassDiagramContributionPolicyClass implements IPopupMenuContributi
 		}
 		return false;
 	}
-
 }

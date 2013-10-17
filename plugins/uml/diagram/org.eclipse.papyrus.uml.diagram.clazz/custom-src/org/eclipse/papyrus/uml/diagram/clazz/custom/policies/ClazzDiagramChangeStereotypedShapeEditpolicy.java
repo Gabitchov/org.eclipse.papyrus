@@ -41,12 +41,10 @@ public class ClazzDiagramChangeStereotypedShapeEditpolicy extends ChangeStereoty
 			((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
 							if(part instanceof GraphicalEditPart) {
-
 								GraphicalEditPart gmfpart = (GraphicalEditPart)part;
 								ElementToStereotypedShape command = new ElementToStereotypedShape(gmfpart.getEditingDomain(), gmfpart);
 								gmfpart.getEditingDomain().getCommandStack().execute(command);
@@ -54,7 +52,6 @@ public class ClazzDiagramChangeStereotypedShapeEditpolicy extends ChangeStereoty
 								Command deleteCommand = gmfpart.getCommand(deleteViewRequest);
 								gmfpart.getDiagramEditDomain().getDiagramCommandStack().execute(deleteCommand);
 							}
-
 						}
 					});
 				}
@@ -70,12 +67,10 @@ public class ClazzDiagramChangeStereotypedShapeEditpolicy extends ChangeStereoty
 			((IGraphicalEditPart)getHost()).getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-
 					Display.getCurrent().asyncExec(new Runnable() {
 
 						public void run() {
 							if(part instanceof GraphicalEditPart) {
-
 								GraphicalEditPart gmfpart = (GraphicalEditPart)part;
 								DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 								ArrayList<EObject> list = new ArrayList<EObject>();
@@ -88,7 +83,6 @@ public class ClazzDiagramChangeStereotypedShapeEditpolicy extends ChangeStereoty
 								Command deleteCommand = gmfpart.getCommand(deleteViewRequest);
 								gmfpart.getDiagramEditDomain().getDiagramCommandStack().execute(deleteCommand);
 							}
-
 						}
 					});
 				}
@@ -97,5 +91,4 @@ public class ClazzDiagramChangeStereotypedShapeEditpolicy extends ChangeStereoty
 			e.printStackTrace();
 		}
 	}
-
 }

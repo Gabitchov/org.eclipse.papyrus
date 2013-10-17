@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -70,7 +70,7 @@ public class DepPlanUtils {
 		EList<Package> depPlanList = new BasicEList<Package>();
 		if(depPlanRoot != null) {
 			for(Package pkg : depPlanRoot.getNestedPackages()) {
-				if(StUtils.isApplied(pkg, DeploymentPlan.class)) {
+				if(StereotypeUtil.isApplied(pkg, DeploymentPlan.class)) {
 					depPlanList.add(pkg);
 				}
 			}
@@ -145,7 +145,7 @@ public class DepPlanUtils {
 	 *        instance the top-level instance specification of the plan
 	 */
 	public static void setMainInstance(Package cdp, InstanceSpecification mainInstance) {
-		DeploymentPlan cdpApp = StUtils.applyApp(cdp, DeploymentPlan.class);
+		DeploymentPlan cdpApp = StereotypeUtil.applyApp(cdp, DeploymentPlan.class);
 		if(cdpApp != null) {
 			cdpApp.setMainInstance(mainInstance);
 		}

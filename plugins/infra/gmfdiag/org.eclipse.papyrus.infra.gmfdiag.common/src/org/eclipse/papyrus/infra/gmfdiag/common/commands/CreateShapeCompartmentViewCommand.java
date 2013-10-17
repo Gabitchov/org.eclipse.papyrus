@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.ThemeInitializerManager;
 
 /**
  * Command to create the compartment displaying shapes for an element
@@ -56,14 +57,20 @@ public class CreateShapeCompartmentViewCommand extends RecordingCommand {
 	protected void doExecute() {
 		// FIXME should use here a view factory...
 		Node compartment = NotationFactory.eINSTANCE.createBasicCompartment();
-		compartment.setVisible(isVisible());
 		compartment.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
-		ts.setShowTitle(false);
+
 		compartment.getStyles().add(ts);
 		compartment.setType(IShapeCompartmentEditPart.VIEW_TYPE);
 		ViewUtil.insertChildView(owner, compartment, ViewUtil.APPEND, false);
-		compartment.setMutable(false);
+
+		//Bug 417178: The CSS Engine shall support compartments
+		//Avoid preference-based or hard-coded initialization (CSS Compatibility)
+		if(ThemeInitializerManager.instance.usePreferenceInitializer(compartment)) {
+			ts.setShowTitle(false);
+			compartment.setVisible(isVisible());
+			compartment.setMutable(false);
+		}
 	}
 
 	/**

@@ -25,6 +25,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.ILinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.dnd.helper.LinkMappingHelper.CommonSourceUMLSwitch;
 import org.eclipse.papyrus.uml.diagram.common.dnd.helper.LinkMappingHelper.CommonTargetUMLSwitch;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
@@ -36,7 +37,7 @@ public class CustomLinkMappingHelper implements ILinkMappingHelper {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<?> getSource(EObject link) {
+	public Collection<?> getSource(Element link) {
 		CommonSourceUMLSwitch umlSwitch = new CommonSourceUMLSwitch() {
 
 			public java.util.Collection<?> caseAssociation(org.eclipse.uml2.uml.Association object) {
@@ -87,7 +88,7 @@ public class CustomLinkMappingHelper implements ILinkMappingHelper {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<?> getTarget(EObject link) {
+	public Collection<?> getTarget(Element link) {
 		CommonTargetUMLSwitch umlSwitch = new CommonTargetUMLSwitch() {
 
 			public java.util.Collection<?> caseAssociation(org.eclipse.uml2.uml.Association object) {

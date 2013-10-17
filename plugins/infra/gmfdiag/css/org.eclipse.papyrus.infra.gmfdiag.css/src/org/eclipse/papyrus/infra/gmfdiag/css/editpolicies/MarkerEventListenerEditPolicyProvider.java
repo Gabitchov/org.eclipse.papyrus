@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
 
 /**
  * An edit policy provider for MarkerEvenListenerEditPolicy
- *
+ * 
  */
 public class MarkerEventListenerEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 

@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.BootLoaderGen;
@@ -43,6 +43,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Select a connector type and implementation (group)
@@ -79,7 +80,7 @@ public class AllocationDialog extends SelectionStatusDialog {
 	public AllocationDialog(Shell parent, Package cdp) {
 		super(parent);
 		// m_cdp = cdp;
-		m_cdp = StUtils.getApplication(cdp, DeploymentPlan.class);
+		m_cdp = UMLUtil.getStereotypeApplication(cdp, DeploymentPlan.class);
 		visitedPackages = new BasicEList<Package>();
 		nodeOrThreadList = new BasicEList<InstanceSpecification>();
 		nodeOrThreadList.add(null); // dummy entry for no allocation
@@ -299,10 +300,10 @@ public class AllocationDialog extends SelectionStatusDialog {
 			} else if(el instanceof InstanceSpecification) {
 				Classifier cl = DepUtils.getClassifier((InstanceSpecification)el);
 				if(cl != null) {
-					if((cl instanceof Class) || (StUtils.isApplied(cl, SwSchedulableResource.class))) {
+					if((cl instanceof Class) || (StereotypeUtil.isApplied(cl, SwSchedulableResource.class))) {
 						// check that instances are not part of a deployment plan
 						//  [TODO:] check that owner of instance is a platform definition
-						if(!StUtils.isApplied(el.getOwner(), DeploymentPlan.class)) {
+						if(!StereotypeUtil.isApplied(el.getOwner(), DeploymentPlan.class)) {
 							nodeList.add((InstanceSpecification)el);
 						}
 					}

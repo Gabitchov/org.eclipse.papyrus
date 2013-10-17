@@ -1,0 +1,51 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation bug 335987: [General][Enhancement] Show/Hide Connectors Labels https://bugs.eclipse.org/bugs/show_bug.cgi?id=335987
+ *****************************************************************************/
+
+«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
+«REM» this template add the interface ILabelRoleProvider for the label EditPart. This interface is used in by the Manage Label Action «ENDREM»
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+
+«REM» we add the interface ILabelRoleProvider «ENDREM»
+«AROUND implementsList FOR gmfgen::GenLinkLabel»
+	«targetDef.proceed()»
+	«REM»BEGIN: PapyrusGenCode«ENDREM»
+	«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->size()<>0-»
+	, org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider
+	«ENDIF-»
+	«REM»END: PapyrusGenCode«ENDREM»
+«ENDAROUND»
+
+«REM» we add the methods provided by the interface «ENDREM»
+«AROUND additions FOR gmfgen::GenLinkLabel-»
+«targetDef.proceed()»
+	«REM»BEGIN: PapyrusGenCode«ENDREM»
+	«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->size()<>0»
+		«EXPAND xpt::Common::generatedClassComment»
+		public String getLabelRole(){
+		return "«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->asSequence()->first().role»";//$NON-NLS-1$
+		}
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public String getIconPathRole(){
+		return "«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->asSequence()->first().iconPathRole»";//$NON-NLS-1$
+		}
+	«ENDIF»
+	«REM»END: PapyrusGenCode«ENDREM»
+«ENDAROUND»
+
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»patches the super type of the link label edit part in case the controlled object represents a UML element«ENDREM»
+«DEFINE extendsList FOR gmfgen::GenLinkLabel»extends org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart«ENDDEFINE»
+«REM»END: PapyrusGenCode«ENDREM»
+

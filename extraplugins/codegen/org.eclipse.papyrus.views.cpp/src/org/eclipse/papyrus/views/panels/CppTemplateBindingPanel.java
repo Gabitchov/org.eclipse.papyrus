@@ -13,13 +13,14 @@ package org.eclipse.papyrus.views.panels;
 
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.SourceViewer;
-import org.eclipse.papyrus.cpp.profile.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
@@ -117,9 +118,9 @@ public class CppTemplateBindingPanel extends CppAbstractPanel {
 					// Treat Pointer
 					String newB = docBinding.get();
 					if(newB.equals("")) {
-						StUtils.unapply(selectedTB, TemplateBinding.class);
+						StereotypeUtil.unapply(selectedTB, TemplateBinding.class);
 					} else {
-						org.eclipse.papyrus.C_Cpp.TemplateBinding templateBinding = StUtils.applyApp(selectedTB, org.eclipse.papyrus.C_Cpp.TemplateBinding.class);
+						org.eclipse.papyrus.C_Cpp.TemplateBinding templateBinding = StereotypeUtil.applyApp(selectedTB, org.eclipse.papyrus.C_Cpp.TemplateBinding.class);
 						// TODO: use UML template bindings?
 						templateBinding.setBinding(newB);
 					}
@@ -136,7 +137,7 @@ public class CppTemplateBindingPanel extends CppAbstractPanel {
 	@Override
 	protected void refreshPanel() {
 		if(selectedTB != null) {
-			org.eclipse.papyrus.C_Cpp.TemplateBinding templateBinding = StUtils.getApplication(selectedTB, org.eclipse.papyrus.C_Cpp.TemplateBinding.class);
+			org.eclipse.papyrus.C_Cpp.TemplateBinding templateBinding = UMLUtil.getStereotypeApplication(selectedTB, org.eclipse.papyrus.C_Cpp.TemplateBinding.class);
 			// TODO: use UML template bindings?
 			docBinding.set(templateBinding != null ? templateBinding.getBinding() : "");
 		}
@@ -160,7 +161,7 @@ public class CppTemplateBindingPanel extends CppAbstractPanel {
 	 */
 	@Override
 	public boolean checkModifications() {
-		org.eclipse.papyrus.C_Cpp.TemplateBinding templateBinding = StUtils.getApplication(selectedTB, org.eclipse.papyrus.C_Cpp.TemplateBinding.class);
+		org.eclipse.papyrus.C_Cpp.TemplateBinding templateBinding = UMLUtil.getStereotypeApplication(selectedTB, org.eclipse.papyrus.C_Cpp.TemplateBinding.class);
 		// TODO: use UML template bindings?
 		String bindingValue = templateBinding != null ? templateBinding.getBinding() : "";
 		if(!docBinding.get().equals(bindingValue)) {

@@ -56,10 +56,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new PackageEditPart(view);
 			case PackageNameEditPart.VISUAL_ID:
 				return new PackageNameEditPart(view);
-			case InterfaceEditPart.VISUAL_ID:
-				return new InterfaceEditPart(view);
-			case InterfaceNameEditPart.VISUAL_ID:
-				return new InterfaceNameEditPart(view);
+			case RectangleInterfaceEditPart.VISUAL_ID:
+				return new RectangleInterfaceEditPart(view);
+			case RectangleInterfaceNameEditPart.VISUAL_ID:
+				return new RectangleInterfaceNameEditPart(view);
 			case CommentEditPart.VISUAL_ID:
 				return new CommentEditPart(view);
 			case CommentBodyEditPart.VISUAL_ID:
@@ -74,6 +74,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new DefaultNamedElementEditPart(view);
 			case DefaultNamedElementNameEditPart.VISUAL_ID:
 				return new DefaultNamedElementNameEditPart(view);
+			case InterfaceEditPart.VISUAL_ID:
+				return new InterfaceEditPart(view);
+			case InterfaceNameEditPart.VISUAL_ID:
+				return new InterfaceNameEditPart(view);
 			case PortEditPart.VISUAL_ID:
 				return new PortEditPart(view);
 			case PortNameEditPart.VISUAL_ID:
@@ -88,6 +92,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new PackageEditPartCN(view);
 			case PackageNameEditPartCN.VISUAL_ID:
 				return new PackageNameEditPartCN(view);
+			case RectangleInterfaceEditPartCN.VISUAL_ID:
+				return new RectangleInterfaceEditPartCN(view);
+			case RectangleInterfaceNameEditPartCN.VISUAL_ID:
+				return new RectangleInterfaceNameEditPartCN(view);
 			case ComponentEditPartCN.VISUAL_ID:
 				return new ComponentEditPartCN(view);
 			case ComponentNameEditPartCN.VISUAL_ID:
@@ -96,10 +104,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ComponentEditPartPCN(view);
 			case ComponentNameEditPartPCN.VISUAL_ID:
 				return new ComponentNameEditPartPCN(view);
-			case InterfaceEditPartPCN.VISUAL_ID:
-				return new InterfaceEditPartPCN(view);
-			case InterfaceNameEditPartPCN.VISUAL_ID:
-				return new InterfaceNameEditPartPCN(view);
 			case CommentEditPartPCN.VISUAL_ID:
 				return new CommentEditPartPCN(view);
 			case CommentBodyEditPartPCN.VISUAL_ID:
@@ -110,6 +114,16 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ConstraintNameEditPartPCN(view);
 			case ConstraintSpecificationEditPartPCN.VISUAL_ID:
 				return new ConstraintSpecificationEditPartPCN(view);
+			case PropertyForInterfaceEditPart.VISUAL_ID:
+				return new PropertyForInterfaceEditPart(view);
+			case OperationForInterfaceEditPart.VISUAL_ID:
+				return new OperationForInterfaceEditPart(view);
+			case ReceptionInInterfaceEditPart.VISUAL_ID:
+				return new ReceptionInInterfaceEditPart(view);
+			case InterfaceEditPartPCN.VISUAL_ID:
+				return new InterfaceEditPartPCN(view);
+			case InterfaceNameEditPartPCN.VISUAL_ID:
+				return new InterfaceNameEditPartPCN(view);
 			case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 				return new ComponentCompositeCompartmentEditPart(view);
 			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
@@ -124,6 +138,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ComponentCompositeCompartmentEditPartCN(view);
 			case ComponentCompositeCompartmentEditPartPCN.VISUAL_ID:
 				return new ComponentCompositeCompartmentEditPartPCN(view);
+			case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
+				return new InterfaceAttributeCompartmentEditPart(view);
+			case InterfaceOperationCompartmentEditPart.VISUAL_ID:
+				return new InterfaceOperationCompartmentEditPart(view);
+			case InterfaceAttributeCompartmentEditPartCN.VISUAL_ID:
+				return new InterfaceAttributeCompartmentEditPartCN(view);
+			case InterfaceOperationCompartmentEditPartCN.VISUAL_ID:
+				return new InterfaceOperationCompartmentEditPartCN(view);
 			case UsageEditPart.VISUAL_ID:
 				return new UsageEditPart(view);
 			case InterfaceRealizationEditPart.VISUAL_ID:
@@ -170,6 +192,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new DependencyAppliedStereotypeEditPart(view);
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new DependencyBranchEditPart(view);
+			case InterfacePortLinkEditPart.VISUAL_ID:
+				return new InterfacePortLinkEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

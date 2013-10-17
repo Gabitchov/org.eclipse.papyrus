@@ -130,8 +130,6 @@ public class CustomConstraintItemSemanticEditPolicy extends ConstraintItemSemant
 		return null;
 	}
 
-
-
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {

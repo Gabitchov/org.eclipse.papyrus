@@ -33,9 +33,7 @@ public class CDependencyNodeEditPart extends DependencyNodeEditPart {
 	 * @return
 	 */
 	protected NodeFigure createNodePlate() {
-
 		DefaultSizeNodeFigure result = new AssociationNodeFigure(10, 10);
-
 		return result;
 	}
 }

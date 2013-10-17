@@ -21,7 +21,6 @@ import org.eclipse.papyrus.FCM.util.IMappingRule;
 import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -39,14 +38,49 @@ import org.eclipse.uml2.uml.Type;
  */
 public class PushConsumer implements IMappingRule {
 
-	public Interface getProvided(Port p, InstanceSpecification config, boolean update) {
+	public static String PUSH_I_PREFIX = "Push_"; //$NON-NLS-1$
+
+	public static String PUSH_OP_PREFIX = "push"; //$NON-NLS-1$
+	
+	public static String PUSH_OP_PARNAME = "data"; //$NON-NLS-1$
+
+	public boolean needsUpdate(Port p) {
+		Type type = p.getBase_Port().getType();
+
+		if((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
+
+			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, PUSH_I_PREFIX, type, false);
+			if (derivedInterface == null) {
+				return true;
+			}
+			Operation derivedOperation = derivedInterface.getOperation(PUSH_OP_PREFIX, null, null);
+			if(derivedOperation == null) {
+				return true;
+			}
+			EList<Parameter> parameters = derivedOperation.getOwnedParameters();
+			if(parameters.size() != 1) {
+				return true;
+			} else {
+				Parameter parameter = parameters.get(0);
+				if(!parameter.getName().equals(PUSH_OP_PARNAME)) {
+					return true;
+				}
+				if(parameter.getType() != type) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public Interface getProvided(Port p, boolean update) {
 		Log.log(Status.INFO, Log.CALC_PORTKIND,
 			p.getKind().getBase_Class().getName() + " => GetProvided on " + p.getBase_Port().getName());
 		Type type = p.getBase_Port().getType();
 
 		if((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, "Push_", type, update);
+			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, PUSH_I_PREFIX, type, update);
 			if (!update) {
 				return derivedInterface;
 			}
@@ -57,15 +91,15 @@ public class PushConsumer implements IMappingRule {
 			}
 
 			// check whether operation already exists. Create, if not
-			Operation derivedOperation = derivedInterface.getOperation("push", null, null);
+			Operation derivedOperation = derivedInterface.getOperation(PUSH_OP_PREFIX, null, null);
 			if(derivedOperation == null) {
-				derivedOperation = derivedInterface.createOwnedOperation("push", null, null);
+				derivedOperation = derivedInterface.createOwnedOperation(PUSH_OP_PREFIX, null, null);
 			}
 			EList<Parameter> parameters = derivedOperation.getOwnedParameters();
 			if(parameters.size() == 0) {
-				derivedOperation.createOwnedParameter("data", type);
+				derivedOperation.createOwnedParameter(PUSH_OP_PARNAME, type);
 			} else {
-				parameters.get(0).setName("data");
+				parameters.get(0).setName(PUSH_OP_PARNAME);
 				parameters.get(0).setType(type);
 			}
 			return derivedInterface;
@@ -74,7 +108,7 @@ public class PushConsumer implements IMappingRule {
 		}
 	}
 
-	public Interface getRequired(Port p, InstanceSpecification config, boolean update) {
+	public Interface getRequired(Port p, boolean update) {
 		return null;
 	}
 }

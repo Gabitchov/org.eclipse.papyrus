@@ -44,8 +44,6 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
  */
 public class ContainmentCircleViewCreateCommand extends AbstractTransactionalCommand {
 
-
-
 	/** The node. */
 	private static View node;
 
@@ -97,7 +95,6 @@ public class ContainmentCircleViewCreateCommand extends AbstractTransactionalCom
 		this.createConnectionViewRequest = createConnectionViewRequest;
 		// make sure the return object is available even before executing/undoing/redoing
 		descriptor = new ViewDescriptor(new SemanticAdapter(null, null), Node.class, null, ViewUtil.APPEND, true, preferencesHint);
-
 		setResult(CommandResult.newOKCommandResult(descriptor));
 	}
 
@@ -106,7 +103,6 @@ public class ContainmentCircleViewCreateCommand extends AbstractTransactionalCom
 	 * {@inheritDoc}
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-
 		UMLViewProvider viewProvider = new UMLViewProvider();
 		this.node = viewProvider.createNode_3032(null, this.containerView, -1, true, preferenceHint);
 		IAdaptable nodeview = new SemanticAdapter(null, getNode());
@@ -140,5 +136,4 @@ public class ContainmentCircleViewCreateCommand extends AbstractTransactionalCom
 	public View getNode() {
 		return node;
 	}
-
 }

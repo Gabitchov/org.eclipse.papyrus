@@ -1,10 +1,10 @@
 package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.jface.action.IAction;
-import org.eclipse.ui.IViewPart;
 import org.eclipse.papyrus.FCM.Connector;
 import org.eclipse.papyrus.FCM.util.FCMUtil;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * currently unused
@@ -30,7 +30,7 @@ public class GenCollaborationUseHandler extends CmdHandler {
 		updateSelectedEObject();
 
 		org.eclipse.uml2.uml.Connector selectedConnector = (org.eclipse.uml2.uml.Connector)getSelectedEObject();
-		Connector fcmConn = StUtils.getApplication(selectedConnector, Connector.class);
+		Connector fcmConn = UMLUtil.getStereotypeApplication(selectedConnector, Connector.class);
 		FCMUtil.generateCollaborationUse(fcmConn);
 	}
 }

@@ -16,10 +16,14 @@
 package org.eclipse.papyrus.uml.diagram.common.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -70,7 +74,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	/** preaction list */
 	protected List<IPreAction> preActions = new ArrayList<IPreAction>();
 
-	private static String ID_ASPECT_ACTION = "palette_aspect_actions" ;
+	private static String ID_ASPECT_ACTION = "palette_aspect_actions";
 
 	/**
 	 * Creates an AspectUnspecifiedTypeCreationTool
@@ -136,7 +140,21 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 			eventBroker.removeNotificationListener(eObject, listener);
 		}
 
-		selectAddedObject(currentViewer, DiagramCommandStack.getReturnValues(command));
+
+		Collection<?> selectableEditParts = new LinkedList<Object>(DiagramCommandStack.getReturnValues(command));
+		Iterator<?> editPartsIterator = selectableEditParts.iterator();
+
+		while(editPartsIterator.hasNext()) {
+			Object editPartObject = editPartsIterator.next();
+			if(editPartObject instanceof IAdaptable) {
+				EditPart editPart = (EditPart)currentViewer.getEditPartRegistry().get(((IAdaptable)editPartObject).getAdapter(View.class));
+				if(editPart == null || !editPart.isSelectable()) {
+					editPartsIterator.remove();
+				}
+			}
+		}
+
+		selectAddedObject(currentViewer, selectableEditParts);
 
 		antiScroll = false;
 	}
@@ -215,19 +233,17 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	protected Request createTargetRequest() {
 		CreateAspectUnspecifiedTypeRequest request = new CreateAspectUnspecifiedTypeRequest(getElementTypes(), getPreferencesHint());
 		request.getExtendedData().put(ID_ASPECT_ACTION, postActions);
-		return request ;
+		return request;
 	}
 
 	@SuppressWarnings("unchecked")
-	public static List<IAspectAction> getAspectActions(Request request)
-	{
-		return (List<IAspectAction>) (request == null ? Collections.emptyList() :  getAspectActions(request.getExtendedData()));
+	public static List<IAspectAction> getAspectActions(Request request) {
+		return (List<IAspectAction>)(request == null ? Collections.emptyList() : getAspectActions(request.getExtendedData()));
 	}
 
 	@SuppressWarnings("unchecked")
-	public static List<IAspectAction> getAspectActions(Map map)
-	{
-		return (List<IAspectAction>) (map == null ? Collections.emptyList() : map.get(ID_ASPECT_ACTION));
+	public static List<IAspectAction> getAspectActions(Map map) {
+		return (List<IAspectAction>)(map == null ? Collections.emptyList() : map.get(ID_ASPECT_ACTION));
 	}
 
 	public class CreateAspectUnspecifiedTypeRequest extends CreateUnspecifiedTypeRequest {

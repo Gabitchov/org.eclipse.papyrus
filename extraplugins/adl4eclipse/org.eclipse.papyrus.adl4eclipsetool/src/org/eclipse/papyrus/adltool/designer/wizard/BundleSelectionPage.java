@@ -17,7 +17,6 @@ package org.eclipse.papyrus.adltool.designer.wizard;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.adltool.designer.bundle.BundleLabelProvider;
 import org.eclipse.swt.SWT;
@@ -31,9 +30,11 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.eclipse.uml2.uml.Profile;
 
-
+/**
+ * aGUI in order to select a set of bundle from a list 
+ *
+ */
 public class BundleSelectionPage extends WizardPage {
 	/**
 	 * the graphical tree 
@@ -45,6 +46,12 @@ public class BundleSelectionPage extends WizardPage {
 
 	private Composite comp;
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param bundleList the list of bundle to display
+	 */
 	public BundleSelectionPage(ArrayList<?> bundleList) {
 		super("BundleSelection");
 		setTitle("Bundle Selection");
@@ -155,7 +162,7 @@ public class BundleSelectionPage extends WizardPage {
 	/**
 	 * Returns the elements to import.
 	 * 
-	 * @return
+	 * @return the set of selected bundle
 	 */
 	public ArrayList<Object> getResult() {
 		return selectedBundleList;

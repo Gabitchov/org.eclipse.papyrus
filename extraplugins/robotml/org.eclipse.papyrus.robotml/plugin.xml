@@ -78,13 +78,83 @@
             uri="http://Papyrus/RobotML/1">
       </profile>
    </extension>
-   <extension
-         point="org.eclipse.emf.ecore.generated_package">
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RobotML -->
       <package
+            uri="http://Papyrus/RobotML/1"
             class="org.eclipse.papyrus.RobotML.RobotMLPackage"
-            genModel="model/RobotML.genmodel"
-            uri="http://Papyrus/RobotML/1">
-      </package>
+            genModel="model/RobotML.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated RobotML -->
+      <parser
+            type="robotml"
+            class="org.eclipse.papyrus.RobotML.util.RobotMLResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RobotML -->
+      <package
+            uri="http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/diagnostic_datatypes.ecore"
+            class="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.diagnostic_datatypes.Diagnostic_datatypesPackage"
+            genModel="model/RobotML.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RobotML -->
+      <package
+            uri="http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/geometry_datatypes.ecore"
+            class="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.geometry_datatypes.Geometry_datatypesPackage"
+            genModel="model/RobotML.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RobotML -->
+      <package
+            uri="http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/nav_datatypes.ecore"
+            class="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.Nav_datatypesPackage"
+            genModel="model/RobotML.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RobotML -->
+      <package
+            uri="http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/sensor_datatypes.ecore"
+            class="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.sensor_datatypes.Sensor_datatypesPackage"
+            genModel="model/RobotML.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RobotML -->
+      <package
+            uri="http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/actionlib_datatypes.ecore"
+            class="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.actionlib_datatypes.Actionlib_datatypesPackage"
+            genModel="model/RobotML.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RobotML -->
+      <package
+            uri="http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp1_datatypes.ecore"
+            class="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp1_datatypes.Oarp1_datatypesPackage"
+            genModel="model/RobotML.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RobotML -->
+      <package
+            uri="http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/oarps_datatypes/oarp4_datatypes.ecore"
+            class="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.oarps_datatypes.oarp4_datatypes.Oarp4_datatypesPackage"
+            genModel="model/RobotML.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RobotML -->
+      <package
+            uri="http:///RobotMLLibraries/RobotML_ModelLibrary/RobotML_DataTypes/std_datatypes.ecore"
+            class="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage"
+            genModel="model/RobotML.genmodel"/>
+   </extension>
 </plugin>

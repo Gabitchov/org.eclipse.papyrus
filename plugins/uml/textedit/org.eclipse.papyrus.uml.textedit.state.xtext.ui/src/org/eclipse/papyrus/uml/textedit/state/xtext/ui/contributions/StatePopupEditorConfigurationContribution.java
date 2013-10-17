@@ -19,20 +19,18 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.papyrus.uml.textedit.state.xtext.ui.contentassist.UmlStateProposalProvider;
 import org.eclipse.papyrus.uml.textedit.state.xtext.ui.internal.UmlStateActivator;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.StateRule;
-import org.eclipse.papyrus.uml.textedit.state.xtext.validation.SemanticValidator;
-import org.eclipse.papyrus.uml.textedit.state.xtext.validation.UmlStateJavaValidator;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
+import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.OpaqueBehavior;
@@ -45,11 +43,13 @@ import com.google.inject.Injector;
 /**
  * @author CEA LIST
  * 
- *         This class is used for contribution to the Papyrus extension point DirectEditor. It is used for the integration
- *         of an xtext generated editor, for States of UML StateMachines.
+ *         This class is used for contribution to the Papyrus extension point
+ *         DirectEditor. It is used for the integration of an xtext generated
+ *         editor, for States of UML StateMachines.
  * 
  */
-public class StatePopupEditorConfigurationContribution extends PopupEditorConfiguration {
+public class StatePopupEditorConfigurationContribution extends DefaultXtextDirectEditorConfiguration implements
+		ICustomDirectEditorConfiguration {
 
 	private State state = null;
 
@@ -73,131 +73,101 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 		ENTRY, DO, EXIT
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#createPopupEditorHelper(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
-	 */
 	@Override
-	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
+	public int getStyle() {
+		return SWT.MULTI;
+	}
 
-		// resolves the edit part, and the associated semantic element
-		IGraphicalEditPart graphicalEditPart = null;
-		if(!(editPart instanceof IGraphicalEditPart)) {
-			return null;
+	@Override
+	public Injector getInjector() {
+		return UmlStateActivator.getInstance().getInjector(
+				UmlStateActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_STATE_XTEXT_UMLSTATE);
+	}
+
+	@Override
+	protected ICommand getParseCommand(EObject modelObject, EObject xtextObject) {
+		State state = (State) modelObject;
+		// first: retrieves / determines if the xtextObject is a StateRule
+		// object
+		EObject modifiedObject = xtextObject;
+		if (!(modelObject instanceof State)) {
+			return UnexecutableCommand.INSTANCE;
 		}
-		graphicalEditPart = (IGraphicalEditPart)editPart;
-
-		if(!(graphicalEditPart.resolveSemanticElement() instanceof State)) {
-			return null;
+		while (xtextObject != null && !(xtextObject instanceof StateRule)) {
+			modifiedObject = modifiedObject.eContainer();
 		}
-		state = (State)graphicalEditPart.resolveSemanticElement();
+		if (modifiedObject == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		StateRule stateRuleObject = (StateRule) xtextObject;
+		// Retrieves the information to be populated in modelObject
+		newStateName = "" + stateRuleObject.getName();
+		newSubmachine = null;
+		newEntryName = "";
+		newDoName = "";
+		newExitName = "";
 
-		UmlStateJavaValidator.init(state);
+		if (stateRuleObject.getSubmachine() != null) {
+			newSubmachine = stateRuleObject.getSubmachine().getSubmachine();
+		}
 
-		// retrieves the XText injector
-		Injector injector = UmlStateActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.state.xtext.UmlState");
-
-		// builds the text content and extension for a temporary file, to be edited by the xtext editor
-		String textToEdit = "" + this.getTextToEdit(graphicalEditPart.resolveSemanticElement());
-		String fileExtension = "" + ".umlstate";
-
-		// builds a new IXtextEMFReconciler.
-		// Its purpose is to extract any relevant information from the textual specification,
-		// and then merge it in the context UML model if necessary
-		IXtextEMFReconciler reconciler = new IXtextEMFReconciler() {
-
-			public void reconcile(EObject modelObject, EObject xtextObject) {
-				// first: retrieves / determines if the xtextObject is a StateRule object
-				EObject modifiedObject = xtextObject;
-				if(!(modelObject instanceof State)) {
-					return;
-				}
-				while(xtextObject != null && !(xtextObject instanceof StateRule)) {
-					modifiedObject = modifiedObject.eContainer();
-				}
-				if(modifiedObject == null) {
-					return;
-				}
-				StateRule stateRuleObject = (StateRule)xtextObject;
-
-				// Retrieves the information to be populated in modelObject
-				newStateName = "" + stateRuleObject.getName();
-
-				newSubmachine = null;
-
-				newEntryName = "";
-				newDoName = "";
-				newExitName = "";
-
-				if(stateRuleObject.getSubmachine() != null) {
-					newSubmachine = stateRuleObject.getSubmachine().getSubmachine();
-				}
-
-				if(stateRuleObject.getEntry() != null) {
-					newEntryKind = stateRuleObject.getEntry().getKind();
-					if(stateRuleObject.getEntry().getBehaviorName() != null) {
-						newEntryName = "" + stateRuleObject.getEntry().getBehaviorName();
-					}
-				}
-
-				if(stateRuleObject.getDo() != null) {
-					newDoKind = stateRuleObject.getDo().getKind();
-					if(stateRuleObject.getDo().getBehaviorName() != null) {
-						newDoName = stateRuleObject.getDo().getBehaviorName();
-					}
-				}
-
-				if(stateRuleObject.getExit() != null) {
-					newExitKind = stateRuleObject.getExit().getKind();
-					if(stateRuleObject.getExit().getBehaviorName() != null) {
-						newExitName = stateRuleObject.getExit().getBehaviorName();
-					}
-				}
-
-				// Creates and executes the update command
-				UpdateUMLStateCommand updateCommand = new UpdateUMLStateCommand(state);
-
-				TransactionalEditingDomain domain = getEditingDomain(modelObject);
-				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
+		if (stateRuleObject.getEntry() != null) {
+			newEntryKind = stateRuleObject.getEntry().getKind();
+			if (stateRuleObject.getEntry().getBehaviorName() != null) {
+				newEntryName = "" + stateRuleObject.getEntry().getBehaviorName();
 			}
-		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new SemanticValidator());
+		}
+
+		if (stateRuleObject.getDo() != null) {
+			newDoKind = stateRuleObject.getDo().getKind();
+			if (stateRuleObject.getDo().getBehaviorName() != null) {
+				newDoName = stateRuleObject.getDo().getBehaviorName();
+			}
+		}
+
+		if (stateRuleObject.getExit() != null) {
+			newExitKind = stateRuleObject.getExit().getKind();
+			if (stateRuleObject.getExit().getBehaviorName() != null) {
+				newExitName = stateRuleObject.getExit().getBehaviorName();
+			}
+		}
+		return new UpdateUMLStateCommand(state);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
+	 * @see
+	 * org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration
+	 * #getTextToEdit(java.lang.Object)
 	 */
 	@Override
 	public String getTextToEdit(Object editedObject) {
-		if(editedObject instanceof State) {
-			State state = (State)editedObject;
+		if (editedObject instanceof State) {
+			State state = (State) editedObject;
 			String textToEdit = "";
 
 			// name
 			textToEdit = textToEdit + state.getName();
 
-			if(state.isSubmachineState()) {
+			if (state.isSubmachineState()) {
 				textToEdit += " : " + UmlStateProposalProvider.getSubmachineLabel(state.getSubmachine());
 			}
 
 			// entryActivity
-			if(state.getEntry() != null) {
+			if (state.getEntry() != null) {
 				String kind = behaviorKindAsString(state.getEntry());
 				textToEdit = textToEdit + "\nentry " + kind + " " + state.getEntry().getName();
 			}
 
 			// doActivity
-			if(state.getDoActivity() != null) {
+			if (state.getDoActivity() != null) {
 				String kind = behaviorKindAsString(state.getDoActivity());
 				textToEdit = textToEdit + "\ndo " + kind + " " + state.getDoActivity().getName();
 			}
 
 			// exitActivity
-			if(state.getExit() != null) {
+			if (state.getExit() != null) {
 				String kind = behaviorKindAsString(state.getExit());
 				textToEdit = textToEdit + "\nexit " + kind + " " + state.getExit().getName();
 			}
@@ -220,9 +190,10 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor
-		 * , org.eclipse.core.runtime.IAdaptable)
+		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.
+		 * AbstractTransactionalCommand
+		 * #doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor ,
+		 * org.eclipse.core.runtime.IAdaptable)
 		 */
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
@@ -236,7 +207,8 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 		}
 
 		public UpdateUMLStateCommand(State state) {
-			super(StatePopupEditorConfigurationContribution.getEditingDomain(state), "State Update", getWorkspaceFiles(state));
+			super(StatePopupEditorConfigurationContribution.getEditingDomain(state), "State Update",
+					getWorkspaceFiles(state));
 			this.state = state;
 		}
 	}
@@ -251,26 +223,26 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 	}
 
 	private String behaviorKindAsString(Behavior b) {
-		if(b instanceof Activity) {
+		if (b instanceof Activity) {
 			return "Activity";
 		}
-		if(b instanceof StateMachine) {
+		if (b instanceof StateMachine) {
 			return "StateMachine";
 		}
-		if(b instanceof OpaqueBehavior) {
+		if (b instanceof OpaqueBehavior) {
 			return "OpaqueBehavior";
 		}
 		return "";
 	}
 
 	private BehaviorKind behaviorKindAsBehaviorKind(Behavior b) {
-		if(b instanceof Activity) {
+		if (b instanceof Activity) {
 			return BehaviorKind.ACTIVITY;
 		}
-		if(b instanceof StateMachine) {
+		if (b instanceof StateMachine) {
 			return BehaviorKind.STATE_MACHINE;
 		}
-		if(b instanceof OpaqueBehavior) {
+		if (b instanceof OpaqueBehavior) {
 			return BehaviorKind.OPAQUE_BEHAVIOR;
 		}
 
@@ -279,18 +251,19 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 
 	private Behavior updateOrCreateBehavior(BehaviorRole_Local role, BehaviorKind kind, String behaviorName) {
 		Behavior behavior = null;
-		switch(role) {
+		switch (role) {
 		case DO:
 			behavior = state.getDoActivity();
-			if(behavior != null) {
-				if(behaviorName.equals("")) {
+			if (behavior != null) {
+				if (behaviorName.equals("")) {
 					// behavior needs to be deleted
 					state.setDoActivity(null);
 					behavior.destroy();
 					behavior = null;
 				} else {
-					if(behaviorKindAsBehaviorKind(behavior) != kind) {
-						// behavior needs to deleted, and a new one needs to be created
+					if (behaviorKindAsBehaviorKind(behavior) != kind) {
+						// behavior needs to deleted, and a new one needs to be
+						// created
 						state.setDoActivity(null);
 						behavior.destroy();
 						behavior = createBehavior(kind, behaviorName);
@@ -300,7 +273,7 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 					}
 				}
 			} else {
-				if(behaviorName.equals("")) {
+				if (behaviorName.equals("")) {
 					// nothing needs to be done
 				} else {
 					// behavior needs to be created
@@ -311,15 +284,16 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 
 		case ENTRY:
 			behavior = state.getEntry();
-			if(behavior != null) {
-				if(behaviorName.equals("")) {
+			if (behavior != null) {
+				if (behaviorName.equals("")) {
 					// behavior needs to be deleted
 					state.setEntry(null);
 					behavior.destroy();
 					behavior = null;
 				} else {
-					if(behaviorKindAsBehaviorKind(behavior) != kind) {
-						// behavior needs to deleted, and a new one needs to be created
+					if (behaviorKindAsBehaviorKind(behavior) != kind) {
+						// behavior needs to deleted, and a new one needs to be
+						// created
 						state.setEntry(null);
 						behavior.destroy();
 						behavior = createBehavior(kind, behaviorName);
@@ -329,7 +303,7 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 					}
 				}
 			} else {
-				if(behaviorName.equals("")) {
+				if (behaviorName.equals("")) {
 					// nothing needs to be done
 				} else {
 					// behavior needs to be created
@@ -340,15 +314,16 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 
 		case EXIT:
 			behavior = state.getExit();
-			if(behavior != null) {
-				if(behaviorName.equals("")) {
+			if (behavior != null) {
+				if (behaviorName.equals("")) {
 					// behavior needs to be deleted
 					state.setExit(null);
 					behavior.destroy();
 					behavior = null;
 				} else {
-					if(behaviorKindAsBehaviorKind(behavior) != kind) {
-						// behavior needs to deleted, and a new one needs to be created
+					if (behaviorKindAsBehaviorKind(behavior) != kind) {
+						// behavior needs to deleted, and a new one needs to be
+						// created
 						state.setExit(null);
 						behavior.destroy();
 						behavior = createBehavior(kind, behaviorName);
@@ -358,7 +333,7 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 					}
 				}
 			} else {
-				if(behaviorName.equals("")) {
+				if (behaviorName.equals("")) {
 					// nothing needs to be done
 				} else {
 					// behavior needs to be created
@@ -376,13 +351,13 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 
 	private Behavior createBehavior(BehaviorKind kind, String name) {
 
-		if(kind == null) {
+		if (kind == null) {
 			return null;
 		}
 
 		Behavior behavior = null;
 
-		switch(kind) {
+		switch (kind) {
 		case ACTIVITY:
 			behavior = UMLFactory.eINSTANCE.createActivity();
 			break;

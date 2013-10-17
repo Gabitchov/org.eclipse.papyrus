@@ -60,13 +60,10 @@ public class ClassifierTemplateParameterParser implements IParser {
 							out = out + ", ";
 						}
 					}
-
 				}
 			}
 			return out;
-
 		}
-
 		return "<UNDEFINED>";
 	}
 
@@ -77,5 +74,4 @@ public class ClassifierTemplateParameterParser implements IParser {
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return ParserEditStatus.EDITABLE_STATUS;
 	}
-
 }

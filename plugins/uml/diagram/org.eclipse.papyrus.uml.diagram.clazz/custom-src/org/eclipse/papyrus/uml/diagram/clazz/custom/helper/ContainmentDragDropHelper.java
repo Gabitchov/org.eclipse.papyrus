@@ -32,7 +32,6 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Element;
 
-
 public class ContainmentDragDropHelper extends ContainmentHelper {
 
 	/**
@@ -130,6 +129,4 @@ public class ContainmentDragDropHelper extends ContainmentHelper {
 			return CommandResult.newOKCommandResult();
 		}
 	}
-
-
 }

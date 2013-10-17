@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -39,6 +38,4 @@ public class InterfaceNestedClassifierListenerEditPolicy extends AbstractNestedC
 	public ImmutableSet<EStructuralFeature> getEStructuralFeaturesToListen() {
 		return ImmutableSet.of((EStructuralFeature)UMLPackage.Literals.INTERFACE__NESTED_CLASSIFIER);
 	}
-
-
 }

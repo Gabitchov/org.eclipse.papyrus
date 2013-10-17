@@ -12,7 +12,6 @@ package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -27,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.edit.commands.RefreshComman
 public class UpdateDiagramInSnapshotCommandHandler extends GraphicalCommandHandler {
 
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		final CompoundCommand cmd = new CompoundCommand(Messages.UpdateDiagramInSnapshotCommandHandler_updateDiagram);
 		final List<IGraphicalEditPart> selectedElements = getSelectedElements();
 		for(final IGraphicalEditPart selectedElement : selectedElements) {

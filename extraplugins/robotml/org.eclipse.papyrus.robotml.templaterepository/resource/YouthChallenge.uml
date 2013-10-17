@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Blocks="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:RobotML="http://Papyrus/RobotML/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:FCM="http://papyrus/FCMProfile/1" xmlns:RobotML="http://Papyrus/RobotML/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Model xmi:id="_k0Lj4DiAEeKDAMEjnOLmPA" name="YouthChallengeModel">
-    <packageImport xmi:id="_k0Lj4TiAEeKDAMEjnOLmPA">
-      <importedPackage href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_dt_y4AHtEeCQQOKrhO_fIQ"/>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_k0Lj4TiAEeKDAMEjnOLmPA">
+      <importedPackage xmi:type="uml:Package" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_dt_y4AHtEeCQQOKrhO_fIQ"/>
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0Lj4jiAEeKDAMEjnOLmPA" name="YouthChallenge DataTypes">
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_k0Lj4ziAEeKDAMEjnOLmPA" name="Mission_Type">
-        <ownedLiteral xmi:id="_k0Lj5DiAEeKDAMEjnOLmPA" name="Explore"/>
-        <ownedLiteral xmi:id="_k0Lj5TiAEeKDAMEjnOLmPA" name="Search"/>
-        <ownedLiteral xmi:id="_k0Lj5jiAEeKDAMEjnOLmPA" name="Reach"/>
-        <ownedLiteral xmi:id="_k0Lj5ziAEeKDAMEjnOLmPA" name="Identify"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0Lj5DiAEeKDAMEjnOLmPA" name="Explore"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0Lj5TiAEeKDAMEjnOLmPA" name="Search"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0Lj5jiAEeKDAMEjnOLmPA" name="Reach"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0Lj5ziAEeKDAMEjnOLmPA" name="Identify"/>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0Lj6DiAEeKDAMEjnOLmPA" name="Amer">
-        <ownedComment xmi:id="_k0Lj6TiAEeKDAMEjnOLmPA" annotatedElement="_k0Lj6DiAEeKDAMEjnOLmPA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0Lj6TiAEeKDAMEjnOLmPA" annotatedElement="_k0Lj6DiAEeKDAMEjnOLmPA">
           <body>Un amer correspond a une balise composee d'une clonne et d'un solide d'une couleur </body>
         </ownedComment>
-        <ownedAttribute xmi:id="_k0Lj6jiAEeKDAMEjnOLmPA" name="position" visibility="public" type="_k0Lj9jiAEeKDAMEjnOLmPA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lj6jiAEeKDAMEjnOLmPA" name="position" visibility="public" type="_k0Lj9jiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lj6ziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lj7DiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0Lj7TiAEeKDAMEjnOLmPA">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0Lj7jiAEeKDAMEjnOLmPA" name="color" visibility="public" type="_k0LkejiAEeKDAMEjnOLmPA" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lj7jiAEeKDAMEjnOLmPA" name="color" visibility="public" type="_k0LkejiAEeKDAMEjnOLmPA" isUnique="false">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lj7ziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lj8DiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0Lj8TiAEeKDAMEjnOLmPA">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0Lj8jiAEeKDAMEjnOLmPA" name="geometry" visibility="public" type="_k0LkgDiAEeKDAMEjnOLmPA" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lj8jiAEeKDAMEjnOLmPA" name="geometry" visibility="public" type="_k0LkgDiAEeKDAMEjnOLmPA" isUnique="false">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lj8ziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lj9DiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0Lj9TiAEeKDAMEjnOLmPA">
@@ -38,8 +38,8 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0Lj9jiAEeKDAMEjnOLmPA" name="Position">
-        <ownedComment xmi:id="_k0Lj9ziAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0Lj-DiAEeKDAMEjnOLmPA" name="x" visibility="public" isUnique="false">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0Lj9ziAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lj-DiAEeKDAMEjnOLmPA" name="x" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUPiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lj-TiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lj-jiAEeKDAMEjnOLmPA" value="1"/>
@@ -47,7 +47,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0Lj_DiAEeKDAMEjnOLmPA" name="y" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lj_DiAEeKDAMEjnOLmPA" name="y" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUPiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lj_TiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lj_jiAEeKDAMEjnOLmPA" value="1"/>
@@ -55,7 +55,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkADiAEeKDAMEjnOLmPA" name="alt" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkADiAEeKDAMEjnOLmPA" name="alt" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUPiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkATiAEeKDAMEjnOLmPA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkAjiAEeKDAMEjnOLmPA" value="1"/>
@@ -63,9 +63,9 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkBDiAEeKDAMEjnOLmPA" name="orientation" visibility="public" isUnique="false">
-          <ownedComment xmi:id="_k0LkBTiAEeKDAMEjnOLmPA" annotatedElement="_k0LkBTiAEeKDAMEjnOLmPA">
-            <body>orientation en degr� [0;359] , entier positif, sens horaire 0 Nord </body>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkBDiAEeKDAMEjnOLmPA" name="orientation" visibility="public" isUnique="false">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_k0LkBTiAEeKDAMEjnOLmPA" annotatedElement="_k0LkBTiAEeKDAMEjnOLmPA">
+            <body>orientation en degrés [0;359] , entier positif, sens horaire 0 Nord </body>
           </ownedComment>
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUQyN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkBjiAEeKDAMEjnOLmPA" value="1"/>
@@ -76,7 +76,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0LkCTiAEeKDAMEjnOLmPA" name="Position_Error">
-        <ownedAttribute xmi:id="_k0LkCjiAEeKDAMEjnOLmPA" name="x_err" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkCjiAEeKDAMEjnOLmPA" name="x_err" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUPiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkCziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkDDiAEeKDAMEjnOLmPA" value="1"/>
@@ -84,7 +84,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkDjiAEeKDAMEjnOLmPA" name="y_err" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkDjiAEeKDAMEjnOLmPA" name="y_err" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUPiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkDziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkEDiAEeKDAMEjnOLmPA" value="1"/>
@@ -92,7 +92,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkEjiAEeKDAMEjnOLmPA" name="alt_err" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkEjiAEeKDAMEjnOLmPA" name="alt_err" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUPiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkEziAEeKDAMEjnOLmPA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkFDiAEeKDAMEjnOLmPA" value="1"/>
@@ -100,7 +100,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkFjiAEeKDAMEjnOLmPA" name="orientation_err" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkFjiAEeKDAMEjnOLmPA" name="orientation_err" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUQyN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkFziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkGDiAEeKDAMEjnOLmPA" value="1"/>
@@ -110,21 +110,21 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0LkGjiAEeKDAMEjnOLmPA" name="Path_Point">
-        <ownedAttribute xmi:id="_k0LkGziAEeKDAMEjnOLmPA" name="position" visibility="public" type="_k0Lj9jiAEeKDAMEjnOLmPA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkGziAEeKDAMEjnOLmPA" name="position" visibility="public" type="_k0Lj9jiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkHDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkHTiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0LkHjiAEeKDAMEjnOLmPA">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkHziAEeKDAMEjnOLmPA" name="pos_error" visibility="public" type="_k0LkCTiAEeKDAMEjnOLmPA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkHziAEeKDAMEjnOLmPA" name="pos_error" visibility="public" type="_k0LkCTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkIDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkITiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0LkIjiAEeKDAMEjnOLmPA">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkIziAEeKDAMEjnOLmPA" name="velocity" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkIziAEeKDAMEjnOLmPA" name="velocity" visibility="public">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LT9SN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkJDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkJTiAEeKDAMEjnOLmPA" value="1"/>
@@ -134,7 +134,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0LkLDiAEeKDAMEjnOLmPA" name="Trajectory">
-        <ownedAttribute xmi:id="_k0LkLTiAEeKDAMEjnOLmPA" name="x_t" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkLTiAEeKDAMEjnOLmPA" name="x_t" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUPiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkLjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkLziAEeKDAMEjnOLmPA" value="*"/>
@@ -142,7 +142,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkMTiAEeKDAMEjnOLmPA" name="y_t" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkMTiAEeKDAMEjnOLmPA" name="y_t" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUPiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkMjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkMziAEeKDAMEjnOLmPA" value="*"/>
@@ -150,7 +150,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkNTiAEeKDAMEjnOLmPA" name="v_t" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkNTiAEeKDAMEjnOLmPA" name="v_t" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUPiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkNjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkNziAEeKDAMEjnOLmPA" value="*"/>
@@ -158,7 +158,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkOTiAEeKDAMEjnOLmPA" name="sample_time" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkOTiAEeKDAMEjnOLmPA" name="sample_time" visibility="public" isUnique="false">
           <type xmi:type="uml:PrimitiveType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_gyt4YAH-EeC_ZLzLQhW-TQ"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkOjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkOziAEeKDAMEjnOLmPA" value="1"/>
@@ -166,7 +166,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkPTiAEeKDAMEjnOLmPA" name="sample_nb" visibility="public" type="_k0LkkjiAEeKDAMEjnOLmPA" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkPTiAEeKDAMEjnOLmPA" name="sample_nb" visibility="public" type="_k0LkkjiAEeKDAMEjnOLmPA" isUnique="false">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkPjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkPziAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0LkQDiAEeKDAMEjnOLmPA">
@@ -175,14 +175,14 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0LkSjiAEeKDAMEjnOLmPA" name="Goal">
-        <ownedAttribute xmi:id="_k0LkSziAEeKDAMEjnOLmPA" name="mission_type" visibility="public" type="_k0Lj4ziAEeKDAMEjnOLmPA" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkSziAEeKDAMEjnOLmPA" name="mission_type" visibility="public" type="_k0Lj4ziAEeKDAMEjnOLmPA" isUnique="false">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkTDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkTTiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0LkTjiAEeKDAMEjnOLmPA">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkTziAEeKDAMEjnOLmPA" name="position" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkTziAEeKDAMEjnOLmPA" name="position" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_lZ5bYKlhEeC0sZu-_Vgeyw"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkUDiAEeKDAMEjnOLmPA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkUTiAEeKDAMEjnOLmPA" value="1"/>
@@ -190,7 +190,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkUziAEeKDAMEjnOLmPA" name="position_error" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkUziAEeKDAMEjnOLmPA" name="position_error" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_lZ5bYKlhEeC0sZu-_Vgeyw"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkVDiAEeKDAMEjnOLmPA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkVTiAEeKDAMEjnOLmPA" value="1"/>
@@ -198,7 +198,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkVziAEeKDAMEjnOLmPA" name="orientation" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkVziAEeKDAMEjnOLmPA" name="orientation" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUQyN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkWDiAEeKDAMEjnOLmPA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkWTiAEeKDAMEjnOLmPA" value="1"/>
@@ -206,7 +206,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkWziAEeKDAMEjnOLmPA" name="angular_aperture" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkWziAEeKDAMEjnOLmPA" name="angular_aperture" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUQyN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkXDiAEeKDAMEjnOLmPA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkXTiAEeKDAMEjnOLmPA" value="1"/>
@@ -214,7 +214,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkXziAEeKDAMEjnOLmPA" name="distance" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkXziAEeKDAMEjnOLmPA" name="distance" visibility="public">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUOSN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkYDiAEeKDAMEjnOLmPA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkYTiAEeKDAMEjnOLmPA" value="1"/>
@@ -222,7 +222,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkYziAEeKDAMEjnOLmPA" name="velocity_average" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkYziAEeKDAMEjnOLmPA" name="velocity_average" visibility="public">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LT9SN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkZDiAEeKDAMEjnOLmPA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkZTiAEeKDAMEjnOLmPA" value="1"/>
@@ -230,7 +230,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LkZziAEeKDAMEjnOLmPA" name="amer_to_identify" visibility="public" type="_k0Lj6DiAEeKDAMEjnOLmPA" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkZziAEeKDAMEjnOLmPA" name="amer_to_identify" visibility="public" type="_k0Lj6DiAEeKDAMEjnOLmPA" isUnique="false">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkaDiAEeKDAMEjnOLmPA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkaTiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0LkajiAEeKDAMEjnOLmPA">
@@ -239,19 +239,19 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_k0LkejiAEeKDAMEjnOLmPA" name="Color">
-        <ownedLiteral xmi:id="_k0LkeziAEeKDAMEjnOLmPA" name="White"/>
-        <ownedLiteral xmi:id="_k0LkfDiAEeKDAMEjnOLmPA" name="Black"/>
-        <ownedLiteral xmi:id="_k0LkfTiAEeKDAMEjnOLmPA" name="Red"/>
-        <ownedLiteral xmi:id="_k0LkfjiAEeKDAMEjnOLmPA" name="Blue"/>
-        <ownedLiteral xmi:id="_k0LkfziAEeKDAMEjnOLmPA" name="Green"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0LkeziAEeKDAMEjnOLmPA" name="White"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0LkfDiAEeKDAMEjnOLmPA" name="Black"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0LkfTiAEeKDAMEjnOLmPA" name="Red"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0LkfjiAEeKDAMEjnOLmPA" name="Blue"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0LkfziAEeKDAMEjnOLmPA" name="Green"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_k0LkgDiAEeKDAMEjnOLmPA" name="Geometry">
-        <ownedLiteral xmi:id="_k0LkgTiAEeKDAMEjnOLmPA" name="Cube"/>
-        <ownedLiteral xmi:id="_k0LkgjiAEeKDAMEjnOLmPA" name="Sphere"/>
-        <ownedLiteral xmi:id="_k0LkgziAEeKDAMEjnOLmPA" name="Pyramid"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0LkgTiAEeKDAMEjnOLmPA" name="Cube"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0LkgjiAEeKDAMEjnOLmPA" name="Sphere"/>
+        <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_k0LkgziAEeKDAMEjnOLmPA" name="Pyramid"/>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0LkkjiAEeKDAMEjnOLmPA" name="Nombre_Pos">
-        <ownedAttribute xmi:id="_k0LkkziAEeKDAMEjnOLmPA" name="value" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkkziAEeKDAMEjnOLmPA" name="value" visibility="public" isUnique="false">
           <type xmi:type="uml:PrimitiveType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_nCOuoAH-EeC_ZLzLQhW-TQ"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LklDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LklTiAEeKDAMEjnOLmPA" value="1"/>
@@ -261,7 +261,7 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0LkvDiAEeKDAMEjnOLmPA" name="Percent">
-        <ownedAttribute xmi:id="_k0LkvTiAEeKDAMEjnOLmPA" name="value" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LkvTiAEeKDAMEjnOLmPA" name="value" visibility="public" isUnique="false">
           <type xmi:type="uml:PrimitiveType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_nCOuoAH-EeC_ZLzLQhW-TQ"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LkvjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LkvziAEeKDAMEjnOLmPA" value="1"/>
@@ -271,8 +271,8 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0Lk4jiAEeKDAMEjnOLmPA" name="Velocity_Error">
-        <ownedComment xmi:id="_k0Lk4ziAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0Lk5DiAEeKDAMEjnOLmPA" name="velocity_linear_err" visibility="public" isUnique="false">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0Lk4ziAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lk5DiAEeKDAMEjnOLmPA" name="velocity_linear_err" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LT9SN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lk5TiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lk5jiAEeKDAMEjnOLmPA" value="1"/>
@@ -280,7 +280,7 @@
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0Lk6DiAEeKDAMEjnOLmPA" name="velocity_angular_err" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lk6DiAEeKDAMEjnOLmPA" name="velocity_angular_err" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUUiN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lk6TiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lk6jiAEeKDAMEjnOLmPA" value="1"/>
@@ -290,25 +290,25 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0Lk7DiAEeKDAMEjnOLmPA" name="Amer_Relative">
-        <ownedComment xmi:id="_k0Lk7TiAEeKDAMEjnOLmPA" annotatedElement="_k0Lk7DiAEeKDAMEjnOLmPA">
-          <body>Un amer correspond � une balise compos�e d'une clonne&#xD;
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0Lk7TiAEeKDAMEjnOLmPA" annotatedElement="_k0Lk7DiAEeKDAMEjnOLmPA">
+          <body>Un amer correspond à une balise composée d'une clonne&#xD;
 et d'un solide d'une couleur </body>
         </ownedComment>
-        <ownedAttribute xmi:id="_k0Lk7jiAEeKDAMEjnOLmPA" name="relative_polar" visibility="public" type="_k0Lk-jiAEeKDAMEjnOLmPA" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lk7jiAEeKDAMEjnOLmPA" name="relative_polar" visibility="public" type="_k0Lk-jiAEeKDAMEjnOLmPA" isUnique="false">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lk7ziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lk8DiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0Lk8TiAEeKDAMEjnOLmPA">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0Lk8jiAEeKDAMEjnOLmPA" name="color" visibility="public" type="_k0LkejiAEeKDAMEjnOLmPA" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lk8jiAEeKDAMEjnOLmPA" name="color" visibility="public" type="_k0LkejiAEeKDAMEjnOLmPA" isUnique="false">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lk8ziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lk9DiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0Lk9TiAEeKDAMEjnOLmPA">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0Lk9jiAEeKDAMEjnOLmPA" name="geometry" visibility="public" type="_k0LkgDiAEeKDAMEjnOLmPA" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lk9jiAEeKDAMEjnOLmPA" name="geometry" visibility="public" type="_k0LkgDiAEeKDAMEjnOLmPA" isUnique="false">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lk9ziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lk-DiAEeKDAMEjnOLmPA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0Lk-TiAEeKDAMEjnOLmPA">
@@ -317,8 +317,8 @@ et d'un solide d'une couleur </body>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0Lk-jiAEeKDAMEjnOLmPA" name="Relative_Polar">
-        <ownedComment xmi:id="_k0Lk-ziAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0Lk_DiAEeKDAMEjnOLmPA" name="distance" visibility="public" isUnique="false">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0Lk-ziAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lk_DiAEeKDAMEjnOLmPA" name="distance" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUOSN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lk_TiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lk_jiAEeKDAMEjnOLmPA" value="1"/>
@@ -326,7 +326,7 @@ et d'un solide d'une couleur </body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LlADiAEeKDAMEjnOLmPA" name="angular" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlADiAEeKDAMEjnOLmPA" name="angular" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUQyN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlATiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlAjiAEeKDAMEjnOLmPA" value="1"/>
@@ -334,7 +334,7 @@ et d'un solide d'une couleur </body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LlBDiAEeKDAMEjnOLmPA" name="site" visibility="public" isUnique="false">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlBDiAEeKDAMEjnOLmPA" name="site" visibility="public" isUnique="false">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUQyN8EeKwed7FEEF-4Q"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlBTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlBjiAEeKDAMEjnOLmPA" value="1"/>
@@ -344,23 +344,23 @@ et d'un solide d'une couleur </body>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0LlCDiAEeKDAMEjnOLmPA" name="Map">
-        <ownedAttribute xmi:id="_k0LlCTiAEeKDAMEjnOLmPA" name="map_meta_data">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlCTiAEeKDAMEjnOLmPA" name="map_meta_data">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_F5N8wAK2EeCsG_V0R865wA"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LlCjiAEeKDAMEjnOLmPA" name="position">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlCjiAEeKDAMEjnOLmPA" name="position">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_uUJZ4AH6EeC_ZLzLQhW-TQ"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:DataType" xmi:id="_k0LlCziAEeKDAMEjnOLmPA" name="Attribute_robot">
-        <ownedAttribute xmi:id="_k0LlDDiAEeKDAMEjnOLmPA" name="voie">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlDDiAEeKDAMEjnOLmPA" name="voie">
           <type xmi:type="uml:PrimitiveType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_Y9tAwAH6EeC_ZLzLQhW-TQ"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0LlDTiAEeKDAMEjnOLmPA" name="voie" value="0.226"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LlDjiAEeKDAMEjnOLmPA" name="empatement">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlDjiAEeKDAMEjnOLmPA" name="empatement">
           <type xmi:type="uml:PrimitiveType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_Y9tAwAH6EeC_ZLzLQhW-TQ"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0LlDziAEeKDAMEjnOLmPA" name="empatement" value="0.17"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LlEDiAEeKDAMEjnOLmPA" name="diam_roue">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlEDiAEeKDAMEjnOLmPA" name="diam_roue">
           <type xmi:type="uml:PrimitiveType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_Y9tAwAH6EeC_ZLzLQhW-TQ"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_k0LlETiAEeKDAMEjnOLmPA" name="diam_roue" value="0.144"/>
         </ownedAttribute>
@@ -369,311 +369,311 @@ et d'un solide d'une couleur </body>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0LlEjiAEeKDAMEjnOLmPA" name="YouthChallenge Interfaces"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0LlEziAEeKDAMEjnOLmPA" name="YouthChallenge SubSystems"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_k0LlFDiAEeKDAMEjnOLmPA" name="Wifibot">
-      <ownedAttribute xmi:id="_k0LlFTiAEeKDAMEjnOLmPA" name="pathPlanner" type="_k0LoFDiAEeKDAMEjnOLmPA"/>
-      <ownedAttribute xmi:id="_k0LlFjiAEeKDAMEjnOLmPA" name="missionGenerator" type="_k0Ln9ziAEeKDAMEjnOLmPA"/>
-      <ownedAttribute xmi:id="_k0LlFziAEeKDAMEjnOLmPA" name="navigator" type="_k0LoVjiAEeKDAMEjnOLmPA"/>
-      <ownedAttribute xmi:id="_k0LlGDiAEeKDAMEjnOLmPA" name="pilot" type="_k0LoqziAEeKDAMEjnOLmPA"/>
-      <ownedAttribute xmi:id="_k0LlGTiAEeKDAMEjnOLmPA" name="servoing" type="_k0Lo-jiAEeKDAMEjnOLmPA"/>
-      <ownedAttribute xmi:id="_k0LlGjiAEeKDAMEjnOLmPA" name="sensors" type="_k0LndTiAEeKDAMEjnOLmPA"/>
-      <ownedAttribute xmi:id="_k0LlGziAEeKDAMEjnOLmPA" name="proximetry" type="_k0LmxDiAEeKDAMEjnOLmPA"/>
-      <ownedAttribute xmi:id="_k0LlHDiAEeKDAMEjnOLmPA" name="global_map" type="_k0LmBDiAEeKDAMEjnOLmPA"/>
-      <ownedAttribute xmi:id="_k0LlHTiAEeKDAMEjnOLmPA" name="local_Map" type="_k0LmTjiAEeKDAMEjnOLmPA"/>
-      <ownedConnector xmi:id="_k0LlHjiAEeKDAMEjnOLmPA" name="Connector0">
-        <end xmi:id="_k0LlHziAEeKDAMEjnOLmPA" partWithPort="_k0LlFjiAEeKDAMEjnOLmPA" role="_k0Ln-DiAEeKDAMEjnOLmPA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlFTiAEeKDAMEjnOLmPA" name="pathPlanner" type="_k0LoFDiAEeKDAMEjnOLmPA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlFjiAEeKDAMEjnOLmPA" name="missionGenerator" type="_k0Ln9ziAEeKDAMEjnOLmPA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlFziAEeKDAMEjnOLmPA" name="navigator" type="_k0LoVjiAEeKDAMEjnOLmPA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlGDiAEeKDAMEjnOLmPA" name="pilot" type="_k0LoqziAEeKDAMEjnOLmPA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlGTiAEeKDAMEjnOLmPA" name="servoing" type="_k0Lo-jiAEeKDAMEjnOLmPA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlGjiAEeKDAMEjnOLmPA" name="sensors" type="_k0LndTiAEeKDAMEjnOLmPA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlGziAEeKDAMEjnOLmPA" name="proximetry" type="_k0LmxDiAEeKDAMEjnOLmPA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlHDiAEeKDAMEjnOLmPA" name="global_map" type="_k0LmBDiAEeKDAMEjnOLmPA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LlHTiAEeKDAMEjnOLmPA" name="local_Map" type="_k0LmTjiAEeKDAMEjnOLmPA"/>
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlHjiAEeKDAMEjnOLmPA" name="Connector0">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlHziAEeKDAMEjnOLmPA" partWithPort="_k0LlFjiAEeKDAMEjnOLmPA" role="_k0Ln-DiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlIDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlITiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlIjiAEeKDAMEjnOLmPA" partWithPort="_k0LlFTiAEeKDAMEjnOLmPA" role="_k0LoHTiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlIjiAEeKDAMEjnOLmPA" partWithPort="_k0LlFTiAEeKDAMEjnOLmPA" role="_k0LoHTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlIziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlJDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlJTiAEeKDAMEjnOLmPA" name="Connector1">
-        <end xmi:id="_k0LlJjiAEeKDAMEjnOLmPA" partWithPort="_k0LlFTiAEeKDAMEjnOLmPA" role="_k0LoFTiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlJTiAEeKDAMEjnOLmPA" name="Connector1">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlJjiAEeKDAMEjnOLmPA" partWithPort="_k0LlFTiAEeKDAMEjnOLmPA" role="_k0LoFTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlJziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlKDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlKTiAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoVziAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlKTiAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoVziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlKjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlKziAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlLDiAEeKDAMEjnOLmPA" name="Connector2">
-        <end xmi:id="_k0LlLTiAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoWziAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlLDiAEeKDAMEjnOLmPA" name="Connector2">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlLTiAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoWziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlLjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlLziAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlMDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA" role="_k0LorDiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlMDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA" role="_k0LorDiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlMTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlMjiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlMziAEeKDAMEjnOLmPA" name="Connector3">
-        <end xmi:id="_k0LlNDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA" role="_k0LosDiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlMziAEeKDAMEjnOLmPA" name="Connector3">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlNDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA" role="_k0LosDiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlNTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlNjiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlNziAEeKDAMEjnOLmPA" partWithPort="_k0LlGTiAEeKDAMEjnOLmPA" role="_k0Lo-ziAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlNziAEeKDAMEjnOLmPA" partWithPort="_k0LlGTiAEeKDAMEjnOLmPA" role="_k0Lo-ziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlODiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlOTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlOjiAEeKDAMEjnOLmPA" name="Connector4">
-        <end xmi:id="_k0LlOziAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LndjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlOjiAEeKDAMEjnOLmPA" name="Connector4">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlOziAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LndjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlPDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlPTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlPjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0LmxjiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlPjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0LmxjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlPziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlQDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlQTiAEeKDAMEjnOLmPA" name="Connector5">
-        <end xmi:id="_k0LlQjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnejiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlQTiAEeKDAMEjnOLmPA" name="Connector5">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlQjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnejiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlQziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlRDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlRTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0LmyjiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlRTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0LmyjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlRjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlRziAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlSDiAEeKDAMEjnOLmPA" name="Connector6">
-        <end xmi:id="_k0LlSTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnhjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlSDiAEeKDAMEjnOLmPA" name="Connector6">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlSTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnhjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlSjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlSziAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlTDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm1jiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlTDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm1jiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlTTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlTjiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlTziAEeKDAMEjnOLmPA" name="Connector7">
-        <end xmi:id="_k0LlUDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnkTiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlTziAEeKDAMEjnOLmPA" name="Connector7">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlUDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnkTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlUTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlUjiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlUziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3TiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlUziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3TiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlVDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlVTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlVjiAEeKDAMEjnOLmPA" name="Connector8">
-        <end xmi:id="_k0LlVziAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnkDiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlVjiAEeKDAMEjnOLmPA" name="Connector8">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlVziAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnkDiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlWDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlWTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlWjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3jiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlWjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3jiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlWziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlXDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlXTiAEeKDAMEjnOLmPA" name="Connector9">
-        <end xmi:id="_k0LlXjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnfjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlXTiAEeKDAMEjnOLmPA" name="Connector9">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlXjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnfjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlXziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlYDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlYTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0LmzjiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlYTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0LmzjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlYjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlYziAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlZDiAEeKDAMEjnOLmPA" name="Connector10">
-        <end xmi:id="_k0LlZTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LngjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlZDiAEeKDAMEjnOLmPA" name="Connector10">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlZTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LngjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlZjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlZziAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlaDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm0jiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlaDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm0jiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlaTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlajiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlaziAEeKDAMEjnOLmPA" name="Connector11">
-        <end xmi:id="_k0LlbDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LngjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlaziAEeKDAMEjnOLmPA" name="Connector11">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlbDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LngjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlbTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlbjiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlbziAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA" role="_k0LouTiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlbziAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA" role="_k0LouTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlcDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlcTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlcjiAEeKDAMEjnOLmPA" name="Connector12">
-        <end xmi:id="_k0LlcziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4DiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlcjiAEeKDAMEjnOLmPA" name="Connector12">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlcziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4DiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LldDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LldTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LldjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA" role="_k0LouDiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LldjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA" role="_k0LouDiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LldziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LleDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LleTiAEeKDAMEjnOLmPA" name="Connector13">
-        <end xmi:id="_k0LlejiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LleTiAEeKDAMEjnOLmPA" name="Connector13">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlejiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LleziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlfDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlfTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlfTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlfjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlfziAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlgDiAEeKDAMEjnOLmPA" name="Connector14">
-        <end xmi:id="_k0LlgTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4jiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlgDiAEeKDAMEjnOLmPA" name="Connector14">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlgTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4jiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlgjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlgziAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlhDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlhDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGDiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlhTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlhjiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlhziAEeKDAMEjnOLmPA" name="Connector15">
-        <end xmi:id="_k0LliDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlhziAEeKDAMEjnOLmPA" name="Connector15">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LliDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LliTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlijiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LliziAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoYTiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LliziAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoYTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LljDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LljTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LljjiAEeKDAMEjnOLmPA" name="Connector16">
-        <end xmi:id="_k0LljziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4DiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LljjiAEeKDAMEjnOLmPA" name="Connector16">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LljziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4DiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlkDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlkTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlkjiAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoYjiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlkjiAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoYjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlkziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LllDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LllTiAEeKDAMEjnOLmPA" name="Connector17">
-        <end xmi:id="_k0LlljiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LllTiAEeKDAMEjnOLmPA" name="Connector17">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlljiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LllziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlmDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlmTiAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoYDiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlmTiAEeKDAMEjnOLmPA" partWithPort="_k0LlFziAEeKDAMEjnOLmPA" role="_k0LoYDiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlmjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlmziAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlnDiAEeKDAMEjnOLmPA" name="Connector18">
-        <end xmi:id="_k0LlnTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LngjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlnDiAEeKDAMEjnOLmPA" name="Connector18">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlnTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LngjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlnjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlnziAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LloDiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmUziAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LloDiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmUziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LloTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlojiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LloziAEeKDAMEjnOLmPA" name="Connector19">
-        <end xmi:id="_k0LlpDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnfjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LloziAEeKDAMEjnOLmPA" name="Connector19">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlpDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnfjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlpTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlpjiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlpziAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmUjiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlpziAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmUjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlqDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlqTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlqjiAEeKDAMEjnOLmPA" name="Connector20">
-        <end xmi:id="_k0LlqziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4DiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlqjiAEeKDAMEjnOLmPA" name="Connector20">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlqziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4DiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlrDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlrTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlrjiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVDiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlrjiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVDiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlrziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlsDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlsTiAEeKDAMEjnOLmPA" name="Connector21">
-        <end xmi:id="_k0LlsjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlsTiAEeKDAMEjnOLmPA" name="Connector21">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlsjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlsziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LltDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LltTiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVTiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LltTiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LltjiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LltziAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LluDiAEeKDAMEjnOLmPA" name="Connector22">
-        <end xmi:id="_k0LluTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4jiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LluDiAEeKDAMEjnOLmPA" name="Connector22">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LluTiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4jiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlujiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LluziAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlvDiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmUTiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlvDiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmUTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlvTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlvjiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlvziAEeKDAMEjnOLmPA" name="Connector23">
-        <end xmi:id="_k0LlwDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4TiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlvziAEeKDAMEjnOLmPA" name="Connector23">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlwDiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4TiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlwTiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlwjiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlwziAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVziAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlwziAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlxDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlxTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlxjiAEeKDAMEjnOLmPA" name="Connector24">
-        <end xmi:id="_k0LlxziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlxjiAEeKDAMEjnOLmPA" name="Connector24">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlxziAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlyDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlyTiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0LlyjiAEeKDAMEjnOLmPA" partWithPort="_k0LlHDiAEeKDAMEjnOLmPA" role="_k0LmBziAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlyjiAEeKDAMEjnOLmPA" partWithPort="_k0LlHDiAEeKDAMEjnOLmPA" role="_k0LmBziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlyziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LlzDiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0LlzTiAEeKDAMEjnOLmPA" name="Connector25">
-        <end xmi:id="_k0LlzjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnfjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LlzTiAEeKDAMEjnOLmPA" name="Connector25">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LlzjiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnfjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LlzziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll0DiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0Ll0TiAEeKDAMEjnOLmPA" partWithPort="_k0LlHDiAEeKDAMEjnOLmPA" role="_k0LmCDiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ll0TiAEeKDAMEjnOLmPA" partWithPort="_k0LlHDiAEeKDAMEjnOLmPA" role="_k0LmCDiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ll0jiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll0ziAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0Ll1DiAEeKDAMEjnOLmPA" name="Connector26">
-        <end xmi:id="_k0Ll1TiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVjiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Ll1DiAEeKDAMEjnOLmPA" name="Connector26">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ll1TiAEeKDAMEjnOLmPA" partWithPort="_k0LlHTiAEeKDAMEjnOLmPA" role="_k0LmVjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ll1jiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll1ziAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0Ll2DiAEeKDAMEjnOLmPA" partWithPort="_k0LlHDiAEeKDAMEjnOLmPA" role="_k0LmBjiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ll2DiAEeKDAMEjnOLmPA" partWithPort="_k0LlHDiAEeKDAMEjnOLmPA" role="_k0LmBjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ll2TiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll2jiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0Ll2ziAEeKDAMEjnOLmPA" name="Connector27">
-        <end xmi:id="_k0Ll3DiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Ll2ziAEeKDAMEjnOLmPA" name="Connector27">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ll3DiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ll3TiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll3jiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0Ll3ziAEeKDAMEjnOLmPA" partWithPort="_k0LlFTiAEeKDAMEjnOLmPA" role="_k0LoGTiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ll3ziAEeKDAMEjnOLmPA" partWithPort="_k0LlFTiAEeKDAMEjnOLmPA" role="_k0LoGTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ll4DiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll4TiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0Ll4jiAEeKDAMEjnOLmPA" name="Connector28">
-        <end xmi:id="_k0Ll4ziAEeKDAMEjnOLmPA" partWithPort="_k0LlHDiAEeKDAMEjnOLmPA" role="_k0LmCTiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Ll4jiAEeKDAMEjnOLmPA" name="Connector28">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ll4ziAEeKDAMEjnOLmPA" partWithPort="_k0LlHDiAEeKDAMEjnOLmPA" role="_k0LmCTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ll5DiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll5TiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0Ll5jiAEeKDAMEjnOLmPA" partWithPort="_k0LlFTiAEeKDAMEjnOLmPA" role="_k0LoIjiAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ll5jiAEeKDAMEjnOLmPA" partWithPort="_k0LlFTiAEeKDAMEjnOLmPA" role="_k0LoIjiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ll5ziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll6DiAEeKDAMEjnOLmPA" value="1"/>
         </end>
       </ownedConnector>
-      <ownedConnector xmi:id="_k0Ll6TiAEeKDAMEjnOLmPA" name="Connector29">
-        <end xmi:id="_k0Ll6jiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnlTiAEeKDAMEjnOLmPA">
+      <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Ll6TiAEeKDAMEjnOLmPA" name="Connector29">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ll6jiAEeKDAMEjnOLmPA" partWithPort="_k0LlGjiAEeKDAMEjnOLmPA" role="_k0LnlTiAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ll6ziAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll7DiAEeKDAMEjnOLmPA" value="1"/>
         </end>
-        <end xmi:id="_k0Ll7TiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4ziAEeKDAMEjnOLmPA">
+        <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ll7TiAEeKDAMEjnOLmPA" partWithPort="_k0LlGziAEeKDAMEjnOLmPA" role="_k0Lm4ziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ll7jiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ll7ziAEeKDAMEjnOLmPA" value="1"/>
         </end>
@@ -682,7 +682,7 @@ et d'un solide d'une couleur </body>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0Ll8DiAEeKDAMEjnOLmPA" name="P5_Semantic"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0Ll8TiAEeKDAMEjnOLmPA" name="P4_Global">
       <packagedElement xmi:type="uml:Class" xmi:id="_k0Ll8jiAEeKDAMEjnOLmPA" name="Global_Map">
-        <ownedComment xmi:id="_k0Ll8ziAEeKDAMEjnOLmPA" annotatedElement="_k0Ll8jiAEeKDAMEjnOLmPA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0Ll8ziAEeKDAMEjnOLmPA" annotatedElement="_k0Ll8jiAEeKDAMEjnOLmPA">
           <body>This module buid the absolute bitmap map (glob_map) of the scene, using the local map (loc-map).&#xD;
 the origine is the entry zone of the robot.</body>
         </ownedComment>
@@ -717,49 +717,49 @@ the origine is the entry zone of the robot.</body>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LmBDiAEeKDAMEjnOLmPA" name="P4_Global">
-        <ownedAttribute xmi:id="_k0LmBTiAEeKDAMEjnOLmPA" name="global_Map" type="_k0Ll8jiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LmBTiAEeKDAMEjnOLmPA" name="global_Map" type="_k0Ll8jiAEeKDAMEjnOLmPA"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmBjiAEeKDAMEjnOLmPA" name="loc_map" type="_k0LlCDiAEeKDAMEjnOLmPA" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmBziAEeKDAMEjnOLmPA" name="position" type="_k0Lj9jiAEeKDAMEjnOLmPA" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmCDiAEeKDAMEjnOLmPA" name="gps" aggregation="composite">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_MwvvoKlGEeCDX-R4upxIpg"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmCTiAEeKDAMEjnOLmPA" name="glob_map" type="_k0LlCDiAEeKDAMEjnOLmPA" aggregation="composite"/>
-        <ownedConnector xmi:id="_k0LmCjiAEeKDAMEjnOLmPA" name="Connector1">
-          <end xmi:id="_k0LmCziAEeKDAMEjnOLmPA" role="_k0LmBjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmCjiAEeKDAMEjnOLmPA" name="Connector1">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmCziAEeKDAMEjnOLmPA" role="_k0LmBjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmDDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmDTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmDjiAEeKDAMEjnOLmPA" partWithPort="_k0LmBTiAEeKDAMEjnOLmPA" role="_k0Ll-DiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmDjiAEeKDAMEjnOLmPA" partWithPort="_k0LmBTiAEeKDAMEjnOLmPA" role="_k0Ll-DiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmDziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmEDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmETiAEeKDAMEjnOLmPA" name="Connector2">
-          <end xmi:id="_k0LmEjiAEeKDAMEjnOLmPA" role="_k0LmBziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmETiAEeKDAMEjnOLmPA" name="Connector2">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmEjiAEeKDAMEjnOLmPA" role="_k0LmBziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmEziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmFDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmFTiAEeKDAMEjnOLmPA" partWithPort="_k0LmBTiAEeKDAMEjnOLmPA" role="_k0Ll_DiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmFTiAEeKDAMEjnOLmPA" partWithPort="_k0LmBTiAEeKDAMEjnOLmPA" role="_k0Ll_DiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmFjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmFziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmGDiAEeKDAMEjnOLmPA" name="Connector3">
-          <end xmi:id="_k0LmGTiAEeKDAMEjnOLmPA" role="_k0LmCDiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmGDiAEeKDAMEjnOLmPA" name="Connector3">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmGTiAEeKDAMEjnOLmPA" role="_k0LmCDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmGjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmGziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmHDiAEeKDAMEjnOLmPA" partWithPort="_k0LmBTiAEeKDAMEjnOLmPA" role="_k0LmADiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmHDiAEeKDAMEjnOLmPA" partWithPort="_k0LmBTiAEeKDAMEjnOLmPA" role="_k0LmADiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmHTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmHjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmHziAEeKDAMEjnOLmPA" name="Connector4">
-          <end xmi:id="_k0LmIDiAEeKDAMEjnOLmPA" partWithPort="_k0LmBTiAEeKDAMEjnOLmPA" role="_k0Ll9DiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmHziAEeKDAMEjnOLmPA" name="Connector4">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmIDiAEeKDAMEjnOLmPA" partWithPort="_k0LmBTiAEeKDAMEjnOLmPA" role="_k0Ll9DiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmITiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmIjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmIziAEeKDAMEjnOLmPA" role="_k0LmCTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmIziAEeKDAMEjnOLmPA" role="_k0LmCTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmJDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmJTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
@@ -768,7 +768,7 @@ the origine is the entry zone of the robot.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0LmJjiAEeKDAMEjnOLmPA" name="P3_Local">
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LmJziAEeKDAMEjnOLmPA" name="Local_Map">
-        <ownedComment xmi:id="_k0LmKDiAEeKDAMEjnOLmPA" annotatedElement="_k0LmJziAEeKDAMEjnOLmPA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0LmKDiAEeKDAMEjnOLmPA" annotatedElement="_k0LmJziAEeKDAMEjnOLmPA">
           <body>The Local Map module Build a Relative Cartesian 2D bitmap Map (loc_map) &#xD;
 The frame is centered on the robot (x &lt;=> forward).&#xD;
 it use proxi_map and all proprio and exteroceptive datas giving him the relative displacement.&#xD;
@@ -845,8 +845,8 @@ It place also all the amer on it map.</body>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LmTjiAEeKDAMEjnOLmPA" name="P3_Local">
-        <ownedAttribute xmi:id="_k0LmTziAEeKDAMEjnOLmPA" name="amer_Loc" type="_k0LmRTiAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0LmUDiAEeKDAMEjnOLmPA" name="local_Map" type="_k0LmJziAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LmTziAEeKDAMEjnOLmPA" name="amer_Loc" type="_k0LmRTiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LmUDiAEeKDAMEjnOLmPA" name="local_Map" type="_k0LmJziAEeKDAMEjnOLmPA"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmUTiAEeKDAMEjnOLmPA" name="proxi_map" type="_k0LlCDiAEeKDAMEjnOLmPA" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmUjiAEeKDAMEjnOLmPA" name="gps" aggregation="composite">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_MwvvoKlGEeCDX-R4upxIpg"/>
@@ -860,82 +860,82 @@ It place also all the amer on it map.</body>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmVTiAEeKDAMEjnOLmPA" name="position" type="_k0Lj9jiAEeKDAMEjnOLmPA" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmVjiAEeKDAMEjnOLmPA" name="loc_map" type="_k0LlCDiAEeKDAMEjnOLmPA" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmVziAEeKDAMEjnOLmPA" name="amer_relative" type="_k0Lk7DiAEeKDAMEjnOLmPA" aggregation="composite"/>
-        <ownedConnector xmi:id="_k0LmWDiAEeKDAMEjnOLmPA" name="Connector1">
-          <end xmi:id="_k0LmWTiAEeKDAMEjnOLmPA" partWithPort="_k0LmTziAEeKDAMEjnOLmPA" role="_k0LmSjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmWDiAEeKDAMEjnOLmPA" name="Connector1">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmWTiAEeKDAMEjnOLmPA" partWithPort="_k0LmTziAEeKDAMEjnOLmPA" role="_k0LmSjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmWjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmWziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmXDiAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmQTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmXDiAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmQTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmXTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmXjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmXziAEeKDAMEjnOLmPA" name="Connector2">
-          <end xmi:id="_k0LmYDiAEeKDAMEjnOLmPA" role="_k0LmUTiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmXziAEeKDAMEjnOLmPA" name="Connector2">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmYDiAEeKDAMEjnOLmPA" role="_k0LmUTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmYTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmYjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmYziAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmPTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmYziAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmPTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmZDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmZTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmZjiAEeKDAMEjnOLmPA" name="Connector3">
-          <end xmi:id="_k0LmZziAEeKDAMEjnOLmPA" role="_k0LmVTiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmZjiAEeKDAMEjnOLmPA" name="Connector3">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmZziAEeKDAMEjnOLmPA" role="_k0LmVTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmaDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmaTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmajiAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmKTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmajiAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmKTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmaziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmbDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmbTiAEeKDAMEjnOLmPA" name="Connector4">
-          <end xmi:id="_k0LmbjiAEeKDAMEjnOLmPA" role="_k0LmVDiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmbTiAEeKDAMEjnOLmPA" name="Connector4">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmbjiAEeKDAMEjnOLmPA" role="_k0LmVDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmbziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmcDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmcTiAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmLTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmcTiAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmLTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmcjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmcziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmdDiAEeKDAMEjnOLmPA" name="Connector5">
-          <end xmi:id="_k0LmdTiAEeKDAMEjnOLmPA" role="_k0LmUziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmdDiAEeKDAMEjnOLmPA" name="Connector5">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmdTiAEeKDAMEjnOLmPA" role="_k0LmUziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmdjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmdziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmeDiAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmMTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmeDiAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmMTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmeTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmejiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmeziAEeKDAMEjnOLmPA" name="Connector6">
-          <end xmi:id="_k0LmfDiAEeKDAMEjnOLmPA" role="_k0LmUjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmeziAEeKDAMEjnOLmPA" name="Connector6">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmfDiAEeKDAMEjnOLmPA" role="_k0LmUjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmfTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmfjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmfziAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmOTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmfziAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmOTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmgDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmgTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmgjiAEeKDAMEjnOLmPA" name="Connector7">
-          <end xmi:id="_k0LmgziAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmNTiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmgjiAEeKDAMEjnOLmPA" name="Connector7">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmgziAEeKDAMEjnOLmPA" partWithPort="_k0LmUDiAEeKDAMEjnOLmPA" role="_k0LmNTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmhDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmhTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmhjiAEeKDAMEjnOLmPA" role="_k0LmVjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmhjiAEeKDAMEjnOLmPA" role="_k0LmVjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmhziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmiDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LmiTiAEeKDAMEjnOLmPA" name="Connector8">
-          <end xmi:id="_k0LmijiAEeKDAMEjnOLmPA" role="_k0LmVziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LmiTiAEeKDAMEjnOLmPA" name="Connector8">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmijiAEeKDAMEjnOLmPA" role="_k0LmVziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmiziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmjDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LmjTiAEeKDAMEjnOLmPA" partWithPort="_k0LmTziAEeKDAMEjnOLmPA" role="_k0LmRjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LmjTiAEeKDAMEjnOLmPA" partWithPort="_k0LmTziAEeKDAMEjnOLmPA" role="_k0LmRjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmjjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmjziAEeKDAMEjnOLmPA" value="1"/>
           </end>
@@ -944,9 +944,9 @@ It place also all the amer on it map.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0LmkDiAEeKDAMEjnOLmPA" name="P2_Proxymetry">
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LmkTiAEeKDAMEjnOLmPA" name="Super_DKM">
-        <ownedComment xmi:id="_k0LmkjiAEeKDAMEjnOLmPA" annotatedElement="_k0LmkTiAEeKDAMEjnOLmPA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0LmkjiAEeKDAMEjnOLmPA" annotatedElement="_k0LmkTiAEeKDAMEjnOLmPA">
           <body>Modele Cinematique Direct (MCD) - Direct Kinematics Model (DKM)&#xD;
-Transformation from articular space (left and right wheels speed) to operational space (cartesian v�locity)&#xD;
+Transformation from articular space (left and right wheels speed) to operational space (cartesian velocity)&#xD;
 we call it &quot;Super&quot;-DKM because we not only use odometry speed, but also IMU and GPS inputs, and we output also cartesian position</body>
         </ownedComment>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmkziAEeKDAMEjnOLmPA" name="position" visibility="public" type="_k0Lj9jiAEeKDAMEjnOLmPA" isUnique="false" aggregation="composite">
@@ -996,13 +996,13 @@ we call it &quot;Super&quot;-DKM because we not only use odometry speed, but als
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LmqziAEeKDAMEjnOLmPA" name="attribute" type="_k0LlCziAEeKDAMEjnOLmPA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LmqziAEeKDAMEjnOLmPA" name="attribute" type="_k0LlCziAEeKDAMEjnOLmPA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LmrDiAEeKDAMEjnOLmPA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LmrTiAEeKDAMEjnOLmPA" value="1"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LmrjiAEeKDAMEjnOLmPA" name="Proximetric_Map">
-        <ownedComment xmi:id="_k0LmrziAEeKDAMEjnOLmPA" annotatedElement="_k0LmrjiAEeKDAMEjnOLmPA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0LmrziAEeKDAMEjnOLmPA" annotatedElement="_k0LmrjiAEeKDAMEjnOLmPA">
           <body>Proximetric Map is a bitmap map, but in polar coordinate.&#xD;
 the polar 2D frame is linked to the robot (so relative). Origine x forward the robot, angle with trigonometric way/notation (unclocwise)&#xD;
 this Polar bitmap map is digitalized in Nrange cell from 0 to MaxRange, and in Nangle, from 0 to 2Pi.&#xD;
@@ -1028,7 +1028,7 @@ Only measures from sensors are directly print on this map : no memory !</body>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LmuTiAEeKDAMEjnOLmPA" name="Amer_Identif">
-        <ownedComment xmi:id="_k0LmujiAEeKDAMEjnOLmPA" annotatedElement="_k0LmuTiAEeKDAMEjnOLmPA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0LmujiAEeKDAMEjnOLmPA" annotatedElement="_k0LmuTiAEeKDAMEjnOLmPA">
           <body>This Module is able to find a amer in a image, and, using the CameraInfo of the cam, give a position of it, relatively from the robot. it delivers also the shape of the amer, and it color.</body>
         </ownedComment>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmuziAEeKDAMEjnOLmPA" name="video" visibility="public" aggregation="composite">
@@ -1051,7 +1051,7 @@ Only measures from sensors are directly print on this map : no memory !</body>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LmxDiAEeKDAMEjnOLmPA" name="P2_Proximetry">
-        <ownedComment xmi:id="_k0LmxTiAEeKDAMEjnOLmPA" annotatedElement="_k0LmxDiAEeKDAMEjnOLmPA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0LmxTiAEeKDAMEjnOLmPA" annotatedElement="_k0LmxDiAEeKDAMEjnOLmPA">
           <body></body>
         </ownedComment>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LmxjiAEeKDAMEjnOLmPA" name="velocity_angular_left_right" visibility="public" isUnique="false" aggregation="composite">
@@ -1094,9 +1094,9 @@ Only measures from sensors are directly print on this map : no memory !</body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0Lm2jiAEeKDAMEjnOLmPA" name="superDKM" type="_k0LmkTiAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0Lm2ziAEeKDAMEjnOLmPA" name="proximetric_Map" type="_k0LmrjiAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0Lm3DiAEeKDAMEjnOLmPA" name="amer_Identif" type="_k0LmuTiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lm2jiAEeKDAMEjnOLmPA" name="superDKM" type="_k0LmkTiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lm2ziAEeKDAMEjnOLmPA" name="proximetric_Map" type="_k0LmrjiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lm3DiAEeKDAMEjnOLmPA" name="amer_Identif" type="_k0LmuTiAEeKDAMEjnOLmPA"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0Lm3TiAEeKDAMEjnOLmPA" name="video" aggregation="composite">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_mJDa8AKuEeCQReIOIWJ0nA"/>
         </ownedAttribute>
@@ -1112,122 +1112,122 @@ Only measures from sensors are directly print on this map : no memory !</body>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0Lm4ziAEeKDAMEjnOLmPA" name="proxy_left_right" aggregation="composite">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUgSN8EeKwed7FEEF-4Q"/>
         </ownedAttribute>
-        <ownedConnector xmi:id="_k0Lm5DiAEeKDAMEjnOLmPA" name="Connector1">
-          <end xmi:id="_k0Lm5TiAEeKDAMEjnOLmPA" role="_k0Lm1jiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Lm5DiAEeKDAMEjnOLmPA" name="Connector1">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lm5TiAEeKDAMEjnOLmPA" role="_k0Lm1jiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lm5jiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lm5ziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Lm6DiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2ziAEeKDAMEjnOLmPA" role="_k0LmtDiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lm6DiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2ziAEeKDAMEjnOLmPA" role="_k0LmtDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lm6TiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lm6jiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Lm6ziAEeKDAMEjnOLmPA" name="Connector2">
-          <end xmi:id="_k0Lm7DiAEeKDAMEjnOLmPA" role="_k0Lm0jiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Lm6ziAEeKDAMEjnOLmPA" name="Connector2">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lm7DiAEeKDAMEjnOLmPA" role="_k0Lm0jiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lm7TiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lm7jiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Lm7ziAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmpziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lm7ziAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmpziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lm8DiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lm8TiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Lm8jiAEeKDAMEjnOLmPA" name="Connector3">
-          <end xmi:id="_k0Lm8ziAEeKDAMEjnOLmPA" role="_k0LmzjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Lm8jiAEeKDAMEjnOLmPA" name="Connector3">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lm8ziAEeKDAMEjnOLmPA" role="_k0LmzjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lm9DiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lm9TiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Lm9jiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmoziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lm9jiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmoziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lm9ziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lm-DiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Lm-TiAEeKDAMEjnOLmPA" name="Connector4">
-          <end xmi:id="_k0Lm-jiAEeKDAMEjnOLmPA" role="_k0LmyjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Lm-TiAEeKDAMEjnOLmPA" name="Connector4">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lm-jiAEeKDAMEjnOLmPA" role="_k0LmyjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lm-ziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lm_DiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Lm_TiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmnziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lm_TiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmnziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lm_jiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lm_ziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnADiAEeKDAMEjnOLmPA" name="Connector5">
-          <end xmi:id="_k0LnATiAEeKDAMEjnOLmPA" role="_k0LmxjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnADiAEeKDAMEjnOLmPA" name="Connector5">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnATiAEeKDAMEjnOLmPA" role="_k0LmxjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnAjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnAziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnBDiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmmziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnBDiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmmziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnBTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnBjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnBziAEeKDAMEjnOLmPA" name="Connector6">
-          <end xmi:id="_k0LnCDiAEeKDAMEjnOLmPA" role="_k0Lm3TiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnBziAEeKDAMEjnOLmPA" name="Connector6">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnCDiAEeKDAMEjnOLmPA" role="_k0Lm3TiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnCTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnCjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnCziAEeKDAMEjnOLmPA" partWithPort="_k0Lm3DiAEeKDAMEjnOLmPA" role="_k0LmuziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnCziAEeKDAMEjnOLmPA" partWithPort="_k0Lm3DiAEeKDAMEjnOLmPA" role="_k0LmuziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnDDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnDTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnDjiAEeKDAMEjnOLmPA" name="Connector7">
-          <end xmi:id="_k0LnDziAEeKDAMEjnOLmPA" role="_k0Lm3jiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnDjiAEeKDAMEjnOLmPA" name="Connector7">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnDziAEeKDAMEjnOLmPA" role="_k0Lm3jiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnEDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnETiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnEjiAEeKDAMEjnOLmPA" partWithPort="_k0Lm3DiAEeKDAMEjnOLmPA" role="_k0LmwziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnEjiAEeKDAMEjnOLmPA" partWithPort="_k0Lm3DiAEeKDAMEjnOLmPA" role="_k0LmwziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnEziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnFDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnFTiAEeKDAMEjnOLmPA" name="Connector8">
-          <end xmi:id="_k0LnFjiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmkziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnFTiAEeKDAMEjnOLmPA" name="Connector8">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnFjiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmkziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnFziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnGDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnGTiAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnGTiAEeKDAMEjnOLmPA" role="_k0Lm3ziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnGjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnGziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnHDiAEeKDAMEjnOLmPA" name="Connector9">
-          <end xmi:id="_k0LnHTiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmlziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnHDiAEeKDAMEjnOLmPA" name="Connector9">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnHTiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2jiAEeKDAMEjnOLmPA" role="_k0LmlziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnHjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnHziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnIDiAEeKDAMEjnOLmPA" role="_k0Lm4DiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnIDiAEeKDAMEjnOLmPA" role="_k0Lm4DiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnITiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnIjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnIziAEeKDAMEjnOLmPA" name="Connector10">
-          <end xmi:id="_k0LnJDiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2ziAEeKDAMEjnOLmPA" role="_k0LmsDiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnIziAEeKDAMEjnOLmPA" name="Connector10">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnJDiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2ziAEeKDAMEjnOLmPA" role="_k0LmsDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnJTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnJjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnJziAEeKDAMEjnOLmPA" role="_k0Lm4jiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnJziAEeKDAMEjnOLmPA" role="_k0Lm4jiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnKDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnKTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnKjiAEeKDAMEjnOLmPA" name="Connector11">
-          <end xmi:id="_k0LnKziAEeKDAMEjnOLmPA" partWithPort="_k0Lm3DiAEeKDAMEjnOLmPA" role="_k0LmvziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnKjiAEeKDAMEjnOLmPA" name="Connector11">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnKziAEeKDAMEjnOLmPA" partWithPort="_k0Lm3DiAEeKDAMEjnOLmPA" role="_k0LmvziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnLDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnLTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnLjiAEeKDAMEjnOLmPA" role="_k0Lm4TiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnLjiAEeKDAMEjnOLmPA" role="_k0Lm4TiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnLziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnMDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnMTiAEeKDAMEjnOLmPA" name="Connector12">
-          <end xmi:id="_k0LnMjiAEeKDAMEjnOLmPA" role="_k0Lm4ziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnMTiAEeKDAMEjnOLmPA" name="Connector12">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnMjiAEeKDAMEjnOLmPA" role="_k0Lm4ziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnMziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnNDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnNTiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2ziAEeKDAMEjnOLmPA" role="_k0LmuDiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnNTiAEeKDAMEjnOLmPA" partWithPort="_k0Lm2ziAEeKDAMEjnOLmPA" role="_k0LmuDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnNjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnNziAEeKDAMEjnOLmPA" value="1"/>
           </end>
@@ -1398,12 +1398,12 @@ Only measures from sensors are directly print on this map : no memory !</body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LnijiAEeKDAMEjnOLmPA" name="wifibot_Frame_Out" type="_k0LnOTiAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0LniziAEeKDAMEjnOLmPA" name="GPS" type="_k0LnXziAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0LnjDiAEeKDAMEjnOLmPA" name="Odometer" type="_k0LnTjiAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0LnjTiAEeKDAMEjnOLmPA" name="IMU" type="_k0LnZDiAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0LnjjiAEeKDAMEjnOLmPA" name="LaserRange" type="_k0LnaTiAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0LnjziAEeKDAMEjnOLmPA" name="camera_FireWire" type="_k0LnbziAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LnijiAEeKDAMEjnOLmPA" name="wifibot_Frame_Out" type="_k0LnOTiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LniziAEeKDAMEjnOLmPA" name="GPS" type="_k0LnXziAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LnjDiAEeKDAMEjnOLmPA" name="Odometer" type="_k0LnTjiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LnjTiAEeKDAMEjnOLmPA" name="IMU" type="_k0LnZDiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LnjjiAEeKDAMEjnOLmPA" name="LaserRange" type="_k0LnaTiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LnjziAEeKDAMEjnOLmPA" name="camera_FireWire" type="_k0LnbziAEeKDAMEjnOLmPA"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LnkDiAEeKDAMEjnOLmPA" name="calibrate" aggregation="composite">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_5d_eEAKoEeCQReIOIWJ0nA"/>
         </ownedAttribute>
@@ -1420,132 +1420,132 @@ Only measures from sensors are directly print on this map : no memory !</body>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LnlTiAEeKDAMEjnOLmPA" name="proxi_Left_Right" aggregation="composite">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUgSN8EeKwed7FEEF-4Q"/>
         </ownedAttribute>
-        <ownedConnector xmi:id="_k0LnljiAEeKDAMEjnOLmPA" name="Connector1">
-          <end xmi:id="_k0LnlziAEeKDAMEjnOLmPA" partWithPort="_k0LnjDiAEeKDAMEjnOLmPA" role="_k0LnWziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnljiAEeKDAMEjnOLmPA" name="Connector1">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnlziAEeKDAMEjnOLmPA" partWithPort="_k0LnjDiAEeKDAMEjnOLmPA" role="_k0LnWziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnmDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnmTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnmjiAEeKDAMEjnOLmPA" role="_k0LnejiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnmjiAEeKDAMEjnOLmPA" role="_k0LnejiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnmziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnnDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnnTiAEeKDAMEjnOLmPA" name="Connector2">
-          <end xmi:id="_k0LnnjiAEeKDAMEjnOLmPA" partWithPort="_k0LnjDiAEeKDAMEjnOLmPA" role="_k0LnVziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnnTiAEeKDAMEjnOLmPA" name="Connector2">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnnjiAEeKDAMEjnOLmPA" partWithPort="_k0LnjDiAEeKDAMEjnOLmPA" role="_k0LnVziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnnziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnoDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnoTiAEeKDAMEjnOLmPA" role="_k0LndjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnoTiAEeKDAMEjnOLmPA" role="_k0LndjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnojiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnoziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnpDiAEeKDAMEjnOLmPA" name="Connector3">
-          <end xmi:id="_k0LnpTiAEeKDAMEjnOLmPA" partWithPort="_k0LniziAEeKDAMEjnOLmPA" role="_k0LnYDiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnpDiAEeKDAMEjnOLmPA" name="Connector3">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnpTiAEeKDAMEjnOLmPA" partWithPort="_k0LniziAEeKDAMEjnOLmPA" role="_k0LnYDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnpjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnpziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnqDiAEeKDAMEjnOLmPA" role="_k0LnfjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnqDiAEeKDAMEjnOLmPA" role="_k0LnfjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnqTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnqjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnqziAEeKDAMEjnOLmPA" name="Connector4">
-          <end xmi:id="_k0LnrDiAEeKDAMEjnOLmPA" partWithPort="_k0LnjjiAEeKDAMEjnOLmPA" role="_k0LnajiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnqziAEeKDAMEjnOLmPA" name="Connector4">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnrDiAEeKDAMEjnOLmPA" partWithPort="_k0LnjjiAEeKDAMEjnOLmPA" role="_k0LnajiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnrTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnrjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnrziAEeKDAMEjnOLmPA" role="_k0LnhjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnrziAEeKDAMEjnOLmPA" role="_k0LnhjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnsDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnsTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnsjiAEeKDAMEjnOLmPA" name="Connector5">
-          <end xmi:id="_k0LnsziAEeKDAMEjnOLmPA" partWithPort="_k0LnjziAEeKDAMEjnOLmPA" role="_k0LndDiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnsjiAEeKDAMEjnOLmPA" name="Connector5">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnsziAEeKDAMEjnOLmPA" partWithPort="_k0LnjziAEeKDAMEjnOLmPA" role="_k0LndDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LntDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LntTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LntjiAEeKDAMEjnOLmPA" role="_k0LnkDiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LntjiAEeKDAMEjnOLmPA" role="_k0LnkDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LntziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnuDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnuTiAEeKDAMEjnOLmPA" name="Connector6">
-          <end xmi:id="_k0LnujiAEeKDAMEjnOLmPA" partWithPort="_k0LnjziAEeKDAMEjnOLmPA" role="_k0LncDiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnuTiAEeKDAMEjnOLmPA" name="Connector6">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnujiAEeKDAMEjnOLmPA" partWithPort="_k0LnjziAEeKDAMEjnOLmPA" role="_k0LncDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnuziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnvDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnvTiAEeKDAMEjnOLmPA" role="_k0LnkTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnvTiAEeKDAMEjnOLmPA" role="_k0LnkTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnvjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnvziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnwDiAEeKDAMEjnOLmPA" name="Connector7">
-          <end xmi:id="_k0LnwTiAEeKDAMEjnOLmPA" partWithPort="_k0LnjTiAEeKDAMEjnOLmPA" role="_k0LnZTiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnwDiAEeKDAMEjnOLmPA" name="Connector7">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnwTiAEeKDAMEjnOLmPA" partWithPort="_k0LnjTiAEeKDAMEjnOLmPA" role="_k0LnZTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnwjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnwziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnxDiAEeKDAMEjnOLmPA" role="_k0LngjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnxDiAEeKDAMEjnOLmPA" role="_k0LngjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnxTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnxjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnxziAEeKDAMEjnOLmPA" name="Connector8">
-          <end xmi:id="_k0LnyDiAEeKDAMEjnOLmPA" partWithPort="_k0LnjjiAEeKDAMEjnOLmPA" role="_k0LnbjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnxziAEeKDAMEjnOLmPA" name="Connector8">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnyDiAEeKDAMEjnOLmPA" partWithPort="_k0LnjjiAEeKDAMEjnOLmPA" role="_k0LnbjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnyTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnyjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LnyziAEeKDAMEjnOLmPA" role="_k0LnkjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnyziAEeKDAMEjnOLmPA" role="_k0LnkjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LnzDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LnzTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LnzjiAEeKDAMEjnOLmPA" name="Connector9">
-          <end xmi:id="_k0LnzziAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnPjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LnzjiAEeKDAMEjnOLmPA" name="Connector9">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LnzziAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnPjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln0DiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln0TiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Ln0jiAEeKDAMEjnOLmPA" partWithPort="_k0LnjDiAEeKDAMEjnOLmPA" role="_k0LnUziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln0jiAEeKDAMEjnOLmPA" partWithPort="_k0LnjDiAEeKDAMEjnOLmPA" role="_k0LnUziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln0ziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln1DiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Ln1TiAEeKDAMEjnOLmPA" name="Connector10">
-          <end xmi:id="_k0Ln1jiAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnOjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Ln1TiAEeKDAMEjnOLmPA" name="Connector10">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln1jiAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnOjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln1ziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln2DiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Ln2TiAEeKDAMEjnOLmPA" partWithPort="_k0LnjDiAEeKDAMEjnOLmPA" role="_k0LnTziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln2TiAEeKDAMEjnOLmPA" partWithPort="_k0LnjDiAEeKDAMEjnOLmPA" role="_k0LnTziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln2jiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln2ziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Ln3DiAEeKDAMEjnOLmPA" name="Connector11">
-          <end xmi:id="_k0Ln3TiAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnQjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Ln3DiAEeKDAMEjnOLmPA" name="Connector11">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln3TiAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnQjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln3jiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln3ziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Ln4DiAEeKDAMEjnOLmPA" role="_k0LnlTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln4DiAEeKDAMEjnOLmPA" role="_k0LnlTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln4TiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln4jiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Ln4ziAEeKDAMEjnOLmPA" name="Connector12">
-          <end xmi:id="_k0Ln5DiAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnSjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Ln4ziAEeKDAMEjnOLmPA" name="Connector12">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln5DiAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnSjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln5TiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln5jiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Ln5ziAEeKDAMEjnOLmPA" role="_k0LnlDiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln5ziAEeKDAMEjnOLmPA" role="_k0LnlDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln6DiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln6TiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Ln6jiAEeKDAMEjnOLmPA" name="Connector13">
-          <end xmi:id="_k0Ln6ziAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnRjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Ln6jiAEeKDAMEjnOLmPA" name="Connector13">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln6ziAEeKDAMEjnOLmPA" partWithPort="_k0LnijiAEeKDAMEjnOLmPA" role="_k0LnRjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln7DiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln7TiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Ln7jiAEeKDAMEjnOLmPA" role="_k0LnkziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln7jiAEeKDAMEjnOLmPA" role="_k0LnkziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln7ziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Ln8DiAEeKDAMEjnOLmPA" value="1"/>
           </end>
@@ -1570,13 +1570,13 @@ Only measures from sensors are directly print on this map : no memory !</body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0Ln_DiAEeKDAMEjnOLmPA" name="mission" type="_k0Ln8jiAEeKDAMEjnOLmPA"/>
-        <ownedConnector xmi:id="_k0Ln_TiAEeKDAMEjnOLmPA" name="Connector0">
-          <end xmi:id="_k0Ln_jiAEeKDAMEjnOLmPA" partWithPort="_k0Ln_DiAEeKDAMEjnOLmPA" role="_k0Ln8ziAEeKDAMEjnOLmPA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Ln_DiAEeKDAMEjnOLmPA" name="mission" type="_k0Ln8jiAEeKDAMEjnOLmPA"/>
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Ln_TiAEeKDAMEjnOLmPA" name="Connector0">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Ln_jiAEeKDAMEjnOLmPA" partWithPort="_k0Ln_DiAEeKDAMEjnOLmPA" role="_k0Ln8ziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Ln_ziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoADiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LoATiAEeKDAMEjnOLmPA" role="_k0Ln-DiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoATiAEeKDAMEjnOLmPA" role="_k0Ln-DiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoAjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoAziAEeKDAMEjnOLmPA" value="1"/>
           </end>
@@ -1585,7 +1585,7 @@ Only measures from sensors are directly print on this map : no memory !</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0LoBDiAEeKDAMEjnOLmPA" name="A4_PathPlanner">
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LoBTiAEeKDAMEjnOLmPA" name="Path_Planner">
-        <ownedComment xmi:id="_k0LoBjiAEeKDAMEjnOLmPA" annotatedElement="_k0LoBTiAEeKDAMEjnOLmPA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0LoBjiAEeKDAMEjnOLmPA" annotatedElement="_k0LoBTiAEeKDAMEjnOLmPA">
           <body>this module deliver the path (waypoints) for the navigator. it use the global map to calculate these waypoints, taking into account the mission to do.</body>
         </ownedComment>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LoBziAEeKDAMEjnOLmPA" name="goal" visibility="public" type="_k0Lj4ziAEeKDAMEjnOLmPA" isUnique="false" aggregation="composite">
@@ -1635,44 +1635,44 @@ Only measures from sensors are directly print on this map : no memory !</body>
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LoITiAEeKDAMEjnOLmPA" name="path_Planner" type="_k0LoBTiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LoITiAEeKDAMEjnOLmPA" name="path_Planner" type="_k0LoBTiAEeKDAMEjnOLmPA"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LoIjiAEeKDAMEjnOLmPA" name="glob_map" type="_k0LlCDiAEeKDAMEjnOLmPA" aggregation="composite"/>
-        <ownedConnector xmi:id="_k0LoIziAEeKDAMEjnOLmPA" name="Connector0">
-          <end xmi:id="_k0LoJDiAEeKDAMEjnOLmPA" role="_k0LoHTiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LoIziAEeKDAMEjnOLmPA" name="Connector0">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoJDiAEeKDAMEjnOLmPA" role="_k0LoHTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoJTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoJjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LoJziAEeKDAMEjnOLmPA" partWithPort="_k0LoITiAEeKDAMEjnOLmPA" role="_k0LoBziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoJziAEeKDAMEjnOLmPA" partWithPort="_k0LoITiAEeKDAMEjnOLmPA" role="_k0LoBziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoKDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoKTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LoKjiAEeKDAMEjnOLmPA" name="Connector1">
-          <end xmi:id="_k0LoKziAEeKDAMEjnOLmPA" partWithPort="_k0LoITiAEeKDAMEjnOLmPA" role="_k0LoCziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LoKjiAEeKDAMEjnOLmPA" name="Connector1">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoKziAEeKDAMEjnOLmPA" partWithPort="_k0LoITiAEeKDAMEjnOLmPA" role="_k0LoCziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoLDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoLTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LoLjiAEeKDAMEjnOLmPA" role="_k0LoFTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoLjiAEeKDAMEjnOLmPA" role="_k0LoFTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoLziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoMDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LoMTiAEeKDAMEjnOLmPA" name="Connector2">
-          <end xmi:id="_k0LoMjiAEeKDAMEjnOLmPA" role="_k0LoIjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LoMTiAEeKDAMEjnOLmPA" name="Connector2">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoMjiAEeKDAMEjnOLmPA" role="_k0LoIjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoMziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoNDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LoNTiAEeKDAMEjnOLmPA" partWithPort="_k0LoITiAEeKDAMEjnOLmPA" role="_k0LoDziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoNTiAEeKDAMEjnOLmPA" partWithPort="_k0LoITiAEeKDAMEjnOLmPA" role="_k0LoDziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoNjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoNziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LoODiAEeKDAMEjnOLmPA" name="Connector3">
-          <end xmi:id="_k0LoOTiAEeKDAMEjnOLmPA" role="_k0LoGTiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LoODiAEeKDAMEjnOLmPA" name="Connector3">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoOTiAEeKDAMEjnOLmPA" role="_k0LoGTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoOjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoOziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LoPDiAEeKDAMEjnOLmPA" partWithPort="_k0LoITiAEeKDAMEjnOLmPA" role="_k0LoEziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoPDiAEeKDAMEjnOLmPA" partWithPort="_k0LoITiAEeKDAMEjnOLmPA" role="_k0LoEziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoPTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoPjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
@@ -1681,7 +1681,7 @@ Only measures from sensors are directly print on this map : no memory !</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0LoPziAEeKDAMEjnOLmPA" name="A3_Navigator">
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LoQDiAEeKDAMEjnOLmPA" name="Navigator">
-        <ownedComment xmi:id="_k0LoQTiAEeKDAMEjnOLmPA" annotatedElement="_k0LoQDiAEeKDAMEjnOLmPA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0LoQTiAEeKDAMEjnOLmPA" annotatedElement="_k0LoQDiAEeKDAMEjnOLmPA">
           <body>Navigator deliver local trajectory for the pilot, taking into account local map.&#xD;
 It must reach the various waypoints, considering the obstacles placed in the local map (loc_map)</body>
         </ownedComment>
@@ -1739,58 +1739,58 @@ It must reach the various waypoints, considering the obstacles placed in the loc
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LoXziAEeKDAMEjnOLmPA" name="navigator" type="_k0LoQDiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LoXziAEeKDAMEjnOLmPA" name="navigator" type="_k0LoQDiAEeKDAMEjnOLmPA"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LoYDiAEeKDAMEjnOLmPA" name="loc_map" type="_k0LlCDiAEeKDAMEjnOLmPA" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LoYTiAEeKDAMEjnOLmPA" name="position" type="_k0Lj9jiAEeKDAMEjnOLmPA" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LoYjiAEeKDAMEjnOLmPA" name="velocity" aggregation="composite">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUpiN8EeKwed7FEEF-4Q"/>
         </ownedAttribute>
-        <ownedConnector xmi:id="_k0LoYziAEeKDAMEjnOLmPA" name="Connector1">
-          <end xmi:id="_k0LoZDiAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoRjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LoYziAEeKDAMEjnOLmPA" name="Connector1">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoZDiAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoRjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoZTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoZjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LoZziAEeKDAMEjnOLmPA" role="_k0LoWziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoZziAEeKDAMEjnOLmPA" role="_k0LoWziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoaDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoaTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LoajiAEeKDAMEjnOLmPA" name="Connector2">
-          <end xmi:id="_k0LoaziAEeKDAMEjnOLmPA" role="_k0LoVziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LoajiAEeKDAMEjnOLmPA" name="Connector2">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoaziAEeKDAMEjnOLmPA" role="_k0LoVziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LobDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LobTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LobjiAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoQjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LobjiAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoQjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LobziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LocDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LocTiAEeKDAMEjnOLmPA" name="Connector3">
-          <end xmi:id="_k0LocjiAEeKDAMEjnOLmPA" role="_k0LoYDiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LocTiAEeKDAMEjnOLmPA" name="Connector3">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LocjiAEeKDAMEjnOLmPA" role="_k0LoYDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LocziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LodDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LodTiAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoSjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LodTiAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoSjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LodjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LodziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LoeDiAEeKDAMEjnOLmPA" name="Connector4">
-          <end xmi:id="_k0LoeTiAEeKDAMEjnOLmPA" role="_k0LoYTiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LoeDiAEeKDAMEjnOLmPA" name="Connector4">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoeTiAEeKDAMEjnOLmPA" role="_k0LoYTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoejiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoeziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LofDiAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoTjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LofDiAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoTjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LofTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LofjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LofziAEeKDAMEjnOLmPA" name="Connector5">
-          <end xmi:id="_k0LogDiAEeKDAMEjnOLmPA" role="_k0LoYjiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LofziAEeKDAMEjnOLmPA" name="Connector5">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LogDiAEeKDAMEjnOLmPA" role="_k0LoYjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LogTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LogjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LogziAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoUjiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LogziAEeKDAMEjnOLmPA" partWithPort="_k0LoXziAEeKDAMEjnOLmPA" role="_k0LoUjiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LohDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LohTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
@@ -1799,8 +1799,8 @@ It must reach the various waypoints, considering the obstacles placed in the loc
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_k0LohjiAEeKDAMEjnOLmPA" name="A2_Pilot">
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LohziAEeKDAMEjnOLmPA" name="Pilot">
-        <ownedComment xmi:id="_k0LoiDiAEeKDAMEjnOLmPA" annotatedElement="_k0LohziAEeKDAMEjnOLmPA">
-          <body>The pilot must calculate the set points in op�rating space, following the trajectory delivered by the navigator. &#xD;
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0LoiDiAEeKDAMEjnOLmPA" annotatedElement="_k0LohziAEeKDAMEjnOLmPA">
+          <body>The pilot must calculate the set points in operating space, following the trajectory delivered by the navigator. &#xD;
 But the pilot must react to obstacles 'seen' in the proximetric map (prox_map), avoiding them.&#xD;
 </body>
         </ownedComment>
@@ -1851,8 +1851,8 @@ But the pilot must react to obstacles 'seen' in the proximetric map (prox_map), 
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_k0LooTiAEeKDAMEjnOLmPA" name="IKM">
-        <ownedComment xmi:id="_k0LoojiAEeKDAMEjnOLmPA" annotatedElement="_k0LooTiAEeKDAMEjnOLmPA">
-          <body>Modele Cin�matique Inverse (MCI) - Invert Kinematic Model (IKM)&#xD;
+        <ownedComment xmi:type="uml:Comment" xmi:id="_k0LoojiAEeKDAMEjnOLmPA" annotatedElement="_k0LooTiAEeKDAMEjnOLmPA">
+          <body>Modele Cinématique Inverse (MCI) - Invert Kinematic Model (IKM)&#xD;
 transform the velocities from the operational space to the articular space (left and right wheels velocities)</body>
         </ownedComment>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LooziAEeKDAMEjnOLmPA" name="art_set_point" visibility="public" isUnique="false" aggregation="composite">
@@ -1888,80 +1888,80 @@ transform the velocities from the operational space to the articular space (left
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0LotDiAEeKDAMEjnOLmPA" name="Pilot" type="_k0LohziAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0LotTiAEeKDAMEjnOLmPA" name="IKM" type="_k0LooTiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LotDiAEeKDAMEjnOLmPA" name="Pilot" type="_k0LohziAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LotTiAEeKDAMEjnOLmPA" name="IKM" type="_k0LooTiAEeKDAMEjnOLmPA"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LouDiAEeKDAMEjnOLmPA" name="velocity" aggregation="composite">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_A3LUpiN8EeKwed7FEEF-4Q"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_k0LouTiAEeKDAMEjnOLmPA" name="accel_girat" aggregation="composite">
           <type xmi:type="uml:DataType" href="pathmap://Robotml_LIBRARIES/RobotMLPlatformLibraries.uml#_cgWYIAKqEeCQReIOIWJ0nA"/>
         </ownedAttribute>
-        <ownedConnector xmi:id="_k0LoujiAEeKDAMEjnOLmPA" name="Connector0">
-          <end xmi:id="_k0LouziAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LokTiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LoujiAEeKDAMEjnOLmPA" name="Connector0">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LouziAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LokTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LovDiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LovTiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LovjiAEeKDAMEjnOLmPA" partWithPort="_k0LotTiAEeKDAMEjnOLmPA" role="_k0LopziAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LovjiAEeKDAMEjnOLmPA" partWithPort="_k0LotTiAEeKDAMEjnOLmPA" role="_k0LopziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LovziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LowDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LowTiAEeKDAMEjnOLmPA" name="Connector1">
-          <end xmi:id="_k0LowjiAEeKDAMEjnOLmPA" role="_k0LorDiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LowTiAEeKDAMEjnOLmPA" name="Connector1">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LowjiAEeKDAMEjnOLmPA" role="_k0LorDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LowziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoxDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LoxTiAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LoiTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoxTiAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LoiTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoxjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoxziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LoyDiAEeKDAMEjnOLmPA" name="Connector2">
-          <end xmi:id="_k0LoyTiAEeKDAMEjnOLmPA" partWithPort="_k0LotTiAEeKDAMEjnOLmPA" role="_k0LooziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LoyDiAEeKDAMEjnOLmPA" name="Connector2">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LoyTiAEeKDAMEjnOLmPA" partWithPort="_k0LotTiAEeKDAMEjnOLmPA" role="_k0LooziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LoyjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LoyziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LozDiAEeKDAMEjnOLmPA" role="_k0LosDiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LozDiAEeKDAMEjnOLmPA" role="_k0LosDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LozTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LozjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LozziAEeKDAMEjnOLmPA" name="Connector3">
-          <end xmi:id="_k0Lo0DiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LozziAEeKDAMEjnOLmPA" name="Connector3">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lo0DiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lo0TiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lo0jiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Lo0ziAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LojTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lo0ziAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LojTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lo1DiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lo1TiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Lo1jiAEeKDAMEjnOLmPA" name="Connector4">
-          <end xmi:id="_k0Lo1ziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Lo1jiAEeKDAMEjnOLmPA" name="Connector4">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lo1ziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lo2DiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lo2TiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Lo2jiAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LolTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lo2jiAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LolTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lo2ziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lo3DiAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Lo3TiAEeKDAMEjnOLmPA" name="Connector5">
-          <end xmi:id="_k0Lo3jiAEeKDAMEjnOLmPA" role="_k0LouDiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Lo3TiAEeKDAMEjnOLmPA" name="Connector5">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lo3jiAEeKDAMEjnOLmPA" role="_k0LouDiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lo3ziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lo4DiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Lo4TiAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LomTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lo4TiAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LomTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lo4jiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lo4ziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0Lo5DiAEeKDAMEjnOLmPA" name="Connector6">
-          <end xmi:id="_k0Lo5TiAEeKDAMEjnOLmPA" role="_k0LouTiAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0Lo5DiAEeKDAMEjnOLmPA" name="Connector6">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lo5TiAEeKDAMEjnOLmPA" role="_k0LouTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lo5jiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lo5ziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0Lo6DiAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LonTiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0Lo6DiAEeKDAMEjnOLmPA" partWithPort="_k0LotDiAEeKDAMEjnOLmPA" role="_k0LonTiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0Lo6TiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0Lo6jiAEeKDAMEjnOLmPA" value="1"/>
           </end>
@@ -2006,24 +2006,24 @@ transform the velocities from the operational space to the articular space (left
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_k0Lo_ziAEeKDAMEjnOLmPA" name="Servoings" type="_k0Lo7DiAEeKDAMEjnOLmPA"/>
-        <ownedAttribute xmi:id="_k0LpADiAEeKDAMEjnOLmPA" name="Frame_In" type="_k0Lo9TiAEeKDAMEjnOLmPA"/>
-        <ownedConnector xmi:id="_k0LpATiAEeKDAMEjnOLmPA" name="Connector1">
-          <end xmi:id="_k0LpAjiAEeKDAMEjnOLmPA" partWithPort="_k0LpADiAEeKDAMEjnOLmPA" role="_k0Lo9jiAEeKDAMEjnOLmPA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0Lo_ziAEeKDAMEjnOLmPA" name="Servoings" type="_k0Lo7DiAEeKDAMEjnOLmPA"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_k0LpADiAEeKDAMEjnOLmPA" name="Frame_In" type="_k0Lo9TiAEeKDAMEjnOLmPA"/>
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LpATiAEeKDAMEjnOLmPA" name="Connector1">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LpAjiAEeKDAMEjnOLmPA" partWithPort="_k0LpADiAEeKDAMEjnOLmPA" role="_k0Lo9jiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LpAziAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LpBDiAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LpBTiAEeKDAMEjnOLmPA" partWithPort="_k0Lo_ziAEeKDAMEjnOLmPA" role="_k0Lo8TiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LpBTiAEeKDAMEjnOLmPA" partWithPort="_k0Lo_ziAEeKDAMEjnOLmPA" role="_k0Lo8TiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LpBjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LpBziAEeKDAMEjnOLmPA" value="1"/>
           </end>
         </ownedConnector>
-        <ownedConnector xmi:id="_k0LpCDiAEeKDAMEjnOLmPA" name="Connector2">
-          <end xmi:id="_k0LpCTiAEeKDAMEjnOLmPA" role="_k0Lo-ziAEeKDAMEjnOLmPA">
+        <ownedConnector xmi:type="uml:Connector" xmi:id="_k0LpCDiAEeKDAMEjnOLmPA" name="Connector2">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LpCTiAEeKDAMEjnOLmPA" role="_k0Lo-ziAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LpCjiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LpCziAEeKDAMEjnOLmPA" value="1"/>
           </end>
-          <end xmi:id="_k0LpDDiAEeKDAMEjnOLmPA" partWithPort="_k0Lo_ziAEeKDAMEjnOLmPA" role="_k0Lo7TiAEeKDAMEjnOLmPA">
+          <end xmi:type="uml:ConnectorEnd" xmi:id="_k0LpDDiAEeKDAMEjnOLmPA" partWithPort="_k0Lo_ziAEeKDAMEjnOLmPA" role="_k0Lo7TiAEeKDAMEjnOLmPA">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_k0LpDTiAEeKDAMEjnOLmPA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_k0LpDjiAEeKDAMEjnOLmPA" value="1"/>
           </end>
@@ -2034,8 +2034,8 @@ transform the velocities from the operational space to the articular space (left
       <packagedElement xmi:type="uml:Class" xmi:id="_iBPzUDiuEeKFHpsdOC1X1Q" name="RTmaps"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_rlJygDiuEeKFHpsdOC1X1Q" name="Blender-Morse"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_HR8psDivEeKFHpsdOC1X1Q" name="Platform1">
-        <ownedAttribute xmi:id="_QAl00DivEeKFHpsdOC1X1Q" name="RTmaps1" type="_iBPzUDiuEeKFHpsdOC1X1Q"/>
-        <ownedAttribute xmi:id="_yvakUDivEeKFHpsdOC1X1Q" name="Blender-Morse2" type="_rlJygDiuEeKFHpsdOC1X1Q"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_QAl00DivEeKFHpsdOC1X1Q" name="RTmaps1" type="_iBPzUDiuEeKFHpsdOC1X1Q"/>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_yvakUDivEeKFHpsdOC1X1Q" name="Blender-Morse2" type="_rlJygDiuEeKFHpsdOC1X1Q"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_1c43MDivEeKFHpsdOC1X1Q" name="PlatformModel">
@@ -2047,89 +2047,89 @@ transform the velocities from the operational space to the articular space (left
     <packagedElement xmi:type="uml:Package" xmi:id="_Fs0CcDiwEeKFHpsdOC1X1Q" name="DeploymentPlans">
       <packagedElement xmi:type="uml:Package" xmi:id="_Kta1kDiwEeKFHpsdOC1X1Q" name="WifibotDepPlan">
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KtkmkTiwEeKFHpsdOC1X1Q" name="mainInstance" classifier="_k0LlFDiAEeKDAMEjnOLmPA">
-          <slot xmi:id="_KuUNcDiwEeKFHpsdOC1X1Q" definingFeature="_k0LlFTiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KuUNcDiwEeKFHpsdOC1X1Q" definingFeature="_k0LlFTiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KuUNcTiwEeKFHpsdOC1X1Q" instance="_KttwgDiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KudXYTiwEeKFHpsdOC1X1Q" definingFeature="_k0LlFjiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KudXYTiwEeKFHpsdOC1X1Q" definingFeature="_k0LlFjiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KudXYjiwEeKFHpsdOC1X1Q" instance="_KuUNcjiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KunIYDiwEeKFHpsdOC1X1Q" definingFeature="_k0LlFziAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KunIYDiwEeKFHpsdOC1X1Q" definingFeature="_k0LlFziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KunIYTiwEeKFHpsdOC1X1Q" instance="_KudXYziwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KunIaTiwEeKFHpsdOC1X1Q" definingFeature="_k0LlGDiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KunIaTiwEeKFHpsdOC1X1Q" definingFeature="_k0LlGDiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KunIajiwEeKFHpsdOC1X1Q" instance="_KunIYjiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KuwSVziwEeKFHpsdOC1X1Q" definingFeature="_k0LlGTiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KuwSVziwEeKFHpsdOC1X1Q" definingFeature="_k0LlGTiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KuwSWDiwEeKFHpsdOC1X1Q" instance="_KuwSUDiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KvD0UjiwEeKFHpsdOC1X1Q" definingFeature="_k0LlGjiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvD0UjiwEeKFHpsdOC1X1Q" definingFeature="_k0LlGjiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvD0UziwEeKFHpsdOC1X1Q" instance="_KuwSWTiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KvD0XjiwEeKFHpsdOC1X1Q" definingFeature="_k0LlGziAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvD0XjiwEeKFHpsdOC1X1Q" definingFeature="_k0LlGziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvD0XziwEeKFHpsdOC1X1Q" instance="_KvD0VDiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KvM-RDiwEeKFHpsdOC1X1Q" definingFeature="_k0LlHDiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvM-RDiwEeKFHpsdOC1X1Q" definingFeature="_k0LlHDiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvM-RTiwEeKFHpsdOC1X1Q" instance="_KvM-QDiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KvM-TTiwEeKFHpsdOC1X1Q" definingFeature="_k0LlHTiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvM-TTiwEeKFHpsdOC1X1Q" definingFeature="_k0LlHTiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvM-TjiwEeKFHpsdOC1X1Q" instance="_KvM-RjiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KttwgDiwEeKFHpsdOC1X1Q" clientDependency="_j6kagDiwEeKFHpsdOC1X1Q" name="mainInstance.pathPlanner" classifier="_k0LoFDiAEeKDAMEjnOLmPA">
-          <slot xmi:id="_KuKccDiwEeKFHpsdOC1X1Q" definingFeature="_k0LoITiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KuKccDiwEeKFHpsdOC1X1Q" definingFeature="_k0LoITiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KuKccTiwEeKFHpsdOC1X1Q" instance="_KttwgTiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KttwgTiwEeKFHpsdOC1X1Q" name="mainInstance.pathPlanner.path_Planner" classifier="_k0LoBTiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuUNcjiwEeKFHpsdOC1X1Q" clientDependency="_kcVq0DiwEeKFHpsdOC1X1Q" name="mainInstance.missionGenerator" classifier="_k0Ln9ziAEeKDAMEjnOLmPA">
-          <slot xmi:id="_KuUNdDiwEeKFHpsdOC1X1Q" definingFeature="_k0Ln_DiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KuUNdDiwEeKFHpsdOC1X1Q" definingFeature="_k0Ln_DiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KudXYDiwEeKFHpsdOC1X1Q" instance="_KuUNcziwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuUNcziwEeKFHpsdOC1X1Q" name="mainInstance.missionGenerator.mission" classifier="_k0Ln8jiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KudXYziwEeKFHpsdOC1X1Q" clientDependency="_k-HiMDiwEeKFHpsdOC1X1Q" name="mainInstance.navigator" classifier="_k0LoVjiAEeKDAMEjnOLmPA">
-          <slot xmi:id="_KudXZTiwEeKFHpsdOC1X1Q" definingFeature="_k0LoXziAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KudXZTiwEeKFHpsdOC1X1Q" definingFeature="_k0LoXziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KudXZjiwEeKFHpsdOC1X1Q" instance="_KudXZDiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KudXZDiwEeKFHpsdOC1X1Q" name="mainInstance.navigator.navigator" classifier="_k0LoQDiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KunIYjiwEeKFHpsdOC1X1Q" clientDependency="_lnLGQDiwEeKFHpsdOC1X1Q" name="mainInstance.pilot" classifier="_k0LoqziAEeKDAMEjnOLmPA">
-          <slot xmi:id="_KunIZDiwEeKFHpsdOC1X1Q" definingFeature="_k0LotDiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KunIZDiwEeKFHpsdOC1X1Q" definingFeature="_k0LotDiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KunIZTiwEeKFHpsdOC1X1Q" instance="_KunIYziwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KunIZziwEeKFHpsdOC1X1Q" definingFeature="_k0LotTiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KunIZziwEeKFHpsdOC1X1Q" definingFeature="_k0LotTiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KunIaDiwEeKFHpsdOC1X1Q" instance="_KunIZjiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KunIYziwEeKFHpsdOC1X1Q" name="mainInstance.pilot.Pilot" classifier="_k0LohziAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KunIZjiwEeKFHpsdOC1X1Q" name="mainInstance.pilot.IKM" classifier="_k0LooTiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSUDiwEeKFHpsdOC1X1Q" clientDependency="_Yxf0UDiwEeKFHpsdOC1X1Q" name="mainInstance.servoing" classifier="_k0Lo-jiAEeKDAMEjnOLmPA">
-          <slot xmi:id="_KuwSUjiwEeKFHpsdOC1X1Q" definingFeature="_k0Lo_ziAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KuwSUjiwEeKFHpsdOC1X1Q" definingFeature="_k0Lo_ziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KuwSUziwEeKFHpsdOC1X1Q" instance="_KuwSUTiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KuwSVTiwEeKFHpsdOC1X1Q" definingFeature="_k0LpADiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KuwSVTiwEeKFHpsdOC1X1Q" definingFeature="_k0LpADiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KuwSVjiwEeKFHpsdOC1X1Q" instance="_KuwSVDiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSUTiwEeKFHpsdOC1X1Q" name="mainInstance.servoing.Servoings" classifier="_k0Lo7DiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSVDiwEeKFHpsdOC1X1Q" name="mainInstance.servoing.Frame_In" classifier="_k0Lo9TiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KuwSWTiwEeKFHpsdOC1X1Q" clientDependency="_WxjV0DiwEeKFHpsdOC1X1Q" name="mainInstance.sensors" classifier="_k0LndTiAEeKDAMEjnOLmPA">
-          <slot xmi:id="_Ku6DUDiwEeKFHpsdOC1X1Q" definingFeature="_k0LnijiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_Ku6DUDiwEeKFHpsdOC1X1Q" definingFeature="_k0LnijiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_Ku6DUTiwEeKFHpsdOC1X1Q" instance="_KuwSWjiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_Ku6DUziwEeKFHpsdOC1X1Q" definingFeature="_k0LniziAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_Ku6DUziwEeKFHpsdOC1X1Q" definingFeature="_k0LniziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_Ku6DVDiwEeKFHpsdOC1X1Q" instance="_Ku6DUjiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_Ku6DVjiwEeKFHpsdOC1X1Q" definingFeature="_k0LnjDiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_Ku6DVjiwEeKFHpsdOC1X1Q" definingFeature="_k0LnjDiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_Ku6DVziwEeKFHpsdOC1X1Q" instance="_Ku6DVTiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_Ku6DWTiwEeKFHpsdOC1X1Q" definingFeature="_k0LnjTiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_Ku6DWTiwEeKFHpsdOC1X1Q" definingFeature="_k0LnjTiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_Ku6DWjiwEeKFHpsdOC1X1Q" instance="_Ku6DWDiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_Ku6DXDiwEeKFHpsdOC1X1Q" definingFeature="_k0LnjjiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_Ku6DXDiwEeKFHpsdOC1X1Q" definingFeature="_k0LnjjiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_Ku6DXTiwEeKFHpsdOC1X1Q" instance="_Ku6DWziwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KvD0UDiwEeKFHpsdOC1X1Q" definingFeature="_k0LnjziAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvD0UDiwEeKFHpsdOC1X1Q" definingFeature="_k0LnjziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvD0UTiwEeKFHpsdOC1X1Q" instance="_Ku6DXjiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
@@ -2140,13 +2140,13 @@ transform the velocities from the operational space to the articular space (left
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Ku6DWziwEeKFHpsdOC1X1Q" name="mainInstance.sensors.LaserRange" classifier="_k0LnaTiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_Ku6DXjiwEeKFHpsdOC1X1Q" name="mainInstance.sensors.camera_FireWire" classifier="_k0LnbziAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvD0VDiwEeKFHpsdOC1X1Q" clientDependency="_mELyYDiwEeKFHpsdOC1X1Q" name="mainInstance.proximetry" classifier="_k0LmxDiAEeKDAMEjnOLmPA">
-          <slot xmi:id="_KvD0VjiwEeKFHpsdOC1X1Q" definingFeature="_k0Lm2jiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvD0VjiwEeKFHpsdOC1X1Q" definingFeature="_k0Lm2jiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvD0VziwEeKFHpsdOC1X1Q" instance="_KvD0VTiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KvD0WTiwEeKFHpsdOC1X1Q" definingFeature="_k0Lm2ziAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvD0WTiwEeKFHpsdOC1X1Q" definingFeature="_k0Lm2ziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvD0WjiwEeKFHpsdOC1X1Q" instance="_KvD0WDiwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KvD0XDiwEeKFHpsdOC1X1Q" definingFeature="_k0Lm3DiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvD0XDiwEeKFHpsdOC1X1Q" definingFeature="_k0Lm3DiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvD0XTiwEeKFHpsdOC1X1Q" instance="_KvD0WziwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
@@ -2154,16 +2154,16 @@ transform the velocities from the operational space to the articular space (left
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvD0WDiwEeKFHpsdOC1X1Q" name="mainInstance.proximetry.proximetric_Map" classifier="_k0LmrjiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvD0WziwEeKFHpsdOC1X1Q" name="mainInstance.proximetry.amer_Identif" classifier="_k0LmuTiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvM-QDiwEeKFHpsdOC1X1Q" clientDependency="_mhfZcDiwEeKFHpsdOC1X1Q" name="mainInstance.global_map" classifier="_k0LmBDiAEeKDAMEjnOLmPA">
-          <slot xmi:id="_KvM-QjiwEeKFHpsdOC1X1Q" definingFeature="_k0LmBTiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvM-QjiwEeKFHpsdOC1X1Q" definingFeature="_k0LmBTiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvM-QziwEeKFHpsdOC1X1Q" instance="_KvM-QTiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvM-QTiwEeKFHpsdOC1X1Q" name="mainInstance.global_map.global_Map" classifier="_k0Ll8jiAEeKDAMEjnOLmPA"/>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_KvM-RjiwEeKFHpsdOC1X1Q" clientDependency="_nLJacDiwEeKFHpsdOC1X1Q" name="mainInstance.local_Map" classifier="_k0LmTjiAEeKDAMEjnOLmPA">
-          <slot xmi:id="_KvM-SDiwEeKFHpsdOC1X1Q" definingFeature="_k0LmTziAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvM-SDiwEeKFHpsdOC1X1Q" definingFeature="_k0LmTziAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvM-STiwEeKFHpsdOC1X1Q" instance="_KvM-RziwEeKFHpsdOC1X1Q"/>
           </slot>
-          <slot xmi:id="_KvM-SziwEeKFHpsdOC1X1Q" definingFeature="_k0LmUDiAEeKDAMEjnOLmPA">
+          <slot xmi:type="uml:Slot" xmi:id="_KvM-SziwEeKFHpsdOC1X1Q" definingFeature="_k0LmUDiAEeKDAMEjnOLmPA">
             <value xmi:type="uml:InstanceValue" xmi:id="_KvM-TDiwEeKFHpsdOC1X1Q" instance="_KvM-SjiwEeKFHpsdOC1X1Q"/>
           </slot>
         </packagedElement>
@@ -2181,19 +2181,13 @@ transform the velocities from the operational space to the articular space (left
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_r_SxEKEKEeKLUqX9IJq2Gg" name="Environment">
-      <ownedAttribute xmi:id="_wOk08KEKEeKLUqX9IJq2Gg" name="wifibot" type="_k0LlFDiAEeKDAMEjnOLmPA"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_wOk08KEKEeKLUqX9IJq2Gg" name="wifibot" type="_k0LlFDiAEeKDAMEjnOLmPA"/>
     </packagedElement>
-    <profileApplication xmi:id="_k0LpDziAEeKDAMEjnOLmPA">
-      <eAnnotations xmi:id="_k0LpEDiAEeKDAMEjnOLmPA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_k0LpDziAEeKDAMEjnOLmPA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k0LpEDiAEeKDAMEjnOLmPA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://Papyrus/RobotML/1#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://Robotml_PROFILES/RobotMLProfile.profile.uml#_3QOHEPcEEd-J06U5HM_o-Q"/>
-    </profileApplication>
-    <profileApplication xmi:id="_JJJmcDiwEeKFHpsdOC1X1Q">
-      <eAnnotations xmi:id="_JJvcUDiwEeKFHpsdOC1X1Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://papyrus/FCMProfile/1#/"/>
-      </eAnnotations>
-      <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://Robotml_PROFILES/RobotMLProfile.profile.uml#_3QOHEPcEEd-J06U5HM_o-Q"/>
     </profileApplication>
   </uml:Model>
   <RobotML:Software xmi:id="_k0LpETiAEeKDAMEjnOLmPA" base_Class="_k0Ll8jiAEeKDAMEjnOLmPA"/>
@@ -2330,21 +2324,8 @@ transform the velocities from the operational space to the articular space (left
   <RobotML:DataFlowPort xmi:id="_k0VVCDiAEeKDAMEjnOLmPA" base_Port="_k0LmBziAEeKDAMEjnOLmPA" bufferSize="6"/>
   <RobotML:DataFlowPort xmi:id="_k0VVCTiAEeKDAMEjnOLmPA" base_Port="_k0LmCDiAEeKDAMEjnOLmPA" bufferSize="6"/>
   <RobotML:DataFlowPort xmi:id="_k0VVCjiAEeKDAMEjnOLmPA" base_Port="_k0LmCTiAEeKDAMEjnOLmPA" direction="out"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVCziAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LlYTiAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVDDiAEeKDAMEjnOLmPA" propertyPath="_k0LnijiAEeKDAMEjnOLmPA _k0LnOjiAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0Ln1jiAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVDTiAEeKDAMEjnOLmPA" propertyPath="_k0LnijiAEeKDAMEjnOLmPA _k0LnPjiAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LnzziAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVDjiAEeKDAMEjnOLmPA" propertyPath="_k0LlHTiAEeKDAMEjnOLmPA _k0LmUziAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LloDiAEeKDAMEjnOLmPA"/>
   <RobotML:DataFlowPort xmi:id="_k0VVDziAEeKDAMEjnOLmPA" base_Port="_k0Lm4ziAEeKDAMEjnOLmPA" bufferSize="6"/>
   <RobotML:DataFlowPort xmi:id="_k0VVEDiAEeKDAMEjnOLmPA" base_Port="_k0LmuDiAEeKDAMEjnOLmPA" bufferSize="6"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVETiAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LoKziAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVEjiAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LlJjiAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVEziAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LobjiAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVFDiAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LlKTiAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVFTiAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LobjiAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVFjiAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LlKTiAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVFziAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LoKziAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVGDiAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LlJjiAEeKDAMEjnOLmPA"/>
-  <Blocks:NestedConnectorEnd xmi:id="_k0VVGTiAEeKDAMEjnOLmPA" base_ConnectorEnd="_k0LnNTiAEeKDAMEjnOLmPA"/>
   <RobotML:Robot xmi:id="_k0VVGjiAEeKDAMEjnOLmPA" base_Class="_k0LlFDiAEeKDAMEjnOLmPA"/>
   <RobotML:SensorSystem xmi:id="_k0VVGziAEeKDAMEjnOLmPA" base_Class="_k0LndTiAEeKDAMEjnOLmPA"/>
   <RobotML:ActuatorSystem xmi:id="_k0VVHDiAEeKDAMEjnOLmPA" base_Class="_k0Lo-jiAEeKDAMEjnOLmPA"/>

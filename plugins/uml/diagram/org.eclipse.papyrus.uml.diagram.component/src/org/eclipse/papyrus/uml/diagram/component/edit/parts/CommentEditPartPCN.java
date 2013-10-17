@@ -307,7 +307,7 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
-		if(targetEditPart instanceof InterfaceEditPart) {
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
@@ -319,6 +319,9 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 		if(targetEditPart instanceof DefaultNamedElementEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
+		if(targetEditPart instanceof InterfaceEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
+		}
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
@@ -328,19 +331,22 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 		if(targetEditPart instanceof PackageEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
+		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
+		}
 		if(targetEditPart instanceof ComponentEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
 		if(targetEditPart instanceof ComponentEditPartPCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
-		}
 		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPartPCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
 		if(targetEditPart instanceof ConstraintEditPartPCN) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
+		}
+		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
 		return types;
@@ -356,18 +362,20 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 			types.add(UMLElementTypes.Component_2002);
 			types.add(UMLElementTypes.Model_3202);
 			types.add(UMLElementTypes.Package_3200);
-			types.add(UMLElementTypes.Interface_2003);
+			types.add(UMLElementTypes.Interface_3205);
 			types.add(UMLElementTypes.Comment_3201);
 			types.add(UMLElementTypes.Constraint_3199);
 			types.add(UMLElementTypes.NamedElement_3204);
+			types.add(UMLElementTypes.NamedElement_2003);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Model_3077);
 			types.add(UMLElementTypes.Package_3076);
+			types.add(UMLElementTypes.Interface_3078);
 			types.add(UMLElementTypes.Component_3070);
 			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Comment_3074);
 			types.add(UMLElementTypes.Constraint_3075);
+			types.add(UMLElementTypes.Interface_3072);
 		}
 		return types;
 	}

@@ -12,6 +12,8 @@
 
 package org.eclipse.papyrus.cpp.codegen.ui.handler;
 
+import org.eclipse.cdt.core.CCProjectNature;
+import org.eclipse.cdt.core.CProjectNature;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -21,7 +23,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -29,10 +33,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.PackageableElement;
 
 /**
  * <b><u>SyncURI Handler</u></b>
@@ -59,28 +64,48 @@ public class GenerateCodeHandler extends AbstractHandler {
 			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 			selection = structuredSelection.getFirstElement();
 		}
-
+		
 		// Treat non-null selected object (try to adapt and return EObject)
 		if(selection != null) {
 			Object businessObject = BusinessModelResolver.getInstance().getBusinessModel(selection);
 			if(businessObject instanceof EObject) {
 
 				selectedEObj = (EObject)businessObject;
-				return true;
+				
+				URI uri = selectedEObj.eResource().getURI();
+
+				// URIConverter uriConverter = resource.getResourceSet().getURIConverter();
+				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+				if(uri.segmentCount() < 2) {
+					return false;
+				}
+				IProject modelProject = root.getProject(uri.segment(1));
+				if(modelProject.exists()) {
+					try {
+						// check whether the project is a C or C++ project
+						if(modelProject.hasNature(CProjectNature.C_NATURE_ID) ||
+							modelProject.hasNature(CCProjectNature.CC_NATURE_ID)) {
+							return true;
+						}
+					}
+					catch (CoreException e) {
+						Activator.getDefault().getLog().log(new Status(IStatus.ERROR,
+							Activator.PLUGIN_ID, e.getMessage(), e));
+					}
+				}
 			}
 		}
 
 		selectedEObj = null;
-		return super.isEnabled();
+		return false;
 	}
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		if(selectedEObj instanceof Classifier) {
-			Classifier classifier = (Classifier)selectedEObj;
+		if(selectedEObj instanceof PackageableElement) {
+			PackageableElement pe = (PackageableElement)selectedEObj;
 
-			
-			URI uri = classifier.eResource().getURI();
+			URI uri = pe.eResource().getURI();
 
 			// URIConverter uriConverter = resource.getResourceSet().getURIConverter();
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -89,16 +114,16 @@ public class GenerateCodeHandler extends AbstractHandler {
 			}
 			IProject modelProject = root.getProject(uri.segment(1));
 			if(modelProject.exists()) {
-				String name = classifier.getName();
+				String name = pe.getName();
 
 				// get the container for the current element
 				String headerSuffix = CppCodeGenUtils.getHeaderSuffix();
 				String bodySuffix = CppCodeGenUtils.getBodySuffix();
 				AcceleoDriver.clearErrors();
 				CppModelElementsCreator mec = new CppModelElementsCreator(modelProject);
-				IContainer srcPkg = mec.getContainer(classifier);
+				IContainer srcPkg = mec.getContainer(pe);
 				try {
-					mec.createPackageableElement(srcPkg, null, classifier);
+					mec.createPackageableElement(srcPkg, null, pe);
 
 					if (AcceleoDriver.hasErrors()) {
 						MessageDialog.openInformation(new Shell(), "Errors during code generation", //$NON-NLS-1$

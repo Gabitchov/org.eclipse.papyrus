@@ -11,7 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core;
 
+import java.util.Collection;
+
 import org.eclipse.emf.cdo.view.CDOView;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.net4j.util.container.IManagedContainer;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
@@ -20,6 +23,12 @@ import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
  * This is the IInternalPapyrusRepositoryManager type. Enjoy.
  */
 public interface IInternalPapyrusRepositoryManager extends IPapyrusRepositoryManager {
+
+	/** Managed container product group key for model repository-related elements. */
+	String PRODUCT_GROUP = Activator.PLUGIN_ID + ".repositories"; //$NON-NLS-1$
+
+	/** Managed container product factory key for the repository manager. */
+	String MANAGER_FACTORY = "manager"; //$NON-NLS-1$
 
 	IManagedContainer getSessionsContainer();
 
@@ -30,4 +39,23 @@ public interface IInternalPapyrusRepositoryManager extends IPapyrusRepositoryMan
 	void setCredentialsProviderFactory(ICredentialsProviderFactory credentialsProviderFactory);
 
 	IInternalPapyrusRepository getRepository(CDOView view);
+
+	//
+	// Specializations of inherited API
+	//
+
+	@Override
+	Collection<? extends IInternalPapyrusRepository> getRepositories();
+
+	@Override
+	IInternalPapyrusRepository createRepository(String url);
+
+	@Override
+	IInternalPapyrusRepository getRepository(String url);
+
+	@Override
+	IInternalPapyrusRepository getRepositoryForURI(URI uri);
+
+	IInternalPapyrusRepository getRepositoryForURI(URI uri, boolean connectedOnly);
+
 }

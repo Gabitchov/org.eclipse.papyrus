@@ -1,0 +1,63 @@
+/*
+ * Copyright (c) 2006, 2009 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ *  modified by Patrick Tessier (CEA LIST, patch from Vincent Lorenzo)
+ *    Vincent Lorenzo (CEA-LIST) - bug 335987: [General][Enhancement] Show/Hide Connectors Labels https://bugs.eclipse.org/bugs/show_bug.cgi?id=335987
+ */
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+«EXTENSION xpt::diagram::editparts::Utils»
+«REM»DOCUMENTATION: PapyrusGenCode«ENDREM»
+«REM»Overloads only superclasseses and the interfaces that implements this class«ENDREM»
+
+«AROUND extendsList FOR gmfgen::GenExternalNodeLabel-»
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»specify a java super class for external nodes«ENDREM»
+«IF papyrusgmfgenextension::ExtendedGenView.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenView|v.genView->includes(self) and v.superOwnedEditPart<>null)->size()<>0»
+	extends «FOREACH papyrusgmfgenextension::ExtendedGenView.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenView|v.genView->includes(self) and v.superOwnedEditPart<>null) AS extendedObject»«EXPAND specifyInheritance FOR extendedObject»«ENDFOREACH-»
+«ELSE»
+  «targetDef.proceed()»
+«ENDIF»
+«REM»END: PapyrusGenCode«ENDREM»
+«ENDAROUND»
+
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»definition of the inheritance «ENDREM»
+«DEFINE specifyInheritance FOR papyrusgmfgenextension::ExtendedGenView-»«superOwnedEditPart»«ENDDEFINE»
+«REM»END: BEGIN: PapyrusGenCode«ENDREM»
+
+«REM» we add the interface ILabelRoleProvider «ENDREM»
+«AROUND implementsList FOR gmfgen::GenExternalNodeLabel-»
+	«targetDef.proceed()»
+	«REM»BEGIN: PapyrusGenCode«ENDREM»
+	«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.externalNodeLabels->includes(self))->size()<>0-»
+	, org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider
+	«ENDIF-»
+	«REM»END: PapyrusGenCode«ENDREM»
+«ENDAROUND»
+
+«REM» we add the methods provided by the interface «ENDREM»
+«AROUND additions FOR gmfgen::GenExternalNodeLabel-»
+	«REM»BEGIN: PapyrusGenCode«ENDREM»
+	«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.externalNodeLabels->includes(self))->size()<>0»
+		«EXPAND xpt::Common::generatedClassComment»
+		public String getLabelRole(){
+		return "«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.externalNodeLabels->includes(self))->asSequence()->first().role»";//$NON-NLS-1$
+		}
+		
+		«EXPAND xpt::Common::generatedClassComment»
+		public String getIconPathRole(){
+		return "«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.externalNodeLabels->includes(self))->asSequence()->first().iconPathRole»";//$NON-NLS-1$
+		}
+	«ENDIF»
+	«REM»END: PapyrusGenCode«ENDREM»
+«ENDAROUND»

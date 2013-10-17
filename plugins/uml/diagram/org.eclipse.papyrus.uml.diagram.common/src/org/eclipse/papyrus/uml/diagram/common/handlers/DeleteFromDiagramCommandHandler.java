@@ -26,6 +26,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -50,7 +51,8 @@ public class DeleteFromDiagramCommandHandler extends GraphicalCommandHandler imp
 	 * @return the deletion command
 	 * @throws ExecutionException
 	 */
-	protected Command getCommand() throws ExecutionException {
+	@Override
+	protected Command getCommand() {
 
 		// Retrieve currently selected IGraphicalEditPart(s)
 		List<IGraphicalEditPart> editParts = getSelectedElements();

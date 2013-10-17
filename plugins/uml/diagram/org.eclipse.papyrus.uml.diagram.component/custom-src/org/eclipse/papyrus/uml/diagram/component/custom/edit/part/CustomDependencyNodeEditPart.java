@@ -23,6 +23,12 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPa
  */
 public class CustomDependencyNodeEditPart extends DependencyNodeEditPart {
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param view
+	 */
 	public CustomDependencyNodeEditPart(View view) {
 		super(view);
 	}

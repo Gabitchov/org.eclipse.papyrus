@@ -33,7 +33,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
@@ -56,6 +55,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * A specific copier that enables to make iterative and shallow copies of model elements
@@ -80,6 +80,32 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class Copy extends Copier {
 
+	public enum CopyStatus {
+		/**
+		 * The status is not known, in most cases this indicates that the object has not yet been copied.
+		 */
+		UNKNOWN,
+		
+		/**
+		 * A full copy obtained via the copy function. Full means that the contained features have been completely
+		 * copied
+		 */
+		FULL,
+		
+		/**
+		 * A full copy in progress. Intermediate state of a target element after creation within the copy function,
+		 * before all attributes & references have been copied.
+		 */
+		INPROGRESS,
+		
+		/**
+		 * A shallow copy, i.e. a copy only containing a subset of the original element. These are typically containers
+		 * for copied objects and avoids that the copies are not enclosed in an object. A shallow copy may become a full
+		 * copy later on.
+		 */
+		SHALLOW
+	}
+	
 	public Copy(Package source_, Package target_, boolean copyExtResources_) {
 		source = source_;
 		target = target_;
@@ -89,7 +115,7 @@ public class Copy extends Copier {
 		postCopyListeners = new BasicEList<CopyListener>();
 		templateMapInfo = new HashMap<EObject, Map<EObject, EObject>>();
 		standardMap = new HashMap<EObject, EObject>();
-		shallowMap = new HashMap<EObject, Boolean>();
+		statusMap = new HashMap<EObject, CopyStatus>();
 		boundPackages = new Stack<Namespace>();
 		if(copyExtReferences) {
 			// original source package becomes a sub-package in the target model
@@ -146,7 +172,7 @@ public class Copy extends Copier {
 	/**
 	 * Map using a target EObject as key
 	 */
-	private Map<EObject, Boolean> shallowMap;
+	private Map<EObject, CopyStatus> statusMap;
 
 	/**
 	 * Elements within package templates must be treated differently, we have to ensure that:
@@ -202,8 +228,8 @@ public class Copy extends Copier {
 		return null;
 	}
 
-	public void setShallow(EObject targetEObj, boolean isShallow) {
-		shallowMap.put(targetEObj, isShallow);
+	public void setStatus(EObject targetEObj, CopyStatus status) {
+		statusMap.put(targetEObj, status);
 	}
 
 	/**
@@ -212,12 +238,19 @@ public class Copy extends Copier {
 	 * @param sourceEObj
 	 * @return
 	 */
-	public boolean isShallow(EObject targetEObj) {
-		Boolean shallow = shallowMap.get(targetEObj);
-		if(shallow != null) {
-			return shallow;
+	public CopyStatus getStatus(EObject targetEObj) {
+		/*
+		if (targetEObj instanceof Package) {
+			return true;
 		}
-		return false;
+		*/
+		if (targetEObj != null) {
+			CopyStatus status = statusMap.get(targetEObj);
+			if(status != null) {
+				return status;
+			}
+		}
+		return CopyStatus.UNKNOWN;
 	}
 
 	// public Namespace getPackageTemplate() {
@@ -317,6 +350,15 @@ public class Copy extends Copier {
 	public boolean withinTemplate(EObject element) {
 		if(boundPackage != null) {
 			EObject owner = element;
+			if ((element.eContainer() == null) &&
+				!(element instanceof Element)) {	// has no eContainer and is not a UML element => likely to be a be a stereotype application.
+				// it is important not to call getBaseElement for all eobjects, since its execution can take
+				// quite a while (in particular, if not called on a stereotype application)  
+				Element base = UMLUtil.getBaseElement(owner);
+				if (base != null) {
+					owner = base;	// containment check is done with base element
+				}
+			}
 			while(owner != null) {
 				owner = owner.eContainer();
 				if(get(owner) == boundPackage) {
@@ -342,24 +384,24 @@ public class Copy extends Copier {
 	@SuppressWarnings("unchecked")
 	@Override
 	public EObject copy(EObject sourceEObj) {
-		boolean withinTemplate = withinTemplate(sourceEObj);
-
-		EObject targetEObj = get(sourceEObj);
-
-		boolean shallowCopy = (targetEObj != null) && isShallow(targetEObj);
-
-		if((targetEObj != null) && !shallowCopy) {
-			// copy already exists, return
-			return targetEObj;
-		}
-		setShallow(targetEObj, false);
-
 		if(sourceEObj == null) {
 			// this case may happen, if elements were systematically copied without checking for
-			// null references in the application code (e.g. if swe copy a part-with-port which might
+			// null references in the application code (e.g. if we copy a part-with-port which might
 			// be null in case of delegation or connectors without ports
 			return null;
 		}
+
+
+		EObject targetEObj = get(sourceEObj);
+
+		CopyStatus status = getStatus(targetEObj);
+
+		if(status == CopyStatus.FULL || status == CopyStatus.INPROGRESS) {
+			// copy already exists, return targetEObj
+			return targetEObj;
+		}
+
+		boolean withinTemplate = withinTemplate(sourceEObj);
 		boolean sameResource = (sourceEObj.eResource() == source.eResource());
 		if(!sameResource && !copyExtReferences && !withinTemplate) {
 			// do not copy if within different resource, unless
@@ -387,7 +429,7 @@ public class Copy extends Copier {
 				Log.log(Status.ERROR, Log.TRAFO_COPY, "copy for meta-model element \"" + name + //$NON-NLS-1$
 						"\" requested. Return original element"); //$NON-NLS-1$
 				return sourceEObj;
-			}			
+			}
 		}
 		// additional sanity check: want to avoid copying (instead of instantiating) elements
 		// of a package template
@@ -397,13 +439,17 @@ public class Copy extends Copier {
 			}
 		}
 
-		if(shallowCopy) {
-			// shallowCopy is true: a copy exists already
+		if(status == CopyStatus.SHALLOW) {
+			// copy exists, but was a shallow copy, change status to INPROGRESS
+			setStatus(targetEObj, CopyStatus.INPROGRESS);
 		}
 		else {
 			targetEObj = createCopy(sourceEObj);
 			put(sourceEObj, targetEObj);
+			setStatus(targetEObj, CopyStatus.INPROGRESS);
 
+			// creates a shallow copy of the container. This container will update containment references (such as packagedElement)
+			// and thus update links
 			createShallowContainer(sourceEObj);
 		}
 		EClass eClass = sourceEObj.eClass();
@@ -425,9 +471,8 @@ public class Copy extends Copier {
 					// reference, which subsets the "owner" relationship.
 					// e.g. if an operation is referenced, we need to copy the whole interface
 					// Currently: only the standard owning reference is not copied recursively.
-					// else if(!eReference.isContainer()) {
-					else if(!eReference.getName().equals("owner")) {
-						// not contained, but copy reference as well
+				
+					else if (!eReference.getName().equals("owner")) { //$NON-NLS-1$
 						Object feature = sourceEObj.eGet(eStructuralFeature);
 						if(feature instanceof Element) {
 							copy((Element)feature);
@@ -441,11 +486,8 @@ public class Copy extends Copier {
 		}
 		copyProxyURI(sourceEObj, targetEObj);
 		copyID(sourceEObj, targetEObj);
-
-		if(sourceEObj instanceof Element) {
-			// TODO: handle stereotype copy in a generic way
-			StUtils.copyStereotypes(this, (Element)sourceEObj, (Element)targetEObj);
-		}
+		copyStereotypes(sourceEObj);
+		setStatus(targetEObj, CopyStatus.FULL);
 
 		for(CopyListener listener : postCopyListeners) {
 			EObject result = listener.copyEObject(this, targetEObj);
@@ -457,6 +499,56 @@ public class Copy extends Copier {
 		return targetEObj;
 	}
 
+	/**
+	 * @param sourceEObj
+	 * @return a copy, if it already exists. If it does not exist, return the
+	 * source object itself, if no copy is required, otherwise return null.
+	 */
+	public EObject noCopy(EObject sourceEObj) {
+		boolean withinTemplate = withinTemplate(sourceEObj);
+		boolean sameResource = (sourceEObj.eResource() == source.eResource());
+		if(!sameResource && !copyExtReferences && !withinTemplate) {
+			return sourceEObj;
+		}
+		else {
+			return get(sourceEObj);
+		}
+	}
+	
+	/**
+	 * Copy stereotype applications. Since stereotype applications are not part of the containment of an eObject, they are not copied by the
+	 * generic function.
+	 * A problem of copying stereotypes is that it may drag whole hierarchies with it, for instance if we copy the base_ attributes,
+	 * we transform a shallow copy into a normal copy.
+	 * => always make shallow copies of packages, never shallow copies of classes? [the split into fragments is solved, but the split of the system component???]
+	 */
+	public void copyStereotypes(EObject sourceEObj, boolean duringShallow) {
+		if(sourceEObj instanceof Element) {
+		
+			for (EObject stereoApplication : ((Element) sourceEObj).getStereotypeApplications()) {
+				EObject copiedStereoApplication = (duringShallow) ?
+						shallowCopy(stereoApplication) :
+						copy(stereoApplication);
+	
+				if (copiedStereoApplication != null) {
+					// UMLUtil.setBaseElement(copiedStereoApplication, (Element) get(sourceEObj));
+					// add copied stereotype application to the resource (as top-level objects).
+					if (!target.eResource().getContents().contains(copiedStereoApplication)) {
+						target.eResource().getContents().add(copiedStereoApplication);		
+					}
+				}
+			}
+		}
+	}
+
+	public void copyStereotypes(EObject sourceEObj) {
+		copyStereotypes(sourceEObj, false);
+	}
+	
+	public void shallowCopyStereotypes(EObject sourceEObj) {
+		copyStereotypes(sourceEObj, true);
+	}
+	
 	/**
 	 * Copy the containment of an element with respect to a certain reference
 	 * 
@@ -520,8 +612,8 @@ public class Copy extends Copier {
 					target.clear();
 				} else {
 					for(EObject sourceEObj : source) {
-						// if eObject has already been copied, add it
-						EObject copyEObj = get(sourceEObj);
+						// if eObject has already been copied, add it to target
+						EObject copyEObj = noCopy(sourceEObj);
 						if((copyEObj != null) && (!target.contains(copyEObj))) {
 							target.add(copyEObj);
 						}
@@ -529,7 +621,8 @@ public class Copy extends Copier {
 				}
 			} else {
 				EObject childEObject = (EObject)eObject.eGet(eReference);
-				copyEObject.eSet(getTarget(eReference), childEObject == null ? null : copy(childEObject));
+				// get will return null, if object should not be copied. In this case, we do not want to replace
+				copyEObject.eSet(getTarget(eReference), childEObject == null ? null : noCopy(childEObject));
 			}
 		}
 	}
@@ -545,31 +638,31 @@ public class Copy extends Copier {
 		EObject owner = sourceEObj.eContainer();
 		EObject copy = null;
 		EObject lastSource = null;
+		EList<EObject> copyStereoList = new BasicEList<EObject>();
 		while(owner != null) {
 			if(containsKey(owner)) {
 				// owner is in map, still need to re-copy (update) the containment
 				// references, since one of the children did not exist before
 				//
 				shallowCopy(owner);
+				if (lastSource != null) {
+				//	StUtils.copyStereotypes(this, (Element)lastSource, (Element)copy);
+				}
 				return;
+				// break;
 			}
 			copy = shallowCopy(owner);
-			if(copy instanceof NamedElement) {
-				lastSource = owner;
-				((NamedElement)copy).setName(((NamedElement)owner).getName());
-			}
+			// copyStereoList.add(sourceEObj);
 			owner = owner.eContainer();
+		}
+		// copy the stereotypes after the container has been created completely
+		for (EObject copyStereo : copyStereoList) {
+			copyStereotypes(copyStereo);
 		}
 		if(copy instanceof PackageableElement) {
 			// if we copy external resources, we might reach the "top" on the source level
 			// which becomes a sub-package of the new model.
 			target.getPackagedElements().add((PackageableElement)copy);
-			// TODO: not very clean
-			if(lastSource instanceof Element) {
-				// TODO: cannot copy stereotypes only after creation, since eContainer does
-				// not exist at this moment. Need to put that intelligently into createShallowContainer
-				StUtils.copyStereotypes(this, (Element)lastSource, (Element)copy);
-			}
 		}
 	}
 
@@ -583,26 +676,34 @@ public class Copy extends Copier {
 	 * once a second class within the package has been copied => the packagedElements reference
 	 * of the package will be updated).
 	 * 
+	 * It is important that the implementation of this object does not make recursive calls.
+	 * In particular, stereotypes are based on shallow copy as well. This means that stereotype
+	 * attributes that reference other model elements will only be initialized if these elements
+	 * exist already.
+	 * 
 	 * @param sourceEObj
 	 * @return
 	 */
 	public EObject shallowCopy(EObject sourceEObj) {
+		boolean first = false;
 		EObject targetEObj = get(sourceEObj);
 		if(targetEObj == null) {
 			targetEObj = createCopy(sourceEObj);
 			put(sourceEObj, targetEObj);
-			setShallow(targetEObj, true);
+			setStatus(targetEObj, CopyStatus.SHALLOW);
+			first = true;
 		}
-		else if(!isShallow(targetEObj)) {
-			// object has already been completely copied
-			// TODO: only allow shallow for packages
-			// return targetEObj;
+		else if(getStatus(targetEObj) == CopyStatus.FULL) {
+			// object has already been completely copied. Nothing to do, return targetEObj.
+			// Note that this implies that the update of references below is called for full copies
+			// in progress and shallow copies. The former assures that all copied elements have an
+			// eContainer during the call of pre-copy listeners (example: if a class is copied, its
+			// operations are recursively copied, the ownedOperation relationship is only updated
+			// *afterwards* by the code within the (full) copy operation).
+			return targetEObj;
 		}
-		if((sourceEObj instanceof Element) && (targetEObj instanceof Element)) {
-			// TODO: can copy stereotypes only after creation, since eContainer does
-			// not exist at this moment. Need to put that intelligently into createShallowContainer
-			StUtils.copyStereotypes(this, (Element)sourceEObj, (Element)targetEObj);
-		}
+		
+		shallowCopyStereotypes(sourceEObj);
 
 		EClass eClass = sourceEObj.eClass();
 
@@ -610,15 +711,14 @@ public class Copy extends Copier {
 			EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(i);
 			if(eStructuralFeature.isChangeable() && !eStructuralFeature.isDerived()) {
 				if(eStructuralFeature instanceof EAttribute) {
-					// copyAttribute((EAttribute)eStructuralFeature, sourceEObj, targetEObj);
+					// copy all attributes during first pass after creation of target object
+					if (first) {
+						copyAttribute((EAttribute)eStructuralFeature, sourceEObj, targetEObj);
+					}
 				} else {
 					EReference eReference = (EReference)eStructuralFeature;
-					// avoid that during create of shallow copy, a real copy is produced
-					// (clarify why may elements are already copied)
-					if(eReference.isContainment() && (!eReference.getName().equals("ownedTemplateSignature"))) {
-
-						shallowCopyContainment(eReference, sourceEObj, targetEObj);
-					}
+					// create a shallow copy of the containment: update only references already in the copy map
+					shallowCopyContainment(eReference, sourceEObj, targetEObj);
 				}
 			}
 		}

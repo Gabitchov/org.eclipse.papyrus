@@ -25,7 +25,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
  * specialization in order to call specific command
  * 
  */
-
 public class CTemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy extends TemplateSignatureTemplateParameterCompartmentItemSemanticEditPolicy {
 
 	/**

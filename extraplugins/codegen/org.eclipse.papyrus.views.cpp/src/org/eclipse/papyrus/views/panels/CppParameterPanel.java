@@ -17,7 +17,7 @@ import org.eclipse.papyrus.C_Cpp.Array;
 import org.eclipse.papyrus.C_Cpp.Const;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
-import org.eclipse.papyrus.cpp.profile.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -207,19 +207,19 @@ public class CppParameterPanel extends CppAbstractPanel {
 					// Treat Pointer
 					String newPtr = docPtr.get();
 					if(newPtr.equals("")) {
-						StUtils.unapply(selectedParameter, Ptr.class);
+						StereotypeUtil.unapply(selectedParameter, Ptr.class);
 					}
 					else {
-						StUtils.apply(selectedParameter, Ptr.class);
+						StereotypeUtil.apply(selectedParameter, Ptr.class);
 					}
 
 					// Treat Reference
 					String newRef = docRef.get();
 					if(newRef.equals("")) {
-						StUtils.unapply(selectedParameter, Ref.class);
+						StereotypeUtil.unapply(selectedParameter, Ref.class);
 					}
 					else {
-						StUtils.apply(selectedParameter, Ref.class);
+						StereotypeUtil.apply(selectedParameter, Ref.class);
 					}
 
 					// Treat DefaultValue
@@ -229,11 +229,11 @@ public class CppParameterPanel extends CppAbstractPanel {
 					// Treat Array
 					String newArray = docArray.get();
 					if(newArray.equals("")) {
-						StUtils.unapply(selectedParameter, Array.class);
+						StereotypeUtil.unapply(selectedParameter, Array.class);
 					}
 					else {
-						StUtils.apply(selectedParameter, Array.class);
-						// StUtils.setTaggedValue(selectedParameter, Array.class, "definition", newArray);
+						StereotypeUtil.apply(selectedParameter, Array.class);
+						// StereotypeUtil.setTaggedValue(selectedParameter, Array.class, "definition", newArray);
 					}
 				}
 			});
@@ -250,14 +250,14 @@ public class CppParameterPanel extends CppAbstractPanel {
 		if(selectedParameter != null) {
 			// Const
 
-			isConst.setSelection(StUtils.isApplied(selectedParameter, Const.class));
+			isConst.setSelection(StereotypeUtil.isApplied(selectedParameter, Const.class));
 			// TODO: examine effect;
 			// isConst.setSelection(selectedParameter.getEffect?);
 
-			docPtr.set(StUtils.isApplied(selectedParameter, Ptr.class) ? "*" : "");
-			docRef.set(StUtils.isApplied(selectedParameter, Ref.class) ? "&" : "");
+			docPtr.set(StereotypeUtil.isApplied(selectedParameter, Ptr.class) ? "*" : "");
+			docRef.set(StereotypeUtil.isApplied(selectedParameter, Ref.class) ? "&" : "");
 			docDefault.set(selectedParameter.getDefault());
-			docArray.set(StUtils.isApplied(selectedParameter, Array.class) ? "[]" : "");
+			docArray.set(StereotypeUtil.isApplied(selectedParameter, Array.class) ? "[]" : "");
 			// need definition?
 		}
 	}
@@ -270,12 +270,12 @@ public class CppParameterPanel extends CppAbstractPanel {
 		boolean boxState = isConst.getSelection();
 
 		if(boxState) {
-			if(!StUtils.isApplied(selectedParameter, Const.class)) {
-				StUtils.apply(selectedParameter, Const.class);
+			if(!StereotypeUtil.isApplied(selectedParameter, Const.class)) {
+				StereotypeUtil.apply(selectedParameter, Const.class);
 			}
 		} else {
-			if(StUtils.isApplied(selectedParameter, Const.class)) {
-				StUtils.unapply(selectedParameter, Const.class);
+			if(StereotypeUtil.isApplied(selectedParameter, Const.class)) {
+				StereotypeUtil.unapply(selectedParameter, Const.class);
 			}
 		}
 	}
@@ -297,12 +297,12 @@ public class CppParameterPanel extends CppAbstractPanel {
 	 */
 	@Override
 	public boolean checkModifications() {
-		String ptrValue = StUtils.isApplied(selectedParameter, Ptr.class) ? "*" : "";
+		String ptrValue = StereotypeUtil.isApplied(selectedParameter, Ptr.class) ? "*" : "";
 		if(!docPtr.get().equals(ptrValue)) {
 			return true;
 		}
 
-		String refValue = StUtils.isApplied(selectedParameter, Ref.class) ? "&" : "";
+		String refValue = StereotypeUtil.isApplied(selectedParameter, Ref.class) ? "&" : "";
 		if(!docRef.get().equals(refValue)) {
 			return true;
 		}
@@ -317,7 +317,7 @@ public class CppParameterPanel extends CppAbstractPanel {
 			return true;
 		}
 
-		String arrayValue = StUtils.isApplied(selectedParameter, Array.class) ? "[]" : "";
+		String arrayValue = StereotypeUtil.isApplied(selectedParameter, Array.class) ? "[]" : "";
 		if(!docArray.get().equals(arrayValue)) {
 			return true;
 		}

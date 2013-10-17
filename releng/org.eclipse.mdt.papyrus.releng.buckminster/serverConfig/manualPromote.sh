@@ -20,7 +20,7 @@ DROPS_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/downloads/d
 ARCHIVE_DIR=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/drops
 ARCHIVE_INDEX=/home/data/httpd/archive.eclipse.org/modeling/mdt/papyrus/downloads/index.html
 UPDATE_SITES_DIR=/home/data/httpd/download.eclipse.org/modeling/mdt/papyrus/updates
-ZIP_PREFIX="Papyrus-Update-"
+ZIP_PREFIX="Papyrus-Update-incubation-"
 PROMOTE_FUNCTIONS_SH=/opt/public/modeling/mdt/papyrus/promoteFunctions.sh
 ADD_TO_COMPOSITE_SH=/opt/public/modeling/mdt/papyrus/addToComposite.sh
 
@@ -67,7 +67,7 @@ while [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
 done
 
 echo "updateSite (e.g. \"nightly/juno\", \"milestones/0.9/M5\", \"releases/indigo/0.8.1\") : "
-while [[ ! "$updateSite" =~ ^(tmpTest|releases/(indigo|juno|kepler)/[0-9]+\.[0-9]\.[0-9]|milestones/[0-9]+\.[0-9]+/(M[1-7]|RC[1-9]|SR[1-9]_RC[1-9])|nightly/(indigo|juno|kepler))$ ]]; do
+while [[ ! "$updateSite" =~ ^(tmpTest|releases/(indigo|juno|kepler|luna)/[0-9]+\.[0-9]\.[0-9]|milestones/[0-9]+\.[0-9]+/(M[1-7]|RC[1-9]|SR[1-9]_RC[1-9])|nightly/(indigo|juno|kepler|luna))$ ]]; do
 	echo -n "? "
 	read updateSite
 done
@@ -107,7 +107,7 @@ cd "$workingDir"
 nfsURL="/shared/jobs/papyrus-trunk-nightly/builds/$mainBuildNumber/archive/"
 hudsonURL="https://hudson.eclipse.org/hudson/job/papyrus-trunk-nightly/$mainBuildNumber/artifact/"
 zipName="Papyrus-Main.zip"
-updateZipPrefix="Papyrus-Update"
+updateZipPrefix="Papyrus-Update-incubation"
 getZip "$zipName" "$nfsURL" "$hudsonURL"
 
 mkdir -p "$updateSiteDir"

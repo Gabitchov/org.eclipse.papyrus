@@ -113,7 +113,7 @@ public class DIResourceQuery {
 	 */
 	public static boolean waitFor(CDOView view, long timeout, TimeUnit unit) throws InterruptedException {
 		if(timeout <= 0) {
-			throw new IllegalArgumentException("Non-positive timeout");
+			throw new IllegalArgumentException("Non-positive timeout"); //$NON-NLS-1$
 		}
 
 		boolean result;
@@ -204,6 +204,7 @@ public class DIResourceQuery {
 	private IListener createCDOViewListener() {
 		return new IListener() {
 
+			@Override
 			public void notifyEvent(IEvent event) {
 				if(event instanceof ILifecycleEvent) {
 					ILifecycleEvent lifecycleEvent = (ILifecycleEvent)event;
@@ -223,6 +224,7 @@ public class DIResourceQuery {
 	private DisposeListener createViewerDisposeListener() {
 		return new DisposeListener() {
 
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				dispose();
 			}
@@ -269,14 +271,14 @@ public class DIResourceQuery {
 
 			diResources.set(ImmutableSet.copyOf(result));
 
-			if(viewer.getControl() != null) {
+			if((viewer != null) && (viewer.getControl() != null)) {
 				Display display = viewer.getControl().getDisplay();
 				if(display != null) {
 					display.asyncExec(new Runnable() {
 
+						@Override
 						public void run() {
-							if((viewer.getControl() != null) && !viewer.getControl().isDisposed()) {
-
+							if((viewer != null) && (viewer.getControl() != null) && !viewer.getControl().isDisposed()) {
 								refresh();
 							}
 						}
@@ -294,7 +296,10 @@ public class DIResourceQuery {
 
 			CDOResourceFolder folder = resource.getFolder();
 			if(folder != null) {
-				result = folder.getNodes().contains(resource);
+				// if we don't have read permission on the folder, then we shouldn't attempt to show any contents
+				if(folder.cdoPermission().isReadable()) {
+					result = folder.getNodes().contains(resource);
+				}
 			} else {
 				CDOResource root = resource.cdoResource();
 				if((root != null) && root.isRoot()) {

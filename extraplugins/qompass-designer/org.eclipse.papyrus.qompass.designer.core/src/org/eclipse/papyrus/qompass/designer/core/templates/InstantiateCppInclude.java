@@ -16,7 +16,6 @@ package org.eclipse.papyrus.qompass.designer.core.templates;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.C_Cpp.Include;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
@@ -24,6 +23,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationC
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Instantiate the text within a C++Include tag.
@@ -52,7 +52,7 @@ public class InstantiateCppInclude implements CopyListener {
 			try {
 				Classifier actual = TemplateInstantiationListener.getFirstActualFromBinding(binding, targetCl);
 				if(actual != null) {
-					Include cppInclude = StUtils.getApplication(targetCl, Include.class);
+					Include cppInclude = UMLUtil.getStereotypeApplication(targetCl, Include.class);
 					TransformationContext.classifier = targetCl;
 					String newBody = AcceleoDriverWrapper.evaluate(cppInclude.getBody(), actual, null);
 					String newPreBody = AcceleoDriverWrapper.evaluate(cppInclude.getPreBody(), actual, null);

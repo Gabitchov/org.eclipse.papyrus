@@ -17,29 +17,52 @@ import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.internal.misc.StringMatcher;
 
-
+/**
+ * A ViewerFilter which can be used to match a pattern.
+ * 
+ * The pattern accepts wildcards (* and ?), and ; as a pattern-separator
+ * 
+ * For example:
+ * foo;bar will match either "foo" or "bar"
+ * foo* will match "foobar"
+ * 
+ * @author Camille Letavernier
+ * 
+ */
 public class PatternViewerFilter extends AbstractTreeFilter {
 
-	private StringMatcher pattern = new StringMatcher("*", true, false);
+	private StringMatcher[] validPatterns = new StringMatcher[]{ new StringMatcher("*", true, false) };
 
 	private String currentPattern;
 
 	private boolean strict = false;
 
+	/**
+	 * If the pattern is not strict, wildcards (*) will be added at the beginning and the end of the pattern
+	 * The pattern foo becomes equivalent to *foo*
+	 * 
+	 * @param strict
+	 */
 	public void setStrict(boolean strict) {
 		this.strict = strict;
 	}
 
 	public void setPattern(String value) {
-		if(!strict) {
-			value = "*" + value + "*";
-		}
-
 		if(value.equals(currentPattern)) {
 			return;
 		}
 
-		this.pattern = new StringMatcher(value, true, false);
+		currentPattern = value;
+
+		String[] patterns = value.split(";");
+		this.validPatterns = new StringMatcher[patterns.length];
+		int i = 0;
+		for(String pattern : patterns) {
+			if(!strict) {
+				pattern = "*" + pattern.trim() + "*";
+			}
+			validPatterns[i++] = new StringMatcher(pattern, true, false);
+		}
 
 		clearCache();
 	}
@@ -48,7 +71,11 @@ public class PatternViewerFilter extends AbstractTreeFilter {
 	public boolean isVisible(Viewer viewer, Object parentElement, Object element) {
 		IBaseLabelProvider labelProvider = ((StructuredViewer)viewer).getLabelProvider();
 		if(labelProvider instanceof ILabelProvider) {
-			return pattern.match(((ILabelProvider)labelProvider).getText(element));
+			for(StringMatcher pattern : validPatterns) {
+				if(pattern.match(((ILabelProvider)labelProvider).getText(element))) {
+					return true;
+				}
+			}
 		}
 		return false;
 	}

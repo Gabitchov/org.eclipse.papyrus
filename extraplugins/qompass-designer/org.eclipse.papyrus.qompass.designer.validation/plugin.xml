@@ -140,7 +140,7 @@
                   Operation is not implemented
                </description>
                <target
-                     class="Class">
+                     class="Operation">
                </target>
             </constraint>
             <constraint

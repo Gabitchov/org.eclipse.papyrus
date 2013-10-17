@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="scopeProviders" name="Papyrus Search Scope Providers" schema="schema/scopeProviders.exsd"/>
+   <extension
+         point="org.eclipse.papyrus.views.search.scopeProviders">
+      <scopeProvider
+            class="org.eclipse.papyrus.views.search.scope.WorkspaceScopeProvider">
+      </scopeProvider>
+   </extension>
+
+</plugin>

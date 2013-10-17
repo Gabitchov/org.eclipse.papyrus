@@ -86,7 +86,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * This class provides a Dialog to manage easily the provided and the required Interfaces for a {@link Port}.
  */
@@ -108,10 +107,10 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	private ReferenceSelector requiredSelector;
 
 	/** the Editor for the provided interfaces. */
-	private SelectionEditor providedEditor;
+	protected ExtendedSelectionEditor providedEditor;
 
 	/** the Editor for the required interfaces. */
-	private SelectionEditor requiredEditor;
+	protected ExtendedSelectionEditor requiredEditor;
 
 	/** In this map, we link the {@link Interface} with their {@link Usage} This map is used when we want remove an Interface from a Usage. */
 	private Map<Interface, List<Usage>> requiredInterfacesMappedWithUsage = new HashMap<Interface, List<Usage>>();
@@ -122,7 +121,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	private Map<Interface, List<Realization>> providedInterfacesMappedWithRealization = new HashMap<Interface, List<Realization>>();
 
 	/** the label provider for selector. */
-	private final ILabelProvider selectorLabelProvider = new SelectorLabelProvider();
+	protected  ILabelProvider selectorLabelProvider = new SelectorLabelProvider();
 
 	/** the label provider for the create new element dialog. */
 	private final ILabelProvider newElementLabelProvider = new CreateElementLabelProvider();
@@ -402,8 +401,8 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * @return the selection editor
 	 *         the created {@link SelectionEditor}
 	 */
-	protected SelectionEditor createEditor(Composite parent, IElementSelector selector, String message, boolean withCreateButton, SelectionListener listener, List<Object> initialSelection) {
-		SelectionEditor editor = new SelectionEditor(parent, selector, selectorLabelProvider, initialSelection);
+	protected ExtendedSelectionEditor createEditor(Composite parent, IElementSelector selector, String message, boolean withCreateButton, SelectionListener listener, List<Object> initialSelection) {
+		ExtendedSelectionEditor editor = new ExtendedSelectionEditor(parent, selector, selectorLabelProvider, initialSelection);
 		editor.setMessage(message);
 		editor.setAdditionalButton(withCreateButton, Messages.InterfaceManagerDialog_CreateNewInterface, listener);
 		return editor;

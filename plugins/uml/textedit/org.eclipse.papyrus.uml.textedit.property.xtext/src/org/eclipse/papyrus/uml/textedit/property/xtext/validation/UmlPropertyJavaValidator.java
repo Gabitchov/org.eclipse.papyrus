@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.property.xtext.validation;
 
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.MultiplicityRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.PropertyRule;
@@ -21,219 +20,202 @@ import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.RedefinesRule
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.SubsetsRule;
 import org.eclipse.papyrus.uml.textedit.property.xtext.umlProperty.UmlPropertyPackage;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.xtext.validation.Check;
- 
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 /**
  * Class for customized java validation
- *
+ * 
  */
 public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 
-	private static Namespace model ;
-	private static Element contextElement ;
-	
-	// private variables for semantic error management (See IXtextSemanticValidator from org.eclipse.papyrus.infra.gmfdiag.xtext.glue)
-	private static boolean valid_MultiplicityRule = true ;
-	private static boolean valid_RedefinesRule = true ;
-	private static boolean valid_SubsetsRule = true ;
-	
-	public static void init(Element _contextElement) {
-		contextElement = _contextElement ;
-		if (contextElement != null) {
-			Element elem = contextElement.getOwner() ;
-			while (elem.getOwner() != null) {
-				elem = elem.getOwner() ;
-			}
-			model = (Namespace)elem ;
-		}
+	@Override
+	public void register(EValidatorRegistrar registrar) {
+		// TODO Auto-generated method stub
+		super.register(registrar);
 	}
 
-	public static Namespace getModel() {
-		return model ;
-	}
-	
-	public static Element getContextElement() {
-		return contextElement ;
-	}
-	
-	public static boolean validate() {
-		return valid_MultiplicityRule && valid_RedefinesRule && valid_SubsetsRule ;
-	}
-	
+
 	/**
-	 * Custom validation for multiplicities. Raises an error in the case where the lower bound is upper than the upper bound.
+	 * Custom validation for multiplicities. Raises an error in the case where
+	 * the lower bound is upper than the upper bound.
 	 * 
 	 */
 	@Check
-	public void checkMultiplicityRule (MultiplicityRule rule) {
-		int lowerValue = 0 ;
-		int upperValue = 0 ;
-		String errorMessage = "The upper bound of a multiplicity cannot be lower than the lower bound." ;
+	public void checkMultiplicityRule(MultiplicityRule rule) {
+		int lowerValue = 0;
+		int upperValue = 0;
+		String errorMessage = "The upper bound of a multiplicity cannot be lower than the lower bound.";
 		try {
 			if (rule.getBounds().size() == 2) {
-				lowerValue = rule.getBounds().get(0).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds().get(0).getValue()) ;
-				upperValue = rule.getBounds().get(1).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds().get(1).getValue()) ;
-				if ((lowerValue == -1 && upperValue != -1) ||
-					(lowerValue > upperValue && upperValue != -1)) {
-					error(errorMessage, UmlPropertyPackage.eINSTANCE.getBoundSpecification_Value()) ;
-					//error(errorMessage, rule, UmlPropertyPackage.BOUND_SPECIFICATION__VALUE) ;
-					valid_MultiplicityRule = false ;
-				}
-				else {
-					valid_MultiplicityRule = true ;
+				lowerValue = rule.getBounds().get(0).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds()
+						.get(0).getValue());
+				upperValue = rule.getBounds().get(1).getValue().equals("*") ? -1 : Integer.valueOf(rule.getBounds()
+						.get(1).getValue());
+				if ((lowerValue == -1 && upperValue != -1) || (lowerValue > upperValue && upperValue != -1)) {
+					error(errorMessage, null);
 				}
 			}
-		}
-		catch (Exception e) {
-			// An exception may be raised only in the case where the syntax for multiplicities is not respected.
-			// No error needs to be generated (the syntax error is automatically handled by XText)
+		} catch (Exception e) {
+			// An exception may be raised only in the case where the syntax for
+			// multiplicities is not respected.
+			// No error needs to be generated (the syntax error is automatically
+			// handled by XText)
 		}
 	}
-	
+
 	@Check
-	public void checkRedefinesRule (RedefinesRule rule) {
+	public void checkRedefinesRule(RedefinesRule rule) {
 		try {
-			Property redefinedProperty = rule.getProperty() ;
+			Property redefinedProperty = rule.getProperty();
 
-			String typeErrorMessage = "The type of the redefining property must conform to the type of the redefined property" ;
-			String multiplicityErrorMessage = "The multiplicity of the redefining property must be contained in the multiplicity of the redefined property" ;
-			String isDerivedErrorMessage = "Since the redefined property is derived, the redefining property must be derived" ;
+			String typeErrorMessage = "The type of the redefining property must conform to the type of the redefined property";
+			String multiplicityErrorMessage = "The multiplicity of the redefining property must be contained in the multiplicity of the redefined property";
+			String isDerivedErrorMessage = "Since the redefined property is derived, the redefining property must be derived";
 
-			EObject container = rule.eContainer() ;
+			EObject container = rule.eContainer();
 
 			while (container != null && !(container instanceof PropertyRule)) {
-				container = container.eContainer() ;
+				container = container.eContainer();
 			}
 
 			if (container == null)
-				return ;
+				return;
 
-			PropertyRule propertyRule = (PropertyRule)container ;
-			Classifier typeOfRedefiningProperty = propertyRule.getType().getType() ;
-			boolean isRedefiningPropertyDerived = propertyRule.getIsDerived() != null && propertyRule.getIsDerived().equals("/") ;
+			PropertyRule propertyRule = (PropertyRule) container;
+			Classifier typeOfRedefiningProperty = propertyRule.getType().getType();
+			boolean isRedefiningPropertyDerived = propertyRule.getIsDerived() != null
+					&& propertyRule.getIsDerived().equals("/");
 
-			valid_RedefinesRule = typeOfRedefiningProperty.conformsTo(redefinedProperty.getType()) ;
-			if (! valid_RedefinesRule) {
-				error(typeErrorMessage, UmlPropertyPackage.eINSTANCE.getRedefinesRule_Property()) ;
-				//error(typeErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
-				return ;
+			boolean valid_RedefinesRule = typeOfRedefiningProperty.conformsTo(redefinedProperty.getType());
+			if (!valid_RedefinesRule) {
+				error(typeErrorMessage, UmlPropertyPackage.eINSTANCE.getRedefinesRule_Property());
+				// error(typeErrorMessage, rule,
+				// UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
+				return;
 			}
 
-			int lowerBoundOfRedefinedProperty = redefinedProperty.getLower() ;
-			int upperBoundOfRedefinedProperty = redefinedProperty.getUpper() ;
+			int lowerBoundOfRedefinedProperty = redefinedProperty.getLower();
+			int upperBoundOfRedefinedProperty = redefinedProperty.getUpper();
 
-			int lowerBound = 1 ;
-			int upperBound = 1 ;
+			int lowerBound = 1;
+			int upperBound = 1;
 
 			if (propertyRule.getMultiplicity() != null) {
 				if (propertyRule.getMultiplicity().getBounds().size() == 1) {
-					lowerBound = propertyRule.getMultiplicity().getBounds().get(0).getValue().equals("*") ? -1 : Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(0).getValue()) ;
-					upperBound = lowerBound ;
-				}
-				else if (propertyRule.getMultiplicity().getBounds().size() == 2) {
-					lowerBound = propertyRule.getMultiplicity().getBounds().get(0).getValue().equals("*") ? -1 : Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(0).getValue()) ;
-					upperBound = propertyRule.getMultiplicity().getBounds().get(1).getValue().equals("*") ? -1 : Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(1).getValue()) ;
+					lowerBound = propertyRule.getMultiplicity().getBounds().get(0).getValue().equals("*") ? -1
+							: Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(0).getValue());
+					upperBound = lowerBound;
+				} else if (propertyRule.getMultiplicity().getBounds().size() == 2) {
+					lowerBound = propertyRule.getMultiplicity().getBounds().get(0).getValue().equals("*") ? -1
+							: Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(0).getValue());
+					upperBound = propertyRule.getMultiplicity().getBounds().get(1).getValue().equals("*") ? -1
+							: Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(1).getValue());
 				}
 			}
 
-			valid_RedefinesRule = lowerBound >= lowerBoundOfRedefinedProperty ;
+			valid_RedefinesRule = lowerBound >= lowerBoundOfRedefinedProperty;
 			switch (upperBoundOfRedefinedProperty) {
 			case -1:
-				break ;
+				break;
 			default:
 				valid_RedefinesRule = valid_RedefinesRule && upperBound <= upperBoundOfRedefinedProperty;
 				break;
 			}
 
-			if (! valid_RedefinesRule) {
-				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getRedefinesRule_Property()) ;
-				//error(multiplicityErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
-				return ;
-			}
-			
-			if (redefinedProperty.isDerived() && !isRedefiningPropertyDerived)
-				valid_RedefinesRule = false ;
-			if (! valid_RedefinesRule) {
-				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getRedefinesRule_Property()) ;
-				//error(isDerivedErrorMessage, rule, UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
-				return ;
+			if (!valid_RedefinesRule) {
+				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getRedefinesRule_Property());
+				// error(multiplicityErrorMessage, rule,
+				// UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
+				return;
 			}
 
-		}
-		catch (Exception e) {
-			// An exception may be raised only in the case where the syntax for subsets is not respected.
-			// No error needs to be generated (the syntax error is automatically handled by XText)
+			if (redefinedProperty.isDerived() && !isRedefiningPropertyDerived)
+				valid_RedefinesRule = false;
+			if (!valid_RedefinesRule) {
+				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getRedefinesRule_Property());
+				// error(isDerivedErrorMessage, rule,
+				// UmlPropertyPackage.REDEFINES_RULE__PROPERTY) ;
+				return;
+			}
+
+		} catch (Exception e) {
+			// An exception may be raised only in the case where the syntax for
+			// subsets is not respected.
+			// No error needs to be generated (the syntax error is automatically
+			// handled by XText)
 		}
 	}
-	
+
 	@Check
-	public void checkSubsetsRule (SubsetsRule rule) {
+	public void checkSubsetsRule(SubsetsRule rule) {
 		try {
-			Property subsettedProperty = rule.getProperty() ;
+			Property subsettedProperty = rule.getProperty();
 
-			String typeErrorMessage = "The type of the subsetting property must conform to the type of the subsetted property" ;
-			String multiplicityErrorMessage = "The multiplicity of the subsetting property must be contained in the multiplicity of the subsetted property" ;
+			String typeErrorMessage = "The type of the subsetting property must conform to the type of the subsetted property";
+			String multiplicityErrorMessage = "The multiplicity of the subsetting property must be contained in the multiplicity of the subsetted property";
 
-			EObject container = rule.eContainer() ;
+			EObject container = rule.eContainer();
 
 			while (container != null && !(container instanceof PropertyRule)) {
-				container = container.eContainer() ;
+				container = container.eContainer();
 			}
 
 			if (container == null)
-				return ;
+				return;
 
-			PropertyRule propertyRule = (PropertyRule)container ;
-			Classifier typeOfSubsettingProperty = propertyRule.getType().getType() ;
+			PropertyRule propertyRule = (PropertyRule) container;
+			Classifier typeOfSubsettingProperty = propertyRule.getType().getType();
 
-			valid_SubsetsRule = typeOfSubsettingProperty.conformsTo(subsettedProperty.getType()) ;
-			if (! valid_SubsetsRule) {
-				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getSubsetsRule_Property()) ;
-				//error(typeErrorMessage, rule, UmlPropertyPackage.SUBSETS_RULE__PROPERTY) ;
-				return ;
+			boolean valid_SubsetsRule = typeOfSubsettingProperty.conformsTo(subsettedProperty.getType());
+			if (!valid_SubsetsRule) {
+				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getSubsetsRule_Property());
+				// error(typeErrorMessage, rule,
+				// UmlPropertyPackage.SUBSETS_RULE__PROPERTY) ;
+				return;
 			}
 
-			int lowerBoundOfRedefinedProperty = subsettedProperty.getLower() ;
-			int upperBoundOfRedefinedProperty = subsettedProperty.getUpper() ;
+			int lowerBoundOfRedefinedProperty = subsettedProperty.getLower();
+			int upperBoundOfRedefinedProperty = subsettedProperty.getUpper();
 
-			int lowerBound = 1 ;
-			int upperBound = 1 ;
+			int lowerBound = 1;
+			int upperBound = 1;
 
 			if (propertyRule.getMultiplicity() != null) {
 				if (propertyRule.getMultiplicity().getBounds().size() == 1) {
-					lowerBound = propertyRule.getMultiplicity().getBounds().get(0).getValue().equals("*") ? -1 : Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(0).getValue()) ;
-					upperBound = lowerBound ;
-				}
-				else if (propertyRule.getMultiplicity().getBounds().size() == 2) {
-					lowerBound = propertyRule.getMultiplicity().getBounds().get(0).getValue().equals("*") ? -1 : Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(0).getValue()) ;
-					upperBound = propertyRule.getMultiplicity().getBounds().get(1).getValue().equals("*") ? -1 : Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(1).getValue()) ;
+					lowerBound = propertyRule.getMultiplicity().getBounds().get(0).getValue().equals("*") ? -1
+							: Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(0).getValue());
+					upperBound = lowerBound;
+				} else if (propertyRule.getMultiplicity().getBounds().size() == 2) {
+					lowerBound = propertyRule.getMultiplicity().getBounds().get(0).getValue().equals("*") ? -1
+							: Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(0).getValue());
+					upperBound = propertyRule.getMultiplicity().getBounds().get(1).getValue().equals("*") ? -1
+							: Integer.valueOf(propertyRule.getMultiplicity().getBounds().get(1).getValue());
 				}
 			}
 
-			valid_SubsetsRule = lowerBound >= lowerBoundOfRedefinedProperty ;
+			valid_SubsetsRule = lowerBound >= lowerBoundOfRedefinedProperty;
 			switch (upperBoundOfRedefinedProperty) {
 			case -1:
-				break ;
+				break;
 			default:
 				valid_SubsetsRule = valid_SubsetsRule && upperBound <= upperBoundOfRedefinedProperty;
 				break;
 			}
 
-			if (! valid_SubsetsRule) {
-				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getSubsetsRule_Property()) ;
-				//error(multiplicityErrorMessage, rule, UmlPropertyPackage.SUBSETS_RULE__PROPERTY) ;
-				return ;
+			if (!valid_SubsetsRule) {
+				error(multiplicityErrorMessage, UmlPropertyPackage.eINSTANCE.getSubsetsRule_Property());
+				// error(multiplicityErrorMessage, rule,
+				// UmlPropertyPackage.SUBSETS_RULE__PROPERTY) ;
+				return;
 			}
-			
 
-		}
-		catch (Exception e) {
-			// An exception may be raised only in the case where the syntax for subsets is not respected.
-			// No error needs to be generated (the syntax error is automatically handled by XText)
+		} catch (Exception e) {
+			// An exception may be raised only in the case where the syntax for
+			// subsets is not respected.
+			// No error needs to be generated (the syntax error is automatically
+			// handled by XText)
 		}
 	}
 }

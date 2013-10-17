@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *		
- *		CEA LIST - Initial API and implementation
+ * Régis Chevrel (chevrel.regis@gmail.com) CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.commands;
@@ -16,22 +16,12 @@ package org.eclipse.papyrus.sysml.diagram.common.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.jface.dialogs.Dialog;
-import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.extensionpoints.editors.Activator;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
-import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
-import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.services.edit.commands.AbstractConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
@@ -42,7 +32,6 @@ import org.eclipse.papyrus.sysml.diagram.common.dialogs.CreateOrSelectConstraint
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -106,25 +95,6 @@ public class CreateConstraintPropertyWithTypeConfigureCommandFactory extends Abs
 						ICommand newConstraintCreateCommand = commandService.getEditCommand(createTypeRequest);
 						if (newConstraintCreateCommand.canExecute()) {
 							newConstraintCreateCommand.execute(monitor, info);
-							Object newObject = newConstraintCreateCommand.getCommandResult().getReturnValue();
-							// Create the constraint specification
-							if (newObject instanceof EObject) {
-								final EObject newElement = (EObject)newObject;
-								final IDirectEditorConfiguration configuration = initExtendedEditorConfiguration(newElement);
-								Dialog dialog = new ConstraintExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), newElement, configuration.getTextToEdit(newElement), configuration);
-								final Dialog finalDialog = dialog;
-								if(Window.OK == dialog.open()) {
-									TransactionalEditingDomain domain = getEditingDomain();
-									RecordingCommand command = new RecordingCommand(domain, "Edit Constraint specification") {
-										@Override
-										protected void doExecute() {
-											configuration.postEditAction(newElement, ((ILabelEditorDialog)finalDialog).getValue());
-										}
-									};
-									domain.getCommandStack().execute(command);
-								}
-							}
-
 						}
 					}
 				}
@@ -136,19 +106,4 @@ public class CreateConstraintPropertyWithTypeConfigureCommandFactory extends Abs
 
 		return cancelCommand(request);
 	}
-	
-	/**
-	 * Initializes the extended editor configuration
-	 */
-	protected IDirectEditorConfiguration initExtendedEditorConfiguration(EObject element) {
-		IDirectEditorConfiguration configuration;
-		final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + element.eClass().getInstanceClassName());
-		if(languagePreferred != null && !languagePreferred.equals("")) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, element.eClass().getInstanceClassName());
-		} else {
-			configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, element.eClass().getInstanceClassName());
-		}
-		return configuration;
-	}
-
 }

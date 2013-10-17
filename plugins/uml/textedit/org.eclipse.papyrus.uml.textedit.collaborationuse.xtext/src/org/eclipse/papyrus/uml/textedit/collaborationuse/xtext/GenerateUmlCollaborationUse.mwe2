@@ -34,6 +34,16 @@ Workflow {
 		
 		//load UML
 		
+		//Types
+       	uriMap = { 
+			from = "platform:/plugin/org.eclipse.uml2.types/model/Types.ecore"
+           	to = "platform:/resource/org.eclipse.uml2.types/model/Types.ecore"
+       	}   	
+       	uriMap = { 
+			from = "platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel"
+           	to = "platform:/resource/org.eclipse.uml2.types/model/Types.genmodel"
+       	}
+       	
         uriMap = {
             from = "platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel"
             to = "platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel"
@@ -109,7 +119,6 @@ Workflow {
 			fragment = validation.JavaValidatorFragment {
 				composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
 				composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
-				// registerForImportedPackages = true
 			}
 
 			// scoping and exporting API

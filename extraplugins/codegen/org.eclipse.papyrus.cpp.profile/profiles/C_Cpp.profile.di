@@ -30,10 +30,10 @@
           <emfPageIdentifier href="C_Cpp.profile.notation#_VN2nIMoSEeGKstsYRuxdvw"/>
         </children>
         <children>
-          <emfPageIdentifier href="C_Cpp.profile.notation#_tDFW4MoSEeGKstsYRuxdvw"/>
+          <emfPageIdentifier href="C_Cpp.profile.notation#_br8hIJVTEeKBzP_954cAAA"/>
         </children>
         <children>
-          <emfPageIdentifier href="C_Cpp.profile.notation#_br8hIJVTEeKBzP_954cAAA"/>
+          <emfPageIdentifier href="C_Cpp.profile.notation#_tDFW4MoSEeGKstsYRuxdvw"/>
         </children>
       </children>
     </windows>

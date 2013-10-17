@@ -20,9 +20,10 @@ import java.util.List;
 import org.eclipse.papyrus.FCM.Connector;
 import org.eclipse.papyrus.FCM.util.ConnectorTypeUtil;
 import org.eclipse.papyrus.FCM.util.FCMUtil;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Embedding rule
@@ -49,8 +50,8 @@ public class AccordCall extends ConnectorTypeUtil {
 			if (end.getRole() instanceof org.eclipse.uml2.uml.Port) {
 				org.eclipse.uml2.uml.Port port = (org.eclipse.uml2.uml.Port)end.getRole() ;
 				org.eclipse.uml2.uml.Property part = end.getPartWithPort() ;
-				if (StUtils.isApplied(port, org.eclipse.papyrus.FCM.Port.class)) {
-					org.eclipse.papyrus.FCM.Port fcmPort = StUtils.getApplication(port, org.eclipse.papyrus.FCM.Port.class);
+				if (StereotypeUtil.isApplied(port, org.eclipse.papyrus.FCM.Port.class)) {
+					org.eclipse.papyrus.FCM.Port fcmPort = UMLUtil.getStereotypeApplication(port, org.eclipse.papyrus.FCM.Port.class);
 					if (fcmPort.getKind().getBase_Class().getName().equals("UseInterfaceWithRtf")) {
 						// => elements associated with the connector end play the client role
 						List<NamedElement> clientActors = new ArrayList<NamedElement>() ;

@@ -41,4 +41,11 @@ public interface IStereotypeApplicationLocationStrategy {
 	 */
 	public Set<URI> getProfileApplicationResourceURIs(EObject root);
 	
+	
+	/**
+	 * Returns the identifier of this strategy
+	 * @return the identifier of this strategy, should never be <code>null</code>.
+	 */
+	public String getIdentifier();
+	
 }

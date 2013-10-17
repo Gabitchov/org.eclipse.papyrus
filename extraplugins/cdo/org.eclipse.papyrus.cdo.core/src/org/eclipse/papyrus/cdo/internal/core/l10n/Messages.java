@@ -32,6 +32,8 @@ public class Messages extends NLS {
 
 	public static String CDOAwareModelSetServiceFactory_0;
 
+	public static String CDOControlModeParticipant_commandLabel;
+
 	public static String CDOUndoContext_0;
 
 	public static String CommitException_0;
@@ -64,11 +66,20 @@ public class Messages extends NLS {
 
 	public static String ModelTransferConfiguration_2;
 
+	public static String ModelTransferConfiguration_3;
+
+	public static String ModelTransferConfiguration_4;
+
 	public static String ModelTransferConfiguration_6;
 
 	public static String ModelTransferConfiguration_7;
 
 	public static String ModelTransferNode_0;
+
+	public static String PapyrusRepository_connectFailed;
+
+	public static String PapyrusRepository_badRepo;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

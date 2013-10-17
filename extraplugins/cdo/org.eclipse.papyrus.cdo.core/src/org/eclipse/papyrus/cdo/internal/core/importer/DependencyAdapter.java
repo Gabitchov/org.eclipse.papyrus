@@ -11,19 +11,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
-import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 
 /**
@@ -82,35 +84,20 @@ public class DependencyAdapter extends AdapterImpl {
 	}
 
 	private void analyze(Resource resource) {
-		for(Iterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {
-			for(EObject xref : iter.next().eCrossReferences()) {
-				Resource xrefRes = xref.eResource();
-				if((xrefRes != null) && (isUserModelResource(xrefRes.getURI()))) {
+		for(TreeIterator<EObject> iter = EcoreUtil.getAllProperContents(resource, false); iter.hasNext();) {
+			EObject next = iter.next();
 
-					addDependency(xrefRes);
-				}
-			}
-		}
-
-		if(isDIResource(resource)) {
-			// find implicit dependencies, being the other components of the
-			// logical Papyrus model. Note that this iteration over new
-			// members depends on the set being a LinkedHashSet (retaining
-			// the order of insertion)
-			int size, oldSize = 0;
-			do {
-				size = dependencies.size();
-
-				for(Resource firstOrder : ImmutableList.copyOf(dependencies).subList(oldSize, size)) {
-					for(Resource next : getDependencies(firstOrder)) {
-						if(getDIResource(next) == resource) {
-							addDependency(next);
-						}
+			// ignore annotations, such as are used for hyperlinks
+			if(next instanceof EAnnotation) {
+				iter.prune();
+			} else {
+				for(EObject xref : next.eCrossReferences()) {
+					Resource xrefRes = xref.eResource();
+					if((xrefRes != null) && (isUserModelResource(xrefRes.getURI()))) {
+						addDependency(xrefRes);
 					}
 				}
-
-				oldSize = size;
-			} while(oldSize < dependencies.size());
+			}
 		}
 	}
 
@@ -118,7 +105,7 @@ public class DependencyAdapter extends AdapterImpl {
 		return (Resource)getTarget();
 	}
 
-	private void addDependency(Resource resource) {
+	void addDependency(Resource resource) {
 		Resource self = getResource();
 
 		if((resource != self) && dependencies.add(resource)) {
@@ -133,8 +120,16 @@ public class DependencyAdapter extends AdapterImpl {
 	}
 
 	boolean isUserModelResource(URI uri) {
-		return // config.hasResource(uri) &&
-		(uri.isPlatformResource() || uri.isFile() || CDOUtils.isCDOURI(uri)) && !uri.isArchive();
+		ModelSet modelSet = getModelSet();
+		boolean result = (modelSet != null) ? modelSet.isUserModelResource(uri) :
+		// config.hasResource(uri) &&
+		uri.isPlatformResource() || uri.isFile() || CDOUtils.isCDOURI(uri);
+
+		return result && !uri.isArchive();
+	}
+
+	private ModelSet getModelSet() {
+		return CDOUtils.adapt(getResource().getResourceSet(), ModelSet.class);
 	}
 
 	public static boolean isDIResource(Resource resource) {

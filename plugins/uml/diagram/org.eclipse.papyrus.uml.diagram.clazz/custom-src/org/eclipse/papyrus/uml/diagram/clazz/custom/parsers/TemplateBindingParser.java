@@ -112,5 +112,4 @@ public class TemplateBindingParser implements IParser {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

@@ -58,15 +58,10 @@ public class TemplatePortImpl extends PortImpl implements TemplatePort {
 	 * @generated
 	 */
 	public PortKind basicGetBoundType() {
-		if(base_Port == null) {
-			return null;
-		}
-		if(base_Port.isConjugated()) {
-			return MapUtil.getBoundType(this);
-		}
-		else {
-			return MapUtil.getBoundType(this);
-		}
+		// TODO: implement this method to return the 'Bound Type' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**

@@ -76,7 +76,7 @@ public class TestComponentDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageInterface() {
-		testToManageNode(UMLElementTypes.Interface_2003, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_3200, true);
+		testToManageNode(UMLElementTypes.Interface_3205, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_3200, true);
 	}
 
 	/**

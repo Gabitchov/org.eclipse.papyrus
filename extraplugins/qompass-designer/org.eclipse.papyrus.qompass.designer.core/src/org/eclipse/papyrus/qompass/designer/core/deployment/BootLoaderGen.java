@@ -33,6 +33,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.CompImplTrafos;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -46,16 +47,26 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * The task of the boot-loader is twofold: create the instances of all
  * implementations (non-recursive).
  * - create Connections: what should be done?
+ *
  * TODO: factor out common code (TemplateInstantiation mechanism & createConnections below)
- * make non-static class (representing the bootLoader)
+ *	Split between C++ specific and C++ independent aspects 		
  */
 public class BootLoaderGen {
 
+	final public static String initOpName = "init"; //$NON-NLS-1$
+	
+	final public static String NL = "\n"; //$NON-NLS-1$
+	
+	final public static String EOL = ";\n"; //$NON-NLS-1$
+	
+	final public static String bootloaderName = "BootLoader"; //$NON-NLS-1$
+	
 	/**
 	 * Create a new boot-loader in a specific package
 	 * (which represents a node of the system).
@@ -69,7 +80,7 @@ public class BootLoaderGen {
 		// place in root (getModel()) to avoid the problem that the declaration of the bootLoader
 		// instance is within a namespace (a static attribute on the model level would not solve the
 		// problem as it must be accessed by function main).
-		m_bootLoader = copy.target.createOwnedClass("BootLoader", false);
+		m_bootLoader = copy.target.createOwnedClass(bootloaderName, false);
 		outputSizeof = false;
 		m_copy = copy;
 		Class template = (Class)Utils.getQualifiedElement(copy.source, bootloaderQNAME);
@@ -96,63 +107,36 @@ public class BootLoaderGen {
 		 * numberOfNodes.setDefault ("2");
 		 * }
 		 */
-		Include cppInclude = StUtils.applyApp(m_bootLoader, Include.class);
+		Include cppInclude = StereotypeUtil.applyApp(m_bootLoader, Include.class);
 		Object existingBody = cppInclude.getBody();
-		String existingBodyStr = "";
+		String existingBodyStr = ""; //$NON-NLS-1$
 		if(existingBody instanceof String) {
-			existingBodyStr = (String)existingBody + "\n";
+			existingBodyStr = (String)existingBody + NL;
 		}
 		String bodyStr =
-			"#include <unistd.h> // for sleep\n" +
-				"\n" +
-				"int nodeIndex = " + nodeIndex + ";\n" +
-				"int numberOfNodes = " + numberOfNodes + ";\n";
+			"#include <unistd.h> // for sleep\n" + //$NON-NLS-1$
+			"\n" + //$NON-NLS-1$
+			"int nodeIndex = " + nodeIndex + ";" + NL +  //$NON-NLS-1$//$NON-NLS-2$
+			"int numberOfNodes = " + numberOfNodes + ";" + NL; //$NON-NLS-1$ //$NON-NLS-2$
+		
 		if(outputSizeof) {
 			bodyStr +=
-				"#include <iostream>\n" +
-					"using namespace std;\n";
+				"#include <iostream>" + NL + //$NON-NLS-1$
+				"using namespace std;" + NL; //$NON-NLS-1$
 		}
 
 		cppInclude.setBody(existingBodyStr + bodyStr);
 
 		// bootLoader.createOwnedAttribute (mainInstance.getName (), composite);
 
-		// factor with template instantiations, actual is composite??
-		/*
-		 * Operation operation = template.getOwnedOperation ("createInstances", null, null);
-		 * Operation newOperation =
-		 * ModelTransformations.copyOperation (operation, bootLoader);
-		 * // operation.getMethod ();
-		 * // Method method = x;
-		 * // AcceleoDriver.bind (method.toString (), mainInstance);
-		 * Behavior behavior = operation.getMethods ().get (0);
-		 * if (behavior instanceof OpaqueBehavior) {
-		 * OpaqueBehavior newBehavior = (OpaqueBehavior)
-		 * bootLoader.createOwnedBehavior ("b:" + operation.getName (),
-		 * UMLPackage.eINSTANCE.getOpaqueBehavior ());
-		 * newOperation.getMethods ().add (newBehavior);
-		 * OpaqueBehavior opaqueBehavior = (OpaqueBehavior) behavior;
-		 * Iterator<String> bodies = opaqueBehavior.getBodies ().iterator ();
-		 * Iterator<String> languages = opaqueBehavior.getLanguages ().iterator ();
-		 * while (bodies.hasNext ())
-		 * {
-		 * String body = bodies.next ();
-		 * String language = languages.next ();
-		 * String newBody = AcceleoDriver.bind (body, mainInstance);
-		 * newBehavior.getBodies ().add (newBody);
-		 * newBehavior.getLanguages().add (language);
-		 * }
-		 * }
-		 */
-		m_initCode = "";
-		m_initCodeRun = "";
+		m_initCode = ""; //$NON-NLS-1$
+		m_initCodeRun = ""; //$NON-NLS-1$
 		m_activation = new HashMap<Class, EList<String>>();
-		m_initCodeCConnections = "";
-		m_initCodeCConfig = "";
+		m_initCodeCConnections = ""; //$NON-NLS-1$
+		m_initCodeCConfig = ""; //$NON-NLS-1$
 
 		if(outputSizeof) {
-			m_initCode += "cout << \"sizeof bootloader: \" << sizeof (bootloader) << endl;\n";
-			// m_initCode += "cout << \"sizeof bootloader: \" << sizeof (bootloader) << endl;\n";
+			m_initCode += "cout << \"sizeof bootloader: \" << sizeof (bootloader) << endl;" + EOL; //$NON-NLS-1$
 		}
 	}
 
@@ -184,7 +168,7 @@ public class BootLoaderGen {
 						//   - the variable name, if done by the bootloader
 						path = UMLTool.varName(path); // use variable name instead.
 					}
-					path += "." + pathElement.getDefiningFeature().getName();
+					path += "." + pathElement.getDefiningFeature().getName(); //$NON-NLS-1$
 					previousInstantiatedByBL = CompImplTrafos.instantiateViaBootloader(pathElement.getDefiningFeature());
 				}
 			}
@@ -220,7 +204,7 @@ public class BootLoaderGen {
 				String referenceVarName = getPath(referencePath, instance, false);
 
 				// add code for initialization
-				m_initCode += accessName + " = &" + referenceVarName + ";\n";
+				m_initCode += accessName + " = &" + referenceVarName + EOL; //$NON-NLS-1$
 				// is a reference which should not be called via activation & start
 				// return now and skip code below
 				return implemPart;
@@ -229,7 +213,7 @@ public class BootLoaderGen {
 				// let bootloader instantiate
 				implemPart = m_bootLoader.createOwnedAttribute(/* "i_" + */varName, implementation);
 				// add code for initialization
-				m_initCode += accessName + " = &" + varName + ";\n";
+				m_initCode += accessName + " = &" + varName + EOL; //$NON-NLS-1$
 				implemPart.setIsComposite(true);
 			}
 		}
@@ -239,28 +223,28 @@ public class BootLoaderGen {
 			implemPart.setIsComposite(true);
 		}
 		if(outputSizeof) {
-			m_initCode += "cout << \"sizeof " + implementation.getName() + ": \" << sizeof (" + varName + ") << endl;\n";
+			m_initCode += "cout << \"sizeof " + implementation.getName() + ": \" << sizeof (" + varName + ") << endl;" + EOL;   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
 		}
 
 		// if start thread => existing thread activation interceptor? Connection?
-		if(StUtils.isApplied(implementation, SwSchedulableResource.class)) {
+		if(StereotypeUtil.isApplied(implementation, SwSchedulableResource.class)) {
 			// yes, but is the thread instance part of the deployment plan?? [mmh, probably yes...]
 			// call threads start routine here? (via main thread?) which in turn will activate the start routine?
 		}
 
 		// implementation contains get_start operation => has start port
 		// which is called automatically
-		String get_start = PrefixConstants.getP_Prefix + "start";
+		String get_start = PrefixConstants.getP_Prefix + "start"; //$NON-NLS-1$
 
 		// Need to check whether implementation is an executor which is encapsulated in a container. In this case, only
 		// the method of the container and not the method of the executor (which owns the same port) maybe called.
 		// Currently, this check is based on the use of "executor" as reserved part name (validation checks that the
 		// user does not use this name for application components)
 		if(hasUnconnectedStartRoutine(m_copy, implementation, containerSlot)) {
-			if(m_initCodeRun.equals("")) {
+			if(m_initCodeRun.equals("")) { //$NON-NLS-1$
 				// call start's run method
 				// TODO: Need path that uses the right dereference operator ("->" or ".")
-				m_initCodeRun = varName + "." + get_start + "()->run ();\n";
+				m_initCodeRun = varName + "." + get_start + "()->run()" + EOL;  //$NON-NLS-1$ //$NON-NLS-2$
 			} else {
 				throw new TransformationException("There must be at most one blocking \"run\" operation per node. " +
 					"refuse to add \"run\" call for component instance \"" + varName + "\". Existing invocations: " + m_initCodeRun);
@@ -273,7 +257,7 @@ public class BootLoaderGen {
 			if(varNameList == null) {
 				varNameList = new BasicEList<String>();
 			}
-			varNameList.add(varName + ".");
+			varNameList.add(varName + "."); //$NON-NLS-1$
 			m_activation.put(implementation, varNameList);
 		}
 
@@ -287,7 +271,7 @@ public class BootLoaderGen {
 		}
 
 		if(bCreateConn) {
-			m_initCodeCConnections += varName + ".createConnections ();\n";
+			m_initCodeCConnections += varName + ".createConnections();\n"; //$NON-NLS-1$
 		}
 		return implemPart;
 	}
@@ -304,13 +288,9 @@ public class BootLoaderGen {
 	 */
 	public static boolean hasUnconnectedStartRoutine(Copy copy, Class implementation, Slot containerSlot) {
 		if(implementation != null) {
-			Element startPortElem = Utils.getNamedElementFromList(implementation.getAllAttributes(), "start");
-			if(startPortElem instanceof Port) {
-				Port startPort = (Port)startPortElem;
-				if(startPort.getType().getName().equals("IStart")) {
-					return !isConnected(copy, containerSlot, startPort);
-				}
-
+			Port startPort = AllocUtils.getStartPort(implementation);
+			if (startPort != null) {
+				return !isConnected(copy, containerSlot, startPort);
 			}
 		}
 		return false;
@@ -328,11 +308,11 @@ public class BootLoaderGen {
 	 */
 	public static boolean hasUnconnectedLifeCycle(Copy copy, Class implementation, Slot containerSlot) {
 		if(implementation != null) {
-			Element lcPortElem = Utils.getNamedElementFromList(implementation.getAllAttributes(), "lc");
+			Element lcPortElem = Utils.getNamedElementFromList(implementation.getAllAttributes(), "lc"); //$NON-NLS-1$
 			if(lcPortElem instanceof Port) {
 				Port lcPort = (Port)lcPortElem;
 				// check, if port typed with ILifeCycle interface
-				if(lcPort.getType().getName().equals("ILifeCycle")) {
+				if(lcPort.getType().getName().equals("ILifeCycle")) { //$NON-NLS-1$
 					return !isConnected(copy, containerSlot, lcPort);
 				}
 			}
@@ -376,15 +356,15 @@ public class BootLoaderGen {
 		String varName = getPath(slotPath, instance, false);
 		StructuralFeature sf = slot.getDefiningFeature();
 		if(sf == null) {
-			throw new TransformationException("A slot for instance " + varName +
-				" has no defining feature");
+			throw new TransformationException("A slot for instance " + varName + //$NON-NLS-1$
+				" has no defining feature"); //$NON-NLS-1$
 		}
 
 		for(ValueSpecification value : slot.getValues()) {
 
 			// only set value, if not null
 			if(value.stringValue() != null) {
-				m_initCodeCConfig += varName + " = " + value.stringValue() + ";\n";
+				m_initCodeCConfig += varName + " = " + value.stringValue() + EOL; //$NON-NLS-1$
 			}
 		}
 	}
@@ -397,28 +377,28 @@ public class BootLoaderGen {
 
 	public void addInit() {
 		// TODO: use template
-		Operation init = m_bootLoader.createOwnedOperation("init", null, null);
+		Operation init = m_bootLoader.createOwnedOperation(initOpName, null, null);
 		OpaqueBehavior initBehavior = (OpaqueBehavior)
-			m_bootLoader.createOwnedBehavior("init", UMLPackage.eINSTANCE.getOpaqueBehavior());
+			m_bootLoader.createOwnedBehavior(initOpName, UMLPackage.eINSTANCE.getOpaqueBehavior());
 		init.getMethods().add(initBehavior);
 
 
-		initBehavior.getLanguages().add("C/C++");
-		String code = m_initCode + "\n";
+		initBehavior.getLanguages().add(CompImplTrafos.progLang);
+		String code = m_initCode + "\n"; //$NON-NLS-1$
 		if(m_initCodeCConfig.length() > 0) {
-			code += "\n// instance configuration\n" +
-				m_initCodeCConfig + "\n";
+			code += "\n// instance configuration\n" + //$NON-NLS-1$
+				m_initCodeCConfig + "\n"; //$NON-NLS-1$
 		}
 		if(m_initCodeCConnections.length() > 0) {
-			code += "\n// create connections between instances\n" +
-				m_initCodeCConnections + "\n";
+			code += "\n// create connections between instances\n" + //$NON-NLS-1$
+				m_initCodeCConnections + "\n"; //$NON-NLS-1$
 		}
 		Comparator<Class> comparator = new Comparator<Class>() {
 
 			public int compare(Class clazz1, Class clazz2) {
 
-				InitPrecedence precedenceC1 = StUtils.getApplication(clazz1, InitPrecedence.class);
-				InitPrecedence precedenceC2 = StUtils.getApplication(clazz2, InitPrecedence.class);
+				InitPrecedence precedenceC1 = UMLUtil.getStereotypeApplication(clazz1, InitPrecedence.class);
+				InitPrecedence precedenceC2 = UMLUtil.getStereotypeApplication(clazz2, InitPrecedence.class);
 				if(precedenceC1 != null) {
 					// need to use named comparison instead of precedenceC1.getInvokeAfter ().contains (clazz2)
 					// since class referenced by stereotype attribute still points to element in source model
@@ -453,36 +433,34 @@ public class BootLoaderGen {
 			}
 		};
 		Class[] activationKeys = m_activation.keySet().toArray(new Class[0]);
-		String get_lc = PrefixConstants.getP_Prefix + "lc";
+		String get_lc = PrefixConstants.getP_Prefix + "lc"; //$NON-NLS-1$
 		if(activationKeys.length > 0) {
 			Arrays.sort(activationKeys, comparator);
-			code += "// activation code\n";
+			code += "// activation code\n"; //$NON-NLS-1$
 			for(Class implementation : activationKeys) {
 				EList<String> varNameList = m_activation.get(implementation);
 				for(String varName : varNameList) {
-					code += varName + get_lc + " ()->activate ();\n";
+					code += varName + get_lc + "()->activate();\n"; //$NON-NLS-1$
 				}
 			}
 		}
-		if(!m_initCodeRun.equals("")) {
-			code += "// initial user start\n" +
-				m_initCodeRun;
+		if(m_initCodeRun.length() > 0) {
+			code += "// initial user start\n" + m_initCodeRun; //$NON-NLS-1$
 		} else {
-			// no run code - assume that application should not return immediately
-			// enter an endless sleep
-			// TODO: issue user warning
-			code += "// sleep forever (since there is no user \"start\" call)\n" +
-				"for (;;) { sleep (1000); }\n";
+			// this change broke client-server example!
+			code += "// sleep forever\n";
+			code += "for (;;) { sleep(100); }\n";
+			// throw new TransformationRTException("no component implements the initial start. Assure that one component inherits from the CStart component");
 		}
 		if(activationKeys.length > 0) {
-			code += "// deactivation code (reverse order)\n";
+			code += "// deactivation code (reverse order)\n"; //$NON-NLS-1$
 
 			// traverse in reverse order
 			for(int i = activationKeys.length - 1; i >= 0; i--) {
 				Class implementation = activationKeys[i];
 				EList<String> varNameList = m_activation.get(implementation);
 				for(String varName : varNameList) {
-					code += varName + get_lc + " ()->deactivate ();\n";
+					code += varName + get_lc + "()->deactivate();\n"; //$NON-NLS-1$
 				}
 			}
 		}
@@ -496,7 +474,7 @@ public class BootLoaderGen {
 
 	private Class m_bootLoader;
 
-	private final static String bootloaderQNAME = "core::composites::BootLoader";
+	private final static String bootloaderQNAME = "core::composites::BootLoader"; //$NON-NLS-1$
 
 	/**
 	 * Initialization code, in particular assignment of part properties within composites

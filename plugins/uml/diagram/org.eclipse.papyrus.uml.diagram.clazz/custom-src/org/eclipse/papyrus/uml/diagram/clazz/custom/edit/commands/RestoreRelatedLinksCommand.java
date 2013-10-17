@@ -100,7 +100,6 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 				}
 			}
 		}
-
 		return false;
 	}
 
@@ -118,7 +117,6 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			// We must prevent duplicate descriptors
 			List<?> outgoingDescriptors = UMLDiagramUpdater.getOutgoingLinks(view);
 			cleanAdd(result, view, outgoingDescriptors);
-
 			List<?> incomingDescriptors = UMLDiagramUpdater.getIncomingLinks(view);
 			cleanAdd(result, view, incomingDescriptors);
 		}
@@ -137,11 +135,9 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	protected void createRelatedLinks(Collection<? extends UMLLinkDescriptor> linkDescriptors, Map<EObject, View> domain2NotationMap) {
 		// map diagram
 		mapModel(diagram, domain2NotationMap);
-
 		for(UMLLinkDescriptor nextLinkDescriptor : linkDescriptors) {
 			EditPart sourceEditPart = getEditPart(nextLinkDescriptor.getSource(), domain2NotationMap);
 			EditPart targetEditPart = getEditPart(nextLinkDescriptor.getDestination(), domain2NotationMap);
-
 			// If the parts are still null...
 			if(sourceEditPart == null || targetEditPart == null) {
 				continue;
@@ -158,7 +154,6 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 				CommandUtil.executeCommand(cmd, host);
 			}
 		}
-
 	}
 
 	/**
@@ -170,7 +165,6 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// To register all EditPart in the global visualIDRegistry
 		host().refresh();
-
 		for(Object object : adapters) {
 			if(object instanceof IAdaptable) {
 				IAdaptable ad = (IAdaptable)object;
@@ -181,9 +175,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 			} else if(object instanceof View) {
 				refreshRelatedLinks((View)object);
 			}
-
 		}
-
 		return CommandResult.newOKCommandResult();
 	}
 
@@ -212,7 +204,6 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	protected Collection<? extends UMLLinkDescriptor> getLinkDescriptorToProcess(View notationView, Map<EObject, View> domain2NotationMap) {
 		// Collect all related link from semantic model
 		Collection<? extends UMLLinkDescriptor> linkDescriptors = collectPartRelatedLinks(notationView, domain2NotationMap);
-
 		// Collect all related link from graphical model
 		Collection<Edge> existingLinks = new LinkedList<Edge>();
 		for(Object edge : notationView.getTargetEdges()) {
@@ -225,10 +216,8 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 				existingLinks.add((Edge)edge);
 			}
 		}
-
 		// Set all existing related link visible
 		setViewVisible(existingLinks);
-
 		// Remove already existing links
 		for(Iterator<Edge> linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = linksIterator.next();
@@ -282,14 +271,12 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		if(!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
 			return;
 		}
-
 		// register the view if its type allows incoming or outgoing links
 		if(!UMLDiagramUpdater.getOutgoingLinks(view).isEmpty() || !UMLDiagramUpdater.getIncomingLinks(view).isEmpty()) {
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) {
 				domain2NotationMap.put(view.getElement(), view);
 			}
 		}
-
 		@SuppressWarnings("unchecked")
 		EList<View> children = view.getChildren();
 		for(View child : children) {
@@ -309,7 +296,6 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 */
 	protected void refreshRelatedLinks(View notationView) {
 		Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
-
 		// Create related links
 		Collection<? extends UMLLinkDescriptor> linkDescriptors = getLinkDescriptorToProcess(notationView, domain2NotationMap);
 		createRelatedLinks(linkDescriptors, domain2NotationMap);

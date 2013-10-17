@@ -59,18 +59,15 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 	 * {@inheritedDoc}
 	 */
 	public void run(IAction action) {
-
 		CompoundCommand command = new CompoundCommand();
 		Dependency dependency = null;
 		TransactionalEditingDomain domain = selectedElement.getEditingDomain();
 		GraphicalEditPart dependencyNodeEditPart = null;
-
 		// 1. Semanctic deletion of the client or supplier
 		GraphicalEditPart branchSource = (GraphicalEditPart)selectedElement.getSource();
 		GraphicalEditPart branchtarget = (GraphicalEditPart)selectedElement.getTarget();
 		EStructuralFeature feature = null;
 		ArrayList<NamedElement> newValue = new ArrayList<NamedElement>();
-
 		if(branchSource.resolveSemanticElement() instanceof Dependency) {
 			// target is the supplier of the dependency
 			dependency = (Dependency)branchSource.resolveSemanticElement();
@@ -78,7 +75,6 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 			newValue.addAll(dependency.getSuppliers());
 			newValue.remove(branchtarget.resolveSemanticElement());
 			feature = UMLPackage.eINSTANCE.getDependency_Supplier();
-
 		} else {
 			// source is the client of the dependency to remove
 			feature = UMLPackage.eINSTANCE.getDependency_Client();
@@ -90,11 +86,9 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 		SetRequest setRequest = new SetRequest(dependency, feature, newValue);
 		SetValueCommand setValueCommand = new SetValueCommand(setRequest);
 		command.add(new ICommandProxy(setValueCommand));
-
 		// 2. graphical deletion of the branch
 		View branchDependencyView = selectedElement.getNotationView();
 		command.add(new ICommandProxy(new DeleteCommand(domain, branchDependencyView)));
-
 		// 3. test if it exists more than 2 branches
 		int branchNumber = dependencyNodeEditPart.getSourceConnections().size() + dependencyNodeEditPart.getTargetConnections().size();
 		if(branchNumber == 3) {
@@ -105,21 +99,18 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 			// dependency
 			ArrayList<EditPart> sourceList = new ArrayList<EditPart>();
 			ArrayList<EditPart> targetList = new ArrayList<EditPart>();
-
 			sourceList.addAll(dependencyNodeEditPart.getSourceConnections());
 			targetList.addAll(dependencyNodeEditPart.getTargetConnections());
 			sourceList.remove(selectedElement);
 			targetList.remove(selectedElement);
 			PreferencesHint preferencesHint = ((GraphicalEditPart)((ConnectionEditPart)(sourceList.get(0))).getTarget()).getDiagramPreferencesHint();
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4008, ((IHintedType)UMLElementTypes.Dependency_4008).getSemanticHint(), preferencesHint);
-
 			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType)UMLElementTypes.Dependency_4008).getSemanticHint(), new SemanticAdapter(null, (((ConnectionEditPart)(targetList.get(0))).getSource()).getModel()), new SemanticAdapter(null, (((ConnectionEditPart)(sourceList.get(0))).getTarget()).getModel()), sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
 			binaryCommand.setElement(dependency);
 			command.add(new ICommandProxy(binaryCommand));
 		}
 		// 6.command Execution
 		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-
 	}
 
 	/**
@@ -139,6 +130,5 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub
-
 	}
 }

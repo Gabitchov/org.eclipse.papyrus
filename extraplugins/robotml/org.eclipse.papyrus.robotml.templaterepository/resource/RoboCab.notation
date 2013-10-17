@@ -941,56 +941,6 @@
       <element xmi:type="uml:Class" href="RoboCab.uml#_ypiFMDUpEeG5pL_fpN2DgQ"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_yp4DcTUpEeG5pL_fpN2DgQ" x="1930" y="30" width="166" height="121"/>
     </children>
-    <children xmi:type="notation:Shape" xmi:id="_g16zUGeiEeGWtaOO91qxRQ" type="2073" fontHeight="8" lineColor="0">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g16zUmeiEeGWtaOO91qxRQ" source="ShadowFigure">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g16zU2eiEeGWtaOO91qxRQ" key="ShadowFigure_Value" value="false"/>
-      </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g16zVGeiEeGWtaOO91qxRQ" source="displayNameLabelIcon">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g16zVWeiEeGWtaOO91qxRQ" key="displayNameLabelIcon_value" value="false"/>
-      </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g16zVmeiEeGWtaOO91qxRQ" source="QualifiedName">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g16zV2eiEeGWtaOO91qxRQ" key="QualifiedNameDepth" value="1000"/>
-      </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g2XfQGeiEeGWtaOO91qxRQ" source="Stereotype_Annotation">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g3jyEGeiEeGWtaOO91qxRQ" key="StereotypeWithQualifiedNameList" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g3jyEWeiEeGWtaOO91qxRQ" key="StereotypeList" value="RobotML::LidarSystem"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g3jyEmeiEeGWtaOO91qxRQ" key="Stereotype_Presentation_Kind" value="IconStereotype"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g3jyE2eiEeGWtaOO91qxRQ" key="PropStereoDisplay" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_g3jyFGeiEeGWtaOO91qxRQ" key="StereotypePropertyLocation" value="Compartment"/>
-      </eAnnotations>
-      <children xmi:type="notation:DecorationNode" xmi:id="_g16zWGeiEeGWtaOO91qxRQ" type="5156"/>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_g16zWWeiEeGWtaOO91qxRQ" type="7073">
-        <styles xmi:type="notation:TitleStyle" xmi:id="_g16zWmeiEeGWtaOO91qxRQ"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g16zW2eiEeGWtaOO91qxRQ"/>
-      </children>
-      <element xmi:type="uml:Class" href="RoboCab.uml#_g1eucGeiEeGWtaOO91qxRQ"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_g16zUWeiEeGWtaOO91qxRQ" x="338" y="313"/>
-    </children>
-    <children xmi:type="notation:Shape" xmi:id="_hfWK0GeiEeGWtaOO91qxRQ" type="2073" fontHeight="8" lineColor="0">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hfWK0meiEeGWtaOO91qxRQ" source="ShadowFigure">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hfWK02eiEeGWtaOO91qxRQ" key="ShadowFigure_Value" value="false"/>
-      </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hff70GeiEeGWtaOO91qxRQ" source="displayNameLabelIcon">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hff70WeiEeGWtaOO91qxRQ" key="displayNameLabelIcon_value" value="false"/>
-      </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hff70meiEeGWtaOO91qxRQ" source="QualifiedName">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hff702eiEeGWtaOO91qxRQ" key="QualifiedNameDepth" value="1000"/>
-      </eAnnotations>
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hfy2wGeiEeGWtaOO91qxRQ" source="Stereotype_Annotation">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hg1YkGeiEeGWtaOO91qxRQ" key="StereotypeWithQualifiedNameList" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hg1YkWeiEeGWtaOO91qxRQ" key="StereotypeList" value="RobotML::GPSSystem"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hg1YkmeiEeGWtaOO91qxRQ" key="Stereotype_Presentation_Kind" value="IconStereotype"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hg1Yk2eiEeGWtaOO91qxRQ" key="PropStereoDisplay" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hg1YlGeiEeGWtaOO91qxRQ" key="StereotypePropertyLocation" value="Compartment"/>
-      </eAnnotations>
-      <children xmi:type="notation:DecorationNode" xmi:id="_hff71GeiEeGWtaOO91qxRQ" type="5156"/>
-      <children xmi:type="notation:BasicCompartment" xmi:id="_hff71WeiEeGWtaOO91qxRQ" type="7073">
-        <styles xmi:type="notation:TitleStyle" xmi:id="_hff71meiEeGWtaOO91qxRQ"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hff712eiEeGWtaOO91qxRQ"/>
-      </children>
-      <element xmi:type="uml:Class" href="RoboCab.uml#_hfDP4GeiEeGWtaOO91qxRQ"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hfWK0WeiEeGWtaOO91qxRQ" x="505" y="314"/>
-    </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_feP4-6k_EeCXqcRV-18f6Q"/>
     <element xmi:type="uml:Model" href="RoboCab.uml#_fdzJWak_EeCXqcRV-18f6Q"/>
   </notation:Diagram>
@@ -5102,13 +5052,13 @@
                 <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_13Le5EK8EeGv-54Wm4mRWQ" key="StereotypePropertyLocation" value="Compartment"/>
               </eAnnotations>
               <children xmi:type="notation:DecorationNode" xmi:id="_M9y8hkK6EeGv-54Wm4mRWQ" type="6001">
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IX0lAEK8EeGv-54Wm4mRWQ" width="191" height="81"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IX0lAEK8EeGv-54Wm4mRWQ" width="191" height="73"/>
               </children>
               <children xmi:type="notation:DecorationNode" xmi:id="_M9y8h0K6EeGv-54Wm4mRWQ" type="6002">
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M9y8iEK6EeGv-54Wm4mRWQ" y="81" width="191" height="87"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M9y8iEK6EeGv-54Wm4mRWQ" y="73" width="191" height="87"/>
               </children>
               <element xmi:type="uml:State" href="RoboCab.uml#_M9id0EK6EeGv-54Wm4mRWQ"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M9yVcUK6EeGv-54Wm4mRWQ" x="35" y="262" width="191" height="168"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M9yVcUK6EeGv-54Wm4mRWQ" x="35" y="262" width="191" height="160"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_AsIEoEK8EeGv-54Wm4mRWQ" type="6000" fontName="UnBatang" lineColor="0">
               <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AsIEokK8EeGv-54Wm4mRWQ" source="ShadowFigure">
@@ -5128,13 +5078,13 @@
                 <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uHIC9EK8EeGv-54Wm4mRWQ" key="StereotypePropertyLocation" value="Compartment"/>
               </eAnnotations>
               <children xmi:type="notation:DecorationNode" xmi:id="_AsIrtUK8EeGv-54Wm4mRWQ" type="6001">
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NsoGgEK8EeGv-54Wm4mRWQ" width="196" height="81"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NsoGgEK8EeGv-54Wm4mRWQ" width="196" height="73"/>
               </children>
               <children xmi:type="notation:DecorationNode" xmi:id="_AsIrtkK8EeGv-54Wm4mRWQ" type="6002">
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AsIrt0K8EeGv-54Wm4mRWQ" y="81" width="196" height="84"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AsIrt0K8EeGv-54Wm4mRWQ" y="73" width="196" height="84"/>
               </children>
               <element xmi:type="uml:State" href="RoboCab.uml#_Ar40EEK8EeGv-54Wm4mRWQ"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AsIEoUK8EeGv-54Wm4mRWQ" x="295" y="17" width="196" height="165"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AsIEoUK8EeGv-54Wm4mRWQ" x="295" y="17" width="196" height="157"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_Pv0GQEK8EeGv-54Wm4mRWQ" type="6000" fontName="Ubuntu" lineColor="0">
               <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Pv0GQkK8EeGv-54Wm4mRWQ" source="ShadowFigure">
@@ -5154,13 +5104,13 @@
                 <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_s3hcREK8EeGv-54Wm4mRWQ" key="StereotypePropertyLocation" value="Compartment"/>
               </eAnnotations>
               <children xmi:type="notation:DecorationNode" xmi:id="_Pv0GSEK8EeGv-54Wm4mRWQ" type="6001">
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kYurAEK8EeGv-54Wm4mRWQ" width="191" height="81"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_kYurAEK8EeGv-54Wm4mRWQ" width="191" height="73"/>
               </children>
               <children xmi:type="notation:DecorationNode" xmi:id="_Pv0tUEK8EeGv-54Wm4mRWQ" type="6002">
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pv0tUUK8EeGv-54Wm4mRWQ" y="81" width="191" height="91"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pv0tUUK8EeGv-54Wm4mRWQ" y="73" width="191" height="91"/>
               </children>
               <element xmi:type="uml:State" href="RoboCab.uml#_PvjnkEK8EeGv-54Wm4mRWQ"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pv0GQUK8EeGv-54Wm4mRWQ" x="545" y="262" width="191" height="172"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Pv0GQUK8EeGv-54Wm4mRWQ" x="545" y="262" width="191" height="164"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_exomkGLwEeGQvv5wJEmGUQ" type="8000" fontHeight="8" lineColor="0">
               <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_exomkmLwEeGQvv5wJEmGUQ" source="ShadowFigure">

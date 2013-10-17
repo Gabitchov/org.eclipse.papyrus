@@ -32,7 +32,6 @@ import org.eclipse.papyrus.FCM.OperatingSystem;
 import org.eclipse.papyrus.FCM.Target;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -45,6 +44,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * C++ language support
@@ -127,10 +127,10 @@ public class C_CppLanguageSupport implements ILangSupport {
 
 				// define name of used operating system from model (attribute of "Target" stereotype)
 				// and add it to list of macros
-				Target target = StUtils.getApplication(node, Target.class);
+				Target target = UMLUtil.getStereotypeApplication(node, Target.class);
 				if(target == null) {
 					// get information from node referenced by the instance
-					target = StUtils.getApplication(DepUtils.getClassifier(node), Target.class);
+					target = UMLUtil.getStereotypeApplication(DepUtils.getClassifier(node), Target.class);
 				}
 				if(target != null) {
 					OperatingSystem os = target.getUsedOS();
@@ -223,7 +223,7 @@ public class C_CppLanguageSupport implements ILangSupport {
 	public void gatherConfigData(Class implementation) {
 		Element owner = implementation.getOwner();
 		while(owner instanceof Package) {
-			ExternLibrary cppLibrary = StUtils.getApplication(owner, ExternLibrary.class);
+			ExternLibrary cppLibrary = UMLUtil.getStereotypeApplication(owner, ExternLibrary.class);
 			if(cppLibrary != null) {
 				includePaths.addAll(cppLibrary.getIncludes());
 				for(String libPath : cppLibrary.getLibPaths()) {

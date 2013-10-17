@@ -19,11 +19,13 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.FCM.TemplatePort;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class PortUtils {
 
@@ -72,7 +74,7 @@ public class PortUtils {
 	 * @return
 	 */
 	public static org.eclipse.papyrus.FCM.Port getFCMport(Port port) {
-		return StUtils.getApplication(port, org.eclipse.papyrus.FCM.Port.class);
+		return UMLUtil.getStereotypeApplication(port, org.eclipse.papyrus.FCM.Port.class);
 	}
 
 	/**
@@ -92,7 +94,7 @@ public class PortUtils {
 		
 		// TODO: for the moment, don't add aggregated ports to list.
 		/*
-		 * ComponentType compType = = StUtils.getApplication (ec, ComponentType.class);
+		 * ComponentType compType = = UMLUtil.getStereotypeApplication (ec, ComponentType.class);
 		 * for (ContainerRule rule : compType.getContainerRule ())
 		 * {
 		 * if ((rule.getExtensionKind () == ContainerExtKind.AGGREGATION) &&
@@ -155,7 +157,7 @@ public class PortUtils {
 			org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
 			org.eclipse.uml2.uml.Class cl;
 			if (isTemplatePort(port)) {
-				TemplatePort tp = StUtils.getApplication(port, TemplatePort.class);
+				TemplatePort tp = UMLUtil.getStereotypeApplication(port, TemplatePort.class);
 				if (tp.getBoundType() == null) {
 					System.err.println("Problems, problems"); //$NON-NLS-1$
 					cl = fcmPort.getKind().getBase_Class();
@@ -200,7 +202,7 @@ public class PortUtils {
 	 * @return
 	 */
 	public static boolean isTemplatePort(Port port) {
-		return StUtils.isApplied(port, TemplatePort.class);
+		return StereotypeUtil.isApplied(port, TemplatePort.class);
 	}
 	
 	/**

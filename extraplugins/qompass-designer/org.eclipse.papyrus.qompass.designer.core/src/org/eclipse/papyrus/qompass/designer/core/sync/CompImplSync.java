@@ -27,7 +27,6 @@ import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.OperationUtils;
 import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.UpdateUtils;
@@ -43,6 +42,7 @@ import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Synchronize component implementation classes.
@@ -157,7 +157,7 @@ public class CompImplSync {
 	 */
 	public static void updatePorts(Class implementation) {
 		for (Port port : PortUtils.getAllPorts(implementation)) {
-			org.eclipse.papyrus.FCM.Port fcmPort = StUtils.getApplication(port, org.eclipse.papyrus.FCM.Port.class);
+			org.eclipse.papyrus.FCM.Port fcmPort = UMLUtil.getStereotypeApplication(port, org.eclipse.papyrus.FCM.Port.class);
 			if (fcmPort != null) {
 				fcmPort.update();
 			}
@@ -384,6 +384,9 @@ public class CompImplSync {
 				}
 			}
 		}
+		for (Behavior method : implementation.getOwnedBehaviors()) {
+			SyncBehaviorParameters.syncParameters(method);
+		}
 
 		// remove operations that are no longer provided via an interface of a port (and
 		// that are derived elements, i.e. have a source attribute)
@@ -391,7 +394,7 @@ public class CompImplSync {
 		while(ownedOpsIter.hasNext()) {
 			Operation ownedOp = ownedOpsIter.next();
 
-			DerivedElement de = StUtils.getApplication(ownedOp, DerivedElement.class);
+			DerivedElement de = UMLUtil.getStereotypeApplication(ownedOp, DerivedElement.class);
 			if(de != null) {
 				if(de.getSource() instanceof Operation) {
 

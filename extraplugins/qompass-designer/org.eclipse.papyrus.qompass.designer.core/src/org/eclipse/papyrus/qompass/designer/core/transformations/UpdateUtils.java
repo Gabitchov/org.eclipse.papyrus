@@ -19,10 +19,11 @@ import java.util.Iterator;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.DerivedElement;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Utility functions for the update derived elements, e.g. operations of a component
@@ -50,8 +51,8 @@ public class UpdateUtils {
 		Iterator<? extends Element> elements = list.iterator();
 		while(elements.hasNext()) {
 			Element element = elements.next();
-			if(StUtils.isApplied(element, DerivedElement.class)) {
-				DerivedElement de = StUtils.getApplication(element, DerivedElement.class);
+			if(StereotypeUtil.isApplied(element, DerivedElement.class)) {
+				DerivedElement de = UMLUtil.getStereotypeApplication(element, DerivedElement.class);
 				if((de != null) && (de.getSource() == source)) {
 					return element;
 				}
@@ -61,13 +62,13 @@ public class UpdateUtils {
 	}
 
 	public static void setSource(Element derivedElement, Element source) {
-		DerivedElement de = StUtils.applyApp(derivedElement, DerivedElement.class);
+		DerivedElement de = StereotypeUtil.applyApp(derivedElement, DerivedElement.class);
 		de.setSource(source);
 	}
 
 	public static Element getSource(Element element) {
-		if(StUtils.isApplied(element, DerivedElement.class)) {
-			DerivedElement de = StUtils.getApplication(element, DerivedElement.class);
+		if(StereotypeUtil.isApplied(element, DerivedElement.class)) {
+			DerivedElement de = UMLUtil.getStereotypeApplication(element, DerivedElement.class);
 			if(de != null) {
 				return de.getSource();
 			}

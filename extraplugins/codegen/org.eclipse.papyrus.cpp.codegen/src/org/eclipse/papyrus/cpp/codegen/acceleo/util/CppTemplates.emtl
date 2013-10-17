@@ -4,7 +4,8 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
     </input>
-    <imports href="../../utils/GenUtils.emtl#/0"/>
+    <imports href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
+    <imports href="../../utils/CppGenUtils.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Query" name="CppTemplateBindingParameter" visibility="Public">
       <parameter name="tps">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateParameterSubstitution"/>
@@ -73,7 +74,7 @@
         <source xsi:type="ocl.ecore:OperationCallExp">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
           <source xsi:type="mtl:QueryInvocation" eType="/8/Collection(TemplateParameter)">
-            <definition href="../../utils/GenUtils.emtl#/0/getTemplateParameters"/>
+            <definition href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTemplateParameters"/>
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/9">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
             </argument>
@@ -93,13 +94,13 @@
         <body xsi:type="mtl:ForBlock">
           <body xsi:type="mtl:QueryInvocation">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <definition href="../../utils/GenUtils.emtl#/0/getType"/>
+            <definition href="../../utils/CppGenUtils.emtl#/0/getTemplateTypeName"/>
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/18">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateParameter"/>
             </argument>
           </body>
           <iterSet xsi:type="mtl:QueryInvocation" eType="/8/Collection(TemplateParameter)">
-            <definition href="../../utils/GenUtils.emtl#/0/getTemplateParameters"/>
+            <definition href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTemplateParameters"/>
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/15">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
             </argument>
@@ -126,13 +127,13 @@
         <body xsi:type="mtl:ForBlock">
           <body xsi:type="mtl:QueryInvocation">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <definition href="../../utils/GenUtils.emtl#/0/getName"/>
+            <definition href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTemplateName"/>
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/29">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateParameter"/>
             </argument>
           </body>
           <iterSet xsi:type="mtl:QueryInvocation" eType="/8/Collection(TemplateParameter)">
-            <definition href="../../utils/GenUtils.emtl#/0/getTemplateParameters"/>
+            <definition href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTemplateParameters"/>
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/26">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
             </argument>
@@ -278,24 +279,12 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
         </eParameters>
       </eOperations>
-      <eOperations name="getName">
+      <eOperations name="getTemplateName">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../utils/GenUtils.emtl#/0/getName"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="arg0">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateParameter"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="getType">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="../../utils/GenUtils.emtl#/0/getType"/>
+          <references href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTemplateName"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -307,11 +296,23 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../utils/GenUtils.emtl#/0/getTemplateParameters"/>
+          <references href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTemplateParameters"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:CollectionType" href="../../utils/GenUtils.emtl#/3/Collection(TemplateParameter)"/>
+        <eType xsi:type="ocl.ecore:CollectionType" href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/3/Collection(TemplateParameter)"/>
         <eParameters name="arg0">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="getTemplateTypeName">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../utils/CppGenUtils.emtl#/0/getTemplateTypeName"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="arg0">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateParameter"/>
         </eParameters>
       </eOperations>
     </eClassifiers>
@@ -350,6 +351,11 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Class_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TemplateParameter_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//TemplateParameter"/>
@@ -368,11 +374,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="Package_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Class_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType_Class">
@@ -516,113 +517,113 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/CppTemplateBindingParameter">
-      <details key="start" value="129"/>
-      <details key="end" value="366"/>
-      <details key="line" value="5"/>
+      <details key="start" value="183"/>
+      <details key="end" value="420"/>
+      <details key="line" value="6"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/CppTemplateBindingParameter/tps">
-      <details key="start" value="171"/>
-      <details key="end" value="206"/>
-      <details key="line" value="5"/>
+      <details key="start" value="225"/>
+      <details key="end" value="260"/>
+      <details key="line" value="6"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/CppTemplateBindingParameter/%">
-      <details key="start" value="219"/>
-      <details key="end" value="363"/>
+      <details key="start" value="273"/>
+      <details key="end" value="417"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/CppTemplateBindingParameter/%/%">
-      <details key="start" value="222"/>
-      <details key="end" value="262"/>
+      <details key="start" value="276"/>
+      <details key="end" value="316"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/CppTemplateBindingParameter/%/%/%">
-      <details key="start" value="223"/>
-      <details key="end" value="233"/>
+      <details key="start" value="277"/>
+      <details key="end" value="287"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/CppTemplateBindingParameter/%/%/%/tps">
-      <details key="start" value="223"/>
-      <details key="end" value="226"/>
+      <details key="start" value="277"/>
+      <details key="end" value="280"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/CppTemplateBindingParameter/%/%/%.1">
-      <details key="start" value="246"/>
-      <details key="end" value="260"/>
+      <details key="start" value="300"/>
+      <details key="end" value="314"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/CppTemplateBindingParameter/%/%.1">
-      <details key="start" value="269"/>
-      <details key="end" value="311"/>
+      <details key="start" value="323"/>
+      <details key="end" value="365"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/CppTemplateBindingParameter/%/%.1/%">
-      <details key="start" value="269"/>
-      <details key="end" value="305"/>
+      <details key="start" value="323"/>
+      <details key="end" value="359"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/CppTemplateBindingParameter/%/%.1/%/%">
-      <details key="start" value="269"/>
-      <details key="end" value="279"/>
+      <details key="start" value="323"/>
+      <details key="end" value="333"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/CppTemplateBindingParameter/%/%.1/%/%/tps">
-      <details key="start" value="269"/>
-      <details key="end" value="272"/>
+      <details key="start" value="323"/>
+      <details key="end" value="326"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/CppTemplateBindingParameter/%/%.1/%/%.1">
-      <details key="start" value="290"/>
-      <details key="end" value="304"/>
+      <details key="start" value="344"/>
+      <details key="end" value="358"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/CppTemplateBindingParameter/%/%.2">
-      <details key="start" value="318"/>
-      <details key="end" value="357"/>
+      <details key="start" value="372"/>
+      <details key="end" value="411"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/CppTemplateBindingParameter/%/%.2/%">
-      <details key="start" value="318"/>
-      <details key="end" value="352"/>
+      <details key="start" value="372"/>
+      <details key="end" value="406"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/CppTemplateBindingParameter/%/%.2/%/%">
-      <details key="start" value="318"/>
-      <details key="end" value="328"/>
+      <details key="start" value="372"/>
+      <details key="end" value="382"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/CppTemplateBindingParameter/%/%.2/%/%/tps">
-      <details key="start" value="318"/>
-      <details key="end" value="321"/>
+      <details key="start" value="372"/>
+      <details key="end" value="375"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/CppTemplateBindingParameter/%/%.2/%/%.1">
-      <details key="start" value="339"/>
-      <details key="end" value="351"/>
+      <details key="start" value="393"/>
+      <details key="end" value="405"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/isTemplate">
-      <details key="start" value="368"/>
-      <details key="end" value="464"/>
-      <details key="line" value="13"/>
+      <details key="start" value="422"/>
+      <details key="end" value="518"/>
+      <details key="line" value="14"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/isTemplate/class">
-      <details key="start" value="393"/>
-      <details key="end" value="411"/>
-      <details key="line" value="13"/>
+      <details key="start" value="447"/>
+      <details key="end" value="465"/>
+      <details key="line" value="14"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/isTemplate/%">
-      <details key="start" value="426"/>
-      <details key="end" value="461"/>
+      <details key="start" value="480"/>
+      <details key="end" value="515"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.20" references="/0/isTemplate/%/%">
-      <details key="start" value="426"/>
-      <details key="end" value="457"/>
+      <details key="start" value="480"/>
+      <details key="end" value="511"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/isTemplate/%/%/%">
-      <details key="start" value="426"/>
-      <details key="end" value="449"/>
+      <details key="start" value="480"/>
+      <details key="end" value="503"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/isTemplate/%/%/%/self">
@@ -631,33 +632,33 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/isTemplate/%/%.1">
-      <details key="start" value="460"/>
-      <details key="end" value="461"/>
+      <details key="start" value="514"/>
+      <details key="end" value="515"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/templateSignature">
-      <details key="start" value="467"/>
-      <details key="end" value="634"/>
-      <details key="line" value="18"/>
-    </eAnnotations>
-    <eAnnotations source="positions.25" references="/0/templateSignature/%">
-      <details key="start" value="523"/>
-      <details key="end" value="622"/>
+      <details key="start" value="521"/>
+      <details key="end" value="700"/>
       <details key="line" value="19"/>
     </eAnnotations>
-    <eAnnotations source="positions.26" references="/0/templateSignature/%/%">
-      <details key="start" value="541"/>
-      <details key="end" value="550"/>
+    <eAnnotations source="positions.25" references="/0/templateSignature/%">
+      <details key="start" value="577"/>
+      <details key="end" value="688"/>
       <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/templateSignature/%/%">
+      <details key="start" value="595"/>
+      <details key="end" value="604"/>
+      <details key="line" value="21"/>
     </eAnnotations>
     <eAnnotations source="positions.27" references="/0/templateSignature/%/%.1">
-      <details key="start" value="550"/>
-      <details key="end" value="615"/>
-      <details key="line" value="20"/>
+      <details key="start" value="604"/>
+      <details key="end" value="681"/>
+      <details key="line" value="21"/>
     </eAnnotations>
     <eAnnotations source="positions.28" references="/0/templateSignature/%/%.1/%">
-      <details key="start" value="598"/>
-      <details key="end" value="607"/>
+      <details key="start" value="652"/>
+      <details key="end" value="673"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.29" references="/0/templateSignature/%/%.1/%/self">
@@ -666,8 +667,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.30" references="/0/templateSignature/%/%.1/%.1">
-      <details key="start" value="556"/>
-      <details key="end" value="579"/>
+      <details key="start" value="610"/>
+      <details key="end" value="633"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/templateSignature/%/%.1/%.1/self">
@@ -676,18 +677,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/templateSignature/%/%.1/%.2">
-      <details key="start" value="591"/>
-      <details key="end" value="595"/>
+      <details key="start" value="645"/>
+      <details key="end" value="649"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/templateSignature/%/%.2">
-      <details key="start" value="615"/>
-      <details key="end" value="617"/>
-      <details key="line" value="20"/>
+      <details key="start" value="681"/>
+      <details key="end" value="683"/>
+      <details key="line" value="21"/>
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/templateSignature/%/%.3">
-      <details key="start" value="527"/>
-      <details key="end" value="539"/>
+      <details key="start" value="581"/>
+      <details key="end" value="593"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/templateSignature/%/%.3/self">
@@ -696,33 +697,33 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.36" references="/0/templateSignature/class">
-      <details key="start" value="502"/>
-      <details key="end" value="520"/>
-      <details key="line" value="18"/>
+      <details key="start" value="556"/>
+      <details key="end" value="574"/>
+      <details key="line" value="19"/>
     </eAnnotations>
     <eAnnotations source="positions.37" references="/0/templateShortSignature">
-      <details key="start" value="637"/>
-      <details key="end" value="801"/>
-      <details key="line" value="25"/>
-    </eAnnotations>
-    <eAnnotations source="positions.38" references="/0/templateShortSignature/%">
-      <details key="start" value="698"/>
-      <details key="end" value="789"/>
+      <details key="start" value="703"/>
+      <details key="end" value="875"/>
       <details key="line" value="26"/>
     </eAnnotations>
-    <eAnnotations source="positions.39" references="/0/templateShortSignature/%/%">
-      <details key="start" value="716"/>
-      <details key="end" value="717"/>
+    <eAnnotations source="positions.38" references="/0/templateShortSignature/%">
+      <details key="start" value="764"/>
+      <details key="end" value="863"/>
       <details key="line" value="27"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/templateShortSignature/%/%">
+      <details key="start" value="782"/>
+      <details key="end" value="783"/>
+      <details key="line" value="28"/>
     </eAnnotations>
     <eAnnotations source="positions.40" references="/0/templateShortSignature/%/%.1">
-      <details key="start" value="717"/>
-      <details key="end" value="782"/>
-      <details key="line" value="27"/>
+      <details key="start" value="783"/>
+      <details key="end" value="856"/>
+      <details key="line" value="28"/>
     </eAnnotations>
     <eAnnotations source="positions.41" references="/0/templateShortSignature/%/%.1/%">
-      <details key="start" value="765"/>
-      <details key="end" value="774"/>
+      <details key="start" value="831"/>
+      <details key="end" value="848"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.42" references="/0/templateShortSignature/%/%.1/%/self">
@@ -731,8 +732,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.43" references="/0/templateShortSignature/%/%.1/%.1">
-      <details key="start" value="723"/>
-      <details key="end" value="746"/>
+      <details key="start" value="789"/>
+      <details key="end" value="812"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.44" references="/0/templateShortSignature/%/%.1/%.1/self">
@@ -741,18 +742,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.45" references="/0/templateShortSignature/%/%.1/%.2">
-      <details key="start" value="758"/>
-      <details key="end" value="762"/>
+      <details key="start" value="824"/>
+      <details key="end" value="828"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.46" references="/0/templateShortSignature/%/%.2">
-      <details key="start" value="782"/>
-      <details key="end" value="784"/>
-      <details key="line" value="27"/>
+      <details key="start" value="856"/>
+      <details key="end" value="858"/>
+      <details key="line" value="28"/>
     </eAnnotations>
     <eAnnotations source="positions.47" references="/0/templateShortSignature/%/%.3">
-      <details key="start" value="702"/>
-      <details key="end" value="714"/>
+      <details key="start" value="768"/>
+      <details key="end" value="780"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.48" references="/0/templateShortSignature/%/%.3/self">
@@ -761,28 +762,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.49" references="/0/templateShortSignature/class">
-      <details key="start" value="677"/>
-      <details key="end" value="695"/>
-      <details key="line" value="25"/>
+      <details key="start" value="743"/>
+      <details key="end" value="761"/>
+      <details key="line" value="26"/>
     </eAnnotations>
     <eAnnotations source="positions.50" references="/0/templateSignature.1">
-      <details key="start" value="804"/>
-      <details key="end" value="925"/>
-      <details key="line" value="31"/>
+      <details key="start" value="878"/>
+      <details key="end" value="999"/>
+      <details key="line" value="32"/>
     </eAnnotations>
     <eAnnotations source="positions.51" references="/0/templateSignature.1/%">
-      <details key="start" value="864"/>
-      <details key="end" value="911"/>
+      <details key="start" value="938"/>
+      <details key="end" value="985"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.52" references="/0/templateSignature.1/%/%">
-      <details key="start" value="864"/>
-      <details key="end" value="891"/>
+      <details key="start" value="938"/>
+      <details key="end" value="965"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.53" references="/0/templateSignature.1/%/%/%">
-      <details key="start" value="864"/>
-      <details key="end" value="869"/>
+      <details key="start" value="938"/>
+      <details key="end" value="943"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.54" references="/0/templateSignature.1/%/%/%/self">
@@ -791,33 +792,33 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.55" references="/0/templateSignature.1/%/%/%.1">
-      <details key="start" value="880"/>
-      <details key="end" value="890"/>
+      <details key="start" value="954"/>
+      <details key="end" value="964"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.56" references="/0/templateSignature.1/operation">
-      <details key="start" value="839"/>
-      <details key="end" value="860"/>
-      <details key="line" value="31"/>
+      <details key="start" value="913"/>
+      <details key="end" value="934"/>
+      <details key="line" value="32"/>
     </eAnnotations>
     <eAnnotations source="positions.57" references="/0/templateShortSignature.1">
-      <details key="start" value="928"/>
-      <details key="end" value="1059"/>
-      <details key="line" value="36"/>
+      <details key="start" value="1002"/>
+      <details key="end" value="1133"/>
+      <details key="line" value="37"/>
     </eAnnotations>
     <eAnnotations source="positions.58" references="/0/templateShortSignature.1/%">
-      <details key="start" value="993"/>
-      <details key="end" value="1045"/>
+      <details key="start" value="1067"/>
+      <details key="end" value="1119"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.59" references="/0/templateShortSignature.1/%/%">
-      <details key="start" value="993"/>
-      <details key="end" value="1020"/>
+      <details key="start" value="1067"/>
+      <details key="end" value="1094"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.60" references="/0/templateShortSignature.1/%/%/%">
-      <details key="start" value="993"/>
-      <details key="end" value="998"/>
+      <details key="start" value="1067"/>
+      <details key="end" value="1072"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.61" references="/0/templateShortSignature.1/%/%/%/self">
@@ -826,14 +827,14 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.62" references="/0/templateShortSignature.1/%/%/%.1">
-      <details key="start" value="1009"/>
-      <details key="end" value="1019"/>
+      <details key="start" value="1083"/>
+      <details key="end" value="1093"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.63" references="/0/templateShortSignature.1/operation">
-      <details key="start" value="968"/>
-      <details key="end" value="989"/>
-      <details key="line" value="36"/>
+      <details key="start" value="1042"/>
+      <details key="end" value="1063"/>
+      <details key="line" value="37"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

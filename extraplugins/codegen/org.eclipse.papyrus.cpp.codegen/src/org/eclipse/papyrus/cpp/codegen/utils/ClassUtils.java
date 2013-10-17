@@ -13,7 +13,7 @@ package org.eclipse.papyrus.cpp.codegen.utils;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.papyrus.C_Cpp.Include;
+import org.eclipse.papyrus.acceleo.GenUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 
@@ -39,13 +39,14 @@ public class ClassUtils {
 		// class attributes dependencies
 		usedClasses.addAll(GenUtils.getOwnedAttributeTypes(currentClass));
 		// operation parameters dependencies	
-		usedClasses.addAll(GenUtils.getIncludesFromOperations(currentClass));
+		usedClasses.addAll(GenUtils.getTypesViaOperations(currentClass));
 		// realized interface dependencies
 		if(currentClass instanceof Class) {
-			usedClasses.addAll(GenUtils.getImplementedInterfaces((Class)currentClass));
+			Class clazz = (Class) currentClass;
+			usedClasses.addAll(clazz.getImplementedInterfaces());
 		}
 		// dependencies and associations
-		usedClasses.addAll(GenUtils.getRelationshipsNoDeps(currentClass));
+		usedClasses.addAll(GenUtils.getTypesViaRelationshipsNoDeps(currentClass));
 
 		// template parameters are declared locally (if owned) and do not correspond to a file
 		// that can be included

@@ -12,23 +12,20 @@ package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
-import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.eclipse.uml2.uml.Element;
@@ -38,22 +35,29 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
 
-// TODO: Papyrus dependency => put into separate plug-in and declare as option
-
 /**
- * ResourceSet Manager for UML and DI files, and also other loaded models
- * This manager is designed for EAST-ADL2 diagrams.
+ * This class adds the FCM profile, parts of the MARTE profile and required package imports to your model.
  */
 public class AddProfileAndModelLibsHandler extends CmdHandler {
 
-	static final String FCM_PROFILE_URI = "pathmap://FCM_PROFILES/FCM.profile.uml";
+	public static final String FCM_PROFILE_URI = "pathmap://FCM_PROFILES/FCM.profile.uml"; //$NON-NLS-1$
 
-	static final String MARTE_PROFILE_URI = "pathmap://Papyrus_PROFILES/MARTE.profile.uml";
+	public static final String MARTE_PROFILE_URI = "pathmap://Papyrus_PROFILES/MARTE.profile.uml";//$NON-NLS-1$
 
-	static final String EC3M_BASIC_CALLS_URI = "pathmap://QML_CORE/core.uml";
+	public static final String EC3M_BASIC_CALLS_URI = "pathmap://QML_CORE/core.uml"; //$NON-NLS-1$
 
-	static final String EC3M_MARTE_CALLS_URI = "pathmap://QML_MARTE/marte.uml";
+	public static final String EC3M_MARTE_CALLS_URI = "pathmap://QML_MARTE/marte.uml"; //$NON-NLS-1$
 
+	static final String MARTE_FOUNDATIONS = "MARTE_Foundations"; //$NON-NLS-1$
+	
+	static final String MARTE_F_ALLOC = "Alloc"; //$NON-NLS-1$
+	
+	static final String MARTE_DESIGN_MODEL = "MARTE_DesignModel"; //$NON-NLS-1$
+
+	static final String MARTE_DM_HLAM ="HLAM"; //$NON-NLS-1$
+	
+	static final String MARTE_DM_GCM ="GCM"; //$NON-NLS-1$
+	
 	public static final int APPLY_FCM = 1;
 
 	public static final int APPLY_ALLOC = 2;
@@ -81,9 +85,9 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 	 * 
 	 * @return
 	 */
-	public PackageImport getModelLibraryImportFromURI(URI uri, EditingDomain domain) {
+	public PackageImport getModelLibraryImportFromURI(URI uri, ResourceSet resourceSet) {
 		// Try to reach model
-		Element root = getContent(uri, domain);
+		Element root = getContent(uri, resourceSet);
 		if(root instanceof Package) {
 
 			// Import model library
@@ -97,9 +101,9 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 		return null;
 	}
 
-	public static Element getContent(URI uri, EditingDomain domain) {
+	public static Element getContent(URI uri, ResourceSet rs) {
 		// Resource resource = getTransactionalEditingDomain ().getResourceSet().getResource (uri, true);
-		Resource resource = domain.getResourceSet().getResource(uri, true);
+		Resource resource = rs.getResource(uri, true);
 		return getContent(resource);
 	}
 
@@ -150,16 +154,11 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 		}
 		final Package selectedPkg = (Package)getSelectedEObject();
 
-		final TransactionalEditingDomain domain;
-		try {
-			ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
-			domain = serviceUtils.getTransactionalEditingDomain();
-		} catch (ServiceException e) {
-			Log.log(Status.ERROR, Log.DIALOGS, "Cannot get service handler", e);
-			return null;
-		}
+		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(selectedPkg);
+		final ResourceSet resourceSet = selectedPkg.eResource().getResourceSet();
+
 		CommandStack stack = domain.getCommandStack();
-		PackageImport pi = getModelLibraryImportFromURI(URI.createURI(EC3M_BASIC_CALLS_URI), domain);
+		PackageImport pi = getModelLibraryImportFromURI(URI.createURI(EC3M_BASIC_CALLS_URI), resourceSet);
 		EList<Object> list = new BasicEList<Object>();
 		EList<Object> selection = new BasicEList<Object>();
 		if(pi != null) {
@@ -168,7 +167,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 				selection.add(pi);
 			}
 		}
-		pi = getModelLibraryImportFromURI(URI.createURI(EC3M_MARTE_CALLS_URI), domain);
+		pi = getModelLibraryImportFromURI(URI.createURI(EC3M_MARTE_CALLS_URI), resourceSet);
 		if(pi != null) {
 			list.add(pi);
 			if(isAlreadyImported(selectedPkg, pi)) {
@@ -184,19 +183,19 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 					return ((PackageImport)pi).getImportedPackage().getName();
 				}
 			},
-			"Select Qompass model libraries for package import.\n" +
-				"Libraries that are already imported, are selected. Please note that additional\n" +
-				"Qompass model library might be loaded with the standard \"import registered library\" option\n" +
-				"\n" +
-				"Pressing \"Ok\" will continue with the application of the FCM profile and (parts of) the MARTE profile\n");
-		dialog.setTitle("Select import library");
+			"Select Qompass model libraries for package import.\n" + //$NON-NLS-1$
+				"Libraries that are already imported, are selected. Please note that additional\n" + //$NON-NLS-1$
+				"Qompass model library might be loaded with the standard \"import registered library\" option\n" + //$NON-NLS-1$
+				"\n" +//$NON-NLS-1$
+				"Pressing \"Ok\" will continue with the application of the FCM profile and (parts of) the MARTE profile\n");//$NON-NLS-1$
+
+		dialog.setTitle("Select import library"); //$NON-NLS-1$
 		dialog.setInitialElementSelections(selection);
 		// dialog.setElements (list.toArray ());
 		int result = dialog.open();
 		if(result == IDialogConstants.OK_ID) {
-			stack.execute(new RecordingCommand(domain, "Add libraries")
+			stack.execute(new RecordingCommand(domain, "Add libraries and profiles") //$NON-NLS-1$
 			{
-
 				public void doExecute() {
 					// add primitive types			
 					// create import package to primitiveType
@@ -218,14 +217,8 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 
 	public static void addProfiles(Package selectedPkg, int applyCode) {
 
-		final TransactionalEditingDomain domain;
-		try {
-			ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
-			domain = serviceUtils.getTransactionalEditingDomain();
-		} catch (ServiceException e) {
-			Log.log(Status.ERROR, Log.DIALOGS, "Cannot get service handler");
-			return;
-		}
+		final ResourceSet resourceSet = selectedPkg.eResource().getResourceSet();
+		
 		try {
 			/*
 			 * // Apply UML Standard profile
@@ -239,7 +232,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 			if((applyCode & APPLY_FCM) != 0) {
 				// Retrieve FCM profile
 				Profile fcmProfile =
-					(Profile)getContent(URI.createURI(FCM_PROFILE_URI), domain);
+					(Profile)getContent(URI.createURI(FCM_PROFILE_URI), resourceSet);
 
 				// Apply FCM profile and its nested profiles to new model
 				if(fcmProfile instanceof Profile) {
@@ -249,38 +242,37 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 					}
 				}
 				else {
-					MessageDialog.openWarning(
-						null,
-						"Warning",
-						"The FCM profile is not available.");
+					MessageDialog.openWarning(new Shell(),
+						"Warning", //$NON-NLS-1$
+						"The FCM profile is not available."); //$NON-NLS-1$
 				}
 			}
 
 			if((applyCode & (APPLY_ALLOC | APPLY_HLAM_GCM)) != 0) {
 				// Retrieve MARTE profile
 				Profile marteProfile =
-					(Profile)getContent(URI.createURI(MARTE_PROFILE_URI), domain);
+					(Profile)getContent(URI.createURI(MARTE_PROFILE_URI), resourceSet);
 
 				// Apply MARTE::MARTE_DesignModel::HLAM
 				//     & MARTE::MARTE_DesignModel::GCM
 				if(marteProfile != null) {
-					PackageableElement foundationModel = marteProfile.getPackagedElement("MARTE_Foundations");
+					PackageableElement foundationModel = marteProfile.getPackagedElement(MARTE_FOUNDATIONS);
 					if((foundationModel instanceof Package) && ((applyCode & APPLY_ALLOC) != 0)) {
-						PackageableElement alloc = ((Package)foundationModel).getPackagedElement("Alloc");
+						PackageableElement alloc = ((Package)foundationModel).getPackagedElement(MARTE_F_ALLOC);
 
 						// if(selectedPkg.getAppliedProfile(alloc.getQualifiedName()) == null) {
 						selectedPkg.applyProfile((Profile)alloc);
 						// }
 					}
-					PackageableElement designModel = marteProfile.getPackagedElement("MARTE_DesignModel");
+					PackageableElement designModel = marteProfile.getPackagedElement(MARTE_DESIGN_MODEL);
 					if((designModel instanceof Package) && ((applyCode & APPLY_HLAM_GCM) != 0)) {
-						PackageableElement hlam = ((Package)designModel).getPackagedElement("HLAM");
+						PackageableElement hlam = ((Package)designModel).getPackagedElement(MARTE_DM_HLAM);
 						if(hlam instanceof Profile) {
 							// if(selectedPkg.getAppliedProfile(hlam.getQualifiedName()) == null) {
 							selectedPkg.applyProfile((Profile)hlam);
 							// }
 						}
-						PackageableElement gcm = ((Package)designModel).getPackagedElement("GCM");
+						PackageableElement gcm = ((Package)designModel).getPackagedElement(MARTE_DM_GCM);
 						if(gcm instanceof Profile) {
 							// if(selectedPkg.getAppliedProfile(gcm.getQualifiedName()) == null) {
 							selectedPkg.applyProfile((Profile)gcm);
@@ -290,7 +282,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 				}
 				else {
 					MessageDialog.openWarning(new Shell(),
-						"Warning", "The MARTE profile is not available.");
+						"Warning", "The MARTE profile is not available."); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 		} catch (Exception e) {

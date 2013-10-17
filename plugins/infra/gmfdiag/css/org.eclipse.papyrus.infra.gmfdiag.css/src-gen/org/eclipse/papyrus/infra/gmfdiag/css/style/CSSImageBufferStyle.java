@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.style;
 
 
-public interface CSSImageBufferStyle extends CSSImageStyle{
+public interface CSSImageBufferStyle extends CSSImageStyle {
 
 
 }

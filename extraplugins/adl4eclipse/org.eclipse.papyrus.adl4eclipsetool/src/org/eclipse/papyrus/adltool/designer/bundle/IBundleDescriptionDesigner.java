@@ -23,20 +23,47 @@ import org.eclipse.uml2.uml.Component;
  */
 public interface IBundleDescriptionDesigner {
 
+	/**
+	 * constant for the attribute BuddyPolicy of a bundle
+	 */
 	public final static String ECLIPSE_BUDDY_LOADER = "Eclipse-BuddyPolicy"; //$NON-NLS-1$
 
+	/**
+	 * constant for the attribute BundleShape of a bundle
+	 */
 	public final static String ECLIPSE_BUNDLE_SHAPE = "Eclipse-BundleShape";
 
+	/**
+	 * constant for the attribute GenericCapability of a bundle
+	 */
 	public final static String ECLIPSE_GENERICCAPABILITY = "Eclipse-GenericCapability";
 
+	/**
+	 * constant for the attribute GenericRequire of a bundle
+	 */
 	public final static String ECLIPSE_GENERICREQUIRE = "Eclipse-GenericRequire";
 
+	/**
+	 * constant for the attribute BuddyPolicy of a bundle
+	 */
 	public final static String ECLIPSE_LAZYSTART = "Eclipse-LazyStart";
 
+	/**
+	 * constant for the attribute PlatformFilter of a bundle
+	 */
 	public final static String ECLIPSE_PLATFORMFILTER = "Eclipse-PlatformFilter";
 
+	/**
+	 * constant for the attribute RegisterBuddy of a bundle
+	 */
 	public final static String ECLIPSE_REGISTERBUDDY = "Eclipse-RegisterBuddy";
 
+	/**
+	 * 
+	 * @param bundleProject
+	 * @param key
+	 * @return the value that correspond to the key
+	 */
 	public  String getBundleValue(Object bundleProject, String key);
 
 	/**
@@ -51,14 +78,14 @@ public interface IBundleDescriptionDesigner {
 	 * @return the symbolic name
 	 */
 	public String getSymbolicName(Object bundleProject);
-	
+
 	/**
 	 * get the name from the JAVA object that represent the bundle
 	 * @param bundleProject
 	 * @return the  name
 	 */
 	public String getName(Object bundleProject);
-	
+
 	/**
 	 * create packages that are exported to other plugins
 	 * @param bundleComponent the UML representation of the bundle

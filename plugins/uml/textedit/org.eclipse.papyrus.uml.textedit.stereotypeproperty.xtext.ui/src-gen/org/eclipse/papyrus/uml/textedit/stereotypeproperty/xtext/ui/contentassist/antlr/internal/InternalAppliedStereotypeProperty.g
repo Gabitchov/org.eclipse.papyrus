@@ -15825,8 +15825,8 @@ rule__INTEGER_LITERAL__ValueAssignment
     }
 :
 (
-{ before(grammarAccess.getINTEGER_LITERALAccess().getValueIntegerValueTerminalRuleCall_0()); }
-	RULE_INTEGERVALUE{ after(grammarAccess.getINTEGER_LITERALAccess().getValueIntegerValueTerminalRuleCall_0()); }
+{ before(grammarAccess.getINTEGER_LITERALAccess().getValueINTEGER_VALUETerminalRuleCall_0()); }
+	RULE_INTEGER_VALUE{ after(grammarAccess.getINTEGER_LITERALAccess().getValueINTEGER_VALUETerminalRuleCall_0()); }
 )
 
 ;
@@ -18810,7 +18810,7 @@ finally {
 }
 
 
-RULE_INTEGERVALUE : (('0'|'1'..'9' ('_'? '0'..'9')*)|('0b'|'0B') '0'..'1' ('_'? '0'..'1')*|('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F') ('_'? ('0'..'9'|'a'..'f'|'A'..'F'))*|'0' '_'? '0'..'7' ('_'? '0'..'7')*);
+RULE_INTEGER_VALUE : (('0'|'1'..'9' ('_'? '0'..'9')*)|('0b'|'0B') '0'..'1' ('_'? '0'..'1')*|('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F') ('_'? ('0'..'9'|'a'..'f'|'A'..'F'))*|'0' '_'? '0'..'7' ('_'? '0'..'7')*);
 
 RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'\'' ( options {greedy=false;} : . )*'\'');
 

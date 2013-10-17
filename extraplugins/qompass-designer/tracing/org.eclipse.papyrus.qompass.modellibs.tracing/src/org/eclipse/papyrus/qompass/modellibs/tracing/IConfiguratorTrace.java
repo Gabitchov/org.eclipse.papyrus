@@ -9,9 +9,9 @@ import org.eclipse.uml2.uml.Property;
 
 public class IConfiguratorTrace implements IInstanceConfigurator {
 
-	static final String PROP_PORT_NAME = "portName";
+	static final String PROP_PORT_NAME = "portName"; //$NON-NLS-1$
 
-	static final String PROP_INSTANCE_NAME = "instanceName";
+	static final String PROP_INSTANCE_NAME = "instanceName"; //$NON-NLS-1$
 
 	/**
 	 * Configure the passed trace instance
@@ -22,7 +22,7 @@ public class IConfiguratorTrace implements IInstanceConfigurator {
 		// The tracing code needs informations about the component instance and port.
 
 		String instanceName = instance.getName();
-		int index = instanceName.lastIndexOf(".");
+		int index = instanceName.lastIndexOf("."); //$NON-NLS-1$
 		if(index != -1) {
 			String lastSegment = instanceName.substring(index + 1);
 			if(lastSegment.startsWith(ContainerTrafo.interceptorName)) {

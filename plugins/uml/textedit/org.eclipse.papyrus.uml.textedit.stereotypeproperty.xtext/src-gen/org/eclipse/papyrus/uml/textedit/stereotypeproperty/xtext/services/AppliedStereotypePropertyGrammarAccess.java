@@ -208,7 +208,7 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	//// (suffix = SuffixExpression) ? ;
 	// INTEGER_LITERAL:
 	//
-	//	value=IntegerValue;
+	//	value=INTEGER_VALUE;
 	public AlfGrammarAccess.INTEGER_LITERALElements getINTEGER_LITERALAccess() {
 		return gaAlf.getINTEGER_LITERALAccess();
 	}
@@ -228,21 +228,6 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 	public ParserRule getUNLIMITED_LITERALRule() {
 		return getUNLIMITED_LITERALAccess().getRule();
 	}
-
-	//terminal IntegerValue:
-	//
-	//	("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL 
-	// // BINARY
-	// // HEX
-	// // OCT
-	// | ("0b" | "0B") "0".."1" ("_"? "0".."1")* |
-	//
-	//	("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" | "A".."F"))* | "0" "_"? "0".."7" ("_"?
-	//
-	//	"0".."7")*;
-	public TerminalRule getIntegerValueRule() {
-		return gaAlf.getIntegerValueRule();
-	} 
 
 	//// (suffix = SuffixExpression) ?;
 	// STRING_LITERAL:
@@ -1510,10 +1495,24 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return getAssignmentOperatorAccess().getRule();
 	}
 
-	/// ****************
-	// * Terminals
-	// ***************** / //terminal DOUBLE_COLON : '::' ;
-	// terminal ID:
+	//terminal INTEGER_VALUE:
+	//
+	//	("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL 
+	//
+	//	// BINARY
+	//
+	//	// HEX
+	//
+	//	// OCT
+	//
+	//	| ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
+	//
+	//	"A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
+	public TerminalRule getINTEGER_VALUERule() {
+		return gaAlf.getINTEGER_VALUERule();
+	} 
+
+	//terminal ID:
 	//
 	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
 	public TerminalRule getIDRule() {
@@ -1534,20 +1533,19 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		return gaAlf.getML_COMMENTRule();
 	} 
 
-	////terminal IDENTIFIER : ID  ;
+	////terminal DOUBLE_COLON : '::' ;
 	//
+	////terminal IDENTIFIER : ID  ;
 	//
 	////terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
 	//
-	//
 	////terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
-	// //terminal ML_COMMENT	: '/°' -> '°/';
 	//
+	////terminal ML_COMMENT	: '/°' -> '°/';
 	//
 	////terminal SL_COMMENT 	: '°°' !('\n'|'\r')* ('\r'? '\n')?;
-	// //terminal WS			: (' '|'\t'|'\r'|'\n')+; terminal
 	//
-	//SL_COMMENT:
+	////terminal WS			: (' '|'\t'|'\r'|'\n')+; terminal SL_COMMENT:
 	//
 	//	"//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {

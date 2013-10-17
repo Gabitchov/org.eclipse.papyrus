@@ -49,7 +49,6 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 		if(REQ_DELETE.equals(request.getType())) {
 			return getDeleteCommand((GroupRequest)request);
 		}
-
 		return null;
 	}
 
@@ -64,27 +63,21 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 	 */
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
 		CompositeCommand cc = new CompositeCommand(StringStatics.BLANK);
-
 		TransactionalEditingDomain editingDomain = getEditingDomain();
 		if(editingDomain == null) {
 			return null;
 		}
 		List toDel = deleteRequest.getEditParts();
-
 		/* if the element deleted is the link between a containment circle and a class */
-
 		if(getHost() instanceof ContainmentSubLinkEditPart) {
 			ContainmentSubLinkEditPart hostaddedlink = (ContainmentSubLinkEditPart)getHost();
 			EditPart circlecontainment = hostaddedlink.getSource();
 			ContainmentCircleEditPart containmentcircleeditpart = (ContainmentCircleEditPart)hostaddedlink.getSource();
-
 			/* The containment circle node is deleted only if any other link is connected */
 			if(containmentcircleeditpart.getSourceConnections().size() == 1) {
 				cc.compose(new DeleteCommand(editingDomain, (View)circlecontainment.getModel()));
 			}
 		}
-
-
 		/* if the element deleted is the contained class, the link connected should be delete also */
 		if(getHost() instanceof ClassEditPart) {
 			EList<Connector> linkList = null;
@@ -93,7 +86,6 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 			linkList = hostShape.getTargetEdges();
 			Classifier classhost = (Classifier)hostShape.getElement();
 			Iterator<Connector> addedLinkIterator = linkList.iterator();
-
 			if(classhost.getOwner() instanceof org.eclipse.uml2.uml.Class) {
 				while(addedLinkIterator.hasNext()) {
 					Connector currentConnector = addedLinkIterator.next();
@@ -102,7 +94,6 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 						/* The containment circle node is deleted only if any other link is connected */
 						if(((View)containmentCircleShape).getSourceEdges().size() == 1) {
 							cc.compose(new DeleteCommand(editingDomain, (View)containmentCircleShape));
-
 						}
 					}
 				}
@@ -116,7 +107,6 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 			linkList = shapehost.getTargetEdges();
 			PackageableElement classhost = (PackageableElement)shapehost.getElement();
 			Iterator<Connector> addedLinkIterator = linkList.iterator();
-
 			if(classhost.getOwner() instanceof org.eclipse.uml2.uml.Package) {
 				while(addedLinkIterator.hasNext()) {
 					Connector currentConnector = addedLinkIterator.next();
@@ -125,13 +115,11 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 						/* The containment circle node is deleted only if any other link is connected */
 						if(((View)containmentCircleShape).getSourceEdges().size() == 1) {
 							cc.compose(new DeleteCommand(editingDomain, (View)containmentCircleShape));
-
 						}
 					}
 				}
 			}
 		}
-
 		if(toDel == null || toDel.isEmpty()) {
 			cc.compose(new DeleteCommand(editingDomain, (View)getHost().getModel()));
 		} else {
@@ -154,6 +142,4 @@ public class CustomViewComponentEditPolicy extends ViewComponentEditPolicy {
 		}
 		return null;
 	}
-
-
 }

@@ -18,6 +18,10 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
@@ -33,6 +37,13 @@ public abstract class AbstractPreConditionAction implements IPreAction {
 
 	/** factory used to create this action */
 	protected IAspectActionProvider factory;
+
+	/**
+	 * the current services registry
+	 * Available only during customization
+	 * At runtime, use the ViewAdapter
+	 */
+	private ServicesRegistry registry;
 
 	/**
 	 * @{inheritDoc
@@ -165,5 +176,27 @@ public abstract class AbstractPreConditionAction implements IPreAction {
 	 * @return true if this preCondition should allow the user to continue even if it returns false
 	 */
 	protected abstract boolean allowContinue();
+
+	public void setServicesRegistry(ServicesRegistry registry) {
+		this.registry = registry;
+	}
+
+	protected ServicesRegistry getServicesRegistry() {
+		if(registry == null) {
+			//FIXME: #setServicesRegistry() is not always properly called.
+			//Workaround: We rely on the ActiveEditor to retrieve the services registry, which is dangerous
+			//The initial Palette Customization wizard knows the customization context, but it is lost way before the PostAction is created
+			if(registry == null) {
+				try {
+					registry = ServiceUtilsForActionHandlers.getInstance().getServiceRegistry();
+				} catch (ServiceException ex) {
+					Activator.log.error(ex);
+					return null;
+				}
+			}
+		}
+
+		return registry;
+	}
 
 }

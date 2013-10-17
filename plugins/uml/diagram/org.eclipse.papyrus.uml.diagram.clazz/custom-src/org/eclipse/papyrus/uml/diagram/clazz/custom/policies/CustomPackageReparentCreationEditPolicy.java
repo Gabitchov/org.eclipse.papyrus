@@ -56,13 +56,10 @@ public class CustomPackageReparentCreationEditPolicy extends PapyrusCreationEdit
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		int index = 0;
-
 		while(editParts.hasNext()) {
 			EditPart ep = (EditPart)editParts.next();
 			View view = (View)ep.getAdapter(View.class);
 			EObject semantic = ViewUtil.resolveSemanticElement(view);
-
-
 			if(ep instanceof LabelEditPart) {
 				continue;
 			}
@@ -72,7 +69,6 @@ public class CustomPackageReparentCreationEditPolicy extends PapyrusCreationEdit
 			if(ep instanceof PackageEditPart || ep instanceof CModelEditPart || ep instanceof PackageEditPartCN || ep instanceof ModelEditPartCN) {
 				if(context != null) {
 					cc.compose(getReparentCommand((IGraphicalEditPart)ep));
-
 				}
 			} else {
 				//if ( context != null && shouldReparent(semantic, context)){
@@ -81,17 +77,12 @@ public class CustomPackageReparentCreationEditPolicy extends PapyrusCreationEdit
 				return super.getReparentCommand((ChangeBoundsRequest)req);
 				// }
 			}
-
 		}
 		return cc.isEmpty() ? null : new ICommandProxy(cc.reduce());
 	}
 
-
-
 	protected ICommand getReparentCommand(IGraphicalEditPart gep) {
-
 		//1.******************************************** Variables initialization
-
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 		View container = (View)getHost().getModel();
 		EObject context = ViewUtil.resolveSemanticElement(container);
@@ -106,36 +97,25 @@ public class CustomPackageReparentCreationEditPolicy extends PapyrusCreationEdit
 			if(editPart instanceof ModelEditPart) {
 				modelRootEditPart = editPart;
 			}
-
 		}
-
 		org.eclipse.uml2.uml.Package modelElementRoot = (org.eclipse.uml2.uml.Package)((View)modelRootEditPart.getModel()).getElement();
-
-
 		//2.********************************** Move the semantic element with his graphical view
-
 		// Copied Code :semantic
 		if(element != null) {
 			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(new MoveRequest(editingDomain, context, element)));
-
 			// Added code
 			// if the element is a Package and if it is contained by an other package which is not a Model, we return an UnexecutableCommand to execute a specific Drop command
 			if(element instanceof org.eclipse.uml2.uml.Package && ((Element)element).getOwner() instanceof org.eclipse.uml2.uml.Package && !(((Element)element).getOwner().equals(modelElementRoot))) {
-
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 			}
-
 			// Copied Code :semantic
 			if(moveSemanticCmd == null) {
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 			}
 			cc.compose(new CommandProxy(moveSemanticCmd));
 		}
-
 		// Copied Code :notation
 		cc.compose(getReparentViewCommand(gep));
 		return cc;
 	}
-
-
 }

@@ -67,7 +67,6 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 	/**
 	 * {@inheritDoc}
 	 */
-
 	@Override
 	protected ConfigureRequest createConfigureRequest(ConfigureRequest request) {
 		// TODO Auto-generated method stub
@@ -80,11 +79,8 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 	 */
 	@Override
 	public EObject doDefaultElementCreation(TransactionalEditingDomain domain, EObject newElement) {
-
 		AssociationClass association = UMLFactory.eINSTANCE.createAssociationClass();
-
 		// create target property
-
 		CreateElementRequest request = new CreateElementRequest(domain, getSource(), UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
 		EditElementCommand c = new PropertyForComponentCreateCommand(request);
 		try {
@@ -101,7 +97,6 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
 		// create source property
-
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		c = new PropertyCommandForAssociation(request);
 		try {
@@ -128,7 +123,6 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		} else {
 			association.getMemberEnds().add(1, ((Property)targetProperty));
 		}
-
 		((Package)getContainer()).getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_AssociationClass_2013(association);
 		// ////////////////////////////////////////////////////////////////////

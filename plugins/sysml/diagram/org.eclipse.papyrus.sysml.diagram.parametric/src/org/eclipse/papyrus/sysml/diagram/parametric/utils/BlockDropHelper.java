@@ -43,6 +43,8 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -57,12 +59,41 @@ public class BlockDropHelper extends ElementHelper {
 	}
 
 	public Command getDropAsStructureItemOnPart(DropObjectsRequest request, GraphicalEditPart host, IElementType elementType) {
+		Object droppedEObject = request.getObjects().get(0);
 		String label = "";
 		if(elementType == SysMLElementTypes.PART_PROPERTY) {
 			label = "Create a new Part";
+			// Exclude ConstraintProperty
+			if (droppedEObject instanceof Type) {
+				if (((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type)droppedEObject)) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
+			// Exclude reference drop in diagram owned by a ConstraintBlock
+			Element editPartOwner = (Element)host.resolveSemanticElement();
+			if (editPartOwner instanceof Property) {
+				editPartOwner = ((Property) editPartOwner).getType();
+			}
+			if (editPartOwner != null && ((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches(editPartOwner)) {
+				return UnexecutableCommand.INSTANCE;
+			}
 		}
 		if(elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
 			label = "Create a new Reference";
+			// Exclude ConstraintProperty
+			if (droppedEObject instanceof Type) {
+				if (((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type)droppedEObject)) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
+			// Exclude reference drop in diagram owned by a ConstraintBlock
+			Element editPartOwner = (Element)host.resolveSemanticElement();
+			if (editPartOwner instanceof Property) {
+				editPartOwner = ((Property) editPartOwner).getType();
+			}
+			if (editPartOwner != null && ((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches(editPartOwner)) {
+				return UnexecutableCommand.INSTANCE;
+			}
 		}
 		if(elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
 			label = "Create a new ActorPart";
@@ -73,9 +104,19 @@ public class BlockDropHelper extends ElementHelper {
 		if(elementType == UMLElementTypes.PROPERTY) {
 			label = "Create a new Property";
 		}
+		// New kind of element
+		if(elementType == SysMLElementTypes.CONSTRAINT_PROPERTY) {
+			label = "Create a new ConstraintProperty";
+			// Constraint Property on ConstraintBlock strictly
+			if (droppedEObject instanceof Type) {
+				if (!((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type)droppedEObject)) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
+		}
+		
 		CompoundCommand cc = new CompoundCommand(label);
 
-		Object droppedEObject = request.getObjects().get(0);
 		if(!isValidStructureItemType(droppedEObject, elementType)) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -124,18 +165,30 @@ public class BlockDropHelper extends ElementHelper {
 		// Filter part/reference : a property type by a ConstraintBlock MUST be a ConstraintProperty
 		if(elementType == SysMLElementTypes.PART_PROPERTY) {
 			label = "Create a new Part";
+			// Exclude ConstraintProperty
 			if (droppedEObject instanceof Type) {
 				if (((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type)droppedEObject)) {
 					return UnexecutableCommand.INSTANCE;
 				}
 			}
+			// Exclude reference drop in diagram owned by a ConstraintBlock
+			Element diagramOwner = getDiagramOwner(host);
+			if (diagramOwner != null && ((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches(diagramOwner)) {
+				return UnexecutableCommand.INSTANCE;
+			}
 		}
 		if(elementType == SysMLElementTypes.REFERENCE_PROPERTY) {
 			label = "Create a new Reference";
+			// Exclude ConstraintProperty
 			if (droppedEObject instanceof Type) {
 				if (((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type)droppedEObject)) {
 					return UnexecutableCommand.INSTANCE;
 				}
+			}
+			// Exclude reference drop in diagram owned by a ConstraintBlock
+			Element diagramOwner = getDiagramOwner(host);
+			if (diagramOwner != null && ((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches(diagramOwner)) {
+				return UnexecutableCommand.INSTANCE;
 			}
 		}
 		if(elementType == SysMLElementTypes.ACTOR_PART_PROPERTY) {
@@ -148,6 +201,7 @@ public class BlockDropHelper extends ElementHelper {
 			label = "Create a new Property";
 		}
 		
+		// New kind of element
 		if(elementType == SysMLElementTypes.CONSTRAINT_PROPERTY) {
 			label = "Create a new ConstraintProperty";
 			// Constraint Property on ConstraintBlock strictly
@@ -186,6 +240,14 @@ public class BlockDropHelper extends ElementHelper {
 		cc.add(viewCreateCommand);
 
 		return cc;
+	}
+
+	private Element getDiagramOwner(GraphicalEditPart host) {
+		Object model = host.getRoot().getContents().getModel();
+		if (model instanceof View) {
+			return (Element)((View) model).getElement();
+		}
+		return null;
 	}
 
 	private boolean isValidStructureItemType(Object object, IElementType elementType) {

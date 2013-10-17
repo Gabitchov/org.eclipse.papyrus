@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets" xmlns:x="http://www.eclipse.org/xwt" xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout" xmlns="http://www.eclipse.org/xwt/presentation"><Composite.layout><ppel:PropertiesLayout></ppel:PropertiesLayout></Composite.layout><Group text="Paste Column Axis"><Group.layout><ppel:PropertiesLayout></ppel:PropertiesLayout></Group.layout><Label text="Not Available For This Table"></Label></Group></Composite>

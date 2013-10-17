@@ -22,24 +22,25 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'<Undefined>'", "'::'", "'*'", "'+'", "'-'", "'#'", "'~'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'<Undefined>'", "'::'", "'*'", "'+'", "'-'", "'#'", "'~'"
     };
     public static final int RULE_ID=4;
-    public static final int RULE_STRING=6;
+    public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_INTEGER_VALUE=6;
+    public static final int EOF=-1;
+    public static final int RULE_SL_COMMENT=9;
+    public static final int RULE_ML_COMMENT=8;
+    public static final int T__19=19;
+    public static final int RULE_STRING=7;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
     public static final int T__17=17;
     public static final int T__12=12;
-    public static final int T__11=11;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_ANY_OTHER=10;
     public static final int RULE_INT=5;
-    public static final int RULE_WS=9;
-    public static final int RULE_SL_COMMENT=8;
-    public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_WS=10;
 
     // delegates
     // delegators
@@ -194,7 +195,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
             }
 
-            otherlv_2=(Token)match(input,11,FOLLOW_11_in_ruleCollaborationUseRule165); 
+            otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleCollaborationUseRule165); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getCollaborationUseRuleAccess().getColonKeyword_2());
                 
@@ -205,7 +206,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
             if ( (LA1_0==RULE_ID) ) {
                 alt1=1;
             }
-            else if ( (LA1_0==12) ) {
+            else if ( (LA1_0==13) ) {
                 alt1=2;
             }
             else {
@@ -255,7 +256,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
                 case 2 :
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:140:7: otherlv_4= '<Undefined>'
                     {
-                    otherlv_4=(Token)match(input,12,FOLLOW_12_in_ruleCollaborationUseRule205); 
+                    otherlv_4=(Token)match(input,13,FOLLOW_13_in_ruleCollaborationUseRule205); 
 
                         	newLeafNode(otherlv_4, grammarAccess.getCollaborationUseRuleAccess().getUndefinedKeyword_3_1());
                         
@@ -346,7 +347,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
             if ( (LA2_0==RULE_ID) ) {
                 int LA2_1 = input.LA(2);
 
-                if ( (LA2_1==13) ) {
+                if ( (LA2_1==14) ) {
                     alt2=1;
                 }
             }
@@ -502,7 +503,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
             }
 
-            otherlv_1=(Token)match(input,13,FOLLOW_13_in_ruleQualifiedName422); 
+            otherlv_1=(Token)match(input,14,FOLLOW_14_in_ruleQualifiedName422); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1());
                 
@@ -513,7 +514,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
             if ( (LA3_0==RULE_ID) ) {
                 int LA3_1 = input.LA(2);
 
-                if ( (LA3_1==13) ) {
+                if ( (LA3_1==14) ) {
                     alt3=1;
                 }
             }
@@ -727,7 +728,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
             if ( (LA4_0==RULE_INT) ) {
                 alt4=1;
             }
-            else if ( (LA4_0==14) ) {
+            else if ( (LA4_0==15) ) {
                 alt4=2;
             }
             else {
@@ -753,7 +754,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
                 case 2 :
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:323:2: kw= '*'
                     {
-                    kw=(Token)match(input,14,FOLLOW_14_in_ruleUnlimitedLiteral648); 
+                    kw=(Token)match(input,15,FOLLOW_15_in_ruleUnlimitedLiteral648); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
@@ -799,22 +800,22 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
             // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:339:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
             int alt5=4;
             switch ( input.LA(1) ) {
-            case 15:
+            case 16:
                 {
                 alt5=1;
                 }
                 break;
-            case 16:
+            case 17:
                 {
                 alt5=2;
                 }
                 break;
-            case 17:
+            case 18:
                 {
                 alt5=3;
                 }
                 break;
-            case 18:
+            case 19:
                 {
                 alt5=4;
                 }
@@ -833,7 +834,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:339:2: (enumLiteral_0= '+' )
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:339:4: enumLiteral_0= '+'
                     {
-                    enumLiteral_0=(Token)match(input,15,FOLLOW_15_in_ruleVisibilityKind702); 
+                    enumLiteral_0=(Token)match(input,16,FOLLOW_16_in_ruleVisibilityKind702); 
 
                             current = grammarAccess.getVisibilityKindAccess().getPublicEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getVisibilityKindAccess().getPublicEnumLiteralDeclaration_0()); 
@@ -850,7 +851,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:345:6: (enumLiteral_1= '-' )
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:345:8: enumLiteral_1= '-'
                     {
-                    enumLiteral_1=(Token)match(input,16,FOLLOW_16_in_ruleVisibilityKind719); 
+                    enumLiteral_1=(Token)match(input,17,FOLLOW_17_in_ruleVisibilityKind719); 
 
                             current = grammarAccess.getVisibilityKindAccess().getPrivateEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getVisibilityKindAccess().getPrivateEnumLiteralDeclaration_1()); 
@@ -867,7 +868,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:351:6: (enumLiteral_2= '#' )
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:351:8: enumLiteral_2= '#'
                     {
-                    enumLiteral_2=(Token)match(input,17,FOLLOW_17_in_ruleVisibilityKind736); 
+                    enumLiteral_2=(Token)match(input,18,FOLLOW_18_in_ruleVisibilityKind736); 
 
                             current = grammarAccess.getVisibilityKindAccess().getProtectedEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_2, grammarAccess.getVisibilityKindAccess().getProtectedEnumLiteralDeclaration_2()); 
@@ -884,7 +885,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:357:6: (enumLiteral_3= '~' )
                     // ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:357:8: enumLiteral_3= '~'
                     {
-                    enumLiteral_3=(Token)match(input,18,FOLLOW_18_in_ruleVisibilityKind753); 
+                    enumLiteral_3=(Token)match(input,19,FOLLOW_19_in_ruleVisibilityKind753); 
 
                             current = grammarAccess.getVisibilityKindAccess().getPackageEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_3, grammarAccess.getVisibilityKindAccess().getPackageEnumLiteralDeclaration_3()); 
@@ -922,18 +923,18 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
     public static final BitSet FOLLOW_ruleCollaborationUseRule_in_entryRuleCollaborationUseRule75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCollaborationUseRule85 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleVisibilityKind_in_ruleCollaborationUseRule131 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleCollaborationUseRule148 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_11_in_ruleCollaborationUseRule165 = new BitSet(new long[]{0x0000000000001010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleCollaborationUseRule148 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_ruleCollaborationUseRule165 = new BitSet(new long[]{0x0000000000002010L});
     public static final BitSet FOLLOW_ruleTypeRule_in_ruleCollaborationUseRule187 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleCollaborationUseRule205 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_ruleCollaborationUseRule205 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTypeRule_in_entryRuleTypeRule242 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleTypeRule252 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleTypeRule298 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleTypeRule319 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName355 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName410 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleQualifiedName422 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName410 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_ruleQualifiedName422 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedName443 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBoundSpecification_in_entryRuleBoundSpecification482 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleBoundSpecification492 = new BitSet(new long[]{0x0000000000000002L});
@@ -941,10 +942,10 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
     public static final BitSet FOLLOW_ruleUnlimitedLiteral_in_entryRuleUnlimitedLiteral573 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUnlimitedLiteral584 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_ruleUnlimitedLiteral624 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_ruleUnlimitedLiteral648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_ruleVisibilityKind702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_ruleVisibilityKind719 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_ruleVisibilityKind736 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleVisibilityKind753 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_ruleUnlimitedLiteral648 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_ruleVisibilityKind702 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_ruleVisibilityKind719 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_ruleVisibilityKind736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleVisibilityKind753 = new BitSet(new long[]{0x0000000000000002L});
 
 }

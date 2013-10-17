@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlParameterParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'<Undefined>'", "'*'", "'exception'", "'stream'", "'ordered'", "'unique'", "'create'", "'read'", "'update'", "'delete'", "'+'", "'-'", "'#'", "'~'", "'in'", "'out'", "'inout'", "'return'", "':'", "'{'", "'}'", "','", "'effect: '", "'::'", "'['", "']'", "'..'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'<Undefined>'", "'*'", "'exception'", "'stream'", "'ordered'", "'unique'", "'create'", "'read'", "'update'", "'delete'", "'+'", "'-'", "'#'", "'~'", "'in'", "'out'", "'inout'", "'return'", "':'", "'{'", "'}'", "','", "'effect: '", "'::'", "'['", "']'", "'..'"
     };
     public static final int RULE_ID=5;
     public static final int T__29=29;
@@ -33,16 +33,17 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
     public static final int T__24=24;
     public static final int T__23=23;
     public static final int T__22=22;
-    public static final int RULE_ANY_OTHER=10;
+    public static final int RULE_ANY_OTHER=11;
     public static final int T__21=21;
     public static final int T__20=20;
-    public static final int RULE_SL_COMMENT=8;
+    public static final int RULE_INTEGER_VALUE=6;
+    public static final int RULE_SL_COMMENT=9;
     public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_ML_COMMENT=8;
     public static final int T__30=30;
     public static final int T__19=19;
     public static final int T__31=31;
-    public static final int RULE_STRING=6;
+    public static final int RULE_STRING=7;
     public static final int T__32=32;
     public static final int T__33=33;
     public static final int T__16=16;
@@ -54,11 +55,11 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
     public static final int T__17=17;
     public static final int T__37=37;
     public static final int T__12=12;
-    public static final int T__11=11;
+    public static final int T__38=38;
     public static final int T__14=14;
     public static final int T__13=13;
     public static final int RULE_INT=4;
-    public static final int RULE_WS=9;
+    public static final int RULE_WS=10;
 
     // delegates
     // delegators
@@ -992,7 +993,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             if ( (LA1_0==RULE_ID) ) {
                 alt1=1;
             }
-            else if ( (LA1_0==11) ) {
+            else if ( (LA1_0==12) ) {
                 alt1=2;
             }
             else {
@@ -1034,7 +1035,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:400:1: '<Undefined>'
                     {
                      before(grammarAccess.getParameterRuleAccess().getUndefinedKeyword_4_1()); 
-                    match(input,11,FOLLOW_11_in_rule__ParameterRule__Alternatives_4773); 
+                    match(input,12,FOLLOW_12_in_rule__ParameterRule__Alternatives_4773); 
                      after(grammarAccess.getParameterRuleAccess().getUndefinedKeyword_4_1()); 
 
                     }
@@ -1073,7 +1074,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             if ( (LA2_0==RULE_INT) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==12) ) {
+            else if ( (LA2_0==13) ) {
                 alt2=2;
             }
             else {
@@ -1105,7 +1106,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:424:1: '*'
                     {
                      before(grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
-                    match(input,12,FOLLOW_12_in_rule__UnlimitedLiteral__Alternatives825); 
+                    match(input,13,FOLLOW_13_in_rule__UnlimitedLiteral__Alternatives825); 
                      after(grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
 
                     }
@@ -1140,22 +1141,22 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:440:1: ( ( ( 'exception' ) ) | ( ( 'stream' ) ) | ( ( 'ordered' ) ) | ( ( 'unique' ) ) )
             int alt3=4;
             switch ( input.LA(1) ) {
-            case 13:
+            case 14:
                 {
                 alt3=1;
                 }
                 break;
-            case 14:
+            case 15:
                 {
                 alt3=2;
                 }
                 break;
-            case 15:
+            case 16:
                 {
                 alt3=3;
                 }
                 break;
-            case 16:
+            case 17:
                 {
                 alt3=4;
                 }
@@ -1178,7 +1179,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:443:1: ( 'exception' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:443:3: 'exception'
                     {
-                    match(input,13,FOLLOW_13_in_rule__ModifierKind__Alternatives860); 
+                    match(input,14,FOLLOW_14_in_rule__ModifierKind__Alternatives860); 
 
                     }
 
@@ -1199,7 +1200,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:450:1: ( 'stream' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:450:3: 'stream'
                     {
-                    match(input,14,FOLLOW_14_in_rule__ModifierKind__Alternatives881); 
+                    match(input,15,FOLLOW_15_in_rule__ModifierKind__Alternatives881); 
 
                     }
 
@@ -1220,7 +1221,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:457:1: ( 'ordered' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:457:3: 'ordered'
                     {
-                    match(input,15,FOLLOW_15_in_rule__ModifierKind__Alternatives902); 
+                    match(input,16,FOLLOW_16_in_rule__ModifierKind__Alternatives902); 
 
                     }
 
@@ -1241,7 +1242,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:464:1: ( 'unique' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:464:3: 'unique'
                     {
-                    match(input,16,FOLLOW_16_in_rule__ModifierKind__Alternatives923); 
+                    match(input,17,FOLLOW_17_in_rule__ModifierKind__Alternatives923); 
 
                     }
 
@@ -1279,22 +1280,22 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:478:1: ( ( ( 'create' ) ) | ( ( 'read' ) ) | ( ( 'update' ) ) | ( ( 'delete' ) ) )
             int alt4=4;
             switch ( input.LA(1) ) {
-            case 17:
+            case 18:
                 {
                 alt4=1;
                 }
                 break;
-            case 18:
+            case 19:
                 {
                 alt4=2;
                 }
                 break;
-            case 19:
+            case 20:
                 {
                 alt4=3;
                 }
                 break;
-            case 20:
+            case 21:
                 {
                 alt4=4;
                 }
@@ -1317,7 +1318,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:481:1: ( 'create' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:481:3: 'create'
                     {
-                    match(input,17,FOLLOW_17_in_rule__EffectKind__Alternatives959); 
+                    match(input,18,FOLLOW_18_in_rule__EffectKind__Alternatives959); 
 
                     }
 
@@ -1338,7 +1339,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:488:1: ( 'read' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:488:3: 'read'
                     {
-                    match(input,18,FOLLOW_18_in_rule__EffectKind__Alternatives980); 
+                    match(input,19,FOLLOW_19_in_rule__EffectKind__Alternatives980); 
 
                     }
 
@@ -1359,7 +1360,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:495:1: ( 'update' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:495:3: 'update'
                     {
-                    match(input,19,FOLLOW_19_in_rule__EffectKind__Alternatives1001); 
+                    match(input,20,FOLLOW_20_in_rule__EffectKind__Alternatives1001); 
 
                     }
 
@@ -1380,7 +1381,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:502:1: ( 'delete' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:502:3: 'delete'
                     {
-                    match(input,20,FOLLOW_20_in_rule__EffectKind__Alternatives1022); 
+                    match(input,21,FOLLOW_21_in_rule__EffectKind__Alternatives1022); 
 
                     }
 
@@ -1418,22 +1419,22 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:516:1: ( ( ( '+' ) ) | ( ( '-' ) ) | ( ( '#' ) ) | ( ( '~' ) ) )
             int alt5=4;
             switch ( input.LA(1) ) {
-            case 21:
+            case 22:
                 {
                 alt5=1;
                 }
                 break;
-            case 22:
+            case 23:
                 {
                 alt5=2;
                 }
                 break;
-            case 23:
+            case 24:
                 {
                 alt5=3;
                 }
                 break;
-            case 24:
+            case 25:
                 {
                 alt5=4;
                 }
@@ -1456,7 +1457,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:519:1: ( '+' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:519:3: '+'
                     {
-                    match(input,21,FOLLOW_21_in_rule__VisibilityKind__Alternatives1058); 
+                    match(input,22,FOLLOW_22_in_rule__VisibilityKind__Alternatives1058); 
 
                     }
 
@@ -1477,7 +1478,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:526:1: ( '-' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:526:3: '-'
                     {
-                    match(input,22,FOLLOW_22_in_rule__VisibilityKind__Alternatives1079); 
+                    match(input,23,FOLLOW_23_in_rule__VisibilityKind__Alternatives1079); 
 
                     }
 
@@ -1498,7 +1499,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:533:1: ( '#' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:533:3: '#'
                     {
-                    match(input,23,FOLLOW_23_in_rule__VisibilityKind__Alternatives1100); 
+                    match(input,24,FOLLOW_24_in_rule__VisibilityKind__Alternatives1100); 
 
                     }
 
@@ -1519,7 +1520,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:540:1: ( '~' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:540:3: '~'
                     {
-                    match(input,24,FOLLOW_24_in_rule__VisibilityKind__Alternatives1121); 
+                    match(input,25,FOLLOW_25_in_rule__VisibilityKind__Alternatives1121); 
 
                     }
 
@@ -1557,22 +1558,22 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:554:1: ( ( ( 'in' ) ) | ( ( 'out' ) ) | ( ( 'inout' ) ) | ( ( 'return' ) ) )
             int alt6=4;
             switch ( input.LA(1) ) {
-            case 25:
+            case 26:
                 {
                 alt6=1;
                 }
                 break;
-            case 26:
+            case 27:
                 {
                 alt6=2;
                 }
                 break;
-            case 27:
+            case 28:
                 {
                 alt6=3;
                 }
                 break;
-            case 28:
+            case 29:
                 {
                 alt6=4;
                 }
@@ -1595,7 +1596,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:557:1: ( 'in' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:557:3: 'in'
                     {
-                    match(input,25,FOLLOW_25_in_rule__Direction__Alternatives1157); 
+                    match(input,26,FOLLOW_26_in_rule__Direction__Alternatives1157); 
 
                     }
 
@@ -1616,7 +1617,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:564:1: ( 'out' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:564:3: 'out'
                     {
-                    match(input,26,FOLLOW_26_in_rule__Direction__Alternatives1178); 
+                    match(input,27,FOLLOW_27_in_rule__Direction__Alternatives1178); 
 
                     }
 
@@ -1637,7 +1638,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:571:1: ( 'inout' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:571:3: 'inout'
                     {
-                    match(input,27,FOLLOW_27_in_rule__Direction__Alternatives1199); 
+                    match(input,28,FOLLOW_28_in_rule__Direction__Alternatives1199); 
 
                     }
 
@@ -1658,7 +1659,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:578:1: ( 'return' )
                     // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:578:3: 'return'
                     {
-                    match(input,28,FOLLOW_28_in_rule__Direction__Alternatives1220); 
+                    match(input,29,FOLLOW_29_in_rule__Direction__Alternatives1220); 
 
                     }
 
@@ -1993,7 +1994,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:695:1: ':'
             {
              before(grammarAccess.getParameterRuleAccess().getColonKeyword_3()); 
-            match(input,29,FOLLOW_29_in_rule__ParameterRule__Group__3__Impl1464); 
+            match(input,30,FOLLOW_30_in_rule__ParameterRule__Group__3__Impl1464); 
              after(grammarAccess.getParameterRuleAccess().getColonKeyword_3()); 
 
             }
@@ -2157,7 +2158,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( (LA7_0==35) ) {
+            if ( (LA7_0==36) ) {
                 alt7=1;
             }
             switch (alt7) {
@@ -2253,10 +2254,10 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( (LA8_0==30) ) {
+            if ( (LA8_0==31) ) {
                 int LA8_1 = input.LA(2);
 
-                if ( ((LA8_1>=13 && LA8_1<=16)) ) {
+                if ( ((LA8_1>=14 && LA8_1<=17)) ) {
                     alt8=1;
                 }
             }
@@ -2429,7 +2430,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:857:1: '{'
             {
              before(grammarAccess.getModifiersRuleAccess().getLeftCurlyBracketKeyword_0()); 
-            match(input,30,FOLLOW_30_in_rule__ModifiersRule__Group__0__Impl1781); 
+            match(input,31,FOLLOW_31_in_rule__ModifiersRule__Group__0__Impl1781); 
              after(grammarAccess.getModifiersRuleAccess().getLeftCurlyBracketKeyword_0()); 
 
             }
@@ -2595,7 +2596,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
                 int alt9=2;
                 int LA9_0 = input.LA(1);
 
-                if ( (LA9_0==32) ) {
+                if ( (LA9_0==33) ) {
                     alt9=1;
                 }
 
@@ -2687,7 +2688,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:945:1: '}'
             {
              before(grammarAccess.getModifiersRuleAccess().getRightCurlyBracketKeyword_3()); 
-            match(input,31,FOLLOW_31_in_rule__ModifiersRule__Group__3__Impl1961); 
+            match(input,32,FOLLOW_32_in_rule__ModifiersRule__Group__3__Impl1961); 
              after(grammarAccess.getModifiersRuleAccess().getRightCurlyBracketKeyword_3()); 
 
             }
@@ -2762,7 +2763,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:984:1: ','
             {
              before(grammarAccess.getModifiersRuleAccess().getCommaKeyword_2_0()); 
-            match(input,32,FOLLOW_32_in_rule__ModifiersRule__Group_2__0__Impl2031); 
+            match(input,33,FOLLOW_33_in_rule__ModifiersRule__Group_2__0__Impl2031); 
              after(grammarAccess.getModifiersRuleAccess().getCommaKeyword_2_0()); 
 
             }
@@ -2917,7 +2918,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:1047:1: '{'
             {
              before(grammarAccess.getEffectRuleAccess().getLeftCurlyBracketKeyword_0()); 
-            match(input,30,FOLLOW_30_in_rule__EffectRule__Group__0__Impl2154); 
+            match(input,31,FOLLOW_31_in_rule__EffectRule__Group__0__Impl2154); 
              after(grammarAccess.getEffectRuleAccess().getLeftCurlyBracketKeyword_0()); 
 
             }
@@ -2992,7 +2993,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:1078:1: 'effect: '
             {
              before(grammarAccess.getEffectRuleAccess().getEffectKeyword_1()); 
-            match(input,33,FOLLOW_33_in_rule__EffectRule__Group__1__Impl2216); 
+            match(input,34,FOLLOW_34_in_rule__EffectRule__Group__1__Impl2216); 
              after(grammarAccess.getEffectRuleAccess().getEffectKeyword_1()); 
 
             }
@@ -3147,7 +3148,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:1137:1: '}'
             {
              before(grammarAccess.getEffectRuleAccess().getRightCurlyBracketKeyword_3()); 
-            match(input,31,FOLLOW_31_in_rule__EffectRule__Group__3__Impl2335); 
+            match(input,32,FOLLOW_32_in_rule__EffectRule__Group__3__Impl2335); 
              after(grammarAccess.getEffectRuleAccess().getRightCurlyBracketKeyword_3()); 
 
             }
@@ -3307,7 +3308,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:1205:1: '::'
             {
              before(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1()); 
-            match(input,34,FOLLOW_34_in_rule__QualifiedName__Group__1__Impl2465); 
+            match(input,35,FOLLOW_35_in_rule__QualifiedName__Group__1__Impl2465); 
              after(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1()); 
 
             }
@@ -3384,7 +3385,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             if ( (LA10_0==RULE_ID) ) {
                 int LA10_1 = input.LA(2);
 
-                if ( (LA10_1==34) ) {
+                if ( (LA10_1==35) ) {
                     alt10=1;
                 }
             }
@@ -3484,7 +3485,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             if ( (LA11_0==RULE_ID) ) {
                 int LA11_1 = input.LA(2);
 
-                if ( (LA11_1==34) ) {
+                if ( (LA11_1==35) ) {
                     alt11=1;
                 }
             }
@@ -3657,7 +3658,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:1331:1: '['
             {
              before(grammarAccess.getMultiplicityRuleAccess().getLeftSquareBracketKeyword_0()); 
-            match(input,35,FOLLOW_35_in_rule__MultiplicityRule__Group__0__Impl2713); 
+            match(input,36,FOLLOW_36_in_rule__MultiplicityRule__Group__0__Impl2713); 
              after(grammarAccess.getMultiplicityRuleAccess().getLeftSquareBracketKeyword_0()); 
 
             }
@@ -3821,7 +3822,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             int alt12=2;
             int LA12_0 = input.LA(1);
 
-            if ( (LA12_0==37) ) {
+            if ( (LA12_0==38) ) {
                 alt12=1;
             }
             switch (alt12) {
@@ -3908,7 +3909,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:1419:1: ']'
             {
              before(grammarAccess.getMultiplicityRuleAccess().getRightSquareBracketKeyword_3()); 
-            match(input,36,FOLLOW_36_in_rule__MultiplicityRule__Group__3__Impl2893); 
+            match(input,37,FOLLOW_37_in_rule__MultiplicityRule__Group__3__Impl2893); 
              after(grammarAccess.getMultiplicityRuleAccess().getRightSquareBracketKeyword_3()); 
 
             }
@@ -3983,7 +3984,7 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
             // ../org.eclipse.papyrus.uml.textedit.parameter.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/parameter/xtext/ui/contentassist/antlr/internal/InternalUmlParameter.g:1458:1: '..'
             {
              before(grammarAccess.getMultiplicityRuleAccess().getFullStopFullStopKeyword_2_0()); 
-            match(input,37,FOLLOW_37_in_rule__MultiplicityRule__Group_2__0__Impl2963); 
+            match(input,38,FOLLOW_38_in_rule__MultiplicityRule__Group_2__0__Impl2963); 
              after(grammarAccess.getMultiplicityRuleAccess().getFullStopFullStopKeyword_2_0()); 
 
             }
@@ -4864,81 +4865,81 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
     public static final BitSet FOLLOW_rule__VisibilityKind__Alternatives_in_ruleVisibilityKind683 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Direction__Alternatives_in_ruleDirection719 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__TypeAssignment_4_0_in_rule__ParameterRule__Alternatives_4754 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rule__ParameterRule__Alternatives_4773 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_rule__ParameterRule__Alternatives_4773 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_rule__UnlimitedLiteral__Alternatives807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__UnlimitedLiteral__Alternatives825 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__ModifierKind__Alternatives860 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__ModifierKind__Alternatives881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__ModifierKind__Alternatives902 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__ModifierKind__Alternatives923 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__EffectKind__Alternatives959 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_rule__EffectKind__Alternatives980 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_rule__EffectKind__Alternatives1001 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__EffectKind__Alternatives1022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_rule__VisibilityKind__Alternatives1058 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_rule__VisibilityKind__Alternatives1079 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_rule__VisibilityKind__Alternatives1100 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_rule__VisibilityKind__Alternatives1121 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_rule__Direction__Alternatives1157 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_rule__Direction__Alternatives1178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rule__Direction__Alternatives1199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__Direction__Alternatives1220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParameterRule__Group__0__Impl_in_rule__ParameterRule__Group__01253 = new BitSet(new long[]{0x000000001E000000L});
+    public static final BitSet FOLLOW_13_in_rule__UnlimitedLiteral__Alternatives825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__ModifierKind__Alternatives860 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__ModifierKind__Alternatives881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__ModifierKind__Alternatives902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__ModifierKind__Alternatives923 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_rule__EffectKind__Alternatives959 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_rule__EffectKind__Alternatives980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_rule__EffectKind__Alternatives1001 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__EffectKind__Alternatives1022 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_rule__VisibilityKind__Alternatives1058 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__VisibilityKind__Alternatives1079 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__VisibilityKind__Alternatives1100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_rule__VisibilityKind__Alternatives1121 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rule__Direction__Alternatives1157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rule__Direction__Alternatives1178 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__Direction__Alternatives1199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__Direction__Alternatives1220 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParameterRule__Group__0__Impl_in_rule__ParameterRule__Group__01253 = new BitSet(new long[]{0x000000003C000000L});
     public static final BitSet FOLLOW_rule__ParameterRule__Group__1_in_rule__ParameterRule__Group__01256 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__VisibilityAssignment_0_in_rule__ParameterRule__Group__0__Impl1283 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__Group__1__Impl_in_rule__ParameterRule__Group__11313 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__ParameterRule__Group__2_in_rule__ParameterRule__Group__11316 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__DirectionAssignment_1_in_rule__ParameterRule__Group__1__Impl1343 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParameterRule__Group__2__Impl_in_rule__ParameterRule__Group__21373 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__ParameterRule__Group__2__Impl_in_rule__ParameterRule__Group__21373 = new BitSet(new long[]{0x0000000040000000L});
     public static final BitSet FOLLOW_rule__ParameterRule__Group__3_in_rule__ParameterRule__Group__21376 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__NameAssignment_2_in_rule__ParameterRule__Group__2__Impl1403 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParameterRule__Group__3__Impl_in_rule__ParameterRule__Group__31433 = new BitSet(new long[]{0x0000000000000820L});
+    public static final BitSet FOLLOW_rule__ParameterRule__Group__3__Impl_in_rule__ParameterRule__Group__31433 = new BitSet(new long[]{0x0000000000001020L});
     public static final BitSet FOLLOW_rule__ParameterRule__Group__4_in_rule__ParameterRule__Group__31436 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__ParameterRule__Group__3__Impl1464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParameterRule__Group__4__Impl_in_rule__ParameterRule__Group__41495 = new BitSet(new long[]{0x0000000840000000L});
+    public static final BitSet FOLLOW_30_in_rule__ParameterRule__Group__3__Impl1464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ParameterRule__Group__4__Impl_in_rule__ParameterRule__Group__41495 = new BitSet(new long[]{0x0000001080000000L});
     public static final BitSet FOLLOW_rule__ParameterRule__Group__5_in_rule__ParameterRule__Group__41498 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__Alternatives_4_in_rule__ParameterRule__Group__4__Impl1525 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParameterRule__Group__5__Impl_in_rule__ParameterRule__Group__51555 = new BitSet(new long[]{0x0000000840000000L});
+    public static final BitSet FOLLOW_rule__ParameterRule__Group__5__Impl_in_rule__ParameterRule__Group__51555 = new BitSet(new long[]{0x0000001080000000L});
     public static final BitSet FOLLOW_rule__ParameterRule__Group__6_in_rule__ParameterRule__Group__51558 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__MultiplicityAssignment_5_in_rule__ParameterRule__Group__5__Impl1585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ParameterRule__Group__6__Impl_in_rule__ParameterRule__Group__61616 = new BitSet(new long[]{0x0000000840000000L});
+    public static final BitSet FOLLOW_rule__ParameterRule__Group__6__Impl_in_rule__ParameterRule__Group__61616 = new BitSet(new long[]{0x0000001080000000L});
     public static final BitSet FOLLOW_rule__ParameterRule__Group__7_in_rule__ParameterRule__Group__61619 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__ModifiersAssignment_6_in_rule__ParameterRule__Group__6__Impl1646 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__Group__7__Impl_in_rule__ParameterRule__Group__71677 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ParameterRule__EffectAssignment_7_in_rule__ParameterRule__Group__7__Impl1704 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModifiersRule__Group__0__Impl_in_rule__ModifiersRule__Group__01750 = new BitSet(new long[]{0x000000000001E000L});
+    public static final BitSet FOLLOW_rule__ModifiersRule__Group__0__Impl_in_rule__ModifiersRule__Group__01750 = new BitSet(new long[]{0x000000000003C000L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group__1_in_rule__ModifiersRule__Group__01753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_rule__ModifiersRule__Group__0__Impl1781 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModifiersRule__Group__1__Impl_in_rule__ModifiersRule__Group__11812 = new BitSet(new long[]{0x0000000180000000L});
+    public static final BitSet FOLLOW_31_in_rule__ModifiersRule__Group__0__Impl1781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModifiersRule__Group__1__Impl_in_rule__ModifiersRule__Group__11812 = new BitSet(new long[]{0x0000000300000000L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group__2_in_rule__ModifiersRule__Group__11815 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ModifiersRule__ValuesAssignment_1_in_rule__ModifiersRule__Group__1__Impl1842 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModifiersRule__Group__2__Impl_in_rule__ModifiersRule__Group__21872 = new BitSet(new long[]{0x0000000180000000L});
+    public static final BitSet FOLLOW_rule__ModifiersRule__Group__2__Impl_in_rule__ModifiersRule__Group__21872 = new BitSet(new long[]{0x0000000300000000L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group__3_in_rule__ModifiersRule__Group__21875 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModifiersRule__Group_2__0_in_rule__ModifiersRule__Group__2__Impl1902 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_rule__ModifiersRule__Group_2__0_in_rule__ModifiersRule__Group__2__Impl1902 = new BitSet(new long[]{0x0000000200000002L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group__3__Impl_in_rule__ModifiersRule__Group__31933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_rule__ModifiersRule__Group__3__Impl1961 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ModifiersRule__Group_2__0__Impl_in_rule__ModifiersRule__Group_2__02000 = new BitSet(new long[]{0x000000000001E000L});
+    public static final BitSet FOLLOW_32_in_rule__ModifiersRule__Group__3__Impl1961 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ModifiersRule__Group_2__0__Impl_in_rule__ModifiersRule__Group_2__02000 = new BitSet(new long[]{0x000000000003C000L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group_2__1_in_rule__ModifiersRule__Group_2__02003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_rule__ModifiersRule__Group_2__0__Impl2031 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_rule__ModifiersRule__Group_2__0__Impl2031 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ModifiersRule__Group_2__1__Impl_in_rule__ModifiersRule__Group_2__12062 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ModifiersRule__ValuesAssignment_2_1_in_rule__ModifiersRule__Group_2__1__Impl2089 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EffectRule__Group__0__Impl_in_rule__EffectRule__Group__02123 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__EffectRule__Group__0__Impl_in_rule__EffectRule__Group__02123 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_rule__EffectRule__Group__1_in_rule__EffectRule__Group__02126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_rule__EffectRule__Group__0__Impl2154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EffectRule__Group__1__Impl_in_rule__EffectRule__Group__12185 = new BitSet(new long[]{0x00000000001E0000L});
+    public static final BitSet FOLLOW_31_in_rule__EffectRule__Group__0__Impl2154 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EffectRule__Group__1__Impl_in_rule__EffectRule__Group__12185 = new BitSet(new long[]{0x00000000003C0000L});
     public static final BitSet FOLLOW_rule__EffectRule__Group__2_in_rule__EffectRule__Group__12188 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rule__EffectRule__Group__1__Impl2216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EffectRule__Group__2__Impl_in_rule__EffectRule__Group__22247 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_34_in_rule__EffectRule__Group__1__Impl2216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EffectRule__Group__2__Impl_in_rule__EffectRule__Group__22247 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_rule__EffectRule__Group__3_in_rule__EffectRule__Group__22250 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EffectRule__EffectKindAssignment_2_in_rule__EffectRule__Group__2__Impl2277 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EffectRule__Group__3__Impl_in_rule__EffectRule__Group__32307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_rule__EffectRule__Group__3__Impl2335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__02374 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_32_in_rule__EffectRule__Group__3__Impl2335 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__02374 = new BitSet(new long[]{0x0000000800000000L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__02377 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl2404 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__12434 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__12437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_rule__QualifiedName__Group__1__Impl2465 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__QualifiedName__Group__1__Impl2465 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__22496 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__RemainingAssignment_2_in_rule__QualifiedName__Group__2__Impl2523 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypeRule__Group__0__Impl_in_rule__TypeRule__Group__02560 = new BitSet(new long[]{0x0000000000000020L});
@@ -4946,20 +4947,20 @@ public class InternalUmlParameterParser extends AbstractInternalContentAssistPar
     public static final BitSet FOLLOW_rule__TypeRule__PathAssignment_0_in_rule__TypeRule__Group__0__Impl2590 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypeRule__Group__1__Impl_in_rule__TypeRule__Group__12621 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypeRule__TypeAssignment_1_in_rule__TypeRule__Group__1__Impl2648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MultiplicityRule__Group__0__Impl_in_rule__MultiplicityRule__Group__02682 = new BitSet(new long[]{0x0000000000001010L});
+    public static final BitSet FOLLOW_rule__MultiplicityRule__Group__0__Impl_in_rule__MultiplicityRule__Group__02682 = new BitSet(new long[]{0x0000000000002010L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group__1_in_rule__MultiplicityRule__Group__02685 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__MultiplicityRule__Group__0__Impl2713 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MultiplicityRule__Group__1__Impl_in_rule__MultiplicityRule__Group__12744 = new BitSet(new long[]{0x0000003000000000L});
+    public static final BitSet FOLLOW_36_in_rule__MultiplicityRule__Group__0__Impl2713 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MultiplicityRule__Group__1__Impl_in_rule__MultiplicityRule__Group__12744 = new BitSet(new long[]{0x0000006000000000L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group__2_in_rule__MultiplicityRule__Group__12747 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__BoundsAssignment_1_in_rule__MultiplicityRule__Group__1__Impl2774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MultiplicityRule__Group__2__Impl_in_rule__MultiplicityRule__Group__22804 = new BitSet(new long[]{0x0000003000000000L});
+    public static final BitSet FOLLOW_rule__MultiplicityRule__Group__2__Impl_in_rule__MultiplicityRule__Group__22804 = new BitSet(new long[]{0x0000006000000000L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group__3_in_rule__MultiplicityRule__Group__22807 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group_2__0_in_rule__MultiplicityRule__Group__2__Impl2834 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group__3__Impl_in_rule__MultiplicityRule__Group__32865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__MultiplicityRule__Group__3__Impl2893 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MultiplicityRule__Group_2__0__Impl_in_rule__MultiplicityRule__Group_2__02932 = new BitSet(new long[]{0x0000000000001010L});
+    public static final BitSet FOLLOW_37_in_rule__MultiplicityRule__Group__3__Impl2893 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__MultiplicityRule__Group_2__0__Impl_in_rule__MultiplicityRule__Group_2__02932 = new BitSet(new long[]{0x0000000000002010L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group_2__1_in_rule__MultiplicityRule__Group_2__02935 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__MultiplicityRule__Group_2__0__Impl2963 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__MultiplicityRule__Group_2__0__Impl2963 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__Group_2__1__Impl_in_rule__MultiplicityRule__Group_2__12994 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MultiplicityRule__BoundsAssignment_2_1_in_rule__MultiplicityRule__Group_2__1__Impl3021 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleVisibilityKind_in_rule__ParameterRule__VisibilityAssignment_03060 = new BitSet(new long[]{0x0000000000000002L});

@@ -1,13 +1,28 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.diagram.clazz,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.action,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.command,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.edit.actions,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.edit.commands,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part,
  org.eclipse.papyrus.uml.diagram.clazz.custom.factory,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.figure,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.helper,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.helper.advice,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.locator,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.parsers,
  org.eclipse.papyrus.uml.diagram.clazz.custom.policies,
  org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.preferences,
  org.eclipse.papyrus.uml.diagram.clazz.custom.providers,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.ui,
+ org.eclipse.papyrus.uml.diagram.clazz.custom.utils,
  org.eclipse.papyrus.uml.diagram.clazz.edit.commands,
  org.eclipse.papyrus.uml.diagram.clazz.edit.helpers,
  org.eclipse.papyrus.uml.diagram.clazz.edit.parts,
  org.eclipse.papyrus.uml.diagram.clazz.edit.policies,
+ org.eclipse.papyrus.uml.diagram.clazz.expressions,
+ org.eclipse.papyrus.uml.diagram.clazz.navigator,
  org.eclipse.papyrus.uml.diagram.clazz.parsers,
  org.eclipse.papyrus.uml.diagram.clazz.part,
  org.eclipse.papyrus.uml.diagram.clazz.providers
@@ -65,13 +80,16 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.gef
+ org.eclipse.gef,
+ org.apache.batik.dom.svg,
+ org.apache.batik.util,
+ org.apache.batik.svggen,
+ org.apache.batik.dom,
+ org.w3c.dom.svg,
+ org.apache.batik.css
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagra
- mEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.clazz;singleton:=
- true
-
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.clazz; singleton:=true

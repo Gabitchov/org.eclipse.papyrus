@@ -62,7 +62,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 			case C_CppPackage.CPP_ROOT: return createCppRoot();
 			case C_CppPackage.ARRAY: return createArray();
 			case C_CppPackage.CONST: return createConst();
-			case C_CppPackage.DEFAULT: return createDefault();
 			case C_CppPackage.REF: return createRef();
 			case C_CppPackage.EXTERNAL: return createExternal();
 			case C_CppPackage.CONST_INIT: return createConstInit();
@@ -168,16 +167,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	public Const createConst() {
 		ConstImpl const_ = new ConstImpl();
 		return const_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Default createDefault() {
-		DefaultImpl default_ = new DefaultImpl();
-		return default_;
 	}
 
 	/**

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements">
+  <uml:Model xmi:id="_kwMIQA72EeORvsuYlq1ltw" name="adl4eclipse">
+    <packagedElement xmi:type="uml:Package" xmi:id="_recI8A72EeORvsuYlq1ltw" name="Requirements">
+      <packagedElement xmi:type="uml:Class" xmi:id="_7TumoA72EeORvsuYlq1ltw" name="PluginsRetroEngineering"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_T6zDAA73EeORvsuYlq1ltw" name="PluginStructuration"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_mTJTUA73EeORvsuYlq1ltw" name="ExtensionPointDependency"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_tpkHQA73EeORvsuYlq1ltw" name="FeatureModel"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_3fBwgA73EeORvsuYlq1ltw" name="PluginGeneration"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_BUL3wA74EeORvsuYlq1ltw" name="FeatureGeneration"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_vHt8wA72EeORvsuYlq1ltw" name="UseCases">
+      <packagedElement xmi:type="uml:Component" xmi:id="_PfjKQA74EeORvsuYlq1ltw" name="Adl4EclipseModule" useCase="_ZHCB4A74EeORvsuYlq1ltw _bUgmEA74EeORvsuYlq1ltw _eK6LcA74EeORvsuYlq1ltw _gToLcA74EeORvsuYlq1ltw _kBXogA74EeORvsuYlq1ltw">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_2lec4A74EeORvsuYlq1ltw" annotatedElement="_ZHCB4A74EeORvsuYlq1ltw">
+          <body>The Simple User can import plugins to display only dependencies+1. to do that he must have all plugins in its workspace</body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_PttsoA75EeORvsuYlq1ltw" annotatedElement="_bUgmEA74EeORvsuYlq1ltw">
+          <body>The Advanced User can import plugin to display all dependencies or +1). Plugin can be imported from the existed platfrom or its workspace</body>
+        </ownedComment>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_ZHCB4A74EeORvsuYlq1ltw" name="ImportPlugins" subject="_PfjKQA74EeORvsuYlq1ltw"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_bUgmEA74EeORvsuYlq1ltw" name="AdvancedImportPlugins" subject="_PfjKQA74EeORvsuYlq1ltw"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_eK6LcA74EeORvsuYlq1ltw" name="GeneratePlugins" subject="_PfjKQA74EeORvsuYlq1ltw"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_gToLcA74EeORvsuYlq1ltw" name="GenerateFeatures" subject="_PfjKQA74EeORvsuYlq1ltw"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_kBXogA74EeORvsuYlq1ltw" name="ImportFeatures" subject="_PfjKQA74EeORvsuYlq1ltw"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_UtP-MA74EeORvsuYlq1ltw" name="simpleUser"/>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_XKzlwA74EeORvsuYlq1ltw" name="AdvancedUser"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_mC9FwA74EeORvsuYlq1ltw" name="A_simpleuser_importplugin" memberEnd="_mC9FwQ74EeORvsuYlq1ltw _mC9FxA74EeORvsuYlq1ltw">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_mC9FwQ74EeORvsuYlq1ltw" name="simpleuser" type="_UtP-MA74EeORvsuYlq1ltw" association="_mC9FwA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mC9Fwg74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mC9Fww74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_mC9FxA74EeORvsuYlq1ltw" name="importplugin" type="_ZHCB4A74EeORvsuYlq1ltw" association="_mC9FwA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mC9FxQ74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mC9Fxg74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_mpx1MA74EeORvsuYlq1ltw" name="A_simpleuser_importfeature" memberEnd="_mpx1MQ74EeORvsuYlq1ltw _mpx1NA74EeORvsuYlq1ltw">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_mpx1MQ74EeORvsuYlq1ltw" name="simpleuser" type="_UtP-MA74EeORvsuYlq1ltw" association="_mpx1MA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mpx1Mg74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mpx1Mw74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_mpx1NA74EeORvsuYlq1ltw" name="importfeature" type="_kBXogA74EeORvsuYlq1ltw" association="_mpx1MA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mpx1NQ74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mpx1Ng74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_noansA74EeORvsuYlq1ltw" name="A_advanceduser_advancedimportplugin" memberEnd="_noansQ74EeORvsuYlq1ltw _noantA74EeORvsuYlq1ltw">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_noansQ74EeORvsuYlq1ltw" name="advanceduser" type="_XKzlwA74EeORvsuYlq1ltw" association="_noansA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_noansg74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_noansw74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_noantA74EeORvsuYlq1ltw" name="advancedimportplugin" type="_bUgmEA74EeORvsuYlq1ltw" association="_noansA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_noantQ74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_noantg74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_oMHxsA74EeORvsuYlq1ltw" name="A_advanceduser_generateplugin" memberEnd="_oMHxsQ74EeORvsuYlq1ltw _oMHxtA74EeORvsuYlq1ltw">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_oMHxsQ74EeORvsuYlq1ltw" name="advanceduser" type="_XKzlwA74EeORvsuYlq1ltw" association="_oMHxsA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oMHxsg74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oMHxsw74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_oMHxtA74EeORvsuYlq1ltw" name="generateplugin" type="_eK6LcA74EeORvsuYlq1ltw" association="_oMHxsA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oMHxtQ74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oMHxtg74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_o1e3wA74EeORvsuYlq1ltw" name="A_advanceduser_generatefeature" memberEnd="_o1e3wQ74EeORvsuYlq1ltw _o1e3xA74EeORvsuYlq1ltw">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_o1e3wQ74EeORvsuYlq1ltw" name="advanceduser" type="_XKzlwA74EeORvsuYlq1ltw" association="_o1e3wA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_o1e3wg74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_o1e3ww74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_o1e3xA74EeORvsuYlq1ltw" name="generatefeature" type="_gToLcA74EeORvsuYlq1ltw" association="_o1e3wA74EeORvsuYlq1ltw">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_o1e3xQ74EeORvsuYlq1ltw" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_o1e3xg74EeORvsuYlq1ltw" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_xeauYA72EeORvsuYlq1ltw" name="Proposal"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2JmrIA72EeORvsuYlq1ltw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2KWSAA72EeORvsuYlq1ltw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_7UVDkA72EeORvsuYlq1ltw" text="Papyrus shall help to retro engineer plugins structuration (name + dependencies)" id="Req001" base_Class="_7TumoA72EeORvsuYlq1ltw"/>
+  <Requirements:Requirement xmi:id="_T7F98A73EeORvsuYlq1ltw" text="Papyrus shall help to import only dependenies of choosen plugins or all dependencies by recursion" id="Req002" base_Class="_T6zDAA73EeORvsuYlq1ltw"/>
+  <Requirements:Requirement xmi:id="_mTcOQA73EeORvsuYlq1ltw" text="Papyrus shall model extension point of plugins" id="Req003" base_Class="_mTJTUA73EeORvsuYlq1ltw"/>
+  <Requirements:Requirement xmi:id="_tpt4QA73EeORvsuYlq1ltw" text="papyrus shall help to model feaure element (eclipse context)" id="Req004" base_Class="_tpkHQA73EeORvsuYlq1ltw"/>
+  <Requirements:Requirement xmi:id="_3fUrcA73EeORvsuYlq1ltw" text="Papyrus shall generate plugins from the model " id="Req005" base_Class="_3fBwgA73EeORvsuYlq1ltw"/>
+  <Requirements:Requirement xmi:id="_BUVowA74EeORvsuYlq1ltw" text="Papyrus shall generate Features" id="Req006" base_Class="_BUL3wA74EeORvsuYlq1ltw"/>
+</xmi:XMI>

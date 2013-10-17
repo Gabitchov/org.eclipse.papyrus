@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalAlfParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INTEGERVALUE", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_WS", "RULE_ANY_OTHER", "'++'", "'--'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<'", "'>'", "'<='", "'>='", "'<<'", "'>>'", "'>>>'", "'+'", "'-'", "'*'", "'/'", "'%'", "'!'", "'$'", "'~'", "'true'", "'false'", "'createLink'", "'destroyLink'", "'clearAssoc'", "'select'", "'reject'", "'collect'", "'iterate'", "'forAll'", "'exists'", "'one'", "'isolated'", "'determined'", "'assured'", "'parallel'", "'='", "'+='", "'-='", "'*='", "'%='", "'/='", "'&='", "'|='", "'^='", "'<<='", "'>>='", "'>>>='", "'testExpression'", "'testAssignmentExpression'", "'testStatement'", "'testBlock'", "'::'", "','", "'=>'", "'('", "')'", "'?'", "':'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'.'", "'['", "']'", "'->'", "'reduce'", "'isUnique'", "'null'", "'this'", "'super'", "'new'", "'{'", "'}'", "'..'", "'allInstances'", "'/*@'", "'inline'", "'*/'", "'//@'", "';'", "'let'", "'if'", "'else'", "'or'", "'switch'", "'case'", "'default'", "'while'", "'do'", "'for'", "'in'", "'break'", "'return'", "'accept'", "'classify'", "'from'", "'to'", "'ordered'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_WS", "RULE_ANY_OTHER", "'++'", "'--'", "'=='", "'!='", "'instanceof'", "'hastype'", "'<'", "'>'", "'<='", "'>='", "'<<'", "'>>'", "'>>>'", "'+'", "'-'", "'*'", "'/'", "'%'", "'!'", "'$'", "'~'", "'true'", "'false'", "'createLink'", "'destroyLink'", "'clearAssoc'", "'select'", "'reject'", "'collect'", "'iterate'", "'forAll'", "'exists'", "'one'", "'isolated'", "'determined'", "'assured'", "'parallel'", "'='", "'+='", "'-='", "'*='", "'%='", "'/='", "'&='", "'|='", "'^='", "'<<='", "'>>='", "'>>>='", "'testExpression'", "'testAssignmentExpression'", "'testStatement'", "'testBlock'", "'::'", "','", "'=>'", "'('", "')'", "'?'", "':'", "'||'", "'&&'", "'|'", "'^'", "'&'", "'.'", "'['", "']'", "'->'", "'reduce'", "'isUnique'", "'null'", "'this'", "'super'", "'new'", "'{'", "'}'", "'..'", "'allInstances'", "'/*@'", "'inline'", "'*/'", "'//@'", "';'", "'let'", "'if'", "'else'", "'or'", "'switch'", "'case'", "'default'", "'while'", "'do'", "'for'", "'in'", "'break'", "'return'", "'accept'", "'classify'", "'from'", "'to'", "'ordered'"
     };
     public static final int RULE_ID=8;
     public static final int T__29=29;
@@ -36,6 +36,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     public static final int RULE_ANY_OTHER=11;
     public static final int T__21=21;
     public static final int T__20=20;
+    public static final int RULE_INTEGER_VALUE=6;
     public static final int EOF=-1;
     public static final int T__93=93;
     public static final int T__19=19;
@@ -51,7 +52,6 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     public static final int T__14=14;
     public static final int T__13=13;
     public static final int T__99=99;
-    public static final int RULE_INTEGERVALUE=6;
     public static final int T__98=98;
     public static final int T__97=97;
     public static final int T__96=96;
@@ -8516,7 +8516,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                 alt4=1;
                 }
                 break;
-            case RULE_INTEGERVALUE:
+            case RULE_INTEGER_VALUE:
             case 27:
                 {
                 alt4=2;
@@ -8620,7 +8620,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==RULE_INTEGERVALUE) ) {
+            if ( (LA5_0==RULE_INTEGER_VALUE) ) {
                 alt5=1;
             }
             else if ( (LA5_0==27) ) {
@@ -10024,7 +10024,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
                 alt19=1;
                 }
                 break;
-            case RULE_INTEGERVALUE:
+            case RULE_INTEGER_VALUE:
             case RULE_STRING:
             case 27:
             case 33:
@@ -10657,7 +10657,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             int alt24=2;
             int LA24_0 = input.LA(1);
 
-            if ( ((LA24_0>=RULE_INTEGERVALUE && LA24_0<=RULE_ID)||(LA24_0>=12 && LA24_0<=13)||(LA24_0>=25 && LA24_0<=27)||(LA24_0>=30 && LA24_0<=34)||LA24_0==68||(LA24_0>=83 && LA24_0<=86)) ) {
+            if ( ((LA24_0>=RULE_INTEGER_VALUE && LA24_0<=RULE_ID)||(LA24_0>=12 && LA24_0<=13)||(LA24_0>=25 && LA24_0<=27)||(LA24_0>=30 && LA24_0<=34)||LA24_0==68||(LA24_0>=83 && LA24_0<=86)) ) {
                 alt24=1;
             }
             else if ( (LA24_0==79) ) {
@@ -10857,7 +10857,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             int alt27=2;
             int LA27_0 = input.LA(1);
 
-            if ( ((LA27_0>=RULE_INTEGERVALUE && LA27_0<=RULE_ID)||(LA27_0>=12 && LA27_0<=13)||(LA27_0>=25 && LA27_0<=27)||(LA27_0>=30 && LA27_0<=34)||LA27_0==68||(LA27_0>=83 && LA27_0<=86)) ) {
+            if ( ((LA27_0>=RULE_INTEGER_VALUE && LA27_0<=RULE_ID)||(LA27_0>=12 && LA27_0<=13)||(LA27_0>=25 && LA27_0<=27)||(LA27_0>=30 && LA27_0<=34)||LA27_0==68||(LA27_0>=83 && LA27_0<=86)) ) {
                 alt27=1;
             }
             else if ( (LA27_0==87) ) {
@@ -14527,7 +14527,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             else if ( (LA47_0==78) ) {
                 int LA47_2 = input.LA(2);
 
-                if ( ((LA47_2>=RULE_INTEGERVALUE && LA47_2<=RULE_ID)||(LA47_2>=12 && LA47_2<=13)||(LA47_2>=25 && LA47_2<=27)||(LA47_2>=30 && LA47_2<=34)||LA47_2==68||(LA47_2>=83 && LA47_2<=86)) ) {
+                if ( ((LA47_2>=RULE_INTEGER_VALUE && LA47_2<=RULE_ID)||(LA47_2>=12 && LA47_2<=13)||(LA47_2>=25 && LA47_2<=27)||(LA47_2>=30 && LA47_2<=34)||LA47_2==68||(LA47_2>=83 && LA47_2<=86)) ) {
                     alt47=1;
                 }
                 else if ( (LA47_2==79) ) {
@@ -16275,7 +16275,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             int alt52=2;
             int LA52_0 = input.LA(1);
 
-            if ( ((LA52_0>=RULE_INTEGERVALUE && LA52_0<=RULE_ID)||(LA52_0>=12 && LA52_0<=13)||(LA52_0>=25 && LA52_0<=27)||(LA52_0>=30 && LA52_0<=34)||LA52_0==68||(LA52_0>=83 && LA52_0<=86)) ) {
+            if ( ((LA52_0>=RULE_INTEGER_VALUE && LA52_0<=RULE_ID)||(LA52_0>=12 && LA52_0<=13)||(LA52_0>=25 && LA52_0<=27)||(LA52_0>=30 && LA52_0<=34)||LA52_0==68||(LA52_0>=83 && LA52_0<=86)) ) {
                 alt52=1;
             }
             switch (alt52) {
@@ -21702,7 +21702,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
             if ( (LA68_0==78) ) {
                 int LA68_1 = input.LA(2);
 
-                if ( ((LA68_1>=RULE_INTEGERVALUE && LA68_1<=RULE_ID)||(LA68_1>=12 && LA68_1<=13)||(LA68_1>=25 && LA68_1<=27)||(LA68_1>=30 && LA68_1<=34)||LA68_1==68||(LA68_1>=83 && LA68_1<=86)) ) {
+                if ( ((LA68_1>=RULE_INTEGER_VALUE && LA68_1<=RULE_ID)||(LA68_1>=12 && LA68_1<=13)||(LA68_1>=25 && LA68_1<=27)||(LA68_1>=30 && LA68_1<=34)||LA68_1==68||(LA68_1>=83 && LA68_1<=86)) ) {
                     alt68=1;
                 }
             }
@@ -43445,21 +43445,21 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__INTEGER_LITERAL__ValueAssignment"
-    // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16045:1: rule__INTEGER_LITERAL__ValueAssignment : ( RULE_INTEGERVALUE ) ;
+    // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16045:1: rule__INTEGER_LITERAL__ValueAssignment : ( RULE_INTEGER_VALUE ) ;
     public final void rule__INTEGER_LITERAL__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16049:1: ( ( RULE_INTEGERVALUE ) )
-            // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16050:1: ( RULE_INTEGERVALUE )
+            // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16049:1: ( ( RULE_INTEGER_VALUE ) )
+            // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16050:1: ( RULE_INTEGER_VALUE )
             {
-            // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16050:1: ( RULE_INTEGERVALUE )
-            // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16051:1: RULE_INTEGERVALUE
+            // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16050:1: ( RULE_INTEGER_VALUE )
+            // ../org.eclipse.papyrus.uml.alf.ui/src-gen/org/eclipse/papyrus/uml/alf/ui/contentassist/antlr/internal/InternalAlf.g:16051:1: RULE_INTEGER_VALUE
             {
-             before(grammarAccess.getINTEGER_LITERALAccess().getValueIntegerValueTerminalRuleCall_0()); 
-            match(input,RULE_INTEGERVALUE,FOLLOW_RULE_INTEGERVALUE_in_rule__INTEGER_LITERAL__ValueAssignment32578); 
-             after(grammarAccess.getINTEGER_LITERALAccess().getValueIntegerValueTerminalRuleCall_0()); 
+             before(grammarAccess.getINTEGER_LITERALAccess().getValueINTEGER_VALUETerminalRuleCall_0()); 
+            match(input,RULE_INTEGER_VALUE,FOLLOW_RULE_INTEGER_VALUE_in_rule__INTEGER_LITERAL__ValueAssignment32578); 
+             after(grammarAccess.getINTEGER_LITERALAccess().getValueINTEGER_VALUETerminalRuleCall_0()); 
 
             }
 
@@ -52955,7 +52955,7 @@ public class InternalAlfParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleStatement_in_rule__Test__StatementsAssignment_2_132485 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBlock_in_rule__Test__BlockAssignment_3_132516 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBooleanValue_in_rule__BOOLEAN_LITERAL__ValueAssignment32547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGERVALUE_in_rule__INTEGER_LITERAL__ValueAssignment32578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_VALUE_in_rule__INTEGER_LITERAL__ValueAssignment32578 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_27_in_rule__UNLIMITED_LITERAL__ValueAssignment32614 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__STRING_LITERAL__ValueAssignment32653 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NameExpression__PrefixOpAlternatives_0_0_0_0_in_rule__NameExpression__PrefixOpAssignment_0_0_032684 = new BitSet(new long[]{0x0000000000000002L});

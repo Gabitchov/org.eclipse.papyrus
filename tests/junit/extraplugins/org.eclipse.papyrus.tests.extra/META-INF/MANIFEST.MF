@@ -8,11 +8,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.cdo.tests;bundle-version="0.10.1",
  org.eclipse.papyrus.cdo.ui.tests;bundle-version="0.10.1",
  org.eclipse.papyrus.cdo.uml.ui.tests;bundle-version="0.10.1",
- org.eclipse.papyrus.cdo.validation.problems.tests;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.nattable.tests;bundle-version="0.10.1",
- org.eclipse.papyrus.sysml.nattable.requirement.tests;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable.views.editor.tests;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable.model.editor.tests;bundle-version="0.10.1"
+ org.eclipse.papyrus.cdo.validation.problems.tests;bundle-version="0.10.1"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.1.qualifier

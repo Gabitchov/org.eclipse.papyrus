@@ -87,7 +87,6 @@ public class AssociationDiamonViewCreateCommand extends AbstractTransactionalCom
 		this.location = point;
 		this.semanticApdater = semanticAdapter;
 		setResult(CommandResult.newOKCommandResult(semanticAdapter));
-
 	}
 
 	/**
@@ -103,7 +102,6 @@ public class AssociationDiamonViewCreateCommand extends AbstractTransactionalCom
 		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
 		this.node = viewProvider.createAssociation_2015(((EObject)semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
-
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);
@@ -139,5 +137,4 @@ public class AssociationDiamonViewCreateCommand extends AbstractTransactionalCom
 	public View getNode() {
 		return node;
 	}
-
 }

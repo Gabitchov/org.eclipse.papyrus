@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.textedit.port.xtext.ui.contribution;
 
 import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
-import org.eclipse.papyrus.uml.textedit.port.xtext.validation.UmlPortJavaValidator;
+import org.eclipse.papyrus.uml.alf.naming.ALFIDConverter;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PortUtil;
@@ -36,25 +36,26 @@ public class UMLPortEditorPropertyUtil extends PortUtil {
 
 		// name
 		buffer.append(" ");
-		buffer.append(getName(property));
+		buffer.append(ALFIDConverter.nameToID(getName(property)));
 
-		//is conjugated
-		if(((Port)property).isConjugated()) {
+		// is conjugated
+		if (((Port) property).isConjugated()) {
 			buffer.append(": ~");
 		} else {
 			buffer.append(": ");
 		}
 		// type
-		if(property.getType() != null) {
-			
-			buffer.append(CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(property.getType(), UmlPortJavaValidator.getModel()));
+		if (property.getType() != null) {
+
+			buffer.append(CompletionProposalUtils.getQualifiedNameLabelWithSufficientDepth(property.getType(),
+					property.getNamespace()));
 		} else {
-			buffer.append( TypeUtil.UNDEFINED_TYPE_NAME);
+			buffer.append(TypeUtil.UNDEFINED_TYPE_NAME);
 		}
 
 		// multiplicity -> do not display [1]
 		String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
-		if(!multiplicity.trim().equals("[1]")) {
+		if (!multiplicity.trim().equals("[1]")) {
 			buffer.append(multiplicity);
 		}
 
@@ -63,11 +64,10 @@ public class UMLPortEditorPropertyUtil extends PortUtil {
 		buffer.append(PropertyUtil.getModifiersAsString(property, false));
 
 		// default value
-		if(property.getDefault() != null) {
+		if (property.getDefault() != null) {
 			buffer.append(" = ");
 			buffer.append("\"" + property.getDefault() + "\"");
 		}
-
 
 		return buffer.toString();
 	}

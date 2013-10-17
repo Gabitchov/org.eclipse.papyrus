@@ -69,7 +69,6 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 	 */
 	@Override
 	protected void doExecute() {
-
 		View view = (View)adapter.getAdapter(View.class);
 		EObject view_element = view.getElement();
 		Element element = (Element)view_element;
@@ -79,7 +78,6 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 			String stereotype_string = stereotypec.getName();
 			stereotypeList = stereotypeList + stereotype_string;
 		}
-
 		String stereoList = AppliedStereotypeHelper.getStereotypesToDisplay(view);
 		if(!"".equals(stereoList)) {
 			stereoList = stereoList + ",";
@@ -96,7 +94,5 @@ public class DefferedAppliedStereotypeToDisplayCommand extends CreateEAnnotation
 		replaceEntry(oldAnnotation, UMLVisualInformationPapyrusConstant.PROPERTY_STEREOTYPE_DISPLAY, AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(view));
 		replaceEntry(oldAnnotation, UMLVisualInformationPapyrusConstant.STEREOTYPE_PROPERTY_LOCATION, AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(view));
 		replaceEannotation(view.getEAnnotation(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION), view);
-
 	}
-
 }

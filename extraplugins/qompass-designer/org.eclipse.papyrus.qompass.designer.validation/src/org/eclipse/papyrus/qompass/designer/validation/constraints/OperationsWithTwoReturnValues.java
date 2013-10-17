@@ -1,25 +1,34 @@
-/*******************************************************************************
- * Copyright (c) 2008-2010 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
- * are property of the CEA, their use is subject to specific agreement 
- * with the CEA.
- * 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
  * Contributors:
- *    CEA LIST - initial API and implementation
- *******************************************************************************/
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.validation.constraints;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.papyrus.FCM.DerivedElement;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 
 /**
  * Verify that an operation has at most one return parameter
- * @author ansgar
  *
+ * Whereas this rule would make sense in general, it has been made specific to
+ * Qompass by verifying whether FCM is applied (check if DerivedElement stereotype
+ * is applicable)
  */
 public class OperationsWithTwoReturnValues extends AbstractModelConstraint
 {
@@ -34,7 +43,12 @@ public class OperationsWithTwoReturnValues extends AbstractModelConstraint
 					firstReturn = false;
 				}
 				else {
-					return ctx.createFailureStatus ("The operation '" + operation.getName () + "' has more than one return parameter. It must have at most one");
+					if (StereotypeUtil.isApplicable(operation, DerivedElement.class)) {
+						return ctx.createFailureStatus ("The operation '" + operation.getName () + "' has more than one return parameter. It must have at most one");
+					}
+					else {
+						break;
+					}
 				}
 			}
 		}

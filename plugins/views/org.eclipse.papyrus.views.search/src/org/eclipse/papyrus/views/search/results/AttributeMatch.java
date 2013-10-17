@@ -66,6 +66,26 @@ public class AttributeMatch extends ModelMatch {
 	}
 
 	/**
+	 * Create an attribute-match in a parent result entry that already exists.
+	 * 
+	 * @param parent
+	 *        the parent result entry
+	 * @param offset
+	 * @param lengtt
+	 * @param target
+	 *        the element containing the value of the attribute that matches
+	 * @param attribute
+	 *        the attribute that raised the match
+	 */
+	public AttributeMatch(AbstractResultEntry parent, int offset, int length, Object target, Object attribute, Stereotype stereotype) {
+		super(offset, length, target, (ScopeEntry)parent.getElement());
+
+		this.attribute = attribute;
+		this.stereotype = stereotype;
+		this.parent = parent;
+	}
+
+	/**
 	 * 
 	 * @see org.eclipse.papyrus.views.search.results.AbstractResultEntry#equals(java.lang.Object)
 	 *      In addition, it checks if target is the same as well.

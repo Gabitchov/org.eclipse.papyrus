@@ -61,6 +61,18 @@ public class ResourceUpdateService implements IService, IPartListener {
 
 	protected boolean isSaving;
 
+	/**
+	 * Update isSaving flag asynchronously to avoid race conditions, see bug 411574
+	 */
+	Runnable postSaveRunnable = new Runnable() {
+
+		@Override
+		public void run() {
+			isSaving = false;
+		}
+		
+	};
+	
 	private final ISaveEventListener preSaveListener = new ISaveEventListener() {
 
 		public void doSaveAs(DoSaveEvent event) {
@@ -75,11 +87,11 @@ public class ResourceUpdateService implements IService, IPartListener {
 	private final ISaveEventListener postSaveListener = new ISaveEventListener() {
 
 		public void doSaveAs(DoSaveEvent event) {
-			isSaving = false;
+			Display.getDefault().asyncExec(postSaveRunnable);
 		}
 
 		public void doSave(DoSaveEvent event) {
-			isSaving = false;
+			Display.getDefault().asyncExec(postSaveRunnable);
 		}
 	};
 
@@ -278,8 +290,15 @@ public class ResourceUpdateService implements IService, IPartListener {
 					public boolean visit(final IResourceDelta delta) {
 						if(delta.getResource().getType() == IResource.FILE) {
 							if(delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED) {
-								final Resource resource = modelSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+								URI resourceURI = URI.createPlatformResourceURI(delta.getFullPath().toString(), true);
+								Resource resource = modelSet.getResource(resourceURI, false);
+								if (resource == null) {
+									// try again, with a pluginURI, see bug 418428
+									URI pluginURI = URI.createPlatformPluginURI(delta.getFullPath().toString(), true);
+									resource = modelSet.getResource(pluginURI, false);
+								}
 								if(resource != null) {
+									
 									if(delta.getKind() == IResourceDelta.REMOVED) {
 										removedResources.add(resource);
 									} else {

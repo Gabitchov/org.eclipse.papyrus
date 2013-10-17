@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.robotml/src" modelPluginID="org.eclipse.papyrus.robotml"
-    modelName="RobotML" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    modelName="RobotML" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>RobotML.ecore</foreignModel>
   <genPackages prefix="RobotML" basePackage="org.eclipse.papyrus" resource="XML" disposableProviderFactory="true"
       ecorePackage="RobotML.ecore#/">
@@ -56,6 +58,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Algorithm/extFunctionName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Algorithm/libPath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Algorithm/libFileFormat"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//State">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/base_State"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/behavior"/>
     </genClasses>
     <genClasses ecoreClass="RobotML.ecore#//Robot">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Robot/kind"/>
@@ -180,11 +186,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//AlgorithmLibrary/base_Class"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//AlgorithmLibrary/path"/>
     </genClasses>
-    <genClasses ecoreClass="RobotML.ecore#//State">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/base_State"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/operation"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/arguments"/>
-    </genClasses>
     <genClasses ecoreClass="RobotML.ecore#//SensorDriver"/>
     <genClasses ecoreClass="RobotML.ecore#//Building"/>
     <genClasses ecoreClass="RobotML.ecore#//Planet"/>
@@ -197,6 +198,12 @@
     <genClasses ecoreClass="RobotML.ecore#//Stairs"/>
     <genClasses ecoreClass="RobotML.ecore#//Platform">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Platform/base_Node"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Platform/library"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//ExternalLibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//ExternalLibrary/libPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//ExternalLibrary/libFileFormat"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//ExternalLibrary/base_Interface"/>
     </genClasses>
     <genClasses ecoreClass="RobotML.ecore#//RoboticMiddleware">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//RoboticMiddleware/kind"/>
@@ -229,6 +236,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//DeploymentPlan/mainInstance"/>
     </genClasses>
     <genClasses ecoreClass="RobotML.ecore#//Gyroscope"/>
+    <genClasses ecoreClass="RobotML.ecore#//OnProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//OnProperty/property"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//OnProperty/base_Parameter"/>
+    </genClasses>
   </genPackages>
   <genPackages prefix="RobotMLLibraries" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
       ecorePackage="RobotMLLibraries.ecore#/">

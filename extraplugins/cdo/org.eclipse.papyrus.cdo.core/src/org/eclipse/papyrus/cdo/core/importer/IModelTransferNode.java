@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.URI;
 public interface IModelTransferNode {
 
 	String getName();
-	
+
 	URI getPrimaryResourceURI();
 
 	Collection<URI> getResourceURIs();
@@ -29,4 +29,24 @@ public interface IModelTransferNode {
 	Collection<IModelTransferNode> getDependencies();
 
 	Collection<IModelTransferNode> getDependents();
+
+	/**
+	 * Queries whether an{@code other} node represents a model sub-unit of me.
+	 * 
+	 * @param other
+	 *        another model unit
+	 * 
+	 * @return whether the {@code other} it is a logical model sub-unit of me
+	 */
+	boolean isModelSubUnit(IModelTransferNode other);
+
+	/**
+	 * Queries whether an{@code other} node represents my model super-unit.
+	 * 
+	 * @param other
+	 *        another model unit
+	 * 
+	 * @return whether the {@code other} it is the logical model super-unit of me
+	 */
+	boolean isModelParentUnit(IModelTransferNode other);
 }

@@ -22,18 +22,19 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlCommonParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'::'", "'*'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'::'", "'*'"
     };
     public static final int RULE_ID=4;
-    public static final int RULE_STRING=6;
+    public static final int RULE_STRING=7;
     public static final int T__12=12;
-    public static final int T__11=11;
-    public static final int RULE_ANY_OTHER=10;
+    public static final int T__13=13;
+    public static final int RULE_ANY_OTHER=11;
     public static final int RULE_INT=5;
-    public static final int RULE_WS=9;
-    public static final int RULE_SL_COMMENT=8;
+    public static final int RULE_INTEGER_VALUE=6;
+    public static final int RULE_WS=10;
+    public static final int RULE_SL_COMMENT=9;
     public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_ML_COMMENT=8;
 
     // delegates
     // delegators
@@ -149,7 +150,7 @@ public class InternalUmlCommonParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,11,FOLLOW_11_in_ruleQualifiedName142); 
+            otherlv_1=(Token)match(input,12,FOLLOW_12_in_ruleQualifiedName142); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1());
                 
@@ -370,7 +371,7 @@ public class InternalUmlCommonParser extends AbstractInternalAntlrParser {
             if ( (LA2_0==RULE_INT) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==12) ) {
+            else if ( (LA2_0==13) ) {
                 alt2=2;
             }
             else {
@@ -396,7 +397,7 @@ public class InternalUmlCommonParser extends AbstractInternalAntlrParser {
                 case 2 :
                     // ../org.eclipse.papyrus.uml.textedit.common.xtext/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/parser/antlr/internal/InternalUmlCommon.g:189:2: kw= '*'
                     {
-                    kw=(Token)match(input,12,FOLLOW_12_in_ruleUnlimitedLiteral370); 
+                    kw=(Token)match(input,13,FOLLOW_13_in_ruleUnlimitedLiteral370); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
@@ -430,8 +431,8 @@ public class InternalUmlCommonParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName130 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_11_in_ruleQualifiedName142 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName130 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_ruleQualifiedName142 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedName163 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBoundSpecification_in_entryRuleBoundSpecification204 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleBoundSpecification214 = new BitSet(new long[]{0x0000000000000002L});
@@ -439,6 +440,6 @@ public class InternalUmlCommonParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleUnlimitedLiteral_in_entryRuleUnlimitedLiteral295 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUnlimitedLiteral306 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_ruleUnlimitedLiteral346 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleUnlimitedLiteral370 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_ruleUnlimitedLiteral370 = new BitSet(new long[]{0x0000000000000002L});
 
 }

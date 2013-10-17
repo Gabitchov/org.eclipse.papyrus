@@ -20,7 +20,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.InteractionComponent;
-import org.eclipse.papyrus.cpp.profile.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.uml2.uml.Class;
@@ -32,6 +31,7 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Deploy instances in a flat way, i.e. only deploy leaves. "Normal" composites
@@ -82,7 +82,7 @@ public class FlattenInteractionComponents {
 	{
 		Classifier cl = DepUtils.getClassifier(instance);
 		if ((cl instanceof Class) && (slot != null)) {
-			InteractionComponent ic = StUtils.getApplication((Class) cl, InteractionComponent.class);
+			InteractionComponent ic = UMLUtil.getStereotypeApplication((Class) cl, InteractionComponent.class);
 			if ((ic != null) && ic.isForDistribution()) {
 				Slot containingSlot = DepUtils.getParentSlot(instance);
 				InstanceSpecification containingInstance = containingSlot.getOwningInstance();

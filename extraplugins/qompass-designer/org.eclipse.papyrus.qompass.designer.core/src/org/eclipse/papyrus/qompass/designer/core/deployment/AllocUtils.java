@@ -24,7 +24,8 @@ import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedula
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -40,9 +41,14 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class AllocUtils {
 
+	public static final String startPortName = "start"; //$NON-NLS-1$
+	
+	public static final String startPortType = "IStart"; //$NON-NLS-1$
+	
 	/**
 	 * Retrieve a list of nodes to which the instance is allocated to *or*
 	 * to which one of the contained instances is allocated to (recursively)
@@ -57,6 +63,30 @@ public class AllocUtils {
 		}
 		return nodeList;
 	}
+	
+	/**
+	 * Retrieve a list of nodes to which the instance is allocated to *or*
+	 * to which one of the contained instances is allocated to (recursively)
+	 * 
+	 * @param instanceAttribute an attribute within a composite that represents a component instance
+	 *       or a set thereof, if the composite itself is instantiated multiple times)
+	 * @return a list of nodes
+	 */
+	public static Property getThreadAlloc(Property instanceAttribute) {
+		for (DirectedRelationship relation : instanceAttribute.getSourceDirectedRelationships()) {
+			if (StereotypeUtil.isApplied(relation, Allocate.class)) {
+				if (relation.getTargets().size() != 1) continue;
+				Element targetElem = relation.getTargets().get(0);
+				if (!(targetElem instanceof Property)) continue;
+				Property target = (Property) targetElem;
+				if (StereotypeUtil.isApplied(target.getType(), SwSchedulableResource.class)) {
+					return target;
+				}
+			}
+		}
+		return null;
+	}
+
 
 	/**
 	 * Retrieve a list of nodes to which the instance is allocated to *or*
@@ -111,7 +141,7 @@ public class AllocUtils {
 
 		for(DirectedRelationship relationship : instanceOrThread.getSourceDirectedRelationships(UMLPackage.eINSTANCE.getAbstraction())) {
 			Abstraction abstraction = (Abstraction)relationship;
-			if(StUtils.isApplied(abstraction, Allocate.class)) {
+			if(StereotypeUtil.isApplied(abstraction, Allocate.class)) {
 				for(Element target : abstraction.getTargets()) {
 					if(target instanceof InstanceSpecification) {
 						nodeList.add((InstanceSpecification)target);
@@ -137,7 +167,7 @@ public class AllocUtils {
 		for(InstanceSpecification nodeOrThread : nodeOrThreads)
 		{
 			Classifier nodeOrThreadC = DepUtils.getClassifier(nodeOrThread);
-			if(StUtils.isApplied(nodeOrThreadC, SwSchedulableResource.class)) {
+			if(StereotypeUtil.isApplied(nodeOrThreadC, SwSchedulableResource.class)) {
 				// tread case that instance is allocated to a thread
 				// follow allocation of Thread
 				nodeList.add(getNode(nodeOrThread));
@@ -168,7 +198,7 @@ public class AllocUtils {
 
 		while(relShipIt.hasNext()) {
 			Abstraction abstraction = (Abstraction)relShipIt.next();
-			if(StUtils.isApplied(abstraction, Allocate.class)) {
+			if(StereotypeUtil.isApplied(abstraction, Allocate.class)) {
 				EList<NamedElement> suppliers = abstraction.getSuppliers(); // use suppliers instead of targets (derived)
 				for(int index = 0; index < suppliers.size(); index++) {
 					if(suppliers.get(index) == oldNode) {
@@ -227,7 +257,7 @@ public class AllocUtils {
 		Abstraction allocation = (Abstraction)
 			cdp.createPackagedElement("allocate " + instance.getName() +
 				" to " + node.getName(), UMLPackage.eINSTANCE.getAbstraction());
-		if(StUtils.apply(allocation, Allocate.class) == null) {
+		if(StereotypeUtil.apply(allocation, Allocate.class) == null) {
 			// stereotype application failed
 			return false;
 		}
@@ -264,7 +294,7 @@ public class AllocUtils {
 			for(Slot slot : slots) {
 				Property containedProperty = (Property)slot.getDefiningFeature();
 
-				Fragment fragment = StUtils.getApplication(containedProperty, Fragment.class);
+				Fragment fragment = UMLUtil.getStereotypeApplication(containedProperty, Fragment.class);
 				if(fragment != null) {
 					// TODO
 					/*
@@ -293,5 +323,23 @@ public class AllocUtils {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Return the start Port of a component, i.e. a port that corresponds to the "magic" port name
+	 * start and is typed with the interface IStart
+	 * 
+	 * @param component a component implementation
+	 * @return The start port or null
+	 */
+	public static Port getStartPort(Class component) {
+		Element startPortElem = Utils.getNamedElementFromList(component.getAllAttributes(), startPortName);
+		if (startPortElem instanceof Port) {
+			Port startPort = (Port) startPortElem;
+			if(startPort.getType().getName().equals(startPortType)) {
+				return startPort;
+			}
+		}
+		return null;
 	}
 }

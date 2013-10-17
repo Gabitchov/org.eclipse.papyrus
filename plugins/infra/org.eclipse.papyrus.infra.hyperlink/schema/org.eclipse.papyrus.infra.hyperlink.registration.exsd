@@ -71,11 +71,14 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="tabId" type="string" use="required">
+         <attribute name="tabId" type="string">
             <annotation>
                <documentation>
-                  The id for the tab. This id should be unique.
+                  Hyperlinks contributed by helpers no longer have their own tabs; they are all consolidated into one tab.
                </documentation>
+               <appinfo>
+                  <meta.attribute deprecated="true"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>

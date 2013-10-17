@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA LIST) - Replace workspace IResource dependency with URI for CDO compatibility
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.search.scope;
@@ -16,11 +17,12 @@ package org.eclipse.papyrus.views.search.scope;
 import java.util.Collection;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.search.ui.ISearchPageContainer;
 
 /**
  * 
- * Interface that must be implemented to generate scope (i.e. list of {@link IResource}) from a {@link ISearchPageContainer}
+ * Interface that must be implemented to generate scope (i.e. list of {@link URI}s) from a {@link ISearchPageContainer}
  * 
  */
 public interface IScopeCollector {
@@ -33,5 +35,5 @@ public interface IScopeCollector {
 	 * @return
 	 *         a collection of {@link IResource} that can be processed
 	 */
-	public Collection<IResource> computeSearchScope(ISearchPageContainer container);
+	public Collection<URI> computeSearchScope(ISearchPageContainer container);
 }

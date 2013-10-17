@@ -21,9 +21,11 @@ import java.util.Iterator;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.osgi.service.environment.Constants;
 import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
 import org.eclipse.papyrus.adltool.Activator;
 import org.eclipse.papyrus.adltool.designer.bundle.BundleDesignerRegistry;
@@ -32,15 +34,15 @@ import org.eclipse.papyrus.osgi.profile.IOSGIStereotype;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.project.IBundleProjectDescription;
 import org.eclipse.pde.core.project.IBundleProjectService;
 import org.eclipse.pde.internal.core.PDECore;
 import org.eclipse.pde.internal.core.ifeature.IFeatureModel;
-import org.eclipse.pde.internal.core.natures.PDE;
+import org.eclipse.pde.internal.core.ifeature.IFeaturePlugin;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -53,14 +55,15 @@ import org.osgi.framework.VersionRange;
  * this purpose of this class is to provide mechanism to import bundle into model
  *
  */
+@SuppressWarnings("restriction")
 public abstract class ArchitectureSnapshotDesigner{
-	protected HashMap<String, Component> createdBundleIDIndex=null;
 	protected HashMap<String, Object> bundlesIndex=null;
 	protected HashMap<String, Component> createdFeatureIndex=null;
 	protected HashMap<String, Object> featureIndex=null;
 	protected BundleDesignerRegistry bundleDesignerRegistry=null;
 	protected int dependenciesN=0;
 	protected ArrayList<Object>bundleInitialList=null;
+	protected int dependencyLevelMax=15; 
 
 
 
@@ -73,7 +76,6 @@ public abstract class ArchitectureSnapshotDesigner{
 
 	private ArchitectureSnapshotDesigner (Package rootPackage) {
 		this.rootPackage=rootPackage;
-		createdBundleIDIndex= new HashMap<String, Component>();
 		bundleDesignerRegistry= new BundleDesignerRegistry();
 		createdFeatureIndex= new HashMap<String, Component>();
 
@@ -92,7 +94,9 @@ public abstract class ArchitectureSnapshotDesigner{
 
 	}
 
-
+	/**
+	 * this method is used to launch the import of bundle into models
+	 */
 	public abstract void runImportBundles();
 	/**
 	 * 
@@ -161,7 +165,7 @@ public abstract class ArchitectureSnapshotDesigner{
 		Iterator<Object> bundleProjectsIterator= bundleProjects.iterator();
 		while(bundleProjectsIterator.hasNext()) {
 			Object bundleProject = (Object)bundleProjectsIterator.next();
-			modelBundle(pluginPackage, bundleProject);
+			modelBundle(pluginPackage, bundleProject,0);
 		}
 		System.out.println("created bundles numbers: "+createdFeatureIndex.keySet().size());
 		System.out.println("dependencies: "+dependenciesN);
@@ -226,7 +230,7 @@ public abstract class ArchitectureSnapshotDesigner{
 	 * @param pluginPackage
 	 * @param bundleProjectsIterator
 	 */
-	protected void modelBundle(Package pluginPackage, Object bundleProject) {
+	protected void modelBundle(Package pluginPackage, Object bundleProject, int currentLevel) {
 
 		if(bundleProject instanceof IFeatureModel){
 			if(!(createdFeatureIndex.containsKey(bundleDesignerRegistry.getSymbolicName(bundleProject)))){
@@ -243,7 +247,8 @@ public abstract class ArchitectureSnapshotDesigner{
 				else{
 					System.err.println("bundle symbolic name is null");
 				}
-				fillRequiredBundle(bundleComponent, bundleProject, pluginPackage);
+				fillRequiredBundle(bundleComponent, bundleProject, pluginPackage, currentLevel);
+				fillReferencedPlugins(pluginPackage,(IFeatureModel) bundleProject, currentLevel, bundleComponent);
 
 				//bundleDesignerRegistry.fillPluginProperties(bundleComponent, bundleProject);
 				//bundleDesignerRegistry.fillExportedPackages(bundleComponent, bundleProject);
@@ -252,9 +257,12 @@ public abstract class ArchitectureSnapshotDesigner{
 		}else{
 
 			if(!(createdFeatureIndex.containsKey(bundleDesignerRegistry.getSymbolicName(bundleProject)))){
+
+
 				Component bundleComponent= UMLFactory.eINSTANCE.createComponent();
 
-				System.out.println("P-->"+bundleDesignerRegistry.getSymbolicName(bundleProject));
+				System.out.println("P ("+currentLevel+")-->"+bundleDesignerRegistry.getSymbolicName(bundleProject));
+
 				bundleComponent.setName(bundleDesignerRegistry.getSymbolicName(bundleProject));
 				pluginPackage.getPackagedElements().add(bundleComponent);
 				Stereotype pluginStereotype=bundleComponent.getApplicableStereotype(IADL4ECLIPSE_Stereotype.PLUGIN_STEREOTYPE);
@@ -269,9 +277,89 @@ public abstract class ArchitectureSnapshotDesigner{
 				else{
 					System.err.println("bundle symbolic name is null");
 				}
-				fillRequiredBundle(bundleComponent, bundleProject, pluginPackage);
+				fillRequiredBundle(bundleComponent, bundleProject, pluginPackage,currentLevel );
 				bundleDesignerRegistry.fillPluginProperties(bundleComponent, bundleProject);
 				bundleDesignerRegistry.fillExportedPackages(bundleComponent, bundleProject);
+				modelExtensions(bundleComponent,bundleProject, currentLevel);
+			}
+		}
+	}
+	protected void modelExtensions(Component bundleComponent,Object bundleProject, int currentLevel) {
+		if(currentLevel>=dependencyLevelMax){
+			return;
+		}
+		
+		//list all extensions use and declaration
+		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
+		IExtension[] extensions= extensionRegistry.getExtensions(bundleDesignerRegistry.getSymbolicName(bundleProject));
+		System.out.println("nb extension "+extensions.length);
+		
+		
+		for(int i = 0; i < extensions.length; i++) {
+			//use or declaration create it!
+			Port clientPort=bundleComponent.createOwnedPort(extensions[i].getExtensionPointUniqueIdentifier(), null);
+			String ownerID=extensionRegistry.getExtensionPoint(extensions[i].getExtensionPointUniqueIdentifier()).getNamespaceIdentifier();
+			System.out.println("---------> "+extensions[i].getExtensionPointUniqueIdentifier()+" FROM "+ownerID );
+			
+			//look for the plugin that declare the extension point
+			Object foundBundle=getBundle(ownerID );
+			if (foundBundle!=null){
+				if(!(createdFeatureIndex.containsKey(ownerID)))	{
+					modelBundle(bundleComponent.getNearestPackage(),foundBundle, currentLevel+1);
+				}
+			}
+			else {
+				modelPseudoBundle(bundleComponent.getNearestPackage(),ownerID);
+			}
+
+			Component componentOwner=createdFeatureIndex.get(ownerID);
+			// if the declaration of the bundle is the same bundle , this is a declaration so no link to create
+			if(!componentOwner.equals(bundleComponent)){
+				Port supplierPort= componentOwner.getOwnedPort(extensions[i].getExtensionPointUniqueIdentifier(), null);
+				if(supplierPort==null ){
+					supplierPort=componentOwner.createOwnedPort(extensions[i].getExtensionPointUniqueIdentifier(), null);
+				}
+				modelRelationExtensionBased(bundleComponent, extensions[i], clientPort, supplierPort);
+			}
+		}
+	}
+
+	/**
+	 * create a model element between 2 elements that represents relation between two extension point
+	 * @param bundleComponent the component that use extension
+	 * @param extension the extension point	
+	 * @param clientPort the port that represent the use to the extension point
+	 * @param supplierPort the port that represent the declaration of this extension point
+	 */
+	protected void modelRelationExtensionBased(Component bundleComponent, IExtension extension, Port clientPort, Port supplierPort) {
+		Dependency dependency=UMLFactory.eINSTANCE.createDependency();
+		dependency.setName(extension.getExtensionPointUniqueIdentifier());
+		bundleComponent.getNearestPackage().getPackagedElements().add(dependency);
+		//bundleComponent.getPackagedElements().add(dependency);
+		dependency.getClients().add(clientPort);
+		dependency.getSuppliers().add(supplierPort);
+	}
+
+	/**
+	 * fill the list of referenced plug-ins of a feature. for each plug-in a property will be created
+	 * @param pluginPackage the package that will contain plug-ins
+	 * @param bundleProject the bundle project that represents a feature
+	 * @param currentLevel the current level about dependency depth
+	 * @param bundleComponent model in UML that correspond to the bundle project
+	 */
+	protected void fillReferencedPlugins(Package pluginPackage, IFeatureModel bundleProject, int currentLevel, Component bundleComponent) {
+		IFeaturePlugin[] pluginsList=bundleProject.getFeature().getPlugins();
+		for(int i = 0; i < pluginsList.length; i++) {
+			System.out.println("+-> P from F ("+currentLevel+")" +pluginsList[i].getId() );
+			Object foundBundle=getBundle(pluginsList[i].getId() );
+			if( foundBundle==null){
+				System.err.println("Cannot find the plugin : "+pluginsList[i].getId() );
+				System.err.println("Memory\n"+ this);
+			}
+			else{
+				modelBundle(pluginPackage, foundBundle, currentLevel);
+				Component createdBundle=createdFeatureIndex.get(pluginsList[i].getId());
+				bundleComponent.createOwnedAttribute(pluginsList[i].getId(), createdBundle);
 			}
 		}
 	}
@@ -335,7 +423,7 @@ public abstract class ArchitectureSnapshotDesigner{
 				try {
 					if((project[i].getNature(IBundleProjectDescription.PLUGIN_NATURE))!=null){
 						IBundleProjectDescription bundleDescription=BundleProjectservice.getDescription(project[i]); 
-						bundlesIndex.put(bundleDesignerRegistry.getBundleValue(project[i], org.osgi.framework.Constants.BUNDLE_NAME), bundleDescription);
+						bundlesIndex.put(bundleDesignerRegistry.getBundleValue(bundleDescription, org.osgi.framework.Constants.BUNDLE_NAME), bundleDescription);
 					}
 				} catch (CoreException e) {
 					e.printStackTrace();
@@ -355,9 +443,12 @@ public abstract class ArchitectureSnapshotDesigner{
 	 * @param bundleComponent the description of the bundle
 	 * @param bundleProject
 	 */
-	protected void fillRequiredBundle(Component bundleComponent,Object bundleProject,Package library ) {
+	protected void fillRequiredBundle(Component bundleComponent,Object bundleProject,Package library, int currentLevel ) {
 		ArrayList<ReferencedOSGIElement> requiredBundleNameList=bundleDesignerRegistry.getRequiredBundle(bundleComponent, bundleProject);
 		Iterator<ReferencedOSGIElement> bundleNameIterator= requiredBundleNameList.iterator();
+		if(currentLevel>=dependencyLevelMax){
+			return;
+		}
 		while(bundleNameIterator.hasNext()) {
 			dependenciesN++;
 			ReferencedOSGIElement bundleRef = (ReferencedOSGIElement)bundleNameIterator.next();
@@ -367,7 +458,7 @@ public abstract class ArchitectureSnapshotDesigner{
 			if(bundleRef.isOptional()||foundBundle!=null){
 				if (foundBundle!=null){
 					if((!(createdFeatureIndex.containsKey(bundleRef.getSymbolicName())))&&(!(createdFeatureIndex.containsKey(bundleRef.getSymbolicName()))))	{
-						modelBundle(library,foundBundle);
+						modelBundle(library,foundBundle, currentLevel+1);
 					}
 				}
 				else {

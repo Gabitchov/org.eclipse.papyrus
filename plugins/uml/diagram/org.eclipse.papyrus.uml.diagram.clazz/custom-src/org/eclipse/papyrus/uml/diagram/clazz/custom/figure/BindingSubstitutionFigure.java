@@ -19,7 +19,6 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * this is a label that can be etited as multiline
  * 
@@ -28,15 +27,11 @@ public class BindingSubstitutionFigure extends FlowPage implements ILabelFigure,
 
 	protected TextFlowEx textFlow;
 
-
-
 	public BindingSubstitutionFigure() {
 		this.setOpaque(false);
-
 		textFlow = new TextFlowEx("");
 		this.add(textFlow);
 	}
-
 
 	/**
 	 * 
@@ -74,7 +69,6 @@ public class BindingSubstitutionFigure extends FlowPage implements ILabelFigure,
 		textFlow.setText(text);
 	}
 
-
 	public BindingSubstitutionFigure getTemplateBindingFigure() {
 		return this;
 	}
@@ -86,7 +80,6 @@ public class BindingSubstitutionFigure extends FlowPage implements ILabelFigure,
 	 */
 	public void setIcon(Image icon) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/**

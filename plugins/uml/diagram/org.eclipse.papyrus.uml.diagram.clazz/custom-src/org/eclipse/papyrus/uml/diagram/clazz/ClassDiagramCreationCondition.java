@@ -28,6 +28,4 @@ public class ClassDiagramCreationCondition extends PerspectiveContextDependence 
 		}
 		return false;
 	}
-
-
 }

@@ -13,49 +13,59 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.actions;
 
-import java.util.List;
-
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.diagram.component.custom.messages.Messages;
+import org.eclipse.papyrus.uml.diagram.component.custom.ui.DisplayInterfaceMDialog;
 import org.eclipse.papyrus.uml.diagram.component.custom.ui.InterfaceManagerDialog;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 
-// TODO: Auto-generated Javadoc
 /**
  * This handler provides the action to manage the provided and required {@link Interface} for a {@link Port}.
  */
-public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
+public class ManageProvidedInterfacesHandler extends AbstractHandler {
 
-	/**
-	 * Gets the command.
-	 *
-	 * @return the command
-	 * @throws ExecutionException the execution exception
-	 * @see org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler#getCommand()
-	 */
-	@Override
-	protected Command getCommand() throws ExecutionException {
-		List<IGraphicalEditPart> selection = getSelectedElements();
-		if(selection.size() != 1) {
-			return UnexecutableCommand.INSTANCE;
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		ISelection selection = HandlerUtil.getCurrentSelection(event);
+		if(selection.isEmpty()) {
+			return null;
 		}
-		if(!(selection.get(0) instanceof PortEditPart)) {
-			return UnexecutableCommand.INSTANCE;
+
+		if(selection instanceof IStructuredSelection) {
+			IStructuredSelection structuredSelection = (IStructuredSelection)selection;
+			if(structuredSelection.getFirstElement() instanceof PortEditPart){
+			EObject selectedElement = EMFHelper.getEObject(structuredSelection.getFirstElement());
+			if(selectedElement instanceof Port) {
+				Port port = (Port)selectedElement;
+				ManageProvidedInterfaceAction action = new ManageProvidedInterfaceAction(port,(EditPart) structuredSelection.getFirstElement() );
+				try {
+					ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(port).getCommandStack().execute(new GEFtoEMFCommandWrapper(action.getCommand()));
+				} catch (ServiceException ex) {
+					throw new ExecutionException("An unexpected exception occurred", ex);
+				}
+			}
 		}
-		ManageProvidedInterfaceAction action = new ManageProvidedInterfaceAction(selection.get(0));
-		return action.getCommand();
+	}
+		return null;
 	}
 
 	/**
@@ -69,25 +79,27 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 		/** the {@link Type} of the port. */
 		private Type type;
 
+		private EditPart portEditPart;
+
 		/**
 		 * 
 		 * Constructor.
+		 * @param port the semantic port
 		 * 
-		 * @param editpart
+		 * @param aportEditpart
 		 *        the editpart of the port
 		 */
-		public ManageProvidedInterfaceAction(IGraphicalEditPart editpart) {
-			Object obj = ((View)editpart.getModel()).getElement();
-			Assert.isTrue(obj instanceof Port);
-			this.port = (Port)obj;
+		public ManageProvidedInterfaceAction(Port port, EditPart aportEditpart) {
+			this.port = port;
 			this.type = port.getType();
+			this.portEditPart= aportEditpart;
 		}
 
 		/**
 		 * Returns the command to add/remove provided/required interfaces.
-		 *
+		 * 
 		 * @return the command
-		 * the command to add/remove provided/required interfaces
+		 *         the command to add/remove provided/required interfaces
 		 */
 		public Command getCommand() {
 			if(type != null && !(type instanceof Classifier)) {
@@ -96,7 +108,7 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 				MessageDialog dialog = new MessageDialog(DisplayUtils.getDefaultShell(), Messages.InterfaceManagerDialog_Title, null, Messages.ManageProvidedInterfacesHandler_TheTypeOfThePortIsNotDefined, MessageDialog.WARNING, new String[]{ Messages.ManageProvidedInterfacesHandler_OK }, 0);
 				dialog.open();
 			} else {
-				InterfaceManagerDialog dialog = new InterfaceManagerDialog(DisplayUtils.getDefaultShell(), this.port);
+				InterfaceManagerDialog dialog = new DisplayInterfaceMDialog(DisplayUtils.getDefaultShell(), (PortEditPart)portEditPart);
 				if(dialog.open() == Dialog.OK) {
 					return dialog.getCommand();
 				}
@@ -105,18 +117,4 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 		}
 	}
 
-	/**
-	 * Checks if is enabled.
-	 *
-	 * @return true, if is enabled
-	 * @see org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler#isEnabled()
-	 */
-	@Override
-	public boolean isEnabled() {
-		if(getSelectedElements().size() == 1) {
-			Object obj = ((View)getSelectedElements().get(0).getModel()).getElement();
-			return obj instanceof Port;
-		}
-		return false;
-	}
 }

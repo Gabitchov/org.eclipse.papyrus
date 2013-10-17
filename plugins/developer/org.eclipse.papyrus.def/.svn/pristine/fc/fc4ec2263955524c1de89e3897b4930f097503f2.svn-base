@@ -1,0 +1,123 @@
+﻿/*
+ * Copyright (c) 2006, 2009 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ *    modified by Arthur Daussyt - arthur.daussy@atos.net (Atos) 
+ */
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+
+«DEFINE CompartmentItemSemanticEditPolicy FOR gmfgen::GenCompartment-»
+	«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «getDiagram().editPoliciesPackageName»;
+
+	«EXPAND xpt::Common::generatedClassComment»
+public class «itemSemanticEditPolicyClassName» extends «getDiagram().getBaseItemSemanticEditPolicyQualifiedClassName()» {
+
+	«EXPAND _constructor-»
+
+	«EXPAND xpt::diagram::editpolicies::childContainerCreateCommand::childContainerCreateCommand FOR childNodes->asSequence()-»
+	
+	«EXPAND additions-»
+	«REM»
+		Papyrus REM : 
+		Test if this compartment edit policy should used a referenced constraint for the move command.
+	«ENDREM»
+	«IF papyrusgmfgenextension::ConstrainedByReferenceCompartmentItemSemanticEditPolicy.allInstances()->select(v:papyrusgmfgenextension::ConstrainedByReferenceCompartmentItemSemanticEditPolicy|v.genView->includes(self))->size()<>0»
+		
+		«EXPAND getChildNodeReference FOR childNodes->asSequence()-»
+		
+		«EXPAND isCorrectCompartment-»
+		
+		«EXPAND constraintedMoveCommand-»
+	
+	«ENDIF»
+}
+«ENDDEFINE»
+
+«DEFINE _constructor FOR gmfgen::GenCompartment-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «itemSemanticEditPolicyClassName»() {
+		«EXPAND xpt::diagram::editpolicies::BaseItemSemanticEditPolicy::defaultConstructorBody FOR node-»		
+	}
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenCompartment-»
+«ENDDEFINE»
+
+«DEFINE getChildNodeReference FOR Sequence(gmfgen::GenNode)-»
+«IF not self->isEmpty()-»
+«EXPAND xpt::Common::generatedMemberComment»
+private static Set<EReference> compartmentReferences;
+
+«EXPAND xpt::Common::generatedMemberComment»
+static {
+	compartmentReferences = new HashSet<EReference>(«self.modelFacet->size()»);
+	
+	«FOREACH self AS n-»
+			«EXPAND childRef(n) FOR n.modelFacet-»
+	«ENDFOREACH-»
+}
+«EXPAND xpt::Common::generatedMemberComment»
+protected Iterable<EReference> getCompartmentReferences() {
+	return compartmentReferences;
+}
+«ENDIF-»
+
+«ENDDEFINE»
+
+«DEFINE childRef(node : gmfgen::GenNode) FOR gmfgen::TypeModelFacet-»
+compartmentReferences.add(«EXPAND MEtaModel::MetaFeature FOR node.modelFacet.containmentMetaFeature»);
+«ENDDEFINE»
+
+
+«DEFINE isCorrectCompartment FOR gmfgen::GenCompartment-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected boolean isMovedIntoCorrectCompartment(MoveRequest req){
+		for(Object entry : req.getElementsToMove().entrySet()) {
+			if(entry instanceof Map.Entry<?, ?>) {
+				Map.Entry<?, ?> mapEntry = (Map.Entry<?, ?>)entry;
+				Object key = mapEntry.getKey();
+				if(key instanceof EObject) {
+					EObject dropppedObject = (EObject)key;
+					EObject semanticHost = ((IGraphicalEditPart)getHost()).resolveSemanticElement();
+					boolean foundERefrences = false;
+					if(semanticHost != null) {
+						for(EReference ref : getCompartmentReferences()) {
+							if(ref.isContainment()) {
+								foundERefrences = PackageUtil.canContain(semanticHost.eClass(), ref, dropppedObject.eClass(), false);
+							} else {
+								foundERefrences = PackageUtil.canReference(semanticHost.eClass(), ref, dropppedObject.eClass());
+							}
+							if(foundERefrences) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+«ENDDEFINE»
+
+«DEFINE constraintedMoveCommand FOR gmfgen::GenCompartment-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	@Override
+	protected Command getMoveCommand(MoveRequest req) {
+		if (isMovedIntoCorrectCompartment(req)){			
+			return super.getMoveCommand(req);
+		} else {
+			return UnexecutableCommand.INSTANCE;
+		}
+	}
+«ENDDEFINE»
+
+

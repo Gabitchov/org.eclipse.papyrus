@@ -36,9 +36,7 @@ import com.google.common.collect.Lists;
 /**
  * This is the DIModel type. Enjoy.
  */
-public class DIModel
-		extends PlatformObject
-		implements Adapter {
+public class DIModel extends PlatformObject implements Adapter {
 
 	private final CDOResource resource;
 
@@ -46,10 +44,9 @@ public class DIModel
 		this.resource = resource;
 
 		// ensure that I am the only adapter
-		for (Iterator<Adapter> iter = resource.eAdapters().iterator(); iter
-			.hasNext();) {
+		for(Iterator<Adapter> iter = resource.eAdapters().iterator(); iter.hasNext();) {
 
-			if (iter.next() instanceof DIModel) {
+			if(iter.next() instanceof DIModel) {
 				iter.remove();
 			}
 		}
@@ -61,21 +58,19 @@ public class DIModel
 	}
 
 	public static DIModel getInstance(CDOResource resource, boolean create) {
-		DIModel result = (DIModel) EcoreUtil.getExistingAdapter(resource, DIModel.class);
-		
-		if ((result == null) && create) {
+		DIModel result = (DIModel)EcoreUtil.getExistingAdapter(resource, DIModel.class);
+
+		if((result == null) && create) {
 			result = new DIModel(resource);
 		}
-		
+
 		return result;
 	}
 
 	@Override
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class adapter) {
-		if ((adapter == CDOResourceNode.class)
-			|| (adapter == CDOResource.class) || (adapter == CDOObject.class)) {
-
+		if((adapter == CDOResourceNode.class) || (adapter == CDOResource.class) || (adapter == CDOObject.class) || (adapter == EObject.class)) {
 			return getResource();
 		}
 
@@ -94,23 +89,22 @@ public class DIModel
 		List<CDOResource> result = Lists.newArrayListWithExpectedSize(3);
 
 		String name = getName();
-		if (name != null) {
+		if(name != null) {
 			Collection<? extends EObject> nodes;
 			CDOResourceFolder folder = getResource().getFolder();
-			if (folder != null) {
+			if(folder != null) {
 				nodes = folder.getNodes();
 			} else {
 				CDOResource root = getResource().cdoResource();
-				if ((root != null) && root.isRoot()) {
+				if((root != null) && root.isRoot()) {
 					nodes = root.getContents();
 				} else {
 					nodes = Collections.emptyList();
 				}
 			}
 
-			for (CDOResource next : Iterables.filter(nodes, CDOResource.class)) {
-				if (name
-					.equals(next.getURI().trimFileExtension().lastSegment())) {
+			for(CDOResource next : Iterables.filter(nodes, CDOResource.class)) {
+				if(name.equals(next.getURI().trimFileExtension().lastSegment())) {
 
 					result.add(next);
 				}
@@ -120,18 +114,22 @@ public class DIModel
 		return result.toArray();
 	}
 
+	@Override
 	public void notifyChanged(Notification notification) {
 		// pass
 	}
 
+	@Override
 	public Notifier getTarget() {
 		return resource;
 	}
 
+	@Override
 	public void setTarget(Notifier newTarget) {
 		// pass
 	}
 
+	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == DIModel.class;
 	}

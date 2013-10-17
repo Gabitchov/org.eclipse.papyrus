@@ -15,7 +15,7 @@
        point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
        <editpartProvider
             class="org.eclipse.papyrus.uml.diagram.stereotype.edition.provider.StereotypePropertiesEditPartProvider">
-            <Priority name="Low"/>
+            <Priority name="Medium"/>
 	
 			<object
 	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"

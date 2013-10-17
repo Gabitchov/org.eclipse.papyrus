@@ -36,6 +36,9 @@
 			<aspectTool description="Create a new CommentAnnotatedElement" id="parametric.tool.commentannotatedelement"
 				name="CommentAnnotatedElement" refToolId="parametric.tool.comment_constraint_link">
 			</aspectTool>			
+			<aspectTool description="Create a new ContextLink" id="parametric.tool.context_link"
+				name="ContextLink" refToolId="parametric.tool.context_link">
+			</aspectTool>			
 		</drawer>
 	</content>
 </paletteDefinition>

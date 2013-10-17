@@ -21,16 +21,17 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUMLConnectionPointReferenceParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'entry'", "','", "'exit'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INT", "RULE_WS", "RULE_ANY_OTHER", "'entry'", "','", "'exit'"
     };
     public static final int RULE_ID=4;
     public static final int RULE_STRING=6;
     public static final int T__12=12;
-    public static final int T__11=11;
+    public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_ANY_OTHER=10;
-    public static final int RULE_INT=5;
-    public static final int RULE_WS=9;
+    public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_INT=9;
+    public static final int RULE_INTEGER_VALUE=5;
+    public static final int RULE_WS=10;
     public static final int RULE_SL_COMMENT=8;
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
@@ -133,10 +134,10 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
             int alt3=3;
             int LA3_0 = input.LA(1);
 
-            if ( (LA3_0==11) ) {
+            if ( (LA3_0==12) ) {
                 alt3=1;
             }
-            else if ( (LA3_0==13) ) {
+            else if ( (LA3_0==14) ) {
                 alt3=2;
             }
             switch (alt3) {
@@ -146,7 +147,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
                     // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:2: (otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )* )
                     // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:80:4: otherlv_0= 'entry' ( (otherlv_1= RULE_ID ) ) (otherlv_2= ',' ( (otherlv_3= RULE_ID ) ) )*
                     {
-                    otherlv_0=(Token)match(input,11,FOLLOW_11_in_ruleConnectionPointReferenceRule123); 
+                    otherlv_0=(Token)match(input,12,FOLLOW_12_in_ruleConnectionPointReferenceRule123); 
 
                         	newLeafNode(otherlv_0, grammarAccess.getConnectionPointReferenceRuleAccess().getEntryKeyword_0_0());
                         
@@ -177,7 +178,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
                         int alt1=2;
                         int LA1_0 = input.LA(1);
 
-                        if ( (LA1_0==12) ) {
+                        if ( (LA1_0==13) ) {
                             alt1=1;
                         }
 
@@ -186,7 +187,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
                     	case 1 :
                     	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:97:4: otherlv_2= ',' ( (otherlv_3= RULE_ID ) )
                     	    {
-                    	    otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleConnectionPointReferenceRule156); 
+                    	    otherlv_2=(Token)match(input,13,FOLLOW_13_in_ruleConnectionPointReferenceRule156); 
 
                     	        	newLeafNode(otherlv_2, grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_0_2_0());
                     	        
@@ -232,7 +233,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
                     // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:115:6: (otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )* )
                     // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:115:8: otherlv_4= 'exit' ( (otherlv_5= RULE_ID ) ) (otherlv_6= ',' ( (otherlv_7= RULE_ID ) ) )*
                     {
-                    otherlv_4=(Token)match(input,13,FOLLOW_13_in_ruleConnectionPointReferenceRule198); 
+                    otherlv_4=(Token)match(input,14,FOLLOW_14_in_ruleConnectionPointReferenceRule198); 
 
                         	newLeafNode(otherlv_4, grammarAccess.getConnectionPointReferenceRuleAccess().getExitKeyword_1_0());
                         
@@ -263,7 +264,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
                         int alt2=2;
                         int LA2_0 = input.LA(1);
 
-                        if ( (LA2_0==12) ) {
+                        if ( (LA2_0==13) ) {
                             alt2=1;
                         }
 
@@ -272,7 +273,7 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
                     	case 1 :
                     	    // ../org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext/src-gen/org/eclipse/papyrus/uml/textedit/connectionpointreference/xtext/parser/antlr/internal/InternalUMLConnectionPointReference.g:132:4: otherlv_6= ',' ( (otherlv_7= RULE_ID ) )
                     	    {
-                    	    otherlv_6=(Token)match(input,12,FOLLOW_12_in_ruleConnectionPointReferenceRule231); 
+                    	    otherlv_6=(Token)match(input,13,FOLLOW_13_in_ruleConnectionPointReferenceRule231); 
 
                     	        	newLeafNode(otherlv_6, grammarAccess.getConnectionPointReferenceRuleAccess().getCommaKeyword_1_2_0());
                     	        
@@ -338,13 +339,13 @@ public class InternalUMLConnectionPointReferenceParser extends AbstractInternalA
 
     public static final BitSet FOLLOW_ruleConnectionPointReferenceRule_in_entryRuleConnectionPointReferenceRule75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleConnectionPointReferenceRule85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_ruleConnectionPointReferenceRule123 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleConnectionPointReferenceRule143 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_12_in_ruleConnectionPointReferenceRule156 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleConnectionPointReferenceRule176 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_13_in_ruleConnectionPointReferenceRule198 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleConnectionPointReferenceRule218 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_12_in_ruleConnectionPointReferenceRule231 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleConnectionPointReferenceRule251 = new BitSet(new long[]{0x0000000000001002L});
+    public static final BitSet FOLLOW_12_in_ruleConnectionPointReferenceRule123 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleConnectionPointReferenceRule143 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_13_in_ruleConnectionPointReferenceRule156 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleConnectionPointReferenceRule176 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_14_in_ruleConnectionPointReferenceRule198 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleConnectionPointReferenceRule218 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_13_in_ruleConnectionPointReferenceRule231 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleConnectionPointReferenceRule251 = new BitSet(new long[]{0x0000000000002002L});
 
 }

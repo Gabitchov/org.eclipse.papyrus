@@ -16,7 +16,7 @@ import org.eclipse.papyrus.FCM.ImplementationGroup;
 import org.eclipse.papyrus.FCM.ImplementationProperties;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.FCM.Target;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
@@ -37,6 +37,7 @@ import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Utilities around instances (within deployment plan)
@@ -67,7 +68,7 @@ public class DepUtils {
 			// now check properties
 			if(nodes.size() > 1) {
 				// indicates distribution
-				InteractionComponent connImpl = StUtils.getApplication(implemCandidate, InteractionComponent.class);
+				InteractionComponent connImpl = UMLUtil.getStereotypeApplication(implemCandidate, InteractionComponent.class);
 				// if a connector implementation, it must support distribution (in case of multiple nodes)
 				// TODO: criteria is not optimal, since a composite may be deployed on multiple nodes,
 				//   but a contained connector might still only connect local parts.
@@ -79,14 +80,14 @@ public class DepUtils {
 			}
 			// must fit requirements of all nodes
 			for(InstanceSpecification nodeInstance : nodes) {
-				Target target = StUtils.getApplication(nodeInstance, Target.class);
+				Target target = UMLUtil.getStereotypeApplication(nodeInstance, Target.class);
 				if(target == null) {
 					// no target information on instance => try to get this
 					// information from the node referenced by the instance
-					target = StUtils.getApplication(DepUtils.getClassifier(nodeInstance), Target.class);
+					target = UMLUtil.getStereotypeApplication(DepUtils.getClassifier(nodeInstance), Target.class);
 				}
 				if(target != null) {
-					ImplementationProperties implProps = StUtils.getApplication(implemCandidate, ImplementationProperties.class);
+					ImplementationProperties implProps = UMLUtil.getStereotypeApplication(implemCandidate, ImplementationProperties.class);
 					if(implProps != null) {
 						if(!implProps.getArch().contains(target.getTargetArch())) {
 							return false;
@@ -141,11 +142,11 @@ public class DepUtils {
 		// TODO: assumption that implementations are in same package as type;
 
 		EList<Class> implList = new BasicEList<Class>();
-		if(StUtils.isApplied(componentType, ImplementationGroup.class)) {
+		if(StereotypeUtil.isApplied(componentType, ImplementationGroup.class)) {
 			for(Property groupAttribute : componentType.getAttributes()) {
 				Type implClass = groupAttribute.getType();
 				if((implClass instanceof Class) && isImplEligible((Class)implClass, nodes)) {
-					InteractionComponent connImpl = StUtils.getApplication(implClass, InteractionComponent.class);
+					InteractionComponent connImpl = UMLUtil.getStereotypeApplication(implClass, InteractionComponent.class);
 					if((connImpl != null) && connImpl.isForDistribution()) {
 						// only add distributed connector, if distributed
 						// don't put check into 
@@ -215,7 +216,7 @@ public class DepUtils {
 	 *        the deployment plan
 	 */
 	public static InstanceSpecification getMainInstance(Package cdp) {
-		DeploymentPlan dp = StUtils.getApplication(cdp, DeploymentPlan.class);
+		DeploymentPlan dp = UMLUtil.getStereotypeApplication(cdp, DeploymentPlan.class);
 		return dp.getMainInstance();
 	}
 
@@ -228,8 +229,8 @@ public class DepUtils {
 	 *        instance the top-level instance specification of the plan
 	 */
 	public static void setMainInstance(Package cdp, InstanceSpecification mainInstance) {
-		StUtils.apply(cdp, DeploymentPlan.class);
-		DeploymentPlan dp = StUtils.getApplication(cdp, DeploymentPlan.class);
+		StereotypeUtil.apply(cdp, DeploymentPlan.class);
+		DeploymentPlan dp = UMLUtil.getStereotypeApplication(cdp, DeploymentPlan.class);
 		dp.setMainInstance(mainInstance);
 	}
 
@@ -258,7 +259,7 @@ public class DepUtils {
 	 */
 	public static boolean isConnector(InstanceSpecification instance) {
 		Classifier cl = getClassifier(instance);
-		return StUtils.isApplied(cl, InteractionComponent.class);
+		return StereotypeUtil.isApplied(cl, InteractionComponent.class);
 	}
 
 	/**
@@ -466,7 +467,7 @@ public class DepUtils {
 	 * @return the programming language
 	 */
 	public static String getLanguageFromClassifier(Classifier cl) {
-		CodeGenOptions codeGenOpt = StUtils.getApplication(cl, CodeGenOptions.class);
+		CodeGenOptions codeGenOpt = UMLUtil.getStereotypeApplication(cl, CodeGenOptions.class);
 		if ((codeGenOpt != null) && (codeGenOpt.getProgLanguage() != null)) {
 			return codeGenOpt.getProgLanguage().getBase_Class().getName();
 		}

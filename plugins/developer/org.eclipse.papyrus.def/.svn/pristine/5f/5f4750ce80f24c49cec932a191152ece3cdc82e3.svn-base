@@ -1,0 +1,75 @@
+﻿/*
+ * Copyright (c) 2007, 2009 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ *    Michael Golubev (Borland) - [243151] explicit source/target for links
+ *	modified by Vincent Lorenzo (CEA-LIST) 
+ */
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+«EXTENSION xpt::diagram::editpolicies::LinkUtils»
+«EXTENSION xpt::diagram::editpolicies::UtilsItemSemanticEditPolicy»
+
+«DEFINE LinkItemSemanticEditPolicy FOR gmfgen::GenLink-»
+	«EXPAND xpt::Common::copyright FOR diagram.editorGen-»
+package «getDiagram().editPoliciesPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «itemSemanticEditPolicyClassName» extends «diagram.getBaseItemSemanticEditPolicyQualifiedClassName()» {
+
+	«EXPAND xpt::diagram::editpolicies::BaseItemSemanticEditPolicy::defaultConstructor-»
+
+	«EXPAND classBody-»
+	
+	«EXPAND additions-»
+}
+«ENDDEFINE» 
+
+«DEFINE classBody FOR gmfgen::GenLink-»
+	«EXPAND getDestroySemanticCommand(self) FOR modelFacet -»
+	«IF isTypeLink()»«EXPAND xpt::diagram::editpolicies::linkCommands::linkCommands»«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE getDestroySemanticCommand(gmfgen::GenLink genLink) FOR gmfgen::LinkModelFacet-»
+	«ERROR 'Unsupported model facet: ' + self.repr()-»
+«ENDDEFINE»
+
+«DEFINE getDestroySemanticCommand(gmfgen::GenLink genLink) FOR gmfgen::FeatureLinkModelFacet-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gef.commands.Command getDestroyReferenceCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest req) {
+		return getGEFWrapper(«EXPAND impl::diagram::commands::DeleteLinkCommand::newDeleteReferenceLinkCommand(genLink, 'req')»);
+	}
+«ENDDEFINE»
+
+«DEFINE getDestroySemanticCommand(gmfgen::GenLink genLink) FOR gmfgen::TypeLinkModelFacet-»
+
+«REM»
+Test to know which delete command should be used in the generated code : "Traditional Delete Command" or the Delete Service
+«ENDREM»
+
+	«IF papyrusgmfgenextension::EditPartUsingDeleteService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingDeleteService|v.genView->includes(genLink))->size()<>0»
+		«EXPAND xpt::Common::generatedMemberComment»
+		«EXPAND xpt::diagram::editpolicies::UtilsItemSemanticEditPolicy::getDestroyElementCommandByService-»
+	«ELSE»
+		«EXPAND xpt::Common::generatedMemberComment»
+		protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
+			org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand cmd = new org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand(getEditingDomain(), null);
+			cmd.setTransactionNestingEnabled(true);
+			java.util.List<org.eclipse.emf.ecore.EObject> todestroy=new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
+			todestroy.add(req.getElementToDestroy());
+			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+			cmd.add(new org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
+			return getGEFWrapper(cmd.reduce());
+			//return getGEFWrapper(«EXPAND impl::diagram::commands::DeleteLinkCommand::newDeleteLinkWithClassCommand(genLink, 'req')»);
+		}
+	«ENDIF-»	
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenLink»«ENDDEFINE»

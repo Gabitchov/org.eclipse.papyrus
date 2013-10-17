@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.papyrus.C_Cpp.C_CppPackage;
 import org.eclipse.papyrus.C_Cpp.ExternLibrary;
@@ -20,7 +21,7 @@ import org.eclipse.papyrus.C_Cpp.ExternLibrary;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl#getIncludePaths <em>Include Paths</em>}</li>
  *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl#getBase_package <em>Base package</em>}</li>
  *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl#getLibPaths <em>Lib Paths</em>}</li>
  *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.ExternLibraryImpl#getMacros <em>Macros</em>}</li>
@@ -33,24 +34,14 @@ import org.eclipse.papyrus.C_Cpp.ExternLibrary;
  */
 public class ExternLibraryImpl extends EObjectImpl implements ExternLibrary {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getIncludePaths() <em>Include Paths</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getIncludePaths()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
+	protected EList<String> includePaths;
 
 	/**
 	 * The cached value of the '{@link #getBase_package() <em>Base package</em>}' reference.
@@ -126,20 +117,11 @@ public class ExternLibraryImpl extends EObjectImpl implements ExternLibrary {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.EXTERN_LIBRARY__NAME, oldName, name));
+	public EList<String> getIncludePaths() {
+		if (includePaths == null) {
+			includePaths = new EDataTypeEList<String>(String.class, this, C_CppPackage.EXTERN_LIBRARY__INCLUDE_PATHS);
+		}
+		return includePaths;
 	}
 
 	/**
@@ -236,8 +218,8 @@ public class ExternLibraryImpl extends EObjectImpl implements ExternLibrary {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case C_CppPackage.EXTERN_LIBRARY__NAME:
-				return getName();
+			case C_CppPackage.EXTERN_LIBRARY__INCLUDE_PATHS:
+				return getIncludePaths();
 			case C_CppPackage.EXTERN_LIBRARY__BASE_PACKAGE:
 				if (resolve) return getBase_package();
 				return basicGetBase_package();
@@ -262,8 +244,9 @@ public class ExternLibraryImpl extends EObjectImpl implements ExternLibrary {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case C_CppPackage.EXTERN_LIBRARY__NAME:
-				setName((String)newValue);
+			case C_CppPackage.EXTERN_LIBRARY__INCLUDE_PATHS:
+				getIncludePaths().clear();
+				getIncludePaths().addAll((Collection<? extends String>)newValue);
 				return;
 			case C_CppPackage.EXTERN_LIBRARY__BASE_PACKAGE:
 				setBase_package((org.eclipse.uml2.uml.Package)newValue);
@@ -296,8 +279,8 @@ public class ExternLibraryImpl extends EObjectImpl implements ExternLibrary {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case C_CppPackage.EXTERN_LIBRARY__NAME:
-				setName(NAME_EDEFAULT);
+			case C_CppPackage.EXTERN_LIBRARY__INCLUDE_PATHS:
+				getIncludePaths().clear();
 				return;
 			case C_CppPackage.EXTERN_LIBRARY__BASE_PACKAGE:
 				setBase_package((org.eclipse.uml2.uml.Package)null);
@@ -326,8 +309,8 @@ public class ExternLibraryImpl extends EObjectImpl implements ExternLibrary {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case C_CppPackage.EXTERN_LIBRARY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case C_CppPackage.EXTERN_LIBRARY__INCLUDE_PATHS:
+				return includePaths != null && !includePaths.isEmpty();
 			case C_CppPackage.EXTERN_LIBRARY__BASE_PACKAGE:
 				return base_package != null;
 			case C_CppPackage.EXTERN_LIBRARY__LIB_PATHS:
@@ -352,8 +335,8 @@ public class ExternLibraryImpl extends EObjectImpl implements ExternLibrary {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
+		result.append(" (includePaths: ");
+		result.append(includePaths);
 		result.append(", libPaths: ");
 		result.append(libPaths);
 		result.append(", macros: ");

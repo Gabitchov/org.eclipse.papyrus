@@ -46,7 +46,10 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	/** CompositeDiagram :: COMMENT_ANNOTATED_ELEMENT */
 	public static final IHintedType COMMENT_ANNOTATED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"); //$NON-NLS-1$
 
-	/** CompositeDiagram :: CONSTRAINT_CONSTRAINED_ELEMENT */
-	public static final IHintedType CONSTRAINT_CONSTRAINED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.composite.ConstraintConstrainedElement_4003"); //$NON-NLS-1$
-	
+	/** CompositeDiagram :: CONTEXT_LINK */
+	public static final IHintedType CONTEXT_LINK = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.parametric.ContextLink"); //$NON-NLS-1$
+
+	/** CompositeDiagram :: CONContextLinkAppliedStereotype */
+	public static final IHintedType CONTEXT_LINK_APPLIED_STEREOTYPE = (IHintedType)getElementType("org.eclipse.papyrus.uml.diagram.parametric.ContextLinkAppliedStereotype"); //$NON-NLS-1$
+
 }	

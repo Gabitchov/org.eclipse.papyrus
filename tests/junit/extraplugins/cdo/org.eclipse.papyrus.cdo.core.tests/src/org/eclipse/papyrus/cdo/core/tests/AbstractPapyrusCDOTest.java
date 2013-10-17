@@ -13,11 +13,14 @@ package org.eclipse.papyrus.cdo.core.tests;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.CDOCommonRepository;
 import org.eclipse.emf.cdo.net4j.CDONet4jUtil;
 import org.eclipse.emf.cdo.server.CDOServerUtil;
@@ -27,7 +30,6 @@ import org.eclipse.emf.cdo.server.net4j.CDONet4jServerUtil;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.spi.server.InternalRepository;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
-import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -86,9 +88,16 @@ public abstract class AbstractPapyrusCDOTest {
 		repoURL = "jvm://default?repositoryName=" + repo.getName();
 
 		if(needPapyrusRepository()) {
-			repository = PapyrusRepositoryManager.INSTANCE.createRepository(repoURL);
+			repository = PapyrusRepositoryManager.INSTANCE.getRepository(repoURL);
+			if(repository == null) {
+				repository = PapyrusRepositoryManager.INSTANCE.createRepository(repoURL);
+			}
+
 			repository.setName(name.getMethodName());
-			repository.connect();
+
+			if(!repository.isConnected()) {
+				repository.connect();
+			}
 
 			CDOSession session = ((IInternalPapyrusRepository)repository).getCDOSession();
 
@@ -107,6 +116,9 @@ public abstract class AbstractPapyrusCDOTest {
 			repository.disconnect();
 			PapyrusRepositoryManager.INSTANCE.removeRepository(repository);
 			repository = null;
+
+			// persist the removal (the new new repository saved its UUID when opened)
+			PapyrusRepositoryManager.INSTANCE.saveRepositories();
 		}
 
 		LifecycleUtil.deactivate(container);
@@ -124,7 +136,6 @@ public abstract class AbstractPapyrusCDOTest {
 		props.put(Props.OVERRIDE_UUID, ""); // use the name as the UUID
 		props.put(Props.SUPPORTING_AUDITS, "false");
 		props.put(Props.SUPPORTING_BRANCHES, "false");
-		props.put(Props.SUPPORTING_ECORE, "true");
 		props.put(Props.ID_GENERATION_LOCATION, CDOCommonRepository.IDGenerationLocation.STORE.toString());
 	}
 
@@ -164,13 +175,57 @@ public abstract class AbstractPapyrusCDOTest {
 	protected CDOTransaction createTransaction() {
 		IInternalPapyrusRepository repo = getInternalPapyrusRepository();
 
-		CDOTransaction result = getTransaction(repo.createTransaction(new ResourceSetImpl()));
+		CDOTransaction result = getTransaction(repo.createTransaction(createResourceSet()));
+
+		return result;
+	}
+
+	protected CDOView createView() {
+		IInternalPapyrusRepository repo = getInternalPapyrusRepository();
+
+		CDOView result = getInternalPapyrusRepository().getCDOView(repo.createReadOnlyView(createResourceSet()));
+
+		return result;
+	}
+
+	private ResourceSet createResourceSet() {
+		ResourceSet result = null;
+
+		Method factory = getAnnotatedMethod(ResourceSetFactory.class);
+		if(factory != null) {
+			try {
+				result = (ResourceSet)factory.invoke(this);
+			} catch (InvocationTargetException e) {
+				e.getTargetException().printStackTrace();
+				fail("Failed to create resource set for test case: " + e.getTargetException().getLocalizedMessage());
+			} catch (IllegalAccessException e) {
+				fail("Resource-set factory method not accessible: " + factory.getName());
+			}
+		}
+
+		if(result == null) {
+			// default
+			result = new ResourceSetImpl();
+		}
 
 		return result;
 	}
 
 	protected CDOTransaction getTransaction(ResourceSet resourceSet) {
 		return cast(getInternalPapyrusRepository().getCDOView(resourceSet), CDOTransaction.class);
+	}
+
+	protected final Method getAnnotatedMethod(Class<? extends Annotation> annotationType) {
+		Method result = null;
+
+		for(Method next : getClass().getMethods()) {
+			if(next.isAnnotationPresent(annotationType)) {
+				result = next;
+				break;
+			}
+		}
+
+		return result;
 	}
 
 	protected String getRepositoryURL() {
@@ -195,6 +250,15 @@ public abstract class AbstractPapyrusCDOTest {
 
 	protected URI getTestResourceURI(String path) {
 		return URI.createURI("cdo://" + repoUUID + getResourcePath(path), false);
+	}
+
+	protected URI getRepositoryURI() {
+		return getInternalPapyrusRepository().getMasterView().getRootResource().getURI();
+	}
+
+	protected URI getTestFolderURI() {
+		// last segment adds the trailing separator
+		return getRepositoryURI().appendSegment(getClass().getSimpleName()).appendSegment(name.getMethodName()).appendSegment("");
 	}
 
 	protected static <T> T cast(Object object, Class<T> type) {
@@ -234,22 +298,19 @@ public abstract class AbstractPapyrusCDOTest {
 	}
 
 	protected <T extends EObject> T getMasterViewObject(T object) {
-		CDOObject cdo = CDOUtil.getCDOObject(object);
-
 		CDOView view = getInternalPapyrusRepository().getMasterView();
-		@SuppressWarnings("unchecked")
-		T result = (T)CDOUtil.getEObject(view.getObject(cdo.cdoID()));
-
-		return result;
+		return view.getObject(object);
 	}
 
 	public static <T extends Number & Comparable<T>> Matcher<T> lessThan(final T max) {
 		return new BaseMatcher<T>() {
 
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("< ").appendValue(max);
 			}
 
+			@Override
 			@SuppressWarnings("unchecked")
 			public boolean matches(Object item) {
 				return ((T)item).compareTo(max) < 0;
@@ -260,10 +321,12 @@ public abstract class AbstractPapyrusCDOTest {
 	public static <T extends Number & Comparable<T>> Matcher<T> lessThanOrEqualTo(final T max) {
 		return new BaseMatcher<T>() {
 
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("<= ").appendValue(max);
 			}
 
+			@Override
 			@SuppressWarnings("unchecked")
 			public boolean matches(Object item) {
 				return ((T)item).compareTo(max) <= 0;
@@ -274,10 +337,12 @@ public abstract class AbstractPapyrusCDOTest {
 	public static <T> Matcher<Iterable<T>> hasSize(final int size) {
 		return new BaseMatcher<Iterable<T>>() {
 
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("has size ").appendValue(size);
 			}
 
+			@Override
 			public boolean matches(Object item) {
 				return Iterables.size((Iterable<?>)item) == size;
 			}

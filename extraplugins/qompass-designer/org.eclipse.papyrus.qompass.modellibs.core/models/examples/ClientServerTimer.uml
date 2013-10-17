@@ -214,7 +214,7 @@ cout &lt;&lt; &quot;result: &quot; &lt;&lt; q->mult(4, 5) &lt;&lt; endl;</body>
         <packagedElement xmi:type="uml:InstanceSpecification" xmi:id="_BQRAwDa5EeG-uqYpasEQgg" name="cygwin" classifier="_MxayMP_BEd6628OhKk_dpg"/>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_234GEDLiEd2RVeNawwNNzg" name="DeploymentPlans">
+    <packagedElement xmi:type="uml:Package" xmi:id="_234GEDLiEd2RVeNawwNNzg" name="deployment">
       <ownedComment xmi:type="uml:Comment" xmi:id="_7AvxUDemEeGPyrZ5I3hMlA" annotatedElement="_5Z7MEDLiEd2RVeNawwNNzg _bBSxQP_BEd6628OhKk_dpg">
         <body>Linux and cygwin require different deployment plans, since we use different target platforms
 </body>

@@ -42,7 +42,7 @@ public interface Connector extends ConfigurableElementInstance {
 	 * @return the value of the '<em>Base Connector</em>' reference.
 	 * @see #setBase_Connector(org.eclipse.uml2.uml.Connector)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getConnector_Base_Connector()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	org.eclipse.uml2.uml.Connector getBase_Connector();
@@ -94,7 +94,7 @@ public interface Connector extends ConfigurableElementInstance {
 	 * @return the value of the '<em>Base Property</em>' reference.
 	 * @see #setBase_Property(Property)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getConnector_Base_Property()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	Property getBase_Property();

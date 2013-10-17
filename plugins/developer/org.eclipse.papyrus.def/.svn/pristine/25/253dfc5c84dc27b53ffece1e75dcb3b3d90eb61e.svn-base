@@ -1,0 +1,83 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+«EXTENSION xpt::diagram::editpolicies::Utils»
+«EXTENSION xpt::GenModelUtils»
+«EXTENSION xpt::diagram::editpolicies::linkCommands»
+
+
+«REM» 
+We overwrite the reorientTypeLinkCommands to manages the links which use the ReorientCommand provided by the EditService
+«ENDREM»
+«AROUND reorientTypeLinkCommands FOR gmfgen::GenLinkEnd-»
+«EXPAND xpt::Common::generatedMemberComment(
+	'Returns command to reorient EClass based link. New link target or source\n' + 
+	'should be the domain model element associated with this node.\n'
+)»
+protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(
+		org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest req) {
+	switch (getVisualID(req)) {
+		«EXPAND reorientLinkCommandWithService FOREACH getReroutableTypeLinks(self)-»
+		«EXPAND callReorientCommand-»
+		«EXPAND reorientLinkCommandWithoutService FOREACH getReroutableTypeLinks(self)-»
+	}
+	return super.getReorientRelationshipCommand(req);
+	}
+«ENDAROUND»
+
+«REM» 
+This function writes only  : "case myLinkEditPart.VISUAL_ID:" 
+for the link which uses the ReorientCommand provided by the EditService 
+«ENDREM»
+«DEFINE reorientLinkCommandWithService FOR gmfgen::GenLink-»
+	«IF papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingReorientService|v.genView->includes(self))->size()<>0-» 
+		«EXPAND xpt::Common::caseVisualID-»
+	«ENDIF-»
+«ENDDEFINE»
+
+«REM» 
+This function writes the code to call the ReorientCommand provided by the ReorientService
+«ENDREM»
+«DEFINE callReorientCommand FOR gmfgen::GenLinkEnd-»
+	«LET papyrusgmfgenextension::EditPartUsingReorientService.allInstances() AS rServiceNodes-»
+	«IF rServiceNodes->notEmpty()-»
+	«IF rServiceNodes->asSequence()
+					 ->select(rServiceNode | rServiceNode.genView->select(view | getReroutableTypeLinks(self)->includes(view))->notEmpty())
+					 ->notEmpty()-»	
+			org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider =org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getRelationship());
+			 if(provider == null) {
+	             return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+	         }
+	         // Retrieve re-orient command from the Element Edit service
+			 org.eclipse.gmf.runtime.common.core.command.ICommand reorientCommand = provider.getEditCommand(req);
+             if(reorientCommand == null) {
+	             return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
+             }
+			 return getGEFWrapper(reorientCommand.reduce());
+	«ENDIF-»
+	«ENDIF-»
+	«ENDLET-»
+«ENDDEFINE»
+
+«REM»
+This function writes the code for the Links which uses their own ReorientCommand (the initial code)
+«ENDREM»
+«DEFINE reorientLinkCommandWithoutService FOR gmfgen::GenLink-»
+	«IF papyrusgmfgenextension::EditPartUsingReorientService.allInstances()->select(v:papyrusgmfgenextension::EditPartUsingReorientService|v.genView->includes(self))->size()=0-» 
+		«EXPAND xpt::diagram::editpolicies::linkCommands::reorientLinkCommand-» 
+	«ENDIF-»
+«ENDDEFINE»

@@ -230,11 +230,61 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 		return getDirectionAccess().getRule();
 	}
 
+	//terminal INTEGER_VALUE:
+	//
+	//	("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL 
+	//
+	//	// BINARY
+	//
+	//	// HEX
+	//
+	//	// OCT
+	//
+	//	| ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
+	//
+	//	"A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
+	public TerminalRule getINTEGER_VALUERule() {
+		return gaUmlCommon.getINTEGER_VALUERule();
+	} 
+
 	//terminal ID:
 	//
-	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
 	public TerminalRule getIDRule() {
 		return gaUmlCommon.getIDRule();
+	} 
+
+	//terminal STRING:
+	//
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	public TerminalRule getSTRINGRule() {
+		return gaUmlCommon.getSTRINGRule();
+	} 
+
+	//terminal ML_COMMENT:
+	//
+	//	"/ *" !"@"->"* /";
+	public TerminalRule getML_COMMENTRule() {
+		return gaUmlCommon.getML_COMMENTRule();
+	} 
+
+	////terminal DOUBLE_COLON : '::' ;
+	//
+	////terminal IDENTIFIER : ID  ;
+	//
+	////terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
+	//
+	////terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
+	//
+	////terminal ML_COMMENT	: '/°' -> '°/';
+	//
+	////terminal SL_COMMENT 	: '°°' !('\n'|'\r')* ('\r'? '\n')?;
+	//
+	////terminal WS			: (' '|'\t'|'\r'|'\n')+; terminal SL_COMMENT:
+	//
+	//	"//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
+	public TerminalRule getSL_COMMENTRule() {
+		return gaUmlCommon.getSL_COMMENTRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
@@ -242,29 +292,6 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaUmlCommon.getINTRule();
-	} 
-
-	//terminal STRING:
-	//
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
-	//
-	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
-	public TerminalRule getSTRINGRule() {
-		return gaUmlCommon.getSTRINGRule();
-	} 
-
-	//terminal ML_COMMENT:
-	//
-	//	"/ *"->"* /";
-	public TerminalRule getML_COMMENTRule() {
-		return gaUmlCommon.getML_COMMENTRule();
-	} 
-
-	//terminal SL_COMMENT:
-	//
-	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
-	public TerminalRule getSL_COMMENTRule() {
-		return gaUmlCommon.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:

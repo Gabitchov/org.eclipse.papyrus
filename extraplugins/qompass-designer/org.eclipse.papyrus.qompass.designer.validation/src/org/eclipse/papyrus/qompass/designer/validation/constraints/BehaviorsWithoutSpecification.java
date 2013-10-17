@@ -1,17 +1,24 @@
-/*******************************************************************************
- * Copyright (c) 2008-2010 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
- * are property of the CEA, their use is subject to specific agreement 
- * with the CEA.
- * 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
  * Contributors:
- *    CEA LIST - initial API and implementation
- *******************************************************************************/
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.validation.constraints;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.papyrus.FCM.DerivedElement;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueBehavior;
@@ -32,16 +39,27 @@ public class BehaviorsWithoutSpecification extends AbstractModelConstraint {
 
 		if (behavior.getSpecification () == null) {
 			Element class_ = behavior.getOwner ();
-			if (class_ instanceof NamedElement) {
-				return ctx.createFailureStatus ("The behavior '" + behavior.getName () + "' of '" +
-						((NamedElement) class_).getQualifiedName() + "' has no specification");
-			}
-			else {
-				return ctx.createFailureStatus ("The behavior '" + behavior.getName () + "' has no specification");
+			if (StereotypeUtil.isApplicable(class_, DerivedElement.class)) {
+				// check whether DerivedElement is applicable => indirect check whether FCM is applied (make rule specific to Qompass)
+				// TODO alternative? check whether behavior is referenced from either an activity, since that is possible in general?
+				/*
+				boolean hasRef = false;
+				for (Setting setting : UML2Util.getNonNavigableInverseReferences(behavior)) {
+					if (setting.getEObject() ...
+						hasRefFromIS = true;
+						break;
+					}	
+				}
+				*/
+				if (class_ instanceof NamedElement) {
+					return ctx.createFailureStatus ("The behavior '" + behavior.getName () + "' of '" +
+							((NamedElement) class_).getQualifiedName() + "' has no specification");
+				}
+				else {
+					return ctx.createFailureStatus ("The behavior '" + behavior.getName () + "' has no specification");
+				}
 			}
 		}
-		else {
-			return ctx.createSuccessStatus();
-		}
+		return ctx.createSuccessStatus();
 	}
 }

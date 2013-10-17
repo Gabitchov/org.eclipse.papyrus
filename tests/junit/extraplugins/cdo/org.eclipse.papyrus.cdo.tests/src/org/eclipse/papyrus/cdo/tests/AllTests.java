@@ -22,7 +22,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ org.eclipse.papyrus.cdo.core.tests.AllTests.class, //
 org.eclipse.papyrus.cdo.ui.tests.AllTests.class, //
 org.eclipse.papyrus.cdo.uml.ui.tests.AllTests.class, //
-org.eclipse.papyrus.cdo.validation.problems.tests.ProblemsAllTests.class })
+org.eclipse.papyrus.cdo.validation.problems.tests.ProblemsAllTests.class, //
+org.eclipse.papyrus.cdo.uml.search.ui.tests.AllTests.class })
 public class AllTests {
 
 	public AllTests() {

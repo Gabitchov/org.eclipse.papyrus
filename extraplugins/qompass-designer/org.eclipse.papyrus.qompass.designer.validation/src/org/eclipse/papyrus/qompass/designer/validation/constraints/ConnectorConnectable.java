@@ -1,23 +1,28 @@
-/*******************************************************************************
- * Copyright (c) 2008-2010 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
- * are property of the CEA, their use is subject to specific agreement 
- * with the CEA.
- * 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
  * Contributors:
- *    CEA LIST - initial API and implementation
- *******************************************************************************/
+ *  Ansgar Radermacher  ansgar.radermacher@cea.fr  
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.qompass.designer.validation.constraints;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Connector;
 import org.eclipse.papyrus.FCM.InteractionComponent;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.ConnectorBinding;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Check whether a connector is connectable, i.e. whether the ports of application parts match with those
@@ -35,7 +40,7 @@ public class ConnectorConnectable extends AbstractModelConstraint
 		Connector connector = (Connector)ctx.getTarget();
 		Class class_ = (Class)connector.getOwner();
 
-		org.eclipse.papyrus.FCM.Connector fcmConnector = StUtils.getApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
+		org.eclipse.papyrus.FCM.Connector fcmConnector = UMLUtil.getStereotypeApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
 		if(fcmConnector != null) {
 			InteractionComponent connectorComp = fcmConnector.getIc();
 			if(connectorComp != null) {

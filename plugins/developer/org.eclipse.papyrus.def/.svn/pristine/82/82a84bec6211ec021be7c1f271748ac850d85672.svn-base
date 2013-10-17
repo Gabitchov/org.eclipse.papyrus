@@ -1,0 +1,108 @@
+﻿/*
+ * Copyright (c) 2006, 2009 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ *    Alexander Shatalin (Borland) - initial API and implementation
+ */
+ 
+
+«IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
+«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
+«REM»Dthis template changes only the define  implementsList line 64«ENDREM»
+
+«EXTENSION xpt::diagram::editparts::Utils»
+
+«DEFINE Main FOR gmfgen::GenChildLabelNode-»
+«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «getDiagram().editPartsPackageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsList» {
+	
+	«EXPAND attributes-»
+	
+	«EXPAND impl::diagram::editparts::ChildNodeLabelEditPart::contsructor-»
+
+	«EXPAND getDragTracker-»
+	
+	«EXPAND createDefaultEditPolicies-»
+
+	«EXPAND impl::diagram::editparts::TextAware::methods(false, labelReadOnly, labelElementIcon, viewmap, labelModelFacet, self, getDiagram())-»
+
+	«EXPAND xpt::diagram::editparts::Common::notationalListeners-»
+
+«IF getAssistantOutgoingLinks(self)->size() > 0-»
+	«EXPAND impl::diagram::editparts::NodeEditPart::getMARelTypesOnSource-»
+
+	«EXPAND impl::diagram::editparts::NodeEditPart::getMARelTypesOnSourceAndTarget-»
+
+	«EXPAND impl::diagram::editparts::NodeEditPart::getMATypesForTarget-»
+«ENDIF-»
+
+«IF getAssistantIncomingLinks(self)->size() > 0-»
+	«EXPAND impl::diagram::editparts::NodeEditPart::getMARelTypesOnTarget-»
+
+	«EXPAND impl::diagram::editparts::NodeEditPart::getMATypesForSource-»
+«ENDIF-»
+
+	«EXPAND handleNotificationEvent-»
+
+	«EXPAND xpt::diagram::editparts::Common::labelFigure FOR viewmap-»
+	
+	«EXPAND additions-»
+}
+«ENDDEFINE»
+
+«DEFINE extendsList FOR gmfgen::GenChildLabelNode»
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»Add own extension«ENDREM»
+«IF papyrusgmfgenextension::ExtendedGenView.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenView|v.genView->includes(self) and v.superOwnedEditPart<>null)->size()<>0»
+	extends «FOREACH papyrusgmfgenextension::ExtendedGenView.allInstances()->select(v:papyrusgmfgenextension::ExtendedGenView|v.genView->includes(self) and v.superOwnedEditPart<>null) AS extendedObject»«EXPAND specifyInheritance FOR extendedObject»«ENDFOREACH-»
+«REM»END: BEGIN: PapyrusGenCode«ENDREM»
+«ELSE»
+  extends org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart
+«ENDIF»
+«ENDDEFINE»
+
+«REM»BEGIN: PapyrusGenCode«ENDREM»
+«REM»definition of the inheritance «ENDREM»
+«DEFINE specifyInheritance FOR papyrusgmfgenextension::ExtendedGenView-»«superOwnedEditPart»«ENDDEFINE»
+«REM»END: BEGIN: PapyrusGenCode«ENDREM»
+
+«DEFINE implementsList FOR gmfgen::GenChildLabelNode»implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart«ENDDEFINE»
+
+«DEFINE attributes FOR gmfgen::GenChildLabelNode-»
+	«EXPAND xpt::diagram::editparts::Common::visualIDConstant FOR self-»
+
+	«EXPAND impl::diagram::editparts::TextAware::fields FOR self-»
+«ENDDEFINE»
+
+«DEFINE getDragTracker FOR gmfgen::GenChildLabelNode-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public org.eclipse.gef.DragTracker getDragTracker(org.eclipse.gef.Request request) {
+	«EXPAND impl::diagram::editparts::ChildNodeLabelEditPart::getDragTrackerBody-»
+}
+«ENDDEFINE»
+
+«DEFINE createDefaultEditPolicies FOR gmfgen::GenChildLabelNode-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected void createDefaultEditPolicies() {
+	«EXPAND impl::diagram::editparts::ChildNodeLabelEditPart::createDefaultEditPoliciesBody-»
+}
+«ENDDEFINE»
+
+«DEFINE handleNotificationEvent FOR gmfgen::GenChildLabelNode-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
+	«EXPAND impl::diagram::editparts::ChildNodeLabelEditPart::handleNotificationEventBody-»
+}
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenChildLabelNode»«ENDDEFINE»

@@ -25,7 +25,7 @@ import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
@@ -61,13 +61,15 @@ import org.eclipse.uml2.uml.UMLPackage;
  * the call to getProvided/getRequired interface might trigger its creation resulting in
  * the corruption of list iterators (ConcurrentAccess exception)
  * 
- * @author ansgar
- * 
  */
 public class CompImplTrafos {
 
 	public static Class bootloader;
 
+	public static final String retParamName = "ret"; //$NON-NLS-1$
+	
+	public static final String progLang = "C/C++"; //$NON-NLS-1$
+	
 	public static void addPortOperations(Copy copy, Package pkg) throws TransformationException {
 		EList<PackageableElement> peList = new BasicEList<PackageableElement>();
 		peList.addAll(pkg.getPackagedElements());
@@ -78,7 +80,7 @@ public class CompImplTrafos {
 				Class implementation = (Class)element;
 				// we may not apply the transformation to the boot-loader itself, in particular it would transform
 				// singletons into pointers.
-				if(Utils.isCompImpl(implementation) && (implementation != bootloader) && !StUtils.isApplied(implementation,  PortKind.class)) {
+				if(Utils.isCompImpl(implementation) && (implementation != bootloader) && !StereotypeUtil.isApplied(implementation,  PortKind.class)) {
 					addGetPortOperation(copy, implementation);
 					addConnectPortOperation(copy, implementation);
 					markPartsPointer(implementation);
@@ -103,14 +105,18 @@ public class CompImplTrafos {
 				// port provides an interface, add "get_p" operation & implementation
 
 				String opName = PrefixConstants.getP_Prefix + portInfo.getName();
-				if (implementation.getOwnedOperation(opName, null, null) != null) {
+				Operation op = implementation.getOwnedOperation(opName, null, null);
+				if (op != null) {
 					// operation already exists. Assume that user wants to override standard delegation
+					if (op.getType() != providedIntf) {
+						op.createOwnedParameter(retParamName, providedIntf);
+					}
 					continue;
 				}
-				Operation op = implementation.createOwnedOperation(opName, null, null, providedIntf);
+				op = implementation.createOwnedOperation(opName, null, null, providedIntf);
 				Parameter retParam = op.getOwnedParameters().get(0);
-				retParam.setName("ret");
-				StUtils.apply(retParam, Ptr.class);
+				retParam.setName(retParamName);
+				StereotypeUtil.apply(retParam, Ptr.class);
 
 				OpaqueBehavior behavior = (OpaqueBehavior)
 					implementation.createOwnedBehavior(opName,
@@ -132,8 +138,11 @@ public class CompImplTrafos {
 						// due to partially copied composites).
 						// Check is based on names, since the connector points to elements within another
 						// model (copyClassifier does not make a proper connector copy)
-						body += part.getName() + refOp(part) + PrefixConstants.getP_Prefix + role.getName() + "();";  //$NON-NLS-1$
-					} else {
+						// body += part.getName() + refOp(part) + opName + "();";  //$NON-NLS-1$
+						// TODO: this will NOT work for extended ports!
+						body += part.getName() + refOp(part) + PrefixConstants.getP_Prefix + role.getName() + "();"; //$NON-NLS-1$
+					}
+					else {
 						// role is not a port: connector connects directly to a structural feature
 						// without passing via a port
 						// TODO: check whether structural feature exists
@@ -158,7 +167,7 @@ public class CompImplTrafos {
 					}
 				}
 				// todo: defined by template
-				behavior.getLanguages().add("C/C++"); //$NON-NLS-1$
+				behavior.getLanguages().add(progLang);
 				behavior.getBodies().add(body);
 			}
 		}
@@ -182,7 +191,7 @@ public class CompImplTrafos {
 				// => requires adaptations of boot-loader which is then only responsible for creating instances
 				//    corresponding to types
 				if(instantiateViaBootloader(cl)) {
-					StUtils.apply(attribute, Ptr.class);
+					StereotypeUtil.apply(attribute, Ptr.class);
 				}
 			}
 		}
@@ -216,15 +225,15 @@ public class CompImplTrafos {
 					// add index parameter
 					Element eLong = Utils.getQualifiedElement(Utils.getTop(implementation), CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE);
 					if(eLong instanceof Type) {
-						op.createOwnedParameter("index", (Type)eLong);
+						op.createOwnedParameter("index", (Type)eLong); //$NON-NLS-1$
 					}
 					else {
 						throw new RuntimeException("Can not find type " + CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE +
 								". Thus, unable to create suitable connect operation in component to OO transformation");
 					}
 				}
-				Parameter refParam = op.createOwnedParameter("ref", requiredIntf);
-				StUtils.apply(refParam, Ptr.class);
+				Parameter refParam = op.createOwnedParameter("ref", requiredIntf); //$NON-NLS-1$
+				StereotypeUtil.apply(refParam, Ptr.class);
 
 				OpaqueBehavior behavior = (OpaqueBehavior)
 					implementation.createOwnedBehavior(opName,
@@ -241,15 +250,15 @@ public class CompImplTrafos {
 					body = part.getName();
 					ConnectableElement role = ce.getRole();
 					if(role instanceof Port) {
-						body += refOp(part) + PrefixConstants.connectQ_Prefix + role.getName() + " ";
+						body += refOp(part) + opName;
 						if((portInfo.getUpper() > 1) || (portInfo.getUpper() == -1)) {
-							body += "(index, ref);";
+							body += "(index, ref);"; //$NON-NLS-1$
 						} else {
-							body += "(ref);";
+							body += "(ref);"; //$NON-NLS-1$
 						}
 
 					} else {
-						body += ";";
+						body += ";"; //$NON-NLS-1$
 					}
 				} else {
 					// no delegation - create attribute for port
@@ -260,10 +269,10 @@ public class CompImplTrafos {
 						// is shared (should store a reference)
 						attr.setAggregation(AggregationKind.SHARED_LITERAL);
 					}
-					body = attributeName + (multiPort ? "[index]" : "") + " = ref;";
+					body = attributeName + (multiPort ? "[index]" : "") + " = ref;";  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 				}
 				// TODO: defined by template
-				behavior.getLanguages().add("C/C++");
+				behavior.getLanguages().add(progLang);
 				behavior.getBodies().add(body);
 
 				// -------------------------
@@ -279,8 +288,8 @@ public class CompImplTrafos {
 					if(op == null) {
 						op = implementation.createOwnedOperation(opName, null, null, requiredIntf);
 						Parameter retParam = op.getOwnedParameters().get(0);
-						retParam.setName("ret");
-						StUtils.apply(retParam, Ptr.class);
+						retParam.setName(retParamName);
+						StereotypeUtil.apply(retParam, Ptr.class);
 					}
 					behavior = (OpaqueBehavior)
 						implementation.createOwnedBehavior(opName,
@@ -289,8 +298,8 @@ public class CompImplTrafos {
 
 					// no delegation
 					String name = PrefixConstants.attributePrefix + portInfo.getName();
-					body = "return " + name + ";";
-					behavior.getLanguages().add("C/C++");
+					body = "return " + name + ";"; //$NON-NLS-1$ //$NON-NLS-2$
+					behavior.getLanguages().add(progLang); //$NON-NLS-1$
 					behavior.getBodies().add(body);
 				}
 			}
@@ -311,7 +320,7 @@ public class CompImplTrafos {
 
 		for(Connector connector : implementation.getOwnedConnectors()) {
 			if(ConnectorUtils.isAssembly(connector)) {
-				Boolean associationBased = false;
+				// Boolean associationBased = false;
 				if (connector.getEnds().size() != 2) {
 					throw new TransformationException("Connector <" + connector.getName() + "> does not have two ends. This is currently not supported"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
@@ -323,6 +332,7 @@ public class CompImplTrafos {
 					Port port = (Port) end1.getRole();
 					EList<PortInfo> subPorts = PortUtils.flattenExtendedPort(port);
 					for (PortInfo subPort : subPorts) {
+						cmd += "  // realization of connection for sub-port " + subPort.getPort().getName() + "\n";
 						cmd += connectPorts(indexMap, connector, end1, end2, subPort.getPort());
 						cmd += connectPorts(indexMap, connector, end2, end1, subPort.getPort());
 					}
@@ -331,17 +341,17 @@ public class CompImplTrafos {
 					cmd += connectPorts(indexMap, connector, end1, end2, null);
 					cmd += connectPorts(indexMap, connector, end2, end1, null);
 				}
-				createConnBody += cmd + "\n";
+				createConnBody += cmd + "\n"; //$NON-NLS-1$
 			}
 		}
 		// TODO: use template, as in bootloader
 		if(createConnBody.length() > 0) {
-			Operation operation = implementation.createOwnedOperation("createConnections", null, null);
+			Operation operation = implementation.createOwnedOperation("createConnections", null, null); //$NON-NLS-1$
 
 			OpaqueBehavior behavior = (OpaqueBehavior)
-				implementation.createOwnedBehavior("b:" + operation.getName(),
+				implementation.createOwnedBehavior("b:" + operation.getName(), //$NON-NLS-1$
 					UMLPackage.eINSTANCE.getOpaqueBehavior());
-			behavior.getLanguages().add("C/C++");
+			behavior.getLanguages().add(progLang);
 			behavior.getBodies().add(createConnBody);
 			behavior.setSpecification(operation);
 		}
@@ -365,7 +375,10 @@ public class CompImplTrafos {
 		if((receptacleEnd.getRole() instanceof Port) && (facetEnd.getRole() instanceof Port)) {
 			Port facetPort = (Port) facetEnd.getRole();
 			Port receptaclePort = (Port) receptacleEnd.getRole();
-			if((PortUtils.getProvided(facetPort) != null) && (PortUtils.getRequired(receptaclePort) != null)) {
+			PortInfo facetPI = PortInfo.fromSubPort(facetPort, subPort);
+			PortInfo receptaclePI = PortInfo.fromSubPort(receptaclePort, subPort);
+
+			if((facetPI.getProvided() != null) && (receptaclePI.getRequired() != null)) {
 				Property facetPart = facetEnd.getPartWithPort();
 				Property receptaclePart = receptacleEnd.getPartWithPort();
 					
@@ -524,6 +537,6 @@ public class CompImplTrafos {
 	 */
 	protected static String refOp(Property part) {
 		return instantiateViaBootloader(part) ?
-			"->" : ".";
+			"->" : "."; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

@@ -22,18 +22,19 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlCommonParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'::'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'*'", "'::'"
     };
     public static final int RULE_ID=5;
-    public static final int RULE_STRING=6;
+    public static final int RULE_STRING=7;
     public static final int T__12=12;
-    public static final int T__11=11;
-    public static final int RULE_ANY_OTHER=10;
+    public static final int T__13=13;
+    public static final int RULE_ANY_OTHER=11;
     public static final int RULE_INT=4;
-    public static final int RULE_WS=9;
-    public static final int RULE_SL_COMMENT=8;
+    public static final int RULE_INTEGER_VALUE=6;
+    public static final int RULE_WS=10;
+    public static final int RULE_SL_COMMENT=9;
     public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
+    public static final int RULE_ML_COMMENT=8;
 
     // delegates
     // delegators
@@ -317,7 +318,7 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
             if ( (LA1_0==RULE_INT) ) {
                 alt1=1;
             }
-            else if ( (LA1_0==11) ) {
+            else if ( (LA1_0==12) ) {
                 alt1=2;
             }
             else {
@@ -349,7 +350,7 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
                     // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:164:1: '*'
                     {
                      before(grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
-                    match(input,11,FOLLOW_11_in_rule__UnlimitedLiteral__Alternatives276); 
+                    match(input,12,FOLLOW_12_in_rule__UnlimitedLiteral__Alternatives276); 
                      after(grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1()); 
 
                     }
@@ -511,7 +512,7 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
             // ../org.eclipse.papyrus.uml.textedit.common.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/common/xtext/ui/contentassist/antlr/internal/InternalUmlCommon.g:227:1: '::'
             {
              before(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1()); 
-            match(input,12,FOLLOW_12_in_rule__QualifiedName__Group__1__Impl401); 
+            match(input,13,FOLLOW_13_in_rule__QualifiedName__Group__1__Impl401); 
              after(grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1()); 
 
             }
@@ -766,13 +767,13 @@ public class InternalUmlCommonParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_EOF_in_entryRuleUnlimitedLiteral192 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__UnlimitedLiteral__Alternatives_in_ruleUnlimitedLiteral218 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_INT_in_rule__UnlimitedLiteral__Alternatives258 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rule__UnlimitedLiteral__Alternatives276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__0310 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_rule__UnlimitedLiteral__Alternatives276 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__QualifiedName__Group__0__Impl_in_rule__QualifiedName__Group__0310 = new BitSet(new long[]{0x0000000000002000L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1_in_rule__QualifiedName__Group__0313 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__PathAssignment_0_in_rule__QualifiedName__Group__0__Impl340 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__1__Impl_in_rule__QualifiedName__Group__1370 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2_in_rule__QualifiedName__Group__1373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__QualifiedName__Group__1__Impl401 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__QualifiedName__Group__1__Impl401 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__Group__2__Impl_in_rule__QualifiedName__Group__2432 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__QualifiedName__RemainingAssignment_2_in_rule__QualifiedName__Group__2__Impl459 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__QualifiedName__PathAssignment_0508 = new BitSet(new long[]{0x0000000000000002L});

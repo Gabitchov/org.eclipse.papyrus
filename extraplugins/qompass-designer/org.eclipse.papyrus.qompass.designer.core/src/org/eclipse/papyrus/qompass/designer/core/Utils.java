@@ -33,6 +33,7 @@ import org.eclipse.papyrus.FCM.Singleton;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferenceConstants;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -45,6 +46,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class Utils {
 
@@ -409,11 +411,11 @@ public class Utils {
 	}
 
 	public static boolean isSingleton(Class component) {
-		return StUtils.isApplied(component, Singleton.class);
+		return StereotypeUtil.isApplied(component, Singleton.class);
 	}
 
 	public static boolean isAssembly(Class component) {
-		return StUtils.isApplied(component, Assembly.class);
+		return StereotypeUtil.isApplied(component, Assembly.class);
 	}
 
 	public static boolean treatNoneAsComposite() {
@@ -443,7 +445,7 @@ public class Utils {
 	 * @return
 	 */
 	public static EList<ContainerRule> getRules(Class component) {
-		RuleApplication ruleApplication = StUtils.getApplication(component, RuleApplication.class);
+		RuleApplication ruleApplication = UMLUtil.getStereotypeApplication(component, RuleApplication.class);
 		if(ruleApplication != null) {
 			return ruleApplication.getContainerRule();
 		}
@@ -485,8 +487,8 @@ public class Utils {
 				}
 			}
 			else if(el instanceof Class) {
-				if(StUtils.isApplied(el, ContainerRule.class)) {
-					ContainerRule rule = StUtils.getApplication((Class)el, ContainerRule.class);
+				if(StereotypeUtil.isApplied(el, ContainerRule.class)) {
+					ContainerRule rule = UMLUtil.getStereotypeApplication((Class)el, ContainerRule.class);
 					contRuleList.add(rule);
 				}
 			}

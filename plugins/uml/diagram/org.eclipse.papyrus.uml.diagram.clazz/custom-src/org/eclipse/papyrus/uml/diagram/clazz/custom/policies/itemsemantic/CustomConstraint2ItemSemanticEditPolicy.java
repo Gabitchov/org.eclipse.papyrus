@@ -130,7 +130,6 @@ public class CustomConstraint2ItemSemanticEditPolicy extends ConstraintItemSeman
 		return null;
 	}
 
-
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
@@ -219,5 +218,4 @@ public class CustomConstraint2ItemSemanticEditPolicy extends ConstraintItemSeman
 		}
 		return null;
 	}
-
 }

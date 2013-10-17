@@ -31,17 +31,22 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
+		OperationPreferencePage.initDefaults(store);
 		ModelPreferencePage.initDefaults(store);
 		ConstraintPreferencePage.initDefaults(store);
 		CommentPreferencePage.initDefaults(store);
+		PropertyPreferencePage.initDefaults(store);
 		InterfacePreferencePage.initDefaults(store);
+		NamedElementPreferencePage.initDefaults(store);
 		DependencyNodePreferencePage.initDefaults(store);
 		PortPreferencePage.initDefaults(store);
+		ReceptionPreferencePage.initDefaults(store);
 		PackagePreferencePage.initDefaults(store);
 		ComponentPreferencePage.initDefaults(store);
 		DefaultNamedElementPreferencePage.initDefaults(store);
 		ConstraintConstrainedElementPreferencePage.initDefaults(store);
 		AbstractionPreferencePage.initDefaults(store);
+		InterfacePortLinkPreferencePage.initDefaults(store);
 		ManifestationPreferencePage.initDefaults(store);
 		GeneralizationPreferencePage.initDefaults(store);
 		DependencyPreferencePage.initDefaults(store);

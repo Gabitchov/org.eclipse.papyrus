@@ -15,7 +15,6 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.handler;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
@@ -30,8 +29,11 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.ui.InterfaceManagerDialog
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.uml.diagram.common.handlers.GraphicalCommandHandler;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -47,7 +49,7 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getCommand() throws ExecutionException {
+	protected Command getCommand() {
 		List<IGraphicalEditPart> selection = getSelectedElements();
 		if(selection.size() != 1) {
 			return UnexecutableCommand.INSTANCE;
@@ -103,8 +105,7 @@ public class ManageProvidedInterfacesHandler extends GraphicalCommandHandler {
 			if(type != null && !(type instanceof Classifier)) {
 				return UnexecutableCommand.INSTANCE;
 			} else if(type == null) {
-				MessageDialog dialog =
-					new MessageDialog(DisplayUtils.getDefaultShell(), Messages.InterfaceManagerDialog_Title, null, Messages.ManageProvidedInterfacesHandler_TheTypeOfThePortIsNotDefined, MessageDialog.WARNING, new String[]{ Messages.ManageProvidedInterfacesHandler_OK }, 0);
+				MessageDialog dialog = new MessageDialog(DisplayUtils.getDefaultShell(), Messages.InterfaceManagerDialog_Title, null, Messages.ManageProvidedInterfacesHandler_TheTypeOfThePortIsNotDefined, MessageDialog.WARNING, new String[]{ Messages.ManageProvidedInterfacesHandler_OK }, 0);
 				dialog.open();
 			} else {
 				InterfaceManagerDialog dialog = new InterfaceManagerDialog(DisplayUtils.getDefaultShell(), this.port);

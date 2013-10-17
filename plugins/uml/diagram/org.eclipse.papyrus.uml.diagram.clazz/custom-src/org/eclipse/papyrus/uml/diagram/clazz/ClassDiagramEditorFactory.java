@@ -11,7 +11,6 @@
  *  Cedric Dumoulin Cedric.Dumoulin@lifl.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.clazz;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.GmfEditorFactory;
@@ -29,7 +28,5 @@ public class ClassDiagramEditorFactory extends GmfEditorFactory {
 	 */
 	public ClassDiagramEditorFactory() {
 		super(UmlClassDiagramForMultiEditor.class, ModelEditPart.MODEL_ID);
-
 	}
-
 }

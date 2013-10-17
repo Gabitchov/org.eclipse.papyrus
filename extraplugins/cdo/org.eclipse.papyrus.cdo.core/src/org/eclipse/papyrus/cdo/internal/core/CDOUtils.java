@@ -11,12 +11,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core;
 
+import static com.google.common.collect.Iterables.filter;
+import static com.google.common.collect.Iterables.getFirst;
+
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.cdo.CDOLock;
 import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.common.id.CDOID;
+import org.eclipse.emf.cdo.common.id.CDOIDUtil;
 import org.eclipse.emf.cdo.common.revision.CDORevision;
 import org.eclipse.emf.cdo.dawn.spi.DawnState;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
@@ -27,8 +34,14 @@ import org.eclipse.emf.cdo.view.CDOViewSet;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EContentsEList.FeatureListIterator;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -37,6 +50,7 @@ import org.eclipse.papyrus.cdo.core.util.CDOFunctions;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.UnmodifiableListIterator;
 
 /**
  * This is the CDOUtils type. Enjoy.
@@ -55,12 +69,26 @@ public class CDOUtils {
 	}
 
 	public static <T> T adapt(Object object, Class<? extends T> type) {
+		T result = tryCast(object, type);
+
+		if(result == null) {
+			if(object instanceof IAdaptable) {
+				result = type.cast(((IAdaptable)object).getAdapter(type));
+			}
+
+			if((result == null) && (object instanceof Notifier)) {
+				result = getFirst(filter(((Notifier)object).eAdapters(), type), null);
+			}
+		}
+
+		return result;
+	}
+
+	public static <T> T tryCast(Object object, Class<? extends T> type) {
 		T result = null;
 
 		if(type.isInstance(object)) {
 			result = type.cast(object);
-		} else if(object instanceof IAdaptable) {
-			result = type.cast(((IAdaptable)object).getAdapter(type));
 		}
 
 		return result;
@@ -113,6 +141,11 @@ public class CDOUtils {
 		return result;
 	}
 
+	public static CDOID getCDOID(EObject object) {
+		CDOObject cdo = getCDOObject(object);
+		return (cdo == null) ? CDOIDUtil.createExternal(EcoreUtil.getURI(object).toString()) : cdo.cdoID();
+	}
+
 	public static CDOView getView(ResourceSet resourceSet) {
 		CDOView result = null;
 
@@ -127,9 +160,16 @@ public class CDOUtils {
 		return result;
 	}
 
+	public static CDOView getView(EObject object) {
+		CDOObject cdo = getCDOObject(object);
+		return (cdo == null) ? null : cdo.cdoView();
+	}
+
 	public static boolean isLockable(CDOObject object) {
-		// transient objects do not have lock states
-		return object.cdoLockState() != null;
+		// transient objects do not have lock states, nor do those that are not
+		// in a view or are in a closed view
+		CDOView view = object.cdoView();
+		return (view != null) && !view.isClosed() && (object.cdoLockState() != null);
 	}
 
 	public static boolean isLocked(CDOObject object, boolean remotely) {
@@ -180,6 +220,189 @@ public class CDOUtils {
 		return Iterables.transform(cdoObjects, CDOFunctions.getEObject());
 	}
 
+	public static Iterable<EStructuralFeature.Setting> crossReference(EObject object) {
+		Iterable<EStructuralFeature.Setting> result;
+
+		ECrossReferenceAdapter adapter = adapt(object, ECrossReferenceAdapter.class);
+		if(adapter != null) {
+			result = adapter.getInverseReferences(object);
+		} else {
+			EObject tree = EcoreUtil.getRootContainer(object);
+			Resource resource = tree.eResource();
+			ResourceSet rset = (resource == null) ? null : resource.getResourceSet();
+
+			if(rset != null) {
+				result = EcoreUtil.UsageCrossReferencer.find(object, rset);
+			} else if(resource != null) {
+				result = EcoreUtil.UsageCrossReferencer.find(object, resource);
+			} else {
+				result = EcoreUtil.UsageCrossReferencer.find(object, tree);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Obtains an unmodifiable iterator over the values in the specified {@code feature} of an {@code object}. The resulting iterator supplies zero
+	 * or one element for scalar features, according to whether the feature's value is {@code null} or not. In the case of a scalar feature,
+	 * the index of the element as reported by {@link ListIterator#nextIndex()} and {@link ListIterator#previousIndex()} is {@code -1}.
+	 * 
+	 * @param object
+	 *        an object
+	 * @param feature
+	 *        a feature of the {@code object}
+	 * @param resolve
+	 *        whether to resolve proxies (in the case of an {@link EReference}
+	 * 
+	 * @return the unmodifiable feature list iterator
+	 */
+	public static <E> FeatureListIterator<E> iterator(EObject object, final EStructuralFeature feature, boolean resolve) {
+		FeatureListIterator<E> result;
+
+		Object value = object.eGet(feature, resolve);
+		if(value instanceof InternalEList<?>) {
+			@SuppressWarnings("unchecked")
+			InternalEList<E> list = (InternalEList<E>)value;
+			final ListIterator<E> delegate = (resolve) ? list.listIterator() : list.basicListIterator();
+
+			class NonEmpty extends UnmodifiableListIterator<E> implements FeatureListIterator<E> {
+
+				@Override
+				public EStructuralFeature feature() {
+					return feature;
+				}
+
+				@Override
+				public boolean hasNext() {
+					return delegate.hasNext();
+				}
+
+				@Override
+				public E next() {
+					return delegate.next();
+				}
+
+				@Override
+				public int nextIndex() {
+					return delegate.nextIndex();
+				}
+
+				@Override
+				public boolean hasPrevious() {
+					return delegate.hasPrevious();
+				}
+
+				@Override
+				public E previous() {
+					return delegate.previous();
+				}
+
+				@Override
+				public int previousIndex() {
+					return delegate.previousIndex();
+				}
+			};
+
+			result = new NonEmpty();
+		} else if(value == null) {
+			class Empty extends UnmodifiableListIterator<E> implements FeatureListIterator<E> {
+
+				@Override
+				public EStructuralFeature feature() {
+					return feature;
+				}
+
+				@Override
+				public boolean hasNext() {
+					return false;
+				}
+
+				@Override
+				public E next() {
+					throw new NoSuchElementException();
+				}
+
+				@Override
+				public int nextIndex() {
+					return -1;
+				}
+
+				@Override
+				public boolean hasPrevious() {
+					return false;
+				}
+
+				@Override
+				public E previous() {
+					throw new NoSuchElementException();
+				}
+
+				@Override
+				public int previousIndex() {
+					return -2;
+				}
+			};
+
+			result = new Empty();
+		} else {
+			@SuppressWarnings("unchecked")
+			final E onlyValue = (E)value;
+
+			class Singleton extends UnmodifiableListIterator<E> implements FeatureListIterator<E> {
+
+				private int index = -1;
+
+				@Override
+				public EStructuralFeature feature() {
+					return feature;
+				}
+
+				@Override
+				public boolean hasNext() {
+					return index < 0;
+				}
+
+				@Override
+				public E next() {
+					if(!hasNext()) {
+						throw new NoSuchElementException();
+					}
+					index++;
+					return onlyValue;
+				}
+
+				@Override
+				public int nextIndex() {
+					return index;
+				}
+
+				@Override
+				public boolean hasPrevious() {
+					return index == 0;
+				}
+
+				@Override
+				public E previous() {
+					if(!hasPrevious()) {
+						throw new NoSuchElementException();
+					}
+					index--;
+					return onlyValue;
+				}
+
+				@Override
+				public int previousIndex() {
+					return index - 1;
+				}
+			};
+
+			result = new Singleton();
+		}
+
+		return result;
+	}
+
 	/**
 	 * <p>
 	 * Runs a code block that broadcasts notification of {@link ResourceSetChangeEvent}s, {@link CDOViewInvalidationEvent}s, etc. to listeners using
@@ -200,6 +423,7 @@ public class CDOUtils {
 
 		broadcastExecutor.execute(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					domain.runExclusive(broadcastCommand);
@@ -220,6 +444,7 @@ public class CDOUtils {
 
 	private static final class DirectExecutor implements Executor {
 
+		@Override
 		public void execute(Runnable command) {
 			command.run();
 		}

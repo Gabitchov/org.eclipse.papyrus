@@ -22,22 +22,23 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlMessageParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_NAMERULE", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'.'", "'*'", "'['", "']'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_NAMERULE", "RULE_INT", "RULE_ID", "RULE_INTEGER_VALUE", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'.'", "'*'", "'['", "']'"
     };
     public static final int RULE_NAMERULE=5;
     public static final int RULE_ID=7;
     public static final int RULE_STRING=4;
     public static final int T__16=16;
     public static final int T__15=15;
-    public static final int T__12=12;
+    public static final int T__17=17;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_ANY_OTHER=12;
     public static final int RULE_INT=6;
-    public static final int RULE_WS=10;
-    public static final int RULE_SL_COMMENT=9;
+    public static final int RULE_INTEGER_VALUE=8;
+    public static final int RULE_WS=11;
+    public static final int RULE_SL_COMMENT=10;
     public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=8;
+    public static final int RULE_ML_COMMENT=9;
 
     // delegates
     // delegators
@@ -318,10 +319,10 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==14) ) {
+            if ( (LA1_0==15) ) {
                 alt1=1;
             }
-            else if ( (LA1_0==15) ) {
+            else if ( (LA1_0==16) ) {
                 alt1=2;
             }
             else {
@@ -541,7 +542,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( (LA2_0==13) ) {
+                if ( (LA2_0==14) ) {
                     alt2=1;
                 }
 
@@ -638,7 +639,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
             // ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:244:1: ':'
             {
              before(grammarAccess.getMessageRuleAccess().getColonKeyword_2()); 
-            match(input,12,FOLLOW_12_in_rule__MessageRule__Group__2__Impl451); 
+            match(input,13,FOLLOW_13_in_rule__MessageRule__Group__2__Impl451); 
              after(grammarAccess.getMessageRuleAccess().getColonKeyword_2()); 
 
             }
@@ -793,7 +794,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
             // ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:311:1: '.'
             {
              before(grammarAccess.getMessageRuleAccess().getFullStopKeyword_1_0()); 
-            match(input,13,FOLLOW_13_in_rule__MessageRule__Group_1__0__Impl578); 
+            match(input,14,FOLLOW_14_in_rule__MessageRule__Group_1__0__Impl578); 
              after(grammarAccess.getMessageRuleAccess().getFullStopKeyword_1_0()); 
 
             }
@@ -1128,7 +1129,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( ((LA4_0>=14 && LA4_0<=15)) ) {
+            if ( ((LA4_0>=15 && LA4_0<=16)) ) {
                 alt4=1;
             }
             switch (alt4) {
@@ -1220,7 +1221,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
             // ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:466:1: '*'
             {
              before(grammarAccess.getRecurrenceRuleAccess().getAsteriskKeyword_0_0()); 
-            match(input,14,FOLLOW_14_in_rule__RecurrenceRule__Group_0__0__Impl886); 
+            match(input,15,FOLLOW_15_in_rule__RecurrenceRule__Group_0__0__Impl886); 
              after(grammarAccess.getRecurrenceRuleAccess().getAsteriskKeyword_0_0()); 
 
             }
@@ -1295,7 +1296,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
             // ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:497:1: '['
             {
              before(grammarAccess.getRecurrenceRuleAccess().getLeftSquareBracketKeyword_0_1()); 
-            match(input,15,FOLLOW_15_in_rule__RecurrenceRule__Group_0__1__Impl948); 
+            match(input,16,FOLLOW_16_in_rule__RecurrenceRule__Group_0__1__Impl948); 
              after(grammarAccess.getRecurrenceRuleAccess().getLeftSquareBracketKeyword_0_1()); 
 
             }
@@ -1440,7 +1441,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
             // ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:556:1: ']'
             {
              before(grammarAccess.getRecurrenceRuleAccess().getRightSquareBracketKeyword_0_3()); 
-            match(input,16,FOLLOW_16_in_rule__RecurrenceRule__Group_0__3__Impl1066); 
+            match(input,17,FOLLOW_17_in_rule__RecurrenceRule__Group_0__3__Impl1066); 
              after(grammarAccess.getRecurrenceRuleAccess().getRightSquareBracketKeyword_0_3()); 
 
             }
@@ -1515,7 +1516,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
             // ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:595:1: '['
             {
              before(grammarAccess.getRecurrenceRuleAccess().getLeftSquareBracketKeyword_1_0()); 
-            match(input,15,FOLLOW_15_in_rule__RecurrenceRule__Group_1__0__Impl1136); 
+            match(input,16,FOLLOW_16_in_rule__RecurrenceRule__Group_1__0__Impl1136); 
              after(grammarAccess.getRecurrenceRuleAccess().getLeftSquareBracketKeyword_1_0()); 
 
             }
@@ -1660,7 +1661,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
             // ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:654:1: ']'
             {
              before(grammarAccess.getRecurrenceRuleAccess().getRightSquareBracketKeyword_1_2()); 
-            match(input,16,FOLLOW_16_in_rule__RecurrenceRule__Group_1__2__Impl1254); 
+            match(input,17,FOLLOW_17_in_rule__RecurrenceRule__Group_1__2__Impl1254); 
              after(grammarAccess.getRecurrenceRuleAccess().getRightSquareBracketKeyword_1_2()); 
 
             }
@@ -1932,49 +1933,49 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
     public static final BitSet FOLLOW_rule__RecurrenceRule__Alternatives_in_ruleRecurrenceRule214 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__0_in_rule__RecurrenceRule__Alternatives250 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_1__0_in_rule__RecurrenceRule__Alternatives268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MessageRule__Group__0__Impl_in_rule__MessageRule__Group__0299 = new BitSet(new long[]{0x0000000000003000L});
+    public static final BitSet FOLLOW_rule__MessageRule__Group__0__Impl_in_rule__MessageRule__Group__0299 = new BitSet(new long[]{0x0000000000006000L});
     public static final BitSet FOLLOW_rule__MessageRule__Group__1_in_rule__MessageRule__Group__0302 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MessageRule__SequenceTermAssignment_0_in_rule__MessageRule__Group__0__Impl329 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MessageRule__Group__1__Impl_in_rule__MessageRule__Group__1359 = new BitSet(new long[]{0x0000000000003000L});
+    public static final BitSet FOLLOW_rule__MessageRule__Group__1__Impl_in_rule__MessageRule__Group__1359 = new BitSet(new long[]{0x0000000000006000L});
     public static final BitSet FOLLOW_rule__MessageRule__Group__2_in_rule__MessageRule__Group__1362 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__MessageRule__Group_1__0_in_rule__MessageRule__Group__1__Impl389 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_rule__MessageRule__Group_1__0_in_rule__MessageRule__Group__1__Impl389 = new BitSet(new long[]{0x0000000000004002L});
     public static final BitSet FOLLOW_rule__MessageRule__Group__2__Impl_in_rule__MessageRule__Group__2420 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_rule__MessageRule__Group__3_in_rule__MessageRule__Group__2423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__MessageRule__Group__2__Impl451 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__MessageRule__Group__2__Impl451 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MessageRule__Group__3__Impl_in_rule__MessageRule__Group__3482 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MessageRule__NameAssignment_3_in_rule__MessageRule__Group__3__Impl509 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MessageRule__Group_1__0__Impl_in_rule__MessageRule__Group_1__0547 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_rule__MessageRule__Group_1__1_in_rule__MessageRule__Group_1__0550 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__MessageRule__Group_1__0__Impl578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__MessageRule__Group_1__0__Impl578 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MessageRule__Group_1__1__Impl_in_rule__MessageRule__Group_1__1609 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MessageRule__SequenceTermAssignment_1_1_in_rule__MessageRule__Group_1__1__Impl636 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequenceTermRule__Group__0__Impl_in_rule__SequenceTermRule__Group__0670 = new BitSet(new long[]{0x000000000000C080L});
+    public static final BitSet FOLLOW_rule__SequenceTermRule__Group__0__Impl_in_rule__SequenceTermRule__Group__0670 = new BitSet(new long[]{0x0000000000018080L});
     public static final BitSet FOLLOW_rule__SequenceTermRule__Group__1_in_rule__SequenceTermRule__Group__0673 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SequenceTermRule__SequencialOrderAssignment_0_in_rule__SequenceTermRule__Group__0__Impl700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SequenceTermRule__Group__1__Impl_in_rule__SequenceTermRule__Group__1730 = new BitSet(new long[]{0x000000000000C080L});
+    public static final BitSet FOLLOW_rule__SequenceTermRule__Group__1__Impl_in_rule__SequenceTermRule__Group__1730 = new BitSet(new long[]{0x0000000000018080L});
     public static final BitSet FOLLOW_rule__SequenceTermRule__Group__2_in_rule__SequenceTermRule__Group__1733 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SequenceTermRule__SequenceNameAssignment_1_in_rule__SequenceTermRule__Group__1__Impl760 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SequenceTermRule__Group__2__Impl_in_rule__SequenceTermRule__Group__2791 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SequenceTermRule__RecurrenceAssignment_2_in_rule__SequenceTermRule__Group__2__Impl818 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__0__Impl_in_rule__RecurrenceRule__Group_0__0855 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__0__Impl_in_rule__RecurrenceRule__Group_0__0855 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__1_in_rule__RecurrenceRule__Group_0__0858 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__RecurrenceRule__Group_0__0__Impl886 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__RecurrenceRule__Group_0__0__Impl886 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__1__Impl_in_rule__RecurrenceRule__Group_0__1917 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__2_in_rule__RecurrenceRule__Group_0__1920 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__RecurrenceRule__Group_0__1__Impl948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__2__Impl_in_rule__RecurrenceRule__Group_0__2979 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_rule__RecurrenceRule__Group_0__1__Impl948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__2__Impl_in_rule__RecurrenceRule__Group_0__2979 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__3_in_rule__RecurrenceRule__Group_0__2982 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__RecurrenceRule__Group_0__2__Impl1009 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_0__3__Impl_in_rule__RecurrenceRule__Group_0__31038 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__RecurrenceRule__Group_0__3__Impl1066 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__RecurrenceRule__Group_0__3__Impl1066 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_1__0__Impl_in_rule__RecurrenceRule__Group_1__01105 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_1__1_in_rule__RecurrenceRule__Group_1__01108 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__RecurrenceRule__Group_1__0__Impl1136 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RecurrenceRule__Group_1__1__Impl_in_rule__RecurrenceRule__Group_1__11167 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_rule__RecurrenceRule__Group_1__0__Impl1136 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RecurrenceRule__Group_1__1__Impl_in_rule__RecurrenceRule__Group_1__11167 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_1__2_in_rule__RecurrenceRule__Group_1__11170 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__RecurrenceRule__Group_1__1__Impl1197 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RecurrenceRule__Group_1__2__Impl_in_rule__RecurrenceRule__Group_1__21226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__RecurrenceRule__Group_1__2__Impl1254 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__RecurrenceRule__Group_1__2__Impl1254 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSequenceTermRule_in_rule__MessageRule__SequenceTermAssignment_01296 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSequenceTermRule_in_rule__MessageRule__SequenceTermAssignment_1_11327 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_NAMERULE_in_rule__MessageRule__NameAssignment_31358 = new BitSet(new long[]{0x0000000000000002L});

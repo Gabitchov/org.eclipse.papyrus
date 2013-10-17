@@ -1,0 +1,55 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+module org.eclipse.papyrus.uml.alf.GenerateCommon
+
+import org.eclipse.emf.mwe.utils.*
+import org.eclipse.xtext.generator.*
+import org.eclipse.xtext.ui.generator.*
+
+var grammarURI = "classpath:/org/eclipse/papyrus/uml/alf/Common.xtext"
+var projectName = "org.eclipse.papyrus.uml.alf.common"
+var runtimeProject = "../${projectName}"
+
+Workflow {
+    bean = StandaloneSetup {
+    	scanClassPath = true
+    	platformUri = "${runtimeProject}/.."
+    }
+    
+    component = DirectoryCleaner {
+    	directory = "${runtimeProject}/src-gen"
+    }
+
+    component = Generator {
+		pathRtProject = runtimeProject
+		pathUiProject = "${runtimeProject}.ui"
+		projectNameRt = projectName
+		projectNameUi = "${projectName}.ui"
+		language = {
+			uri = grammarURI
+			fragment = grammarAccess.GrammarAccessFragment {}
+			fragment = serializer.SerializerFragment {
+           		generateStub = false
+           	}
+			fragment = contentAssist.JavaBasedContentAssistFragment {}
+			
+			// java-based API for validation 
+			fragment = validation.JavaValidatorFragment {
+				composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"			
+				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+				// registerForImportedPackages = true
+			}
+		}
+	}
+}

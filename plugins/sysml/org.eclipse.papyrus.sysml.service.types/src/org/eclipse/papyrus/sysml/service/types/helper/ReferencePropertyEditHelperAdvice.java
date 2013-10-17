@@ -33,6 +33,7 @@ import org.eclipse.papyrus.sysml.service.types.matcher.BlockMatcher;
 import org.eclipse.papyrus.sysml.service.types.matcher.ReferencePropertyMatcher;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
@@ -87,6 +88,8 @@ public class ReferencePropertyEditHelperAdvice extends AbstractPropertyEditHelpe
 					// Set default name
 					String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase("reference", element.eContainer().eContents());
 					element.setName(initializedName);
+					// Force the aggregation to NONE.
+					element.setAggregation(AggregationKind.NONE_LITERAL);
 				}
 				return CommandResult.newOKCommandResult(element);
 			}
@@ -114,7 +117,7 @@ public class ReferencePropertyEditHelperAdvice extends AbstractPropertyEditHelpe
 					// Create targetProperty
 					Property targetProperty = UMLFactory.eINSTANCE.createProperty();
 					targetProperty.setType(sourceType);
-					targetProperty.setName("");
+					targetProperty.setName(sourceType.getName() != null ? sourceType.getName().toLowerCase() : "null");
 
 					Association association = UMLFactory.eINSTANCE.createAssociation();
 					association.getMemberEnds().add(sourcePart);

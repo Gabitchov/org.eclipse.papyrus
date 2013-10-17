@@ -4,6 +4,28 @@
     <availablePage xmi:id="_3Q-VB_cEEd-J06U5HM_o-Q">
       <emfPageIdentifier href="RobotMLProfile.profile.notation#_3Q-VAPcEEd-J06U5HM_o-Q"/>
     </availablePage>
+    <availablePage/>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_QMgnAAHxEeCQQOKrhO_fIQ"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_xW_8UAH5EeC_ZLzLQhW-TQ"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_XJp18AIKEeC_ZLzLQhW-TQ"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_t9m_0AITEeCVrLEBH5ejnQ"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_C4EK0AK0EeCsG_V0R865wA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_9sFb4AK4EeCsG_V0R865wA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#__RE4MALCEeCsG_V0R865wA"/>
+    </availablePage>
     <availablePage>
       <emfPageIdentifier href="RobotMLProfile.profile.notation#_r4USgGAyEeCUQf3vpAG6JA"/>
     </availablePage>

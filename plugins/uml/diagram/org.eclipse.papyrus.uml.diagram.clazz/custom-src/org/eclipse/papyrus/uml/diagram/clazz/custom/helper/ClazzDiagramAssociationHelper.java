@@ -39,7 +39,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ClazzDiagramAssociationHelper {
 
 	public static EObject createAssociation(TransactionalEditingDomain domain, Type source, Type target, Package container) {
-
 		Association association = UMLFactory.eINSTANCE.createAssociation();
 		String targetString = target.getName().substring(0, 1).toLowerCase() + target.getName().substring(1, target.getName().length());
 		String sourceString = source.getName().substring(0, 1).toLowerCase() + source.getName().substring(1, source.getName().length());
@@ -60,13 +59,11 @@ public class ClazzDiagramAssociationHelper {
 		targetProperty.setName(targetString);
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
-
 		//put the property in the class
 		if(source instanceof StructuredClassifier) {
 			((StructuredClassifier)source).getOwnedAttributes().add(targetProperty);
 		}
 		// create source property
-
 		request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		c = new PropertyCommandForAssociation(request);
 		try {
@@ -83,7 +80,6 @@ public class ClazzDiagramAssociationHelper {
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
-
 		if((memberEnds.indexOf((sourceProperty)) >= 0)) {
 			association.getMemberEnds().move(0, (sourceProperty));
 		} else {
@@ -94,7 +90,6 @@ public class ClazzDiagramAssociationHelper {
 		} else {
 			association.getMemberEnds().add(1, (targetProperty));
 		}
-
 		container.getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_Association_4001(association);
 		String associationName = NamedElementHelper.EINSTANCE.getNewUMLElementName(container, sourceString + "_" + targetString + "_"); //$NON-NLS-1$ //$NON-NLS-2$

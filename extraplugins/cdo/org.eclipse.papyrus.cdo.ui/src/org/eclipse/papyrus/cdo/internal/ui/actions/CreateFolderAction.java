@@ -22,43 +22,45 @@ import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.window.IShellProvider;
+import org.eclipse.jface.window.SameShellProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
-import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.swt.widgets.Shell;
 
 import com.google.common.collect.Iterables;
 
 /**
  * This is the CreateFolderAction type. Enjoy.
  */
-public class CreateFolderAction
-		extends AsyncTransactionAction<CDOResourceNode> {
+public class CreateFolderAction extends AsyncTransactionAction<CDOResourceNode> {
 
-	private final IWorkbenchPart part;
+	private final IShellProvider shellProvider;
 
 	private String folderName;
 
-	public CreateFolderAction(IWorkbenchPart part) {
-		super(CDOResourceNode.class, Messages.CreateFolderAction_0,
-			Activator.ICON_CREATE_FOLDER);
+	public CreateFolderAction(Shell shell) {
+		this(new SameShellProvider(shell));
+	}
 
-		this.part = part;
+	public CreateFolderAction(IShellProvider shellProvider) {
+		super(CDOResourceNode.class, Messages.CreateFolderAction_0, Activator.ICON_CREATE_FOLDER);
+
+		this.shellProvider = shellProvider;
 	}
 
 	@Override
 	protected CDOResourceNode coerce(Object selection) {
 		CDOResourceNode result = super.coerce(selection);
 
-		if ((result == null)
-			&& (selection instanceof IInternalPapyrusRepository)) {
+		if((result == null) && (selection instanceof IInternalPapyrusRepository)) {
+			IInternalPapyrusRepository repository = (IInternalPapyrusRepository)selection;
 
-			IInternalPapyrusRepository repository = (IInternalPapyrusRepository) selection;
-
-			if (repository.isConnected()) {
+			if(repository.isConnected()) {
 				CDOView view = repository.getMasterView();
-				if (view != null) {
+				if(view != null) {
 					result = view.getRootResource();
 				}
 			}
@@ -71,11 +73,9 @@ public class CreateFolderAction
 	protected boolean gatherInput(CDOResourceNode selection) {
 		boolean result = false;
 
-		InputDialog dialog = new InputDialog(part.getSite().getShell(),
-			Messages.CreateFolderAction_1, Messages.CreateFolderAction_2,
-			getDefaultFolderName(selection), createInputValidator(selection));
+		InputDialog dialog = new InputDialog(shellProvider.getShell(), Messages.CreateFolderAction_1, Messages.CreateFolderAction_2, getDefaultFolderName(selection), createInputValidator(selection));
 
-		if (dialog.open() == Window.OK) {
+		if(dialog.open() == Window.OK) {
 			folderName = dialog.getValue().trim();
 			result = true;
 		}
@@ -86,12 +86,10 @@ public class CreateFolderAction
 	private Iterable<CDOResourceNode> getChildren(CDOResourceNode node) {
 		Iterable<CDOResourceNode> result;
 
-		if (node instanceof CDOResourceFolder) {
-			result = ((CDOResourceFolder) node).getNodes();
-		} else if ((node instanceof CDOResource)
-			&& ((CDOResource) node).isRoot()) {
-			result = Iterables.filter(((CDOResource) node).getContents(),
-				CDOResourceNode.class);
+		if(node instanceof CDOResourceFolder) {
+			result = ((CDOResourceFolder)node).getNodes();
+		} else if((node instanceof CDOResource) && ((CDOResource)node).isRoot()) {
+			result = Iterables.filter(((CDOResource)node).getContents(), CDOResourceNode.class);
 		} else {
 			result = Collections.emptyList();
 		}
@@ -102,8 +100,8 @@ public class CreateFolderAction
 	boolean nameExists(Iterable<CDOResourceNode> existingNodes, String name) {
 		boolean result = false;
 
-		for (CDOResourceNode next : existingNodes) {
-			if (name.equals(next.getName())) {
+		for(CDOResourceNode next : existingNodes) {
+			if(name.equals(next.getName())) {
 				result = true;
 				break;
 			}
@@ -116,10 +114,10 @@ public class CreateFolderAction
 		Iterable<CDOResourceNode> existing = getChildren(parent);
 		String result = null;
 
-		for (int i = 1; result == null; i++) {
+		for(int i = 1; result == null; i++) {
 			result = "folder" + i; //$NON-NLS-1$
 
-			if (nameExists(existing, result)) {
+			if(nameExists(existing, result)) {
 				result = null;
 			}
 		}
@@ -134,13 +132,12 @@ public class CreateFolderAction
 
 			public String isValid(String newText) {
 				String result;
-				String name = (newText == null)
-					? "" //$NON-NLS-1$
-					: newText.trim();
+				String name = (newText == null) ? "" //$NON-NLS-1$
+				: newText.trim();
 
-				if (name.length() == 0) {
+				if(name.length() == 0) {
 					result = Messages.CreateFolderAction_5;
-				} else if (nameExists(existing, name)) {
+				} else if(nameExists(existing, name)) {
 					result = Messages.CreateFolderAction_6;
 				} else {
 					result = null;
@@ -152,17 +149,14 @@ public class CreateFolderAction
 	}
 
 	@Override
-	protected void doRun(CDOResourceNode selection, CDOTransaction transaction,
-			IProgressMonitor monitor) {
-
-		CDOResourceFolder folder = EresourceFactory.eINSTANCE
-			.createCDOResourceFolder();
+	protected void doRun(CDOResourceNode selection, CDOTransaction transaction, IProgressMonitor monitor) {
+		CDOResourceFolder folder = EresourceFactory.eINSTANCE.createCDOResourceFolder();
 		folder.setName(folderName);
 
-		if (selection instanceof CDOResourceFolder) {
-			((CDOResourceFolder) selection).getNodes().add(folder);
-		} else if (selection instanceof CDOResource) {
-			((CDOResource) selection).getContents().add(folder);
+		if(selection instanceof CDOResourceFolder) {
+			((CDOResourceFolder)selection).getNodes().add(folder);
+		} else if(selection instanceof CDOResource) {
+			((CDOResource)selection).getContents().add(folder);
 		}
 	}
 
