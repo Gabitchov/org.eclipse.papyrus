@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
@@ -19,8 +32,6 @@ public class ParametricDiagramPreferenceInitializer extends AbstractPreferenceIn
 		org.eclipse.papyrus.sysml.diagram.parametric.preferences.CommentAnnotatedElementPreferencePage.initDefaults(store);
 		BlockCompositePreferencePage.initDefaults(store);
 		BlockPropertyCompositePreferencePage.initDefaults(store);
-		FlowPortPreferencePage.initDefaults(store);
-		PortPreferencePage.initDefaults(store);
 		ConnectorPreferencePage.initDefaults(store);
 		DependencyPreferencePage.initDefaults(store);
 		
