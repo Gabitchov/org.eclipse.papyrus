@@ -15,6 +15,7 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -23,10 +24,12 @@ import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.GraphicalTypeRegistry;
+import org.eclipse.papyrus.uml.diagram.common.helper.CreateOrShowExistingElementHelper;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 
 /**
@@ -43,6 +46,9 @@ public class CustomDefaultSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
 	/** Local graphical type registry for inherited graphical elements */
 	private IGraphicalTypeRegistry inheritedRegistry = new GraphicalTypeRegistry();
+
+	/** the link helper to use */
+	private CreateOrShowExistingElementHelper linkHelper = new CreateOrShowExistingElementHelper();
 
 	/**
 	 * {@inheritDoc}
@@ -68,7 +74,18 @@ public class CustomDefaultSemanticEditPolicy extends DefaultSemanticEditPolicy {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		return super.getCreateRelationshipCommand(req);
+		final Command defaultCommand = super.getCreateRelationshipCommand(req);
+		if(defaultCommand.canExecute()) {
+			final IElementType elementType = req.getElementType();
+			if(UMLElementTypes.CONNECTOR.equals(req.getElementType())) {
+				return this.linkHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			}
+
+			if(UMLElementTypes.DEPENDENCY.equals(req.getElementType())) {
+				return this.linkHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			}
+		}
+		return defaultCommand;
 	}
 
 	/**

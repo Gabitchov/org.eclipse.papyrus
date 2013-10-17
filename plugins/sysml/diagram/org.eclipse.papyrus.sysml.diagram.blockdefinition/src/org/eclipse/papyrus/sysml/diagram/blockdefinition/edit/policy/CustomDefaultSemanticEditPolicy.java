@@ -13,8 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
@@ -23,11 +25,14 @@ import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.GraphicalTypeRegistry;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLCreateOrShowExistingElementHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.common.helper.CreateOrShowExistingElementHelper;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <pre>
@@ -40,10 +45,11 @@ public class CustomDefaultSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
 	/** Local graphical type registry for graphical elements */
 	private IGraphicalTypeRegistry registry = new CustomGraphicalTypeRegistry();
-	
+
 	/** Local graphical type registry for inherited graphical elements */
 	private IGraphicalTypeRegistry inheritedRegistry = new GraphicalTypeRegistry();
-	
+
+	private CreateOrShowExistingElementHelper existingElementHelper = new SysMLCreateOrShowExistingElementHelper();
 	/**
 	 * {@inheritDoc}
 	 */
@@ -67,8 +73,23 @@ public class CustomDefaultSemanticEditPolicy extends DefaultSemanticEditPolicy {
 		if(!registry.isKnownEdgeType(newEdgeGraphicalType)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
-		return super.getCreateRelationshipCommand(req);
+		final Command defaultCommand = super.getCreateRelationshipCommand(req);
+		if(defaultCommand.canExecute()  && req.getSource()!=null && req.getTarget()!=null) {
+			final EClass eClass = req.getElementType().getEClass();
+			final IElementType elementType = req.getElementType();
+			if(UMLPackage.eINSTANCE.getInterfaceRealization()==eClass){
+				return this.existingElementHelper.getCreateOrRestoreElementCommand(req, defaultCommand,elementType);
+			}else if(elementType.getEClass() == UMLPackage.eINSTANCE.getAssociation()) {
+				return this.existingElementHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			} else if(eClass == UMLPackage.eINSTANCE.getDependency()) {
+				return this.existingElementHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			} else if(eClass == UMLPackage.eINSTANCE.getGeneralization()) {
+				return this.existingElementHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			} else if(eClass == UMLPackage.eINSTANCE.getUsage()) {
+				return this.existingElementHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			}
+		}
+		return defaultCommand;
 	}
 
 	/**

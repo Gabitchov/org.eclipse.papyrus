@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *		Régis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -21,6 +21,10 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.sysml.diagram.common.utils.ConstraintBlockHelper;
 
+/**
+ * This class allow to take into account the ConstraintParameter which are AffixedNode, not a "classical" property (Part/Reference/ConstraintProperty in structure).
+ * Also filter non allowed elements from AffixedNode (Port).
+ */
 public class ShowHideRelatedContentsAction extends org.eclipse.papyrus.sysml.diagram.internalblock.handler.ShowHideRelatedContentsAction {
 
 	/** Constructor. */
@@ -40,6 +44,7 @@ public class ShowHideRelatedContentsAction extends org.eclipse.papyrus.sysml.dia
 		Set<EObject> representedAffixedElements = new HashSet<EObject>();
 		AffixedChildrenEditPartRepresentation affixedNodeRepresentations = getAffixedNodeRepresentation(this.representations);
 
+		// Select only affixedNode which semantic element could be a ConstraintParameter
 		for (EditPartRepresentation currentRepresentation : affixedNodeRepresentations.getPossibleElement()) {
 			EObject semanticElement = currentRepresentation.getSemanticElement();
 			if (!(semanticElement == null || ConstraintBlockHelper.couldBeConstraintParameter(semanticElement, getOwnerSemanticElement()))) {
@@ -53,6 +58,7 @@ public class ShowHideRelatedContentsAction extends org.eclipse.papyrus.sysml.dia
 			affixedNodeRepresentations.getPossibleElement().remove(editPartRepresentationToRemove);
 		}
 		
+		// Remove from structure category elements which match as AffixedNode
 		editPartRepresentationsToRemove = new ArrayList<EditPartRepresentation>();
 		CompartmentEditPartRepresentation compartmentEditPartRepresentation = getCompartmentEditPartRepresentation(this.representations);
 		if (compartmentEditPartRepresentation != null) {

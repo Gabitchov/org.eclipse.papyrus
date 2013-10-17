@@ -111,7 +111,7 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 	 */
 	@Override
 	protected boolean isModelRoot(EObject object) {
-		return false;
+		return object instanceof Table;
 	}
 
 }

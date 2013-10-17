@@ -22,6 +22,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.ILinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.dnd.helper.LinkMappingHelper.CommonSourceUMLSwitch;
 import org.eclipse.papyrus.uml.diagram.common.dnd.helper.LinkMappingHelper.CommonTargetUMLSwitch;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Element;
 
 /**
  * The Class LinkMappingHelper is specialization of the link mapping helper for the Class diagram
@@ -31,7 +32,7 @@ public class CustomLinkMappingHelper implements ILinkMappingHelper {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<?> getSource(EObject link) {
+	public Collection<?> getSource(Element link) {
 		CommonSourceUMLSwitch umlSwitch = new CommonSourceUMLSwitch() {
 
 			public java.util.Collection<?> caseConnector(org.eclipse.uml2.uml.Connector object) {
@@ -59,7 +60,7 @@ public class CustomLinkMappingHelper implements ILinkMappingHelper {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<?> getTarget(EObject link) {
+	public Collection<?> getTarget(Element link) {
 		CommonTargetUMLSwitch umlSwitch = new CommonTargetUMLSwitch() {
 
 			public java.util.Collection<?> caseConnector(org.eclipse.uml2.uml.Connector object) {

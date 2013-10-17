@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *		Régis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 /**
  * <pre>
  * Customization of the DND edit policy for the StructureClassifier compartments, that enables the direct
- * creation of typed Part, Reference, Value, ActorPart or Property by dragging types in a Block structure compartment.
+ * creation of typed Part, Reference, ConstraintProperty, Value, ActorPart or Property by dragging types in a Block structure compartment.
  * </pre>
  */
 public class CustomStructureClassifierDropEditPolicy extends CustomDragDropEditPolicy {

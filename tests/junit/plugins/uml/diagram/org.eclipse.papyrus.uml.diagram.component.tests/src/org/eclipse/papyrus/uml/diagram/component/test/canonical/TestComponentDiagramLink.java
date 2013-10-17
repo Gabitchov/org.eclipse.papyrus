@@ -68,7 +68,7 @@ public class TestComponentDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageUsage() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Interface_2003, UMLElementTypes.Usage_4001, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Interface_3205, UMLElementTypes.Usage_4001, UMLElementTypes.Package_3200, true);
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class TestComponentDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageInterfaceRealization() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Interface_2003, UMLElementTypes.InterfaceRealization_4006, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Interface_3205, UMLElementTypes.InterfaceRealization_4006, UMLElementTypes.Package_3200, true);
 	}
 
 	/**

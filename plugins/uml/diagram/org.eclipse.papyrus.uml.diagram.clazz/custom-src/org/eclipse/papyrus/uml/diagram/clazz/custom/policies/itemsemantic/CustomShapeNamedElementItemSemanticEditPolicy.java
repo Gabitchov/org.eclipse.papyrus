@@ -23,13 +23,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ShapeNamedElementItem
  * this class has been specialized in order to manage reconnection of multidependency
  * 
  */
-public class CustomShapeNamedElementItemSemanticEditPolicy extends ShapeNamedElementItemSemanticEditPolicy {
+public class CustomShapeNamedElementItemSemanticEditPolicy extends CustomClassItemSemanticEditPolicy{
 
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch(getVisualID(req)) {
-		case DependencyBranchEditPart.VISUAL_ID:
-			return getGEFWrapper(new BranchDependenctReorientCommand(req));
-		}
-		return super.getReorientRelationshipCommand(req);
-	}
 }

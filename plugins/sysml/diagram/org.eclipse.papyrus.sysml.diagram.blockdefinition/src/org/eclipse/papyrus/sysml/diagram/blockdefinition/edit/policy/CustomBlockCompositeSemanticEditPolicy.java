@@ -13,21 +13,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.dnd.helper.CustomLinkMappingHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.CustomGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.GraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockCompositeSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLCreateOrShowExistingElementHelper;
+import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.common.helper.CreateOrShowExistingElementHelper;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <pre>
@@ -44,6 +52,7 @@ public class CustomBlockCompositeSemanticEditPolicy extends BlockCompositeSemant
 	/** Local graphical type registry for inherited graphical elements */
 	private IGraphicalTypeRegistry inheritedRegistry = new GraphicalTypeRegistry();
 	
+	private CreateOrShowExistingElementHelper existingElementHelper = new SysMLCreateOrShowExistingElementHelper();
 	/**
 	 * {@inheritDoc}
 	 */
@@ -67,8 +76,21 @@ public class CustomBlockCompositeSemanticEditPolicy extends BlockCompositeSemant
 		if(!registry.isKnownEdgeType(newEdgeGraphicalType)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
-		return super.getCreateRelationshipCommand(req);
+		final Command defaultCommand = super.getCreateRelationshipCommand(req);
+		final IElementType elementType = req.getElementType();
+		final EClass eClass = elementType.getEClass();
+		if(defaultCommand.canExecute()) {
+			if(elementType.getEClass() == UMLPackage.eINSTANCE.getAssociation()) {
+				return this.existingElementHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			} else if(eClass == UMLPackage.eINSTANCE.getDependency()) {
+				return this.existingElementHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			} else if(eClass == UMLPackage.eINSTANCE.getGeneralization()) {
+				return this.existingElementHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			} else if(eClass == UMLPackage.eINSTANCE.getUsage()) {
+				return this.existingElementHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+			}
+		}
+		return defaultCommand;
 	}
 
 	/**
