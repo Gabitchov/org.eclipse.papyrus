@@ -81,6 +81,19 @@ public class LayersStackApplicationEventNotifier {
 	}
 
 	/**
+	 * Constructor.
+	 *
+	 * @param layersModel
+	 * @param activate True if the notifier should be activated immediately. False otherwise.
+	 */
+	public LayersStackApplicationEventNotifier(LayersModel layersModel, boolean activate) {
+		this.layersModel = layersModel;
+		if( activate) {
+		  activate();
+		}
+	}
+
+	/**
 	 * Activate the listeners.
 	 * 
 	 */

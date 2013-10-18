@@ -12,6 +12,7 @@ package org.eclipse.papyrus.layers.runtime.model;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
+import org.eclipse.papyrus.layers.runtime.LayersStackAndApplicationLifeCycleEventNotifier;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersFactory;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 
@@ -104,6 +105,24 @@ public class LayersModel extends AbstractModelWithSharedResource<LayersStackAppl
 	public void removeRoot(LayersStackApplication application) {
 		getResource().getContents().remove(application);
 		
+	}
+
+	private LayersStackAndApplicationLifeCycleEventNotifier layersStackAndApplicationLifeCycleEventNotifier = null;
+	/**
+	 * Get the associated {@link LayersStackAndApplicationLifeCycleEventNotifier}.
+	 * There is only one such notifier associated to the model.
+	 * @return
+	 */
+	public LayersStackAndApplicationLifeCycleEventNotifier getLayersStackLifeCycleEventNotifier() {
+
+
+		// TODO Use an adapter to share a single instance in the model itself.
+		if( layersStackAndApplicationLifeCycleEventNotifier == null) {
+			// Create it
+			layersStackAndApplicationLifeCycleEventNotifier = new LayersStackAndApplicationLifeCycleEventNotifier(this);
+		}
+		
+		return layersStackAndApplicationLifeCycleEventNotifier;
 	}
 
 }

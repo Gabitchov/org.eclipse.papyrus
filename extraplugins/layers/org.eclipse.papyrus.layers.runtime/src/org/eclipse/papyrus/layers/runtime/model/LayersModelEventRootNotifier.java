@@ -28,7 +28,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
  * </ul>
  * 
  * @author cedric dumoulin
- *
+ * TODO Rename to LayersStackApplicationLifeCycleEventNotifier
  */
 public class LayersModelEventRootNotifier {
 
@@ -108,7 +108,7 @@ public class LayersModelEventRootNotifier {
 	/**
 	 * Dispose the synchronizer
 	 */
-	protected void dispose() {
+	public void dispose() {
 		// Deactivate listeners
 		deactivate();
 		layersModel = null;

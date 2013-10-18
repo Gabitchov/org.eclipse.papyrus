@@ -93,6 +93,18 @@ public class AttachDiagramViewsToLayer extends AbstractLayersCommand {
 			ITreeContentProvider contentProvider = new AdapterFactoryContentProvider(adapterFactory);
 			ILabelProvider labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 
+			// Test of SpecificViewContentProvider that do exatly the same filtering
+//			final Diagram diag2 = diagram;
+//			ILabelProvider labelProvider = ServiceUtilsForIEvaluationContext.getInstance().getService(LabelProviderService.class, context).getLabelProvider();
+//			ITreeContentProvider  contentProvider  = new SpecificViewContentProvider() {
+//				@Override
+//				public Object[] getElements(Object inputElement) {
+//					// TODO Auto-generated method stub
+//					return new EObject[]{ diag2};
+//				}
+//			};
+
+			
 			CheckedTreeSelectionDialog dialog = new CheckedTreeSelectionDialog(Display.getCurrent().getActiveShell(), labelProvider, contentProvider);
 
 			dialog.setTitle("Diagram Views Selection");

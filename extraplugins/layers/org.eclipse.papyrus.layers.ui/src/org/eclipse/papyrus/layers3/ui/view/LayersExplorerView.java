@@ -10,6 +10,9 @@
  ******************************************************************************/
 package org.eclipse.papyrus.layers3.ui.view;
 
+import javax.imageio.spi.ServiceRegistry;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -37,6 +40,8 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.SashWindowsEventsProvide
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.layers.runtime.ILayersStackApplicationEventListener;
+import org.eclipse.papyrus.layers.runtime.LayersStackAndApplicationLifeCycleEventNotifier;
 import org.eclipse.papyrus.layers.runtime.model.LayersModel;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
@@ -62,6 +67,33 @@ import org.eclipse.wb.swt.SWTResourceManager;
 /**
  * A view showing a Layers Explorer for the currently selected Papyrus Page.
  * 
+ * TODO
+ * Refresh the explorer when a LayersStack is added to a diagram.
+ * To do that, we need to listen to LayersStack added event. The 
+ * notifier is linked to the current LayerModel, thus, we need to track it when the 
+ * container change.
+ * Each time the container change, we get the attached {@link LayersStackAndApplicationLifeCycleEventNotifier} and
+ * we listen to it. Before, we deregister from the old notifier.
+ *  
+ *  <br>
+ *  Events
+ *  <ul>
+ *    <li>Editor page changed</li>
+ *    <li>Container changed - container can be null</li>
+ *    <li>LayersStack added</li>
+ *    <li>LayersStack removed</li>
+ *    <li></li>
+ *  </ul>
+ *  <br>
+ *  State Machine
+ *  <ul>
+ *    <li>NoContainer</li>
+ *    <li>ContainerAndLayersStack</li>
+ *    <li>ContainerNoLayerStack</li>
+ *    <li></li>
+ *    <li></li>
+ *  </ul>
+ * 
  * @author cedric dumoulin
  *
  */
@@ -69,6 +101,20 @@ public class LayersExplorerView extends ViewPart implements ITabbedPropertySheet
 
 	private Label nameLabel;
 	private Label containerLabel;
+	
+	/**
+	 * The {@link LayersModel} associated to the current editor. 
+	 * Can be null if no Papyrus editor is associated.
+	 * Set when the container is changed.
+	 */
+	private LayersModel currentLayersModel = null;
+	
+	/**
+	 * The {@link ServicesRegistry} associated to the current editor. 
+	 * Can be null if no Papyrus editor is associated.
+	 * Set when the container is changed.
+	 */
+	private ServicesRegistry currentServicesRegistry = null;
 	
 	protected SashWindowsEventsProvider sashEventsProvider;
 	
@@ -87,7 +133,7 @@ public class LayersExplorerView extends ViewPart implements ITabbedPropertySheet
 		@Override
 		public void sashWindowsContainerChanged(ISashWindowsContainer newContainer) {
 
-			setActiveSashWindowContainer(newContainer);
+			activeSashWindowContainerChanged(newContainer);
 		}
 	};
 	
@@ -112,6 +158,31 @@ public class LayersExplorerView extends ViewPart implements ITabbedPropertySheet
 			
 		}
 	};
+	
+	/**
+	 * Current LayersStacke life cycle notifier. This value is changed
+	 * when the container change. The value can be null.
+	 */
+	protected LayersStackAndApplicationLifeCycleEventNotifier currentLayersStackNotifier = null;
+
+	/**
+	 * Listen on the current container LayersStack life cycle event.
+	 * The observed {@link LayersStackApplication} is changed when the container change.
+	 */
+	protected ILayersStackApplicationEventListener layersStackLifeCycleEventListener = new ILayersStackApplicationEventListener() {
+		
+		@Override
+		public void layerStackRemoved(Notification msg) {
+			refreshLayersExplorerTree();
+		}
+		
+		@Override
+		public void layerStackAdded(Notification msg) {
+			refreshLayersExplorerTree();
+		}
+	};
+
+
 	/**
 	 * Constructor.
 	 *
@@ -146,13 +217,18 @@ public class LayersExplorerView extends ViewPart implements ITabbedPropertySheet
 	}
 	
 	protected void init() {
+		
+		// Add listeners on container and page changed events
 	    sashEventsProvider = new SashWindowsEventsProvider(getSite().getPage());
 
 	    sashEventsProvider.addPageChangedListener(pageChangedListener);
 	    sashEventsProvider.addSashWindowsContainerChangedListener(containerChangedListener);
+
+	    // Add listener on LayersStack added or removed event
+	    
 	    // Set initials values
 	    
-	    setActiveSashWindowContainer(sashEventsProvider.activeSashWindowsContainer());
+	    activeSashWindowContainerChanged(sashEventsProvider.activeSashWindowsContainer());
 //	    setActivePage(sashEventsProvider.activeSashWindowsPage());
 	}
 	
@@ -281,16 +357,95 @@ public void createPartControl(Composite parent) {
 
 	}
 
-	/**
+	/** activeSashWindowContainerChanged
+	 * The active {@link ISashWindowsContainer} has changed, reset the internal states accordingly.
+	 * 
 	 * @param newContainer
 	 */
-	protected void setActiveSashWindowContainer(ISashWindowsContainer newContainer) {
+	protected void activeSashWindowContainerChanged(ISashWindowsContainer newContainer) {
+		System.err.println("activeSashWindowContainerChanged(" + (newContainer!=null?newContainer:"noContainer") + ")");
 
-		System.err.println("setActiveSashWindowContainer(" + (newContainer!=null?newContainer:"noContainer") + ")");
+		// check if there is a container
+		if(newContainer==null) {
+			// No container
+			currentServicesRegistry = null;
+			currentLayersModel = null;
+			switchLayersStackLifeCycleEventListener(null);
+			setLabels(null);
+			setEmptyTreeInput();
+			return;
+		}
+		
+		// There is a container
+		// Reset states
+		currentServicesRegistry = null;
+		currentLayersModel = null;
+//		currentLayersStackNotifier = null;
+		
+		try {
+			// Compute ServiceRegistry
+			currentServicesRegistry = getServiceRegistry();
+			// Compute LayersModel
+			currentLayersModel = getLayersModel();
+		} catch (Exception e) {
+			// should not happen, because editor with container always
+			// have a registry and models.
+			// FIXME log error
+			e.printStackTrace();
+			// Container, but problems
+			currentServicesRegistry = null;
+			currentLayersModel = null;
+			switchLayersStackLifeCycleEventListener(null);
+			setLabels(null);
+			setEmptyTreeInput();
+			return;
 
+		}
+	
+		switchLayersStackLifeCycleEventListener(currentLayersModel.getLayersStackLifeCycleEventNotifier());					
 		setLabels(newContainer);
-		switchLayersStackLifeCycleEventListener();
 		refreshLayersExplorerTree();
+		
+	}
+
+	/**
+	 * Get the LayersModel associated to the ServiceRegistry.
+	 * The {@link #currentServicesRegistry} property should have been set
+	 * (by {@link #activeSashWindowContainerChanged(ISashWindowsContainer)};
+	 * 
+	 * 
+	 * @return The layersModel
+	 * @throws NotFoundException If no LayersModel can be found
+	 * @throws ServiceException If {@link ModelSet} can't be found
+	 */
+	private LayersModel getLayersModel() throws ServiceException, NotFoundException {
+		
+		ModelSet modelSet = ServiceUtils.getInstance().getModelSet(currentServicesRegistry);
+		LayersModel model = (LayersModel)modelSet.getModelChecked(LayersModel.MODEL_ID);
+
+		return model;
+	}
+
+	/**
+	 * Get the {@link ServiceRegistry} associated to the current IEditorPart found
+	 * in the {@link #sashEventsProvider}.
+	 * 
+	 * @return The associated ServicesRegistry.
+	 * 
+	 * @throws NotFoundException if the ServicesRegistry can't be found.
+	 */
+	private ServicesRegistry getServiceRegistry() throws NotFoundException {
+		IEditorPart editor = sashEventsProvider.activeSashWindowsContainerOwner();
+		if(editor == null) {
+			throw new NotFoundException();
+		}
+
+		ServicesRegistry registry = (ServicesRegistry)editor.getAdapter(ServicesRegistry.class);
+		if(registry == null) {
+			throw new NotFoundException();
+		}
+		
+		return registry;
 	}
 
 	/**
@@ -298,9 +453,16 @@ public void createPartControl(Composite parent) {
 	 * Stop listening from the old LayerStackLifeCycleEventProvider, and start listening on the 
 	 * new LayerStackLifeCycleEventProvider
 	 */
-	private void switchLayersStackLifeCycleEventListener() {
-		// TODO Auto-generated method stub
+	private void switchLayersStackLifeCycleEventListener(LayersStackAndApplicationLifeCycleEventNotifier newNotifier) {
 		
+		if( currentLayersStackNotifier != null) {
+			currentLayersStackNotifier.removeLayersModelEventListener(layersStackLifeCycleEventListener);
+		}		
+		
+		currentLayersStackNotifier = newNotifier;
+		if( currentLayersStackNotifier != null) {
+			currentLayersStackNotifier.addLayersModelEventListener(layersStackLifeCycleEventListener);
+		}
 	}
 
 	/**
@@ -480,6 +642,7 @@ public void createPartControl(Composite parent) {
 		 * Lookup for the current LayerStack, and set the internal {@link #layersExplorerTree} accordingly.
 		 * If a LayerStack is found, show it in the tree.
 		 * Otherwise,show an empty tree 
+		 * TODO rename to resetLayersExplorerTreeInput()
 		 */
 		public void refreshLayersExplorerTree() {
 			
@@ -494,42 +657,33 @@ public void createPartControl(Composite parent) {
 
 		/**
 		 * Lookup if there is a current {@link LayersStack} attached to the 
-		 * selected diagram.
+		 *  diagram associated to the current page.
 		 * Return the {@link LayersStack} if there is one, or null if there is none.
-		 * 
+		 * The {@link #currentServicesRegistry} and {@link #currentLayersModel} should be already set.
 		 * @return the current {@link LayersStack} or null.
 		 */
 		private LayersStack lookupCurrentLayersStack() {
-			IEditorPart editor = sashEventsProvider.activeSashWindowsContainerOwner();
-			if(editor == null) {
-				return null;
-			}
+			
+			if( currentLayersModel==null || currentServicesRegistry==null) {
 
-			ServicesRegistry registry = (ServicesRegistry)editor.getAdapter(ServicesRegistry.class);
-			if(registry == null) {
+				// Bad state
+				// FIXME Log error ?
+				System.err.println("Error - "+ getClass().getSimpleName() + " - currentLayersModel and currentServicesRegistry should not be null.");
 				return null;
 			}
-			ModelSet modelSet;
+			
 			try {
-				modelSet = ServiceUtils.getInstance().getModelSet(registry);
-				LayersModel model = (LayersModel)modelSet.getModelChecked(LayersModel.MODEL_ID);
-
 				Diagram currentDiagram = getCurrentDiagram();
 				if(currentDiagram==null) {
 					return null;
 				}
 				
-				LayersStackApplication application = model.lookupLayerStackApplication();
+				LayersStackApplication application = currentLayersModel.lookupLayerStackApplication();
 				if(application==null) {
 					return null;
 				}
-				
 
 				return application.lookupLayersStackFor(currentDiagram);
-			} catch (ServiceException e) {
-				e.printStackTrace();
-			} catch (NotFoundException e) {
-				e.printStackTrace();
 			} catch (org.eclipse.papyrus.layers.stackmodel.NotFoundException e) {
 			}
 			// Not found
