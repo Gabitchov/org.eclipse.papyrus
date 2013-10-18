@@ -13,23 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic;
 
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.command.BranchDependenctReorientCommand;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ShapeNamedElementItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ClassItemSemanticEditPolicy;
 
 /**
  * this class has been specialized in order to manage reconnection of multidependency
  * 
  */
-public class CustomShapeNamedElementItemSemanticEditPolicy extends ShapeNamedElementItemSemanticEditPolicy {
+public class CustomShapeNamedElementItemSemanticEditPolicy extends CustomClassItemSemanticEditPolicy {
 
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch(getVisualID(req)) {
-		case DependencyBranchEditPart.VISUAL_ID:
-			return getGEFWrapper(new BranchDependenctReorientCommand(req));
-		}
-		return super.getReorientRelationshipCommand(req);
-	}
 }
