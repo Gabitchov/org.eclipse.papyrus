@@ -33,7 +33,7 @@ import org.eclipse.ui.PlatformUI;
 public class DiscoveryComponent {
 
 	/** URI of the model where all extra component features to be installed are referenced */
-	public static final String DISCOVERY_PAPYRUS_URI = "http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/kepler/papyrus-extra.xmi";
+	public static final String DISCOVERY_PAPYRUS_URI = "http://www.eclipse.org/modeling/mdt/papyrus/downloads/discovery/luna/papyrus-extra.xmi";
 
 	public static final Object execute() {
 		final IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
