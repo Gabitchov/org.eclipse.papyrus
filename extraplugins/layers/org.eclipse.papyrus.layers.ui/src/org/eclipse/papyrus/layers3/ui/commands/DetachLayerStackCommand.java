@@ -13,6 +13,7 @@
  */
 package org.eclipse.papyrus.layers3.ui.commands;
 
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.papyrus.layers.runtime.NotationDiagramHelper;
 
@@ -42,7 +43,7 @@ public class DetachLayerStackCommand extends AbstractLayerStackCommand implement
 	 * @param notationDiagramMngr
 	 */
 	@Override
-	protected void doExecute(NotationDiagramHelper notationDiagramHelper) {
+	protected void doExecute(ExecutionEvent event, NotationDiagramHelper notationDiagramHelper) {
 		System.out.println( this.getClass().getSimpleName() + ".doExecute()");
 		notationDiagramHelper.removeLayersStack();
 	}

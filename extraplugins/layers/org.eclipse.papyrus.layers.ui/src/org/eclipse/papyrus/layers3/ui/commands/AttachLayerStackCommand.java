@@ -10,8 +10,10 @@
  ******************************************************************************/
 package org.eclipse.papyrus.layers3.ui.commands;
 
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.papyrus.layers.runtime.NotationDiagramHelper;
+import org.eclipse.papyrus.layers3.ui.view.LayersExplorerViewUtils;
 
 
 /**
@@ -40,9 +42,12 @@ public class AttachLayerStackCommand extends AbstractLayerStackCommand implement
 	 * @param notationDiagramHelper
 	 */
 	@Override
-	protected void doExecute(NotationDiagramHelper notationDiagramHelper) {
+	protected void doExecute(ExecutionEvent event, NotationDiagramHelper notationDiagramHelper) {
 		System.out.println( this.getClass().getSimpleName() + ".doExecute()");
 		notationDiagramHelper.attachLayersStack();
+		
+		// ensure the Layers explorer is open
+//		LayersExplorerViewUtils.openView(event);
 	}
 
 

@@ -90,14 +90,7 @@
             locationURI="popup:org.eclipse.papyrus.layers.stackmodel.diagram.ui.contextmenu">
          <menu
                id="org.eclipse.papyrus.layers.stackmodel.ui.popupmenu"
-               label="layers">
-            <command
-                  commandId="org.eclipse.papyrus.layers.stackmodel.diagram.createDiagram"
-                  icon="icons/layerDiagram.gif"
-                  label="Create a new Layer Tree"
-                  style="push"
-                  tooltip="Create a new Layers Tree">
-            </command>
+               label="Layers">
          </menu>
       </menuContribution>
    </extension>

@@ -61,7 +61,7 @@ public abstract class AbstractLayerStackCommand extends AbstractHandler {
 	 * Execute as transaction
 	 * @param event 
 	 */
-	private void executeTransaction(ExecutionEvent event) {
+	private void executeTransaction(final ExecutionEvent event) {
 
 		// Get requested objects
 		final NotationDiagramHelper notationDiagramHelper;
@@ -83,7 +83,7 @@ public abstract class AbstractLayerStackCommand extends AbstractHandler {
 
 			@Override
 			protected void doExecute() {
-				AbstractLayerStackCommand.this.doExecute(notationDiagramHelper);
+				AbstractLayerStackCommand.this.doExecute(event, notationDiagramHelper);
 			}
 
 			
@@ -104,10 +104,11 @@ public abstract class AbstractLayerStackCommand extends AbstractHandler {
 	/**
 	 * Do the execution of the command.
 	 * Subclass should implements this method.
+	 * @param event 
 	 * 
 	 * @param notationDiagramHelper
 	 */
-	protected abstract void doExecute(NotationDiagramHelper notationDiagramHelper);
+	protected abstract void doExecute(ExecutionEvent event, NotationDiagramHelper notationDiagramHelper);
 
 //	/**
 //	 * 
