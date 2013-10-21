@@ -134,6 +134,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		createNameLabel();
 
 		initTagLabel(taggedLabelValue);
+		
+		
 	}
 
 	/**
@@ -145,6 +147,14 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		nameLabel.setOpaque(false);
 		nameLabel.setAlignment(PositionConstants.MIDDLE);
 		getNameLabelContainer().add(nameLabel, getNameLabelConstraint(), -1);
+	}
+	
+	/**
+	 * Create a label that contains the name of the element.
+	 */
+	public void removeNameLabel() {
+	if(getNameLabelContainer().getChildren().contains(nameLabel)){
+		getNameLabelContainer().remove(nameLabel);}
 	}
 
 	/**
@@ -501,9 +511,13 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	public Dimension getMinimumDimension() {
-		int width = getNameLabel().getTextBounds().width + 10;
-		int height = getNameLabel().getTextBounds().height + 10;
+		int width =0;
+		int height =0;
 		int temporysize = 0;
+		if( getNameLabelContainer().getChildren().contains(getNameLabel())){
+			width = getNameLabel().getTextBounds().width + 10;
+			height = getNameLabel().getTextBounds().height + 10;
+		}
 		if(getStereotypesLabel() != null) {
 			temporysize = getStereotypesLabel().getTextBounds().width + 10;
 			height = height + getStereotypesLabel().getTextBounds().height;
