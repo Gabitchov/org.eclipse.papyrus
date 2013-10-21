@@ -78,6 +78,10 @@ public class Messages extends NLS {
 
 	public static String CDOStateLabelDecorator_1;
 
+	public static String ChangePasswordAction_0;
+
+	public static String ChangePasswordAction_1;
+
 	public static String ConnectRepositoryAction_0;
 
 	public static String ConnectRepositoryAction_errorTitle;

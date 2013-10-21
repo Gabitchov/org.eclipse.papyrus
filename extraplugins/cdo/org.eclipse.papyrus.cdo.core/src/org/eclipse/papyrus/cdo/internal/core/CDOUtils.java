@@ -24,7 +24,6 @@ import org.eclipse.emf.cdo.CDOLock;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.id.CDOIDUtil;
-import org.eclipse.emf.cdo.common.revision.CDORevision;
 import org.eclipse.emf.cdo.dawn.spi.DawnState;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.util.CDOUtil;
@@ -74,6 +73,13 @@ public class CDOUtils {
 		if(result == null) {
 			if(object instanceof IAdaptable) {
 				result = type.cast(((IAdaptable)object).getAdapter(type));
+			}
+
+			if((result == null) && (type == CDOObject.class)) {
+				EObject eObject = adapt(object, EObject.class);
+				if(eObject != null) {
+					result = type.cast(getCDOObject(eObject));
+				}
 			}
 
 			if((result == null) && (object instanceof Notifier)) {
@@ -209,8 +215,7 @@ public class CDOUtils {
 
 		// or if the current user doesn't have permission to write it
 		if(!result) {
-			CDORevision revision = object.cdoRevision();
-			result = (revision != null) && !revision.getPermission().isWritable();
+			result = !object.cdoPermission().isWritable();
 		}
 
 		return result;

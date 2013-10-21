@@ -14,6 +14,7 @@ package org.eclipse.papyrus.cdo.internal.ui.views;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
+import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOEditorUtil;
 import org.eclipse.emf.cdo.util.CommitException;
@@ -28,10 +29,12 @@ import org.eclipse.net4j.util.ui.views.ContainerItemProvider;
 import org.eclipse.net4j.util.ui.views.ContainerView;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
+import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.actions.AbstractRepositoryAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.AddRepositoryAction;
+import org.eclipse.papyrus.cdo.internal.ui.actions.ChangePasswordAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.ConnectRepositoryAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.CreateFolderAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.DeleteModelAction;
@@ -61,6 +64,8 @@ import org.eclipse.ui.statushandlers.IStatusAdapterConstants;
 import org.eclipse.ui.statushandlers.StatusAdapter;
 import org.eclipse.ui.statushandlers.StatusManager;
 
+import com.google.common.base.Strings;
+
 /**
  * This is the ModelRepositoriesView type. Enjoy.
  */
@@ -81,6 +86,8 @@ public class ModelRepositoriesView extends ContainerView {
 	private AbstractRepositoryAction connectRepositoryAction;
 
 	private AbstractRepositoryAction disconnectRepositoryAction;
+
+	private ChangePasswordAction changePasswordAction;
 
 	private RemoveRepositoryAction removeRepositoryAction;
 
@@ -166,6 +173,7 @@ public class ModelRepositoriesView extends ContainerView {
 		selectionProvider.addSelectionChangedListener(openModelAction);
 		selectionProvider.addSelectionChangedListener(connectRepositoryAction);
 		selectionProvider.addSelectionChangedListener(disconnectRepositoryAction);
+		selectionProvider.addSelectionChangedListener(changePasswordAction);
 		selectionProvider.addSelectionChangedListener(removeRepositoryAction);
 		selectionProvider.addSelectionChangedListener(createFolderAction);
 		selectionProvider.addSelectionChangedListener(renameModelAction);
@@ -181,6 +189,7 @@ public class ModelRepositoriesView extends ContainerView {
 		linkWithEditorAction = new LinkWithEditorAction(this);
 		connectRepositoryAction = new ConnectRepositoryAction(this);
 		disconnectRepositoryAction = new DisconnectRepositoryAction(this);
+		changePasswordAction = new ChangePasswordAction(this);
 		removeRepositoryAction = new RemoveRepositoryAction(this);
 		openModelAction = new OpenPapyrusModelAction(this);
 		createFolderAction = new CreateFolderAction(this.getSite());
@@ -221,6 +230,13 @@ public class ModelRepositoriesView extends ContainerView {
 
 				manager.add(connectRepositoryAction);
 				manager.add(disconnectRepositoryAction);
+
+				if(selected instanceof IInternalPapyrusRepository) {
+					CDOSession session = ((IInternalPapyrusRepository)selected).getCDOSession();
+					if((session != null) && !Strings.isNullOrEmpty(session.getUserID())) {
+						manager.add(changePasswordAction);
+					}
+				}
 
 				manager.add(removeRepositoryAction);
 				manager.add(propertyDialogAction);
