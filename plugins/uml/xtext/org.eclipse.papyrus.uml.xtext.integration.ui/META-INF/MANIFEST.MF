@@ -10,7 +10,9 @@ Require-Bundle: org.eclipse.gef;bundle-version="3.9.0",
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="4.1.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.xtext.integration
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Version: 1.0.0.qualifier
@@ -25,4 +27,3 @@ Import-Package: org.eclipse.papyrus.infra.services.validation,
  org.eclipse.papyrus.uml.extensionpoints.profile,
  org.eclipse.papyrus.uml.extensionpoints.standard
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

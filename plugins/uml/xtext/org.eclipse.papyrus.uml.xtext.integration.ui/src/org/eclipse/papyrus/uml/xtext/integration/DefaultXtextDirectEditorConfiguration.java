@@ -64,9 +64,7 @@ import com.google.inject.name.Names;
  * 
  * 
  */
-public abstract class DefaultXtextDirectEditorConfiguration extends
-		DefaultDirectEditorConfiguration implements
-		ICustomDirectEditorConfiguration {
+public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
 
 	public static final String ANNOTATION_SOURCE = "expression_source";
 
@@ -85,8 +83,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends
 	 * @param xtextObject
 	 * @return
 	 */
-	protected abstract ICommand getParseCommand(EObject umlObject,
-			EObject xtextObject);
+	protected abstract ICommand getParseCommand(EObject umlObject, EObject xtextObject);
 
 	/**
 	 * Clients may override to change style to {@link SWT}.MULTI
@@ -96,60 +93,48 @@ public abstract class DefaultXtextDirectEditorConfiguration extends
 		return SWT.SINGLE;
 	}
 
-	public DirectEditManager createDirectEditManager(
-			final ITextAwareEditPart host) {
+	public DirectEditManager createDirectEditManager(final ITextAwareEditPart host) {
 		IContextElementProvider provider = new IContextElementProvider() {
 
 			public EObject getContextObject() {
-				if (host instanceof IGraphicalEditPart)
-					return ((IGraphicalEditPart) host).resolveSemanticElement();
+				if(host instanceof IGraphicalEditPart) {
+					return ((IGraphicalEditPart)host).resolveSemanticElement();
+				}
 				return null;
 			}
 		};
-		return new XtextDirectEditManager(host, getInjector(), getStyle(),
-				provider);
+		return new XtextDirectEditManager(host, getInjector(), getStyle(), provider);
 	}
 
 	/**
-	 * Adapts {@link IDirectEditorConfiguration} to gmfs {@link IParser}
-	 * interface for reuse in GMF direct editing infrastructure.
+	 * Adapts {@link IDirectEditorConfiguration} to gmfs {@link IParser} interface for reuse in GMF direct editing infrastructure.
 	 */
 	public IParser createParser(final EObject semanticObject) {
 		return new IParser() {
 
 			public String getEditString(IAdaptable element, int flags) {
-				return DefaultXtextDirectEditorConfiguration.this
-						.getTextToEditInternal(semanticObject);
+				return DefaultXtextDirectEditorConfiguration.this.getTextToEditInternal(semanticObject);
 			}
 
-			public ICommand getParseCommand(IAdaptable element,
-					String newString, int flags) {
+			public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 				CompositeCommand result = new CompositeCommand("validation");
 				IContextElementProvider provider = new IContextElementProvider() {
+
 					public EObject getContextObject() {
 						return semanticObject;
 					}
 				};
-				XtextFakeResourceContext context = new XtextFakeResourceContext(
-						getInjector());
-				context.getFakeResource().eAdapters()
-						.add(new ContextElementAdapter(provider));
+				XtextFakeResourceContext context = new XtextFakeResourceContext(getInjector());
+				context.getFakeResource().eAdapters().add(new ContextElementAdapter(provider));
 				try {
-					context.getFakeResource().load(
-							new StringInputStream(newString),
-							Collections.EMPTY_MAP);
+					context.getFakeResource().load(new StringInputStream(newString), Collections.EMPTY_MAP);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				EcoreUtil2.resolveLazyCrossReferences(
-						context.getFakeResource(), CancelIndicator.NullImpl);
-				if (!context.getFakeResource().getParseResult()
-						.hasSyntaxErrors()
-						&& context.getFakeResource().getErrors().size() == 0) {
-					EObject xtextObject = context.getFakeResource()
-							.getParseResult().getRootASTElement();
-					result.add( DefaultXtextDirectEditorConfiguration.this
-							.getParseCommand(semanticObject, xtextObject));
+				EcoreUtil2.resolveLazyCrossReferences(context.getFakeResource(), CancelIndicator.NullImpl);
+				if(!context.getFakeResource().getParseResult().hasSyntaxErrors() && context.getFakeResource().getErrors().size() == 0) {
+					EObject xtextObject = context.getFakeResource().getParseResult().getRootASTElement();
+					result.add(DefaultXtextDirectEditorConfiguration.this.getParseCommand(semanticObject, xtextObject));
 				} else {
 					result.add(createInvalidStringCommand(newString, semanticObject));
 				}
@@ -158,22 +143,19 @@ public abstract class DefaultXtextDirectEditorConfiguration extends
 			}
 
 			public String getPrintString(IAdaptable element, int flags) {
-				return DefaultXtextDirectEditorConfiguration.this
-						.getTextToEdit(semanticObject);
+				return DefaultXtextDirectEditorConfiguration.this.getTextToEdit(semanticObject);
 			}
 
 			public boolean isAffectingEvent(Object event, int flags) {
 				return false;
 			}
 
-			public IContentAssistProcessor getCompletionProcessor(
-					IAdaptable element) {
+			public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 				// Not used
 				return null;
 			}
 
-			public IParserEditStatus isValidEditString(IAdaptable element,
-					String editString) {
+			public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 				// Not used
 				return null;
 			}
@@ -181,34 +163,27 @@ public abstract class DefaultXtextDirectEditorConfiguration extends
 	}
 
 	protected String getTextToEditInternal(EObject semanticObject) {
-		if (semanticObject instanceof Element) {
-			String textualRepresentation = InvalidStringUtil
-					.getTextualRepresentation((Element) semanticObject);
-			if (textualRepresentation != null)
+		if(semanticObject instanceof Element) {
+			String textualRepresentation = InvalidStringUtil.getTextualRepresentation((Element)semanticObject);
+			if(textualRepresentation != null) {
 				return textualRepresentation;
+			}
 		}
 		return getTextToEdit(semanticObject);
 	}
 
-	protected ICommand createInvalidStringCommand(final String newString,
-			EObject semanticElement) {
-		if (semanticElement instanceof Element) {
+	protected ICommand createInvalidStringCommand(final String newString, EObject semanticElement) {
+		if(semanticElement instanceof Element) {
 			registerInvalidStringAdapter(semanticElement);
-			final Element element = (Element) semanticElement;
-			return new AbstractTransactionalCommand(
-					TransactionUtil.getEditingDomain(semanticElement), "",
-					Collections.emptyList()) {
+			final Element element = (Element)semanticElement;
+			return new AbstractTransactionalCommand(TransactionUtil.getEditingDomain(semanticElement), "", Collections.emptyList()) {
 
 				@Override
-				protected CommandResult doExecuteWithResult(
-						IProgressMonitor monitor, IAdaptable info)
-						throws ExecutionException {
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					String languageName = getInjector().getInstance(Key.get(String.class, Names.named(Constants.LANGUAGE_NAME)));
-					Comment comment = InvalidStringUtil
-							.getTextualRepresentationComment(element);
-					if (comment == null) {
-						comment = InvalidStringUtil
-								.createTextualRepresentationComment(element,languageName);
+					Comment comment = InvalidStringUtil.getTextualRepresentationComment(element);
+					if(comment == null) {
+						comment = InvalidStringUtil.createTextualRepresentationComment(element, languageName);
 					}
 					comment.setBody(newString);
 					return CommandResult.newOKCommandResult();
@@ -218,24 +193,22 @@ public abstract class DefaultXtextDirectEditorConfiguration extends
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-	
+
 	protected void registerInvalidStringAdapter(EObject semanticElement) {
-		Adapter existingAdapter = EcoreUtil.getExistingAdapter(semanticElement,
-				InvalidSyntaxAdapter.class);
-		if (existingAdapter == null) {
+		Adapter existingAdapter = EcoreUtil.getExistingAdapter(semanticElement, InvalidSyntaxAdapter.class);
+		if(existingAdapter == null) {
 			semanticElement.eAdapters().add(new InvalidSyntaxAdapter());
 		}
 	}
 
-	public CellEditor createCellEditor(Composite parent,
-			final EObject semanticObject) {
+	public CellEditor createCellEditor(Composite parent, final EObject semanticObject) {
 		IContextElementProvider provider = new IContextElementProvider() {
+
 			public EObject getContextObject() {
 				return semanticObject;
 			}
 		};
-		XtextStyledTextCellEditorEx cellEditor = new XtextStyledTextCellEditorEx(
-				SWT.MULTI | SWT.BORDER, getInjector(), provider) {
+		XtextStyledTextCellEditorEx cellEditor = new XtextStyledTextCellEditorEx(SWT.MULTI | SWT.BORDER, getInjector(), provider) {
 
 			// This is a workaround for bug
 			// https://bugs.eclipse.org/bugs/show_bug.cgi?id=412732
@@ -248,9 +221,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends
 				text.addListener(3005, new Listener() {
 
 					public void handleEvent(Event event) {
-						if (event.character == SWT.CR
-								&& !completionProposalAdapter
-										.isProposalPopupOpen()) {
+						if(event.character == SWT.CR && !completionProposalAdapter.isProposalPopupOpen()) {
 							focusLost();
 						}
 					}

@@ -8,12 +8,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.QualifiedName;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementUtil;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
@@ -61,21 +62,21 @@ public class UmlCommonScopeProvider extends AbstractDeclarativeScopeProvider {
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		ISelection mySelection = activePage.getSelection();
 		if(mySelection instanceof IStructuredSelection) {
-			Object first = ((IStructuredSelection)mySelection).getFirstElement();
-			if(first != null) {
-				if(first instanceof IAdaptable) {
-					Element el = (Element)((IAdaptable)first).getAdapter(Element.class);
-					this.contextElement = el;
-					if(el != null) {
-						List<Namespace> namespaces = el.getNearestPackage().allNamespaces();
-						if(namespaces.size() == 0) {
-							this.model = el.getNearestPackage();
-						} else {
-							this.model = namespaces.get(namespaces.size() - 1);
-						}
+			EObject first = EMFHelper.getEObject(((IStructuredSelection)mySelection).getFirstElement());
+
+			if(first instanceof Element) {
+				Element element = (Element)first;
+				this.contextElement = element;
+				if(element != null) {
+					List<Namespace> namespaces = element.getNearestPackage().allNamespaces();
+					if(namespaces.size() == 0) {
+						this.model = element.getNearestPackage();
+					} else {
+						this.model = namespaces.get(namespaces.size() - 1);
 					}
 				}
 			}
+
 		}
 		Assert.isNotNull(contextElement, "I can't find the edited element"); //$NON-NLS-1$
 		Assert.isNotNull(this.model, "I can't find the model owning the edited element"); //$NON-NLS-1$
@@ -124,7 +125,7 @@ public class UmlCommonScopeProvider extends AbstractDeclarativeScopeProvider {
 	 */
 	protected IScope create___TypeRule_type___Scope(org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule ctx) {
 		if(ctx.getPath() == null) {
-			Iterator<EObject> i = org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.PopupXtextEditorHelper.context.eResource().getAllContents();
+			Iterator<EObject> i = ContextElementUtil.getContextElement(ctx.eResource()).eResource().getAllContents();
 			List<EObject> allContent = new ArrayList<EObject>();
 			while(i.hasNext()) {
 				EObject object = i.next();
@@ -216,8 +217,9 @@ public class UmlCommonScopeProvider extends AbstractDeclarativeScopeProvider {
 			namespaces.add(pImport.getImportedPackage());
 		}
 		for(ElementImport eImport : visited.getElementImports()) {
-			if(eImport.getImportedElement() instanceof Namespace)
+			if(eImport.getImportedElement() instanceof Namespace) {
 				namespaces.add((Namespace)eImport.getImportedElement());
+			}
 		}
 
 		return namespaces;
@@ -237,8 +239,9 @@ public class UmlCommonScopeProvider extends AbstractDeclarativeScopeProvider {
 		namespaces.addAll(getImportedNamespaces(visited));
 		// 	then retrieves owned namespaces
 		for(NamedElement n : visited.getOwnedMembers()) {
-			if(n instanceof Namespace)
+			if(n instanceof Namespace) {
 				namespaces.add((Namespace)n);
+			}
 		}
 		return namespaces;
 	}
