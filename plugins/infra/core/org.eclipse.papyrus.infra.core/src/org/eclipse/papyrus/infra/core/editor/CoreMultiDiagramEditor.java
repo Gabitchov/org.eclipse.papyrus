@@ -43,6 +43,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
@@ -153,6 +154,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		 * 
 		 * @param fileEditorInput
 		 */
+		@Override
 		public void editorInputChanged(FileEditorInput fileEditorInput) {
 			// Change the editor input.
 			editor.setInputWithNotify(fileEditorInput);
@@ -165,11 +167,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
 		 * 
 		 */
+		@Override
 		public void isDirtyChanged() {
 
 			// Run it in async way.
 			editor.getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
+				@Override
 				public void run() {
 					// editor can be null if this object has been finalized, but
 					// still queued in the asyncExec queue. 
@@ -212,6 +216,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			this.editor = editor;
 		}
 
+		@Override
 		public EditingDomain getEditingDomain() {
 			return editor.transactionalEditingDomain;
 		}
@@ -231,6 +236,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		/**
 		 * Called when the content is changed. RefreshTabs.
 		 */
+		@Override
 		public void contentChanged(ContentEvent event) {
 			needsRefresh = true;
 		}
@@ -238,6 +244,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 	private class RefreshTabsCommandStackListener implements CommandStackListener {
 
+		@Override
 		public void commandStackChanged(EventObject event) {
 			refreshTabs();
 		}
@@ -284,6 +291,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @return the servicesRegistry The registry.
 	 */
+	@Override
 	public ServicesRegistry getServicesRegistry() {
 		if(servicesRegistry == null) {
 			servicesRegistry = createServicesRegistry();
@@ -453,6 +461,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			return gefAdaptorDelegate.getActionRegistry();
 		}
 
+		if(adapter == ISelection.class) {
+			return getSite().getSelectionProvider().getSelection();
+		}
+
 		return super.getAdapter(adapter);
 	}
 
@@ -479,6 +491,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		//framework to actually display the contents of the editor
 		Display.getDefault().asyncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				getLifecycleManager().firePostDisplay(CoreMultiDiagramEditor.this);
 			}
@@ -862,6 +875,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @see org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor#getContributorId()
 	 */
+	@Override
 	public String getContributorId() {
 		// return Activator.PLUGIN_ID;
 		return "TreeOutlinePage";
@@ -958,12 +972,14 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @deprecated Not used anymore
 	 */
 
+	@Override
 	@Deprecated
 	public void setEditorInput(IEditorInput newInput) {
 		setInputWithNotify(newInput);
 		setPartName(newInput.getName());
 	}
 
+	@Override
 	@Deprecated
 	public void gotoMarker(IMarker marker) {
 		IWorkbench wb = PlatformUI.getWorkbench();

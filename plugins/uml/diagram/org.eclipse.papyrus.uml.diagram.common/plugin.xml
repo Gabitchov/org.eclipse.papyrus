@@ -264,11 +264,18 @@
 		<with variable="activeEditorId">
 			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
 		</with>
+  <with
+        variable="activeEditor">
+     <adapt
+           type="org.eclipse.jface.viewers.ISelection">
+        <test
+              forcePluginActivation="true"
+              property="org.eclipse.papyrus.UMLSelectionTester.isUMLModel"
+              value="true">
+        </test>
+     </adapt>
+  </with>
 
-		<with variable="selection">
-			<test property="org.eclipse.papyrus.UMLSelectionTester.isUMLModel" value="true"
-				forcePluginActivation="true"/>
-		</with>
 		
 		</and>
 	</definition>
@@ -280,10 +287,17 @@
 			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
 		</with>
 
-		<with variable="selection">
-			<test property="org.eclipse.papyrus.UMLSelectionTester.isUMLProfile" value="true"
-				forcePluginActivation="true"/>
-		</with>
+  <with
+        variable="activeEditor">
+     <adapt
+           type="org.eclipse.jface.viewers.ISelection">
+        <test
+              forcePluginActivation="true"
+              property="org.eclipse.papyrus.UMLSelectionTester.isUMLProfile"
+              value="true">
+        </test>
+     </adapt>
+  </with>
 		
 		</and>
 	</definition>	
