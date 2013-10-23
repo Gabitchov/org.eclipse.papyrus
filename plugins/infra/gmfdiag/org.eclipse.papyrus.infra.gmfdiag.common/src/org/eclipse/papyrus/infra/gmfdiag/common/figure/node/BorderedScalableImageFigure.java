@@ -17,8 +17,8 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 			//setBorder(new LineBorder(ColorConstants.red, 2));
 			setAlignment(PositionConstants.CENTER|PositionConstants.MIDDLE);
 			setMaintainAspectRatio(true);
-			setBackgroundColor(ColorConstants.green);
-			setForegroundColor(ColorConstants.red);
+			//setBackgroundColor(ColorConstants.green);
+			//setForegroundColor(ColorConstants.red);
 		}
 
 	}
