@@ -38,17 +38,21 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart#getDragTracker(org.eclipse.gef.Request)
 	 * 
 	 */
+	@Override
 	public DragTracker getDragTracker(Request req) {
-		if(!supportsDragSelection())
+		if(!supportsDragSelection()) {
 			return super.getDragTracker(req);
-		if(req instanceof SelectionRequest && ((SelectionRequest)req).getLastButtonPressed() == 3)
+		}
+		if(req instanceof SelectionRequest && ((SelectionRequest)req).getLastButtonPressed() == 3) {
 			return new DeselectAllTracker(this) {
 
+				@Override
 				protected boolean handleButtonDown(int button) {
 					getCurrentViewer().select(AbstractPackageableElementCompartmentEditPart.this);
 					return true;
 				}
 			};
+		}
 		return new RubberbandDragTracker() {
 
 			/*
@@ -56,6 +60,7 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 			 * on the compartment.
 			 * hence it allows the navigation by double click
 			 */
+			@Override
 			protected boolean handleDoubleClick(int button) {
 				SelectionRequest request = new SelectionRequest();
 				request.setLocation(getLocation());
@@ -64,10 +69,17 @@ public abstract class AbstractPackageableElementCompartmentEditPart extends Shap
 				return true;
 			}
 
+			@Override
 			protected void handleFinished() {
-				if(getViewer().getSelectedEditParts().isEmpty())
+				if(getViewer().getSelectedEditParts().isEmpty()) {
 					getViewer().select(AbstractPackageableElementCompartmentEditPart.this);
+				}
 			}
 		};
+	}
+
+	@Override
+	public boolean isSelectable() {
+		return false;
 	}
 }

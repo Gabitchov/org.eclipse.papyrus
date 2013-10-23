@@ -64,4 +64,9 @@ public abstract class ResizeableListCompartmentEditPart extends ListCompartmentE
 		super.handleNotificationEvent(notification);
 	}
 
+	@Override
+	public boolean isSelectable() {
+		return false;
+	}
+
 }

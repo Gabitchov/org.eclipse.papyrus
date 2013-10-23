@@ -382,4 +382,9 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	protected BooleanValueStyle getMaintainSymbolRatioStyle(View currentView) {
 		return (BooleanValueStyle)currentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), MaintainSymbolRatioEditPolicy.MAINTAIN_SYMBOL_RATIO);
 	}
+
+	@Override
+	public boolean isSelectable() {
+		return false;
+	}
 }

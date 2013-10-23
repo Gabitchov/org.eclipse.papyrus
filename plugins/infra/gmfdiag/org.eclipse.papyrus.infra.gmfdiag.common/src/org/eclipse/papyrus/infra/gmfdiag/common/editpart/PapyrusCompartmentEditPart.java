@@ -21,4 +21,9 @@ public abstract class PapyrusCompartmentEditPart extends CompartmentEditPart {
 		super(model);
 	}
 
+	@Override
+	public boolean isSelectable() {
+		return false;
+	}
+
 }
