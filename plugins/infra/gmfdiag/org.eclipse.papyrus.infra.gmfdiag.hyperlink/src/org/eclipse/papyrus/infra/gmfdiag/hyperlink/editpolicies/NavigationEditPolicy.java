@@ -23,7 +23,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
@@ -44,7 +43,6 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.DiagramsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.AdvancedHLManager;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
@@ -54,7 +52,6 @@ import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorNavigationDialog;
-import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
 
 /**
@@ -178,21 +175,25 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 				}
 			}
 
-			if(defaultHyperLinkObject.isEmpty()) {
-				Command command = new Command() {
+			//Disable to improve usability and user-friendliness. 
+			//See Bug 420177: Double click on Hyperlink open diagram AND HyperLink window
+			//https://bugs.eclipse.org/bugs/show_bug.cgi?id=420177
 
-					@Override
-					public void execute() {
-						EObject semanticElement = gep.getNotationView().getElement();
-						if(semanticElement instanceof EModelElement) {
-							HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(createEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (EModelElement)semanticElement, gep.getNotationView(), hyperlinkHelperFactory);
-							hyperLinkManagerShell.setInput(hyperLinkObjectList);
-							hyperLinkManagerShell.open();
-						}
-					}
-				};
-				return command;
-			}
+			//			if(defaultHyperLinkObject.isEmpty()) {
+			//				Command command = new Command() {
+			//
+			//					@Override
+			//					public void execute() {
+			//						EObject semanticElement = gep.getNotationView().getElement();
+			//						if(semanticElement instanceof EModelElement) {
+			//							HyperLinkManagerShell hyperLinkManagerShell = new AdvancedHLManager(createEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (EModelElement)semanticElement, gep.getNotationView(), hyperlinkHelperFactory);
+			//							hyperLinkManagerShell.setInput(hyperLinkObjectList);
+			//							hyperLinkManagerShell.open();
+			//						}
+			//					}
+			//				};
+			//				return command;
+			//			}
 
 			if(defaultHyperLinkObject.size() == 1) {
 				// open the diagram
