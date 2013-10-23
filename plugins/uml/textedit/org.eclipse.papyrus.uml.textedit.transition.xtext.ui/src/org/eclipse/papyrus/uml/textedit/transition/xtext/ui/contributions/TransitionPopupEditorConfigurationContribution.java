@@ -232,8 +232,6 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 
 		private Constraint newConstraint = null;
 
-		private Behavior newEffectBehavior = null;
-
 		/*
 		 * (non-Javadoc)
 		 * 
@@ -244,15 +242,8 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 
-			////////////////////////////////////////////////////////////
-			// First delete any elements associated with the transition
-			////////////////////////////////////////////////////////////
-			// - Owned effect behavior
-			Behavior effect = transition.getEffect();
-			transition.setEffect(null);
-			if(effect != null) {
-				effect.destroy();
-			}
+			
+			
 			// - Events associated with triggers of this transition
 			for(Trigger t : transition.getTriggers()) {
 				Event e = t.getEvent();
@@ -292,12 +283,32 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 				guardSpecification.getBodies().add("" + transitionRuleObject.getGuard().getConstraint());
 				this.newConstraint.setSpecification(guardSpecification);
 			}
-			// Create the new behavior
-			if(transitionRuleObject.getEffect() != null && transitionRuleObject.getEffect().getKind() != null && transitionRuleObject.getEffect().getBehaviorName() != null) {
-				this.newEffectBehavior = createUMLBehavior(transitionRuleObject.getEffect().getKind(), transitionRuleObject.getEffect().getBehaviorName());
-				this.transition.setEffect(newEffectBehavior);
+			
+			boolean hasEffect = transitionRuleObject.getEffect() != null && transitionRuleObject.getEffect().getKind() != null && transitionRuleObject.getEffect().getBehaviorName() != null;
+			BehaviorKind oldKind = getBehaviorKind(transition.getEffect());
+			
+			if ((!hasEffect) || (transitionRuleObject.getEffect().getKind() != oldKind)) {
+				// delete owned effect behavior
+				Behavior effect = transition.getEffect();
+				transition.setEffect(null);
+				if(effect != null) {
+					effect.destroy();
+				}			
 			}
-
+			
+			// Create the new behavior
+			if(hasEffect) {
+				String behaviorName = transitionRuleObject.getEffect().getBehaviorName();
+				if (transition.getEffect() == null) {
+					// behavior does exist yet => create
+					Behavior newEffectBehavior = createUMLBehavior(transitionRuleObject.getEffect().getKind(), behaviorName);
+					transition.setEffect(newEffectBehavior);
+				}
+				else {
+					transition.getEffect().setName(behaviorName);
+				}
+			}
+			
 			return CommandResult.newOKCommandResult(transition);
 		}
 
@@ -475,10 +486,33 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			return e;
 		}
 
+		/**
+		 * Return the behaviorKind for a given behavior
+		 * @param behavior the behavior
+		 * @return
+		 */
+		protected BehaviorKind getBehaviorKind(Behavior behavior) {
+			if (behavior instanceof OpaqueBehavior) {
+				return BehaviorKind.OPAQUE_BEHAVIOR;
+			}
+			else if (behavior instanceof Activity) {
+				return BehaviorKind.ACTIVITY;
+			}
+			else if (behavior instanceof StateMachine) {
+				return BehaviorKind.STATE_MACHINE;
+			}
+			else {
+				return null;
+			}
+		}
 
-
-		private Behavior createUMLBehavior(BehaviorKind kind, String name) {
-
+		/**
+		 * Create a new UML behavior of a given kind
+		 * @param kind the behavior kind
+		 * @param name the name of the behavior
+		 * @return the created behavior
+		 */
+		protected Behavior createUMLBehavior(BehaviorKind kind, String name) {
 			if(kind == null) {
 				return null;
 			}
@@ -502,7 +536,7 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 				break;
 			}
 
-			behavior.setName("" + name);
+			behavior.setName(name);
 
 			return behavior;
 		}
