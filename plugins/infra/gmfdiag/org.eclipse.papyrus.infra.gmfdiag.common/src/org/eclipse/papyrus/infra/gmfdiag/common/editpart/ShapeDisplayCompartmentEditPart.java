@@ -31,21 +31,20 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.AnimatableScrollPane;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
+import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.commands.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.MaintainSymbolRatioEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.BorderedScalableImageFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ShapeFlowLayout;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SubCompartmentLayoutManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.NotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.ImageData;
 
 /**
  * CompartmentEditPart in charge of shpae display.
@@ -90,6 +89,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		super.createDefaultEditPolicies();
 		// Start of user code custom edit policies
 		installEditPolicy(ShapeRefreshEditPolicy.SHAPE_REFRESH_EDIT_POLICY_ROLE, new ShapeRefreshEditPolicy());
+		installEditPolicy(MaintainSymbolRatioEditPolicy.MAINTAIN_SYMBOL_RATIO_EDITPOLICY, new MaintainSymbolRatioEditPolicy());
 		// End of user code
 	}
 
@@ -103,28 +103,27 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 
 	/**
 	 * this method is used to set the ratio of the figure.
-	 * pay attention if the ratio  is true, the only figure is displayed 
+	 * pay attention if the ratio is true, the only figure is displayed
+	 * 
 	 * @param maintainRatio
 	 */
-	public void maintainRatio(boolean maintainRatio){
-		IFigure contentPane= ((ResizableCompartmentFigure)getFigure()).getContentPane();
+	protected void maintainRatio(boolean maintainRatio) {
+		IFigure contentPane = ((ResizableCompartmentFigure)getFigure()).getContentPane();
 		for(Object subFigure : contentPane.getChildren()) {
-			if( subFigure instanceof BorderedScalableImageFigure){
+			if(subFigure instanceof BorderedScalableImageFigure) {
 				((BorderedScalableImageFigure)subFigure).setMaintainAspectRatio(maintainRatio);
 			}
 
 		}
-		if(!maintainRatio){
+		if(!maintainRatio) {
 			OneShapeLayoutManager layout = new OneShapeLayoutManager();
 			contentPane.setLayoutManager(layout);
-		}
-		else{
+		} else {
 			ShapeFlowLayout layout = new ShapeFlowLayout();
 			contentPane.setLayoutManager(layout);
 		}
-		
-
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -148,9 +147,14 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	}
 
 	/**
-	 * Refreshes the displayed shapes on the figure. 
-	 * <P>To be sure everything is clean, it removes all the current displayed shapes and then redraw all of the demanded shapes. This could be probably improved in case of performance issues.</P> 
-	 * @param contentPane the figure where to add the new shapes
+	 * Refreshes the displayed shapes on the figure.
+	 * <P>
+	 * To be sure everything is clean, it removes all the current displayed shapes and then redraw all of the demanded shapes. This could be probably
+	 * improved in case of performance issues.
+	 * </P>
+	 * 
+	 * @param contentPane
+	 *        the figure where to add the new shapes
 	 */
 	protected void refreshShapes(IFigure contentPane) {
 		List<Object> children = new ArrayList<Object>(contentPane.getChildren());
@@ -163,7 +167,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		List<RenderedImage> shapesToDisplay = ShapeService.getInstance().getShapesToDisplay(getNotationView().eContainer());
 		if(shapesToDisplay != null && !shapesToDisplay.isEmpty()) {
 			for(RenderedImage image : shapesToDisplay) {
-				if(image !=null) {
+				if(image != null) {
 					IFigure imageFigure = new BorderedScalableImageFigure(image, false, false, true);
 					imageFigure.setOpaque(false);
 					imageFigure.setVisible(true);
@@ -182,6 +186,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
+		refreshSymbolCompartment();
 	}
 
 	/**
@@ -201,7 +206,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	 */
 	public class ShapeCompartmentLayoutManager extends SubCompartmentLayoutManager {
 
-		public static final int MIN_PREFERRED_SIZE = 40; 
+		public static final int MIN_PREFERRED_SIZE = 40;
 
 		/**
 		 * {@inheritDoc}
@@ -210,11 +215,11 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		public void layout(IFigure container) {
 			super.layout(container);
 			for(int i = 0; i < container.getChildren().size(); i++) {
-			 if(container.getChildren().get(i) instanceof ScrollPane ){
-				 ((ScrollPane)container.getChildren().get(i)).setBounds(container.getBounds()); 
-			 }
+				if(container.getChildren().get(i) instanceof ScrollPane) {
+					((ScrollPane)container.getChildren().get(i)).setBounds(container.getBounds());
+				}
 			}
-			
+
 		}
 
 		/**
@@ -222,15 +227,16 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		 */
 		@Override
 		protected Dimension calculatePreferredSize(IFigure figure, int wHint, int hHint) {
-			Dimension dim =  super.calculatePreferredSize(figure, wHint, hHint);
+			Dimension dim = super.calculatePreferredSize(figure, wHint, hHint);
 
 			dim.height = Math.max(MIN_PREFERRED_SIZE, dim.height);
 
 			return dim;
 		}
-		
+
 
 	}
+
 	public class OneShapeLayoutManager extends AbstractLayout {
 
 		/**
@@ -250,20 +256,21 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		 * 
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void layout(IFigure container) {
 			Rectangle compartmentBound = new Rectangle(container.getBounds());
-			if(container.getBorder() instanceof MarginBorder){
-				MarginBorder marginBorder=((MarginBorder)container.getBorder());
-				compartmentBound=compartmentBound.shrink(marginBorder.getInsets(container));
+			if(container.getBorder() instanceof MarginBorder) {
+				MarginBorder marginBorder = ((MarginBorder)container.getBorder());
+				compartmentBound = compartmentBound.shrink(marginBorder.getInsets(container));
 			}
-			
-			
-			IFigure contentPane= ((ResizableCompartmentFigure)getFigure()).getContentPane();
-			ScalableImageFigure scalableImageFigure=null;
-			if( contentPane.getChildren().size()>0){
-				Object lastFig=contentPane.getChildren().get(contentPane.getChildren().size()-1);
-				if( lastFig instanceof ScalableImageFigure){
-					scalableImageFigure= (ScalableImageFigure)lastFig;
+
+
+			IFigure contentPane = ((ResizableCompartmentFigure)getFigure()).getContentPane();
+			ScalableImageFigure scalableImageFigure = null;
+			if(contentPane.getChildren().size() > 0) {
+				Object lastFig = contentPane.getChildren().get(contentPane.getChildren().size() - 1);
+				if(lastFig instanceof ScalableImageFigure) {
+					scalableImageFigure = (ScalableImageFigure)lastFig;
 				}
 			}
 			if(scalableImageFigure != null) {
@@ -274,7 +281,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	}
 
 	/**
-	 * Edit Policy in charge of the graphical update of the compartment 
+	 * Edit Policy in charge of the graphical update of the compartment
 	 */
 	@SuppressWarnings("restriction")
 	public class ShapeRefreshEditPolicy extends GraphicalEditPolicyEx implements NotificationListener {
@@ -318,7 +325,6 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		/**
 		 * {@inheritDoc}
 		 */
-		@SuppressWarnings("restriction")
 		@Override
 		public void refresh() {
 			super.refresh();
@@ -328,6 +334,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void notifyChanged(Notification notification) {
 			refresh();
 		}
@@ -353,5 +360,26 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		protected View getView() {
 			return (View)getHost().getModel();
 		}
+	}
+
+	/**
+	 * refresh the qualified name
+	 */
+	protected void refreshSymbolCompartment() {
+		BooleanValueStyle maintainRatio = getMaintainSymbolRatioStyle(getNotationView());
+		if(maintainRatio != null && maintainRatio.isBooleanValue() == false) {
+			maintainRatio(false);
+		} else {
+			maintainRatio(true);
+		}
+	}
+
+	/**
+	 * 
+	 * @param currentView
+	 * @return the current Style that reperesent the boder
+	 */
+	protected BooleanValueStyle getMaintainSymbolRatioStyle(View currentView) {
+		return (BooleanValueStyle)currentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), MaintainSymbolRatioEditPolicy.MAINTAIN_SYMBOL_RATIO);
 	}
 }

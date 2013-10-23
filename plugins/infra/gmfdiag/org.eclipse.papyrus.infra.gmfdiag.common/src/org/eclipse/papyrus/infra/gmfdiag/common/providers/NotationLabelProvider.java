@@ -23,8 +23,9 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.extension.diagrameditor.PluggableEditorFactoryReader;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
-import org.eclipse.papyrus.uml.tools.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.swt.graphics.Image;
+import org.w3c.dom.Element;
 
 /**
  * A Label Provider for GMF Notation model
@@ -60,7 +61,7 @@ public class NotationLabelProvider extends EMFLabelProvider {
 
 		// if the element is a compartment
 		if(element instanceof BasicCompartment || element instanceof DecorationNode) {
-			return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, ICON_COMPARTMENT);
+			return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.ID, ICON_COMPARTMENT);
 		}
 
 		return super.getImage(element);

@@ -15,9 +15,8 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.MaintainSymbolRatioEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -57,7 +56,7 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	}
 
 	private void refreshIconNamedLabel() {
-		getNodeNamedElementFigure().setNameLabelIcon(NameLabelIconHelper.showLabelIcon((View)getModel()));
+		getNodeNamedElementFigure().setNameLabelIcon(AppearanceHelper.showElementIcon((View)getModel()));
 	}
 
 	@Override
@@ -67,7 +66,6 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 			refreshIconNamedLabel();
 			refreshFontColor();
 		}
-
 	}
 
 	/**
@@ -112,12 +110,11 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 			getNodeNamedElementFigure().getTaggedLabel().setForegroundColor(color);
 		}
 	}
+
 	@Override
 	protected void createDefaultEditPolicies() {
-		// TODO Auto-generated method stub
 		super.createDefaultEditPolicies();
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
-		installEditPolicy(MaintainSymbolRatioEditPolicy.MAINTAIN_SYMBOL_RATIO_EDITPOLICY, new MaintainSymbolRatioEditPolicy());
 	}
 
 }

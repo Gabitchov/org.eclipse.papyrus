@@ -53,7 +53,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.NotificationManage
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.Util;
-import org.eclipse.uml2.uml.Property;
 
 /**
  * 
@@ -139,6 +138,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	 * satisfied by the view passed in.
 	 */
 
+	@Override
 	public void refresh() {
 		removeDecoration();
 
@@ -182,6 +182,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void notifyChanged(Notification notification) {
 		refresh();
 	}
@@ -294,9 +295,10 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	 * Adds listeners on
 	 * <ul>
 	 * <li>Affixed Child Node</li>
-	 * <li>graphical parent, when its a {@link Property} (we add the listener on its Type)</li>
+	 * <li>graphical parent, when its a Property (we add the listener on its Type)</li>
 	 * </ul>
 	 */
+	@Override
 	public void activate() {
 		View view = getView();
 		if(view == null) {
@@ -319,6 +321,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	/**
 	 * Removes the listeners and the decorations
 	 */
+	@Override
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
@@ -330,9 +333,9 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 
 		if(visibilityObservable != null) {
 			visibilityObservable.dispose();
-			visibilityObservable = null;	
+			visibilityObservable = null;
 		}
-		if(positionObservable !=null) {
+		if(positionObservable != null) {
 			positionObservable.dispose();
 			positionObservable = null;
 		}
@@ -399,6 +402,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 		 * @param target
 		 *        the overlay figure to locate
 		 */
+		@Override
 		public void relocate(IFigure target) {
 			Rectangle bounds = reference instanceof HandleBounds ? new PrecisionRectangle(((HandleBounds)reference).getHandleBounds()) : new PrecisionRectangle(reference.getBounds());
 
@@ -418,21 +422,21 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 			if(Direction.NORTH_WEST.equals(this.position)) {
 				target.setLocation(bounds.getTopLeft().getTranslated(MARGIN_WIDTH, MARGIN_HEIGHT));
 			} else if(Direction.NORTH.equals(this.position)) {
-				target.setLocation(bounds.getTop().getTranslated(-width/2, MARGIN_HEIGHT));
+				target.setLocation(bounds.getTop().getTranslated(-width / 2, MARGIN_HEIGHT));
 			} else if(Direction.NORTH_EAST.equals(this.position)) {
 				target.setLocation(bounds.getTopRight().getTranslated(-MARGIN_WIDTH - width, MARGIN_HEIGHT));
 			} else if(Direction.SOUTH_WEST.equals(this.position)) {
 				target.setLocation(bounds.getBottomLeft().getTranslated(MARGIN_WIDTH, -MARGIN_HEIGHT - height));
 			} else if(Direction.SOUTH.equals(this.position)) {
-				target.setLocation(bounds.getBottom().getTranslated(-width/2, -MARGIN_HEIGHT - height));
+				target.setLocation(bounds.getBottom().getTranslated(-width / 2, -MARGIN_HEIGHT - height));
 			} else if(Direction.SOUTH_EAST.equals(this.position)) {
 				target.setLocation(bounds.getBottomRight().getTranslated(-MARGIN_WIDTH - width, -MARGIN_HEIGHT - height));
 			} else if(Direction.WEST.equals(this.position)) {
-				target.setLocation(bounds.getLeft().getTranslated(MARGIN_WIDTH, -height/2));
+				target.setLocation(bounds.getLeft().getTranslated(MARGIN_WIDTH, -height / 2));
 			} else if(Direction.EAST.equals(this.position)) {
-				target.setLocation(bounds.getRight().getTranslated(-MARGIN_WIDTH - width, -height/2));
+				target.setLocation(bounds.getRight().getTranslated(-MARGIN_WIDTH - width, -height / 2));
 			} else if(Direction.CENTER.equals(this.position)) {
-				target.setLocation(bounds.getCenter().getTranslated(-width/2, -height/2));
+				target.setLocation(bounds.getCenter().getTranslated(-width / 2, -height / 2));
 			}
 
 		}
@@ -441,6 +445,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void handleChange(ChangeEvent event) {
 		refresh();
 
