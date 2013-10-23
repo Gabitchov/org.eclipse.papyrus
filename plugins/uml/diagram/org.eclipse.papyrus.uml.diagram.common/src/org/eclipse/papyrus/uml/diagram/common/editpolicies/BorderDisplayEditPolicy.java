@@ -26,9 +26,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.OneLineBorder;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.uml2.uml.NamedElement;
@@ -63,6 +64,7 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicy implements Noti
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = (View)getHost().getModel();
@@ -73,6 +75,11 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicy implements Noti
 		// adds a listener on the view and the element controlled by the
 		// editpart
 		getDiagramEventBroker().addNotificationListener(view, this);
+
+		EObject semanticElement = EMFHelper.getEObject(getHost());
+		if(semanticElement instanceof NamedElement) {
+			hostSemanticNamedElement = (NamedElement)semanticElement;
+		}
 
 		if(hostSemanticNamedElement == null) {
 			return;
@@ -87,52 +94,43 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicy implements Noti
 	 */
 	protected void refreshBorder() {
 		if(getHost() instanceof NamedElementEditPart) {
-			NamedElementEditPart namedElementEditPart=(NamedElementEditPart)getHost();
-			BooleanValueStyle boderStyle=getBorderStyle(namedElementEditPart.getNotationView());
-			if(boderStyle!=null && boderStyle.isBooleanValue()==false){
+			NamedElementEditPart namedElementEditPart = (NamedElementEditPart)getHost();
+			BooleanValueStyle boderStyle = getBorderStyle(namedElementEditPart.getNotationView());
+			if(boderStyle != null && boderStyle.isBooleanValue() == false) {
 				namedElementEditPart.getPrimaryShape().setBorder(null);
 				for(Object currentEditPart : namedElementEditPart.getChildren()) {
-					if(currentEditPart instanceof ResizableCompartmentEditPart){
+					if(currentEditPart instanceof ResizableCompartmentEditPart) {
 						((ResizableCompartmentEditPart)currentEditPart).getFigure().setBorder(null);
 					}
-					
+
 				}
-				
-			}
-			else{
+
+			} else {
 				namedElementEditPart.getPrimaryShape().setBorder(new LineBorder());
 				for(Object currentEditPart : namedElementEditPart.getChildren()) {
-					if(currentEditPart instanceof ResizableCompartmentEditPart){
+					if(currentEditPart instanceof ResizableCompartmentEditPart) {
 						((ResizableCompartmentEditPart)currentEditPart).getFigure().setBorder(new OneLineBorder());
 					}
-					
+
 				}
 			}
 		}
 	}
 
-/**
- * 
- * @param currentView
- * @return the current Style that repersent the boder
- */
-	protected BooleanValueStyle getBorderStyle(View currentView){
-		List<?> viewStyle=currentView.getStyles();
-		for(Object currentStyle : viewStyle) {
-			if( currentStyle instanceof BooleanValueStyle){
-				if(((BooleanValueStyle)currentStyle).getName().equals(DISPLAY_BORDER)){
-					return (BooleanValueStyle)currentStyle;
-					}
-				}
-			}
-		
-		return null;
-
+	/**
+	 * 
+	 * @param currentView
+	 * @return the current Style that repersent the boder
+	 */
+	protected BooleanValueStyle getBorderStyle(View currentView) {
+		return (BooleanValueStyle)currentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_BORDER);
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = (View)getHost().getModel();

@@ -23,8 +23,10 @@ import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ShapeDisplayCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
@@ -60,6 +62,7 @@ public class MaintainSymbolRatioEditPolicy extends GraphicalEditPolicy implement
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = (View)getHost().getModel();
@@ -70,6 +73,11 @@ public class MaintainSymbolRatioEditPolicy extends GraphicalEditPolicy implement
 		// adds a listener on the view and the element controlled by the
 		// editpart
 		getDiagramEventBroker().addNotificationListener(view, this);
+
+		EObject semanticElement = EMFHelper.getEObject(getHost());
+		if(semanticElement instanceof NamedElement) {
+			hostSemanticNamedElement = (NamedElement)semanticElement;
+		}
 
 		if(hostSemanticNamedElement == null) {
 			return;
@@ -84,49 +92,40 @@ public class MaintainSymbolRatioEditPolicy extends GraphicalEditPolicy implement
 	 */
 	protected void refreshSymbolCompartment() {
 		if(getHost() instanceof NamedElementEditPart) {
-			NamedElementEditPart namedElementEditPart=(NamedElementEditPart)getHost();
-			BooleanValueStyle maintainRatio=getMaintainSymbolRatioStyle(namedElementEditPart.getNotationView());
-			if(maintainRatio!=null && maintainRatio.isBooleanValue()==false){
+			NamedElementEditPart namedElementEditPart = (NamedElementEditPart)getHost();
+			BooleanValueStyle maintainRatio = getMaintainSymbolRatioStyle(namedElementEditPart.getNotationView());
+			if(maintainRatio != null && maintainRatio.isBooleanValue() == false) {
 				for(Object currentEditPart : namedElementEditPart.getChildren()) {
-					if(currentEditPart instanceof ShapeDisplayCompartmentEditPart){
+					if(currentEditPart instanceof ShapeDisplayCompartmentEditPart) {
 						((ShapeDisplayCompartmentEditPart)currentEditPart).maintainRatio(false);
 					}
 				}
-				
-			}
-			else{
+
+			} else {
 				for(Object currentEditPart : namedElementEditPart.getChildren()) {
-					if(currentEditPart instanceof ShapeDisplayCompartmentEditPart){
+					if(currentEditPart instanceof ShapeDisplayCompartmentEditPart) {
 						((ShapeDisplayCompartmentEditPart)currentEditPart).maintainRatio(true);
 					}
-					
+
 				}
 			}
 		}
 	}
 
-/**
- * 
- * @param currentView
- * @return the current Style that reperesent the boder
- */
-	protected BooleanValueStyle getMaintainSymbolRatioStyle(View currentView){
-		List<?> viewStyle=currentView.getStyles();
-		for(Object currentStyle : viewStyle) {
-			if( currentStyle instanceof BooleanValueStyle){
-				if(((BooleanValueStyle)currentStyle).getName().equals(MAINTAIN_SYMBOL_RATIO)){
-					return (BooleanValueStyle)currentStyle;
-					}
-				}
-			}
-		
-		return null;
-
+	/**
+	 * 
+	 * @param currentView
+	 * @return the current Style that reperesent the boder
+	 */
+	protected BooleanValueStyle getMaintainSymbolRatioStyle(View currentView) {
+		return (BooleanValueStyle)currentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), MAINTAIN_SYMBOL_RATIO);
 	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = (View)getHost().getModel();
