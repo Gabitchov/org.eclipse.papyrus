@@ -216,8 +216,16 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 		for(int i = 0; i < compartmentList.size(); i++) {
 			compartmentsHeight += compartmentList.get(i).getBounds().height;
+			
 		}
 		int remainingspace = container.getBounds().height - notCompartmentsHeight;
+		//because of the place of the label we have to remove  3
+		remainingspace=remainingspace-3;
+		//because we move compartment of 1 pixel the space is decrease of 1
+		for(int i = 0; i < compartmentList.size(); i++) {
+			remainingspace=remainingspace-1;
+		}
+		
 
 		// ratio between the height of all compartments and the size of the
 		// compartments container.
@@ -225,7 +233,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 		for(int i = 0; i < compartmentList.size(); i++) {
 			Rectangle bound = new Rectangle((compartmentList.get(i)).getBounds());
-			int value = (int)(bound.height / ratio);
+			int value = (int)((double)bound.height / ratio);
 			bound.height = value;
 			bound.x = container.getBounds().x;
 			if(i > 0) {

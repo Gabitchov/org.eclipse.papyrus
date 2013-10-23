@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
@@ -16,8 +17,8 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 			//setBorder(new LineBorder(ColorConstants.red, 2));
 			setAlignment(PositionConstants.CENTER|PositionConstants.MIDDLE);
 			setMaintainAspectRatio(true);
-			//setBackgroundColor(ColorConstants.white);
-			//setForegroundColor(ColorConstants.red);
+			setBackgroundColor(ColorConstants.green);
+			setForegroundColor(ColorConstants.red);
 		}
 
 	}

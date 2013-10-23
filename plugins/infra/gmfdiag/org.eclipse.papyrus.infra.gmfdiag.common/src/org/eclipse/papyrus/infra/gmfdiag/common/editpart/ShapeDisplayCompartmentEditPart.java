@@ -16,8 +16,12 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MarginBorder;
+import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -27,9 +31,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.AnimatableScrollPane;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
+import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.BorderedScalableImageFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
@@ -37,6 +44,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ShapeFlowLayout;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SubCompartmentLayoutManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.NotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 
 /**
  * CompartmentEditPart in charge of shpae display.
@@ -62,9 +71,9 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	@Override
 	public void activate() {
 		super.activate();
-		
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -93,6 +102,30 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	}
 
 	/**
+	 * this method is used to set the ratio of the figure.
+	 * pay attention if the ratio  is true, the only figure is displayed 
+	 * @param maintainRatio
+	 */
+	public void maintainRatio(boolean maintainRatio){
+		IFigure contentPane= ((ResizableCompartmentFigure)getFigure()).getContentPane();
+		for(Object subFigure : contentPane.getChildren()) {
+			if( subFigure instanceof BorderedScalableImageFigure){
+				((BorderedScalableImageFigure)subFigure).setMaintainAspectRatio(maintainRatio);
+			}
+
+		}
+		if(!maintainRatio){
+			OneShapeLayoutManager layout = new OneShapeLayoutManager();
+			contentPane.setLayoutManager(layout);
+		}
+		else{
+			ShapeFlowLayout layout = new ShapeFlowLayout();
+			contentPane.setLayoutManager(layout);
+		}
+		
+
+	}
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -104,10 +137,10 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		ShapeCompartmentLayoutManager layoutManager = new ShapeCompartmentLayoutManager();
 		result.setLayoutManager(layoutManager);
 		ShapeFlowLayout layout = new ShapeFlowLayout();
-//		layout.setHorizontal(true);
-//		layout.setStretchMinorAxis(true);
-//		layout.setStretchMajorAxis(true);
-//		layout.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
+		//		layout.setHorizontal(true);
+		//		layout.setStretchMinorAxis(true);
+		//		layout.setStretchMajorAxis(true);
+		//		layout.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
 
 		result.getContentPane().setLayoutManager(layout);
 
@@ -164,31 +197,80 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	/**
 	 * Specific layout manager for the shape compartment. The main goal of this class is to ease the debug process. no specific implementation is
 	 * planned yet.
+	 * We prevent to display the label of the compartment shape
 	 */
 	public class ShapeCompartmentLayoutManager extends SubCompartmentLayoutManager {
 
 		public static final int MIN_PREFERRED_SIZE = 40; 
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
 		@Override
 		public void layout(IFigure container) {
 			super.layout(container);
+			for(int i = 0; i < container.getChildren().size(); i++) {
+			 if(container.getChildren().get(i) instanceof ScrollPane ){
+				 ((ScrollPane)container.getChildren().get(i)).setBounds(container.getBounds()); 
+			 }
+			}
+			
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
 		@Override
 		protected Dimension calculatePreferredSize(IFigure figure, int wHint, int hHint) {
 			Dimension dim =  super.calculatePreferredSize(figure, wHint, hHint);
-			
+
 			dim.height = Math.max(MIN_PREFERRED_SIZE, dim.height);
-			
+
 			return dim;
 		}
 		
+
+	}
+	public class OneShapeLayoutManager extends AbstractLayout {
+
+		/**
+		 * 
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
+
+			int minimumWith = 50;
+			int minimumHeight = 50;
+
+			return new Dimension(minimumWith, minimumHeight);
+		}
+
+		/**
+		 * 
+		 * {@inheritDoc}
+		 */
+		public void layout(IFigure container) {
+			Rectangle compartmentBound = new Rectangle(container.getBounds());
+			if(container.getBorder() instanceof MarginBorder){
+				MarginBorder marginBorder=((MarginBorder)container.getBorder());
+				compartmentBound=compartmentBound.shrink(marginBorder.getInsets(container));
+			}
+			
+			
+			IFigure contentPane= ((ResizableCompartmentFigure)getFigure()).getContentPane();
+			ScalableImageFigure scalableImageFigure=null;
+			if( contentPane.getChildren().size()>0){
+				Object lastFig=contentPane.getChildren().get(contentPane.getChildren().size()-1);
+				if( lastFig instanceof ScalableImageFigure){
+					scalableImageFigure= (ScalableImageFigure)lastFig;
+				}
+			}
+			if(scalableImageFigure != null) {
+				scalableImageFigure.setBounds(compartmentBound);
+			}
+
+		}
 	}
 
 	/**
@@ -199,10 +281,10 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 
 		/** role for this edit policy */
 		public static final String SHAPE_REFRESH_EDIT_POLICY_ROLE = "shape_refresh_edit_policy"; ////$NON-NLS-1$
-		
+
 		/** manager for notifications */
 		protected NotificationManager notificationManager;
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
@@ -249,7 +331,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		public void notifyChanged(Notification notification) {
 			refresh();
 		}
-		
+
 		/**
 		 * Gets the diagram event broker from the editing domain.
 		 * 
@@ -262,7 +344,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 			}
 			return null;
 		}
-		
+
 		/**
 		 * Returns the view controlled by the host edit part
 		 * 
