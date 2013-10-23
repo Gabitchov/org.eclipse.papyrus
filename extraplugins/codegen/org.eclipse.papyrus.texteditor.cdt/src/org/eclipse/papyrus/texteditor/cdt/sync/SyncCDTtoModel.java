@@ -283,7 +283,6 @@ public class SyncCDTtoModel implements Runnable {
 		UMLUtil.destroyElements(operation.getOwnedParameters());
 		UMLUtil.destroyElements(ob.getOwnedParameters());
 	
-		operation.getOwnedParameters().clear();
 		for(IASTNode declaratorChild : declarator.getChildren()) {
 			if(declaratorChild instanceof IASTParameterDeclaration) {
 				IASTParameterDeclaration parameter = (IASTParameterDeclaration)declaratorChild;
