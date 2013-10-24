@@ -18,3 +18,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.console;bundle-version="3.5.200"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.papyrus.moka.fuml.standardlibrary.library.boolean_,
+ org.eclipse.papyrus.moka.fuml.standardlibrary.library.integer,
+ org.eclipse.papyrus.moka.fuml.standardlibrary.library.list,
+ org.eclipse.papyrus.moka.fuml.standardlibrary.library.string,
+ org.eclipse.papyrus.moka.fuml.standardlibrary.library.unlimitednatural
+Export-Package: org.eclipse.papyrus.moka.fuml.standardlibrary.library.boolean_,
+ org.eclipse.papyrus.moka.fuml.standardlibrary.library.integer,
+ org.eclipse.papyrus.moka.fuml.standardlibrary.library.io,
+ org.eclipse.papyrus.moka.fuml.standardlibrary.library.list,
+ org.eclipse.papyrus.moka.fuml.standardlibrary.library.string,
+ org.eclipse.papyrus.moka.fuml.standardlibrary.library.unlimitednatural

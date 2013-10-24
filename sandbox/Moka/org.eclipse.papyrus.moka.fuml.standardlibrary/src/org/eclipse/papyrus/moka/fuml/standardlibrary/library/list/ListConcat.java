@@ -16,10 +16,10 @@ package org.eclipse.papyrus.moka.fuml.standardlibrary.library.list;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.OpaqueBehaviorExecution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.debug.Debug;
 
 public class ListConcat extends OpaqueBehaviorExecution {
 
@@ -33,7 +33,7 @@ public class ListConcat extends OpaqueBehaviorExecution {
 			result.addAll(list2) ;
 			outputParameters.get(0).values = result;
 		} catch (Exception e) {
-			Debug.println("An error occured during the execution of ListConcat " + e.getMessage());
+			Activator.log.error("An error occured during the execution of ListConcat " + e.getMessage(), e);
 		}
 	}
 
