@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.robotml.deployment.handlers.CreateDepPlanHandler"
+            description="Create deployment plan"
+            id="org.eclipse.papyrus.robotml.deployment.menuActions.CreateDepPlanCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.robotml.deployment.handlers.CreatePlatformHandler"
+            description="Create platform definition"
+            id="org.eclipse.papyrus.robotml.deployment.menuActions.CreatePlatformCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.robotml.deployment.handlers.ConfigureInstanceHandler"
+            description="Configure instance"
+            id="org.eclipse.papyrus.robotml.deployment.menuActions.ConfigureInstanceCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.robotml.deployment.handlers.AllocateHandler"
+            description="Allocate to node"
+            id="org.eclipse.papyrus.robotml.deployment.menuActions.AllocateCmd"
+            name="dummy">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+         <command
+               commandId="org.eclipse.papyrus.robotml.deployment.menuActions.CreateDepPlanCmd"
+               icon="icons/depPlan.gif"
+               id="org.eclipse.papyrus.robotml.deployment.menuActions.CreateDepPlanMenu"
+               label="Create deployment plan"
+               mnemonic="d"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen>
+				<reference
+                     definitionId="org.eclipse.papyrus.robotml.diagram.common.IsPapyrusActiveWithRobotml">
+               </reference>							
+			</visibleWhen>	
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.robotml.deployment.menuActions.CreatePlatformCmd"
+               icon="icons/depPlan.gif"
+               id="org.eclipse.papyrus.robotml.deployment.menuActions.CreatePlatformMenu"
+               label="Create platform definition"
+               mnemonic="d"
+               mode="FORCE_TEXT"
+               style="push">
+           <visibleWhen>
+				<reference
+                     definitionId="org.eclipse.papyrus.robotml.diagram.common.IsPapyrusActiveWithRobotml">
+               </reference>							
+			</visibleWhen>	
+         </command>
+         
+          <command
+               commandId="org.eclipse.papyrus.robotml.deployment.menuActions.AllocateCmd"
+               icon="icons/allocation.gif"
+               id="org.eclipse.papyrus.robotml.deployment.menuActions.AllocateMenu"
+               label="Allocate to node"
+               mnemonic="A"
+               mode="FORCE_TEXT"
+               style="push">
+           <visibleWhen>
+				<reference
+                     definitionId="org.eclipse.papyrus.robotml.diagram.common.IsPapyrusActiveWithRobotml">
+               </reference>							
+			</visibleWhen>	
+         </command>
+          </menuContribution>
+           <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command
+               commandId="org.eclipse.papyrus.robotml.deployment.menuActions.CreateDepPlanCmd"
+               icon="icons/depPlan.gif"
+               id="org.eclipse.papyrus.robotml.deployment.menuActions.CreateDepPlanMenu"
+               label="Create deployment plan"
+               mnemonic="d"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen>
+				<reference
+                     definitionId="org.eclipse.papyrus.robotml.diagram.common.IsPapyrusActiveWithRobotml">
+               </reference>							
+			</visibleWhen>	
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.robotml.deployment.menuActions.CreatePlatformCmd"
+               icon="icons/depPlan.gif"
+               id="org.eclipse.papyrus.robotml.deployment.menuActions.CreatePlatformMenu"
+               label="Create platform definition"
+               mnemonic="d"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen>
+				<reference
+                     definitionId="org.eclipse.papyrus.robotml.diagram.common.IsPapyrusActiveWithRobotml">
+               </reference>							
+			</visibleWhen>	
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.robotml.deployment.menuActions.AllocateCmd"
+               icon="icons/allocation.gif"
+               id="org.eclipse.papyrus.robotml.deployment.menuActions.AllocateMenu"
+               label="Allocate to node"
+               mnemonic="A"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen>
+				<reference
+                     definitionId="org.eclipse.papyrus.robotml.diagram.common.IsPapyrusActiveWithRobotml">
+               </reference>							
+			</visibleWhen>	
+         </command>
+         </menuContribution>
+
+          
+         </extension>
+
+</plugin>
