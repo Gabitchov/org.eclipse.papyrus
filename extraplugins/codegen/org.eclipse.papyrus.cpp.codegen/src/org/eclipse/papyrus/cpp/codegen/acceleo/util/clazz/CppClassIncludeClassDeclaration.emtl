@@ -7,9 +7,9 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
     </input>
-    <imports href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
-    <imports href="../../../utils/CppGenUtils.emtl#/0"/>
-    <imports href="../../../utils/ClassUtils.emtl#/0"/>
+    <imports href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
+    <imports href="platform:/plugin/utils/CppGenUtils.emtl#/0"/>
+    <imports href="platform:/plugin/utils/ClassUtils.emtl#/0"/>
     <imports href="CppClassIncludeDeclaration.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Comment">
       <body startPosition="412" endPosition="421" value=" USED??? "/>
@@ -17,7 +17,7 @@
     <ownedModuleElement xsi:type="mtl:Template" name="CppClassIncludeClassDeclarationTemplate" visibility="Public">
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../../../utils/CppGenUtils.emtl#/0/openNS"/>
+        <definition href="platform:/plugin/utils/CppGenUtils.emtl#/0/openNS"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
         </argument>
@@ -27,7 +27,7 @@
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="template "/>
         <ifExpr xsi:type="mtl:QueryInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-          <definition href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
+          <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
           <argument xsi:type="ocl.ecore:VariableExp" name="class" referredVariable="/0/CppClassIncludeClassDeclarationTemplate/class">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
           </argument>
@@ -47,7 +47,7 @@
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=";&#xA;"/>
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../../../utils/CppGenUtils.emtl#/0/closeNS"/>
+        <definition href="platform:/plugin/utils/CppGenUtils.emtl#/0/closeNS"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/11">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
         </argument>
@@ -61,7 +61,7 @@
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="/* Owner package header include                             */&#xA;#include &lt;"/>
         <body xsi:type="mtl:QueryInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <definition href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullPath"/>
+          <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullPath"/>
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/17">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
           </argument>
@@ -91,7 +91,7 @@
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
             <source xsi:type="mtl:QueryInvocation">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-              <definition href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
+              <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
               <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/16">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
               </argument>
@@ -115,7 +115,7 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
         </argument>
         <argument xsi:type="mtl:QueryInvocation" eType="/3/Sequence(Classifier)">
-          <definition href="../../../utils/ClassUtils.emtl#/0/includedClassifiers"/>
+          <definition href="platform:/plugin/utils/ClassUtils.emtl#/0/includedClassifiers"/>
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/23">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
           </argument>
@@ -132,7 +132,7 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
         </argument>
         <argument xsi:type="mtl:QueryInvocation" eType="/3/Sequence(Classifier)">
-          <definition href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTypesViaDependencies"/>
+          <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTypesViaDependencies"/>
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/28">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
           </argument>
@@ -233,7 +233,7 @@
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
                 <source xsi:type="mtl:QueryInvocation">
                   <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-                  <definition href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
+                  <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
                   <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/35">
                     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
                   </argument>
@@ -247,7 +247,7 @@
             </source>
             <argument xsi:type="mtl:QueryInvocation">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-              <definition href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
+              <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
               <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/35">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
               </argument>
@@ -345,9 +345,9 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTypesViaDependencies"/>
+          <references href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getTypesViaDependencies"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/3/Sequence(Classifier)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/3/Sequence(Classifier)"/>
         <eParameters name="arg0">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
         </eParameters>
@@ -357,7 +357,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullPath"/>
+          <references href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullPath"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -369,7 +369,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
+          <references href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
         <eParameters name="arg0">
@@ -384,7 +384,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../utils/CppGenUtils.emtl#/0/openNS"/>
+          <references href="platform:/plugin/utils/CppGenUtils.emtl#/0/openNS"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -396,7 +396,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../utils/CppGenUtils.emtl#/0/closeNS"/>
+          <references href="platform:/plugin/utils/CppGenUtils.emtl#/0/closeNS"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -408,9 +408,9 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../utils/ClassUtils.emtl#/0/includedClassifiers"/>
+          <references href="platform:/plugin/utils/ClassUtils.emtl#/0/includedClassifiers"/>
         </eAnnotations>
-        <eType xsi:type="ocl.ecore:SequenceType" href="../../../utils/ClassUtils.emtl#/3/Sequence(Classifier)"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="platform:/plugin/utils/ClassUtils.emtl#/3/Sequence(Classifier)"/>
         <eParameters name="cl">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
         </eParameters>

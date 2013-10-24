@@ -7,9 +7,9 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
     </input>
-    <imports href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
-    <imports href="../../../utils/CppGenUtils.emtl#/0"/>
-    <imports href="../../../utils/Modifier.emtl#/0"/>
+    <imports href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
+    <imports href="platform:/plugin/utils/CppGenUtils.emtl#/0"/>
+    <imports href="platform:/plugin/utils/Modifier.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="defaultValue" visibility="Public">
       <body xsi:type="mtl:IfBlock">
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = "/>
@@ -49,14 +49,14 @@
     <ownedModuleElement xsi:type="mtl:Template" name="CppParameter" visibility="Public">
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../../../utils/Modifier.emtl#/0/modConst"/>
+        <definition href="platform:/plugin/utils/Modifier.emtl#/0/modConst"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/12">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
         </argument>
       </body>
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../../../utils/CppGenUtils.emtl#/0/cppQualifiedName"/>
+        <definition href="platform:/plugin/utils/CppGenUtils.emtl#/0/cppQualifiedName"/>
         <argument xsi:type="ocl.ecore:PropertyCallExp">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
           <source xsi:type="ocl.ecore:VariableExp" name="parameter" referredVariable="/0/CppParameter/parameter">
@@ -67,14 +67,14 @@
       </body>
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../../../utils/Modifier.emtl#/0/modPtr"/>
+        <definition href="platform:/plugin/utils/Modifier.emtl#/0/modPtr"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/14">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
         </argument>
       </body>
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../../../utils/Modifier.emtl#/0/modRef"/>
+        <definition href="platform:/plugin/utils/Modifier.emtl#/0/modRef"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/15">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
         </argument>
@@ -89,7 +89,7 @@
       </body>
       <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="../../../utils/Modifier.emtl#/0/modArray"/>
+        <definition href="platform:/plugin/utils/Modifier.emtl#/0/modArray"/>
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/17">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
         </argument>
@@ -222,7 +222,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../utils/CppGenUtils.emtl#/0/cppQualifiedName"/>
+          <references href="platform:/plugin/utils/CppGenUtils.emtl#/0/cppQualifiedName"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -234,7 +234,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../utils/Modifier.emtl#/0/modPtr"/>
+          <references href="platform:/plugin/utils/Modifier.emtl#/0/modPtr"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="propertyOrParameter">
@@ -246,7 +246,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../utils/Modifier.emtl#/0/modRef"/>
+          <references href="platform:/plugin/utils/Modifier.emtl#/0/modRef"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="propertyOrParameter">
@@ -258,7 +258,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../utils/Modifier.emtl#/0/modArray"/>
+          <references href="platform:/plugin/utils/Modifier.emtl#/0/modArray"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="propertyOrParameter">
@@ -270,7 +270,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../utils/Modifier.emtl#/0/modConst"/>
+          <references href="platform:/plugin/utils/Modifier.emtl#/0/modConst"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="propertyOrParameter">
