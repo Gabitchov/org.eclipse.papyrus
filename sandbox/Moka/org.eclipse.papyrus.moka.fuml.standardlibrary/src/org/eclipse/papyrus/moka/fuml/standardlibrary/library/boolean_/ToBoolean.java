@@ -16,12 +16,12 @@ package org.eclipse.papyrus.moka.fuml.standardlibrary.library.boolean_;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.StringValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.OpaqueBehaviorExecution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.debug.Debug;
 
 public class ToBoolean extends OpaqueBehaviorExecution {
 
@@ -36,7 +36,7 @@ public class ToBoolean extends OpaqueBehaviorExecution {
 			outputs.add(result);
 			outputParameters.get(0).values = outputs;
 		} catch (Exception e) {
-			Debug.println("An error occured during the execution of ToBoolean " + e.getMessage());
+			Activator.log.error("An error occured during the execution of ToBoolean " + e.getMessage(), e);
 		}
 	}
 

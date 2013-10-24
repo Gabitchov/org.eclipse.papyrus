@@ -65,6 +65,46 @@ public class StandardLibraryRegistry extends AbstractOpaqueBehaviorExecutionRegi
 			// ToInteger
 			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.integer.ToInteger(), "FoundationalModelLibrary::PrimitiveBehaviors::IntegerFunctions::ToInteger");
 			//  '/' is missing TODO
+			
+			
+			// ////////////////////
+			// Real functions			
+			// +
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Add(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::+");
+			// -
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Minus(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::-");
+			// *
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Times(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::*");
+			// /
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Div(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::/");
+			// >
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Greater(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::>");
+			// >=
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.GreaterOrEqual(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::>=");
+			// <
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Lower(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::<");
+			// <= 
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.LowerOrEqual(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::<=");
+			// Abs
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Abs(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::Abs");
+			// Floor
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Floor(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::Floor");
+			// Inv
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Inv(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::Inv");
+			// Max
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Max(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::Max");
+			// Min
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Min(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::Min");
+			// Neg
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Neg(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::Neg");
+			// Round
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.Round(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::Round");
+			// ToInteger
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.ToInteger(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::ToInteger");
+			// ToReal
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.ToReal(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::ToReal");
+			// ToString
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.real.ToString(), "FoundationalModelLibrary::PrimitiveBehaviors::RealFunctions::ToString");
 
 			// ////////////////////
 			// Unlimited natural functions
