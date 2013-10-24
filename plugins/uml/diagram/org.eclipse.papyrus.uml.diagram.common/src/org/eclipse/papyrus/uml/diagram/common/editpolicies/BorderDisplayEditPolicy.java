@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import java.util.List;
 
+import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -53,6 +54,8 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicy implements Noti
 	 */
 	protected List<Object> parentListeners;
 
+	private Border defaultBorder;
+
 	/**
 	 * Creates a new QualifiedNameDisplayEditPolicy
 	 */
@@ -85,7 +88,11 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicy implements Noti
 			return;
 		}
 		getDiagramEventBroker().addNotificationListener(hostSemanticNamedElement, this);
-
+		if(getHost() instanceof NamedElementEditPart) {
+			NamedElementEditPart namedElementEditPart = (NamedElementEditPart)getHost();
+			defaultBorder=namedElementEditPart.getPrimaryShape().getBorder();
+				
+		}
 		refreshBorder();
 	}
 
@@ -106,7 +113,7 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicy implements Noti
 				}
 
 			} else {
-				namedElementEditPart.getPrimaryShape().setBorder(new LineBorder());
+				namedElementEditPart.getPrimaryShape().setBorder(defaultBorder);
 				for(Object currentEditPart : namedElementEditPart.getChildren()) {
 					if(currentEditPart instanceof ResizableCompartmentEditPart) {
 						((ResizableCompartmentEditPart)currentEditPart).getFigure().setBorder(new OneLineBorder());

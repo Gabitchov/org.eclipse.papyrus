@@ -93,7 +93,6 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 	@Override
 	public void setBorder(Border border) {
-		// TODO Auto-generated method stub
 		if(border==null){
 			noBorder=true;
 		}
