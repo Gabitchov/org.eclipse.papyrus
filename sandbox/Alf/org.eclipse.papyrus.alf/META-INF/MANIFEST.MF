@@ -31,4 +31,5 @@ Export-Package: org.eclipse.papyrus.alf,
  org.eclipse.papyrus.alf.parser.antlr.internal,
  org.eclipse.papyrus.alf.scoping,
  org.eclipse.papyrus.alf.services,
+ org.eclipse.papyrus.alf.utils,
  org.eclipse.papyrus.alf.validation
