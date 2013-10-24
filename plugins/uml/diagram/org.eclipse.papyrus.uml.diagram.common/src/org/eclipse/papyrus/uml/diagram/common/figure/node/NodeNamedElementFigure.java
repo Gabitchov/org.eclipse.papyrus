@@ -168,6 +168,13 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		getNameLabelContainer().add(nameLabel, getNameLabelConstraint(), -1);
 	}
 
+	public void restoreNameLabel() {
+		nameLabel.setOpaque(false);
+		nameLabel.setAlignment(PositionConstants.MIDDLE);
+		getNameLabelContainer().add(nameLabel, getNameLabelConstraint(), getNameLabelPosition());
+	}
+
+	
 	/**
 	 * Create a label that contains the name of the element.
 	 */
@@ -652,6 +659,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		return position;
 
 	}
+	
+	
 
 	/**
 	 * Returns the position of the stereotype properties location. this is just
