@@ -14,21 +14,35 @@
 package org.eclipse.papyrus.infra.emf.nattable.manager.cell;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
+import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
+import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.paste.IValueSetter;
 import org.eclipse.papyrus.infra.nattable.paste.ReferenceValueSetter;
@@ -39,6 +53,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Cell Manager which allows to get the value of an {@link EStructuralFeature} for an {@link EObject}
@@ -170,7 +185,73 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	protected Command getSetValueCommand(final TransactionalEditingDomain domain, final EObject elementToEdit, final EStructuralFeature featureToEdit, final Object newValue) {
 		final AbstractEditCommandRequest request = new SetRequest(domain, elementToEdit, featureToEdit, newValue);
 		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToEdit);
-		return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+		final ICommand cmd = provider.getEditCommand(request);
+		ICommand returnedCommand = cmd;
+		if(cmd.canExecute() && featureToEdit instanceof EReference) {
+			boolean shouldOpenDialog = false;
+			final EReference editedReference = (EReference)featureToEdit;
+
+			//we are editing a containment feature
+			if(editedReference.isContainment()) {
+				if(newValue instanceof Collection<?>) {
+					if(!editedReference.isMany()) {
+						return UnexecutableCommand.INSTANCE;
+					} else {
+						final Collection<?> currentValues = new ArrayList<Object>((Collection<?>)elementToEdit.eGet(editedReference));
+						final Collection<?> addedValues = new ArrayList<Object>((Collection<?>)newValue);
+						addedValues.removeAll((Collection<?>)currentValues);
+						//we need to test the added values
+						final Iterator<?> iter = ((Collection<?>)addedValues).iterator();
+						while(iter.hasNext() && !shouldOpenDialog) {
+							final Object current = iter.next();
+							if(current instanceof EObject) {
+								if(elementToEdit == current) {
+									//an element can be owned by itself
+									return UnexecutableCommand.INSTANCE;
+								} else {
+									shouldOpenDialog = ((EObject)current).eContainer() != elementToEdit;
+								}
+							}
+						}
+					}
+				} else if(elementToEdit == newValue) {
+					//an element can be owned by itself
+					return UnexecutableCommand.INSTANCE;
+				} else if(newValue instanceof EObject) {
+					shouldOpenDialog = ((EObject)newValue).eContainer() != elementToEdit;
+				}
+
+				if(shouldOpenDialog) {
+					returnedCommand = getOpenConfirmChangeContainmentDialogCommand(domain, returnedCommand, editedReference.isMany());
+				}
+
+			}
+		}
+		return new GMFtoEMFCommandWrapper(returnedCommand);
+	}
+	
+	
+	protected final ICommand getOpenConfirmChangeContainmentDialogCommand(final TransactionalEditingDomain domain, final ICommand defaultCommand, final boolean isMany){
+		final String messageDialog;
+		if(isMany) {
+			messageDialog = "Your are setting a value in a containment feature. This action will change the owner of the dropped element(s).\nContinue?";
+		} else {
+			messageDialog = "Your are setting a value in a containment feature. The previous value will be erased and the owner of the dropped element(s) will be changed.\nContinue?";
+		}
+		final ICommand cmd = new AbstractTransactionalCommand(domain, "Set Value Command Dialog", null) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				final boolean result = MessageDialog.openConfirm(Display.getDefault().getActiveShell(), "Set Containment Value", messageDialog);
+				if(result) {
+					defaultCommand.execute(monitor, info);
+					return CommandResult.newOKCommandResult();
+				} else {
+					return CommandResult.newCancelledCommandResult();
+				}
+			}
+		};
+		return cmd;
 	}
 
 	/**

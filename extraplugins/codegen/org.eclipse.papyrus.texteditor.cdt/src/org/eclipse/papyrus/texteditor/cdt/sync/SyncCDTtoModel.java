@@ -53,6 +53,7 @@ import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.texteditor.cdt.CommandSupport;
 import org.eclipse.papyrus.texteditor.cdt.Utils;
 import org.eclipse.papyrus.texteditor.cdt.listener.ModelListener;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -278,8 +279,10 @@ public class SyncCDTtoModel implements Runnable {
 			}
 		}
 
-		operation.getOwnedParameters().clear();
-		ob.getOwnedParameters().clear();
+		// a parameters.clear() is not sufficient. Otherwise stereotype applications to unresolved elements remain in the model
+		UMLUtil.destroyElements(operation.getOwnedParameters());
+		UMLUtil.destroyElements(ob.getOwnedParameters());
+				
 		for(IASTNode declaratorChild : declarator.getChildren()) {
 			if(declaratorChild instanceof IASTParameterDeclaration) {
 				IASTParameterDeclaration parameter = (IASTParameterDeclaration)declaratorChild;

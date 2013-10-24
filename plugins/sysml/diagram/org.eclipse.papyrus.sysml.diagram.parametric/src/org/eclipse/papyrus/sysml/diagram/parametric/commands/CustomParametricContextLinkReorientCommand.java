@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -21,7 +34,6 @@ import org.eclipse.uml2.uml.Type;
 /**
  * A context link must have a Constraint as source and a Namespace as target
  * @See ContextLinkReorientCommand
- * @author Regis
  *
  */
 public class CustomParametricContextLinkReorientCommand extends EditElementCommand {
@@ -51,6 +63,9 @@ public class CustomParametricContextLinkReorientCommand extends EditElementComma
 		return getNewSource() instanceof Constraint && resolveNamespace(getNewTarget()) instanceof Namespace;
 	}
 
+	/**
+	 * Get the property Namespace in case of property typed by a Namespace
+	 */
 	protected Namespace resolveNamespace(Element element) {
 		if (element instanceof Namespace) {
 			return (Namespace)element;
@@ -64,6 +79,7 @@ public class CustomParametricContextLinkReorientCommand extends EditElementComma
 		return null;
 	}
 
+	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
@@ -78,9 +94,11 @@ public class CustomParametricContextLinkReorientCommand extends EditElementComma
 	}
 
 	/**
-	 * @generated
+	 * Set a default container for old Constraint (diagram consistency).
+	 * Set the new context for new Constraint
+	 * Update new Constraint name with new owner ownedRules if necessary
 	 */
-	protected CommandResult reorientSource() throws ExecutionException {
+	protected CommandResult reorientSource() {
 		EditPart sourceEditPart = request.getSourceEditPart();
 		Namespace nearestNamespace = getNearestNamespace(sourceEditPart);
 		getOldSource().setContext(nearestNamespace); // set a default container
@@ -109,9 +127,10 @@ public class CustomParametricContextLinkReorientCommand extends EditElementComma
 	}
 
 	/**
-	 * @generated
+	 * Set the new context for new Constraint
+	 * Update new Constraint name with new owner ownedRules if necessary
 	 */
-	protected CommandResult reorientTarget() throws ExecutionException {
+	protected CommandResult reorientTarget() {
 		Namespace context = resolveNamespace(getNewTarget());
 		// Check name
 		String defaultNameWithIncrementFromBase = NamedElementHelper.getDefaultNameWithIncrementFromBase(Constraint.class.getSimpleName(), context.getOwnedRules(), getNewSource());

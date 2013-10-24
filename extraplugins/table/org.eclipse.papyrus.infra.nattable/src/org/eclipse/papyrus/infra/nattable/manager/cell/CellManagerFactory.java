@@ -255,4 +255,26 @@ public final class CellManagerFactory {
 
 	}
 
+	/**
+	 * 
+	 * @param domain
+	 *        the editing domain
+	 * @param columnElement
+	 *        the column element
+	 * @param rowElement
+	 *        the row element
+	 * @param newValue
+	 *        the new value
+	 * @param tableManager
+	 *        the table manager
+	 * @return
+	 *         the command to use to do the set value
+	 */
+	public Command getSetCellValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
+		final ICellManager cellManager = getCellManager(columnElement, rowElement);
+		if(cellManager != null) {
+			return cellManager.getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
 }
