@@ -14,6 +14,8 @@ package org.eclipse.papyrus.views.panels;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.OpaqueBehavior;
+import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
@@ -67,9 +69,12 @@ public class PanelFactory {
 	public CppAbstractPanel createPanel(Composite parent, int style, Element element) {
 		CppAbstractPanel panel = null;
 		int metaclassID = -1; // -1 => default case 
-		if(element instanceof Behavior) {
-			// navigate from behavior to specification
-			element = ((Behavior)element).getSpecification();
+		if(element instanceof Transition) {
+			// navigate from transition to effect, if it exists (and has an opaque behavior)
+			Behavior effect = ((Transition)element).getEffect();
+			if (effect instanceof OpaqueBehavior) {
+				element = effect;
+			}
 		}
 		if(element != null) {
 			metaclassID = element.eClass().getClassifierID();
@@ -81,6 +86,10 @@ public class PanelFactory {
 			panel = new CppOperationPanel(parent, style);
 			break;
 
+		case UMLPackage.OPAQUE_BEHAVIOR:
+			panel = new CppBehaviorPanel(parent, style);
+			break;
+			
 		case UMLPackage.CLASS:
 			panel = new CppClassPanel(parent, style);
 			break;
