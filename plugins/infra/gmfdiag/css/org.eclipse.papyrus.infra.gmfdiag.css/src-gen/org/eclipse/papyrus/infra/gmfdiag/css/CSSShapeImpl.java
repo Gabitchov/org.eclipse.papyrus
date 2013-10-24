@@ -11,7 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
@@ -462,6 +464,10 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	///////////////////////////////////
+	//	Implements the custom styles //
+	///////////////////////////////////
+
 	public boolean showElementIcon() {
 		return getCustomStyle().showElementIcon();
 	}
@@ -474,5 +480,22 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		return getCustomStyle().showShadow();
 	}
 
+	//////////////////////////////////
+	//	Implements the getNamedStyle //
+	//////////////////////////////////
+
+	@Override
+	public NamedStyle getNamedStyle(EClass eClass, String name) {
+		return getCSSNamedStyle(eClass, name);
+	}
+
+	public NamedStyle getCSSNamedStyle(EClass eClass, String name) {
+		NamedStyle userStyle = super.getNamedStyle(eClass, name);
+		if(userStyle != null) {
+			return userStyle;
+		}
+
+		return getCSSView().getCSSNamedStyle(eClass, name);
+	}
 
 }

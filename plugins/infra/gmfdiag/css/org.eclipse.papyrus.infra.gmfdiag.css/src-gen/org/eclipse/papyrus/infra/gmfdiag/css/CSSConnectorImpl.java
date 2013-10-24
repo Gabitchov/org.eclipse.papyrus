@@ -11,9 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.JumpLinkStatus;
 import org.eclipse.gmf.runtime.notation.JumpLinkType;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Smoothness;
@@ -26,7 +28,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSConnectorStyleDelegate;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 
-public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle {
+public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle, CSSView {
 
 	protected ExtendedCSSEngine engine;
 
@@ -357,6 +359,24 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 
 		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(this, feature);
+	}
+
+	//////////////////////////////////
+	//	Implements the getNamedStyle //
+	//////////////////////////////////
+
+	@Override
+	public NamedStyle getNamedStyle(EClass eClass, String name) {
+		return getCSSNamedStyle(eClass, name);
+	}
+
+	public NamedStyle getCSSNamedStyle(EClass eClass, String name) {
+		NamedStyle userStyle = super.getNamedStyle(eClass, name);
+		if(userStyle != null) {
+			return userStyle;
+		}
+
+		return getCSSView().getCSSNamedStyle(eClass, name);
 	}
 
 
