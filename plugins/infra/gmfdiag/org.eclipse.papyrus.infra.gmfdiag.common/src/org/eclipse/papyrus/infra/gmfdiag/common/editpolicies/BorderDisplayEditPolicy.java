@@ -18,9 +18,13 @@ import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.OneLineBorder;
+import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
+import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -30,10 +34,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBoolean
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 
 /**
- * this edit policy has in charge to display the border of node NodeNamedElement
- * associated figure has to be a {@link NodeNamedElementFigure}
+ * this edit policy has in charge to toggle the border of its edit part's figure
  */
-public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IChangeListener {
+public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IChangeListener, NotificationListener {
 
 	public static final String DISPLAY_BORDER = "displayBorder";
 
@@ -57,7 +60,30 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 		styleObservable = new CustomBooleanStyleObservableValue(view, EMFHelper.resolveEditingDomain(view), DISPLAY_BORDER);
 		styleObservable.addChangeListener(this);
 
-		getHost().refresh();
+		// adds a listener on the view and the element controlled by the
+		// editpart
+		getDiagramEventBroker().addNotificationListener(view, this);
+
+		EObject semanticElement = EMFHelper.getEObject(getHost());
+		if(semanticElement != null) {
+			getDiagramEventBroker().addNotificationListener(semanticElement, this);
+		}
+
+		refreshBorderDisplay();
+	}
+
+
+	/**
+	 * Gets the diagram event broker from the editing domain.
+	 * 
+	 * @return the diagram event broker
+	 */
+	protected DiagramEventBroker getDiagramEventBroker() {
+		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		if(theEditingDomain != null) {
+			return DiagramEventBroker.getInstance(theEditingDomain);
+		}
+		return null;
 	}
 
 
@@ -81,6 +107,11 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 			styleObservable.dispose();
 			styleObservable = null;
 		}
+	}
+
+	@Override
+	public void notifyChanged(Notification notification) {
+		refreshBorderDisplay();
 	}
 
 	@Override
@@ -121,7 +152,7 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 			return;
 		}
 
-		BooleanValueStyle displayBorderStyle = (BooleanValueStyle)view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), BorderDisplayEditPolicy.DISPLAY_BORDER);
+		BooleanValueStyle displayBorderStyle = findDisplayBorderStyle(view);
 
 		if(displayBorderStyle != null && !displayBorderStyle.isBooleanValue()) {
 			if(defaultBorder == null) {
@@ -129,12 +160,13 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 			}
 			getPrimaryShape().setBorder(null);
 
-			for(Object currentEditPart : getHost().getChildren()) {
-				if(currentEditPart instanceof ResizableCompartmentEditPart) {
-					((ResizableCompartmentEditPart)currentEditPart).getFigure().setBorder(null);
-				}
-
-			}
+			//TODO: This edit policy should be installed on all compartments. We shouldn't need to refresh them from here
+			//			for(Object currentEditPart : getHost().getChildren()) {
+			//				if(currentEditPart instanceof ResizableCompartmentEditPart) {
+			//					((ResizableCompartmentEditPart)currentEditPart).getFigure().setBorder(null);
+			//				}
+			//			}
+			//
 
 
 		} else {
@@ -143,14 +175,33 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 			}
 			defaultBorder = null;
 
-			for(Object currentEditPart : getHost().getChildren()) {
-				if(currentEditPart instanceof ResizableCompartmentEditPart) {
-					((ResizableCompartmentEditPart)currentEditPart).getFigure().setBorder(new OneLineBorder());
-				}
-			}
-
+			//TODO: This edit policy should be installed on all compartments. We shouldn't need to refresh them from here
+			//			for(Object currentEditPart : getHost().getChildren()) {
+			//				if(currentEditPart instanceof ResizableCompartmentEditPart) {
+			//					((ResizableCompartmentEditPart)currentEditPart).getFigure().setBorder(new OneLineBorder());
+			//				}
+			//			}
+			//
 
 		}
+	}
+
+
+	private BooleanValueStyle findDisplayBorderStyle(View view) {
+		View parentView = view;
+		while(parentView.getElement() == view.getElement()) {
+			BooleanValueStyle style = (BooleanValueStyle)parentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_BORDER);
+			if(style != null) {
+				return style;
+			}
+
+			if(parentView.eContainer() instanceof View) {
+				parentView = (View)parentView.eContainer();
+			}
+
+		}
+
+		return null;
 	}
 
 }
