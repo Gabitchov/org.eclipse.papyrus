@@ -382,7 +382,20 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	 * @return the current Style that reperesent the boder
 	 */
 	protected BooleanValueStyle getMaintainSymbolRatioStyle(View currentView) {
-		return (BooleanValueStyle)currentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), MaintainSymbolRatioEditPolicy.MAINTAIN_SYMBOL_RATIO);
+		View parentView = currentView;
+		while(parentView.getElement() == currentView.getElement()) {
+			BooleanValueStyle style = (BooleanValueStyle)parentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), MaintainSymbolRatioEditPolicy.MAINTAIN_SYMBOL_RATIO);
+			if(style != null) {
+				return style;
+			}
+
+			if(parentView.eContainer() instanceof View) {
+				parentView = (View)parentView.eContainer();
+			}
+
+		}
+
+		return null;
 	}
 
 	@Override
