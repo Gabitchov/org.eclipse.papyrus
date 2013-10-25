@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusC
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
 
 
 /**
@@ -128,7 +129,7 @@ public class ResetStyleHandler extends AbstractHandler {
 					break;
 				} else {
 					//Reset the style attribute to their default value
-					resetStyle(view);
+					resetStyle(view, true);
 				}
 			}
 		}
@@ -158,11 +159,20 @@ public class ResetStyleHandler extends AbstractHandler {
 		}
 
 		private void resetStyle(View view) {
-			for(Object styleObject : view.getStyles()) {
-				if(styleObject instanceof Style) {
+
+			Iterator<?> styleIterator = view.getStyles().iterator();
+			while(styleIterator.hasNext()) {
+				Object styleObject = styleIterator.next();
+				if(styleObject instanceof NamedStyle) {
+					NamedStyle customStyle = (NamedStyle)styleObject;
+					if(!CSSStyles.RESERVED_KEYWORDS.contains(customStyle.getName())) {
+						styleIterator.remove();
+					}
+				} else if(styleObject instanceof Style) {
 					resetStyle((Style)styleObject);
 				}
 			}
+
 			if(view instanceof Style) {
 				resetStyle((Style)view);
 			}
