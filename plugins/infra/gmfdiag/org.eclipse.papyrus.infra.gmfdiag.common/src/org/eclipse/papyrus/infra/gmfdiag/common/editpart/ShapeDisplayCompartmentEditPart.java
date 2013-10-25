@@ -391,6 +391,8 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 
 			if(parentView.eContainer() instanceof View) {
 				parentView = (View)parentView.eContainer();
+			} else {
+				break;
 			}
 
 		}

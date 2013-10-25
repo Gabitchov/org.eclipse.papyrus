@@ -197,6 +197,8 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 
 			if(parentView.eContainer() instanceof View) {
 				parentView = (View)parentView.eContainer();
+			} else {
+				break;
 			}
 
 		}
