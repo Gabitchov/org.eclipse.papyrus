@@ -11,6 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.notation;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Constants for the CSS-specific properties
  * 
@@ -37,5 +41,17 @@ public interface CSSStyles {
 	 * The Diagram Stylesheets key
 	 */
 	public static final String CSS_DIAGRAM_STYLESHEETS_KEY = "css_stylesheets"; //$NON-NLS-1$
+
+	/**
+	 * The list of reserved CSS Keywords used in GMF NamedStyle
+	 * 
+	 * Note: In general, all values prefixed with css* are potentially reserved for the CSS Engine
+	 */
+	public static final Set<String> RESERVED_KEYWORDS = new HashSet<String>(Arrays.asList(new String[]{
+			CSS_GMF_ID_KEY,
+			CSS_GMF_CLASS_KEY,
+			CSS_GMF_STYLE_KEY,
+			CSS_DIAGRAM_STYLESHEETS_KEY
+	}));
 
 }
