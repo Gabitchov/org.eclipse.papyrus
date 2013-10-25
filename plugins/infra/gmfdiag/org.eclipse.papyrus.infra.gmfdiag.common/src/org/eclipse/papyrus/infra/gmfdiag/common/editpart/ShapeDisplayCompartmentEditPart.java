@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.MaintainSymbolRatioEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.BorderedScalableImageFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
@@ -90,6 +91,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		// Start of user code custom edit policies
 		installEditPolicy(ShapeRefreshEditPolicy.SHAPE_REFRESH_EDIT_POLICY_ROLE, new ShapeRefreshEditPolicy());
 		installEditPolicy(MaintainSymbolRatioEditPolicy.MAINTAIN_SYMBOL_RATIO_EDITPOLICY, new MaintainSymbolRatioEditPolicy());
+		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 		// End of user code
 	}
 

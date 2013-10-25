@@ -14,10 +14,11 @@
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.NameDisplayEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.NameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -66,6 +67,23 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 		if(getNodeNamedElementFigure() != null && resolveSemanticElement() != null) {
 			refreshIconNamedLabel();
 			refreshFontColor();
+			refreshLabelDisplay();
+		}
+	}
+
+	@Override
+	public void activate() {
+		super.activate();
+	}
+
+
+	protected void refreshLabelDisplay() {
+		View view = getNotationView();
+		BooleanValueStyle displayNameStyle = (BooleanValueStyle)view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), NameDisplayEditPolicy.DISPLAY_NAME);
+		if(displayNameStyle != null && !displayNameStyle.isBooleanValue()) {
+			getNodeNamedElementFigure().removeNameLabel();
+		} else {
+			getNodeNamedElementFigure().restoreNameLabel();
 		}
 	}
 
@@ -115,7 +133,6 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 		installEditPolicy(NameDisplayEditPolicy.NAME_DISPLAY_EDITPOLICY, new NameDisplayEditPolicy());
 	}
 

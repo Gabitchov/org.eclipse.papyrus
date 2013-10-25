@@ -102,5 +102,15 @@ public class QualifiedNameWrappingLabelFigure extends PapyrusWrappingLabel imple
 	public void setStereotypeDisplay(String stereotypes, Image image) {}
 	public void setNameLabelIcon(boolean displayNameLabelIcon) {}
 	public WrappingLabel getNameLabel() {return null;}
+	
+	
+	public void restoreNameLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void removeNameLabel() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

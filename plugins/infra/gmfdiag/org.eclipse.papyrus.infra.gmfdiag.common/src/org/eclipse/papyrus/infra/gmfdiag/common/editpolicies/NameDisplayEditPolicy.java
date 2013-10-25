@@ -24,15 +24,15 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleObservableValue;
 
 /**
- * this edit policy has in charge to set the ratio of the symbol if is displayed
+ * this edit policy has in charge to display the name of node NodeNamedElement
  * associated figure has to be a {@link NodeNamedElementFigure}
  */
-public class MaintainSymbolRatioEditPolicy extends GraphicalEditPolicy implements IChangeListener {
+public class NameDisplayEditPolicy extends GraphicalEditPolicy implements IChangeListener {
 
-	public static final String MAINTAIN_SYMBOL_RATIO = "maintainSymbolRatio";
+	public static final String DISPLAY_NAME = "displayName";
 
 	/** key for this edit policy */
-	public final static String MAINTAIN_SYMBOL_RATIO_EDITPOLICY = "MAINTAIN_SYMBOL_RATIO_EDITPOLICY";
+	public final static String NAME_DISPLAY_EDITPOLICY = "NAME_DISPLAY_EDITPOLICY";
 
 	protected IObservableValue styleObservable;
 
@@ -48,7 +48,7 @@ public class MaintainSymbolRatioEditPolicy extends GraphicalEditPolicy implement
 			return;
 		}
 
-		styleObservable = new CustomBooleanStyleObservableValue(view, EMFHelper.resolveEditingDomain(view), MAINTAIN_SYMBOL_RATIO);
+		styleObservable = new CustomBooleanStyleObservableValue(view, EMFHelper.resolveEditingDomain(view), DISPLAY_NAME);
 		styleObservable.addChangeListener(this);
 	}
 
@@ -59,7 +59,7 @@ public class MaintainSymbolRatioEditPolicy extends GraphicalEditPolicy implement
 	 * @return the current Style that reperesent the boder
 	 */
 	protected BooleanValueStyle getMaintainSymbolRatioStyle(View currentView) {
-		return (BooleanValueStyle)currentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), MAINTAIN_SYMBOL_RATIO);
+		return (BooleanValueStyle)currentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_NAME);
 	}
 
 	/**
@@ -79,6 +79,5 @@ public class MaintainSymbolRatioEditPolicy extends GraphicalEditPolicy implement
 	public void handleChange(ChangeEvent event) {
 		getHost().refresh();
 	}
-
 
 }

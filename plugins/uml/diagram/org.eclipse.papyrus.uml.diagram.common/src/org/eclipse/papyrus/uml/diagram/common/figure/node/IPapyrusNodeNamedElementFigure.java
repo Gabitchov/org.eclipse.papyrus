@@ -63,4 +63,12 @@ public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFi
 
 	public void setNameLabelIcon(boolean displayNameLabelIcon);
 
+	/**
+	 * Create a label that contains the name of the element.
+	 */
+	public void restoreNameLabel();
+
+
+	public void removeNameLabel();
+
 }

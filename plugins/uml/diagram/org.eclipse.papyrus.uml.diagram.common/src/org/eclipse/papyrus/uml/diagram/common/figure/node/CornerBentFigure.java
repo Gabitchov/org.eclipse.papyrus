@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.common.figure.node;
 import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
@@ -332,5 +333,13 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 		}
 		revalidate();
 		repaint();
+	}
+
+	@Override
+	protected void paintBorder(Graphics g) {
+		if(getBorder() == null) {
+			return;
+		}
+		super.paintBorder(g);
 	}
 }
