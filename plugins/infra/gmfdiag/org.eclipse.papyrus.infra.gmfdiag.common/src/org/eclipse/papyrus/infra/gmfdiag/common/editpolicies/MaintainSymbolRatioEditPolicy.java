@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBoolean
  */
 public class MaintainSymbolRatioEditPolicy extends GraphicalEditPolicy implements IChangeListener {
 
-	public static final String MAINTAIN_SYMBOL_RATIO = "MaintainSymbolRatio";
+	public static final String MAINTAIN_SYMBOL_RATIO = "maintainSymbolRatio";
 
 	/** key for this edit policy */
 	public final static String MAINTAIN_SYMBOL_RATIO_EDITPOLICY = "MAINTAIN_SYMBOL_RATIO_EDITPOLICY";
