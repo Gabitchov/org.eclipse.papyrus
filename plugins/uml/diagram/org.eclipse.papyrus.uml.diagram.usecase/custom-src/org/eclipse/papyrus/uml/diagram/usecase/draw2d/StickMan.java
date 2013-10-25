@@ -57,6 +57,7 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 	/**
 	 * Outlines the ellipse.
 	 */
+	@Override
 	protected void outlineShape(Graphics graphics, Rectangle bounds) {
 		PointList pl = setupPoints(bounds);
 		graphics.drawPolygon(pl);
@@ -67,13 +68,14 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
 		Dimension size = new Dimension(-1, -1);
-		if (wHint < BASE_W) {
-			size.width = (int) BASE_W;
+		if(wHint < BASE_W) {
+			size.width = (int)BASE_W;
 		}
-		if (hHint < BASE_H) {
-			size.height = (int) BASE_H;
+		if(hHint < BASE_H) {
+			size.height = (int)BASE_H;
 		}
 		if(is3D()) {
 			size.expand(SHADOW_SIZE, SHADOW_SIZE);
@@ -84,6 +86,7 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 	/**
 	 * Fills the ellipse.
 	 */
+	@Override
 	protected void fillShape(Graphics graphics, Rectangle bounds) {
 		PointList pl = setupPoints(bounds);
 		graphics.fillPolygon(pl);
@@ -158,82 +161,109 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 		return pl;
 	}
 
+	@Override
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public Label getStereotypesLabel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public void setQualifiedName(String qualifiedName) {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public Label getQualifiedNameLabel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public Label getTaggedLabel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public void setDepth(int depth) {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public WrappingLabel getNameLabel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public void setNameLabelIcon(boolean displayNameLabelIcon) {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public Color getBorderColor() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public boolean isShadow() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	@Override
 	public void setBorderColor(Color borderColor) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
 	public void setShadow(boolean shadow) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
 	public void setTransparency(int transparency) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
 	public void setGradientData(int gradientColor1, int gradientColor2, int gradientStyle) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
 	public void setIsUsingGradient(boolean b) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void restoreNameLabel() {
+		//Nothing. StickMan uses a floating label and should not implement this method
+	}
+
+	@Override
+	public void removeNameLabel() {
+		//Nothing. StickMan uses a floating label and should not implement this method
 	}
 }
