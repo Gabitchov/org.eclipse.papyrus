@@ -28,10 +28,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.figure.layout.PropertiesCompartmentLayoutManager;
 import org.eclipse.swt.graphics.Color;
@@ -43,7 +40,8 @@ import org.eclipse.swt.graphics.Image;
  */
 public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure, IPapyrusNodeUMLElementFigure {
 
-	protected boolean noBorder=false;
+	protected boolean noBorder = false;
+
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
 
 	private Label taggedLabel;
@@ -93,43 +91,45 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 	@Override
 	public void setBorder(Border border) {
-		if(border==null){
-			noBorder=true;
-		}
-		else{noBorder=false;
+		if(border == null) {
+			noBorder = true;
+		} else {
+			noBorder = false;
 		}
 		super.setBorder(border);
 	}
 
+	@Override
 	protected Border getDefaultBorder(Color borderColor) {
-		if( noBorder){
-			return null;}
-		else{return super.getDefaultBorder(borderColor);}
+		if(noBorder) {
+			return null;
+		} else {
+			return super.getDefaultBorder(borderColor);
+		}
 	}
 
 	@Override
 	public void remove(IFigure figure) {
-		if(figure instanceof AppliedStereotypeCompartmentFigure){
+		if(figure instanceof AppliedStereotypeCompartmentFigure) {
 			if(stereotypePropertiesContent == null) {
 				this.createStereotypePropertiesContent();
 			}
 			stereotypePropertiesContent.remove(figure);
-		}
-		else{
+		} else {
 
 			super.remove(figure);
 		}
 
 	}
+
 	@Override
 	public void add(IFigure figure, Object constraint, int index) {
-		if(figure instanceof AppliedStereotypeCompartmentFigure){
+		if(figure instanceof AppliedStereotypeCompartmentFigure) {
 			if(stereotypePropertiesContent == null) {
 				this.createStereotypePropertiesContent();
 			}
 			stereotypePropertiesContent.add(figure);
-		}
-		else{
+		} else {
 
 			super.add(figure, constraint, index);
 		}
@@ -174,13 +174,14 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		getNameLabelContainer().add(nameLabel, getNameLabelConstraint(), getNameLabelPosition());
 	}
 
-	
+
 	/**
 	 * Create a label that contains the name of the element.
 	 */
 	public void removeNameLabel() {
-		if(getNameLabelContainer().getChildren().contains(nameLabel)){
-			getNameLabelContainer().remove(nameLabel);}
+		if(getNameLabelContainer().getChildren().contains(nameLabel)) {
+			getNameLabelContainer().remove(nameLabel);
+		}
 	}
 
 	/**
@@ -537,10 +538,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	public Dimension getMinimumDimension() {
-		int width =0;
-		int height =0;
+		int width = 0;
+		int height = 0;
 		int temporysize = 0;
-		if( getNameLabelContainer().getChildren().contains(getNameLabel())){
+		if(getNameLabelContainer().getChildren().contains(getNameLabel())) {
 			width = getNameLabel().getTextBounds().width + 10;
 			height = getNameLabel().getTextBounds().height + 10;
 		}
@@ -659,8 +660,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		return position;
 
 	}
-	
-	
+
+
 
 	/**
 	 * Returns the position of the stereotype properties location. this is just

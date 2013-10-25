@@ -13,15 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
-import org.eclipse.draw2d.Border;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.OneLineBorder;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -35,13 +33,10 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure
  */
 public class NameDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
-	public static final String DISPLAY_NAME = "NameDisplay";
+	public static final String DISPLAY_NAME = "displayName";
 
 	/** key for this edit policy */
 	public final static String NAME_DISPLAY_EDITPOLICY = "NAME_DISPLAY_EDITPOLICY";
-
-
-	private Border defaultBorder;
 
 	/**
 	 * Creates a new QualifiedNameDisplayEditPolicy
@@ -66,26 +61,26 @@ public class NameDisplayEditPolicy extends GraphicalEditPolicy implements Notifi
 		// editpart
 		getDiagramEventBroker().addNotificationListener(view, this);
 
-		if(getHost() instanceof NamedElementEditPart) {
-			NamedElementEditPart namedElementEditPart = (NamedElementEditPart)getHost();
-			defaultBorder=namedElementEditPart.getPrimaryShape().getBorder();
-				
-		}
-		refreshBorder();
+		refreshNameDisplay();
 	}
 
 	/**
 	 * refresh the qualified name
 	 */
-	protected void refreshBorder() {
+	protected void refreshNameDisplay() {
 		if(getHost() instanceof NamedElementEditPart) {
 			NamedElementEditPart namedElementEditPart = (NamedElementEditPart)getHost();
-			BooleanValueStyle nameStyle = getBorderStyle(namedElementEditPart.getNotationView());
-			if(nameStyle != null && nameStyle.isBooleanValue() == false) {
-				((NodeNamedElementFigure)namedElementEditPart.getPrimaryShape()).removeNameLabel();
 
-			} else {
-				((NodeNamedElementFigure)namedElementEditPart.getPrimaryShape()).restoreNameLabel();
+			IFigure primaryShape = namedElementEditPart.getPrimaryShape();
+			if(primaryShape instanceof NodeNamedElementFigure) {
+
+				BooleanValueStyle nameStyle = getDisplayNameStyle(namedElementEditPart.getNotationView());
+				if(nameStyle != null && nameStyle.isBooleanValue() == false) {
+
+					((NodeNamedElementFigure)primaryShape).removeNameLabel();
+				} else {
+					((NodeNamedElementFigure)primaryShape).restoreNameLabel();
+				}
 			}
 		}
 	}
@@ -95,7 +90,7 @@ public class NameDisplayEditPolicy extends GraphicalEditPolicy implements Notifi
 	 * @param currentView
 	 * @return the current Style that repersent the boder
 	 */
-	protected BooleanValueStyle getBorderStyle(View currentView) {
+	protected BooleanValueStyle getDisplayNameStyle(View currentView) {
 		return (BooleanValueStyle)currentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_NAME);
 	}
 
@@ -134,7 +129,7 @@ public class NameDisplayEditPolicy extends GraphicalEditPolicy implements Notifi
 	 * {@inheritDoc}
 	 */
 	public void notifyChanged(Notification notification) {
-		refreshBorder();
+		refreshNameDisplay();
 	}
 
 

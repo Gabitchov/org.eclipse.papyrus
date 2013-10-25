@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 import java.util.List;
 
 import org.eclipse.draw2d.Border;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -41,7 +40,7 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class BorderDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
-	public static final String DISPLAY_BORDER = "BorderDisplay";
+	public static final String DISPLAY_BORDER = "displayBorder";
 
 	/** key for this edit policy */
 	public final static String BORDER_DISPLAY_EDITPOLICY = "BORDER_DISPLAY_EDITPOLICY";
@@ -90,8 +89,8 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicy implements Noti
 		getDiagramEventBroker().addNotificationListener(hostSemanticNamedElement, this);
 		if(getHost() instanceof NamedElementEditPart) {
 			NamedElementEditPart namedElementEditPart = (NamedElementEditPart)getHost();
-			defaultBorder=namedElementEditPart.getPrimaryShape().getBorder();
-				
+			defaultBorder = namedElementEditPart.getPrimaryShape().getBorder();
+
 		}
 		refreshBorder();
 	}
