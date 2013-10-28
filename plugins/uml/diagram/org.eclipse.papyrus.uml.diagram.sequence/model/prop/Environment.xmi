@@ -5,5 +5,6 @@
   <modelElementFactories name="Interaction Operand Factory" factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperandModelElementFactory"/>
   <modelElementFactories name="Gate Factory" factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.GateModelElementFactory"/>
   <modelElementFactories name="Link Route Factory" factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.LinkRouteModelElementFactory"/>
+  <modelElementFactories name="Behavior Factory" factoryClass="org.eclipse.papyrus.uml.diagram.sequence.util.BehaviorDisplayHelper"/>
   <constraintTypes label="Duration Link Constraint" constraintClass="org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkConstraint"/>
 </environment:Environment>
