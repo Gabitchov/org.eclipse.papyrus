@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationContributor;
 
@@ -46,7 +47,8 @@ public class DiagramNavigationProvider implements NavigationContributor {
 	}
 
 	protected List<Diagram> getOwnedDiagrams(Object fromElement) {
-		EObject eObject = EMFHelper.getEObject(fromElement);
+		EObject eObject = EMFHelper.getEObject(fromElement); //Should not be null (Otherwise, return=)
+		View currentView = NotationHelper.findView(fromElement); //May be null (e.g. Selection from the ModelExplorer)
 		if(eObject instanceof View || eObject == null) {
 			return Collections.emptyList();
 		}
@@ -58,6 +60,12 @@ public class DiagramNavigationProvider implements NavigationContributor {
 			for(Object pageObject : pageManager.allPages()) {
 				if(pageObject instanceof Diagram) {
 					Diagram diagram = (Diagram)pageObject;
+
+					//Avoid navigation to the current diagram
+					if(currentView != null && currentView.getDiagram() == diagram) {
+						continue;
+					}
+
 					if(diagram.getElement() == eObject) {
 						ownedDiagrams.add(diagram);
 					}
