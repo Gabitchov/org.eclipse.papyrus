@@ -37,6 +37,11 @@ endif/]
 [/template]
 
 
+[template public CppReturnSpec(behavior : Behavior)]
+[if (returnResult() = null)]void [else][returnResult().modConst()/] [returnResult().type.cppQualifiedName()/] [/if][returnResult().modPtr()/][returnResult().modRef()/]
+[/template]
+
+
 [template public InlineTxt(element : Element)]
 [if (hasStereotype(Inline))]inline [/if]
 [/template]
@@ -48,9 +53,13 @@ endif/]
 
 [template public CppOperationDeclaration(operation : Operation)]
 [CppOperationDoc()/]
-[InlineTxt()/][virtualTxt()/][staticTxt()/][CppReturnSpec()/] [destructor()/][operation.name/]([CppOperationParameters(true)/])[modConst()/][virtualSuffix()/];
+[InlineTxt()/][virtualTxt()/][staticTxt()/][CppReturnSpec()/][destructor()/][operation.name/]([CppOperationParameters(true)/])[modConst()/][virtualSuffix()/];
 [/template]
 
+[template public CppBehaviorDeclaration(behavior : Behavior)]
+[CppBehaviorDoc()/]
+[InlineTxt()/][CppReturnSpec()/][behavior.name/]([CppBehaviorParameters(true)/])[modConst()/];
+[/template]
 
 [template public CppConstInit(operation : Operation)]
 [if (hasStereotype(ConstInit) and hasStereotype(l2::Create))] : [getApplication(ConstInit).oclAsType(ConstInit).initialisation/][/if]
@@ -77,8 +86,16 @@ throws [for (raisedException) separator(',')][name/][/for]
 	[getBody('C/C++')/]
 }
 [else]
-[templateSignature()/][InlineTxt()/][CppReturnSpec()/][operation.class.name/][templateShortSignature()/]::[destructor()/][operation.name/]([CppOperationParameters(false)/])[throws()/][modConst()/][CppConstInit()/] {
+[templateSignature()/][InlineTxt()/][CppReturnSpec()/][operation.featuringClassifier.name/][templateShortSignature()/]::[destructor()/][operation.name/]([CppOperationParameters(false)/])[throws()/][modConst()/][CppConstInit()/] {
 	[getBodyInTemplate('C/C++')/]
 }
 [/if]
+[/template]
+
+
+[template public CppBehaviorImplementation(behavior : OpaqueBehavior)]
+[CppBehaviorDoc()/]
+[CppReturnSpec()/][behavior._context.name/]::[behavior.name/]([CppBehaviorParameters(false)/])[modConst()/] {
+	[getBodyFromOB('C/C++')/]
+}
 [/template]

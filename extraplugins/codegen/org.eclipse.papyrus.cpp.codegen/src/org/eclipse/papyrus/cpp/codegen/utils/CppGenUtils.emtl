@@ -212,6 +212,67 @@
       </expression>
       <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
     </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="resetVisibility" visibility="Public">
+      <parameter name="arg0">
+        <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/OclAny_Class/invoke">
+        <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/29">
+          <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+        </source>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="resetVisibility(org.eclipse.uml2.uml.VisibilityKind)">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:CollectionLiteralExp" eType="/4/Sequence(VisibilityKind)" kind="Sequence">
+          <part xsi:type="ocl.ecore:CollectionItem">
+            <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+            <item xsi:type="ocl.ecore:VariableExp" name="arg0" referredVariable="/0/resetVisibility/arg0">
+              <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+            </item>
+          </part>
+        </argument>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="getSection" visibility="Public">
+      <parameter name="arg0">
+        <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+      </parameter>
+      <parameter name="arg1">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/OclAny_Class/invoke">
+        <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/32">
+          <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+        </source>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="getSection(org.eclipse.uml2.uml.VisibilityKind, java.lang.String)">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:CollectionLiteralExp" eType="/4/Sequence(OclAny)" kind="Sequence">
+          <part xsi:type="ocl.ecore:CollectionItem">
+            <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+            <item xsi:type="ocl.ecore:VariableExp" name="arg0" referredVariable="/0/getSection/arg0">
+              <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+            </item>
+          </part>
+          <part xsi:type="ocl.ecore:CollectionItem">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <item xsi:type="ocl.ecore:VariableExp" name="arg1" referredVariable="/0/getSection/arg1">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </item>
+          </part>
+        </argument>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    </ownedModuleElement>
   </mtl:Module>
   <ecore:EPackage name="additions">
     <eClassifiers xsi:type="ecore:EClass" name="String_Class">
@@ -313,6 +374,29 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
         </eParameters>
       </eOperations>
+      <eOperations name="resetVisibility">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/resetVisibility"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="arg0">
+          <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="getSection">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/getSection"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="arg0">
+          <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+        </eParameters>
+        <eParameters name="arg1">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OclAny_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -372,6 +456,11 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VisibilityKind_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+      </eAnnotations>
+    </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -398,6 +487,9 @@
     <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Element)" instanceClassName="java.util.List">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(VisibilityKind)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+    </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
@@ -464,6 +556,24 @@
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -787,6 +897,96 @@
     <eAnnotations source="positions.63" references="/0/getGeneralizationVisibility/%/%.2/%/arg0">
       <details key="start" value="1666"/>
       <details key="end" value="1670"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/resetVisibility">
+      <details key="start" value="1677"/>
+      <details key="end" value="1879"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/resetVisibility/arg0">
+      <details key="start" value="1707"/>
+      <details key="end" value="1728"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/resetVisibility/%">
+      <details key="start" value="1745"/>
+      <details key="end" value="1876"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/resetVisibility/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/resetVisibility/%/%">
+      <details key="start" value="1752"/>
+      <details key="end" value="1803"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/resetVisibility/%/%.1">
+      <details key="start" value="1805"/>
+      <details key="end" value="1859"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/resetVisibility/%/%.2">
+      <details key="start" value="1861"/>
+      <details key="end" value="1875"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/resetVisibility/%/%.2/%/arg0">
+      <details key="start" value="1870"/>
+      <details key="end" value="1874"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.72" references="/0/getSection">
+      <details key="start" value="1881"/>
+      <details key="end" value="2112"/>
+      <details key="line" value="40"/>
+    </eAnnotations>
+    <eAnnotations source="positions.73" references="/0/getSection/arg0">
+      <details key="start" value="1906"/>
+      <details key="end" value="1927"/>
+      <details key="line" value="40"/>
+    </eAnnotations>
+    <eAnnotations source="positions.74" references="/0/getSection/arg1">
+      <details key="start" value="1929"/>
+      <details key="end" value="1942"/>
+      <details key="line" value="40"/>
+    </eAnnotations>
+    <eAnnotations source="positions.75" references="/0/getSection/%">
+      <details key="start" value="1959"/>
+      <details key="end" value="2109"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.76" references="/0/getSection/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.77" references="/0/getSection/%/%">
+      <details key="start" value="1966"/>
+      <details key="end" value="2017"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.78" references="/0/getSection/%/%.1">
+      <details key="start" value="2019"/>
+      <details key="end" value="2086"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.79" references="/0/getSection/%/%.2">
+      <details key="start" value="2088"/>
+      <details key="end" value="2108"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.80" references="/0/getSection/%/%.2/%/arg0">
+      <details key="start" value="2097"/>
+      <details key="end" value="2101"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.81" references="/0/getSection/%/%.2/%.1/arg1">
+      <details key="start" value="2103"/>
+      <details key="end" value="2107"/>
       <details key="line" value="0"/>
     </eAnnotations>
   </ecore:EAnnotation>

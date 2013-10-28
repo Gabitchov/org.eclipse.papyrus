@@ -33,6 +33,7 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TemplateBinding;
@@ -549,15 +550,28 @@ public class GenUtils {
 	public static String getBody(Operation operation, String selectedLanguage) {
 		for(Behavior behavior : operation.getMethods()) {
 			if(behavior instanceof OpaqueBehavior) {
-				OpaqueBehavior ob = (OpaqueBehavior)behavior;
-				Iterator<String> bodies = ob.getBodies().iterator();
-				for(String language : ob.getLanguages()) {
-					String body = bodies.next();
-					if(language.equals(selectedLanguage)) {
-						// additional "\r" confuses Acceleo
-						return cleanCR(body);
-					}
-				}
+				return getBodyFromOB((OpaqueBehavior) behavior, selectedLanguage);
+			}
+		}
+		return ""; //$NON-NLS-1$
+	}
+	
+	
+	/**
+	 * @param ob
+	 *        an opaque behavior
+	 * @param selectedLanguage
+	 *        the selected language
+	 * @return Return the first body of a selected language that is provided by
+	 *         one of the operation's methods
+	 */
+	public static String getBodyFromOB(OpaqueBehavior ob, String selectedLanguage) {
+		Iterator<String> bodies = ob.getBodies().iterator();
+		for(String language : ob.getLanguages()) {
+			String body = bodies.next();
+			if(language.equals(selectedLanguage)) {
+				// additional "\r" confuses Acceleo
+				return cleanCR(body);
 			}
 		}
 		return ""; //$NON-NLS-1$
@@ -604,6 +618,21 @@ public class GenUtils {
 				return ne2.getName();
 			}
 			path += "../";
+		}
+		return null;
+	}
+	
+	/**
+	 * Return the type of a behavior, i.e. the type of the first parameter with
+	 * "return" direction
+	 * @param behavior a behavior
+	 * @return the associated type
+	 */
+	public static Parameter returnResult(Behavior behavior) {
+		for (Parameter parameter : behavior.getOwnedParameters()) {
+			if (parameter.getDirection() == ParameterDirectionKind.RETURN_LITERAL) {
+				return parameter;
+			}
 		}
 		return null;
 	}

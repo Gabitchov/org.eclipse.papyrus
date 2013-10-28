@@ -649,13 +649,48 @@
       </expression>
       <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
     </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="getBodyFromOB" visibility="Public">
+      <parameter name="arg0">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+      </parameter>
+      <parameter name="arg1">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/OclAny_Class/invoke">
+        <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/74">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+        </source>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="org.eclipse.papyrus.acceleo.GenUtils">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="getBodyFromOB(org.eclipse.uml2.uml.OpaqueBehavior, java.lang.String)">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:CollectionLiteralExp" eType="/3/Sequence(OclAny)" kind="Sequence">
+          <part xsi:type="ocl.ecore:CollectionItem">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+            <item xsi:type="ocl.ecore:VariableExp" name="arg0" referredVariable="/0/getBodyFromOB/arg0">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+            </item>
+          </part>
+          <part xsi:type="ocl.ecore:CollectionItem">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <item xsi:type="ocl.ecore:VariableExp" name="arg1" referredVariable="/0/getBodyFromOB/arg1">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </item>
+          </part>
+        </argument>
+      </expression>
+      <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Query" name="cleanCR" visibility="Public">
       <parameter name="str">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </parameter>
       <expression xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/OclAny_Class/invoke">
         <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/74">
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/77">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </source>
         <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="org.eclipse.papyrus.acceleo.GenUtils">
@@ -681,7 +716,7 @@
       </parameter>
       <expression xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/OclAny_Class/invoke">
         <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/77">
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/80">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </source>
         <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="org.eclipse.papyrus.acceleo.GenUtils">
@@ -710,7 +745,7 @@
       </parameter>
       <expression xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/OclAny_Class/invoke">
         <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/80">
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/83">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
         </source>
         <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="org.eclipse.papyrus.acceleo.GenUtils">
@@ -735,6 +770,32 @@
         </argument>
       </expression>
       <type xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Query" name="returnResult" visibility="Public">
+      <parameter name="behavior">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/OclAny_Class/invoke">
+        <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/86">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+        </source>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="org.eclipse.papyrus.acceleo.GenUtils">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="returnResult(org.eclipse.uml2.uml.Behavior)">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:CollectionLiteralExp" eType="/3/Sequence(Behavior)" kind="Sequence">
+          <part xsi:type="ocl.ecore:CollectionItem">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+            <item xsi:type="ocl.ecore:VariableExp" name="behavior" referredVariable="/0/returnResult/behavior">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+            </item>
+          </part>
+        </argument>
+      </expression>
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
     </ownedModuleElement>
   </mtl:Module>
   <ecore:EPackage name="additions">
@@ -995,6 +1056,19 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </eParameters>
       </eOperations>
+      <eOperations name="getBodyFromOB">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/getBodyFromOB"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="arg0">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+        </eParameters>
+        <eParameters name="arg1">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="cleanCR">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -1026,6 +1100,16 @@
         </eParameters>
         <eParameters name="ne2">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="returnResult">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/returnResult"/>
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+        <eParameters name="behavior">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
         </eParameters>
       </eOperations>
     </eClassifiers>
@@ -1097,6 +1181,16 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehavior_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Behavior_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+      </eAnnotations>
+    </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -1132,6 +1226,9 @@
     <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(String)" instanceClassName="java.util.List">
       <elementType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Behavior)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+    </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
@@ -1341,6 +1438,15 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
@@ -1363,6 +1469,15 @@
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -2353,134 +2468,224 @@
       <details key="end" value="4972"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.197" references="/0/cleanCR">
+    <eAnnotations source="positions.197" references="/0/getBodyFromOB">
       <details key="start" value="4979"/>
-      <details key="end" value="5120"/>
+      <details key="end" value="5200"/>
       <details key="line" value="96"/>
     </eAnnotations>
-    <eAnnotations source="positions.198" references="/0/cleanCR/str">
-      <details key="start" value="5001"/>
-      <details key="end" value="5013"/>
+    <eAnnotations source="positions.198" references="/0/getBodyFromOB/arg0">
+      <details key="start" value="5007"/>
+      <details key="end" value="5028"/>
       <details key="line" value="96"/>
     </eAnnotations>
-    <eAnnotations source="positions.199" references="/0/cleanCR/%">
-      <details key="start" value="5027"/>
-      <details key="end" value="5117"/>
+    <eAnnotations source="positions.199" references="/0/getBodyFromOB/arg1">
+      <details key="start" value="5030"/>
+      <details key="end" value="5043"/>
+      <details key="line" value="96"/>
+    </eAnnotations>
+    <eAnnotations source="positions.200" references="/0/getBodyFromOB/%">
+      <details key="start" value="5057"/>
+      <details key="end" value="5197"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.200" references="/0/cleanCR/%/self">
+    <eAnnotations source="positions.201" references="/0/getBodyFromOB/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.201" references="/0/cleanCR/%/%">
-      <details key="start" value="5034"/>
-      <details key="end" value="5072"/>
+    <eAnnotations source="positions.202" references="/0/getBodyFromOB/%/%">
+      <details key="start" value="5064"/>
+      <details key="end" value="5102"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.202" references="/0/cleanCR/%/%.1">
-      <details key="start" value="5074"/>
-      <details key="end" value="5101"/>
+    <eAnnotations source="positions.203" references="/0/getBodyFromOB/%/%.1">
+      <details key="start" value="5104"/>
+      <details key="end" value="5174"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.203" references="/0/cleanCR/%/%.2">
-      <details key="start" value="5103"/>
-      <details key="end" value="5116"/>
+    <eAnnotations source="positions.204" references="/0/getBodyFromOB/%/%.2">
+      <details key="start" value="5176"/>
+      <details key="end" value="5196"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.204" references="/0/cleanCR/%/%.2/%/str">
-      <details key="start" value="5112"/>
-      <details key="end" value="5115"/>
+    <eAnnotations source="positions.205" references="/0/getBodyFromOB/%/%.2/%/arg0">
+      <details key="start" value="5185"/>
+      <details key="end" value="5189"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.205" references="/0/maskNull">
-      <details key="start" value="5122"/>
-      <details key="end" value="5265"/>
+    <eAnnotations source="positions.206" references="/0/getBodyFromOB/%/%.2/%.1/arg1">
+      <details key="start" value="5191"/>
+      <details key="end" value="5195"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.207" references="/0/cleanCR">
+      <details key="start" value="5202"/>
+      <details key="end" value="5343"/>
       <details key="line" value="100"/>
     </eAnnotations>
-    <eAnnotations source="positions.206" references="/0/maskNull/str">
-      <details key="start" value="5145"/>
-      <details key="end" value="5157"/>
+    <eAnnotations source="positions.208" references="/0/cleanCR/str">
+      <details key="start" value="5224"/>
+      <details key="end" value="5236"/>
       <details key="line" value="100"/>
     </eAnnotations>
-    <eAnnotations source="positions.207" references="/0/maskNull/%">
-      <details key="start" value="5171"/>
-      <details key="end" value="5262"/>
+    <eAnnotations source="positions.209" references="/0/cleanCR/%">
+      <details key="start" value="5250"/>
+      <details key="end" value="5340"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.208" references="/0/maskNull/%/self">
+    <eAnnotations source="positions.210" references="/0/cleanCR/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.209" references="/0/maskNull/%/%">
-      <details key="start" value="5178"/>
-      <details key="end" value="5216"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.210" references="/0/maskNull/%/%.1">
-      <details key="start" value="5218"/>
-      <details key="end" value="5246"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.211" references="/0/maskNull/%/%.2">
-      <details key="start" value="5248"/>
-      <details key="end" value="5261"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.212" references="/0/maskNull/%/%.2/%/str">
+    <eAnnotations source="positions.211" references="/0/cleanCR/%/%">
       <details key="start" value="5257"/>
-      <details key="end" value="5260"/>
+      <details key="end" value="5295"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.213" references="/0/getRelativePath">
-      <details key="start" value="5267"/>
-      <details key="end" value="5507"/>
-      <details key="line" value="104"/>
-    </eAnnotations>
-    <eAnnotations source="positions.214" references="/0/getRelativePath/ne1">
+    <eAnnotations source="positions.212" references="/0/cleanCR/%/%.1">
       <details key="start" value="5297"/>
-      <details key="end" value="5315"/>
-      <details key="line" value="104"/>
-    </eAnnotations>
-    <eAnnotations source="positions.215" references="/0/getRelativePath/ne2">
-      <details key="start" value="5317"/>
-      <details key="end" value="5335"/>
-      <details key="line" value="104"/>
-    </eAnnotations>
-    <eAnnotations source="positions.216" references="/0/getRelativePath/%">
-      <details key="start" value="5349"/>
-      <details key="end" value="5504"/>
+      <details key="end" value="5324"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.217" references="/0/getRelativePath/%/self">
+    <eAnnotations source="positions.213" references="/0/cleanCR/%/%.2">
+      <details key="start" value="5326"/>
+      <details key="end" value="5339"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.214" references="/0/cleanCR/%/%.2/%/str">
+      <details key="start" value="5335"/>
+      <details key="end" value="5338"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.215" references="/0/maskNull">
+      <details key="start" value="5345"/>
+      <details key="end" value="5488"/>
+      <details key="line" value="104"/>
+    </eAnnotations>
+    <eAnnotations source="positions.216" references="/0/maskNull/str">
+      <details key="start" value="5368"/>
+      <details key="end" value="5380"/>
+      <details key="line" value="104"/>
+    </eAnnotations>
+    <eAnnotations source="positions.217" references="/0/maskNull/%">
+      <details key="start" value="5394"/>
+      <details key="end" value="5485"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.218" references="/0/maskNull/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.218" references="/0/getRelativePath/%/%">
-      <details key="start" value="5356"/>
-      <details key="end" value="5394"/>
+    <eAnnotations source="positions.219" references="/0/maskNull/%/%">
+      <details key="start" value="5401"/>
+      <details key="end" value="5439"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.219" references="/0/getRelativePath/%/%.1">
-      <details key="start" value="5396"/>
+    <eAnnotations source="positions.220" references="/0/maskNull/%/%.1">
+      <details key="start" value="5441"/>
+      <details key="end" value="5469"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.221" references="/0/maskNull/%/%.2">
+      <details key="start" value="5471"/>
+      <details key="end" value="5484"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.222" references="/0/maskNull/%/%.2/%/str">
+      <details key="start" value="5480"/>
       <details key="end" value="5483"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.220" references="/0/getRelativePath/%/%.2">
-      <details key="start" value="5485"/>
-      <details key="end" value="5503"/>
+    <eAnnotations source="positions.223" references="/0/getRelativePath">
+      <details key="start" value="5490"/>
+      <details key="end" value="5730"/>
+      <details key="line" value="108"/>
+    </eAnnotations>
+    <eAnnotations source="positions.224" references="/0/getRelativePath/ne1">
+      <details key="start" value="5520"/>
+      <details key="end" value="5538"/>
+      <details key="line" value="108"/>
+    </eAnnotations>
+    <eAnnotations source="positions.225" references="/0/getRelativePath/ne2">
+      <details key="start" value="5540"/>
+      <details key="end" value="5558"/>
+      <details key="line" value="108"/>
+    </eAnnotations>
+    <eAnnotations source="positions.226" references="/0/getRelativePath/%">
+      <details key="start" value="5572"/>
+      <details key="end" value="5727"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.221" references="/0/getRelativePath/%/%.2/%/ne1">
-      <details key="start" value="5494"/>
-      <details key="end" value="5497"/>
+    <eAnnotations source="positions.227" references="/0/getRelativePath/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.222" references="/0/getRelativePath/%/%.2/%.1/ne2">
-      <details key="start" value="5499"/>
-      <details key="end" value="5502"/>
+    <eAnnotations source="positions.228" references="/0/getRelativePath/%/%">
+      <details key="start" value="5579"/>
+      <details key="end" value="5617"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.229" references="/0/getRelativePath/%/%.1">
+      <details key="start" value="5619"/>
+      <details key="end" value="5706"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.230" references="/0/getRelativePath/%/%.2">
+      <details key="start" value="5708"/>
+      <details key="end" value="5726"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.231" references="/0/getRelativePath/%/%.2/%/ne1">
+      <details key="start" value="5717"/>
+      <details key="end" value="5720"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.232" references="/0/getRelativePath/%/%.2/%.1/ne2">
+      <details key="start" value="5722"/>
+      <details key="end" value="5725"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.233" references="/0/returnResult">
+      <details key="start" value="5732"/>
+      <details key="end" value="5911"/>
+      <details key="line" value="112"/>
+    </eAnnotations>
+    <eAnnotations source="positions.234" references="/0/returnResult/behavior">
+      <details key="start" value="5759"/>
+      <details key="end" value="5778"/>
+      <details key="line" value="112"/>
+    </eAnnotations>
+    <eAnnotations source="positions.235" references="/0/returnResult/%">
+      <details key="start" value="5795"/>
+      <details key="end" value="5908"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.236" references="/0/returnResult/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.237" references="/0/returnResult/%/%">
+      <details key="start" value="5802"/>
+      <details key="end" value="5840"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.238" references="/0/returnResult/%/%.1">
+      <details key="start" value="5842"/>
+      <details key="end" value="5887"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.239" references="/0/returnResult/%/%.2">
+      <details key="start" value="5889"/>
+      <details key="end" value="5907"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.240" references="/0/returnResult/%/%.2/%/behavior">
+      <details key="start" value="5898"/>
+      <details key="end" value="5906"/>
       <details key="line" value="0"/>
     </eAnnotations>
   </ecore:EAnnotation>

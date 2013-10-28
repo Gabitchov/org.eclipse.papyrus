@@ -7,4 +7,11 @@
 
  	[CppOperationDeclaration()/]
 [/for]
+[for (b : Behavior | eAllContents(OpaqueBehavior)->select(visibility = visibilityFilter))]
+	[if (b.specification = null)]
+
+	// opaque behavior without specification (typically from state machine)
+	[CppBehaviorDeclaration()/]
+	[/if]
+[/for]
 [/template]
