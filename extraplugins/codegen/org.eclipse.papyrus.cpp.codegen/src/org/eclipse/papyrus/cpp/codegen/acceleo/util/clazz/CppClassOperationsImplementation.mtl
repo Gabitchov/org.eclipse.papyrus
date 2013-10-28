@@ -12,4 +12,12 @@
 
 [CppOperationImplementation()/]
 [/for]
+[for (b : OpaqueBehavior | eAllContents(OpaqueBehavior)->select(
+		(hasStereotype(C_Cpp::Inline) = inline)))]
+	[if (b.specification = null)]
+
+// opaque behavior without specification (typically from state machine)
+[CppBehaviorImplementation()/]
+	[/if]
+[/for]
 [/template]

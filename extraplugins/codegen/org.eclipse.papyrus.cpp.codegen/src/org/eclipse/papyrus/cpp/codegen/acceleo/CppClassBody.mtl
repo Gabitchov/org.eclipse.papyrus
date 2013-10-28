@@ -20,7 +20,7 @@
 [CppIncludePreBody()/]
 
 [constIncludeHFile()/]
-#include <[_package.getFullPath()/]/[class.name/].[getHeaderSuffix()/]>
+#include <[getNearestPackage().getFullPath()/]/[class.name/].[getHeaderSuffix()/]>
 
 [CppIncludeBody()/]
 

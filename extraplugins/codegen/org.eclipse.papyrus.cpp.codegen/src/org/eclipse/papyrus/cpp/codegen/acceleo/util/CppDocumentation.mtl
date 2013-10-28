@@ -17,6 +17,14 @@
 [/template]
 
 
+[template public CppBehaviorDoc(behavior : Behavior)]
+/**
+ * [getComments().replaceAll('\n', '\n * ')/]
+ * [for (ownedParameter)][CppParamDoc()/][/for]
+ */
+[/template]
+
+
 [template public CppParamDoc(parameter : Parameter)]
 @param [name/] [getComments().replaceAll('\n', '\n *    ')/]
 [/template]
