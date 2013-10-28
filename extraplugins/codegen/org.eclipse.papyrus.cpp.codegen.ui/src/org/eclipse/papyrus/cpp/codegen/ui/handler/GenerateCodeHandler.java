@@ -18,22 +18,20 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IContainer;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
-import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
-import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.cpp.codegen.ui.Activator;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -114,11 +112,7 @@ public class GenerateCodeHandler extends AbstractHandler {
 			}
 			IProject modelProject = root.getProject(uri.segment(1));
 			if(modelProject.exists()) {
-				String name = pe.getName();
-
 				// get the container for the current element
-				String headerSuffix = CppCodeGenUtils.getHeaderSuffix();
-				String bodySuffix = CppCodeGenUtils.getBodySuffix();
 				AcceleoDriver.clearErrors();
 				CppModelElementsCreator mec = new CppModelElementsCreator(modelProject);
 				IContainer srcPkg = mec.getContainer(pe);
@@ -129,20 +123,20 @@ public class GenerateCodeHandler extends AbstractHandler {
 						MessageDialog.openInformation(new Shell(), "Errors during code generation", //$NON-NLS-1$
 								"Errors occured during code generation. Please check the error log"); //$NON-NLS-1$
 					}
-					IFile cppFile = srcPkg.getFile(new Path(name + "." + bodySuffix)); //$NON-NLS-1$
-					IFile hFile = srcPkg.getFile(new Path(name + "." + headerSuffix)); //$NON-NLS-1$
-					if(!cppFile.exists()) {
-						return null;
-					}
-					if(cppFile != null) {
-						cppFile.refreshLocal(0, null);
-					}
-					if(hFile != null) {
-						hFile.refreshLocal(0, null);
-					}
-				} catch (CoreException coreException) {
+				}
+				catch (CoreException coreException) {
+					Activator.log.error(coreException);
 					return null;
 				}
+				finally {
+					// Refresh the container for the newly created files.  This needs to be done even
+					// during error because of the possibility for partial results.
+					try {
+						srcPkg.refreshLocal(IResource.DEPTH_INFINITE, null);
+					} catch(CoreException e) {
+						Activator.log.error(e);
+					}
+	 			}
 			}
 		}
 		return null;
