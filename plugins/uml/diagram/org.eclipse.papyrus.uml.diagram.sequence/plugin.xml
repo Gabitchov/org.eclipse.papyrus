@@ -2016,6 +2016,10 @@
                class="org.eclipse.papyrus.uml.diagram.sequence.providers.DurationConstraintContributionItem"
                id="org.eclipse.papyrus.sequence.duraitonconstraint.DynamicMenu">
          </dynamic>
+         <dynamic
+               class="org.eclipse.papyrus.uml.diagram.sequence.providers.DisplayBehaviorContributionItem"
+               id="org.eclipse.papyrus.uml.diagram.sequence.displayBehaviorMenu">
+         </dynamic>
       </menuContribution>
    </extension>          
    
