@@ -16,7 +16,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.papyrus.C_Cpp.Virtual;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.acceleo.AcceleoException;
-import org.eclipse.papyrus.cpp.profile.StUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -271,7 +271,7 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 		if(selectedEOwner instanceof Class) {
 
 			if(selectedBehavior.isAbstract()) {
-				if(!StUtils.isApplied(selectedBehavior, Virtual.class)) {
+				if(!StereotypeUtil.isApplied(selectedBehavior, Virtual.class)) {
 					return false;
 				}
 			}
@@ -280,7 +280,7 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 			if(!selectedBehavior.isAbstract()) {
 				return false;
 			}
-			if(StUtils.isApplied(selectedBehavior, Virtual.class)) {
+			if(StereotypeUtil.isApplied(selectedBehavior, Virtual.class)) {
 				return false;
 			}
 		}
@@ -301,7 +301,7 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 				if(selectedEOwner instanceof Class) {
 					// toggle Stereotypes pure virtual if element is abstract
 					if(selectedBehavior.isAbstract()) {
-						if(!StUtils.isApplied(selectedBehavior, Virtual.class)) {
+						if(!StereotypeUtil.isApplied(selectedBehavior, Virtual.class)) {
 							// selectedOperation.toggleStereotype("VirtualPure", true);
 							// selectedOperation.toggleStereotype("Virtual", false);
 						} else {
@@ -311,7 +311,7 @@ public class CppBehaviorPanel extends CppAbstractPanel {
 
 					// if element is abstract and has VirtualPure, set to Virtual only
 					if(!selectedBehavior.isAbstract()) {
-						if(StUtils.isApplied(selectedBehavior, Virtual.class)) {
+						if(StereotypeUtil.isApplied(selectedBehavior, Virtual.class)) {
 							// selectedOperation.toggleStereotype("VirtualPure", false);
 							// selectedOperation.toggleStereotype("Virtual", true);
 						} else {
