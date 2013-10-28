@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;

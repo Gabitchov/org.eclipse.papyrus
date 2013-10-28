@@ -30,6 +30,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;

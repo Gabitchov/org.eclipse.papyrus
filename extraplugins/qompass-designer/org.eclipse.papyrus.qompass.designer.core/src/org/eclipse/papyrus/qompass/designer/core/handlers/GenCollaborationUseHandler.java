@@ -1,26 +1,26 @@
 package org.eclipse.papyrus.qompass.designer.core.handlers;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.papyrus.FCM.Connector;
 import org.eclipse.papyrus.FCM.util.FCMUtil;
-import org.eclipse.ui.IViewPart;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * currently unused
- * 
- * @author ansgar
+ * TODO: for testing, currently unused
  */
+@Deprecated
 public class GenCollaborationUseHandler extends CmdHandler {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.IViewActionDelegate#init(org.eclipse.ui.IViewPart)
+	/**
+	 * {@inheritDoc}
 	 */
-	public void init(IViewPart view) {
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		return null;
 	}
-
+	
+	/**
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -29,7 +29,7 @@ public class GenCollaborationUseHandler extends CmdHandler {
 	public void run(IAction action) {
 		updateSelectedEObject();
 
-		org.eclipse.uml2.uml.Connector selectedConnector = (org.eclipse.uml2.uml.Connector)getSelectedEObject();
+		org.eclipse.uml2.uml.Connector selectedConnector = (org.eclipse.uml2.uml.Connector)selectedEObject;
 		Connector fcmConn = UMLUtil.getStereotypeApplication(selectedConnector, Connector.class);
 		FCMUtil.generateCollaborationUse(fcmConn);
 	}

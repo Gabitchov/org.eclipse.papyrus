@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.qompass.designer.core.dialogs;
+package org.eclipse.papyrus.infra.widgets.toolbox.utils;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.SWT;
@@ -24,65 +24,71 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.dialogs.FilteredList;
 
-
+/**
+ * Some static utility functions in the context of dialogs
+ */
 public class DialogUtils {
 
+	/**
+	 * Create a filtered list that automatically uses the available space (@see createFillGridData)
+	 * and a width & height hint
+	 * 
+	 * @param parent the parent composite 
+	 * @param labelProvider the label provider for the filtered list
+	 * @param width a with hint
+	 * @param height a height hint
+	 * @param style the style of the filtered list
+	 * @return the created list
+	 */
 	public static FilteredList createFilteredList(Composite parent, ILabelProvider labelProvider,
 			int width, int height, int style) {
 		FilteredList list = new FilteredList(parent, style, labelProvider,
 				true, true, true);
 
-		GridData data = new GridData();
+		GridData data = createFillGridData();
 		data.widthHint = width;
-		// data.heightHint = convertHeightInCharsToPixels(height);
 		data.heightHint = height;
-		data.grabExcessVerticalSpace = true;
-		data.grabExcessHorizontalSpace = true;
-		data.horizontalAlignment = GridData.FILL;
-		data.verticalAlignment = GridData.FILL;
 		list.setLayoutData(data);
 		list.setFont(parent.getFont());
 		return list;
 	}
 
-	/*
-	 * public static List createList (Composite parent, ILabelProvider labelProvider,
-	 * int width, int height, int style)
-	 * {
-	 * style = SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | style;
+	/**
+	 * Create a composite containing a label and a combo box within a given parent composite
+	 * The label is positioned left of the button
 	 * 
-	 * List list = new List (parent, style);
-	 * 
-	 * GridData data = new GridData();
-	 * data.widthHint = width;
-	 * // data.heightHint = convertHeightInCharsToPixels(height);
-	 * data.heightHint = height;
-	 * data.grabExcessVerticalSpace = true;
-	 * data.grabExcessHorizontalSpace = true;
-	 * data.horizontalAlignment = GridData.FILL;
-	 * data.verticalAlignment = GridData.FILL;
-	 * list.setLayoutData(data);
-	 * list.setFont (parent.getFont());
-	 * return list;
-	 * }
+	 * @param parent the parent composite
+	 * @param label the text of the label
+	 * @param comboFlags SWT flags for the combo box
+	 * @param compFlags SWT flags for the created composite (that contains combo and label)
+	 * @return
 	 */
-
-	public static Combo createComboWithText(Composite parent, String label, int flags, int compFlags) {
+	public static Combo createComboWithText(Composite parent, String label, int comboFlags, int compFlags) {
 		Composite comboComposite = new Composite(parent, compFlags);
 		comboComposite.setLayout(new GridLayout(2, false));
 		Label comboLabel = new Label(comboComposite, SWT.NONE);
 		comboLabel.setText(label);
-		Combo combo = new Combo(comboComposite, flags);
+		Combo combo = new Combo(comboComposite, comboFlags);
 		comboComposite.pack();
 		return combo;
 	}
 
-	public static Button createButtonWithText(Composite parent, String label, int flags, int compFlags) {
+	/**
+	 * Create a composite containing a label and a button within a given parent composite
+	 * The label is positioned left of the combo box
+	 * 
+	 * @param parent the parent composite
+	 * @param label the text of the label
+	 * @param buttonFlags SWT flags for the button
+	 * @param compFlags SWT flags for the created composite (that contains combo and label)
+	 * @return
+	 */
+	public static Button createButtonWithText(Composite parent, String label, int buttonFlags, int compFlags) {
 		Composite buttonComposite = new Composite(parent, compFlags);
 		buttonComposite.setLayout(new GridLayout(2, false));
 		Label buttonLabel = new Label(buttonComposite, SWT.NONE);
 		buttonLabel.setText(label);
-		Button button = new Button(buttonComposite, flags);
+		Button button = new Button(buttonComposite, buttonFlags);
 		buttonComposite.pack();
 		return button;
 	}

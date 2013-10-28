@@ -11,12 +11,11 @@ package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.dialogs.ConnectorSelectionDialog;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
@@ -36,8 +35,7 @@ public class SelectConnectorHandler extends CmdHandler {
 	@Override
 	public boolean isEnabled() {
 		updateSelectedEObject();
-		EObject selectedObj = getSelectedEObject();
-		if((selectedObj instanceof Connector) || (selectedObj instanceof Property)) {
+		if((selectedEObject instanceof Connector) || (selectedEObject instanceof Property)) {
 			return true;
 		}
 		return false;
@@ -50,23 +48,23 @@ public class SelectConnectorHandler extends CmdHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// feature is a common superclass of Connector and Property
-		if(!(getSelectedEObject() instanceof Feature)) {
+		if(!(selectedEObject instanceof Feature)) {
 			return null;
 		}
 		// get selected connector
-		final Feature selectedConnector = (Feature)getSelectedEObject();
+		final Feature selectedFeature = (Feature)selectedEObject;
 		Shell shell = new Shell();
 
 		// 1. select possible connectors according to port types
 		// (only show compatible connectors check-box?)
 		// 2. select implementation group according to connector type
 
-		Model model = selectedConnector.getModel();
+		Model model = selectedFeature.getModel();
 
 		ConnectorSelectionDialog elementSelector =
-			new ConnectorSelectionDialog(shell, model, selectedConnector);
+			new ConnectorSelectionDialog(shell, model, selectedFeature);
 		elementSelector.setTitle("Select connector");
-		elementSelector.setMessage("Select an implementation for connector " + selectedConnector.getName());
+		elementSelector.setMessage("Select an implementation for connector " + selectedFeature.getName());
 		elementSelector.open();
 		if(elementSelector.getReturnCode() == IDialogConstants.OK_ID) {
 			final Object[] result = elementSelector.getResult();
@@ -74,7 +72,7 @@ public class SelectConnectorHandler extends CmdHandler {
 				CommandSupport.exec("Select connector", event, new Runnable() {
 
 					public void run() {
-						org.eclipse.papyrus.FCM.Connector fcmSelectedConnector = StereotypeUtil.applyApp(selectedConnector, org.eclipse.papyrus.FCM.Connector.class);
+						org.eclipse.papyrus.FCM.Connector fcmSelectedConnector = StereotypeUtil.applyApp(selectedFeature, org.eclipse.papyrus.FCM.Connector.class);
 						InteractionComponent newConnType = UMLUtil.getStereotypeApplication((Class)result[0], InteractionComponent.class);
 						fcmSelectedConnector.setIc(newConnType);
 					}

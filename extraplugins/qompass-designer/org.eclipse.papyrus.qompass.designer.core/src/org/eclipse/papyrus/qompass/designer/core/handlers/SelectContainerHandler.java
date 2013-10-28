@@ -11,7 +11,6 @@ package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
@@ -35,13 +34,12 @@ public class SelectContainerHandler extends CmdHandler {
 	@Override
 	public boolean isEnabled() {
 		updateSelectedEObject();
-		EObject selectedObj = getSelectedEObject();
-		if((selectedObj instanceof Class) ||
-			(selectedObj instanceof InstanceSpecification)) {
+		if((selectedEObject instanceof Class) ||
+			(selectedEObject instanceof InstanceSpecification)) {
 			return true;
 		}
-		if(selectedObj instanceof Property) {
-			Type type = ((Property)selectedObj).getType();
+		if(selectedEObject instanceof Property) {
+			Type type = ((Property)selectedEObject).getType();
 			if(type instanceof Class) {
 				return true;
 			}
@@ -55,11 +53,11 @@ public class SelectContainerHandler extends CmdHandler {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		if(!(getSelectedEObject() instanceof NamedElement)) {
+		if(!(selectedEObject instanceof NamedElement)) {
 			return null;
 		}
 
-		NamedElement ne = (NamedElement)getSelectedEObject();
+		NamedElement ne = (NamedElement)selectedEObject;
 		final Shell shell = new Shell();
 
 		if(ne instanceof Property) {

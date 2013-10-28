@@ -4,23 +4,22 @@
  * with the CEA.
  * 
  * Contributors:
- *    CEA LIST - initial API and implementation
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.dialogs.AllocationDialog;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Package;
 
@@ -34,9 +33,8 @@ public class AllocateHandler extends CmdHandler {
 	 */
 	public boolean isEnabled() {
 		updateSelectedEObject();
-		EObject selectedObj = getSelectedEObject();
-		if(selectedObj instanceof Package) {
-			return (StereotypeUtil.isApplied((Package)selectedObj, DeploymentPlan.class));
+		if(selectedEObject instanceof Package) {
+			return (StereotypeUtil.isApplied((Package)selectedEObject, DeploymentPlan.class));
 		}
 		return false;
 	}
@@ -46,11 +44,11 @@ public class AllocateHandler extends CmdHandler {
 	 */
 	public Object execute(ExecutionEvent event)
 		throws ExecutionException {
-		if(!(getSelectedEObject() instanceof Package)) {
+		if(!(selectedEObject instanceof Package)) {
 			return null;
 		}
 
-		final Package cdp = (Package)getSelectedEObject();
+		final Package cdp = (Package)selectedEObject;
 		final Shell shell = new Shell();
 
 		// org.eclipse.papyrus.qompass.designer.vsl.ParseVSL.test();

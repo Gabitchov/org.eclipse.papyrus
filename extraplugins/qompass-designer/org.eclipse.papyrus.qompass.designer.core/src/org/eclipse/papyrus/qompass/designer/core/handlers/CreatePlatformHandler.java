@@ -16,7 +16,6 @@ package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
@@ -37,8 +36,7 @@ public class CreatePlatformHandler extends CmdHandler {
 	@Override
 	public boolean isEnabled() {
 		updateSelectedEObject();
-		EObject selectedObj = getSelectedEObject();
-		if(selectedObj instanceof Class) {
+		if(selectedEObject instanceof Class) {
 			return true;
 		}
 		return false;
@@ -48,10 +46,10 @@ public class CreatePlatformHandler extends CmdHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		if(!(getSelectedEObject() instanceof Class)) {
+		if(!(selectedEObject instanceof Class)) {
 			return null;
 		}
-		final Class selectedComposite = (Class)getSelectedEObject();
+		final Class selectedComposite = (Class)selectedEObject;
 
 		CommandSupport.exec("Create platform model", event, new Runnable() { //$NON-NLS-1$
 
