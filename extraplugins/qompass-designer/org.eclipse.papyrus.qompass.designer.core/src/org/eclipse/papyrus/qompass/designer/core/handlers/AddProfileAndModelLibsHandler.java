@@ -70,8 +70,7 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 	@Override
 	public boolean isEnabled() {
 		updateSelectedEObject();
-		EObject selectedObj = getSelectedEObject();
-		if(selectedObj instanceof Package) {
+		if(selectedEObject instanceof Package) {
 			return true;
 		}
 		return false;
@@ -149,10 +148,10 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		if(!(getSelectedEObject() instanceof Package)) {
+		if(!(selectedEObject instanceof Package)) {
 			return null;
 		}
-		final Package selectedPkg = (Package)getSelectedEObject();
+		final Package selectedPkg = (Package)selectedEObject;
 
 		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(selectedPkg);
 		final ResourceSet resourceSet = selectedPkg.eResource().getResourceSet();

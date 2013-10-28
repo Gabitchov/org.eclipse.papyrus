@@ -16,17 +16,16 @@ package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.sync.CompImplSync;
 import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -44,17 +43,18 @@ public class SyncHandler extends CmdHandler {
 	@Override
 	public boolean isEnabled() {
 		updateSelectedEObject();
-		EObject selectedObj = getSelectedEObject();
-		if(selectedObj instanceof Property) {
-			selectedObj = ((Property)selectedObj).getType();
+		// if a property is selected, use the associated type
+		if(selectedEObject instanceof Property) {
+			selectedEObject = ((Property)selectedEObject).getType();
 		}
-		if(selectedObj instanceof Class) {
-			if(Utils.isComponent((Class)selectedObj)) {
+		
+		if(selectedEObject instanceof Class) {
+			if(Utils.isComponent((Class)selectedEObject)) {
 				return true;
 			}
 		}
-		if(selectedObj instanceof Package) {
-			if(StereotypeUtil.isApplied((Package)selectedObj, DeploymentPlan.class)) {
+		else if(selectedEObject instanceof Package) {
+			if(StereotypeUtil.isApplied((Package)selectedEObject, DeploymentPlan.class)) {
 				return true;
 			}
 		}
@@ -66,13 +66,13 @@ public class SyncHandler extends CmdHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		//only one model is selected
-		EObject selectedObj = getSelectedEObject();
-		if(selectedObj instanceof Property) {
-			selectedObj = ((Property)selectedObj).getType();
+		// if a property is selected, use the associated type
+		if(selectedEObject instanceof Property) {
+			selectedEObject = ((Property)selectedEObject).getType();
 		}
-		if(selectedObj instanceof Class) {
-			final Class selectedClass = (Class)selectedObj;
+		
+		if(selectedEObject instanceof Class) {
+			final Class selectedClass = (Class)selectedEObject;
 			if(Utils.isCompImpl(selectedClass)) {
 				CommandSupport.exec("Synchronize component via implementation", event, new RunnableWithResult() {
 					
@@ -103,8 +103,8 @@ public class SyncHandler extends CmdHandler {
 				});
 			}
 		}
-		else if(selectedObj instanceof Package) {
-			final Package selectedPkg = (Package)selectedObj;
+		else if(selectedEObject instanceof Package) {
+			final Package selectedPkg = (Package)selectedEObject;
 			CommandSupport.exec("Synchronize deployment plan", event, new RunnableWithResult() {
 
 				public CommandResult run() {

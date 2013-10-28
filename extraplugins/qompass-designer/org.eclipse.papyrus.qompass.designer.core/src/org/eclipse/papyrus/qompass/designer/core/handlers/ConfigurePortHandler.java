@@ -11,7 +11,6 @@ package org.eclipse.papyrus.qompass.designer.core.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
@@ -35,9 +34,8 @@ public class ConfigurePortHandler extends CmdHandler {
 	@Override
 	public boolean isEnabled() {
 		updateSelectedEObject();
-		EObject selectedObj = getSelectedEObject();
-		if((selectedObj instanceof Class) ||
-			(selectedObj instanceof Port)) {
+		if((selectedEObject instanceof Class) ||
+			(selectedEObject instanceof Port)) {
 			return true;
 		}
 		return false;
@@ -49,11 +47,11 @@ public class ConfigurePortHandler extends CmdHandler {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		if(!(getSelectedEObject() instanceof NamedElement)) {
+		if(!(selectedEObject instanceof NamedElement)) {
 			return null;
 		}
 
-		final NamedElement element = (NamedElement)getSelectedEObject();
+		final NamedElement element = (NamedElement)selectedEObject;
 		final Shell shell = new Shell();
 
 		// 1. select possible connectors according to port types
