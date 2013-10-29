@@ -249,6 +249,13 @@
 		properties="isUMLModel, isUMLProfile"
 		type="org.eclipse.jface.viewers.ISelection">
 	</propertyTester>
+ <propertyTester
+       class="org.eclipse.papyrus.uml.diagram.common.util.UMLModelTester"
+       id="org.eclipse.papyrus.UMLModelTester"
+       namespace="org.eclipse.papyrus.UMLModelTester"
+       properties="isUMLModel, isUMLProfile"
+       type="org.eclipse.ui.IWorkbenchPart">
+ </propertyTester>
 </extension>
 
 <!-- Reusable test definitions verifying:
@@ -259,47 +266,25 @@
 		point="org.eclipse.core.expressions.definitions">
 	
 	<definition id="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel">
-		<and>
-		
-		<with variable="activeEditorId">
-			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
-		</with>
-  <with
-        variable="activeEditor">
-     <adapt
-           type="org.eclipse.jface.viewers.ISelection">
-        <test
-              forcePluginActivation="true"
-              property="org.eclipse.papyrus.UMLSelectionTester.isUMLModel"
-              value="true">
-        </test>
-     </adapt>
-  </with>
-
-		
-		</and>
+    <with
+          variable="activePart">
+       <test
+             forcePluginActivation="true"
+             property="org.eclipse.papyrus.UMLModelTester.isUMLModel"
+             value="true">
+       </test>
+    </with>
 	</definition>
 	
 	<definition id="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile">
-		<and>
-		
-		<with variable="activeEditorId">
-			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
-		</with>
-
-  <with
-        variable="activeEditor">
-     <adapt
-           type="org.eclipse.jface.viewers.ISelection">
-        <test
-              forcePluginActivation="true"
-              property="org.eclipse.papyrus.UMLSelectionTester.isUMLProfile"
-              value="true">
-        </test>
-     </adapt>
-  </with>
-		
-		</and>
+    <with
+          variable="activePart">
+       <test
+             forcePluginActivation="true"
+             property="org.eclipse.papyrus.UMLModelTester.isUMLProfile"
+             value="true">
+       </test>
+    </with>
 	</definition>	
 </extension>
 

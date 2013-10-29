@@ -13,12 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.navigation;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -33,11 +35,12 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.widgets.toolbox.dialog.InformationDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * This command handler will try to create a diagram on the currently selected
@@ -60,13 +63,8 @@ public abstract class CreateDiagramWithNavigationHandler extends AbstractHandler
 		this.creationCondition = creationCondition;
 	}
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		NavigableElement navElement = getNavigableElementWhereToCreateDiagram();
+		NavigableElement navElement = getNavigableElementWhereToCreateDiagram(event);
 		ServicesRegistry registry;
 		try {
 			registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
@@ -84,27 +82,35 @@ public abstract class CreateDiagramWithNavigationHandler extends AbstractHandler
 		return null;
 	}
 
-	private NavigableElement getNavigableElementWhereToCreateDiagram() {
-		EObject selectedElement = getSelectedElement();
+	private NavigableElement getNavigableElementWhereToCreateDiagram(ExecutionEvent event) {
+		ISelection selection = HandlerUtil.getCurrentSelection(event);
+		if(selection.isEmpty()) {
+			return null;
+		}
 
-		if(selectedElement != null) {
-			// First check if the current element can host the requested diagram
-			if(creationCondition.create(selectedElement)) {
-				return new ExistingNavigableElement(selectedElement, null);
-			} else {
-				List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(selectedElement);
-				// this will sort elements by navigation depth
-				Collections.sort(navElements);
+		if(selection instanceof IStructuredSelection) {
+			EObject selectedElement = EMFHelper.getEObject(((IStructuredSelection)selection).getFirstElement());
 
-				for(NavigableElement navElement : navElements) {
-					// ignore existing elements because we want a hierarchy to
-					// be created if it is not on the current element
-					if(navElement instanceof CreatedNavigableElement && creationCondition.create(navElement.getElement())) {
-						return navElement;
+			if(selectedElement != null) {
+				// First check if the current element can host the requested diagram
+				if(creationCondition.create(selectedElement)) {
+					return new ExistingNavigableElement(selectedElement, null);
+				} else {
+					List<NavigableElement> navElements = NavigationHelper.getInstance().getAllNavigableElements(selectedElement);
+					// this will sort elements by navigation depth
+					Collections.sort(navElements);
+
+					for(NavigableElement navElement : navElements) {
+						// ignore existing elements because we want a hierarchy to
+						// be created if it is not on the current element
+						if(navElement instanceof CreatedNavigableElement && creationCondition.create(navElement.getElement())) {
+							return navElement;
+						}
 					}
 				}
 			}
 		}
+
 		return null;
 	}
 
@@ -126,15 +132,6 @@ public abstract class CreateDiagramWithNavigationHandler extends AbstractHandler
 		}
 	}
 
-	private EObject getSelectedElement() {
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(selection instanceof IStructuredSelection) {
-			Object obj = ((IStructuredSelection)selection).getFirstElement();
-			return resolveSemanticObject(obj);
-		}
-		return null;
-	}
-
 	/**
 	 * Resolve semantic element
 	 * 
@@ -152,6 +149,25 @@ public abstract class CreateDiagramWithNavigationHandler extends AbstractHandler
 			return (EObject)businessObject;
 		}
 		return null;
+	}
+
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		if(evaluationContext instanceof IEvaluationContext) {
+			Object selectionVariable = ((IEvaluationContext)evaluationContext).getDefaultVariable();
+
+			if(selectionVariable instanceof Collection<?>) {
+				List<?> selection = (selectionVariable instanceof List<?>) ? (List<?>)selectionVariable : new java.util.ArrayList<Object>((Collection<?>)selectionVariable);
+				if(selection.size() != 1) {
+					setBaseEnabled(false);
+					return;
+				}
+
+				EObject target = EMFHelper.getEObject(selection.get(0));
+				setBaseEnabled(creationCondition.create(target));
+			}
+		}
+		super.setEnabled(evaluationContext);
 	}
 
 }

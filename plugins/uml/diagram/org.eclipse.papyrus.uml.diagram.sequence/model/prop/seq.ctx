@@ -14,10 +14,13 @@
       <widget href="ui/InteractionOperandGuardVisibility.xwt#/"/>
     </sections>
     <sections name="LinkRoute" sectionFile="ui/LinkRoute.xwt">
-		<widget href="ui/LinkRoute.xwt#/"/>
-	</sections>
+      <widget href="ui/LinkRoute.xwt#/"/>
+    </sections>
     <sections name="GateNameSection" sectionFile="ui/GateNameSection.xwt">
       <widget href="ui/GateNameSection.xwt#/"/>
+    </sections>
+    <sections name="DisplayBehaviorSection" sectionFile="ui/DisplayBehaviorSection.xwt">
+      <widget href="ui/DisplayBehaviorSection.xwt#/"/>
     </sections>
   </tabs>
   <views name="CombinedFragmentTitle" sections="//@tabs.0/@sections.0" automaticContext="true">
@@ -46,15 +49,21 @@
     </constraints>
   </views>
   <views name="LinkRoute" sections="//@tabs.0/@sections.4">
-	<constraints xsi:type="constraints:SimpleConstraint" name="isMLinkRoute">
-		<constraintType href="ppe:/environment/org.eclipse.papyrus.uml.diagram.sequence/model/prop/Environment.xmi#//@constraintTypes.0"/>
-		<properties xsi:type="constraints:ValueProperty" name="sourcePart" value="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart"/>
-	</constraints>
- </views>
+    <constraints xsi:type="constraints:SimpleConstraint" name="isMLinkRoute">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.diagram.sequence/model/prop/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="sourcePart" value="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart"/>
+    </constraints>
+  </views>
   <views name="GateName" sections="//@tabs.0/@sections.5">
     <constraints xsi:type="constraints:SimpleConstraint" name="isGate">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="Gate"/>
+    </constraints>
+  </views>
+  <views name="DisplayBehavior" sections="//@tabs.0/@sections.6">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isBehaviorExecutionSpecification">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="BehaviorExecutionSpecification"/>
     </constraints>
   </views>
   <dataContexts name="Preference" label="Preference">
@@ -87,13 +96,17 @@
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.diagram.sequence/model/prop/Environment.xmi#//@modelElementFactories.2"/>
   </dataContexts>
   <dataContexts name="LinkRoute" label="Link Route">
-	<elements name="Routing">
-		<properties name="style"/>
-	</elements>
-	<modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.diagram.sequence/model/prop/Environment.xmi#//@modelElementFactories.4"/>
+    <elements name="Routing">
+      <properties name="style"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.diagram.sequence/model/prop/Environment.xmi#//@modelElementFactories.4"/>
   </dataContexts>
   <dataContexts name="Gate" label="Gate">
     <properties name="showName" label="Show Name" type="Boolean" description="Show name on diagram."/>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.diagram.sequence/model/prop/Environment.xmi#//@modelElementFactories.3"/>
+  </dataContexts>
+  <dataContexts name="Behavior" label="Behavior">
+    <properties name="displayBehavior" label="Display" type="Boolean" description="Display Behavior Label."/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.diagram.sequence/model/prop/Environment.xmi#//@modelElementFactories.5"/>
   </dataContexts>
 </contexts:Context>

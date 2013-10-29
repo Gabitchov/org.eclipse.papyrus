@@ -14,10 +14,12 @@ package org.eclipse.papyrus.infra.gmfdiag.hyperlink.navigation;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
@@ -72,7 +74,14 @@ public class DiagramNavigableElement implements NavigableElement {
 	}
 
 	public Image getImage() {
-		// TODO Auto-generated method stub
+		if(targetDiagram != null) {
+			try {
+				ILabelProvider labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, targetDiagram).getLabelProvider();
+				return labelProvider.getImage(targetDiagram);
+			} catch (ServiceException ex) {
+				return null;
+			}
+		}
 		return null;
 	}
 
