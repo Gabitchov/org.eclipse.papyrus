@@ -16,9 +16,13 @@ package org.eclipse.papyrus.uml.diagram.symbols.provider;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
+import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
+import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -29,13 +33,17 @@ import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ProviderNotificationManager;
+import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.diagram.symbols.Activator;
 import org.eclipse.papyrus.uml.diagram.symbols.IPapyrusInternalProfileConstants;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener.StereotypeCustomNotification;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.w3c.dom.Document;
 
 /**
  * This provider is linked to the {@link ShapeService}. It returns the shapes for a given typed element corresponding to the stereotypes applied on
@@ -63,6 +71,34 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 						return Arrays.asList(RenderedImageFactory.getInstance(url));
 					} catch (MalformedURLException e1) {
 						Activator.log.error(e1);
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+
+	public List<SVGOMDocument> getSVGOMDocument(EObject view) {
+		Type type = getType(view);
+		String path = getSymbolPath(type);
+		if(path != null && path.length() > 0) {
+			URL url;
+			try {
+				url = new URL(path);
+				SVGOMDocument document=getSVGDocument(path);
+				if(document!=null){
+					return Arrays.asList(document);
+				}
+				return Arrays.asList(getSVGDocument(path));
+			} catch (MalformedURLException e) {
+				URI typeResourceURI = type.eResource().getURI();
+				if(typeResourceURI != null) {
+					String workspaceRelativeFolderPath = typeResourceURI.trimSegments(1).toPlatformString(true);
+					String newPath = "platform:/resource/" + workspaceRelativeFolderPath + File.separatorChar + path;
+					SVGOMDocument document=getSVGDocument(newPath);
+					if(document!=null){
+						return Arrays.asList(document);
 					}
 				}
 			}

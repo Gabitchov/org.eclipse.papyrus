@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
@@ -144,6 +145,18 @@ public class ActorShapeProvider extends AbstractShapeProvider {
 				listener.notifyChanged(notification);
 			}
 		}
+	}
+
+	public List<SVGOMDocument> getSVGOMDocument(EObject view) {
+		if(providesShapes(view)) {
+			String path ="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/actor.svg"; //$NON-NLS-1$
+			SVGOMDocument document=getSVGDocument(path);
+			if(document==null){
+				return null;
+			}
+			return Arrays.asList(getSVGDocument(path));
+		}
+		return null;
 	}
 
 }

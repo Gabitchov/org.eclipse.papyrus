@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.ecore.EObject;
@@ -68,6 +69,26 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 		List<List<RenderedImage>> listOfListOfImages = (List<List<RenderedImage>>)execute(ExecutionStrategy.REVERSE, new GetShapesForViewOperation(view));
 		List<RenderedImage> images = new ArrayList<RenderedImage>();
 		for(List<RenderedImage> listOfImages : listOfListOfImages) {
+			if(listOfImages != null && !listOfImages.isEmpty()) {
+				images.addAll(listOfImages);
+			}
+		}
+		return images;
+	}
+	
+	
+	/**
+	 * Returns the shape to be displayed
+	 * 
+	 * @param view
+	 *        the EObject for which the shape is computed
+	 * @return the shape to be displayed
+	 */
+	public List<SVGOMDocument> getSVGDocumentToDisplay(EObject view) {
+		@SuppressWarnings("unchecked")
+		List<List<SVGOMDocument>> listOfListOfImages = (List<List<SVGOMDocument>>)execute(ExecutionStrategy.REVERSE, new GetSVGDocumentForViewOperation(view));
+		List<SVGOMDocument> images = new ArrayList<SVGOMDocument>();
+		for(List<SVGOMDocument> listOfImages : listOfListOfImages) {
 			if(listOfImages != null && !listOfImages.isEmpty()) {
 				images.addAll(listOfImages);
 			}

@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
+import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -23,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.symbols.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
+import org.w3c.dom.Document;
 
 /**
  * This provider is linked to the {@link ShapeService}. It returns the shapes for a given element corresponding to the stereotypes applied on the
@@ -96,6 +100,35 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 		return false;
 	}
 
+	public List<SVGOMDocument> getSVGOMDocument(EObject view) {
+		if(!(view instanceof View)) {
+			return null;
+		}
+		EObject element = ((View)view).getElement();
+		if(element instanceof Element) {
+			List<SVGOMDocument> images = new ArrayList<SVGOMDocument>();
+			// it has already been checked that 
+			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View)view);
+			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
+			while(tokenizer.hasMoreTokens()) {
+				String stereotypeName = tokenizer.nextToken();
+				Stereotype stereotype = ((Element)element).getAppliedStereotype(stereotypeName);
+				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(((Element)element), stereotype, SHAPE_CONSTANT);
+				if(icon != null) {
+					if(icon.getLocation() != "" && icon.getLocation() != null) {
+						SVGOMDocument document=getSVGDocument(icon.getLocation());
+						if(document!=null){
+							images.add(document);
+						}
+					}
+				}
+			}
+			return images;
+		}
+
+		return null;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -166,6 +199,8 @@ public class StereotypedElementShapeProvider extends AbstractShapeProvider {
 				}
 			}
 		}
+
+
 	}
 
 }

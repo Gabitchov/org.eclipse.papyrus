@@ -45,7 +45,13 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.core.databinding.property;bundle-version="1.4.200",
  org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="1.4.1",
  org.eclipse.core.expressions,
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1"
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
+  org.apache.batik.dom.svg,
+ org.apache.batik.util,
+ org.apache.batik.svggen,
+ org.apache.batik.dom,
+ org.w3c.dom.svg,
+ org.apache.batik.css
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2

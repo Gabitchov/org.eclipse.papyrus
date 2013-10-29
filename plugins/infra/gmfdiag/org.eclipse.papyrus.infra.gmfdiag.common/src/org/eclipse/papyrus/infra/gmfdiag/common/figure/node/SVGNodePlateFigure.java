@@ -10,16 +10,18 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.figure.node;
+package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
 
 import java.util.ArrayList;
 
 import org.apache.batik.dom.svg.AbstractSVGPathSegList.SVGPathSegMovetoLinetoItem;
 import org.apache.batik.dom.svg.SVGOMPathElement;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
 import org.w3c.dom.Element;
 import org.w3c.dom.svg.SVGAnimatedLength;
 import org.w3c.dom.svg.SVGDocument;
@@ -37,6 +39,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 
 	protected SVGPathSegList pathSegList=null;
 	protected SVGDocument svgDocument=null;
+	protected DefaultSizeNodeFigure defaultNodePlate;
 
 
 	/**
@@ -44,12 +47,31 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	 * @param svgDocument the SVG document
 	 */
 	public void setSVGDocument(SVGDocument svgDocument) {
-		this.svgDocument = svgDocument;
-		Element path=svgDocument.getElementById("PapyrusPath");
-		if( path!=null){
-			SVGOMPathElement svgPath=(SVGOMPathElement)path;
-			SVGPathSegList segmentList=svgPath.getPathSegList();
-			this.setSegemntList(segmentList);
+		if(svgDocument==null){
+			this.svgDocument = null;
+			this.pathSegList=null;
+		}
+		else{
+			this.svgDocument = svgDocument;
+			Element path=svgDocument.getElementById("PapyrusPath");
+			if( path!=null){
+				SVGOMPathElement svgPath=(SVGOMPathElement)path;
+				SVGPathSegList segmentList=svgPath.getPathSegList();
+				this.setSegemntList(segmentList);
+			}
+		}
+	}
+	
+	/**
+	 * set the node plate that is wrapped by it.
+	 * @param defaultNodePlate
+	 */
+	public void setDefaultNodePlate(IFigure defaultNodePlate){
+		if( defaultNodePlate instanceof DefaultSizeNodeFigure){
+			this.defaultNodePlate=(DefaultSizeNodeFigure)defaultNodePlate;
+		}
+		if( defaultNodePlate instanceof ICustomNodePlate){
+			((ICustomNodePlate)this.defaultNodePlate).setSVGNodePlateContainer(this);
 		}
 	}
 
@@ -72,10 +94,39 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 		this.pathSegList= pathSegList;
 	}
 
+	public boolean containShapeCompatment(){
+		if( this.getChildren().size()>0&& this.getChildren().get(0) instanceof IFigure){
+			IFigure primaryShape= (IFigure)this.getChildren().get(0);
+			for(Object subFigure : primaryShape.getChildren()) {
+				if(subFigure instanceof ScalableCompartmentFigure ){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public IFigure getShapeCompatment(){
+		if( this.getChildren().size()>0&& this.getChildren().get(0) instanceof IFigure){
+			IFigure primaryShape= (IFigure)this.getChildren().get(0);
+			for(Object subFigure : primaryShape.getChildren()) {
+				if(subFigure instanceof ScalableCompartmentFigure ){
+					return (IFigure)subFigure;
+				}
+			}
+		}
+		return null;
+	}
+
+
 	// This returns as the anchoring area only the central line
 	@Override
 	public PointList getPolygonPoints() {
 		if (this.pathSegList==null){
+			if (defaultNodePlate!=null){
+				defaultNodePlate.setBounds(this.getBounds());
+				return defaultNodePlate.getPolygonPoints();
+			}
 			return super.getPolygonPoints();
 		}
 		double svgWidth=0;
@@ -88,10 +139,10 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 				SVGLength svgWidthLength =widthALength.getBaseVal();
 				SVGLength svgHeightLength =heightALength.getBaseVal();
 				if( svgWidthLength!=null &&svgHeightLength!=null){
-				//	if( width.getUnitType()==width.SVG_LENGTHTYPE_PX){
-						svgWidth= svgWidthLength.getValueInSpecifiedUnits();
-						svgHeight= svgHeightLength.getValueInSpecifiedUnits();
-				//	}
+					//	if( width.getUnitType()==width.SVG_LENGTHTYPE_PX){
+					svgWidth= svgWidthLength.getValueInSpecifiedUnits();
+					svgHeight= svgHeightLength.getValueInSpecifiedUnits();
+					//	}
 				}
 			}
 		}
@@ -111,7 +162,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 				String letter=  linetoItem.getPathSegTypeAsLetter();
 				float x= (float)linetoItem.getX();
 				float y=(float) linetoItem.getY();
-			//	System.out.println("value="+value +" letter="+letter+ " x="+ x+ " y="+y);
+				//	System.out.println("value="+value +" letter="+letter+ " x="+ x+ " y="+y);
 				if( letter.equals("M")){
 					currentAbsoluteSVGPositionX=x;
 					currentAbsoluteSVGPositionY=y;
@@ -155,8 +206,14 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 		}
 		//System.out.println("Size of the SVG figure is= "+maxHeight +" "+maxHeight);
 		PointList points = new PointList(5);
-		Rectangle anchorableRectangle = getHandleBounds();
+		Rectangle anchorableRectangle=null;
+		if(containShapeCompatment()){
+			anchorableRectangle =getShapeCompatment().getBounds();
+		}
 
+		else{
+			anchorableRectangle = getHandleBounds();
+		}
 		double ratioX=anchorableRectangle.width/maxWitdh;
 		double ratioY=anchorableRectangle.height/maxHeight;
 		//PackageFigure packageFigure = getPackageFigure();

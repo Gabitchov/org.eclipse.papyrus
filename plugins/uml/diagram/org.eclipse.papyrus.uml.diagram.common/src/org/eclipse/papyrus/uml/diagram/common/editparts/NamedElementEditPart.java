@@ -13,12 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
+import org.apache.batik.dom.svg.SVGOMDocument;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.FollowSVGSymbolEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.NameDisplayEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
@@ -31,6 +38,8 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public abstract class NamedElementEditPart extends UMLNodeEditPart implements IUMLNamedElementEditPart {
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -68,6 +77,7 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 			refreshIconNamedLabel();
 			refreshFontColor();
 			refreshLabelDisplay();
+			refreshSVGPath();
 		}
 	}
 
@@ -86,6 +96,8 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 			getNodeNamedElementFigure().restoreNameLabel();
 		}
 	}
+
+
 
 	/**
 	 * A method to specify the labels to be update when the font is refreshed.
@@ -134,6 +146,13 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(NameDisplayEditPolicy.NAME_DISPLAY_EDITPOLICY, new NameDisplayEditPolicy());
+		installEditPolicy(FollowSVGSymbolEditPolicy.FOLLOW_SVG_SYMBOL_EDITPOLICY, new FollowSVGSymbolEditPolicy());
 	}
 
-}
+	protected NodeFigure createNodeFigure() {
+		return new BorderedNodeFigure(createMainFigureWithSVG());
+	}
+
+	
+	
+}	

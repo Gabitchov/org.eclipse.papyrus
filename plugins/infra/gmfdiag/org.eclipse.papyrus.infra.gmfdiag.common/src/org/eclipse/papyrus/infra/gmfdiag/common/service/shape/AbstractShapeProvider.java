@@ -13,9 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.shape;
 
+import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
+import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.w3c.dom.Document;
 
 /**
  * Abstract implementation of the shape provider interface.
@@ -97,5 +101,28 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 		description = element.getAttribute(DESCRIPTION);
 		bundleId = element.getContributor().getName();
 	}
-	
+
+	/**
+	 * 
+	 * @param location
+	 * @return the Document SVG from its location, can return null if this is not a svg
+	 */
+	public SVGOMDocument getSVGDocument(String location){
+		if (!location.endsWith(".svg")){
+			return null;
+		}
+		URI svgURI=URI.createURI(location);
+		String parser = org.apache.batik.util.XMLResourceDescriptor.getXMLParserClassName();
+		SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
+		
+		try {
+			Document doc = f.createDocument(svgURI.toString());
+			SVGOMDocument svgDocument=(SVGOMDocument)doc;
+			return svgDocument;
+
+		} catch (Exception e) {
+			org.eclipse.papyrus.infra.core.Activator.log.error(e);
+		}
+		return null;
+	}
 }

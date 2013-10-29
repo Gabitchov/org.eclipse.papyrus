@@ -93,6 +93,7 @@ public abstract class AbstractElementEditPart extends NamedElementEditPart {
 
 	protected abstract IFigure getContentPaneFor(IGraphicalEditPart editPart);
 
+	
 	protected NodeFigure createNodePlate() {
 		String prefElementId = getNotationView().getType();
 		IPreferenceStore store = Activator.getInstance().getPreferenceStore();

@@ -16,7 +16,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.appearance;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
+ org.apache.batik.dom.svg,
+ org.apache.batik.util,
+ org.apache.batik.svggen,
+ org.apache.batik.dom,
+ org.w3c.dom.svg,
+ org.apache.batik.css
 Export-Package: org.eclipse.papyrus.uml.diagram.symbols,
  org.eclipse.papyrus.uml.diagram.symbols.provider
 Bundle-Vendor: %Bundle-Vendor

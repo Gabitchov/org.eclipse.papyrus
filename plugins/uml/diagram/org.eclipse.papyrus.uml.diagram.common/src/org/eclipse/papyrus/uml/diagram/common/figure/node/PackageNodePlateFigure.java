@@ -17,6 +17,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ICustomNodePlate;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 
 /**
  * this figure is used to display at the good positionn acnhor on the
@@ -25,8 +27,9 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
  * @author PT202707
  * 
  */
-public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
+public class PackageNodePlateFigure extends DefaultSizeNodeFigure implements ICustomNodePlate{
 
+	protected SVGNodePlateFigure svgNodePlateFigure=null;
 	// @unused
 	public PackageNodePlateFigure(Dimension defSize) {
 		super(defSize);
@@ -48,9 +51,14 @@ public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 			return (PackageFigure)getChildren().get(0);
 
 		}
+		if(svgNodePlateFigure!=null &&svgNodePlateFigure.getChildren().size() > 0 && svgNodePlateFigure.getChildren().get(0) instanceof PackageFigure) {
+			return (PackageFigure)svgNodePlateFigure.getChildren().get(0);
+
+		}
 		return null;
 	}
 
+	
 	// This returns as the anchoring area only the central line
 	@Override
 	public PointList getPolygonPoints() {
@@ -74,6 +82,26 @@ public class PackageNodePlateFigure extends DefaultSizeNodeFigure {
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height);
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y);
 		return points;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ICustomNodePlate#setSVGNodePlateContainer(org.eclipse.papyrus.uml.diagram.common.figure.node.SVGNodePlateFigure)
+	 *
+	 * @param svgNodePlateFigure
+	 */
+	public void setSVGNodePlateContainer(SVGNodePlateFigure svgNodePlateFigure) {
+		this.svgNodePlateFigure=svgNodePlateFigure;
+		
+	}
+/**
+ * 
+ * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ICustomNodePlate#getSvgNodePlateContainer()
+ *
+ * @return
+ */
+	public SVGNodePlateFigure getSvgNodePlateContainer() {
+		return this.svgNodePlateFigure;
 	}
 
 }
