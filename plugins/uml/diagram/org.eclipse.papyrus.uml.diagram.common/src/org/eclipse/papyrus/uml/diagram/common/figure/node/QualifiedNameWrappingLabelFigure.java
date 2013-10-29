@@ -112,5 +112,21 @@ public class QualifiedNameWrappingLabelFigure extends PapyrusWrappingLabel imple
 		// TODO Auto-generated method stub
 		
 	}
+	public void removeStereotypeLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void restoreStereotypeLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void restoreTaggedLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void removeTaggedLabel() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -92,8 +92,12 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 		BooleanValueStyle displayNameStyle = (BooleanValueStyle)view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), NameDisplayEditPolicy.DISPLAY_NAME);
 		if(displayNameStyle != null && !displayNameStyle.isBooleanValue()) {
 			getNodeNamedElementFigure().removeNameLabel();
+			getNodeNamedElementFigure().removeStereotypeLabel();
+			getNodeNamedElementFigure().removeTaggedLabel();
 		} else {
 			getNodeNamedElementFigure().restoreNameLabel();
+			getNodeNamedElementFigure().restoreStereotypeLabel();
+			getNodeNamedElementFigure().restoreTaggedLabel();
 		}
 	}
 
