@@ -211,16 +211,17 @@ public class CellHelper {
 						SetRequest setProblemRequest = new SetRequest(domain, cell, NattablecellPackage.eINSTANCE.getCell_Problems(), problem);
 						IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cell);
 						command.add(provider.getEditCommand(setProblemRequest));
-					} else {//we update the string problem
-						IElementEditService provider = ElementEditServiceUtils.getCommandProvider(problem);
-						SetRequest request = new SetRequest(domain, problem, NattableproblemPackage.eINSTANCE.getStringResolutionProblem_ValueAsString(), pastedText);
-						command.add(provider.getEditCommand(request));
-						request = new SetRequest(domain, problem, NattableproblemPackage.eINSTANCE.getStringResolutionProblem_UnresolvedString(), ((StringValueConverterStatus)status).getUnresolvedString());
-						command.add(provider.getEditCommand(request));
-						request = new SetRequest(domain, problem, NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Description(), status.getMessage());
-						command.add(provider.getEditCommand(request));
 					}
+				} else {//we update the string problem
+					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(problem);
+					SetRequest request = new SetRequest(domain, problem, NattableproblemPackage.eINSTANCE.getStringResolutionProblem_ValueAsString(), pastedText);
+					command.add(provider.getEditCommand(request));
+					request = new SetRequest(domain, problem, NattableproblemPackage.eINSTANCE.getStringResolutionProblem_UnresolvedString(), ((StringValueConverterStatus)status).getUnresolvedString());
+					command.add(provider.getEditCommand(request));
+					request = new SetRequest(domain, problem, NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Description(), status.getMessage());
+					command.add(provider.getEditCommand(request));
 				}
+
 
 				return new GMFtoEMFCommandWrapper(command);
 			}
