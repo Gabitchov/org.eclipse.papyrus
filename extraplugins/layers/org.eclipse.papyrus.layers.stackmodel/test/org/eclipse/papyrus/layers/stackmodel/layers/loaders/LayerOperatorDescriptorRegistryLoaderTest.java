@@ -20,6 +20,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.Property;
 import org.eclipse.papyrus.layers.stackmodel.layers.PropertyRegistry;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -57,9 +58,13 @@ public class LayerOperatorDescriptorRegistryLoaderTest {
 	/**
 	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.layers.loaders.LayerOperatorDescriptorRegistryLoader#loadLayerOperatorDescriptorRegistry(org.eclipse.papyrus.layers.stackmodel.layers.LayerOperatorDescriptorRegistry, org.eclipse.papyrus.layers.stackmodel.layers.PropertyRegistry)}.
      * Check if the loader correctly initialize the LayerOperator and the Operators.
+     * Registry loading do not use this loader (LayerOperatorDescriptorRegistryLoader) anymore. 
+     * The new loader {@link RegistriesLoader} is now used.
+     * 
 	 * @throws NotFoundException 
 	 */
 	@Test
+	@Ignore 
 	public void testLoadRegistry() throws NotFoundException {
 		
 		// Create a PropertyRegistry

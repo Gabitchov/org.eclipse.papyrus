@@ -45,7 +45,7 @@ public class RegistriesLoader implements ILayerOperatorDescriptorRegistryLoader 
 	}
 
 	/**
-	 * Load the {@link LayerOperatorDescriptorRegistryLoader} from the {@link LayersConfigModel}.
+	 * Load the {@link LayerOperatorDescriptorRegistry} from the {@link LayersConfigModel}.
 	 * 
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.loaders.ILayerOperatorDescriptorRegistryLoader#loadLayerOperatorDescriptorRegistry(org.eclipse.papyrus.layers.stackmodel.layers.LayerOperatorDescriptorRegistry, org.eclipse.papyrus.layers.stackmodel.layers.PropertyRegistry)
 	 *

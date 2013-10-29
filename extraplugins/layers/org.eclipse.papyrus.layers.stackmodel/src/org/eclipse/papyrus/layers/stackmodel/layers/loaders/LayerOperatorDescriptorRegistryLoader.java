@@ -25,6 +25,8 @@ import org.eclipse.papyrus.layers.stackmodel.operators.BooleanOrOperator;
  * 
  * @author cedric dumoulin
  *
+ *@deprecated use {@link RegistriesLoader} instead.
+ *
  */
 public class LayerOperatorDescriptorRegistryLoader implements ILayerOperatorDescriptorRegistryLoader {
 

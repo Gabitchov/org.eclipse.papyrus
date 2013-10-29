@@ -12,7 +12,6 @@ package org.eclipse.papyrus.layers.runtime;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.layers.runtime.model.LayersModel;
-import org.eclipse.papyrus.layers.runtime.utils.LayersStackUtil;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 
