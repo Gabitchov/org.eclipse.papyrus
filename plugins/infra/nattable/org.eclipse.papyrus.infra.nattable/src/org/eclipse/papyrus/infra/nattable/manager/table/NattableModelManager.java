@@ -793,7 +793,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	public Object getRowElement(int index) {
-		if(index < 0 || index > this.horizontalElements.size()) {
+		if(index < 0 || index >= this.horizontalElements.size()) {
 			return null;
 		}
 		return this.horizontalElements.get(index);

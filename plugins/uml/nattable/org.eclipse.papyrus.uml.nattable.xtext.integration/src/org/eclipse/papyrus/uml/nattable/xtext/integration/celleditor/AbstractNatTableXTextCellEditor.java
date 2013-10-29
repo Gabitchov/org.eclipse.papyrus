@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.xtext.integration.celleditor;
+package org.eclipse.papyrus.uml.nattable.xtext.integration.celleditor;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.nattable.celleditor.AbstractPapyrusStyledTextCe
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
-import org.eclipse.papyrus.infra.nattable.xtext.integration.util.XTextEditorResultWrapper;
+import org.eclipse.papyrus.uml.nattable.xtext.integration.util.XTextEditorResultWrapper;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.XtextFakeResourceContext;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
@@ -179,8 +179,7 @@ public abstract class AbstractNatTableXTextCellEditor extends AbstractPapyrusSty
 		if(styledText != null) {
 			typedString = styledText.getText();
 			final IParserEditStatus result = parser.isValidEditString(null, typedString);
-			System.out.println(result);
-			if(result.isOK()) {
+			if(result!=null && result.isOK()) {
 				parseCommand = parser.getParseCommand(null, typedString, 0);
 			}
 		}
