@@ -26,6 +26,7 @@ import org.eclipse.emf.common.notify.Notification;
  */
 public class TriggeredEventTraces  {
 
+
 	/**
 	 * List of recorded events
 	 */
@@ -61,6 +62,22 @@ public class TriggeredEventTraces  {
 				return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Return true if one of the trace has the specified name.
+	 * @param name Name of the event to found
+	 * @return the first event with the specified name, or null if nothing is found.
+	 */
+	public TriggeredEvent getFirstEvent(String name) {
+		if( name == null)
+			return null;
+		
+		for(TriggeredEvent event : traces) {
+			if(name.equals(event.name))
+				return event;
+		}
+		return null;
 	}
 
 

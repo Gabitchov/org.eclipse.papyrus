@@ -101,18 +101,18 @@ public class PropertyRegistryImpl extends MinimalEObjectImpl.Container implement
 		// Properties to add
 		// name, type
 		String[] properties = new String[] {
-				"name", "String",
-				"age", "int",
-				"num", "int",
-				"addr", "String",
+//				"name", "String",
+//				"age", "int",
+//				"num", "int",
+//				"addr", "String",
 				"isValid", "boolean",
 				"isVisible", "boolean",
 				"isAbstract", "boolean",
 				"fill", "Fill",
 				"line", "LineType",				
 				"font", "FontType",				
-				"bgcolor", "Color",
-				"fgcolor", "Color",
+//				"bgcolor", "Color",
+//				"fgcolor", "Color",
 		};
 		
 		for( int i=0;i<properties.length; i+=2) {

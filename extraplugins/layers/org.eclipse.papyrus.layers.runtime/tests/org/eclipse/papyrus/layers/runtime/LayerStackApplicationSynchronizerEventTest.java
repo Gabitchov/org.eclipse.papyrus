@@ -219,8 +219,9 @@ public class LayerStackApplicationSynchronizerEventTest {
 		
 		// Check if the appropriate method is called
 		assertTrue("event catched", traces.contains("diagramRemoved"));
-		assertEquals("number of events", 1, traces.traces.size());
-		assertEquals("diagram found in notification", diagram2, traces.traces.get(0).notifier.getOldValue());
+//		assertEquals("number of events", 1, traces.traces.size());
+//		assertEquals("diagram found in notification", diagram2, traces.traces.get(0).notifier.getOldValue());
+		assertEquals("diagram found in notification", diagram2, traces.getFirstEvent("diagramRemoved").notifier.getOldValue());
 
 		// dispose
 		synchronizer.dispose();

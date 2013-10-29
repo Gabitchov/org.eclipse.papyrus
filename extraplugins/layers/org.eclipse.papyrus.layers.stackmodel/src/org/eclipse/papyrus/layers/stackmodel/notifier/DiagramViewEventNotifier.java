@@ -55,9 +55,9 @@ public class DiagramViewEventNotifier {
 			// Self atttach
 			super.notifyChanged(notification);
 
-			// We are only interested in views
+			// We are only interested in views (from newValue if set, or oldValue if removed)
 			Object newValue = notification.getNewValue();
-			if( ! (newValue instanceof View) ) {
+			if( ! (newValue instanceof View || notification.getOldValue() instanceof View ) ) {
 				return;
 			}
 			// Check diagram modification

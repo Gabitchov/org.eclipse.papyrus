@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -41,6 +42,7 @@ public class ManageExtPropertyTest {
 	 * Test method for {@link org.eclipse.gmf.runtime.notation.NamedStyle#getName()}.
 	 */
 	@Test
+	@Ignore
 	public void testCreateExtPropertyInstance() {
 		fail("Not yet implemented");
 	}

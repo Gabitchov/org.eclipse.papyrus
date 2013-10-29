@@ -164,11 +164,17 @@ public class DiagramViewEventNotifierTest {
 		// Check inner creation
 		listener.traces.clear();
 		node1.createChild( NotationPackage.eINSTANCE.getShape() );
-		
+
+		// Check if the node is a children of the diagram
+		assertTrue("event found", diagram.getChildren().contains(node1));
+
 		// Check remove
 		listener.traces.clear();
 		diagram.removeChild(node1);
-		assertEquals("event found", "diagramViewRemoved", listener.traces.get(0).name);
+		assertFalse("event found", diagram.getChildren().contains(node1));
+		
+		assertTrue("event found", listener.traces.contains("diagramViewRemoved"));
+//		assertEquals("event found", "diagramViewRemoved", listener.traces.get(0).name);
 	}
 
 }

@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.layers.runtime.model.LayersModel;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -118,6 +119,7 @@ public class LayersStackAndApplicationLifeCycleEventNotifierTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayersStackAndApplicationLifeCycleEventNotifier#addLayersModelEventListener(org.eclipse.papyrus.layers.runtime.ILayersStackApplicationEventListener)}.
 	 */
 	@Test
+	@Ignore
 	public void testAddLayersModelEventListener() {
 		fail("Not yet implemented");
 	}
@@ -126,6 +128,7 @@ public class LayersStackAndApplicationLifeCycleEventNotifierTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayersStackAndApplicationLifeCycleEventNotifier#removeLayersModelEventListener(org.eclipse.papyrus.layers.runtime.ILayersStackApplicationEventListener)}.
 	 */
 	@Test
+	@Ignore
 	public void testRemoveLayersModelEventListener() {
 		fail("Not yet implemented");
 	}
@@ -134,6 +137,7 @@ public class LayersStackAndApplicationLifeCycleEventNotifierTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayersStackAndApplicationLifeCycleEventNotifier#addLayersStackApplicationLifeCycleEventListener(org.eclipse.papyrus.layers.runtime.model.ILayersModelRootEventListener)}.
 	 */
 	@Test
+	@Ignore
 	public void testAddLayersStackApplicationLifeCycleEventListener() {
 		fail("Not yet implemented");
 	}
@@ -142,6 +146,7 @@ public class LayersStackAndApplicationLifeCycleEventNotifierTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayersStackAndApplicationLifeCycleEventNotifier#removeLayersStackApplicationLifeCycleEventListener(org.eclipse.papyrus.layers.runtime.model.ILayersModelRootEventListener)}.
 	 */
 	@Test
+	@Ignore
 	public void testRemoveLayersStackApplicationLifeCycleEventListener() {
 		fail("Not yet implemented");
 	}

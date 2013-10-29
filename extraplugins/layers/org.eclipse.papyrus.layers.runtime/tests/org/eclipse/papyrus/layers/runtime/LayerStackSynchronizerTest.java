@@ -21,6 +21,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersFactory;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -128,6 +129,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#dispose()}.
 	 */
 	@Test
+	@Ignore
 	public void testDispose() {
 		fail("Not yet implemented");
 	}
@@ -136,6 +138,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#isDisposed()}.
 	 */
 	@Test
+	@Ignore
 	public void testIsDisposed() {
 		fail("Not yet implemented");
 	}
@@ -144,6 +147,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#propertyValueAdded(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testPropertyValueAdded() {
 		fail("Not yet implemented");
 	}
@@ -152,6 +156,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#propertyValueRemoved(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testPropertyValueRemoved() {
 		fail("Not yet implemented");
 	}
@@ -160,6 +165,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#propertyValueChanged(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testPropertyValueChanged() {
 		fail("Not yet implemented");
 	}
@@ -168,6 +174,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#layerAdded(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testLayerAdded() {
 		fail("Not yet implemented");
 	}
@@ -176,6 +183,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#layerRemoved(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testLayerRemoved() {
 		fail("Not yet implemented");
 	}
@@ -184,6 +192,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#layerMoved(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testLayerMoved() {
 		fail("Not yet implemented");
 	}
@@ -192,6 +201,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#layerSet(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testLayerSet() {
 		fail("Not yet implemented");
 	}
@@ -200,6 +210,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#viewAddedToLayer(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testViewAddedToLayer() {
 		fail("Not yet implemented");
 	}
@@ -208,6 +219,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#viewRemovedFromLayer(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testViewRemovedFromLayer() {
 		fail("Not yet implemented");
 	}
@@ -216,6 +228,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#viewMovedBetweenLayer(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testViewMovedBetweenLayer() {
 		fail("Not yet implemented");
 	}
@@ -224,6 +237,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#diagramViewAdded(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testDiagramViewAdded() {
 		fail("Not yet implemented");
 	}
@@ -232,6 +246,7 @@ public class LayerStackSynchronizerTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.runtime.LayerStackSynchronizer#diagramViewRemoved(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
+	@Ignore
 	public void testDiagramViewRemoved() {
 		fail("Not yet implemented");
 	}

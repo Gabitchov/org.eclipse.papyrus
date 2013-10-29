@@ -20,6 +20,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.Property;
 import org.eclipse.papyrus.layers.stackmodel.layers.PropertyOperator;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -147,6 +148,7 @@ public class LayerOperatorDescriptorImplTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerOperatorDescriptorImpl#createLayerOperator()}.
 	 */
 	@Test
+	@Ignore
 	public void testCreateLayerOperator() {
 		fail("Not yet implemented");
 	}

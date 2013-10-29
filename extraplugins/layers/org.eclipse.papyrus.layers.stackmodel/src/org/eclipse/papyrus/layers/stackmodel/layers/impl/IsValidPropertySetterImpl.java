@@ -58,7 +58,6 @@ public class IsValidPropertySetterImpl extends PropertySetterImpl implements IsV
 	 */
 	@Override
 	public void setValue(View view, TypeInstance value) {
-		// TODO Auto-generated method stub
-		super.setValue(view, value);
+		// TODO implements this method
 	}
 } //IsValidPropertySetterImpl

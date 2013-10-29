@@ -173,6 +173,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	public void propertyValueAdded(Notification notification) {
 		System.out.println("propertyValueAdded " + notification.getNewValue());
 
+		PropertySetter setter = null;
 		try {
 			// Name of the property
 			String propertyName = LayersModelEventUtils.PropertyEvents.getPropertyNameFromValueAdd(notification);
@@ -189,7 +190,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 			
 			List<ComputePropertyValueCommand> commands = layersStack.getViewsComputePropertyValueCommand(views, property);
 			
-			PropertySetter setter = application.getPropertySetterRegistry().getPropertySetter(property);
+			setter = application.getPropertySetterRegistry().getPropertySetter(property);
 			
 			// Walk each view and set the property
 			for( int i=0; i<views.size(); i++) {
@@ -200,6 +201,9 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 		}	catch (LayersException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	catch (UnsupportedOperationException e) {
+			// A setter or getter is not implemented
+			throw new UnsupportedOperationException("setter='" + setter.getClass().getName()+"'", e);
 		}		
 	}
 

@@ -117,10 +117,6 @@
             commandId="org.eclipse.papyrus.layers.ui.commands.attachDiagramViewsToLayer">
       </handler>
       <handler
-            class="org.eclipse.papyrus.layers3.ui.commands.CreateLayerOperatorsFromParameter"
-            commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator">
-      </handler>
-      <handler
             class="org.eclipse.papyrus.layers3.ui.commands.DeleteItemHandler"
             commandId="org.eclipse.papyrus.layers.ui.commands.delete">
       </handler>
