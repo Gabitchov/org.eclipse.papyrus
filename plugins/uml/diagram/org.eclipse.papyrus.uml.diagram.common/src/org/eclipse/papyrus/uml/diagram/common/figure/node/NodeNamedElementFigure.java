@@ -184,10 +184,12 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		}
 	}
 
-	
+
 	public void restoreStereotypeLabel() {
-		stereotypesLabel.setOpaque(false);
-		getStereotypeLabelContainer().add(stereotypesLabel, getStereotypeLabelConstraint(), getStereotypePropertiesLabelPosition());
+		if(stereotypesLabel!=null){
+			stereotypesLabel.setOpaque(false);
+			getStereotypeLabelContainer().add(stereotypesLabel, getStereotypeLabelConstraint(), getStereotypePropertiesLabelPosition());
+		}
 	}
 
 
@@ -195,15 +197,19 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Create a label that contains the stereotype of the element.
 	 */
 	public void removeStereotypeLabel() {
-		if(getStereotypeLabelContainer().getChildren().contains(stereotypesLabel)) {
-			getStereotypeLabelContainer().remove(stereotypesLabel);
+		if(stereotypesLabel!=null){
+			if(getStereotypeLabelContainer().getChildren().contains(stereotypesLabel)) {
+				getStereotypeLabelContainer().remove(stereotypesLabel);
+			}
 		}
 	}
 
-	
+
 	public void restoreTaggedLabel() {
-		taggedLabel.setOpaque(false);
-		getTagLabelContainer().add(taggedLabel, getTagLabelConstraint(), 0);
+		if(taggedLabel!=null){
+			taggedLabel.setOpaque(false);
+			getTagLabelContainer().add(taggedLabel, getTagLabelConstraint(), 0);
+		}
 	}
 
 
@@ -211,8 +217,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * Create a label that contains the stereotype of the element.
 	 */
 	public void removeTaggedLabel() {
-		if(getTagLabelContainer().getChildren().contains(taggedLabel)) {
-			getTagLabelContainer().remove(taggedLabel);
+		if(taggedLabel!=null){
+			if(getTagLabelContainer().getChildren().contains(taggedLabel)) {
+				getTagLabelContainer().remove(taggedLabel);
+			}
 		}
 	}
 	/**
