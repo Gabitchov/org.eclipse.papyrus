@@ -77,7 +77,11 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 		super.initFields();
 		reorientedEdgeView = RequestParameterUtils.getReconnectedEdge(getRequest());
 		newEndView = RequestParameterUtils.getReconnectedEndView(getRequest());
-		oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
+		if(this.reorientedEdgeView != null) {
+			oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
+		} else {
+			oppositeEndView = null;
+		}
 		setNewPartWithPort(getNewPartWithPort());
 		setOppositePartWithPort(getOppositePartWithPort());
 	}

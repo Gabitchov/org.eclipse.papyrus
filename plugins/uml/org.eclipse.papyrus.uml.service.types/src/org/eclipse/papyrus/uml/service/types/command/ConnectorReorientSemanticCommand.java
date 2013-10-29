@@ -136,6 +136,9 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 	 *         <code>true</code> if the newRole can be used as role for connector
 	 */
 	private boolean canReorient(final EObject newRole, final EObject oppositeRole) {
+		if(newRole==null){
+			return true;//we allow to reinitialize the role
+		}
 		//the new role must be a connectable element
 		if(!(newRole instanceof ConnectableElement)) {
 			return false;
