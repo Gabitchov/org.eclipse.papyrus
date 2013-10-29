@@ -184,6 +184,45 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		}
 	}
 
+
+	public void restoreStereotypeLabel() {
+		if(stereotypesLabel!=null){
+			stereotypesLabel.setOpaque(false);
+			getStereotypeLabelContainer().add(stereotypesLabel, getStereotypeLabelConstraint(), getStereotypePropertiesLabelPosition());
+		}
+	}
+
+
+	/**
+	 * Create a label that contains the stereotype of the element.
+	 */
+	public void removeStereotypeLabel() {
+		if(stereotypesLabel!=null){
+			if(getStereotypeLabelContainer().getChildren().contains(stereotypesLabel)) {
+				getStereotypeLabelContainer().remove(stereotypesLabel);
+			}
+		}
+	}
+
+
+	public void restoreTaggedLabel() {
+		if(taggedLabel!=null){
+			taggedLabel.setOpaque(false);
+			getTagLabelContainer().add(taggedLabel, getTagLabelConstraint(), 0);
+		}
+	}
+
+
+	/**
+	 * Create a label that contains the stereotype of the element.
+	 */
+	public void removeTaggedLabel() {
+		if(taggedLabel!=null){
+			if(getTagLabelContainer().getChildren().contains(taggedLabel)) {
+				getTagLabelContainer().remove(taggedLabel);
+			}
+		}
+	}
 	/**
 	 * Get the constraint for adding the name label. Children should override
 	 * and implement this method in case the label must be drawn with a specific

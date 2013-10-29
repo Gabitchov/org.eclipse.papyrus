@@ -67,10 +67,11 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		int minimumHeight = 0;
 		if(container instanceof CompartmentFigure) {
 			// display name
-			if(((CompartmentFigure)container).getNameLabel() != null) {
+			if(((CompartmentFigure)container).getNameLabel() != null&& container.getChildren().contains(((CompartmentFigure)container).getNameLabel())) {
 				if(((CompartmentFigure)container).getNameLabel().getPreferredSize().width > minimumWith) {
 					minimumWith = ((CompartmentFigure)container).getNameLabel().getPreferredSize().width;
 				}
+				
 			}
 		}
 		if(compartmentList.size() != 0) {

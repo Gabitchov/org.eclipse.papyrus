@@ -335,5 +335,25 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		//		}
 	}
 
+	public void removeStereotypeLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void restoreStereotypeLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void restoreTaggedLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removeTaggedLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
