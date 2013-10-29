@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.xtext.integration
 Bundle-Version: 0.10.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.infra.nattable.xtext.integration.Activator
+Bundle-Activator: org.eclipse.papyrus.uml.nattable.xtext.integration.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -21,4 +21,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.common.ui.services
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.infra.nattable.xtext.integration.celleditor
+Export-Package: org.eclipse.papyrus.uml.nattable.xtext.integration,
+ org.eclipse.papyrus.uml.nattable.xtext.integration.celleditor,
+ org.eclipse.papyrus.uml.nattable.xtext.integration.util

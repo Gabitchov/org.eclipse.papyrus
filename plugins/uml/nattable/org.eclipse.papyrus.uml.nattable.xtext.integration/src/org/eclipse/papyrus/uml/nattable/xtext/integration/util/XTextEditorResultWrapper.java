@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.infra.nattable.xtext.integration.util;
+package org.eclipse.papyrus.uml.nattable.xtext.integration.util;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -30,7 +30,7 @@ public class XTextEditorResultWrapper implements IAdaptable {
 	 *        the command to do the set value according to the typed text. Could be <code>null</code> if the text can't be parsed
 	 */
 	public XTextEditorResultWrapper(String text, ICommand parseCommand) {
-		this.text = text;
+		this.text = text.trim();//to remove invalid /r/n at the end of the string, see bug 420495
 		this.parseCommand = parseCommand;
 	}
 
