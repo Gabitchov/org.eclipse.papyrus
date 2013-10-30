@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
@@ -45,6 +46,7 @@ import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
+import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -145,7 +147,13 @@ public abstract class AbstractExternalResourcesTest {
 	public final static String EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE = ONE_PROFILE_MODEL_FILENAME + "." + EXTERNAL_RESOURCES_TEST_PROFILE + "Profile";
 	
 	public final static String PACKAGE1_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE = PACKAGE1_MODEL_FILENAME + "." + EXTERNAL_RESOURCES_TEST_PROFILE + "Profile";
+	
+	public final static String CLASS3_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE = CLASS3_MODEL_FILENAME + "." + EXTERNAL_RESOURCES_TEST_PROFILE + "Profile";
 
+	public final static String PACKAGE1_ALL_PROFILES_FILE = PACKAGE1_MODEL_FILENAME + "." + OneResourceOnlyStrategy.PROFILE_DEFAULT_EXTENSION;
+	
+	public final static String CLASS3_ALL_PROFILES_FILE = CLASS3_MODEL_FILENAME + "." + OneResourceOnlyStrategy.PROFILE_DEFAULT_EXTENSION;
+	
 	public static final String STANDARD_STRATEGY_FOLDER = "StandardResource";
 
 	public static final String ONE_RESOURCE_FOR_ALL_PROFILES_FOLDER = "OneResourceForAllProfiles";
@@ -235,7 +243,7 @@ public abstract class AbstractExternalResourcesTest {
 	}
 
 	@Test
-	public void testApplyStereotypeOnClassInControlledPackage() {
+	public void testApplyStereotypeOnClassInControlledResource() {
 		UmlModel umlModel = null;
 		// get The model. try to see applied stereotypes
 		try {
@@ -255,13 +263,8 @@ public abstract class AbstractExternalResourcesTest {
 		}
 		
 		// try to apply a stereotype and checks where it is located
-		TransactionalEditingDomain editingDomain = null;
-		try {
-			editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(class3_);
-		} catch (ServiceException e) {
-			fail(e.getMessage());
-		}
-		Stereotype stereotype = class3_.getApplicableStereotype(CLASS_STEREOTYPE_QN);
+		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(class3_);
+		Stereotype stereotype = class3_.getApplicableStereotype(ELEMENT_STEREOTYPE_QN);
 		Assert.assertNotNull("Stereotype to apply should not be null", stereotype);
 		ApplyStereotypeCommand command = new ApplyStereotypeCommand(class3_, stereotype, editingDomain);
 		Assert.assertNotNull("Command should not be null", command);
@@ -276,8 +279,51 @@ public abstract class AbstractExternalResourcesTest {
 		
 		// check stereotype has been applied 
 		EObject stereotypeApplication = class3_.getStereotypeApplication(stereotype);
-		Assert.assertNotNull("Stereotype "+ CLASS_STEREOTYPE_QN+" is not applied on "+MODEL_CLASS3, stereotypeApplication);
-		Assert.assertEquals("Stereortype is not located in good resource", getApplyStereotypeOnClassInControlledPackageResourceURI(), stereotypeApplication.eResource().getURI());
+		Assert.assertNotNull("Stereotype "+ ELEMENT_STEREOTYPE_QN+" is not applied on "+MODEL_CLASS3, stereotypeApplication);
+		Assert.assertEquals("Stereotype is not located in good resource", getApplyStereotypeOnClassInControlledResourceURI(), stereotypeApplication.eResource().getURI());
+	}
+	
+	
+	@Test
+	public void testApplyStereotypeOnClassInControlledPackage() {
+		UmlModel umlModel = null;
+		// get The model. try to see applied stereotypes
+		try {
+			umlModel = (UmlModel)getModelSet(getURI()).getModelChecked(UmlModel.MODEL_ID);
+		} catch (NotFoundException e) {
+			fail(e.getMessage());
+		}
+		Model rootModel = (Model)umlModel.getResource().getContents().get(0);
+		Assert.assertNotNull("Root model impossible to find", rootModel);
+		// test applied profiles
+		
+		
+		// apply stereotype on Model::Class3. Do not check eveythong, as loading tests should already have fixed that
+		Package package1 = (Package)rootModel.getNestedPackage(MODEL_PACKAGE1, true, UMLPackage.eINSTANCE.getPackage(), false);
+		Assert.assertNotNull("Impossible to find "+MODEL_PACKAGE1, package1);
+		
+		Class package1_class1 = (Class)package1.getPackagedElement(MODEL_PACKAGE1_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
+		Assert.assertNotNull("Impossible to find "+MODEL_PACKAGE1_CLASS1, package1_class1);
+		
+		// try to apply a stereotype and checks where it is located
+		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(package1_class1);
+		Stereotype stereotype = package1_class1.getApplicableStereotype(ELEMENT_STEREOTYPE_QN);
+		Assert.assertNotNull("Stereotype to apply should not be null", stereotype);
+		ApplyStereotypeCommand command = new ApplyStereotypeCommand(package1_class1, stereotype, editingDomain);
+		Assert.assertNotNull("Command should not be null", command);
+		Assert.assertTrue("Command should be executable", command.canExecute());
+		
+		// execute command
+		try {
+			OperationHistoryFactory.getOperationHistory().execute(new EMFCommandOperation(editingDomain, command), new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			fail(e.getMessage());
+		}
+		
+		// check stereotype has been applied 
+		EObject stereotypeApplication = package1_class1.getStereotypeApplication(stereotype);
+		Assert.assertNotNull("Stereotype "+ ELEMENT_STEREOTYPE_QN+" is not applied on "+MODEL_PACKAGE1_CLASS1, stereotypeApplication);
+		Assert.assertEquals("Stereotype is not located in good resource", getApplyStereotypeOnClassInControlledPackageResourceURI(), stereotypeApplication.eResource().getURI());
 	}
 	
 	/**
@@ -285,21 +331,11 @@ public abstract class AbstractExternalResourcesTest {
 	 */
 	protected abstract URI getApplyStereotypeOnClassInControlledPackageResourceURI();
 
-	@Test
-	public void testApplyStereotypeOnControlledClass() {
-		UmlModel umlModel = null;
-		// get The model. try to see applied stereotypes
-		try {
-			umlModel = (UmlModel)modelSet.getModelChecked(UmlModel.MODEL_ID);
-		} catch (NotFoundException e) {
-			fail(e.getMessage());
-		}
-		Model rootModel = (Model)umlModel.getResource().getContents().get(0);
-		Assert.assertNotNull("Root model impossible to find", rootModel);
-		// test applied profiles
-		checkModel(rootModel);
-	}
-	
+	/**
+	 * @return
+	 */
+	protected abstract URI getApplyStereotypeOnClassInControlledResourceURI();
+
 	/**
 	 * @param rootModel
 	 */
@@ -402,8 +438,8 @@ public abstract class AbstractExternalResourcesTest {
 					getServicesRegistry().add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
 					getServicesRegistry().startServicesByClassKeys(ModelSet.class, ServiceUtilsForResourceInitializerService.class);
 					TransactionalEditingDomain domain = TransactionalEditingDomainManager.createTransactionalEditingDomain(modelSet);
-					getServicesRegistry().add(TransactionalEditingDomain.class, 10, domain);
-					getServicesRegistry().add(EditingDomain.class, 10, domain);
+					getServicesRegistry().add(TransactionalEditingDomain.class, 10, domain, ServiceStartKind.STARTUP);
+					getServicesRegistry().add(EditingDomain.class, 10, domain, ServiceStartKind.STARTUP);
 				} catch (ModelMultiException modelMultiException) {
 					Activator.log.error(modelMultiException);
 				} catch (ServiceMultiException e1) {
