@@ -18,17 +18,22 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 
 
 public class CustomizableDropEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
 	public boolean provides(IOperation operation) {
-		//		return false;
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
 
-		return true;
-
-		//		return !(epOperation.getEditPart() instanceof DiagramEditPart); //TODO: Detect Papyrus diagrams
+		try {
+			ServicesRegistry registry = ServiceUtilsForEditPart.getInstance().getServiceRegistry(epOperation.getEditPart());
+			return registry != null;
+		} catch (ServiceException e) {
+			return false;
+		}
 	}
 
 	public void createEditPolicies(EditPart editPart) {
