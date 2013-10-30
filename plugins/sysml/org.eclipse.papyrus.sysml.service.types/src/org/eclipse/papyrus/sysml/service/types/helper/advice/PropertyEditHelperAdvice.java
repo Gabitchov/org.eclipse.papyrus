@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.service.types.helper.advice;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -25,22 +26,28 @@ import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.MessageDialogWithToggle;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
+import org.eclipse.papyrus.sysml.service.types.Activator;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
-import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
@@ -71,10 +78,9 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
-		ICommand gmfCommand = super.getBeforeSetCommand(request);
+  		ICommand gmfCommand = super.getBeforeSetCommand(request);
 
 		EObject elementToEdit = request.getElementToEdit();
-
 		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && 
 				(request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() instanceof Type)) {
 
@@ -82,11 +88,11 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 
 			// SysML specification : all property typed by a ConstraintBlock must have a ContraintProperty stereotype applied
 			if (request.getValue() instanceof org.eclipse.uml2.uml.Class) {
-				ICommand stereotypeApplication = getConstraintPropertyStereotypeApplicationCommand(propertyToEdit, (org.eclipse.uml2.uml.Class)request.getValue());
-				gmfCommand = CompositeCommand.compose(gmfCommand, stereotypeApplication);
+				ICommand stereotypeApplicationCommand = getConstraintPropertyStereotypeApplicationCommand(propertyToEdit, (org.eclipse.uml2.uml.Class)request.getValue(), request);
+				gmfCommand = CompositeCommand.compose(gmfCommand, stereotypeApplicationCommand);
 			}
 
-			// Exclude ConstraintParameter (simple property without stereotype owned by a ConstraintBlock) 
+			// Exclude ConstraintParameter (simple property without ConstraintProperty stereotype owned by a ConstraintBlock) 
 			if (propertyToEdit.eContainer() instanceof org.eclipse.uml2.uml.Class && UMLUtil.getStereotypeApplication((Element)propertyToEdit.eContainer(), ConstraintBlock.class) != null) {
 				if (UMLUtil.getStereotypeApplication(propertyToEdit, ConstraintProperty.class) == null) {
 					return gmfCommand;
@@ -98,9 +104,12 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 			// The edited property has to be related to a SysML association
 			if((relatedAssociation == null) || !(ElementUtil.hasNature(relatedAssociation, SysMLElementTypes.SYSML_NATURE))) {
 				
-				// If no association exist and the new type is a Block, add the association
+				// If no association exist and the new type is a Block 
+				// (not a ConstraintBlock => a property typed by a ConstraintBlock is a ConstraintProperty, not a Part neither a Reference),
+				// add the association
 				if ((relatedAssociation == null) 
 					&& ((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue())
+					&& !((ISpecializationType) SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type) request.getValue())
 					&& ((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches(propertyToEdit.eContainer())) {
 					
 					ICommand addAssociationCommand = getCreatePartAssociationCommand((org.eclipse.uml2.uml.Class)propertyToEdit.eContainer(), propertyToEdit, (org.eclipse.uml2.uml.Class)request.getValue());
@@ -126,7 +135,7 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 			// If the new type is not a block, destroy related association
 			// This must be done only if the setting of the property type is not part of an association re-orient (hence after the previous code-block),
 			// otherwise there is no legitimate reason to destroy the existing association while re-orienting it.
-			if (!((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue())) {
+ 			if (!((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue()) && propertyToEdit.getType() != null) {
 				ICommand destroyCommand = getDestroyPartAssociationCommand(relatedAssociation, propertyToEdit);
 				gmfCommand = CompositeCommand.compose(gmfCommand, destroyCommand);
 				
@@ -159,18 +168,20 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		Association relatedAssociation = setProperty.getAssociation(); // Should not be null, test before calling method.
 
-		// Re-orient the related association (do not use edit service to avoid infinite loop here)
-		int direction = ReorientRelationshipRequest.REORIENT_TARGET;
-		if(setProperty == associationToRefactor.getMemberEnds().get(1)) {
-			direction = ReorientRelationshipRequest.REORIENT_SOURCE;
-		}
-
-		ReorientRelationshipRequest reorientRequest = new ReorientRelationshipRequest(relatedAssociation, (Type)request.getValue(), setProperty.eContainer(), direction);
-		reorientRequest.addParameters(request.getParameters());
-
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(relatedAssociation);
-		if(provider != null) {
-			return provider.getEditCommand(reorientRequest);
+		if (associationToRefactor.getMemberEnds().size() >= 2) {
+			// Re-orient the related association (do not use edit service to avoid infinite loop here)
+			int direction = ReorientRelationshipRequest.REORIENT_TARGET;
+			if(setProperty == associationToRefactor.getMemberEnds().get(1)) {
+				direction = ReorientRelationshipRequest.REORIENT_SOURCE;
+			}
+	
+			ReorientRelationshipRequest reorientRequest = new ReorientRelationshipRequest(relatedAssociation, (Type)request.getValue(), setProperty.eContainer(), direction);
+			reorientRequest.addParameters(request.getParameters());
+	
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(relatedAssociation);
+			if(provider != null) {
+				return provider.getEditCommand(reorientRequest);
+			}
 		}
 
 		return null;
@@ -230,20 +241,10 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 	 * 
 	 * @return the ConstraintProperty stereotype application command
 	 */
-	private ICommand getConstraintPropertyStereotypeApplicationCommand(final Property sourceProperty, final org.eclipse.uml2.uml.Class targetBlock) {
+	private ICommand getConstraintPropertyStereotypeApplicationCommand(final Property sourceProperty, final org.eclipse.uml2.uml.Class targetBlock, final SetRequest request) {
 		
-		return new AbstractCommand("Apply/Remove ConstraintProperty Stereotype") {
-			
-			@Override
-			protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-				return null;
-			}
-			
-			@Override
-			protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-				return null;
-			}
-			
+		return new AbstractTransactionalCommand(request.getEditingDomain(), "Apply/Remove ConstraintProperty Stereotype", null) {
+				
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				// SysML specification : all property typed by a ConstraintBlock must have a ContraintProperty stereotype applied
@@ -251,6 +252,34 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 				if (UMLUtil.getStereotypeApplication(targetBlock, ConstraintBlock.class) != null) {
 					if (constraintPropertyApplication == null) {
 						StereotypeApplicationHelper.INSTANCE.applyStereotype(sourceProperty, ConstraintsPackage.eINSTANCE.getConstraintProperty());
+						// Remove representations
+						Set<View> memberViewsToDestroy = CrossReferencerUtil.getCrossReferencingViews(sourceProperty, null);
+						if (memberViewsToDestroy.size() != 0) {
+							final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+							final String DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY = "displayMessageForTypingActionPreferenceKey";
+							boolean contains = store.contains(DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY);
+							if(!contains) {
+								store.setValue(DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY, MessageDialogWithToggle.NEVER);
+								store.setDefault(DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY, MessageDialogWithToggle.NEVER);
+							}
+							final String hideValue = store.getString(DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY);
+							if(!hideValue.equals(MessageDialogWithToggle.ALWAYS)) {
+								int size = memberViewsToDestroy.size();
+								MessageDialogWithToggle.openInformation(Display.getDefault().getActiveShell(), 
+										"Change Type Action", 
+										"WARNING! Typing a Property by a ConstraintBlock make this property become a ConstraintProperty. ConstraintProperty have a specific representation. "
+										+ "\nSo all representations of this property will be removed from the model  (" + size + " occurence" + ((size > 1) ? "s" : "") + ")."
+										, "Don't show this dialog the next time", 
+										false, store, DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY);
+							}
+							
+						}
+						for (View view : memberViewsToDestroy) {
+							final DestroyElementRequest destroyRequest = new DestroyElementRequest(request.getEditingDomain(), view, false);
+							final IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(view);
+							ICommand editCommand = commandProvider.getEditCommand(destroyRequest);
+							editCommand.execute(progressMonitor, info);
+						}
 					}
 				}
 				else {
@@ -263,7 +292,6 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 		};
 	}
 
-	
 	/**
 	 * Create a part association destroy command.
 	 * 

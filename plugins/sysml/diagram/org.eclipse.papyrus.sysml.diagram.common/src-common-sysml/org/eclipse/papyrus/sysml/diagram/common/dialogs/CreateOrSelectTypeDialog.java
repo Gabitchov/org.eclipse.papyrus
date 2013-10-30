@@ -15,6 +15,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.dialogs;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -101,6 +103,8 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 
 	protected EClass containerEClass;
 
+	protected List<?> notWantedMetaclasses;
+
 	/**
 	 * Create a new dialog to initialize an ActivityParameterNode.
 	 * 
@@ -119,6 +123,19 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 		this.containerFeature = containerFeature;
 		this.containerEClass = containerEClass;
 		this.labelProvider = new UMLLabelProvider();
+	}
+
+	/**
+	 * Create a new dialog to initialize an ActivityParameterNode.
+	 * This dialog will filter certain Stereotypes
+	 * @param shell
+	 *        parent shell
+	 * @param owner
+	 *        the activity that owns the action
+	 */
+	public CreateOrSelectTypeDialog(Shell shell, EObject defaultContainer, IElementType elementType, EStructuralFeature editedFeature, EClass elementEClass, IElementType containerType, EStructuralFeature containerFeature, EClass containerEClass, List<?> notWantedMetaclasses) {
+		this(shell, defaultContainer, elementType, editedFeature, elementEClass, containerType, containerFeature, containerEClass);
+		this.notWantedMetaclasses = notWantedMetaclasses;
 	}
 
 	protected String getDialogTitle() {
@@ -481,9 +498,11 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 		dialog.setInput(EcoreUtil.getRootContainer(defaultContainer));
 
 		ServiceEditContentProvider provider = new ServiceEditContentProvider(elementType, editedFeature, EcoreUtil.getRootContainer(defaultContainer));
+		provider.setNotWantedMetaclasses(notWantedMetaclasses);
+
 		dialog.setContentProvider(provider);
 		dialog.setLabelProvider(labelProvider);
-
+		
 		if(dialog.open() == Window.OK) {
 			Object result = dialog.getResult()[0];
 			if(result instanceof IAdaptable) {

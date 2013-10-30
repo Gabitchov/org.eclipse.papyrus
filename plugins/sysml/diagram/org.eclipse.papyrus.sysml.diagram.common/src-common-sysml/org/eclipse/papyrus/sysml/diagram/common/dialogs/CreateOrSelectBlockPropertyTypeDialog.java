@@ -13,12 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.dialogs;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.diagram.common.messages.Messages;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -28,7 +34,21 @@ public class CreateOrSelectBlockPropertyTypeDialog extends CreateOrSelectTypeDia
 
 	/** Constructor */
 	public CreateOrSelectBlockPropertyTypeDialog(Shell shell, NamedElement owner) {
-		super(shell, owner, SysMLElementTypes.BLOCK, UMLPackage.eINSTANCE.getTypedElement_Type(), BlocksPackage.eINSTANCE.getBlock(), UMLElementTypes.PACKAGE, UMLPackage.eINSTANCE.getPackage_PackagedElement(), null);
+		super(shell, owner, SysMLElementTypes.BLOCK, UMLPackage.eINSTANCE.getTypedElement_Type(), BlocksPackage.eINSTANCE.getBlock(), UMLElementTypes.PACKAGE, UMLPackage.eINSTANCE.getPackage_PackagedElement(), null, getConstraintBlockAsStereotype());
+	}
+	
+	/**
+	 * If we create a Part type by a ConstraintBlock, thisPart will become a ConstraintProperty and representation will immediately disappear.
+	 * So we filter ConstraintBlock type => Only strict Block are allowed 
+	 * @return
+	 */
+	@SuppressWarnings("deprecation")
+	private static List<?> getConstraintBlockAsStereotype() {
+		// We create a mock Stereotype to pass in the good code section of SemanticUMLContentProvider.isCompatibleMetaclass (bad gestion of static stereotypes)
+		Stereotype mockStereotype = UMLFactory.eINSTANCE.createStereotype();
+		// We use this stereotype with namespace instead of ConstraintsPackage.eINSTANCE.getConstraintBlock()
+		mockStereotype.setName(SysmlResource.CONSTRAINT_BLOCK_ID);
+		return Arrays.asList(mockStereotype);
 	}
 
 	/**

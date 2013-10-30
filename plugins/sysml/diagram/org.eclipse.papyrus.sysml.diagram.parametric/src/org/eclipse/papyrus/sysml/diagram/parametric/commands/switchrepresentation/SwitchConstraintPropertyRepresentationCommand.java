@@ -18,7 +18,6 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
@@ -73,8 +72,10 @@ public class SwitchConstraintPropertyRepresentationCommand extends Command {
 			structureCompartment.setVisible(true);
 		}
 		else {
-			structureCompartment = ViewService.getInstance().createNode(null, (View)editPart.getModel(), SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID, ViewUtil.APPEND, true, new PreferencesHint("org.eclipse.papyrus.sysml.diagram.parametric"));
-			structureCompartment.setElement(editPart.resolveSemanticElement());
+			structureCompartment = ViewService.createNode((View)editPart.getModel(), SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID, new PreferencesHint("org.eclipse.papyrus.sysml.diagram.parametric"));
+			if (structureCompartment != null) {
+				structureCompartment.setElement(editPart.resolveSemanticElement());
+			}
 		}
 		
 		// add the << constraint >> tag
