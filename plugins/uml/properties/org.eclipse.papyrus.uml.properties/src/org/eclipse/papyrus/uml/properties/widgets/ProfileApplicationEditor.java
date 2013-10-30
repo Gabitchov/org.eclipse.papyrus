@@ -23,6 +23,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -163,7 +164,9 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 
 		public void updateLocation(ViewerCell cell, Profile profile) {
 			String location = "Unknown";
-			if(profile.eResource() != null) {
+			if(profile.eIsProxy()) {
+				location = EcoreUtil.getURI(profile).trimFragment().toString();
+			} else if(profile.eResource() != null) {
 				URI uri = profile.eResource().getURI();
 				if(uri != null) {
 					location = uri.toString();
