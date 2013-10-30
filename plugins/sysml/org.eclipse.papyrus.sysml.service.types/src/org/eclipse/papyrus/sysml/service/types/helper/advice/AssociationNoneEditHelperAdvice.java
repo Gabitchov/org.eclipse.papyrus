@@ -13,22 +13,31 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.service.types.helper.advice;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.Activator;
 import org.eclipse.papyrus.uml.service.types.utils.ClassifierUtils;
+import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Edit helper advice for {@link Association} with "aggregation = none" (used for creation purpose only).
@@ -66,39 +75,73 @@ public class AssociationNoneEditHelperAdvice extends AssociationEditHelperAdvice
 	}
 
 	/**
-	 * Creates a new source {@link Property} from the targetType.
+	 * Creates a new {@link Property} from the propertyType in the propertyContainer
 	 * 
-	 * @param targetType
+	 * @param propertyContainer
+	 *        the container of the {@link Property}
+	 * @param propertyType
 	 *        the type of the {@link Property}
 	 * @return the new {@link Property}
-	 */
-	protected Property createSourceProperty(Type targetType) {
-
-		Property sourceProperty = UMLFactory.eINSTANCE.createProperty();
-		sourceProperty.setType(targetType);
-		sourceProperty.setName(targetType.getName().toLowerCase());
-
-		return sourceProperty;
-	}
-
-	/**
-	 * Creates a new target {@link Property} from the sourceType.
-	 * 
-	 * @param sourceType
-	 *        the type of the {@link Property}
-	 * @return the new {@link Property}
-	 */
-	protected Property createTargetProperty(Type sourceType) {
-
-		Property targetProperty = UMLFactory.eINSTANCE.createProperty();
-		targetProperty.setType(sourceType);
-		targetProperty.setName(sourceType.getName().toLowerCase());
-
+	 * @throws ExecutionException 
+	 */	
+	protected Property createTargetProperty(Property targetProperty, Classifier propertyContainer, Type propertyType, Association association, TransactionalEditingDomain editingDomain, IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+		addSourceInModel(targetProperty, propertyContainer, propertyType, association);
+		setPropertyType(targetProperty, propertyType, editingDomain, progressMonitor, info);
+		setPropertyName(targetProperty);
 		return targetProperty;
 	}
+	
+	protected Property createSourceProperty(Property sourceProperty, Classifier propertyContainer, Type propertyType, Association association, TransactionalEditingDomain editingDomain, IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+		addTargetInModel(sourceProperty, propertyContainer, propertyType, association);
+		setPropertyType(sourceProperty, propertyType, editingDomain, progressMonitor, info);
+		setPropertyName(sourceProperty);
+		return sourceProperty;
+	}
+	
+	protected void setPropertyType(Property property, Type propertyType, TransactionalEditingDomain editingDomain, IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+		// Set type using all AdviceHelper (use ServiceEdit instead of manually set)
+		SetRequest request = new SetRequest(property, UMLPackage.eINSTANCE.getTypedElement_Type(), propertyType);
+		request.setEditingDomain(editingDomain);	
+		IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(property);
+		ICommand editCommand = commandProvider.getEditCommand(request);
+		editCommand.execute(progressMonitor, info);
+	}
+
+	private void setPropertyName(Property property) {
+		String baseName = property.getType().getName().toLowerCase();
+		Element owner = property.getOwner();
+		if (owner instanceof Classifier) {
+			List<Property> ownedAttributes = ClassifierUtils.getOwnedAttributes((Classifier)owner);
+			String defaultNameWithIncrementFromBase = NamedElementHelper.getDefaultNameWithIncrementFromBase(
+					property.getType().getName().toLowerCase(), ownedAttributes, "_");
+			property.setName(defaultNameWithIncrementFromBase);
+		}
+		else {
+			// default
+			property.setName(baseName);
+		}
+	}
 
 	/**
-	 * Add the source {@link Property} in the correct container.
+	 * This method has to be specialized by subclasses (AggregationKind)
+	 * @param sourceProperty
+	 * 			The property to configure
+	 */
+	protected void configureSourceProperty(Property sourceProperty)  {
+		// do nothing
+	}
+
+	/**
+	 * This method has to be specialized by subclasses (AggregationKind)
+	 * @param sourceProperty
+	 * 			The property to configure
+	 */
+	protected void configureTargetProperty(Property targetProperty) {
+		// do nothing
+	}
+
+	/**
+	 * This method has to be specialized by subclasses (owner)
 	 * 
 	 * @param sourceEnd
 	 *        the semantic end
@@ -110,16 +153,16 @@ public class AssociationNoneEditHelperAdvice extends AssociationEditHelperAdvice
 	 *        the association
 	 * @throws UnsupportedOperationException
 	 */
-	protected void addSourceInModel(final Property sourceEnd, Classifier owner, Classifier targetType, Association association) throws UnsupportedOperationException {
-		boolean added = ClassifierUtils.addOwnedAttribute(owner, sourceEnd);
-
+	protected void addSourceInModel(final Property sourceEnd, Classifier owner, Type targetType, Association association) throws UnsupportedOperationException {
+		// set the container in order to allow Stereotype appliance
+		boolean added = ClassifierUtils.addOwnedAttribute(owner, sourceEnd); 
 		if(!added) {
 			throw new UnsupportedOperationException("Cannot add a Property on Classifier " + owner.getQualifiedName());
 		}
 	}
 
 	/**
-	 * Add the source {@link Property} in the correct container.
+	 * This method has to be specialized by subclasses (owner)
 	 * 
 	 * @param targetEnd
 	 *        the semantic end
@@ -131,9 +174,9 @@ public class AssociationNoneEditHelperAdvice extends AssociationEditHelperAdvice
 	 *        the association
 	 * @throws UnsupportedOperationException
 	 */
-	protected void addTargetInModel(Property targetEnd, Classifier owner, Classifier sourceType, Association association) {
-		boolean added = ClassifierUtils.addOwnedAttribute(owner, targetEnd);
-
+	protected void addTargetInModel(Property targetEnd, Classifier owner, Type sourceType, Association association) {
+		// set the container in order to allow Stereotype appliance
+		boolean added = ClassifierUtils.addOwnedAttribute(owner, targetEnd); 
 		if(!added) {
 			throw new UnsupportedOperationException("Cannot add a Property on Classifier " + owner.getQualifiedName());
 		}
@@ -162,18 +205,22 @@ public class AssociationNoneEditHelperAdvice extends AssociationEditHelperAdvice
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				// Create source and target ends
-				Property sourceEnd = createSourceProperty(targetType);
-				Property targetEnd = createTargetProperty(sourceType);
-
-				// Add association ends references
-				association.getMemberEnds().add(sourceEnd);
-				association.getMemberEnds().add(targetEnd);
-
-				// Add end properties in the model
 				try {
-					addSourceInModel(sourceEnd, sourceType, targetType, association);
-					addTargetInModel(targetEnd, targetType, sourceType, association);
+					Property targetProperty = UMLFactory.eINSTANCE.createProperty();
+					Property sourceProperty = UMLFactory.eINSTANCE.createProperty();
+
+					// TODO: problem with SysML. Link are inversed. A -> B => memberEnd={a, b} instead of {b, a}.
+					// Problem seems to come from cached derivedFeature /endTypes
+					// So we force to set memberEnd in this order before doing anything with the created properties
+					association.getMemberEnds().add(targetProperty);
+					association.getMemberEnds().add(sourceProperty);
+
+					// Create source and target ends
+					createTargetProperty(targetProperty, sourceType, targetType, association, request.getEditingDomain(), progressMonitor, info);
+					configureSourceProperty(targetProperty);
+					createSourceProperty(sourceProperty, targetType, sourceType, association, request.getEditingDomain(), progressMonitor, info);
+					configureTargetProperty(sourceProperty);
+	
 				} catch (Exception e) {
 					Activator.log.error(e);
 					return CommandResult.newCancelledCommandResult();

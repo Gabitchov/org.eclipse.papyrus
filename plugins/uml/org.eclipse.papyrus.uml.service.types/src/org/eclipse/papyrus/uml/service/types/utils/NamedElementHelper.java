@@ -115,15 +115,21 @@ public class NamedElementHelper {
 		this.baseString = baseString;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents) {
-		return getDefaultNameWithIncrementFromBase(base, contents, null);
+	public static String getDefaultNameWithIncrementFromBase(String base, Collection<?> contents) {
+		return getDefaultNameWithIncrementFromBase(base, contents, null, "");
+	}
+
+	public static String getDefaultNameWithIncrementFromBase(String base, Collection<?> contents, String separator) {
+		return getDefaultNameWithIncrementFromBase(base, contents, null, separator);
 	}
 	
-	@SuppressWarnings("rawtypes")
-	public static String getDefaultNameWithIncrementFromBase(String base, Collection contents, EObject elementToRename) {
-		// Not change the name if elementToRename already present in the contents collection
-		if (contents.contains(elementToRename)) {
+	public static String getDefaultNameWithIncrementFromBase(String base, Collection<?> contents, EObject elementToRename) {
+		return getDefaultNameWithIncrementFromBase(base, contents, elementToRename, "");
+	}
+
+	public static String getDefaultNameWithIncrementFromBase(String base, Collection<?> contents, EObject elementToRename, String separator) {
+		// Not change the name if elementToRename already present in the contents collection and already have a name
+		if (contents.contains(elementToRename) && EMFCoreUtil.getName(elementToRename) != null) {
 			if (elementToRename instanceof ENamedElement) {
 				return ((ENamedElement)elementToRename).getName();
 			}
@@ -136,7 +142,7 @@ public class NamedElementHelper {
 		if("property".equalsIgnoreCase(base)) {
 			base = "Attribute";
 		}
-		int nextNumber = 1;
+		int nextNumber = 0;
 
 		for(Object o : contents) {
 			if(o instanceof EObject && o != elementToRename) {
@@ -157,6 +163,6 @@ public class NamedElementHelper {
 			}
 		}
 
-		return base + nextNumber;
+		return nextNumber > 0 ? base + separator + nextNumber : base;
 	}
 }

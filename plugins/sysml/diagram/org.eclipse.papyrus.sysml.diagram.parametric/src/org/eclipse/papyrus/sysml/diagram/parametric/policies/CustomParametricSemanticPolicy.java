@@ -22,6 +22,8 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
+import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -35,6 +37,9 @@ import org.eclipse.papyrus.sysml.diagram.parametric.commands.ReorientReferenceRe
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomBlockCompositeEditPartTN;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomConstraintBlockPropertyCompositeEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policy.DiagramSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.service.types.matcher.PartPropertyMatcher;
+import org.eclipse.papyrus.sysml.service.types.matcher.ReferencePropertyMatcher;
+import org.eclipse.papyrus.sysml.service.types.matcher.ValuePropertyMatcher;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConstraintParameterAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
@@ -53,6 +58,19 @@ public class CustomParametricSemanticPolicy extends DiagramSemanticEditPolicy {
 				Element semanticOwner = UMLUtil.resolveUMLElement(this.getHost());
 				if (semanticOwner instanceof Class && org.eclipse.uml2.uml.util.UMLUtil.getStereotypeApplication(semanticOwner, ConstraintBlock.class) == null) {
 					return UnexecutableCommand.INSTANCE;
+				}
+				// Could not create Part/Reference/Value
+				if (request instanceof CreateElementRequest && ((CreateElementRequest)request).getElementType() instanceof SpecializationType) {
+					IElementMatcher matcher = ((SpecializationType)((CreateElementRequest)request).getElementType()).getMatcher();
+					if (matcher instanceof PartPropertyMatcher) {
+						return UnexecutableCommand.INSTANCE;
+					}
+					if (matcher instanceof ReferencePropertyMatcher) {
+						return UnexecutableCommand.INSTANCE;
+					}
+					if (matcher instanceof ValuePropertyMatcher) {
+						return UnexecutableCommand.INSTANCE;
+					}
 				}
 			}
 		}
