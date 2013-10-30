@@ -69,6 +69,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	public void setDefaultNodePlate(IFigure defaultNodePlate){
 		if( defaultNodePlate instanceof DefaultSizeNodeFigure){
 			this.defaultNodePlate=(DefaultSizeNodeFigure)defaultNodePlate;
+			this.setDefaultSize(((DefaultSizeNodeFigure)defaultNodePlate).getDefaultSize());
 		}
 		if( defaultNodePlate instanceof ICustomNodePlate){
 			((ICustomNodePlate)this.defaultNodePlate).setSVGNodePlateContainer(this);

@@ -246,7 +246,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	 */
 	protected NodeFigure createSVGNodePlate() {
 
-		svgNodePlate=  new SVGNodePlateFigure(200, 100);
+		svgNodePlate=  new SVGNodePlateFigure(-1, -1);
 		svgNodePlate.setDefaultNodePlate(createNodePlate());
 		return  svgNodePlate;
 	}
