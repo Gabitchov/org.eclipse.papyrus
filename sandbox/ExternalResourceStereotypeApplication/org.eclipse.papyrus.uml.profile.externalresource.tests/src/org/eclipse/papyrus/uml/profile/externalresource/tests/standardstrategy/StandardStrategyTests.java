@@ -49,7 +49,15 @@ public class StandardStrategyTests extends AbstractChangeStrategyTests {
 	 */
 	@Override
 	protected URI getApplyStereotypeOnClassInControlledPackageResourceURI() {
-		return getResultFolderURI().appendSegment(PACKAGE1_MODEL_UML_FILE);
+		return  URI.createPlatformResourceURI(getTestProjectName() + "/" + PACKAGE1_MODEL_UML_FILE, true);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected URI getApplyStereotypeOnClassInControlledResourceURI() {
+		return  URI.createPlatformResourceURI(getTestProjectName() + "/" + CLASS3_MODEL_UML_FILE, true);
 	}
 	
 }

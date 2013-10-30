@@ -125,6 +125,8 @@ public class StereotypeApplicationExternalResourceModel extends AbstractModel im
 		List<Resource> resources = new ArrayList<Resource>();
 		// get all profile applications resource to load from the strategy. do not care of the URI ?
 		UmlModel umlModel = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
+		
+		// should retrieve ALL uml files that contains elements that are owned directly or indirectly by the main model
 		try {
 			if(umlModel != null && umlModel.lookupRoot() != null) {
 				EObject root = umlModel.lookupRoot();

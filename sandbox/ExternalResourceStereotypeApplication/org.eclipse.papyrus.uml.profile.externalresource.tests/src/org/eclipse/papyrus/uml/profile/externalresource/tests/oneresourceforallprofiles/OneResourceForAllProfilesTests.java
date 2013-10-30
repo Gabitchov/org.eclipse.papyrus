@@ -45,7 +45,15 @@ public class OneResourceForAllProfilesTests extends AbstractChangeStrategyTests 
 	 */
 	@Override
 	protected URI getApplyStereotypeOnClassInControlledPackageResourceURI() {
-		return getResultFolderURI().appendSegment(PACKAGE1_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE);
+		return URI.createPlatformResourceURI(getTestProjectName()+ "/"+ PACKAGE1_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE, true);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected URI getApplyStereotypeOnClassInControlledResourceURI() {
+		return URI.createPlatformResourceURI(getTestProjectName()+ "/"+ CLASS3_ALL_PROFILES_FILE, true);
 	}
 	
 

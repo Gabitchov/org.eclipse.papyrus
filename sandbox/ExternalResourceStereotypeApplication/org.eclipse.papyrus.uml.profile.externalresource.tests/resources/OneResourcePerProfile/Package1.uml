@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_tKnGwBYQEeOXvea8CstROg" name="Package1">
+  <eAnnotations xmi:id="_WzTEgBYmEeOXvea8CstROg" source="http://www.eclipse.org/papyrus/uml/profile/externalresource">
+    <details xmi:id="_WzTEgRYmEeOXvea8CstROg" key="locationStrategy" value="ResourcePerProfileStrategy"/>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Class" xmi:id="_uLswUBYQEeOXvea8CstROg" name="Package1_Class1"/>
+  <profileApplication xmi:id="_3W-NEBYQEeOXvea8CstROg">
+    <eAnnotations xmi:id="_3XmfMBYQEeOXvea8CstROg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_aPl0oPLZEeKxdJFsMzlLJA"/>
+    </eAnnotations>
+    <eAnnotations xmi:id="_3cMEQBYQEeOXvea8CstROg" source="duplicatedProfile"/>
+    <appliedProfile href="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_yW4wUPLPEeKxdJFsMzlLJA"/>
+  </profileApplication>
+  <profileApplication xmi:id="_3cMrUBYQEeOXvea8CstROg">
+    <eAnnotations xmi:id="_3ciCgBYQEeOXvea8CstROg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_aPpfAfLZEeKxdJFsMzlLJA"/>
+    </eAnnotations>
+    <eAnnotations xmi:id="_3ciCgRYQEeOXvea8CstROg" source="duplicatedProfile"/>
+    <appliedProfile href="pathmap://EXTERNAL_RESOURCE_TEST_PATHMAP/ExternalResourcesTestProfile.profile.uml#_8HJwgPLPEeKxdJFsMzlLJA"/>
+  </profileApplication>
+</uml:Package>
