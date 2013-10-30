@@ -266,4 +266,24 @@ public class StickMan extends ShadowShape implements IPapyrusNodeNamedElementFig
 	public void removeNameLabel() {
 		//Nothing. StickMan uses a floating label and should not implement this method
 	}
+
+	@Override
+	public void removeStereotypeLabel() {
+		
+	}
+
+	@Override
+	public void restoreStereotypeLabel() {
+		
+	}
+
+	@Override
+	public void restoreTaggedLabel() {
+		
+	}
+
+	@Override
+	public void removeTaggedLabel() {
+		
+	}
 }
