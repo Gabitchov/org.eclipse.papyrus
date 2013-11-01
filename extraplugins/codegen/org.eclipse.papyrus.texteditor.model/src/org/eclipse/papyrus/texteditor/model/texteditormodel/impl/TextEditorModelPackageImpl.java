@@ -143,6 +143,24 @@ public class TextEditorModelPackageImpl extends EPackageImpl implements TextEdit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTextEditorModel_SelectedObject() {
+		return (EReference)textEditorModelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTextEditorModel_LineNumber() {
+		return (EAttribute)textEditorModelEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TextEditorModelFactory getTextEditorModelFactory() {
 		return (TextEditorModelFactory)getEFactoryInstance();
 	}
@@ -170,6 +188,8 @@ public class TextEditorModelPackageImpl extends EPackageImpl implements TextEdit
 		createEReference(textEditorModelEClass, TEXT_EDITOR_MODEL__EDITED_OBJECT);
 		createEAttribute(textEditorModelEClass, TEXT_EDITOR_MODEL__TYPE);
 		createEAttribute(textEditorModelEClass, TEXT_EDITOR_MODEL__NAME);
+		createEReference(textEditorModelEClass, TEXT_EDITOR_MODEL__SELECTED_OBJECT);
+		createEAttribute(textEditorModelEClass, TEXT_EDITOR_MODEL__LINE_NUMBER);
 	}
 
 	/**
@@ -210,6 +230,8 @@ public class TextEditorModelPackageImpl extends EPackageImpl implements TextEdit
 		initEReference(getTextEditorModel_EditedObject(), theEcorePackage.getEObject(), null, "editedObject", null, 0, 1, TextEditorModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTextEditorModel_Type(), ecorePackage.getEString(), "type", null, 0, 1, TextEditorModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTextEditorModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, TextEditorModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTextEditorModel_SelectedObject(), theEcorePackage.getEObject(), null, "selectedObject", null, 0, 1, TextEditorModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTextEditorModel_LineNumber(), ecorePackage.getEInt(), "lineNumber", null, 0, 1, TextEditorModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

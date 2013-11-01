@@ -48,7 +48,7 @@ public interface TextEditorModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/Papyrus/Example/0.10.0/texteditormodel";
+	String eNS_URI = "http://www.eclipse.org/Papyrus/TextEditor/0.10.0/texteditormodel";
 
 	/**
 	 * The package namespace name.
@@ -113,13 +113,31 @@ public interface TextEditorModelPackage extends EPackage {
 	int TEXT_EDITOR_MODEL__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Selected Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_EDITOR_MODEL__SELECTED_OBJECT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Line Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_EDITOR_MODEL__LINE_NUMBER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Text Editor Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_EDITOR_MODEL_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TEXT_EDITOR_MODEL_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 
 	/**
@@ -164,6 +182,28 @@ public interface TextEditorModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTextEditorModel_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel#getSelectedObject <em>Selected Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Selected Object</em>'.
+	 * @see org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel#getSelectedObject()
+	 * @see #getTextEditorModel()
+	 * @generated
+	 */
+	EReference getTextEditorModel_SelectedObject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel#getLineNumber <em>Line Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Line Number</em>'.
+	 * @see org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel#getLineNumber()
+	 * @see #getTextEditorModel()
+	 * @generated
+	 */
+	EAttribute getTextEditorModel_LineNumber();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -220,6 +260,22 @@ public interface TextEditorModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TEXT_EDITOR_MODEL__NAME = eINSTANCE.getTextEditorModel_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Selected Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEXT_EDITOR_MODEL__SELECTED_OBJECT = eINSTANCE.getTextEditorModel_SelectedObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Line Number</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT_EDITOR_MODEL__LINE_NUMBER = eINSTANCE.getTextEditorModel_LineNumber();
 
 	}
 

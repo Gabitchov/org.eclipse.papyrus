@@ -14,12 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.texteditor.cdt.handler;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.cdt.core.CCProjectNature;
 import org.eclipse.cdt.core.CProjectNature;
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
@@ -32,11 +28,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.acceleo.ui.handlers.CmdHandler;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
@@ -49,17 +43,17 @@ import org.eclipse.papyrus.texteditor.cdt.editor.PapyrusCDTEditor;
 import org.eclipse.papyrus.texteditor.cdt.modelresource.TextEditorModelSharedResource;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelFactory;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Transition;
 
 
 /**
  * The handler creates a new CDT editor
  */
-public class PapyrusCDTEditorHandler extends AbstractHandler {
+public class PapyrusCDTEditorHandler extends CmdHandler {
 
 
 	public PapyrusCDTEditorHandler() {
@@ -73,64 +67,35 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		List<EObject> selected = getSelection();
-		if(selected.size() == 1) {
-			Object o = selected.get(0);
-			if(o instanceof Class || o instanceof DataType) {
-				URI uri = ((EObject) o).eResource().getURI();
+		updateSelectedEObject();
+		if (selectedEObject instanceof Class ||
+			selectedEObject instanceof DataType ||
+			selectedEObject instanceof Operation ||
+			selectedEObject instanceof Transition)
+		{
+			URI uri = selectedEObject.eResource().getURI();
 
-				// URIConverter uriConverter = resource.getResourceSet().getURIConverter();
-				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				if(uri.segmentCount() < 2) {
-					return false;
+			// URIConverter uriConverter = resource.getResourceSet().getURIConverter();
+			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+			if(uri.segmentCount() < 2) {
+				return false;
+			}
+			IProject modelProject = root.getProject(uri.segment(1));
+			if(modelProject.exists()) {
+				try {
+					// check whether the project is a C or C++ project
+					if(modelProject.hasNature(CProjectNature.C_NATURE_ID) ||
+						modelProject.hasNature(CCProjectNature.CC_NATURE_ID)) {
+						return true;
+					}
 				}
-				IProject modelProject = root.getProject(uri.segment(1));
-				if(modelProject.exists()) {
-					try {
-						// check whether the project is a C or C++ project
-						if(modelProject.hasNature(CProjectNature.C_NATURE_ID) ||
-							modelProject.hasNature(CCProjectNature.CC_NATURE_ID)) {
-							return true;
-						}
-					}
-					catch (CoreException e) {
-						Activator.getDefault().getLog().log(
-							new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not verify, if CDT project", e));
-					}
+				catch (CoreException e) {
+					Activator.getDefault().getLog().log(
+						new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not verify, if CDT project", e));
 				}
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * 
-	 * @return
-	 *         the current selection
-	 */
-	protected List<EObject> getSelection() {
-		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		List<EObject> currentSelection = new ArrayList<EObject>();
-		for(Object current : ((IStructuredSelection)selection).toArray()) {
-			if(current instanceof IAdaptable) {
-				EObject tmp = (EObject)((IAdaptable)current).getAdapter(EObject.class);
-				if(tmp != null) {
-					if((tmp instanceof Class) || (tmp instanceof DataType)) {
-						currentSelection.add(tmp);
-					}
-					else if (tmp instanceof Operation) {
-						Operation op = (Operation) tmp;
-						if (op.getClass_() != null) {
-							currentSelection.add(op.getDatatype());
-						}
-						else if (op.getDatatype() != null) {
-							currentSelection.add(op.getDatatype());	
-						}
-					}
-				}
-			}
-		}
-		return currentSelection;
 	}
 
 	/**
@@ -185,14 +150,16 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 		// Get the page manager allowing to add/open an editor.
 		IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 
-		Object editorModel = getEditorModel(serviceRegistry);
+		Classifier classifierToEdit = getClassifierToEdit();
+
+		TextEditorModel editorModel = getEditorModel(serviceRegistry, classifierToEdit);
 		if (editorModel == null) {
 			// no editor exist for the given file => create
-			editorModel = createEditorModel(serviceRegistry);
+			editorModel = createEditorModel(serviceRegistry, classifierToEdit);
 			// add the new editor model to the sash.
 		}
-		// TODO: editorModel remains in notation, even if editor is closed
-		if (pageMngr.isOpen(editorModel)) {	
+		editorModel.setSelectedObject(selectedEObject);
+		if (pageMngr.isOpen(editorModel)) {
 			// select existing editor
 			pageMngr.selectPage(editorModel);
 		}
@@ -209,17 +176,12 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 	 * @throws NotFoundException
 	 *         The model where to save the TableInstance is not found.
 	 */
-	protected Object createEditorModel(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+	protected TextEditorModel createEditorModel(final ServicesRegistry serviceRegistry, Classifier classifierToEdit) throws ServiceException, NotFoundException {
 		TextEditorModel editorModel = TextEditorModelFactory.eINSTANCE.createTextEditorModel();
-		EObject editedObject = getSelection().get(0);
-		editorModel.setEditedObject(editedObject);
+		
+		editorModel.setEditedObject(classifierToEdit);
 		editorModel.setType(PapyrusCDTEditor.EDITOR_TYPE);
-		if(editedObject instanceof NamedElement) {
-			editorModel.setName("CDT " + ((NamedElement)editedObject).getName()); //$NON-NLS-1$
-		}
-		else {
-			editorModel.setName(PapyrusCDTEditor.EDITOR_DEFAULT_NAME);
-		}
+		editorModel.setName("CDT " + classifierToEdit.getName()); //$NON-NLS-1$
 		TextEditorModelSharedResource model = (TextEditorModelSharedResource)
 			ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
 		model.addTextEditorModel(editorModel);
@@ -227,10 +189,36 @@ public class PapyrusCDTEditorHandler extends AbstractHandler {
 		return editorModel;
 	}
 	
-	protected Object getEditorModel(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
+	/**
+	 * The classifier to edit - corresponding to the selected object.
+	 * @return
+	 */
+	protected Classifier getClassifierToEdit() {
+		if(selectedEObject instanceof Operation) {
+			return ((Operation) selectedEObject).getFeaturingClassifiers().get(0);
+		}
+		else if (selectedEObject instanceof Transition) {
+			return ((Transition) selectedEObject).getContainer().getStateMachine().getContext();
+		}
+		else if (selectedEObject instanceof Classifier) {
+			// must be class or datatype
+			return (Classifier) selectedEObject;
+		}
+		return null;
+	}
+	
+	/**
+	 * return the editor model corresponding to an EObject
+	 *  
+	 * @param serviceRegistry the service registry
+	 * @param classifierToEdit The classifier for which a CDT editor should be opened
+	 * @return
+	 * @throws ServiceException
+	 * @throws NotFoundException
+	 */
+	protected TextEditorModel getEditorModel(final ServicesRegistry serviceRegistry, Classifier classifierToEdit) throws ServiceException, NotFoundException {
 		TextEditorModelSharedResource model = (TextEditorModelSharedResource)
 			ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
-		EObject editedObject = getSelection().get(0);
-		return model.getTextEditorModel(editedObject);
+		return model.getTextEditorModel(classifierToEdit);
 	}
 }
