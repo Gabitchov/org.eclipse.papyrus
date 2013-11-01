@@ -30,6 +30,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.9.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.papyrus.acceleo;bundle-version="0.10.1",
+ org.eclipse.papyrus.acceleo.ui;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1"
