@@ -53,7 +53,7 @@ public class CreateOrShowExistingElementHelper {
 	/**
 	 * the link helper to use. Will be used in the future
 	 */
-	private ILinkMappingHelper linkMappingHelper;
+	protected final ILinkMappingHelper linkMappingHelper;
 
 	/**
 	 * preferences used to know if the dialog must be displayed or not
@@ -103,7 +103,7 @@ public class CreateOrShowExistingElementHelper {
 		if(showDialogAccordingPreferences() && defaultCommand.canExecute()) {
 			final EObject container = req.getContainer();
 			if(container instanceof Element) {
-				final List<EdgeEndsMapper> existingElements = getExistingLinksBetweenSourceAndTarget((Element)req.getContainer(), req.getSource(), req.getTarget(), linkElementType);
+				final List<EdgeEndsMapper> existingElements = getExistingLinksBetweenSourceAndTarget(req, linkElementType);
 				if(existingElements.size() > 0) {
 					final String className = getIElementTypeNameToDisplay(linkElementType);
 					final String dialogTitle = NLS.bind(Messages.CreateOrShowExistingElementHelper_CreateOrRestoreX, className);
@@ -158,25 +158,19 @@ public class CreateOrShowExistingElementHelper {
 
 	/**
 	 * 
-	 * @param container
-	 *        the container
-	 * @param source
-	 * @param target
+	 * @param request
+	 *        the request to create the element
 	 * @param wantedEClass
 	 * @return
-	 *         a list of {@link EdgeEndsMapper} referencing the exising links between the source and the target
+	 *         a list of {@link EdgeEndsMapper} referencing the existing links between the source and the target
 	 */
-	protected List<EdgeEndsMapper> getExistingLinksBetweenSourceAndTarget(final Element container, final EObject source, final EObject target, final IElementType wantedElementType) {
+	protected List<EdgeEndsMapper> getExistingLinksBetweenSourceAndTarget(final CreateRelationshipRequest request, final IElementType wantedElementType) {
 		final List<EdgeEndsMapper> existingElement = new ArrayList<EdgeEndsMapper>();
-		for(final Element current : container.getOwnedElements()) {
+		for(final Element current : ((Element)request.getContainer()).getOwnedElements()) {
 			if(hasWantedType(current, wantedElementType)) {
-				if(target != null) {
-					int i = 0;
-					i++;
-				}
 				final Collection<?> sources = this.linkMappingHelper.getSource(current);
 				final Collection<?> targets = this.linkMappingHelper.getTarget(current);
-				if(sources.contains(source) && targets.contains(target)) {
+				if(sources.contains(request.getSource()) && targets.contains(request.getTarget())) {
 					final EClass wantedEClass = wantedElementType.getEClass();
 					if((wantedEClass == UMLPackage.eINSTANCE.getConnector()) || (wantedEClass == UMLPackage.eINSTANCE.getAssociation())) {
 						existingElement.add(new EdgeEndsMapper(current, sources, null, null));
