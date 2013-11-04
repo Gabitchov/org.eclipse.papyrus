@@ -337,10 +337,14 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
           <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/34">
 =======
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/43">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/43">
+>>>>>>> refs/heads/Qompass
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
           </argument>
           <argument xsi:type="ocl.ecore:TypeExp" eType="/6/Inline">
@@ -429,10 +433,14 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <definition href="platform:/plugin/utils/Modifier.emtl#/0/modConst"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/52">
 =======
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/61">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/61">
+>>>>>>> refs/heads/Qompass
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
         </argument>
       </body>
@@ -510,10 +518,14 @@
               <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
               <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getApplication"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/59">
 =======
               <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/78">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+              <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/78">
+>>>>>>> refs/heads/Qompass
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
               </argument>
               <argument xsi:type="ocl.ecore:TypeExp" eType="/6/ConstInit">
@@ -533,10 +545,14 @@
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
             <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/58">
 =======
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/77">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/77">
+>>>>>>> refs/heads/Qompass
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
             <argument xsi:type="ocl.ecore:TypeExp" eType="/6/ConstInit">
@@ -547,10 +563,14 @@
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
             <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/58">
 =======
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/77">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/77">
+>>>>>>> refs/heads/Qompass
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
             <argument xsi:type="ocl.ecore:TypeExp" eType="/6/Create">
@@ -574,10 +594,14 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getBody"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/64">
 =======
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/83">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/83">
+>>>>>>> refs/heads/Qompass
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
           </argument>
           <argument xsi:type="ocl.ecore:VariableExp" name="language" referredVariable="/0/getBodyInTemplate/language">
@@ -676,10 +700,14 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getBody"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/85">
 =======
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/104">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/104">
+>>>>>>> refs/heads/Qompass
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
           </argument>
           <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="C/C++">
@@ -782,10 +810,14 @@
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
             <definition href="platform:/plugin/utils/Modifier.emtl#/0/modConst"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/95">
 =======
             <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/114">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/114">
+>>>>>>> refs/heads/Qompass
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
           </body>

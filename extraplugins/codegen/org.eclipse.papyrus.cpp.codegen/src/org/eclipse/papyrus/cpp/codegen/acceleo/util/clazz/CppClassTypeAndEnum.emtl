@@ -9,9 +9,13 @@
     </input>
     <imports href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     <imports href="platform:/plugin/utils/CppGenUtils.emtl#/0"/>
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+    <imports href="platform:/plugin/utils/CppGenUtils.emtl#/0"/>
+>>>>>>> refs/heads/Qompass
     <imports href="../CppPrimitiveTypes.emtl#/0"/>
     <imports href="../CppEnumerations.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="TypeAndEnumForVisibility" visibility="Public">

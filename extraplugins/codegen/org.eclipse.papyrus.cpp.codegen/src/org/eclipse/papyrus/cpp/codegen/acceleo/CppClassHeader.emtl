@@ -28,10 +28,14 @@
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
           <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/5">
 =======
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
+>>>>>>> refs/heads/Qompass
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
           </argument>
           <argument xsi:type="ocl.ecore:TypeExp" eType="/6/Union">
@@ -219,10 +223,14 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullNameUC"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/26">
 =======
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/31">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/31">
+>>>>>>> refs/heads/Qompass
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
         </argument>
       </body>
@@ -231,10 +239,14 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getFullNameUC"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/27">
 =======
         <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/32">
 >>>>>>> - [Bug 420376] Generated C++ code is not formatted
+=======
+        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/32">
+>>>>>>> refs/heads/Qompass
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
         </argument>
       </body>
