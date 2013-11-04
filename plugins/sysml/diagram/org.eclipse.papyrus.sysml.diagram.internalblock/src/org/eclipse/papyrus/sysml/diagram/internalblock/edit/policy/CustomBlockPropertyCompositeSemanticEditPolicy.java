@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.provider.IGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyCompositeSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLCreateOrShowExistingElementHelper;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomGraphicalTypeRegistry;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.GraphicalTypeRegistry;
@@ -49,6 +50,8 @@ public class CustomBlockPropertyCompositeSemanticEditPolicy extends BlockPropert
 
 	private CreateOrShowExistingElementHelper linkHelper = new CreateOrShowExistingElementHelper();
 
+	/** the sysml link helper to use for specific case */
+	private CreateOrShowExistingElementHelper sysmlLinkHelper = new SysMLCreateOrShowExistingElementHelper();
 	/**
 	 * {@inheritDoc}
 	 */
@@ -77,7 +80,7 @@ public class CustomBlockPropertyCompositeSemanticEditPolicy extends BlockPropert
 		if(defaultCommand.canExecute()) {
 			final IElementType elementType = req.getElementType();
 			if(UMLElementTypes.CONNECTOR.equals(req.getElementType())) {
-				return this.linkHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
+				return this.sysmlLinkHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
 			}
 			if(UMLElementTypes.DEPENDENCY.equals(req.getElementType())) {
 				return this.linkHelper.getCreateOrRestoreElementCommand(req, defaultCommand, elementType);
