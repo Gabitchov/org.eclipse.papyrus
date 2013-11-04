@@ -76,4 +76,16 @@
 		<Priority name="Low"/>
 	</editpolicyProvider>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider">
+   <shapeProvider
+         class="org.eclipse.papyrus.uml.diagram.symbols.provider.LifelineShapeProvider"
+         description="Provides the shapes based on the type of the element represented by the lifeline. Relies on TypedElementShapeProvider"
+         id="org.eclipse.papyrus.uml.diagram.symbols.lifelineshapeprovider"
+         name="Lifeline Shape Provider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </shapeProvider>
+</extension>
 </plugin>

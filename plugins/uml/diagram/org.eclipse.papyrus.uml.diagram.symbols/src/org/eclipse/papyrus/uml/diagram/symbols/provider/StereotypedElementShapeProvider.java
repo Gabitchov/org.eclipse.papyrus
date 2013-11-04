@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
 import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -20,13 +18,13 @@ import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ProviderNotificationManager;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.symbols.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
-import org.w3c.dom.Document;
 
 /**
  * This provider is linked to the {@link ShapeService}. It returns the shapes for a given element corresponding to the stereotypes applied on the
