@@ -1,31 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.cea.papyrus.diagraminterchange2/src"
-    modelPluginID="com.cea.papyrus.diagraminterchange2" modelName="Di2" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.conversion.di2/src" modelPluginID="org.eclipse.papyrus.conversion.di2"
+    modelName="Di2" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>di2.ecore</foreignModel>
-  <genPackages prefix="Di2" basePackage="com.cea.papyrus.diagraminterchange2" disposableProviderFactory="true"
-      ecorePackage="di2.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="di2.ecore#//TypeDiagram">
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/ClassDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/CompositeStructureDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/ComponentDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/DeploymentDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/ObjectDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/PackageDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/ActivityDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/SequenceDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/CommunicationDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/InteractionOverviewDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/TimingDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/UseCaseDiagram"/>
-      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//TypeDiagram/StateMachineDiagram"/>
+  <genPackages prefix="Di2" resource="XML" disposableProviderFactory="true" ecorePackage="di2.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="di2.ecore#//PapyrusKeyEnumeration">
+      <genEnumLiterals ecoreEnumLiteral="di2.ecore#//PapyrusKeyEnumeration/papyruseditpart"/>
     </genEnums>
     <genDataTypes ecoreDataType="di2.ecore#//Point"/>
     <genDataTypes ecoreDataType="di2.ecore#//Dimension"/>
     <genDataTypes ecoreDataType="di2.ecore#//Double"/>
     <genDataTypes ecoreDataType="di2.ecore#//RGB"/>
+    <genDataTypes ecoreDataType="di2.ecore#//String"/>
     <genClasses ecoreClass="di2.ecore#//DiagramElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference di2.ecore#//DiagramElement/property"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute di2.ecore#//DiagramElement/isVisible"/>
@@ -45,6 +34,10 @@
       <genOperations ecoreOperation="di2.ecore#//DiagramElement/getProperty">
         <genParameters ecoreParameter="di2.ecore#//DiagramElement/getProperty/key"/>
       </genOperations>
+      <genOperations ecoreOperation="di2.ecore#//DiagramElement/getPropertyValue">
+        <genParameters ecoreParameter="di2.ecore#//DiagramElement/getPropertyValue/key"/>
+      </genOperations>
+      <genOperations ecoreOperation="di2.ecore#//DiagramElement/getEditpartName"/>
     </genClasses>
     <genClasses ecoreClass="di2.ecore#//GraphElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference di2.ecore#//GraphElement/contained"/>

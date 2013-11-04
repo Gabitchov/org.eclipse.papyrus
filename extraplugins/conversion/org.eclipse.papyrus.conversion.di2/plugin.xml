@@ -9,13 +9,12 @@
 -->
 
 <plugin>
-
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "null" 
-       class = "org.eclipse.papyrus.conversion.di2.Di2Package"
-       genModel = "model/di2.genmodel" /> 
-  </extension>
-
+    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated di2 -->
+      <package
+            uri="http://www.papyrusuml.org"
+            class="org.eclipse.papyrus.conversion.di2.Di2Package"
+            genModel="model/di2.genmodel"/>
+   </extension>
 </plugin>
 
