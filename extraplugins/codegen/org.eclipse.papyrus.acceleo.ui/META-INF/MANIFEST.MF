@@ -10,6 +10,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.emf.ecore;bundle-version="2.10.0"
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.papyrus.acceleo.ui.handlers
 Bundle-Vendor: %providerName
