@@ -1,3 +1,4 @@
+ManifestVersion: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.acceleo.ui;singleton:=true
@@ -9,6 +10,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.emf.ecore;bundle-version="2.10.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.papyrus.acceleo.ui.handlers
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
