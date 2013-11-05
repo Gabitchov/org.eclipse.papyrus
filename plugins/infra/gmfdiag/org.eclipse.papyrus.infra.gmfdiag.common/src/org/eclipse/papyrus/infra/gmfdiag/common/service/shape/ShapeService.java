@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.w3c.dom.svg.SVGDocument;
 
 /**
  * Service that manages shape.
@@ -53,7 +53,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	 */
 	public boolean hasShapeToDisplay(EObject view) {
 		@SuppressWarnings("unchecked")
-		List<RenderedImage> images = (List<RenderedImage>)execute(ExecutionStrategy.REVERSE, new GetShapesForViewOperation(view));
+		List<RenderedImage> images = execute(ExecutionStrategy.REVERSE, new GetShapesForViewOperation(view));
 		return images != null && images.size() > 0;
 	}
 
@@ -66,7 +66,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	 */
 	public List<RenderedImage> getShapesToDisplay(EObject view) {
 		@SuppressWarnings("unchecked")
-		List<List<RenderedImage>> listOfListOfImages = (List<List<RenderedImage>>)execute(ExecutionStrategy.REVERSE, new GetShapesForViewOperation(view));
+		List<List<RenderedImage>> listOfListOfImages = execute(ExecutionStrategy.REVERSE, new GetShapesForViewOperation(view));
 		List<RenderedImage> images = new ArrayList<RenderedImage>();
 		for(List<RenderedImage> listOfImages : listOfListOfImages) {
 			if(listOfImages != null && !listOfImages.isEmpty()) {
@@ -75,8 +75,8 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 		}
 		return images;
 	}
-	
-	
+
+
 	/**
 	 * Returns the shape to be displayed
 	 * 
@@ -84,11 +84,11 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	 *        the EObject for which the shape is computed
 	 * @return the shape to be displayed
 	 */
-	public List<SVGOMDocument> getSVGDocumentToDisplay(EObject view) {
+	public List<SVGDocument> getSVGDocumentToDisplay(EObject view) {
 		@SuppressWarnings("unchecked")
-		List<List<SVGOMDocument>> listOfListOfImages = (List<List<SVGOMDocument>>)execute(ExecutionStrategy.REVERSE, new GetSVGDocumentForViewOperation(view));
-		List<SVGOMDocument> images = new ArrayList<SVGOMDocument>();
-		for(List<SVGOMDocument> listOfImages : listOfListOfImages) {
+		List<List<SVGDocument>> listOfListOfImages = execute(ExecutionStrategy.REVERSE, new GetSVGDocumentForViewOperation(view));
+		List<SVGDocument> images = new ArrayList<SVGDocument>();
+		for(List<SVGDocument> listOfImages : listOfListOfImages) {
 			if(listOfImages != null && !listOfImages.isEmpty()) {
 				images.addAll(listOfImages);
 			}
@@ -108,7 +108,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	 */
 	protected List<ProviderNotificationManager> createProviderNotificationManagers(DiagramEventBroker diagramEventBroker, EObject view, NotificationListener notificationListener) {
 		@SuppressWarnings("unchecked")
-		List<ProviderNotificationManager> providerNotificationManagers = (List<ProviderNotificationManager>)execute(ExecutionStrategy.REVERSE, new CreateProviderNotificationManagersOperation(diagramEventBroker, view, notificationListener));
+		List<ProviderNotificationManager> providerNotificationManagers = execute(ExecutionStrategy.REVERSE, new CreateProviderNotificationManagersOperation(diagramEventBroker, view, notificationListener));
 		return providerNotificationManagers;
 	}
 
@@ -154,7 +154,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 	 */
 	public IShapeProvider getProvider(String id) {
 		@SuppressWarnings("unchecked")
-		List<IShapeProvider> providers = (List<IShapeProvider>)execute(ExecutionStrategy.REVERSE, new GetShapeProviderByIdentifierOperation(id));
+		List<IShapeProvider> providers = execute(ExecutionStrategy.REVERSE, new GetShapeProviderByIdentifierOperation(id));
 		if(providers == null) {
 			return null;
 		}
@@ -202,7 +202,7 @@ public class ShapeService extends org.eclipse.gmf.runtime.common.core.service.Se
 			if(!(operation instanceof IShapeProviderOperation)) {
 				return false;
 			}
-			
+
 			if(operation instanceof GetShapeProviderByIdentifierOperation) {
 				return providerConfiguration.getId().equals(((GetShapeProviderByIdentifierOperation)operation).getIdentifier());
 			}

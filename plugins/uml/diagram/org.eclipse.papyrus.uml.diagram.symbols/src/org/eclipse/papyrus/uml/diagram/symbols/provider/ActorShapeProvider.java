@@ -13,18 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.symbols.provider;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
-import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
@@ -34,6 +33,7 @@ import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.w3c.dom.svg.SVGDocument;
 
 
 /**
@@ -44,14 +44,22 @@ public class ActorShapeProvider extends AbstractShapeProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<RenderedImage> getShapes(EObject view) {
 		if(providesShapes(view)) {
-			URL url;
-			try {
-				url = new URL("platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/actor.svg"); //$NON-NLS-1$
-				return Arrays.asList(RenderedImageFactory.getInstance(url));
-			} catch (MalformedURLException e) {
-				Activator.log.error(e);
+			List<SVGDocument> documents = getSVGDocument(view);
+
+			if(documents != null) {
+				List<RenderedImage> result = new LinkedList<RenderedImage>();
+				for(SVGDocument document : documents) {
+					try {
+						result.add(renderSVGDocument(view, document));
+					} catch (IOException ex) {
+						Activator.log.error(ex);
+						continue;
+					}
+				}
+				return result;
 			}
 		}
 		return null;
@@ -60,6 +68,7 @@ public class ActorShapeProvider extends AbstractShapeProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean providesShapes(EObject view) {
 		if(!(view instanceof View)) {
 			return false;
@@ -76,6 +85,7 @@ public class ActorShapeProvider extends AbstractShapeProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ProviderNotificationManager createProviderNotificationManager(DiagramEventBroker diagramEventBroker, EObject view, NotificationListener listener) {
 		// retrieve semantic element from the view and add a notification listener on the Type feature if the semantic element is a TypedElement
 		if(view == null || !(view instanceof View)) {
@@ -137,6 +147,7 @@ public class ActorShapeProvider extends AbstractShapeProvider {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void notifyChanged(Notification notification) {
 			if(listener == null) {
 				return;
@@ -147,16 +158,20 @@ public class ActorShapeProvider extends AbstractShapeProvider {
 		}
 	}
 
-	public List<SVGOMDocument> getSVGOMDocument(EObject view) {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<SVGDocument> getSVGDocument(EObject view) {
 		if(providesShapes(view)) {
-			String path ="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/symbols/actor.svg"; //$NON-NLS-1$
-			SVGOMDocument document=getSVGDocument(path);
-			if(document==null){
+			URI uri = URI.createPlatformPluginURI(org.eclipse.papyrus.uml.diagram.common.Activator.ID + "/icons/symbols/actor.svg", true);
+			String path = uri.toString();
+			SVGDocument document = getSVGDocument(path);
+			if(document == null) {
 				return null;
 			}
 			return Arrays.asList(getSVGDocument(path));
 		}
 		return null;
 	}
-
 }
