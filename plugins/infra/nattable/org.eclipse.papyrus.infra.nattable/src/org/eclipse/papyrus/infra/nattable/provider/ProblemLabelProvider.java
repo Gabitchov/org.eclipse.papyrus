@@ -13,9 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.provider;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 
 /**
@@ -48,9 +54,43 @@ public class ProblemLabelProvider extends EMFLabelProvider implements IFilteredL
 	@Override
 	protected String getText(final EObject element) {
 		final Problem pb = (Problem)element;
-		final String text = "#Problem: " + pb.getName() + "Description: " + pb.getDescription(); //$NON-NLS-1$ //$NON-NLS-2$
-		return text;
+		if(pb instanceof StringResolutionProblem) {
+			return ((StringResolutionProblem)pb).getValueAsString();
+		}
+		return pb.getDescription();
 	}
 
+	/**
+	 * 
+	 * @param element
+	 *        a problem
+	 * @return
+	 *         the text to display for a problem in a tooltip
+	 */
+	//TODO : should be obtained using a service or a specific wrapper to get tooltip
+	public String getTooltipText(final EObject element) {
+		if(element instanceof Problem) {
+			final Problem problem = (Problem)element;
+			final StringBuilder builder = new StringBuilder();
+			if(problem instanceof StringResolutionProblem) {
+				final List<String> unresolvedStrings = ((StringResolutionProblem)problem).getUnresolvedString();
+				builder.append(NLS.bind(Messages.ProblemLabelProvider_StringsValuesCanBeResolved,unresolvedStrings.size()));
+				if(unresolvedStrings.size() == 1) {
+					builder.append(" "); //$NON-NLS-1$
+					builder.append(unresolvedStrings.get(0));
+				} else {
+					final Iterator<String> iterOnString = ((StringResolutionProblem)problem).getUnresolvedString().iterator();
+					while(iterOnString.hasNext()) {
+						builder.append("\n\t- "); //$NON-NLS-1$
+						builder.append(iterOnString.next());
+					}
+				}
+			} else {
+				builder.append(((Problem)problem).getDescription());
+			}
+			return builder.toString();
+		}
+		return null;
+	}
 
 }

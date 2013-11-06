@@ -70,6 +70,7 @@ import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.provider.PapyrusNatTableToolTipProvider;
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
 import org.eclipse.papyrus.infra.nattable.sort.ColumnSortModel;
 import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
@@ -210,7 +211,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			site.registerContextMenu(menuMgr, this.selectionProvider);
 			site.setSelectionProvider(this.selectionProvider);
 		}
-
+		new PapyrusNatTableToolTipProvider(this.natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
 		return this.natTable;
 	}
 
