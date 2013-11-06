@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.appearance;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.w3c.dom.svg
+ org.w3c.dom.svg;bundle-version="1.1.0"
 Export-Package: org.eclipse.papyrus.uml.diagram.symbols,
  org.eclipse.papyrus.uml.diagram.symbols.provider
 Bundle-Vendor: %Bundle-Vendor

@@ -163,7 +163,7 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 						figure.setLayoutManager(new ShapeFlowLayout());
 
 						for(RenderedImage image : shapesToDisplay) {
-							BorderedScalableImageFigure subFigure = new BorderedScalableImageFigure(image, false, false, true);
+							BorderedScalableImageFigure subFigure = new BorderedScalableImageFigure(image, false, true, true);
 							figure.add(subFigure);
 						}
 

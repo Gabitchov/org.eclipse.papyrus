@@ -59,7 +59,7 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 		if(path != null && path.length() > 0) {
 
 			List<SVGDocument> documents = getSVGDocument(view);
-			if(!documents.isEmpty()) {
+			if(documents != null && !documents.isEmpty()) {
 				List<RenderedImage> result = new LinkedList<RenderedImage>();
 				for(SVGDocument document : documents) {
 					if(document == null) {
