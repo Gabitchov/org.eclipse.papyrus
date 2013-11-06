@@ -9,8 +9,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers3.ui.view.LayersExplorerViewUtils;
-import org.eclipse.ui.IWorkbenchPartSite;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * Open Layer Explorer ui handler.

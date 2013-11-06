@@ -44,6 +44,9 @@ public class NotationDiagramRemovedFromResourceEventNotifier {
 	protected Adapter notationDiagramRemovedListener = new AdapterImpl() {
 		public void notifyChanged(Notification msg) {
 			
+			// TODO When a Resource is unloaded, each diagram is removed and a corresponding event is fired.
+			// We need to separate event from a regular removal (user choose to remove a diagram) from events 
+			// event fired by 'resource.unload()' (to be done). 
 			if( msg.getEventType() == Notification.REMOVE 
 					&& msg.getNotifier() instanceof Resource
 					&& msg.getOldValue() instanceof Diagram ) {
@@ -52,7 +55,12 @@ public class NotationDiagramRemovedFromResourceEventNotifier {
 //						+ ", type="+ msg.getEventType()
 //						+ ", newValue=" + msg.getNewValue()
 //						+ ", oldValue=" + msg.getOldValue());
-				fireDiagramRemovedEvent(msg);
+				Resource resource = (Resource)msg.getNotifier();
+				// Fire event only if resource is loaded. This should avoid firing event when the
+				// diagram is removed because the resource is unloading.
+				if( resource.isLoaded() ) {
+				  fireDiagramRemovedEvent(msg);
+				}
 			}
 		};
 		

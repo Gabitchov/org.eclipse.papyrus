@@ -76,6 +76,14 @@
             id="org.eclipse.papyrus.layers.ui.commands.openlayersexplorerview"
             name="Open Layers Explorer">
       </command>
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.attachitemselectedindiagramtocurrentlayer"
+            name="Attach Views to Current Layer">
+      </command>
+      <command
+            id="org.eclipse.papyrus.layers.ui.commands.removeitemselectedindiagramfromcurrentlayer"
+            name="Remove Views from Current Layer">
+      </command>
    </extension>
    <extension
          name="Layers v3"
@@ -123,6 +131,14 @@
       <handler
             class="org.eclipse.papyrus.layers3.ui.handlers.OpenLayerExplorerHandler"
             commandId="org.eclipse.papyrus.layers.ui.commands.openlayersexplorerview">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.handlers.AttachDiagramSelectedItemsToCurrentLayer"
+            commandId="org.eclipse.papyrus.layers.ui.commands.attachitemselectedindiagramtocurrentlayer">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.layers3.ui.handlers.RemoveDiagramSelectedItemsFromCurrentLayer"
+            commandId="org.eclipse.papyrus.layers.ui.commands.removeitemselectedindiagramfromcurrentlayer">
       </handler>
    </extension>
    <extension
@@ -266,6 +282,18 @@
                   style="push">
             </command>
          </menu>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.attachitemselectedindiagramtocurrentlayer"
+               label="Attach Selected Views to Layer"
+               style="push"
+               tooltip="Attach selected views to the layer selected in the LayersExplorer">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.layers.ui.commands.removeitemselectedindiagramfromcurrentlayer"
+               label="Remove Selected Views from Layer"
+               style="push"
+               tooltip="Remove selected views from the layer selected in the LayersExplorer">
+         </command>
       </menuContribution>
       <menuContribution
             locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
@@ -288,6 +316,18 @@
                   label="Open Layers Explorer"
                   style="push"
                   tooltip="Open the Layers Explorer View">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.attachitemselectedindiagramtocurrentlayer"
+                  label="Attach Views to Layer"
+                  style="push"
+                  tooltip="Attach selected views to the layer selected in the LayersExplorer">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.removeitemselectedindiagramfromcurrentlayer"
+                  label="Remove Views from Layer"
+                  style="push"
+                  tooltip="Remove selected views from the layer selected in the LayersExplorer">
             </command>
          </menu>
       </menuContribution>

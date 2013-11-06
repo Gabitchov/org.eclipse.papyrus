@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
 /**
  * Handler used to select multiples views to attach to the selected Layer.
- * Property are proposed in a selectable tree.
+ * Property are proposed in a selectable tree dialog.
  * 
  * @author cedric dumoulin
  *
