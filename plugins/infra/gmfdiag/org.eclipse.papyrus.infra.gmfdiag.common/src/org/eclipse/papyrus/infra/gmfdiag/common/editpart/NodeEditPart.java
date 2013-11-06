@@ -135,6 +135,7 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 		refreshLineType();
 		refreshLineWidth();
 		refreshTransparency();
+		refreshSVGPath();
 	}
 
 	@Override
