@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -47,7 +47,6 @@ import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Property;
-
 
 /**
  * 
@@ -115,8 +114,8 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 	}
 
 	/**
-	 * This method manages descriptors representing Connector to verify that it can be displayed according to the nestedPath of the
-	 * {@link ConnectorEnd} If the connector can be displayed :
+	 * This method manages descriptors representing Connector to verify that it
+	 * can be displayed according to the nestedPath of the {@link ConnectorEnd} If the connector can be displayed :
 	 * <ul>
 	 * <li>
 	 * the link descriptor is removed from descriptors and added to result</li>
@@ -143,10 +142,12 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 			if(current instanceof UpdaterLinkDescriptor) {
 				final UpdaterLinkDescriptor descriptor = (UpdaterLinkDescriptor)current;
 				final EObject element = descriptor.getModelElement();
-				if(element instanceof Connector && canBeDisplayed((Connector)element, view, domain2NotationMap)) {
-					result.add((UpdaterLinkDescriptor)current);
+				if(element instanceof Connector) {
+					if(canBeDisplayed((Connector)element, view, domain2NotationMap)) {
+						result.add((UpdaterLinkDescriptor)current);
+					}
+					toRemove.add((UpdaterLinkDescriptor)current);
 				}
-				toRemove.add((UpdaterLinkDescriptor)current);
 			}
 		}
 		descriptors.removeAll(toRemove);
@@ -158,18 +159,18 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 	 *        a connector end
 	 * @param view
 	 *        a view
-	 * @return
-	 *         <code>true</code> if the view represents the role of the connector AND if the view is encapsulated as required by the nested path of
-	 *         the connector end
+	 * @return <code>true</code> if the view represents the role of the
+	 *         connector AND if the view is encapsulated as required by the
+	 *         nested path of the connector end
 	 */
 	protected boolean isCorrectGraphicalView(final ConnectorEnd end, final View view) {
 		final NestedConnectorEnd nestedConnectorEnd = org.eclipse.uml2.uml.util.UMLUtil.getStereotypeApplication(end, NestedConnectorEnd.class);
 		final Property partWithPort = end.getPartWithPort();
-		//		final ConnectableElement role = end.getRole();
-		//1. we get the top view of this view with the same semantic element
+		// final ConnectableElement role = end.getRole();
+		// 1. we get the top view of this view with the same semantic element
 		View localView = getTopViewWithSameSemanticElement(view);
 
-		//2. we  verify the part with port
+		// 2. we verify the part with port
 		if(partWithPort != null) {
 			View parent = getTopViewWithSameSemanticElement(ViewUtil.getViewContainer(localView));
 			if(parent.getElement() != partWithPort) {
@@ -177,7 +178,7 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 			}
 		}
 
-		//3. we verify the nested path
+		// 3. we verify the nested path
 		if(nestedConnectorEnd != null && nestedConnectorEnd.getPropertyPath().size() > 0) {
 			View parent = view;
 			final List<Property> paths = nestedConnectorEnd.getPropertyPath();
@@ -199,17 +200,19 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 	 * @param selectedView
 	 *        a view used as source or target for the connector to display
 	 * @param domain2NotationMap
-	 *        the map to complete if we found source and target View on the diagram to diplsay the connector
-	 * @return
-	 *         <code>true</code> if the view can be used as source/target for the connector according to the nested path AND if we found a second view
-	 *         for the 2nd connector end according to the nested path
+	 *        the map to complete if we found source and target View on the
+	 *        diagram to diplsay the connector
+	 * @return <code>true</code> if the view can be used as source/target for
+	 *         the connector according to the nested path AND if we found a
+	 *         second view for the 2nd connector end according to the nested
+	 *         path
 	 */
 	protected boolean canBeDisplayed(final Connector connector, final View selectedView, final Map<EObject, View> domain2NotationMap) {
-		//we need to verify the selected view
+		// we need to verify the selected view
 		final EObject semanticElement = selectedView.getElement();
 		ConnectorEnd endForView = null;
 
-		//1. look for the connector end represented by the selected view
+		// 1. look for the connector end represented by the selected view
 		for(final ConnectorEnd current : connector.getEnds()) {
 			if(current.getRole() == semanticElement) {
 				endForView = current;
@@ -217,15 +220,18 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 			}
 		}
 		Assert.isNotNull(endForView);
-		//2. verify the view of the selected connector end
+		// 2. verify the view of the selected connector end
 		if(!isCorrectGraphicalView(endForView, selectedView)) {
 			return false;
 		}
 
-		//3. try to find a view for the second connector end
+		// 3. try to find a view for the second connector end
 		View secondView = null;
 		for(final ConnectorEnd end : connector.getEnds()) {
 			final ConnectableElement role = end.getRole();
+			if(role==null){
+				return false;
+			}
 			if(end == endForView) {
 				continue;
 			}
@@ -244,7 +250,6 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 		return secondView != null;
 	}
 
-
 	/**
 	 * 
 	 * @param domain
@@ -253,8 +258,7 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 	 *        a link to show
 	 * @param domain2NotationMap
 	 * @param linkDescriptors
-	 * @return
-	 *         the command to display the link on the diagram
+	 * @return the command to display the link on the diagram
 	 */
 	protected ICommand getShowLinkCommand(final TransactionalEditingDomain domain, final EObject linkToShow, final Map<EObject, View> domain2NotationMap, final Collection<? extends UpdaterLinkDescriptor> linkDescriptors) {
 		if(!(linkToShow instanceof Connector)) {
@@ -264,13 +268,14 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 		final View view = domain2NotationMap.get(linkToShow);
 		if(view != null) {
 			return new SetPropertyCommand(domain, "Restore related linksCommand show view", new EObjectAdapter(view), Properties.ID_ISVISIBLE, Boolean.TRUE);//$NON-NLS-1$
-		} else {//we need to recreate the view
+		} else {// we need to recreate the view
 
-			//we look for the link descriptor
+			// we look for the link descriptor
 			UpdaterLinkDescriptor descriptor = getLinkDescriptor(linkToShow, linkDescriptors);
 
 			if(descriptor != null) {
-				//we override the way to find the source and the target edit part
+				// we override the way to find the source and the target edit
+				// part
 				EditPart sourceEditPart = getEditPart(((Connector)linkToShow).getEnds().get(0), domain2NotationMap);
 				EditPart targetEditPart = getEditPart(((Connector)linkToShow).getEnds().get(1), domain2NotationMap);
 
@@ -292,13 +297,12 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 		return null;
 	}
 
-
 	/**
 	 * 
 	 * @param view
 	 *        a view
-	 * @return
-	 *         the last parent of this view referencing the same semantic element
+	 * @return the last parent of this view referencing the same semantic
+	 *         element
 	 */
 	protected View getTopViewWithSameSemanticElement(final View view) {
 		final EObject semanticElement = view.getElement();
