@@ -66,8 +66,9 @@
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//LayerExpression">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/name"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/description"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/isEnabled"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/isUserEnabled"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
+          ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/isLayerEnabledInternal"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/isLayerEnabled"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/getComputePropertyValueCommand">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getComputePropertyValueCommand/view"/>
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getComputePropertyValueCommand/property"/>

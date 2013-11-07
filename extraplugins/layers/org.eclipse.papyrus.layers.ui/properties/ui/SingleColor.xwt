@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns="http://www.eclipse.org/xwt/presentation">
+	xmlns:j="clr-namespace:java.lang">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -12,6 +11,13 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}" property="layers:Type:name"></ppe:StringEditor>
-		<ppe:StringEditor input="{Binding}" property="layers:Type:description"></ppe:StringEditor>
+		<ppe:StringMultiline input="{Binding}"
+			property="layers:Type:description"></ppe:StringMultiline>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}" property="layers:Type:metamodel"></ppe:ReferenceDialog>
 	</Composite>
 </Composite>

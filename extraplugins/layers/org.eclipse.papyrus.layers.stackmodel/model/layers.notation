@@ -1333,7 +1333,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="__1eoN-HTEeKCZbxNW-U3VQ"/>
       </children>
       <element xmi:type="uml:Class" href="layers.uml#__1GNoOHTEeKCZbxNW-U3VQ"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="__1eoIeHTEeKCZbxNW-U3VQ" x="732" y="642"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="__1eoIeHTEeKCZbxNW-U3VQ" x="984" y="642"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_y-BQAda7EeKPiuTfpuvqHA"/>
     <element xmi:type="uml:Model" href="layers.uml#_gAOFQLcqEeK8_t7Rpq6ZJA"/>

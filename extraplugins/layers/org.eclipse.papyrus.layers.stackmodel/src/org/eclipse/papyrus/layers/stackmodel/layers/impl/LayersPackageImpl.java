@@ -823,7 +823,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayerExpression_IsEnabled() {
+	public EAttribute getLayerExpression_IsLayerEnabledInternal() {
 		return (EAttribute)layerExpressionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -832,7 +832,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLayerExpression_IsUserEnabled() {
+	public EAttribute getLayerExpression_IsLayerEnabled() {
 		return (EAttribute)layerExpressionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2652,8 +2652,8 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		layerExpressionEClass = createEClass(LAYER_EXPRESSION);
 		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__NAME);
 		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__DESCRIPTION);
-		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__IS_ENABLED);
-		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__IS_USER_ENABLED);
+		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL);
+		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__IS_LAYER_ENABLED);
 		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_PROPERTY);
 		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_VIEWS_COMPUTE_PROPERTY_VALUE_COMMAND__ELIST_PROPERTY);
 		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST);
@@ -3026,8 +3026,8 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		initEClass(layerExpressionEClass, LayerExpression.class, "LayerExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLayerExpression_Name(), this.getString(), "name", null, 1, 1, LayerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getLayerExpression_Description(), this.getString(), "description", null, 1, 1, LayerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getLayerExpression_IsEnabled(), this.getboolean(), "isEnabled", null, 1, 1, LayerExpression.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getLayerExpression_IsUserEnabled(), this.getboolean(), "isUserEnabled", "true", 1, 1, LayerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getLayerExpression_IsLayerEnabledInternal(), this.getboolean(), "isLayerEnabledInternal", null, 1, 1, LayerExpression.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getLayerExpression_IsLayerEnabled(), this.getboolean(), "isLayerEnabled", "true", 1, 1, LayerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = initEOperation(getLayerExpression__GetComputePropertyValueCommand__View_Property(), this.getComputePropertyValueCommand(), "getComputePropertyValueCommand", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theNotationPackage.getView(), "view", 1, 1, IS_UNIQUE, !IS_ORDERED);

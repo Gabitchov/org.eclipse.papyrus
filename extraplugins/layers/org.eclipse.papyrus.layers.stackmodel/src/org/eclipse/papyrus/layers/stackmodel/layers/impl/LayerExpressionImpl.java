@@ -37,8 +37,8 @@ import org.eclipse.papyrus.layers.stackmodel.layers.Property;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isEnabled <em>Is Enabled</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isUserEnabled <em>Is User Enabled</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isLayerEnabledInternal <em>Is Layer Enabled Internal</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isLayerEnabled <em>Is Layer Enabled</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,33 +84,32 @@ ApplicationDependantElementImpl implements LayerExpression {
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isEnabled() <em>Is Enabled</em>}' attribute.
+	 * The default value of the '{@link #isLayerEnabledInternal() <em>Is Layer Enabled Internal</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isEnabled()
+	 * @see #isLayerEnabledInternal()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_ENABLED_EDEFAULT = false;
+	protected static final boolean IS_LAYER_ENABLED_INTERNAL_EDEFAULT = false;
 	/**
-	 * The default value of the '{@link #isUserEnabled() <em>Is User Enabled</em>}' attribute.
+	 * The default value of the '{@link #isLayerEnabled() <em>Is Layer Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isUserEnabled()
+	 * @see #isLayerEnabled()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_USER_ENABLED_EDEFAULT = true;
+	protected static final boolean IS_LAYER_ENABLED_EDEFAULT = true;
 	/**
-	 * The cached value of the '{@link #isUserEnabled() <em>Is User Enabled</em>}' attribute.
+	 * The cached value of the '{@link #isLayerEnabled() <em>Is Layer Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isUserEnabled()
+	 * @see #isLayerEnabled()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isUserEnabled = IS_USER_ENABLED_EDEFAULT;
-
+	protected boolean isLayerEnabled = IS_LAYER_ENABLED_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -177,8 +176,8 @@ ApplicationDependantElementImpl implements LayerExpression {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean isEnabled() {
-		return isUserEnabled();
+	public boolean isLayerEnabledInternal() {
+		return isLayerEnabled();
 	}
 
 	/**
@@ -186,8 +185,8 @@ ApplicationDependantElementImpl implements LayerExpression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isUserEnabled() {
-		return isUserEnabled;
+	public boolean isLayerEnabled() {
+		return isLayerEnabled;
 	}
 
 	/**
@@ -195,11 +194,11 @@ ApplicationDependantElementImpl implements LayerExpression {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsUserEnabled(boolean newIsUserEnabled) {
-		boolean oldIsUserEnabled = isUserEnabled;
-		isUserEnabled = newIsUserEnabled;
+	public void setIsLayerEnabled(boolean newIsLayerEnabled) {
+		boolean oldIsLayerEnabled = isLayerEnabled;
+		isLayerEnabled = newIsLayerEnabled;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.LAYER_EXPRESSION__IS_USER_ENABLED, oldIsUserEnabled, isUserEnabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED, oldIsLayerEnabled, isLayerEnabled));
 	}
 
 	/**
@@ -280,10 +279,10 @@ ApplicationDependantElementImpl implements LayerExpression {
 				return getName();
 			case LayersPackage.LAYER_EXPRESSION__DESCRIPTION:
 				return getDescription();
-			case LayersPackage.LAYER_EXPRESSION__IS_ENABLED:
-				return isEnabled();
-			case LayersPackage.LAYER_EXPRESSION__IS_USER_ENABLED:
-				return isUserEnabled();
+			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL:
+				return isLayerEnabledInternal();
+			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
+				return isLayerEnabled();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -302,8 +301,8 @@ ApplicationDependantElementImpl implements LayerExpression {
 			case LayersPackage.LAYER_EXPRESSION__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case LayersPackage.LAYER_EXPRESSION__IS_USER_ENABLED:
-				setIsUserEnabled((Boolean)newValue);
+			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
+				setIsLayerEnabled((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -323,8 +322,8 @@ ApplicationDependantElementImpl implements LayerExpression {
 			case LayersPackage.LAYER_EXPRESSION__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case LayersPackage.LAYER_EXPRESSION__IS_USER_ENABLED:
-				setIsUserEnabled(IS_USER_ENABLED_EDEFAULT);
+			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
+				setIsLayerEnabled(IS_LAYER_ENABLED_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -342,10 +341,10 @@ ApplicationDependantElementImpl implements LayerExpression {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case LayersPackage.LAYER_EXPRESSION__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case LayersPackage.LAYER_EXPRESSION__IS_ENABLED:
-				return isEnabled() != IS_ENABLED_EDEFAULT;
-			case LayersPackage.LAYER_EXPRESSION__IS_USER_ENABLED:
-				return isUserEnabled != IS_USER_ENABLED_EDEFAULT;
+			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL:
+				return isLayerEnabledInternal() != IS_LAYER_ENABLED_INTERNAL_EDEFAULT;
+			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
+				return isLayerEnabled != IS_LAYER_ENABLED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -405,8 +404,8 @@ ApplicationDependantElementImpl implements LayerExpression {
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
-		result.append(", isUserEnabled: ");
-		result.append(isUserEnabled);
+		result.append(", isLayerEnabled: ");
+		result.append(isLayerEnabled);
 		result.append(')');
 		return result.toString();
 	}

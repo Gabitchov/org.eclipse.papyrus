@@ -652,7 +652,9 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 	@Override
 	public ComputePropertyValueCommand getComputePropertyValueCommand(View view, Property property) throws LayersException {
 		
-		if( ! getViews().contains(view)) {
+		// If the layer is disabled, return a null command.
+		// If the view is not attached to the layer, stop.
+		if( ! isLayerEnabledInternal() || ! getViews().contains(view)) {
 			return null;
 		}
 		
@@ -677,7 +679,7 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 	public EList<ComputePropertyValueCommand> getPropertiesComputePropertyValueCommand(View view, List<Property> properties) throws LayersException {
 
 		// Check if the view is attached to the layer
-		if( ! getViews().contains(view)) {
+		if( ! isLayerEnabledInternal() || ! getViews().contains(view)) {
 			return null;
 		}
 	
@@ -722,9 +724,15 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 	 */
 	@Override
 	public EList<ComputePropertyValueCommand> getViewsComputePropertyValueCommand(List<View> views, Property property) throws LayersException {
-		// Check if the property is attached to the layer
-		TypeInstance value;
+
 		
+		// If the layer is disabled, return a null command.
+		if( ! isLayerEnabledInternal() ) {
+			return null;
+		}
+
+		// Stop if the property is not attached to the layer
+		TypeInstance value;
 		try {
 			value = getPropertyInstance(property);
 		} catch (NotFoundException e1) {
@@ -732,7 +740,7 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 			return null;
 		}
 	
-		// the result list
+		// Now, compute the list of commands. One command for each view.
 		EList<ComputePropertyValueCommand> resCmds = new BasicEList<ComputePropertyValueCommand>(views.size());
 		boolean isCmdFound = false;
 		

@@ -52,10 +52,10 @@
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
         lowerBound="1" eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEnabled" ordered="false"
-        lowerBound="1" eType="#//boolean" changeable="false" volatile="true" transient="true"
-        derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUserEnabled" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLayerEnabledInternal"
+        ordered="false" lowerBound="1" eType="#//boolean" changeable="false" volatile="true"
+        transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLayerEnabled" ordered="false"
         lowerBound="1" eType="#//boolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ApplicationDependantElement" abstract="true">

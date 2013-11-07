@@ -67,8 +67,8 @@ ApplicationDependantElementItemProvider
 
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
-			addIsEnabledPropertyDescriptor(object);
-			addIsUserEnabledPropertyDescriptor(object);
+			addIsLayerEnabledInternalPropertyDescriptor(object);
+			addIsLayerEnabledPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -118,20 +118,20 @@ ApplicationDependantElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Enabled feature.
+	 * This adds a property descriptor for the Is Layer Enabled Internal feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsEnabledPropertyDescriptor(Object object) {
+	protected void addIsLayerEnabledInternalPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LayerExpression_isEnabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LayerExpression_isEnabled_feature", "_UI_LayerExpression_type"),
-				 LayersPackage.Literals.LAYER_EXPRESSION__IS_ENABLED,
-				 true,
+				 getString("_UI_LayerExpression_isLayerEnabledInternal_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LayerExpression_isLayerEnabledInternal_feature", "_UI_LayerExpression_type"),
+				 LayersPackage.Literals.LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL,
+				 false,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
@@ -140,19 +140,19 @@ ApplicationDependantElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Is User Enabled feature.
+	 * This adds a property descriptor for the Is Layer Enabled feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsUserEnabledPropertyDescriptor(Object object) {
+	protected void addIsLayerEnabledPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LayerExpression_isUserEnabled_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LayerExpression_isUserEnabled_feature", "_UI_LayerExpression_type"),
-				 LayersPackage.Literals.LAYER_EXPRESSION__IS_USER_ENABLED,
+				 getString("_UI_LayerExpression_isLayerEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LayerExpression_isLayerEnabled_feature", "_UI_LayerExpression_type"),
+				 LayersPackage.Literals.LAYER_EXPRESSION__IS_LAYER_ENABLED,
 				 true,
 				 false,
 				 false,
@@ -189,8 +189,8 @@ ApplicationDependantElementItemProvider
 		switch (notification.getFeatureID(LayerExpression.class)) {
 			case LayersPackage.LAYER_EXPRESSION__NAME:
 			case LayersPackage.LAYER_EXPRESSION__DESCRIPTION:
-			case LayersPackage.LAYER_EXPRESSION__IS_ENABLED:
-			case LayersPackage.LAYER_EXPRESSION__IS_USER_ENABLED:
+			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL:
+			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

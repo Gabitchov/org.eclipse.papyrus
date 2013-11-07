@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns="http://www.eclipse.org/xwt/presentation">
+	xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
 	<Composite>
 		<Composite.layout>
-			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:BooleanRadio input="{Binding}" property="layers:FontInstance:bold"></ppe:BooleanRadio>
+		<gmf:XWTAwareFontEditor input="{Binding}"
+			property="layers:FontInstance:fontName"></gmf:XWTAwareFontEditor>
 	</Composite>
 	<Composite>
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:IntegerEditor input="{Binding}"
-			property="layers:FontInstance:fontColor"></ppe:IntegerEditor>
-		<ppe:IntegerEditor input="{Binding}"
-			property="layers:FontInstance:fontHeigh"></ppe:IntegerEditor>
+		<ppe:BooleanCheckbox input="{Binding}"
+			property="layers:FontInstance:bold"></ppe:BooleanCheckbox>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<gmf:XWTAwareColorPicker input="{Binding}"
+			property="layers:FontInstance:fontColor"></gmf:XWTAwareColorPicker>
+		<ppe:IntegerSpinner input="{Binding}"
+			property="layers:FontInstance:fontHeigh"></ppe:IntegerSpinner>
 	</Composite>
 </Composite>

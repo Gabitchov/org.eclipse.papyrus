@@ -335,7 +335,7 @@
    <extension
          point="org.eclipse.papyrus.views.properties.context">
       <context
-            contextModel="properties/properties.ctx"
+            contextModel="properties/properties-orig.ctx"
             isCustomizable="true">
       </context>
    </extension>

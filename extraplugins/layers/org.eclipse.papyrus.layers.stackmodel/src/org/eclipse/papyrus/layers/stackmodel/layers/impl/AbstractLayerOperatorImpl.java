@@ -211,8 +211,8 @@ public abstract class AbstractLayerOperatorImpl extends LayerOperatorImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean isEnabled() {
-		return isUserEnabled() && isDescriptorSet();
+	public boolean isLayerEnabledInternal() {
+		return isLayerEnabled() && isDescriptorSet();
 	}
 
 

@@ -332,22 +332,22 @@ public interface LayersPackage extends EPackage {
 	int LAYER_EXPRESSION__DESCRIPTION = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_EXPRESSION__IS_ENABLED = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 2;
+	int LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Is User Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_EXPRESSION__IS_USER_ENABLED = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 3;
+	int LAYER_EXPRESSION__IS_LAYER_ENABLED = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Layer Expression</em>' class.
@@ -1977,22 +1977,22 @@ public interface LayersPackage extends EPackage {
 	int LAYER_OPERATOR__DESCRIPTION = LAYER_EXPRESSION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Is Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_OPERATOR__IS_ENABLED = LAYER_EXPRESSION__IS_ENABLED;
+	int LAYER_OPERATOR__IS_LAYER_ENABLED_INTERNAL = LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL;
 
 	/**
-	 * The feature id for the '<em><b>Is User Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_OPERATOR__IS_USER_ENABLED = LAYER_EXPRESSION__IS_USER_ENABLED;
+	int LAYER_OPERATOR__IS_LAYER_ENABLED = LAYER_EXPRESSION__IS_LAYER_ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
@@ -2085,22 +2085,22 @@ public interface LayersPackage extends EPackage {
 	int ABSTRACT_LAYER_OPERATOR__DESCRIPTION = LAYER_OPERATOR__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Is Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_LAYER_OPERATOR__IS_ENABLED = LAYER_OPERATOR__IS_ENABLED;
+	int ABSTRACT_LAYER_OPERATOR__IS_LAYER_ENABLED_INTERNAL = LAYER_OPERATOR__IS_LAYER_ENABLED_INTERNAL;
 
 	/**
-	 * The feature id for the '<em><b>Is User Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_LAYER_OPERATOR__IS_USER_ENABLED = LAYER_OPERATOR__IS_USER_ENABLED;
+	int ABSTRACT_LAYER_OPERATOR__IS_LAYER_ENABLED = LAYER_OPERATOR__IS_LAYER_ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
@@ -2265,22 +2265,22 @@ public interface LayersPackage extends EPackage {
 	int ABSTRACT_LAYER__DESCRIPTION = LAYER_EXPRESSION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Is Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_LAYER__IS_ENABLED = LAYER_EXPRESSION__IS_ENABLED;
+	int ABSTRACT_LAYER__IS_LAYER_ENABLED_INTERNAL = LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL;
 
 	/**
-	 * The feature id for the '<em><b>Is User Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_LAYER__IS_USER_ENABLED = LAYER_EXPRESSION__IS_USER_ENABLED;
+	int ABSTRACT_LAYER__IS_LAYER_ENABLED = LAYER_EXPRESSION__IS_LAYER_ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
@@ -2904,22 +2904,22 @@ public interface LayersPackage extends EPackage {
 	int TOP_LAYER_OPERATOR__DESCRIPTION = ABSTRACT_LAYER_OPERATOR__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Is Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LAYER_OPERATOR__IS_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_ENABLED;
+	int TOP_LAYER_OPERATOR__IS_LAYER_ENABLED_INTERNAL = ABSTRACT_LAYER_OPERATOR__IS_LAYER_ENABLED_INTERNAL;
 
 	/**
-	 * The feature id for the '<em><b>Is User Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LAYER_OPERATOR__IS_USER_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_USER_ENABLED;
+	int TOP_LAYER_OPERATOR__IS_LAYER_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_LAYER_ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
@@ -3048,22 +3048,22 @@ public interface LayersPackage extends EPackage {
 	int STACKED_LAYER_OPERATOR__DESCRIPTION = ABSTRACT_LAYER_OPERATOR__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Is Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STACKED_LAYER_OPERATOR__IS_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_ENABLED;
+	int STACKED_LAYER_OPERATOR__IS_LAYER_ENABLED_INTERNAL = ABSTRACT_LAYER_OPERATOR__IS_LAYER_ENABLED_INTERNAL;
 
 	/**
-	 * The feature id for the '<em><b>Is User Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STACKED_LAYER_OPERATOR__IS_USER_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_USER_ENABLED;
+	int STACKED_LAYER_OPERATOR__IS_LAYER_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_LAYER_ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
@@ -3192,22 +3192,22 @@ public interface LayersPackage extends EPackage {
 	int CUSTOM_LAYER_OPERATOR__DESCRIPTION = LAYER_OPERATOR__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Is Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOM_LAYER_OPERATOR__IS_ENABLED = LAYER_OPERATOR__IS_ENABLED;
+	int CUSTOM_LAYER_OPERATOR__IS_LAYER_ENABLED_INTERNAL = LAYER_OPERATOR__IS_LAYER_ENABLED_INTERNAL;
 
 	/**
-	 * The feature id for the '<em><b>Is User Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOM_LAYER_OPERATOR__IS_USER_ENABLED = LAYER_OPERATOR__IS_USER_ENABLED;
+	int CUSTOM_LAYER_OPERATOR__IS_LAYER_ENABLED = LAYER_OPERATOR__IS_LAYER_ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
@@ -3480,22 +3480,22 @@ public interface LayersPackage extends EPackage {
 	int REG_EXP_LAYER__DESCRIPTION = ABSTRACT_LAYER__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Is Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER__IS_ENABLED = ABSTRACT_LAYER__IS_ENABLED;
+	int REG_EXP_LAYER__IS_LAYER_ENABLED_INTERNAL = ABSTRACT_LAYER__IS_LAYER_ENABLED_INTERNAL;
 
 	/**
-	 * The feature id for the '<em><b>Is User Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER__IS_USER_ENABLED = ABSTRACT_LAYER__IS_USER_ENABLED;
+	int REG_EXP_LAYER__IS_LAYER_ENABLED = ABSTRACT_LAYER__IS_LAYER_ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
@@ -3705,22 +3705,22 @@ public interface LayersPackage extends EPackage {
 	int LAYER__DESCRIPTION = ABSTRACT_LAYER__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Is Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER__IS_ENABLED = ABSTRACT_LAYER__IS_ENABLED;
+	int LAYER__IS_LAYER_ENABLED_INTERNAL = ABSTRACT_LAYER__IS_LAYER_ENABLED_INTERNAL;
 
 	/**
-	 * The feature id for the '<em><b>Is User Enabled</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER__IS_USER_ENABLED = ABSTRACT_LAYER__IS_USER_ENABLED;
+	int LAYER__IS_LAYER_ENABLED = ABSTRACT_LAYER__IS_LAYER_ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
@@ -6240,26 +6240,26 @@ public interface LayersPackage extends EPackage {
 	EAttribute getLayerExpression_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isEnabled <em>Is Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isLayerEnabledInternal <em>Is Layer Enabled Internal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Enabled</em>'.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isEnabled()
+	 * @return the meta object for the attribute '<em>Is Layer Enabled Internal</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isLayerEnabledInternal()
 	 * @see #getLayerExpression()
 	 * @generated
 	 */
-	EAttribute getLayerExpression_IsEnabled();
+	EAttribute getLayerExpression_IsLayerEnabledInternal();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isUserEnabled <em>Is User Enabled</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isLayerEnabled <em>Is Layer Enabled</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is User Enabled</em>'.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isUserEnabled()
+	 * @return the meta object for the attribute '<em>Is Layer Enabled</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isLayerEnabled()
 	 * @see #getLayerExpression()
 	 * @generated
 	 */
-	EAttribute getLayerExpression_IsUserEnabled();
+	EAttribute getLayerExpression_IsLayerEnabled();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getComputePropertyValueCommand(org.eclipse.gmf.runtime.notation.View, org.eclipse.papyrus.layers.stackmodel.layers.Property) <em>Get Compute Property Value Command</em>}' operation.
@@ -8311,20 +8311,20 @@ public interface LayersPackage extends EPackage {
 		EAttribute LAYER_EXPRESSION__DESCRIPTION = eINSTANCE.getLayerExpression_Description();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Enabled</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Layer Enabled Internal</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LAYER_EXPRESSION__IS_ENABLED = eINSTANCE.getLayerExpression_IsEnabled();
+		EAttribute LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL = eINSTANCE.getLayerExpression_IsLayerEnabledInternal();
 
 		/**
-		 * The meta object literal for the '<em><b>Is User Enabled</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Layer Enabled</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LAYER_EXPRESSION__IS_USER_ENABLED = eINSTANCE.getLayerExpression_IsUserEnabled();
+		EAttribute LAYER_EXPRESSION__IS_LAYER_ENABLED = eINSTANCE.getLayerExpression_IsLayerEnabled();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Compute Property Value Command</b></em>' operation.

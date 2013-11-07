@@ -31,8 +31,8 @@ import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand
  * <ul>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isEnabled <em>Is Enabled</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isUserEnabled <em>Is User Enabled</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isLayerEnabledInternal <em>Is Layer Enabled Internal</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isLayerEnabled <em>Is Layer Enabled</em>}</li>
  * </ul>
  * </p>
  *
@@ -95,46 +95,46 @@ public interface LayerExpression extends ApplicationDependantElement {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Enabled</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Enabled</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Layer Enabled Internal</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Enabled</em>' attribute.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getLayerExpression_IsEnabled()
+	 * @return the value of the '<em>Is Layer Enabled Internal</em>' attribute.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getLayerExpression_IsLayerEnabledInternal()
 	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	boolean isEnabled();
+	boolean isLayerEnabledInternal();
 
 	/**
-	 * Returns the value of the '<em><b>Is User Enabled</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Layer Enabled</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is User Enabled</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Layer Enabled</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is User Enabled</em>' attribute.
-	 * @see #setIsUserEnabled(boolean)
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getLayerExpression_IsUserEnabled()
+	 * @return the value of the '<em>Is Layer Enabled</em>' attribute.
+	 * @see #setIsLayerEnabled(boolean)
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getLayerExpression_IsLayerEnabled()
 	 * @model default="true" dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isUserEnabled();
+	boolean isLayerEnabled();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isUserEnabled <em>Is User Enabled</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isLayerEnabled <em>Is Layer Enabled</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is User Enabled</em>' attribute.
-	 * @see #isUserEnabled()
+	 * @param value the new value of the '<em>Is Layer Enabled</em>' attribute.
+	 * @see #isLayerEnabled()
 	 * @generated
 	 */
-	void setIsUserEnabled(boolean value);
+	void setIsLayerEnabled(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

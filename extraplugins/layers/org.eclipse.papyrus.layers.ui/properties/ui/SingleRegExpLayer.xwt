@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite
+<Composite xmlns:j="clr-namespace:java.lang" xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
-	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns="http://www.eclipse.org/xwt/presentation">
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -11,25 +9,35 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
+		<ppe:StringMultiline input="{Binding}"
+			property="layers:RegExpLayer:expr"></ppe:StringMultiline>
+		<ppe:StringEditor input="{Binding}" property="layers:RegExpLayer:language"></ppe:StringEditor>
 		<ppe:StringEditor input="{Binding}" property="layers:LayerExpression:name"></ppe:StringEditor>
-		<ppe:StringEditor input="{Binding}"
-			property="layers:LayerExpression:description"></ppe:StringEditor>
+		<ppe:StringMultiline input="{Binding}"
+			property="layers:LayerExpression:description"></ppe:StringMultiline>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanCheckbox input="{Binding}"
+			property="layers:LayerExpression:isLayerEnabled"></ppe:BooleanCheckbox>
 	</Composite>
 	<Composite>
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:ReferenceDialog input="{Binding}"
-			property="layers:AbstractLayer:layerDescriptor"></ppe:ReferenceDialog>
-		<ppe:ReferenceDialog input="{Binding}"
-			property="layers:ApplicationDependantElement:application"></ppe:ReferenceDialog>
+		<ppe:ReferenceLabel input="{Binding}"
+			property="layers:AbstractLayer:layerDescriptor" readOnly="true"></ppe:ReferenceLabel>
+		<ppe:ReferenceLabel input="{Binding}"
+			property="layers:ApplicationDependantElement:application" readOnly="true"></ppe:ReferenceLabel>
 	</Composite>
 	<Composite>
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:MultiReference input="{Binding}"
-			property="layers:AbstractLayer:propertyValues"></ppe:MultiReference>
+			property="layers:AbstractLayer:propertyValues" readOnly="true"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
 			property="layers:AbstractLayer:views"></ppe:MultiReference>
 	</Composite>

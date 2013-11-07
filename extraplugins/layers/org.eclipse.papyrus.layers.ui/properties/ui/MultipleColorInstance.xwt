@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite
+<Composite xmlns:j="clr-namespace:java.lang"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:j="clr-namespace:java.lang" xmlns:x="http://www.eclipse.org/xwt"
 	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns="http://www.eclipse.org/xwt/presentation">
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:gmf="clr-namespace:org.eclipse.papyrus.infra.gmfdiag.widgets.editors">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
@@ -11,7 +11,7 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:IntegerEditor input="{Binding}"
-			property="layers:ColorInstance:value"></ppe:IntegerEditor>
+		<gmf:XWTAwareColorPicker input="{Binding}"
+			property="layers:ColorInstance:value"></gmf:XWTAwareColorPicker>
 	</Composite>
 </Composite>
