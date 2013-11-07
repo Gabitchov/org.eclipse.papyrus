@@ -161,7 +161,14 @@
   <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
   <eClassifiers xsi:type="ecore:EDataType" name="boolean" instanceClassName="boolean"/>
   <eClassifiers xsi:type="ecore:EDataType" name="EPackage" instanceClassName="org.eclipse.emf.ecore.EPackage"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeInstance" abstract="true" eSuperTypes="#//ComputePropertyValueCommandItf"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeInstance" abstract="true" eSuperTypes="#//ComputePropertyValueCommandItf">
+    <eOperations name="setValueFromString" ordered="false" lowerBound="1">
+      <eParameters name="value" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="setValueFromInstance" ordered="false" lowerBound="1">
+      <eParameters name="value" ordered="false" lowerBound="1" eType="#//TypeInstance"/>
+    </eOperations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputePropertyValueCommandItf" instanceClassName="org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand"
       abstract="true" interface="true">
     <eOperations name="getCmdValue" ordered="false" lowerBound="1" eType="#//TypeInstance"

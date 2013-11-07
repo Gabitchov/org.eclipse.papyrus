@@ -162,7 +162,14 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//Metamodel/isTypeValid"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//Metamodel/getEPackage"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//TypeInstance"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//TypeInstance">
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//TypeInstance/setValueFromString">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//TypeInstance/setValueFromString/value"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//TypeInstance/setValueFromInstance">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//TypeInstance/setValueFromInstance/value"/>
+      </genOperations>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//ComputePropertyValueCommandItf">
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//ComputePropertyValueCommandItf/getCmdValue"/>
     </genClasses>

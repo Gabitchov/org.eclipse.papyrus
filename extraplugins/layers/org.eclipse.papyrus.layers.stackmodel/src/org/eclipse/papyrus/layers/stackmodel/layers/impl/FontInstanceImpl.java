@@ -13,13 +13,12 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.papyrus.layers.stackmodel.layers.FillInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.FontInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
+import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,7 +105,7 @@ public class FontInstanceImpl extends TypeInstanceImpl implements FontInstance {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean BOLD_EDEFAULT = true;
+	protected static final boolean BOLD_EDEFAULT = false;
 
 	/**
 	 * The cached value of the '{@link #isBold() <em>Bold</em>}' attribute.
@@ -309,6 +308,52 @@ public class FontInstanceImpl extends TypeInstanceImpl implements FontInstance {
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromString(String value) {
+		
+		if(value==null || value.length()==0) {
+			return;
+		}
+			
+		// The value should contains the  values, separated by comma
+		// "FontName, FontHeight, FontColor, Bold"
+		String[] values = value.split(",");
+		int i=0;
+		try {
+			setFontName(values[i++].trim());
+			setFontHeigh(Integer.parseInt(values[i++].trim()));
+			setFontColor(Integer.parseInt(values[i++].trim()));
+			setBold(Boolean.parseBoolean(values[i++].trim()));
+		} catch (NumberFormatException e) {
+			// fail silently
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromInstance(TypeInstance value) {
+		
+		// Check if the value is of the right instance
+		if( ! getClass().isInstance(value) ) {
+			return;
+		}
+		
+		FontInstance instance = (FontInstance)value;
+		setFontName(instance.getFontName());
+		setFontHeigh(instance.getFontHeigh());
+		setFontColor(instance.getFontColor());
+		setBold(instance.isBold());
+	}
+
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

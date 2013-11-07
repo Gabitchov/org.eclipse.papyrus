@@ -14,6 +14,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.papyrus.layers.stackmodel.layers.BooleanInstance;
+import org.eclipse.papyrus.layers.stackmodel.layers.BooleanType;
 import org.eclipse.papyrus.layers.stackmodel.layers.IntInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.IntType;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersFactory;
@@ -67,4 +69,27 @@ public class IntTypeImplTest {
 		assertEquals("name initialized", "int", type.getName());
 	}
 
+	/**
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.layers.impl.BooleanTypeImpl#createInstance()}.
+	 */
+	@Test
+	public void testSetValueFromString() {
+		IntType type = LayersFactory.eINSTANCE.createIntType();
+
+		final String DEFAULT_VALUE = "-1";
+		TypeInstance instance = type.createInstance();
+		
+		instance.setValueFromString(DEFAULT_VALUE);
+		assertNotNull("instance created", instance);
+		assertTrue("Right instance", instance instanceof IntInstance);
+		assertEquals("right value", -1, ((IntInstance)instance).getValue());
+		
+		// Check false value
+		instance.setValueFromString("123");
+		assertNotNull("instance created", instance);
+		assertTrue("Right instance", instance instanceof IntInstance);
+		assertEquals("right value", 123, ((IntInstance)instance).getValue());
+	}
+
+	
 }

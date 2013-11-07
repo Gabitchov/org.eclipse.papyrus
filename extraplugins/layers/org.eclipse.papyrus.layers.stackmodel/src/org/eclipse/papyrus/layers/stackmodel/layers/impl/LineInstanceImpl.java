@@ -13,13 +13,12 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.papyrus.layers.stackmodel.layers.IntInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LineInstance;
+import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -204,6 +203,45 @@ public class LineInstanceImpl extends TypeInstanceImpl implements LineInstance {
 		}
 		return super.eIsSet(featureID);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromString(String value) {
+		
+		if(value==null || value.length()==0) {
+			return;
+		}
+			
+		// The value should contains the 2 values, separated by comma
+		// "lineColor, lineWith"
+		String[] values = value.split(",");
+		try {
+			setLineColor(Integer.parseInt(values[0].trim()));
+			setLineWith(Integer.parseInt(values[1].trim()));
+		} catch (NumberFormatException e) {
+			// fail silently
+		}
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromInstance(TypeInstance value) {
+		
+		// Check if the value is of the right instance
+		if( ! getClass().isInstance(value) ) {
+			return;
+		}
+		
+		LineInstance instance = (LineInstance)value;			
+		setLineColor(instance.getLineColor());
+		setLineWith(instance.getLineWith());
+	}
+
 
 	/**
 	 * <!-- begin-user-doc -->

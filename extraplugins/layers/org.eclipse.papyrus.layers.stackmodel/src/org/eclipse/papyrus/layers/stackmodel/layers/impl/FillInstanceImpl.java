@@ -14,15 +14,13 @@ package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.papyrus.layers.stackmodel.layers.ColorInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.FillInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
+import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -232,6 +230,45 @@ public class FillInstanceImpl extends TypeInstanceImpl implements FillInstance {
 				return fillColor != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromString(String value) {
+		
+		if(value==null || value.length()==0) {
+			return;
+		}
+			
+		// The value should contains the 2 values, separated by comma
+		// "transparency, fillColor"
+		String[] values = value.split(",");
+		try {
+			setTransparency(Integer.parseInt(values[0].trim()));
+			getFillColor().setValueFromString(values[1]);
+		} catch (NumberFormatException e) {
+			// fail silently
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromInstance(TypeInstance value) {
+		
+		// Check if the value is of the right instance
+		if( ! getClass().isInstance(value) ) {
+			return;
+		}
+		
+		FillInstance instance = (FillInstance)value;
+		setTransparency(instance.getTransparency());
+		setFillColor(instance.getFillColor());
 	}
 
 	/**

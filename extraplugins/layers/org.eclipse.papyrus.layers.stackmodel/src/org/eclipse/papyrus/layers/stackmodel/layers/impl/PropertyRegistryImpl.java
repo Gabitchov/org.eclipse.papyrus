@@ -15,6 +15,7 @@ package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -29,6 +30,8 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersFactory;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
 import org.eclipse.papyrus.layers.stackmodel.layers.PropertyRegistry;
+import org.eclipse.papyrus.layers.stackmodel.layers.Type;
+import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.TypeRegistry;
 
 /**
@@ -99,26 +102,36 @@ public class PropertyRegistryImpl extends MinimalEObjectImpl.Container implement
 		
 		// Initialize the list of properties
 		// Properties to add
-		// name, type
+		// name, type, defaultvalues
+		// colors: black=0 , fushia=15053796, 
 		String[] properties = new String[] {
 //				"name", "String",
 //				"age", "int",
 //				"num", "int",
 //				"addr", "String",
-				"isValid", "boolean",
-				"isVisible", "boolean",
-				"isAbstract", "boolean",
-				"fill", "Fill",
-				"line", "LineType",				
-				"font", "FontType",				
+				"isValid", "boolean", "true",
+				"isVisible", "boolean","true",
+				"isAbstract", "boolean", "false",
+				"fill", "Fill", "0, 15053796", //"transparency, fillColor"
+				"line", "LineType",	"0, -1",	 // "lineColor, lineWith"	
+				"font", "FontType",	"Segoe UI, 9, 0, false",	 // "FontName, FontHeight, FontColor, Bold"	
 //				"bgcolor", "Color",
 //				"fgcolor", "Color",
 		};
 		
-		for( int i=0;i<properties.length; i+=2) {
+		for( int i=0;i<properties.length; i+=3) {
 			Property property = LayersFactory.eINSTANCE.createProperty();
 			property.setName(properties[i]);
-			property.setType(typeRegistry.getTypes().get(properties[i+1]));
+			Type propertyType = typeRegistry.getTypes().get(properties[i+1]);
+			property.setType(propertyType);
+			// Create Default value
+			String defaultValueStr = properties[i+2];
+			if( defaultValueStr != null && defaultValueStr.length()>0) {
+				TypeInstance defaultValue = propertyType.createInstance();
+				defaultValue.setValueFromString(defaultValueStr);
+				property.setDefaultValue(defaultValue);
+			}
+			
 			addProperty(property);
 //			getProperties().add(property);
 		}

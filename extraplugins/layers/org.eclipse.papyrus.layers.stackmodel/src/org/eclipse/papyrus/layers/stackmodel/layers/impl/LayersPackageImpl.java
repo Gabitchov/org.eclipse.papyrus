@@ -1282,6 +1282,24 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getTypeInstance__SetValueFromString__String() {
+		return typeInstanceEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTypeInstance__SetValueFromInstance__TypeInstance() {
+		return typeInstanceEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getComputePropertyValueCommandItf() {
 		return computePropertyValueCommandItfEClass;
 	}
@@ -2694,6 +2712,8 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		createEOperation(metamodelEClass, METAMODEL___GET_EPACKAGE);
 
 		typeInstanceEClass = createEClass(TYPE_INSTANCE);
+		createEOperation(typeInstanceEClass, TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING);
+		createEOperation(typeInstanceEClass, TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE);
 
 		computePropertyValueCommandItfEClass = createEClass(COMPUTE_PROPERTY_VALUE_COMMAND_ITF);
 		createEOperation(computePropertyValueCommandItfEClass, COMPUTE_PROPERTY_VALUE_COMMAND_ITF___GET_CMD_VALUE);
@@ -3103,6 +3123,12 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		initEOperation(getMetamodel__GetEPackage(), this.getEPackage(), "getEPackage", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(typeInstanceEClass, TypeInstance.class, "TypeInstance", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getTypeInstance__SetValueFromString__String(), null, "setValueFromString", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getString(), "value", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getTypeInstance__SetValueFromInstance__TypeInstance(), null, "setValueFromInstance", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTypeInstance(), "value", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(computePropertyValueCommandItfEClass, ComputePropertyValueCommand.class, "ComputePropertyValueCommandItf", IS_ABSTRACT, IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 

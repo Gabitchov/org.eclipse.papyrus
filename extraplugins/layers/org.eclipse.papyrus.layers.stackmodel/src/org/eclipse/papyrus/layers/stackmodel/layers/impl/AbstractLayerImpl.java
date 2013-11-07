@@ -254,7 +254,7 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 		}
 		
 		try {
-			TypeInstance instance = property.getType().createInstance();
+			TypeInstance instance = property.createInstance();
 			getPropertyValueMap().put(name, instance);
 			return instance;
 		} catch (NullPointerException e) {

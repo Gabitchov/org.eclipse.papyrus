@@ -13,13 +13,12 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
+import org.eclipse.papyrus.layers.stackmodel.layers.BooleanInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.IntInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
+import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -152,6 +151,41 @@ public class IntInstanceImpl extends TypeInstanceImpl implements IntInstance {
 		}
 		return super.eIsSet(featureID);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromString(String value) {
+		
+		if(value==null || value.length()==0) {
+			return;
+		}
+			
+		try {
+			setValue(Integer.parseInt(value.trim()));
+		} catch (NumberFormatException e) {
+			// fail silently
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromInstance(TypeInstance value) {
+		
+		// Check if the value is of the right instance
+		if( ! getClass().isInstance(value) ) {
+			return;
+		}
+		
+		IntInstance instance = (IntInstance)value;
+		setValue(instance.getValue());
+	}
+
 
 	/**
 	 * <!-- begin-user-doc -->

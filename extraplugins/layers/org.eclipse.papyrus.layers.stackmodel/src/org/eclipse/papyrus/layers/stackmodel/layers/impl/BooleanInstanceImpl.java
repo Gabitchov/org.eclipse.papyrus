@@ -13,13 +13,11 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.papyrus.layers.stackmodel.layers.BooleanInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
+import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 
 /**
  * <!-- begin-user-doc -->
@@ -151,6 +149,36 @@ public class BooleanInstanceImpl extends TypeInstanceImpl implements BooleanInst
 				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromString(String value) {
+		
+		if(value==null || value.length()==0) {
+			return;
+		}
+			
+		setValue(Boolean.parseBoolean(value.trim()));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setValueFromInstance(TypeInstance value) {
+		
+		// Check if the value is of the right instance
+		if( ! getClass().isInstance(value) ) {
+			return;
+		}
+		
+		BooleanInstance instance = (BooleanInstance)value;
+		setValue(instance.isValue());
 	}
 
 	/**

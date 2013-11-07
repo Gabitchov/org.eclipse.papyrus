@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.layers.BooleanInstance;
@@ -63,10 +64,9 @@ public class IsVisiblePropertySetterImpl extends PropertySetterImpl implements I
 	
 		BooleanInstance boolValue = (BooleanInstance)value;
 		
-		if(view instanceof Shape) {
-			Shape shape = (Shape)view;
-			
-			shape.setVisible(boolValue.isValue());
+		if(view instanceof Shape || view instanceof Connector) {
+			// We restrict to Shape and Connector
+			view.setVisible(boolValue.isValue());
 		}
 		
 	}

@@ -1050,13 +1050,31 @@ public interface LayersPackage extends EPackage {
 	int TYPE_INSTANCE___GET_CMD_VALUE = COMPUTE_PROPERTY_VALUE_COMMAND_ITF___GET_CMD_VALUE;
 
 	/**
+	 * The operation id for the '<em>Set Value From String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING = COMPUTE_PROPERTY_VALUE_COMMAND_ITF_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Set Value From Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = COMPUTE_PROPERTY_VALUE_COMMAND_ITF_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Type Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_INSTANCE_OPERATION_COUNT = COMPUTE_PROPERTY_VALUE_COMMAND_ITF_OPERATION_COUNT + 0;
+	int TYPE_INSTANCE_OPERATION_COUNT = COMPUTE_PROPERTY_VALUE_COMMAND_ITF_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.StringToPropertyIndexMapImpl <em>String To Property Index Map</em>}' class.
@@ -2499,6 +2517,24 @@ public interface LayersPackage extends EPackage {
 	int INT_INSTANCE___GET_CMD_VALUE = TYPE_INSTANCE___GET_CMD_VALUE;
 
 	/**
+	 * The operation id for the '<em>Set Value From String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT_INSTANCE___SET_VALUE_FROM_STRING__STRING = TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING;
+
+	/**
+	 * The operation id for the '<em>Set Value From Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INT_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE;
+
+	/**
 	 * The number of operations of the '<em>Int Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2535,6 +2571,24 @@ public interface LayersPackage extends EPackage {
 	int BOOLEAN_INSTANCE___GET_CMD_VALUE = TYPE_INSTANCE___GET_CMD_VALUE;
 
 	/**
+	 * The operation id for the '<em>Set Value From String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_INSTANCE___SET_VALUE_FROM_STRING__STRING = TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING;
+
+	/**
+	 * The operation id for the '<em>Set Value From Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE;
+
+	/**
 	 * The number of operations of the '<em>Boolean Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2569,6 +2623,24 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_INSTANCE___GET_CMD_VALUE = TYPE_INSTANCE___GET_CMD_VALUE;
+
+	/**
+	 * The operation id for the '<em>Set Value From String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_INSTANCE___SET_VALUE_FROM_STRING__STRING = TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING;
+
+	/**
+	 * The operation id for the '<em>Set Value From Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE;
 
 	/**
 	 * The number of operations of the '<em>String Instance</em>' class.
@@ -3345,6 +3417,24 @@ public interface LayersPackage extends EPackage {
 	int NULL_INSTANCE___GET_CMD_VALUE = TYPE_INSTANCE___GET_CMD_VALUE;
 
 	/**
+	 * The operation id for the '<em>Set Value From String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_INSTANCE___SET_VALUE_FROM_STRING__STRING = TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING;
+
+	/**
+	 * The operation id for the '<em>Set Value From Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE;
+
+	/**
 	 * The operation id for the '<em>Get Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3849,6 +3939,24 @@ public interface LayersPackage extends EPackage {
 	int COLOR_INSTANCE___GET_CMD_VALUE = TYPE_INSTANCE___GET_CMD_VALUE;
 
 	/**
+	 * The operation id for the '<em>Set Value From String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_INSTANCE___SET_VALUE_FROM_STRING__STRING = TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING;
+
+	/**
+	 * The operation id for the '<em>Set Value From Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE;
+
+	/**
 	 * The number of operations of the '<em>Color Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3892,6 +4000,24 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILL_INSTANCE___GET_CMD_VALUE = TYPE_INSTANCE___GET_CMD_VALUE;
+
+	/**
+	 * The operation id for the '<em>Set Value From String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILL_INSTANCE___SET_VALUE_FROM_STRING__STRING = TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING;
+
+	/**
+	 * The operation id for the '<em>Set Value From Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILL_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE;
 
 	/**
 	 * The number of operations of the '<em>Fill Instance</em>' class.
@@ -4182,6 +4308,24 @@ public interface LayersPackage extends EPackage {
 	int LINE_INSTANCE___GET_CMD_VALUE = TYPE_INSTANCE___GET_CMD_VALUE;
 
 	/**
+	 * The operation id for the '<em>Set Value From String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINE_INSTANCE___SET_VALUE_FROM_STRING__STRING = TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING;
+
+	/**
+	 * The operation id for the '<em>Set Value From Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE;
+
+	/**
 	 * The number of operations of the '<em>Line Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4333,6 +4477,24 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int FONT_INSTANCE___GET_CMD_VALUE = TYPE_INSTANCE___GET_CMD_VALUE;
+
+	/**
+	 * The operation id for the '<em>Set Value From String</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_INSTANCE___SET_VALUE_FROM_STRING__STRING = TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING;
+
+	/**
+	 * The operation id for the '<em>Set Value From Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FONT_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE;
 
 	/**
 	 * The number of operations of the '<em>Font Instance</em>' class.
@@ -5588,6 +5750,26 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTypeInstance();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance#setValueFromString(java.lang.String) <em>Set Value From String</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Set Value From String</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance#setValueFromString(java.lang.String)
+	 * @generated
+	 */
+	EOperation getTypeInstance__SetValueFromString__String();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance#setValueFromInstance(org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance) <em>Set Value From Instance</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Set Value From Instance</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance#setValueFromInstance(org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance)
+	 * @generated
+	 */
+	EOperation getTypeInstance__SetValueFromInstance__TypeInstance();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand <em>Compute Property Value Command Itf</em>}'.
@@ -7737,6 +7919,22 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TYPE_INSTANCE = eINSTANCE.getTypeInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Set Value From String</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING = eINSTANCE.getTypeInstance__SetValueFromString__String();
+
+		/**
+		 * The meta object literal for the '<em><b>Set Value From Instance</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE = eINSTANCE.getTypeInstance__SetValueFromInstance__TypeInstance();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand <em>Compute Property Value Command Itf</em>}' class.

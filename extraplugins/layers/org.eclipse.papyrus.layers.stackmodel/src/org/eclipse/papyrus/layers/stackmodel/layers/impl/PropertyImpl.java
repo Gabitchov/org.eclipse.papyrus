@@ -300,8 +300,14 @@ FolderElementImpl implements Property {
 			throw new BadStateException("Property '" + getName() + "', type must be set to create an instance");
 		}
 		
-		// Delegate to type
-		return type.createInstance();
+		// Create  an instance
+		TypeInstance instance = type.createInstance();
+		// Set the default value if needed
+		if( getDefaultValue() != null) {
+			instance.setValueFromInstance(getDefaultValue());
+		}
+		
+		return instance;
 	}
 
 	/**

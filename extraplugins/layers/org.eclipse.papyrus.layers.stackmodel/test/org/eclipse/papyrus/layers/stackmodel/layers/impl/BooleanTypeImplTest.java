@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 import org.eclipse.papyrus.layers.stackmodel.layers.BooleanInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.BooleanType;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersFactory;
+import org.eclipse.papyrus.layers.stackmodel.layers.StringInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 import org.junit.After;
 import org.junit.Before;
@@ -51,6 +52,28 @@ public class BooleanTypeImplTest {
 		TypeInstance instance = type.createInstance();
 		assertNotNull("instance created", instance);
 		assertTrue("Right instance", instance instanceof BooleanInstance);
+	}
+
+	/**
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.layers.impl.BooleanTypeImpl#createInstance()}.
+	 */
+	@Test
+	public void testSetValueFromString() {
+		BooleanType type = LayersFactory.eINSTANCE.createBooleanType();
+
+		final String DEFAULT_VALUE = "true";
+		TypeInstance instance = type.createInstance();
+		
+		instance.setValueFromString(DEFAULT_VALUE);
+		assertNotNull("instance created", instance);
+		assertTrue("Right instance", instance instanceof BooleanInstance);
+		assertEquals("right value", true, ((BooleanInstance)instance).isValue());
+		
+		// Check false value
+		instance.setValueFromString("false");
+		assertNotNull("instance created", instance);
+		assertTrue("Right instance", instance instanceof BooleanInstance);
+		assertEquals("right value", false, ((BooleanInstance)instance).isValue());
 	}
 
 	/**

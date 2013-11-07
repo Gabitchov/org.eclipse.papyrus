@@ -67,6 +67,29 @@ public abstract class TypeInstanceImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void setValueFromString(String value) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValueFromInstance(TypeInstance value) {
+		
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
@@ -77,6 +100,12 @@ public abstract class TypeInstanceImpl extends MinimalEObjectImpl.Container impl
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case LayersPackage.TYPE_INSTANCE___SET_VALUE_FROM_STRING__STRING:
+				setValueFromString((String)arguments.get(0));
+				return null;
+			case LayersPackage.TYPE_INSTANCE___SET_VALUE_FROM_INSTANCE__TYPEINSTANCE:
+				setValueFromInstance((TypeInstance)arguments.get(0));
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}

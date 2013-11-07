@@ -1936,6 +1936,14 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bvJBndhbEeKgkM6XJF9t4A"/>
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_bvJBnthbEeKgkM6XJF9t4A" type="7018">
+        <children xmi:type="notation:Shape" xmi:id="_ZGIS4EczEeOEBJ2PxFQgyQ" type="3013" fontName="Segoe UI" lineColor="0">
+          <element xmi:type="uml:Operation" href="layers.uml#_ZFFKAEczEeOEBJ2PxFQgyQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_ZGIS4UczEeOEBJ2PxFQgyQ"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_oKCn4Ec8EeOEBJ2PxFQgyQ" type="3013" fontName="Segoe UI" lineColor="0">
+          <element xmi:type="uml:Operation" href="layers.uml#_oJwUAEc8EeOEBJ2PxFQgyQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_oKCn4Uc8EeOEBJ2PxFQgyQ"/>
+        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_bvJBn9hbEeKgkM6XJF9t4A"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_bvJBoNhbEeKgkM6XJF9t4A"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_bvJBodhbEeKgkM6XJF9t4A"/>
@@ -1948,7 +1956,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bvJBp9hbEeKgkM6XJF9t4A"/>
       </children>
       <element xmi:type="uml:Class" href="layers.uml#_AjTZ8Na8EeKPiuTfpuvqHA"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bvJBkdhbEeKgkM6XJF9t4A" x="378" y="426"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bvJBkdhbEeKgkM6XJF9t4A" x="378" y="426" width="205"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_EoeLgNhcEeKgkM6XJF9t4A" type="2008" fontName="Segoe UI" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EoeLgthcEeKgkM6XJF9t4A" source="ShadowFigure">
@@ -2324,7 +2332,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J6bTx9hkEeKgkM6XJF9t4A"/>
       </children>
       <element xmi:type="uml:Class" href="layers.uml#_J6C5MNhkEeKgkM6XJF9t4A"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J6bTsdhkEeKgkM6XJF9t4A" x="660" y="318" height="55"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J6bTsdhkEeKgkM6XJF9t4A" x="660" y="318" width="181" height="73"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_agYdYNxWEeKwptaAAanMDg" type="2008" fontName="Segoe UI" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_agekANxWEeKwptaAAanMDg" source="ShadowFigure">

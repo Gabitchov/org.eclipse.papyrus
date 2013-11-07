@@ -70,6 +70,24 @@ public class PropertyRegistryImplTest {
 	}
 
 	/**
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.layers.impl.PropertyRegistryImpl#PropertyRegistryImpl()}.
+	 */
+	@Test
+	public void testinitDefaultValue() {
+		// Create registry
+		PropertyRegistry registry = LayersFactory.eINSTANCE.createPropertyRegistry();
+		assertNotNull("registry created", registry);
+		
+		// check init
+		assertTrue("property list size is correct", registry.getProperties().size()>0);
+		
+		// Check if default value is set for the first property
+		assertNotNull("property list size is correct", registry.getProperties().get(0).getDefaultValue());
+		
+		
+	}
+
+	/**
 	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.layers.impl.PropertyRegistryImpl#getProperties()}.
 	 */
 	@Test
