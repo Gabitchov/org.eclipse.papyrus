@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_RggB0BHLEeOjX-JbGFEH7w" name="layersconfig">
+    <ownedComment xmi:id="_a1IuIECrEeOxsL3-gu79hA">
+      <body>Rename to &#xD;
+PropertyOpeatorConfig ?</body>
+    </ownedComment>
     <packagedElement xmi:type="uml:Class" xmi:id="_dupZsBHLEeOjX-JbGFEH7w" name="Folder">
       <generalization xmi:id="_jl454BHLEeOjX-JbGFEH7w" general="_e6kaQBHLEeOjX-JbGFEH7w"/>
       <ownedAttribute xmi:id="_lZ2K0BHLEeOjX-JbGFEH7w" name="folderElements" type="_e6kaQBHLEeOjX-JbGFEH7w" aggregation="composite" association="_lZ9fkBHLEeOjX-JbGFEH7w">
