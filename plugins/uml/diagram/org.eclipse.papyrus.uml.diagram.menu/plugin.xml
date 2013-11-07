@@ -585,6 +585,18 @@
          </visibleWhen>
       </command>
       <command
+            commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideRelatedLinkCommand"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowRelatedLinkBetweenSelectedElementsCommand"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowAllRelatedLinkCommand"
+            style="push">
+      </command>
+      <command
             commandId="org.eclipse.papyrus.uml.diagram.menu.commands.SortFilterCompartmentItemsCommand"
             helpContextId="ActionToolTipText"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/sortfilter.gif"
@@ -1271,6 +1283,18 @@
                label="Show/Hide &amp;Compartments"
                style="push"
                tooltip="The Show/Hide Compartments Action">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideRelatedLinkCommand"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowRelatedLinkBetweenSelectedElementsCommand"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideRelatedLinkCommand"
+               style="push">
          </command>
          <command
                commandId="org.eclipse.papyrus.uml.diagram.menu.commands.SortFilterCompartmentItemsCommand"
@@ -1985,6 +2009,18 @@
             tooltip="The Show/Hide Compartments Action">
       </command>
       <command
+            commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideRelatedLinkCommand"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowRelatedLinkBetweenSelectedElementsCommand"
+            style="push">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowAllRelatedLinkCommand"
+            style="push">
+      </command>
+      <command
             commandId="org.eclipse.papyrus.uml.diagram.menu.commands.SortFilterCompartmentItemsCommand"
             helpContextId="ActionToolTipText"
             icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui.actions/icons/elcl16/sortfilter.gif"
@@ -2364,6 +2400,24 @@
          description="Call the Show/Hide Contents Action"
          id="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideContentsCommand"
          name="Show/Hide Contents Command">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+          description="Call the Show/Hide Related Link Action"
+         id="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideRelatedLinkCommand"
+         name="Show/Hide Related Link">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Show/Hide Related Link In Selection Action"
+         id="org.eclipse.papyrus.uml.diagram.menu.commands.ShowRelatedLinkBetweenSelectedElementsCommand"
+         name="Show Related Link In Selection">
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.editor.category"
+         description="Call the Show All Related Link Action"
+         id="org.eclipse.papyrus.uml.diagram.menu.commands.ShowAllRelatedLinkCommand"
+         name="Show All Related Link">
    </command>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
@@ -2981,6 +3035,72 @@
             </with>
          </and>
       </activeWhen>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowHideRelatedLinkCommand">
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     args="ShowHideRelatedLinkEditPolicy"
+                     property="org.eclipse.papyrus.uml.diagram.menu.tester.hasRequiredEditPolicy"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+      <class
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideRelatedLinkHandler">
+         <parameter
+               name="showHideRelatedLinkParameter"
+               value="OPEN_DIALOG">
+         </parameter>
+      </class>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowRelatedLinkBetweenSelectedElementsCommand">
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     args="ShowHideRelatedLinkEditPolicy"
+                     property="org.eclipse.papyrus.uml.diagram.menu.tester.hasRequiredEditPolicy"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+      <class
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideRelatedLinkHandler">
+         <parameter
+               name="showHideRelatedLinkParameter"
+               value="SHOW_ALL_LINK_BETWEEN_SELECTED_ELEMENT">
+         </parameter>
+      </class>
+   </handler>
+   <handler
+         commandId="org.eclipse.papyrus.uml.diagram.menu.commands.ShowAllRelatedLinkCommand">
+      <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     args="ShowHideRelatedLinkEditPolicy"
+                     property="org.eclipse.papyrus.uml.diagram.menu.tester.hasRequiredEditPolicy"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+      <class
+            class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideRelatedLinkHandler">
+         <parameter
+               name="showHideRelatedLinkParameter"
+               value="SHOW_ALL_LINK_IN_DIAGRAM">
+         </parameter>
+      </class>
    </handler>
    <handler
          class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.CopyAppearancePropertiesHandler"
@@ -4223,7 +4343,7 @@
                class="org.eclipse.papyrus.uml.diagram.menu.providers.DiagramPropertyTester"
                id="org.eclipse.papyrus.uml.diagram.menu.tester"
                namespace="org.eclipse.papyrus.uml.diagram.menu.tester"
-               properties="isDiagram"
+               properties="isDiagram,hasRequiredEditPolicy"
                type="org.eclipse.jface.viewers.IStructuredSelection">
          </propertyTester>
       </extension>

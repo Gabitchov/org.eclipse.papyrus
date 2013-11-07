@@ -252,8 +252,9 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 				if (UMLUtil.getStereotypeApplication(targetBlock, ConstraintBlock.class) != null) {
 					if (constraintPropertyApplication == null) {
 						StereotypeApplicationHelper.INSTANCE.applyStereotype(sourceProperty, ConstraintsPackage.eINSTANCE.getConstraintProperty());
+						final String diagramType = null;
 						// Remove representations
-						Set<View> memberViewsToDestroy = CrossReferencerUtil.getCrossReferencingViews(sourceProperty, null);
+						Set<View> memberViewsToDestroy = CrossReferencerUtil.getCrossReferencingViews(sourceProperty, diagramType);
 						if (memberViewsToDestroy.size() != 0) {
 							final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 							final String DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY = "displayMessageForTypingActionPreferenceKey";
