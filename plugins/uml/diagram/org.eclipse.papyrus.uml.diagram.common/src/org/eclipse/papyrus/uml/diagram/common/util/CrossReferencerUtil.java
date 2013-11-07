@@ -99,7 +99,7 @@ public class CrossReferencerUtil {
 	 *        null)
 	 * @return the list of {@link View} referencing the referencedObject
 	 */
-	public static Set<View> getCrossReferencingViews(final EObject referencedObject, final Diagram diagram) {
+	public static Set<View> getCrossReferencingViewsInDiagram(final EObject referencedObject, final Diagram diagram) {
 
 		Set<View> referencingObjects = new HashSet<View>();
 

@@ -230,7 +230,7 @@ public class ShowHideRelatedLinkEditPolicy extends AbstractUMLShowHideRelatedLin
 				continue;
 			}
 
-			final Set<View> views = CrossReferencerUtil.getCrossReferencingViews(role, getCurrentDiagram());
+			final Set<View> views = CrossReferencerUtil.getCrossReferencingViewsInDiagram(role, getCurrentDiagram());
 			final Iterator<View> iterOnView = views.iterator();
 			while(secondView == null && iterOnView.hasNext()) {
 				final View currentView = iterOnView.next();
