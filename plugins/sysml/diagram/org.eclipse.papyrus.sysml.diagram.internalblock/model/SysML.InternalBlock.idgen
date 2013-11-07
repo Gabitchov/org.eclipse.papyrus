@@ -6,6 +6,7 @@
     <behaviors javaClassQualifiedName="org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy" key="EditPolicy.LAYOUT_ROLE"/>
     <behaviors name="" javaClassQualifiedName="org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy" key="EditPolicyRoles.CREATION_ROLE"/>
     <behaviors javaClassQualifiedName="org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultContainerNodeEditPolicy" key="EditPolicy.GRAPHICAL_NODE_ROLE"/>
+    <behaviors name="" javaClassQualifiedName="org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.ShowHideRelatedLinkEditPolicy" key="ShowHideRelatedLinkEditPolicy"/>
   </diagramEditPart>
   <inheritedDiagrams name="CompositeDiagram" viewProviderClassQualifiedName="" editPartProviderClassQualifiedName="" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy">
     <genInheritedEditor href="../../org.eclipse.papyrus.uml.diagram.composite/model/compositediagram.gmfgen#CompositeStructure"/>
