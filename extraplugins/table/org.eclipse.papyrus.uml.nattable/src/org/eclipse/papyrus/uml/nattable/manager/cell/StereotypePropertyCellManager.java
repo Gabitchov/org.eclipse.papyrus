@@ -237,7 +237,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 		solvedValue = valueSolver.deduceValueFromString(prop, newValue);
 		steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
-		if(prop.getType() instanceof EnumerationLiteral) {
+		if(prop.getType() instanceof Enumeration) {//Enumeration AND not EnumerationLiteral
 			EEnum eenum = (EEnum)steApFeature.getEType();
 			Object value = solvedValue.getConvertedValue();
 			if(value instanceof Collection<?>) {
