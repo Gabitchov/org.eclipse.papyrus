@@ -52,7 +52,7 @@ public class LayersModelEventNotifier {
 		
 		@Override
 		public void notifyChanged(Notification notification) {
-			System.err.println("event received " + notification.getFeature());
+			System.err.println( this.getClass().getSimpleName() + ".event received " + notification.getFeature());
 			// Self atttach
 			super.notifyChanged(notification);
 			
@@ -149,6 +149,12 @@ public class LayersModelEventNotifier {
 				}
 				
 			}
+			// Check if the isLayerEnabled is modified
+			// sources: LayerExpression::IsLayerEnabled
+			else if(notification.getFeature() == LayersPackage.eINSTANCE.getLayerExpression_IsLayerEnabled() ) {
+				firePropertyValueChanged(notification);
+			}
+			
 			// Check property instance modification event
 			// instance change event can by fired by: any modification in a subclass of TypeInstance 
 			else {

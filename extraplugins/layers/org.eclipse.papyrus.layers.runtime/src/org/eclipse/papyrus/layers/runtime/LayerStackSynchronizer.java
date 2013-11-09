@@ -20,6 +20,7 @@ import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand;
 import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayer;
+import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
@@ -171,7 +172,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void propertyValueAdded(Notification notification) {
-		System.out.println("propertyValueAdded " + notification.getNewValue());
+		System.out.println(this.getClass().getSimpleName() + ".propertyValueAdded " + notification.getNewValue());
 
 		PropertySetter setter = null;
 		try {
@@ -211,7 +212,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 	@Override
 	public void propertyValueRemoved(Notification notification) {
-		System.out.println("propertyValueRemoved " + notification.getOldValue());
+		System.out.println(this.getClass().getSimpleName() + ".propertyValueRemoved " + notification.getOldValue());
 
 		try {
 			// Name of the property
@@ -256,8 +257,15 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 	@Override
 	public void propertyValueChanged(Notification notification) {
-		System.out.println("propertyValueChanged " + notification.getNewValue());
+		System.out.println(this.getClass().getSimpleName() + ".propertyValueChanged " + notification.getNewValue());
 
+		// If LayerExpression::IsLayerEnabled() is changed, treat it separately.
+		if(notification.getFeature() == LayersPackage.eINSTANCE.getLayerExpression_IsLayerEnabled()) {
+			propertyValueChangedIsLayerEnabled(notification);
+			return;
+		}
+		
+		// Here, this should be a regular property that is modified
 		try {
 			// Name of the property
 			String propertyName = LayersModelEventUtils.PropertyEvents.getPropertyNameFromValueSet(notification);
@@ -273,12 +281,18 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 			Property property  = application.getPropertyRegistry().getProperty(propertyName);
 			
 			List<ComputePropertyValueCommand> commands = layersStack.getViewsComputePropertyValueCommand(views, property);
+			if(commands == null) {
+				return;
+			}
 			
 			PropertySetter setter = application.getPropertySetterRegistry().getPropertySetter(property);
 			
 			// Walk each view and set the property
 			for( int i=0; i<views.size(); i++) {
-				setter.setValue(views.get(i), commands.get(i).getCmdValue() );
+				ComputePropertyValueCommand getValueCmd = commands.get(i);
+				if(getValueCmd != null) {
+					setter.setValue(views.get(i), getValueCmd.getCmdValue() );
+				}
 			}
 		} catch (NotFoundException e) {
 			System.err.println(e.getMessage());
@@ -290,9 +304,104 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 
 
+	/**
+	 * The LayerExpression::IsLayerEnabled() is changed. Refresh views and properties of the layer.
+	 * 
+	 * 
+	 * @param notification
+	 */
+	private void propertyValueChangedIsLayerEnabled(Notification notification) {
+		System.out.println(this.getClass().getSimpleName() + ".propertyValueChangedIsLayerEnabled " + notification.getNewValue());
+		
+		try {
+			
+			checkApplication();
+			
+			// Extract the affected layer
+//			AbstractLayer layer = LayersModelEventUtils.PropertyEvents.getAbstractLayer(notification);
+			AbstractLayer layer = (AbstractLayer)notification.getNotifier();
+			
+			recomputePropertiesForAllViewsOf(layer);
+		} catch (NotFoundException e) {
+			System.err.println(e.getMessage());
+		} catch (LayersException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+
+	/**
+	 * Recompute the specified properties for the specified views.
+	 * 
+	 * @param views
+	 * @param properties
+	 * @throws LayersException 
+	 */
+	private void recompute(List<View> views, List<Property> properties) throws LayersException {
+
+		// Iterate on views
+		for( View view : views) {
+			recompute( view, properties);
+		}
+		
+	}
+
+
+
+	/**
+	 * Recompute the specified properties for the specified view.
+	 * 
+	 * @param view
+	 * @param properties
+	 * @throws LayersException 
+	 */
+	private void recompute(View view, List<Property> properties) throws LayersException {
+
+		List<ComputePropertyValueCommand> commands = layersStack.getPropertiesComputePropertyValueCommand(view, properties);
+		if(commands == null) {
+			// No property to set
+			return;
+		}
+
+		PropertySetter setter;
+		// Walk each cmd and set the property
+		for( int i=0; i<commands.size(); i++) {
+			try {
+				Property property = properties.get(i);
+				setter = application.getPropertySetterRegistry().getPropertySetter(property);
+				// Set the value only if we have a getter command.
+				ComputePropertyValueCommand getterCmd = commands.get(i);
+				if(getterCmd != null) {
+					setter.setValue(view, getterCmd.getCmdValue() );
+				}
+
+			} catch (NotFoundException e) {
+				// No setter found
+				System.err.println(e.getMessage());
+			} catch (NullPointerException e) {
+				// A command is null
+			}
+		}
+		
+	}
+
+
+
 	@Override
 	public void layerAdded(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " layerAdded(not implemented) " + notification.getNewValue());
+		System.out.println(this.getClass().getSimpleName() + " layerAdded() " + notification.getNewValue());
+
+		// Extract the affected layer
+		AbstractLayer layer = (AbstractLayer)notification.getNewValue();
+
+		try {
+			checkApplication();
+			recomputePropertiesForAllViewsOf(layer);
+		} catch (LayersException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -300,8 +409,40 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 	@Override
 	public void layerRemoved(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " layerRemoved(not implemented) " + notification.getOldValue());
+		System.out.println(this.getClass().getSimpleName() + " layerRemoved() " + notification.getOldValue());
 
+		// Extract the affected layer
+		AbstractLayer layer = (AbstractLayer)notification.getOldValue();
+
+		try {
+			checkApplication();
+			recomputePropertiesForAllViewsOf(layer);
+		} catch (LayersException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+
+
+	/**
+	 * Recompute the properties of the views attached to the specified layers.
+	 * 
+	 * @param layer
+	 * @throws LayersException
+	 */
+	private void recomputePropertiesForAllViewsOf(AbstractLayer layer) throws LayersException {
+		// We need the list of affected properties
+		List<Property> properties  = layer.getAttachedProperties();
+
+		// We need the list of affected Views.
+		List<View> views = layer.getViews();
+		if( views.size() == 0) {
+			return;
+		}
+		
+		// For each view, recompute the Properties
+		recompute( views, properties );
 	}
 
 
@@ -314,7 +455,17 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void layerMoved(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " layerMoved(not implemented) " + notification.getNewValue());
+		System.out.println(this.getClass().getSimpleName() + " layerMoved(not tested) " + notification.getNewValue());
+
+		// Extract the affected layer
+		AbstractLayer layer = (AbstractLayer)notification.getNewValue();
+
+		try {
+			checkApplication();
+			recomputePropertiesForAllViewsOf(layer);
+		} catch (LayersException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -389,6 +540,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void viewRemovedFromLayer(Notification notification) {
+		System.out.println(this.getClass().getSimpleName() + " viewRemovedFromLayer(Not Implemented) " + notification.getOldValue());
 		// We need to find the view, the layer in which it is added,
 		// and the properties attached to this layer.
 		// Then, we compute this property and set it to the view.

@@ -334,6 +334,12 @@ public abstract class AbstractLayerOperatorImpl extends LayerOperatorImpl implem
 	@Override
 	public ComputePropertyValueCommand getComputePropertyValueCommand(View view, Property property) throws LayersException {
 		
+		// Do nothing if the layer is disable.
+		if( ! isLayerEnabled() ) {
+			return null;
+		}
+		
+		
 		// The list of commands provided by each layers
 		EList<ComputePropertyValueCommand> collectedCmds = new BasicEList<ComputePropertyValueCommand>(getLayers().size());
 
@@ -369,6 +375,11 @@ public abstract class AbstractLayerOperatorImpl extends LayerOperatorImpl implem
 	@Override
 	public EList<ComputePropertyValueCommand> getPropertiesComputePropertyValueCommand(View view, List<Property> properties) throws LayersException {
 
+		// Do nothing if the layer is disable.
+		if( ! isLayerEnabled() ) {
+			return null;
+		}
+		
 		// Simple implementation
 		// TODO Check if we can optimize
 
@@ -415,6 +426,11 @@ public abstract class AbstractLayerOperatorImpl extends LayerOperatorImpl implem
 	@Override
 	public EList<ComputePropertyValueCommand> getViewsComputePropertyValueCommand(List<View> views, Property property) throws LayersException {
 
+		// Do nothing if the layer is disable.
+		if( ! isLayerEnabled() ) {
+			return null;
+		}
+		
 		// Simple implementation
 		// TODO Check if we can optimize
 		
