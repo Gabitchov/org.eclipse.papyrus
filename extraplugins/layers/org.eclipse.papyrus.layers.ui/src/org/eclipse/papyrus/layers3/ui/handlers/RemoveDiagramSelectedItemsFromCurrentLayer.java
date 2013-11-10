@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Cedric Dumoulin - cedric.dumoulin@lifl.fr
+ ******************************************************************************/
 /**
  * 
  */
@@ -122,7 +132,7 @@ public class RemoveDiagramSelectedItemsFromCurrentLayer extends AbstractLayersCo
 		IStructuredSelection structuredSelection = (IStructuredSelection)selection;
 
 		// Get the views from the selected part
-		List<View> result = new ArrayList<>(structuredSelection.size());
+		List<View> result = new ArrayList<View>(structuredSelection.size());
 //		for( Object obj : structuredSelection.toList() ) {
 //			if( obj instanceof GraphicalEditPart ) {
 //				GraphicalEditPart part = (GraphicalEditPart)obj;
