@@ -91,6 +91,8 @@ public class PapyrusCDTEditor extends CEditor {
 
 	protected RevealCurrentOperation reveal;
 
+	protected Adapter gotoListener;
+	
 	/**
 	 * 
 	 * Constructor.
@@ -100,6 +102,7 @@ public class PapyrusCDTEditor extends CEditor {
 	 */
 	public PapyrusCDTEditor(final ServicesRegistry registry, final TextEditorModel papyrusTextInstance) {
 		super();
+		gotoListener = null;
 		this.registry = registry;
 		this.papyrusTextInstance = papyrusTextInstance;
 		try {
@@ -146,10 +149,10 @@ public class PapyrusCDTEditor extends CEditor {
 			actionBars.updateActionBars();
 		}
 		
-		papyrusTextInstance.eAdapters().add(new Adapter() {
+		gotoListener = new Adapter() {
 
+			// assure that gotoElement is called, if the element in the model gets updated
 			public void notifyChanged(Notification notification) {
-				// TODO Auto-generated method stub
 				if (notification.getEventType() == Notification.SET) {
 					if (notification.getNewValue() instanceof NamedElement) {
 						gotoElement((NamedElement) notification.getNewValue());
@@ -168,8 +171,8 @@ public class PapyrusCDTEditor extends CEditor {
 			public boolean isAdapterForType(Object type) {
 				return false;
 			}
-			
-		});
+		};
+		papyrusTextInstance.eAdapters().add(gotoListener);		
 		
 		if (papyrusTextInstance.getSelectedObject() instanceof NamedElement) {
 			gotoElement((NamedElement) papyrusTextInstance.getSelectedObject());
@@ -297,7 +300,8 @@ public class PapyrusCDTEditor extends CEditor {
 					viewer.setSelectedRange(range.getStartPos(), range.getLength());
 					return;
 				}
-				catch (CoreException e) {					
+				catch (CoreException e) {
+					Activator.log.error(e);
 				}
 			}
 		}
@@ -357,7 +361,10 @@ public class PapyrusCDTEditor extends CEditor {
 	public void dispose() {
 
 		saveAndDirtyService.removeIsaveablePart(this);
-		
+		if (gotoListener != null) {
+			papyrusTextInstance.eAdapters().remove(gotoListener);
+		}
+
 		//we remove the listener
 		StyledText st = getSourceViewer().getTextWidget();
 		st.removeFocusListener(focusListener);
@@ -385,3 +392,4 @@ public class PapyrusCDTEditor extends CEditor {
 	
 	protected IEditorInput m_input;
 }
+ 

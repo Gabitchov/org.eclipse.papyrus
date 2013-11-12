@@ -19,11 +19,15 @@ package org.eclipse.papyrus.texteditor.cdt.preferences;
 public class CDTPreferenceConstants {
 
 	/**
+	 * Default option for opening the editor at a specified location. Store uses directly the SWT constants
+	 */
+	public static final String P_OPEN_LOCATION = "openLocation"; //$NON-NLS-1$
+
+	/**
 	 * For attributes, the default "aggregation kind" value is "none". When this option is set
 	 * it will be treated as composite
 	 */
 	public static final String P_SYNC_PERMANENTLY = "syncPermanently"; //$NON-NLS-1$
 
 	public static final String P_SYNC_ALL_FILES = "syncAllFiles"; //$NON-NLS-1$
-
 }

@@ -34,6 +34,11 @@ import org.eclipse.papyrus.acceleo.ui.handlers.CmdHandler;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -43,6 +48,7 @@ import org.eclipse.papyrus.texteditor.cdt.editor.PapyrusCDTEditor;
 import org.eclipse.papyrus.texteditor.cdt.modelresource.TextEditorModelSharedResource;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelFactory;
+import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
@@ -149,7 +155,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 	public void doExecute(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
 		// Get the page manager allowing to add/open an editor.
 		IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
-
+				
 		Classifier classifierToEdit = getClassifierToEdit();
 
 		TextEditorModel editorModel = getEditorModel(serviceRegistry, classifierToEdit);
@@ -165,6 +171,16 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		}
 		else {
 			pageMngr.openPage(editorModel);
+		}
+
+		// move page to the RIGHT
+		DiSashModelManager modelMngr = ServiceUtils.getInstance().getService(DiSashModelManager.class, serviceRegistry);
+		ISashWindowsContentProvider sashContentProvider = modelMngr.getISashWindowsContentProvider();
+		Object rootModel = sashContentProvider.getRootModel();
+ 		if (rootModel instanceof TabFolder) {
+			ISashWindowsContainer sashContainer = ServiceUtils.getInstance().getISashWindowsContainer(serviceRegistry);
+			int index = lookupIndex((TabFolder) rootModel, editorModel);
+			sashContentProvider.createFolder(sashContainer.getSelectedTabFolderModel(), index, sashContainer.getSelectedTabFolderModel(), SWT.RIGHT);
 		}
 	}
 
@@ -221,4 +237,23 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 			ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
 		return model.getTextEditorModel(classifierToEdit);
 	}
+	
+	 /**
+     * Recursively search in sash models for a FolderModel.
+     * Return the first encountered folder.
+     * 
+     * @param panelModel
+     * @return
+     */
+    public static int lookupIndex(TabFolder folder, Object model) {
+
+    	int index = 0;
+		for (PageRef pr : folder.getChildren()) {
+			if (pr.getPageIdentifier() == model) {
+				return index;
+			}
+			index++;
+		}
+		return -1;
+    }
 }

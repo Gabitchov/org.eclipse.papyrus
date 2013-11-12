@@ -20,7 +20,6 @@ import org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor.ActionBa
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.texteditor.cdt.Activator;
 import org.eclipse.papyrus.texteditor.cdt.editor.PapyrusCDTEditor;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
@@ -49,7 +48,7 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 	 * @return A model implementing the IPageModel
 	 */
 	public IPageModel createIPageModel(Object pageIdentifier) {
-		return new TextEditorModelDelegate(pageIdentifier, getServiceRegistry());
+		return new TextEditorModelDelegate(pageIdentifier);
 	}
 
 	/**
@@ -71,12 +70,6 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 	 */
 	class TextEditorModelDelegate implements IEditorModel {
 
-
-		/**
-		 * The servicesRegistry provided at creation.
-		 */
-		private ServicesRegistry servicesRegistry;
-
 		/**
 		 * The created editor.
 		 */
@@ -85,15 +78,14 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 		/**
 		 * The raw model stored in the SashProvider.
 		 */
-		private TextEditorModel rawModel;
+		private TextEditorModel rawEditorModel;
 
 		/**
 		 * 
 		 * Constructor.
 		 */
-		public TextEditorModelDelegate(Object pageIdentifier, ServicesRegistry servicesRegistry) {
-			rawModel = (TextEditorModel)pageIdentifier;
-			this.servicesRegistry = servicesRegistry;
+		public TextEditorModelDelegate(Object pageIdentifier) {
+			rawEditorModel = (TextEditorModel)pageIdentifier;
 		}
 
 		/**
@@ -110,8 +102,8 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 				//				Constructor<?> c = getDiagramClass().getConstructor(ServicesRegistry.class, TextEditorModel.class);
 				//				editor = (IEditorPart)c.newInstance(servicesRegistry, rawModel);
 
-				//we use this way when there is only one editor type  
-				editor = new PapyrusCDTEditor(servicesRegistry, rawModel);
+				//we use this way when there is only one editor type
+				editor = new PapyrusCDTEditor(getServiceRegistry(), rawEditorModel);
 				return editor;
 
 			} catch (Exception e) {
@@ -144,7 +136,7 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 			// ServicesRegistry serviceRegistry = getServicesRegistry();
 			ActionBarContributorRegistry registry;
 			try {
-				registry = servicesRegistry.getService(ActionBarContributorRegistry.class);
+				registry = getServiceRegistry().getService(ActionBarContributorRegistry.class);
 			} catch (ServiceException e) {
 				// Service not found
 				Activator.log.error(e);
@@ -199,7 +191,7 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 		 * 
 		 */
 		public String getTabTitle() {
-			return rawModel.getName();
+			return rawEditorModel.getName();
 		}
 	}
 }
