@@ -909,17 +909,20 @@
             name="Generalization Link" />
 		
 		
-
-	<?gmfgen generated="true"?>
+<!-- changed by Ansgar Radermacher -->
+	<?gmfgen generated="false"?>
 	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.uml.diagram.statemachine.preferences.TransitionPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.statemachine.preferences.TransitionPreferencePage"
+			class="org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.CustomTransitionPreferencePage"
+            id="org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.TransitionPreferencePage"
             name="Transition Link" />
 		
 		
 		
 
 </extension>
+
+
+
 <extension
 		id="PapyrusUMLStateMachineDiagram.palettedefinition"
 		name="PapyrusUMLStateMachineDiagram Predefined Entries"

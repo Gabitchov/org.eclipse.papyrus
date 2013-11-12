@@ -35,10 +35,14 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.PreferenceConstants;
+import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.tools.utils.OpaqueBehaviorUtil;
 import org.eclipse.papyrus.uml.tools.utils.OpaqueExpressionUtil;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Behavior;
@@ -50,6 +54,8 @@ import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.TimeEvent;
 import org.eclipse.uml2.uml.TimeExpression;
@@ -60,11 +66,15 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 public class TransitionPropertiesParser implements IParser, ISemanticParser {
 
-	private static final String ONE_SPACE_STRING = " "; //$NON-NLS-1$
+	public static final String ONE_SPACE_STRING = " "; //$NON-NLS-1$
+
+	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
+
+	public static final String DOTS = "..."; //$NON-NLS-1$
+
+	public static final String PARAM_DOTS = "(...)"; //$NON-NLS-1$
 
 	protected Constraint guardConstraint = null;
-
-	private static String EMPTY_STRING = ""; //$NON-NLS-1$
 
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		return null;
@@ -160,12 +170,18 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 			StringBuilder result = new StringBuilder();
 			String textForTrigger = getTextForTrigger(trans);
 			if(textForTrigger != null && !EMPTY_STRING.equals(textForTrigger)) {
-				result.append(textForTrigger).append(ONE_SPACE_STRING);
+				result.append(textForTrigger);
 			}
 			result.append(getTextForGuard(trans));
 			String textForEffect = getTextForEffect(trans);
 			if(textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
-				result.append("/\n").append(textForEffect); //$NON-NLS-1$
+				if(textForEffect != null && !EMPTY_STRING.equals(textForEffect)) {
+					result.append("/");	//$NON-NLS-1$
+					if (lineBreakBeforeEffect()) {
+						result.append("\n"); //$NON-NLS-1$
+					}
+					result.append(textForEffect);
+				}
 			}
 			return result.toString();
 		}
@@ -204,7 +220,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 				OpaqueBehavior ob = (OpaqueBehavior)effect;
 				if(ob.getBodies().size() > 0) {
 					// return body of behavior (only handle case of a single body)
-					result.append(ob.getBodies().get(0));
+					result.append(retrieveBody(ob));
 					return result.toString();
 				}
 			}
@@ -233,15 +249,23 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 				}
 				Event e = t.getEvent();
 				if(e instanceof CallEvent) {
-					if(((CallEvent)e).getOperation() != null) {
-						result.append(((CallEvent)e).getOperation().getName());
+					Operation op = ((CallEvent)e).getOperation();
+					if(op != null) {
+						result.append(op.getName());
+						if ((op.getOwnedParameters().size() > 0) && displayParamDots()) {
+							result.append(PARAM_DOTS);
+						}
 					} else {
 						result.append(((CallEvent)e).getName());
 					}
 
 				} else if(e instanceof SignalEvent) {
-					if(((SignalEvent)e).getSignal() != null) {
-						result.append(((SignalEvent)e).getSignal().getName());
+					Signal signal = ((SignalEvent)e).getSignal();
+					if(signal != null) {
+						result.append(signal.getName());
+						if ((signal.getAttributes().size() > 0) && displayParamDots()) {
+							result.append(PARAM_DOTS);
+						}
 					} else {
 						result.append(((SignalEvent)e).getName());
 					}
@@ -249,7 +273,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					ValueSpecification vs = ((ChangeEvent) e).getChangeExpression();
 					String value;
 					if (vs instanceof OpaqueExpression) {
-						value = "\"" + retrieveBody((OpaqueExpression) vs) + "\""; //$NON-NLS-1$ //$NON-NLS-2$
+						value = retrieveBody((OpaqueExpression) vs);
 					}
 					else {
 						value = vs.stringValue();
@@ -265,7 +289,7 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					if (te != null) {
 						ValueSpecification vs = te.getExpr();
 						if (vs instanceof OpaqueExpression) {
-							value = "\"" + retrieveBody((OpaqueExpression) vs) + "\""; //$NON-NLS-1$ //$NON-NLS-2$
+							value = retrieveBody((OpaqueExpression) vs);
 						}
 						else {
 							value = vs.stringValue();
@@ -342,11 +366,76 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 	 * @param exp an opaque expression
 	 * @return the associated body
 	 */
-	private static String retrieveBody(OpaqueExpression exp) {
+	public static String retrieveBody(OpaqueExpression exp) {
 		String body = OpaqueExpressionUtil.getBodyForLanguage(exp, "Natural Language"); //$NON-NLS-1$
 		if (body.equals(EMPTY_STRING)) {
 			body = OpaqueExpressionUtil.getBodyForLanguage(exp, null);
 		}
-		return body;
+		return cutBodyString(body);
+	}
+	
+	/**
+	 * Return the body of an opaque behavior. Retrieve the "Natural Language" body with priority,
+	 * i.e. return this body if it exists, otherwise return the first body.
+	 * 
+	 * @param exp an opaque expression
+	 * @return the associated body
+	 */
+	public static String retrieveBody(OpaqueBehavior ob) {
+		String body = OpaqueBehaviorUtil.getBody(ob, "Natural Language"); //$NON-NLS-1$
+		if (body.equals(EMPTY_STRING) && ob.getBodies().size() > 0) {
+			body = ob.getBodies().get(0);
+		}
+		return cutBodyString(body);
+	}
+
+	/**
+	 * Cut a body string after a predefined number of lines (taken from preference store).
+	 * 
+	 * @param body the body string
+	 * @return
+	 */
+	public static String cutBodyString(String body) {
+		IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		int cutLength = preferenceStore.getInt(PreferenceConstants.BODY_CUT_LENGTH);
+
+		if (cutLength == 0) {
+			return DOTS;
+		}
+		else {
+			int start = 0;
+			while (cutLength > 0) {
+				int newStart = body.indexOf(System.lineSeparator(), start);
+				if (newStart > 0) {
+					cutLength--;
+					start = newStart + 1;
+				}
+				else {
+					return body;
+				}
+			}
+			if (start > 0) {
+				return body.substring(0, start - 1) + DOTS;
+			}
+			return body;
+		}
+	}
+	
+	/**
+	 * 
+	 * @return true, if the presence of parameters should be indicated by (...)
+	 */
+	public static boolean displayParamDots() {
+		IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		return preferenceStore.getBoolean(PreferenceConstants.INDICATE_PARAMETERS);
+	}
+	
+	/**
+	 * 
+	 * @return true, if the presence of parameters should be indicated by (...)
+	 */
+	public static boolean lineBreakBeforeEffect() {
+		IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		return preferenceStore.getBoolean(PreferenceConstants.LINEBREAK_BEFORE_EFFECT);
 	}
 }
