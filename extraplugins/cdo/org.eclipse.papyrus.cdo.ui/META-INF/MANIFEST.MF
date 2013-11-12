@@ -21,10 +21,12 @@ Require-Bundle: org.eclipse.core.runtime,
  com.google.guava;bundle-version="[11.0.0,12.0.0)",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.services.controlmode;bundle-version="0.10.1",
- org.eclipse.ui.navigator;bundle-version="3.5.300"
+ org.eclipse.ui.navigator;bundle-version="3.5.300",
+ org.eclipse.emf.cdo.ui.admin;bundle-version="[4.1.200,5.0.0)"
 Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.ui",
  org.eclipse.papyrus.cdo.internal.ui.actions;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.adapters;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
+ org.eclipse.papyrus.cdo.internal.ui.admin;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.ui.decorators;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.dialogs;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.ui.customization.properties,org.eclipse.papyrus.cdo.ui.hyperlink",
  org.eclipse.papyrus.cdo.internal.ui.dnd;x-friends:="org.eclipse.papyrus.cdo.ui.hyperlink,org.eclipse.papyrus.cdo.ui.tests",
@@ -36,7 +38,12 @@ Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papy
  org.eclipse.papyrus.cdo.internal.ui.properties;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.providers;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.util;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
- org.eclipse.papyrus.cdo.internal.ui.views;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.diagram.ui,org.eclipse.papyrus.cdo.uml.ui,org.eclipse.papyrus.cdo.uml.ui.tests,org.eclipse.papyrus.cdo.ui.hyperlink",
+ org.eclipse.papyrus.cdo.internal.ui.views;
+  x-friends:="org.eclipse.papyrus.cdo.ui.tests,
+   org.eclipse.papyrus.cdo.uml.diagram.ui,
+   org.eclipse.papyrus.cdo.uml.ui,
+   org.eclipse.papyrus.cdo.uml.ui.tests,
+   org.eclipse.papyrus.cdo.ui.hyperlink",
  org.eclipse.papyrus.cdo.internal.ui.widgets;x-internal:=true,
  org.eclipse.papyrus.cdo.internal.ui.wizards;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.diagram.ui,org.eclipse.papyrus.cdo.ui.customization.properties"
 Bundle-Vendor: %providerName

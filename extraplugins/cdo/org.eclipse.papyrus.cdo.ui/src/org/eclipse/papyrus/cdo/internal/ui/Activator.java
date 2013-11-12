@@ -2,6 +2,7 @@ package org.eclipse.papyrus.cdo.internal.ui;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.cdo.admin.CDOAdminClientManager;
 import org.eclipse.emf.cdo.dawn.editors.IDawnEditor;
 import org.eclipse.emf.cdo.dawn.helper.DawnEditorHelper;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -166,5 +167,10 @@ public class Activator extends AbstractUIPlugin {
 
 	public static IStatus error(String message, Throwable exception) {
 		return new Status(IStatus.ERROR, PLUGIN_ID, message, exception);
+	}
+
+	@SuppressWarnings("restriction")
+	public static CDOAdminClientManager getCDOAdminClientManager() {
+		return org.eclipse.emf.cdo.ui.internal.admin.bundle.OM.getAdminManager();
 	}
 }
