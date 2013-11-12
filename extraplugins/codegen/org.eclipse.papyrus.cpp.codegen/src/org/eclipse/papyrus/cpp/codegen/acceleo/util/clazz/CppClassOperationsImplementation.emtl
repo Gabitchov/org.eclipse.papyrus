@@ -23,12 +23,12 @@
           </argument>
         </body>
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-        <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/6/Set(Operation)">
-          <source xsi:type="ocl.ecore:OperationCallExp" eType="/6/Set(Operation)">
-            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/8">
+        <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/6/Sequence(Operation)">
+          <source xsi:type="mtl:QueryInvocation" eType="/6/Sequence(Operation)">
+            <definition href="../operation/CppOperations.emtl#/0/getOwnedOperations"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/8">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
-            </source>
-            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/getOperations"/>
+            </argument>
           </source>
           <body xsi:type="ocl.ecore:OperationCallExp">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
@@ -204,6 +204,18 @@
           <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
         </eParameters>
       </eOperations>
+      <eOperations name="getOwnedOperations">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../operation/CppOperations.emtl#/0/getOwnedOperations"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../operation/CppOperations.emtl#/3/Sequence(Operation)"/>
+        <eParameters name="cl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="CppOperationImplementation">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -308,7 +320,7 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
   </ocl.ecore:Variable>
   <ecore:EPackage name="collections">
-    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Operation)" instanceClassName="java.util.Set">
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Operation)" instanceClassName="java.util.List">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(OclAny)" instanceClassName="java.util.List">
@@ -373,22 +385,22 @@
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/CppClassOperationsImplementation">
       <details key="start" value="396"/>
-      <details key="end" value="924"/>
+      <details key="end" value="929"/>
       <details key="line" value="8"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/CppClassOperationsImplementation/%">
       <details key="start" value="485"/>
-      <details key="end" value="653"/>
+      <details key="end" value="658"/>
       <details key="line" value="9"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/CppClassOperationsImplementation/%/%">
-      <details key="start" value="614"/>
-      <details key="end" value="615"/>
+      <details key="start" value="619"/>
+      <details key="end" value="620"/>
       <details key="line" value="12"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/CppClassOperationsImplementation/%/%.1">
-      <details key="start" value="616"/>
-      <details key="end" value="644"/>
+      <details key="start" value="621"/>
+      <details key="end" value="649"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/CppClassOperationsImplementation/%/%.1/self">
@@ -397,18 +409,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/CppClassOperationsImplementation/%/%.2">
-      <details key="start" value="646"/>
-      <details key="end" value="647"/>
+      <details key="start" value="651"/>
+      <details key="end" value="652"/>
       <details key="line" value="14"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/CppClassOperationsImplementation/%/select">
       <details key="start" value="491"/>
-      <details key="end" value="611"/>
+      <details key="end" value="616"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/CppClassOperationsImplementation/%/select/%">
       <details key="start" value="491"/>
-      <details key="end" value="506"/>
+      <details key="end" value="511"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/CppClassOperationsImplementation/%/select/%/self">
@@ -417,23 +429,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/CppClassOperationsImplementation/%/select/%.1">
-      <details key="start" value="518"/>
-      <details key="end" value="610"/>
+      <details key="start" value="523"/>
+      <details key="end" value="615"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/CppClassOperationsImplementation/%/select/%.1/%">
-      <details key="start" value="518"/>
-      <details key="end" value="564"/>
+      <details key="start" value="523"/>
+      <details key="end" value="569"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%">
-      <details key="start" value="523"/>
-      <details key="end" value="563"/>
+      <details key="start" value="528"/>
+      <details key="end" value="568"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%">
-      <details key="start" value="524"/>
-      <details key="end" value="548"/>
+      <details key="start" value="529"/>
+      <details key="end" value="553"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%/temp1">
@@ -442,13 +454,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%/%">
-      <details key="start" value="538"/>
-      <details key="end" value="547"/>
+      <details key="start" value="543"/>
+      <details key="end" value="552"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%.1">
-      <details key="start" value="552"/>
-      <details key="end" value="562"/>
+      <details key="start" value="557"/>
+      <details key="end" value="567"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/CppClassOperationsImplementation/%/select/%.1/%/%/%.1/temp1">
@@ -457,13 +469,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1">
-      <details key="start" value="571"/>
-      <details key="end" value="610"/>
+      <details key="start" value="576"/>
+      <details key="end" value="615"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1/%">
-      <details key="start" value="572"/>
-      <details key="end" value="600"/>
+      <details key="start" value="577"/>
+      <details key="end" value="605"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.20" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1/%/temp1">
@@ -472,13 +484,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1/%/%">
-      <details key="start" value="586"/>
-      <details key="end" value="599"/>
+      <details key="start" value="591"/>
+      <details key="end" value="604"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/CppClassOperationsImplementation/%/select/%.1/%.1/inline">
-      <details key="start" value="603"/>
-      <details key="end" value="609"/>
+      <details key="start" value="608"/>
+      <details key="end" value="614"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/CppClassOperationsImplementation/%/select/temp1">
@@ -487,23 +499,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/CppClassOperationsImplementation/%.1">
-      <details key="start" value="654"/>
-      <details key="end" value="912"/>
+      <details key="start" value="659"/>
+      <details key="end" value="917"/>
       <details key="line" value="15"/>
     </eAnnotations>
     <eAnnotations source="positions.25" references="/0/CppClassOperationsImplementation/%.1/%">
-      <details key="start" value="765"/>
-      <details key="end" value="905"/>
+      <details key="start" value="770"/>
+      <details key="end" value="910"/>
       <details key="line" value="17"/>
     </eAnnotations>
     <eAnnotations source="positions.26" references="/0/CppClassOperationsImplementation/%.1/%/%">
-      <details key="start" value="795"/>
-      <details key="end" value="868"/>
+      <details key="start" value="800"/>
+      <details key="end" value="873"/>
       <details key="line" value="18"/>
     </eAnnotations>
     <eAnnotations source="positions.27" references="/0/CppClassOperationsImplementation/%.1/%/%.1">
-      <details key="start" value="869"/>
-      <details key="end" value="896"/>
+      <details key="start" value="874"/>
+      <details key="end" value="901"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.28" references="/0/CppClassOperationsImplementation/%.1/%/%.1/self">
@@ -512,43 +524,43 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.29" references="/0/CppClassOperationsImplementation/%.1/%/%.2">
-      <details key="start" value="898"/>
-      <details key="end" value="899"/>
+      <details key="start" value="903"/>
+      <details key="end" value="904"/>
       <details key="line" value="21"/>
     </eAnnotations>
     <eAnnotations source="positions.30" references="/0/CppClassOperationsImplementation/%.1/%/%.3">
-      <details key="start" value="769"/>
-      <details key="end" value="793"/>
+      <details key="start" value="774"/>
+      <details key="end" value="798"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/CppClassOperationsImplementation/%.1/%/%.3/%">
-      <details key="start" value="770"/>
-      <details key="end" value="785"/>
+      <details key="start" value="775"/>
+      <details key="end" value="790"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/CppClassOperationsImplementation/%.1/%/%.3/%/b">
-      <details key="start" value="770"/>
-      <details key="end" value="771"/>
+      <details key="start" value="775"/>
+      <details key="end" value="776"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/CppClassOperationsImplementation/%.1/%/%.3/%.1">
-      <details key="start" value="788"/>
-      <details key="end" value="792"/>
+      <details key="start" value="793"/>
+      <details key="end" value="797"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/CppClassOperationsImplementation/%.1/b">
-      <details key="start" value="660"/>
-      <details key="end" value="678"/>
+      <details key="start" value="665"/>
+      <details key="end" value="683"/>
       <details key="line" value="15"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/CppClassOperationsImplementation/%.1/select">
-      <details key="start" value="681"/>
-      <details key="end" value="761"/>
+      <details key="start" value="686"/>
+      <details key="end" value="766"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.36" references="/0/CppClassOperationsImplementation/%.1/select/%">
-      <details key="start" value="681"/>
-      <details key="end" value="709"/>
+      <details key="start" value="686"/>
+      <details key="end" value="714"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.37" references="/0/CppClassOperationsImplementation/%.1/select/%/self">
@@ -557,18 +569,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.38" references="/0/CppClassOperationsImplementation/%.1/select/%/%">
-      <details key="start" value="694"/>
-      <details key="end" value="708"/>
+      <details key="start" value="699"/>
+      <details key="end" value="713"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.39" references="/0/CppClassOperationsImplementation/%.1/select/%.1">
-      <details key="start" value="721"/>
-      <details key="end" value="760"/>
+      <details key="start" value="726"/>
+      <details key="end" value="765"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.40" references="/0/CppClassOperationsImplementation/%.1/select/%.1/%">
-      <details key="start" value="722"/>
-      <details key="end" value="750"/>
+      <details key="start" value="727"/>
+      <details key="end" value="755"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.41" references="/0/CppClassOperationsImplementation/%.1/select/%.1/%/temp1">
@@ -577,13 +589,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.42" references="/0/CppClassOperationsImplementation/%.1/select/%.1/%/%">
-      <details key="start" value="736"/>
-      <details key="end" value="749"/>
+      <details key="start" value="741"/>
+      <details key="end" value="754"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.43" references="/0/CppClassOperationsImplementation/%.1/select/%.1/inline">
-      <details key="start" value="753"/>
-      <details key="end" value="759"/>
+      <details key="start" value="758"/>
+      <details key="end" value="764"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.44" references="/0/CppClassOperationsImplementation/%.1/select/temp2">

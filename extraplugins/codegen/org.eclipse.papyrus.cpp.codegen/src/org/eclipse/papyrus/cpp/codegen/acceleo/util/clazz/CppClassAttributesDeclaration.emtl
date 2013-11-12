@@ -5,23 +5,82 @@
       <takesTypesFrom href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
     </input>
     <imports href="../CppAttribute.emtl#/0"/>
+    <ownedModuleElement xsi:type="mtl:Query" name="getOwnedAttributes" visibility="Public" type="/3/Sequence(Property)">
+      <parameter name="cl">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+      </parameter>
+      <expression xsi:type="ocl.ecore:IfExp">
+        <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        <condition xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="cl" referredVariable="/0/getOwnedAttributes/cl">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+          </source>
+          <argument xsi:type="ocl.ecore:TypeExp" eType="/5/Class">
+            <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+          </argument>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
+        </condition>
+        <thenExpression xsi:type="ocl.ecore:PropertyCallExp" eType="/3/OrderedSet(Property)">
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/6">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/5/Class">
+              <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+          </source>
+          <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//StructuredClassifier/ownedAttribute"/>
+        </thenExpression>
+        <elseExpression xsi:type="ocl.ecore:IfExp">
+          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+          <condition xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="cl" referredVariable="/0/getOwnedAttributes/cl">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/5/DataType">
+              <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//DataType"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf"/>
+          </condition>
+          <thenExpression xsi:type="ocl.ecore:PropertyCallExp" eType="/3/OrderedSet(Property)">
+            <source xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//DataType"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/6">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+              </source>
+              <argument xsi:type="ocl.ecore:TypeExp" eType="/5/DataType">
+                <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//DataType"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//DataType/ownedAttribute"/>
+          </thenExpression>
+          <elseExpression xsi:type="ocl.ecore:NullLiteralExp">
+            <eType xsi:type="ocl.ecore:VoidType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
+          </elseExpression>
+        </elseExpression>
+      </expression>
+    </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="CppClassAttributesDeclaration" visibility="Public">
       <body xsi:type="mtl:ForBlock">
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;"/>
         <body xsi:type="mtl:TemplateInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <definition href="../CppAttribute.emtl#/0/CppAttributeDeclaration"/>
-          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/9">
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/13">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
           </argument>
         </body>
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-        <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/6/Set(Property)">
-          <source xsi:type="ocl.ecore:PropertyCallExp" eType="/6/Set(Property)">
-            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
+        <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/3/Sequence(Property)">
+          <source xsi:type="mtl:QueryInvocation" eType="/3/Sequence(Property)" definition="/0/getOwnedAttributes">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/11">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
-            </source>
-            <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/attribute"/>
+            </argument>
           </source>
           <body xsi:type="ocl.ecore:OperationCallExp">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
@@ -70,6 +129,15 @@
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eAnnotations>
+      <eOperations name="getOwnedAttributes" eType="/3/Sequence(Property)">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/getOwnedAttributes"/>
+        <eParameters name="cl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="CppClassAttributesDeclaration">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -130,6 +198,31 @@
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Property)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Property)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="types">
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="Class">
+      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Class"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="DataType">
+      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//DataType"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
   </ocl.ecore:Variable>
@@ -139,11 +232,6 @@
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
   </ocl.ecore:Variable>
-  <ecore:EPackage name="collections">
-    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Property)" instanceClassName="java.util.Set">
-      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
-    </eClassifiers>
-  </ecore:EPackage>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
   </ocl.ecore:Variable>
@@ -163,85 +251,180 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
-    <eAnnotations source="positions.0" references="/0/CppClassAttributesDeclaration">
-      <details key="start" value="159"/>
-      <details key="end" value="368"/>
-      <details key="line" value="6"/>
+    <eAnnotations source="positions.0" references="/0/getOwnedAttributes">
+      <details key="start" value="158"/>
+      <details key="end" value="411"/>
+      <details key="line" value="5"/>
     </eAnnotations>
-    <eAnnotations source="positions.1" references="/0/CppClassAttributesDeclaration/%">
-      <details key="start" value="262"/>
-      <details key="end" value="356"/>
-      <details key="line" value="7"/>
+    <eAnnotations source="positions.1" references="/0/getOwnedAttributes/cl">
+      <details key="start" value="191"/>
+      <details key="end" value="206"/>
+      <details key="line" value="5"/>
     </eAnnotations>
-    <eAnnotations source="positions.2" references="/0/CppClassAttributesDeclaration/%/%">
-      <details key="start" value="319"/>
-      <details key="end" value="321"/>
-      <details key="line" value="8"/>
-    </eAnnotations>
-    <eAnnotations source="positions.3" references="/0/CppClassAttributesDeclaration/%/%.1">
-      <details key="start" value="322"/>
-      <details key="end" value="347"/>
+    <eAnnotations source="positions.2" references="/0/getOwnedAttributes/%">
+      <details key="start" value="232"/>
+      <details key="end" value="408"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.4" references="/0/CppClassAttributesDeclaration/%/%.1/self">
+    <eAnnotations source="positions.3" references="/0/getOwnedAttributes/%/%">
+      <details key="start" value="235"/>
+      <details key="end" value="258"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/getOwnedAttributes/%/%/cl">
+      <details key="start" value="236"/>
+      <details key="end" value="238"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/getOwnedAttributes/%/%/%">
+      <details key="start" value="251"/>
+      <details key="end" value="256"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/getOwnedAttributes/%/%.1">
+      <details key="start" value="266"/>
+      <details key="end" value="297"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/getOwnedAttributes/%/%.1/%">
+      <details key="start" value="266"/>
+      <details key="end" value="282"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/getOwnedAttributes/%/%.1/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.5" references="/0/CppClassAttributesDeclaration/%/%.2">
-      <details key="start" value="349"/>
-      <details key="end" value="350"/>
-      <details key="line" value="10"/>
-    </eAnnotations>
-    <eAnnotations source="positions.6" references="/0/CppClassAttributesDeclaration/%/select">
-      <details key="start" value="268"/>
-      <details key="end" value="316"/>
+    <eAnnotations source="positions.9" references="/0/getOwnedAttributes/%/%.1/%/%">
+      <details key="start" value="276"/>
+      <details key="end" value="281"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.7" references="/0/CppClassAttributesDeclaration/%/select/%">
-      <details key="start" value="268"/>
-      <details key="end" value="277"/>
+    <eAnnotations source="positions.10" references="/0/getOwnedAttributes/%/%.2">
+      <details key="start" value="306"/>
+      <details key="end" value="401"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.8" references="/0/CppClassAttributesDeclaration/%/select/%/self">
+    <eAnnotations source="positions.11" references="/0/getOwnedAttributes/%/%.2/%">
+      <details key="start" value="309"/>
+      <details key="end" value="335"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/getOwnedAttributes/%/%.2/%/cl">
+      <details key="start" value="310"/>
+      <details key="end" value="312"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/getOwnedAttributes/%/%.2/%/%">
+      <details key="start" value="325"/>
+      <details key="end" value="333"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/getOwnedAttributes/%/%.2/%.1">
+      <details key="start" value="344"/>
+      <details key="end" value="378"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/getOwnedAttributes/%/%.2/%.1/%">
+      <details key="start" value="344"/>
+      <details key="end" value="363"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/getOwnedAttributes/%/%.2/%.1/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.9" references="/0/CppClassAttributesDeclaration/%/select/%.1">
-      <details key="start" value="286"/>
-      <details key="end" value="315"/>
+    <eAnnotations source="positions.17" references="/0/getOwnedAttributes/%/%.2/%.1/%/%">
+      <details key="start" value="354"/>
+      <details key="end" value="362"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.10" references="/0/CppClassAttributesDeclaration/%/select/%.1/%">
-      <details key="start" value="286"/>
-      <details key="end" value="296"/>
+    <eAnnotations source="positions.18" references="/0/getOwnedAttributes/%/%.2/%.2">
+      <details key="start" value="389"/>
+      <details key="end" value="393"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.11" references="/0/CppClassAttributesDeclaration/%/select/%.1/%/temp1">
+    <eAnnotations source="positions.19" references="/0/CppClassAttributesDeclaration">
+      <details key="start" value="413"/>
+      <details key="end" value="633"/>
+      <details key="line" value="17"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/CppClassAttributesDeclaration/%">
+      <details key="start" value="516"/>
+      <details key="end" value="621"/>
+      <details key="line" value="18"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/CppClassAttributesDeclaration/%/%">
+      <details key="start" value="584"/>
+      <details key="end" value="586"/>
+      <details key="line" value="19"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/CppClassAttributesDeclaration/%/%.1">
+      <details key="start" value="587"/>
+      <details key="end" value="612"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/CppClassAttributesDeclaration/%/%.1/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.12" references="/0/CppClassAttributesDeclaration/%/select/%.1/visibilityFilter">
-      <details key="start" value="299"/>
-      <details key="end" value="315"/>
+    <eAnnotations source="positions.24" references="/0/CppClassAttributesDeclaration/%/%.2">
+      <details key="start" value="614"/>
+      <details key="end" value="615"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/CppClassAttributesDeclaration/%/select">
+      <details key="start" value="522"/>
+      <details key="end" value="581"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.13" references="/0/CppClassAttributesDeclaration/%/select/temp1">
+    <eAnnotations source="positions.26" references="/0/CppClassAttributesDeclaration/%/select/%">
+      <details key="start" value="522"/>
+      <details key="end" value="542"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/CppClassAttributesDeclaration/%/select/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.14" references="/0/CppClassAttributesDeclaration/class">
-      <details key="start" value="206"/>
-      <details key="end" value="224"/>
-      <details key="line" value="6"/>
+    <eAnnotations source="positions.28" references="/0/CppClassAttributesDeclaration/%/select/%.1">
+      <details key="start" value="551"/>
+      <details key="end" value="580"/>
+      <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.15" references="/0/CppClassAttributesDeclaration/visibilityFilter">
-      <details key="start" value="226"/>
-      <details key="end" value="259"/>
-      <details key="line" value="6"/>
+    <eAnnotations source="positions.29" references="/0/CppClassAttributesDeclaration/%/select/%.1/%">
+      <details key="start" value="551"/>
+      <details key="end" value="561"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/CppClassAttributesDeclaration/%/select/%.1/%/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/CppClassAttributesDeclaration/%/select/%.1/visibilityFilter">
+      <details key="start" value="564"/>
+      <details key="end" value="580"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/CppClassAttributesDeclaration/%/select/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/CppClassAttributesDeclaration/class">
+      <details key="start" value="460"/>
+      <details key="end" value="478"/>
+      <details key="line" value="17"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/CppClassAttributesDeclaration/visibilityFilter">
+      <details key="start" value="480"/>
+      <details key="end" value="513"/>
+      <details key="line" value="17"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

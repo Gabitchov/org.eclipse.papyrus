@@ -122,15 +122,7 @@
         <source xsi:type="mtl:QueryInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/23">
-=======
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/33">
->>>>>>> - [Bug 420376] Generated C++ code is not formatted
-=======
-          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/33">
->>>>>>> refs/heads/Qompass
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
           </argument>
         </source>

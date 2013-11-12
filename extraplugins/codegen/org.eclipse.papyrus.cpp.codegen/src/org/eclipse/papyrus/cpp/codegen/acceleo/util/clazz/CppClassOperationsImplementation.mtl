@@ -6,7 +6,7 @@
 [comment implementations of a classifier, parameter controls whether only inline (or only not inline) operations
   are produced/]
 [template public CppClassOperationsImplementation(class : Classifier, inline : Boolean)]
-[for (getOperations()->select(
+[for (getOwnedOperations()->select(
 		(not (hasStereotype(NoCodeGen) or isAbstract)) and
 		(hasStereotype(C_Cpp::Inline) = inline)))]
 

@@ -2,9 +2,20 @@
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppAttribute/]
 
 
+[query public getOwnedAttributes(cl : Classifier) : Sequence(Property) =
+	if (cl.oclIsKindOf(Class)) then
+		oclAsType(Class).ownedAttribute
+	else
+		if (cl.oclIsKindOf(DataType)) then
+			oclAsType(DataType).ownedAttribute
+		else
+			null
+		endif
+	endif
+/]
 
 [template public CppClassAttributesDeclaration(class : Classifier, visibilityFilter : VisibilityKind)]
-[for (attribute->select(visibility = visibilityFilter))]
+[for (getOwnedAttributes()->select(visibility = visibilityFilter))]
 
 	[CppAttributeDeclaration()/]
 [/for]

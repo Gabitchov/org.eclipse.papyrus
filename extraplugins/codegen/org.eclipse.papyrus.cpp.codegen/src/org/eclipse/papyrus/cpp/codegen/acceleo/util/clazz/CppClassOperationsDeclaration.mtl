@@ -3,7 +3,7 @@
 
 
 [template public CppClassOperationsDeclaration(class : Classifier, visibilityFilter : VisibilityKind)]
-[for (getOperations()->select(visibility = visibilityFilter))]
+[for (getOwnedOperations()->select(visibility = visibilityFilter))]
 
  	[CppOperationDeclaration()/]
 [/for]

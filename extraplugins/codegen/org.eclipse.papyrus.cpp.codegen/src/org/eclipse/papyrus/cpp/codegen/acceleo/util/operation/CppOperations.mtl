@@ -7,6 +7,20 @@
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppTemplates/]
 
 
+[comment
+return a list of owned operations, since this is not supported directly on a classifier/]
+[query public getOwnedOperations(cl : Classifier) : Sequence(Operation) =
+	if (cl.oclIsKindOf(Class)) then
+		oclAsType(Class).ownedOperation
+	else
+		if (cl.oclIsKindOf(DataType)) then
+			oclAsType(DataType).ownedOperation
+		else
+			null
+		endif
+	endif
+/]
+
 [template public virtualTxt(operation : Operation)]
 [if((operation.interface <> null) or (operation.isAbstract) or (operation.hasStereotype(Virtual)))]virtual [/if]
 [/template]
