@@ -405,7 +405,10 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 		else {
 			int start = 0;
 			while (cutLength > 0) {
-				int newStart = body.indexOf(System.lineSeparator(), start);
+				// use "\n" instead of System.lineSeparator, since we code embedded into a model
+				// might not be destined for the development machine, e.g. contain eventually only
+				// \n, also the model is opened on a windows machine.
+				int newStart = body.indexOf("\n", start); //$NON-NLS-1$
 				if (newStart > 0) {
 					cutLength--;
 					start = newStart + 1;
@@ -415,6 +418,10 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 				}
 			}
 			if (start > 0) {
+				// handle case that line end is preceded by a \r
+				if (start >= 2 && body.charAt(start-1) == '\r') {
+					return body.substring(0, start - 2) + DOTS;
+				}
 				return body.substring(0, start - 1) + DOTS;
 			}
 			return body;
