@@ -419,12 +419,12 @@ public class Utils {
 	}
 
 	public static boolean treatNoneAsComposite() {
-		IPreferenceStore store = org.eclipse.papyrus.qompass.designer.core.Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		return store.getBoolean(QompassPreferenceConstants.P_TREAT_NONE_AS_COMPOSITE);
 	}
 
 	public static boolean allAttributesAreConfigAttributs() {
-		IPreferenceStore store = org.eclipse.papyrus.qompass.designer.core.Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		return store.getBoolean(QompassPreferenceConstants.P_ALL_ATTRIBUTES_ARE_CONFIG_ATTRIBUTES);
 	}
 

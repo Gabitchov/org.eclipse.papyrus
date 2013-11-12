@@ -135,7 +135,7 @@ public class ConnectorReification {
 		}
 		// choose an implementation
 		Class connectorImplemTemplate = DepUtils.chooseImplementation(
-			(Class)smConnectorPart.getType(), AllocUtils.getAllNodes(tmIS), false);
+			(Class)smConnectorPart.getType(), AllocUtils.getAllNodes(tmIS), null);
 
 		TemplateBinding binding = ConnectorBinding.obtainBinding(tmComponent,
 			smConnectorPart, connectorImplemTemplate, true);
@@ -200,7 +200,7 @@ public class ConnectorReification {
 		}
 
 		// choose an implementation
-		Class connectorImplemTemplate = DepUtils.chooseImplementation(connType.getBase_Class(), AllocUtils.getAllNodes(tmIS), false);
+		Class connectorImplemTemplate = DepUtils.chooseImplementation(connType.getBase_Class(), AllocUtils.getAllNodes(tmIS), null);
 
 		// ---- obtain binding & instantiate template type ...
 		TemplateBinding binding = ConnectorBinding.obtainBinding(tmComponent,

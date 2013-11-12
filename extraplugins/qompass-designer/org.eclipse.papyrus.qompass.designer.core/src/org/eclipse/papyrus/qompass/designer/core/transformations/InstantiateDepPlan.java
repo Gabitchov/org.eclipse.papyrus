@@ -75,11 +75,27 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class InstantiateDepPlan {
 
 	/**
+	 * The location of the temporary model (relative to current project).
+	 * TODO: make configurable?
+	 */
+	public static final String TEMP_MODEL_FOLDER = "tmpModel"; //$NON-NLS-1$
+	
+	/**
+	 * Postfix of the temporary model (prefix = name of top-level package).
+	 * TODO: make configurable?
+	 */
+	public static final String TEMP_MODEL_POSTFIX = "Tmp.uml"; //$NON-NLS-1$
+	
+	
+	/**
+	 * Instantiate a deployment plan, i.e. generate an intermediate model via a sequence of transformations
 	 * 
-	 * @param cdp
-	 * @param monitor
-	 *        a progress monitor.
-	 ** @param OOmodel
+	 * @param cdpOrConfig a deployment plan (UML package) or a configuration (UML class)
+	 * @param monitor  a progress monitor.
+	
+	 * @param project the current project. This information is used to store the intermediate model in
+	 * 	a subfolder (tmpModel) of the current project
+	 * @param genOptions select whether to produce an intermediate model only, also code, ... @see GenerationOptions
 	 */
 	public static void instantiate(Element cdpOrConfig, IProgressMonitor monitor, IProject project, int genOptions) {
 		boolean OOmodel = true;
@@ -183,7 +199,7 @@ public class InstantiateDepPlan {
 
 			FlattenInteractionComponents.getInstance().flattenAssembly(newRootIS, null);
 			
-			String tmpPath = tmpMM.getPath(project, "tmpModel", tmpModel.getName() + "Tmp.uml");
+			String tmpPath = tmpMM.getPath(project, TEMP_MODEL_FOLDER, tmpModel.getName() + TEMP_MODEL_POSTFIX);
 			tmpMM.saveModel(tmpPath);
 
 			if(monitor.isCanceled()) {

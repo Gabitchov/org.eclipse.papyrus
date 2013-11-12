@@ -205,7 +205,7 @@ public class DepCreation {
 			// implementation)
 			// TODO: don't know node yet => implementation choice is more
 			// general than necessary
-			implementation = DepUtils.chooseImplementation(typeOrImplem, null, true);
+			implementation = DepUtils.chooseImplementation(typeOrImplem, null, null);
 		}
 
 		if(!(implementation instanceof Class)) {
@@ -333,7 +333,7 @@ public class DepCreation {
 				&& (type instanceof Class)) {
 				Class aggregateOrInterceptor = DepUtils.chooseImplementation(
 					(Class)type, new BasicEList<InstanceSpecification>(),
-					false);
+					null);
 				// is a configuration property, create slot
 				if(first) {
 					// add contExtImpl to list of classifiers that the instance

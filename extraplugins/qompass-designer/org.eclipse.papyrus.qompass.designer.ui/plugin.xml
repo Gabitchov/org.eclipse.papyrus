@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.CreateDepPlanHandler"
+            description="Create deployment plan"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreateDepPlanCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.CreatePlatformHandler"
+            description="Create platform definition"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreatePlatformCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.InstantiateDepPlanHandler"
+            description="Generate deployment models and code from plan"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.InstantiateDepPlanCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.SyncHandler"
+            description="Synchronize derived elements"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.SyncCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.SelectConnectorHandler"
+            description="Choose connector type and implementation"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionConnectorCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.SelectContainerHandler"
+            description="Choose container properties"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionContainerCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.ConfigureInstanceHandler"
+            description="Configure instance"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigureInstanceCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.ConfigurePortHandler"
+            description="Configure ports"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigurePortsCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.AddProfileAndModelLibsHandler"
+            description="Add Qompass profiles and model libraries"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.AddProfileAndModelLibsCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.AllocateHandler"
+            description="Allocate to node"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.AllocateCmd"
+            name="dummy">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+	<menuContribution
+		allPopups="true"
+		locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+		<menu
+			icon="icons/Qompass-16x16.gif"
+			id="org.eclipse.papyrus.views.modelexplorer.popup.qompassdesigner"
+			label="Qompass Designer">
+		</menu>
+	</menuContribution>
+	<menuContribution
+		allPopups="false"
+		locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popup.qompassdesigner">
+		<command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreateDepPlanCmd"
+               icon="icons/depPlan.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreateDepPlanMenu"
+               label="Qompass: Create deployment plan"
+               mnemonic="d"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreatePlatformCmd"
+               icon="icons/depPlan.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreatePlatformMenu"
+               label="Qompass: Create platform definition"
+               mnemonic="d"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.SyncCmd"
+               icon="icons/sync.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.SyncMenu"
+               label="Qompass: Synchronize derived elements"
+               mnemonic="s"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.InstantiateDepPlanCmd"
+               icon="icons/deploy.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreateDepPlanMenu"
+               label="Qompass: Generate deployment models and code from plan"
+               mnemonic="g"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+          <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionConnectorCmd"
+               icon="icons/selConnector.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionConnectorMenu"
+               label="Qompass: Show / choose connector type and implementation"
+               mnemonic="C"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionContainerCmd"
+               icon="icons/selContainer.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionContainerMenu"
+               label="Qompass: Show / choose container properties"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigureInstanceCmd"
+               icon="icons/selContainer.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigureInstanceMenu"
+               label="Qompass: Configure instance properties"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigurePortsCmd"
+               icon="icons/selContainer.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigurePortsMenu"
+               label="Qompass: Configure ports"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.AddProfileAndModelLibsCmd"
+               icon="icons/Stereotype.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.AddProfileAndModelLibsMenu"
+               label="Qompass: Add profiles and model libraries"
+               mnemonic="P"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.AllocateCmd"
+               icon="icons/allocation.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.AllocateMenu"
+               label="Qompass: Allocate to node"
+               mnemonic="A"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+	</menuContribution>
+ 	<menuContribution
+		allPopups="true"
+		locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+		<menu
+			icon="icons/Qompass-16x16.gif"
+			id="org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu.qompassdesigner"
+			label="Qompass Designer">
+		</menu>
+	</menuContribution>
+	<menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu.qompassdesigner">            
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreateDepPlanCmd"
+               icon="icons/depPlan.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreateDepPlanMenu"
+               label="Qompass: Create deployment plan"
+               mnemonic="d"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreatePlatformCmd"
+               icon="icons/depPlan.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreatePlatformMenu"
+               label="Qompass: Create platform definition"
+               mnemonic="d"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.SyncCmd"
+               icon="icons/sync.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.SyncMenu"
+               label="Qompass: Synchronize derived elements"
+               mnemonic="s"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.InstantiateDepPlanCmd"
+               icon="icons/deploy.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.CreateDepPlanMenu"
+               label="Qompass: Generate deployment models and code from plan"
+               mnemonic="g"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionConnectorCmd"
+               icon="icons/selConnector.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionConnectorMenu"
+               label="Qompass: Show / choose connector type and implementation"
+               mnemonic="C"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionContainerCmd"
+               icon="icons/selContainer.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.SelectionContainerMenu"
+               label="Qompass: Show / choose container properties"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigureInstanceCmd"
+               icon="icons/selContainer.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigureInstanceMenu"
+               label="Qompass: Configure instance properties"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigurePortsCmd"
+               icon="icons/selContainer.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigurePortsMenu"
+               label="Qompass: Configure ports"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.AddProfileAndModelLibsCmd"
+               icon="icons/Stereotype.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.AddProfileAndModelLibsMenu"
+               label="Qompass: Add profiles and model libraries"
+               mnemonic="P"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.AllocateCmd"
+               icon="icons/allocation.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.AllocateMenu"
+               label="Qompass: Allocate to node"
+               mnemonic="A"
+               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+	</extension>
+	<extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.papyrus.qompass.designer.ui.preferences.QompassPreferencePage"
+            id="org.eclipse.papyrus.qompass.designer.ui.preferences.QompassPreferencePage_ID"
+            name="Qompass preferences">
+      </page>
+    </extension>
+    <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.qompass.designer.ui.preferences.QompassPreferenceInitializer">
+      </initializer>
+    </extension>
+</plugin>
