@@ -159,7 +159,7 @@ public class PapyrusCDTEditorFactory extends AbstractEditorFactory {
 		 * 
 		 */
 		public Object getRawModel() {
-			return rawModel;
+			return rawEditorModel;
 		}
 
 		/**
