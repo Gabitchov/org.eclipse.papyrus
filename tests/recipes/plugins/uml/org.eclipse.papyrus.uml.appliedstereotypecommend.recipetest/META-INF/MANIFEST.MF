@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.diagram.stereotypeproperty.tests;bundle-version="0.9.2"
+ org.eclipse.papyrus.diagram.stereotypeproperty.tests;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.9.2.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: Recipetest
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.appliedstereotypecommend.rec

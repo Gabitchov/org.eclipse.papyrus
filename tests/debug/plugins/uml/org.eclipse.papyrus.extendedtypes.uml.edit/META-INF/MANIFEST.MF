@@ -1,25 +1,30 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.extendedtypes.uml.edit;singleton:=true
-Bundle-Version: 0.9.0.qualifier
-Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.papyrus.extendedtypes.uml.applystereotypeactionconfiguration.provider.ApplyStereotypeActionConfigurationEditPlugin$Implementation
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.extendedtypes.uml.applystereotypeactionconfiguration.provider
+Export-Package: org.eclipse.papyrus.extendedtypes.uml.applystereotypea
+ ctionconfiguration.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.tools.extendedtypes;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.uml.tools.extendedtypes;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.9.0";visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="1.0.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.9.0";visibility:=reexport,
- org.eclipse.papyrus.infra.extendedtypes.edit;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.extendedtypes;bundle-version="1.0.0";visibility:=reexport,
+ org.eclipse.papyrus.infra.extendedtypes.edit;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.facet.infra.query;visibility:=reexport,
  org.eclipse.emf.facet.infra.query.edit;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.extendedtypes.uml.applystereotyp
+ eactionconfiguration.provider.ApplyStereotypeActionConfigurationEditP
+ lugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.extendedtypes.uml.edit;single
+ ton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

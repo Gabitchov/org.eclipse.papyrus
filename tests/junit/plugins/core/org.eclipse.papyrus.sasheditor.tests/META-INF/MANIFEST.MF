@@ -9,7 +9,7 @@ Export-Package: org.eclipse.papyrus.infra.core.sasheditor.contentprovider,
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.infra.core.sasheditor;bundle-versio
  n="0.10.0"
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: fragment
 Bundle-ManifestVersion: 2
