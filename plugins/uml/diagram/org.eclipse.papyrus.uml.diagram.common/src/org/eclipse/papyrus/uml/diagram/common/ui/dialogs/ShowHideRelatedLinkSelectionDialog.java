@@ -24,6 +24,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -34,6 +36,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
 import org.eclipse.papyrus.uml.diagram.common.dialogs.AbstractCheckedTreeColumnViewerSelectionDialog;
 import org.eclipse.papyrus.uml.diagram.common.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.common.util.LinkEndsMapper;
@@ -43,6 +46,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
 
 /**
  * 
@@ -196,12 +201,29 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 					final Object currentElement = event.getElement();
 					boolean isChecked = event.getChecked();
 					if(currentElement instanceof EditPart) {
+						//we update the selected element list
 						if(isChecked) {
 							selectedElements.addAll(availableLinks.get(currentElement));
 						} else {
 							selectedElements.removeAll(availableLinks.get(currentElement));
 						}
+
+						//in some case, the EditPart can be a link which appears as possible elements of an other selected edit part
+						final View view = (View)((EditPart)currentElement).getAdapter(View.class);
+						if(view instanceof Edge) {
+							final EObject element = view.getElement();
+							for(final Set<EObject> currentCol : availableLinks.values()) {
+								if(currentCol.contains(element)) {
+									if(isChecked) {
+										selectedElements.add(element);
+									} else {
+										selectedElements.remove(element);
+									}
+								}
+							}
+						}
 					} else {
+						//we update the selected element list
 						if(isChecked) {
 							selectedElements.add((EObject)currentElement);
 						} else {
@@ -283,6 +305,15 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 						Collection<EObject> tmp = new ArrayList<EObject>(selectedElements);
 						tmp.retainAll(possibleLinks);
 						isChecked = tmp.size() > 0;
+
+
+						final View view = (View)((EditPart)element).getAdapter(View.class);
+						if(!isChecked && view instanceof Edge) {//the edge edit part could be selected as grayed because the link is already selected for an another edit part
+							final EObject eobject = view.getElement();
+							isChecked = selectedElements.contains(eobject);
+						}
+
+
 					} else if(element instanceof EObject) {
 						isChecked = selectedElements.contains(element);
 					}
@@ -310,7 +341,10 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 		 * {@inheritDoc}
 		 */
 		@Override
-		public Image getImage(Object element) {
+		public Image getImage(final Object element) {
+			if(element instanceof EdgeWithNoSemanticElementRepresentationImpl) {
+				return null;
+			}
 			if(element instanceof EObject) {
 				return labelProvider.getImage(element);
 			}
@@ -321,7 +355,16 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 		 * {@inheritDoc}
 		 */
 		@Override
-		public String getText(Object element) {
+		public String getText(final Object element) {
+			if(element instanceof EdgeWithNoSemanticElementRepresentationImpl) {
+				final EObject source = ((EdgeWithNoSemanticElementRepresentationImpl)element).getSource();
+				if(source instanceof Comment) {
+					return Messages.ShowHideRelatedLinkSelectionDialog_CommentLink;
+				}
+				if(source instanceof Constraint) {
+					return Messages.ShowHideRelatedLinkSelectionDialog_ConstraintLink;
+				}
+			}
 			if(element instanceof EObject) {
 				return ((EObject)element).eClass().getName();
 			}
@@ -360,6 +403,12 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 		 */
 		@Override
 		public Image getImage(Object element) {
+			if(element instanceof EdgeWithNoSemanticElementRepresentationImpl) {
+				final EObject source = ((EdgeWithNoSemanticElementRepresentationImpl)element).getSource();
+				if(source instanceof Comment || source instanceof Constraint) {
+					return labelProvider.getImage(source);
+				}
+			}
 			return labelProvider.getImage(element);
 		}
 
@@ -368,6 +417,14 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 		 */
 		@Override
 		public String getText(Object element) {
+			if(element instanceof EdgeWithNoSemanticElementRepresentationImpl) {
+				final EObject source = ((EdgeWithNoSemanticElementRepresentationImpl)element).getSource();
+				if(source instanceof Comment) {
+					return Messages.ShowHideRelatedLinkSelectionDialog_CommentLink;
+				} else if(source instanceof Constraint) {
+					return Messages.ShowHideRelatedLinkSelectionDialog_ConstraintLink;
+				}
+			}
 			return labelProvider.getText(element);
 		}
 
@@ -528,7 +585,11 @@ public class ShowHideRelatedLinkSelectionDialog extends AbstractCheckedTreeColum
 				builder.append(START_LIST);
 				final Iterator<?> iter = ends.iterator();
 				while(iter.hasNext()) {
-					builder.append(this.labelProvider.getText(iter.next()));
+					final Object current = iter.next();
+					if(current instanceof Comment) {
+						builder.append(Messages.ShowHideRelatedLinkSelectionDialog_Comment_);
+					}
+					builder.append(this.labelProvider.getText(current));
 					if(iter.hasNext()) {
 						builder.append(VALUE_SEPARATOR);
 					}

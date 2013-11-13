@@ -51,6 +51,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -196,7 +198,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	 * 
 	 * @return linkdescriptors
 	 */
-	protected Collection<? extends UpdaterLinkDescriptor> collectPartRelatedLinks(View view, Map<EObject, View> domain2NotationMap) {
+	protected Collection<? extends UpdaterLinkDescriptor> collectPartRelatedLinks(final View view, final Map<EObject, View> domain2NotationMap) {
 		Collection<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		DiagramUpdater diagramUpdater = getDiagramUpdater();
 		// We must prevent duplicate descriptors
@@ -232,6 +234,20 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	 *         only ends
 	 */
 	protected Collection<UpdaterLinkDescriptor> removeInvalidLinkDescriptor(final Collection<UpdaterLinkDescriptor> descriptors) {
+		final Collection<UpdaterLinkDescriptor> toRemove = new ArrayList<UpdaterLinkDescriptor>();
+		final Collection<UpdaterLinkDescriptor> toAdd = new ArrayList<UpdaterLinkDescriptor>();
+		for(final UpdaterLinkDescriptor current : descriptors) {
+			if(current.getModelElement() == null) {
+				final IElementType elementType = (IElementType)current.getSemanticAdapter().getAdapter(IElementType.class);
+				final EdgeWithNoSemanticElementRepresentationImpl noSemantic = new EdgeWithNoSemanticElementRepresentationImpl(current.getSource(), current.getDestination(), ((IHintedType)elementType).getSemanticHint());
+				final UpdaterLinkDescriptor replacement = new UpdaterLinkDescriptor(current.getSource(), current.getDestination(), noSemantic, elementType, current.getVisualID());
+				toRemove.add(current);
+				toAdd.add(replacement);
+			}
+		}
+
+		descriptors.removeAll(toRemove);
+		descriptors.addAll(toAdd);
 		return descriptors;
 	}
 
@@ -424,7 +440,6 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 				}
 			}
 		}
-		//		compositeCommand.add(getRefreshHostCommand(domain));
 		return compositeCommand;
 	}
 
@@ -483,16 +498,22 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	protected void mapModel(View view, Map<EObject, View> domain2NotationMap) {
 		if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 			if((view instanceof Connector || view instanceof Shape) && !(view instanceof BasicCompartment)) {
-				domain2NotationMap.put(view.getElement(), view);
+				EObject element = view.getElement();
+				if(element == null) {
+					final EObject source = ((Connector)view).getSource().getElement();
+					final EObject target = ((Connector)view).getTarget().getElement();
+					element = new EdgeWithNoSemanticElementRepresentationImpl(source, target, view.getType());
+				}
+				domain2NotationMap.put(element, view);
 			}
 		}
 
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked")//$NON-NLS-1$
 		List<View> children = view.getChildren();
 		for(View child : children) {
 			mapModel(child, domain2NotationMap);
 		}
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked")//$NON-NLS-1$
 		List<View> sourceEdges = view.getSourceEdges();
 		for(View edge : sourceEdges) {
 			mapModel(edge, domain2NotationMap);
@@ -520,7 +541,11 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 
 			//we look for the link descriptor
 			UpdaterLinkDescriptor descriptor = getLinkDescriptor(linkToShow, linkDescriptors);
-
+			if(linkToShow instanceof EdgeWithNoSemanticElementRepresentationImpl) {
+				//we replace the specific link descriptor by a new one, with no model element (if not the view provider refuse to create the view
+				final IElementType elementType = (IElementType)descriptor.getSemanticAdapter().getAdapter(IElementType.class);
+				descriptor = new UpdaterLinkDescriptor(descriptor.getSource(), descriptor.getDestination(), elementType, descriptor.getVisualID());
+			}
 			if(descriptor != null) {
 				EditPart sourceEditPart = getEditPart(descriptor.getSource(), domain2NotationMap);
 				EditPart targetEditPart = getEditPart(descriptor.getDestination(), domain2NotationMap);
@@ -530,6 +555,9 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 					return null;
 				}
 				String semanticHint = getSemanticHint(linkToShow);
+				if(semanticHint == null) {
+					semanticHint = ((IHintedType)descriptor.getSemanticAdapter().getAdapter(IElementType.class)).getSemanticHint();
+				}
 				CreateConnectionViewRequest.ConnectionViewDescriptor viewDescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(descriptor.getSemanticAdapter(), semanticHint, ViewUtil.APPEND, false, ((GraphicalEditPart)getHost()).getDiagramPreferencesHint());
 				CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(viewDescriptor);
 				ccr.setType(RequestConstants.REQ_CONNECTION_START);

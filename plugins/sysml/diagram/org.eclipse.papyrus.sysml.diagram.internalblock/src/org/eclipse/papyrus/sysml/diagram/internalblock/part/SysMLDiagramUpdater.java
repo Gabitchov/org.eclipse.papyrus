@@ -29,11 +29,22 @@ import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN;
+import org.eclipse.papyrus.uml.diagram.composite.part.UMLLinkDescriptor;
+import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
@@ -111,31 +122,6 @@ public class SysMLDiagramUpdater {
 	 * @param view
 	 *        a view
 	 * @return
-	 *         the list of the outgoing links for this view
-	 */
-	public static List<UpdaterLinkDescriptor> getOutgoingLinks(final View view) {
-		final String id = view.getType();//TODO : could be done by the SysMLVisualIdRegistry...
-		if(id.equals(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID)) {
-			return getPort_shape_uml_port_as_affixed_OutgoingLink(view);
-		}
-		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID)) {
-			return getFlowPort_shape_sysml_flowport_as_affixed_OutgoingLink(view);
-		}
-		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID)) {
-			return getProperty_shape_sysml_blockproperty_as_composite_OutgoingLink(view);
-		}
-		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID)) {
-			return getBlock_shape_sysml_block_as_composite_OutgoingLink(view);
-		}
-		return Collections.emptyList();
-	}
-
-
-	/**
-	 * 
-	 * @param view
-	 *        a view
-	 * @return
 	 *         the list of the incoming links for this view
 	 */
 	public static List<UpdaterLinkDescriptor> getIncomingLinks(final View view) {
@@ -152,7 +138,172 @@ public class SysMLDiagramUpdater {
 		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID)) {
 			return getBlock_shape_sysml_block_as_composite_IncomingLink(view);
 		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID)) {
+			return getDependency_link_uml_dependency_IncomingLink(view);
+		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_CONNECTOR_ID)) {
+			return getConnector_link_uml_connector_IncomingLink(view);
+		}
+		if(id.equals(Integer.toString(CommentEditPart.VISUAL_ID))) {
+			return getComment_2109IncomingLinks(view);
+		}
+		if(id.equals(Integer.toString(CommentEditPartCN.VISUAL_ID))) {
+			return getComment_3097IncomingLinks(view);
+		}
+		if(id.equals(Integer.toString(ConstraintEditPart.VISUAL_ID))) {
+			return getConstraint_2114IncomingLinks(view);
+		}
+		if(id.equals(Integer.toString(ConstraintEditPartCN.VISUAL_ID))) {
+			return getConstraint_3120IncomingLinks(view);
+		}
 		return Collections.emptyList();
+	}
+
+	/**
+	 * 
+	 * @param view
+	 *        a view
+	 * @return
+	 *         the list of the outgoing links for this view
+	 */
+	public static List<UpdaterLinkDescriptor> getOutgoingLinks(final View view) {
+		final String id = view.getType();//TODO : could be done by the SysMLVisualIdRegistry...
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID)) {
+			return getPort_shape_uml_port_as_affixed_OutgoingLink(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID)) {
+			return getFlowPort_shape_sysml_flowport_as_affixed_OutgoingLink(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID)) {
+			return getProperty_shape_sysml_blockproperty_as_composite_OutgoingLink(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID)) {
+			return getBlock_shape_sysml_block_as_composite_OutgoingLink(view);
+		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID)) {
+			return getDependency_link_uml_dependency_OutgoingLink(view);
+		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_CONNECTOR_ID)) {
+			return getConnector_link_uml_connector_OutgoingLink(view);
+		}
+		if(id.equals(Integer.toString(CommentEditPart.VISUAL_ID))) {
+			return getComment_2109OutgoingLinks(view);
+		}
+		if(id.equals(Integer.toString(CommentEditPartCN.VISUAL_ID))) {
+			return getComment_3097OutgoingLinks(view);
+		}
+		if(id.equals(Integer.toString(ConstraintEditPart.VISUAL_ID))) {
+			return getConstraint_2114OutgoingLinks(view);
+		}
+		if(id.equals(Integer.toString(ConstraintEditPartCN.VISUAL_ID))) {
+			return getConstraint_3120OutgoingLinks(view);
+		}
+		return Collections.emptyList();
+	}
+
+	private static List<UpdaterLinkDescriptor> getConnector_link_uml_connector_IncomingLink(View view) {
+		Connector modelElement = (Connector)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		return result;
+
+	}
+
+	private static List<UpdaterLinkDescriptor> getConnector_link_uml_connector_OutgoingLink(View view) {
+		Connector modelElement = (Connector)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getDependency_link_uml_dependency_IncomingLink(View view) {
+		Dependency modelElement = (Dependency)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getDependency_link_uml_dependency_OutgoingLink(View view) {
+		Dependency modelElement = (Dependency)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		return result;
+	}
+
+
+	private static List<UpdaterLinkDescriptor> getComment_3097IncomingLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getComment_3097OutgoingLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getComment_2109IncomingLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getComment_2109OutgoingLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getConstraint_2114IncomingLinks(View view) {
+		Constraint modelElement = (Constraint)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getConstraint_2114OutgoingLinks(View view) {
+		Constraint modelElement = (Constraint)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getConstraint_3120IncomingLinks(View view) {
+		Constraint modelElement = (Constraint)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		return result;
+	}
+
+
+	private static List<UpdaterLinkDescriptor> getConstraint_3120OutgoingLinks(View view) {
+		Constraint modelElement = (Constraint)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement));
+		return result;
 	}
 
 	private static List<UpdaterLinkDescriptor> getBlock_shape_sysml_block_as_composite_IncomingLink(final View view) {
@@ -160,6 +311,8 @@ public class SysMLDiagramUpdater {
 		final Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		final LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
 		return result;
 	}
 
@@ -181,6 +334,8 @@ public class SysMLDiagramUpdater {
 		final Property modelElement = (Property)view.getElement();
 		final Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		final LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetsLinks_Connector_link_uml_connector(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
 		return result;
@@ -199,6 +354,48 @@ public class SysMLDiagramUpdater {
 		final LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetsLinks_Connector_link_uml_connector(modelElement, crossReferences));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		return result;
+	}
+
+	private static Collection<? extends UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(final Element target, final Map<EObject, Collection<Setting>> crossReferences) {
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		for(EStructuralFeature.Setting setting : settings) {
+			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
+				result.add(new UpdaterLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_4002, CommentAnnotatedElementEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+
+	private static Collection<UpdaterLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(Comment source) {
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		for(Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
+			Element destination = (Element)destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_4002, CommentAnnotatedElementEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	private static Collection<UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(Element target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		for(EStructuralFeature.Setting setting : settings) {
+			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_4003, ConstraintConstrainedElementEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+
+	private static Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(Constraint source) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		for(Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
+			Element destination = (Element)destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4003, ConstraintConstrainedElementEditPart.VISUAL_ID));
+		}
 		return result;
 	}
 

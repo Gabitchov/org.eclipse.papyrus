@@ -40,6 +40,7 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractShowHideRelatedLinkEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.ui.dialogs.ShowHideRelatedLinkSelectionDialog;
 import org.eclipse.papyrus.uml.diagram.common.util.LinkEndsMapper;
@@ -96,7 +97,12 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 			final UpdaterLinkDescriptor current = iter.next();
 			final EObject link = current.getModelElement();
 			if(link instanceof Element) {
-				linkMapping.put(link, createLinkEndMapper((Element)link));
+				linkMapping.put(link, createLinkEndMapper((Element)link, current));
+			} else if(link instanceof EdgeWithNoSemanticElementRepresentationImpl) {
+				final EObject source = ((EdgeWithNoSemanticElementRepresentationImpl)link).getSource();
+				if(source instanceof Comment || source instanceof Constraint) {
+					linkMapping.put(link, createLinkEndMapper((Element)source, current));
+				}
 			}
 		}
 
@@ -121,18 +127,13 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 *         only ends)
 	 */
 	protected Collection<UpdaterLinkDescriptor> removeInvalidLinkDescriptor(final Collection<UpdaterLinkDescriptor> descriptor) {
+		final Collection<UpdaterLinkDescriptor> firstResult = super.removeInvalidLinkDescriptor(descriptor);
 		final Collection<UpdaterLinkDescriptor> result = new ArrayList<UpdaterLinkDescriptor>();
-		final Iterator<UpdaterLinkDescriptor> iter = descriptor.iterator();
+		final Iterator<UpdaterLinkDescriptor> iter = firstResult.iterator();
 		while(iter.hasNext()) {
 			final UpdaterLinkDescriptor current = iter.next();
 			final EObject modelElement = current.getModelElement();
 
-			if(modelElement == null) {//TODO currently we exclude links for comments and constraints
-				final EObject source = current.getSource();
-				if(source instanceof Comment || source instanceof Constraint) {
-					continue;
-				}
-			}
 			/*
 			 * for example, for association between Class1 and class2, we get a link descriptor between class1 and class2 BUT another one between
 			 * class1 and class1...
@@ -188,6 +189,8 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 			return false;
 		} else if(link instanceof Connector) {
 			return false;
+		} else if(link instanceof Comment || link instanceof Constraint) {
+			return true;
 		}
 		return false;
 	}
@@ -202,11 +205,15 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 * @return
 	 *         a linkEndsMapper according to this element
 	 */
-	public static final LinkEndsMapper createLinkEndMapper(final Element element) {
+	public static final LinkEndsMapper createLinkEndMapper(final Element element, final UpdaterLinkDescriptor descriptor) {
 		Collection<?> ends;
 		Collection<?> sources;
 		Collection<?> targets;
-		if(isAnOrientedLink(element)) {
+		if(element instanceof Comment || element instanceof Constraint) {
+			ends = Collections.emptyList();
+			sources = Collections.singletonList(descriptor.getSource());
+			targets = Collections.singletonList(descriptor.getDestination());
+		} else if(isAnOrientedLink(element)) {
 			ends = Collections.emptyList();
 			sources = LinkMappingHelper.getSource(element);
 			targets = LinkMappingHelper.getTarget(element);
