@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.diagram.ui.actions,
  org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="1.4.0",
  org.eclipse.core.expressions,
@@ -10,26 +10,26 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="1.2.0",
  org.eclipse.gmf.runtime.diagram.ui.actions,
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.pastemanager;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.pastemanager;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.uml.diagram.menu,
  org.eclipse.papyrus.uml.diagram.menu.actions,
  org.eclipse.papyrus.uml.diagram.menu.actions.handlers
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

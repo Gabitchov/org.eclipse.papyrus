@@ -3,15 +3,15 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.facet.common.ui,
  org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.editor;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.editor;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="4.0.1"
 Export-Package: org.eclipse.papyrus.gmf.editpartview,
  org.eclipse.papyrus.gmf.editpartview.view
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

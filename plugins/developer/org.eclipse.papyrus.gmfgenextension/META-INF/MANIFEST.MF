@@ -5,7 +5,7 @@ Export-Package: org.eclipse.papyrus.papyrusgmfgenextension,
  org.eclipse.papyrus.papyrusgmfgenextension.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.papyrus.domaincontextcodegen;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.domaincontextcodegen;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.codegen.ecore;visibility:=reexport,
  org.eclipse.gmf.codegen;visibility:=reexport,
  org.eclipse.ui;bundle-version="3.5.0",
@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
