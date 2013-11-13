@@ -39,7 +39,7 @@ public class ConnectRepositoryAction extends AbstractRepositoryAction {
 	}
 
 	@Override
-	protected void run(final IPapyrusRepository repository) {
+	public void run(final IPapyrusRepository repository) {
 		try {
 			getPart().getSite().getWorkbenchWindow().run(true, false, new IRunnableWithProgress() {
 
