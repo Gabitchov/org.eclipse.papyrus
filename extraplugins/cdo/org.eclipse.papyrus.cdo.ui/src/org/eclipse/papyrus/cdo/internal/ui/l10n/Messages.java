@@ -222,6 +222,16 @@ public class Messages extends NLS {
 
 	public static String RenameModelAction_8;
 
+	public static String RepositoryAdminListener_0;
+
+	public static String RepositoryAdminListener_1;
+
+	public static String RepositoryAdminListener_2;
+
+	public static String RepositoryAdminListener_3;
+
+	public static String RepositoryAdminListener_4;
+
 	public static String RepositoryCredentialsDialog_0;
 
 	public static String RepositoryCredentialsDialog_1;
