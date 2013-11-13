@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.tests.uml.nattable.feature"
-      label="UML NatTable Test Feature (Incubation)"
-      version="0.10.1.qualifier"
-      provider-name="Eclipse Modeling Project">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.tests.uml.nattable.feature" label="UML NatTable Test Feature (Incubation)" provider-name="Eclipse Modeling Project" version="1.0.0.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2013 CEA LIST
@@ -18,11 +13,6 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.nattable.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.nattable.tests" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>
