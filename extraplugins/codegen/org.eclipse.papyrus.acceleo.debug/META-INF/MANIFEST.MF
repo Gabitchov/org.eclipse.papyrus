@@ -1,19 +1,20 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.acceleo.debug;singleton:=true
-Bundle-Version: 0.10.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.qompass.designer.debug.Activator
-Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.acceleo.engine;bundle-version="3.2.2",
- org.eclipse.papyrus.fcm.profile;bundle-version="0.10.0",
- org.eclipse.papyrus.acceleo;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.acceleo.ui;bundle-version="0.10.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.eclipse.papyrus.fcm.profile;bundle-version="1.0.0",
+ org.eclipse.papyrus.acceleo;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.acceleo.ui;bundle-version="1.0.0"
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.qompass.designer.debug.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.acceleo.debug;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+
