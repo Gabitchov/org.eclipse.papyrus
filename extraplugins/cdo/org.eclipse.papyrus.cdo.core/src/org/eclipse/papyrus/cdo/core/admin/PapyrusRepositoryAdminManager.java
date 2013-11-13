@@ -39,7 +39,7 @@ public class PapyrusRepositoryAdminManager extends ContainerEventAdapter<CDOAdmi
 	}
 
 	public void install(IContainer<? extends CDOAdminClient> container) {
-		container.addListener(repositoryListener);
+		container.addListener(this);
 
 		for(CDOAdminClient next : container.getElements()) {
 			next.addListener(repositoryListener);
