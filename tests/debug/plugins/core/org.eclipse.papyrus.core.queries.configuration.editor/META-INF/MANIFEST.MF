@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.facet.infra.query.edit;visibility:=reexport,
- org.eclipse.uml2.uml.edit;visibility:=reexport
+ org.eclipse.uml2.uml.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
