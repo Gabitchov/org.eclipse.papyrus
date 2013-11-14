@@ -25,8 +25,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
  org.apache.log4j;bundle-version="1.2.15",
- org.eclipse.papyrus.uml.alf.common,
- org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="0.10.1"
+ org.eclipse.papyrus.uml.alf.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
