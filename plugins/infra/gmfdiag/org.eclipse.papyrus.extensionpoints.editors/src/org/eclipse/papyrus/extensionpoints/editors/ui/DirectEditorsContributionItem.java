@@ -10,7 +10,7 @@ import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.extensionpoints.editors.definition.DirectEditorExtensionPoint;
-import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -121,7 +121,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 
 		// items on the submenu
 		// there are as many items as configurations
-		Class fullType = ((businessObject instanceof EObject) ? ((EObject)businessObject).eClass().getInstanceClass() : null);
+		Class<?> fullType = ((businessObject instanceof EObject) ? ((EObject)businessObject).eClass().getInstanceClass() : null);
 		final DirectEditorExtensionPoint defaultConfig = DirectEditorExtensionPoint.getDefautDirectEditorConfiguration(fullType);
 
 		for(final DirectEditorExtensionPoint configuration : configurations) {
@@ -149,7 +149,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 				public void widgetSelected(SelectionEvent e) {
 					// launch editor
 					GMFEmbeddedEditorActionDelegate actionDelegate = new GMFEmbeddedEditorActionDelegate();
-					actionDelegate.setActivePart(null, ((CoreMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()).getActiveEditor());
+					actionDelegate.setActivePart(null, ((IMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()).getActiveEditor());
 					actionDelegate.selectionChanged(null, getSelection());
 					actionDelegate.setExtensionPointConfiguration(configuration);
 					actionDelegate.run(null);
