@@ -105,12 +105,7 @@ public abstract class AbstractElementEditPart extends NamedElementEditPart {
 	}
 
 	protected NodeFigure createMainFigure() {
-		NodeFigure figure = createNodePlate();
-		figure.setLayoutManager(new StackLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape);
-		contentPane = setupContentPane(shape);
-		return figure;
+		return createMainFigureWithSVG();
 	}
 
 	protected IFigure setupContentPane(IFigure nodeShape) {
