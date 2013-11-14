@@ -14,14 +14,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.texteditor.cdt.handler;
 
-import org.eclipse.cdt.core.CCProjectNature;
-import org.eclipse.cdt.core.CProjectNature;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -32,6 +29,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.papyrus.acceleo.ui.handlers.CmdHandler;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
+import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
@@ -87,19 +85,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 				return false;
 			}
 			IProject modelProject = root.getProject(uri.segment(1));
-			if(modelProject.exists()) {
-				try {
-					// check whether the project is a C or C++ project
-					if(modelProject.hasNature(CProjectNature.C_NATURE_ID) ||
-						modelProject.hasNature(CCProjectNature.CC_NATURE_ID)) {
-						return true;
-					}
-				}
-				catch (CoreException e) {
-					Activator.getDefault().getLog().log(
-						new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not verify, if CDT project", e));
-				}
-			}
+			return modelProject.exists();
 		}
 		return false;
 	}
@@ -157,6 +143,9 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 				
 		Classifier classifierToEdit = getClassifierToEdit();
+		if (LocateCppProject.getTargetProject(classifierToEdit) == null) {
+			return;
+		}
 
 		TextEditorModel editorModel = getEditorModel(serviceRegistry, classifierToEdit);
 		if (editorModel == null) {

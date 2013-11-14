@@ -12,7 +12,6 @@
 
 package org.eclipse.papyrus.cpp.codegen.ui.handler;
 
-import org.eclipse.cdt.core.CCProjectNature;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IContainer;
@@ -27,6 +26,7 @@ import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.acceleo.ui.handlers.CmdHandler;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.ui.Activator;
+import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.PackageableElement;
 
@@ -63,7 +63,7 @@ public class GenerateCodeHandler extends CmdHandler {
 		if(selectedEObject instanceof PackageableElement) {
 			PackageableElement pe = (PackageableElement)selectedEObject;
 
-			IProject modelProject = getTargetProject(pe);
+			IProject modelProject = LocateCppProject.getTargetProject(pe);
 			if(modelProject == null) {
 				return null;
 			}
@@ -95,40 +95,5 @@ public class GenerateCodeHandler extends CmdHandler {
 			}
 		}
 		return null;
-	}
-	
-	/**
-	 * Locate and return the target project for the given packagable element.  Return null if
-	 * no target project can be found.
-	 *
-	 * Ensures that the target project is correctly setup to contain generated C/C++ code.  Does
-	 * not create a new project, but may modify existing ones.
-	*/
-	private static IProject getTargetProject(PackageableElement pe) {
-		URI uri = pe.eResource().getURI();
-
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		if(uri.segmentCount() < 2)
-			return null;
-			
-		IProject modelProject = root.getProject(uri.segment(1));
-		if(!modelProject.exists())
-			return null;
-	
-		// Make sure the target project has the C and C++ build natures.
-		try {
-			if(!modelProject.hasNature(CCProjectNature.CC_NATURE_ID)) {
-				boolean apply = MessageDialog.openQuestion(new Shell(),
-						"Need to apply C++ nature", "Code generation requires that the underlying project has a C++ nature. Do you want to apply this nature?");
-				if (!apply) {
-					return null;
-				}
-				CCProjectNature.addCCNature(modelProject, null);
-			}
-		}
-		catch(CoreException e) {
-			Activator.log.error(e);
-		}
-		return modelProject;
 	}
 }

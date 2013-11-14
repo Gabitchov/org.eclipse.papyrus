@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:texteditormodel="http://www.eclipse.org/Papyrus/Example/0.10.0/texteditormodel" xmlns:texteditormodel_1="http://www.eclipse.org/Papyrus/TextEditor/0.10.0/texteditormodel" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:texteditormodel="http://www.eclipse.org/Papyrus/TextEditor/0.10.0/texteditormodel" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <notation:Diagram xmi:id="_8vp88DcVEeO6UdbIk03c9Q" type="PapyrusUMLClassDiagram" name="NewDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="__McvgDcVEeO6UdbIk03c9Q" type="2008" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__Md9oDcVEeO6UdbIk03c9Q" source="ShadowFigure">
@@ -23,6 +23,10 @@
           <element xmi:type="uml:Operation" href="TestCDTintegration.uml#_TY18YB0LEeKlYLZOWTi6uw"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_A3SgsTcWEeO6UdbIk03c9Q"/>
         </children>
+        <children xmi:type="notation:Shape" xmi:id="_FDs_YExiEeOmZKwrWJYDKQ" type="3013" fontName="Sans Serif" lineColor="0">
+          <element xmi:type="uml:Operation" href="TestCDTintegration.uml#_jnWMADcmEeO6UdbIk03c9Q"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_FDs_YUxiEeOmZKwrWJYDKQ" x="65" y="25"/>
+        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="__MfLwTcVEeO6UdbIk03c9Q"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="__MfLwjcVEeO6UdbIk03c9Q"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="__MfLwzcVEeO6UdbIk03c9Q"/>
@@ -39,7 +43,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="__MmggjcVEeO6UdbIk03c9Q"/>
       </children>
       <element xmi:type="uml:Class" href="TestCDTintegration.uml#_K8FLcB0LEeKlYLZOWTi6uw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="__McvgTcVEeO6UdbIk03c9Q" x="110" y="70" width="233"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="__McvgTcVEeO6UdbIk03c9Q" x="110" y="70" width="242" height="129"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="__kHooDcVEeO6UdbIk03c9Q" type="2007" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__kIPsDcVEeO6UdbIk03c9Q" source="ShadowFigure">
@@ -103,10 +107,8 @@
     <styles xmi:type="notation:DiagramStyle" xmi:id="_8vp88TcVEeO6UdbIk03c9Q"/>
     <element xmi:type="uml:Model" href="TestCDTintegration.uml#_Ae6MwPccEd-KM6l7lmIPkw"/>
   </notation:Diagram>
-  <texteditormodel:TextEditorModel xmi:id="_JY8YsDcWEeO6UdbIk03c9Q" type="CDTEditorInPapyrus" name="CDT Class3">
-    <editedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_K8FLcB0LEeKlYLZOWTi6uw"/></texteditormodel:TextEditorModel>
-  <texteditormodel_1:TextEditorModel xmi:id="_EItkYEG6EeOMv8cdTsw5Zg" type="CDTEditorInPapyrus" name="CDT Class3">
+  <texteditormodel:TextEditorModel xmi:id="_EItkYEG6EeOMv8cdTsw5Zg" type="CDTEditorInPapyrus" name="CDT Class3">
     <editedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_K8FLcB0LEeKlYLZOWTi6uw"/>
-    <selectedObject xmi:type="uml:Operation" href="TestCDTintegration.uml#_jnWMADcmEeO6UdbIk03c9Q"/>
-  </texteditormodel_1:TextEditorModel>
+    <selectedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_K8FLcB0LEeKlYLZOWTi6uw"/>
+  </texteditormodel:TextEditorModel>
 </xmi:XMI>
