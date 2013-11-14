@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -75,6 +76,47 @@ public class CrossReferencerUtil {
 					// Check if current view is owned by a diagram which type
 					// conforms to diagramType
 					if(diagramType.equals(view.getDiagram().getType())) {
+						referencingObjects.add(view);
+					}
+
+				} else { // Return all views
+					referencingObjects.add(view);
+				}
+			}
+		}
+		return referencingObjects;
+	}
+
+	/**
+	 * <pre>
+	 * This method looks for any views (possibly filtered by a kind of diagram) that are currently
+	 * referencing the referencedObject.
+	 * </pre>
+	 * 
+	 * @param referencedObject
+	 * @param diagram
+	 *        diagram instance containing the list of {@link View} (may be
+	 *        null)
+	 * @return the list of {@link View} referencing the referencedObject
+	 */
+	public static Set<View> getCrossReferencingViewsInDiagram(final EObject referencedObject, final Diagram diagram) {
+
+		Set<View> referencingObjects = new HashSet<View>();
+
+		CrossReferenceAdapter crossReferenceAdapter = CrossReferencerUtil.getCrossReferenceAdapter(referencedObject);
+		if(crossReferenceAdapter != null) {
+
+			// Retrieve all views referencing the referencedObject
+			Iterator<?> views = crossReferenceAdapter.getInverseReferencers(referencedObject, NotationPackage.eINSTANCE.getView_Element(), NotationPackage.eINSTANCE.getView()).iterator();
+			while(views.hasNext()) {
+
+				View view = (View)views.next();
+				if(diagram != null) { // Filter to get only view from this
+										// kind of diagram
+
+					// Check if current view is owned by a diagram which type
+					// conforms to diagramType
+					if(diagram == view.getDiagram()) {
 						referencingObjects.add(view);
 					}
 
