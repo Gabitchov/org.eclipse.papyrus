@@ -4,115 +4,328 @@
     <packagedElement xmi:type="uml:Dependency" xmi:id="_NCWW0LZKEeK8zaQi-hvdlw" name="" client="_IygSQLZKEeK8zaQi-hvdlw" supplier="_KxbdELZKEeK8zaQi-hvdlw"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_Xjd4EL2QEeKKJJ5BmR3W3Q" name="Dependency1" client="_IygSQLZKEeK8zaQi-hvdlw" supplier="_ShE8QL2QEeKKJJ5BmR3W3Q"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_BY3WkNNnEeKwWoA8j13SIg" clientDependency="_g-43MNNpEeKwWoA8j13SIg" name="LayerStackService">
-      <ownedAttribute xmi:id="_Ue8PkNNnEeKwWoA8j13SIg" name="synchronizers" type="_LrbLgNNnEeKwWoA8j13SIg" aggregation="composite" association="_UfCWMNNnEeKwWoA8j13SIg">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Ue8PkNNnEeKwWoA8j13SIg" name="synchronizers" type="_LrbLgNNnEeKwWoA8j13SIg" aggregation="composite" association="_UfCWMNNnEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ue8PkdNnEeKwWoA8j13SIg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ue8PktNnEeKwWoA8j13SIg" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_p_kNgNNpEeKwWoA8j13SIg" name="layerStacks" type="_3qy5UNNnEeKwWoA8j13SIg" association="_p_wawNNpEeKwWoA8j13SIg">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_p_kNgNNpEeKwWoA8j13SIg" name="layerStacks" type="_3qy5UNNnEeKwWoA8j13SIg" association="_p_wawNNpEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p_kNgdNpEeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p_kNgtNpEeKwWoA8j13SIg" value="1"/>
       </ownedAttribute>
-      <interfaceRealization xmi:id="_g-43MNNpEeKwWoA8j13SIg" name="InterfaceRealization1" client="_BY3WkNNnEeKwWoA8j13SIg" supplier="_XlXjENNpEeKwWoA8j13SIg" contract="_XlXjENNpEeKwWoA8j13SIg"/>
-      <ownedOperation xmi:id="_86bKcNNoEeKwWoA8j13SIg" name="getLayerStackSynchronizer"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9O7HwEyeEeObF6ELIGKT-g" name="layersSynchronizer" type="_T7VDsEyeEeObF6ELIGKT-g" aggregation="composite" association="_9O7u0EyeEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9O7HwUyeEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9O7HwkyeEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_g-43MNNpEeKwWoA8j13SIg" name="InterfaceRealization1" client="_BY3WkNNnEeKwWoA8j13SIg" supplier="_XlXjENNpEeKwWoA8j13SIg" contract="_XlXjENNpEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_86bKcNNoEeKwWoA8j13SIg" name="getLayerStackSynchronizer"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_LrbLgNNnEeKwWoA8j13SIg" clientDependency="_f9KpkNNrEeKwWoA8j13SIg _gyvmsNNrEeKwWoA8j13SIg" name="LayerStackSynchronizer">
-      <ownedComment xmi:id="_z07zUNNtEeKwWoA8j13SIg">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_z07zUNNtEeKwWoA8j13SIg">
         <body>The Synchronizer is used to synchronize the properties of the Diagram when something change in the LayerStack.&#xD;
 The class listen to change events, then ask the LayerStack to compute the new values, and then set the new values in the diagram.</body>
       </ownedComment>
-      <ownedAttribute xmi:id="_VXvf0NNnEeKwWoA8j13SIg" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_VX7tENNnEeKwWoA8j13SIg">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_VXvf0NNnEeKwWoA8j13SIg" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_VX7tENNnEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VXvf0dNnEeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VXvf0tNnEeKwWoA8j13SIg" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_WYfyMNNnEeKwWoA8j13SIg" name="layerStack" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_WYl40NNnEeKwWoA8j13SIg">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_WYfyMNNnEeKwWoA8j13SIg" name="layerStack" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_WYl40NNnEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WYfyMdNnEeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WYfyMtNnEeKwWoA8j13SIg" value="1"/>
       </ownedAttribute>
-      <interfaceRealization xmi:id="_f9KpkNNrEeKwWoA8j13SIg" name="InterfaceRealization1" client="_LrbLgNNnEeKwWoA8j13SIg" supplier="_HJLoANNqEeKwWoA8j13SIg" contract="_HJLoANNqEeKwWoA8j13SIg"/>
-      <interfaceRealization xmi:id="_gyvmsNNrEeKwWoA8j13SIg" name="InterfaceRealization2" client="_LrbLgNNnEeKwWoA8j13SIg" supplier="_OS41oNNqEeKwWoA8j13SIg" contract="_OS41oNNqEeKwWoA8j13SIg"/>
-      <ownedOperation xmi:id="_pEYFsNNrEeKwWoA8j13SIg" name="activate"/>
-      <ownedOperation xmi:id="_qCessNNrEeKwWoA8j13SIg" name="deactivate"/>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_f9KpkNNrEeKwWoA8j13SIg" name="InterfaceRealization1" client="_LrbLgNNnEeKwWoA8j13SIg" supplier="_HJLoANNqEeKwWoA8j13SIg" contract="_HJLoANNqEeKwWoA8j13SIg"/>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_gyvmsNNrEeKwWoA8j13SIg" name="InterfaceRealization2" client="_LrbLgNNnEeKwWoA8j13SIg" supplier="_OS41oNNqEeKwWoA8j13SIg" contract="_OS41oNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_pEYFsNNrEeKwWoA8j13SIg" name="activate"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_qCessNNrEeKwWoA8j13SIg" name="deactivate"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_UfCWMNNnEeKwWoA8j13SIg" name="layerStackService_layerStackSynchronizer_1" memberEnd="_UfCWMdNnEeKwWoA8j13SIg _Ue8PkNNnEeKwWoA8j13SIg">
-      <ownedEnd xmi:id="_UfCWMdNnEeKwWoA8j13SIg" name="layerStackService" type="_BY3WkNNnEeKwWoA8j13SIg" association="_UfCWMNNnEeKwWoA8j13SIg">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_UfCWMdNnEeKwWoA8j13SIg" name="layerStackService" type="_T7VDsEyeEeObF6ELIGKT-g" association="_UfCWMNNnEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UfCWMtNnEeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UfCWM9NnEeKwWoA8j13SIg" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_VX7tENNnEeKwWoA8j13SIg" name="layerStackSynchronizer_diagram_1" memberEnd="_VX7tEdNnEeKwWoA8j13SIg _VXvf0NNnEeKwWoA8j13SIg">
-      <ownedEnd xmi:id="_VX7tEdNnEeKwWoA8j13SIg" name="layerStackSynchronizer" type="_LrbLgNNnEeKwWoA8j13SIg" association="_VX7tENNnEeKwWoA8j13SIg">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_VX7tEdNnEeKwWoA8j13SIg" name="layerStackSynchronizer" type="_LrbLgNNnEeKwWoA8j13SIg" association="_VX7tENNnEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VX7tEtNnEeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VX7tE9NnEeKwWoA8j13SIg" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_WYl40NNnEeKwWoA8j13SIg" name="layerStackSynchronizer_layerStack_1" memberEnd="_WYl40dNnEeKwWoA8j13SIg _WYfyMNNnEeKwWoA8j13SIg">
-      <ownedEnd xmi:id="_WYl40dNnEeKwWoA8j13SIg" name="layerStackSynchronizer" type="_LrbLgNNnEeKwWoA8j13SIg" association="_WYl40NNnEeKwWoA8j13SIg">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_WYl40dNnEeKwWoA8j13SIg" name="layerStackSynchronizer" type="_LrbLgNNnEeKwWoA8j13SIg" association="_WYl40NNnEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WYl40tNnEeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WYl409NnEeKwWoA8j13SIg" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_Tevr8NNpEeKwWoA8j13SIg" name="DiagramRemovedEventProvider"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_XlXjENNpEeKwWoA8j13SIg" name="IDiagramRemovedEventProvider">
-      <ownedOperation xmi:id="_bdkjsNNpEeKwWoA8j13SIg" name="diagramRemovedEvent"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_bdkjsNNpEeKwWoA8j13SIg" name="diagramRemovedEvent"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_p_wawNNpEeKwWoA8j13SIg" name="layerStackService_layerStacks_1" memberEnd="_p_wawdNpEeKwWoA8j13SIg _p_kNgNNpEeKwWoA8j13SIg">
-      <ownedEnd xmi:id="_p_wawdNpEeKwWoA8j13SIg" name="layerStackService" type="_BY3WkNNnEeKwWoA8j13SIg" association="_p_wawNNpEeKwWoA8j13SIg">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_p_wawdNpEeKwWoA8j13SIg" name="layerStackService" type="_BY3WkNNnEeKwWoA8j13SIg" association="_p_wawNNpEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p_wawtNpEeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p_waw9NpEeKwWoA8j13SIg" value="1"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_HJLoANNqEeKwWoA8j13SIg" name="IDiagramEventListener">
-      <ownedOperation xmi:id="_JZ7ioNNqEeKwWoA8j13SIg" name="viewAddedEvent"/>
-      <ownedOperation xmi:id="_Ft6TwN9mEeKCZbxNW-U3VQ" name="viewRemovedEvent"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_z8UwcEydEeObF6ELIGKT-g" name="RegExpSynchronizer">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_7ZAkcEydEeObF6ELIGKT-g">
+        <body>RegExpSynchronizer is responsible to synchronize all the RegExp of a LayersStack.</body>
+      </ownedComment>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Yd4-AEygEeObF6ELIGKT-g" name="diagramEventListener" type="_HJLoANNqEeKwWoA8j13SIg" aggregation="composite" association="_YeA50EygEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Yd4-AUygEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Yd4-AkygEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ZFFg4EygEeObF6ELIGKT-g" name="layersModelEventListener" type="_OS41oNNqEeKwWoA8j13SIg" aggregation="composite" association="_ZFGvAEygEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZFFg4UygEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZFFg4kygEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_UK_MIEylEeObF6ELIGKT-g" name="layerStack" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_UK_MI0ylEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UK_MIUylEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UK_MIkylEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_S_ae8EynEeObF6ELIGKT-g" name="regExpLayerEventListener" type="_hYZzMEymEeObF6ELIGKT-g" aggregation="composite" association="_S_btEEynEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_S_ae8UynEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_S_ae8kynEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_m-hRsEynEeObF6ELIGKT-g" name="level1ViewChangedEventNotifier" type="_PHzwsEymEeObF6ELIGKT-g" aggregation="composite" association="_m-if0EynEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_m-hRsUynEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_m-hRskynEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_pSrFoEynEeObF6ELIGKT-g" name="anyViewChangedEventNotifier" type="_PHzwsEymEeObF6ELIGKT-g" aggregation="composite" association="_pSsTwEynEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pSrFoUynEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pSrFokynEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_0WZRwEynEeObF6ELIGKT-g" name="domainChangedEventNotifier" type="_NNG-kEymEeObF6ELIGKT-g" aggregation="composite" association="_0Waf4EynEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0WZRwUynEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0WZRwkynEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_x4a2oEyrEeObF6ELIGKT-g" name="domainPropertyChangedEventListener" type="_qwDXsEypEeObF6ELIGKT-g" aggregation="composite" association="_x4cEwEyrEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_x4a2oUyrEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_x4a2okyrEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_T7VDsEyeEeObF6ELIGKT-g" name="LayerStackApplicationSynchronizer">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_mrgIsEyfEeObF6ELIGKT-g" name="regExpSynchronizers" type="_z8UwcEydEeObF6ELIGKT-g" aggregation="composite" association="_mrhW0EyfEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mrgIsUyfEeObF6ELIGKT-g"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mrgIskyfEeObF6ELIGKT-g" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_9O7u0EyeEeObF6ELIGKT-g" name="layerStackService_layerStackApplicationSynchronizer_1" memberEnd="_9O7u0UyeEeObF6ELIGKT-g _9O7HwEyeEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_9O7u0UyeEeObF6ELIGKT-g" name="layerStackService" type="_BY3WkNNnEeKwWoA8j13SIg" association="_9O7u0EyeEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9O7u0kyeEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9O7u00yeEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_mrhW0EyfEeObF6ELIGKT-g" name="layerStackApplicationSynchronizer_regExpSynchronizer_1" memberEnd="_mrhW0UyfEeObF6ELIGKT-g _mrgIsEyfEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_mrhW0UyfEeObF6ELIGKT-g" name="layerStackApplicationSynchronizer" type="_T7VDsEyeEeObF6ELIGKT-g" association="_mrhW0EyfEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mrhW0kyfEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mrhW00yfEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YeA50EygEeObF6ELIGKT-g" name="regExpSynchronizer_iDiagramEventListener_1" memberEnd="_YeA50UygEeObF6ELIGKT-g _Yd4-AEygEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_YeA50UygEeObF6ELIGKT-g" name="regExpSynchronizer" type="_PHzwsEymEeObF6ELIGKT-g" association="_YeA50EygEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YeA50kygEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YeA500ygEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_ZFGvAEygEeObF6ELIGKT-g" name="regExpSynchronizer_iLayersModelEventListener_1" memberEnd="_ZFGvAUygEeObF6ELIGKT-g _ZFFg4EygEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_ZFGvAUygEeObF6ELIGKT-g" name="regExpSynchronizer" type="_z8UwcEydEeObF6ELIGKT-g" association="_ZFGvAEygEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZFGvAkygEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZFGvA0ygEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-mWi0EygEeObF6ELIGKT-g" clientDependency="_Z_oBEEyhEeObF6ELIGKT-g" name="LayersStackAndApplicationLifeCycleEventNotifier"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_GmQYoEyhEeObF6ELIGKT-g" name="ILayersStackApplicationEventListener">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_L2KMAEyhEeObF6ELIGKT-g" name="layerStackAdded"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_M_w4YEyhEeObF6ELIGKT-g" name="layerStackRemoved"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VVf0QEyhEeObF6ELIGKT-g" clientDependency="_bc3bIEyhEeObF6ELIGKT-g" name="LayersStackApplicationEventNotifier"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Z_oBEEyhEeObF6ELIGKT-g" name="Usage1" client="_-mWi0EygEeObF6ELIGKT-g" supplier="_GmQYoEyhEeObF6ELIGKT-g"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_bc3bIEyhEeObF6ELIGKT-g" name="Usage2" client="_VVf0QEyhEeObF6ELIGKT-g" supplier="_GmQYoEyhEeObF6ELIGKT-g"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_loxOcEyhEeObF6ELIGKT-g" clientDependency="_uaimEEyhEeObF6ELIGKT-g" name="NotationDiagramRemovedFromResourceEventNotifier"/>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_qDr6kEyhEeObF6ELIGKT-g" name="INotationDiagramRemovedEventListener">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_s_IYAEyhEeObF6ELIGKT-g" name="diagramRemoved"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_uaimEEyhEeObF6ELIGKT-g" name="Usage3" client="_loxOcEyhEeObF6ELIGKT-g" supplier="_qDr6kEyhEeObF6ELIGKT-g"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_a8pioEykEeObF6ELIGKT-g" clientDependency="_cXr9QEykEeObF6ELIGKT-g" name="LayersModelEventNotifier"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_cXr9QEykEeObF6ELIGKT-g" name="Usage4" client="_a8pioEykEeObF6ELIGKT-g" supplier="_OS41oNNqEeKwWoA8j13SIg"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_UK_MI0ylEeObF6ELIGKT-g" name="regExpSynchronizer_layerStack_1" memberEnd="_UK_MJEylEeObF6ELIGKT-g _UK_MIEylEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_UK_MJEylEeObF6ELIGKT-g" name="regExpSynchronizer" type="_z8UwcEydEeObF6ELIGKT-g" association="_UK_MI0ylEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UK_MJUylEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UK_MJkylEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_iIr2EEylEeObF6ELIGKT-g" name="EventNotifier">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_wC9YkEylEeObF6ELIGKT-g">
+        <body>This class is used to record a list of listeners, and to send the associated event when the fireMethod is called</body>
+      </ownedComment>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9fD74EymEeObF6ELIGKT-g" name="listeners" type="_u6-HIM-xEeKO_rl5MA6s9A" association="_9fFKAEymEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9fD74UymEeObF6ELIGKT-g"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9fD74kymEeObF6ELIGKT-g" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_32mUAEylEeObF6ELIGKT-g" name="attachListener"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_52Ii0EylEeObF6ELIGKT-g" name="removeListener"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_71ZE0EylEeObF6ELIGKT-g" name="fireEvent"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_NNG-kEymEeObF6ELIGKT-g" name="DomainChangedEventManager">
+      <generalization xmi:type="uml:Generalization" xmi:id="_JsQRgEynEeObF6ELIGKT-g" general="_iIr2EEylEeObF6ELIGKT-g"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_itq40EytEeObF6ELIGKT-g" name="domainPropertyChangedEventNotifier" type="_rezFUEyvEeObF6ELIGKT-g" association="_itrf4EytEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_itq40UytEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_itq40kytEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_KiB0MEytEeObF6ELIGKT-g" name="startListening"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_MECZgEytEeObF6ELIGKT-g" name="stopListening"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_PHzwsEymEeObF6ELIGKT-g" name="ViewListChangedEventManager">
+      <generalization xmi:type="uml:Generalization" xmi:id="_KWW-cEynEeObF6ELIGKT-g" general="_iIr2EEylEeObF6ELIGKT-g"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_I--QkEyuEeObF6ELIGKT-g" name="diagramViewEventNotifier" type="_JwRLoEyjEeObF6ELIGKT-g" association="_I--3oEyuEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I--QkUyuEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I--QkkyuEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_xe-J8EytEeObF6ELIGKT-g" name="startListening"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_xe-J8UytEeObF6ELIGKT-g" name="stopListening"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_hYZzMEymEeObF6ELIGKT-g" name="IRegExpLayerEventListener">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_psYbkEymEeObF6ELIGKT-g" name="selectedEventTypesChanged"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_vtheoEymEeObF6ELIGKT-g" name="expressionChanged"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_9fFKAEymEeObF6ELIGKT-g" name="eventNotifier_regExpLayer_1" memberEnd="_9fFKAUymEeObF6ELIGKT-g _9fD74EymEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_9fFKAUymEeObF6ELIGKT-g" name="eventNotifier" type="_iIr2EEylEeObF6ELIGKT-g" association="_9fFKAEymEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9fFKAkymEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9fFKA0ymEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_S_btEEynEeObF6ELIGKT-g" name="regExpSynchronizer_iRegExpLayerEventListener_1" memberEnd="_S_btEUynEeObF6ELIGKT-g _S_ae8EynEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_S_btEUynEeObF6ELIGKT-g" name="regExpSynchronizer" type="_z8UwcEydEeObF6ELIGKT-g" association="_S_btEEynEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_S_btEkynEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_S_btE0ynEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_m-if0EynEeObF6ELIGKT-g" name="regExpSynchronizer_viewListChangedEventNotifier_1" memberEnd="_m-if0UynEeObF6ELIGKT-g _m-hRsEynEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_m-if0UynEeObF6ELIGKT-g" name="regExpSynchronizer" type="_z8UwcEydEeObF6ELIGKT-g" association="_m-if0EynEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_m-if0kynEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_m-if00ynEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_pSsTwEynEeObF6ELIGKT-g" name="regExpSynchronizer_viewListChangedEventNotifier_2" memberEnd="_pSsTwUynEeObF6ELIGKT-g _pSrFoEynEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_pSsTwUynEeObF6ELIGKT-g" name="regExpSynchronizer" type="_z8UwcEydEeObF6ELIGKT-g" association="_pSsTwEynEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pSsTwkynEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pSsTw0ynEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_0Waf4EynEeObF6ELIGKT-g" name="regExpSynchronizer_domainChangedEventNotifier_1" memberEnd="_0Waf4UynEeObF6ELIGKT-g _0WZRwEynEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_0Waf4UynEeObF6ELIGKT-g" name="regExpSynchronizer" type="_z8UwcEydEeObF6ELIGKT-g" association="_0Waf4EynEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0Waf4kynEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0Waf40ynEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_l9oKgEypEeObF6ELIGKT-g" clientDependency="_uEDfEEypEeObF6ELIGKT-g" name="DomainPropertyChangedEventNotifier">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_Bigb0EyqEeObF6ELIGKT-g" annotatedElement="_l9oKgEypEeObF6ELIGKT-g">
+        <body>This notifier allows to listen on property changes on any children of the specified object.</body>
+      </ownedComment>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_WxdF0EyqEeObF6ELIGKT-g" name="attachListener"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_YO_a0EyqEeObF6ELIGKT-g" name="removeListener"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Z096IEyqEeObF6ELIGKT-g" name="addObservedObject">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_s2Rn4EyqEeObF6ELIGKT-g" name="obj" type="_3MwTgEyqEeObF6ELIGKT-g"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_bz66IEyqEeObF6ELIGKT-g" name="removeObservedObject"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_oHUooEyuEeObF6ELIGKT-g" name="stopListening"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_oHVPsEyuEeObF6ELIGKT-g" name="startListening"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_qwDXsEypEeObF6ELIGKT-g" name="IDomainPropertyChangedEventListener"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_uEDfEEypEeObF6ELIGKT-g" name="Usage5" client="_l9oKgEypEeObF6ELIGKT-g" supplier="_qwDXsEypEeObF6ELIGKT-g"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_x4cEwEyrEeObF6ELIGKT-g" name="regExpSynchronizer_iDomainPropertyChangedEventNotiffier_1" memberEnd="_x4cEwUyrEeObF6ELIGKT-g _x4a2oEyrEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_x4cEwUyrEeObF6ELIGKT-g" name="regExpSynchronizer" type="_NNG-kEymEeObF6ELIGKT-g" association="_x4cEwEyrEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_x4cEwkyrEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_x4cEw0yrEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_itrf4EytEeObF6ELIGKT-g" name="domainChangedEventManager_domainPropertyChangedEventNotifier_1" memberEnd="_itrf4UytEeObF6ELIGKT-g _itq40EytEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_itrf4UytEeObF6ELIGKT-g" name="domainChangedEventManager" type="_NNG-kEymEeObF6ELIGKT-g" association="_itrf4EytEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_itrf4kytEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_itrf40ytEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_I--3oEyuEeObF6ELIGKT-g" name="viewListChangedEventManager_diagramViewEventNotifier_1" memberEnd="_I--3oUyuEeObF6ELIGKT-g _I--QkEyuEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_I--3oUyuEeObF6ELIGKT-g" name="viewListChangedEventManager" type="_PHzwsEymEeObF6ELIGKT-g" association="_I--3oEyuEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I--3okyuEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I--3o0yuEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rezFUEyvEeObF6ELIGKT-g" clientDependency="_NrCFIEywEeObF6ELIGKT-g" name="DiagramDomainPropertyChangedEventNotifier">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_8Z6ioEyvEeObF6ELIGKT-g" annotatedElement="_rezFUEyvEeObF6ELIGKT-g">
+        <body>Fire events when a property of one of the domain element of the diagram is modified.&#xD;
+This notifier tracks the diagram root elements, and listen to their asociated domain elements.&#xD;
+</body>
+      </ownedComment>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_WYVzgEywEeObF6ELIGKT-g" name="domainPropertyChangedEventNotifier" type="_l9oKgEypEeObF6ELIGKT-g" aggregation="composite" association="_WYWakEywEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WYVzgUywEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WYVzgkywEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_gjmGkEywEeObF6ELIGKT-g" name="diagramViewEventNotifier" type="_JwRLoEyjEeObF6ELIGKT-g" association="_gjmtoEywEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gjmGkUywEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gjmGkkywEeObF6ELIGKT-g" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_NrCFIEywEeObF6ELIGKT-g" name="Usage6" client="_rezFUEyvEeObF6ELIGKT-g" supplier="_qwDXsEypEeObF6ELIGKT-g"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_WYWakEywEeObF6ELIGKT-g" name="diagramDomainPropertyChangedEventNotifier_domainPropertyChangedEventNotifier_1" memberEnd="_WYWakUywEeObF6ELIGKT-g _WYVzgEywEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_WYWakUywEeObF6ELIGKT-g" name="diagramDomainPropertyChangedEventNotifier" type="_rezFUEyvEeObF6ELIGKT-g" association="_WYWakEywEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WYWakkywEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WYWak0ywEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_gjmtoEywEeObF6ELIGKT-g" name="diagramDomainPropertyChangedEventNotifier_diagramViewEventNotifier_1" memberEnd="_gjmtoUywEeObF6ELIGKT-g _gjmGkEywEeObF6ELIGKT-g">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_gjmtoUywEeObF6ELIGKT-g" name="diagramDomainPropertyChangedEventNotifier" type="_rezFUEyvEeObF6ELIGKT-g" association="_gjmtoEywEeObF6ELIGKT-g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gjmtokywEeObF6ELIGKT-g" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gjmto0ywEeObF6ELIGKT-g" value="1"/>
+      </ownedEnd>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_KAehQLZKEeK8zaQi-hvdlw" clientDependency="_OVNs4LZKEeK8zaQi-hvdlw" name="ui">
-    <ownedComment xmi:id="_1S4tEM9REeKO_rl5MA6s9A">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_1S4tEM9REeKO_rl5MA6s9A">
       <body> </body>
     </ownedComment>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_OVNs4LZKEeK8zaQi-hvdlw" name="Dependency1" client="_KAehQLZKEeK8zaQi-hvdlw" supplier="_IygSQLZKEeK8zaQi-hvdlw"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_hwJtQM9REeKO_rl5MA6s9A" name="LayersViewer">
-      <ownedAttribute xmi:id="_LgxZoM9UEeKO_rl5MA6s9A" name="selectionView" type="_yeyNwM9REeKO_rl5MA6s9A" aggregation="composite" association="_Lg4HUM9UEeKO_rl5MA6s9A">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_LgxZoM9UEeKO_rl5MA6s9A" name="selectionView" type="_yeyNwM9REeKO_rl5MA6s9A" aggregation="composite" association="_Lg4HUM9UEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LgxZoc9UEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LgxZos9UEeKO_rl5MA6s9A" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_jfm4sM9REeKO_rl5MA6s9A" name="LayerStackUiPart">
-      <generalization xmi:id="_TdEXQM9TEeKO_rl5MA6s9A" general="_G-A1kM9TEeKO_rl5MA6s9A"/>
-      <ownedAttribute xmi:id="_45dq0M9UEeKO_rl5MA6s9A" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_45kYgM9UEeKO_rl5MA6s9A">
+      <generalization xmi:type="uml:Generalization" xmi:id="_TdEXQM9TEeKO_rl5MA6s9A" general="_G-A1kM9TEeKO_rl5MA6s9A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_45dq0M9UEeKO_rl5MA6s9A" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_45kYgM9UEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_45dq0c9UEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_45dq0s9UEeKO_rl5MA6s9A" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_5vJVoM9UEeKO_rl5MA6s9A" name="layerStack" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_5vWJ8M9UEeKO_rl5MA6s9A">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5vJVoM9UEeKO_rl5MA6s9A" name="layerStack" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_5vWJ8M9UEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5vJVoc9UEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5vJVos9UEeKO_rl5MA6s9A" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_l8z68M9REeKO_rl5MA6s9A" name="DiagramUiPart">
-      <generalization xmi:id="_S5l2wM9TEeKO_rl5MA6s9A" general="_G-A1kM9TEeKO_rl5MA6s9A"/>
-      <ownedAttribute xmi:id="_w0UIoM9UEeKO_rl5MA6s9A" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_w0iyIM9UEeKO_rl5MA6s9A">
+      <generalization xmi:type="uml:Generalization" xmi:id="_S5l2wM9TEeKO_rl5MA6s9A" general="_G-A1kM9TEeKO_rl5MA6s9A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_w0UIoM9UEeKO_rl5MA6s9A" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_w0iyIM9UEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w0UIoc9UEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w0UIos9UEeKO_rl5MA6s9A" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_nrEMgM9REeKO_rl5MA6s9A" name="UnknownSelectionUiPart">
-      <generalization xmi:id="_SaqfEM9TEeKO_rl5MA6s9A" general="_G-A1kM9TEeKO_rl5MA6s9A"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_SaqfEM9TEeKO_rl5MA6s9A" general="_G-A1kM9TEeKO_rl5MA6s9A"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_yeyNwM9REeKO_rl5MA6s9A" clientDependency="_Ecf7EM9TEeKO_rl5MA6s9A" name="SelectionView">
-      <ownedComment xmi:id="_-YSyYM9REeKO_rl5MA6s9A">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_-YSyYM9REeKO_rl5MA6s9A">
         <body>This view show the current selection among:&#xD;
 - Diagram with LayerStack&#xD;
 - Diagram without LayerStack&#xD;
 - other selection (unknown)&#xD;
 </body>
       </ownedComment>
-      <ownedAttribute xmi:id="__C2gYM9TEeKO_rl5MA6s9A" name="uiPart" type="_G-A1kM9TEeKO_rl5MA6s9A" aggregation="composite" association="__DARYM9TEeKO_rl5MA6s9A">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__C2gYM9TEeKO_rl5MA6s9A" name="uiPart" type="_G-A1kM9TEeKO_rl5MA6s9A" aggregation="composite" association="__DARYM9TEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__C2gYc9TEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__C2gYs9TEeKO_rl5MA6s9A" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_cw2FMM9SEeKO_rl5MA6s9A" name="SelectionTracker">
-      <ownedComment xmi:id="_hEcoYM9SEeKO_rl5MA6s9A">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_hEcoYM9SEeKO_rl5MA6s9A">
         <body>This class track the current selection and fire following events:&#xD;
 - diagramWithoutStackLayerSelected (editor, diagram)&#xD;
 - diagramWithStackLayerSelected (editor, diagram, StackLayer)&#xD;
@@ -121,193 +334,193 @@ The class listen to change events, then ask the LayerStack to compute the new va
     </packagedElement>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_Ecf7EM9TEeKO_rl5MA6s9A" name="" client="_yeyNwM9REeKO_rl5MA6s9A" supplier="_cw2FMM9SEeKO_rl5MA6s9A"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_G-A1kM9TEeKO_rl5MA6s9A" name="UiPart" isAbstract="true">
-      <ownedComment xmi:id="_rcDK0M9REeKO_rl5MA6s9A">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_rcDK0M9REeKO_rl5MA6s9A">
         <body>A UiPart is used to show one element (and its subelements&#xD;
 </body>
       </ownedComment>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="__DARYM9TEeKO_rl5MA6s9A" name="selectionView_uiPart_1" memberEnd="__DARYc9TEeKO_rl5MA6s9A __C2gYM9TEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="__DARYc9TEeKO_rl5MA6s9A" name="selectionView" type="_yeyNwM9REeKO_rl5MA6s9A" association="__DARYM9TEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="__DARYc9TEeKO_rl5MA6s9A" name="selectionView" type="_yeyNwM9REeKO_rl5MA6s9A" association="__DARYM9TEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__DARYs9TEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__DARY89TEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_Lg4HUM9UEeKO_rl5MA6s9A" name="layersViewer_selectionView_1" memberEnd="_Lg4HUc9UEeKO_rl5MA6s9A _LgxZoM9UEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_Lg4HUc9UEeKO_rl5MA6s9A" name="layersViewer" type="_hwJtQM9REeKO_rl5MA6s9A" association="_Lg4HUM9UEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_Lg4HUc9UEeKO_rl5MA6s9A" name="layersViewer" type="_hwJtQM9REeKO_rl5MA6s9A" association="_Lg4HUM9UEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Lg4HUs9UEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Lg4HU89UEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_w0iyIM9UEeKO_rl5MA6s9A" name="diagramUiPart_diagram_1" memberEnd="_w0iyIc9UEeKO_rl5MA6s9A _w0UIoM9UEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_w0iyIc9UEeKO_rl5MA6s9A" name="diagramUiPart" type="_l8z68M9REeKO_rl5MA6s9A" association="_w0iyIM9UEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_w0iyIc9UEeKO_rl5MA6s9A" name="diagramUiPart" type="_l8z68M9REeKO_rl5MA6s9A" association="_w0iyIM9UEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w0iyIs9UEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w0iyI89UEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_45kYgM9UEeKO_rl5MA6s9A" name="layerStackUiPart_diagram_1" memberEnd="_45kYgc9UEeKO_rl5MA6s9A _45dq0M9UEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_45kYgc9UEeKO_rl5MA6s9A" name="layerStackUiPart" type="_jfm4sM9REeKO_rl5MA6s9A" association="_45kYgM9UEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_45kYgc9UEeKO_rl5MA6s9A" name="layerStackUiPart" type="_jfm4sM9REeKO_rl5MA6s9A" association="_45kYgM9UEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_45kYgs9UEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_45kYg89UEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_5vWJ8M9UEeKO_rl5MA6s9A" name="layerStackUiPart_layerStack_1" memberEnd="_5vWJ8c9UEeKO_rl5MA6s9A _5vJVoM9UEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_5vWJ8c9UEeKO_rl5MA6s9A" name="layerStackUiPart" type="_jfm4sM9REeKO_rl5MA6s9A" association="_5vWJ8M9UEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_5vWJ8c9UEeKO_rl5MA6s9A" name="layerStackUiPart" type="_jfm4sM9REeKO_rl5MA6s9A" association="_5vWJ8M9UEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5vWJ8s9UEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5vWJ889UEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_KxbdELZKEeK8zaQi-hvdlw" clientDependency="_V114oL2QEeKKJJ5BmR3W3Q" name="stackmodel">
-    <ownedComment xmi:id="_k5v3oNITEeKovM8ingMMQQ">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_k5v3oNITEeKovM8ingMMQQ">
       <body>A LayerExpression allows to compute the properties of a specified view.&#xD;
 A LayerExpression is the common ancestor of Layer and LayerOperator.</body>
     </ownedComment>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_V114oL2QEeKKJJ5BmR3W3Q" name="Dependency1" client="_KxbdELZKEeK8zaQi-hvdlw" supplier="_ShE8QL2QEeKKJJ5BmR3W3Q"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_t0NNoM9UEeKO_rl5MA6s9A" name="LayerStack">
-      <ownedAttribute xmi:id="_3hmqkM9VEeKO_rl5MA6s9A" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_3h0tAM9VEeKO_rl5MA6s9A">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_3hmqkM9VEeKO_rl5MA6s9A" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_3h0tAM9VEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3hmqkc9VEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3hmqks9VEeKO_rl5MA6s9A" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_4B6F4NN0EeKwWoA8j13SIg" name="selectionManager" type="_iOVr4NN0EeKwWoA8j13SIg" association="_4CAMgNN0EeKwWoA8j13SIg">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_4B6F4NN0EeKwWoA8j13SIg" name="selectionManager" type="_iOVr4NN0EeKwWoA8j13SIg" association="_4CAMgNN0EeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4B6F4dN0EeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4B6F4tN0EeKwWoA8j13SIg" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_3h0tAM9VEeKO_rl5MA6s9A" name="layerStack_diagram_1" memberEnd="_3h0tAc9VEeKO_rl5MA6s9A _3hmqkM9VEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_3h0tAc9VEeKO_rl5MA6s9A" name="layerStack" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_3h0tAM9VEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_3h0tAc9VEeKO_rl5MA6s9A" name="layerStack" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_3h0tAM9VEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3h0tAs9VEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3h0tA89VEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_55Ll8M9VEeKO_rl5MA6s9A" name="namedStyle_layerStack_1" memberEnd="_55Ll8c9VEeKO_rl5MA6s9A _54-KkM9VEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_55Ll8c9VEeKO_rl5MA6s9A" name="namedStyle" type="_0Q5HwM9VEeKO_rl5MA6s9A" association="_55Ll8M9VEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_55Ll8c9VEeKO_rl5MA6s9A" name="namedStyle" type="_0Q5HwM9VEeKO_rl5MA6s9A" association="_55Ll8M9VEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_55Ll8s9VEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_55Ll889VEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_q3GegM-wEeKO_rl5MA6s9A" name="LayerExpression" isAbstract="true">
-      <ownedAttribute xmi:id="_unLCYNIXEeKovM8ingMMQQ" name="attachedViews" type="_kextsM-0EeKO_rl5MA6s9A" isDerived="true" association="_unRJANIXEeKovM8ingMMQQ">
-        <ownedComment xmi:id="_6FrGANIXEeKovM8ingMMQQ">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_unLCYNIXEeKovM8ingMMQQ" name="attachedViews" type="_kextsM-0EeKO_rl5MA6s9A" isDerived="true" association="_unRJANIXEeKovM8ingMMQQ">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_6FrGANIXEeKovM8ingMMQQ">
           <body>List of views attached to the layerExpression. This is a derived properties.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unLCYdIXEeKovM8ingMMQQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_unLCYtIXEeKovM8ingMMQQ" value="*"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="__kusgNITEeKovM8ingMMQQ" name="getViewProperties">
-        <ownedComment xmi:id="_Sz7FQNIUEeKovM8ingMMQQ">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="__kusgNITEeKovM8ingMMQQ" name="getViewProperties">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Sz7FQNIUEeKovM8ingMMQQ">
           <body>Get the property descriptors associated to the specified view.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_geO5INIUEeKovM8ingMMQQ" name="view" type="_j52EYNIUEeKovM8ingMMQQ"/>
-        <ownedParameter xmi:id="_vg2jwNIUEeKovM8ingMMQQ" name="result" type="_UzekYM-yEeKO_rl5MA6s9A" direction="return">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_geO5INIUEeKovM8ingMMQQ" name="view" type="_j52EYNIUEeKovM8ingMMQQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_vg2jwNIUEeKovM8ingMMQQ" name="result" type="_UzekYM-yEeKO_rl5MA6s9A" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0CFTQNIUEeKovM8ingMMQQ"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0CRggNIUEeKovM8ingMMQQ" value="*"/>
         </ownedParameter>
       </ownedOperation>
-      <ownedOperation xmi:id="_8L56ENIUEeKovM8ingMMQQ" name="getViewPropertyValues">
-        <ownedComment xmi:id="_8L56EdIUEeKovM8ingMMQQ">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_8L56ENIUEeKovM8ingMMQQ" name="getViewPropertyValues">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_8L56EdIUEeKovM8ingMMQQ">
           <body>Get the property values associated to the specified view.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_8L56EtIUEeKovM8ingMMQQ" name="view" type="_j52EYNIUEeKovM8ingMMQQ"/>
-        <ownedParameter xmi:id="_8L56E9IUEeKovM8ingMMQQ" name="result" type="_l4yNkM-0EeKO_rl5MA6s9A" direction="return">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_8L56EtIUEeKovM8ingMMQQ" name="view" type="_j52EYNIUEeKovM8ingMMQQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_8L56E9IUEeKovM8ingMMQQ" name="result" type="_l4yNkM-0EeKO_rl5MA6s9A" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8L56FNIUEeKovM8ingMMQQ"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8L56FdIUEeKovM8ingMMQQ" value="*"/>
         </ownedParameter>
       </ownedOperation>
-      <ownedOperation xmi:id="_LDqYgNIVEeKovM8ingMMQQ" name="getViewsPropertyValues">
-        <ownedComment xmi:id="_LDqYgdIVEeKovM8ingMMQQ">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_LDqYgNIVEeKovM8ingMMQQ" name="getViewsPropertyValues">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_LDqYgdIVEeKovM8ingMMQQ">
           <body>Get the property values associated to the specified view.</body>
         </ownedComment>
-        <ownedParameter xmi:id="_LDqYgtIVEeKovM8ingMMQQ" name="view" type="_j52EYNIUEeKovM8ingMMQQ">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_LDqYgtIVEeKovM8ingMMQQ" name="view" type="_j52EYNIUEeKovM8ingMMQQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZfK_0NIVEeKovM8ingMMQQ"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Zfl2kNIVEeKovM8ingMMQQ" value="*"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_LDqYg9IVEeKovM8ingMMQQ" name="views" type="_j52EYNIUEeKovM8ingMMQQ" direction="return">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_LDqYg9IVEeKovM8ingMMQQ" name="views" type="_j52EYNIUEeKovM8ingMMQQ" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LDqYhNIVEeKovM8ingMMQQ"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LDqYhdIVEeKovM8ingMMQQ" value="*"/>
         </ownedParameter>
-        <ownedParameter xmi:id="_NfaCMNIVEeKovM8ingMMQQ" name="values" type="_l4yNkM-0EeKO_rl5MA6s9A" direction="return">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_NfaCMNIVEeKovM8ingMMQQ" name="values" type="_l4yNkM-0EeKO_rl5MA6s9A" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NfaCMdIVEeKovM8ingMMQQ"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NfaCMtIVEeKovM8ingMMQQ" value="*"/>
         </ownedParameter>
       </ownedOperation>
-      <ownedOperation xmi:id="_SH5a0NIWEeKovM8ingMMQQ" name="getAvailableProperties">
-        <ownedComment xmi:id="_SH5a0dIWEeKovM8ingMMQQ">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_SH5a0NIWEeKovM8ingMMQQ" name="getAvailableProperties">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_SH5a0dIWEeKovM8ingMMQQ">
           <body>Get the property descriptors available from</body>
         </ownedComment>
-        <ownedParameter xmi:id="_SH5a09IWEeKovM8ingMMQQ" name="result" type="_UzekYM-yEeKO_rl5MA6s9A" direction="return">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_SH5a09IWEeKovM8ingMMQQ" name="result" type="_UzekYM-yEeKO_rl5MA6s9A" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SH5a1NIWEeKovM8ingMMQQ"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SH5a1dIWEeKovM8ingMMQQ" value="*"/>
         </ownedParameter>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_saCQ4M-wEeKO_rl5MA6s9A" name="LayerOperatorExpression" isAbstract="true">
-      <generalization xmi:id="_w9X5MM-wEeKO_rl5MA6s9A" general="_q3GegM-wEeKO_rl5MA6s9A"/>
-      <ownedAttribute xmi:id="_Jk2f4NIPEeKovM8ingMMQQ" name="expressions" type="_q3GegM-wEeKO_rl5MA6s9A" aggregation="composite" association="_JlCtINIPEeKovM8ingMMQQ">
+      <generalization xmi:type="uml:Generalization" xmi:id="_w9X5MM-wEeKO_rl5MA6s9A" general="_q3GegM-wEeKO_rl5MA6s9A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Jk2f4NIPEeKovM8ingMMQQ" name="expressions" type="_q3GegM-wEeKO_rl5MA6s9A" aggregation="composite" association="_JlCtINIPEeKovM8ingMMQQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Jk2f4dIPEeKovM8ingMMQQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Jk2f4tIPEeKovM8ingMMQQ" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_uIcTcM-wEeKO_rl5MA6s9A" name="Layer" isAbstract="true">
-      <generalization xmi:id="_x2M-oM-wEeKO_rl5MA6s9A" general="_q3GegM-wEeKO_rl5MA6s9A"/>
-      <ownedAttribute xmi:id="_rl4TQM-0EeKO_rl5MA6s9A" name="views" type="_kextsM-0EeKO_rl5MA6s9A" association="_rmCEQM-0EeKO_rl5MA6s9A">
+      <generalization xmi:type="uml:Generalization" xmi:id="_x2M-oM-wEeKO_rl5MA6s9A" general="_q3GegM-wEeKO_rl5MA6s9A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_rl4TQM-0EeKO_rl5MA6s9A" name="views" type="_kextsM-0EeKO_rl5MA6s9A" association="_rmCEQM-0EeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rl4TQc-0EeKO_rl5MA6s9A"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rl4TQs-0EeKO_rl5MA6s9A" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_sdjiIM-0EeKO_rl5MA6s9A" name="propertyValues" type="_l4yNkM-0EeKO_rl5MA6s9A" isDerived="true" association="_sd2dEM-0EeKO_rl5MA6s9A">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_sdjiIM-0EeKO_rl5MA6s9A" name="propertyValues" type="_l4yNkM-0EeKO_rl5MA6s9A" isDerived="true" association="_sd2dEM-0EeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sdjiIc-0EeKO_rl5MA6s9A"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sdjiIs-0EeKO_rl5MA6s9A" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_PYT20NIQEeKovM8ingMMQQ" name="availableProperties" type="_UzekYM-yEeKO_rl5MA6s9A" isDerived="true" association="_PYgEENIQEeKovM8ingMMQQ">
-        <ownedComment xmi:id="_sI_z8NIQEeKovM8ingMMQQ">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_PYT20NIQEeKovM8ingMMQQ" name="availableProperties" type="_UzekYM-yEeKO_rl5MA6s9A" isDerived="true" association="_PYgEENIQEeKovM8ingMMQQ">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_sI_z8NIQEeKovM8ingMMQQ">
           <body>Return a list of properties that this layer support. This is a derived property (from Layer descriptor).</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PYT20dIQEeKovM8ingMMQQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PYT20tIQEeKovM8ingMMQQ" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_3x5JsNIQEeKovM8ingMMQQ" name="attachedProperties" type="_UzekYM-yEeKO_rl5MA6s9A" isDerived="true" association="_3yFW8NIQEeKovM8ingMMQQ">
-        <ownedComment xmi:id="_LuHnkNIREeKovM8ingMMQQ">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_3x5JsNIQEeKovM8ingMMQQ" name="attachedProperties" type="_UzekYM-yEeKO_rl5MA6s9A" isDerived="true" association="_3yFW8NIQEeKovM8ingMMQQ">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_LuHnkNIREeKovM8ingMMQQ">
           <body>Return a list of properties already attached to the Layer.&#xD;
 This is a derived property.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3x5JsdIQEeKovM8ingMMQQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3x5JstIQEeKovM8ingMMQQ" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:id="__8qywNIQEeKovM8ingMMQQ" name="notAttachedProperties" type="_UzekYM-yEeKO_rl5MA6s9A" isDerived="true" association="__8-UwNIQEeKovM8ingMMQQ">
-        <ownedComment xmi:id="_ZhROYNIREeKovM8ingMMQQ">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__8qywNIQEeKovM8ingMMQQ" name="notAttachedProperties" type="_UzekYM-yEeKO_rl5MA6s9A" isDerived="true" association="__8-UwNIQEeKovM8ingMMQQ">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_ZhROYNIREeKovM8ingMMQQ">
           <body>Return a list of not already attached properties. This is a derived property.</body>
         </ownedComment>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__8qywdIQEeKovM8ingMMQQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__8qywtIQEeKovM8ingMMQQ" value="*"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="_AYzD8NeJEeKpd73UUMObaQ" name="setPropertyValue">
-        <ownedParameter xmi:id="_HezdUNeJEeKpd73UUMObaQ" name="index" type="_-DoC8NIPEeKovM8ingMMQQ"/>
-        <ownedParameter xmi:id="_LoMUkNeJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="inout"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_AYzD8NeJEeKpd73UUMObaQ" name="setPropertyValue">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_HezdUNeJEeKpd73UUMObaQ" name="index" type="_-DoC8NIPEeKovM8ingMMQQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_LoMUkNeJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="inout"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_aJy80NeJEeKpd73UUMObaQ" name="setPropertyValue">
-        <ownedParameter xmi:id="_aJy80deJEeKpd73UUMObaQ" name="name" type="_70TEoNIPEeKovM8ingMMQQ"/>
-        <ownedParameter xmi:id="_aJy80teJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="inout"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_aJy80NeJEeKpd73UUMObaQ" name="setPropertyValue">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_aJy80deJEeKpd73UUMObaQ" name="name" type="_70TEoNIPEeKovM8ingMMQQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_aJy80teJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="inout"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_aou7kNeJEeKpd73UUMObaQ" name="setPropertyValue">
-        <ownedParameter xmi:id="_aou7kdeJEeKpd73UUMObaQ" name="propDesc" type="_UzekYM-yEeKO_rl5MA6s9A"/>
-        <ownedParameter xmi:id="_aou7kteJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="inout"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_aou7kNeJEeKpd73UUMObaQ" name="setPropertyValue">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_aou7kdeJEeKpd73UUMObaQ" name="propDesc" type="_UzekYM-yEeKO_rl5MA6s9A"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_aou7kteJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="inout"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_urYKgNeJEeKpd73UUMObaQ" name="getPropertyValue">
-        <ownedParameter xmi:id="_urYKgdeJEeKpd73UUMObaQ" name="name" type="_70TEoNIPEeKovM8ingMMQQ"/>
-        <ownedParameter xmi:id="_urYKgteJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="return"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_urYKgNeJEeKpd73UUMObaQ" name="getPropertyValue">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_urYKgdeJEeKpd73UUMObaQ" name="name" type="_70TEoNIPEeKovM8ingMMQQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_urYKgteJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_urhUcNeJEeKpd73UUMObaQ" name="getPropertyValue">
-        <ownedParameter xmi:id="_urhUcdeJEeKpd73UUMObaQ" name="index" type="_-DoC8NIPEeKovM8ingMMQQ"/>
-        <ownedParameter xmi:id="_urhUcteJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="return"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_urhUcNeJEeKpd73UUMObaQ" name="getPropertyValue">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_urhUcdeJEeKpd73UUMObaQ" name="index" type="_-DoC8NIPEeKovM8ingMMQQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_urhUcteJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="return"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_uropMNeJEeKpd73UUMObaQ" name="getPropertyValue">
-        <ownedParameter xmi:id="_urpQQNeJEeKpd73UUMObaQ" name="propDesc" type="_UzekYM-yEeKO_rl5MA6s9A"/>
-        <ownedParameter xmi:id="_urpQQdeJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="return"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_uropMNeJEeKpd73UUMObaQ" name="getPropertyValue">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_urpQQNeJEeKpd73UUMObaQ" name="propDesc" type="_UzekYM-yEeKO_rl5MA6s9A"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_urpQQdeJEeKpd73UUMObaQ" name="value" type="_NwL70NeJEeKpd73UUMObaQ" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_zRG2YM-wEeKO_rl5MA6s9A" name="Class1" isAbstract="true">
-      <generalization xmi:id="_pd8dwM-xEeKO_rl5MA6s9A" general="_saCQ4M-wEeKO_rl5MA6s9A"/>
-      <ownedAttribute xmi:id="_awVkYM-yEeKO_rl5MA6s9A" name="propertyOperators" type="_SZ1McM-yEeKO_rl5MA6s9A" aggregation="composite" association="_awpGYM-yEeKO_rl5MA6s9A">
-        <ownedComment xmi:id="_KvpSgM-zEeKO_rl5MA6s9A">
+      <generalization xmi:type="uml:Generalization" xmi:id="_pd8dwM-xEeKO_rl5MA6s9A" general="_saCQ4M-wEeKO_rl5MA6s9A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_awVkYM-yEeKO_rl5MA6s9A" name="propertyOperators" type="_SZ1McM-yEeKO_rl5MA6s9A" aggregation="composite" association="_awpGYM-yEeKO_rl5MA6s9A">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_KvpSgM-zEeKO_rl5MA6s9A">
           <body>Collection of property operators used to compute two operands. Each property operator is designed to &#xD;
 operate on one type of property.</body>
         </ownedComment>
@@ -316,142 +529,143 @@ operate on one type of property.</body>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_cLZCkM-xEeKO_rl5MA6s9A" name="CustomOperator">
-      <generalization xmi:id="_ooh4sM-xEeKO_rl5MA6s9A" general="_saCQ4M-wEeKO_rl5MA6s9A"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_ooh4sM-xEeKO_rl5MA6s9A" general="_saCQ4M-wEeKO_rl5MA6s9A"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_hp55sM-xEeKO_rl5MA6s9A" name="StackedOperator">
-      <generalization xmi:id="_qGHRAM-xEeKO_rl5MA6s9A" general="_zRG2YM-wEeKO_rl5MA6s9A"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_qGHRAM-xEeKO_rl5MA6s9A" general="_zRG2YM-wEeKO_rl5MA6s9A"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_jAMXMM-xEeKO_rl5MA6s9A" name="TopOperator">
-      <generalization xmi:id="_quvXQM-xEeKO_rl5MA6s9A" general="_zRG2YM-wEeKO_rl5MA6s9A"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_quvXQM-xEeKO_rl5MA6s9A" general="_zRG2YM-wEeKO_rl5MA6s9A"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_t0KQEM-xEeKO_rl5MA6s9A" name="SimpleLayer">
-      <generalization xmi:id="_yiCUcM-xEeKO_rl5MA6s9A" general="_uIcTcM-wEeKO_rl5MA6s9A"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_yiCUcM-xEeKO_rl5MA6s9A" general="_uIcTcM-wEeKO_rl5MA6s9A"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_u6-HIM-xEeKO_rl5MA6s9A" name="RegExpLayer">
-      <generalization xmi:id="_zKNHsM-xEeKO_rl5MA6s9A" general="_uIcTcM-wEeKO_rl5MA6s9A"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_zKNHsM-xEeKO_rl5MA6s9A" general="_uIcTcM-wEeKO_rl5MA6s9A"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_LTBBsEysEeObF6ELIGKT-g" name="computeExpression"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_SZ1McM-yEeKO_rl5MA6s9A" name="PropertyOperator" isAbstract="true">
-      <ownedComment xmi:id="_lk1MQM-zEeKO_rl5MA6s9A">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_lk1MQM-zEeKO_rl5MA6s9A">
         <body>An operator used to compute two operands. The operator is designed to operate on specified property.</body>
       </ownedComment>
-      <ownedAttribute xmi:id="_mjPKsM-yEeKO_rl5MA6s9A" name="propertyDescriptor" type="_UzekYM-yEeKO_rl5MA6s9A" association="_mjiFoM-yEeKO_rl5MA6s9A">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_mjPKsM-yEeKO_rl5MA6s9A" name="propertyDescriptor" type="_UzekYM-yEeKO_rl5MA6s9A" association="_mjiFoM-yEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mjPKsc-yEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mjPKss-yEeKO_rl5MA6s9A" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_UzekYM-yEeKO_rl5MA6s9A" name="PropertyDescriptor">
-      <ownedAttribute xmi:id="_xNNKINIPEeKovM8ingMMQQ" name="name" visibility="public" type="_70TEoNIPEeKovM8ingMMQQ" isUnique="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xNNKINIPEeKovM8ingMMQQ" name="name" visibility="public" type="_70TEoNIPEeKovM8ingMMQQ" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CadgUNIQEeKovM8ingMMQQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CariwNIQEeKovM8ingMMQQ" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_CbWRINIQEeKovM8ingMMQQ">
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_C8tRwNIQEeKovM8ingMMQQ" name="icon" visibility="public" type="_GiHSMNIQEeKovM8ingMMQQ" isUnique="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_C8tRwNIQEeKovM8ingMMQQ" name="icon" visibility="public" type="_GiHSMNIQEeKovM8ingMMQQ" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JxGWsNIQEeKovM8ingMMQQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JxYqkNIQEeKovM8ingMMQQ" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_JyDY8NIQEeKovM8ingMMQQ">
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:id="_cX5PQNeNEeKpd73UUMObaQ" name="defaultValue" type="_l4yNkM-0EeKO_rl5MA6s9A" aggregation="composite" association="_cYKVANeNEeKpd73UUMObaQ">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_cX5PQNeNEeKpd73UUMObaQ" name="defaultValue" type="_l4yNkM-0EeKO_rl5MA6s9A" aggregation="composite" association="_cYKVANeNEeKpd73UUMObaQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cX5PQdeNEeKpd73UUMObaQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cX5PQteNEeKpd73UUMObaQ" value="1"/>
       </ownedAttribute>
-      <ownedOperation xmi:id="_NDsscNeNEeKpd73UUMObaQ" name="newPropertyValueInstance"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_NDsscNeNEeKpd73UUMObaQ" name="newPropertyValueInstance"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_awpGYM-yEeKO_rl5MA6s9A" name="class1_propertyOperator_1" memberEnd="_awpGYc-yEeKO_rl5MA6s9A _awVkYM-yEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_awpGYc-yEeKO_rl5MA6s9A" name="class1" type="_zRG2YM-wEeKO_rl5MA6s9A" association="_awpGYM-yEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_awpGYc-yEeKO_rl5MA6s9A" name="class1" type="_zRG2YM-wEeKO_rl5MA6s9A" association="_awpGYM-yEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_awpGYs-yEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_awpGY8-yEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_mjiFoM-yEeKO_rl5MA6s9A" name="propertyOperator_propertyDescriptor_1" memberEnd="_mjiFoc-yEeKO_rl5MA6s9A _mjPKsM-yEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_mjiFoc-yEeKO_rl5MA6s9A" name="propertyOperator" type="_SZ1McM-yEeKO_rl5MA6s9A" association="_mjiFoM-yEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_mjiFoc-yEeKO_rl5MA6s9A" name="propertyOperator" type="_SZ1McM-yEeKO_rl5MA6s9A" association="_mjiFoM-yEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mjiFos-yEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mjiFo8-yEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_kextsM-0EeKO_rl5MA6s9A" name="View"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_l4yNkM-0EeKO_rl5MA6s9A" name="TypeValue">
-      <ownedAttribute xmi:id="_OFQ7wM-5EeKO_rl5MA6s9A" name="descriptor" type="_UzekYM-yEeKO_rl5MA6s9A" association="_OFj2sM-5EeKO_rl5MA6s9A">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_OFQ7wM-5EeKO_rl5MA6s9A" name="descriptor" type="_UzekYM-yEeKO_rl5MA6s9A" association="_OFj2sM-5EeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OFQ7wc-5EeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OFQ7ws-5EeKO_rl5MA6s9A" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_rmCEQM-0EeKO_rl5MA6s9A" name="layer_view_1" memberEnd="_rmCEQc-0EeKO_rl5MA6s9A _rl4TQM-0EeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_rmCEQc-0EeKO_rl5MA6s9A" name="layer" type="_uIcTcM-wEeKO_rl5MA6s9A" association="_rmCEQM-0EeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_rmCEQc-0EeKO_rl5MA6s9A" name="layer" type="_uIcTcM-wEeKO_rl5MA6s9A" association="_rmCEQM-0EeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rmCEQs-0EeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rmCEQ8-0EeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_sd2dEM-0EeKO_rl5MA6s9A" name="layer_propertyValue_1" memberEnd="_sd2dEc-0EeKO_rl5MA6s9A _sdjiIM-0EeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_sd2dEc-0EeKO_rl5MA6s9A" name="layer" type="_uIcTcM-wEeKO_rl5MA6s9A" association="_sd2dEM-0EeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_sd2dEc-0EeKO_rl5MA6s9A" name="layer" type="_uIcTcM-wEeKO_rl5MA6s9A" association="_sd2dEM-0EeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_sd2dEs-0EeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_sd2dE8-0EeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_OFj2sM-5EeKO_rl5MA6s9A" name="propertyValue_propertyDescriptor_1" memberEnd="_OFj2sc-5EeKO_rl5MA6s9A _OFQ7wM-5EeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_OFj2sc-5EeKO_rl5MA6s9A" name="propertyValue" type="_l4yNkM-0EeKO_rl5MA6s9A" association="_OFj2sM-5EeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_OFj2sc-5EeKO_rl5MA6s9A" name="propertyValue" type="_l4yNkM-0EeKO_rl5MA6s9A" association="_OFj2sM-5EeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OFj2ss-5EeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OFj2s8-5EeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_JlCtINIPEeKovM8ingMMQQ" name="operatorExpression_layerExpression_1" memberEnd="_JlCtIdIPEeKovM8ingMMQQ _Jk2f4NIPEeKovM8ingMMQQ">
-      <ownedEnd xmi:id="_JlCtIdIPEeKovM8ingMMQQ" name="operatorExpression" type="_saCQ4M-wEeKO_rl5MA6s9A" association="_JlCtINIPEeKovM8ingMMQQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_JlCtIdIPEeKovM8ingMMQQ" name="operatorExpression" type="_saCQ4M-wEeKO_rl5MA6s9A" association="_JlCtINIPEeKovM8ingMMQQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JlCtItIPEeKovM8ingMMQQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JlCtI9IPEeKovM8ingMMQQ" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_PYgEENIQEeKovM8ingMMQQ" name="layer_propertyDescriptor_1" memberEnd="_PYgEEdIQEeKovM8ingMMQQ _PYT20NIQEeKovM8ingMMQQ">
-      <ownedEnd xmi:id="_PYgEEdIQEeKovM8ingMMQQ" name="layer" type="_q3GegM-wEeKO_rl5MA6s9A" association="_PYgEENIQEeKovM8ingMMQQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_PYgEEdIQEeKovM8ingMMQQ" name="layer" type="_q3GegM-wEeKO_rl5MA6s9A" association="_PYgEENIQEeKovM8ingMMQQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PYgEEtIQEeKovM8ingMMQQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PYgEE9IQEeKovM8ingMMQQ" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_3yFW8NIQEeKovM8ingMMQQ" name="layerExpression_propertyDescriptor_2" memberEnd="_3yFW8dIQEeKovM8ingMMQQ _3x5JsNIQEeKovM8ingMMQQ">
-      <ownedEnd xmi:id="_3yFW8dIQEeKovM8ingMMQQ" name="expr" type="_q3GegM-wEeKO_rl5MA6s9A" association="_3yFW8NIQEeKovM8ingMMQQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_3yFW8dIQEeKovM8ingMMQQ" name="expr" type="_q3GegM-wEeKO_rl5MA6s9A" association="_3yFW8NIQEeKovM8ingMMQQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3yFW8tIQEeKovM8ingMMQQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3yFW89IQEeKovM8ingMMQQ" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="__8-UwNIQEeKovM8ingMMQQ" name="layer_propertyDescriptor_3" memberEnd="__8-UwdIQEeKovM8ingMMQQ __8qywNIQEeKovM8ingMMQQ">
-      <ownedEnd xmi:id="__8-UwdIQEeKovM8ingMMQQ" name="layer" type="_uIcTcM-wEeKO_rl5MA6s9A" association="__8-UwNIQEeKovM8ingMMQQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="__8-UwdIQEeKovM8ingMMQQ" name="layer" type="_uIcTcM-wEeKO_rl5MA6s9A" association="__8-UwNIQEeKovM8ingMMQQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__8-UwtIQEeKovM8ingMMQQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__8-Uw9IQEeKovM8ingMMQQ" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_unRJANIXEeKovM8ingMMQQ" name="layerExpression_view_1" memberEnd="_unRJAdIXEeKovM8ingMMQQ _unLCYNIXEeKovM8ingMMQQ">
-      <ownedEnd xmi:id="_unRJAdIXEeKovM8ingMMQQ" name="layerExpression" type="_q3GegM-wEeKO_rl5MA6s9A" association="_unRJANIXEeKovM8ingMMQQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_unRJAdIXEeKovM8ingMMQQ" name="layerExpression" type="_q3GegM-wEeKO_rl5MA6s9A" association="_unRJANIXEeKovM8ingMMQQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unRJAtIXEeKovM8ingMMQQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_unRJA9IXEeKovM8ingMMQQ" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_3qy5UNNnEeKwWoA8j13SIg" name="LayerStacks">
-      <ownedComment xmi:id="_QvVU0NNoEeKwWoA8j13SIg">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_QvVU0NNoEeKwWoA8j13SIg">
         <body>Entry point of the model.&#xD;
 LayerStack are associated to their diagram.&#xD;
 </body>
       </ownedComment>
-      <ownedAttribute xmi:id="_8-4CENNnEeKwWoA8j13SIg" name="layerStacks" type="_t0NNoM9UEeKO_rl5MA6s9A" aggregation="composite" association="_8_KV8NNnEeKwWoA8j13SIg">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8-4CENNnEeKwWoA8j13SIg" name="layerStacks" type="_t0NNoM9UEeKO_rl5MA6s9A" aggregation="composite" association="_8_KV8NNnEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8-4CEdNnEeKwWoA8j13SIg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8-4CEtNnEeKwWoA8j13SIg" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_8_KV8NNnEeKwWoA8j13SIg" name="layerStacks_layerStack_1" memberEnd="_8_KV8dNnEeKwWoA8j13SIg _8-4CENNnEeKwWoA8j13SIg">
-      <ownedEnd xmi:id="_8_KV8dNnEeKwWoA8j13SIg" name="layerStacks" type="_3qy5UNNnEeKwWoA8j13SIg" association="_8_KV8NNnEeKwWoA8j13SIg">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_8_KV8dNnEeKwWoA8j13SIg" name="layerStacks" type="_3qy5UNNnEeKwWoA8j13SIg" association="_8_KV8NNnEeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8_KV8tNnEeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8_KV89NnEeKwWoA8j13SIg" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_iOVr4NN0EeKwWoA8j13SIg" name="SelectionManager">
-      <ownedComment xmi:id="_Rkak4NN3EeKwWoA8j13SIg">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_Rkak4NN3EeKwWoA8j13SIg">
         <body>This class is used to maintain the current layer selected.&#xD;
 It listen on LayerStack event, and set the current layer accordingly.&#xD;
 The current layer can also be set by methods.&#xD;
 The class can be observed to listen to selection changed.</body>
       </ownedComment>
-      <ownedAttribute xmi:id="_zPQPMNN0EeKwWoA8j13SIg" name="currentLayer" visibility="public" type="_uIcTcM-wEeKO_rl5MA6s9A" isUnique="false">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_zPQPMNN0EeKwWoA8j13SIg" name="currentLayer" visibility="public" type="_uIcTcM-wEeKO_rl5MA6s9A" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2bmPYNN0EeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2b4jQNN0EeKwWoA8j13SIg" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_2cu30NN0EeKwWoA8j13SIg">
@@ -460,83 +674,94 @@ The class can be observed to listen to selection changed.</body>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_4CAMgNN0EeKwWoA8j13SIg" name="layerStack_selectionManager_1" memberEnd="_4CAMgdN0EeKwWoA8j13SIg _4B6F4NN0EeKwWoA8j13SIg">
-      <ownedEnd xmi:id="_4CAMgdN0EeKwWoA8j13SIg" name="layerStack" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_4CAMgNN0EeKwWoA8j13SIg">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_4CAMgdN0EeKwWoA8j13SIg" name="layerStack" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_4CAMgNN0EeKwWoA8j13SIg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4CAMgtN0EeKwWoA8j13SIg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4CAMg9N0EeKwWoA8j13SIg" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_OS41oNNqEeKwWoA8j13SIg" clientDependency="_TW8v8NNrEeKwWoA8j13SIg _XY1RANNrEeKwWoA8j13SIg" name="ILayersModelEventListener">
-      <ownedOperation xmi:id="_SmexwNNqEeKwWoA8j13SIg" name="propertyValueAdded">
-        <ownedParameter xmi:id="_eeKKYNNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_SmexwNNqEeKwWoA8j13SIg" name="propertyValueAdded">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_eeKKYNNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_htRxwNNqEeKwWoA8j13SIg" name="propertyValueRemoved">
-        <ownedParameter xmi:id="_htRxwdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_htRxwNNqEeKwWoA8j13SIg" name="propertyValueRemoved">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_htRxwdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_h5JDgNNqEeKwWoA8j13SIg" name="propertyValueChanged">
-        <ownedParameter xmi:id="_h5JDgdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_h5JDgNNqEeKwWoA8j13SIg" name="propertyValueChanged">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_h5JDgdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_h69BYNNqEeKwWoA8j13SIg" name="layerAdded">
-        <ownedParameter xmi:id="_h69BYdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_h69BYNNqEeKwWoA8j13SIg" name="layerAdded">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_h69BYdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_iGe78NNqEeKwWoA8j13SIg" name="layerRemoved">
-        <ownedParameter xmi:id="_iGe78dNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_iGe78NNqEeKwWoA8j13SIg" name="layerRemoved">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_iGe78dNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_iKn1ENNqEeKwWoA8j13SIg" name="layerMoved">
-        <ownedParameter xmi:id="_iKn1EdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_iKn1ENNqEeKwWoA8j13SIg" name="layerMoved">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_iKn1EdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_iUNO4NNqEeKwWoA8j13SIg" name="layerStackEnable">
-        <ownedParameter xmi:id="_iUNO4dNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_iUNO4NNqEeKwWoA8j13SIg" name="layerStackEnable">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_iUNO4dNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_1WChENNqEeKwWoA8j13SIg" name="layerStackDisable">
-        <ownedParameter xmi:id="_1WChEdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_1WChENNqEeKwWoA8j13SIg" name="layerStackDisable">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_1WChEdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_1iV3sNNqEeKwWoA8j13SIg" name="viewAddedToLayer">
-        <ownedParameter xmi:id="_1iV3sdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_1iV3sNNqEeKwWoA8j13SIg" name="viewAddedToLayer">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_1iV3sdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_1mcUkNNqEeKwWoA8j13SIg" name="viewRemovedFromLayer">
-        <ownedParameter xmi:id="_1mcUkdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_1mcUkNNqEeKwWoA8j13SIg" name="viewRemovedFromLayer">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_1mcUkdNqEeKwWoA8j13SIg" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
-      <ownedOperation xmi:id="_94G1IN9lEeKCZbxNW-U3VQ" name="viewMovedBetweenLayers">
-        <ownedParameter xmi:id="_94G1Id9lEeKCZbxNW-U3VQ" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_94G1IN9lEeKCZbxNW-U3VQ" name="viewMovedBetweenLayers">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_94G1Id9lEeKCZbxNW-U3VQ" name="event" type="_XbvQgNNqEeKwWoA8j13SIg"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_XbvQgNNqEeKwWoA8j13SIg" name="LayersModelEvent"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_TW8v8NNrEeKwWoA8j13SIg" name="listenOn" client="_OS41oNNqEeKwWoA8j13SIg" supplier="_t0NNoM9UEeKO_rl5MA6s9A"/>
     <packagedElement xmi:type="uml:Dependency" xmi:id="_XY1RANNrEeKwWoA8j13SIg" name="Dependency2" client="_OS41oNNqEeKwWoA8j13SIg" supplier="_XbvQgNNqEeKwWoA8j13SIg"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_WMWIcNeMEeKpd73UUMObaQ" name="PropertyFactory">
-      <ownedAttribute xmi:id="_H-rd8NeOEeKpd73UUMObaQ" name="propertyDescriptors" type="_UzekYM-yEeKO_rl5MA6s9A" association="_H-9x0NeOEeKpd73UUMObaQ">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_H-rd8NeOEeKpd73UUMObaQ" name="propertyDescriptors" type="_UzekYM-yEeKO_rl5MA6s9A" association="_H-9x0NeOEeKpd73UUMObaQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H-rd8deOEeKpd73UUMObaQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H-rd8teOEeKpd73UUMObaQ" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_cYKVANeNEeKpd73UUMObaQ" name="propertyDescriptor_propertyValue_1" memberEnd="_cYKVAdeNEeKpd73UUMObaQ _cX5PQNeNEeKpd73UUMObaQ">
-      <ownedEnd xmi:id="_cYKVAdeNEeKpd73UUMObaQ" name="propertyDescriptor" type="_UzekYM-yEeKO_rl5MA6s9A" association="_cYKVANeNEeKpd73UUMObaQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_cYKVAdeNEeKpd73UUMObaQ" name="propertyDescriptor" type="_UzekYM-yEeKO_rl5MA6s9A" association="_cYKVANeNEeKpd73UUMObaQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cYKVAteNEeKpd73UUMObaQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cYKVA9eNEeKpd73UUMObaQ" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_H-9x0NeOEeKpd73UUMObaQ" name="propertyFactory_propertyDescriptor_1" memberEnd="_H-9x0deOEeKpd73UUMObaQ _H-rd8NeOEeKpd73UUMObaQ">
-      <ownedEnd xmi:id="_H-9x0deOEeKpd73UUMObaQ" name="propertyFactory" type="_WMWIcNeMEeKpd73UUMObaQ" association="_H-9x0NeOEeKpd73UUMObaQ">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_H-9x0deOEeKpd73UUMObaQ" name="propertyFactory" type="_WMWIcNeMEeKpd73UUMObaQ" association="_H-9x0NeOEeKpd73UUMObaQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H-9x0teOEeKpd73UUMObaQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H-9x09eOEeKpd73UUMObaQ" value="1"/>
       </ownedEnd>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Gkz8QEyjEeObF6ELIGKT-g" name="notifiers">
+      <packagedElement xmi:type="uml:Class" xmi:id="_JwRLoEyjEeObF6ELIGKT-g" clientDependency="_SokpEEyjEeObF6ELIGKT-g" name="DiagramViewEventNotifier">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_h14fwEyuEeObF6ELIGKT-g" name="stopListening"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_h15G0EyuEeObF6ELIGKT-g" name="startListening"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_HJLoANNqEeKwWoA8j13SIg" name="IDiagramViewEventListener">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_JZ7ioNNqEeKwWoA8j13SIg" name="viewAddedEvent"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_Ft6TwN9mEeKCZbxNW-U3VQ" name="viewRemovedEvent"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_SokpEEyjEeObF6ELIGKT-g" name="Usage1" client="_JwRLoEyjEeObF6ELIGKT-g" supplier="_HJLoANNqEeKwWoA8j13SIg"/>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_ShE8QL2QEeKKJJ5BmR3W3Q" name="notation">
     <packagedElement xmi:type="uml:Class" xmi:id="_rqknoM9UEeKO_rl5MA6s9A" name="Diagram">
-      <ownedAttribute xmi:id="_5PP4IM9VEeKO_rl5MA6s9A" name="namedStyle" type="_0Q5HwM9VEeKO_rl5MA6s9A" association="_5PcFYM9VEeKO_rl5MA6s9A">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5PP4IM9VEeKO_rl5MA6s9A" name="namedStyle" type="_0Q5HwM9VEeKO_rl5MA6s9A" association="_5PcFYM9VEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5PP4Ic9VEeKO_rl5MA6s9A"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5PP4Is9VEeKO_rl5MA6s9A" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_5PcFYM9VEeKO_rl5MA6s9A" name="diagram_namedStyle_1" memberEnd="_5PcFYc9VEeKO_rl5MA6s9A _5PP4IM9VEeKO_rl5MA6s9A">
-      <ownedEnd xmi:id="_5PcFYc9VEeKO_rl5MA6s9A" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_5PcFYM9VEeKO_rl5MA6s9A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_5PcFYc9VEeKO_rl5MA6s9A" name="diagram" type="_rqknoM9UEeKO_rl5MA6s9A" association="_5PcFYM9VEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5PcFYs9VEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5PcFY89VEeKO_rl5MA6s9A" value="1"/>
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_0Q5HwM9VEeKO_rl5MA6s9A" name="NamedStyle">
-      <ownedAttribute xmi:id="_54-KkM9VEeKO_rl5MA6s9A" name="value" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_55Ll8M9VEeKO_rl5MA6s9A">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_54-KkM9VEeKO_rl5MA6s9A" name="value" type="_t0NNoM9UEeKO_rl5MA6s9A" association="_55Ll8M9VEeKO_rl5MA6s9A">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_54-Kkc9VEeKO_rl5MA6s9A" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_54-Kks9VEeKO_rl5MA6s9A" value="1"/>
       </ownedAttribute>
@@ -553,38 +778,38 @@ The class can be observed to listen to selection changed.</body>
   <packagedElement xmi:type="uml:Model" xmi:id="_3PV9kNLREeKwWoA8j13SIg" name="patterns">
     <packagedElement xmi:type="uml:Package" xmi:id="_93lc4NLREeKwWoA8j13SIg" name="eventProviderOneListener">
       <packagedElement xmi:type="uml:Class" xmi:id="_FpeE0NLSEeKwWoA8j13SIg" clientDependency="_vlovUNLTEeKwWoA8j13SIg" name="ClassnameEventProvider">
-        <ownedAttribute xmi:id="_qQgTINLSEeKwWoA8j13SIg" name="eventListener" type="_MFiwYNLSEeKwWoA8j13SIg" association="_qQmZwNLSEeKwWoA8j13SIg">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_qQgTINLSEeKwWoA8j13SIg" name="eventListener" type="_MFiwYNLSEeKwWoA8j13SIg" association="_qQmZwNLSEeKwWoA8j13SIg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qQgTIdLSEeKwWoA8j13SIg"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qQgTItLSEeKwWoA8j13SIg" value="1"/>
         </ownedAttribute>
-        <ownedOperation xmi:id="___ERUNLSEeKwWoA8j13SIg" name="addClassnameEventListener">
-          <ownedParameter xmi:id="_K04kUNLTEeKwWoA8j13SIg" name="listener" type="_MFiwYNLSEeKwWoA8j13SIg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="___ERUNLSEeKwWoA8j13SIg" name="addClassnameEventListener">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_K04kUNLTEeKwWoA8j13SIg" name="listener" type="_MFiwYNLSEeKwWoA8j13SIg"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_OXuY8NLTEeKwWoA8j13SIg" name="removeClassnameEventListener">
-          <ownedParameter xmi:id="_OXuY8dLTEeKwWoA8j13SIg" name="listener" type="_MFiwYNLSEeKwWoA8j13SIg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_OXuY8NLTEeKwWoA8j13SIg" name="removeClassnameEventListener">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_OXuY8dLTEeKwWoA8j13SIg" name="listener" type="_MFiwYNLSEeKwWoA8j13SIg"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_c-YVwNLSEeKwWoA8j13SIg" name="fireName1Event">
-          <ownedParameter xmi:id="_k6tTINLSEeKwWoA8j13SIg" name="event" type="_TqDqsNLSEeKwWoA8j13SIg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_c-YVwNLSEeKwWoA8j13SIg" name="fireName1Event">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_k6tTINLSEeKwWoA8j13SIg" name="event" type="_TqDqsNLSEeKwWoA8j13SIg"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_dAOTYNLTEeKwWoA8j13SIg" name="fireName2Event">
-          <ownedParameter xmi:id="_dAOTYdLTEeKwWoA8j13SIg" name="event" type="_TqDqsNLSEeKwWoA8j13SIg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_dAOTYNLTEeKwWoA8j13SIg" name="fireName2Event">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_dAOTYdLTEeKwWoA8j13SIg" name="event" type="_TqDqsNLSEeKwWoA8j13SIg"/>
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="_MFiwYNLSEeKwWoA8j13SIg" clientDependency="_wSvs8NLTEeKwWoA8j13SIg" name="IClassnameEventListener">
-        <ownedOperation xmi:id="_7UNrwNLSEeKwWoA8j13SIg" name="name1Event">
-          <ownedParameter xmi:id="_7UNrwdLSEeKwWoA8j13SIg" name="event" type="_TqDqsNLSEeKwWoA8j13SIg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_7UNrwNLSEeKwWoA8j13SIg" name="name1Event">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_7UNrwdLSEeKwWoA8j13SIg" name="event" type="_TqDqsNLSEeKwWoA8j13SIg"/>
         </ownedOperation>
-        <ownedOperation xmi:id="_hnQI4NLTEeKwWoA8j13SIg" name="name2Event">
-          <ownedParameter xmi:id="_hnQI4dLTEeKwWoA8j13SIg" name="event" type="_TqDqsNLSEeKwWoA8j13SIg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_hnQI4NLTEeKwWoA8j13SIg" name="name2Event">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_hnQI4dLTEeKwWoA8j13SIg" name="event" type="_TqDqsNLSEeKwWoA8j13SIg"/>
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_TqDqsNLSEeKwWoA8j13SIg" name="ClassnameEvent">
-        <ownedComment xmi:id="_1Q1-oNLTEeKwWoA8j13SIg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_1Q1-oNLTEeKwWoA8j13SIg">
           <body>The Event class is used to carry data from the sender to the listener.</body>
         </ownedComment>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_qQmZwNLSEeKwWoA8j13SIg" name="classnameEventProvider_iClassnameEventListener_1" memberEnd="_qQmZwdLSEeKwWoA8j13SIg _qQgTINLSEeKwWoA8j13SIg">
-        <ownedEnd xmi:id="_qQmZwdLSEeKwWoA8j13SIg" name="classnameEventProvider" type="_FpeE0NLSEeKwWoA8j13SIg" association="_qQmZwNLSEeKwWoA8j13SIg">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_qQmZwdLSEeKwWoA8j13SIg" name="classnameEventProvider" type="_FpeE0NLSEeKwWoA8j13SIg" association="_qQmZwNLSEeKwWoA8j13SIg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qQmZwtLSEeKwWoA8j13SIg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qQmZw9LSEeKwWoA8j13SIg" value="1"/>
         </ownedEnd>
@@ -595,18 +820,18 @@ The class can be observed to listen to selection changed.</body>
   </packagedElement>
   <packagedElement xmi:type="uml:Model" xmi:id="_Hq1QwNRgEeKHbZ6TDsPmrQ" name="design">
     <packagedElement xmi:type="uml:Package" xmi:id="_MIZBMNRgEeKHbZ6TDsPmrQ" name="extensible properties">
-      <ownedComment xmi:id="_8tJPoNRpEeKHbZ6TDsPmrQ">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_8tJPoNRpEeKHbZ6TDsPmrQ">
         <body>Type and TypeValue are part of the system ?</body>
       </ownedComment>
-      <ownedComment xmi:id="_4zs_QNRxEeKHbZ6TDsPmrQ">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_4zs_QNRxEeKHbZ6TDsPmrQ">
         <body>LayerDescriptor and Property are not saved with LayerStack</body>
       </ownedComment>
       <packagedElement xmi:type="uml:Class" xmi:id="_WWBS0NRgEeKHbZ6TDsPmrQ" name="Property">
-        <ownedAttribute xmi:id="_bo_oUNRgEeKHbZ6TDsPmrQ" name="type" type="_XqHX8NRgEeKHbZ6TDsPmrQ" association="_bpFu8NRgEeKHbZ6TDsPmrQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_bo_oUNRgEeKHbZ6TDsPmrQ" name="type" type="_XqHX8NRgEeKHbZ6TDsPmrQ" association="_bpFu8NRgEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bo_oUdRgEeKHbZ6TDsPmrQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bo_oUtRgEeKHbZ6TDsPmrQ" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_h2j90NRgEeKHbZ6TDsPmrQ" name="name" visibility="public" type="_70TEoNIPEeKovM8ingMMQQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_h2j90NRgEeKHbZ6TDsPmrQ" name="name" visibility="public" type="_70TEoNIPEeKovM8ingMMQQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ko6JoNRgEeKHbZ6TDsPmrQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kpG98NRgEeKHbZ6TDsPmrQ" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_kp95kNRgEeKHbZ6TDsPmrQ">
@@ -616,58 +841,61 @@ The class can be observed to listen to selection changed.</body>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_XqHX8NRgEeKHbZ6TDsPmrQ" name="Type"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_Y8NR8NRgEeKHbZ6TDsPmrQ" name="PropertyValue">
-        <ownedAttribute xmi:id="_HqSBsNRhEeKHbZ6TDsPmrQ" name="typeValue" type="_F0T-kNRhEeKHbZ6TDsPmrQ" association="_HqkVkNRhEeKHbZ6TDsPmrQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_HqSBsNRhEeKHbZ6TDsPmrQ" name="typeValue" type="_F0T-kNRhEeKHbZ6TDsPmrQ" association="_HqkVkNRhEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HqSBsdRhEeKHbZ6TDsPmrQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HqSBstRhEeKHbZ6TDsPmrQ" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_IvGUsNRhEeKHbZ6TDsPmrQ" name="property" type="_WWBS0NRgEeKHbZ6TDsPmrQ" association="_IvSh8NRhEeKHbZ6TDsPmrQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IvGUsNRhEeKHbZ6TDsPmrQ" name="property" type="_WWBS0NRgEeKHbZ6TDsPmrQ" association="_IvSh8NRhEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IvGUsdRhEeKHbZ6TDsPmrQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IvGUstRhEeKHbZ6TDsPmrQ" value="1"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_bpFu8NRgEeKHbZ6TDsPmrQ" name="property_type_1" memberEnd="_bpFu8dRgEeKHbZ6TDsPmrQ _bo_oUNRgEeKHbZ6TDsPmrQ">
-        <ownedEnd xmi:id="_bpFu8dRgEeKHbZ6TDsPmrQ" name="property" type="_WWBS0NRgEeKHbZ6TDsPmrQ" association="_bpFu8NRgEeKHbZ6TDsPmrQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_bpFu8dRgEeKHbZ6TDsPmrQ" name="property" type="_WWBS0NRgEeKHbZ6TDsPmrQ" association="_bpFu8NRgEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bpFu8tRgEeKHbZ6TDsPmrQ"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bpFu89RgEeKHbZ6TDsPmrQ" value="*"/>
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_dFTOQNRgEeKHbZ6TDsPmrQ" name="LayerDescriptor">
-        <ownedAttribute xmi:id="_gXohsNRgEeKHbZ6TDsPmrQ" name="AllowedProperties" type="_WWBS0NRgEeKHbZ6TDsPmrQ" aggregation="composite" association="_gX0u8NRgEeKHbZ6TDsPmrQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_gXohsNRgEeKHbZ6TDsPmrQ" name="AllowedProperties" type="_WWBS0NRgEeKHbZ6TDsPmrQ" aggregation="composite" association="_gX0u8NRgEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gXohsdRgEeKHbZ6TDsPmrQ"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gXohstRgEeKHbZ6TDsPmrQ" value="*"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_gX0u8NRgEeKHbZ6TDsPmrQ" name="layerDescriptor_property_1" memberEnd="_gX0u8dRgEeKHbZ6TDsPmrQ _gXohsNRgEeKHbZ6TDsPmrQ">
-        <ownedEnd xmi:id="_gX0u8dRgEeKHbZ6TDsPmrQ" name="layerDescriptor" type="_dFTOQNRgEeKHbZ6TDsPmrQ" association="_gX0u8NRgEeKHbZ6TDsPmrQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gX0u8dRgEeKHbZ6TDsPmrQ" name="layerDescriptor" type="_dFTOQNRgEeKHbZ6TDsPmrQ" association="_gX0u8NRgEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gX0u8tRgEeKHbZ6TDsPmrQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gX0u89RgEeKHbZ6TDsPmrQ" value="1"/>
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_BrSTsNRhEeKHbZ6TDsPmrQ" name="Layer">
-        <ownedAttribute xmi:id="_EeaioNRhEeKHbZ6TDsPmrQ" name="propertyValue" type="_Y8NR8NRgEeKHbZ6TDsPmrQ" association="_Eemv4NRhEeKHbZ6TDsPmrQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_EeaioNRhEeKHbZ6TDsPmrQ" name="propertyValue" type="_Y8NR8NRgEeKHbZ6TDsPmrQ" association="_Eemv4NRhEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EeaiodRhEeKHbZ6TDsPmrQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EeaiotRhEeKHbZ6TDsPmrQ" value="1"/>
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_Eemv4NRhEeKHbZ6TDsPmrQ" name="layer_propertyValue_1" memberEnd="_Eemv4dRhEeKHbZ6TDsPmrQ _EeaioNRhEeKHbZ6TDsPmrQ">
-        <ownedEnd xmi:id="_Eemv4dRhEeKHbZ6TDsPmrQ" name="layer" type="_BrSTsNRhEeKHbZ6TDsPmrQ" association="_Eemv4NRhEeKHbZ6TDsPmrQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_Eemv4dRhEeKHbZ6TDsPmrQ" name="layer" type="_BrSTsNRhEeKHbZ6TDsPmrQ" association="_Eemv4NRhEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Eemv4tRhEeKHbZ6TDsPmrQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Eemv49RhEeKHbZ6TDsPmrQ" value="1"/>
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_F0T-kNRhEeKHbZ6TDsPmrQ" name="TypeValue"/>
       <packagedElement xmi:type="uml:Association" xmi:id="_HqkVkNRhEeKHbZ6TDsPmrQ" name="propertyValue_typeValue_1" memberEnd="_HqkVkdRhEeKHbZ6TDsPmrQ _HqSBsNRhEeKHbZ6TDsPmrQ">
-        <ownedEnd xmi:id="_HqkVkdRhEeKHbZ6TDsPmrQ" name="propertyValue" type="_Y8NR8NRgEeKHbZ6TDsPmrQ" association="_HqkVkNRhEeKHbZ6TDsPmrQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_HqkVkdRhEeKHbZ6TDsPmrQ" name="propertyValue" type="_Y8NR8NRgEeKHbZ6TDsPmrQ" association="_HqkVkNRhEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HqkVktRhEeKHbZ6TDsPmrQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HqkVk9RhEeKHbZ6TDsPmrQ" value="1"/>
         </ownedEnd>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_IvSh8NRhEeKHbZ6TDsPmrQ" name="propertyValue_property_1" memberEnd="_IvSh8dRhEeKHbZ6TDsPmrQ _IvGUsNRhEeKHbZ6TDsPmrQ">
-        <ownedEnd xmi:id="_IvSh8dRhEeKHbZ6TDsPmrQ" name="propertyValue" type="_Y8NR8NRgEeKHbZ6TDsPmrQ" association="_IvSh8NRhEeKHbZ6TDsPmrQ">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_IvSh8dRhEeKHbZ6TDsPmrQ" name="propertyValue" type="_Y8NR8NRgEeKHbZ6TDsPmrQ" association="_IvSh8NRhEeKHbZ6TDsPmrQ">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IvSh8tRhEeKHbZ6TDsPmrQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IvSh89RhEeKHbZ6TDsPmrQ" value="1"/>
         </ownedEnd>
       </packagedElement>
     </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_0oBF4EyqEeObF6ELIGKT-g" name="emf">
+    <packagedElement xmi:type="uml:Class" xmi:id="_3MwTgEyqEeObF6ELIGKT-g" name="EObject"/>
   </packagedElement>
 </uml:Model>
