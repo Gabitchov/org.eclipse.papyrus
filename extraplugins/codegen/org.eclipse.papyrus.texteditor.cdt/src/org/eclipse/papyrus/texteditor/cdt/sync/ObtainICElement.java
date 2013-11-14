@@ -16,9 +16,13 @@ import org.eclipse.cdt.core.model.ICElement;
 import org.eclipse.cdt.core.model.IFunctionDeclaration;
 import org.eclipse.cdt.core.model.IParent;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
+import org.eclipse.uml2.uml.Transition;
 
 public class ObtainICElement {
 	/**
@@ -34,11 +38,22 @@ public class ObtainICElement {
 					return getICElement((IParent)child, element);
 				}
 				if(child instanceof IFunctionDeclaration) {
-					// IFunctionDeclaration function = (IFunctionDeclaration) child;
+					IFunctionDeclaration function = (IFunctionDeclaration) child;
 					
-					if (element instanceof Operation) {						
+					if (element instanceof Operation) {
 						if (child.getElementName().endsWith(Namespace.SEPARATOR + element.getName())) {
-							return child;
+							// check, if number of parameter matches. TODO: this only handles a part of possible overloading cases
+							if (function.getNumberOfParameters() == countParameters(((Operation) element).getOwnedParameters())) {
+								return child;
+							}
+						}
+					}
+					else if (element instanceof Transition) {
+						Transition transition = (Transition) element;
+						if (child.getElementName().endsWith(Namespace.SEPARATOR + transition.getEffect().getName())) {
+							if (function.getNumberOfParameters() == countParameters(transition.getEffect().getOwnedParameters())) {
+								return child;
+							}
 						}
 					}
 				}
@@ -49,4 +64,19 @@ public class ObtainICElement {
 		return null;
 	}
 
+	/**
+	 * Count the number of parameters without taking the return parameter into account
+	 *
+	 * @param list
+	 * @return
+	 */
+	public static int countParameters(EList<Parameter> list) {
+		int params = 0;
+		for (Parameter par : list) {
+			if (par.getDirection() != ParameterDirectionKind.RETURN_LITERAL) {
+				params++;
+			}
+		}
+		return params;
+	}
 }

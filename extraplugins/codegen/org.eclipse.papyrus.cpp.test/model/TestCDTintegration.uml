@@ -49,7 +49,7 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_419y0A7hEeKpbseGaEy1LA" name="Class2"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_K8FLcB0LEeKlYLZOWTi6uw" name="Class3">
       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_kTVuwP6QEeKlg5tzGV3QVQ" name="Operation1" isReentrant="false" specification="_TY18YB0LEeKlYLZOWTi6uw">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_JPzkEEL5EeO1TdFz52di_Q" name="arg">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_SoTM0ExiEeOmZKwrWJYDKQ" name="arg">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
         </ownedParameter>
         <language>C/C++</language>
@@ -57,7 +57,7 @@
 cout &lt;&lt; &quot;value: &quot; &lt;&lt; arg;</body>
       </ownedBehavior>
       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pX7DgDcmEeO6UdbIk03c9Q" name="Operation2" isReentrant="false" specification="_jnWMADcmEeO6UdbIk03c9Q">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_JPgCEEL5EeO1TdFz52di_Q" name="args">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_SoUa8UxiEeOmZKwrWJYDKQ" name="args">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
         </ownedParameter>
         <language>C/C++</language>
@@ -68,15 +68,15 @@ args[0] = 2;</body>
         <ownedComment xmi:type="uml:Comment" xmi:id="_II4ccP6WEeKlg5tzGV3QVQ" annotatedElement="_II4ccP6WEeKlg5tzGV3QVQ">
           <body></body>
         </ownedComment>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_JPy9AEL5EeO1TdFz52di_Q" name="arg">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_SoSlwExiEeOmZKwrWJYDKQ" name="arg">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
         </ownedParameter>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_jnWMADcmEeO6UdbIk03c9Q" name="Operation2" method="_pX7DgDcmEeO6UdbIk03c9Q">
         <ownedComment xmi:type="uml:Comment" xmi:id="_rH4lQDcmEeO6UdbIk03c9Q" annotatedElement="_rH4lQDcmEeO6UdbIk03c9Q">
-          <body></body>
+          <body>This is a test comment for operation 2</body>
         </ownedComment>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_JPbwoEL5EeO1TdFz52di_Q" name="args">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_SoUa8ExiEeOmZKwrWJYDKQ" name="args">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
         </ownedParameter>
       </ownedOperation>
@@ -116,7 +116,7 @@ args[0] = 2;</body>
     </profileApplication>
   </uml:Model>
   <C_Cpp:Typedef xmi:id="_D6FjUDcWEeO6UdbIk03c9Q" definition="int" base_primitivetype="_DHJ24C-JEeObJ6ARx67E0g"/>
-  <C_Cpp:Const xmi:id="_JPmvwEL5EeO1TdFz52di_Q" base_parameter="_JPbwoEL5EeO1TdFz52di_Q"/>
-  <C_Cpp:Ptr xmi:id="_JProQEL5EeO1TdFz52di_Q" base_parameter="_JPbwoEL5EeO1TdFz52di_Q"/>
-  <C_Cpp:Array xmi:id="_JPxH0EL5EeO1TdFz52di_Q" base_parameter="_JPbwoEL5EeO1TdFz52di_Q" definition="[5]"/>
+  <C_Cpp:Const xmi:id="_SoYFUExiEeOmZKwrWJYDKQ" base_parameter="_SoUa8ExiEeOmZKwrWJYDKQ"/>
+  <C_Cpp:Ptr xmi:id="_SobvsExiEeOmZKwrWJYDKQ" base_parameter="_SoUa8ExiEeOmZKwrWJYDKQ"/>
+  <C_Cpp:Array xmi:id="_SofaEExiEeOmZKwrWJYDKQ" base_parameter="_SoUa8ExiEeOmZKwrWJYDKQ" definition="[5]"/>
 </xmi:XMI>
