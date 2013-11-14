@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.layers.feature"
+      label="%featureName"
+      version="0.10.1.qualifier"
+      provider-name="%providerName">
+
+   <description url="http://www.example.com/description">
+      This plugins add Layers capapbilities to Papyrus diagrams.
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.gmf.runtime.notation" version="1.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.notation.edit" version="1.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.notation.providers" version="1.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.edit" version="2.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore.edit" version="2.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.layers.stackmodel" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.9.0" match="greaterOrEqual"/>
+      <import plugin="org.junit"/>
+      <import plugin="org.eclipse.papyrus.infra.core"/>
+      <import plugin="org.eclipse.core.resources" version="3.8.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.gmfdiag.common" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore.xmi" version="2.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.uml2.uml" version="4.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.emf" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.emf.diagram.common" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.layers.stackmodel.editor" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.transaction" version="1.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.core.log" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.expressions"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui" version="1.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.uml2.common.edit"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.papyrus.infra.core.sasheditor" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.forms" version="3.5.200" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf" version="2.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.core" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.layers.runtime" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.databinding"/>
+      <import plugin="org.eclipse.core.databinding.beans"/>
+      <import plugin="org.eclipse.core.databinding.observable"/>
+      <import plugin="org.eclipse.core.databinding.property"/>
+      <import plugin="com.ibm.icu"/>
+      <import plugin="org.eclipse.emf.databinding"/>
+      <import plugin="org.eclipse.uml2.uml.edit" version="4.0.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.databinding.edit" version="1.3.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface.databinding" version="1.6.200" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.properties"/>
+      <import plugin="org.eclipse.ui.ide" version="3.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor" version="1.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.expressions" version="3.4.500" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.layers.notationmodel.edit" version="0.11.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.views.modelexplorer" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.views.properties" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.widgets" version="0.10.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.navigator" version="3.5.300" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.notation.edit" version="1.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.services.labelprovider" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.gmfdiag.hyperlink" version="0.10.1" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.papyrus.layers.notationmodel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.layers.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.layers.stackmodel"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.layers.stackmodel.diagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.layers.stackmodel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.layers.stackmodel.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.layers.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
