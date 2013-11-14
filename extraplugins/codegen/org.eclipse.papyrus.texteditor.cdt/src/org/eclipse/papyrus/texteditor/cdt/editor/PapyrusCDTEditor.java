@@ -154,8 +154,9 @@ public class PapyrusCDTEditor extends CEditor {
 			// assure that gotoElement is called, if the element in the model gets updated
 			public void notifyChanged(Notification notification) {
 				if (notification.getEventType() == Notification.SET) {
-					if (notification.getNewValue() instanceof NamedElement) {
-						gotoElement((NamedElement) notification.getNewValue());
+					Object newValue = notification.getNewValue();
+					if (newValue instanceof NamedElement) {
+						gotoElement((NamedElement) newValue);
 					}
 
 				}

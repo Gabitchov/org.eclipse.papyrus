@@ -47,12 +47,12 @@ else
 endif/]
 
 [template public CppReturnSpec(operation : Operation)]
-[if (type = null)][ConsDestructorOrVoid()/][else][returnResult().modConst()/] [type.cppQualifiedName()/] [/if][returnResult().modPtr()/][returnResult().modRef()/]
+[if (type = null)][ConsDestructorOrVoid()/][else][returnResult().modConst()/] [type.cppQualifiedName()/][returnResult().modPtr()/][returnResult().modRef()/] [/if]
 [/template]
 
 
 [template public CppReturnSpec(behavior : Behavior)]
-[if (returnResult() = null)]void [else][returnResult().modConst()/] [returnResult().type.cppQualifiedName()/] [/if][returnResult().modPtr()/][returnResult().modRef()/]
+[if (returnResult() = null)]void [else][returnResult().modConst()/] [returnResult().type.cppQualifiedName()/][returnResult().modPtr()/][returnResult().modRef()/] [/if]
 [/template]
 
 
