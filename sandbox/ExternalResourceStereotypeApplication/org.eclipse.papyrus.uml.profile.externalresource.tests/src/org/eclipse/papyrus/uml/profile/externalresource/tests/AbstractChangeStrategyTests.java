@@ -47,29 +47,68 @@ import org.junit.Test;
 public abstract class AbstractChangeStrategyTests extends AbstractExternalResourcesTest {
 	
 	@Test
+	public void testSaveAs() {
+		UmlModel umlModel = null;
+		// get The model. try to see applied stereotypes
+		try {
+			umlModel = (UmlModel)modelSet.getModelChecked(UmlModel.MODEL_ID);
+		} catch (NotFoundException e) {
+			fail(e.getMessage());
+		}
+		Model rootModel = (Model)umlModel.getResource().getContents().get(0);
+		Assert.assertNotNull("Root model impossible to find", rootModel);
+		
+		URI resultURI = getResultURI();
+		try {
+			getModelSet(getURI()).saveAs(resultURI);
+		} catch (IOException e) {
+			fail(e.getMessage());
+		}
+		checkModel(rootModel);
+		// check current model still have right stereotypes/values
+		tearDownRegistry();
+		// try to load and read profiles in the result file
+		ModelSet resultModelSet = getModelSet(resultURI);
+		Assert.assertNotNull("TMP Model set should not be null", resultModelSet);
+		UmlModel resultUmlModel = null;
+		// get The result model. try to see applied stereotypes
+		try {
+			resultUmlModel = (UmlModel)resultModelSet.getModelChecked(UmlModel.MODEL_ID);
+		} catch (NotFoundException e) {
+			fail(e.getMessage());
+		}
+		Assert.assertNotNull(resultUmlModel);
+		Resource resultResource = resultUmlModel.getResource();
+		Assert.assertNotNull(resultResource);
+		Model resultRootModel = (Model)resultResource.getContents().get(0);
+		Assert.assertNotNull(resultRootModel);
+		checkModel(resultRootModel);
+	}
+	
+	@Test
 	public void changeToOneFileOnlyStrategy() {
 		changeToStrategy(StrategyRegistry.getInstance().getStrategy(OneResourceOnlyStrategy.ID));
 		
 		// additionnal checks : strategy, location of the stereotype application, etc.
-		ModelSet tmpModelSet = getModelSet(getTempURI());
-		UmlModel tmpUmlModel = null;
-		// get The tmp model. try to see applied stereotypes
+		ModelSet resultModelSet = getModelSet(getResultURI());
+		UmlModel resultUmlModel = null;
+		// get The result model. try to see applied stereotypes
 		try {
-			tmpUmlModel = (UmlModel)tmpModelSet.getModelChecked(UmlModel.MODEL_ID);
+			resultUmlModel = (UmlModel)resultModelSet.getModelChecked(UmlModel.MODEL_ID);
 		} catch (NotFoundException e) {
 			fail(e.getMessage());
 		}
-		Resource tmpResource = tmpUmlModel.getResource();
-		Model tmpRootModel = (Model)tmpResource.getContents().get(0);
+		Resource resultResource = resultUmlModel.getResource();
+		Model resultRootModel = (Model)resultResource.getContents().get(0);
 		
 		// test some stereotype applications
 		// Model::class1 should have <<classStereotype>> Applied (verify root level stererotype)
-		Class class1_ = (Class)tmpRootModel.getPackagedElement(MODEL_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
+		Class class1_ = (Class)resultRootModel.getPackagedElement(MODEL_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
 		EObject application = class1_.getStereotypeApplication(class1_.getAppliedStereotype(CLASS_STEREOTYPE_QN));
 		Assert.assertNotNull("No stereotype applied on "+ MODEL_CLASS1, application);
 		Assert.assertNotNull(application.eResource());
 		URI stereotypeApplicationURI = application.eResource().getURI();
-		Assert.assertEquals("Stereotype is not in expected resource", getTempURI().trimFileExtension().appendFileExtension(OneResourceOnlyStrategy.PROFILE_DEFAULT_EXTENSION), stereotypeApplicationURI);
+		Assert.assertEquals("Stereotype is not in expected resource", getResultURI().trimFileExtension().appendFileExtension(OneResourceOnlyStrategy.PROFILE_DEFAULT_EXTENSION), stereotypeApplicationURI);
 		// check undo, check redo...
 	}
 	
@@ -78,25 +117,25 @@ public abstract class AbstractChangeStrategyTests extends AbstractExternalResour
 		changeToStrategy(StrategyRegistry.getInstance().getStrategy(ResourcePerProfileStrategy.ID));
 		
 		// additionnal checks : strategy, location of the stereotype application, etc.
-		ModelSet tmpModelSet = getModelSet(getTempURI());
-		UmlModel tmpUmlModel = null;
-		// get The tmp model. try to see applied stereotypes
+		ModelSet resultModelSet = getModelSet(getResultURI());
+		UmlModel resultUmlModel = null;
+		// get The result model. try to see applied stereotypes
 		try {
-			tmpUmlModel = (UmlModel)tmpModelSet.getModelChecked(UmlModel.MODEL_ID);
+			resultUmlModel = (UmlModel)resultModelSet.getModelChecked(UmlModel.MODEL_ID);
 		} catch (NotFoundException e) {
 			fail(e.getMessage());
 		}
-		Resource tmpResource = tmpUmlModel.getResource();
-		Model tmpRootModel = (Model)tmpResource.getContents().get(0);
+		Resource resultResource = resultUmlModel.getResource();
+		Model resultRootModel = (Model)resultResource.getContents().get(0);
 		
 		// test some stereotype applications
 		// Model::class1 should have <<classStereotype>> Applied (verify root level stererotype)
-		Class class1_ = (Class)tmpRootModel.getPackagedElement(MODEL_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
+		Class class1_ = (Class)resultRootModel.getPackagedElement(MODEL_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
 		EObject application = class1_.getStereotypeApplication(class1_.getAppliedStereotype(CLASS_STEREOTYPE_QN));
 		Assert.assertNotNull("No stereotype applied on "+ MODEL_CLASS1, application);
 		Assert.assertNotNull(application.eResource());
 		URI stereotypeApplicationURI = application.eResource().getURI();
-		Assert.assertEquals("Stereotype is not in expected resource", getTempURI().trimFileExtension().appendFileExtension(EXTERNAL_RESOURCES_TEST_PROFILE+"Profile"), stereotypeApplicationURI);
+		Assert.assertEquals("Stereotype is not in expected resource", getResultURI().trimFileExtension().appendFileExtension(EXTERNAL_RESOURCES_TEST_PROFILE+"Profile"), stereotypeApplicationURI);
 	}
 	
 	@Test
@@ -104,25 +143,25 @@ public abstract class AbstractChangeStrategyTests extends AbstractExternalResour
 		changeToStrategy(StrategyRegistry.getInstance().getStrategy(StandardApplicationLocationStrategy.ID));
 		
 		// additionnal checks : strategy, location of the stereotype application, etc.
-		ModelSet tmpModelSet = getModelSet(getTempURI());
-		UmlModel tmpUmlModel = null;
-		// get The tmp model. try to see applied stereotypes
+		ModelSet resultModelSet = getModelSet(getResultURI());
+		UmlModel resultUmlModel = null;
+		// get The result model. try to see applied stereotypes
 		try {
-			tmpUmlModel = (UmlModel)tmpModelSet.getModelChecked(UmlModel.MODEL_ID);
+			resultUmlModel = (UmlModel)resultModelSet.getModelChecked(UmlModel.MODEL_ID);
 		} catch (NotFoundException e) {
 			fail(e.getMessage());
 		}
-		Resource tmpResource = tmpUmlModel.getResource();
-		Model tmpRootModel = (Model)tmpResource.getContents().get(0);
+		Resource resultResource = resultUmlModel.getResource();
+		Model resultRootModel = (Model)resultResource.getContents().get(0);
 		
 		// test some stereotype applications
 		// Model::class1 should have <<classStereotype>> Applied (verify root level stererotype)
-		Class class1_ = (Class)tmpRootModel.getPackagedElement(MODEL_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
+		Class class1_ = (Class)resultRootModel.getPackagedElement(MODEL_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
 		EObject application = class1_.getStereotypeApplication(class1_.getAppliedStereotype(CLASS_STEREOTYPE_QN));
 		Assert.assertNotNull("No stereotype applied on "+ MODEL_CLASS1, application);
 		Assert.assertNotNull(application.eResource());
 		URI stereotypeApplicationURI = application.eResource().getURI();
-		Assert.assertEquals("Stereotype is not in expected resource", tmpUmlModel.getResourceURI(), stereotypeApplicationURI);
+		Assert.assertEquals("Stereotype is not in expected resource", resultUmlModel.getResourceURI(), stereotypeApplicationURI);
 		// check undo, check redo...
 	}
 	
@@ -151,34 +190,38 @@ public abstract class AbstractChangeStrategyTests extends AbstractExternalResour
 			fail(status.getMessage());
 		}
 		
-		URI tmpURI = getTempURI();
+		URI resultURI = getResultURI();
 		try {
-			getModelSet(getURI()).saveAs(tmpURI);
+			getModelSet(getURI()).saveAs(resultURI);
 		} catch (IOException e) {
 			fail(e.getMessage());
 		}
 		checkModel(rootModel);
 		// check current model still have right stereotypes/values
 		tearDownRegistry();
-		// try to load and read profiles in the tmp file
-		ModelSet tmpModelSet = getModelSet(tmpURI);
-		Assert.assertNotNull("TMP Model set should not be null", tmpModelSet);
-		UmlModel tmpUmlModel = null;
-		// get The tmp model. try to see applied stereotypes
+		// try to load and read profiles in the result file
+		ModelSet resultModelSet = getModelSet(resultURI);
+		Assert.assertNotNull("TMP Model set should not be null", resultModelSet);
+		UmlModel resultUmlModel = null;
+		// get The result model. try to see applied stereotypes
 		try {
-			tmpUmlModel = (UmlModel)tmpModelSet.getModelChecked(UmlModel.MODEL_ID);
+			resultUmlModel = (UmlModel)resultModelSet.getModelChecked(UmlModel.MODEL_ID);
 		} catch (NotFoundException e) {
 			fail(e.getMessage());
 		}
-		Assert.assertNotNull(tmpUmlModel);
-		Resource tmpResource = tmpUmlModel.getResource();
-		Assert.assertNotNull(tmpResource);
-		Model tmpRootModel = (Model)tmpResource.getContents().get(0);
-		Assert.assertNotNull(tmpRootModel);
-		checkModel(tmpRootModel);
+		Assert.assertNotNull(resultUmlModel);
+		Resource resultResource = resultUmlModel.getResource();
+		Assert.assertNotNull(resultResource);
+		Model resultRootModel = (Model)resultResource.getContents().get(0);
+		Assert.assertNotNull(resultRootModel);
+		checkModel(resultRootModel);
 	}
 	
-	public URI getTempURI() {
-		return URI.createPlatformResourceURI(getTestProjectName()+"/tmp.di", true);
+	public URI getResultFolderURI() {
+		return URI.createPlatformResourceURI(getTestProjectName()+"/result", true);
+	}
+	
+	public URI getResultURI() {
+		return getResultFolderURI().appendSegment("result.di");
 	}
 }

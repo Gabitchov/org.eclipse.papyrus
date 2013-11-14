@@ -9,7 +9,6 @@ package org.eclipse.papyrus.conversion.di2.impl;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -18,9 +17,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.conversion.di2.CoreSemanticModelBridge;
 import org.eclipse.papyrus.conversion.di2.Di2Factory;
 import org.eclipse.papyrus.conversion.di2.Di2Package;
@@ -32,15 +29,10 @@ import org.eclipse.papyrus.conversion.di2.GraphConnector;
 import org.eclipse.papyrus.conversion.di2.GraphEdge;
 import org.eclipse.papyrus.conversion.di2.GraphElement;
 import org.eclipse.papyrus.conversion.di2.GraphNode;
-import org.eclipse.papyrus.conversion.di2.GraphicPrimitive;
-import org.eclipse.papyrus.conversion.di2.Image;
 import org.eclipse.papyrus.conversion.di2.LeafElement;
 import org.eclipse.papyrus.conversion.di2.PapyrusKeyEnumeration;
 import org.eclipse.papyrus.conversion.di2.Polilyne;
-import org.eclipse.papyrus.conversion.di2.Property;
 import org.eclipse.papyrus.conversion.di2.Reference;
-import org.eclipse.papyrus.conversion.di2.SemanticModelBridge;
-import org.eclipse.papyrus.conversion.di2.SimpleSemanticModelElement;
 import org.eclipse.papyrus.conversion.di2.TextElement;
 import org.eclipse.papyrus.conversion.di2.Uml1SemanticModelBridge;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -1202,15 +1194,18 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 		initEReference(getDiagramElement_Property(), this.getProperty(), null, "property", null, 0, -1,
 				DiagramElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		/*
 		initEAttribute(getDiagramElement_IsVisible(), theUMLPackage.getBoolean(), "isVisible", null, 0, 1,
 				DiagramElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+				*/
 		initEReference(getDiagramElement_Reference(), this.getReference(), null, "reference", null, 0, -1,
 				DiagramElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDiagramElement_Container(), this.getGraphElement(), this.getGraphElement_Contained(),
 				"container", null, 0, 1, DiagramElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		/*
 		initEAttribute(getDiagramElement_FontFamily(), theUMLPackage.getString(), "fontFamily", "", 0, 1,
 				DiagramElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
@@ -1223,6 +1218,7 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 		initEAttribute(getDiagramElement_LineThickness(), theUMLPackage.getInteger(), "lineThickness", "1", 0, 1,
 				DiagramElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		*/
 		initEAttribute(getDiagramElement_FontColor(), this.getRGB(), "fontColor", null, 0, 1, DiagramElement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDiagramElement_ForegroundColor(), this.getRGB(), "foregroundColor", null, 0, 1,
@@ -1233,9 +1229,11 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDiagramElement_BorderColor(), this.getRGB(), "borderColor", null, 0, 1, DiagramElement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		/*
 		initEAttribute(getDiagramElement_Translucent(), theUMLPackage.getBoolean(), "translucent", null, 0, 1,
 				DiagramElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		*/
 		initEReference(getDiagramElement_SemanticParent(), this.getDiagramElement(), this
 				.getDiagramElement_SemanticChild(), "semanticParent", null, 0, 1, DiagramElement.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
@@ -1247,13 +1245,14 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 
 		EOperation op = addEOperation(diagramElementEClass, this.getProperty(), "getProperty", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
+		/*
 		addEParameter(op, theUMLPackage.getString(), "key", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(diagramElementEClass, this.getString(), "getPropertyValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theUMLPackage.getString(), "key", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(diagramElementEClass, theUMLPackage.getString(), "getEditpartName", 0, 1, IS_UNIQUE, IS_ORDERED);
-
+		*/
 		initEClass(graphElementEClass, GraphElement.class, "GraphElement", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphElement_Contained(), this.getDiagramElement(), this.getDiagramElement_Container(),
@@ -1273,6 +1272,7 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 
 		initEClass(referenceEClass, Reference.class, "Reference", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		/*
 		initEAttribute(getReference_IsIndividualRepresentation(), theUMLPackage.getBoolean(),
 				"isIndividualRepresentation", null, 0, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1285,7 +1285,7 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProperty_Value(), theUMLPackage.getString(), "value", null, 0, 1, Property.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
+		*/
 		initEClass(graphEdgeEClass, GraphEdge.class, "GraphEdge", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraphEdge_Anchor(), this.getGraphConnector(), this.getGraphConnector_GraphEdge(), "anchor",
@@ -1339,6 +1339,7 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 		initEReference(getDiagram_Owner(), this.getSemanticModelBridge(), null, "owner", null, 1, 1, Diagram.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		/*
 		initEAttribute(getDiagram_Name(), theUMLPackage.getString(), "name", null, 0, 1, Diagram.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDiagram_Zoom(), this.getDouble(), "zoom", null, 0, 1, Diagram.class, !IS_TRANSIENT,
@@ -1365,7 +1366,8 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 		initEAttribute(getSimpleSemanticModelElement_Typeinfo(), theUMLPackage.getString(), "typeinfo", null, 0, 1,
 				SimpleSemanticModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
+		*/
+		
 		initEClass(uml1SemanticModelBridgeEClass, Uml1SemanticModelBridge.class, "Uml1SemanticModelBridge",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUml1SemanticModelBridge_Element(), theUMLPackage.getElement(), null, "element", null, 0, 1,
@@ -1380,6 +1382,7 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 
 		initEClass(textElementEClass, TextElement.class, "TextElement", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		/*
 		initEAttribute(getTextElement_Text(), theUMLPackage.getString(), "text", null, 0, 1, TextElement.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1391,12 +1394,14 @@ public class Di2PackageImpl extends EPackageImpl implements Di2Package {
 
 		initEClass(graphicPrimitiveEClass, GraphicPrimitive.class, "GraphicPrimitive", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-
+		*/
 		initEClass(polilyneEClass, Polilyne.class, "Polilyne", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPolilyne_Waypoints(), this.getPoint(), "waypoints", null, 2, -1, Polilyne.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		/*
 		initEAttribute(getPolilyne_Closed(), theUMLPackage.getBoolean(), "closed", null, 2, -1, Polilyne.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		*/
 
 		initEClass(ellipseEClass, Ellipse.class, "Ellipse", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEllipse_Center(), this.getPoint(), "center", null, 0, 1, Ellipse.class, !IS_TRANSIENT,

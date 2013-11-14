@@ -2,6 +2,7 @@ package org.eclipse.papyrus.cdo.internal.ui;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.cdo.admin.CDOAdminClientManager;
 import org.eclipse.emf.cdo.dawn.editors.IDawnEditor;
 import org.eclipse.emf.cdo.dawn.helper.DawnEditorHelper;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -50,6 +51,8 @@ public class Activator extends AbstractUIPlugin {
 	public static final String ICON_DEPENDENT_OVERLAY16 = "dependent_ovr16"; //$NON-NLS-1$
 
 	public static final String ICON_LINK_WITH_EDITOR = "link_editor"; //$NON-NLS-1$
+
+	public static final String ICON_PAPYRUS_CDO_WIZARD = "cdo_wizard"; //$NON-NLS-1$
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.cdo.ui"; //$NON-NLS-1$
@@ -137,6 +140,8 @@ public class Activator extends AbstractUIPlugin {
 		reg.put(ICON_DEPENDENT_OVERLAY16, getImageDescriptor("full/ovr16/dependent.gif")); //$NON-NLS-1$
 
 		reg.put(ICON_LINK_WITH_EDITOR, getImageDescriptor("full/ctool16/link_editor.gif")); //$NON-NLS-1$
+
+		reg.put(ICON_PAPYRUS_CDO_WIZARD, getImageDescriptor("full/wizban/Papyrus_CDO.png")); //$NON-NLS-1$
 	}
 
 	public static ImageDescriptor getIcon(String key) {
@@ -162,5 +167,10 @@ public class Activator extends AbstractUIPlugin {
 
 	public static IStatus error(String message, Throwable exception) {
 		return new Status(IStatus.ERROR, PLUGIN_ID, message, exception);
+	}
+
+	@SuppressWarnings("restriction")
+	public static CDOAdminClientManager getCDOAdminClientManager() {
+		return org.eclipse.emf.cdo.ui.internal.admin.bundle.OM.getAdminManager();
 	}
 }

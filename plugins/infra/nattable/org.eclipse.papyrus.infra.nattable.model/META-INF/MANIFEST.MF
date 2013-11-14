@@ -27,17 +27,18 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.util,
  org.eclipse.papyrus.infra.nattable.model.nattable.util
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleto
+ n:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

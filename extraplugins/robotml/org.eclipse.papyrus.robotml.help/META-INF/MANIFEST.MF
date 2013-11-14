@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Version: 0.10.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.robotml.help;singleton:=true
 

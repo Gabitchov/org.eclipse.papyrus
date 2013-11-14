@@ -1,5 +1,8 @@
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
+
 /**
  * This interface is used by the sash windows system to discover its content. It is considered
  * as the root of the sash windows models.
@@ -106,7 +109,7 @@ public interface ISashWindowsContentProvider {
 	 * Ask the model to move the specified tab to the specified side of the specified targetFolder.
 	 * This method
 	 * is called by the the SashTileContainer when the user
-	 * have drag a tab in a correct place. The SashTileContainer has not change is presentation yet. This
+	 * drags a tab in a correct place. The SashTileContainer has not changed is presentation yet. This
 	 * will be done when the corresponding event will occur.
 	 * 
 	 * @param tabFolder
@@ -114,7 +117,7 @@ public interface ISashWindowsContentProvider {
 	 * @param tabIndex
 	 *        The index of the tab to move
 	 * @param targetFolder
-	 *        The folder to which the side refer to
+	 *        The folder to which the side refers to
 	 * @param side
 	 *        Side where node should be inserted : SWT.LEFT, SWT.RIGHT, SWT.TOP, SWT.DOWN.
 	 */

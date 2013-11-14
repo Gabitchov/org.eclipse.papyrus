@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:texteditormodel="http://www.eclipse.org/Papyrus/Example/0.10.0/texteditormodel" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:texteditormodel="http://www.eclipse.org/Papyrus/Example/0.10.0/texteditormodel" xmlns:texteditormodel_1="http://www.eclipse.org/Papyrus/TextEditor/0.10.0/texteditormodel" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <notation:Diagram xmi:id="_8vp88DcVEeO6UdbIk03c9Q" type="PapyrusUMLClassDiagram" name="NewDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="__McvgDcVEeO6UdbIk03c9Q" type="2008" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__Md9oDcVEeO6UdbIk03c9Q" source="ShadowFigure">
@@ -104,6 +104,9 @@
     <element xmi:type="uml:Model" href="TestCDTintegration.uml#_Ae6MwPccEd-KM6l7lmIPkw"/>
   </notation:Diagram>
   <texteditormodel:TextEditorModel xmi:id="_JY8YsDcWEeO6UdbIk03c9Q" type="CDTEditorInPapyrus" name="CDT Class3">
+    <editedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_K8FLcB0LEeKlYLZOWTi6uw"/></texteditormodel:TextEditorModel>
+  <texteditormodel_1:TextEditorModel xmi:id="_EItkYEG6EeOMv8cdTsw5Zg" type="CDTEditorInPapyrus" name="CDT Class3">
     <editedObject xmi:type="uml:Class" href="TestCDTintegration.uml#_K8FLcB0LEeKlYLZOWTi6uw"/>
-  </texteditormodel:TextEditorModel>
+    <selectedObject xmi:type="uml:Operation" href="TestCDTintegration.uml#_jnWMADcmEeO6UdbIk03c9Q"/>
+  </texteditormodel_1:TextEditorModel>
 </xmi:XMI>

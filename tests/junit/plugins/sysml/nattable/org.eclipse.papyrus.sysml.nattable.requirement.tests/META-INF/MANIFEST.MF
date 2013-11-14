@@ -1,31 +1,31 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.junit,
  org.eclipse.uml2.uml;bundle-version="4.1.0",
- org.eclipse.papyrus.junit.utils;bundle-version="0.10.1",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.1",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="1.0.0",
  org.eclipse.emf.transaction,
- org.eclipse.papyrus.infra.nattable.common;bundle-version="0.10.1",
- org.eclipse.papyrus.sysml.nattable.requirement;bundle-version="0.10.1",
- org.eclipse.papyrus.sysml.nattable.requirement.config;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.nattable.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.sysml.nattable.requirement;bundle-version="1.0.0",
+ org.eclipse.papyrus.sysml.nattable.requirement.config;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.nattable;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.emf.core;bundle-version="1.7.0",
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.sysml.service.types;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.papyrus.editor.integration.tests;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1"
+ org.eclipse.papyrus.sysml.service.types;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
+ org.eclipse.papyrus.editor.integration.tests;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.sysml.nattable.requirement.tests,
  org.eclipse.papyrus.sysml.nattable.requirement.tests.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.nattable.requirement.tests

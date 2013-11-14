@@ -4,14 +4,14 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
     </input>
-    <imports href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
+    <imports href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="CppElementDoc" visibility="Public">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="/**&#xA; * "/>
-      <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/replaceAll">
+      <body xsi:type="ocl.ecore:OperationCallExp">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <source xsi:type="mtl:QueryInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <definition href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
+          <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/6">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
           </argument>
@@ -22,6 +22,7 @@
         <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA; * ">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </argument>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/replaceAll"/>
       </body>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA; */"/>
       <parameter name="argument">
@@ -30,11 +31,11 @@
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="CppOperationDoc" visibility="Public">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="/**&#xA; * "/>
-      <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/replaceAll">
+      <body xsi:type="ocl.ecore:OperationCallExp">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <source xsi:type="mtl:QueryInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <definition href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
+          <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
           <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/11">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
           </argument>
@@ -45,6 +46,7 @@
         <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA; * ">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </argument>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/replaceAll"/>
       </body>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA; * "/>
       <body xsi:type="mtl:ForBlock">
@@ -66,22 +68,61 @@
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
       </parameter>
     </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="CppBehaviorDoc" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="/**&#xA; * "/>
+      <body xsi:type="ocl.ecore:OperationCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="mtl:QueryInvocation">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/22">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+          </argument>
+        </source>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA; * ">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </argument>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/replaceAll"/>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA; * "/>
+      <body xsi:type="mtl:ForBlock">
+        <body xsi:type="mtl:TemplateInvocation" definition="/0/CppParamDoc">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/25">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+          </argument>
+        </body>
+        <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/12/OrderedSet(Parameter)">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/23">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+          </source>
+          <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior/ownedParameter"/>
+        </iterSet>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA; */"/>
+      <parameter name="behavior">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+      </parameter>
+    </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="CppParamDoc" visibility="Public">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="@param "/>
       <body xsi:type="ocl.ecore:PropertyCallExp">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/22">
+        <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/32">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
         </source>
         <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
       </body>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" "/>
-      <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/replaceAll">
+      <body xsi:type="ocl.ecore:OperationCallExp">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <source xsi:type="mtl:QueryInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <definition href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
-          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/23">
+          <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/33">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
           </argument>
         </source>
@@ -91,6 +132,7 @@
         <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA; *    ">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </argument>
+        <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/replaceAll"/>
       </body>
       <parameter name="parameter">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
@@ -102,16 +144,6 @@
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eAnnotations>
-      <eOperations name="replaceAll">
-        <eAnnotations source="MTL non-standard"/>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="substring">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-        <eParameters name="replacement">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -147,6 +179,16 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
         </eParameters>
       </eOperations>
+      <eOperations name="CppBehaviorDoc">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/CppBehaviorDoc"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="behavior">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="CppParamDoc">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -162,7 +204,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
+          <references href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getComments"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">
@@ -200,6 +242,11 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Behavior_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Parameter_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
@@ -228,6 +275,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="Package_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Package"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehavior_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
       </eAnnotations>
     </eClassifiers>
   </ecore:EPackage>
@@ -277,6 +329,36 @@
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="i">
     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
@@ -423,60 +505,135 @@
       <details key="end" value="295"/>
       <details key="line" value="12"/>
     </eAnnotations>
-    <eAnnotations source="positions.24" references="/0/CppParamDoc">
+    <eAnnotations source="positions.24" references="/0/CppBehaviorDoc">
       <details key="start" value="414"/>
-      <details key="end" value="539"/>
+      <details key="end" value="581"/>
       <details key="line" value="20"/>
     </eAnnotations>
-    <eAnnotations source="positions.25" references="/0/CppParamDoc/%">
-      <details key="start" value="467"/>
-      <details key="end" value="474"/>
+    <eAnnotations source="positions.25" references="/0/CppBehaviorDoc/%">
+      <details key="start" value="468"/>
+      <details key="end" value="475"/>
       <details key="line" value="21"/>
     </eAnnotations>
-    <eAnnotations source="positions.26" references="/0/CppParamDoc/%.1">
-      <details key="start" value="475"/>
-      <details key="end" value="479"/>
+    <eAnnotations source="positions.26" references="/0/CppBehaviorDoc/%.1">
+      <details key="start" value="476"/>
+      <details key="end" value="515"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.27" references="/0/CppParamDoc/%.1/self">
+    <eAnnotations source="positions.27" references="/0/CppBehaviorDoc/%.1/%">
+      <details key="start" value="476"/>
+      <details key="end" value="489"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/CppBehaviorDoc/%.1/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.28" references="/0/CppParamDoc/%.2">
-      <details key="start" value="481"/>
-      <details key="end" value="482"/>
-      <details key="line" value="21"/>
-    </eAnnotations>
-    <eAnnotations source="positions.29" references="/0/CppParamDoc/%.3">
-      <details key="start" value="483"/>
-      <details key="end" value="525"/>
+    <eAnnotations source="positions.29" references="/0/CppBehaviorDoc/%.1/%.1">
+      <details key="start" value="501"/>
+      <details key="end" value="505"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.30" references="/0/CppParamDoc/%.3/%">
-      <details key="start" value="483"/>
-      <details key="end" value="496"/>
+    <eAnnotations source="positions.30" references="/0/CppBehaviorDoc/%.1/%.2">
+      <details key="start" value="507"/>
+      <details key="end" value="514"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.31" references="/0/CppParamDoc/%.3/%/self">
+    <eAnnotations source="positions.31" references="/0/CppBehaviorDoc/%.2">
+      <details key="start" value="517"/>
+      <details key="end" value="521"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/CppBehaviorDoc/%.3">
+      <details key="start" value="521"/>
+      <details key="end" value="565"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/CppBehaviorDoc/%.3/%">
+      <details key="start" value="544"/>
+      <details key="end" value="557"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/CppBehaviorDoc/%.3/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.32" references="/0/CppParamDoc/%.3/%.1">
-      <details key="start" value="508"/>
-      <details key="end" value="512"/>
+    <eAnnotations source="positions.35" references="/0/CppBehaviorDoc/%.3/%.1">
+      <details key="start" value="527"/>
+      <details key="end" value="541"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.33" references="/0/CppParamDoc/%.3/%.2">
-      <details key="start" value="514"/>
-      <details key="end" value="524"/>
+    <eAnnotations source="positions.36" references="/0/CppBehaviorDoc/%.3/%.1/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.34" references="/0/CppParamDoc/parameter">
-      <details key="start" value="443"/>
-      <details key="end" value="464"/>
+    <eAnnotations source="positions.37" references="/0/CppBehaviorDoc/%.4">
+      <details key="start" value="565"/>
+      <details key="end" value="569"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/CppBehaviorDoc/behavior">
+      <details key="start" value="446"/>
+      <details key="end" value="465"/>
       <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/CppParamDoc">
+      <details key="start" value="584"/>
+      <details key="end" value="709"/>
+      <details key="line" value="28"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/CppParamDoc/%">
+      <details key="start" value="637"/>
+      <details key="end" value="644"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/CppParamDoc/%.1">
+      <details key="start" value="645"/>
+      <details key="end" value="649"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/CppParamDoc/%.1/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/CppParamDoc/%.2">
+      <details key="start" value="651"/>
+      <details key="end" value="652"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/CppParamDoc/%.3">
+      <details key="start" value="653"/>
+      <details key="end" value="695"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/CppParamDoc/%.3/%">
+      <details key="start" value="653"/>
+      <details key="end" value="666"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/CppParamDoc/%.3/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/CppParamDoc/%.3/%.1">
+      <details key="start" value="678"/>
+      <details key="end" value="682"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/CppParamDoc/%.3/%.2">
+      <details key="start" value="684"/>
+      <details key="end" value="694"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/CppParamDoc/parameter">
+      <details key="start" value="613"/>
+      <details key="end" value="634"/>
+      <details key="line" value="28"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

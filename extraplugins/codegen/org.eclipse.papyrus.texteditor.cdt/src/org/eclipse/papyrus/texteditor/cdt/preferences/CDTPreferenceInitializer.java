@@ -17,6 +17,7 @@ package org.eclipse.papyrus.texteditor.cdt.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.texteditor.cdt.Activator;
+import org.eclipse.swt.SWT;
 
 /**
  * Class used to initialize default preference values.
@@ -30,6 +31,7 @@ public class CDTPreferenceInitializer extends AbstractPreferenceInitializer {
 	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		store.setDefault(CDTPreferenceConstants.P_OPEN_LOCATION, SWT.RIGHT);
 		store.setDefault(CDTPreferenceConstants.P_SYNC_ALL_FILES, false);
 		store.setDefault(CDTPreferenceConstants.P_SYNC_PERMANENTLY, false);
 	}

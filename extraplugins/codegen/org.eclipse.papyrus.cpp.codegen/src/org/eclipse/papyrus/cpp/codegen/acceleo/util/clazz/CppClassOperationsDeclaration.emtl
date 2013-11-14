@@ -16,12 +16,12 @@
           </argument>
         </body>
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-        <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/6/Set(Operation)">
-          <source xsi:type="ocl.ecore:OperationCallExp" eType="/6/Set(Operation)">
-            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
+        <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/6/Sequence(Operation)">
+          <source xsi:type="mtl:QueryInvocation" eType="/6/Sequence(Operation)">
+            <definition href="../operation/CppOperations.emtl#/0/getOwnedOperations"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
-            </source>
-            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/getOperations"/>
+            </argument>
           </source>
           <body xsi:type="ocl.ecore:OperationCallExp">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
@@ -39,6 +39,63 @@
           </body>
           <iterator xsi:type="ocl.ecore:Variable" name="temp1">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+          </iterator>
+        </iterSet>
+      </body>
+      <body xsi:type="mtl:ForBlock">
+        <body xsi:type="mtl:IfBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#x9;// opaque behavior without specification (typically from state machine)&#xA;&#x9;"/>
+          <body xsi:type="mtl:TemplateInvocation">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <definition href="../operation/CppOperations.emtl#/0/CppBehaviorDeclaration"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/16">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//BehavioralFeature"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="b" referredVariable="/0/CppClassOperationsDeclaration/%.1/b">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+              </source>
+              <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior/specification"/>
+            </source>
+            <argument xsi:type="ocl.ecore:NullLiteralExp">
+              <eType xsi:type="ocl.ecore:VoidType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+          </ifExpr>
+        </body>
+        <loopVariable name="b">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+        </loopVariable>
+        <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/6/Sequence(OpaqueBehavior)">
+          <source xsi:type="ocl.ecore:OperationCallExp" eType="/6/Sequence(OpaqueBehavior)" referredOperation="/1/EObject_Class/eAllContents">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/13">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/12/OpaqueBehavior">
+              <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+            </argument>
+          </source>
+          <body xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/CppClassOperationsDeclaration/%.1/select/temp2">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/visibility"/>
+            </source>
+            <argument xsi:type="ocl.ecore:VariableExp" name="visibilityFilter" referredVariable="/0/CppClassOperationsDeclaration/visibilityFilter">
+              <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/="/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="temp2">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
           </iterator>
         </iterSet>
       </body>
@@ -70,6 +127,13 @@
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eAnnotations>
+      <eOperations name="eAllContents">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:SequenceType" href="http://www.eclipse.org/acceleo/mtl/3.0/mtlnonstdlib.ecore#//Sequence(OclAny)"/>
+        <eParameters name="filter">
+          <eType xsi:type="ocl.ecore:TypeType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclType"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="CppClassOperationsDeclaration">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -83,6 +147,18 @@
           <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
         </eParameters>
       </eOperations>
+      <eOperations name="getOwnedOperations">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../operation/CppOperations.emtl#/0/getOwnedOperations"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../operation/CppOperations.emtl#/3/Sequence(Operation)"/>
+        <eParameters name="cl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="CppOperationDeclaration">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -93,6 +169,18 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="operation">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="CppBehaviorDeclaration">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../operation/CppOperations.emtl#/0/CppBehaviorDeclaration"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="behavior">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
         </eParameters>
       </eOperations>
     </eClassifiers>
@@ -126,9 +214,19 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Behavior_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Element_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehavior_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
       </eAnnotations>
     </eClassifiers>
   </ecore:EPackage>
@@ -145,8 +243,14 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
   </ocl.ecore:Variable>
   <ecore:EPackage name="collections">
-    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Operation)" instanceClassName="java.util.Set">
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Operation)" instanceClassName="java.util.List">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(OclAny)" instanceClassName="java.util.List">
+      <elementType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(OpaqueBehavior)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
     </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
@@ -164,28 +268,51 @@
   <ocl.ecore:Variable name="i">
     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
   </ocl.ecore:Variable>
+  <ecore:EPackage name="types">
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="OpaqueBehavior">
+      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/CppClassOperationsDeclaration">
       <details key="start" value="170"/>
-      <details key="end" value="386"/>
+      <details key="end" value="630"/>
       <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/CppClassOperationsDeclaration/%">
       <details key="start" value="273"/>
-      <details key="end" value="374"/>
+      <details key="end" value="379"/>
       <details key="line" value="6"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/CppClassOperationsDeclaration/%/%">
-      <details key="start" value="336"/>
-      <details key="end" value="339"/>
+      <details key="start" value="341"/>
+      <details key="end" value="344"/>
       <details key="line" value="7"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/CppClassOperationsDeclaration/%/%.1">
-      <details key="start" value="340"/>
-      <details key="end" value="365"/>
+      <details key="start" value="345"/>
+      <details key="end" value="370"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/CppClassOperationsDeclaration/%/%.1/self">
@@ -194,18 +321,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/CppClassOperationsDeclaration/%/%.2">
-      <details key="start" value="367"/>
-      <details key="end" value="368"/>
+      <details key="start" value="372"/>
+      <details key="end" value="373"/>
       <details key="line" value="9"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/CppClassOperationsDeclaration/%/select">
       <details key="start" value="279"/>
-      <details key="end" value="333"/>
+      <details key="end" value="338"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/CppClassOperationsDeclaration/%/select/%">
       <details key="start" value="279"/>
-      <details key="end" value="294"/>
+      <details key="end" value="299"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/CppClassOperationsDeclaration/%/select/%/self">
@@ -214,13 +341,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/CppClassOperationsDeclaration/%/select/%.1">
-      <details key="start" value="303"/>
-      <details key="end" value="332"/>
+      <details key="start" value="308"/>
+      <details key="end" value="337"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/CppClassOperationsDeclaration/%/select/%.1/%">
-      <details key="start" value="303"/>
-      <details key="end" value="313"/>
+      <details key="start" value="308"/>
+      <details key="end" value="318"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/CppClassOperationsDeclaration/%/select/%.1/%/temp1">
@@ -229,8 +356,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/CppClassOperationsDeclaration/%/select/%.1/visibilityFilter">
-      <details key="start" value="316"/>
-      <details key="end" value="332"/>
+      <details key="start" value="321"/>
+      <details key="end" value="337"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/CppClassOperationsDeclaration/%/select/temp1">
@@ -238,12 +365,112 @@
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.14" references="/0/CppClassOperationsDeclaration/class">
+    <eAnnotations source="positions.14" references="/0/CppClassOperationsDeclaration/%.1">
+      <details key="start" value="380"/>
+      <details key="end" value="618"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/CppClassOperationsDeclaration/%.1/%">
+      <details key="start" value="472"/>
+      <details key="end" value="611"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/CppClassOperationsDeclaration/%.1/%/%">
+      <details key="start" value="502"/>
+      <details key="end" value="577"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/CppClassOperationsDeclaration/%.1/%/%.1">
+      <details key="start" value="578"/>
+      <details key="end" value="602"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/CppClassOperationsDeclaration/%.1/%/%.1/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/CppClassOperationsDeclaration/%.1/%/%.2">
+      <details key="start" value="604"/>
+      <details key="end" value="605"/>
+      <details key="line" value="15"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/CppClassOperationsDeclaration/%.1/%/%.3">
+      <details key="start" value="476"/>
+      <details key="end" value="500"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/CppClassOperationsDeclaration/%.1/%/%.3/%">
+      <details key="start" value="477"/>
+      <details key="end" value="492"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/CppClassOperationsDeclaration/%.1/%/%.3/%/b">
+      <details key="start" value="477"/>
+      <details key="end" value="478"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/CppClassOperationsDeclaration/%.1/%/%.3/%.1">
+      <details key="start" value="495"/>
+      <details key="end" value="499"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/CppClassOperationsDeclaration/%.1/b">
+      <details key="start" value="386"/>
+      <details key="end" value="398"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/CppClassOperationsDeclaration/%.1/select">
+      <details key="start" value="401"/>
+      <details key="end" value="468"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/CppClassOperationsDeclaration/%.1/select/%">
+      <details key="start" value="401"/>
+      <details key="end" value="429"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/CppClassOperationsDeclaration/%.1/select/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/CppClassOperationsDeclaration/%.1/select/%/%">
+      <details key="start" value="414"/>
+      <details key="end" value="428"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/CppClassOperationsDeclaration/%.1/select/%.1">
+      <details key="start" value="438"/>
+      <details key="end" value="467"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/CppClassOperationsDeclaration/%.1/select/%.1/%">
+      <details key="start" value="438"/>
+      <details key="end" value="448"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/CppClassOperationsDeclaration/%.1/select/%.1/%/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/CppClassOperationsDeclaration/%.1/select/%.1/visibilityFilter">
+      <details key="start" value="451"/>
+      <details key="end" value="467"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/CppClassOperationsDeclaration/%.1/select/temp2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/CppClassOperationsDeclaration/class">
       <details key="start" value="217"/>
       <details key="end" value="235"/>
       <details key="line" value="5"/>
     </eAnnotations>
-    <eAnnotations source="positions.15" references="/0/CppClassOperationsDeclaration/visibilityFilter">
+    <eAnnotations source="positions.35" references="/0/CppClassOperationsDeclaration/visibilityFilter">
       <details key="start" value="237"/>
       <details key="end" value="270"/>
       <details key="line" value="5"/>

@@ -19,9 +19,11 @@ import java.util.Collections;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -103,4 +105,13 @@ public class CommandSupport {
 		}
 	}
 
+	public static void exec(TransactionalEditingDomain domain, IUndoableOperation command) {
+		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
+		try {
+			history.execute(command, new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+
+	}
 }

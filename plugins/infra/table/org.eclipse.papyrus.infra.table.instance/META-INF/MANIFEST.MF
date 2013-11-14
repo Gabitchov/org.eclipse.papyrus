@@ -8,11 +8,6 @@ Export-Package: org.eclipse.papyrus.infra.table.instance,
    org.eclipse.emf.common.notify.impl,
    org.eclipse.emf.common.notify",
  org.eclipse.papyrus.infra.table.instance.util
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.facet.widgets.celleditors;visibility:=reexport,
@@ -23,11 +18,16 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.browser.custom;visibility:=reexport,
  org.eclipse.ui.workbench,
  com.google.guava;bundle-version="10.0.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.table.instance.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.table.instance;singleto
  n:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

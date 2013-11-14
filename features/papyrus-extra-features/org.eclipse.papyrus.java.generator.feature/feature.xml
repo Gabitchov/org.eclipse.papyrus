@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.java.generator.feature" label="%featureName" provider-name="%providerName" version="0.10.1.qualifier">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.java.generator.feature" label="%featureName" provider-name="%providerName" version="1.0.0.qualifier">
 
    <description url="http://www.example.com/description">
       This feature allows to generate Java classes and packages from

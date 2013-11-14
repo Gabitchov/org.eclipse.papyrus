@@ -14,11 +14,19 @@
 package org.eclipse.papyrus.texteditor.cdt.editor;
 
 import org.eclipse.cdt.codan.internal.ui.cxx.CodanCReconciler;
+import org.eclipse.cdt.core.model.ICElement;
+import org.eclipse.cdt.core.model.ISourceRange;
+import org.eclipse.cdt.core.model.ISourceReference;
+import org.eclipse.cdt.core.model.ITranslationUnit;
 import org.eclipse.cdt.internal.ui.editor.CEditor;
+import org.eclipse.cdt.ui.CDTUITools;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -35,6 +43,7 @@ import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.texteditor.cdt.Activator;
+import org.eclipse.papyrus.texteditor.cdt.sync.ObtainICElement;
 import org.eclipse.papyrus.texteditor.cdt.sync.RevealCurrentOperation;
 import org.eclipse.papyrus.texteditor.cdt.sync.SyncCDTtoModel;
 import org.eclipse.papyrus.texteditor.cdt.sync.SyncModelToCDT;
@@ -57,6 +66,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * A specialization of the CDT editor made for integration into Papyrus
@@ -81,6 +91,8 @@ public class PapyrusCDTEditor extends CEditor {
 
 	protected RevealCurrentOperation reveal;
 
+	protected Adapter gotoListener;
+	
 	/**
 	 * 
 	 * Constructor.
@@ -90,6 +102,7 @@ public class PapyrusCDTEditor extends CEditor {
 	 */
 	public PapyrusCDTEditor(final ServicesRegistry registry, final TextEditorModel papyrusTextInstance) {
 		super();
+		gotoListener = null;
 		this.registry = registry;
 		this.papyrusTextInstance = papyrusTextInstance;
 		try {
@@ -135,6 +148,35 @@ public class PapyrusCDTEditor extends CEditor {
 			actionBars.setGlobalActionHandler(ITextEditorActionConstants.REDO, gmfRedo);
 			actionBars.updateActionBars();
 		}
+		
+		gotoListener = new Adapter() {
+
+			// assure that gotoElement is called, if the element in the model gets updated
+			public void notifyChanged(Notification notification) {
+				if (notification.getEventType() == Notification.SET) {
+					if (notification.getNewValue() instanceof NamedElement) {
+						gotoElement((NamedElement) notification.getNewValue());
+					}
+
+				}
+			}
+
+			public Notifier getTarget() {
+				return null;
+			}
+
+			public void setTarget(Notifier newTarget) {
+			}
+
+			public boolean isAdapterForType(Object type) {
+				return false;
+			}
+		};
+		papyrusTextInstance.eAdapters().add(gotoListener);		
+		
+		if (papyrusTextInstance.getSelectedObject() instanceof NamedElement) {
+			gotoElement((NamedElement) papyrusTextInstance.getSelectedObject());
+		}
 	}
 
 	/**
@@ -150,9 +192,8 @@ public class PapyrusCDTEditor extends CEditor {
 	@Override
 	public ISourceViewer createSourceViewer(Composite parent, IVerticalRuler ruler, int styles) {
 
-		ISourceViewer viewer = super.createSourceViewer(parent, ruler, styles);
+		final ISourceViewer viewer = super.createSourceViewer(parent, ruler, styles);
 		// ISourceViewer viewer = new DelegatingSourceViewer(origViewer, (Classifier)papyrusTextInstance.getEditedObject());
-		
 		focusListener = new FocusListener() {
 
 			public void focusLost(FocusEvent e) {
@@ -189,7 +230,6 @@ public class PapyrusCDTEditor extends CEditor {
 		};
 		// register focus listener
 		viewer.getTextWidget().addFocusListener(focusListener);
-		
 		SelectionListener selectionListener = new SelectionListener() {
 			
 			public void widgetSelected(SelectionEvent e) {
@@ -236,6 +276,37 @@ public class PapyrusCDTEditor extends CEditor {
 		return viewer;
 	}
 
+	/**
+	 * Goto a specific element within the text editor. Currently, only methods are supported.
+	 * 
+	 * @param element
+	 * @throws CoreException
+	 */
+	public void gotoElement(NamedElement element) {
+		// IFile srcFile = SyncModelToCDT.syncModelToCDT((Classifier) pe);
+		// ITranslationUnit itu2 = (ITranslationUnit) CoreModel.getDefault().create(srcFile);
+
+		ICElement ice = CDTUITools.getEditorInputCElement(m_input);
+
+		if(ice instanceof ITranslationUnit) {
+			ITranslationUnit itu = (ITranslationUnit) ice;
+			ICElement icElement = ObtainICElement.getICElement(itu, element);
+			if (icElement instanceof ISourceReference) {
+				try {
+					ISourceRange range = ((ISourceReference)icElement).getSourceRange();
+					
+					ISourceViewer viewer = getSourceViewer();
+					viewer.revealRange(range.getStartPos(), 1);
+					viewer.setSelectedRange(range.getStartPos(), range.getLength());
+					return;
+				}
+				catch (CoreException e) {
+					Activator.log.error(e);
+				}
+			}
+		}
+	}
+	
 	@Override
 	public boolean isDirty() {
 		boolean isDirty = super.isDirty();
@@ -274,6 +345,7 @@ public class PapyrusCDTEditor extends CEditor {
 		super.doSetInput(newInput);
 
 		syncCpp = new SyncCDTtoModel(newInput, classifier, uri.segment(1));
+		m_input = newInput;
 		reveal = new RevealCurrentOperation(newInput, classifier, uri.segment(1));
 		
 		// add the reconciler to get syntax check and completion. (still no full checks)
@@ -289,7 +361,10 @@ public class PapyrusCDTEditor extends CEditor {
 	public void dispose() {
 
 		saveAndDirtyService.removeIsaveablePart(this);
-		
+		if (gotoListener != null) {
+			papyrusTextInstance.eAdapters().remove(gotoListener);
+		}
+
 		//we remove the listener
 		StyledText st = getSourceViewer().getTextWidget();
 		st.removeFocusListener(focusListener);
@@ -314,4 +389,7 @@ public class PapyrusCDTEditor extends CEditor {
 	protected IFile srcFile;
 	
 	protected ISelectionProvider sp;
+	
+	protected IEditorInput m_input;
 }
+ 

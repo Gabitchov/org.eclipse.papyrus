@@ -13,13 +13,13 @@ package org.eclipse.papyrus.infra.gmfdiag.common.service.shape;
 
 import java.util.List;
 
-import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
+import org.w3c.dom.svg.SVGDocument;
 
 /**
- * Operation to find a list of shapes, given a view 
+ * Operation to find a list of shapes, given a view
  */
 public class GetSVGDocumentForViewOperation implements IOperation, IShapeProviderOperation {
 
@@ -40,12 +40,13 @@ public class GetSVGDocumentForViewOperation implements IOperation, IShapeProvide
 	/**
 	 * @{inheritDoc
 	 */
-	public List<SVGOMDocument> execute(IProvider provider) {
+	@Override
+	public List<SVGDocument> execute(IProvider provider) {
 		if(!(provider instanceof IShapeProvider)) {
 			return null;
 		}
 		IShapeProvider shapeProvider = (IShapeProvider)provider;
-		return shapeProvider.getSVGOMDocument(getView());
+		return shapeProvider.getSVGDocument(getView());
 	}
 
 	/**

@@ -16,12 +16,12 @@
           </argument>
         </body>
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-        <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/6/Set(Property)">
-          <source xsi:type="ocl.ecore:PropertyCallExp" eType="/6/Set(Property)">
-            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
+        <iterSet xsi:type="ocl.ecore:IteratorExp" name="select" eType="/6/Sequence(Property)">
+          <source xsi:type="mtl:QueryInvocation" eType="/6/Sequence(Property)">
+            <definition href="../CppAttribute.emtl#/0/getOwnedAttributes"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
-            </source>
-            <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier/attribute"/>
+            </argument>
           </source>
           <body xsi:type="ocl.ecore:OperationCallExp">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
@@ -95,6 +95,18 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
         </eParameters>
       </eOperations>
+      <eOperations name="getOwnedAttributes">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../CppAttribute.emtl#/0/getOwnedAttributes"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:SequenceType" href="../CppAttribute.emtl#/3/Sequence(Property)"/>
+        <eParameters name="cl">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        </eParameters>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OclAny_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -140,7 +152,7 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
   </ocl.ecore:Variable>
   <ecore:EPackage name="collections">
-    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Property)" instanceClassName="java.util.Set">
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Property)" instanceClassName="java.util.List">
       <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
     </eClassifiers>
   </ecore:EPackage>
@@ -164,23 +176,23 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/CppClassAttributesDeclaration">
-      <details key="start" value="159"/>
-      <details key="end" value="368"/>
-      <details key="line" value="6"/>
+      <details key="start" value="158"/>
+      <details key="end" value="378"/>
+      <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/CppClassAttributesDeclaration/%">
-      <details key="start" value="262"/>
-      <details key="end" value="356"/>
-      <details key="line" value="7"/>
+      <details key="start" value="261"/>
+      <details key="end" value="366"/>
+      <details key="line" value="6"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/CppClassAttributesDeclaration/%/%">
-      <details key="start" value="319"/>
-      <details key="end" value="321"/>
-      <details key="line" value="8"/>
+      <details key="start" value="329"/>
+      <details key="end" value="331"/>
+      <details key="line" value="7"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/CppClassAttributesDeclaration/%/%.1">
-      <details key="start" value="322"/>
-      <details key="end" value="347"/>
+      <details key="start" value="332"/>
+      <details key="end" value="357"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/CppClassAttributesDeclaration/%/%.1/self">
@@ -189,18 +201,18 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/CppClassAttributesDeclaration/%/%.2">
-      <details key="start" value="349"/>
-      <details key="end" value="350"/>
-      <details key="line" value="10"/>
+      <details key="start" value="359"/>
+      <details key="end" value="360"/>
+      <details key="line" value="9"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/CppClassAttributesDeclaration/%/select">
-      <details key="start" value="268"/>
-      <details key="end" value="316"/>
+      <details key="start" value="267"/>
+      <details key="end" value="326"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/CppClassAttributesDeclaration/%/select/%">
-      <details key="start" value="268"/>
-      <details key="end" value="277"/>
+      <details key="start" value="267"/>
+      <details key="end" value="287"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/CppClassAttributesDeclaration/%/select/%/self">
@@ -209,13 +221,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/CppClassAttributesDeclaration/%/select/%.1">
-      <details key="start" value="286"/>
-      <details key="end" value="315"/>
+      <details key="start" value="296"/>
+      <details key="end" value="325"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/CppClassAttributesDeclaration/%/select/%.1/%">
-      <details key="start" value="286"/>
-      <details key="end" value="296"/>
+      <details key="start" value="296"/>
+      <details key="end" value="306"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/CppClassAttributesDeclaration/%/select/%.1/%/temp1">
@@ -224,8 +236,8 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/CppClassAttributesDeclaration/%/select/%.1/visibilityFilter">
-      <details key="start" value="299"/>
-      <details key="end" value="315"/>
+      <details key="start" value="309"/>
+      <details key="end" value="325"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/CppClassAttributesDeclaration/%/select/temp1">
@@ -234,14 +246,14 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/CppClassAttributesDeclaration/class">
-      <details key="start" value="206"/>
-      <details key="end" value="224"/>
-      <details key="line" value="6"/>
+      <details key="start" value="205"/>
+      <details key="end" value="223"/>
+      <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/CppClassAttributesDeclaration/visibilityFilter">
-      <details key="start" value="226"/>
-      <details key="end" value="259"/>
-      <details key="line" value="6"/>
+      <details key="start" value="225"/>
+      <details key="end" value="258"/>
+      <details key="line" value="5"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

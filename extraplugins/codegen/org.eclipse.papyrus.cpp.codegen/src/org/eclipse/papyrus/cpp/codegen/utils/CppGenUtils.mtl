@@ -33,3 +33,10 @@
 	= invoke('org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils', 'getGeneralizationVisibility(org.eclipse.uml2.uml.Element)', Sequence{arg0})
 /]
 
+[query public resetVisibility(arg0 : VisibilityKind) : String
+    = invoke('org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils', 'resetVisibility(org.eclipse.uml2.uml.VisibilityKind)', Sequence{arg0})
+/]
+
+[query public getSection(arg0 : VisibilityKind, arg1 : String) : String
+    = invoke('org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils', 'getSection(org.eclipse.uml2.uml.VisibilityKind, java.lang.String)', Sequence{arg0, arg1})
+/]

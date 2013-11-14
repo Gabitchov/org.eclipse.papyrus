@@ -15,17 +15,16 @@ package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
 import java.util.ArrayList;
 
 import org.apache.batik.dom.svg.AbstractSVGPathSegList.SVGPathSegMovetoLinetoItem;
-import org.apache.batik.dom.svg.SVGOMPathElement;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
 import org.w3c.dom.Element;
 import org.w3c.dom.svg.SVGAnimatedLength;
 import org.w3c.dom.svg.SVGDocument;
 import org.w3c.dom.svg.SVGLength;
+import org.w3c.dom.svg.SVGPathElement;
 import org.w3c.dom.svg.SVGPathSeg;
 import org.w3c.dom.svg.SVGPathSegList;
 import org.w3c.dom.svg.SVGSVGElement;
@@ -37,41 +36,45 @@ import org.w3c.dom.svg.SVGSVGElement;
  */
 public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 
-	protected SVGPathSegList pathSegList=null;
-	protected SVGDocument svgDocument=null;
+	protected SVGPathSegList pathSegList = null;
+
+	protected SVGDocument svgDocument = null;
+
 	protected DefaultSizeNodeFigure defaultNodePlate;
 
 
 	/**
 	 * associate the SVG document that represent the SVG
-	 * @param svgDocument the SVG document
+	 * 
+	 * @param svgDocument
+	 *        the SVG document
 	 */
 	public void setSVGDocument(SVGDocument svgDocument) {
-		if(svgDocument==null){
+		if(svgDocument == null) {
 			this.svgDocument = null;
-			this.pathSegList=null;
-		}
-		else{
+			this.pathSegList = null;
+		} else {
 			this.svgDocument = svgDocument;
-			Element path=svgDocument.getElementById("PapyrusPath");
-			if( path!=null){
-				SVGOMPathElement svgPath=(SVGOMPathElement)path;
-				SVGPathSegList segmentList=svgPath.getPathSegList();
+			Element path = svgDocument.getElementById("PapyrusPath");
+			if(path != null) {
+				SVGPathElement svgPath = (SVGPathElement)path;
+				SVGPathSegList segmentList = svgPath.getPathSegList();
 				this.setSegemntList(segmentList);
 			}
 		}
 	}
-	
+
 	/**
 	 * set the node plate that is wrapped by it.
+	 * 
 	 * @param defaultNodePlate
 	 */
-	public void setDefaultNodePlate(IFigure defaultNodePlate){
-		if( defaultNodePlate instanceof DefaultSizeNodeFigure){
-			this.defaultNodePlate=(DefaultSizeNodeFigure)defaultNodePlate;
+	public void setDefaultNodePlate(IFigure defaultNodePlate) {
+		if(defaultNodePlate instanceof DefaultSizeNodeFigure) {
+			this.defaultNodePlate = (DefaultSizeNodeFigure)defaultNodePlate;
 			this.setDefaultSize(((DefaultSizeNodeFigure)defaultNodePlate).getDefaultSize());
 		}
-		if( defaultNodePlate instanceof ICustomNodePlate){
+		if(defaultNodePlate instanceof ICustomNodePlate) {
 			((ICustomNodePlate)this.defaultNodePlate).setSVGNodePlateContainer(this);
 		}
 	}
@@ -79,27 +82,29 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param width
 	 * @param height
 	 */
 	public SVGNodePlateFigure(int width, int height) {
 		super(width, height);
 	}
+
 	/**
 	 * set the papyrus path to follow the shape
+	 * 
 	 * @param pathSegList
 	 */
 
-	public void setSegemntList(SVGPathSegList pathSegList ){
-		this.pathSegList= pathSegList;
+	public void setSegemntList(SVGPathSegList pathSegList) {
+		this.pathSegList = pathSegList;
 	}
 
-	public boolean containShapeCompatment(){
-		if( this.getChildren().size()>0&& this.getChildren().get(0) instanceof IFigure){
-			IFigure primaryShape= (IFigure)this.getChildren().get(0);
+	public boolean containShapeCompatment() {
+		if(this.getChildren().size() > 0 && this.getChildren().get(0) instanceof IFigure) {
+			IFigure primaryShape = (IFigure)this.getChildren().get(0);
 			for(Object subFigure : primaryShape.getChildren()) {
-				if(subFigure instanceof ScalableCompartmentFigure ){
+				if(subFigure instanceof ScalableCompartmentFigure) {
 					return true;
 				}
 			}
@@ -107,11 +112,11 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 		return false;
 	}
 
-	public IFigure getShapeCompatment(){
-		if( this.getChildren().size()>0&& this.getChildren().get(0) instanceof IFigure){
-			IFigure primaryShape= (IFigure)this.getChildren().get(0);
+	public IFigure getShapeCompatment() {
+		if(this.getChildren().size() > 0 && this.getChildren().get(0) instanceof IFigure) {
+			IFigure primaryShape = (IFigure)this.getChildren().get(0);
 			for(Object subFigure : primaryShape.getChildren()) {
-				if(subFigure instanceof ScalableCompartmentFigure ){
+				if(subFigure instanceof ScalableCompartmentFigure) {
 					return (IFigure)subFigure;
 				}
 			}
@@ -123,26 +128,26 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	// This returns as the anchoring area only the central line
 	@Override
 	public PointList getPolygonPoints() {
-		if (this.pathSegList==null){
-			if (defaultNodePlate!=null){
+		if(this.pathSegList == null) {
+			if(defaultNodePlate != null) {
 				defaultNodePlate.setBounds(this.getBounds());
 				return defaultNodePlate.getPolygonPoints();
 			}
 			return super.getPolygonPoints();
 		}
-		double svgWidth=0;
-		double svgHeight=0;
-		SVGSVGElement svgElement=svgDocument.getRootElement();
-		if(svgElement!=null ){
-			SVGAnimatedLength widthALength=svgElement.getWidth();
-			SVGAnimatedLength heightALength=svgElement.getHeight();
-			if( widthALength!=null &&heightALength!=null){
-				SVGLength svgWidthLength =widthALength.getBaseVal();
-				SVGLength svgHeightLength =heightALength.getBaseVal();
-				if( svgWidthLength!=null &&svgHeightLength!=null){
+		double svgWidth = 0;
+		double svgHeight = 0;
+		SVGSVGElement svgElement = svgDocument.getRootElement();
+		if(svgElement != null) {
+			SVGAnimatedLength widthALength = svgElement.getWidth();
+			SVGAnimatedLength heightALength = svgElement.getHeight();
+			if(widthALength != null && heightALength != null) {
+				SVGLength svgWidthLength = widthALength.getBaseVal();
+				SVGLength svgHeightLength = heightALength.getBaseVal();
+				if(svgWidthLength != null && svgHeightLength != null) {
 					//	if( width.getUnitType()==width.SVG_LENGTHTYPE_PX){
-					svgWidth= svgWidthLength.getValueInSpecifiedUnits();
-					svgHeight= svgHeightLength.getValueInSpecifiedUnits();
+					svgWidth = svgWidthLength.getValueInSpecifiedUnits();
+					svgHeight = svgHeightLength.getValueInSpecifiedUnits();
 					//	}
 				}
 			}
@@ -150,81 +155,80 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 
 		//transform coordinate to absolute in the context of the SVG
 		//getBounds
-		ArrayList<PrecisionPoint> pointList=new ArrayList<PrecisionPoint>();
+		ArrayList<PrecisionPoint> pointList = new ArrayList<PrecisionPoint>();
 
 		//current absolute coordinates
-		float currentAbsoluteSVGPositionX=0;
-		float currentAbsoluteSVGPositionY=0;
-		for (int i=0; i<pathSegList.getNumberOfItems();i++){
-			SVGPathSeg seg=pathSegList.getItem(i);
-			if( seg instanceof SVGPathSegMovetoLinetoItem){
-				SVGPathSegMovetoLinetoItem linetoItem=(SVGPathSegMovetoLinetoItem) seg;
+		float currentAbsoluteSVGPositionX = 0;
+		float currentAbsoluteSVGPositionY = 0;
+		for(int i = 0; i < pathSegList.getNumberOfItems(); i++) {
+			SVGPathSeg seg = pathSegList.getItem(i);
+			if(seg instanceof SVGPathSegMovetoLinetoItem) {
+				SVGPathSegMovetoLinetoItem linetoItem = (SVGPathSegMovetoLinetoItem)seg;
 				//short value =linetoItem.getPathSegType();
-				String letter=  linetoItem.getPathSegTypeAsLetter();
-				float x= (float)linetoItem.getX();
-				float y=(float) linetoItem.getY();
+				String letter = linetoItem.getPathSegTypeAsLetter();
+				float x = linetoItem.getX();
+				float y = linetoItem.getY();
 				//	System.out.println("value="+value +" letter="+letter+ " x="+ x+ " y="+y);
-				if( letter.equals("M")){
-					currentAbsoluteSVGPositionX=x;
-					currentAbsoluteSVGPositionY=y;
-					pointList.add(new PrecisionPoint(currentAbsoluteSVGPositionX,currentAbsoluteSVGPositionY));
+				if(letter.equals("M")) {
+					currentAbsoluteSVGPositionX = x;
+					currentAbsoluteSVGPositionY = y;
+					pointList.add(new PrecisionPoint(currentAbsoluteSVGPositionX, currentAbsoluteSVGPositionY));
+				} else if(letter.equals("m")) {
+					currentAbsoluteSVGPositionX = currentAbsoluteSVGPositionX + x;
+					currentAbsoluteSVGPositionY = currentAbsoluteSVGPositionY + y;
+					pointList.add(new PrecisionPoint(currentAbsoluteSVGPositionX, currentAbsoluteSVGPositionY));
+				} else if(letter.equals("L")) {
+					currentAbsoluteSVGPositionX = x;
+					currentAbsoluteSVGPositionY = y;
+					pointList.add(new PrecisionPoint(currentAbsoluteSVGPositionX, currentAbsoluteSVGPositionY));
+				} else if(letter.equals("l")) {
+					currentAbsoluteSVGPositionX = currentAbsoluteSVGPositionX + x;
+					currentAbsoluteSVGPositionY = currentAbsoluteSVGPositionY + y;
+					pointList.add(new PrecisionPoint(currentAbsoluteSVGPositionX, currentAbsoluteSVGPositionY));
 				}
-				else if( letter.equals("m")){
-					currentAbsoluteSVGPositionX=currentAbsoluteSVGPositionX+x;
-					currentAbsoluteSVGPositionY=currentAbsoluteSVGPositionY+y;
-					pointList.add(new PrecisionPoint(currentAbsoluteSVGPositionX,currentAbsoluteSVGPositionY));
-				}
-				else if( letter.equals("L")){
-					currentAbsoluteSVGPositionX=x;
-					currentAbsoluteSVGPositionY=y;
-					pointList.add(new PrecisionPoint(currentAbsoluteSVGPositionX,currentAbsoluteSVGPositionY));
-				}
-				else if( letter.equals("l")){
-					currentAbsoluteSVGPositionX=currentAbsoluteSVGPositionX+x;
-					currentAbsoluteSVGPositionY=currentAbsoluteSVGPositionY+y;
-					pointList.add(new PrecisionPoint(currentAbsoluteSVGPositionX,currentAbsoluteSVGPositionY));
-				}
-			}else
-			{
-				System.err.println("this is not i linear segment "+i);
+			} else {
+				System.err.println("this is not i linear segment " + i);
 			}
 		}
 
 
 		//get the original size of SVG
-		double maxWitdh=0;
-		double maxHeight=0;
-		if(svgWidth!=0 && svgHeight!=0){
-			maxWitdh= (double)svgWidth;
-			maxHeight= (double)svgHeight;
-		}
-		else{
-			for (int i=0; i<pointList.size();i++){
-				PrecisionPoint point=pointList.get(i);
-				if(point.preciseX()>maxWitdh){maxWitdh=point.preciseX();}
-				if(point.preciseY()>maxHeight){maxHeight=point.preciseY();}
+		double maxWitdh = 0;
+		double maxHeight = 0;
+		if(svgWidth != 0 && svgHeight != 0) {
+			maxWitdh = svgWidth;
+			maxHeight = svgHeight;
+		} else {
+			for(int i = 0; i < pointList.size(); i++) {
+				PrecisionPoint point = pointList.get(i);
+				if(point.preciseX() > maxWitdh) {
+					maxWitdh = point.preciseX();
+				}
+				if(point.preciseY() > maxHeight) {
+					maxHeight = point.preciseY();
+				}
 			}
 		}
 		//System.out.println("Size of the SVG figure is= "+maxHeight +" "+maxHeight);
 		PointList points = new PointList(5);
-		Rectangle anchorableRectangle=null;
-		if(containShapeCompatment()){
-			anchorableRectangle =getShapeCompatment().getBounds();
+		Rectangle anchorableRectangle = null;
+		if(containShapeCompatment()) {
+			anchorableRectangle = getShapeCompatment().getBounds();
 		}
 
-		else{
+		else {
 			anchorableRectangle = getHandleBounds();
 		}
-		double ratioX=anchorableRectangle.width/maxWitdh;
-		double ratioY=anchorableRectangle.height/maxHeight;
+		double ratioX = anchorableRectangle.width / maxWitdh;
+		double ratioY = anchorableRectangle.height / maxHeight;
 		//PackageFigure packageFigure = getPackageFigure();
 		//System.out.println("Begin-------------" );
 
-		for (int i=0; i<pointList.size();i++){
-			PrecisionPoint point=pointList.get(i);
-			double x= point.preciseX()*ratioX;
-			double y=point.preciseY()*ratioY;
-			points.addPoint(anchorableRectangle.x +(int)x, anchorableRectangle.y+(int)y);
+		for(int i = 0; i < pointList.size(); i++) {
+			PrecisionPoint point = pointList.get(i);
+			double x = point.preciseX() * ratioX;
+			double y = point.preciseY() * ratioY;
+			points.addPoint(anchorableRectangle.x + (int)x, anchorableRectangle.y + (int)y);
 			//System.out.println("add point x="+x +" y=" +y +" ratioX= "+ratioX+" ratioY="+ratioY );
 		}
 		//System.out.println("End-------------" );

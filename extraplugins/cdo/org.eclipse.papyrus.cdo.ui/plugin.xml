@@ -169,6 +169,14 @@
                   checkEnabled="true">
             </visibleWhen>
          </command>
+         <command
+               commandId="org.eclipse.papyrus.cdo.ui.commands.openInModelRepositories"
+               label="%openInModelRepositoriesCommand.label"
+               icon="$nl$/icons/full/view16/model_repositories.gif">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
       </menuContribution>
       <menuContribution
             locationURI="popup:org.eclipse.papyrus.cdo.ui.ModelRepositoriesView?after=additions">
@@ -202,6 +210,10 @@
       <command
             id="org.eclipse.papyrus.cdo.ui.commands.exportModel"
             name="%exportCommand.name">
+      </command>
+      <command
+            id="org.eclipse.papyrus.cdo.ui.commands.openInModelRepositories"
+            name="%openInModelRepositoriesCommand.name">
       </command>
    </extension>
    <extension
@@ -268,6 +280,22 @@
                     value="org.eclipse.papyrus.cdo.internal.ui.views.DIModel">
               </instanceof>
            </iterate>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.cdo.internal.ui.handlers.OpenInModelRepositoriesViewHandler"
+            commandId="org.eclipse.papyrus.cdo.ui.commands.openInModelRepositories">
+         <enabledWhen>
+           <with variable="selection">
+              <count
+                    value="1">
+              </count>
+              <iterate operator="and">
+                 <adapt
+                       type="org.eclipse.emf.cdo.admin.CDOAdminClientRepository">
+                 </adapt>
+              </iterate>
+           </with>
          </enabledWhen>
       </handler>
    </extension>

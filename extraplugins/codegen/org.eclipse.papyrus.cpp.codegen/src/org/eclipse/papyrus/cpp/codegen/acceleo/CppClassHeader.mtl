@@ -15,14 +15,19 @@
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppDocumentation/]
 
 
-[query public classUnionOrStruct(classifier : Classifier) : String =
-if (hasStereotype(C_Cpp::Union)) then 'union'
-else
-	if (oclIsKindOf(DataType)) then 'struct'
-	else 'class'
-	endif
-endif
-/]
+[template public classUnionOrStruct(classifier : Classifier)]
+[if (hasStereotype(C_Cpp::Union))]
+    'union'
+[else]
+	[if (oclIsKindOf(DataType))]
+        [VisibilityKind::public.resetVisibility()/]
+        struct
+	[else]
+        [VisibilityKind::private.resetVisibility()/]
+        class
+	[/if]
+[/if]
+[/template]
 
 [comment default initializer for non-static attributes with a default value
 TODO: should be disabled by default, since non-static members can be initialized directly
@@ -59,16 +64,15 @@ in C++ 011/]
 [CppElementDoc()/]
 [templateSignature()/][classUnionOrStruct()/] [class.name/][CppClassInheritedDeclarations()/] {
 [CppClassIncludeFriendDeclaration()/][CppClassTypeAndEnum()/]
+    [VisibilityKind::public.getSection(defaultInitializer())/]
+    [VisibilityKind::public.getSection(CppClassAttributesDeclaration(VisibilityKind::public))/]
+    [VisibilityKind::public.getSection(CppClassOperationsDeclaration(VisibilityKind::public))/]
 
-  public:
-[defaultInitializer()/][CppClassAttributesDeclaration(VisibilityKind::public)/][CppClassOperationsDeclaration(VisibilityKind::public)/]
+    [VisibilityKind::protected.getSection(CppClassAttributesDeclaration(VisibilityKind::protected))/]
+    [VisibilityKind::protected.getSection(CppClassOperationsDeclaration(VisibilityKind::protected))/]
 
-  protected:
-[CppClassAttributesDeclaration(VisibilityKind::protected)/][CppClassOperationsDeclaration(VisibilityKind::protected)/]
-
-  private:
-[CppClassAttributesDeclaration(VisibilityKind::private)/][CppClassOperationsDeclaration(VisibilityKind::private)/]
-
+    [VisibilityKind::private.getSection(CppClassAttributesDeclaration(VisibilityKind::private))/]
+    [VisibilityKind::private.getSection(CppClassOperationsDeclaration(VisibilityKind::private))/]
 };
 /************************************************************/
 /* External declarations (package visibility)               */

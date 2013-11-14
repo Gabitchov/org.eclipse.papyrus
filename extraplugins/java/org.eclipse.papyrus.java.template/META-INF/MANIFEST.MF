@@ -8,7 +8,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui
 Bundle-Vendor: Atos Origin
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: Java Template
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.java.template.Activator

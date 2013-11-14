@@ -12,6 +12,8 @@
 package org.eclipse.papyrus.cpp.codegen.utils;
 
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.papyrus.C_Cpp.ExternLibrary;
 import org.eclipse.papyrus.C_Cpp.External;
@@ -34,6 +36,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.TemplateParameter;
+import org.eclipse.uml2.uml.VisibilityKind;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 
@@ -292,4 +295,42 @@ public class CppGenUtils {
 	}
 
 	private static Namespace currentNS;
+
+	private static boolean visibilityStale = false;
+	private static VisibilityKind currVisibility = null;
+	private static final Pattern EmptySectionRegex = Pattern.compile("^\\s*$");
+
+	/**
+	 * Update the current visibility to the specified value without writing this value to
+	 * the output.  This is to be used when setting the default visibility of a class/struct.
+	 */
+	public static void resetVisibility(VisibilityKind v) {
+		currVisibility = v;
+		visibilityStale = false;
+	}
+
+	/**
+	 * Create a section of code with the appropriate visibility.  Merges the content with
+	 * the previously declared visibility (if appropriate).  Ignore empty content.
+	 */
+	public static String getSection(VisibilityKind visibility, String content) {
+		if (!visibility.equals(currVisibility)) {
+			currVisibility = visibility;
+			visibilityStale = true;
+		}
+
+		// Filter out empty sections.
+		Matcher m = EmptySectionRegex.matcher(content);
+		if (content.isEmpty() || m.matches()) {
+			return "";
+		}
+
+		// Don't write duplicate visibility modifiers.
+		if (!visibilityStale) {
+			return content;
+		}
+
+		visibilityStale = false;
+		return currVisibility.toString() + ":\n" + content;
+	}
 }

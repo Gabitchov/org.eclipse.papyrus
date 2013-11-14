@@ -4,7 +4,7 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.dsml.validation
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

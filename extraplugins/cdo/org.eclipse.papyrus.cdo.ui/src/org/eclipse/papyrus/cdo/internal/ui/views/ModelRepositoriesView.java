@@ -13,7 +13,9 @@ package org.eclipse.papyrus.cdo.internal.ui.views;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.cdo.admin.CDOAdminClientManager;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
+import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOEditorUtil;
 import org.eclipse.emf.cdo.util.CommitException;
@@ -27,11 +29,15 @@ import org.eclipse.net4j.util.container.IContainer;
 import org.eclipse.net4j.util.ui.views.ContainerItemProvider;
 import org.eclipse.net4j.util.ui.views.ContainerView;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.Activator;
+import org.eclipse.papyrus.cdo.core.admin.IPapyrusRepositoryAdminListener;
+import org.eclipse.papyrus.cdo.core.admin.PapyrusRepositoryAdminManager;
+import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.actions.AbstractRepositoryAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.AddRepositoryAction;
+import org.eclipse.papyrus.cdo.internal.ui.actions.ChangePasswordAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.ConnectRepositoryAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.CreateFolderAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.DeleteModelAction;
@@ -40,6 +46,7 @@ import org.eclipse.papyrus.cdo.internal.ui.actions.LinkWithEditorAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.OpenPapyrusModelAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.RemoveRepositoryAction;
 import org.eclipse.papyrus.cdo.internal.ui.actions.RenameModelAction;
+import org.eclipse.papyrus.cdo.internal.ui.admin.RepositoryAdminListener;
 import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDragAdapter;
 import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDropAdapter;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
@@ -61,6 +68,8 @@ import org.eclipse.ui.statushandlers.IStatusAdapterConstants;
 import org.eclipse.ui.statushandlers.StatusAdapter;
 import org.eclipse.ui.statushandlers.StatusManager;
 
+import com.google.common.base.Strings;
+
 /**
  * This is the ModelRepositoriesView type. Enjoy.
  */
@@ -74,6 +83,12 @@ public class ModelRepositoriesView extends ContainerView {
 
 	private final IInternalPapyrusRepositoryManager repositoryManager;
 
+	private final PapyrusRepositoryAdminManager adminManager;
+
+	private CDOAdminClientManager clientManager;
+
+	private IPapyrusRepositoryAdminListener adminListener;
+
 	private AddRepositoryAction addRepositoryAction;
 
 	private LinkWithEditorAction linkWithEditorAction;
@@ -81,6 +96,8 @@ public class ModelRepositoriesView extends ContainerView {
 	private AbstractRepositoryAction connectRepositoryAction;
 
 	private AbstractRepositoryAction disconnectRepositoryAction;
+
+	private ChangePasswordAction changePasswordAction;
 
 	private RemoveRepositoryAction removeRepositoryAction;
 
@@ -102,6 +119,7 @@ public class ModelRepositoriesView extends ContainerView {
 		super();
 
 		repositoryManager = PapyrusRepositoryManager.INSTANCE;
+		adminManager = new PapyrusRepositoryAdminManager();
 	}
 
 	@Override
@@ -117,6 +135,27 @@ public class ModelRepositoriesView extends ContainerView {
 		// link by default
 		Boolean linking = (memento == null) ? Boolean.TRUE : memento.getBoolean(STATE_LINKING);
 		setLinkWithEditor(!Boolean.FALSE.equals(linking));
+
+		// attach the admin manager
+		clientManager = Activator.getCDOAdminClientManager();
+		if(clientManager != null) {
+			adminManager.install(clientManager);
+			adminListener = new RepositoryAdminListener(repositoryManager);
+			adminManager.addRepositoryAdminListener(adminListener);
+		}
+	}
+
+	@Override
+	public void dispose() {
+		try {
+			if(clientManager != null) {
+				adminManager.removeRepositoryAdminListener(adminListener);
+				clientManager.removeListener(adminManager);
+				clientManager = null;
+			}
+		} finally {
+			super.dispose();
+		}
 	}
 
 	@Override
@@ -166,6 +205,7 @@ public class ModelRepositoriesView extends ContainerView {
 		selectionProvider.addSelectionChangedListener(openModelAction);
 		selectionProvider.addSelectionChangedListener(connectRepositoryAction);
 		selectionProvider.addSelectionChangedListener(disconnectRepositoryAction);
+		selectionProvider.addSelectionChangedListener(changePasswordAction);
 		selectionProvider.addSelectionChangedListener(removeRepositoryAction);
 		selectionProvider.addSelectionChangedListener(createFolderAction);
 		selectionProvider.addSelectionChangedListener(renameModelAction);
@@ -181,6 +221,7 @@ public class ModelRepositoriesView extends ContainerView {
 		linkWithEditorAction = new LinkWithEditorAction(this);
 		connectRepositoryAction = new ConnectRepositoryAction(this);
 		disconnectRepositoryAction = new DisconnectRepositoryAction(this);
+		changePasswordAction = new ChangePasswordAction(this);
 		removeRepositoryAction = new RemoveRepositoryAction(this);
 		openModelAction = new OpenPapyrusModelAction(this);
 		createFolderAction = new CreateFolderAction(this.getSite());
@@ -221,6 +262,13 @@ public class ModelRepositoriesView extends ContainerView {
 
 				manager.add(connectRepositoryAction);
 				manager.add(disconnectRepositoryAction);
+
+				if(selected instanceof IInternalPapyrusRepository) {
+					CDOSession session = ((IInternalPapyrusRepository)selected).getCDOSession();
+					if((session != null) && !Strings.isNullOrEmpty(session.getUserID())) {
+						manager.add(changePasswordAction);
+					}
+				}
 
 				manager.add(removeRepositoryAction);
 				manager.add(propertyDialogAction);

@@ -1,29 +1,32 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
+Export-Package: org.eclipse.papyrus.cdo.internal.ui.hyperlink;x-intern
+ al:=true
+Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.cdo.ui.hyperlink;singleton:=true
-Bundle-Version: 0.10.100.qualifier
-Bundle-Activator: org.eclipse.papyrus.cdo.internal.ui.hyperlink.Activator
-Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.ui;bundle-version="3.105.0",
  org.eclipse.core.runtime;bundle-version="3.9.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.hyperlink;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.hyperlink;bundle-version="1.0.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.cdo.ui;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.cdo.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.common.core;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.gmf.runtime.notation;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.common
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-ActivationPolicy: lazy
-Bundle-Localization: plugin
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0"
+Bundle-Vendor: %providerName
+Bundle-Version: 1.0.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.cdo.internal.ui.hyperlink.Activa
+ tor
 Import-Package: com.google.common.base;version="10.0.0",
  com.google.common.collect;version="10.0.0"
-Export-Package: org.eclipse.papyrus.cdo.internal.ui.hyperlink;x-internal:=true
+Bundle-SymbolicName: org.eclipse.papyrus.cdo.ui.hyperlink;singleton:=t
+ rue
 

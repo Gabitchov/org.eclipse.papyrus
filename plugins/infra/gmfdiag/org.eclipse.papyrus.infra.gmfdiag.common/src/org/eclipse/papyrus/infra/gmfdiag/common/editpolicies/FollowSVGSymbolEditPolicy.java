@@ -16,34 +16,26 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
-import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleObservableValue;
 
 /**
- * this edit policy has in charge to display follow the symbol associated to the node 
+ * this edit policy has in charge to display follow the symbol associated to the node
  * associated figure has to be a {@link NodeNamedElementFigure}
  */
 public class FollowSVGSymbolEditPolicy extends GraphicalEditPolicy implements IChangeListener {
+
 	/**
 	 * name of the style to get for follow the Symbol
 	 */
-	public static final String FOLLOW_SVG_SYMBOL = "FollowSVGSymbol";
+	public static final String FOLLOW_SVG_SYMBOL = "followSVGSymbol";
 
 	/** key for this edit policy */
 	public final static String FOLLOW_SVG_SYMBOL_EDITPOLICY = "followSVGSymbolEditPolicy";
 
 	protected IObservableValue styleObservable;
-
-
 
 	/**
 	 * Creates a new QualifiedNameDisplayEditPolicy
@@ -56,6 +48,7 @@ public class FollowSVGSymbolEditPolicy extends GraphicalEditPolicy implements IC
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = (View)getHost().getModel();
@@ -65,45 +58,13 @@ public class FollowSVGSymbolEditPolicy extends GraphicalEditPolicy implements IC
 
 		styleObservable = new CustomBooleanStyleObservableValue(view, EMFHelper.resolveEditingDomain(view), FOLLOW_SVG_SYMBOL);
 		styleObservable.addChangeListener(this);
-
-		refreshFigure();
 	}
 
-
-	/**
-	 * refresh the qualified name
-	 */
-	protected void refreshFigure() {
-		if(getHost() instanceof GraphicalEditPart) {
-			GraphicalEditPart editPart=(GraphicalEditPart)getHost();
-			BooleanValueStyle followStyle=getFollowSymbolStyle(editPart.getNotationView());
-			if(followStyle!=null && followStyle.isBooleanValue()==true){
-				final IFigure fig=getHostFigure();
-
-
-
-
-
-				System.err.println(fig);
-
-
-			}
-		}
-	}
-
-	/**
-	 * 
-	 * @param currentView
-	 * @return the current Style that repersent the boder
-	 */
-	protected BooleanValueStyle getFollowSymbolStyle(View currentView){
-		return (BooleanValueStyle)currentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(),FOLLOW_SVG_SYMBOL);
-
-	}
 	/**
 	 * 
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = (View)getHost().getModel();
@@ -115,23 +76,9 @@ public class FollowSVGSymbolEditPolicy extends GraphicalEditPolicy implements IC
 			styleObservable.dispose();
 			styleObservable = null;
 		}
-
 	}
 
-
-	/**
-	 * Gets the diagram event broker from the editing domain.
-	 * 
-	 * @return the diagram event broker
-	 */
-	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(theEditingDomain != null) {
-			return DiagramEventBroker.getInstance(theEditingDomain);
-		}
-		return null;
-	}
-
+	@Override
 	public void handleChange(ChangeEvent event) {
 		getHost().refresh();
 	}

@@ -4,15 +4,9 @@ Export-Package: org.eclipse.papyrus.uml.modelexplorer,
  org.eclipse.papyrus.uml.modelexplorer.handler,
  org.eclipse.papyrus.uml.modelexplorer.queries,
  org.eclipse.papyrus.uml.modelexplorer.util
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .,
- bin/
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.1",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="1.0.0",
  org.eclipse.ui.navigator;bundle-version="3.4.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",
@@ -21,25 +15,31 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  com.google.guava;bundle-version="10.0.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.300",
  org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.service.types;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.service.types;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.0.0",
  org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.3.0",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.3.0",
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.3.0"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ bin/
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer;singleton:=
  true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

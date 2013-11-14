@@ -5,7 +5,7 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup.codegen">
           <command
                commandId="org.eclipse.papyrus.cpp.codegen.command"
                icon="icons/codegen.gif"
@@ -19,7 +19,7 @@
       </menuContribution>
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu.codegen">
           <command
                commandId="org.eclipse.papyrus.cpp.codegen.command"
                icon="icons/codegen.gif"

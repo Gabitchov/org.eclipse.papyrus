@@ -15,13 +15,13 @@ package org.eclipse.papyrus.infra.gmfdiag.common.service.shape;
 
 import java.util.List;
 
-import org.apache.batik.dom.svg.SVGOMDocument;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
+import org.w3c.dom.svg.SVGDocument;
 
 /**
  * Interface implemented by all providers to the {@link ShapeService}
@@ -51,7 +51,7 @@ public interface IShapeProvider extends IProvider {
 	 * @return the list of shapes or <code>null</code> if no shapes have to be displayed by this provider
 	 */
 	List<RenderedImage> getShapes(EObject view);
-	
+
 	/**
 	 * Returns the list of SVG Documents proposed by this provider
 	 * 
@@ -59,7 +59,7 @@ public interface IShapeProvider extends IProvider {
 	 *        the view for which shapes are looked for
 	 * @return the list of SVG DOCUMENT or <code>null</code> if no shapes have to be displayed by this provider
 	 */
-	List<SVGOMDocument> getSVGOMDocument(EObject view);
+	List<SVGDocument> getSVGDocument(EObject view);
 
 	/**
 	 * Returns <code>true</code> if the provider can display shapes.

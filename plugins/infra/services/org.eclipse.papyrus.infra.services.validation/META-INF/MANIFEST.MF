@@ -8,14 +8,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui;bundle-version="2.6.0",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.0.100",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
- org.eclipse.papyrus.infra.services.decoration;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.decoration;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
  org.eclipse.emf.facet.infra.facet;bundle-version="0.3.0",
- org.eclipse.papyrus.infra.services.markerlistener;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.markerlistener;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="4.1.0"
 Export-Package: org.eclipse.papyrus.infra.services.validation,
  org.eclipse.papyrus.infra.services.validation.commands,
@@ -23,7 +23,7 @@ Export-Package: org.eclipse.papyrus.infra.services.validation,
  org.eclipse.papyrus.infra.services.validation.preferences
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

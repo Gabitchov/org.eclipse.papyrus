@@ -35,7 +35,7 @@ import com.google.common.collect.Iterables;
 /**
  * This is the CreateFolderAction type. Enjoy.
  */
-public class CreateFolderAction extends AsyncTransactionAction<CDOResourceNode> {
+public class CreateFolderAction extends AsyncEditAction<CDOResourceNode> {
 
 	private final IShellProvider shellProvider;
 
@@ -130,6 +130,7 @@ public class CreateFolderAction extends AsyncTransactionAction<CDOResourceNode> 
 
 		return new IInputValidator() {
 
+			@Override
 			public String isValid(String newText) {
 				String result;
 				String name = (newText == null) ? "" //$NON-NLS-1$
