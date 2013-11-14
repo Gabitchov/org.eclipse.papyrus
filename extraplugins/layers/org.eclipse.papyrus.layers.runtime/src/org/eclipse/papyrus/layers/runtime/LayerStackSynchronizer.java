@@ -195,7 +195,15 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 			
 			// Walk each view and set the property
 			for( int i=0; i<views.size(); i++) {
-				setter.setValue(views.get(i), commands.get(i).getCmdValue() );
+				
+				// set the value from the provided cmds.
+				// Do it if the cmd is not null
+				if( commands != null && commands.get(i) != null ) {
+				  setter.setValue(views.get(i), commands.get(i).getCmdValue() );
+				} 
+				else {
+					System.err.println( this.getClass().getSimpleName() + "ERROR - a cmd is null " + commands);
+				}
 			}
 		} catch (NotFoundException e) {
 			System.err.println(e.getMessage());
@@ -393,6 +401,11 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	public void layerAdded(Notification notification) {
 		System.out.println(this.getClass().getSimpleName() + " layerAdded() " + notification.getNewValue());
 
+		if( ! (notification.getOldValue() instanceof AbstractLayer) ) {
+			System.err.println( this.getClass().getSimpleName() + "TODO: layerRemoved() " + notification.getOldValue() + " - removing layerOperator not implemented yet.");;
+            return;
+		}
+
 		// Extract the affected layer
 		AbstractLayer layer = (AbstractLayer)notification.getNewValue();
 
@@ -411,6 +424,10 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	public void layerRemoved(Notification notification) {
 		System.out.println(this.getClass().getSimpleName() + " layerRemoved() " + notification.getOldValue());
 
+		if( ! (notification.getOldValue() instanceof AbstractLayer) ) {
+			System.err.println( this.getClass().getSimpleName() + "TODO: layerRemoved() " + notification.getOldValue() + " - removing layerOperator not implemented yet.");;
+            return;
+		}
 		// Extract the affected layer
 		AbstractLayer layer = (AbstractLayer)notification.getOldValue();
 

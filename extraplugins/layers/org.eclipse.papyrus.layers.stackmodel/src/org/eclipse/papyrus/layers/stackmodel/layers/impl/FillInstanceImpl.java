@@ -268,7 +268,8 @@ public class FillInstanceImpl extends TypeInstanceImpl implements FillInstance {
 		
 		FillInstance instance = (FillInstance)value;
 		setTransparency(instance.getTransparency());
-		setFillColor(instance.getFillColor());
+		// Set by copy
+		getFillColor().setValueFromInstance(instance.getFillColor());
 	}
 
 	/**

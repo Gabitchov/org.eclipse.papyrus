@@ -14,6 +14,7 @@ package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -358,7 +359,16 @@ public abstract class AbstractLayerOperatorImpl extends LayerOperatorImpl implem
 		}
 		
 		// Call the corresponding operator
-		ComputePropertyValueCommand res = getLayerOperatorDescriptor().getPropertyOperator(property).getComputePropertyValueCommand(collectedCmds);
+		ComputePropertyValueCommand res;
+		try {
+			res = getLayerOperatorDescriptor().getPropertyOperator(property).getComputePropertyValueCommand(collectedCmds);
+		} catch (UnsupportedOperationException e) {
+			// The operator is not implemented
+			System.err.println(this.getClass().getSimpleName() + "WARNING - Operator not implemened for LayerOperator '" 
+			         + this.getClass().getSimpleName() +"' and property '"
+			         + property.getName() + "'.");
+			return null;
+		}
 		return res;
 	
 	}
