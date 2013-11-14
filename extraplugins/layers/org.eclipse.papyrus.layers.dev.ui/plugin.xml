@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.layers.stackmodel.ui.popupmenu?after=endseparator">
+         <separator
+               name="devseparator"
+               visible="true">
+         </separator>
+         <menu
+               label="Oldies">
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.attachLayerStack"
+                  label="Attach Layer Stack"
+                  style="push"
+                  tooltip="Attach a Layer Stack to the diagram">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.createtoplayeroperator"
+                  label="Create Top Layer Operator"
+                  style="push"
+                  tooltip="Create a top Layer operator">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.createstackedLayerOperator"
+                  label="Create Stacked Layer Operator"
+                  style="push"
+                  tooltip="Create a Stacked Layer operator">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.attachPropertyToLayer"
+                  label="Attach a Property to a Layer"
+                  style="push"
+                  tooltip="Attach a Property to a Layer">
+            </command>
+            <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
+                  label="Create Layer Operators No Param"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+
+</plugin>

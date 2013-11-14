@@ -246,42 +246,11 @@
          </command>
          <command
                commandId="org.eclipse.papyrus.layers.ui.commands.delete"
-               label="Delete Item"
+               icon="IMG_TOOL_DELETE"
+               label="Delete"
                style="push"
-               tooltip="Delete Selected Item from the Tree Explorer">
+               tooltip="Delete Selected Item from the Layer Explorer">
          </command>
-         <menu
-               label="Oldies">
-            <command
-                  commandId="org.eclipse.papyrus.layers.ui.commands.attachLayerStack"
-                  label="Attach Layer Stack"
-                  style="push"
-                  tooltip="Attach a Layer Stack to the diagram">
-            </command>
-            <command
-                  commandId="org.eclipse.papyrus.layers.ui.commands.createtoplayeroperator"
-                  label="Create Top Layer Operator"
-                  style="push"
-                  tooltip="Create a top Layer operator">
-            </command>
-            <command
-                  commandId="org.eclipse.papyrus.layers.ui.commands.createstackedLayerOperator"
-                  label="Create Stacked Layer Operator"
-                  style="push"
-                  tooltip="Create a Stacked Layer operator">
-            </command>
-            <command
-                  commandId="org.eclipse.papyrus.layers.ui.commands.attachPropertyToLayer"
-                  label="Attach a Property to a Layer"
-                  style="push"
-                  tooltip="Attach a Property to a Layer">
-            </command>
-            <command
-                  commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
-                  label="Create Layer Operators No Param"
-                  style="push">
-            </command>
-         </menu>
          <command
                commandId="org.eclipse.papyrus.layers.ui.commands.attachitemselectedindiagramtocurrentlayer"
                label="Attach Selected Views to Layer"
@@ -294,11 +263,15 @@
                style="push"
                tooltip="Remove selected views from the layer selected in the LayersExplorer">
          </command>
+         <separator
+               name="endseparator"
+               visible="false">
+         </separator>
       </menuContribution>
       <menuContribution
             locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <menu
-               label="Layers v3">
+               label="Layers">
             <command
                   commandId="org.eclipse.papyrus.layers.ui.commands.attachLayerStack"
                   label="Attach Layer Stack"
@@ -319,15 +292,15 @@
             </command>
             <command
                   commandId="org.eclipse.papyrus.layers.ui.commands.attachitemselectedindiagramtocurrentlayer"
-                  label="Attach Views to Layer"
+                  label="Attach Views to Current Layer"
                   style="push"
-                  tooltip="Attach selected views to the layer selected in the LayersExplorer">
+                  tooltip="Attach selected views to the layer currently selected in the LayersExplorer">
             </command>
             <command
                   commandId="org.eclipse.papyrus.layers.ui.commands.removeitemselectedindiagramfromcurrentlayer"
-                  label="Remove Views from Layer"
+                  label="Remove Views from Current Layer"
                   style="push"
-                  tooltip="Remove selected views from the layer selected in the LayersExplorer">
+                  tooltip="Remove selected views from the layer currently selected in the LayersExplorer">
             </command>
          </menu>
       </menuContribution>
