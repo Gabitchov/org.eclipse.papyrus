@@ -49,7 +49,6 @@ import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelFacto
 import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Transition;
 
@@ -73,7 +72,6 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 	public boolean isEnabled() {
 		updateSelectedEObject();
 		if (selectedEObject instanceof Class ||
-			selectedEObject instanceof DataType ||
 			selectedEObject instanceof Operation ||
 			selectedEObject instanceof Transition)
 		{
