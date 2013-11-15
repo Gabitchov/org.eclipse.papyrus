@@ -9,5 +9,8 @@
       <strategy
             strategy="org.eclipse.papyrus.uml.diagram.dnd.strategy.classifier.ClassifierAsClassifierToStructureCompartmentDropStrategy">
       </strategy>
+      <strategy
+            strategy="org.eclipse.papyrus.uml.diagram.dnd.lifeline.ClassifierToLifelineDropStrategy">
+      </strategy>
    </extension>
 </plugin>
