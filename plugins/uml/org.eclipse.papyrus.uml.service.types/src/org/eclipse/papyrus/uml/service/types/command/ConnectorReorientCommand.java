@@ -82,8 +82,8 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 		} else {
 			oppositeEndView = null;
 		}
-		setNewPartWithPort(getNewPartWithPort());
-		setOppositePartWithPort(getOppositePartWithPort());
+		setNewPartWithPort(findNewPartWithPort());
+		setOppositePartWithPort(findNewOppositePartWithPort());
 	}
 
 	//	/**
@@ -253,6 +253,9 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 				// Only add PartWithPort for assembly (not for delegation)
 				if(!EcoreUtil.isAncestor(ViewUtil.getContainerView(this.newEndView), this.oppositeEndView)) {
 					partWithPort = (Property)newEndParent;
+				} else {
+					int i = 0;
+					i++;
 				}
 			}
 		}
@@ -264,7 +267,7 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 	 * 
 	 * @return the new {@link Connector} opposite end part with port.
 	 */
-	protected Property getNewOppositePartWithPort() {
+	protected Property findNewOppositePartWithPort() {
 		Property partWithPort = null;
 		Element oppositeEndParent = getEndParent(this.oppositeEndView);
 		if(this.oppositeEndView.getElement() instanceof Port) {

@@ -136,7 +136,7 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 	 *         <code>true</code> if the newRole can be used as role for connector
 	 */
 	private boolean canReorient(final EObject newRole, final EObject oppositeRole) {
-		if(newRole==null){
+		if(newRole == null) {
 			return true;//we allow to reinitialize the role
 		}
 		//the new role must be a connectable element
@@ -181,16 +181,19 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 		}
 
 		final ConnectorEnd editedConnectorEnd;
-
+		final ConnectorEnd oppositeEnd;
 		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			editedConnectorEnd = getLink().getEnds().get(0);
+			oppositeEnd = getLink().getEnds().get(1);
 		} else if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			editedConnectorEnd = getLink().getEnds().get(1);
+			oppositeEnd = getLink().getEnds().get(0);
 		} else {
 			editedConnectorEnd = null;
+			oppositeEnd = null;
 		}
 		if(editedConnectorEnd != null) {
-			reorientEnd(editedConnectorEnd, (ConnectableElement)newEnd, newPartWithPort, null);
+			reorientEnd(editedConnectorEnd, oppositeEnd, (ConnectableElement)newEnd, newPartWithPort, oppositePartWithPort);
 			if(ConnectorUtils.applyUMLRulesForConnector(getLink())) {
 				final StructuredClassifier newContainer = deduceParentConnector(getLink(), (ConnectableElement)this.oppositeEnd, (ConnectableElement)this.newEnd, this.oppositePartWithPort, this.newPartWithPort);
 				replaceOwner(getLink(), newContainer);
@@ -203,16 +206,18 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 	/**
 	 * 
 	 * @param end
+	 * @param oppositeEnd
+	 *        TODO
 	 * @param role
 	 * @param partWithPort
 	 * @param oppositePartWithPort
 	 * @return
 	 * @throws ExecutionException
 	 */
-	protected CommandResult reorientEnd(final ConnectorEnd end, final ConnectableElement role, final Property partWithPort, final Property oppositePartWithPort) throws ExecutionException {
+	protected CommandResult reorientEnd(final ConnectorEnd end, ConnectorEnd oppositeEnd, final ConnectableElement role, final Property partWithPort, final Property oppositePartWithPort) throws ExecutionException {
 		end.setRole(role);
 		end.setPartWithPort(partWithPort);
-		//		oppositeEnd.setPartWithPort(oppositePartWithPort);
+		oppositeEnd.setPartWithPort(oppositePartWithPort);
 		return CommandResult.newOKCommandResult();
 	}
 
