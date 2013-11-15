@@ -137,6 +137,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	private TransactionalEditingDomain contextEditingDomain;
 
+	private TransactionalEditingDomain tableEditingDomain;
+
 	private Adapter changeAxisProvider;
 
 	private AdapterImpl changeAxisProviderHistory;
@@ -191,32 +193,33 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 			public void notifyChanged(final Notification msg) {
 				if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_CurrentColumnAxisProvider() || msg.getFeature() == NattablePackage.eINSTANCE.getTable_CurrentRowAxisProvider()) {
+					if(msg.getNewValue() != null) {
+						Display.getCurrent().asyncExec(new Runnable() {
 
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						@Override
-						public void run() {
-							init();
-							refreshNatTable();
-						}
-					});
+							@Override
+							public void run() {
+								init();
+								refreshNatTable();
+							}
+						});
+					}
 				}
 			}
-
 		};
 
 		changeAxisProviderHistory = new AdapterImpl() {
 
 			public void notifyChanged(final Notification msg) {
 				if(msg.getFeature() == NattablePackage.eINSTANCE.getTable_ColumnAxisProvidersHistory() || msg.getFeature() == NattablePackage.eINSTANCE.getTable_RowAxisProvidersHistory()) {
+					if(msg.getNewValue() != null) {
+						Display.getCurrent().asyncExec(new Runnable() {
 
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						@Override
-						public void run() {
-							init();
-						}
-					});
+							@Override
+							public void run() {
+								init();
+							}
+						});
+					}
 				}
 			}
 
@@ -233,6 +236,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		};
 		rawModel.eAdapters().add(tableCellsListener);
+		this.tableEditingDomain = TableEditingDomainUtils.getTableEditingDomain(rawModel);
+		this.contextEditingDomain = TableEditingDomainUtils.getTableContextEditingDomain(rawModel);
 	}
 
 
@@ -265,7 +270,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		};
 
 		getContextEditingDomain().getCommandStack().addCommandStackListener(this.refreshListener);
-
+		if(getTableEditingDomain() != getContextEditingDomain()) {
+			getTableEditingDomain().getCommandStack().addCommandStackListener(this.refreshListener);
+		}
 		this.focusListener = new FocusListener() {
 
 			public void focusLost(FocusEvent e) {
@@ -494,15 +501,21 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public void dispose() {
-		getContextEditingDomain().getCommandStack().removeCommandStackListener(this.refreshListener);
-		this.columnManager.dispose();
-		this.rowManager.dispose();
-		Table table = getTable();
-		if(table != null && this.tableCellsListener != null) {
-			table.eAdapters().remove(this.tableCellsListener);
-		}
-		if(this.cellsMap != null) {
-			this.cellsMap.clear();
+		if(this.tableEditingDomain != null && this.contextEditingDomain != null) {
+			this.tableEditingDomain.getCommandStack().removeCommandStackListener(this.refreshListener);
+			this.contextEditingDomain.getCommandStack().removeCommandStackListener(this.refreshListener);
+			this.columnManager.dispose();
+			this.rowManager.dispose();
+			Table table = getTable();
+			if(table != null && this.tableCellsListener != null) {
+				table.eAdapters().remove(this.tableCellsListener);
+			}
+			if(this.cellsMap != null) {
+				this.cellsMap.clear();
+			}
+			this.tableEditingDomain = null;
+			this.contextEditingDomain = null;
+			super.dispose();
 		}
 	}
 
@@ -589,7 +602,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 */
 	private TransactionalEditingDomain getTableEditingDomain() {
-		return TableEditingDomainUtils.getTableContextEditingDomain(getTable());
+		return this.tableEditingDomain;
 	}
 
 	/**
@@ -598,7 +611,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @return
 	 */
 	private TransactionalEditingDomain getContextEditingDomain() {
-		return TableEditingDomainUtils.getTableContextEditingDomain(getTable());
+		return this.contextEditingDomain;
 	}
 
 	/**
@@ -660,7 +673,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			Display.getDefault().asyncExec(new Runnable() {
 
 				public void run() {
-					NattableModelManager.this.natTable.refresh();
+					if(natTable != null && !natTable.isDisposed())
+						NattableModelManager.this.natTable.refresh();
 				}
 			});
 		}
@@ -999,7 +1013,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 			dialog.setInformationDialogValues(Messages.NattableModelManager_DisconnectAxisManagerInformationDialogTitle, dialogQuestion);
 			dialog.setLabelProvider(labelProvider);
-			final List<Object> initialSelection = ((CompositeAxisManager)editedAxisManager).getAllManagedAxis(true);//TODO : must be a list!
+			final List<Object> initialSelection = ((CompositeAxisManager)editedAxisManager).getAllManagedAxis(true);
 			dialog.setInitialElementSelections(new ArrayList<Object>(initialSelection));
 
 			int open = dialog.open();
