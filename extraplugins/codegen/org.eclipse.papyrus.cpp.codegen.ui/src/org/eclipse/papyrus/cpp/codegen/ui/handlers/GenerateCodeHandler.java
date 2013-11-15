@@ -10,7 +10,7 @@
  *   Ansgar Radermacher - Initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.papyrus.cpp.codegen.ui.handler;
+package org.eclipse.papyrus.cpp.codegen.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -28,6 +28,8 @@ import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.ui.Activator;
 import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 
 /**
@@ -43,7 +45,7 @@ public class GenerateCodeHandler extends CmdHandler {
 	public boolean isEnabled() {
 		updateSelectedEObject();
 		
-		if (selectedEObject != null) {
+		if (selectedEObject instanceof Package || selectedEObject instanceof Classifier) {
 			URI uri = selectedEObject.eResource().getURI();
 
 			// URIConverter uriConverter = resource.getResourceSet().getURIConverter();

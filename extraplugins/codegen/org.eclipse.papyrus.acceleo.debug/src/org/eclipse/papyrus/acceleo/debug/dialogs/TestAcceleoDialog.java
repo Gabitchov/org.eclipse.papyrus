@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.qompass.designer.debug.dialogs;
+package org.eclipse.papyrus.acceleo.debug.dialogs;
 
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.acceleo.AcceleoException;
