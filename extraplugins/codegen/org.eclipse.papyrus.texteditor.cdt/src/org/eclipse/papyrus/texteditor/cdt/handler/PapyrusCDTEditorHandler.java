@@ -36,6 +36,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsCon
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -49,7 +50,6 @@ import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelFacto
 import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Transition;
 
@@ -73,7 +73,6 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 	public boolean isEnabled() {
 		updateSelectedEObject();
 		if (selectedEObject instanceof Class ||
-			selectedEObject instanceof DataType ||
 			selectedEObject instanceof Operation ||
 			selectedEObject instanceof Transition)
 		{
@@ -143,7 +142,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 				
 		Classifier classifierToEdit = getClassifierToEdit();
-		if (LocateCppProject.getTargetProject(classifierToEdit) == null) {
+		if (LocateCppProject.getTargetProject(classifierToEdit, true) == null) {
 			return;
 		}
 
@@ -166,10 +165,20 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		DiSashModelManager modelMngr = ServiceUtils.getInstance().getService(DiSashModelManager.class, serviceRegistry);
 		ISashWindowsContentProvider sashContentProvider = modelMngr.getISashWindowsContentProvider();
 		Object rootModel = sashContentProvider.getRootModel();
+	
  		if (rootModel instanceof TabFolder) {
+ 			// root = tabFolder, i.e. there is a single folder
 			ISashWindowsContainer sashContainer = ServiceUtils.getInstance().getISashWindowsContainer(serviceRegistry);
 			int index = lookupIndex((TabFolder) rootModel, editorModel);
-			sashContentProvider.createFolder(sashContainer.getSelectedTabFolderModel(), index, sashContainer.getSelectedTabFolderModel(), SWT.RIGHT);
+			if (index != -1) {
+				sashContentProvider.createFolder(sashContainer.getSelectedTabFolderModel(), index, sashContainer.getSelectedTabFolderModel(), SWT.RIGHT);
+			}
+		}
+ 		else if (rootModel instanceof SashPanel) {
+ 			// multiple tab-folders exist. Find existing one and move editorModel to other
+ 			// TODO
+ 			// ISashWindowsContainer sashContainer = ServiceUtils.getInstance().getISashWindowsContainer(serviceRegistry);
+ 			// sashContentProvider.movePage(sashContainer.getSelectedTabFolderModel(), lookupIndex(sourceTab, editorModel), targetTabModel, -1);
 		}
 	}
 

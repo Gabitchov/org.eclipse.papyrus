@@ -42,7 +42,7 @@ public class SyncModelToCDT {
 			return null;
 		}
 
-		IProject modelProject = LocateCppProject.getTargetProject(classifier);
+		IProject modelProject = LocateCppProject.getTargetProject(classifier, false);
 		if(modelProject == null) {
 			return null;
 		}

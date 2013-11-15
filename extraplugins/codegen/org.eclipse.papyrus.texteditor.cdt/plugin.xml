@@ -43,10 +43,10 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
          <command
                commandId="org.eclipse.papyrus.exteditor.cdt.openeditor"
-               id="org.eclipse.papyrus.exteditor.cdt.open"
+               id="org.eclipse.papyrus.exteditor.cdt.openD"
                icon="icons/texteditor.gif"
                style="push">
             <visibleWhen

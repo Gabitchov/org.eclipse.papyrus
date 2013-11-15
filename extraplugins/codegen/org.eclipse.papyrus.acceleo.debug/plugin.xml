@@ -5,16 +5,16 @@
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.qompass.designer.debug.handlers.TestAcceleoHandler"
+            defaultHandler="org.eclipse.papyrus.acceleo.debug.handlers.TestAcceleoHandler"
             description="Test Acceleo Template"
-            id="org.eclipse.papyrus.qompass.designer.debug.menuActions.TestAcceleoCmd"
+            id="org.eclipse.papyrus.acceleo.debug.menuActions.TestAcceleoCmd"
             name="dummy">
       </command>
       <command
             categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.qompass.designer.debug.handlers.ResetAcceleoHandler"
+            defaultHandler="org.eclipse.papyrus.acceleo.debug.handlers.ResetAcceleoHandler"
             description="Reset Acceleo driver"
-            id="org.eclipse.papyrus.qompass.designer.debug.menuActions.ResetAcceleoCmd"
+            id="org.eclipse.papyrus.acceleo.debug.menuActions.ResetAcceleoCmd"
             name="dummy">
       </command>
    </extension>
@@ -24,24 +24,20 @@
             allPopups="false"
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popup.codegen">
          <command
-               commandId="org.eclipse.papyrus.qompass.designer.debug.menuActions.TestAcceleoCmd"
+               commandId="org.eclipse.papyrus.acceleo.debug.menuActions.TestAcceleoCmd"
                icon="icons/allocation.gif"
-               id="org.eclipse.papyrus.qompass.designer.debug.menuActions.TestAcceleoMenu"
-               label="Qompass: Test Acceleo template"
+               label="Test Acceleo template"
                mnemonic="T"
-               mode="FORCE_TEXT"
                style="push">
             <visibleWhen
                   checkEnabled="true">
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.qompass.designer.debug.menuActions.ResetAcceleoCmd"
+               commandId="org.eclipse.papyrus.acceleo.debug.menuActions.ResetAcceleoCmd"
                icon="icons/allocation.gif"
-               id="org.eclipse.papyrus.qompass.designer.debug.menuActions.ResetAcceleoMenu"
-               label="Qompass: Reset Acceleo driver"
-               mnemonic="A"
-               mode="FORCE_TEXT"
+               label="Reset Acceleo driver"
+               mnemonic="R"
                style="push">
             <visibleWhen
                   checkEnabled="true">
@@ -52,24 +48,22 @@
             allPopups="false"
             locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu.codegen">
          <command
-               commandId="org.eclipse.papyrus.qompass.designer.debug.menuActions.TestAcceleoCmd"
+               commandId="org.eclipse.papyrus.acceleo.debug.menuActions.TestAcceleoCmd"
                icon="icons/allocation.gif"
-               id="org.eclipse.papyrus.qompass.designer.debug.menuActions.TestAcceleoMenu"
+               id="org.eclipse.papyrus.acceleo.debug.menuActions.TestAcceleoMenu"
                label="Qompass: Test Acceleo template"
-               mnemonic="A"
-               mode="FORCE_TEXT"
+               mnemonic="T"
                style="push">
             <visibleWhen
                   checkEnabled="true">
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.qompass.designer.debug.menuActions.ResetAcceleoCmd"
+               commandId="org.eclipse.papyrus.acceleo.debug.menuActions.ResetAcceleoCmd"
                icon="icons/allocation.gif"
-               id="org.eclipse.papyrus.qompass.designer.debug.menuActions.ResetAcceleoMenu"
-               label="Qompass: Reset Acceleo driver"
-               mnemonic="A"
-               mode="FORCE_TEXT"
+               id="org.eclipse.papyrus.acceleo.debug.menuActions.ResetAcceleoMenu"
+               label="Reset Acceleo driver"
+               mnemonic="R"
                style="push">
             <visibleWhen
                   checkEnabled="true">

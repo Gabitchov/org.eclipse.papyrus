@@ -568,10 +568,14 @@ public class GenUtils {
 	public static String getBodyFromOB(OpaqueBehavior ob, String selectedLanguage) {
 		Iterator<String> bodies = ob.getBodies().iterator();
 		for(String language : ob.getLanguages()) {
-			String body = bodies.next();
-			if(language.equals(selectedLanguage)) {
-				// additional "\r" confuses Acceleo
-				return cleanCR(body);
+			// additional sanity check: number of languages and number of bodies should be synchronized,
+			// 	but there is no guarantee that this is the case 
+			if (bodies.hasNext()) {
+				String body = bodies.next();
+				if(language.equals(selectedLanguage)) {
+					// additional "\r" confuses Acceleo
+					return cleanCR(body);
+				}
 			}
 		}
 		return ""; //$NON-NLS-1$

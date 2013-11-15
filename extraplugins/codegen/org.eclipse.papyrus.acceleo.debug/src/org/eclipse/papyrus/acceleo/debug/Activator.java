@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.qompass.designer.debug;
+package org.eclipse.papyrus.acceleo.debug;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

@@ -15,10 +15,10 @@
 	</menuContribution>
 	<menuContribution
 		allPopups="true"
-		locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+		locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
 		<menu
 			icon="icons/codegen-16x16.gif"
-			id="org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu.codegen"
+			id="org.eclipse.papyrus.views.modelexplorer.popup.codegen"
 			label="Code generation">
 		</menu>
 	</menuContribution>

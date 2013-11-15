@@ -10,12 +10,12 @@
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
  *****************************************************************************/
 
-package org.eclipse.papyrus.qompass.designer.debug.handlers;
+package org.eclipse.papyrus.acceleo.debug.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.papyrus.acceleo.debug.dialogs.TestAcceleoDialog;
 import org.eclipse.papyrus.acceleo.ui.handlers.CmdHandler;
-import org.eclipse.papyrus.qompass.designer.debug.dialogs.TestAcceleoDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.NamedElement;
 
