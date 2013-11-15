@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:j="clr-namespace:java.lang"
+<Composite xmlns:x="http://www.eclipse.org/xwt" xmlns:j="clr-namespace:java.lang"
+	xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
-	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
 	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
@@ -11,6 +11,6 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:StringEditor input="{Binding}"
-			property="layers:StringToPropertySetter:key"></ppe:StringEditor>
+			property="layers:StringToPropertySetter:key" readOnly="true"></ppe:StringEditor>
 	</Composite>
 </Composite>
