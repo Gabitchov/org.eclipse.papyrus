@@ -109,7 +109,7 @@ public class PropertyRegistryImpl extends MinimalEObjectImpl.Container implement
 //				"age", "int",
 //				"num", "int",
 //				"addr", "String",
-				"isValid", "boolean", "true",
+//				"isValid", "boolean", "true",
 				"isVisible", "boolean","true",
 				"isAbstract", "boolean", "false",
 				"fill", "Fill", "0, 15053796", //"transparency, fillColor"
