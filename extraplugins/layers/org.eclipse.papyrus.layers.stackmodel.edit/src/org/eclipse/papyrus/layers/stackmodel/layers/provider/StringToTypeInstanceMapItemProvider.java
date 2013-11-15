@@ -19,11 +19,8 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -34,9 +31,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersFactory;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
+import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 
 /**
  * This is the item provider adapter for a {@link java.util.Map.Entry} object.
@@ -145,12 +142,16 @@ public class StringToTypeInstanceMapItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		Map.Entry<?, ?> stringToTypeInstanceMap = (Map.Entry<?, ?>)object;
-		return "" + stringToTypeInstanceMap.getKey() + " -> " + stringToTypeInstanceMap.getValue();
+//		return "" + stringToTypeInstanceMap.getKey() + " -> " + stringToTypeInstanceMap.getValue();
+		
+//		TypeInstance instance = (TypeInstance)stringToTypeInstanceMap.getValue();
+		
+		return "Property '" + stringToTypeInstanceMap.getKey() + "'";
 	}
 
 	/**

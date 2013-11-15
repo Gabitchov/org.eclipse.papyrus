@@ -18,14 +18,13 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
+import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.StackedLayerOperator;
 
 /**
@@ -82,14 +81,32 @@ public class StackedLayerOperatorItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((StackedLayerOperator)object).getName();
+//		String label = ((StackedLayerOperator)object).getName();
+//		return label == null || label.length() == 0 ?
+//			getString("_UI_StackedLayerOperator_type") :
+//			getString("_UI_StackedLayerOperator_type") + " " + label;
+			
+		// Actually, we use an StackedLayerOperator as a concrete class for every type of layer operator
+		// (to be changed))
+		AbstractLayerOperator layer = ((AbstractLayerOperator)object);
+		if (!layer.isDescriptorSet()) {
+			// Original behavior
+			String label = ((AbstractLayerOperator)object).getName();
+			return label == null || label.length() == 0 ?
+				getString("_UI_AbstractLayerOperator_type") :
+				getString("_UI_AbstractLayerOperator_type") + " " + label;
+		}
+		
+		// Custom behavior
+		String label = layer.getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_StackedLayerOperator_type") :
-			getString("_UI_StackedLayerOperator_type") + " " + label;
+			getString("_UI_AbstractLayerOperator_type") :
+			getString("_UI_AbstractLayerOperator_type") + " (" + layer.getLayerOperatorDescriptor().getName() + ") " + label;
+			
 	}
 
 	/**
