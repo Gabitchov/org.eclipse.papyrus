@@ -24,13 +24,17 @@ import org.eclipse.uml2.uml.PackageableElement;
 
 public class LocateCppProject {
 	/**
-	 * Locate and return the target project for the given packagable element.  Return null if
+	 * Locate and return the target project for the given packageable element.  Return null if
 	 * no target project can be found.
 	 *
 	 * Ensures that the target project is correctly setup to contain generated C/C++ code.  Does
 	 * not create a new project, but may modify existing ones.
-	*/
-	public static IProject getTargetProject(PackageableElement pe) {
+	 * 
+	 * @param pe a packageable element within a model
+	 * @param interactive if true, ask the user to apply the C++ nature if required.
+	 * @return the associated project, if the C++ nature is applied.
+	 */
+	public static IProject getTargetProject(PackageableElement pe, boolean interactive) {
 		URI uri = pe.eResource().getURI();
 
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -44,8 +48,9 @@ public class LocateCppProject {
 		// Make sure the target project has the C and C++ build natures.
 		try {
 			if(!modelProject.hasNature(CCProjectNature.CC_NATURE_ID)) {
-				boolean apply = MessageDialog.openQuestion(new Shell(),
-						"Need to apply C++ nature", "Code generation requires that the underlying project has a C++ nature. Do you want to apply this nature?");
+				boolean apply = interactive && MessageDialog.openQuestion(new Shell(),
+						Messages.LocateCppProject_0,
+						Messages.LocateCppProject_1);
 				if (!apply) {
 					return null;
 				}

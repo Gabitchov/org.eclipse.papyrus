@@ -65,7 +65,7 @@ public class GenerateCodeHandler extends CmdHandler {
 		if(selectedEObject instanceof PackageableElement) {
 			PackageableElement pe = (PackageableElement)selectedEObject;
 
-			IProject modelProject = LocateCppProject.getTargetProject(pe);
+			IProject modelProject = LocateCppProject.getTargetProject(pe, true);
 			if(modelProject == null) {
 				return null;
 			}
