@@ -18,6 +18,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 
 public class DiagramPropertyTester extends PropertyTester {
@@ -60,14 +61,7 @@ public class DiagramPropertyTester extends PropertyTester {
 			final Object first = selection.getFirstElement();
 			if(first instanceof EditPart) {
 				EditPart parent = (EditPart)first;
-				DiagramEditPart diagramEP = null;
-				while(parent != null && diagramEP == null) {
-					if(parent instanceof DiagramEditPart) {
-						diagramEP = (DiagramEditPart)parent;
-					} else {
-						parent = parent.getParent();
-					}
-				}
+				final DiagramEditPart diagramEP = DiagramEditPartsUtil.getDiagramEditPart(parent);
 				if(diagramEP != null) {
 					answer = diagramEP.getEditPolicy(wantedEditPolicy) != null;
 				}
