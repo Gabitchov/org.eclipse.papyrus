@@ -27,15 +27,18 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 	/**
 	 * Return true if the element is a Diagram Container
 	 */
+	@Override
 	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if (roots == null)
+		if(roots == null) {
 			return false;
-		while (roots.hasNext()) {
+		}
+		while(roots.hasNext()) {
 			EObject root = roots.next();
-			if (root instanceof Table) {
-				if (EcoreUtil.equals(((Table)root).getContext(), context))
+			if(root instanceof Table) {
+				if(EcoreUtil.equals(((Table)root).getContext(), context)) {
 					return true;
+				}
 			}
 		}
 		return false;

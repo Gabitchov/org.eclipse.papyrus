@@ -33,13 +33,19 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 	 */
 	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if (roots == null)
+		if(roots == null) {
 			return false;
-		while (roots.hasNext()) {
+		}
+
+		while(roots.hasNext()) {
 			EObject root = roots.next();
-			if (root instanceof PapyrusTableInstance) {
-				if (EcoreUtil.equals(((PapyrusTableInstance)root).getTable().getContext(), context))
-					return true;
+			if(root instanceof PapyrusTableInstance) {
+				PapyrusTableInstance tableInstance = (PapyrusTableInstance)root;
+				if(tableInstance.getTable() != null) {
+					if(EcoreUtil.equals(tableInstance.getTable().getContext(), context)) {
+						return true;
+					}
+				}
 			}
 		}
 		return false;

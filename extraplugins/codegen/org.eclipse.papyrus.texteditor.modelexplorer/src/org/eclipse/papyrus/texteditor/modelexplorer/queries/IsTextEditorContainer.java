@@ -34,13 +34,16 @@ public class IsTextEditorContainer extends AbstractEditorContainerQuery implemen
 	 */
 	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if (roots == null)
+		if(roots == null) {
 			return false;
-		while (roots.hasNext()) {
+		}
+
+		while(roots.hasNext()) {
 			EObject root = roots.next();
-			if (root instanceof TextEditorModel) {
-				if (EcoreUtil.equals(((TextEditorModel)root).getEditedObject(), context))
+			if(root instanceof TextEditorModel) {
+				if(EcoreUtil.equals(((TextEditorModel)root).getEditedObject(), context)) {
 					return true;
+				}
 			}
 		}
 		return false;

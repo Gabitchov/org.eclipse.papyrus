@@ -37,15 +37,18 @@ public class GetContainedTextEditors extends AbstractEditorContainerQuery implem
 	 * {@inheritDoc}
 	 */
 	public Collection<TextEditorModel> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		List<TextEditorModel> result = new ArrayList<TextEditorModel>(3);
+		List<TextEditorModel> result = new ArrayList<TextEditorModel>();
 		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if (roots == null)
+		if(roots == null) {
 			return result;
-		while (roots.hasNext()) {
+		}
+
+		while(roots.hasNext()) {
 			EObject root = roots.next();
-			if (root instanceof TextEditorModel) {
-				if (EcoreUtil.equals(((TextEditorModel)root).getEditedObject(), context))
+			if(root instanceof TextEditorModel) {
+				if(EcoreUtil.equals(((TextEditorModel)root).getEditedObject(), context)) {
 					result.add((TextEditorModel)root);
+				}
 			}
 		}
 		return result;

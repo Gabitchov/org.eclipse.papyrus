@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
@@ -29,16 +28,20 @@ import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQu
 /** Get the collection of all contained tables */
 public class GetContainedTables extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Collection<Table>> {
 
+	@Override
 	public Collection<Table> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		List<Table> result = new ArrayList<Table>(3);
+		List<Table> result = new ArrayList<Table>();
 		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if (roots == null)
+		if(roots == null) {
 			return result;
-		while (roots.hasNext()) {
+		}
+
+		while(roots.hasNext()) {
 			EObject root = roots.next();
-			if (root instanceof Diagram) {
-				if (EcoreUtil.equals(((Table)root).getContext(), context))
+			if(root instanceof Table) {
+				if(EcoreUtil.equals(((Table)root).getContext(), context)) {
 					result.add((Table)root);
+				}
 			}
 		}
 		return result;

@@ -30,15 +30,18 @@ import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQu
 public class GetContainedDiagrams extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Collection<org.eclipse.gmf.runtime.notation.Diagram>> {
 
 	public Collection<Diagram> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		List<Diagram> result = new ArrayList<Diagram>(3);
+		List<Diagram> result = new ArrayList<Diagram>();
 		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if (roots == null)
+		if(roots == null) {
 			return result;
-		while (roots.hasNext()) {
+		}
+
+		while(roots.hasNext()) {
 			EObject root = roots.next();
-			if (root instanceof Diagram) {
-				if (EcoreUtil.equals(((Diagram)root).getElement(), context))
+			if(root instanceof Diagram) {
+				if(EcoreUtil.equals(((Diagram)root).getElement(), context)) {
 					result.add((Diagram)root);
+				}
 			}
 		}
 		return result;
