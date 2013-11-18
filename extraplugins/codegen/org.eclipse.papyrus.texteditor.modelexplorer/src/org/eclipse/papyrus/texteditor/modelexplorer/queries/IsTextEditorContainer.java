@@ -14,16 +14,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.texteditor.modelexplorer.queries;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
-import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelPackage;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
-
-import com.google.common.base.Predicate;
 
 /** Returns true if the element contains a Table */
 //FIXME this query is declared using Element in the querySet -> change into EObject when the EMF-Facet bug will be corrected 365744
@@ -33,20 +33,16 @@ public class IsTextEditorContainer extends AbstractEditorContainerQuery implemen
 	 * {@inheritDoc}
 	 */
 	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Predicate<EObject> p = new Predicate<EObject>() {
-
-			public boolean apply(EObject arg0) {
-				if(arg0 instanceof TextEditorModel) {
-					TextEditorModel textEditorInstance = (TextEditorModel)arg0;
-					if (textEditorInstance.getEditedObject() == context) {
-				//		System.err.println("isContainer = true: " + context); //$NON-NLS-1$
-					}
-					return (textEditorInstance.getEditedObject() == context);
-				}
-				return false;
+		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
+		if (roots == null)
+			return false;
+		while (roots.hasNext()) {
+			EObject root = roots.next();
+			if (root instanceof TextEditorModel) {
+				if (EcoreUtil.equals(((TextEditorModel)root).getEditedObject(), context))
+					return true;
 			}
-		};
-
-		return NavigatorUtils.any(context, TextEditorModelPackage.eINSTANCE.getTextEditorModel(), false, p);
+		}
+		return false;
 	}
 }
