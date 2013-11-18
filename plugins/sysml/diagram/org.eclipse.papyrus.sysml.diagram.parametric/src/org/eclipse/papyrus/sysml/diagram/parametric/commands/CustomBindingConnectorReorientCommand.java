@@ -163,13 +163,13 @@ public class CustomBindingConnectorReorientCommand extends ConnectorReorientComm
 	}
 	
 	@Override
-	protected Property getNewOppositePartWithPort() {
+	protected Property findNewOppositePartWithPort() {
 		// no Port allowed in Parametric
 		return null;
 	}
-	
+
 	@Override
-	protected Property getNewPartWithPort() {
+	protected Property findNewPartWithPort() {
 		// no Port allowed in Parametric
 		return null;
 	}
