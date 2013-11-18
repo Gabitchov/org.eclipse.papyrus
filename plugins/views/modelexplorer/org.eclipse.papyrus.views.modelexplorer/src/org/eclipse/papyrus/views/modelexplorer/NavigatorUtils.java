@@ -1,3 +1,18 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Jerome Benois (OBEO) - Initial API and implementation
+ *  Francisco Javier Cano (PRODEVELOP)
+ *  Thomas Szadel (ATOS) - Remove Backbone dependency
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
 
 import java.util.ArrayList;
@@ -26,6 +41,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
@@ -43,13 +59,164 @@ import com.google.common.collect.Lists;
 /**
  * Utility method for Model Navigator.
  * 
- * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
- * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano
- *         Muñoz</a>
- * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>:
- *         Remove Backbone dependency
- **/
+ * @author Jerome Benois
+ */
 public class NavigatorUtils {
+
+	/**
+	 * Gets the roots of the notations resources related to the given object
+	 * 
+	 * @param element
+	 *        The object from which to retrieve the notation resources
+	 * @return An iterator of notation resources' roots, or <code>null</code> if none cannot be resolved
+	 */
+	public static Iterator<EObject> getNotationRoots(EObject element) {
+		Iterator<Resource> notations = getNotationResources(element);
+		if(notations == null) {
+			return null;
+		}
+		return new RootsIterator(notations);
+	}
+
+	/**
+	 * Represents an iterator on all the roots of the notations resources of a ResourceSet
+	 * 
+	 * @author Laurent Wouters
+	 */
+	private static class RootsIterator implements Iterator<EObject> {
+
+		private Iterator<Resource> notations;
+
+		private Iterator<EObject> inner;
+
+		public RootsIterator(Iterator<Resource> notations) {
+			this.notations = notations;
+			if(notations.hasNext()) {
+				inner = notations.next().getAllContents();
+			}
+		}
+
+		public boolean hasNext() {
+			if(inner == null) {
+				return false;
+			}
+			if(inner.hasNext()) {
+				return true;
+			}
+			while(notations.hasNext()) {
+				inner = notations.next().getAllContents();
+				if(inner.hasNext()) {
+					return true;
+				}
+			}
+			inner = null;
+			return false;
+		}
+
+		public EObject next() {
+			if(inner == null) {
+				return null;
+			}
+			if(inner.hasNext()) {
+				return inner.next();
+			}
+			while(notations.hasNext()) {
+				inner = notations.next().getAllContents();
+				if(inner.hasNext()) {
+					return inner.next();
+				}
+			}
+			inner = null;
+			return null;
+		}
+
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+	}
+
+
+	/**
+	 * Gets the notation resources related to the given object
+	 * 
+	 * @param element
+	 *        The object from which to retrieve the notation resources
+	 * @return An iterator of notation resources, or <code>null</code> if none cannot be resolved
+	 */
+	public static Iterator<Resource> getNotationResources(EObject element) {
+		Iterator<Resource> result = tryGetNotationResources(element);
+		if(result != null) {
+			return result;
+		}
+		IAdaptable input = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getInput();
+		if(input != null) {
+			EObject obj = (EObject)input.getAdapter(EObject.class);
+			return tryGetNotationResources(obj);
+		}
+		return null;
+	}
+
+	/**
+	 * Tries to get the notation resources related to the given object
+	 * 
+	 * @param element
+	 *        The object from which to retrieve the notation resources
+	 * @return An iterator of notation resources, or <code>null</code> if none cannot be resolved
+	 */
+	private static Iterator<Resource> tryGetNotationResources(EObject element) {
+		if(element == null) {
+			return null;
+		}
+		if(element.eResource() == null) {
+			return null;
+		}
+		return new NotationsIterator(element.eResource().getResourceSet());
+	}
+
+
+	/**
+	 * Represents an iterator over the notation resources of a ResourceSet
+	 * 
+	 * @author Laurent Wouters
+	 */
+	private static class NotationsIterator implements Iterator<Resource> {
+
+		private Iterator<Resource> inner;
+
+		private Resource next;
+
+		public NotationsIterator(ResourceSet set) {
+			inner = set.getResources().iterator();
+			next = getNextNotation();
+		}
+
+		private Resource getNextNotation() {
+			while(inner.hasNext()) {
+				Resource resource = inner.next();
+
+				if(NotationModel.NOTATION_FILE_EXTENSION.equalsIgnoreCase(resource.getURI().fileExtension())) {
+					return resource;
+				}
+
+			}
+			return null;
+		}
+
+		public boolean hasNext() {
+			return (next != null);
+		}
+
+		public Resource next() {
+			Resource result = next;
+			next = getNextNotation();
+			return result;
+		}
+
+		public void remove() {
+			throw new UnsupportedOperationException();
+		}
+	}
+
 
 	/**
 	 * Find a <IViewPart> by it's id string.
