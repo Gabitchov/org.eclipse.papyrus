@@ -36,15 +36,21 @@ public class GetContainedTables extends AbstractEditorContainerQuery implements 
 	 * {@inheritDoc}
 	 */
 	public Collection<PapyrusTableInstance> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		List<PapyrusTableInstance> result = new ArrayList<PapyrusTableInstance>(3);
+		List<PapyrusTableInstance> result = new ArrayList<PapyrusTableInstance>();
 		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if (roots == null)
+		if(roots == null) {
 			return result;
-		while (roots.hasNext()) {
+		}
+
+		while(roots.hasNext()) {
 			EObject root = roots.next();
-			if (root instanceof PapyrusTableInstance) {
-				if (EcoreUtil.equals(((PapyrusTableInstance)root).getTable().getContext(), context))
-					result.add((PapyrusTableInstance)root);
+			if(root instanceof PapyrusTableInstance) {
+				PapyrusTableInstance tableInstance = (PapyrusTableInstance)root;
+				if(tableInstance.getTable() != null) {
+					if(EcoreUtil.equals(tableInstance.getTable().getContext(), context)) {
+						result.add(tableInstance);
+					}
+				}
 			}
 		}
 		return result;

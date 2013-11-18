@@ -30,13 +30,16 @@ public class IsDiagramContainer extends AbstractEditorContainerQuery implements 
 	 */
 	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if (roots == null)
+		if(roots == null) {
 			return false;
-		while (roots.hasNext()) {
+		}
+
+		while(roots.hasNext()) {
 			EObject root = roots.next();
-			if (root instanceof Diagram) {
-				if (EcoreUtil.equals(((Diagram)root).getElement(), context))
+			if(root instanceof Diagram) {
+				if(EcoreUtil.equals(((Diagram)root).getElement(), context)) {
 					return true;
+				}
 			}
 		}
 		return false;
