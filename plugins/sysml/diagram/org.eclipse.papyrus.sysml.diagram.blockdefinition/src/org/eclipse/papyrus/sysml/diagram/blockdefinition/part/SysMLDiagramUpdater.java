@@ -33,15 +33,19 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLLinkDescriptor;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Usage;
 
 
 /**
@@ -148,6 +152,7 @@ public class SysMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
 		return result;
 	}
 
@@ -156,6 +161,9 @@ public class SysMLDiagramUpdater {
 		final LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_link_uml_interfacerealization(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
 		return result;
 	}
 
@@ -180,6 +188,91 @@ public class SysMLDiagramUpdater {
 		}
 		return result;
 	}
+
+	private static Collection<UpdaterLinkDescriptor> getContainedTypeModelFacetLinks_InterfaceRealization_link_uml_interfacerealization(BehavioredClassifier container) {
+		Collection<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		for(Iterator<InterfaceRealization> links = container.getInterfaceRealizations().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject)links.next();
+			if(false == linkObject instanceof InterfaceRealization) {
+				continue;
+			}
+			InterfaceRealization link = (InterfaceRealization)linkObject;
+			if(!UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID.equals(SysMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+				continue;
+			}
+			Interface dst = link.getContract();
+			result.add(new UpdaterLinkDescriptor(container, dst, link, UMLElementTypes.InterfaceRealization_4003, -1));
+		}
+		return result;
+	}
+
+	private static Collection<UpdaterLinkDescriptor> getIncomingTypeModelFacetLinks_Usage_link_uml_usage(NamedElement target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		for(EStructuralFeature.Setting setting : settings) {
+			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Usage) {
+				continue;
+			}
+			Usage link = (Usage)setting.getEObject();
+			if(!UMLGraphicalTypes.LINK_UML_USAGE_ID.equals(SysMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+				continue;
+			}
+			List<NamedElement> sources = link.getClients();
+			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+			if(false == theSource instanceof NamedElement) {
+				continue;
+			}
+			NamedElement src = (NamedElement)theSource;
+			result.add(new UpdaterLinkDescriptor(src, target, link, UMLElementTypes.Usage_4007, -1));
+		}
+		return result;
+	}
+
+	private static Collection<UpdaterLinkDescriptor> getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(NamedElement source) {
+		Package container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if(element instanceof Package) {
+				container = (Package)element;
+			}
+		}
+		if(container == null) {
+			return Collections.emptyList();
+		}
+		Collection<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		for(Iterator<PackageableElement> links = container.getPackagedElements().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject)links.next();
+			if(false == linkObject instanceof Usage) {
+				continue;
+			}
+			Usage link = (Usage)linkObject;
+			if(!UMLGraphicalTypes.LINK_UML_USAGE_ID.equals(SysMLVisualIDRegistry.getLinkWithClassVisualID(linkObject))) {
+				continue;
+			}
+			List<NamedElement> targets = link.getSuppliers();
+			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
+			if(false == theTarget instanceof NamedElement) {
+				continue;
+			}
+			NamedElement dst = (NamedElement)theTarget;
+			List<NamedElement> sources = link.getClients();
+			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+			if(false == theSource instanceof NamedElement) {
+				continue;
+			}
+			NamedElement src = (NamedElement)theSource;
+			if(src != source) {
+				continue;
+			}
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_4007, -1));
+		}
+		return result;
+	}
+
+
+
 
 	private static Collection<UpdaterLinkDescriptor> getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(NamedElement source) {
 		Package container = null;

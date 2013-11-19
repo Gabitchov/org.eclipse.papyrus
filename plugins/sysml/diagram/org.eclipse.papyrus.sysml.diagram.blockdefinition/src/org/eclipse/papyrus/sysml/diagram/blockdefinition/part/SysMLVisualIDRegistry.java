@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.part;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
@@ -33,14 +34,17 @@ public class SysMLVisualIDRegistry {
 		if(domainElement == null) {
 			return UNKNOWN;
 		}
-		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())) {
+		final EClass eClass = domainElement.eClass();
+		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(eClass)) {
 			return UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID;
 		}
-
-		if(UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())) {
+		if(UMLPackage.eINSTANCE.getInterfaceRealization().isSuperTypeOf(eClass)) {
+			return UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID;
+		}
+		if(UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(eClass)) {
 			return SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID;
 		}
-		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())) {
+		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(eClass)) {
 			return UMLGraphicalTypes.LINK_UML_CONNECTOR_ID;
 		}
 		//		if(UMLPackage.eINSTANCE.getAssociationClass().isSuperTypeOf(domainElement.eClass())) {
