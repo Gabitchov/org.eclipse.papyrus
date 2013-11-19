@@ -427,7 +427,8 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			List<Type> sources = link.getEndTypes();
-			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+			//Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+			Object theSource = sources.size() >= 2 ? sources.get(1) : null;//source and target ar einverted in BDD
 			if(false == theSource instanceof Type) {
 				continue;
 			}
@@ -462,13 +463,15 @@ public class SysMLDiagramUpdater {
 			}
 			//Papyrus GenCode 
 			List<Type> targets = link.getEndTypes();
-			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
+			//			Object theTarget = targets.size() >= 2 ? targets.get(1) : null;
+			Object theTarget = targets.size() >= 1 ? targets.get(0) : null;//source and target are inverted in BDD
 			if(false == theTarget instanceof Type) {
 				continue;
 			}
 			Type dst = (Type)theTarget;
 			List<Type> sources = link.getEndTypes();
-			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+			//			Object theSource = sources.size() >= 1 ? sources.get(0) : null;
+			Object theSource = sources.size() >= 2 ? sources.get(1) : null;//source and target are inverted in BDD
 			if(false == theSource instanceof Type) {
 				continue;
 			}
