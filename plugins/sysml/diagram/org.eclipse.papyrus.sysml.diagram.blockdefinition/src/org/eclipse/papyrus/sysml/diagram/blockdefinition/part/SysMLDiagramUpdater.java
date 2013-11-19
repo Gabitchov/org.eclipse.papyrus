@@ -36,6 +36,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLLinkDescriptor;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
+import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Class;
@@ -139,8 +140,13 @@ public class SysMLDiagramUpdater {
 		if(id.equals(Integer.toString(PackageEditPart.VISUAL_ID)) || id.equals(Integer.toString(PackageEditPartCN.VISUAL_ID))) {
 			return getPackage_2007IncomingLinks(view);
 		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_ACTOR_AS_CLASSIFIER_ID)) {
+			return getActor_shape_uml_actor_as_classifier_IncomingLinks(view);
+		}
 		return Collections.emptyList();
 	}
+
+
 
 
 	/**
@@ -158,11 +164,37 @@ public class SysMLDiagramUpdater {
 		if(id.equals(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID)) {
 			return getAssociation_link_sysml_association_OutgoingLink(view);
 		}
+
 		if(id.equals(Integer.toString(PackageEditPart.VISUAL_ID)) || id.equals(Integer.toString(PackageEditPartCN.VISUAL_ID))) {
 			return getPackage_2007OutgoingLinks(view);
 		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_ACTOR_AS_CLASSIFIER_ID)) {
+			return getActor_shape_uml_actor_as_classifier_OutgoingLinks(view);
+		}
 
 		return Collections.emptyList();
+	}
+
+	private static List<UpdaterLinkDescriptor> getActor_shape_uml_actor_as_classifier_IncomingLinks(View view) {
+		Actor modelElement = (Actor)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getActor_shape_uml_actor_as_classifier_OutgoingLinks(View view) {
+		Actor modelElement = (Actor)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_link_uml_interfacerealization(modelElement));
+		return result;
 	}
 
 	public static List<UpdaterLinkDescriptor> getPackage_2007IncomingLinks(View view) {
