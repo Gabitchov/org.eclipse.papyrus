@@ -207,8 +207,8 @@ public class NavigatorUtils {
 
 		public ResourcesIterator(ResourceSet set, String fileExtension) {
 			inner = set.getResources().iterator();
-			next = getNextResource();
 			this.fileExtension = fileExtension;
+			next = getNextResource();
 		}
 
 		private Resource getNextResource() {
