@@ -16,7 +16,11 @@ return a list of owned operations, since this is not supported directly on a cla
 		if (cl.oclIsKindOf(DataType)) then
 			oclAsType(DataType).ownedOperation
 		else
-			null
+			if (cl.oclIsKindOf(Interface)) then
+				oclAsType(Interface).ownedOperation
+			else
+				Sequence{}
+			endif
 		endif
 	endif
 /]

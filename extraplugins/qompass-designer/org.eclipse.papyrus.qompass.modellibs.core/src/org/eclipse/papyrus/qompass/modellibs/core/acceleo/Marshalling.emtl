@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="Marshalling" nsURI="org::eclipse::papyrus::qompass::modellibs::core::acceleo::Marshalling" endHeaderPosition="60">
+    <input>
+      <takesTypesFrom href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+    </input>
+    <imports href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/UMLTool.emtl#/0"/>
+    <imports href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/utils_cpp.emtl#/0"/>
+    <ownedModuleElement xsi:type="mtl:Comment">
+      <body startPosition="227" endPosition="1028" value="&#xA;  All marshalling mechanisms produce an Event, since we need a common data type.&#xA;  An advantage of the Event data type is that ID and kind can be used to&#xA;  identify data without having to unmarshall.&#xA;  (what about target instance?) [=> as long as an event is within the pool of an object, this information is&#xA;  not required on each event. But it needs to be added in the moment, an event is transferred.&#xA;&#xA;Also: two different tasks: Call => CallEvent&#xA;&#x9;CallEvent => buffer&#xA;&#x9;Call => buffer&#xA;&#xA;&#x9;CallEvent => Call&#xA;&#x9;buffer => CallEvent&#xA;&#x9;operations marshall all,&#xA;   &#xA;  An alternative option would be to produce a buffer only&#xA;  In case of OO marshalling, there is no need to produce an event via&#xA;  an out port, but to pass the buffer in the call&#xA;&#xA;  Better(?): Marshalling returns CallEvent or buffer&#xA; marshall&#xA;"/>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="marshallStruct" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="struct ParamData {&#xA;"/>
+      <body xsi:type="mtl:ForBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;"/>
+        <body xsi:type="mtl:TemplateInvocation">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <definition href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/utils_cpp.emtl#/0/cppType"/>
+          <argument xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/9">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//TypedElement/type"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" "/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/10">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=";&#xA;"/>
+        <loopVariable name="parameter">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+        </loopVariable>
+        <iterSet xsi:type="mtl:QueryInvocation" eType="/6/Sequence(Parameter)">
+          <definition href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/UMLTool.emtl#/0/parametersInInout"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="operation" referredVariable="/0/marshallStruct/operation">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+          </argument>
+        </iterSet>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="};&#xA;Event event;&#xA;event.ID = "/>
+      <body xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="operation" referredVariable="/0/marshallStruct/operation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=";&#xA;event.kind = CallEvent;&#xA;ParamData * data = &amp;event.params; &#xA;"/>
+      <body xsi:type="mtl:ForBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;data->"/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="parameter" referredVariable="/0/marshallStruct/%.5/parameter">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" = "/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="parameter" referredVariable="/0/marshallStruct/%.5/parameter">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=";&#xA;"/>
+        <loopVariable name="parameter">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+        </loopVariable>
+        <iterSet xsi:type="mtl:QueryInvocation" eType="/6/Sequence(Parameter)">
+          <definition href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/UMLTool.emtl#/0/parametersInInout"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="operation" referredVariable="/0/marshallStruct/operation">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+          </argument>
+        </iterSet>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="out->dispatch(event);"/>
+      <parameter name="operation">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="marshallASN" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Event event;&#xA;event.ID = "/>
+      <body xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="operation" referredVariable="/0/marshallASN/operation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=";&#xA;event.kind = CallEvent;&#xA;// create buffer for ASN.1 data types&#xA;char * pBuffer = &amp;event.params + sizeof(event.params);&#x9;&#x9;// grows backwards&#xA;int encodedSize = 0;     // total size of encoded buffer&#xA;AsnLen itemSize;         // size of an encoded item&#xA;int operationID = ID_"/>
+      <body xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="operation" referredVariable="/0/marshallASN/operation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=";&#xA;&#x9;&#xA;// now marshall in and inout parameters via ASN.1&#xA;"/>
+      <body xsi:type="mtl:ForBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="{&#xA;&#x9;"/>
+        <body xsi:type="mtl:TemplateInvocation">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <definition href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/utils_cpp.emtl#/0/cppType"/>
+          <argument xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="parameter" referredVariable="/0/marshallASN/%.5/parameter">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+            </source>
+            <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//TypedElement/type"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" varName_ASN = "/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="parameter" referredVariable="/0/marshallASN/%.5/parameter">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=";&#xA;&#x9;itemSize  = BEncAsnContent (&amp;pBuffer, &amp;varName_ASN);&#xA;&#x9;encodedSize += itemSize;&#xA;}&#xA;"/>
+        <loopVariable name="parameter">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+        </loopVariable>
+        <iterSet xsi:type="mtl:QueryInvocation" eType="/6/Sequence(Parameter)">
+          <definition href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/UMLTool.emtl#/0/parametersInInout"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="operation" referredVariable="/0/marshallASN/operation">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+          </argument>
+        </iterSet>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;itemSize  = BEncAsnContent (&amp;pBuffer, &amp;operationID);&#xA;itemSize += BEncAsnContent (&amp;pBuffer, &amp;m_serverID);&#xA;encodedSize += itemSize;&#xA;&#xA;encodedSize += BEncDefLen (&amp;pBuffer, encodedSize);&#xA;&#xA;out->dispatch(event);"/>
+      <parameter name="operation">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="marshallStruct">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/marshallStruct"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="operation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="marshallASN">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/marshallASN"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="operation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="parametersInInout">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/UMLTool.emtl#/0/parametersInInout"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:SequenceType" href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/UMLTool.emtl#/3/Sequence(Parameter)"/>
+        <eParameters name="operation">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="cppType">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/utils_cpp.emtl#/0/cppType"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="type">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Operation_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Type_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NamedElement_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Element_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Classifier_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Parameter_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:SequenceType" name="Sequence(Parameter)" instanceClassName="java.util.List">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/%">
+      <details key="start" value="219"/>
+      <details key="end" value="1030"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/marshallStruct">
+      <details key="start" value="1031"/>
+      <details key="end" value="1454"/>
+      <details key="line" value="28"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/marshallStruct/%">
+      <details key="start" value="1087"/>
+      <details key="end" value="1106"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/marshallStruct/%.1">
+      <details key="start" value="1106"/>
+      <details key="end" value="1201"/>
+      <details key="line" value="30"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/marshallStruct/%.1/%">
+      <details key="start" value="1167"/>
+      <details key="end" value="1168"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/marshallStruct/%.1/%.1">
+      <details key="start" value="1169"/>
+      <details key="end" value="1182"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/marshallStruct/%.1/%.1/%">
+      <details key="start" value="1177"/>
+      <details key="end" value="1181"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/marshallStruct/%.1/%.1/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/marshallStruct/%.1/%.2">
+      <details key="start" value="1185"/>
+      <details key="end" value="1186"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/marshallStruct/%.1/%.3">
+      <details key="start" value="1187"/>
+      <details key="end" value="1191"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/marshallStruct/%.1/%.3/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/marshallStruct/%.1/%.4">
+      <details key="start" value="1193"/>
+      <details key="end" value="1195"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/marshallStruct/%.1/parameter">
+      <details key="start" value="1112"/>
+      <details key="end" value="1133"/>
+      <details key="line" value="30"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/marshallStruct/%.1/%.5">
+      <details key="start" value="1136"/>
+      <details key="end" value="1164"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/marshallStruct/%.1/%.5/operation">
+      <details key="start" value="1154"/>
+      <details key="end" value="1163"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/marshallStruct/%.2">
+      <details key="start" value="1202"/>
+      <details key="end" value="1229"/>
+      <details key="line" value="33"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/marshallStruct/%.3">
+      <details key="start" value="1230"/>
+      <details key="end" value="1244"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/marshallStruct/%.3/operation">
+      <details key="start" value="1230"/>
+      <details key="end" value="1239"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/marshallStruct/%.4">
+      <details key="start" value="1246"/>
+      <details key="end" value="1307"/>
+      <details key="line" value="35"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/marshallStruct/%.5">
+      <details key="start" value="1307"/>
+      <details key="end" value="1420"/>
+      <details key="line" value="38"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/marshallStruct/%.5/%">
+      <details key="start" value="1368"/>
+      <details key="end" value="1375"/>
+      <details key="line" value="39"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/marshallStruct/%.5/%.1">
+      <details key="start" value="1376"/>
+      <details key="end" value="1390"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/marshallStruct/%.5/%.1/parameter">
+      <details key="start" value="1376"/>
+      <details key="end" value="1385"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/marshallStruct/%.5/%.2">
+      <details key="start" value="1392"/>
+      <details key="end" value="1395"/>
+      <details key="line" value="39"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/marshallStruct/%.5/%.3">
+      <details key="start" value="1396"/>
+      <details key="end" value="1410"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/marshallStruct/%.5/%.3/parameter">
+      <details key="start" value="1396"/>
+      <details key="end" value="1405"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/marshallStruct/%.5/%.4">
+      <details key="start" value="1412"/>
+      <details key="end" value="1414"/>
+      <details key="line" value="39"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/marshallStruct/%.5/parameter">
+      <details key="start" value="1313"/>
+      <details key="end" value="1334"/>
+      <details key="line" value="38"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/marshallStruct/%.5/%.5">
+      <details key="start" value="1337"/>
+      <details key="end" value="1365"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/marshallStruct/%.5/%.5/operation">
+      <details key="start" value="1355"/>
+      <details key="end" value="1364"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/marshallStruct/%.6">
+      <details key="start" value="1421"/>
+      <details key="end" value="1442"/>
+      <details key="line" value="41"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/marshallStruct/operation">
+      <details key="start" value="1063"/>
+      <details key="end" value="1084"/>
+      <details key="line" value="28"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/marshallASN">
+      <details key="start" value="1456"/>
+      <details key="end" value="2322"/>
+      <details key="line" value="44"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/marshallASN/%">
+      <details key="start" value="1509"/>
+      <details key="end" value="1533"/>
+      <details key="line" value="45"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/marshallASN/%.1">
+      <details key="start" value="1534"/>
+      <details key="end" value="1548"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/marshallASN/%.1/operation">
+      <details key="start" value="1534"/>
+      <details key="end" value="1543"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/marshallASN/%.2">
+      <details key="start" value="1550"/>
+      <details key="end" value="1819"/>
+      <details key="line" value="46"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/marshallASN/%.3">
+      <details key="start" value="1820"/>
+      <details key="end" value="1834"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/marshallASN/%.3/operation">
+      <details key="start" value="1820"/>
+      <details key="end" value="1829"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/marshallASN/%.4">
+      <details key="start" value="1836"/>
+      <details key="end" value="1890"/>
+      <details key="line" value="52"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/marshallASN/%.5">
+      <details key="start" value="1890"/>
+      <details key="end" value="2104"/>
+      <details key="line" value="55"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/marshallASN/%.5/%">
+      <details key="start" value="1952"/>
+      <details key="end" value="1955"/>
+      <details key="line" value="56"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/marshallASN/%.5/%.1">
+      <details key="start" value="1956"/>
+      <details key="end" value="1980"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/marshallASN/%.5/%.1/%">
+      <details key="start" value="1956"/>
+      <details key="end" value="1970"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/marshallASN/%.5/%.1/%/parameter">
+      <details key="start" value="1956"/>
+      <details key="end" value="1965"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/marshallASN/%.5/%.2">
+      <details key="start" value="1982"/>
+      <details key="end" value="1997"/>
+      <details key="line" value="57"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/marshallASN/%.5/%.3">
+      <details key="start" value="1998"/>
+      <details key="end" value="2012"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/marshallASN/%.5/%.3/parameter">
+      <details key="start" value="1998"/>
+      <details key="end" value="2007"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/marshallASN/%.5/%.4">
+      <details key="start" value="2014"/>
+      <details key="end" value="2098"/>
+      <details key="line" value="57"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/marshallASN/%.5/parameter">
+      <details key="start" value="1896"/>
+      <details key="end" value="1917"/>
+      <details key="line" value="55"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/marshallASN/%.5/%.5">
+      <details key="start" value="1920"/>
+      <details key="end" value="1949"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/marshallASN/%.5/%.5/operation">
+      <details key="start" value="1920"/>
+      <details key="end" value="1929"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/marshallASN/%.6">
+      <details key="start" value="2105"/>
+      <details key="end" value="2310"/>
+      <details key="line" value="62"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/marshallASN/operation">
+      <details key="start" value="1485"/>
+      <details key="end" value="1506"/>
+      <details key="line" value="44"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>
