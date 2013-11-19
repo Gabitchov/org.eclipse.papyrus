@@ -40,6 +40,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.swt.widgets.Display;
@@ -71,28 +72,36 @@ public class NavigatorUtils {
 	 * @return An iterator of notation resources' roots, or <code>null</code> if none cannot be resolved
 	 */
 	public static Iterator<EObject> getNotationRoots(EObject element) {
-		Iterator<Resource> notations = getNotationResources(element);
+		Iterator<Resource> notations = getResources(element, NotationModel.NOTATION_FILE_EXTENSION);
 		if(notations == null) {
 			return null;
 		}
 		return new RootsIterator(notations);
 	}
 
+	public static Iterator<EObject> getDiRoots(EObject element) {
+		Iterator<Resource> diResources = getResources(element, DiModel.DI_FILE_EXTENSION);
+		if(diResources == null) {
+			return null;
+		}
+		return new RootsIterator(diResources);
+	}
+
 	/**
-	 * Represents an iterator on all the roots of the notations resources of a ResourceSet
+	 * Represents an iterator on all the roots of a set of resources of a ResourceSet
 	 * 
 	 * @author Laurent Wouters
 	 */
 	private static class RootsIterator implements Iterator<EObject> {
 
-		private Iterator<Resource> notations;
+		private Iterator<Resource> resources;
 
 		private Iterator<EObject> inner;
 
-		public RootsIterator(Iterator<Resource> notations) {
-			this.notations = notations;
-			if(notations.hasNext()) {
-				inner = notations.next().getAllContents();
+		public RootsIterator(Iterator<Resource> resources) {
+			this.resources = resources;
+			if(resources.hasNext()) {
+				inner = resources.next().getAllContents();
 			}
 		}
 
@@ -100,15 +109,18 @@ public class NavigatorUtils {
 			if(inner == null) {
 				return false;
 			}
+
 			if(inner.hasNext()) {
 				return true;
 			}
-			while(notations.hasNext()) {
-				inner = notations.next().getAllContents();
+
+			while(resources.hasNext()) {
+				inner = resources.next().getAllContents();
 				if(inner.hasNext()) {
 					return true;
 				}
 			}
+
 			inner = null;
 			return false;
 		}
@@ -117,15 +129,18 @@ public class NavigatorUtils {
 			if(inner == null) {
 				return null;
 			}
+
 			if(inner.hasNext()) {
 				return inner.next();
 			}
-			while(notations.hasNext()) {
-				inner = notations.next().getAllContents();
+
+			while(resources.hasNext()) {
+				inner = resources.next().getAllContents();
 				if(inner.hasNext()) {
 					return inner.next();
 				}
 			}
+
 			inner = null;
 			return null;
 		}
@@ -143,18 +158,21 @@ public class NavigatorUtils {
 	 *        The object from which to retrieve the notation resources
 	 * @return An iterator of notation resources, or <code>null</code> if none cannot be resolved
 	 */
-	public static Iterator<Resource> getNotationResources(EObject element) {
-		Iterator<Resource> result = tryGetNotationResources(element);
+	public static Iterator<Resource> getResources(EObject element, String fileExtension) {
+		Iterator<Resource> result = tryGetResources(element, fileExtension);
 		if(result != null) {
 			return result;
 		}
+
 		IAdaptable input = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getInput();
 		if(input != null) {
 			EObject obj = (EObject)input.getAdapter(EObject.class);
-			return tryGetNotationResources(obj);
+			return tryGetResources(obj, fileExtension);
 		}
 		return null;
 	}
+
+
 
 	/**
 	 * Tries to get the notation resources related to the given object
@@ -163,14 +181,14 @@ public class NavigatorUtils {
 	 *        The object from which to retrieve the notation resources
 	 * @return An iterator of notation resources, or <code>null</code> if none cannot be resolved
 	 */
-	private static Iterator<Resource> tryGetNotationResources(EObject element) {
+	private static Iterator<Resource> tryGetResources(EObject element, String fileExtension) {
 		if(element == null) {
 			return null;
 		}
 		if(element.eResource() == null) {
 			return null;
 		}
-		return new NotationsIterator(element.eResource().getResourceSet());
+		return new ResourcesIterator(element.eResource().getResourceSet(), fileExtension);
 	}
 
 
@@ -179,22 +197,25 @@ public class NavigatorUtils {
 	 * 
 	 * @author Laurent Wouters
 	 */
-	private static class NotationsIterator implements Iterator<Resource> {
+	private static class ResourcesIterator implements Iterator<Resource> {
 
 		private Iterator<Resource> inner;
 
 		private Resource next;
 
-		public NotationsIterator(ResourceSet set) {
+		private String fileExtension;
+
+		public ResourcesIterator(ResourceSet set, String fileExtension) {
 			inner = set.getResources().iterator();
-			next = getNextNotation();
+			next = getNextResource();
+			this.fileExtension = fileExtension;
 		}
 
-		private Resource getNextNotation() {
+		private Resource getNextResource() {
 			while(inner.hasNext()) {
 				Resource resource = inner.next();
 
-				if(NotationModel.NOTATION_FILE_EXTENSION.equalsIgnoreCase(resource.getURI().fileExtension())) {
+				if(fileExtension.equalsIgnoreCase(resource.getURI().fileExtension())) {
 					return resource;
 				}
 
@@ -208,7 +229,7 @@ public class NavigatorUtils {
 
 		public Resource next() {
 			Resource result = next;
-			next = getNextNotation();
+			next = getNextResource();
 			return result;
 		}
 

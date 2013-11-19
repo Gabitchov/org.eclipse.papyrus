@@ -11,7 +11,6 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.infra.table.modelexplorer.queries;
 
 import java.util.ArrayList;
@@ -37,13 +36,21 @@ public class GetContainedTables extends AbstractEditorContainerQuery implements 
 	 */
 	public Collection<PapyrusTableInstance> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		List<PapyrusTableInstance> result = new ArrayList<PapyrusTableInstance>();
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if(roots == null) {
+		Iterator<EObject> diRoots = NavigatorUtils.getDiRoots(context);
+		Iterator<EObject> notationRoots = NavigatorUtils.getNotationRoots(context);
+		if(diRoots == null && notationRoots == null) {
 			return result;
 		}
 
-		while(roots.hasNext()) {
-			EObject root = roots.next();
+		findTablesInIterator(diRoots, result, context);
+		findTablesInIterator(notationRoots, result, context);
+
+		return result;
+	}
+
+	private void findTablesInIterator(Iterator<EObject> iterator, Collection<PapyrusTableInstance> result, EObject context) {
+		while(iterator.hasNext()) {
+			EObject root = iterator.next();
 			if(root instanceof PapyrusTableInstance) {
 				PapyrusTableInstance tableInstance = (PapyrusTableInstance)root;
 				if(tableInstance.getTable() != null) {
@@ -53,6 +60,6 @@ public class GetContainedTables extends AbstractEditorContainerQuery implements 
 				}
 			}
 		}
-		return result;
 	}
+
 }
