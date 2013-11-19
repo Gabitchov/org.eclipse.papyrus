@@ -38,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
@@ -79,6 +80,7 @@ import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -607,6 +609,7 @@ public class UMLDiagramUpdater {
 		TimeConstraint modelElement = (TimeConstraint)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
 		return result;
 	}
 
@@ -624,6 +627,7 @@ public class UMLDiagramUpdater {
 		DurationConstraint modelElement = (DurationConstraint)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
 		return result;
 	}
 
@@ -694,6 +698,7 @@ public class UMLDiagramUpdater {
 		Constraint modelElement = (Constraint)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
 		return result;
 	}
 
@@ -714,6 +719,7 @@ public class UMLDiagramUpdater {
 		DurationConstraint modelElement = (DurationConstraint)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
 		return result;
 	}
 
@@ -806,6 +812,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1035,6 +1042,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1398,6 +1406,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
 		return result;
 	}
 
@@ -1431,6 +1440,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
 		return result;
 	}
 
@@ -1545,6 +1555,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
 		return result;
 	}
 
@@ -1579,6 +1590,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
 		return result;
 	}
 
@@ -2136,6 +2148,20 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_Context_8500(Namespace target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		for(EStructuralFeature.Setting setting : settings) {
+			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_Context()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintContext_8500, ContextLinkEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_4003(Element source) {
 		Interaction container = null;
 		// Find container element for the link.
@@ -2477,6 +2503,19 @@ public class UMLDiagramUpdater {
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralOrdering_4012, GeneralOrderingEditPart.VISUAL_ID));
 		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(Constraint source) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Namespace destination = source.getContext();
+		if(destination == null) {
+			return result;
+		}
+		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintContext_8500, ContextLinkEditPart.VISUAL_ID));
 		return result;
 	}
 

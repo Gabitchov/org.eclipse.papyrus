@@ -235,6 +235,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionOperandContextLinkSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand"/>
@@ -1387,6 +1391,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionContextLinkSemanticEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
@@ -2265,6 +2273,58 @@
               parser="/0/@labelParsers/@implementations.8"/>
         </labels>
       </links>
+      <links
+          visualID="8500"
+          editPartClassName="ContextLinkEditPart"
+          itemSemanticEditPolicyClassName="ContextLinkItemSemanticEditPolicy"
+          createCommandClassName="ContextLinkCreateCommand"
+          reorientCommandClassName="ContextLinkReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.CustomContextLinkFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/context"/>
+        </modelFacet>
+        <labels
+            visualID="8501"
+            editPartClassName="ConstraintContextAppliedStereotypeEditPart"
+            itemSemanticEditPolicyClassName="ConstraintContextAppliedStereotypeItemSemanticEditPolicy"
+            readOnly="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getAppliedStereotypeLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="60"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.NoSemanticParserEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.8"
+              viewPattern="&lt;&lt;{0}>>"
+              editorPattern="&lt;&lt;{0}>>"
+              editPattern="&lt;&lt;{0}>>">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </links>
       <compartments
           visualID="7001"
           editPartClassName="InteractionInteractionCompartmentEditPart"
@@ -2514,6 +2574,14 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               genLinks="/0/@diagram/@links.8"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="ContextLink"
+              description="Creation of a context link for a Constraint"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+              createMethodName="createContextLink11CreationTool"
+              genLinks="/0/@diagram/@links.10"/>
         </groups>
       </palette>
       <preferencePages
@@ -7400,12 +7468,15 @@
           qualifiedName="org.eclipse.papyrus.uml.diagram.sequence.parser.custom.TimeObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.16/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.16/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.14/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

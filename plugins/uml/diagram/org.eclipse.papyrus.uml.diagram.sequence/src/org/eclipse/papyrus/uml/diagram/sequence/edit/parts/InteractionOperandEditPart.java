@@ -56,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperand
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionOperandContextLinkSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionOperandFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
@@ -110,6 +111,7 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new InteractionOperandComponentEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInteractionOperandContextLinkSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -902,7 +904,7 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -912,6 +914,7 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 		types.add(UMLElementTypes.Message_4009);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		types.add(UMLElementTypes.ConstraintContext_8500);
 		return types;
 	}
 
@@ -1063,6 +1066,11 @@ public class InteractionOperandEditPart extends AbstractBorderedShapeEditPart {
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
 			types.add(UMLElementTypes.Comment_3009);
 		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.DurationConstraint_3021);
+			types.add(UMLElementTypes.Constraint_3008);
+			types.add(UMLElementTypes.DurationConstraint_3023);
+		} else if(relationshipType == UMLElementTypes.ConstraintContext_8500) {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 			types.add(UMLElementTypes.DurationConstraint_3021);
 			types.add(UMLElementTypes.Constraint_3008);

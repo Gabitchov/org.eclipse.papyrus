@@ -315,7 +315,7 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(8);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
 		types.add(UMLElementTypes.Message_4003);
 		types.add(UMLElementTypes.Message_4004);
 		types.add(UMLElementTypes.Message_4005);
@@ -324,6 +324,7 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 		types.add(UMLElementTypes.Message_4008);
 		types.add(UMLElementTypes.Message_4009);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		types.add(UMLElementTypes.ConstraintContext_8500);
 		return types;
 	}
 
@@ -788,6 +789,12 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 		if(targetEditPart instanceof DurationObservationEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		}
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.ConstraintContext_8500);
+		}
 		return types;
 	}
 
@@ -956,6 +963,9 @@ public class DurationConstraintInMessageEditPart extends AbstractBorderedShapeEd
 			types.add(UMLElementTypes.Comment_3009);
 			types.add(UMLElementTypes.DurationConstraint_3023);
 			types.add(UMLElementTypes.DurationObservation_3024);
+		} else if(relationshipType == UMLElementTypes.ConstraintContext_8500) {
+			types.add(UMLElementTypes.Interaction_2001);
+			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		return types;
 	}

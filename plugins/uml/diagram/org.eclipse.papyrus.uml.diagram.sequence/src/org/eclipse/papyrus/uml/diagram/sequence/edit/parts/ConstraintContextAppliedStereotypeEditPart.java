@@ -1,26 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -46,7 +33,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy;
+import org.eclipse.gmf.tooling.runtime.edit.policies.DefaultLinkLabelDragPolicy;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
@@ -60,15 +47,12 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.NoSemanticParserEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -84,12 +68,12 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
+public class ConstraintContextAppliedStereotypeEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5008;
+	public static final int VISUAL_ID = 8501;
 
 	/**
 	 * @generated
@@ -124,11 +108,17 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+	/**
+	 * @generated
+	 */
+	static {
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintContextAppliedStereotypeEditPart.VISUAL_ID), new Point(0, 60));
+	}
 
 	/**
 	 * @generated
 	 */
-	public StateInvariantNameEditPart(View view) {
+	public ConstraintContextAppliedStereotypeEditPart(View view) {
 		super(view);
 	}
 
@@ -137,17 +127,25 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new DefaultNodeLabelDragPolicy());
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new DefaultLinkLabelDragPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new NoSemanticParserEditPolicy());
+	}
+
+	/**
+	 * @generated
+	 */
+	public int getKeyPoint() {
+		return ConnectionLocator.MIDDLE;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getText();
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
 		} else {
@@ -159,8 +157,8 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setText(text);
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
 		} else {
@@ -172,8 +170,8 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getIcon();
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			return ((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
 		} else {
@@ -185,8 +183,8 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setIcon(icon);
+		if(figure instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
 		} else {
@@ -197,7 +195,7 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	/**
 	 * @generated
 	 */
-	public void setLabel(CenteredWrappedLabel figure) {
+	public void setLabel(org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -230,16 +228,6 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if(parserElement == null) {
-			return null;
-		}
-		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
-		for(View view : views) {
-			if(NameLabelIconHelper.showLabelIcon(view)) {
-				return UMLElementTypes.getImage(parserElement.eClass());
-			}
-		}
 		return null;
 	}
 
@@ -287,7 +275,7 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**
@@ -340,7 +328,7 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.StateInvariant_3017, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.ConstraintContext_8500, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintContextAppliedStereotypeEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -497,8 +485,8 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 */
 	protected void refreshUnderline() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
 		}
 		if(resolveSemanticElement() instanceof Feature) {
 			if(((Feature)resolveSemanticElement()).isStatic()) {
@@ -514,8 +502,8 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 */
 	protected void refreshStrikeThrough() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		if(style != null && getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) {
+			((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 
@@ -594,14 +582,7 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if(checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-		// not a named element. no specific editor => do nothing
+		// The label is read-only (defined in GMFGen model)
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
@@ -692,24 +673,7 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	/**
 	 * @generated
 	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void handleNotificationEvent(Notification event) {
-		refreshLabel();
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer)event.getNewValue();
@@ -735,9 +699,6 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 				}
 			}
 		}
-		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
-			refreshLabel();
-		}
 		super.handleNotificationEvent(event);
 	}
 
@@ -747,40 +708,5 @@ public class StateInvariantNameEditPart extends PapyrusCompartmentEditPart imple
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
-	/**
-	 * @generated
-	 */
-	public void activate() {
-		super.activate();
-		addOwnerElementListeners();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addOwnerElementListeners() {
-		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	public void deactivate() {
-		removeOwnerElementListeners();
-		super.deactivate();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeOwnerElementListeners() {
-		removeListenerFilter(ADD_PARENT_MODEL);
 	}
 }
