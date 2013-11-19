@@ -54,6 +54,7 @@ public class LocateCppProject {
 				if (!apply) {
 					return null;
 				}
+				CCProjectNature.addCNature(modelProject, null);
 				CCProjectNature.addCCNature(modelProject, null);
 			}
 		}
