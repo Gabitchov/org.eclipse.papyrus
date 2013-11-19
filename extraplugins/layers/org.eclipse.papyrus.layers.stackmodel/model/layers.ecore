@@ -410,6 +410,16 @@
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" ordered="false"
         lowerBound="1" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLevel1DomainChangedEventDependant"
+        ordered="false" lowerBound="1" eType="#//boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAnyDomainChangedEventDependant"
+        ordered="false" lowerBound="1" eType="#//boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLevel1DiagramChangedEventdependant"
+        ordered="false" lowerBound="1" eType="#//boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAnyDiagramChangedEventDependant"
+        ordered="false" lowerBound="1" eType="#//boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expressionContextObjectType"
+        ordered="false" lowerBound="1" eType="#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Layer" eSuperTypes="#//AbstractLayer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Color" eSuperTypes="#//Type"/>

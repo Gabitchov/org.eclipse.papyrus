@@ -360,6 +360,11 @@
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="layers.ecore#//RegExpLayer">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/expr"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/language"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isLevel1DomainChangedEventDependant"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isAnyDomainChangedEventDependant"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isLevel1DiagramChangedEventdependant"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isAnyDiagramChangedEventDependant"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/expressionContextObjectType"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//RegExpLayer/activate">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//RegExpLayer/activate/newParentLayer"/>
       </genOperations>

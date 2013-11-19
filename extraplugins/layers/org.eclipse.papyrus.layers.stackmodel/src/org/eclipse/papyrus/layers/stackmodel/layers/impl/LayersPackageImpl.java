@@ -2092,6 +2092,51 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getRegExpLayer_IsLevel1DomainChangedEventDependant() {
+		return (EAttribute)regExpLayerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRegExpLayer_IsAnyDomainChangedEventDependant() {
+		return (EAttribute)regExpLayerEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRegExpLayer_IsLevel1DiagramChangedEventdependant() {
+		return (EAttribute)regExpLayerEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRegExpLayer_IsAnyDiagramChangedEventDependant() {
+		return (EAttribute)regExpLayerEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRegExpLayer_ExpressionContextObjectType() {
+		return (EAttribute)regExpLayerEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getRegExpLayer__Activate__AbstractLayerOperator() {
 		return regExpLayerEClass.getEOperations().get(0);
 	}
@@ -2847,6 +2892,11 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		regExpLayerEClass = createEClass(REG_EXP_LAYER);
 		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__EXPR);
 		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__LANGUAGE);
+		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT);
+		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT);
+		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT);
+		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT);
+		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__EXPRESSION_CONTEXT_OBJECT_TYPE);
 		createEOperation(regExpLayerEClass, REG_EXP_LAYER___ACTIVATE__ABSTRACTLAYEROPERATOR);
 		createEOperation(regExpLayerEClass, REG_EXP_LAYER___DEACTIVATE__ABSTRACTLAYEROPERATOR);
 		createEOperation(regExpLayerEClass, REG_EXP_LAYER___EVALUATE_EXPR);
@@ -3320,6 +3370,11 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		initEClass(regExpLayerEClass, RegExpLayer.class, "RegExpLayer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRegExpLayer_Expr(), this.getString(), "expr", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getRegExpLayer_Language(), this.getString(), "language", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRegExpLayer_IsLevel1DomainChangedEventDependant(), this.getboolean(), "isLevel1DomainChangedEventDependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRegExpLayer_IsAnyDomainChangedEventDependant(), this.getboolean(), "isAnyDomainChangedEventDependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRegExpLayer_IsLevel1DiagramChangedEventdependant(), this.getboolean(), "isLevel1DiagramChangedEventdependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRegExpLayer_IsAnyDiagramChangedEventDependant(), this.getboolean(), "isAnyDiagramChangedEventDependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRegExpLayer_ExpressionContextObjectType(), this.getString(), "expressionContextObjectType", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = initEOperation(getRegExpLayer__Activate__AbstractLayerOperator(), null, "activate", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getAbstractLayerOperator(), "newParentLayer", 1, 1, IS_UNIQUE, !IS_ORDERED);

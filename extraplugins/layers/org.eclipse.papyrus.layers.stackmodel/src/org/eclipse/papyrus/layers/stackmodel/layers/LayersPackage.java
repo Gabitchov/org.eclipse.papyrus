@@ -3561,13 +3561,58 @@ public interface LayersPackage extends EPackage {
 	int REG_EXP_LAYER__LANGUAGE = ABSTRACT_LAYER_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Is Level1 Domain Changed Event Dependant</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Is Any Domain Changed Event Dependant</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Is Level1 Diagram Changed Eventdependant</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Is Any Diagram Changed Event Dependant</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Expression Context Object Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER__EXPRESSION_CONTEXT_OBJECT_TYPE = ABSTRACT_LAYER_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Reg Exp Layer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER_FEATURE_COUNT = ABSTRACT_LAYER_FEATURE_COUNT + 2;
+	int REG_EXP_LAYER_FEATURE_COUNT = ABSTRACT_LAYER_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Get Compute Property Value Command</em>' operation.
@@ -6935,6 +6980,61 @@ public interface LayersPackage extends EPackage {
 	EAttribute getRegExpLayer_Language();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DomainChangedEventDependant <em>Is Level1 Domain Changed Event Dependant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Level1 Domain Changed Event Dependant</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DomainChangedEventDependant()
+	 * @see #getRegExpLayer()
+	 * @generated
+	 */
+	EAttribute getRegExpLayer_IsLevel1DomainChangedEventDependant();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDomainChangedEventDependant <em>Is Any Domain Changed Event Dependant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Any Domain Changed Event Dependant</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDomainChangedEventDependant()
+	 * @see #getRegExpLayer()
+	 * @generated
+	 */
+	EAttribute getRegExpLayer_IsAnyDomainChangedEventDependant();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DiagramChangedEventdependant <em>Is Level1 Diagram Changed Eventdependant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Level1 Diagram Changed Eventdependant</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DiagramChangedEventdependant()
+	 * @see #getRegExpLayer()
+	 * @generated
+	 */
+	EAttribute getRegExpLayer_IsLevel1DiagramChangedEventdependant();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDiagramChangedEventDependant <em>Is Any Diagram Changed Event Dependant</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Any Diagram Changed Event Dependant</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDiagramChangedEventDependant()
+	 * @see #getRegExpLayer()
+	 * @generated
+	 */
+	EAttribute getRegExpLayer_IsAnyDiagramChangedEventDependant();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getExpressionContextObjectType <em>Expression Context Object Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expression Context Object Type</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getExpressionContextObjectType()
+	 * @see #getRegExpLayer()
+	 * @generated
+	 */
+	EAttribute getRegExpLayer_ExpressionContextObjectType();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#activate(org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayerOperator) <em>Activate</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8875,6 +8975,46 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REG_EXP_LAYER__LANGUAGE = eINSTANCE.getRegExpLayer_Language();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Level1 Domain Changed Event Dependant</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT = eINSTANCE.getRegExpLayer_IsLevel1DomainChangedEventDependant();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Any Domain Changed Event Dependant</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT = eINSTANCE.getRegExpLayer_IsAnyDomainChangedEventDependant();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Level1 Diagram Changed Eventdependant</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT = eINSTANCE.getRegExpLayer_IsLevel1DiagramChangedEventdependant();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Any Diagram Changed Event Dependant</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT = eINSTANCE.getRegExpLayer_IsAnyDiagramChangedEventDependant();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression Context Object Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REG_EXP_LAYER__EXPRESSION_CONTEXT_OBJECT_TYPE = eINSTANCE.getRegExpLayer_ExpressionContextObjectType();
 
 		/**
 		 * The meta object literal for the '<em><b>Activate</b></em>' operation.
