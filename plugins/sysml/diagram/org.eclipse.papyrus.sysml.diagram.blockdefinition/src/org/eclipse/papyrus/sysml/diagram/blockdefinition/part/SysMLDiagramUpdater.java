@@ -127,9 +127,12 @@ public class SysMLDiagramUpdater {
 	 *         the list of the incoming links for this view
 	 */
 	public static List<UpdaterLinkDescriptor> getIncomingLinks(final View view) {
-		final String id = view.getType();//TODO : could be done by the SysMLVisualIdRegistry...
+		final String id = view.getType();
 		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID)) {
 			return getBlock_shape_sysml_block_as_classifier_IncomingLink(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID)) {
+			return getAssociation_link_sysml_association_IncomingLink(view);
 		}
 		return Collections.emptyList();
 	}
@@ -143,10 +146,14 @@ public class SysMLDiagramUpdater {
 	 *         the list of the outgoing links for this view
 	 */
 	public static List<UpdaterLinkDescriptor> getOutgoingLinks(final View view) {
-		final String id = view.getType();//TODO : could be done by the SysMLVisualIdRegistry...
+		final String id = view.getType();
 		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_CLASSIFIER_ID)) {
 			return getBlock_shape_sysml_block_as_classifier_OutgoingLink(view);
 		}
+		if(id.equals(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID)) {
+			return getAssociation_link_sysml_association_OutgoingLink(view);
+		}
+
 		return Collections.emptyList();
 	}
 
@@ -170,6 +177,29 @@ public class SysMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_link_uml_interfacerealization(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getAssociation_link_sysml_association_IncomingLink(final View view) {
+		final Association modelElement = (Association)view.getElement();
+		final LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		final Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getAssociation_link_sysml_association_OutgoingLink(final View view) {
+		final Association modelElement = (Association)view.getElement();
+		final LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
 		return result;
 	}
@@ -415,7 +445,7 @@ public class SysMLDiagramUpdater {
 	}
 
 
-	private static Collection<? extends UpdaterLinkDescriptor> getIncomingTypeModelFacetLinks_Association_link_sysml_association(Class target, Map<EObject, Collection<Setting>> crossReferences) {
+	private static Collection<? extends UpdaterLinkDescriptor> getIncomingTypeModelFacetLinks_Association_link_sysml_association(Type target, Map<EObject, Collection<Setting>> crossReferences) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
 		for(EStructuralFeature.Setting setting : settings) {
@@ -438,7 +468,7 @@ public class SysMLDiagramUpdater {
 		return result;
 	}
 
-	private static Collection<? extends UpdaterLinkDescriptor> getOutgoingTypeModelFacetLinks_Association_link_sysml_association(final Class source) {
+	private static Collection<? extends UpdaterLinkDescriptor> getOutgoingTypeModelFacetLinks_Association_link_sysml_association(final Type source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
