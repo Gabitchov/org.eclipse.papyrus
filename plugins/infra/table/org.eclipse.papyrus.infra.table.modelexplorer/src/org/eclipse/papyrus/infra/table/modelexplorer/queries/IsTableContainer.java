@@ -32,13 +32,22 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 	 * {@inheritDoc}
 	 */
 	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
-		if(roots == null) {
+		Iterator<EObject> diRoots = NavigatorUtils.getDiRoots(context);
+		if(evaluate(context, diRoots)) {
+			return true;
+		}
+
+		Iterator<EObject> notationRoots = NavigatorUtils.getNotationRoots(context);
+		return evaluate(context, notationRoots);
+	}
+
+	private Boolean evaluate(EObject context, Iterator<EObject> searchIn) {
+		if(searchIn == null) {
 			return false;
 		}
 
-		while(roots.hasNext()) {
-			EObject root = roots.next();
+		while(searchIn.hasNext()) {
+			EObject root = searchIn.next();
 			if(root instanceof PapyrusTableInstance) {
 				PapyrusTableInstance tableInstance = (PapyrusTableInstance)root;
 				if(tableInstance.getTable() != null) {
@@ -48,6 +57,7 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 				}
 			}
 		}
+
 		return false;
 	}
 }
