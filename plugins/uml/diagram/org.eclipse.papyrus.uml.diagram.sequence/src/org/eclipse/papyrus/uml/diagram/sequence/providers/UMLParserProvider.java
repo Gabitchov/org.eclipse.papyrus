@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Constraint2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintContextAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintAppliedStereotypeEditPart;
@@ -606,6 +607,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser constraintContextName_8501Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintContextName_8501Parser() {
+		if(constraintContextName_8501Parser == null) {
+			constraintContextName_8501Parser = new AppliedStereotypeParser();
+		}
+		return constraintContextName_8501Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
@@ -676,6 +692,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getMessageLabel_6014Parser();
 		case GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID:
 			return getGeneralOrderingLabel_6015Parser();
+		case ConstraintContextAppliedStereotypeEditPart.VISUAL_ID:
+			return getConstraintContextName_8501Parser();
 		}
 		return null;
 	}

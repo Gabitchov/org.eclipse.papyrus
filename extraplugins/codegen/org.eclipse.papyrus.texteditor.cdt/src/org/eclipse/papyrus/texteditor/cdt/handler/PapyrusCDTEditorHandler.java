@@ -14,14 +14,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.texteditor.cdt.handler;
 
-import org.eclipse.cdt.core.CCProjectNature;
-import org.eclipse.cdt.core.CProjectNature;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -32,12 +29,14 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.papyrus.acceleo.ui.handlers.CmdHandler;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
+import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -51,7 +50,6 @@ import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelFacto
 import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Transition;
 
@@ -75,7 +73,6 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 	public boolean isEnabled() {
 		updateSelectedEObject();
 		if (selectedEObject instanceof Class ||
-			selectedEObject instanceof DataType ||
 			selectedEObject instanceof Operation ||
 			selectedEObject instanceof Transition)
 		{
@@ -87,19 +84,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 				return false;
 			}
 			IProject modelProject = root.getProject(uri.segment(1));
-			if(modelProject.exists()) {
-				try {
-					// check whether the project is a C or C++ project
-					if(modelProject.hasNature(CProjectNature.C_NATURE_ID) ||
-						modelProject.hasNature(CCProjectNature.CC_NATURE_ID)) {
-						return true;
-					}
-				}
-				catch (CoreException e) {
-					Activator.getDefault().getLog().log(
-						new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not verify, if CDT project", e));
-				}
-			}
+			return modelProject.exists();
 		}
 		return false;
 	}
@@ -157,6 +142,9 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
 				
 		Classifier classifierToEdit = getClassifierToEdit();
+		if (LocateCppProject.getTargetProject(classifierToEdit, true) == null) {
+			return;
+		}
 
 		TextEditorModel editorModel = getEditorModel(serviceRegistry, classifierToEdit);
 		if (editorModel == null) {
@@ -177,10 +165,20 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		DiSashModelManager modelMngr = ServiceUtils.getInstance().getService(DiSashModelManager.class, serviceRegistry);
 		ISashWindowsContentProvider sashContentProvider = modelMngr.getISashWindowsContentProvider();
 		Object rootModel = sashContentProvider.getRootModel();
+	
  		if (rootModel instanceof TabFolder) {
+ 			// root = tabFolder, i.e. there is a single folder
 			ISashWindowsContainer sashContainer = ServiceUtils.getInstance().getISashWindowsContainer(serviceRegistry);
 			int index = lookupIndex((TabFolder) rootModel, editorModel);
-			sashContentProvider.createFolder(sashContainer.getSelectedTabFolderModel(), index, sashContainer.getSelectedTabFolderModel(), SWT.RIGHT);
+			if (index != -1) {
+				sashContentProvider.createFolder(sashContainer.getSelectedTabFolderModel(), index, sashContainer.getSelectedTabFolderModel(), SWT.RIGHT);
+			}
+		}
+ 		else if (rootModel instanceof SashPanel) {
+ 			// multiple tab-folders exist. Find existing one and move editorModel to other
+ 			// TODO
+ 			// ISashWindowsContainer sashContainer = ServiceUtils.getInstance().getISashWindowsContainer(serviceRegistry);
+ 			// sashContentProvider.movePage(sashContainer.getSelectedTabFolderModel(), lookupIndex(sourceTab, editorModel), targetTabModel, -1);
 		}
 	}
 

@@ -2,9 +2,9 @@
 <Composite xmlns:j="clr-namespace:java.lang"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
 	xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt">
+	xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation">
 	<Composite.layout>
-		<GridLayout numColumns="2" makeColumnsEqualWidth="true"></GridLayout>
+		<GridLayout makeColumnsEqualWidth="true" numColumns="2"></GridLayout>
 	</Composite.layout>
 	<Group text="Routing">
 		<Group.layout>
@@ -14,7 +14,7 @@
 			<Group.layout>
 				<FillLayout></FillLayout>
 			</Group.layout>
-			<ppe:EnumRadio numColumns="2" input="{Binding}"
+			<ppe:EnumRadio input="{Binding}" numColumns="2"
 				property="notation:RoutingStyle:routing" showLabel="false"></ppe:EnumRadio>
 		</Group>
 		<Composite>
@@ -26,6 +26,8 @@
 				property="notation:RoutingStyle:avoidObstructions"></ppe:BooleanCheckbox>
 			<ppe:BooleanCheckbox input="{Binding}"
 				property="notation:RoutingStyle:closestDistance"></ppe:BooleanCheckbox>
+			<ppe:IntegerSpinner input="{Binding}"
+				property="notation:RoundedCornersStyle:roundedBendpointsRadius"></ppe:IntegerSpinner>
 		</Composite>
 	</Group>
 	<Group text="Jump links">

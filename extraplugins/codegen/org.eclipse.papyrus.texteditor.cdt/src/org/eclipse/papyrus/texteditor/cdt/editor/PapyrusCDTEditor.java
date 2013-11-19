@@ -154,8 +154,9 @@ public class PapyrusCDTEditor extends CEditor {
 			// assure that gotoElement is called, if the element in the model gets updated
 			public void notifyChanged(Notification notification) {
 				if (notification.getEventType() == Notification.SET) {
-					if (notification.getNewValue() instanceof NamedElement) {
-						gotoElement((NamedElement) notification.getNewValue());
+					Object newValue = notification.getNewValue();
+					if (newValue instanceof NamedElement) {
+						gotoElement((NamedElement) newValue);
 					}
 
 				}
@@ -333,11 +334,8 @@ public class PapyrusCDTEditor extends CEditor {
 		URI uri = papyrusTextInstance.eResource().getURI();
 		Classifier classifier = (Classifier)papyrusTextInstance.getEditedObject();
 		srcFile = SyncModelToCDT.syncModelToCDT(classifier);
-		if (srcFile == null) {
-			throw new PartInitException("Code generation before editing was not attempted. In most cases, this indicates that the projet (in which your model is stored) does not have a CDT nature"); //$NON-NLS-1$
-		}
-		if(!srcFile.exists()) {
-			throw new PartInitException("Code generation before editing failed");
+		if (srcFile == null || !srcFile.exists()) {
+			throw new PartInitException("Code generation before editing failed. Please check error log");
 		}
 		IEditorInput newInput = new FileEditorInput(srcFile);
 

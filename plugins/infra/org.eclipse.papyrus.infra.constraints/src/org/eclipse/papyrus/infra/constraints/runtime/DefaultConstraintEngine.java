@@ -17,6 +17,7 @@ import java.util.Set;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.constraints.Activator;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
@@ -67,9 +68,15 @@ public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements 
 		}
 
 		for(Constraint c : constraints) {
-			if(c.match(selection)) {
-				matchedConstraints.add(c);
+			try {
+				if(c.match(selection)) {
+					matchedConstraints.add(c);
+				}
+			} catch (Throwable ex) {
+				String errorMessage = String.format("An error occurred when executing the matching constraint %s. This constraint will be ignored", c.getDescriptor().getName());
+				Activator.log.error(errorMessage, ex);
 			}
+
 		}
 
 		//		String logValue;

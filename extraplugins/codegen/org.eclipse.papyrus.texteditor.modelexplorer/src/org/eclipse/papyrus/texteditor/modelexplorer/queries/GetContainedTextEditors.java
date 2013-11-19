@@ -15,21 +15,19 @@
 
 package org.eclipse.papyrus.texteditor.modelexplorer.queries;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
+import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
-
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Sets;
 
 /** Get the collection of all contained tables */
 //FIXME this query is declared using Element in the querySet -> change into EObject when the EMF-Facet bug will be corrected 365744
@@ -39,32 +37,20 @@ public class GetContainedTextEditors extends AbstractEditorContainerQuery implem
 	 * {@inheritDoc}
 	 */
 	public Collection<TextEditorModel> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
+		List<TextEditorModel> result = new ArrayList<TextEditorModel>();
+		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
+		if(roots == null) {
+			return result;
+		}
 
-			public boolean apply(EStructuralFeature.Setting setting) {
-				return (setting.getEObject() instanceof TextEditorModel);
-			}
-		};
-		
-		Function<EStructuralFeature.Setting, TextEditorModel> f = new Function<EStructuralFeature.Setting, TextEditorModel>() {
-
-			public TextEditorModel apply(EStructuralFeature.Setting setting) {
-				if (setting.getEObject() instanceof TextEditorModel) {
-					return (TextEditorModel) setting.getEObject();
+		while(roots.hasNext()) {
+			EObject root = roots.next();
+			if(root instanceof TextEditorModel) {
+				if(EcoreUtil.equals(((TextEditorModel)root).getEditedObject(), context)) {
+					result.add((TextEditorModel)root);
 				}
-				return null;
 			}
-
-		};
-
-		Iterable<TextEditorModel> transform = Iterables.transform(Iterables.filter(EMFHelper.getUsages(context), p), f);
-		transform = Iterables.filter(transform, new Predicate<TextEditorModel>() {
-
-			public boolean apply(TextEditorModel table) {
-				return table != null;
-			}
-		});
-		return Sets.newHashSet(transform);
+		}
+		return result;
 	}
-
 }

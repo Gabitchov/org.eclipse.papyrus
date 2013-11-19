@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomCommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.CustomContextLinkCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomMessage2CreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomMessage2ReorientCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomMessage3CreateCommand;
@@ -126,6 +127,9 @@ public class CustomConstraintItemSemanticEditPolicy extends ConstraintItemSemant
 		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.ConstraintContext_8500 == req.getElementType()) {
+			return getGEFWrapper(new CustomContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -160,6 +164,9 @@ public class CustomConstraintItemSemanticEditPolicy extends ConstraintItemSemant
 		}
 		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.ConstraintContext_8500 == req.getElementType()) {
+			return getGEFWrapper(new CustomContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}

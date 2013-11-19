@@ -11,10 +11,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.modelexplorer.queries;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
@@ -22,26 +25,25 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-
 /** Get the collection of all contained tables */
-public class GetContainedTables extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Collection<org.eclipse.papyrus.infra.nattable.model.nattable.Table>> {
+public class GetContainedTables extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Collection<Table>> {
 
-	public Collection<org.eclipse.papyrus.infra.nattable.model.nattable.Table> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
+	@Override
+	public Collection<Table> evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
+		List<Table> result = new ArrayList<Table>();
+		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
+		if(roots == null) {
+			return result;
+		}
 
-			public boolean apply(EStructuralFeature.Setting arg0) {
-				return arg0.getEObject() instanceof Table;
+		while(roots.hasNext()) {
+			EObject root = roots.next();
+			if(root instanceof Table) {
+				if(EcoreUtil.equals(((Table)root).getContext(), context)) {
+					result.add((Table)root);
+				}
 			}
-		};
-		Function<EStructuralFeature.Setting, Table> f = new Function<EStructuralFeature.Setting, Table>() {
-
-			public Table apply(EStructuralFeature.Setting arg0) {
-				return (Table)arg0.getEObject();
-			}
-
-		};
-		return NavigatorUtils.findFilterAndApply(context, p, f);
+		}
+		return result;
 	}
 }

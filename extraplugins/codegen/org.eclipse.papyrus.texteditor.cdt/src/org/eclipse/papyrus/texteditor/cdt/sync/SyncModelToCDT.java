@@ -12,18 +12,15 @@
 
 package org.eclipse.papyrus.texteditor.cdt.sync;
 
-import org.eclipse.cdt.core.CCProjectNature;
-import org.eclipse.cdt.core.CProjectNature;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.acceleo.ModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
+import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.uml2.uml.Classifier;
 
@@ -45,51 +42,40 @@ public class SyncModelToCDT {
 			return null;
 		}
 
-		URI uri = classifier.eResource().getURI();
-
-		// URIConverter uriConverter = resource.getResourceSet().getURIConverter();
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-		if(uri.segmentCount() < 2) {
+		IProject modelProject = LocateCppProject.getTargetProject(classifier, false);
+		if(modelProject == null) {
 			return null;
 		}
-		IProject modelProject = root.getProject(uri.segment(1));
-		if(modelProject.exists()) {
-			try {
-				// check whether the project is a C or C++ project
-				if(modelProject.hasNature(CProjectNature.C_NATURE_ID) ||
-					modelProject.hasNature(CCProjectNature.CC_NATURE_ID))
-				{
-					String name = classifier.getName();
-					// System.err.println("regen: " + name);
 
-					// get the container for the current element
-					ModelElementsCreator mec = new CppModelElementsCreator(modelProject);
-					IContainer srcPkg = mec.getContainer(classifier);
-					try {
-						mec.createPackageableElement(srcPkg, null, classifier); // need listener for sync in both directions!
-					} catch (CoreException coreException) {
-						Activator.getDefault().getLog().log(coreException.getStatus());
-						return null;
-					}
-					IFile cppFile = srcPkg.getFile(new Path(name + ".cpp"));	// TODO: extension is configurable! //$NON-NLS-1$
-					IFile hFile = srcPkg.getFile(new Path(name + ".h")); //$NON-NLS-1$
-					if(!cppFile.exists()) {
-						return null;
-					}
-					if(cppFile != null) {
-						cppFile.refreshLocal(0, null);
-					}
-					if(hFile != null) {
-						hFile.refreshLocal(0, null);
-					}
+		IContainer srcPkg = null;
+		IFile cppFile = null;
+		try {
+			String name = classifier.getName();
+			// System.err.println("regen: " + name);
 
-					return cppFile;
-					// IStorage storage = new TextStorage(string);
-				}
-			} catch (CoreException e) {
-			}
+			// get the container for the current element
+			ModelElementsCreator mec = new CppModelElementsCreator(modelProject);
+			srcPkg = mec.getContainer(classifier);
+			mec.createPackageableElement(srcPkg, null, classifier); // need listener for sync in both directions!
+		
+			cppFile = srcPkg.getFile(new Path(name + ".cpp"));	// TODO: extension is configurable! //$NON-NLS-1$
+	
+			// IStorage storage = new TextStorage(string);
 		}
-
-		return null;
+		catch (CoreException e) {
+			Activator.log.error(e);
+		}
+		finally {
+			// Refresh the container for the newly created files.  This needs to be done even
+				// during error because of the possibility for partial results.
+			try {
+				if (srcPkg != null) {
+					srcPkg.refreshLocal(IResource.DEPTH_INFINITE, null);
+				}
+			} catch(CoreException e) {
+				Activator.log.error(e);
+ 			}
+		}
+		return cppFile;
 	}
 }

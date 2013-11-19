@@ -285,7 +285,23 @@
 				<arg value="${result}/testresults/consolelogs/OutputLogJunitPapyrus.txt" />
 			</cmdargs>
 		</buckminster>
-		<echo message="End of JUnit tests" />
+		<echo message="End of tests (1/2)" />
+		
+		<buckminster command="junit">
+			<cmdargs>
+				<arg value="-l" />
+				<arg value="org.eclipse.papyrus.tests/Papyrus SysML tests.launch" />
+				<arg value="-o" />
+				<arg value="${result}/testresults/xml/SysMLTestReport.xml" />
+				<arg value="--terseXML" />
+				<arg value="--flatXML" />
+				<arg value="--stderr" />
+				<arg value="${result}/testresults/consolelogs/ErrorLogJunitPapyrus.txt" />
+				<arg value="--stdout" />
+				<arg value="${result}/testresults/consolelogs/OutputLogJunitPapyrus.txt" />
+			</cmdargs>
+		</buckminster>
+		<echo message="End of tests (2/2)" />
 		
 		<echo>Generating HTML report for Junit tests</echo>
 		<junitreport todir="${result}/testresults">

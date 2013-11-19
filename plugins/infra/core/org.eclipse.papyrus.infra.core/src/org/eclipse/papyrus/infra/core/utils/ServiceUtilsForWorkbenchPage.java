@@ -26,12 +26,25 @@ public class ServiceUtilsForWorkbenchPage extends AbstractServiceUtils<IWorkbenc
 
 	@Override
 	public ServicesRegistry getServiceRegistry(IWorkbenchPage from) throws ServiceException {
+		IAdaptable adaptable = null;
 		if(from instanceof IAdaptable) {
-			ServicesRegistry registry = (ServicesRegistry)((IAdaptable)from).getAdapter(ServicesRegistry.class);
+			adaptable = (IAdaptable)from;
+		} else if(from != null) {
+			//421392: [Model Explorer] Link with Editor does not work properly
+			//https://bugs.eclipse.org/bugs/show_bug.cgi?id=421392
+
+			//Since Eclipse 4.4, the concrete WorkbenchPage is not IAdaptable anymore.
+			//Try the ActivePart
+			adaptable = from.getActivePart();
+		}
+
+		if(adaptable != null) {
+			ServicesRegistry registry = (ServicesRegistry)adaptable.getAdapter(ServicesRegistry.class);
 			if(registry != null) {
 				return registry;
 			}
 		}
+
 
 		throw new ServiceException("Cannot resolve the ServiceRegistry from the IWorkbenchPage. Page: " + from);
 	}

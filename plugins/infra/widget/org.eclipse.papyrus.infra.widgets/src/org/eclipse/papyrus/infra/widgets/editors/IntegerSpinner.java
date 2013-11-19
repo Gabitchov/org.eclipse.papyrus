@@ -14,9 +14,13 @@ package org.eclipse.papyrus.infra.widgets.editors;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.conversion.StringToNumberConverter;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Spinner;
 
 /**
@@ -26,7 +30,7 @@ import org.eclipse.swt.widgets.Spinner;
  * 
  * @see Spinner
  */
-public class IntegerSpinner extends AbstractValueEditor {
+public class IntegerSpinner extends AbstractValueEditor implements KeyListener {
 
 	/**
 	 * The SWT Spinner
@@ -52,6 +56,7 @@ public class IntegerSpinner extends AbstractValueEditor {
 
 		setWidgetObservable(new AbstractObservableValue() {
 
+			@Override
 			public Object getValueType() {
 				return Integer.class;
 			}
@@ -67,6 +72,9 @@ public class IntegerSpinner extends AbstractValueEditor {
 			}
 
 		});
+
+		spinner.addKeyListener(this);
+		setCommitOnFocusLost(spinner);
 
 		targetToModelConverter = StringToNumberConverter.toInteger(false);
 	}
@@ -85,10 +93,12 @@ public class IntegerSpinner extends AbstractValueEditor {
 
 		spinner.addFocusListener(new FocusListener() {
 
+			@Override
 			public void focusGained(FocusEvent e) {
 				//Nothing
 			}
 
+			@Override
 			public void focusLost(FocusEvent e) {
 				binding.updateTargetToModel();
 			}
@@ -153,6 +163,23 @@ public class IntegerSpinner extends AbstractValueEditor {
 	 */
 	public void setIncrement(int increment) {
 		spinner.setIncrement(increment);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		//Nothing
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) {
+			notifyChange();
+		}
+	}
+
+	protected void notifyChange() {
+		spinner.notifyListeners(SWT.FocusOut, new Event());
+		commit();
 	}
 
 }
