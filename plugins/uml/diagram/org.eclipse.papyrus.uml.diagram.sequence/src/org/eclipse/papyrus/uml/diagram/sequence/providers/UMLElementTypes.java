@@ -19,14 +19,12 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages;
+import org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypes;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -36,6 +34,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
@@ -80,7 +79,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static ImageRegistry imageRegistry;
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -240,97 +239,34 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static ImageRegistry getImageRegistry() {
-		if(imageRegistry == null) {
-			imageRegistry = new ImageRegistry();
-		}
-		return imageRegistry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static String getImageRegistryKey(ENamedElement element) {
-		return element.getName();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
-		if(element instanceof EStructuralFeature) {
-			EStructuralFeature feature = ((EStructuralFeature)element);
-			EClass eContainingClass = feature.getEContainingClass();
-			EClassifier eType = feature.getEType();
-			if(eContainingClass != null && !eContainingClass.isAbstract()) {
-				element = eContainingClass;
-			} else if(eType instanceof EClass && !((EClass)eType).isAbstract()) {
-				element = eType;
-			}
-		}
-		if(element instanceof EClass) {
-			EClass eClass = (EClass)element;
-			if(!eClass.isAbstract()) {
-				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
-			}
-		}
-		// TODO : support structural features
-		return null;
-	}
+	public static final IElementType ConstraintContext_8500 = getElementType("org.eclipse.papyrus.uml.diagram.sequence.ConstraintContext_8500"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
-		String key = getImageRegistryKey(element);
-		ImageDescriptor imageDescriptor = getImageRegistry().getDescriptor(key);
-		if(imageDescriptor == null) {
-			imageDescriptor = getProvidedImageDescriptor(element);
-			if(imageDescriptor == null) {
-				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
-			}
-			getImageRegistry().put(key, imageDescriptor);
-		}
-		return imageDescriptor;
+		return elementTypeImages.getImageDescriptor(element);
 	}
 
 	/**
 	 * @generated
 	 */
 	public static Image getImage(ENamedElement element) {
-		String key = getImageRegistryKey(element);
-		Image image = getImageRegistry().get(key);
-		if(image == null) {
-			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(element);
-			if(imageDescriptor == null) {
-				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
-			}
-			getImageRegistry().put(key, imageDescriptor);
-			image = getImageRegistry().get(key);
-		}
-		return image;
+		return elementTypeImages.getImage(element);
 	}
 
 	/**
 	 * @generated
 	 */
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
-		ENamedElement element = getElement(hint);
-		if(element == null) {
-			return null;
-		}
-		return getImageDescriptor(element);
+		return getImageDescriptor(getElement(hint));
 	}
 
 	/**
 	 * @generated
 	 */
 	public static Image getImage(IAdaptable hint) {
-		ENamedElement element = getElement(hint);
-		if(element == null) {
-			return null;
-		}
-		return getImage(element);
+		return getImage(getElement(hint));
 	}
 
 	/**
@@ -372,6 +308,7 @@ public class UMLElementTypes {
 			elements.put(CommentAnnotatedElement_4010, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 			elements.put(ConstraintConstrainedElement_4011, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 			elements.put(GeneralOrdering_4012, UMLPackage.eINSTANCE.getGeneralOrdering());
+			elements.put(ConstraintContext_8500, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -419,6 +356,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4010);
 			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4011);
 			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_4012);
+			KNOWN_ELEMENT_TYPES.add(ConstraintContext_8500);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -488,7 +426,36 @@ public class UMLElementTypes {
 			return ConstraintConstrainedElement_4011;
 		case GeneralOrderingEditPart.VISUAL_ID:
 			return GeneralOrdering_4012;
+		case ContextLinkEditPart.VISUAL_ID:
+			return ConstraintContext_8500;
 		}
 		return null;
 	}
+
+	/**
+	 * @generated
+	 */
+	public static final DiagramElementTypes TYPED_INSTANCE = new DiagramElementTypes(elementTypeImages) {
+
+		/**
+		 * @generated
+		 */
+		public boolean isKnownElementType(IElementType elementType) {
+			return org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes.isKnownElementType(elementType);
+		}
+
+		/**
+		 * @generated
+		 */
+		public IElementType getElementTypeForVisualId(int visualID) {
+			return org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes.getElementType(visualID);
+		}
+
+		/**
+		 * @generated
+		 */
+		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
+			return org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes.getElement(elementTypeAdapter);
+		}
+	};
 }

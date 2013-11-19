@@ -161,6 +161,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATECONTEXTLINK11CREATIONTOOL = "createContextLink11CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public UMLPaletteFactory() {
 	}
 
@@ -246,6 +251,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATECONSTRAINTLINK10CREATIONTOOL)) {
 			return createConstraintlink10CreationTool();
+		}
+		if(toolId.equals(CREATECONTEXTLINK11CREATIONTOOL)) {
+			return createContextLink11CreationTool();
 		}
 		// default return: null
 		return null;
@@ -517,6 +525,16 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createConstraintlink10CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createContextLink11CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.ConstraintContext_8500);
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
