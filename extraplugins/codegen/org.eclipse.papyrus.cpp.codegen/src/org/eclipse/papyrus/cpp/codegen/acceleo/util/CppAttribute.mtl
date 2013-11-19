@@ -42,7 +42,11 @@ return a list of owned attributes, since this is not supported directly on a cla
 		if (cl.oclIsKindOf(DataType)) then
 			oclAsType(DataType).ownedAttribute
 		else
-			null
+			if (cl.oclIsKindOf(Interface)) then
+				oclAsType(Interface).ownedAttribute
+			else
+				Sequence{}
+			endif
 		endif
 	endif
 /]
