@@ -5,7 +5,7 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.adl4eclipse.org
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %pluginName
 Bundle-localization: plugin
 Bundle-ManifestVersion: 2

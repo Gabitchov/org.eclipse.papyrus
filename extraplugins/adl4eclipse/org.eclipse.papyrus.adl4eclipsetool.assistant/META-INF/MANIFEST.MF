@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.pde.core
 Export-Package: org.eclipse.papyrus.adltool.assistant
 Bundle-Vendor: %providerName
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

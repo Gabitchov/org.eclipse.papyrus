@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_OvTYkE0_EeOOJupwPU5MDw" name="Model">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_OvTYkU0_EeOOJupwPU5MDw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_WhftEE1AEeOOJupwPU5MDw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WhpeEE1AEeOOJupwPU5MDw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_0xHxUYDEEeKQG4TlBAn6bg"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_OKU8EHtxEeKcL-wrhM9ICg"/>
+  </profileApplication>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_WhzPEE1AEeOOJupwPU5MDw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WhzPEU1AEeOOJupwPU5MDw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_0xRiUIDEEeKQG4TlBAn6bg"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://OSGI_PROFILES/osgi.profile.uml#_YbhfEHtxEeKcL-wrhM9ICg"/>
+  </profileApplication>
+</uml:Model>
