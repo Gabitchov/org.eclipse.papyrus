@@ -30,7 +30,11 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
@@ -239,8 +243,24 @@ public class SysMLDiagramUpdater {
 		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_VALUETYPE_AS_CLASSIFIER_ID)) {
 			return getValueType_shape_sysml_valuetype_as_classifier_IncommingLinks(view);
 		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTBLOCK_AS_CLASSIFIER_ID)) {
+			return getConstraintBlock_shape_sysml_constraintblock_as_classifier_IncomingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTPROPERTY_AS_LABEL_ID)) {
+			return getConstraintProperty_shape_sysml_constraintproperty_as_label_IncomingLinks(view);
+		}
+		if(id.equals(Integer.toString(CommentEditPart.VISUAL_ID)) || id.equals(CommentEditPartCN.VISUAL_ID)) {
+			return getComment_IncominkLinks(view);
+		}
+		if(id.equals(Integer.toString(ConstraintEditPart.VISUAL_ID)) || id.equals(ConstraintEditPartCN.VISUAL_ID)) {
+			return getConstraint_IncomingLinks(view);
+		}
+
 		return Collections.emptyList();
 	}
+
+
+
 
 
 	/**
@@ -345,8 +365,75 @@ public class SysMLDiagramUpdater {
 		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_VALUETYPE_AS_CLASSIFIER_ID)) {
 			return getValueType_shape_sysml_valuetype_as_classifier_OutgoingLinks(view);
 		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTBLOCK_AS_CLASSIFIER_ID)) {
+			return getConstraintBlock_shape_sysml_constraintblock_as_classifier_OutgoingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTPROPERTY_AS_LABEL_ID)) {
+			return getConstraintProperty_shape_sysml_constraintproperty_as_label_OutgoingLinks(view);
+		}
+		if(id.equals(Integer.toString(CommentEditPart.VISUAL_ID)) || id.equals(CommentEditPartCN.VISUAL_ID)) {
+			return getComment_OutgoingLinks(view);
+		}
+		if(id.equals(Integer.toString(ConstraintEditPart.VISUAL_ID)) || id.equals(ConstraintEditPartCN.VISUAL_ID)) {
+			return getConstraint_OutgoingLinks(view);
+		}
 		return Collections.emptyList();
 	}
+
+	private static List<UpdaterLinkDescriptor> getConstraint_IncomingLinks(View view) {
+		Constraint modelElement = (Constraint)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getConstraint_OutgoingLinks(View view) {
+		Constraint modelElement = (Constraint)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getComment_IncominkLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getComment_OutgoingLinks(View view) {
+		Comment modelElement = (Comment)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getConstraintProperty_shape_sysml_constraintproperty_as_label_IncomingLinks(View view) {
+		return getProperty_IncomingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getConstraintProperty_shape_sysml_constraintproperty_as_label_OutgoingLinks(View view) {
+		return getProperty_OutgoingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getConstraintBlock_shape_sysml_constraintblock_as_classifier_IncomingLinks(View view) {
+		return getBlock_shape_sysml_block_as_classifier_IncomingLink(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getConstraintBlock_shape_sysml_constraintblock_as_classifier_OutgoingLinks(View view) {
+		return getBlock_shape_sysml_block_as_classifier_OutgoingLink(view);
+	}
+
+
+
 
 	private static List<UpdaterLinkDescriptor> getValueType_shape_sysml_valuetype_as_classifier_IncommingLinks(View view) {
 		return getDataType_shape_uml_data_type_as_classifier_IncomingLinks(view);
@@ -1174,7 +1261,6 @@ public class SysMLDiagramUpdater {
 			if(src != source) {
 				continue;
 			}
-			//TODO, FIXME : warning to the several link uml association?
 			result.add(new UMLLinkDescriptor(src, dst, link, SysMLElementTypes.ASSOCIATION, -1));
 		}
 		return result;
