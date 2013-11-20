@@ -33,10 +33,12 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentAnnotatedElementE
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPartCN;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLLinkDescriptor;
+import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.uml2.uml.Actor;
@@ -185,8 +187,28 @@ public class SysMLDiagramUpdater {
 		if(id.equals(UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID)) {
 			return getGeneralization_link_uml_generalization_IncomingLinks(view);
 		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_PORT_AS_LABEL_ID)) {
+			return getPort_shape_uml_port_as_label_IncomingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_LABEL_ID)) {
+			return getFlowPort_shape_sysml_flowport_as_label_IncomingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID)) {
+			return getPort_shape_uml_port_as_affixed_IncomingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID)) {
+			return getFlowPort_shape_sysml_flowport_as_affixed_IncomingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWSPECIFICATION_AS_CLASSIFIER_ID)) {
+			return getFlowSpecification_shape_sysml_flowspecification_as_classifier_IncomingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_INTERFACE_AS_CLASSIFIER_ID)) {
+			return getInterface_shape_uml_interface_as_classifier_IncomingLinks(view);
+		}
 		return Collections.emptyList();
 	}
+
+
 
 
 
@@ -244,12 +266,100 @@ public class SysMLDiagramUpdater {
 		if(id.equals(UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID)) {
 			return getGeneralization_link_uml_generalization_OutgoingLinks(view);
 		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_PORT_AS_LABEL_ID)) {
+			return getPort_shape_uml_port_as_label_OutgoingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_LABEL_ID)) {
+			return getFlowPort_shape_sysml_flowport_as_label_OutgoingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID)) {
+			return getPort_shape_uml_port_as_affixed_OutgoingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID)) {
+			return getFlowPort_shape_sysml_flowport_as_affixed_OutgoingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWSPECIFICATION_AS_CLASSIFIER_ID)) {
+			return getFlowSpecification_shape_sysml_flowspecification_as_classifier_OutgoingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_INTERFACE_AS_CLASSIFIER_ID)) {
+			return getInterface_shape_uml_interface_as_classifier_OutgoingLinks(view);
+		}
 		return Collections.emptyList();
 	}
 
+	private static List<UpdaterLinkDescriptor> getInterface_shape_uml_interface_as_classifier_IncomingLinks(View view) {
+		return getInterface_IncomingLinks(view);
+	}
 
+	private static List<UpdaterLinkDescriptor> getInterface_shape_uml_interface_as_classifier_OutgoingLinks(View view) {
+		return getInterface_OutgoingLinks(view);
+	}
 
-	private static List<UpdaterLinkDescriptor> getDependency_link_uml_dependency_OutgoingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getFlowSpecification_shape_sysml_flowspecification_as_classifier_IncomingLinks(View view) {
+		return getInterface_IncomingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getFlowSpecification_shape_sysml_flowspecification_as_classifier_OutgoingLinks(View view) {
+		return getInterface_OutgoingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getInterface_IncomingLinks(View view) {
+		Interface modelElement = (Interface)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4003(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getInterface_OutgoingLinks(View view) {
+		Interface modelElement = (Interface)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getPort_shape_uml_port_as_affixed_IncomingLinks(View view) {
+		return getProperty_IncomingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getPort_shape_uml_port_as_affixed_OutgoingLinks(View view) {
+		return getProperty_OutgoingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getFlowPort_shape_sysml_flowport_as_affixed_IncomingLinks(View view) {
+		return getProperty_IncomingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getFlowPort_shape_sysml_flowport_as_affixed_OutgoingLinks(View view) {
+		return getProperty_OutgoingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getFlowPort_shape_sysml_flowport_as_label_IncomingLinks(View view) {
+		return getProperty_IncomingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getFlowPort_shape_sysml_flowport_as_label_OutgoingLinks(View view) {
+		return getProperty_IncomingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getPort_shape_uml_port_as_label_IncomingLinks(View view) {
+		return getProperty_OutgoingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getPort_shape_uml_port_as_label_OutgoingLinks(View view) {
+		return getProperty_OutgoingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getDependency_link_uml_dependency_IncomingLinks(View view) {
 		Dependency modelElement = (Dependency)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
@@ -260,9 +370,8 @@ public class SysMLDiagramUpdater {
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getDependency_link_uml_dependency_IncomingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getDependency_link_uml_dependency_OutgoingLinks(View view) {
 		Dependency modelElement = (Dependency)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
@@ -354,38 +463,58 @@ public class SysMLDiagramUpdater {
 
 
 	private static List<UpdaterLinkDescriptor> getValue_shape_sysml_value_as_label_IncomingLinks(View view) {
-		return getProperty_IncomingLink(view);
+		return getProperty_IncomingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getValue_shape_sysml_value_as_label_OutgoingLinks(View view) {
-		return getProperty_OutgoingLink(view);
+		return getProperty_OutgoingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getReference_shape_sysml_reference_as_label_IncomingLinks(View view) {
-		return getProperty_IncomingLink(view);
+		return getProperty_IncomingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getReference_shape_sysml_reference_as_label_OutgoingLinks(View view) {
-		return getProperty_IncomingLink(view);
+		return getProperty_IncomingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getPart_shape_sysml_part_as_label_IncomingLinks(View view) {
-		return getProperty_OutgoingLink(view);
+		return getProperty_OutgoingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getPart_shape_sysml_part_as_label_OutgoingLinks(View view) {
-		return getProperty_OutgoingLink(view);
+		return getProperty_OutgoingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getProperty_shape_uml_property_as_label_IncomingLinks(View view) {
-		return getProperty_IncomingLink(view);
+		return getProperty_IncomingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getProperty_shape_uml_property_as_label_OutgoingLinks(View view) {
-		return getProperty_OutgoingLink(view);
+		return getProperty_OutgoingLinks(view);
 	}
 
-	private static List<UpdaterLinkDescriptor> getProperty_IncomingLink(View view) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_InterfaceRealization_4003(Interface target, Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences.get(target);
+		for(EStructuralFeature.Setting setting : settings) {
+			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getInterfaceRealization_Contract() || false == setting.getEObject() instanceof InterfaceRealization) {
+				continue;
+			}
+			InterfaceRealization link = (InterfaceRealization)setting.getEObject();
+			if(InterfaceRealizationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			if(false == link.eContainer() instanceof BehavioredClassifier) {
+				continue;
+			}
+			BehavioredClassifier container = (BehavioredClassifier)link.eContainer();
+			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.InterfaceRealization_4003, InterfaceRealizationEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getProperty_IncomingLinks(View view) {
 		Property modelElement = (Property)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
@@ -396,7 +525,7 @@ public class SysMLDiagramUpdater {
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getProperty_OutgoingLink(View view) {
+	private static List<UpdaterLinkDescriptor> getProperty_OutgoingLinks(View view) {
 		Property modelElement = (Property)view.getElement();
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
