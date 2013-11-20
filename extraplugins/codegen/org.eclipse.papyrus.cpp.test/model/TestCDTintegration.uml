@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Model xmi:id="_Ae6MwPccEd-KM6l7lmIPkw" name="TestCDTintegration">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_EbtcwFG8EeOLNIKOajeerQ" annotatedElement="_419y0A7hEeKpbseGaEy1LA">
+      <body>This class contains a state machine</body>
+    </ownedComment>
     <packageImport xmi:type="uml:PackageImport" xmi:id="_GQ1SgP6SEeKlg5tzGV3QVQ">
       <importedPackage xmi:type="uml:Model" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_DV8nkBv8EduZN5aJJITI5w"/>
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_wCdtcH_1EeGMcIDCiaPhww" name="implementation">
       <ownedComment xmi:type="uml:Comment" xmi:id="_13ZsYBhXEeKGC8dT0Hrc_A"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_KOvvIPccEd-KM6l7lmIPkw" clientDependency="_Edy9EBvREeKM2oNGoGF4uQ" name="Class0">
+      <packagedElement xmi:type="uml:Class" xmi:id="_KOvvIPccEd-KM6l7lmIPkw" name="Class0">
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_U_ezUMzYEeGcRfFFcVPhOg" name="operation1" specification="_mbXNMH8tEeGWNf8qHJJtnw">
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_42nn4BoKEeKjbYasGOLMuA" name="Parameter1">
             <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
@@ -43,13 +46,38 @@
         <ownedOperation xmi:type="uml:Operation" xmi:id="_q1fIIBRnEeK2iINwXBL4pA" name="operation3" method="_vZAVMBnOEeK5EK5DdRYilA"/>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_BVivAB0LEeKlYLZOWTi6uw" name="Operation1"/>
       </packagedElement>
-      <packagedElement xmi:type="uml:Abstraction" xmi:id="_Edy9EBvREeKM2oNGoGF4uQ" name="Allocate1" client="_KOvvIPccEd-KM6l7lmIPkw" supplier="_mp8XAA7QEeKcN-88BXIIKg"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_mp8XAA7QEeKcN-88BXIIKg" name="Class1"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_419y0A7hEeKpbseGaEy1LA" name="Class2"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_K8FLcB0LEeKlYLZOWTi6uw" name="Class3">
+    <packagedElement xmi:type="uml:Class" xmi:id="_419y0A7hEeKpbseGaEy1LA" name="Class2">
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_2lDO8FG7EeOLNIKOajeerQ" name="StateMachine">
+        <region xmi:type="uml:Region" xmi:id="_6m9lMFG7EeOLNIKOajeerQ" name="Region1">
+          <transition xmi:type="uml:Transition" xmi:id="_Z2_5oFG8EeOLNIKOajeerQ" name="Transition0" source="_UcSkcFG8EeOLNIKOajeerQ" target="_TYx5AFG8EeOLNIKOajeerQ">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_OVqvAFG9EeOLNIKOajeerQ" name="effectBehavior" isAbstract="true">
+              <language>C/C++</language>
+              <body>// this effect is a C++
+// opaque behavior with several lines</body>
+            </effect>
+            <trigger xmi:type="uml:Trigger" xmi:id="__ExX0FG8EeOLNIKOajeerQ" name="Trigger"/>
+          </transition>
+          <subvertex xmi:type="uml:State" xmi:id="_TYx5AFG8EeOLNIKOajeerQ" name="State0"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_UcSkcFG8EeOLNIKOajeerQ" name="Initial0"/>
+        </region>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_xe7iUFG-EeOLNIKOajeerQ" name="triggerOp" isReentrant="false" specification="_gixOEFG8EeOLNIKOajeerQ">
+        <language>C/C++</language>
+        <body>// Aber hier geht's, oder?
+</body>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_xe8JYVG-EeOLNIKOajeerQ" name="effectBehavior" isReentrant="false" specification="_xe8JYFG-EeOLNIKOajeerQ">
+        <language>C/C++</language>
+        <body>// this effect is a C++ np
+// opaque behavior with several lines</body>
+      </ownedBehavior>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_gixOEFG8EeOLNIKOajeerQ" name="triggerOp" method="_xe7iUFG-EeOLNIKOajeerQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_xe8JYFG-EeOLNIKOajeerQ" name="effectBehavior" method="_xe8JYVG-EeOLNIKOajeerQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_K8FLcB0LEeKlYLZOWTi6uw" name="Class1">
       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_kTVuwP6QEeKlg5tzGV3QVQ" name="Operation1" isReentrant="false" specification="_TY18YB0LEeKlYLZOWTi6uw">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_SoTM0ExiEeOmZKwrWJYDKQ" name="arg">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_8cPkcVG-EeOLNIKOajeerQ" name="arg">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
         </ownedParameter>
         <language>C/C++</language>
@@ -57,7 +85,7 @@
 cout &lt;&lt; &quot;value: &quot; &lt;&lt; arg;</body>
       </ownedBehavior>
       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_pX7DgDcmEeO6UdbIk03c9Q" name="Operation2" isReentrant="false" specification="_jnWMADcmEeO6UdbIk03c9Q">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_SoUa8UxiEeOmZKwrWJYDKQ" name="args">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_8cRZoVG-EeOLNIKOajeerQ" name="args">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
         </ownedParameter>
         <language>C/C++</language>
@@ -68,15 +96,15 @@ args[0] = 2;</body>
         <ownedComment xmi:type="uml:Comment" xmi:id="_II4ccP6WEeKlg5tzGV3QVQ" annotatedElement="_II4ccP6WEeKlg5tzGV3QVQ">
           <body></body>
         </ownedComment>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_SoSlwExiEeOmZKwrWJYDKQ" name="arg">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_8cPkcFG-EeOLNIKOajeerQ" name="arg">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_7wRIABydEduyofBvg4RL2w"/>
         </ownedParameter>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_jnWMADcmEeO6UdbIk03c9Q" name="Operation2" method="_pX7DgDcmEeO6UdbIk03c9Q">
         <ownedComment xmi:type="uml:Comment" xmi:id="_rH4lQDcmEeO6UdbIk03c9Q" annotatedElement="_rH4lQDcmEeO6UdbIk03c9Q">
-          <body>This is a test comment for operation 2</body>
+          <body></body>
         </ownedComment>
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_SoUa8ExiEeOmZKwrWJYDKQ" name="args">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_8cRZoFG-EeOLNIKOajeerQ" name="args">
           <type xmi:type="uml:PrimitiveType" href="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml#_5lVhgBydEduyofBvg4RL2w"/>
         </ownedParameter>
       </ownedOperation>
@@ -116,7 +144,7 @@ args[0] = 2;</body>
     </profileApplication>
   </uml:Model>
   <C_Cpp:Typedef xmi:id="_D6FjUDcWEeO6UdbIk03c9Q" definition="int" base_primitivetype="_DHJ24C-JEeObJ6ARx67E0g"/>
-  <C_Cpp:Const xmi:id="_SoYFUExiEeOmZKwrWJYDKQ" base_parameter="_SoUa8ExiEeOmZKwrWJYDKQ"/>
-  <C_Cpp:Ptr xmi:id="_SobvsExiEeOmZKwrWJYDKQ" base_parameter="_SoUa8ExiEeOmZKwrWJYDKQ"/>
-  <C_Cpp:Array xmi:id="_SofaEExiEeOmZKwrWJYDKQ" base_parameter="_SoUa8ExiEeOmZKwrWJYDKQ" definition="[5]"/>
+  <C_Cpp:Const xmi:id="_8cVEAFG-EeOLNIKOajeerQ" base_parameter="_8cRZoFG-EeOLNIKOajeerQ"/>
+  <C_Cpp:Ptr xmi:id="_8cYuYFG-EeOLNIKOajeerQ" base_parameter="_8cRZoFG-EeOLNIKOajeerQ"/>
+  <C_Cpp:Array xmi:id="_8cbxsFG-EeOLNIKOajeerQ" base_parameter="_8cRZoFG-EeOLNIKOajeerQ" definition="[5]"/>
 </xmi:XMI>
