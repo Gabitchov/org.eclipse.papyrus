@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.C_Cpp;
 
@@ -59,6 +69,33 @@ public interface Include extends EObject {
 	 * @generated
 	 */
 	void setBody(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Pre Body</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Pre Body</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Pre Body</em>' attribute.
+	 * @see #setPreBody(String)
+	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getInclude_PreBody()
+	 * @model default="" dataType="org.eclipse.uml2.types.String" ordered="false"
+	 * @generated
+	 */
+	String getPreBody();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.Include#getPreBody <em>Pre Body</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pre Body</em>' attribute.
+	 * @see #getPreBody()
+	 * @generated
+	 */
+	void setPreBody(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Header</b></em>' attribute.
@@ -164,32 +201,5 @@ public interface Include extends EObject {
 	 * @generated
 	 */
 	void setBase_PackageImport(PackageImport value);
-
-	/**
-	 * Returns the value of the '<em><b>Pre Body</b></em>' attribute.
-	 * The default value is <code>""</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pre Body</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pre Body</em>' attribute.
-	 * @see #setPreBody(String)
-	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getInclude_PreBody()
-	 * @model default="" dataType="org.eclipse.uml2.types.String" ordered="false"
-	 * @generated
-	 */
-	String getPreBody();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.Include#getPreBody <em>Pre Body</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pre Body</em>' attribute.
-	 * @see #getPreBody()
-	 * @generated
-	 */
-	void setPreBody(String value);
 
 } // Include

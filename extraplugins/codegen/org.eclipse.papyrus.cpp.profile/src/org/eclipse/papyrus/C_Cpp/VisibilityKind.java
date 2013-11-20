@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.C_Cpp;
 
@@ -26,7 +36,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRIVATE(0, "private", "private"),
+	PRIVATE(0, "private", "private"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Protected</b></em>' literal object.
@@ -36,7 +46,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROTECTED(1, "protected", "protected"),
+	PROTECTED(1, "protected", "protected"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Public</b></em>' literal object.
@@ -46,7 +56,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PUBLIC(2, "public", "public");
+	PUBLIC(2, "public", "public"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Private</b></em>' literal value.

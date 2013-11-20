@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.C_Cpp;
 
@@ -26,7 +36,9 @@ public enum EStorageClass implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	VOLATILE(0, "volatile", "volatile"), /**
+	VOLATILE(0, "volatile", "volatile"), //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * The '<em><b>Register</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34,7 +46,7 @@ public enum EStorageClass implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	REGISTER(1, "register", "register"),
+	REGISTER(1, "register", "register"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Extern</b></em>' literal object.
@@ -44,7 +56,7 @@ public enum EStorageClass implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXTERN(2, "extern", "extern");
+	EXTERN(2, "extern", "extern"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Volatile</b></em>' literal value.

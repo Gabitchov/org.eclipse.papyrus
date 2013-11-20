@@ -31,16 +31,9 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="name" type="string">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appInfo>
-                  <meta.attribute translatable="true"/>
-               </appInfo>
-            </annotation>
-         </attribute>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="client"/>
+         </sequence>
       </complexType>
    </element>
 

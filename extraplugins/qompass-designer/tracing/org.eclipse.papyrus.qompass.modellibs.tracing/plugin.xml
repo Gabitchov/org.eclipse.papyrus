@@ -12,7 +12,7 @@
 	<extension
       point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
       <library
-            iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+            iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif"
             name="Qompass model library: tracing"
             path="pathmap://QML_TRACE/tracing.uml"
             provider="CEA LIST">

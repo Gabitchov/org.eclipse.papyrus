@@ -22,5 +22,5 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.cpp.codegen.ui.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.cpp.codegen.ui;singleton:=tru
  e
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
