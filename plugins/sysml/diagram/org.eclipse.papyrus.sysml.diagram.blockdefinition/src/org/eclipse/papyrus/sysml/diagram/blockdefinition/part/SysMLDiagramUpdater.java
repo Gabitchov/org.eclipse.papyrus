@@ -205,6 +205,9 @@ public class SysMLDiagramUpdater {
 		if(id.equals(UMLGraphicalTypes.SHAPE_UML_INTERFACE_AS_CLASSIFIER_ID)) {
 			return getInterface_shape_uml_interface_as_classifier_IncomingLinks(view);
 		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPROPERTY_AS_LABEL_ID)) {
+			return getFlowProperty_shape_sysml_flowproperty_as_label_IncomingLinks(view);
+		}
 		return Collections.emptyList();
 	}
 
@@ -284,7 +287,18 @@ public class SysMLDiagramUpdater {
 		if(id.equals(UMLGraphicalTypes.SHAPE_UML_INTERFACE_AS_CLASSIFIER_ID)) {
 			return getInterface_shape_uml_interface_as_classifier_OutgoingLinks(view);
 		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPROPERTY_AS_LABEL_ID)) {
+			return getFlowProperty_shape_sysml_flowproperty_as_label_OutgoingLinks(view);
+		}
 		return Collections.emptyList();
+	}
+
+	private static List<UpdaterLinkDescriptor> getFlowProperty_shape_sysml_flowproperty_as_label_IncomingLinks(View view) {
+		return getProperty_IncomingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getFlowProperty_shape_sysml_flowproperty_as_label_OutgoingLinks(View view) {
+		return getProperty_OutgoingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getInterface_shape_uml_interface_as_classifier_IncomingLinks(View view) {
