@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.helper.advice;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -67,19 +68,22 @@ public class TableContentsAdviceHelper extends AbstractEditHelperAdvice {
 	 */
 	protected List<EObject> getAssociatedElementToDestroy(final EObject eobject) {
 		final CrossReferenceAdapter adapter = getCrossReferenceAdapter(eobject);
-		Set<EObject> elementsToDestroy = adapter.getInverseReferencers(eobject, NattableaxisPackage.eINSTANCE.getEObjectAxis_Element(), NattableaxisPackage.eINSTANCE.getEObjectAxis());
-		elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getEObjectAxisWrapper_Element(), NattablecellPackage.eINSTANCE.getEObjectAxisWrapper()));
+		if(adapter != null) {
+			Set<EObject> elementsToDestroy = adapter.getInverseReferencers(eobject, NattableaxisPackage.eINSTANCE.getEObjectAxis_Element(), NattableaxisPackage.eINSTANCE.getEObjectAxis());
+			elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getEObjectAxisWrapper_Element(), NattablecellPackage.eINSTANCE.getEObjectAxisWrapper()));
 
-		if(eobject instanceof ICellAxisWrapper) {
-			elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getCell_RowWrapper(), NattablecellPackage.eINSTANCE.getCell()));
-			elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getCell_ColumnWrapper(), NattablecellPackage.eINSTANCE.getCell()));
+			if(eobject instanceof ICellAxisWrapper) {
+				elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getCell_RowWrapper(), NattablecellPackage.eINSTANCE.getCell()));
+				elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getCell_ColumnWrapper(), NattablecellPackage.eINSTANCE.getCell()));
+			}
+			//		for(final EObject current : cellWrapper) {
+			//			if(current instanceof ICellAxisWrapper) {
+			//				elementsToDestroy.add(current.eContainer());
+			//			}
+			//		}
+			return new ArrayList<EObject>(elementsToDestroy);
 		}
-		//		for(final EObject current : cellWrapper) {
-		//			if(current instanceof ICellAxisWrapper) {
-		//				elementsToDestroy.add(current.eContainer());
-		//			}
-		//		}
-		return new ArrayList<EObject>(elementsToDestroy);
+		return Collections.emptyList();
 	}
 
 	//Duplicated code from UML Diagram common
