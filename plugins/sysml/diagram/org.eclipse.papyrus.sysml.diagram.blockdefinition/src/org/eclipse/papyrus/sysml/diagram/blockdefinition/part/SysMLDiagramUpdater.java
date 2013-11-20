@@ -48,8 +48,11 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
@@ -58,6 +61,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Signal;
@@ -208,11 +212,35 @@ public class SysMLDiagramUpdater {
 		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPROPERTY_AS_LABEL_ID)) {
 			return getFlowProperty_shape_sysml_flowproperty_as_label_IncomingLinks(view);
 		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID)) {
+			return getInterfaceRealization_link_uml_interfacerealization_IncomingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_USAGE_ID)) {
+			return getUsage_link_uml_usage_IncomingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_DATATYPE_AS_CLASSIFIER_ID)) {
+			return getDataType_shape_uml_data_type_as_classifier_IncomingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_ENUMERATION_AS_CLASSIFIER_ID)) {
+			return getEnumeration_shape_uml_enumeration_as_classifier_IncomingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_ENUMERATIONLITERAL_AS_LABEL_ID)) {
+			return getEnumerationLiteral_shape_uml_enumerationliteral_as_classifier_IncomingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_PRIMITIVETYPE_AS_CLASSIFIER_ID)) {
+			return getPrimitiveType_shape_uml_primitivetype_as_classifier_IncomingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_DIMENSION_AS_CLASSIFIER_ID)) {
+			return getDimension_shape_sysml_dimension_as_classifier_IncomingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_UNIT_AS_CLASSIFIER_ID)) {
+			return getUnit_shape_sysml_unit_as_classifier_IncomingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_VALUETYPE_AS_CLASSIFIER_ID)) {
+			return getValueType_shape_sysml_valuetype_as_classifier_IncommingLinks(view);
+		}
 		return Collections.emptyList();
 	}
-
-
-
 
 
 	/**
@@ -290,7 +318,187 @@ public class SysMLDiagramUpdater {
 		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPROPERTY_AS_LABEL_ID)) {
 			return getFlowProperty_shape_sysml_flowproperty_as_label_OutgoingLinks(view);
 		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_INTERFACEREALIZATION_ID)) {
+			return getInterfaceRealization_link_uml_interfacerealization_OutgoingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_USAGE_ID)) {
+			return getUsage_link_uml_usage_OutgoingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_DATATYPE_AS_CLASSIFIER_ID)) {
+			return getDataType_shape_uml_data_type_as_classifier_OutgoingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_ENUMERATION_AS_CLASSIFIER_ID)) {
+			return getEnumeration_shape_uml_enumeration_as_classifier_OutgoingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_ENUMERATIONLITERAL_AS_LABEL_ID)) {
+			return getEnumerationLiteral_shape_uml_enumerationliteral_as_classifier_OutgoingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_PRIMITIVETYPE_AS_CLASSIFIER_ID)) {
+			return getPrimitiveType_shape_uml_primitivetype_as_classifier_OutgoingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_DIMENSION_AS_CLASSIFIER_ID)) {
+			return getDimension_shape_sysml_dimension_as_classifier_OutgoingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_UNIT_AS_CLASSIFIER_ID)) {
+			return getUnit_shape_sysml_unit_as_classifier_OutgoingLinks(view);
+		}
+		if(id.equals(SysMLGraphicalTypes.SHAPE_SYSML_VALUETYPE_AS_CLASSIFIER_ID)) {
+			return getValueType_shape_sysml_valuetype_as_classifier_OutgoingLinks(view);
+		}
 		return Collections.emptyList();
+	}
+
+	private static List<UpdaterLinkDescriptor> getValueType_shape_sysml_valuetype_as_classifier_IncommingLinks(View view) {
+		return getDataType_shape_uml_data_type_as_classifier_IncomingLinks(view);
+	}
+
+
+	private static List<UpdaterLinkDescriptor> getValueType_shape_sysml_valuetype_as_classifier_OutgoingLinks(View view) {
+		return getDataType_shape_uml_data_type_as_classifier_OutgoingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getDimension_shape_sysml_dimension_as_classifier_OutgoingLinks(View view) {
+		return getInstanceSpecification_2001IncomingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getDimension_shape_sysml_dimension_as_classifier_IncomingLinks(View view) {
+		return getInstanceSpecification_2001OutgoingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getUnit_shape_sysml_unit_as_classifier_OutgoingLinks(View view) {
+		return getInstanceSpecification_2001IncomingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getUnit_shape_sysml_unit_as_classifier_IncomingLinks(View view) {
+		return getInstanceSpecification_2001OutgoingLinks(view);
+	}
+
+	private static List<UpdaterLinkDescriptor> getPrimitiveType_shape_uml_primitivetype_as_classifier_IncomingLinks(View view) {
+		PrimitiveType modelElement = (PrimitiveType)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getPrimitiveType_shape_uml_primitivetype_as_classifier_OutgoingLinks(View view) {
+		PrimitiveType modelElement = (PrimitiveType)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
+		return result;
+	}
+
+
+
+	private static List<UpdaterLinkDescriptor> getEnumerationLiteral_shape_uml_enumerationliteral_as_classifier_IncomingLinks(View view) {
+		EnumerationLiteral modelElement = (EnumerationLiteral)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getEnumerationLiteral_shape_uml_enumerationliteral_as_classifier_OutgoingLinks(View view) {
+		EnumerationLiteral modelElement = (EnumerationLiteral)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getEnumeration_shape_uml_enumeration_as_classifier_IncomingLinks(View view) {
+		Enumeration modelElement = (Enumeration)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getEnumeration_shape_uml_enumeration_as_classifier_OutgoingLinks(View view) {
+		Enumeration modelElement = (Enumeration)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getDataType_shape_uml_data_type_as_classifier_IncomingLinks(View view) {
+		DataType modelElement = (DataType)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getDataType_shape_uml_data_type_as_classifier_OutgoingLinks(View view) {
+		DataType modelElement = (DataType)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getUsage_link_uml_usage_IncomingLinks(View view) {
+		Usage modelElement = (Usage)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getUsage_link_uml_usage_OutgoingLinks(View view) {
+		InterfaceRealization modelElement = (InterfaceRealization)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getInterfaceRealization_link_uml_interfacerealization_IncomingLinks(View view) {
+		InterfaceRealization modelElement = (InterfaceRealization)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getInterfaceRealization_link_uml_interfacerealization_OutgoingLinks(View view) {
+		InterfaceRealization modelElement = (InterfaceRealization)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		return result;
 	}
 
 	private static List<UpdaterLinkDescriptor> getFlowProperty_shape_sysml_flowproperty_as_label_IncomingLinks(View view) {
