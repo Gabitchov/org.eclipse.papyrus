@@ -51,6 +51,7 @@ import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
@@ -143,10 +144,11 @@ public class SysMLDiagramUpdater {
 		if(id.equals(UMLGraphicalTypes.SHAPE_UML_ACTOR_AS_CLASSIFIER_ID)) {
 			return getActor_shape_uml_actor_as_classifier_IncomingLinks(view);
 		}
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_SIGNAL_AS_CLASSIFIER_ID)) {
+			return getSignal_shape_uml_signal_as_classifier_IncomingLinks(view);
+		}
 		return Collections.emptyList();
 	}
-
-
 
 
 	/**
@@ -171,8 +173,34 @@ public class SysMLDiagramUpdater {
 		if(id.equals(UMLGraphicalTypes.SHAPE_UML_ACTOR_AS_CLASSIFIER_ID)) {
 			return getActor_shape_uml_actor_as_classifier_OutgoingLinks(view);
 		}
-
+		if(id.equals(UMLGraphicalTypes.SHAPE_UML_SIGNAL_AS_CLASSIFIER_ID)) {
+			return getSignal_shape_uml_signal_as_classifier_OutgoingLinks(view);
+		}
 		return Collections.emptyList();
+	}
+
+	private static List<UpdaterLinkDescriptor> getSignal_shape_uml_signal_as_classifier_IncomingLinks(View view) {
+		Signal modelElement = (Signal)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getSignal_shape_uml_signal_as_classifier_OutgoingLinks(View view) {
+		Signal modelElement = (Signal)view.getElement();
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
+		return result;
+
 	}
 
 	private static List<UpdaterLinkDescriptor> getActor_shape_uml_actor_as_classifier_IncomingLinks(View view) {
