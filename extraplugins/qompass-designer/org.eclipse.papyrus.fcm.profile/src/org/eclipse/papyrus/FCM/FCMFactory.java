@@ -1,8 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Ansgar Radermacher - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.FCM;
 
@@ -35,87 +41,6 @@ public interface FCMFactory extends EFactory {
 	Template createTemplate();
 
 	/**
-	 * Returns a new object of class '<em>Container Rule</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Container Rule</em>'.
-	 * @generated
-	 */
-	ContainerRule createContainerRule();
-
-	/**
-	 * Returns a new object of class '<em>Port</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Port</em>'.
-	 * @generated
-	 */
-	Port createPort();
-
-	/**
-	 * Returns a new object of class '<em>Port Kind</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Port Kind</em>'.
-	 * @generated
-	 */
-	PortKind createPortKind();
-
-	/**
-	 * Returns a new object of class '<em>Comp Impl Template</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Comp Impl Template</em>'.
-	 * @generated
-	 */
-	CompImplTemplate createCompImplTemplate();
-
-	/**
-	 * Returns a new object of class '<em>Config Option</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Config Option</em>'.
-	 * @generated
-	 */
-	ConfigOption createConfigOption();
-
-	/**
-	 * Returns a new object of class '<em>Template Port</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Template Port</em>'.
-	 * @generated
-	 */
-	TemplatePort createTemplatePort();
-
-	/**
-	 * Returns a new object of class '<em>Singleton</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Singleton</em>'.
-	 * @generated
-	 */
-	Singleton createSingleton();
-
-	/**
-	 * Returns a new object of class '<em>Interaction Component</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Interaction Component</em>'.
-	 * @generated
-	 */
-	InteractionComponent createInteractionComponent();
-
-	/**
-	 * Returns a new object of class '<em>Connector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Connector</em>'.
-	 * @generated
-	 */
-	Connector createConnector();
-
-	/**
 	 * Returns a new object of class '<em>Configuration Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,24 +48,6 @@ public interface FCMFactory extends EFactory {
 	 * @generated
 	 */
 	ConfigurationProperty createConfigurationProperty();
-
-	/**
-	 * Returns a new object of class '<em>Deployment Plan</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Deployment Plan</em>'.
-	 * @generated
-	 */
-	DeploymentPlan createDeploymentPlan();
-
-	/**
-	 * Returns a new object of class '<em>Derived Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Derived Element</em>'.
-	 * @generated
-	 */
-	DerivedElement createDerivedElement();
 
 	/**
 	 * Returns a new object of class '<em>Implementation Group</em>'.
@@ -197,6 +104,51 @@ public interface FCMFactory extends EFactory {
 	CodeGenOptions createCodeGenOptions();
 
 	/**
+	 * Returns a new object of class '<em>Interaction Component</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interaction Component</em>'.
+	 * @generated
+	 */
+	InteractionComponent createInteractionComponent();
+
+	/**
+	 * Returns a new object of class '<em>Singleton</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Singleton</em>'.
+	 * @generated
+	 */
+	Singleton createSingleton();
+
+	/**
+	 * Returns a new object of class '<em>Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Connector</em>'.
+	 * @generated
+	 */
+	Connector createConnector();
+
+	/**
+	 * Returns a new object of class '<em>Use Instance Configurator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Use Instance Configurator</em>'.
+	 * @generated
+	 */
+	UseInstanceConfigurator createUseInstanceConfigurator();
+
+	/**
+	 * Returns a new object of class '<em>Instance Configurator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Configurator</em>'.
+	 * @generated
+	 */
+	InstanceConfigurator createInstanceConfigurator();
+
+	/**
 	 * Returns a new object of class '<em>Rule Application</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -204,6 +156,78 @@ public interface FCMFactory extends EFactory {
 	 * @generated
 	 */
 	RuleApplication createRuleApplication();
+
+	/**
+	 * Returns a new object of class '<em>Container Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Container Rule</em>'.
+	 * @generated
+	 */
+	ContainerRule createContainerRule();
+
+	/**
+	 * Returns a new object of class '<em>Config Option</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Config Option</em>'.
+	 * @generated
+	 */
+	ConfigOption createConfigOption();
+
+	/**
+	 * Returns a new object of class '<em>Template Port</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Template Port</em>'.
+	 * @generated
+	 */
+	TemplatePort createTemplatePort();
+
+	/**
+	 * Returns a new object of class '<em>Port</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Port</em>'.
+	 * @generated
+	 */
+	Port createPort();
+
+	/**
+	 * Returns a new object of class '<em>Port Kind</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Port Kind</em>'.
+	 * @generated
+	 */
+	PortKind createPortKind();
+
+	/**
+	 * Returns a new object of class '<em>Deployment Plan</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Deployment Plan</em>'.
+	 * @generated
+	 */
+	DeploymentPlan createDeploymentPlan();
+
+	/**
+	 * Returns a new object of class '<em>Derived Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Derived Element</em>'.
+	 * @generated
+	 */
+	DerivedElement createDerivedElement();
+
+	/**
+	 * Returns a new object of class '<em>Comp Impl Template</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Comp Impl Template</em>'.
+	 * @generated
+	 */
+	CompImplTemplate createCompImplTemplate();
 
 	/**
 	 * Returns a new object of class '<em>Implementation Properties</em>'.
@@ -231,6 +255,24 @@ public interface FCMFactory extends EFactory {
 	 * @generated
 	 */
 	TargetArchitecture createTargetArchitecture();
+
+	/**
+	 * Returns a new object of class '<em>Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Configuration</em>'.
+	 * @generated
+	 */
+	Configuration createConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Interception Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Interception Rule</em>'.
+	 * @generated
+	 */
+	InterceptionRule createInterceptionRule();
 
 	/**
 	 * Returns a new object of class '<em>Target</em>'.
@@ -312,42 +354,6 @@ public interface FCMFactory extends EFactory {
 	 * @generated
 	 */
 	ExtendedSignature createExtendedSignature();
-
-	/**
-	 * Returns a new object of class '<em>Use Instance Configurator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Use Instance Configurator</em>'.
-	 * @generated
-	 */
-	UseInstanceConfigurator createUseInstanceConfigurator();
-
-	/**
-	 * Returns a new object of class '<em>Instance Configurator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Configurator</em>'.
-	 * @generated
-	 */
-	InstanceConfigurator createInstanceConfigurator();
-
-	/**
-	 * Returns a new object of class '<em>Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Configuration</em>'.
-	 * @generated
-	 */
-	Configuration createConfiguration();
-
-	/**
-	 * Returns a new object of class '<em>Interception Rule</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Interception Rule</em>'.
-	 * @generated
-	 */
-	InterceptionRule createInterceptionRule();
 
 	/**
 	 * Returns the package supported by this factory.

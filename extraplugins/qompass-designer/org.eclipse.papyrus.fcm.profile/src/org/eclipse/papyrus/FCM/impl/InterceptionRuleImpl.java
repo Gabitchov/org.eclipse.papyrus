@@ -1,24 +1,35 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Ansgar Radermacher - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.FCM.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.papyrus.FCM.FCMPackage;
 import org.eclipse.papyrus.FCM.InterceptionKind;
 import org.eclipse.papyrus.FCM.InterceptionRule;
-import org.eclipse.papyrus.FCM.Port;
+
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Property;
@@ -40,7 +51,6 @@ import org.eclipse.uml2.uml.Property;
  * @generated
  */
 public class InterceptionRuleImpl extends EObjectImpl implements InterceptionRule {
-
 	/**
 	 * The default value of the '{@link #getInterceptionKind() <em>Interception Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -321,7 +331,7 @@ public class InterceptionRuleImpl extends EObjectImpl implements InterceptionRul
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (interceptionKind: ");
+		result.append(" (interceptionKind: "); //$NON-NLS-1$
 		result.append(interceptionKind);
 		result.append(')');
 		return result.toString();

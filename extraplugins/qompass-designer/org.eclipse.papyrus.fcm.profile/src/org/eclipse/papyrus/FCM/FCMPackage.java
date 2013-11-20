@@ -1,8 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Ansgar Radermacher - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.FCM;
 
@@ -34,7 +40,7 @@ public interface FCMPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "FCM";
+	String eNAME = "FCM"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -42,7 +48,7 @@ public interface FCMPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/FCM/1";
+	String eNS_URI = "http://www.eclipse.org/papyrus/FCM/1"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -50,7 +56,7 @@ public interface FCMPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "FCM";
+	String eNS_PREFIX = "FCM"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.
@@ -116,76 +122,6 @@ public interface FCMPackage extends EPackage {
 	int TEMPLATE_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ContainerRuleImpl <em>Container Rule</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.ContainerRuleImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getContainerRule()
-	 * @generated
-	 */
-	int CONTAINER_RULE = 15;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurableElementInstanceImpl <em>Configurable Element Instance</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.ConfigurableElementInstanceImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfigurableElementInstance()
-	 * @generated
-	 */
-	int CONFIGURABLE_ELEMENT_INSTANCE = 11;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.PortImpl <em>Port</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.PortImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPort()
-	 * @generated
-	 */
-	int PORT = 18;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.PortKindImpl <em>Port Kind</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.PortKindImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPortKind()
-	 * @generated
-	 */
-	int PORT_KIND = 19;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.CompImplTemplateImpl <em>Comp Impl Template</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.CompImplTemplateImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCompImplTemplate()
-	 * @generated
-	 */
-	int COMP_IMPL_TEMPLATE = 22;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConfigOptionImpl <em>Config Option</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.ConfigOptionImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfigOption()
-	 * @generated
-	 */
-	int CONFIG_OPTION = 16;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConnectorImpl <em>Connector</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.ConnectorImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConnector()
-	 * @generated
-	 */
-	int CONNECTOR = 10;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurationPropertyImpl <em>Configuration Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -214,36 +150,6 @@ public interface FCMPackage extends EPackage {
 	int CONFIGURATION_PROPERTY_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.RuleApplicationImpl <em>Rule Application</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.RuleApplicationImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getRuleApplication()
-	 * @generated
-	 */
-	int RULE_APPLICATION = 14;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.DeploymentPlanImpl <em>Deployment Plan</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.DeploymentPlanImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDeploymentPlan()
-	 * @generated
-	 */
-	int DEPLOYMENT_PLAN = 20;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.DerivedElementImpl <em>Derived Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.DerivedElementImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDerivedElement()
-	 * @generated
-	 */
-	int DERIVED_ELEMENT = 21;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ImplementationGroupImpl <em>Implementation Group</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -252,86 +158,6 @@ public interface FCMPackage extends EPackage {
 	 * @generated
 	 */
 	int IMPLEMENTATION_GROUP = 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ImplementationPropertiesImpl <em>Implementation Properties</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.ImplementationPropertiesImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getImplementationProperties()
-	 * @generated
-	 */
-	int IMPLEMENTATION_PROPERTIES = 23;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.OperatingSystemImpl <em>Operating System</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.OperatingSystemImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getOperatingSystem()
-	 * @generated
-	 */
-	int OPERATING_SYSTEM = 24;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.TargetArchitectureImpl <em>Target Architecture</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.TargetArchitectureImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTargetArchitecture()
-	 * @generated
-	 */
-	int TARGET_ARCHITECTURE = 25;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.TargetImpl <em>Target</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.TargetImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTarget()
-	 * @generated
-	 */
-	int TARGET = 28;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurationImpl <em>Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.ConfigurationImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfiguration()
-	 * @generated
-	 */
-	int CONFIGURATION = 26;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.InterceptionRuleImpl <em>Interception Rule</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.InterceptionRuleImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInterceptionRule()
-	 * @generated
-	 */
-	int INTERCEPTION_RULE = 27;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.SingletonImpl <em>Singleton</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.SingletonImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getSingleton()
-	 * @generated
-	 */
-	int SINGLETON = 9;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.InteractionComponentImpl <em>Interaction Component</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.InteractionComponentImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInteractionComponent()
-	 * @generated
-	 */
-	int INTERACTION_COMPONENT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -510,6 +336,16 @@ public interface FCMPackage extends EPackage {
 	int CODE_GEN_OPTIONS_FEATURE_COUNT = 3;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.InteractionComponentImpl <em>Interaction Component</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.InteractionComponentImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInteractionComponent()
+	 * @generated
+	 */
+	int INTERACTION_COMPONENT = 8;
+
+	/**
 	 * The feature id for the '<em><b>For Distribution</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -546,6 +382,16 @@ public interface FCMPackage extends EPackage {
 	int INTERACTION_COMPONENT_FEATURE_COUNT = 3;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.SingletonImpl <em>Singleton</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.SingletonImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getSingleton()
+	 * @generated
+	 */
+	int SINGLETON = 9;
+
+	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -564,6 +410,16 @@ public interface FCMPackage extends EPackage {
 	int SINGLETON_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurableElementInstanceImpl <em>Configurable Element Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.ConfigurableElementInstanceImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfigurableElementInstance()
+	 * @generated
+	 */
+	int CONFIGURABLE_ELEMENT_INSTANCE = 11;
+
+	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -580,6 +436,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURABLE_ELEMENT_INSTANCE_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConnectorImpl <em>Connector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.ConnectorImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConnector()
+	 * @generated
+	 */
+	int CONNECTOR = 10;
 
 	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' reference.
@@ -625,86 +491,6 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONNECTOR_FEATURE_COUNT = CONFIGURABLE_ELEMENT_INSTANCE_FEATURE_COUNT + 3;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.CompilerChainImpl <em>Compiler Chain</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.CompilerChainImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCompilerChain()
-	 * @generated
-	 */
-	int COMPILER_CHAIN = 29;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.FragmentImpl <em>Fragment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.FragmentImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getFragment()
-	 * @generated
-	 */
-	int FRAGMENT = 30;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.CopyAttributeValueImpl <em>Copy Attribute Value</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.CopyAttributeValueImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCopyAttributeValue()
-	 * @generated
-	 */
-	int COPY_ATTRIBUTE_VALUE = 31;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.AutoIndexImpl <em>Auto Index</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.AutoIndexImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getAutoIndex()
-	 * @generated
-	 */
-	int AUTO_INDEX = 32;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.AutoIndexPerNodeImpl <em>Auto Index Per Node</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.AutoIndexPerNodeImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getAutoIndexPerNode()
-	 * @generated
-	 */
-	int AUTO_INDEX_PER_NODE = 33;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.InitPrecedenceImpl <em>Init Precedence</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.InitPrecedenceImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInitPrecedence()
-	 * @generated
-	 */
-	int INIT_PRECEDENCE = 34;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConnectorConfigurationImpl <em>Connector Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.ConnectorConfigurationImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConnectorConfiguration()
-	 * @generated
-	 */
-	int CONNECTOR_CONFIGURATION = 35;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ExtendedSignatureImpl <em>Extended Signature</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.FCM.impl.ExtendedSignatureImpl
-	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getExtendedSignature()
-	 * @generated
-	 */
-	int EXTENDED_SIGNATURE = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.UseInstanceConfiguratorImpl <em>Use Instance Configurator</em>}' class.
@@ -772,6 +558,16 @@ public interface FCMPackage extends EPackage {
 	int INSTANCE_CONFIGURATOR_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.RuleApplicationImpl <em>Rule Application</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.RuleApplicationImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getRuleApplication()
+	 * @generated
+	 */
+	int RULE_APPLICATION = 14;
+
+	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -806,6 +602,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int RULE_APPLICATION_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ContainerRuleImpl <em>Container Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.ContainerRuleImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getContainerRule()
+	 * @generated
+	 */
+	int CONTAINER_RULE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -844,6 +650,16 @@ public interface FCMPackage extends EPackage {
 	int CONTAINER_RULE_FEATURE_COUNT = 3;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConfigOptionImpl <em>Config Option</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.ConfigOptionImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfigOption()
+	 * @generated
+	 */
+	int CONFIG_OPTION = 16;
+
+	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -860,6 +676,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONFIG_OPTION_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.PortImpl <em>Port</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.PortImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPort()
+	 * @generated
+	 */
+	int PORT = 18;
 
 	/**
 	 * The feature id for the '<em><b>Configuration</b></em>' reference.
@@ -989,6 +815,16 @@ public interface FCMPackage extends EPackage {
 	int TEMPLATE_PORT_FEATURE_COUNT = PORT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.PortKindImpl <em>Port Kind</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.PortKindImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPortKind()
+	 * @generated
+	 */
+	int PORT_KIND = 19;
+
+	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1034,6 +870,16 @@ public interface FCMPackage extends EPackage {
 	int PORT_KIND_FEATURE_COUNT = 4;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.DeploymentPlanImpl <em>Deployment Plan</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.DeploymentPlanImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDeploymentPlan()
+	 * @generated
+	 */
+	int DEPLOYMENT_PLAN = 20;
+
+	/**
 	 * The feature id for the '<em><b>Main Instance</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1059,6 +905,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEPLOYMENT_PLAN_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.DerivedElementImpl <em>Derived Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.DerivedElementImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDerivedElement()
+	 * @generated
+	 */
+	int DERIVED_ELEMENT = 21;
 
 	/**
 	 * The feature id for the '<em><b>Base Element</b></em>' reference.
@@ -1088,6 +944,16 @@ public interface FCMPackage extends EPackage {
 	int DERIVED_ELEMENT_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.CompImplTemplateImpl <em>Comp Impl Template</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.CompImplTemplateImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCompImplTemplate()
+	 * @generated
+	 */
+	int COMP_IMPL_TEMPLATE = 22;
+
+	/**
 	 * The feature id for the '<em><b>Template Defs</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1113,6 +979,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMP_IMPL_TEMPLATE_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ImplementationPropertiesImpl <em>Implementation Properties</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.ImplementationPropertiesImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getImplementationProperties()
+	 * @generated
+	 */
+	int IMPLEMENTATION_PROPERTIES = 23;
 
 	/**
 	 * The feature id for the '<em><b>Size RAM</b></em>' attribute.
@@ -1178,6 +1054,16 @@ public interface FCMPackage extends EPackage {
 	int IMPLEMENTATION_PROPERTIES_FEATURE_COUNT = 6;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.OperatingSystemImpl <em>Operating System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.OperatingSystemImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getOperatingSystem()
+	 * @generated
+	 */
+	int OPERATING_SYSTEM = 24;
+
+	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1196,6 +1082,16 @@ public interface FCMPackage extends EPackage {
 	int OPERATING_SYSTEM_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.TargetArchitectureImpl <em>Target Architecture</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.TargetArchitectureImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTargetArchitecture()
+	 * @generated
+	 */
+	int TARGET_ARCHITECTURE = 25;
+
+	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1212,6 +1108,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_ARCHITECTURE_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurationImpl <em>Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.ConfigurationImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfiguration()
+	 * @generated
+	 */
+	int CONFIGURATION = 26;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1248,6 +1154,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONFIGURATION_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.InterceptionRuleImpl <em>Interception Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.InterceptionRuleImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInterceptionRule()
+	 * @generated
+	 */
+	int INTERCEPTION_RULE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Interception Kind</b></em>' attribute.
@@ -1293,6 +1209,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERCEPTION_RULE_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.TargetImpl <em>Target</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.TargetImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTarget()
+	 * @generated
+	 */
+	int TARGET = 28;
 
 	/**
 	 * The feature id for the '<em><b>Target Arch</b></em>' reference.
@@ -1367,6 +1293,16 @@ public interface FCMPackage extends EPackage {
 	int TARGET_FEATURE_COUNT = 7;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.CompilerChainImpl <em>Compiler Chain</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.CompilerChainImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCompilerChain()
+	 * @generated
+	 */
+	int COMPILER_CHAIN = 29;
+
+	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1385,6 +1321,16 @@ public interface FCMPackage extends EPackage {
 	int COMPILER_CHAIN_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.FragmentImpl <em>Fragment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.FragmentImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getFragment()
+	 * @generated
+	 */
+	int FRAGMENT = 30;
+
+	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1401,6 +1347,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int FRAGMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.CopyAttributeValueImpl <em>Copy Attribute Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.CopyAttributeValueImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCopyAttributeValue()
+	 * @generated
+	 */
+	int COPY_ATTRIBUTE_VALUE = 31;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -1430,6 +1386,16 @@ public interface FCMPackage extends EPackage {
 	int COPY_ATTRIBUTE_VALUE_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.AutoIndexImpl <em>Auto Index</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.AutoIndexImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getAutoIndex()
+	 * @generated
+	 */
+	int AUTO_INDEX = 32;
+
+	/**
 	 * The feature id for the '<em><b>Base Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1448,6 +1414,16 @@ public interface FCMPackage extends EPackage {
 	int AUTO_INDEX_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.AutoIndexPerNodeImpl <em>Auto Index Per Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.AutoIndexPerNodeImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getAutoIndexPerNode()
+	 * @generated
+	 */
+	int AUTO_INDEX_PER_NODE = 33;
+
+	/**
 	 * The feature id for the '<em><b>Base Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1464,6 +1440,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int AUTO_INDEX_PER_NODE_FEATURE_COUNT = AUTO_INDEX_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.InitPrecedenceImpl <em>Init Precedence</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.InitPrecedenceImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInitPrecedence()
+	 * @generated
+	 */
+	int INIT_PRECEDENCE = 34;
 
 	/**
 	 * The feature id for the '<em><b>Invoke After</b></em>' reference list.
@@ -1502,6 +1488,16 @@ public interface FCMPackage extends EPackage {
 	int INIT_PRECEDENCE_FEATURE_COUNT = 3;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ConnectorConfigurationImpl <em>Connector Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.ConnectorConfigurationImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConnectorConfiguration()
+	 * @generated
+	 */
+	int CONNECTOR_CONFIGURATION = 35;
+
+	/**
 	 * The feature id for the '<em><b>Base Slot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1527,6 +1523,16 @@ public interface FCMPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONNECTOR_CONFIGURATION_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.ExtendedSignatureImpl <em>Extended Signature</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.ExtendedSignatureImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getExtendedSignature()
+	 * @generated
+	 */
+	int EXTENDED_SIGNATURE = 36;
 
 	/**
 	 * The feature id for the '<em><b>Base Template Signature</b></em>' reference.
@@ -1595,6 +1601,7 @@ public interface FCMPackage extends EPackage {
 	 */
 	int INTERCEPTION_KIND = 40;
 
+
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Template <em>Template</em>}'.
 	 * <!-- begin-user-doc -->
@@ -1650,359 +1657,6 @@ public interface FCMPackage extends EPackage {
 	EAttribute getTemplate_ActualChoice();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ContainerRule <em>Container Rule</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Container Rule</em>'.
-	 * @see org.eclipse.papyrus.FCM.ContainerRule
-	 * @generated
-	 */
-	EClass getContainerRule();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.ContainerRule#getBase_Class <em>Base Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see org.eclipse.papyrus.FCM.ContainerRule#getBase_Class()
-	 * @see #getContainerRule()
-	 * @generated
-	 */
-	EReference getContainerRule_Base_Class();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.FCM.ContainerRule#getForConfig <em>For Config</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>For Config</em>'.
-	 * @see org.eclipse.papyrus.FCM.ContainerRule#getForConfig()
-	 * @see #getContainerRule()
-	 * @generated
-	 */
-	EReference getContainerRule_ForConfig();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.ContainerRule#getKind <em>Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Kind</em>'.
-	 * @see org.eclipse.papyrus.FCM.ContainerRule#getKind()
-	 * @see #getContainerRule()
-	 * @generated
-	 */
-	EAttribute getContainerRule_Kind();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Port <em>Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Port</em>'.
-	 * @see org.eclipse.papyrus.FCM.Port
-	 * @generated
-	 */
-	EClass getPort();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Port#getBase_Port <em>Base Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Port</em>'.
-	 * @see org.eclipse.papyrus.FCM.Port#getBase_Port()
-	 * @see #getPort()
-	 * @generated
-	 */
-	EReference getPort_Base_Port();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Port#getKind <em>Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Kind</em>'.
-	 * @see org.eclipse.papyrus.FCM.Port#getKind()
-	 * @see #getPort()
-	 * @generated
-	 */
-	EReference getPort_Kind();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Port#getProvidedInterface <em>Provided Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Provided Interface</em>'.
-	 * @see org.eclipse.papyrus.FCM.Port#getProvidedInterface()
-	 * @see #getPort()
-	 * @generated
-	 */
-	EReference getPort_ProvidedInterface();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Port#getRequiredInterface <em>Required Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Required Interface</em>'.
-	 * @see org.eclipse.papyrus.FCM.Port#getRequiredInterface()
-	 * @see #getPort()
-	 * @generated
-	 */
-	EReference getPort_RequiredInterface();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ConfigurableElementInstance <em>Configurable Element Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Configurable Element Instance</em>'.
-	 * @see org.eclipse.papyrus.FCM.ConfigurableElementInstance
-	 * @generated
-	 */
-	EClass getConfigurableElementInstance();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.ConfigurableElementInstance#getConfiguration <em>Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Configuration</em>'.
-	 * @see org.eclipse.papyrus.FCM.ConfigurableElementInstance#getConfiguration()
-	 * @see #getConfigurableElementInstance()
-	 * @generated
-	 */
-	EReference getConfigurableElementInstance_Configuration();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.PortKind <em>Port Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Port Kind</em>'.
-	 * @see org.eclipse.papyrus.FCM.PortKind
-	 * @generated
-	 */
-	EClass getPortKind();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.PortKind#getBase_Class <em>Base Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see org.eclipse.papyrus.FCM.PortKind#getBase_Class()
-	 * @see #getPortKind()
-	 * @generated
-	 */
-	EReference getPortKind_Base_Class();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.PortKind#getProvidedInterface <em>Provided Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Provided Interface</em>'.
-	 * @see org.eclipse.papyrus.FCM.PortKind#getProvidedInterface()
-	 * @see #getPortKind()
-	 * @generated
-	 */
-	EReference getPortKind_ProvidedInterface();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.PortKind#getRequiredInterface <em>Required Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Required Interface</em>'.
-	 * @see org.eclipse.papyrus.FCM.PortKind#getRequiredInterface()
-	 * @see #getPortKind()
-	 * @generated
-	 */
-	EReference getPortKind_RequiredInterface();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.PortKind#isExtendedPort <em>Extended Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Extended Port</em>'.
-	 * @see org.eclipse.papyrus.FCM.PortKind#isExtendedPort()
-	 * @see #getPortKind()
-	 * @generated
-	 */
-	EAttribute getPortKind_ExtendedPort();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.CompImplTemplate <em>Comp Impl Template</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Comp Impl Template</em>'.
-	 * @see org.eclipse.papyrus.FCM.CompImplTemplate
-	 * @generated
-	 */
-	EClass getCompImplTemplate();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.CompImplTemplate#getTemplateDefs <em>Template Defs</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Template Defs</em>'.
-	 * @see org.eclipse.papyrus.FCM.CompImplTemplate#getTemplateDefs()
-	 * @see #getCompImplTemplate()
-	 * @generated
-	 */
-	EAttribute getCompImplTemplate_TemplateDefs();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.CompImplTemplate#getBase_Class <em>Base Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see org.eclipse.papyrus.FCM.CompImplTemplate#getBase_Class()
-	 * @see #getCompImplTemplate()
-	 * @generated
-	 */
-	EReference getCompImplTemplate_Base_Class();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ConfigOption <em>Config Option</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Config Option</em>'.
-	 * @see org.eclipse.papyrus.FCM.ConfigOption
-	 * @generated
-	 */
-	EClass getConfigOption();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.ConfigOption#getBase_Class <em>Base Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see org.eclipse.papyrus.FCM.ConfigOption#getBase_Class()
-	 * @see #getConfigOption()
-	 * @generated
-	 */
-	EReference getConfigOption_Base_Class();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.TemplatePort <em>Template Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Template Port</em>'.
-	 * @see org.eclipse.papyrus.FCM.TemplatePort
-	 * @generated
-	 */
-	EClass getTemplatePort();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.TemplatePort#getBoundType <em>Bound Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Bound Type</em>'.
-	 * @see org.eclipse.papyrus.FCM.TemplatePort#getBoundType()
-	 * @see #getTemplatePort()
-	 * @generated
-	 */
-	EReference getTemplatePort_BoundType();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Singleton <em>Singleton</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Singleton</em>'.
-	 * @see org.eclipse.papyrus.FCM.Singleton
-	 * @generated
-	 */
-	EClass getSingleton();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Singleton#getBase_Class <em>Base Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see org.eclipse.papyrus.FCM.Singleton#getBase_Class()
-	 * @see #getSingleton()
-	 * @generated
-	 */
-	EReference getSingleton_Base_Class();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.InteractionComponent <em>Interaction Component</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Interaction Component</em>'.
-	 * @see org.eclipse.papyrus.FCM.InteractionComponent
-	 * @generated
-	 */
-	EClass getInteractionComponent();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.InteractionComponent#isForDistribution <em>For Distribution</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>For Distribution</em>'.
-	 * @see org.eclipse.papyrus.FCM.InteractionComponent#isForDistribution()
-	 * @see #getInteractionComponent()
-	 * @generated
-	 */
-	EAttribute getInteractionComponent_ForDistribution();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InteractionComponent#getConnectionPattern <em>Connection Pattern</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Connection Pattern</em>'.
-	 * @see org.eclipse.papyrus.FCM.InteractionComponent#getConnectionPattern()
-	 * @see #getInteractionComponent()
-	 * @generated
-	 */
-	EReference getInteractionComponent_ConnectionPattern();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InteractionComponent#getBase_Class <em>Base Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see org.eclipse.papyrus.FCM.InteractionComponent#getBase_Class()
-	 * @see #getInteractionComponent()
-	 * @generated
-	 */
-	EReference getInteractionComponent_Base_Class();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Connector <em>Connector</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Connector</em>'.
-	 * @see org.eclipse.papyrus.FCM.Connector
-	 * @generated
-	 */
-	EClass getConnector();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Connector#getBase_Connector <em>Base Connector</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Connector</em>'.
-	 * @see org.eclipse.papyrus.FCM.Connector#getBase_Connector()
-	 * @see #getConnector()
-	 * @generated
-	 */
-	EReference getConnector_Base_Connector();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Connector#getIc <em>Ic</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Ic</em>'.
-	 * @see org.eclipse.papyrus.FCM.Connector#getIc()
-	 * @see #getConnector()
-	 * @generated
-	 */
-	EReference getConnector_Ic();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Connector#getBase_Property <em>Base Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Property</em>'.
-	 * @see org.eclipse.papyrus.FCM.Connector#getBase_Property()
-	 * @see #getConnector()
-	 * @generated
-	 */
-	EReference getConnector_Base_Property();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ConfigurationProperty <em>Configuration Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2022,70 +1676,6 @@ public interface FCMPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConfigurationProperty_Base_Property();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.DeploymentPlan <em>Deployment Plan</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Deployment Plan</em>'.
-	 * @see org.eclipse.papyrus.FCM.DeploymentPlan
-	 * @generated
-	 */
-	EClass getDeploymentPlan();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.DeploymentPlan#getMainInstance <em>Main Instance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Main Instance</em>'.
-	 * @see org.eclipse.papyrus.FCM.DeploymentPlan#getMainInstance()
-	 * @see #getDeploymentPlan()
-	 * @generated
-	 */
-	EReference getDeploymentPlan_MainInstance();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.DeploymentPlan#getBase_Package <em>Base Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Package</em>'.
-	 * @see org.eclipse.papyrus.FCM.DeploymentPlan#getBase_Package()
-	 * @see #getDeploymentPlan()
-	 * @generated
-	 */
-	EReference getDeploymentPlan_Base_Package();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.DerivedElement <em>Derived Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Derived Element</em>'.
-	 * @see org.eclipse.papyrus.FCM.DerivedElement
-	 * @generated
-	 */
-	EClass getDerivedElement();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.DerivedElement#getBase_Element <em>Base Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Element</em>'.
-	 * @see org.eclipse.papyrus.FCM.DerivedElement#getBase_Element()
-	 * @see #getDerivedElement()
-	 * @generated
-	 */
-	EReference getDerivedElement_Base_Element();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.DerivedElement#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see org.eclipse.papyrus.FCM.DerivedElement#getSource()
-	 * @see #getDerivedElement()
-	 * @generated
-	 */
-	EReference getDerivedElement_Source();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ImplementationGroup <em>Implementation Group</em>}'.
@@ -2236,6 +1826,187 @@ public interface FCMPackage extends EPackage {
 	EReference getCodeGenOptions_ProgLanguage();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.InteractionComponent <em>Interaction Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Interaction Component</em>'.
+	 * @see org.eclipse.papyrus.FCM.InteractionComponent
+	 * @generated
+	 */
+	EClass getInteractionComponent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.InteractionComponent#isForDistribution <em>For Distribution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>For Distribution</em>'.
+	 * @see org.eclipse.papyrus.FCM.InteractionComponent#isForDistribution()
+	 * @see #getInteractionComponent()
+	 * @generated
+	 */
+	EAttribute getInteractionComponent_ForDistribution();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InteractionComponent#getConnectionPattern <em>Connection Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Connection Pattern</em>'.
+	 * @see org.eclipse.papyrus.FCM.InteractionComponent#getConnectionPattern()
+	 * @see #getInteractionComponent()
+	 * @generated
+	 */
+	EReference getInteractionComponent_ConnectionPattern();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InteractionComponent#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.InteractionComponent#getBase_Class()
+	 * @see #getInteractionComponent()
+	 * @generated
+	 */
+	EReference getInteractionComponent_Base_Class();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Singleton <em>Singleton</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Singleton</em>'.
+	 * @see org.eclipse.papyrus.FCM.Singleton
+	 * @generated
+	 */
+	EClass getSingleton();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Singleton#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.Singleton#getBase_Class()
+	 * @see #getSingleton()
+	 * @generated
+	 */
+	EReference getSingleton_Base_Class();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Connector <em>Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Connector</em>'.
+	 * @see org.eclipse.papyrus.FCM.Connector
+	 * @generated
+	 */
+	EClass getConnector();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Connector#getBase_Connector <em>Base Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Connector</em>'.
+	 * @see org.eclipse.papyrus.FCM.Connector#getBase_Connector()
+	 * @see #getConnector()
+	 * @generated
+	 */
+	EReference getConnector_Base_Connector();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Connector#getIc <em>Ic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Ic</em>'.
+	 * @see org.eclipse.papyrus.FCM.Connector#getIc()
+	 * @see #getConnector()
+	 * @generated
+	 */
+	EReference getConnector_Ic();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Connector#getBase_Property <em>Base Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Property</em>'.
+	 * @see org.eclipse.papyrus.FCM.Connector#getBase_Property()
+	 * @see #getConnector()
+	 * @generated
+	 */
+	EReference getConnector_Base_Property();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ConfigurableElementInstance <em>Configurable Element Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configurable Element Instance</em>'.
+	 * @see org.eclipse.papyrus.FCM.ConfigurableElementInstance
+	 * @generated
+	 */
+	EClass getConfigurableElementInstance();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.ConfigurableElementInstance#getConfiguration <em>Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Configuration</em>'.
+	 * @see org.eclipse.papyrus.FCM.ConfigurableElementInstance#getConfiguration()
+	 * @see #getConfigurableElementInstance()
+	 * @generated
+	 */
+	EReference getConfigurableElementInstance_Configuration();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator <em>Use Instance Configurator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Use Instance Configurator</em>'.
+	 * @see org.eclipse.papyrus.FCM.UseInstanceConfigurator
+	 * @generated
+	 */
+	EClass getUseInstanceConfigurator();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.UseInstanceConfigurator#getBase_Class()
+	 * @see #getUseInstanceConfigurator()
+	 * @generated
+	 */
+	EReference getUseInstanceConfigurator_Base_Class();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getConfigurator <em>Configurator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Configurator</em>'.
+	 * @see org.eclipse.papyrus.FCM.UseInstanceConfigurator#getConfigurator()
+	 * @see #getUseInstanceConfigurator()
+	 * @generated
+	 */
+	EReference getUseInstanceConfigurator_Configurator();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.InstanceConfigurator <em>Instance Configurator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Instance Configurator</em>'.
+	 * @see org.eclipse.papyrus.FCM.InstanceConfigurator
+	 * @generated
+	 */
+	EClass getInstanceConfigurator();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InstanceConfigurator#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.InstanceConfigurator#getBase_Class()
+	 * @see #getInstanceConfigurator()
+	 * @generated
+	 */
+	EReference getInstanceConfigurator_Base_Class();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.RuleApplication <em>Rule Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2277,6 +2048,295 @@ public interface FCMPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getRuleApplication_Base_Package();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ContainerRule <em>Container Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Container Rule</em>'.
+	 * @see org.eclipse.papyrus.FCM.ContainerRule
+	 * @generated
+	 */
+	EClass getContainerRule();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.ContainerRule#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.ContainerRule#getBase_Class()
+	 * @see #getContainerRule()
+	 * @generated
+	 */
+	EReference getContainerRule_Base_Class();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.FCM.ContainerRule#getForConfig <em>For Config</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>For Config</em>'.
+	 * @see org.eclipse.papyrus.FCM.ContainerRule#getForConfig()
+	 * @see #getContainerRule()
+	 * @generated
+	 */
+	EReference getContainerRule_ForConfig();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.ContainerRule#getKind <em>Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Kind</em>'.
+	 * @see org.eclipse.papyrus.FCM.ContainerRule#getKind()
+	 * @see #getContainerRule()
+	 * @generated
+	 */
+	EAttribute getContainerRule_Kind();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ConfigOption <em>Config Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Config Option</em>'.
+	 * @see org.eclipse.papyrus.FCM.ConfigOption
+	 * @generated
+	 */
+	EClass getConfigOption();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.ConfigOption#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.ConfigOption#getBase_Class()
+	 * @see #getConfigOption()
+	 * @generated
+	 */
+	EReference getConfigOption_Base_Class();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.TemplatePort <em>Template Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Template Port</em>'.
+	 * @see org.eclipse.papyrus.FCM.TemplatePort
+	 * @generated
+	 */
+	EClass getTemplatePort();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.TemplatePort#getBoundType <em>Bound Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Bound Type</em>'.
+	 * @see org.eclipse.papyrus.FCM.TemplatePort#getBoundType()
+	 * @see #getTemplatePort()
+	 * @generated
+	 */
+	EReference getTemplatePort_BoundType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Port <em>Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Port</em>'.
+	 * @see org.eclipse.papyrus.FCM.Port
+	 * @generated
+	 */
+	EClass getPort();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Port#getBase_Port <em>Base Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Port</em>'.
+	 * @see org.eclipse.papyrus.FCM.Port#getBase_Port()
+	 * @see #getPort()
+	 * @generated
+	 */
+	EReference getPort_Base_Port();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Port#getKind <em>Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Kind</em>'.
+	 * @see org.eclipse.papyrus.FCM.Port#getKind()
+	 * @see #getPort()
+	 * @generated
+	 */
+	EReference getPort_Kind();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Port#getProvidedInterface <em>Provided Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Provided Interface</em>'.
+	 * @see org.eclipse.papyrus.FCM.Port#getProvidedInterface()
+	 * @see #getPort()
+	 * @generated
+	 */
+	EReference getPort_ProvidedInterface();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Port#getRequiredInterface <em>Required Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Required Interface</em>'.
+	 * @see org.eclipse.papyrus.FCM.Port#getRequiredInterface()
+	 * @see #getPort()
+	 * @generated
+	 */
+	EReference getPort_RequiredInterface();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.PortKind <em>Port Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Port Kind</em>'.
+	 * @see org.eclipse.papyrus.FCM.PortKind
+	 * @generated
+	 */
+	EClass getPortKind();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.PortKind#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.PortKind#getBase_Class()
+	 * @see #getPortKind()
+	 * @generated
+	 */
+	EReference getPortKind_Base_Class();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.PortKind#getProvidedInterface <em>Provided Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Provided Interface</em>'.
+	 * @see org.eclipse.papyrus.FCM.PortKind#getProvidedInterface()
+	 * @see #getPortKind()
+	 * @generated
+	 */
+	EReference getPortKind_ProvidedInterface();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.PortKind#getRequiredInterface <em>Required Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Required Interface</em>'.
+	 * @see org.eclipse.papyrus.FCM.PortKind#getRequiredInterface()
+	 * @see #getPortKind()
+	 * @generated
+	 */
+	EReference getPortKind_RequiredInterface();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.PortKind#isExtendedPort <em>Extended Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Extended Port</em>'.
+	 * @see org.eclipse.papyrus.FCM.PortKind#isExtendedPort()
+	 * @see #getPortKind()
+	 * @generated
+	 */
+	EAttribute getPortKind_ExtendedPort();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.DeploymentPlan <em>Deployment Plan</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Deployment Plan</em>'.
+	 * @see org.eclipse.papyrus.FCM.DeploymentPlan
+	 * @generated
+	 */
+	EClass getDeploymentPlan();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.DeploymentPlan#getMainInstance <em>Main Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Main Instance</em>'.
+	 * @see org.eclipse.papyrus.FCM.DeploymentPlan#getMainInstance()
+	 * @see #getDeploymentPlan()
+	 * @generated
+	 */
+	EReference getDeploymentPlan_MainInstance();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.DeploymentPlan#getBase_Package <em>Base Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Package</em>'.
+	 * @see org.eclipse.papyrus.FCM.DeploymentPlan#getBase_Package()
+	 * @see #getDeploymentPlan()
+	 * @generated
+	 */
+	EReference getDeploymentPlan_Base_Package();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.DerivedElement <em>Derived Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Derived Element</em>'.
+	 * @see org.eclipse.papyrus.FCM.DerivedElement
+	 * @generated
+	 */
+	EClass getDerivedElement();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.DerivedElement#getBase_Element <em>Base Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Element</em>'.
+	 * @see org.eclipse.papyrus.FCM.DerivedElement#getBase_Element()
+	 * @see #getDerivedElement()
+	 * @generated
+	 */
+	EReference getDerivedElement_Base_Element();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.DerivedElement#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see org.eclipse.papyrus.FCM.DerivedElement#getSource()
+	 * @see #getDerivedElement()
+	 * @generated
+	 */
+	EReference getDerivedElement_Source();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.CompImplTemplate <em>Comp Impl Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Comp Impl Template</em>'.
+	 * @see org.eclipse.papyrus.FCM.CompImplTemplate
+	 * @generated
+	 */
+	EClass getCompImplTemplate();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.CompImplTemplate#getTemplateDefs <em>Template Defs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Template Defs</em>'.
+	 * @see org.eclipse.papyrus.FCM.CompImplTemplate#getTemplateDefs()
+	 * @see #getCompImplTemplate()
+	 * @generated
+	 */
+	EAttribute getCompImplTemplate_TemplateDefs();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.CompImplTemplate#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.CompImplTemplate#getBase_Class()
+	 * @see #getCompImplTemplate()
+	 * @generated
+	 */
+	EReference getCompImplTemplate_Base_Class();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.ImplementationProperties <em>Implementation Properties</em>}'.
@@ -2395,6 +2455,103 @@ public interface FCMPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTargetArchitecture_Base_Class();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Configuration <em>Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configuration</em>'.
+	 * @see org.eclipse.papyrus.FCM.Configuration
+	 * @generated
+	 */
+	EClass getConfiguration();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Configuration#getBase_Class <em>Base Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Class</em>'.
+	 * @see org.eclipse.papyrus.FCM.Configuration#getBase_Class()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EReference getConfiguration_Base_Class();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.FCM.Configuration#getConfigOptions <em>Config Options</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Config Options</em>'.
+	 * @see org.eclipse.papyrus.FCM.Configuration#getConfigOptions()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EReference getConfiguration_ConfigOptions();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Configuration#getDeploymentPlan <em>Deployment Plan</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Deployment Plan</em>'.
+	 * @see org.eclipse.papyrus.FCM.Configuration#getDeploymentPlan()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EReference getConfiguration_DeploymentPlan();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.InterceptionRule <em>Interception Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Interception Rule</em>'.
+	 * @see org.eclipse.papyrus.FCM.InterceptionRule
+	 * @generated
+	 */
+	EClass getInterceptionRule();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.InterceptionRule#getInterceptionKind <em>Interception Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Interception Kind</em>'.
+	 * @see org.eclipse.papyrus.FCM.InterceptionRule#getInterceptionKind()
+	 * @see #getInterceptionRule()
+	 * @generated
+	 */
+	EAttribute getInterceptionRule_InterceptionKind();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.FCM.InterceptionRule#getInterceptionSet <em>Interception Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Interception Set</em>'.
+	 * @see org.eclipse.papyrus.FCM.InterceptionRule#getInterceptionSet()
+	 * @see #getInterceptionRule()
+	 * @generated
+	 */
+	EReference getInterceptionRule_InterceptionSet();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InterceptionRule#getBase_Property <em>Base Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Property</em>'.
+	 * @see org.eclipse.papyrus.FCM.InterceptionRule#getBase_Property()
+	 * @see #getInterceptionRule()
+	 * @generated
+	 */
+	EReference getInterceptionRule_Base_Property();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InterceptionRule#getBase_Operation <em>Base Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Operation</em>'.
+	 * @see org.eclipse.papyrus.FCM.InterceptionRule#getBase_Operation()
+	 * @see #getInterceptionRule()
+	 * @generated
+	 */
+	EReference getInterceptionRule_Base_Operation();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Target <em>Target</em>}'.
@@ -2696,156 +2853,6 @@ public interface FCMPackage extends EPackage {
 	EReference getExtendedSignature_BaseSignature();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator <em>Use Instance Configurator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Use Instance Configurator</em>'.
-	 * @see org.eclipse.papyrus.FCM.UseInstanceConfigurator
-	 * @generated
-	 */
-	EClass getUseInstanceConfigurator();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getBase_Class <em>Base Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see org.eclipse.papyrus.FCM.UseInstanceConfigurator#getBase_Class()
-	 * @see #getUseInstanceConfigurator()
-	 * @generated
-	 */
-	EReference getUseInstanceConfigurator_Base_Class();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getConfigurator <em>Configurator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Configurator</em>'.
-	 * @see org.eclipse.papyrus.FCM.UseInstanceConfigurator#getConfigurator()
-	 * @see #getUseInstanceConfigurator()
-	 * @generated
-	 */
-	EReference getUseInstanceConfigurator_Configurator();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.InstanceConfigurator <em>Instance Configurator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Instance Configurator</em>'.
-	 * @see org.eclipse.papyrus.FCM.InstanceConfigurator
-	 * @generated
-	 */
-	EClass getInstanceConfigurator();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InstanceConfigurator#getBase_Class <em>Base Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see org.eclipse.papyrus.FCM.InstanceConfigurator#getBase_Class()
-	 * @see #getInstanceConfigurator()
-	 * @generated
-	 */
-	EReference getInstanceConfigurator_Base_Class();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.Configuration <em>Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Configuration</em>'.
-	 * @see org.eclipse.papyrus.FCM.Configuration
-	 * @generated
-	 */
-	EClass getConfiguration();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Configuration#getBase_Class <em>Base Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Class</em>'.
-	 * @see org.eclipse.papyrus.FCM.Configuration#getBase_Class()
-	 * @see #getConfiguration()
-	 * @generated
-	 */
-	EReference getConfiguration_Base_Class();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.FCM.Configuration#getConfigOptions <em>Config Options</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Config Options</em>'.
-	 * @see org.eclipse.papyrus.FCM.Configuration#getConfigOptions()
-	 * @see #getConfiguration()
-	 * @generated
-	 */
-	EReference getConfiguration_ConfigOptions();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.Configuration#getDeploymentPlan <em>Deployment Plan</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Deployment Plan</em>'.
-	 * @see org.eclipse.papyrus.FCM.Configuration#getDeploymentPlan()
-	 * @see #getConfiguration()
-	 * @generated
-	 */
-	EReference getConfiguration_DeploymentPlan();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.InterceptionRule <em>Interception Rule</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Interception Rule</em>'.
-	 * @see org.eclipse.papyrus.FCM.InterceptionRule
-	 * @generated
-	 */
-	EClass getInterceptionRule();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.FCM.InterceptionRule#getInterceptionKind <em>Interception Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Interception Kind</em>'.
-	 * @see org.eclipse.papyrus.FCM.InterceptionRule#getInterceptionKind()
-	 * @see #getInterceptionRule()
-	 * @generated
-	 */
-	EAttribute getInterceptionRule_InterceptionKind();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.FCM.InterceptionRule#getInterceptionSet <em>Interception Set</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Interception Set</em>'.
-	 * @see org.eclipse.papyrus.FCM.InterceptionRule#getInterceptionSet()
-	 * @see #getInterceptionRule()
-	 * @generated
-	 */
-	EReference getInterceptionRule_InterceptionSet();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InterceptionRule#getBase_Property <em>Base Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Property</em>'.
-	 * @see org.eclipse.papyrus.FCM.InterceptionRule#getBase_Property()
-	 * @see #getInterceptionRule()
-	 * @generated
-	 */
-	EReference getInterceptionRule_Base_Property();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.InterceptionRule#getBase_Operation <em>Base Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Operation</em>'.
-	 * @see org.eclipse.papyrus.FCM.InterceptionRule#getBase_Operation()
-	 * @see #getInterceptionRule()
-	 * @generated
-	 */
-	EReference getInterceptionRule_Base_Operation();
-
-	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.FCM.TemplateKind <em>Template Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2950,290 +2957,6 @@ public interface FCMPackage extends EPackage {
 		EAttribute TEMPLATE__ACTUAL_CHOICE = eINSTANCE.getTemplate_ActualChoice();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ContainerRuleImpl <em>Container Rule</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.ContainerRuleImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getContainerRule()
-		 * @generated
-		 */
-		EClass CONTAINER_RULE = eINSTANCE.getContainerRule();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONTAINER_RULE__BASE_CLASS = eINSTANCE.getContainerRule_Base_Class();
-
-		/**
-		 * The meta object literal for the '<em><b>For Config</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONTAINER_RULE__FOR_CONFIG = eINSTANCE.getContainerRule_ForConfig();
-
-		/**
-		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONTAINER_RULE__KIND = eINSTANCE.getContainerRule_Kind();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.PortImpl <em>Port</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.PortImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPort()
-		 * @generated
-		 */
-		EClass PORT = eINSTANCE.getPort();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Port</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PORT__BASE_PORT = eINSTANCE.getPort_Base_Port();
-
-		/**
-		 * The meta object literal for the '<em><b>Kind</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PORT__KIND = eINSTANCE.getPort_Kind();
-
-		/**
-		 * The meta object literal for the '<em><b>Provided Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PORT__PROVIDED_INTERFACE = eINSTANCE.getPort_ProvidedInterface();
-
-		/**
-		 * The meta object literal for the '<em><b>Required Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PORT__REQUIRED_INTERFACE = eINSTANCE.getPort_RequiredInterface();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurableElementInstanceImpl <em>Configurable Element Instance</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.ConfigurableElementInstanceImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfigurableElementInstance()
-		 * @generated
-		 */
-		EClass CONFIGURABLE_ELEMENT_INSTANCE = eINSTANCE.getConfigurableElementInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Configuration</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURABLE_ELEMENT_INSTANCE__CONFIGURATION = eINSTANCE.getConfigurableElementInstance_Configuration();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.PortKindImpl <em>Port Kind</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.PortKindImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPortKind()
-		 * @generated
-		 */
-		EClass PORT_KIND = eINSTANCE.getPortKind();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PORT_KIND__BASE_CLASS = eINSTANCE.getPortKind_Base_Class();
-
-		/**
-		 * The meta object literal for the '<em><b>Provided Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PORT_KIND__PROVIDED_INTERFACE = eINSTANCE.getPortKind_ProvidedInterface();
-
-		/**
-		 * The meta object literal for the '<em><b>Required Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PORT_KIND__REQUIRED_INTERFACE = eINSTANCE.getPortKind_RequiredInterface();
-
-		/**
-		 * The meta object literal for the '<em><b>Extended Port</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PORT_KIND__EXTENDED_PORT = eINSTANCE.getPortKind_ExtendedPort();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.CompImplTemplateImpl <em>Comp Impl Template</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.CompImplTemplateImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCompImplTemplate()
-		 * @generated
-		 */
-		EClass COMP_IMPL_TEMPLATE = eINSTANCE.getCompImplTemplate();
-
-		/**
-		 * The meta object literal for the '<em><b>Template Defs</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMP_IMPL_TEMPLATE__TEMPLATE_DEFS = eINSTANCE.getCompImplTemplate_TemplateDefs();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMP_IMPL_TEMPLATE__BASE_CLASS = eINSTANCE.getCompImplTemplate_Base_Class();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConfigOptionImpl <em>Config Option</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.ConfigOptionImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfigOption()
-		 * @generated
-		 */
-		EClass CONFIG_OPTION = eINSTANCE.getConfigOption();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIG_OPTION__BASE_CLASS = eINSTANCE.getConfigOption_Base_Class();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.TemplatePortImpl <em>Template Port</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.TemplatePortImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTemplatePort()
-		 * @generated
-		 */
-		EClass TEMPLATE_PORT = eINSTANCE.getTemplatePort();
-
-		/**
-		 * The meta object literal for the '<em><b>Bound Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEMPLATE_PORT__BOUND_TYPE = eINSTANCE.getTemplatePort_BoundType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.SingletonImpl <em>Singleton</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.SingletonImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getSingleton()
-		 * @generated
-		 */
-		EClass SINGLETON = eINSTANCE.getSingleton();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SINGLETON__BASE_CLASS = eINSTANCE.getSingleton_Base_Class();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.InteractionComponentImpl <em>Interaction Component</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.InteractionComponentImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInteractionComponent()
-		 * @generated
-		 */
-		EClass INTERACTION_COMPONENT = eINSTANCE.getInteractionComponent();
-
-		/**
-		 * The meta object literal for the '<em><b>For Distribution</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INTERACTION_COMPONENT__FOR_DISTRIBUTION = eINSTANCE.getInteractionComponent_ForDistribution();
-
-		/**
-		 * The meta object literal for the '<em><b>Connection Pattern</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTERACTION_COMPONENT__CONNECTION_PATTERN = eINSTANCE.getInteractionComponent_ConnectionPattern();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTERACTION_COMPONENT__BASE_CLASS = eINSTANCE.getInteractionComponent_Base_Class();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConnectorImpl <em>Connector</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.ConnectorImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConnector()
-		 * @generated
-		 */
-		EClass CONNECTOR = eINSTANCE.getConnector();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Connector</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONNECTOR__BASE_CONNECTOR = eINSTANCE.getConnector_Base_Connector();
-
-		/**
-		 * The meta object literal for the '<em><b>Ic</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONNECTOR__IC = eINSTANCE.getConnector_Ic();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Property</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONNECTOR__BASE_PROPERTY = eINSTANCE.getConnector_Base_Property();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurationPropertyImpl <em>Configuration Property</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3250,58 +2973,6 @@ public interface FCMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONFIGURATION_PROPERTY__BASE_PROPERTY = eINSTANCE.getConfigurationProperty_Base_Property();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.DeploymentPlanImpl <em>Deployment Plan</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.DeploymentPlanImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDeploymentPlan()
-		 * @generated
-		 */
-		EClass DEPLOYMENT_PLAN = eINSTANCE.getDeploymentPlan();
-
-		/**
-		 * The meta object literal for the '<em><b>Main Instance</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPLOYMENT_PLAN__MAIN_INSTANCE = eINSTANCE.getDeploymentPlan_MainInstance();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DEPLOYMENT_PLAN__BASE_PACKAGE = eINSTANCE.getDeploymentPlan_Base_Package();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.DerivedElementImpl <em>Derived Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.DerivedElementImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDerivedElement()
-		 * @generated
-		 */
-		EClass DERIVED_ELEMENT = eINSTANCE.getDerivedElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Element</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DERIVED_ELEMENT__BASE_ELEMENT = eINSTANCE.getDerivedElement_Base_Element();
-
-		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DERIVED_ELEMENT__SOURCE = eINSTANCE.getDerivedElement_Source();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ImplementationGroupImpl <em>Implementation Group</em>}' class.
@@ -3428,6 +3099,154 @@ public interface FCMPackage extends EPackage {
 		EReference CODE_GEN_OPTIONS__PROG_LANGUAGE = eINSTANCE.getCodeGenOptions_ProgLanguage();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.InteractionComponentImpl <em>Interaction Component</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.InteractionComponentImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInteractionComponent()
+		 * @generated
+		 */
+		EClass INTERACTION_COMPONENT = eINSTANCE.getInteractionComponent();
+
+		/**
+		 * The meta object literal for the '<em><b>For Distribution</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERACTION_COMPONENT__FOR_DISTRIBUTION = eINSTANCE.getInteractionComponent_ForDistribution();
+
+		/**
+		 * The meta object literal for the '<em><b>Connection Pattern</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTERACTION_COMPONENT__CONNECTION_PATTERN = eINSTANCE.getInteractionComponent_ConnectionPattern();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTERACTION_COMPONENT__BASE_CLASS = eINSTANCE.getInteractionComponent_Base_Class();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.SingletonImpl <em>Singleton</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.SingletonImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getSingleton()
+		 * @generated
+		 */
+		EClass SINGLETON = eINSTANCE.getSingleton();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SINGLETON__BASE_CLASS = eINSTANCE.getSingleton_Base_Class();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConnectorImpl <em>Connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.ConnectorImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConnector()
+		 * @generated
+		 */
+		EClass CONNECTOR = eINSTANCE.getConnector();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Connector</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTOR__BASE_CONNECTOR = eINSTANCE.getConnector_Base_Connector();
+
+		/**
+		 * The meta object literal for the '<em><b>Ic</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTOR__IC = eINSTANCE.getConnector_Ic();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTOR__BASE_PROPERTY = eINSTANCE.getConnector_Base_Property();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurableElementInstanceImpl <em>Configurable Element Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.ConfigurableElementInstanceImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfigurableElementInstance()
+		 * @generated
+		 */
+		EClass CONFIGURABLE_ELEMENT_INSTANCE = eINSTANCE.getConfigurableElementInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Configuration</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURABLE_ELEMENT_INSTANCE__CONFIGURATION = eINSTANCE.getConfigurableElementInstance_Configuration();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.UseInstanceConfiguratorImpl <em>Use Instance Configurator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.UseInstanceConfiguratorImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getUseInstanceConfigurator()
+		 * @generated
+		 */
+		EClass USE_INSTANCE_CONFIGURATOR = eINSTANCE.getUseInstanceConfigurator();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USE_INSTANCE_CONFIGURATOR__BASE_CLASS = eINSTANCE.getUseInstanceConfigurator_Base_Class();
+
+		/**
+		 * The meta object literal for the '<em><b>Configurator</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USE_INSTANCE_CONFIGURATOR__CONFIGURATOR = eINSTANCE.getUseInstanceConfigurator_Configurator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.InstanceConfiguratorImpl <em>Instance Configurator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.InstanceConfiguratorImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInstanceConfigurator()
+		 * @generated
+		 */
+		EClass INSTANCE_CONFIGURATOR = eINSTANCE.getInstanceConfigurator();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_CONFIGURATOR__BASE_CLASS = eINSTANCE.getInstanceConfigurator_Base_Class();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.RuleApplicationImpl <em>Rule Application</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3460,6 +3279,238 @@ public interface FCMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RULE_APPLICATION__BASE_PACKAGE = eINSTANCE.getRuleApplication_Base_Package();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ContainerRuleImpl <em>Container Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.ContainerRuleImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getContainerRule()
+		 * @generated
+		 */
+		EClass CONTAINER_RULE = eINSTANCE.getContainerRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTAINER_RULE__BASE_CLASS = eINSTANCE.getContainerRule_Base_Class();
+
+		/**
+		 * The meta object literal for the '<em><b>For Config</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTAINER_RULE__FOR_CONFIG = eINSTANCE.getContainerRule_ForConfig();
+
+		/**
+		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTAINER_RULE__KIND = eINSTANCE.getContainerRule_Kind();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConfigOptionImpl <em>Config Option</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.ConfigOptionImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfigOption()
+		 * @generated
+		 */
+		EClass CONFIG_OPTION = eINSTANCE.getConfigOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIG_OPTION__BASE_CLASS = eINSTANCE.getConfigOption_Base_Class();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.TemplatePortImpl <em>Template Port</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.TemplatePortImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getTemplatePort()
+		 * @generated
+		 */
+		EClass TEMPLATE_PORT = eINSTANCE.getTemplatePort();
+
+		/**
+		 * The meta object literal for the '<em><b>Bound Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_PORT__BOUND_TYPE = eINSTANCE.getTemplatePort_BoundType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.PortImpl <em>Port</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.PortImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPort()
+		 * @generated
+		 */
+		EClass PORT = eINSTANCE.getPort();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Port</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PORT__BASE_PORT = eINSTANCE.getPort_Base_Port();
+
+		/**
+		 * The meta object literal for the '<em><b>Kind</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PORT__KIND = eINSTANCE.getPort_Kind();
+
+		/**
+		 * The meta object literal for the '<em><b>Provided Interface</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PORT__PROVIDED_INTERFACE = eINSTANCE.getPort_ProvidedInterface();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Interface</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PORT__REQUIRED_INTERFACE = eINSTANCE.getPort_RequiredInterface();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.PortKindImpl <em>Port Kind</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.PortKindImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getPortKind()
+		 * @generated
+		 */
+		EClass PORT_KIND = eINSTANCE.getPortKind();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PORT_KIND__BASE_CLASS = eINSTANCE.getPortKind_Base_Class();
+
+		/**
+		 * The meta object literal for the '<em><b>Provided Interface</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PORT_KIND__PROVIDED_INTERFACE = eINSTANCE.getPortKind_ProvidedInterface();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Interface</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PORT_KIND__REQUIRED_INTERFACE = eINSTANCE.getPortKind_RequiredInterface();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Port</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PORT_KIND__EXTENDED_PORT = eINSTANCE.getPortKind_ExtendedPort();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.DeploymentPlanImpl <em>Deployment Plan</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.DeploymentPlanImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDeploymentPlan()
+		 * @generated
+		 */
+		EClass DEPLOYMENT_PLAN = eINSTANCE.getDeploymentPlan();
+
+		/**
+		 * The meta object literal for the '<em><b>Main Instance</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPLOYMENT_PLAN__MAIN_INSTANCE = eINSTANCE.getDeploymentPlan_MainInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPLOYMENT_PLAN__BASE_PACKAGE = eINSTANCE.getDeploymentPlan_Base_Package();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.DerivedElementImpl <em>Derived Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.DerivedElementImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getDerivedElement()
+		 * @generated
+		 */
+		EClass DERIVED_ELEMENT = eINSTANCE.getDerivedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DERIVED_ELEMENT__BASE_ELEMENT = eINSTANCE.getDerivedElement_Base_Element();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DERIVED_ELEMENT__SOURCE = eINSTANCE.getDerivedElement_Source();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.CompImplTemplateImpl <em>Comp Impl Template</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.CompImplTemplateImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getCompImplTemplate()
+		 * @generated
+		 */
+		EClass COMP_IMPL_TEMPLATE = eINSTANCE.getCompImplTemplate();
+
+		/**
+		 * The meta object literal for the '<em><b>Template Defs</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMP_IMPL_TEMPLATE__TEMPLATE_DEFS = eINSTANCE.getCompImplTemplate_TemplateDefs();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMP_IMPL_TEMPLATE__BASE_CLASS = eINSTANCE.getCompImplTemplate_Base_Class();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ImplementationPropertiesImpl <em>Implementation Properties</em>}' class.
@@ -3554,6 +3605,82 @@ public interface FCMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TARGET_ARCHITECTURE__BASE_CLASS = eINSTANCE.getTargetArchitecture_Base_Class();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurationImpl <em>Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.ConfigurationImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfiguration()
+		 * @generated
+		 */
+		EClass CONFIGURATION = eINSTANCE.getConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURATION__BASE_CLASS = eINSTANCE.getConfiguration_Base_Class();
+
+		/**
+		 * The meta object literal for the '<em><b>Config Options</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURATION__CONFIG_OPTIONS = eINSTANCE.getConfiguration_ConfigOptions();
+
+		/**
+		 * The meta object literal for the '<em><b>Deployment Plan</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONFIGURATION__DEPLOYMENT_PLAN = eINSTANCE.getConfiguration_DeploymentPlan();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.InterceptionRuleImpl <em>Interception Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.InterceptionRuleImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInterceptionRule()
+		 * @generated
+		 */
+		EClass INTERCEPTION_RULE = eINSTANCE.getInterceptionRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Interception Kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERCEPTION_RULE__INTERCEPTION_KIND = eINSTANCE.getInterceptionRule_InterceptionKind();
+
+		/**
+		 * The meta object literal for the '<em><b>Interception Set</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTERCEPTION_RULE__INTERCEPTION_SET = eINSTANCE.getInterceptionRule_InterceptionSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTERCEPTION_RULE__BASE_PROPERTY = eINSTANCE.getInterceptionRule_Base_Property();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Operation</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INTERCEPTION_RULE__BASE_OPERATION = eINSTANCE.getInterceptionRule_Base_Operation();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.TargetImpl <em>Target</em>}' class.
@@ -3796,126 +3923,6 @@ public interface FCMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXTENDED_SIGNATURE__BASE_SIGNATURE = eINSTANCE.getExtendedSignature_BaseSignature();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.UseInstanceConfiguratorImpl <em>Use Instance Configurator</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.UseInstanceConfiguratorImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getUseInstanceConfigurator()
-		 * @generated
-		 */
-		EClass USE_INSTANCE_CONFIGURATOR = eINSTANCE.getUseInstanceConfigurator();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USE_INSTANCE_CONFIGURATOR__BASE_CLASS = eINSTANCE.getUseInstanceConfigurator_Base_Class();
-
-		/**
-		 * The meta object literal for the '<em><b>Configurator</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USE_INSTANCE_CONFIGURATOR__CONFIGURATOR = eINSTANCE.getUseInstanceConfigurator_Configurator();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.InstanceConfiguratorImpl <em>Instance Configurator</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.InstanceConfiguratorImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInstanceConfigurator()
-		 * @generated
-		 */
-		EClass INSTANCE_CONFIGURATOR = eINSTANCE.getInstanceConfigurator();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INSTANCE_CONFIGURATOR__BASE_CLASS = eINSTANCE.getInstanceConfigurator_Base_Class();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.ConfigurationImpl <em>Configuration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.ConfigurationImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getConfiguration()
-		 * @generated
-		 */
-		EClass CONFIGURATION = eINSTANCE.getConfiguration();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION__BASE_CLASS = eINSTANCE.getConfiguration_Base_Class();
-
-		/**
-		 * The meta object literal for the '<em><b>Config Options</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION__CONFIG_OPTIONS = eINSTANCE.getConfiguration_ConfigOptions();
-
-		/**
-		 * The meta object literal for the '<em><b>Deployment Plan</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION__DEPLOYMENT_PLAN = eINSTANCE.getConfiguration_DeploymentPlan();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.InterceptionRuleImpl <em>Interception Rule</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.FCM.impl.InterceptionRuleImpl
-		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInterceptionRule()
-		 * @generated
-		 */
-		EClass INTERCEPTION_RULE = eINSTANCE.getInterceptionRule();
-
-		/**
-		 * The meta object literal for the '<em><b>Interception Kind</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INTERCEPTION_RULE__INTERCEPTION_KIND = eINSTANCE.getInterceptionRule_InterceptionKind();
-
-		/**
-		 * The meta object literal for the '<em><b>Interception Set</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTERCEPTION_RULE__INTERCEPTION_SET = eINSTANCE.getInterceptionRule_InterceptionSet();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Property</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTERCEPTION_RULE__BASE_PROPERTY = eINSTANCE.getInterceptionRule_Base_Property();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Operation</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INTERCEPTION_RULE__BASE_OPERATION = eINSTANCE.getInterceptionRule_Base_Operation();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.TemplateKind <em>Template Kind</em>}' enum.
