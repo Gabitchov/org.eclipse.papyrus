@@ -31,6 +31,7 @@ import org.eclipse.papyrus.C_Cpp.ManualGeneration;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Template;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
+import org.eclipse.papyrus.acceleo.AcceleoException;
 import org.eclipse.papyrus.acceleo.GenUtils;
 import org.eclipse.papyrus.acceleo.ModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.Activator;
@@ -115,17 +116,26 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 		if(GenUtils.hasStereotype(classifier, ManualGeneration.class)) {
 			ManualGeneration mg = UMLUtil.getStereotypeApplication(classifier, ManualGeneration.class);
 			Include cppInclude = UMLUtil.getStereotypeApplication(classifier, Include.class);
-			String fileContent = commentHeader + cppInclude.getHeader();
-			createFile(container, classifier.getName() + DOT + hppExt, fileContent, true);
+			try {
+				String fileContent = commentHeader +
+					AcceleoDriver.evaluate(cppInclude.getHeader(), classifier, null);
+				createFile(container, classifier.getName() + DOT + hppExt, fileContent, true);
 
-			String manualURI = "TODO"; // fileContent = AcceleoDriver.evaluateURI(new URI(CppPackageHeader)), classifier);
+			// String manualURI = "TODO";
+			// fileContent = AcceleoDriver.evaluateURI(new URI(CppPackageHeader)), classifier);
 
-			fileContent = commentHeader + cppInclude.getPreBody() + GenUtils.NL + manualURI + GenUtils.NL + cppInclude.getBody();
-			String ext = GenUtils.maskNull(mg.getExtensionBody());
-			if(ext.length() == 0) {
-				ext = cppExt;
+				fileContent = commentHeader + 
+						AcceleoDriver.evaluate(cppInclude.getPreBody(), classifier, null) + GenUtils.NL +
+						AcceleoDriver.evaluate(cppInclude.getBody(), classifier, null) + GenUtils.NL;
+				String ext = GenUtils.maskNull(mg.getExtensionBody());
+				if(ext.length() == 0) {
+					ext = cppExt;
+				}
+				createFile(container, classifier.getName() + DOT + ext, fileContent, true);
 			}
-			createFile(container, classifier.getName() + DOT + ext, fileContent, true);
+			catch (AcceleoException e) {
+				Activator.log.error(e);
+			}
 		}
 
 		// Only generate when no CppNoCodeGen stereotype is applied to the class

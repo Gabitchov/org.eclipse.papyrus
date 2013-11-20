@@ -4,23 +4,11 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
     </input>
-    <imports href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/UMLTool.emtl#/0"/>
-    <imports href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/utils_cpp.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="traceOp" visibility="Public">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;// &lt;instance>_&lt;port>_&lt;operation>&#xA;// easier: &lt;component>_&lt;port>_&lt;operation>&#xA;updateTimestamp ();&#xA;if (!hasDeclaredFunctions) {&#xA;&#x9;declareFunctions();&#xA;&#x9;hasDeclaredFunctions = true;&#xA;}&#xA;Tracing::TraceInit::wait();&#xA;int processID = Tracing::TraceInit::getProcessID();&#xA;OTF_Writer * writer = Tracing::TraceInit::getWriter();&#xA;OTF_Writer_writeEnter (writer, timestamp.ticks(), &lt;%enumSvcPrefix%>::id_&lt;%owner.varName%>_&lt;%varName%>, processID, 0);&#xA;OTF_Writer_writeEventComment (writer, timestamp.ticks(), processID, portName);&#xA;OTF_Writer_writeEventComment (writer, timestamp.ticks(), processID, instanceName);&#xA;Tracing::TraceInit::post();&#xA;"/>
       <body xsi:type="mtl:IfBlock">
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" "/>
-        <body xsi:type="mtl:TemplateInvocation">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <definition href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/utils_cpp.emtl#/0/cppType"/>
-          <argument xsi:type="ocl.ecore:PropertyCallExp">
-            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
-            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
-              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
-            </source>
-            <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation/type"/>
-          </argument>
-        </body>
+        <body xsi:type="mtl:TemplateExpression"/>
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" ret = "/>
         <ifExpr xsi:type="ocl.ecore:OperationCallExp">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
@@ -42,13 +30,7 @@
         </ifExpr>
       </body>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="rconn->"/>
-      <body xsi:type="mtl:TemplateInvocation">
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <definition href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/utils_cpp.emtl#/0/cppCall"/>
-        <argument xsi:type="ocl.ecore:VariableExp" name="operation" referredVariable="/0/traceOp/operation">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
-        </argument>
-      </body>
+      <body xsi:type="mtl:TemplateExpression"/>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=";&#xA;updateTimestamp ();&#xA;Tracing::TraceInit::wait();&#xA;OTF_Writer_writeLeave (writer, timestamp.ticks(), &lt;%enumSvcPrefix%>::id_&lt;%owner.varName%>_&lt;%varName%>, processID, 0);&#xA;Tracing::TraceInit::post();&#xA;"/>
       <body xsi:type="mtl:IfBlock">
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" return ret;"/>
@@ -58,7 +40,7 @@
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
             <source xsi:type="ocl.ecore:PropertyCallExp">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
-              <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/9">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/11">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
               </source>
               <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation/type"/>
@@ -106,30 +88,6 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
         </eParameters>
       </eOperations>
-      <eOperations name="cppCall">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/utils_cpp.emtl#/0/cppCall"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="operation">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
-        </eParameters>
-      </eOperations>
-      <eOperations name="cppType">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL">
-          <references href="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/org/eclipse/papyrus/qompass/designer/core/acceleo/utils_cpp.emtl#/0/cppType"/>
-        </eAnnotations>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <eParameters name="type">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
-        </eParameters>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OclAny_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -156,31 +114,6 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Type_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NamedElement_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Element_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Classifier_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
-      </eAnnotations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Parameter_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Parameter"/>
-      </eAnnotations>
-    </eClassifiers>
   </ecore:EPackage>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -198,7 +131,13 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
@@ -231,106 +170,91 @@
       <details key="line" value="22"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/traceOp/%.1/%.1">
-      <details key="start" value="907"/>
-      <details key="end" value="921"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.5" references="/0/traceOp/%.1/%.1/%">
-      <details key="start" value="907"/>
-      <details key="end" value="911"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.6" references="/0/traceOp/%.1/%.1/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.7" references="/0/traceOp/%.1/%.2">
+    <eAnnotations source="positions.5" references="/0/traceOp/%.1/%.2">
       <details key="start" value="923"/>
       <details key="end" value="930"/>
       <details key="line" value="22"/>
     </eAnnotations>
-    <eAnnotations source="positions.8" references="/0/traceOp/%.1/%.3">
+    <eAnnotations source="positions.6" references="/0/traceOp/%.1/%.3">
       <details key="start" value="887"/>
       <details key="end" value="904"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.9" references="/0/traceOp/%.1/%.3/%">
+    <eAnnotations source="positions.7" references="/0/traceOp/%.1/%.3/%">
       <details key="start" value="891"/>
       <details key="end" value="904"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.10" references="/0/traceOp/%.1/%.3/%/%">
+    <eAnnotations source="positions.8" references="/0/traceOp/%.1/%.3/%/%">
       <details key="start" value="892"/>
       <details key="end" value="896"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.11" references="/0/traceOp/%.1/%.3/%/%/self">
+    <eAnnotations source="positions.9" references="/0/traceOp/%.1/%.3/%/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.12" references="/0/traceOp/%.1/%.3/%/%.1">
+    <eAnnotations source="positions.10" references="/0/traceOp/%.1/%.3/%/%.1">
       <details key="start" value="899"/>
       <details key="end" value="903"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.13" references="/0/traceOp/%.2">
+    <eAnnotations source="positions.11" references="/0/traceOp/%.2">
       <details key="start" value="935"/>
       <details key="end" value="942"/>
       <details key="line" value="22"/>
     </eAnnotations>
-    <eAnnotations source="positions.14" references="/0/traceOp/%.3">
-      <details key="start" value="943"/>
-      <details key="end" value="962"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.15" references="/0/traceOp/%.3/operation">
-      <details key="start" value="943"/>
-      <details key="end" value="952"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.16" references="/0/traceOp/%.4">
-      <details key="start" value="964"/>
-      <details key="end" value="1160"/>
-      <details key="line" value="22"/>
-    </eAnnotations>
-    <eAnnotations source="positions.17" references="/0/traceOp/%.5">
-      <details key="start" value="1160"/>
-      <details key="end" value="1199"/>
-      <details key="line" value="27"/>
-    </eAnnotations>
-    <eAnnotations source="positions.18" references="/0/traceOp/%.5/%">
-      <details key="start" value="1182"/>
-      <details key="end" value="1194"/>
-      <details key="line" value="27"/>
-    </eAnnotations>
-    <eAnnotations source="positions.19" references="/0/traceOp/%.5/%.1">
-      <details key="start" value="1164"/>
-      <details key="end" value="1181"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.20" references="/0/traceOp/%.5/%.1/%">
-      <details key="start" value="1168"/>
-      <details key="end" value="1181"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.21" references="/0/traceOp/%.5/%.1/%/%">
-      <details key="start" value="1169"/>
-      <details key="end" value="1173"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.22" references="/0/traceOp/%.5/%.1/%/%/self">
+    <eAnnotations source="positions.12" references="/0/traceOp/%.3">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.23" references="/0/traceOp/%.5/%.1/%/%.1">
+    <eAnnotations source="positions.13" references="/0/traceOp/%.4">
+      <details key="start" value="964"/>
+      <details key="end" value="1160"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/traceOp/%.5">
+      <details key="start" value="1160"/>
+      <details key="end" value="1199"/>
+      <details key="line" value="27"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/traceOp/%.5/%">
+      <details key="start" value="1182"/>
+      <details key="end" value="1194"/>
+      <details key="line" value="27"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/traceOp/%.5/%.1">
+      <details key="start" value="1164"/>
+      <details key="end" value="1181"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/traceOp/%.5/%.1/%">
+      <details key="start" value="1168"/>
+      <details key="end" value="1181"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/traceOp/%.5/%.1/%/%">
+      <details key="start" value="1169"/>
+      <details key="end" value="1173"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/traceOp/%.5/%.1/%/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/traceOp/%.5/%.1/%/%.1">
       <details key="start" value="1176"/>
       <details key="end" value="1180"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.24" references="/0/traceOp/operation">
+    <eAnnotations source="positions.21" references="/0/traceOp/operation">
       <details key="start" value="239"/>
       <details key="end" value="259"/>
       <details key="line" value="6"/>

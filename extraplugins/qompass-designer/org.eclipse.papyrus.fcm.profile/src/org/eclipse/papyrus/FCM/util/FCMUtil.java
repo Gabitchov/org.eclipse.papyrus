@@ -105,22 +105,27 @@ public class FCMUtil {
 		}
 	}
 
+	/**
+	 * Generate a connection pattern. Currently unused
+	 * 
+	 * @param connectorComp
+	 */
 	public static void generateDefaultConnectionPattern(InteractionComponent connectorComp) {
 		org.eclipse.uml2.uml.Collaboration connectionPattern =
 			UMLFactory.eINSTANCE.createCollaboration();
 
 		//((org.eclipse.uml2.uml.Package)connectorComp.getBase_Class().getOwner()).getPackagedElements().add(connectionPattern) ;
 		connectorComp.getBase_Class().getNestedClassifiers().add(connectionPattern);
-		connectionPattern.setName(connectorComp.getBase_Class().getName() + "ConnectionPattern");
+		connectionPattern.setName(connectorComp.getBase_Class().getName() + "ConnectionPattern"); //$NON-NLS-1$
 
 		org.eclipse.uml2.uml.Property connectorRole =
-			connectionPattern.createOwnedAttribute("connector", connectorComp.getBase_Class(), 1, 1);
+			connectionPattern.createOwnedAttribute("connector", connectorComp.getBase_Class(), 1, 1); //$NON-NLS-1$
 		for(Iterator<org.eclipse.uml2.uml.Port> i = connectorComp.getBase_Class().getOwnedPorts().iterator(); i.hasNext();) {
 			org.eclipse.uml2.uml.Port port = i.next();
 			org.eclipse.uml2.uml.Property role;
 			org.eclipse.uml2.uml.Connector connector;
 			role = connectionPattern.createOwnedAttribute(port.getName(), null);
-			connector = connectionPattern.createOwnedConnector("");
+			connector = connectionPattern.createOwnedConnector(""); //$NON-NLS-1$
 			org.eclipse.uml2.uml.ConnectorEnd source, target;
 			source = connector.createEnd();
 			source.setRole(port);
@@ -133,7 +138,7 @@ public class FCMUtil {
 	}
 
 	/**
-	 * TODO Move this method in ConnectorReification.java (once Manel has finished to modify the file)
+	 * TODO Move this method in ConnectorReification.java
 	 * 
 	 * @author ac221913
 	 * 
@@ -161,12 +166,12 @@ public class FCMUtil {
 		if(bindingTable == null)
 			return;
 
-		collaborationUse = composite.createCollaborationUse("useOf" + connectionPattern.getName());
+		collaborationUse = composite.createCollaborationUse("useOf" + connectionPattern.getName()); //$NON-NLS-1$
 		collaborationUse.setType(connectionPattern);
 		for(Iterator<org.eclipse.uml2.uml.ConnectableElement> i = bindingTable.iterator(); i.hasNext();) {
 			org.eclipse.uml2.uml.ConnectableElement role = i.next();
 			org.eclipse.uml2.uml.Dependency roleBinding;
-			roleBinding = collaborationUse.createRoleBinding(role.getName() + "RoleBinding");
+			roleBinding = collaborationUse.createRoleBinding(role.getName() + "RoleBinding"); //$NON-NLS-1$
 			roleBinding.getSuppliers().add(role);
 			for(Iterator<org.eclipse.uml2.uml.NamedElement> j = bindingTable.getEntry(role).iterator(); j.hasNext();) {
 				roleBinding.getClients().add(j.next());
@@ -191,12 +196,12 @@ public class FCMUtil {
 		InteractionComponent type = (InteractionComponent)connectorCompGen;
 
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
-		IConfigurationElement[] configElements = reg.getConfigurationElementsFor("fcmEmbeddingRule");
+		IConfigurationElement[] configElements = reg.getConfigurationElementsFor("fcmEmbeddingRule"); //$NON-NLS-1$
 		for(IConfigurationElement configElement : configElements) {
 			try {
-				final String extConnName = configElement.getAttribute("connectorName");
+				final String extConnName = configElement.getAttribute("connectorName"); //$NON-NLS-1$
 				if(extConnName.equals(type.getBase_Class().getName())) {
-					final Object obj = configElement.createExecutableExtension("class");
+					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
 					if(obj instanceof IEmbeddingRule) {
 						return ((IEmbeddingRule)obj).getRoleBindings(connector);
 					}

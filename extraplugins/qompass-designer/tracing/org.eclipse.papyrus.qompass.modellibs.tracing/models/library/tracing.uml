@@ -8,10 +8,10 @@
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/core.uml#_O6TiIDLUEd26WNosUASSSw"/>
     </packageImport>
     <packageImport xmi:id="_XW7KkEQYEd-RDttIPD8NUg">
-      <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/OS-AL-core.uml#_ROTQYC-OEdySSa8YESkO2w"/>
+      <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/osal.uml#_ROTQYC-OEdySSa8YESkO2w"/>
     </packageImport>
     <packageImport xmi:id="_DRgF0D4NEeC-VMxjm_qUAg">
-      <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/CORBA.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
+      <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_g2IY8DKeEd-WprEKTCaiMA" name="traceInterceptor">
       <packageMerge xmi:id="_2RoSYKNfEeCdIOXlyrCmKQ">
@@ -31,7 +31,7 @@
         <packagedElement xmi:type="uml:Class" xmi:id="_aF1w4DKeEd-WprEKTCaiMA" clientDependency="_BuqlQDOcEd-1k-POY2IaLg" name="OTFTrace_impl">
           <generalization xmi:id="_WdRuUDaUEeKkY-29HX5sMQ" general="_MM6RwDaUEeKkY-29HX5sMQ"/>
           <ownedAttribute xmi:id="_aF1w5TKeEd-WprEKTCaiMA" name="timestamp" isUnique="false">
-            <type xmi:type="uml:Class" href="pathmap://QML_CORE/OS-AL-core.uml#_FuKEEDj8Edy0Rd6V_tf1-Q"/>
+            <type xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_FuKEEDj8Edy0Rd6V_tf1-Q"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aF1w5zKeEd-WprEKTCaiMA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aF1w5jKeEd-WprEKTCaiMA" value="1"/>
           </ownedAttribute>
@@ -40,7 +40,7 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xUpmcF23Ed-12d_h0i1xhQ" value="1"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_mfNqoBavEeGq1uSGvh4rcQ" name="hasDeclaredFunctions" isStatic="true">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mfSjIBavEeGq1uSGvh4rcQ" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mfTKMBavEeGq1uSGvh4rcQ" value="1"/>
             <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_u-498Ba1EeGq1uSGvh4rcQ"/>
@@ -245,7 +245,7 @@ OTF_Writer_writeDefFunction (writer, streamNr, &lt;%enumSvcPrefix%>::id_&lt;%own
         <packagedElement xmi:type="uml:Class" xmi:id="_aoSDwKAdEeCF0uoVQbVQRg" clientDependency="_Mgn2cKKXEeCdIOXlyrCmKQ" name="OTFTrace_vc">
           <generalization xmi:id="_nQ6YMKAdEeCF0uoVQbVQRg" general="_aF1w4DKeEd-WprEKTCaiMA"/>
           <ownedAttribute xmi:id="_EWKx4KD0EeCFDJJCA2W5wg" name="m_first">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
           </ownedAttribute>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_4LoXcKAeEeCF0uoVQbVQRg" name="&lt;%name%>" specification="_k4TsoKAeEeCF0uoVQbVQRg">
             <language>C/C++</language>
@@ -311,7 +311,7 @@ if (doTrace) {
           <ownedOperation xmi:id="_rlkwoKD0EeCFDJJCA2W5wg" name="OTFTrace_vc" method="_CyKWkKD2EeCFDJJCA2W5wg"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_Mgn2cKKXEeCdIOXlyrCmKQ" name="OTFTrace_vc => BString" client="_aoSDwKAdEeCF0uoVQbVQRg">
-          <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/OS-AL-core.uml#_0AwCEDO0EdyG-pUz-bb-Lg"/>
+          <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_0AwCEDO0EdyG-pUz-bb-Lg"/>
         </packagedElement>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_3pab4PwkEeGWn-a9PUOYcA" name="cout"/>
@@ -421,7 +421,7 @@ if (doTrace) {
     <packagedElement xmi:type="uml:Package" xmi:id="_VMJ8QPzOEeGKDvxFM1SZ_g" name="fixed">
       <packagedElement xmi:type="uml:Package" xmi:id="_K5J34PzNEeGKDvxFM1SZ_g" name="otf">
         <packagedElement xmi:type="uml:Usage" xmi:id="_7uQr8D4OEeC-VMxjm_qUAg" name="TraceInit => Thread (for ThreadId)" client="_apuYoDNwEd-1k-POY2IaLg">
-          <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/OS-AL-core.uml#_-HeCsDj_Edy0Rd6V_tf1-Q"/>
+          <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_-HeCsDj_Edy0Rd6V_tf1-Q"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_apuYoDNwEd-1k-POY2IaLg" clientDependency="_UcPagD1nEd-Bk-AHd6yyoA _7uQr8D4OEeC-VMxjm_qUAg" name="TraceInit">
           <generalization xmi:id="_9zJj0DguEd-9wq2wHPy3lw">
@@ -430,10 +430,10 @@ if (doTrace) {
           <ownedAttribute xmi:id="_vYRuQDj1Ed-nsvkE2JvSTg" name="writer" isStatic="true" type="_W0t44Dj1Ed-nsvkE2JvSTg" isUnique="false" aggregation="shared"/>
           <ownedAttribute xmi:id="_ZZ8mwDwLEd-CbfVdCYNz6Q" name="manager" isStatic="true" type="_LjsBkDwLEd-CbfVdCYNz6Q" isUnique="false" aggregation="shared"/>
           <ownedAttribute xmi:id="_28RZED4NEeC-VMxjm_qUAg" name="streamNr" isStatic="true">
-            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
           </ownedAttribute>
           <ownedAttribute xmi:id="_cy5msJ6oEeCNsP1Kjt4f_w" name="sema" isStatic="true">
-            <type xmi:type="uml:Class" href="pathmap://QML_CORE/OS-AL-core.uml#_D8njME_gEdy2tpS719xBwQ"/>
+            <type xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_D8njME_gEdy2tpS719xBwQ"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_czA7cJ6oEeCNsP1Kjt4f_w" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_czCJkJ6oEeCNsP1Kjt4f_w" value="1"/>
           </ownedAttribute>
@@ -534,7 +534,7 @@ return processID;</body>
           <ownedOperation xmi:id="_MR0d4ChjEeC5Ga5kAgjl0g" name="TraceInit" method="_W9k18ChjEeC5Ga5kAgjl0g"/>
           <ownedOperation xmi:id="_uegYAD4MEeC-VMxjm_qUAg" name="getProcessID" isStatic="true" method="_g2IBUD4NEeC-VMxjm_qUAg">
             <ownedParameter xmi:id="_1PmRUD4MEeC-VMxjm_qUAg" name="ret" direction="return">
-              <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/CORBA.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:id="_VIPBEJ6oEeCNsP1Kjt4f_w" name="wait" isStatic="true" method="_KUVkMJ6pEeCNsP1Kjt4f_w"/>
@@ -749,7 +749,7 @@ return processID;</body>
   <C_Cpp:External xmi:id="_1PAQ4PzSEeGKDvxFM1SZ_g" name="lttng/tracepoint.h" base_class="_v-VBcPzSEeGKDvxFM1SZ_g"/>
   <FCM:Template xmi:id="_flfM8PzhEeGe5LUTfvP5hQ" base_Element="_rGPjgPxWEeGOK9t90vpALA"/>
   <FCM:InteractionComponent xmi:id="__yL98PzhEeGe5LUTfvP5hQ" base_Class="_pwl_MPxWEeGOK9t90vpALA"/>
-  <Cpp:ManualGeneration xmi:id="_KSTlgCdaEeKGdt7FoegMYA" extensionBody="c" base_Class="_rGPjgPxWEeGOK9t90vpALA"/>
+  <C_Cpp:ManualGeneration xmi:id="_KSTlgCdaEeKGdt7FoegMYA" extensionBody="c" base_Class="_rGPjgPxWEeGOK9t90vpALA"/>
   <FCM:InterceptionRule xmi:id="_vt_HYSdbEeKGdt7FoegMYA" interceptionKind="InterceptAllIn" base_Property="_vt7dASdbEeKGdt7FoegMYA"/>
   <l2:Create xmi:id="_X1okQCmiEeKp-eCvZDLsaw" base_BehavioralFeature="_UvQpMCmiEeKp-eCvZDLsaw"/>
   <l2:Destroy xmi:id="_ZJYEECmiEeKp-eCvZDLsaw" base_BehavioralFeature="_VUW6UCmiEeKp-eCvZDLsaw"/>
@@ -764,8 +764,8 @@ return processID;</body>
   <FCM:InstanceConfigurator xmi:id="_nUB1YC8HEeKwPrQVP28AQw" base_Class="_nUAnQC8HEeKwPrQVP28AQw"/>
   <C_Cpp:Include xmi:id="_gvf4IDHKEeKt1a2SZnJmwg" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(intf : Interface)]&#xA;[intf.declareTP()/]&#xA;[/template]" base_class="_gveqADHKEeKt1a2SZnJmwg" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE"/>
   <FCM:Template xmi:id="_gvnM4DHKEeKt1a2SZnJmwg" base_Element="_gveqADHKEeKt1a2SZnJmwg"/>
-  <Cpp:ManualGeneration xmi:id="_gvnz8DHKEeKt1a2SZnJmwg" extensionBody="c" base_Class="_gveqADHKEeKt1a2SZnJmwg"/>
-  <Cpp:ManualGeneration xmi:id="_WUbVADV7EeKGAYOVxzQeAg" extensionBody="c" base_Class="_C4FREDV7EeKGAYOVxzQeAg"/>
+  <C_Cpp:ManualGeneration xmi:id="_gvnz8DHKEeKt1a2SZnJmwg" extensionBody="c" base_Class="_gveqADHKEeKt1a2SZnJmwg"/>
+  <C_Cpp:ManualGeneration xmi:id="_WUbVADV7EeKGAYOVxzQeAg" extensionBody="c" base_Class="_C4FREDV7EeKGAYOVxzQeAg"/>
   <C_Cpp:Include xmi:id="_ZdHkQDV7EeKGAYOVxzQeAg" header="[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]&#xA;[import org::eclipse::papyrus::qompass::designer::core::acceleo::TransformationContext/]&#xA;&#xA;[template public LTTngTP(cl : Classifier)]&#xA;#include &lt;lttng/tracepoint.h>&#xA;&#xA;TRACEPOINT_MODEL_EMF_URI(UMLmodel, starting, &quot;[getSourceRoot().getURI()/]&quot;)&#xA;[/template]&#xA;" base_class="_C4FREDV7EeKGAYOVxzQeAg" preBody=""/>
   <FCM:Template xmi:id="_HOvQ0DWSEeKGAYOVxzQeAg" base_Element="_C4FREDV7EeKGAYOVxzQeAg" kind="PassClassifier"/>
 </xmi:XMI>
