@@ -179,7 +179,12 @@ public class SysMLDiagramUpdater {
 		if(id.equals(Integer.toString(SlotEditPart.VISUAL_ID))) {
 			return getSlot_2001IncomingLinks(view);
 		}
-
+		if(id.equals(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID)) {
+			return getDependency_link_uml_dependency_IncomingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID)) {
+			return getGeneralization_link_uml_generalization_IncomingLinks(view);
+		}
 		return Collections.emptyList();
 	}
 
@@ -233,6 +238,47 @@ public class SysMLDiagramUpdater {
 		if(id.equals(Integer.toString(SlotEditPart.VISUAL_ID))) {
 			return getSlot_2001OutgoingLinks(view);
 		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID)) {
+			return getDependency_link_uml_dependency_OutgoingLinks(view);
+		}
+		if(id.equals(UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID)) {
+			return getGeneralization_link_uml_generalization_OutgoingLinks(view);
+		}
+		return Collections.emptyList();
+	}
+
+
+
+	private static List<UpdaterLinkDescriptor> getDependency_link_uml_dependency_OutgoingLinks(View view) {
+		Dependency modelElement = (Dependency)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getDependency_link_uml_dependency_IncomingLinks(View view) {
+		Dependency modelElement = (Dependency)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getGeneralization_link_uml_generalization_IncomingLinks(View view) {
+		Generalization modelElement = (Generalization)view.getElement();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferences));
+		return result;
+	}
+
+	private static List<UpdaterLinkDescriptor> getGeneralization_link_uml_generalization_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
