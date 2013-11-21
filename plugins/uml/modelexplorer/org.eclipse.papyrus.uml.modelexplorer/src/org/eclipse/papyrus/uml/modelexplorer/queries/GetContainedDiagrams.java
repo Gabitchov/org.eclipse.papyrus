@@ -12,9 +12,13 @@
  */
 package org.eclipse.papyrus.uml.modelexplorer.queries;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
 import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
 import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
@@ -22,9 +26,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 import org.eclipse.uml2.uml.Element;
-
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 
 /**
  * Get the collection of all contained diagrams
@@ -35,19 +36,21 @@ import com.google.common.base.Predicate;
 @Deprecated
 public class GetContainedDiagrams extends AbstractEditorContainerQuery implements IJavaModelQuery<Element, Collection<org.eclipse.gmf.runtime.notation.Diagram>> {
 
-	public Collection<org.eclipse.gmf.runtime.notation.Diagram> evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Predicate<EStructuralFeature.Setting> p = new Predicate<EStructuralFeature.Setting>() {
-			public boolean apply(EStructuralFeature.Setting arg0) {
-				return arg0.getEObject() instanceof Diagram ;
-			}
-		};
-		Function<EStructuralFeature.Setting, Diagram> f = new Function<EStructuralFeature.Setting, Diagram>() {
+	public Collection<Diagram> evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
+		List<Diagram> result = new ArrayList<Diagram>();
+		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
+		if(roots == null) {
+			return result;
+		}
 
-			public Diagram apply(EStructuralFeature.Setting arg0) {
-				return (Diagram)arg0.getEObject();
+		while(roots.hasNext()) {
+			EObject root = roots.next();
+			if(root instanceof Diagram) {
+				if(EcoreUtil.equals(((Diagram)root).getElement(), context)) {
+					result.add((Diagram)root);
+				}
 			}
-			
-		};
-		return NavigatorUtils.findFilterAndApply(context, p, f);
+		}
+		return result;
 	}
 }
