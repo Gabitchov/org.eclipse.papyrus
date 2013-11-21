@@ -3,6 +3,7 @@
   <diagramEditPart name="Diagram edit part">
     <behaviors javaClassQualifiedName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy" key="DuplicatePasteEditPolicy.PASTE_ROLE"/>
     <behaviors javaClassQualifiedName="org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy" key="EditPolicyRoles.DRAG_DROP_ROLE"/>
+    <behaviors name="" javaClassQualifiedName="org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.ShowHideRelatedLinkEditPolicy" key="ShowHideRelatedLinkEditPolicy"/>
   </diagramEditPart>
   <inheritedDiagrams name="ClassDiagram" viewProviderClassQualifiedName="" editPartProviderClassQualifiedName="" dndEditPolicyClassQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy">
     <genInheritedEditor href="../../org.eclipse.papyrus.uml.diagram.clazz/model/classdiagram.gmfgen#PapyrusUMLClassDiagram"/>
