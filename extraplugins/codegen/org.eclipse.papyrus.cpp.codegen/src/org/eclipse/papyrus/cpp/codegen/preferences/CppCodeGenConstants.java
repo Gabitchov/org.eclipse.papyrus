@@ -16,21 +16,21 @@ public class CppCodeGenConstants {
 	/**
 	 * Suffix for generated header files
 	 */
-	public static final String P_HEADER_SUFFIX = "headSuffix";
+	public static final String P_HEADER_SUFFIX = "headSuffix"; //$NON-NLS-1$
 
 	/**
 	 * Suffix for generated body/implementation files
 	 */
-	public static final String P_IMPLEM_SUFFIX = "implSuffix";
+	public static final String P_IMPLEM_SUFFIX = "implSuffix"; //$NON-NLS-1$
 
 	/**
 	 * Suffix for generated body/implementation files
 	 */
-	public static final String P_OUT_INOUT_OP = "outInoutOp";
+	public static final String P_OUT_INOUT_OP = "outInoutOp"; //$NON-NLS-1$
 
 	/**
 	 * User defined comment header in generated files
 	 */
-	public static final String P_COMMENT_HEADER = "commentHeader";
+	public static final String P_COMMENT_HEADER = "commentHeader"; //$NON-NLS-1$
 
 }

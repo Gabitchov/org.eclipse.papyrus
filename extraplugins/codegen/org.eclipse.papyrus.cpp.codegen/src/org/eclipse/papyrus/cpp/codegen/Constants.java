@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 - 2012 CEA LIST.
+ * Copyright (c) 2006 - 2013 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,21 +18,22 @@ package org.eclipse.papyrus.cpp.codegen;
  */
 public class Constants {
 
-	public static final String includeHFile = "// include associated header file";
+	public static final String includeHFile = "// include associated header file"; //$NON-NLS-1$
 
-	public static final String cppIncPreBodyStart = "// Include from CppInclude stereotype (pre-body)";
+	public static final String cppIncPreBodyStart = "// Include from CppInclude stereotype (pre-body)"; //$NON-NLS-1$
 
-	public static final String cppIncPreBodyEnd = "// End of CppInclude stereotype (pre-body)";
+	public static final String cppIncPreBodyEnd = "// End of CppInclude stereotype (pre-body)"; //$NON-NLS-1$
 
-	public static final String cppIncBodyStart = "// Include from CppInclude declaration (body)";
+	public static final String cppIncBodyStart = "// Include from CppInclude declaration (body)"; //$NON-NLS-1$
 
-	public static final String cppIncBodyEnd = "// End of CppInclude stereotype (body)";
+	public static final String cppIncBodyEnd = "// End of CppInclude stereotype (body)";//$NON-NLS-1$
 
-	public static final String derivedIncludes = "// Derived includes directives";
+	public static final String derivedIncludes = "// Derived includes directives";//$NON-NLS-1$
 
-	public static final String forwardDecl = "// forward declarations";
+	public static final String forwardDecl = "// forward declarations"; //$NON-NLS-1$
 
-	public static final String staticAttributes = "// static attributes (if any)";
+	public static final String staticAttributes = "// static attributes (if any)"; //$NON-NLS-1$
 
-	public static final String undefinedType = "undefined";
+	public static final String undefinedType = "undefined"; //$NON-NLS-1$
+
 }
