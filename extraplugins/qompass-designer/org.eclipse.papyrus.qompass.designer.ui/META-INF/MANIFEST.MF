@@ -41,5 +41,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.qompass.designer.core;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Bundle-Vendor: %pluginProvider
+Bundle-Vendor: %providerName
 Bundle-Localization: plugin
