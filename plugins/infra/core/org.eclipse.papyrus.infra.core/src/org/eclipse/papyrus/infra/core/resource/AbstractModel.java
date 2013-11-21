@@ -39,6 +39,7 @@ public abstract class AbstractModel implements IModel {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void init(ModelSet modelSet) {
 		this.modelSet = modelSet;
 	}
@@ -64,18 +65,21 @@ public abstract class AbstractModel implements IModel {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public abstract String getIdentifier();
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void addModelSnippet(IModelSnippet snippet) {
 		snippets.add(snippet);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void setAfterLoadModelDependencies(List<String> afterLoadModelIdentifiers) {
 		this.afterLoadModelIdentifiers = afterLoadModelIdentifiers;
 	}
@@ -83,6 +87,7 @@ public abstract class AbstractModel implements IModel {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<String> getAfterLoadModelIdentifiers() {
 		return afterLoadModelIdentifiers;
 	}
@@ -90,6 +95,7 @@ public abstract class AbstractModel implements IModel {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void setBeforeUnloadDependencies(List<String> unloadBeforeModelIdentifiers) {
 		this.unloadBeforeModelIdentifiers = unloadBeforeModelIdentifiers;
 	}
@@ -97,7 +103,19 @@ public abstract class AbstractModel implements IModel {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<String> getUnloadBeforeModelIdentifiers() {
 		return unloadBeforeModelIdentifiers;
+	}
+
+	@Override
+	public void unload() {
+		this.modelSet = null;
+		snippets.clear();
+	}
+
+	@Override
+	public boolean isModelFor(Object element) {
+		return false;
 	}
 }

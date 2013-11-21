@@ -48,6 +48,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -312,6 +313,13 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the same resource for convenience
 	 */
 	protected Resource setResourceOptions(Resource r) {
+
+		for(IModel model : models.values()) {
+			if(model instanceof IEMFModel) {
+				((IEMFModel)model).handle(r);
+			}
+		}
+
 		if(r != null && isTrackingModification() && !r.isTrackingModification()) {
 			r.setTrackingModification(true);
 		}
@@ -864,6 +872,8 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public void saveAs(URI uri) throws IOException {
 
+		EcoreUtil.resolveAll(this); //Save will not be consistent if we don't load all related resources first
+
 		// Get the file name, without extension.
 		uriWithoutExtension = uri.trimFileExtension();
 
@@ -1136,5 +1146,20 @@ public class ModelSet extends ResourceSetImpl {
 			return false;
 		}
 
+	}
+
+	/**
+	 * Returns the IModel which handles the specified element, if any
+	 * 
+	 * @param container
+	 * @return
+	 */
+	public IModel getModelFor(Object element) {
+		for(IModel model : models.values()) {
+			if(model.isModelFor(element)) {
+				return model;
+			}
+		}
+		return null;
 	}
 }

@@ -5,7 +5,8 @@ package org.eclipse.papyrus.uml.tools.model;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
@@ -21,7 +22,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * @author cedric dumoulin
  * 
  */
-public class UmlModel extends AbstractBaseModel implements IModel {
+public class UmlModel extends EMFLogicalModel implements IModel {
 
 	/**
 	 * File extension used for DI.
@@ -117,9 +118,12 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 
 	@Override
 	public void unload() {
-		if(resource != null) {
-			CacheAdapter.getInstance().clear(resource);
+		for(Resource resource : resources) {
+			if(resource != null) {
+				CacheAdapter.getInstance().clear(resource);
+			}
 		}
+
 		super.unload();
 	}
 }

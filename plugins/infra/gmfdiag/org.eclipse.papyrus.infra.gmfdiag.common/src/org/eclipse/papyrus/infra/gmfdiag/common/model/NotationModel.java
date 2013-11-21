@@ -3,15 +3,22 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
+import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
+import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenableWithContainer;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * @author dumoulin
  * 
  */
-public class NotationModel extends AbstractBaseModel implements IModel {
+public class NotationModel extends EMFLogicalModel implements IModel {
 
 	/**
 	 * File extension used for notation.
@@ -64,5 +71,28 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 	 */
 	public void addDiagram(Diagram newDiagram) {
 		getResource().getContents().add(newDiagram);
+	}
+
+	/**
+	 * Notation resources are controlled if their base element is controlled
+	 */
+	@Override
+	public boolean isControlled(Resource resource) {
+		for(EObject rootElement : resource.getContents()) {
+			IOpenable openable = (IOpenableWithContainer)Platform.getAdapterManager().getAdapter(rootElement, IOpenable.class);
+			if(openable instanceof IOpenableWithContainer) {
+				EObject container = EMFHelper.getEObject(((IOpenableWithContainer)openable).getContainer());
+				if(container != null) {
+					IModel iModel = modelSet.getModelFor(container);
+					if(iModel instanceof IEMFModel) {
+						if(((IEMFModel)iModel).isControlled(container.eResource())) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 }
