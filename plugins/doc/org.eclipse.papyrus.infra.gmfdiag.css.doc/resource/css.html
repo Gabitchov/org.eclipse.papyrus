@@ -119,13 +119,12 @@
 	</p>
 	<ul>
 		<li><b>*</b>: Matches all elements<br /></li>
-		<li><b>ElementType</b>: Matches the elements of type “ElementType”<br />
-		</li>
-		<li><b>.myStyle</b>: Matches the elements on which the style “myStyle”
-			is applied<br />
-		</li>
-		<li><b>#myID</b>: Matches the element with the CSS ID “myID”. The CSS
-			ID must be unique among a diagram. To avoid confusing the users,
+		<li><b>ElementType</b>: Matches the elements of type
+			“ElementType”<br /></li>
+		<li><b>.myStyle</b>: Matches the elements on which the style
+			“myStyle” is applied<br /></li>
+		<li><b>#myID</b>: Matches the element with the CSS ID “myID”. The
+			CSS ID must be unique among a diagram. To avoid confusing the users,
 			and because this selector doesn’t make much sense on diagrams, this
 			selector has been disabled in Papyrus.<br />
 		</li>
@@ -147,21 +146,17 @@
 		combinators:<br />
 	</p>
 	<ul>
-		<li>Selector1 Selector2: Descendant selector. Matches the
+		<li><b>Selector1 Selector2</b>: Descendant selector. Matches the
 			elements which match Selector2 and are contained in an element
-			matching Selector1<br />
-		</li>
-		<li>Selector1 &gt; Selector2: Child selector. Matches the
+			matching Selector1<br /></li>
+		<li><b>Selector1 &gt; Selector2</b>: Child selector. Matches the
 			elements which match Selector2 and are directly contained in an
-			element matching Selector2<br />
-		</li>
-		<li>Selector1 + Selector2: Sibling selector. Matches the elements
-			which match Selector2 and are immediately preceded by a Sibling
-			element which match Selector1.<br />
-		</li>
-		<li>Selector1, Selector2: Alternative selector. Matches elements
-			matching either Selector1 or Selector2<br />
-		</li>
+			element matching Selector2<br /></li>
+		<li><b>Selector1 + Selector2</b>: Sibling selector. Matches the
+			elements which match Selector2 and are immediately preceded by a
+			Sibling element which match Selector1.<br /></li>
+		<li><b>Selector1, Selector2</b>: Alternative selector. Matches
+			elements matching either Selector1 or Selector2<br /></li>
 	</ul>
 	<p>A rule also contains a list of properties, in the form
 		property:value;</p>
@@ -216,6 +211,13 @@
 </pre>
 	<p>Meaning: The elements with the "Block" stereotype must be
 		displayed in bold.</p>
+	<pre class="source-css">[appliedStereotypes~=Block][isEncapsulated=true]{
+	fontColor:red;
+}
+</pre>
+	<p>Meaning: The elements with the "Block" stereotype, and the
+		stereotype property "isEncapsulated" set to true, must be displayed in
+		red.</p>
 	<h2 id="With_the_Papyrus_tooling">With the Papyrus tooling</h2>
 	<p>Papyrus also provides a tool to generate a CSS Rule from an
 		element displayed in the diagram. You need to create a stylesheet
@@ -267,6 +269,74 @@
 		The properties tab contains all the graphical properties that can be
 		applied to the selected object. It is used to choose the graphical
 		properties to apply on the objects matching the conditions.<br />
+	</p>
+	<h1 id="Supported_properties">Supported properties</h1>
+	<h2 id="Selector_properties">Selector properties</h2>
+	<p>Selector properties are semantic element properties. They can be
+		used with one of the following syntaxes:</p>
+	<p>
+		<b>[isAbstract=true]</b>
+	</p>
+	<p>
+		<b>Class[isAbstract=true]</b>
+	</p>
+	<p>The supported semantic element properties are:</p>
+	<ul>
+		<li>Strings: <b>[name=MyName]</b>, <b>[name="My name"]</b> (Quotes are required for complex
+			Strings)<br /></li>
+		<li>Integers: <b>[size="12"]</b>
+			(Quotes are required) <br /></li>
+		<li>Booleans: <b>[isAbstract=true]</b>
+			(Quotes are optional)<br /></li>
+		<li>Enumerations: <b>[visibility=visible]</b>
+			(Quotes are optional)&lt;br /&gt;
+		</li>
+		<li>References to named elements (UML NamedElement or Ecore
+			ENamedElement): <b>[type=String]</b><br />
+		</li>
+	</ul>
+	<p>Some selectors can also be used to represent some specific parts
+		of an element. For example, it is possible to hide a specific
+		compartment:</p>
+	<pre class="source-css">Class &gt; Compartment[kind="attribute"] {
+	visible:false;
+}
+
+Class &gt; Compartment[kind="symbol"] {
+	visible:true;
+}
+
+Compartment[kind="structure"]{
+	collapsed:true;
+}
+
+</pre>
+	<h2 id="Style_properties">Style properties</h2>
+	<p>
+		Style properties are graphical properties supported by the display.
+		Note that some graphical elements may not support some specific
+		properties (Either because they shouldn't support them, or because
+		they are not yet implemented). For example, a UML::Class will not
+		support the <i>italic</i> property, because in UML, <i>italic</i>
+		means <i>abstract</i>.
+	</p>
+	<p>The CSS Supports all GMF Notation properties, as well as a few
+		Papyrus-specific properties. This chapter will only list all the
+		Papyrus-specific properties.</p>
+	<p>The simplest way to discover new style properties is to use the
+		Appearance tab of the Properties view in Papyrus. When hovering one of
+		the appearance properties, the tooltip indicates the name of the
+		corresponding CSS property</p>
+	<p>
+		<img title="CSS Property in tooltip" alt="CSS Property in tooltip"
+			border="0" src="Papyrus_CSS_tooltip.png" /><br />
+	</p>
+	<p>The following custom properties are supported:</p>
+	<p>
+		displayBorder: true | false<br /> displayName: true | false<br />
+		maintainSymbolRatio: true | false<br /> <br /> elementIcon: true |
+		false<br /> shadow: true | false<br /> <br /> qualifiedNameDepth: full
+		| none | [int]<br />
 	</p>
 	<h1 id="Manipulating_styles">Manipulating styles</h1>
 	<p>The computed styles will be applied automatically. For example,
@@ -325,8 +395,8 @@
 	</p>
 	<h2 id="Selectors">Selectors</h2>
 	<p>
-		Currently, it is not possible to handle complex selectors in the
-		Papyrus stylesheets.<br />
+		Currently, some complex selectors are not supported in the Papyrus
+		stylesheets.<br />
 	</p>
 	<h3 id="Selector_inheritance">Selector inheritance</h3>
 	<p>
@@ -334,20 +404,9 @@
 		Metaclass. For example, a Behavior will not inherit styles from a
 		Class, although a Behavior actually is a Class.<br />
 	</p>
-	<h3 id="Profile.2FStereotype_support">Profile/Stereotype support</h3>
-	<p>
-		It is not possible to restrict a selector to an applied stereotype.
-		There is currently no way to specify that a style should only apply to
-		classes on which the <i>SysML::Blocks::Block</i> stereotype is
-		applied.<br />
-	</p>
-	<h3 id="Labels_and_compartments">Labels and compartments</h3>
-	<p>
-		It is currently not possible to customize labels from the Stylesheets
-		(e.g. show/hide type for all properties). It is not possible to
-		show/hide or collapse compartments either (e.g. hide the nested
-		classifier compartment in a Class).<br />
-	</p>
+	<h3 id="Labels">Labels</h3>
+	<p>It is currently not possible to customize labels from the
+		Stylesheets (e.g. show/hide type for all properties).</p>
 	<h3 id="Events_support">Events support</h3>
 	<p>
 		Selectors based on user events are not yet implemented. For example,
@@ -359,7 +418,7 @@
 	<h3 id="Model_stylesheets">Model stylesheets</h3>
 	<p>
 		Currently, stylesheets can only be applied to a Diagram. It is not yet
-		possible to apply a stylesheet on a Model.<br />
+		possible to apply a stylesheet on a Model or a Project.<br />
 	</p>
 	<h3 id="Workspace_stylesheets">Workspace stylesheets</h3>
 	<p>
@@ -380,10 +439,6 @@
 			href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=386574">Bug
 				386574</a>: [CSS - Refresh] Only the active diagram is
 			refresh when the stylesheets change<br /></li>
-		<li><a
-			href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=390534">Bug
-				390534</a>: [CSS - Appearance] Undoing graphical changes
-			results in unexpected behavior</li>
 	</ul>
 </body>
 </html>

@@ -10,13 +10,16 @@
 		</topic>
 		<topic href="resource/css.html#With_the_Papyrus_tooling" label="With the Papyrus tooling"></topic>
 	</topic>
+	<topic href="resource/css.html#Supported_properties" label="Supported properties">
+		<topic href="resource/css.html#Selector_properties" label="Selector properties"></topic>
+		<topic href="resource/css.html#Style_properties" label="Style properties"></topic>
+	</topic>
 	<topic href="resource/css.html#Manipulating_styles" label="Manipulating styles"></topic>
 	<topic href="resource/css.html#Deploying_a_CSS_Theme" label="Deploying a CSS Theme"></topic>
 	<topic href="resource/css.html#Limitations_and_issues" label="Limitations and issues">
 		<topic href="resource/css.html#Selectors" label="Selectors">
 			<topic href="resource/css.html#Selector_inheritance" label="Selector inheritance"></topic>
-			<topic href="resource/css.html#Profile.2FStereotype_support" label="Profile/Stereotype support"></topic>
-			<topic href="resource/css.html#Labels_and_compartments" label="Labels and compartments"></topic>
+			<topic href="resource/css.html#Labels" label="Labels"></topic>
 			<topic href="resource/css.html#Events_support" label="Events support"></topic>
 		</topic>
 		<topic href="resource/css.html#Stylesheets" label="Stylesheets">
