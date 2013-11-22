@@ -101,6 +101,7 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 	 */
 	protected void initFields() {
 		this.newPartWithPort = (Property)getRequest().getParameter(ConnectorUtils.PART_WITH_PORT);
+		this.oppositePartWithPort = (Property)getRequest().getParameter(ConnectorUtils.OPPOSITE_PART_WITH_PORT);
 	}
 
 	/**
