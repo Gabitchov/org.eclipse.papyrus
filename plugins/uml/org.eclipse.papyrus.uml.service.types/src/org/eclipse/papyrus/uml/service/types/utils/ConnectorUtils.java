@@ -45,6 +45,8 @@ public class ConnectorUtils {
 	 */
 	public static final String PART_WITH_PORT = "partWithPort"; //$NON-NLS-1$
 
+	public static final String OPPOSITE_PART_WITH_PORT = "oppositePartWithPort"; //$NON-NLS-1$
+
 	/**
 	 * Tries to find a common structure container view for source and target.
 	 * 

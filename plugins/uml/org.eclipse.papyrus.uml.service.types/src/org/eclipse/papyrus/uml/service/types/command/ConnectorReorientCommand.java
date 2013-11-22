@@ -82,10 +82,12 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 		} else {
 			oppositeEndView = null;
 		}
-		if(getNewPartWithPort() != null) {
+		if(getNewPartWithPort() == null) {
 			setNewPartWithPort(findNewPartWithPort());
 		}
-		setOppositePartWithPort(findNewOppositePartWithPort());
+		if(getOppositePartWithPort() == null) {
+			setOppositePartWithPort(findNewOppositePartWithPort());
+		}
 	}
 
 	//	/**
