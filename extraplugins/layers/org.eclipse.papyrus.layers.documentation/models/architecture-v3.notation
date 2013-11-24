@@ -4861,7 +4861,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z9B7GUydEeObF6ELIGKT-g"/>
       </children>
       <element xmi:type="uml:Class" href="architecture-v3.uml#_z8UwcEydEeObF6ELIGKT-g"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z8-QsUydEeObF6ELIGKT-g" x="498" y="54" width="181" height="835"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z8-QsUydEeObF6ELIGKT-g" x="474" y="54" width="229" height="835"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_AeBEgEygEeObF6ELIGKT-g" type="2004" fontName="Segoe UI" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AeCSoEygEeObF6ELIGKT-g" source="ShadowFigure">

@@ -65,7 +65,7 @@ The class listen to change events, then ask the LayerStack to compute the new va
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p_waw9NpEeKwWoA8j13SIg" value="1"/>
       </ownedEnd>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_z8UwcEydEeObF6ELIGKT-g" name="RegExpSynchronizer">
+    <packagedElement xmi:type="uml:Class" xmi:id="_z8UwcEydEeObF6ELIGKT-g" name="DerivedViewLayerSynchronizer">
       <ownedComment xmi:type="uml:Comment" xmi:id="_7ZAkcEydEeObF6ELIGKT-g">
         <body>RegExpSynchronizer is responsible to synchronize all the RegExp of a LayersStack.</body>
       </ownedComment>
