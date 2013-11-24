@@ -12,18 +12,9 @@
  */
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
-import java.util.List;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.layers.stackmodel.LayersException;
-import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand;
 import org.eclipse.papyrus.layers.stackmodel.layers.DefaultPropertyOperator;
-import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
-import org.eclipse.papyrus.layers.stackmodel.layers.Property;
 
 /**
  * <!-- begin-user-doc -->

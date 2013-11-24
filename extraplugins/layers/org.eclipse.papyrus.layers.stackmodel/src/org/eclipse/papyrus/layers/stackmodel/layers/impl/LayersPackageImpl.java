@@ -16,6 +16,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.CustomLayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.CustomPropertyOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.CustomType;
 import org.eclipse.papyrus.layers.stackmodel.layers.DefaultPropertyOperator;
+import org.eclipse.papyrus.layers.stackmodel.layers.EventLevel;
 import org.eclipse.papyrus.layers.stackmodel.layers.Fill;
 import org.eclipse.papyrus.layers.stackmodel.layers.FillInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.FillPropertySetter;
@@ -566,6 +568,13 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * @generated
 	 */
 	private EClass isAbstractUmlSetterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum eventLevelEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2092,7 +2101,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRegExpLayer_IsLevel1DomainChangedEventDependant() {
+	public EAttribute getRegExpLayer_IsDomainChangedEventDependant() {
 		return (EAttribute)regExpLayerEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2101,7 +2110,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRegExpLayer_IsAnyDomainChangedEventDependant() {
+	public EAttribute getRegExpLayer_DomainChangedEventLevel() {
 		return (EAttribute)regExpLayerEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -2110,7 +2119,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRegExpLayer_IsLevel1DiagramChangedEventdependant() {
+	public EAttribute getRegExpLayer_IsDiagramChangedEventDependant() {
 		return (EAttribute)regExpLayerEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -2119,7 +2128,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRegExpLayer_IsAnyDiagramChangedEventDependant() {
+	public EAttribute getRegExpLayer_DiagramChangedEventLevel() {
 		return (EAttribute)regExpLayerEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -2155,8 +2164,44 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getRegExpLayer__EvaluateExpr() {
+	public EOperation getRegExpLayer__IsDerivedView__View() {
 		return regExpLayerEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getRegExpLayer__AttachDerivedView__View() {
+		return regExpLayerEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getRegExpLayer__AttachDerivedViews__EList() {
+		return regExpLayerEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getRegExpLayer__AttachDerivedViews() {
+		return regExpLayerEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getRegExpLayer__LookupDerivedViews__EList() {
+		return regExpLayerEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -2569,6 +2614,15 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getEventLevel() {
+		return eventLevelEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getString() {
 		return stringEDataType;
 	}
@@ -2892,14 +2946,18 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		regExpLayerEClass = createEClass(REG_EXP_LAYER);
 		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__EXPR);
 		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__LANGUAGE);
-		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT);
-		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT);
-		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT);
-		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT);
+		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_DOMAIN_CHANGED_EVENT_DEPENDANT);
+		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__DOMAIN_CHANGED_EVENT_LEVEL);
+		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__IS_DIAGRAM_CHANGED_EVENT_DEPENDANT);
+		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__DIAGRAM_CHANGED_EVENT_LEVEL);
 		createEAttribute(regExpLayerEClass, REG_EXP_LAYER__EXPRESSION_CONTEXT_OBJECT_TYPE);
 		createEOperation(regExpLayerEClass, REG_EXP_LAYER___ACTIVATE__ABSTRACTLAYEROPERATOR);
 		createEOperation(regExpLayerEClass, REG_EXP_LAYER___DEACTIVATE__ABSTRACTLAYEROPERATOR);
-		createEOperation(regExpLayerEClass, REG_EXP_LAYER___EVALUATE_EXPR);
+		createEOperation(regExpLayerEClass, REG_EXP_LAYER___IS_DERIVED_VIEW__VIEW);
+		createEOperation(regExpLayerEClass, REG_EXP_LAYER___ATTACH_DERIVED_VIEW__VIEW);
+		createEOperation(regExpLayerEClass, REG_EXP_LAYER___ATTACH_DERIVED_VIEWS__ELIST);
+		createEOperation(regExpLayerEClass, REG_EXP_LAYER___ATTACH_DERIVED_VIEWS);
+		createEOperation(regExpLayerEClass, REG_EXP_LAYER___LOOKUP_DERIVED_VIEWS__ELIST);
 
 		layerEClass = createEClass(LAYER);
 
@@ -2955,6 +3013,9 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		orStackedLayerOperatorDescriptorEClass = createEClass(OR_STACKED_LAYER_OPERATOR_DESCRIPTOR);
 
 		isAbstractUmlSetterEClass = createEClass(IS_ABSTRACT_UML_SETTER);
+
+		// Create enums
+		eventLevelEEnum = createEEnum(EVENT_LEVEL);
 
 		// Create data types
 		stringEDataType = createEDataType(STRING);
@@ -3370,10 +3431,10 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		initEClass(regExpLayerEClass, RegExpLayer.class, "RegExpLayer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRegExpLayer_Expr(), this.getString(), "expr", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getRegExpLayer_Language(), this.getString(), "language", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRegExpLayer_IsLevel1DomainChangedEventDependant(), this.getboolean(), "isLevel1DomainChangedEventDependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRegExpLayer_IsAnyDomainChangedEventDependant(), this.getboolean(), "isAnyDomainChangedEventDependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRegExpLayer_IsLevel1DiagramChangedEventdependant(), this.getboolean(), "isLevel1DiagramChangedEventdependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getRegExpLayer_IsAnyDiagramChangedEventDependant(), this.getboolean(), "isAnyDiagramChangedEventDependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRegExpLayer_IsDomainChangedEventDependant(), this.getboolean(), "isDomainChangedEventDependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRegExpLayer_DomainChangedEventLevel(), this.getEventLevel(), "domainChangedEventLevel", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRegExpLayer_IsDiagramChangedEventDependant(), this.getboolean(), "isDiagramChangedEventDependant", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getRegExpLayer_DiagramChangedEventLevel(), this.getEventLevel(), "diagramChangedEventLevel", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getRegExpLayer_ExpressionContextObjectType(), this.getString(), "expressionContextObjectType", null, 1, 1, RegExpLayer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = initEOperation(getRegExpLayer__Activate__AbstractLayerOperator(), null, "activate", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -3382,7 +3443,24 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		op = initEOperation(getRegExpLayer__Deactivate__AbstractLayerOperator(), null, "deactivate", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getAbstractLayerOperator(), "oldParentLayer", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		initEOperation(getRegExpLayer__EvaluateExpr(), theNotationPackage.getView(), "evaluateExpr", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getRegExpLayer__IsDerivedView__View(), this.getboolean(), "isDerivedView", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theNotationPackage.getView(), "view", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEException(op, this.getLayersException());
+
+		op = initEOperation(getRegExpLayer__AttachDerivedView__View(), null, "attachDerivedView", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theNotationPackage.getView(), "view", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEException(op, this.getLayersException());
+
+		op = initEOperation(getRegExpLayer__AttachDerivedViews__EList(), null, "attachDerivedViews", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theNotationPackage.getView(), "views", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEException(op, this.getLayersException());
+
+		op = initEOperation(getRegExpLayer__AttachDerivedViews(), null, "attachDerivedViews", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEException(op, this.getLayersException());
+
+		op = initEOperation(getRegExpLayer__LookupDerivedViews__EList(), theNotationPackage.getView(), "lookupDerivedViews", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theNotationPackage.getView(), "views", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEException(op, this.getLayersException());
 
 		initEClass(layerEClass, Layer.class, "Layer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3440,6 +3518,11 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		initEClass(orStackedLayerOperatorDescriptorEClass, OrStackedLayerOperatorDescriptor.class, "OrStackedLayerOperatorDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(isAbstractUmlSetterEClass, IsAbstractUmlSetter.class, "IsAbstractUmlSetter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(eventLevelEEnum, EventLevel.class, "EventLevel");
+		addEEnumLiteral(eventLevelEEnum, EventLevel.LEVEL1);
+		addEEnumLiteral(eventLevelEEnum, EventLevel.ALL_LEVELS);
 
 		// Initialize data types
 		initEDataType(stringEDataType, String.class, "String", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

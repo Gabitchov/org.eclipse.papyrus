@@ -29,6 +29,10 @@
   <foreignModel>layers.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Layers" basePackage="org.eclipse.papyrus.layers.stackmodel"
       disposableProviderFactory="true" ecorePackage="layers.ecore#/">
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="layers.ecore#//EventLevel">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="layers.ecore#//EventLevel/level1"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="layers.ecore#//EventLevel/allLevels"/>
+    </genEnums>
     <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="layers.ecore#//String"/>
     <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="layers.ecore#//boolean"/>
     <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="layers.ecore#//EPackage"/>
@@ -360,10 +364,10 @@
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="layers.ecore#//RegExpLayer">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/expr"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/language"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isLevel1DomainChangedEventDependant"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isAnyDomainChangedEventDependant"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isLevel1DiagramChangedEventdependant"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isAnyDiagramChangedEventDependant"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isDomainChangedEventDependant"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/domainChangedEventLevel"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/isDiagramChangedEventDependant"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/diagramChangedEventLevel"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//RegExpLayer/expressionContextObjectType"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//RegExpLayer/activate">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//RegExpLayer/activate/newParentLayer"/>
@@ -371,7 +375,19 @@
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//RegExpLayer/deactivate">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//RegExpLayer/deactivate/oldParentLayer"/>
       </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//RegExpLayer/evaluateExpr"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//RegExpLayer/isDerivedView">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//RegExpLayer/isDerivedView/view"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//RegExpLayer/attachDerivedView">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//RegExpLayer/attachDerivedView/view"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//RegExpLayer/attachDerivedViews">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//RegExpLayer/attachDerivedViews/views"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//RegExpLayer/attachDerivedViews.1"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//RegExpLayer/lookupDerivedViews">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//RegExpLayer/lookupDerivedViews/views"/>
+      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="layers.ecore#//Layer"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="layers.ecore#//Color"/>

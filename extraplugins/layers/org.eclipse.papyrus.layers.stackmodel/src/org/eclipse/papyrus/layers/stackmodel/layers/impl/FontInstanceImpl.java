@@ -15,7 +15,6 @@ package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.layers.stackmodel.layers.FillInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.FontInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
@@ -105,7 +104,7 @@ public class FontInstanceImpl extends TypeInstanceImpl implements FontInstance {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean BOLD_EDEFAULT = false;
+	protected static final boolean BOLD_EDEFAULT = true;
 
 	/**
 	 * The cached value of the '{@link #isBold() <em>Bold</em>}' attribute.

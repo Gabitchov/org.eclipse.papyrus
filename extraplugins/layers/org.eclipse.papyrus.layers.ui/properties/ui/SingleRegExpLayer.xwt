@@ -22,6 +22,19 @@
 		</Composite.layout>
 		<ppe:BooleanCheckbox input="{Binding}"
 			property="layers:LayerExpression:isLayerEnabled"></ppe:BooleanCheckbox>
+		<ppe:BooleanRadio input="{Binding}"
+			property="layers:RegExpLayer:isDomainChangedEventDependant"></ppe:BooleanRadio>
+		<ppe:BooleanRadio input="{Binding}"
+			property="layers:RegExpLayer:isDiagramChangedEventDependant"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="layers:RegExpLayer:domainChangedEventLevel"></ppe:EnumCombo>
+		<ppe:EnumCombo input="{Binding}"
+			property="layers:RegExpLayer:diagramChangedEventLevel"></ppe:EnumCombo>
 	</Composite>
 	<Composite>
 		<Composite.layout>

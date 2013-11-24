@@ -16,7 +16,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
-import org.eclipse.papyrus.layers.stackmodel.layers.LineInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.StringInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
 

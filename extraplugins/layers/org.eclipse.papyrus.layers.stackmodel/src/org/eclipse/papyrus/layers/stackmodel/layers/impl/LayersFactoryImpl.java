@@ -145,6 +145,8 @@ public class LayersFactoryImpl extends EFactoryImpl implements LayersFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case LayersPackage.EVENT_LEVEL:
+				return createEventLevelFromString(eDataType, initialValue);
 			case LayersPackage.STRING:
 				return createStringFromString(eDataType, initialValue);
 			case LayersPackage.BOOLEAN:
@@ -178,6 +180,8 @@ public class LayersFactoryImpl extends EFactoryImpl implements LayersFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case LayersPackage.EVENT_LEVEL:
+				return convertEventLevelToString(eDataType, instanceValue);
 			case LayersPackage.STRING:
 				return convertStringToString(eDataType, instanceValue);
 			case LayersPackage.BOOLEAN:
@@ -771,6 +775,26 @@ public class LayersFactoryImpl extends EFactoryImpl implements LayersFactory {
 	public IsAbstractUmlSetter createIsAbstractUmlSetter() {
 		IsAbstractUmlSetterImpl isAbstractUmlSetter = new IsAbstractUmlSetterImpl();
 		return isAbstractUmlSetter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EventLevel createEventLevelFromString(EDataType eDataType, String initialValue) {
+		EventLevel result = EventLevel.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEventLevelToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

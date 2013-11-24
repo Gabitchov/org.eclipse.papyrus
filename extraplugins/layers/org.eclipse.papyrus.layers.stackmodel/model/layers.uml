@@ -865,28 +865,28 @@ This class carry a referenceto the Application.</body>
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_NAa0AFCkEeO_9LQ4jZWm3w" name="isLevel1DomainChangedEventDependant" visibility="public" type="_TqqsYNa8EeKPiuTfpuvqHA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_NAa0AFCkEeO_9LQ4jZWm3w" name="isDomainChangedEventDependant" visibility="public" type="_TqqsYNa8EeKPiuTfpuvqHA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_TxFPgFCkEeO_9LQ4jZWm3w" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_TxFPgVCkEeO_9LQ4jZWm3w" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_TxFPglCkEeO_9LQ4jZWm3w">
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_X_qIwFCkEeO_9LQ4jZWm3w" name="isAnyDomainChangedEventDependant" visibility="public" type="_TqqsYNa8EeKPiuTfpuvqHA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_X_qIwFCkEeO_9LQ4jZWm3w" name="domainChangedEventLevel" visibility="public" type="_7cWpgFVHEeOah7Z-UYdQAA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rnnm0FCkEeO_9LQ4jZWm3w" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rnnm0VCkEeO_9LQ4jZWm3w" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_rnnm0lCkEeO_9LQ4jZWm3w">
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_uJr68FCkEeO_9LQ4jZWm3w" name="isLevel1DiagramChangedEventdependant" visibility="public" type="_TqqsYNa8EeKPiuTfpuvqHA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_uJr68FCkEeO_9LQ4jZWm3w" name="isDiagramChangedEventDependant" visibility="public" type="_TqqsYNa8EeKPiuTfpuvqHA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ua2jcFCkEeO_9LQ4jZWm3w" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ua8qEFCkEeO_9LQ4jZWm3w" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_ua8qEVCkEeO_9LQ4jZWm3w">
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_y220sFCkEeO_9LQ4jZWm3w" name="isAnyDiagramChangedEventDependant" visibility="public" type="_TqqsYNa8EeKPiuTfpuvqHA">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_y220sFCkEeO_9LQ4jZWm3w" name="diagramChangedEventLevel" visibility="public" type="_7cWpgFVHEeOah7Z-UYdQAA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1VR-8FCkEeO_9LQ4jZWm3w" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1VR-8VCkEeO_9LQ4jZWm3w" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_1VR-8lCkEeO_9LQ4jZWm3w">
@@ -906,11 +906,49 @@ This class carry a referenceto the Application.</body>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_lpOagBZ0EeOZwp016gnCFQ" name="deactivate">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_MZS7cBaBEeOZwp016gnCFQ" name="oldParentLayer" type="_WuVRUNjjEeKQqZMBCFd2Uw"/>
       </ownedOperation>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_pKKxsBZ0EeOZwp016gnCFQ" name="evaluateExpr">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_-UwgIBZ0EeOZwp016gnCFQ" name="res" direction="return">
-          <type xmi:type="uml:Class" href="notation/notation.uml#_AziHOrcnEeKeLJDBCBPhPw"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_pKKxsBZ0EeOZwp016gnCFQ" name="isDerivedView" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_-UwgIBZ0EeOZwp016gnCFQ" name="res" type="_TqqsYNa8EeKPiuTfpuvqHA" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LLUi4BZ1EeOZwp016gnCFQ"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LLnd0BZ1EeOZwp016gnCFQ" value="*"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_0YIjYFVIEeOah7Z-UYdQAA" name="view">
+          <type xmi:type="uml:Class" href="notation/notation.uml#_AziHOrcnEeKeLJDBCBPhPw"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_EnH6gFVJEeOah7Z-UYdQAA" name="attachDerivedView" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Pusr4FVJEeOah7Z-UYdQAA">
+          <body>Attach the provided view to the Layer if the isDerivedView(view) return true for this view.</body>
+        </ownedComment>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_EnH6hFVJEeOah7Z-UYdQAA" name="view">
+          <type xmi:type="uml:Class" href="notation/notation.uml#_AziHOrcnEeKeLJDBCBPhPw"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Y5m8QFVJEeOah7Z-UYdQAA" name="attachDerivedViews" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Y5m8QVVJEeOah7Z-UYdQAA">
+          <body>For each view, attach it to the Layer if the isDerivedView(view) return true for the view.</body>
+        </ownedComment>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Y5m8QlVJEeOah7Z-UYdQAA" name="views">
+          <type xmi:type="uml:Class" href="notation/notation.uml#_AziHOrcnEeKeLJDBCBPhPw"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_h3YvkFVJEeOah7Z-UYdQAA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_h3YvkVVJEeOah7Z-UYdQAA" value="*"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_m3jd0FVJEeOah7Z-UYdQAA" name="attachDerivedViews" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_m3jd0VVJEeOah7Z-UYdQAA">
+          <body>Attach the views associated to the Diagram to this layer, if the isDerivedView(view) return true for the view.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Lwc4MFVKEeOah7Z-UYdQAA" name="lookupDerivedViews" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Lwc4MVVKEeOah7Z-UYdQAA">
+          <body>Return the subcollection of views for which the expression return true.</body>
+        </ownedComment>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Lwc4MlVKEeOah7Z-UYdQAA" name="views">
+          <type xmi:type="uml:Class" href="notation/notation.uml#_AziHOrcnEeKeLJDBCBPhPw"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Lwc4M1VKEeOah7Z-UYdQAA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Lwc4NFVKEeOah7Z-UYdQAA" value="*"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_X28v8FVKEeOah7Z-UYdQAA" name="res" direction="return">
+          <type xmi:type="uml:Class" href="notation/notation.uml#_AziHOrcnEeKeLJDBCBPhPw"/>
         </ownedParameter>
       </ownedOperation>
     </packagedElement>
@@ -1317,6 +1355,12 @@ plugin (ie the layer model plugin).&#xD;
     <packagedElement xmi:type="uml:PrimitiveType" xmi:id="__ADTwAxLEeOjX-JbGFEH7w" name="CustomPropertyOpertorInstance"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_Xxh1cBZ1EeOZwp016gnCFQ" name="IsAbstractUmlSetter">
       <generalization xmi:type="uml:Generalization" xmi:id="_a8mqUBZ1EeOZwp016gnCFQ" general="_fyVlIO3vEeKwLp35IbAIig"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_7cWpgFVHEeOah7Z-UYdQAA" name="EventLevel">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_ItnrQFVIEeOah7Z-UYdQAA" name="level1"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="__fkAQFVHEeOah7Z-UYdQAA" name="allLevels">
+        <specification xmi:type="uml:LiteralInteger" xmi:id="_gy8lIFVLEeOah7Z-UYdQAA" name="intValue" value="-1"/>
+      </ownedLiteral>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_X07z8LcsEeK8_t7Rpq6ZJA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_X2lZwLcsEeK8_t7Rpq6ZJA" source="http://www.eclipse.org/uml2/2.0.0/UML">

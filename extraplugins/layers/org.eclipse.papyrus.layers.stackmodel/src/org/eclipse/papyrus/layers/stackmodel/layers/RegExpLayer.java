@@ -14,6 +14,7 @@ package org.eclipse.papyrus.layers.stackmodel.layers;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.layers.stackmodel.LayersException;
 
 
 /**
@@ -26,10 +27,10 @@ import org.eclipse.gmf.runtime.notation.View;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getExpr <em>Expr</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getLanguage <em>Language</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DomainChangedEventDependant <em>Is Level1 Domain Changed Event Dependant</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDomainChangedEventDependant <em>Is Any Domain Changed Event Dependant</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DiagramChangedEventdependant <em>Is Level1 Diagram Changed Eventdependant</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDiagramChangedEventDependant <em>Is Any Diagram Changed Event Dependant</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDomainChangedEventDependant <em>Is Domain Changed Event Dependant</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getDomainChangedEventLevel <em>Domain Changed Event Level</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDiagramChangedEventDependant <em>Is Diagram Changed Event Dependant</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getDiagramChangedEventLevel <em>Diagram Changed Event Level</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getExpressionContextObjectType <em>Expression Context Object Type</em>}</li>
  * </ul>
  * </p>
@@ -93,108 +94,114 @@ public interface RegExpLayer extends AbstractLayer {
 	void setLanguage(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Level1 Domain Changed Event Dependant</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Domain Changed Event Dependant</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Level1 Domain Changed Event Dependant</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Domain Changed Event Dependant</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Level1 Domain Changed Event Dependant</em>' attribute.
-	 * @see #setIsLevel1DomainChangedEventDependant(boolean)
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getRegExpLayer_IsLevel1DomainChangedEventDependant()
+	 * @return the value of the '<em>Is Domain Changed Event Dependant</em>' attribute.
+	 * @see #setIsDomainChangedEventDependant(boolean)
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getRegExpLayer_IsDomainChangedEventDependant()
 	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isLevel1DomainChangedEventDependant();
+	boolean isDomainChangedEventDependant();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DomainChangedEventDependant <em>Is Level1 Domain Changed Event Dependant</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDomainChangedEventDependant <em>Is Domain Changed Event Dependant</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Level1 Domain Changed Event Dependant</em>' attribute.
-	 * @see #isLevel1DomainChangedEventDependant()
+	 * @param value the new value of the '<em>Is Domain Changed Event Dependant</em>' attribute.
+	 * @see #isDomainChangedEventDependant()
 	 * @generated
 	 */
-	void setIsLevel1DomainChangedEventDependant(boolean value);
+	void setIsDomainChangedEventDependant(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Any Domain Changed Event Dependant</b></em>' attribute.
+	 * Returns the value of the '<em><b>Domain Changed Event Level</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Any Domain Changed Event Dependant</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Domain Changed Event Level</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Any Domain Changed Event Dependant</em>' attribute.
-	 * @see #setIsAnyDomainChangedEventDependant(boolean)
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getRegExpLayer_IsAnyDomainChangedEventDependant()
-	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" required="true" ordered="false"
+	 * @return the value of the '<em>Domain Changed Event Level</em>' attribute.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.EventLevel
+	 * @see #setDomainChangedEventLevel(EventLevel)
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getRegExpLayer_DomainChangedEventLevel()
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isAnyDomainChangedEventDependant();
+	EventLevel getDomainChangedEventLevel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDomainChangedEventDependant <em>Is Any Domain Changed Event Dependant</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getDomainChangedEventLevel <em>Domain Changed Event Level</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Any Domain Changed Event Dependant</em>' attribute.
-	 * @see #isAnyDomainChangedEventDependant()
+	 * @param value the new value of the '<em>Domain Changed Event Level</em>' attribute.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.EventLevel
+	 * @see #getDomainChangedEventLevel()
 	 * @generated
 	 */
-	void setIsAnyDomainChangedEventDependant(boolean value);
+	void setDomainChangedEventLevel(EventLevel value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Level1 Diagram Changed Eventdependant</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Diagram Changed Event Dependant</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Level1 Diagram Changed Eventdependant</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Diagram Changed Event Dependant</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Level1 Diagram Changed Eventdependant</em>' attribute.
-	 * @see #setIsLevel1DiagramChangedEventdependant(boolean)
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getRegExpLayer_IsLevel1DiagramChangedEventdependant()
+	 * @return the value of the '<em>Is Diagram Changed Event Dependant</em>' attribute.
+	 * @see #setIsDiagramChangedEventDependant(boolean)
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getRegExpLayer_IsDiagramChangedEventDependant()
 	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isLevel1DiagramChangedEventdependant();
+	boolean isDiagramChangedEventDependant();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DiagramChangedEventdependant <em>Is Level1 Diagram Changed Eventdependant</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDiagramChangedEventDependant <em>Is Diagram Changed Event Dependant</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Level1 Diagram Changed Eventdependant</em>' attribute.
-	 * @see #isLevel1DiagramChangedEventdependant()
+	 * @param value the new value of the '<em>Is Diagram Changed Event Dependant</em>' attribute.
+	 * @see #isDiagramChangedEventDependant()
 	 * @generated
 	 */
-	void setIsLevel1DiagramChangedEventdependant(boolean value);
+	void setIsDiagramChangedEventDependant(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Any Diagram Changed Event Dependant</b></em>' attribute.
+	 * Returns the value of the '<em><b>Diagram Changed Event Level</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Any Diagram Changed Event Dependant</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Diagram Changed Event Level</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Any Diagram Changed Event Dependant</em>' attribute.
-	 * @see #setIsAnyDiagramChangedEventDependant(boolean)
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getRegExpLayer_IsAnyDiagramChangedEventDependant()
-	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" required="true" ordered="false"
+	 * @return the value of the '<em>Diagram Changed Event Level</em>' attribute.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.EventLevel
+	 * @see #setDiagramChangedEventLevel(EventLevel)
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getRegExpLayer_DiagramChangedEventLevel()
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isAnyDiagramChangedEventDependant();
+	EventLevel getDiagramChangedEventLevel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDiagramChangedEventDependant <em>Is Any Diagram Changed Event Dependant</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getDiagramChangedEventLevel <em>Diagram Changed Event Level</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Any Diagram Changed Event Dependant</em>' attribute.
-	 * @see #isAnyDiagramChangedEventDependant()
+	 * @param value the new value of the '<em>Diagram Changed Event Level</em>' attribute.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.EventLevel
+	 * @see #getDiagramChangedEventLevel()
 	 * @generated
 	 */
-	void setIsAnyDiagramChangedEventDependant(boolean value);
+	void setDiagramChangedEventLevel(EventLevel value);
 
 	/**
 	 * Returns the value of the '<em><b>Expression Context Object Type</b></em>' attribute.
@@ -241,8 +248,40 @@ public interface RegExpLayer extends AbstractLayer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false"
+	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewRequired="true" viewOrdered="false"
 	 * @generated
 	 */
-	EList<View> evaluateExpr();
+	EList<Boolean> isDerivedView(View view) throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewRequired="true" viewOrdered="false"
+	 * @generated
+	 */
+	void attachDerivedView(View view) throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewsMany="true" viewsOrdered="false"
+	 * @generated
+	 */
+	void attachDerivedViews(EList<View> views) throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException"
+	 * @generated
+	 */
+	void attachDerivedViews() throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewsMany="true" viewsOrdered="false"
+	 * @generated
+	 */
+	View lookupDerivedViews(EList<View> views) throws LayersException;
 } // RegExpLayer

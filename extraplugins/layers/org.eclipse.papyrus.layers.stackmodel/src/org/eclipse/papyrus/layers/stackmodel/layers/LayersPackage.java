@@ -15,6 +15,7 @@ package org.eclipse.papyrus.layers.stackmodel.layers;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -3561,40 +3562,40 @@ public interface LayersPackage extends EPackage {
 	int REG_EXP_LAYER__LANGUAGE = ABSTRACT_LAYER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Level1 Domain Changed Event Dependant</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Domain Changed Event Dependant</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 2;
+	int REG_EXP_LAYER__IS_DOMAIN_CHANGED_EVENT_DEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Is Any Domain Changed Event Dependant</b></em>' attribute.
+	 * The feature id for the '<em><b>Domain Changed Event Level</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 3;
+	int REG_EXP_LAYER__DOMAIN_CHANGED_EVENT_LEVEL = ABSTRACT_LAYER_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Is Level1 Diagram Changed Eventdependant</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Diagram Changed Event Dependant</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 4;
+	int REG_EXP_LAYER__IS_DIAGRAM_CHANGED_EVENT_DEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Is Any Diagram Changed Event Dependant</b></em>' attribute.
+	 * The feature id for the '<em><b>Diagram Changed Event Level</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT = ABSTRACT_LAYER_FEATURE_COUNT + 5;
+	int REG_EXP_LAYER__DIAGRAM_CHANGED_EVENT_LEVEL = ABSTRACT_LAYER_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Expression Context Object Type</b></em>' attribute.
@@ -3705,13 +3706,49 @@ public interface LayersPackage extends EPackage {
 	int REG_EXP_LAYER___DEACTIVATE__ABSTRACTLAYEROPERATOR = ABSTRACT_LAYER_OPERATION_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Evaluate Expr</em>' operation.
+	 * The operation id for the '<em>Is Derived View</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER___EVALUATE_EXPR = ABSTRACT_LAYER_OPERATION_COUNT + 2;
+	int REG_EXP_LAYER___IS_DERIVED_VIEW__VIEW = ABSTRACT_LAYER_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Attach Derived View</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___ATTACH_DERIVED_VIEW__VIEW = ABSTRACT_LAYER_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Attach Derived Views</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___ATTACH_DERIVED_VIEWS__ELIST = ABSTRACT_LAYER_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Attach Derived Views</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___ATTACH_DERIVED_VIEWS = ABSTRACT_LAYER_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Lookup Derived Views</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___LOOKUP_DERIVED_VIEWS__ELIST = ABSTRACT_LAYER_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Reg Exp Layer</em>' class.
@@ -3720,7 +3757,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER_OPERATION_COUNT = ABSTRACT_LAYER_OPERATION_COUNT + 3;
+	int REG_EXP_LAYER_OPERATION_COUNT = ABSTRACT_LAYER_OPERATION_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Application</b></em>' reference.
@@ -5115,6 +5152,16 @@ public interface LayersPackage extends EPackage {
 	int IS_ABSTRACT_UML_SETTER_OPERATION_COUNT = PROPERTY_SETTER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.EventLevel
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getEventLevel()
+	 * @generated
+	 */
+	int EVENT_LEVEL = 67;
+
+	/**
 	 * The meta object id for the '<em>String</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5122,7 +5169,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 67;
+	int STRING = 68;
 
 	/**
 	 * The meta object id for the '<em>boolean</em>' data type.
@@ -5131,7 +5178,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getboolean()
 	 * @generated
 	 */
-	int BOOLEAN = 68;
+	int BOOLEAN = 69;
 
 	/**
 	 * The meta object id for the '<em>EPackage</em>' data type.
@@ -5141,7 +5188,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getEPackage()
 	 * @generated
 	 */
-	int EPACKAGE = 69;
+	int EPACKAGE = 70;
 
 	/**
 	 * The meta object id for the '<em>Not Found Exception</em>' data type.
@@ -5151,7 +5198,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getNotFoundException()
 	 * @generated
 	 */
-	int NOT_FOUND_EXCEPTION = 73;
+	int NOT_FOUND_EXCEPTION = 74;
 
 	/**
 	 * The meta object id for the '<em>Compute Property Value Command</em>' data type.
@@ -5161,7 +5208,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getComputePropertyValueCommand()
 	 * @generated
 	 */
-	int COMPUTE_PROPERTY_VALUE_COMMAND = 74;
+	int COMPUTE_PROPERTY_VALUE_COMMAND = 75;
 
 	/**
 	 * The meta object id for the '<em>Exception</em>' data type.
@@ -5171,7 +5218,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayersException()
 	 * @generated
 	 */
-	int LAYERS_EXCEPTION = 70;
+	int LAYERS_EXCEPTION = 71;
 
 	/**
 	 * The meta object id for the '<em>int</em>' data type.
@@ -5180,7 +5227,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getint()
 	 * @generated
 	 */
-	int INT = 71;
+	int INT = 72;
 
 
 	/**
@@ -5191,7 +5238,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 75;
+	int OBJECT = 76;
 
 
 	/**
@@ -5202,7 +5249,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getCustomPropertyOpertorInstance()
 	 * @generated
 	 */
-	int CUSTOM_PROPERTY_OPERTOR_INSTANCE = 76;
+	int CUSTOM_PROPERTY_OPERTOR_INSTANCE = 77;
 
 	/**
 	 * The meta object id for the '<em>Bad State Exception</em>' data type.
@@ -5212,7 +5259,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getBadStateException()
 	 * @generated
 	 */
-	int BAD_STATE_EXCEPTION = 72;
+	int BAD_STATE_EXCEPTION = 73;
 
 
 	/**
@@ -5785,6 +5832,16 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIsAbstractUmlSetter();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Event Level</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.EventLevel
+	 * @generated
+	 */
+	EEnum getEventLevel();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance <em>Type Instance</em>}'.
@@ -6980,48 +7037,48 @@ public interface LayersPackage extends EPackage {
 	EAttribute getRegExpLayer_Language();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DomainChangedEventDependant <em>Is Level1 Domain Changed Event Dependant</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDomainChangedEventDependant <em>Is Domain Changed Event Dependant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Level1 Domain Changed Event Dependant</em>'.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DomainChangedEventDependant()
+	 * @return the meta object for the attribute '<em>Is Domain Changed Event Dependant</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDomainChangedEventDependant()
 	 * @see #getRegExpLayer()
 	 * @generated
 	 */
-	EAttribute getRegExpLayer_IsLevel1DomainChangedEventDependant();
+	EAttribute getRegExpLayer_IsDomainChangedEventDependant();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDomainChangedEventDependant <em>Is Any Domain Changed Event Dependant</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getDomainChangedEventLevel <em>Domain Changed Event Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Any Domain Changed Event Dependant</em>'.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDomainChangedEventDependant()
+	 * @return the meta object for the attribute '<em>Domain Changed Event Level</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getDomainChangedEventLevel()
 	 * @see #getRegExpLayer()
 	 * @generated
 	 */
-	EAttribute getRegExpLayer_IsAnyDomainChangedEventDependant();
+	EAttribute getRegExpLayer_DomainChangedEventLevel();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DiagramChangedEventdependant <em>Is Level1 Diagram Changed Eventdependant</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDiagramChangedEventDependant <em>Is Diagram Changed Event Dependant</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Level1 Diagram Changed Eventdependant</em>'.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isLevel1DiagramChangedEventdependant()
+	 * @return the meta object for the attribute '<em>Is Diagram Changed Event Dependant</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDiagramChangedEventDependant()
 	 * @see #getRegExpLayer()
 	 * @generated
 	 */
-	EAttribute getRegExpLayer_IsLevel1DiagramChangedEventdependant();
+	EAttribute getRegExpLayer_IsDiagramChangedEventDependant();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDiagramChangedEventDependant <em>Is Any Diagram Changed Event Dependant</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getDiagramChangedEventLevel <em>Diagram Changed Event Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Any Diagram Changed Event Dependant</em>'.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isAnyDiagramChangedEventDependant()
+	 * @return the meta object for the attribute '<em>Diagram Changed Event Level</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getDiagramChangedEventLevel()
 	 * @see #getRegExpLayer()
 	 * @generated
 	 */
-	EAttribute getRegExpLayer_IsAnyDiagramChangedEventDependant();
+	EAttribute getRegExpLayer_DiagramChangedEventLevel();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#getExpressionContextObjectType <em>Expression Context Object Type</em>}'.
@@ -7055,14 +7112,54 @@ public interface LayersPackage extends EPackage {
 	EOperation getRegExpLayer__Deactivate__AbstractLayerOperator();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#evaluateExpr() <em>Evaluate Expr</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDerivedView(org.eclipse.gmf.runtime.notation.View) <em>Is Derived View</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Evaluate Expr</em>' operation.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#evaluateExpr()
+	 * @return the meta object for the '<em>Is Derived View</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#isDerivedView(org.eclipse.gmf.runtime.notation.View)
 	 * @generated
 	 */
-	EOperation getRegExpLayer__EvaluateExpr();
+	EOperation getRegExpLayer__IsDerivedView__View();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#attachDerivedView(org.eclipse.gmf.runtime.notation.View) <em>Attach Derived View</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Attach Derived View</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#attachDerivedView(org.eclipse.gmf.runtime.notation.View)
+	 * @generated
+	 */
+	EOperation getRegExpLayer__AttachDerivedView__View();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#attachDerivedViews(org.eclipse.emf.common.util.EList) <em>Attach Derived Views</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Attach Derived Views</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#attachDerivedViews(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getRegExpLayer__AttachDerivedViews__EList();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#attachDerivedViews() <em>Attach Derived Views</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Attach Derived Views</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#attachDerivedViews()
+	 * @generated
+	 */
+	EOperation getRegExpLayer__AttachDerivedViews();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#lookupDerivedViews(org.eclipse.emf.common.util.EList) <em>Lookup Derived Views</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Lookup Derived Views</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer#lookupDerivedViews(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 */
+	EOperation getRegExpLayer__LookupDerivedViews__EList();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.layers.PropertyIndex <em>Property Index</em>}'.
@@ -8009,6 +8106,16 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IS_ABSTRACT_UML_SETTER = eINSTANCE.getIsAbstractUmlSetter();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.layers.stackmodel.layers.EventLevel
+		 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getEventLevel()
+		 * @generated
+		 */
+		EEnum EVENT_LEVEL = eINSTANCE.getEventLevel();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.TypeInstanceImpl <em>Type Instance</em>}' class.
@@ -8977,36 +9084,36 @@ public interface LayersPackage extends EPackage {
 		EAttribute REG_EXP_LAYER__LANGUAGE = eINSTANCE.getRegExpLayer_Language();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Level1 Domain Changed Event Dependant</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Domain Changed Event Dependant</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT = eINSTANCE.getRegExpLayer_IsLevel1DomainChangedEventDependant();
+		EAttribute REG_EXP_LAYER__IS_DOMAIN_CHANGED_EVENT_DEPENDANT = eINSTANCE.getRegExpLayer_IsDomainChangedEventDependant();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Any Domain Changed Event Dependant</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Domain Changed Event Level</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT = eINSTANCE.getRegExpLayer_IsAnyDomainChangedEventDependant();
+		EAttribute REG_EXP_LAYER__DOMAIN_CHANGED_EVENT_LEVEL = eINSTANCE.getRegExpLayer_DomainChangedEventLevel();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Level1 Diagram Changed Eventdependant</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Diagram Changed Event Dependant</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT = eINSTANCE.getRegExpLayer_IsLevel1DiagramChangedEventdependant();
+		EAttribute REG_EXP_LAYER__IS_DIAGRAM_CHANGED_EVENT_DEPENDANT = eINSTANCE.getRegExpLayer_IsDiagramChangedEventDependant();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Any Diagram Changed Event Dependant</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Diagram Changed Event Level</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT = eINSTANCE.getRegExpLayer_IsAnyDiagramChangedEventDependant();
+		EAttribute REG_EXP_LAYER__DIAGRAM_CHANGED_EVENT_LEVEL = eINSTANCE.getRegExpLayer_DiagramChangedEventLevel();
 
 		/**
 		 * The meta object literal for the '<em><b>Expression Context Object Type</b></em>' attribute feature.
@@ -9033,12 +9140,44 @@ public interface LayersPackage extends EPackage {
 		EOperation REG_EXP_LAYER___DEACTIVATE__ABSTRACTLAYEROPERATOR = eINSTANCE.getRegExpLayer__Deactivate__AbstractLayerOperator();
 
 		/**
-		 * The meta object literal for the '<em><b>Evaluate Expr</b></em>' operation.
+		 * The meta object literal for the '<em><b>Is Derived View</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation REG_EXP_LAYER___EVALUATE_EXPR = eINSTANCE.getRegExpLayer__EvaluateExpr();
+		EOperation REG_EXP_LAYER___IS_DERIVED_VIEW__VIEW = eINSTANCE.getRegExpLayer__IsDerivedView__View();
+
+		/**
+		 * The meta object literal for the '<em><b>Attach Derived View</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation REG_EXP_LAYER___ATTACH_DERIVED_VIEW__VIEW = eINSTANCE.getRegExpLayer__AttachDerivedView__View();
+
+		/**
+		 * The meta object literal for the '<em><b>Attach Derived Views</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation REG_EXP_LAYER___ATTACH_DERIVED_VIEWS__ELIST = eINSTANCE.getRegExpLayer__AttachDerivedViews__EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Attach Derived Views</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation REG_EXP_LAYER___ATTACH_DERIVED_VIEWS = eINSTANCE.getRegExpLayer__AttachDerivedViews();
+
+		/**
+		 * The meta object literal for the '<em><b>Lookup Derived Views</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation REG_EXP_LAYER___LOOKUP_DERIVED_VIEWS__ELIST = eINSTANCE.getRegExpLayer__LookupDerivedViews__EList();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.PropertyIndexImpl <em>Property Index</em>}' class.

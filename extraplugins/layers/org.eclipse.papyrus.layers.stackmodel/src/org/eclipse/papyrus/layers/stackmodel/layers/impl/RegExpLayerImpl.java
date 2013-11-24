@@ -22,8 +22,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayerOperator;
+import org.eclipse.papyrus.layers.stackmodel.layers.EventLevel;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer;
@@ -39,10 +41,10 @@ import org.eclipse.papyrus.layers.stackmodel.notifier.IDiagramViewEventListener;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#getExpr <em>Expr</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#getLanguage <em>Language</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#isLevel1DomainChangedEventDependant <em>Is Level1 Domain Changed Event Dependant</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#isAnyDomainChangedEventDependant <em>Is Any Domain Changed Event Dependant</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#isLevel1DiagramChangedEventdependant <em>Is Level1 Diagram Changed Eventdependant</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#isAnyDiagramChangedEventDependant <em>Is Any Diagram Changed Event Dependant</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#isDomainChangedEventDependant <em>Is Domain Changed Event Dependant</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#getDomainChangedEventLevel <em>Domain Changed Event Level</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#isDiagramChangedEventDependant <em>Is Diagram Changed Event Dependant</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#getDiagramChangedEventLevel <em>Diagram Changed Event Level</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl#getExpressionContextObjectType <em>Expression Context Object Type</em>}</li>
  * </ul>
  * </p>
@@ -88,77 +90,77 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	protected String language = LANGUAGE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isLevel1DomainChangedEventDependant() <em>Is Level1 Domain Changed Event Dependant</em>}' attribute.
+	 * The default value of the '{@link #isDomainChangedEventDependant() <em>Is Domain Changed Event Dependant</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isLevel1DomainChangedEventDependant()
+	 * @see #isDomainChangedEventDependant()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT = false;
+	protected static final boolean IS_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isLevel1DomainChangedEventDependant() <em>Is Level1 Domain Changed Event Dependant</em>}' attribute.
+	 * The cached value of the '{@link #isDomainChangedEventDependant() <em>Is Domain Changed Event Dependant</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isLevel1DomainChangedEventDependant()
+	 * @see #isDomainChangedEventDependant()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isLevel1DomainChangedEventDependant = IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT;
+	protected boolean isDomainChangedEventDependant = IS_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT;
 	/**
-	 * The default value of the '{@link #isAnyDomainChangedEventDependant() <em>Is Any Domain Changed Event Dependant</em>}' attribute.
+	 * The default value of the '{@link #getDomainChangedEventLevel() <em>Domain Changed Event Level</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAnyDomainChangedEventDependant()
+	 * @see #getDomainChangedEventLevel()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT = false;
+	protected static final EventLevel DOMAIN_CHANGED_EVENT_LEVEL_EDEFAULT = EventLevel.LEVEL1;
 	/**
-	 * The cached value of the '{@link #isAnyDomainChangedEventDependant() <em>Is Any Domain Changed Event Dependant</em>}' attribute.
+	 * The cached value of the '{@link #getDomainChangedEventLevel() <em>Domain Changed Event Level</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAnyDomainChangedEventDependant()
+	 * @see #getDomainChangedEventLevel()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isAnyDomainChangedEventDependant = IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT;
+	protected EventLevel domainChangedEventLevel = DOMAIN_CHANGED_EVENT_LEVEL_EDEFAULT;
 	/**
-	 * The default value of the '{@link #isLevel1DiagramChangedEventdependant() <em>Is Level1 Diagram Changed Eventdependant</em>}' attribute.
+	 * The default value of the '{@link #isDiagramChangedEventDependant() <em>Is Diagram Changed Event Dependant</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isLevel1DiagramChangedEventdependant()
+	 * @see #isDiagramChangedEventDependant()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT_EDEFAULT = false;
+	protected static final boolean IS_DIAGRAM_CHANGED_EVENT_DEPENDANT_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isLevel1DiagramChangedEventdependant() <em>Is Level1 Diagram Changed Eventdependant</em>}' attribute.
+	 * The cached value of the '{@link #isDiagramChangedEventDependant() <em>Is Diagram Changed Event Dependant</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isLevel1DiagramChangedEventdependant()
+	 * @see #isDiagramChangedEventDependant()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isLevel1DiagramChangedEventdependant = IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT_EDEFAULT;
+	protected boolean isDiagramChangedEventDependant = IS_DIAGRAM_CHANGED_EVENT_DEPENDANT_EDEFAULT;
 	/**
-	 * The default value of the '{@link #isAnyDiagramChangedEventDependant() <em>Is Any Diagram Changed Event Dependant</em>}' attribute.
+	 * The default value of the '{@link #getDiagramChangedEventLevel() <em>Diagram Changed Event Level</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAnyDiagramChangedEventDependant()
+	 * @see #getDiagramChangedEventLevel()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT_EDEFAULT = false;
+	protected static final EventLevel DIAGRAM_CHANGED_EVENT_LEVEL_EDEFAULT = EventLevel.LEVEL1;
 	/**
-	 * The cached value of the '{@link #isAnyDiagramChangedEventDependant() <em>Is Any Diagram Changed Event Dependant</em>}' attribute.
+	 * The cached value of the '{@link #getDiagramChangedEventLevel() <em>Diagram Changed Event Level</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAnyDiagramChangedEventDependant()
+	 * @see #getDiagramChangedEventLevel()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isAnyDiagramChangedEventDependant = IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT_EDEFAULT;
+	protected EventLevel diagramChangedEventLevel = DIAGRAM_CHANGED_EVENT_LEVEL_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getExpressionContextObjectType() <em>Expression Context Object Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -280,8 +282,8 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLevel1DomainChangedEventDependant() {
-		return isLevel1DomainChangedEventDependant;
+	public boolean isDomainChangedEventDependant() {
+		return isDomainChangedEventDependant;
 	}
 
 	/**
@@ -289,11 +291,11 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsLevel1DomainChangedEventDependant(boolean newIsLevel1DomainChangedEventDependant) {
-		boolean oldIsLevel1DomainChangedEventDependant = isLevel1DomainChangedEventDependant;
-		isLevel1DomainChangedEventDependant = newIsLevel1DomainChangedEventDependant;
+	public void setIsDomainChangedEventDependant(boolean newIsDomainChangedEventDependant) {
+		boolean oldIsDomainChangedEventDependant = isDomainChangedEventDependant;
+		isDomainChangedEventDependant = newIsDomainChangedEventDependant;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT, oldIsLevel1DomainChangedEventDependant, isLevel1DomainChangedEventDependant));
+			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__IS_DOMAIN_CHANGED_EVENT_DEPENDANT, oldIsDomainChangedEventDependant, isDomainChangedEventDependant));
 	}
 
 	/**
@@ -301,8 +303,8 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAnyDomainChangedEventDependant() {
-		return isAnyDomainChangedEventDependant;
+	public EventLevel getDomainChangedEventLevel() {
+		return domainChangedEventLevel;
 	}
 
 	/**
@@ -310,11 +312,11 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsAnyDomainChangedEventDependant(boolean newIsAnyDomainChangedEventDependant) {
-		boolean oldIsAnyDomainChangedEventDependant = isAnyDomainChangedEventDependant;
-		isAnyDomainChangedEventDependant = newIsAnyDomainChangedEventDependant;
+	public void setDomainChangedEventLevel(EventLevel newDomainChangedEventLevel) {
+		EventLevel oldDomainChangedEventLevel = domainChangedEventLevel;
+		domainChangedEventLevel = newDomainChangedEventLevel == null ? DOMAIN_CHANGED_EVENT_LEVEL_EDEFAULT : newDomainChangedEventLevel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT, oldIsAnyDomainChangedEventDependant, isAnyDomainChangedEventDependant));
+			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__DOMAIN_CHANGED_EVENT_LEVEL, oldDomainChangedEventLevel, domainChangedEventLevel));
 	}
 
 	/**
@@ -322,8 +324,8 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLevel1DiagramChangedEventdependant() {
-		return isLevel1DiagramChangedEventdependant;
+	public boolean isDiagramChangedEventDependant() {
+		return isDiagramChangedEventDependant;
 	}
 
 	/**
@@ -331,11 +333,11 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsLevel1DiagramChangedEventdependant(boolean newIsLevel1DiagramChangedEventdependant) {
-		boolean oldIsLevel1DiagramChangedEventdependant = isLevel1DiagramChangedEventdependant;
-		isLevel1DiagramChangedEventdependant = newIsLevel1DiagramChangedEventdependant;
+	public void setIsDiagramChangedEventDependant(boolean newIsDiagramChangedEventDependant) {
+		boolean oldIsDiagramChangedEventDependant = isDiagramChangedEventDependant;
+		isDiagramChangedEventDependant = newIsDiagramChangedEventDependant;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT, oldIsLevel1DiagramChangedEventdependant, isLevel1DiagramChangedEventdependant));
+			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__IS_DIAGRAM_CHANGED_EVENT_DEPENDANT, oldIsDiagramChangedEventDependant, isDiagramChangedEventDependant));
 	}
 
 	/**
@@ -343,8 +345,8 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAnyDiagramChangedEventDependant() {
-		return isAnyDiagramChangedEventDependant;
+	public EventLevel getDiagramChangedEventLevel() {
+		return diagramChangedEventLevel;
 	}
 
 	/**
@@ -352,11 +354,11 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsAnyDiagramChangedEventDependant(boolean newIsAnyDiagramChangedEventDependant) {
-		boolean oldIsAnyDiagramChangedEventDependant = isAnyDiagramChangedEventDependant;
-		isAnyDiagramChangedEventDependant = newIsAnyDiagramChangedEventDependant;
+	public void setDiagramChangedEventLevel(EventLevel newDiagramChangedEventLevel) {
+		EventLevel oldDiagramChangedEventLevel = diagramChangedEventLevel;
+		diagramChangedEventLevel = newDiagramChangedEventLevel == null ? DIAGRAM_CHANGED_EVENT_LEVEL_EDEFAULT : newDiagramChangedEventLevel;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT, oldIsAnyDiagramChangedEventDependant, isAnyDiagramChangedEventDependant));
+			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__DIAGRAM_CHANGED_EVENT_LEVEL, oldDiagramChangedEventLevel, diagramChangedEventLevel));
 	}
 
 	/**
@@ -434,7 +436,51 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<View> evaluateExpr() {
+	public EList<Boolean> isDerivedView(View view) throws LayersException {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void attachDerivedView(View view) throws LayersException {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void attachDerivedViews(EList<View> views) throws LayersException {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void attachDerivedViews() throws LayersException {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public View lookupDerivedViews(EList<View> views) throws LayersException {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -452,14 +498,14 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 				return getExpr();
 			case LayersPackage.REG_EXP_LAYER__LANGUAGE:
 				return getLanguage();
-			case LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT:
-				return isLevel1DomainChangedEventDependant();
-			case LayersPackage.REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT:
-				return isAnyDomainChangedEventDependant();
-			case LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT:
-				return isLevel1DiagramChangedEventdependant();
-			case LayersPackage.REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT:
-				return isAnyDiagramChangedEventDependant();
+			case LayersPackage.REG_EXP_LAYER__IS_DOMAIN_CHANGED_EVENT_DEPENDANT:
+				return isDomainChangedEventDependant();
+			case LayersPackage.REG_EXP_LAYER__DOMAIN_CHANGED_EVENT_LEVEL:
+				return getDomainChangedEventLevel();
+			case LayersPackage.REG_EXP_LAYER__IS_DIAGRAM_CHANGED_EVENT_DEPENDANT:
+				return isDiagramChangedEventDependant();
+			case LayersPackage.REG_EXP_LAYER__DIAGRAM_CHANGED_EVENT_LEVEL:
+				return getDiagramChangedEventLevel();
 			case LayersPackage.REG_EXP_LAYER__EXPRESSION_CONTEXT_OBJECT_TYPE:
 				return getExpressionContextObjectType();
 		}
@@ -480,17 +526,17 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 			case LayersPackage.REG_EXP_LAYER__LANGUAGE:
 				setLanguage((String)newValue);
 				return;
-			case LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT:
-				setIsLevel1DomainChangedEventDependant((Boolean)newValue);
+			case LayersPackage.REG_EXP_LAYER__IS_DOMAIN_CHANGED_EVENT_DEPENDANT:
+				setIsDomainChangedEventDependant((Boolean)newValue);
 				return;
-			case LayersPackage.REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT:
-				setIsAnyDomainChangedEventDependant((Boolean)newValue);
+			case LayersPackage.REG_EXP_LAYER__DOMAIN_CHANGED_EVENT_LEVEL:
+				setDomainChangedEventLevel((EventLevel)newValue);
 				return;
-			case LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT:
-				setIsLevel1DiagramChangedEventdependant((Boolean)newValue);
+			case LayersPackage.REG_EXP_LAYER__IS_DIAGRAM_CHANGED_EVENT_DEPENDANT:
+				setIsDiagramChangedEventDependant((Boolean)newValue);
 				return;
-			case LayersPackage.REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT:
-				setIsAnyDiagramChangedEventDependant((Boolean)newValue);
+			case LayersPackage.REG_EXP_LAYER__DIAGRAM_CHANGED_EVENT_LEVEL:
+				setDiagramChangedEventLevel((EventLevel)newValue);
 				return;
 			case LayersPackage.REG_EXP_LAYER__EXPRESSION_CONTEXT_OBJECT_TYPE:
 				setExpressionContextObjectType((String)newValue);
@@ -513,17 +559,17 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 			case LayersPackage.REG_EXP_LAYER__LANGUAGE:
 				setLanguage(LANGUAGE_EDEFAULT);
 				return;
-			case LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT:
-				setIsLevel1DomainChangedEventDependant(IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT);
+			case LayersPackage.REG_EXP_LAYER__IS_DOMAIN_CHANGED_EVENT_DEPENDANT:
+				setIsDomainChangedEventDependant(IS_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT);
 				return;
-			case LayersPackage.REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT:
-				setIsAnyDomainChangedEventDependant(IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT);
+			case LayersPackage.REG_EXP_LAYER__DOMAIN_CHANGED_EVENT_LEVEL:
+				setDomainChangedEventLevel(DOMAIN_CHANGED_EVENT_LEVEL_EDEFAULT);
 				return;
-			case LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT:
-				setIsLevel1DiagramChangedEventdependant(IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT_EDEFAULT);
+			case LayersPackage.REG_EXP_LAYER__IS_DIAGRAM_CHANGED_EVENT_DEPENDANT:
+				setIsDiagramChangedEventDependant(IS_DIAGRAM_CHANGED_EVENT_DEPENDANT_EDEFAULT);
 				return;
-			case LayersPackage.REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT:
-				setIsAnyDiagramChangedEventDependant(IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT_EDEFAULT);
+			case LayersPackage.REG_EXP_LAYER__DIAGRAM_CHANGED_EVENT_LEVEL:
+				setDiagramChangedEventLevel(DIAGRAM_CHANGED_EVENT_LEVEL_EDEFAULT);
 				return;
 			case LayersPackage.REG_EXP_LAYER__EXPRESSION_CONTEXT_OBJECT_TYPE:
 				setExpressionContextObjectType(EXPRESSION_CONTEXT_OBJECT_TYPE_EDEFAULT);
@@ -544,14 +590,14 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 				return EXPR_EDEFAULT == null ? expr != null : !EXPR_EDEFAULT.equals(expr);
 			case LayersPackage.REG_EXP_LAYER__LANGUAGE:
 				return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
-			case LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT:
-				return isLevel1DomainChangedEventDependant != IS_LEVEL1_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT;
-			case LayersPackage.REG_EXP_LAYER__IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT:
-				return isAnyDomainChangedEventDependant != IS_ANY_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT;
-			case LayersPackage.REG_EXP_LAYER__IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT:
-				return isLevel1DiagramChangedEventdependant != IS_LEVEL1_DIAGRAM_CHANGED_EVENTDEPENDANT_EDEFAULT;
-			case LayersPackage.REG_EXP_LAYER__IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT:
-				return isAnyDiagramChangedEventDependant != IS_ANY_DIAGRAM_CHANGED_EVENT_DEPENDANT_EDEFAULT;
+			case LayersPackage.REG_EXP_LAYER__IS_DOMAIN_CHANGED_EVENT_DEPENDANT:
+				return isDomainChangedEventDependant != IS_DOMAIN_CHANGED_EVENT_DEPENDANT_EDEFAULT;
+			case LayersPackage.REG_EXP_LAYER__DOMAIN_CHANGED_EVENT_LEVEL:
+				return domainChangedEventLevel != DOMAIN_CHANGED_EVENT_LEVEL_EDEFAULT;
+			case LayersPackage.REG_EXP_LAYER__IS_DIAGRAM_CHANGED_EVENT_DEPENDANT:
+				return isDiagramChangedEventDependant != IS_DIAGRAM_CHANGED_EVENT_DEPENDANT_EDEFAULT;
+			case LayersPackage.REG_EXP_LAYER__DIAGRAM_CHANGED_EVENT_LEVEL:
+				return diagramChangedEventLevel != DIAGRAM_CHANGED_EVENT_LEVEL_EDEFAULT;
 			case LayersPackage.REG_EXP_LAYER__EXPRESSION_CONTEXT_OBJECT_TYPE:
 				return EXPRESSION_CONTEXT_OBJECT_TYPE_EDEFAULT == null ? expressionContextObjectType != null : !EXPRESSION_CONTEXT_OBJECT_TYPE_EDEFAULT.equals(expressionContextObjectType);
 		}
@@ -564,6 +610,7 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case LayersPackage.REG_EXP_LAYER___ACTIVATE__ABSTRACTLAYEROPERATOR:
@@ -572,8 +619,44 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 			case LayersPackage.REG_EXP_LAYER___DEACTIVATE__ABSTRACTLAYEROPERATOR:
 				deactivate((AbstractLayerOperator)arguments.get(0));
 				return null;
-			case LayersPackage.REG_EXP_LAYER___EVALUATE_EXPR:
-				return evaluateExpr();
+			case LayersPackage.REG_EXP_LAYER___IS_DERIVED_VIEW__VIEW:
+				try {
+					return isDerivedView((View)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.REG_EXP_LAYER___ATTACH_DERIVED_VIEW__VIEW:
+				try {
+					attachDerivedView((View)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.REG_EXP_LAYER___ATTACH_DERIVED_VIEWS__ELIST:
+				try {
+					attachDerivedViews((EList<View>)arguments.get(0));
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.REG_EXP_LAYER___ATTACH_DERIVED_VIEWS:
+				try {
+					attachDerivedViews();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.REG_EXP_LAYER___LOOKUP_DERIVED_VIEWS__ELIST:
+				try {
+					return lookupDerivedViews((EList<View>)arguments.get(0));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -592,14 +675,14 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 		result.append(expr);
 		result.append(", language: ");
 		result.append(language);
-		result.append(", isLevel1DomainChangedEventDependant: ");
-		result.append(isLevel1DomainChangedEventDependant);
-		result.append(", isAnyDomainChangedEventDependant: ");
-		result.append(isAnyDomainChangedEventDependant);
-		result.append(", isLevel1DiagramChangedEventdependant: ");
-		result.append(isLevel1DiagramChangedEventdependant);
-		result.append(", isAnyDiagramChangedEventDependant: ");
-		result.append(isAnyDiagramChangedEventDependant);
+		result.append(", isDomainChangedEventDependant: ");
+		result.append(isDomainChangedEventDependant);
+		result.append(", domainChangedEventLevel: ");
+		result.append(domainChangedEventLevel);
+		result.append(", isDiagramChangedEventDependant: ");
+		result.append(isDiagramChangedEventDependant);
+		result.append(", diagramChangedEventLevel: ");
+		result.append(diagramChangedEventLevel);
 		result.append(", expressionContextObjectType: ");
 		result.append(expressionContextObjectType);
 		result.append(')');

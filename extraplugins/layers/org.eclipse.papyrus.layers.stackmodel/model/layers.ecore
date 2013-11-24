@@ -405,21 +405,39 @@
     <eOperations name="deactivate" ordered="false" lowerBound="1">
       <eParameters name="oldParentLayer" ordered="false" lowerBound="1" eType="#//AbstractLayerOperator"/>
     </eOperations>
-    <eOperations name="evaluateExpr" ordered="false" upperBound="-1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
+    <eOperations name="isDerivedView" ordered="false" upperBound="-1" eType="#//boolean"
+        eExceptions="#//LayersException">
+      <eParameters name="view" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
+    </eOperations>
+    <eOperations name="attachDerivedView" ordered="false" lowerBound="1" eExceptions="#//LayersException">
+      <eParameters name="view" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
+    </eOperations>
+    <eOperations name="attachDerivedViews" ordered="false" lowerBound="1" eExceptions="#//LayersException">
+      <eParameters name="views" ordered="false" upperBound="-1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
+    </eOperations>
+    <eOperations name="attachDerivedViews" ordered="false" lowerBound="1" eExceptions="#//LayersException"/>
+    <eOperations name="lookupDerivedViews" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"
+        eExceptions="#//LayersException">
+      <eParameters name="views" ordered="false" upperBound="-1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expr" ordered="false" lowerBound="1"
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" ordered="false"
         lowerBound="1" eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLevel1DomainChangedEventDependant"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDomainChangedEventDependant"
         ordered="false" lowerBound="1" eType="#//boolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAnyDomainChangedEventDependant"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="domainChangedEventLevel"
+        ordered="false" lowerBound="1" eType="#//EventLevel"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDiagramChangedEventDependant"
         ordered="false" lowerBound="1" eType="#//boolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLevel1DiagramChangedEventdependant"
-        ordered="false" lowerBound="1" eType="#//boolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAnyDiagramChangedEventDependant"
-        ordered="false" lowerBound="1" eType="#//boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramChangedEventLevel"
+        ordered="false" lowerBound="1" eType="#//EventLevel"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expressionContextObjectType"
         ordered="false" lowerBound="1" eType="#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EventLevel">
+    <eLiterals name="level1"/>
+    <eLiterals name="allLevels" value="-1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Layer" eSuperTypes="#//AbstractLayer"/>
   <eClassifiers xsi:type="ecore:EClass" name="Color" eSuperTypes="#//Type"/>

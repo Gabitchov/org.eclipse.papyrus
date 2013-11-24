@@ -1468,6 +1468,11 @@
     <elements name="RegExpLayer" supertypes="//@dataContexts.0/@elements.27">
       <properties name="expr"/>
       <properties name="language"/>
+       <properties name="isDomainChangedEventDependant" type="Boolean"/>
+      <properties name="domainChangedEventLevel" type="Enumeration"/>
+      <properties name="isDiagramChangedEventDependant" type="Boolean"/>
+      <properties name="diagramChangedEventLevel" type="Enumeration"/>
+      <properties name="expressionContextObjectType"/>
     </elements>
     <elements name="Layer" supertypes="//@dataContexts.0/@elements.27"/>
     <elements name="Color" supertypes="//@dataContexts.0/@elements.9"/>
