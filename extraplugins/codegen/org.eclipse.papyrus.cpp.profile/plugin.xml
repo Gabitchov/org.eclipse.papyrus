@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+	<extension
+			point="org.eclipse.emf.ecore.uri_mapping">
+		<mapping
+			source="pathmap://PapyrusC_Cpp_LIBRARIES/"
+			target="platform:/plugin/org.eclipse.papyrus.cpp.profile/libraries/"/>
+		<mapping
+			source="pathmap://PapyrusC_Cpp_PROFILES/"
+			target="platform:/plugin/org.eclipse.papyrus.cpp.profile/profiles/"/>
+	</extension>
+  
+	<extension 
+			point="org.eclipse.uml2.uml.generated_package">
+		<profile
+			uri="http://www.eclipse.org/papyrus/C_Cpp/1"
+			location="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+	</extension>
+
+	<extension
+			point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+		<library
+			description="Standard C Ansi types"
+			iconpath="icons/transfo_cpp.gif"
+			name="AnsiCLibrary"
+			path="pathmap://PapyrusC_Cpp_LIBRARIES/AnsiCLibrary.uml"
+			provider="CEA LIST"/>
+	</extension>
+   
+	<extension
+			point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+		<profile
+			description="C/C++ profile used for code generation"
+			iconpath="icons/transfo_cpp.gif"
+			name="C/C++ profile"
+			path="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml"
+			provider="CEA LIST"/>
+	</extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated C_Cpp -->
       <package
