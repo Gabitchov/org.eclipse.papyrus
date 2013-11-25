@@ -37,7 +37,7 @@ public class OneResourceForAllProfilesTests extends AbstractChangeStrategyTests 
 	 */
 	@Override
 	protected List<String> getModelFileNames() {
-		return Arrays.asList(DI_FILE, NOTATION_FILE, UML_FILE, ALL_PROFILES_FILE);
+		return ONE_RESOURCE_FOR_ALL_PROFILES_FILE_NAMES;
 	}
 
 	/**
