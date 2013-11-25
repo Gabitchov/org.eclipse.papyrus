@@ -20,47 +20,38 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.FCM.Configuration;
-import org.eclipse.papyrus.FCM.DeploymentPlan;
-import org.eclipse.papyrus.FCM.util.MapUtil;
+import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.ContainerRuleKind;
+import org.eclipse.papyrus.FCM.util.FCMUtil;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
-import org.eclipse.papyrus.qompass.designer.core.ProjectManagement;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.EnumService;
-import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.Deploy;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
 import org.eclipse.papyrus.qompass.designer.core.extensions.LanguageSupport;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerateCode;
-import org.eclipse.papyrus.qompass.designer.core.generate.GenerationOptions;
 import org.eclipse.papyrus.qompass.designer.core.templates.InstantiateCppIncludeWOB;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterComments;
-import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterRuleApplication;
-import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterStateMachines;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterTemplate;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class executes all transformations during the instantiation of a
@@ -73,20 +64,48 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * @author ansgar
  * 
  */
-public class InstantiateDepPlan {
+public class TrafoAndCodegenPackage {
 
 	/**
-	 * The location of the temporary model (relative to current project).
-	 * TODO: make configurable?
+	 * Iterate over source model and apply transformation
+	 * @param copy
+	 * @param pkg
+	 * @throws TransformationException
 	 */
-	public static final String TEMP_MODEL_FOLDER = "tmpModel"; //$NON-NLS-1$
-	
-	/**
-	 * Postfix of the temporary model (prefix = name of top-level package).
-	 * TODO: make configurable?
-	 */
-	public static final String TEMP_MODEL_POSTFIX = "Tmp.uml"; //$NON-NLS-1$
-	
+	public static void applyTrafo(Copy copy, Package pkg) throws TransformationException {
+		EList<PackageableElement> peList = new BasicEList<PackageableElement>();
+		peList.addAll(pkg.getPackagedElements());
+		for(PackageableElement element : peList) {
+			if(element instanceof Package) {
+				applyTrafo(copy, (Package)element);
+			}
+			else if(element instanceof Class) {
+			
+				Class smImplementation = (Class)element;
+				Class tmImplementation = copy.getCopy(smImplementation);
+				
+				// get container trafo instance, if already existing
+				AbstractContainerTrafo containerTrafo = ContainerTrafo.get(tmImplementation);
+
+				// we may not apply the transformation to the boot-loader itself, in particular it would transform
+				// singletons into pointers.
+				EList<ContainerRule> rules = FCMUtil.getAllContainerRules(smImplementation);
+				for(ContainerRule rule : rules) {
+					// if(RuleManagement.isRuleActive(rule)) {
+						// at least one active rule => create container (or get previously instantiated))
+						if(rule.getKind() == ContainerRuleKind.LIGHT_WEIGHT_OO_RULE) {
+							if (containerTrafo == null) {
+								// container does not exist yet, create
+								containerTrafo = new LWContainerTrafo(copy, null);
+								containerTrafo.createContainer(smImplementation, tmImplementation);
+							}
+							containerTrafo.applyRule(rule, smImplementation, tmImplementation);
+						}
+					}
+				// }
+			}
+		}
+	}
 	
 	/**
 	 * Instantiate a deployment plan, i.e. generate an intermediate model via a sequence of transformations
@@ -98,8 +117,7 @@ public class InstantiateDepPlan {
 	 * 	a subfolder (tmpModel) of the current project
 	 * @param genOptions select whether to produce an intermediate model only, also code, ... @see GenerationOptions
 	 */
-	public static void instantiate(Element cdpOrConfig, IProgressMonitor monitor, IProject project, int genOptions) {
-		boolean OOmodel = true;
+	public static void instantiate(Element cdpOrConfig, IProgressMonitor monitor, IProject project) {
 		if(project == null) {
 			String projectName = cdpOrConfig.eResource().getURI().toString();
 			project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
@@ -107,60 +125,33 @@ public class InstantiateDepPlan {
 		Model tmpModel = null;
 		ModelManagement tmpMM = null;
 
-		boolean generateCode = (genOptions & GenerationOptions.MODEL_ONLY) == 0;
-		boolean generateCACOnly = (genOptions & GenerationOptions.CAC_ONLY) != 0;
-
 		AcceleoDriver.clearErrors();
-		Package cdp;
-		Configuration configuration = null;
+		Package selectedPkg;
 		if(cdpOrConfig instanceof Package) {
-			cdp = (Package)cdpOrConfig;
+			selectedPkg = (Package)cdpOrConfig;
 			RuleManagement.setConfiguration(null);
 		}
-		else if(StereotypeUtil.isApplied(cdpOrConfig, Configuration.class)) {
-			configuration = UMLUtil.getStereotypeApplication(cdpOrConfig, Configuration.class);
-			DeploymentPlan fcmCDP = configuration.getDeploymentPlan();
-			if(fcmCDP == null) {
-				final NamedElement config = (NamedElement)cdpOrConfig;
-				Display.getDefault().syncExec(new Runnable() {
-
-					public void run() {
-						Shell shell = new Shell();
-						MessageDialog.openError(shell, Messages.InstantiateDepPlan_CannotGenModel,
-								String.format(Messages.InstantiateDepPlan_DepPlanStereotypeNotInitialized, config.getName()));
-					}
-				});
-				return;
-			}
-			cdp = fcmCDP.getBase_Package();
-			RuleManagement.setConfiguration(configuration);
-		} else {
+		else {
 			return;
 		}
 
 		try {
 			EnumService.init();
-			InstanceSpecification rootIS = DepUtils.getMainInstance(cdp);
 			// Package copyCDP = dt.getCopyCDT (selectedCDP);
-
-			EList<InstanceSpecification> nodes = AllocUtils.getAllNodes(rootIS);
 
 			// -- calc # of steps for progress monitor
 			// 1 (tmpModel creation) + 1 (reification) + 1 (tmpModel save)
 			// 5x on each deployed node (see below)
 			// problem? Connector reification is a single, relatively long step
 			int steps = 3;
-			steps += 5 * nodes.size();
-			if(generateCode) {
-				steps += nodes.size();
-			}
+
 			monitor.beginTask(Messages.InstantiateDepPlan_InfoGeneratingModel, steps);
 			if(monitor.isCanceled()) {
 				return;
 			}
 
 			// 1a: create a new model (and applies same profiles / imports)
-			Model existingModel = cdp.getModel();
+			Model existingModel = selectedPkg.getModel();
 			TransformationContext.sourceRoot = existingModel;
 			tmpMM = createTargetModel(existingModel, monitor, existingModel.getName(), true);
 			tmpModel = tmpMM.getModel();
@@ -188,132 +179,45 @@ public class InstantiateDepPlan {
 			monitor.subTask(Messages.InstantiateDepPlan_InfoExpandingConnectors);
 
 			// obtain reference to CDP in target model
-			// 
-			tmpCopy.createShallowContainer(rootIS);
-			Package tmCDP = (Package)tmpCopy.get(cdp);
-
+			
 			ContainerTrafo.init();
-			MainModelTrafo mainModelTrafo = new MainModelTrafo(tmpCopy, tmCDP);
-			InstanceSpecification newRootIS = mainModelTrafo.transformInstance(rootIS, null);
 			monitor.worked(1);
 
+			// create recursive copy of selectedPackage
+			tmpCopy.getCopy(selectedPkg);
+			
+			// apply container transformation
+			applyTrafo(tmpCopy, selectedPkg);
+			
 			// 1c: late bindings
 			// LateEval.bindLateOperations();
 			// 3: distribute to nodes
 
-			FlattenInteractionComponents.getInstance().flattenAssembly(newRootIS, null);
-			
-			String tmpPath = tmpMM.getPath(project, TEMP_MODEL_FOLDER, tmpModel.getName() + TEMP_MODEL_POSTFIX);
+			String tmpPath = tmpMM.getPath(project, InstantiateDepPlan.TEMP_MODEL_FOLDER, tmpModel.getName() + InstantiateDepPlan.TEMP_MODEL_POSTFIX);
 			tmpMM.saveModel(tmpPath);
+
+			String targetLanguage = DepUtils.getLanguageFromPackage(selectedPkg);
+			if (targetLanguage == null) {
+				targetLanguage = "C++"; //$NON-NLS-1$
+			}
+			// genProject = project
+			ModelManagement genMM = tmpMM;
+			IProject genProject = project;
+			ILangSupport langSupport = LanguageSupport.getLangSupport(targetLanguage);
+			langSupport.resetConfigurationData();
+			
+			langSupport.setProject(genProject);
+	
+			GenerateCode codeGen = new GenerateCode(genProject, langSupport, genMM, monitor);
+			codeGen.generate(null, targetLanguage, false);
+
+			genMM.dispose();
 
 			if(monitor.isCanceled()) {
 				return;
 			}
 			monitor.worked(1);
 
-			if(!generateCACOnly) {
-				// not deploy on each node
-				DepCreation.initAutoValues(newRootIS);
-
-				nodes = AllocUtils.getAllNodes(newRootIS);
-				if(nodes.size() == 0) {
-					throw new TransformationException(Messages.InstantiateDepPlan_InfoNoneAllocated);
-				}
-				int nodeIndex = 0;
-				Classifier cl = DepUtils.getClassifier(rootIS);
-				String targetLanguage = DepUtils.getLanguageFromPackage(cl.getNearestPackage());
-				if (targetLanguage == null) {
-					targetLanguage = "C++"; //$NON-NLS-1$
-				}
-				
-				for(InstanceSpecification node : nodes) {
-					String modelName = existingModel.getName() + "_" + node.getName(); //$NON-NLS-1$
-					if(configuration != null) {
-						modelName += "_" + configuration.getBase_Class().getName(); //$NON-NLS-1$
-					} else {
-						modelName += "_" + cdp.getName(); //$NON-NLS-1$
-					}
-					ModelManagement genMM = createTargetModel(existingModel, monitor, MapUtil.rootModelName, false);
-					Model genModel = genMM.getModel();
-
-					if(monitor.isCanceled()) {
-						return;
-					}
-					monitor.worked(1);
-					// new model has name "root" and contains a package with the
-					// existing model
-					// Package originalRoot = genModel.createNestedPackage
-					// (existingModel.getName ());
-					Copy targetCopy = new Copy(tmpModel, genModel, true);
-					// TODO: distribution to nodes is currently not done. How can it be realized with a copy filter ?
-					targetCopy.preCopyListeners.add(FilterStateMachines.getInstance());
-					targetCopy.preCopyListeners.add(FilterRuleApplication.getInstance());
-					targetCopy.postCopyListeners.add(InstantiateCppIncludeWOB.getInstance());
-
-					monitor.setTaskName(String.format(Messages.InstantiateDepPlan_InfoDeployingForNode, node.getName()));
-					ILangSupport langSupport = LanguageSupport.getLangSupport(targetLanguage);
-					langSupport.resetConfigurationData();
-
-					Deploy deploy = Deploy.distributeToNode(targetCopy, langSupport, node, nodeIndex, nodes.size(), newRootIS);
-
-					if(monitor.isCanceled()) {
-						return;
-					}
-					monitor.worked(1);
-					// 2b: remove derived interfaces in root: derived interfaces that can
-					//     not be placed in the same package as the port type (e.g. since read-only
-					//     type from system library), are put in a top-level package called "derivedInterfaces".
-					//     Due to the copying of imports, the top-level package has changed which implies that new
-					//     derived interfaces are put into a different package and the derivedInterfaces package in
-					//     the original root becomes obsolete. Delete this obsolete package, if existing.
-					NamedElement derivedInterfaces = Utils.getQualifiedElement(genModel, "root::derivedInterfaces"); //$NON-NLS-1$
-					if(derivedInterfaces instanceof Package) {
-						derivedInterfaces.destroy();
-					}
-
-					// 2c: add get_p/connect_q operations
-					// caveat: may modify imported classes
-					CompImplTrafos.bootloader = deploy.getBootloader();
-					CompImplTrafos.addPortOperations(targetCopy, genModel);
-
-					if(OOmodel) {
-						// 3: component -> OO transformations related to ports:
-						//    complete port access operations
-						//    (get<PortName>/connect<PortName> and
-						//    remove the ports afterwards
-						CompTypeTrafos.completeAccessOps(genModel);
-						CompTypeTrafos.removePorts(genModel);
-					}
-
-					// 4: remove connectors from implementations, since their endpoint's roles
-					//     have disappeared during step 4b (targeted ports have been
-					//     deleted together with the types).
-					CompImplTrafos.deleteConnectors(genModel);
-					if(monitor.isCanceled()) {
-						return;
-					}
-					monitor.worked(1);
-
-					IProject genProject = ProjectManagement.getNamedProject(modelName);
-					if((genProject == null) || !genProject.exists()) {
-						genProject = langSupport.createProject(modelName, node);
-					}
-					else {
-						langSupport.setProject(genProject);
-						if((genOptions & GenerationOptions.REWRITE_SETTINGS) != 0) {
-							langSupport.setSettings(node);
-						}
-					}
-
-					if(generateCode) {
-						GenerateCode codeGen = new GenerateCode(genProject, langSupport, genMM, monitor);
-						codeGen.generate(node, targetLanguage, (genOptions & GenerationOptions.ONLY_CHANGED) != 0);
-					}
-
-					nodeIndex++;
-					genMM.dispose();
-				}
-			}
 		} catch (TransformationException te) {
 			// Get UI thread to show dialog
 			final TransformationException teFinal = te;
