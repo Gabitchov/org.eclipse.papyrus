@@ -58,7 +58,19 @@ public abstract class AbstractContainerTrafo {
 
 	public abstract void createContainer(Class smComponent, Class tmComponent) throws TransformationException;
 
-	public abstract void createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context);
+	/**
+	 * Create an instance of the container (UML instance specification)
+	 * 
+	 * @param tmComponent
+	 *        the component within the target model for which we want to create an instance
+	 * 
+	 * @param tmIS
+	 *        the existing instance specification for the component before container expansion.
+	 * @param context
+	 *        Additional information about the container that is used by instance configurators
+	 */
+	public abstract void createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context)
+		throws TransformationException;
 
 	/**
 	 * apply a container rule, i.e. add either a container extension or an
@@ -70,11 +82,9 @@ public abstract class AbstractContainerTrafo {
 	 *        the application component in the source model
 	 * @param tmComponent
 	 *        the application component in the target model
-	 * @param tmIS
-	 *        the instance specification for the application component in the target model
 	 * @throws TransformationException
 	 */
-	public abstract void applyRule(ContainerRule smContainerRule, Class smComponent, Class tmComponent, InstanceSpecification tmIS)
+	public abstract void applyRule(ContainerRule smContainerRule, Class smComponent, Class tmComponent)
 		throws TransformationException;
 
 	/**

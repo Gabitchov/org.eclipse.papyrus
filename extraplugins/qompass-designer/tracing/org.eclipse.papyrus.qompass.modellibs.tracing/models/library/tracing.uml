@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
   <uml:Model xmi:id="_H-ZqYDKeEd-WprEKTCaiMA" name="Tracing">
-    <packageImport xmi:id="_H-ZqYTKeEd-WprEKTCaiMA">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_H-ZqYTKeEd-WprEKTCaiMA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
-    <packageImport xmi:id="_2NyU8DguEd-9wq2wHPy3lw">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_2NyU8DguEd-9wq2wHPy3lw">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/core.uml#_O6TiIDLUEd26WNosUASSSw"/>
     </packageImport>
-    <packageImport xmi:id="_XW7KkEQYEd-RDttIPD8NUg">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_XW7KkEQYEd-RDttIPD8NUg">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/osal.uml#_ROTQYC-OEdySSa8YESkO2w"/>
     </packageImport>
-    <packageImport xmi:id="_DRgF0D4NEeC-VMxjm_qUAg">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_DRgF0D4NEeC-VMxjm_qUAg">
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_CORE/corba.uml#_DtQEwDLdEd2_U4efLnjQIw"/>
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_g2IY8DKeEd-WprEKTCaiMA" name="traceInterceptor">
-      <packageMerge xmi:id="_2RoSYKNfEeCdIOXlyrCmKQ">
-        <mergedPackage href="pathmap://QML_CORE/core.uml#_mMCK8PiPEd2UhpY2Y3WUyg"/>
+      <packageMerge xmi:type="uml:PackageMerge" xmi:id="_2RoSYKNfEeCdIOXlyrCmKQ">
+        <mergedPackage xmi:type="uml:Package" href="pathmap://QML_CORE/core.uml#_mMCK8PiPEd2UhpY2Y3WUyg"/>
       </packageMerge>
       <packagedElement xmi:type="uml:Package" xmi:id="_1rsK8PwkEeGWn-a9PUOYcA" name="otf">
-        <ownedComment xmi:id="_YUcjcKAeEeCF0uoVQbVQRg" annotatedElement="_aoSDwKAdEeCF0uoVQbVQRg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_YUcjcKAeEeCF0uoVQbVQRg" annotatedElement="_aoSDwKAdEeCF0uoVQbVQRg">
           <body>Variant of OTF trace that only reports values that change.</body>
         </ownedComment>
-        <ownedComment xmi:id="_hd5WkKPUEeClvI8FjeO1Ow" annotatedElement="_kIcwsKbnEeC0_qP7CUZIiQ">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_hd5WkKPUEeClvI8FjeO1Ow" annotatedElement="_kIcwsKbnEeC0_qP7CUZIiQ">
           <body>A prior variant had a link with the methodCall_comp signature, since the operationIDs should be different, depending on the called component. This leads to a large number of generated classes. Current solution: configure the IDs on an instance level via ths InstanceConfigurator
 </body>
         </ownedComment>
-        <ownedComment xmi:id="_bb4kQLniEeCxXoyQxQ47PQ" annotatedElement="_aF1w4DKeEd-WprEKTCaiMA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_bb4kQLniEeCxXoyQxQ47PQ" annotatedElement="_aF1w4DKeEd-WprEKTCaiMA">
           <body>Trace implementation based on OTF trace library. Aggregates singleton TraceInit</body>
         </ownedComment>
         <packagedElement xmi:type="uml:Class" xmi:id="_aF1w4DKeEd-WprEKTCaiMA" clientDependency="_BuqlQDOcEd-1k-POY2IaLg" name="OTFTrace_impl">
-          <generalization xmi:id="_WdRuUDaUEeKkY-29HX5sMQ" general="_MM6RwDaUEeKkY-29HX5sMQ"/>
-          <ownedAttribute xmi:id="_aF1w5TKeEd-WprEKTCaiMA" name="timestamp" isUnique="false">
+          <generalization xmi:type="uml:Generalization" xmi:id="_WdRuUDaUEeKkY-29HX5sMQ" general="_MM6RwDaUEeKkY-29HX5sMQ"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_aF1w5TKeEd-WprEKTCaiMA" name="timestamp" isUnique="false">
             <type xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_FuKEEDj8Edy0Rd6V_tf1-Q"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_aF1w5zKeEd-WprEKTCaiMA" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_aF1w5jKeEd-WprEKTCaiMA" value="1"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_plSuEF23Ed-12d_h0i1xhQ" name="traceInit" type="_apuYoDNwEd-1k-POY2IaLg" isUnique="false" aggregation="shared">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_plSuEF23Ed-12d_h0i1xhQ" name="traceInit" type="_apuYoDNwEd-1k-POY2IaLg" isUnique="false" aggregation="shared">
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xUhqoF23Ed-12d_h0i1xhQ" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xUpmcF23Ed-12d_h0i1xhQ" value="1"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_mfNqoBavEeGq1uSGvh4rcQ" name="hasDeclaredFunctions" isStatic="true">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_mfNqoBavEeGq1uSGvh4rcQ" name="hasDeclaredFunctions" isStatic="true">
             <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mfSjIBavEeGq1uSGvh4rcQ" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mfTKMBavEeGq1uSGvh4rcQ" value="1"/>
@@ -91,149 +91,149 @@ OTF_Writer * writer = Tracing::TraceInit::getWriter();
 OTF_Writer_writeDefFunction (writer, streamNr, &lt;%enumSvcPrefix%>::id_&lt;%owner.varName%>_&lt;%varName%>, &lt;%quoteLiteral(&quot;InterfaceEnum&quot;, &quot;id_&lt;%owner.varName%>_&lt;%varName%>&quot;)%>, fctGroupID, 0);
 &lt;%}%></body>
           </ownedBehavior>
-          <ownedOperation xmi:id="_aF1w7zKeEd-WprEKTCaiMA" name="[name/]" visibility="public" method="_aF1w6DKeEd-WprEKTCaiMA">
-            <ownedComment xmi:id="_4e51QBatEeGq1uSGvh4rcQ">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_aF1w7zKeEd-WprEKTCaiMA" name="[name/]" visibility="public" method="_aF1w6DKeEd-WprEKTCaiMA">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_4e51QBatEeGq1uSGvh4rcQ">
               <body>&lt;&lt;TextualRepresentation>>public '&lt;%name%>' () { }</body>
             </ownedComment>
           </ownedOperation>
-          <ownedOperation xmi:id="_aF1w8TKeEd-WprEKTCaiMA" name="updateTimestamp" method="_aF1w6jKeEd-WprEKTCaiMA"/>
-          <ownedOperation xmi:id="_35DgwBauEeGq1uSGvh4rcQ" name="declareFunctions" method="_73ynMBauEeGq1uSGvh4rcQ"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_aF1w8TKeEd-WprEKTCaiMA" name="updateTimestamp" method="_aF1w6jKeEd-WprEKTCaiMA"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_35DgwBauEeGq1uSGvh4rcQ" name="declareFunctions" method="_73ynMBauEeGq1uSGvh4rcQ"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Usage" xmi:id="_BuqlQDOcEd-1k-POY2IaLg" name="OTFTrace_impl => TraceInit" client="_aF1w4DKeEd-WprEKTCaiMA" supplier="_apuYoDNwEd-1k-POY2IaLg"/>
         <packagedElement xmi:type="uml:Package" xmi:id="_U1rDwPL5Ed-1eY2qOvQSbw" name="TraceImpl">
-          <ownedTemplateSignature xmi:id="_krDBAPL5Ed-1eY2qOvQSbw" parameter="_krDoEvL5Ed-1eY2qOvQSbw">
+          <ownedTemplateSignature xmi:type="uml:TemplateSignature" xmi:id="_krDBAPL5Ed-1eY2qOvQSbw" parameter="_krDoEvL5Ed-1eY2qOvQSbw">
             <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_krDoEvL5Ed-1eY2qOvQSbw" parameteredElement="_krDoE_L5Ed-1eY2qOvQSbw">
               <ownedParameteredElement xmi:type="uml:Class" xmi:id="_krDoE_L5Ed-1eY2qOvQSbw" name="T" templateParameter="_krDoEvL5Ed-1eY2qOvQSbw">
-                <eAnnotations xmi:id="_krDoFPL5Ed-1eY2qOvQSbw" source="http://www.eclipse.org/emf/2002/Ecore">
-                  <details xmi:id="_krDoFfL5Ed-1eY2qOvQSbw" key="constraints" value="InterfaceIsAbstract AtMostOneID UniqueFeatureNames UniqueOperationSignatures NoCircularSuperTypes WellFormedMapEntryClass ConsistentSuperTypes"/>
+                <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_krDoFPL5Ed-1eY2qOvQSbw" source="http://www.eclipse.org/emf/2002/Ecore">
+                  <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_krDoFfL5Ed-1eY2qOvQSbw" key="constraints" value="InterfaceIsAbstract AtMostOneID UniqueFeatureNames UniqueOperationSignatures NoCircularSuperTypes WellFormedMapEntryClass ConsistentSuperTypes"/>
                 </eAnnotations>
-                <generalization xmi:id="_krDoFvL5Ed-1eY2qOvQSbw">
+                <generalization xmi:type="uml:Generalization" xmi:id="_krDoFvL5Ed-1eY2qOvQSbw">
                   <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EClassifier"/>
                 </generalization>
-                <ownedAttribute xmi:id="_krDoF_L5Ed-1eY2qOvQSbw" name="abstract" visibility="public" isOrdered="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoF_L5Ed-1eY2qOvQSbw" name="abstract" visibility="public" isOrdered="true">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBoolean"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoGPL5Ed-1eY2qOvQSbw"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoGfL5Ed-1eY2qOvQSbw" name="interface" visibility="public" isOrdered="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoGfL5Ed-1eY2qOvQSbw" name="interface" visibility="public" isOrdered="true">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBoolean"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoGvL5Ed-1eY2qOvQSbw"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoG_L5Ed-1eY2qOvQSbw" name="eSuperTypes" type="_krDoE_L5Ed-1eY2qOvQSbw" isOrdered="true">
-                  <eAnnotations xmi:id="_krDoHPL5Ed-1eY2qOvQSbw" source="http://www.eclipse.org/emf/2002/GenModel">
-                    <details xmi:id="_krDoHfL5Ed-1eY2qOvQSbw" key="suppressedUnsetVisibility" value="true"/>
-                    <details xmi:id="_krDoHvL5Ed-1eY2qOvQSbw" key="suppressedIsSetVisibility" value="true"/>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoG_L5Ed-1eY2qOvQSbw" name="eSuperTypes" type="_krDoE_L5Ed-1eY2qOvQSbw" isOrdered="true">
+                  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_krDoHPL5Ed-1eY2qOvQSbw" source="http://www.eclipse.org/emf/2002/GenModel">
+                    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_krDoHfL5Ed-1eY2qOvQSbw" key="suppressedUnsetVisibility" value="true"/>
+                    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_krDoHvL5Ed-1eY2qOvQSbw" key="suppressedIsSetVisibility" value="true"/>
                   </eAnnotations>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoIPL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoH_L5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoIfL5Ed-1eY2qOvQSbw" name="eOperations" isOrdered="true" aggregation="composite">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoIfL5Ed-1eY2qOvQSbw" name="eOperations" isOrdered="true" aggregation="composite">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EOperation"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoI_L5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoIvL5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoJPL5Ed-1eY2qOvQSbw" name="eAllAttributes" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoJPL5Ed-1eY2qOvQSbw" name="eAllAttributes" isOrdered="true" isReadOnly="true" isDerived="true">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EAttribute"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoJvL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoJfL5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoJ_L5Ed-1eY2qOvQSbw" name="eAllReferences" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoJ_L5Ed-1eY2qOvQSbw" name="eAllReferences" isOrdered="true" isReadOnly="true" isDerived="true">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EReference"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoKfL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoKPL5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoKvL5Ed-1eY2qOvQSbw" name="eReferences" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoKvL5Ed-1eY2qOvQSbw" name="eReferences" isOrdered="true" isReadOnly="true" isDerived="true">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EReference"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoLPL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoK_L5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoLfL5Ed-1eY2qOvQSbw" name="eAttributes" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoLfL5Ed-1eY2qOvQSbw" name="eAttributes" isOrdered="true" isReadOnly="true" isDerived="true">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EAttribute"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoL_L5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoLvL5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoMPL5Ed-1eY2qOvQSbw" name="eAllContainments" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoMPL5Ed-1eY2qOvQSbw" name="eAllContainments" isOrdered="true" isReadOnly="true" isDerived="true">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EReference"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoMvL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoMfL5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoM_L5Ed-1eY2qOvQSbw" name="eAllOperations" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoM_L5Ed-1eY2qOvQSbw" name="eAllOperations" isOrdered="true" isReadOnly="true" isDerived="true">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EOperation"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoNfL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoNPL5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoNvL5Ed-1eY2qOvQSbw" name="eAllStructuralFeatures" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoNvL5Ed-1eY2qOvQSbw" name="eAllStructuralFeatures" isOrdered="true" isReadOnly="true" isDerived="true">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EStructuralFeature"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoOPL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoN_L5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoOfL5Ed-1eY2qOvQSbw" name="eAllSuperTypes" type="_krDoE_L5Ed-1eY2qOvQSbw" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoOfL5Ed-1eY2qOvQSbw" name="eAllSuperTypes" type="_krDoE_L5Ed-1eY2qOvQSbw" isOrdered="true" isReadOnly="true" isDerived="true">
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoO_L5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoOvL5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoPPL5Ed-1eY2qOvQSbw" name="eIDAttribute" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoPPL5Ed-1eY2qOvQSbw" name="eIDAttribute" isOrdered="true" isReadOnly="true" isDerived="true">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EAttribute"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoPfL5Ed-1eY2qOvQSbw"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoPvL5Ed-1eY2qOvQSbw" name="eStructuralFeatures" isOrdered="true" aggregation="composite">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoPvL5Ed-1eY2qOvQSbw" name="eStructuralFeatures" isOrdered="true" aggregation="composite">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EStructuralFeature"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoQPL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoP_L5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoQfL5Ed-1eY2qOvQSbw" name="eGenericSuperTypes" isOrdered="true" aggregation="composite">
-                  <eAnnotations xmi:id="_krDoQvL5Ed-1eY2qOvQSbw" source="http://www.eclipse.org/emf/2002/GenModel">
-                    <details xmi:id="_krDoQ_L5Ed-1eY2qOvQSbw" key="suppressedUnsetVisibility" value="true"/>
-                    <details xmi:id="_krDoRPL5Ed-1eY2qOvQSbw" key="suppressedIsSetVisibility" value="true"/>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoQfL5Ed-1eY2qOvQSbw" name="eGenericSuperTypes" isOrdered="true" aggregation="composite">
+                  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_krDoQvL5Ed-1eY2qOvQSbw" source="http://www.eclipse.org/emf/2002/GenModel">
+                    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_krDoQ_L5Ed-1eY2qOvQSbw" key="suppressedUnsetVisibility" value="true"/>
+                    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_krDoRPL5Ed-1eY2qOvQSbw" key="suppressedIsSetVisibility" value="true"/>
                   </eAnnotations>
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EGenericType"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoRvL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoRfL5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_krDoR_L5Ed-1eY2qOvQSbw" name="eAllGenericSuperTypes" isOrdered="true" isReadOnly="true" isDerived="true">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_krDoR_L5Ed-1eY2qOvQSbw" name="eAllGenericSuperTypes" isOrdered="true" isReadOnly="true" isDerived="true">
                   <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EGenericType"/>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoSfL5Ed-1eY2qOvQSbw"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_krDoSPL5Ed-1eY2qOvQSbw" value="*"/>
                 </ownedAttribute>
-                <ownedOperation xmi:id="_krDoSvL5Ed-1eY2qOvQSbw" name="isSuperTypeOf" visibility="public">
-                  <ownedParameter xmi:id="_krDoS_L5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
+                <ownedOperation xmi:type="uml:Operation" xmi:id="_krDoSvL5Ed-1eY2qOvQSbw" name="isSuperTypeOf" visibility="public">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_krDoS_L5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EBoolean"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoTPL5Ed-1eY2qOvQSbw"/>
                   </ownedParameter>
-                  <ownedParameter xmi:id="_krDoTfL5Ed-1eY2qOvQSbw" name="someClass" type="_krDoE_L5Ed-1eY2qOvQSbw" isOrdered="true">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_krDoTfL5Ed-1eY2qOvQSbw" name="someClass" type="_krDoE_L5Ed-1eY2qOvQSbw" isOrdered="true">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoTvL5Ed-1eY2qOvQSbw"/>
                   </ownedParameter>
                 </ownedOperation>
-                <ownedOperation xmi:id="_krDoT_L5Ed-1eY2qOvQSbw" name="getFeatureCount" visibility="public">
-                  <ownedParameter xmi:id="_krDoUPL5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
+                <ownedOperation xmi:type="uml:Operation" xmi:id="_krDoT_L5Ed-1eY2qOvQSbw" name="getFeatureCount" visibility="public">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_krDoUPL5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EInt"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoUfL5Ed-1eY2qOvQSbw"/>
                   </ownedParameter>
                 </ownedOperation>
-                <ownedOperation xmi:id="_krDoUvL5Ed-1eY2qOvQSbw" name="getEStructuralFeature" visibility="public">
-                  <ownedParameter xmi:id="_krDoU_L5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
+                <ownedOperation xmi:type="uml:Operation" xmi:id="_krDoUvL5Ed-1eY2qOvQSbw" name="getEStructuralFeature" visibility="public">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_krDoU_L5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
                     <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EStructuralFeature"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoVPL5Ed-1eY2qOvQSbw"/>
                   </ownedParameter>
-                  <ownedParameter xmi:id="_krDoVfL5Ed-1eY2qOvQSbw" name="featureID" isOrdered="true">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_krDoVfL5Ed-1eY2qOvQSbw" name="featureID" isOrdered="true">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EInt"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoVvL5Ed-1eY2qOvQSbw"/>
                   </ownedParameter>
                 </ownedOperation>
-                <ownedOperation xmi:id="_krDoV_L5Ed-1eY2qOvQSbw" name="getFeatureID" visibility="public">
-                  <ownedParameter xmi:id="_krDoWPL5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
+                <ownedOperation xmi:type="uml:Operation" xmi:id="_krDoV_L5Ed-1eY2qOvQSbw" name="getFeatureID" visibility="public">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_krDoWPL5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EInt"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoWfL5Ed-1eY2qOvQSbw"/>
                   </ownedParameter>
-                  <ownedParameter xmi:id="_krDoWvL5Ed-1eY2qOvQSbw" name="feature" isOrdered="true">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_krDoWvL5Ed-1eY2qOvQSbw" name="feature" isOrdered="true">
                     <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EStructuralFeature"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoW_L5Ed-1eY2qOvQSbw"/>
                   </ownedParameter>
                 </ownedOperation>
-                <ownedOperation xmi:id="_krDoXPL5Ed-1eY2qOvQSbw" name="getEStructuralFeature" visibility="public">
-                  <ownedParameter xmi:id="_krDoXfL5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
+                <ownedOperation xmi:type="uml:Operation" xmi:id="_krDoXPL5Ed-1eY2qOvQSbw" name="getEStructuralFeature" visibility="public">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_krDoXfL5Ed-1eY2qOvQSbw" isOrdered="true" direction="return">
                     <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EStructuralFeature"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoXvL5Ed-1eY2qOvQSbw"/>
                   </ownedParameter>
-                  <ownedParameter xmi:id="_krDoX_L5Ed-1eY2qOvQSbw" name="featureName" isOrdered="true">
+                  <ownedParameter xmi:type="uml:Parameter" xmi:id="_krDoX_L5Ed-1eY2qOvQSbw" name="featureName" isOrdered="true">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EString"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_krDoYPL5Ed-1eY2qOvQSbw"/>
                   </ownedParameter>
@@ -243,8 +243,8 @@ OTF_Writer_writeDefFunction (writer, streamNr, &lt;%enumSvcPrefix%>::id_&lt;%own
           </ownedTemplateSignature>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_aoSDwKAdEeCF0uoVQbVQRg" clientDependency="_Mgn2cKKXEeCdIOXlyrCmKQ" name="OTFTrace_vc">
-          <generalization xmi:id="_nQ6YMKAdEeCF0uoVQbVQRg" general="_aF1w4DKeEd-WprEKTCaiMA"/>
-          <ownedAttribute xmi:id="_EWKx4KD0EeCFDJJCA2W5wg" name="m_first">
+          <generalization xmi:type="uml:Generalization" xmi:id="_nQ6YMKAdEeCF0uoVQbVQRg" general="_aF1w4DKeEd-WprEKTCaiMA"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_EWKx4KD0EeCFDJJCA2W5wg" name="m_first">
             <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
           </ownedAttribute>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_4LoXcKAeEeCF0uoVQbVQRg" name="&lt;%name%>" specification="_k4TsoKAeEeCF0uoVQbVQRg">
@@ -307,8 +307,8 @@ if (doTrace) {
             <language>C/C++</language>
             <body>m_first = true;</body>
           </ownedBehavior>
-          <ownedOperation xmi:id="_k4TsoKAeEeCF0uoVQbVQRg" name="&lt;%name%>" method="_4LoXcKAeEeCF0uoVQbVQRg"/>
-          <ownedOperation xmi:id="_rlkwoKD0EeCFDJJCA2W5wg" name="OTFTrace_vc" method="_CyKWkKD2EeCFDJJCA2W5wg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_k4TsoKAeEeCF0uoVQbVQRg" name="&lt;%name%>" method="_4LoXcKAeEeCF0uoVQbVQRg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_rlkwoKD0EeCFDJJCA2W5wg" name="OTFTrace_vc" method="_CyKWkKD2EeCFDJJCA2W5wg"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_Mgn2cKKXEeCdIOXlyrCmKQ" name="OTFTrace_vc => BString" client="_aoSDwKAdEeCF0uoVQbVQRg">
           <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_0AwCEDO0EdyG-pUz-bb-Lg"/>
@@ -318,15 +318,15 @@ if (doTrace) {
       <packagedElement xmi:type="uml:Class" xmi:id="_kIcwsKbnEeC0_qP7CUZIiQ" name="IConfiguratorTrace"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_nUAnQC8HEeKwPrQVP28AQw" name="IConfiguratorOTF"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_MM6RwDaUEeKkY-29HX5sMQ" name="Trace" isAbstract="true">
-        <generalization xmi:id="_MM6RwTaUEeKkY-29HX5sMQ">
+        <generalization xmi:type="uml:Generalization" xmi:id="_MM6RwTaUEeKkY-29HX5sMQ">
           <general xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_Zx2ZUA1jEd6tvthBDl600Q"/>
         </generalization>
-        <ownedAttribute xmi:id="_MM6RwjaUEeKkY-29HX5sMQ" name="portName" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_MM6RwjaUEeKkY-29HX5sMQ" name="portName" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MM6RwzaUEeKkY-29HX5sMQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MM6RxDaUEeKkY-29HX5sMQ" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_MM6RxTaUEeKkY-29HX5sMQ" name="instanceName">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_MM6RxTaUEeKkY-29HX5sMQ" name="instanceName">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MM6RxjaUEeKkY-29HX5sMQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MM6RxzaUEeKkY-29HX5sMQ" value="1"/>
@@ -334,20 +334,20 @@ if (doTrace) {
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_VzFlMLnhEeCxXoyQxQ47PQ" name="containerrules">
-      <ownedComment xmi:id="_aX6QECVIEeCPS8GFKAaKxw" annotatedElement="_GVZxwLdwEd-CtfrGQre34Q">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_aX6QECVIEeCPS8GFKAaKxw" annotatedElement="_GVZxwLdwEd-CtfrGQre34Q">
         <body>OTF (Open trace format) tracing mechanism</body>
       </ownedComment>
-      <ownedComment xmi:id="_z43k0ChKEeKFu939Pz1RFA" annotatedElement="_wHuA0KAdEeCF0uoVQbVQRg">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_z43k0ChKEeKFu939Pz1RFA" annotatedElement="_wHuA0KAdEeCF0uoVQbVQRg">
         <body>An OTF based trace mechanism that tracks value changes</body>
       </ownedComment>
-      <ownedComment xmi:id="_06dksChKEeKFu939Pz1RFA" annotatedElement="_I2OioPwkEeGWn-a9PUOYcA">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_06dksChKEeKFu939Pz1RFA" annotatedElement="_I2OioPwkEeGWn-a9PUOYcA">
         <body>LTTng based trace mechanism for port interception</body>
       </ownedComment>
-      <ownedComment xmi:id="_LlPEIDdMEeKDRPyuWXNFNA" annotatedElement="_If04ACqLEeKGrchWittz_g">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_LlPEIDdMEeKDRPyuWXNFNA" annotatedElement="_If04ACqLEeKGrchWittz_g">
         <body>LTTng LW mechanism for operations</body>
       </ownedComment>
       <packagedElement xmi:type="uml:Class" xmi:id="_GVZxwLdwEd-CtfrGQre34Q" name="RTraceOTF">
-        <ownedAttribute xmi:id="_lBO5MPUPEeCn1-FCrfecFg" name="trace" visibility="public" type="_aF1w4DKeEd-WprEKTCaiMA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_lBO5MPUPEeCn1-FCrfecFg" name="trace" visibility="public" type="_aF1w4DKeEd-WprEKTCaiMA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wNCqUPUPEeCn1-FCrfecFg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wNIJ4PUPEeCn1-FCrfecFg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_wNMbUPUPEeCn1-FCrfecFg">
@@ -356,7 +356,7 @@ if (doTrace) {
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_wHuA0KAdEeCF0uoVQbVQRg" name="RTraceOTF_VC">
-        <ownedAttribute xmi:id="_pm5cwPUPEeCn1-FCrfecFg" name="traceVC" visibility="public" type="_aoSDwKAdEeCF0uoVQbVQRg">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_pm5cwPUPEeCn1-FCrfecFg" name="traceVC" visibility="public" type="_aoSDwKAdEeCF0uoVQbVQRg">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yevnMPUPEeCn1-FCrfecFg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yez4oPUPEeCn1-FCrfecFg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_ye3jAPUPEeCn1-FCrfecFg">
@@ -365,7 +365,7 @@ if (doTrace) {
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_I2OioPwkEeGWn-a9PUOYcA" name="RTraceLTTNG">
-        <ownedAttribute xmi:id="_d7If0PwkEeGWn-a9PUOYcA" name="interceptor" visibility="public" type="_pwl_MPxWEeGOK9t90vpALA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_d7If0PwkEeGWn-a9PUOYcA" name="interceptor" visibility="public" type="_pwl_MPxWEeGOK9t90vpALA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gYc20PwkEeGWn-a9PUOYcA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gZTLYPwkEeGWn-a9PUOYcA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_gZWOsPwkEeGWn-a9PUOYcA">
@@ -374,14 +374,14 @@ if (doTrace) {
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_vt7dACdbEeKGdt7FoegMYA" name="Copy_Of_RTraceLTTNG">
-        <ownedAttribute xmi:id="_vt7dASdbEeKGdt7FoegMYA" name="interceptor" visibility="public" type="_pwl_MPxWEeGOK9t90vpALA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_vt7dASdbEeKGdt7FoegMYA" name="interceptor" visibility="public" type="_pwl_MPxWEeGOK9t90vpALA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vt7dAidbEeKGdt7FoegMYA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vt7dAydbEeKGdt7FoegMYA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_vt7dBCdbEeKGdt7FoegMYA">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_vt7dBSdbEeKGdt7FoegMYA" name="tp" visibility="public" type="_rGPjgPxWEeGOK9t90vpALA">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_vt7dBSdbEeKGdt7FoegMYA" name="tp" visibility="public" type="_rGPjgPxWEeGOK9t90vpALA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vt7dBidbEeKGdt7FoegMYA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vt7dBydbEeKGdt7FoegMYA" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_vt7dCCdbEeKGdt7FoegMYA">
@@ -390,7 +390,7 @@ if (doTrace) {
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_If04ACqLEeKGrchWittz_g" clientDependency="_riv0oC5vEeKMZ5P9cEChlg" name="LTTngLWRule">
-        <ownedAttribute xmi:id="_Avfe8C8PEeKVAPO2lpiVnA" name="instanceName" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_Avfe8C8PEeKVAPO2lpiVnA" name="instanceName" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BuA8sC8PEeKVAPO2lpiVnA" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BuFOIC8PEeKVAPO2lpiVnA" value="1"/>
@@ -406,14 +406,14 @@ if (doTrace) {
 [operation.invokeTP()/]
 [/template]</body>
         </ownedBehavior>
-        <ownedOperation xmi:id="_eZ1RMCqLEeKGrchWittz_g" name="interceptOperation" method="_DGqhEC2jEeKEc8wNVBgHJg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_eZ1RMCqLEeKGrchWittz_g" name="interceptOperation" method="_DGqhEC2jEeKEc8wNVBgHJg"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_riv0oC5vEeKMZ5P9cEChlg" name="Dependency1" client="_If04ACqLEeKGrchWittz_g" supplier="_rGPjgPxWEeGOK9t90vpALA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_QOOpsPzOEeGKDvxFM1SZ_g" name="traceExtension">
       <packagedElement xmi:type="uml:Package" xmi:id="_QApWIPzNEeGKDvxFM1SZ_g" name="lttng">
-        <packageMerge xmi:id="_kGXHMPzNEeGKDvxFM1SZ_g">
-          <mergedPackage href="pathmap://QML_CORE/core.uml#_m7SIwOUYEd-P08Bciq_LqQ"/>
+        <packageMerge xmi:type="uml:PackageMerge" xmi:id="_kGXHMPzNEeGKDvxFM1SZ_g">
+          <mergedPackage xmi:type="uml:Package" href="pathmap://QML_CORE/core.uml#_m7SIwOUYEd-P08Bciq_LqQ"/>
         </packageMerge>
         <packagedElement xmi:type="uml:Class" xmi:id="_rGPjgPxWEeGOK9t90vpALA" name="LTTngClassTP"/>
       </packagedElement>
@@ -424,22 +424,22 @@ if (doTrace) {
           <supplier xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_-HeCsDj_Edy0Rd6V_tf1-Q"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_apuYoDNwEd-1k-POY2IaLg" clientDependency="_UcPagD1nEd-Bk-AHd6yyoA _7uQr8D4OEeC-VMxjm_qUAg" name="TraceInit">
-          <generalization xmi:id="_9zJj0DguEd-9wq2wHPy3lw">
+          <generalization xmi:type="uml:Generalization" xmi:id="_9zJj0DguEd-9wq2wHPy3lw">
             <general xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_-WNegNtxEd6nqsBVkgJEEA"/>
           </generalization>
-          <ownedAttribute xmi:id="_vYRuQDj1Ed-nsvkE2JvSTg" name="writer" isStatic="true" type="_W0t44Dj1Ed-nsvkE2JvSTg" isUnique="false" aggregation="shared"/>
-          <ownedAttribute xmi:id="_ZZ8mwDwLEd-CbfVdCYNz6Q" name="manager" isStatic="true" type="_LjsBkDwLEd-CbfVdCYNz6Q" isUnique="false" aggregation="shared"/>
-          <ownedAttribute xmi:id="_28RZED4NEeC-VMxjm_qUAg" name="streamNr" isStatic="true">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_vYRuQDj1Ed-nsvkE2JvSTg" name="writer" isStatic="true" type="_W0t44Dj1Ed-nsvkE2JvSTg" isUnique="false" aggregation="shared"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_ZZ8mwDwLEd-CbfVdCYNz6Q" name="manager" isStatic="true" type="_LjsBkDwLEd-CbfVdCYNz6Q" isUnique="false" aggregation="shared"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_28RZED4NEeC-VMxjm_qUAg" name="streamNr" isStatic="true">
             <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
           </ownedAttribute>
-          <ownedAttribute xmi:id="_cy5msJ6oEeCNsP1Kjt4f_w" name="sema" isStatic="true">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_cy5msJ6oEeCNsP1Kjt4f_w" name="sema" isStatic="true">
             <type xmi:type="uml:Class" href="pathmap://QML_CORE/osal.uml#_D8njME_gEdy2tpS719xBwQ"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_czA7cJ6oEeCNsP1Kjt4f_w" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_czCJkJ6oEeCNsP1Kjt4f_w" value="1"/>
           </ownedAttribute>
-          <interfaceRealization xmi:id="_UcPagD1nEd-Bk-AHd6yyoA" name="derived realization of ILifeCycle" client="_apuYoDNwEd-1k-POY2IaLg">
+          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_UcPagD1nEd-Bk-AHd6yyoA" name="derived realization of ILifeCycle" client="_apuYoDNwEd-1k-POY2IaLg">
             <supplier xmi:type="uml:Interface" href="pathmap://QML_CORE/SystemInterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
-            <contract href="pathmap://QML_CORE/SystemInterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
+            <contract xmi:type="uml:Interface" href="pathmap://QML_CORE/SystemInterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
           </interfaceRealization>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ILWGsDgvEd-9wq2wHPy3lw" name="activate" specification="_Ucl_0D1nEd-Bk-AHd6yyoA">
             <language>C/C++</language>
@@ -520,8 +520,8 @@ return processID;</body>
             <language>C/C++</language>
             <body>sema.post();</body>
           </ownedBehavior>
-          <ownedOperation xmi:id="_RNVZoDj1Ed-nsvkE2JvSTg" name="getWriter" isStatic="true" method="_uUZ2cDj1Ed-nsvkE2JvSTg">
-            <ownedParameter xmi:id="_v6J20Dj2Ed-nsvkE2JvSTg" name="ret" type="_W0t44Dj1Ed-nsvkE2JvSTg" direction="return">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_RNVZoDj1Ed-nsvkE2JvSTg" name="getWriter" isStatic="true" method="_uUZ2cDj1Ed-nsvkE2JvSTg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_v6J20Dj2Ed-nsvkE2JvSTg" name="ret" type="_W0t44Dj1Ed-nsvkE2JvSTg" direction="return">
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zsxM0Dj2Ed-nsvkE2JvSTg" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zsya8Dj2Ed-nsvkE2JvSTg" value="1"/>
               <defaultValue xmi:type="uml:LiteralString" xmi:id="_zszCADj2Ed-nsvkE2JvSTg">
@@ -529,23 +529,23 @@ return processID;</body>
               </defaultValue>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:id="_Ucl_0D1nEd-Bk-AHd6yyoA" name="activate" method="_ILWGsDgvEd-9wq2wHPy3lw"/>
-          <ownedOperation xmi:id="_UdpIsD1nEd-Bk-AHd6yyoA" name="deactivate" method="_2f_-UD1oEd-Bk-AHd6yyoA"/>
-          <ownedOperation xmi:id="_MR0d4ChjEeC5Ga5kAgjl0g" name="TraceInit" method="_W9k18ChjEeC5Ga5kAgjl0g"/>
-          <ownedOperation xmi:id="_uegYAD4MEeC-VMxjm_qUAg" name="getProcessID" isStatic="true" method="_g2IBUD4NEeC-VMxjm_qUAg">
-            <ownedParameter xmi:id="_1PmRUD4MEeC-VMxjm_qUAg" name="ret" direction="return">
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_Ucl_0D1nEd-Bk-AHd6yyoA" name="activate" method="_ILWGsDgvEd-9wq2wHPy3lw"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_UdpIsD1nEd-Bk-AHd6yyoA" name="deactivate" method="_2f_-UD1oEd-Bk-AHd6yyoA"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_MR0d4ChjEeC5Ga5kAgjl0g" name="TraceInit" method="_W9k18ChjEeC5Ga5kAgjl0g"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_uegYAD4MEeC-VMxjm_qUAg" name="getProcessID" isStatic="true" method="_g2IBUD4NEeC-VMxjm_qUAg">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_1PmRUD4MEeC-VMxjm_qUAg" name="ret" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
             </ownedParameter>
           </ownedOperation>
-          <ownedOperation xmi:id="_VIPBEJ6oEeCNsP1Kjt4f_w" name="wait" isStatic="true" method="_KUVkMJ6pEeCNsP1Kjt4f_w"/>
-          <ownedOperation xmi:id="_Wm5-gJ6oEeCNsP1Kjt4f_w" name="post" isStatic="true" method="_LNI0cJ6pEeCNsP1Kjt4f_w"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_VIPBEJ6oEeCNsP1Kjt4f_w" name="wait" isStatic="true" method="_KUVkMJ6pEeCNsP1Kjt4f_w"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_Wm5-gJ6oEeCNsP1Kjt4f_w" name="post" isStatic="true" method="_LNI0cJ6pEeCNsP1Kjt4f_w"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_IewAUDguEd-9wq2wHPy3lw" name="externtypes">
           <packagedElement xmi:type="uml:Class" xmi:id="_W0t44Dj1Ed-nsvkE2JvSTg" name="OTF_Writer"/>
           <packagedElement xmi:type="uml:Class" xmi:id="_LjsBkDwLEd-CbfVdCYNz6Q" name="OTF_FileManager"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_L90lEDYGEd-JF_b-mKqY4g" name="TraceTesting">
-          <ownedTemplateSignature xmi:id="_NJOoQDYGEd-JF_b-mKqY4g" parameter="_m8qNQDYKEd-JF_b-mKqY4g">
+          <ownedTemplateSignature xmi:type="uml:TemplateSignature" xmi:id="_NJOoQDYGEd-JF_b-mKqY4g" parameter="_m8qNQDYKEd-JF_b-mKqY4g">
             <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_m8qNQDYKEd-JF_b-mKqY4g" parameteredElement="_pfAOMDYKEd-JF_b-mKqY4g">
               <ownedParameteredElement xmi:type="uml:Enumeration" xmi:id="_pfAOMDYKEd-JF_b-mKqY4g" name="ParamEnumeration" templateParameter="_m8qNQDYKEd-JF_b-mKqY4g"/>
             </ownedParameter>
@@ -558,7 +558,7 @@ return processID;</body>
 	OTF_Writer_writeDefFunction (writer, 0, &lt;%name%>, &quot;&lt;%name%>&quot;, 0, 0);
 &lt;%}%></body>
             </ownedBehavior>
-            <ownedOperation xmi:id="_QNXx4jYKEd-JF_b-mKqY4g" name="initDefs" isStatic="true" method="_QNXx4TYKEd-JF_b-mKqY4g"/>
+            <ownedOperation xmi:type="uml:Operation" xmi:id="_QNXx4jYKEd-JF_b-mKqY4g" name="initDefs" isStatic="true" method="_QNXx4TYKEd-JF_b-mKqY4g"/>
           </packagedElement>
         </packagedElement>
       </packagedElement>
@@ -576,26 +576,26 @@ return processID;</body>
             <language>C/C++</language>
             <body>TRACEPOINT_EVENT([tpName/], destroyClass, [clazz.qualifiedName /])</body>
           </ownedBehavior>
-          <ownedOperation xmi:id="_UvQpMCmiEeKp-eCvZDLsaw" name="LTTngCreateDestroy" method="__CHDcCmlEeKp-eCvZDLsaw"/>
-          <ownedOperation xmi:id="_VUW6UCmiEeKp-eCvZDLsaw" name="LTTngCreateDestroy" method="_B-fVACmmEeKp-eCvZDLsaw"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_UvQpMCmiEeKp-eCvZDLsaw" name="LTTngCreateDestroy" method="__CHDcCmlEeKp-eCvZDLsaw"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_VUW6UCmiEeKp-eCvZDLsaw" name="LTTngCreateDestroy" method="_B-fVACmmEeKp-eCvZDLsaw"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Class" xmi:id="_C4FREDV7EeKGAYOVxzQeAg" name="InitLttng"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_HkxCkDY_EeKxVvAop17bHw" name="traceInterceptorPort">
-      <packageMerge xmi:id="_M9DV4DY_EeKxVvAop17bHw">
-        <mergedPackage href="pathmap://QML_CORE/core.uml#_gEZXADY7EeKvFqG4YPX3sg"/>
+      <packageMerge xmi:type="uml:PackageMerge" xmi:id="_M9DV4DY_EeKxVvAop17bHw">
+        <mergedPackage xmi:type="uml:Package" href="pathmap://QML_CORE/core.uml#_gEZXADY7EeKvFqG4YPX3sg"/>
       </packageMerge>
       <packagedElement xmi:type="uml:Package" xmi:id="_5gDNYPwkEeGWn-a9PUOYcA" name="lttng">
-        <ownedComment xmi:id="_r8PXYPxWEeGOK9t90vpALA" annotatedElement="_pwl_MPxWEeGOK9t90vpALA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_r8PXYPxWEeGOK9t90vpALA" annotatedElement="_pwl_MPxWEeGOK9t90vpALA">
           <body>Interceptor</body>
         </ownedComment>
-        <ownedComment xmi:id="_ttvxQPxWEeGOK9t90vpALA" annotatedElement="_rGPjgPxWEeGOK9t90vpALA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_ttvxQPxWEeGOK9t90vpALA" annotatedElement="_rGPjgPxWEeGOK9t90vpALA">
           <body>Trace Provider
 </body>
         </ownedComment>
         <packagedElement xmi:type="uml:Class" xmi:id="_pwl_MPxWEeGOK9t90vpALA" clientDependency="_BV2G4PzTEeGKDvxFM1SZ_g _9ygUUDHKEeKt1a2SZnJmwg _c0nqkDWGEeKGAYOVxzQeAg" name="LTTngInterceptor">
-          <generalization xmi:id="_1963sPxWEeGOK9t90vpALA" general="_dcP9gDaSEeKxVvAop17bHw"/>
+          <generalization xmi:type="uml:Generalization" xmi:id="_1963sPxWEeGOK9t90vpALA" general="_dcP9gDaSEeKxVvAop17bHw"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qLhLMPxXEeGOK9t90vpALA" name="[name/]" specification="_YU5H4PxXEeGOK9t90vpALA">
             <language>C/C++</language>
             <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
@@ -609,7 +609,7 @@ return processID;</body>
 [if not (type = null)]return [/if]rconn->[operation.cppCall()/];
 [/template]</body>
           </ownedBehavior>
-          <ownedOperation xmi:id="_YU5H4PxXEeGOK9t90vpALA" name="[name/]" method="_qLhLMPxXEeGOK9t90vpALA"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_YU5H4PxXEeGOK9t90vpALA" name="[name/]" method="_qLhLMPxXEeGOK9t90vpALA"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Usage" xmi:id="_BV2G4PzTEeGKDvxFM1SZ_g" name="Usage1" client="_pwl_MPxWEeGOK9t90vpALA" supplier="_v-VBcPzSEeGKDvxFM1SZ_g"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_gveqADHKEeKt1a2SZnJmwg" name="LTTngIntfTP"/>
@@ -617,38 +617,38 @@ return processID;</body>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_c0nqkDWGEeKGAYOVxzQeAg" name="Dependency2" client="_pwl_MPxWEeGOK9t90vpALA" supplier="_C4FREDV7EeKGAYOVxzQeAg"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_dcP9gDaSEeKxVvAop17bHw" name="TracePort" isAbstract="true">
-        <generalization xmi:id="_dcP9gTaSEeKxVvAop17bHw">
+        <generalization xmi:type="uml:Generalization" xmi:id="_dcP9gTaSEeKxVvAop17bHw">
           <general xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_Zx2ZUA1jEd6tvthBDl600Q"/>
         </generalization>
-        <ownedAttribute xmi:id="_dcP9gjaSEeKxVvAop17bHw" name="portName" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_dcP9gjaSEeKxVvAop17bHw" name="portName" visibility="public">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dcP9gzaSEeKxVvAop17bHw" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dcP9hDaSEeKxVvAop17bHw" value="1"/>
         </ownedAttribute>
-        <ownedAttribute xmi:id="_dcP9hTaSEeKxVvAop17bHw" name="instanceName">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_dcP9hTaSEeKxVvAop17bHw" name="instanceName">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dcP9hjaSEeKxVvAop17bHw" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dcP9hzaSEeKxVvAop17bHw" value="1"/>
         </ownedAttribute>
       </packagedElement>
     </packagedElement>
-    <profileApplication xmi:id="_H_B8gDKeEd-WprEKTCaiMA">
-      <eAnnotations xmi:id="_H_DxsDKeEd-WprEKTCaiMA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_H_B8gDKeEd-WprEKTCaiMA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_H_DxsDKeEd-WprEKTCaiMA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
     </profileApplication>
-    <profileApplication xmi:id="_-DLL0DKnEd-WprEKTCaiMA">
-      <eAnnotations xmi:id="_-DXZEDKnEd-WprEKTCaiMA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_-DLL0DKnEd-WprEKTCaiMA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-DXZEDKnEd-WprEKTCaiMA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/FCM/1#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://FCM_PROFILES/FCM.profile.uml#_5mvT0MtjEd2H_o0jIC6qDQ"/>
     </profileApplication>
-    <profileApplication xmi:id="_N6l98DguEd-9wq2wHPy3lw">
-      <eAnnotations xmi:id="_N6vH4DguEd-9wq2wHPy3lw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_N6l98DguEd-9wq2wHPy3lw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_N6vH4DguEd-9wq2wHPy3lw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
     </profileApplication>
   </uml:Model>
   <l2:ModelLibrary xmi:id="_ICaAoDKeEd-WprEKTCaiMA" base_Package="_H-ZqYDKeEd-WprEKTCaiMA"/>
@@ -714,18 +714,18 @@ return processID;</body>
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/SystemInterfaces.uml#_W7YrADz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
   <C_Cpp:ExternLibrary xmi:id="_Sv6AMIKiEd-XA4A2KZ9L7Q" base_Package="_IewAUDguEd-9wq2wHPy3lw">
-    <libs>otf</libs>
     <libPaths>/OTF-1.5/otflib/.libs</libPaths>
+    <libs>otf</libs>
     <includes>/OTF-1.5</includes>
     <includes>otflib/includes.h</includes>
   </C_Cpp:ExternLibrary>
   <FCM:ContainerRule xmi:id="_ISo6gLdwEd-CtfrGQre34Q" base_Class="_GVZxwLdwEd-CtfrGQre34Q" extensionKind="InterceptAllPorts" interceptor="_35od4DKrEd-z5o2wSoJ16A">
-    <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
+    <forConfig xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
   <C_Cpp:External xmi:id="_AGg3EPT8Ed-jjdbo8hMhwA" name="otflib/OTF_FileManager.h" base_class="_LjsBkDwLEd-CbfVdCYNz6Q"/>
   <C_Cpp:Include xmi:id="_mk_ccD5sEeC-VMxjm_qUAg" body="#include &lt;OS_AL/Sets/SetOf.h>&#xA;OS_AL::Sets::SetOf &lt;int> processSet;" base_class="_apuYoDNwEd-1k-POY2IaLg"/>
   <FCM:ContainerRule xmi:id="_6FqQoKAdEeCF0uoVQbVQRg" base_Class="_wHuA0KAdEeCF0uoVQbVQRg" extensionKind="InterceptAllPorts" interceptor="_JvP0oKAeEeCF0uoVQbVQRg" propagate="true">
-    <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
+    <forConfig xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
   <FCM:Template xmi:id="_pplDQKAeEeCF0uoVQbVQRg" base_Element="_k4TsoKAeEeCF0uoVQbVQRg" kind="LoopOperations"/>
   <FCM:InstanceConfigurator xmi:id="_nTMOYKbnEeC0_qP7CUZIiQ" base_Class="_kIcwsKbnEeC0_qP7CUZIiQ"/>
@@ -737,10 +737,10 @@ return processID;</body>
   <FCM:InteractionComponent xmi:id="_7J88sG6FEeGqWMX2LwdLDw" base_Class="_aF1w4DKeEd-WprEKTCaiMA"/>
   <FCM:InteractionComponent xmi:id="_-t6LoG6FEeGqWMX2LwdLDw" base_Class="_aoSDwKAdEeCF0uoVQbVQRg"/>
   <FCM:ContainerRule xmi:id="_RWQC8PwkEeGWn-a9PUOYcA" base_Class="_I2OioPwkEeGWn-a9PUOYcA">
-    <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
+    <forConfig xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
   <FCM:InterceptionRule xmi:id="_m-L0sPwkEeGWn-a9PUOYcA" interceptionKind="InterceptAll" base_Property="_d7If0PwkEeGWn-a9PUOYcA"/>
-  <C_Cpp:Include xmi:id="__rP4oPxWEeGOK9t90vpALA" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(clazz : Class)]&#xA;[clazz.declareTP()/]&#xA;[/template]" base_class="_rGPjgPxWEeGOK9t90vpALA" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE"/>
+  <C_Cpp:Include xmi:id="__rP4oPxWEeGOK9t90vpALA" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(clazz : Class)]&#xA;[clazz.declareTP()/]&#xA;[/template]" base_class="_rGPjgPxWEeGOK9t90vpALA"/>
   <FCM:Template xmi:id="_bKW5IPxXEeGOK9t90vpALA" base_Element="_YU5H4PxXEeGOK9t90vpALA" kind="LoopOperations"/>
   <C_Cpp:ExternLibrary xmi:id="_t_sHUPzOEeGKDvxFM1SZ_g" base_Package="_nAkZEPzOEeGKDvxFM1SZ_g">
     <libs>lttng-ust</libs>
@@ -754,7 +754,7 @@ return processID;</body>
   <l2:Create xmi:id="_X1okQCmiEeKp-eCvZDLsaw" base_BehavioralFeature="_UvQpMCmiEeKp-eCvZDLsaw"/>
   <l2:Destroy xmi:id="_ZJYEECmiEeKp-eCvZDLsaw" base_BehavioralFeature="_VUW6UCmiEeKp-eCvZDLsaw"/>
   <FCM:ContainerRule xmi:id="_NtAukCqLEeKGrchWittz_g" base_Class="_If04ACqLEeKGrchWittz_g" kind="LightWeightOORule">
-    <forConfig href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
+    <forConfig xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
   <FCM:Template xmi:id="_AhsuYCqMEeKGrchWittz_g" base_Element="_eZ1RMCqLEeKGrchWittz_g"/>
   <FCM:InterceptionRule xmi:id="_IN6uwC2jEeKEc8wNVBgHJg" interceptionKind="InterceptAll" base_Operation="_eZ1RMCqLEeKGrchWittz_g"/>
@@ -762,10 +762,10 @@ return processID;</body>
   <FCM:UseInstanceConfigurator xmi:id="_5FYwcC8CEeKwPrQVP28AQw" base_Class="_I2OioPwkEeGWn-a9PUOYcA" configurator="_nTMOYKbnEeC0_qP7CUZIiQ"/>
   <FCM:UseInstanceConfigurator xmi:id="_gH1RQC8DEeKwPrQVP28AQw" base_Class="_If04ACqLEeKGrchWittz_g" configurator="_nTMOYKbnEeC0_qP7CUZIiQ"/>
   <FCM:InstanceConfigurator xmi:id="_nUB1YC8HEeKwPrQVP28AQw" base_Class="_nUAnQC8HEeKwPrQVP28AQw"/>
-  <C_Cpp:Include xmi:id="_gvf4IDHKEeKt1a2SZnJmwg" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(intf : Interface)]&#xA;[intf.declareTP()/]&#xA;[/template]" base_class="_gveqADHKEeKt1a2SZnJmwg" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE"/>
+  <C_Cpp:Include xmi:id="_gvf4IDHKEeKt1a2SZnJmwg" preBody="#define TRACEPOINT_CREATE_PROBES&#xA;#define TRACEPOINT_DEFINE" header="[import org::eclipse::papyrus::qompass::modellibs::tracing::acceleo::traceLTTng/]&#xA;&#xA;[template public LTTngTP(intf : Interface)]&#xA;[intf.declareTP()/]&#xA;[/template]" base_class="_gveqADHKEeKt1a2SZnJmwg"/>
   <FCM:Template xmi:id="_gvnM4DHKEeKt1a2SZnJmwg" base_Element="_gveqADHKEeKt1a2SZnJmwg"/>
   <C_Cpp:ManualGeneration xmi:id="_gvnz8DHKEeKt1a2SZnJmwg" extensionBody="c" base_Class="_gveqADHKEeKt1a2SZnJmwg"/>
   <C_Cpp:ManualGeneration xmi:id="_WUbVADV7EeKGAYOVxzQeAg" extensionBody="c" base_Class="_C4FREDV7EeKGAYOVxzQeAg"/>
-  <C_Cpp:Include xmi:id="_ZdHkQDV7EeKGAYOVxzQeAg" header="[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]&#xA;[import org::eclipse::papyrus::qompass::designer::core::acceleo::TransformationContext/]&#xA;&#xA;[template public LTTngTP(cl : Classifier)]&#xA;#include &lt;lttng/tracepoint.h>&#xA;&#xA;TRACEPOINT_MODEL_EMF_URI(UMLmodel, starting, &quot;[getSourceRoot().getURI()/]&quot;)&#xA;[/template]&#xA;" base_class="_C4FREDV7EeKGAYOVxzQeAg" preBody=""/>
+  <C_Cpp:Include xmi:id="_ZdHkQDV7EeKGAYOVxzQeAg" header="[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]&#xA;[import org::eclipse::papyrus::qompass::designer::core::acceleo::TransformationContext/]&#xA;&#xA;[template public LTTngTP(cl : Classifier)]&#xA;#include &lt;lttng/tracepoint.h>&#xA;&#xA;TRACEPOINT_MODEL_EMF_URI(UMLmodel, starting, &quot;[getSourceRoot().getURI()/]&quot;)&#xA;[/template]&#xA;" base_class="_C4FREDV7EeKGAYOVxzQeAg"/>
   <FCM:Template xmi:id="_HOvQ0DWSEeKGAYOVxzQeAg" base_Element="_C4FREDV7EeKGAYOVxzQeAg" kind="PassClassifier"/>
 </xmi:XMI>

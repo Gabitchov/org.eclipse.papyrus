@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.qompass.designer.ui.Messages;
 import org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
@@ -95,6 +96,8 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 
 	protected EList<Port> m_ports;
 
+	public static final String COLON = ":"; //$NON-NLS-1$
+	
 	public ConfigurePortDialog(Shell parent) {
 		super(parent);
 	}
@@ -162,7 +165,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 		portSelection.setLayout(new GridLayout(1, false));
 		// configL.setLayout(new RowLayout());
 
-		portSelection.setText(" Available Ports ");
+		portSelection.setText(" " + Messages.ConfigurePortDialog_AvailPorts + " "); //$NON-NLS-1$ //$NON-NLS-2$
 		portSelection.setLayoutData(gridDataH60);
 
 		fPortList = new TableViewer(portSelection, SWT.BORDER);
@@ -187,17 +190,17 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 		portSelection.pack();
 
 		Group instanceConfigurationGroup = new Group(parent, SWT.BORDER);
-		instanceConfigurationGroup.setText(" Port configuration ");
+		instanceConfigurationGroup.setText(" " + Messages.ConfigurePortDialog_AvailPorts + " ");  //$NON-NLS-1$ //$NON-NLS-2$
 		instanceConfigurationGroup.setLayout(new GridLayout(2, false));
 		instanceConfigurationGroup.setLayoutData(groupGridData);
 
 		Label kindText = new Label(instanceConfigurationGroup, SWT.NONE);
-		kindText.setText("Kind:");
+		kindText.setText(Messages.ConfigurePortDialog_Kind + COLON);
 
 		fKindCombo = new Combo(instanceConfigurationGroup, SWT.NONE);
 		portKindList = getAvailableKinds(m_model);
 		String[] portKindStrList = new String[portKindList.size() + 1];
-		portKindStrList[0] = "none";
+		portKindStrList[0] = Messages.ConfigurePortDialog_None;
 		for(int i = 0; i < portKindList.size(); i++) {
 			portKindStrList[i + 1] = portKindList.get(i).getBase_Class().getName();
 		}
@@ -227,14 +230,14 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 		});
 
 		Label fTypeLabel = new Label(instanceConfigurationGroup, SWT.NONE);
-		fTypeLabel.setText("Type:");
+		fTypeLabel.setText(Messages.ConfigurePortDialog_Type + COLON);
 		fTypeLabel.setLayoutData(gridData);
 
 		fType = new Label(instanceConfigurationGroup, SWT.NONE);
 		fType.setLayoutData(gridData);
 
 		fTypeButton = new Button(instanceConfigurationGroup, SWT.NONE);
-		fTypeButton.setText("change type");
+		fTypeButton.setText(Messages.ConfigurePortDialog_ChangeType);
 		fTypeButton.setLayoutData(gridDataH25Span2);
 		fTypeButton.addSelectionListener(new SelectionListener() {
 
@@ -280,17 +283,17 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 
 		// Label dil = new Label(derivedInterfaces, SWT.NONE);
 		// dil.setText("Interfaces derived from port kind");
-		derivedInterfaces.setText("Interfaces derived from kind and type");
+		derivedInterfaces.setText(Messages.ConfigurePortDialog_IntfDerived);
 		// dil.setLayoutData(gridDataSpan2);
 		derivedInterfaces.setLayoutData(gridDataSpan2);
 
 		Label fProvidedLabel = new Label(derivedInterfaces, SWT.NONE);
-		fProvidedLabel.setText("Provided:");
+		fProvidedLabel.setText(Messages.ConfigurePortDialog_Provided + COLON);
 		fProvided = new Label(derivedInterfaces, SWT.NONE);
 		fProvided.setLayoutData(gridData);
 
 		Label fRequiredLabel = new Label(derivedInterfaces, SWT.NONE);
-		fRequiredLabel.setText("Required:");
+		fRequiredLabel.setText(Messages.ConfigurePortDialog_Required + COLON);
 		fRequired = new Label(derivedInterfaces, SWT.NONE);
 		fRequired.setLayoutData(gridData);
 		derivedInterfaces.pack();
@@ -320,7 +323,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 			fType.setText(port.getType().getQualifiedName());
 		}
 		else {
-			fType.setText("undefined");
+			fType.setText(Messages.ConfigurePortDialog_Undef);
 		}
 		if((fcmPort != null) && (fcmPort.getKind() != null)) {
 			PortKind kind = fcmPort.getKind();
@@ -328,24 +331,24 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 				int index = portKindList.indexOf(kind) + 1;
 				fKindCombo.select(index);
 			}
-			fDescription.setText(Description.getDescription(kind.getBase_Class(), "not available"));
+			fDescription.setText(Description.getDescription(kind.getBase_Class(), Messages.ConfigurePortDialog_NotAvail));
 			Interface providedI = PortUtils.getProvided(port);
 			Interface requiredI = PortUtils.getRequired(port);
-			fProvided.setText(providedI != null ? providedI.getQualifiedName() : "none");
-			fRequired.setText(requiredI != null ? requiredI.getQualifiedName() : "none");
+			fProvided.setText(providedI != null ? providedI.getQualifiedName() : Messages.ConfigurePortDialog_None);
+			fRequired.setText(requiredI != null ? requiredI.getQualifiedName() : Messages.ConfigurePortDialog_None);
 		}
 		else {
-			fProvided.setText(port.getProvideds().size() > 0 ? port.getProvideds().get(0).getQualifiedName() : "none");
-			fRequired.setText(port.getRequireds().size() > 0 ? port.getRequireds().get(0).getQualifiedName() : "none");
+			fProvided.setText(port.getProvideds().size() > 0 ? port.getProvideds().get(0).getQualifiedName() : Messages.ConfigurePortDialog_None);
+			fRequired.setText(port.getRequireds().size() > 0 ? port.getRequireds().get(0).getQualifiedName() : Messages.ConfigurePortDialog_None);
 			fKindCombo.select(0);
-			fDescription.setText("");
+			fDescription.setText(""); //$NON-NLS-1$
 		}
 	}
 
 	private void setEnabled(boolean enabled) {
 		fDescription.setEnabled(enabled);
 		if(!enabled) {
-			fDescription.setText("");
+			fDescription.setText(""); //$NON-NLS-1$
 		}
 	}
 

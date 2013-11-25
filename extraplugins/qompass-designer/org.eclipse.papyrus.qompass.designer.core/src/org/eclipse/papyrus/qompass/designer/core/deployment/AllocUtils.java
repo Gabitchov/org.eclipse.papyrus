@@ -24,8 +24,8 @@ import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedula
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -255,8 +255,8 @@ public class AllocUtils {
 	public static boolean allocate(InstanceSpecification instance, InstanceSpecification node) {
 		Package cdp = (Package)instance.getOwner();
 		Abstraction allocation = (Abstraction)
-			cdp.createPackagedElement("allocate " + instance.getName() +
-				" to " + node.getName(), UMLPackage.eINSTANCE.getAbstraction());
+			cdp.createPackagedElement("allocate " + instance.getName() + //$NON-NLS-1$
+				" to " + node.getName(), UMLPackage.eINSTANCE.getAbstraction()); //$NON-NLS-1$
 		if(StereotypeUtil.apply(allocation, Allocate.class) == null) {
 			// stereotype application failed
 			return false;
@@ -310,9 +310,9 @@ public class AllocUtils {
 				}
 				for(Connector connection : compositeCL.getOwnedConnectors()) {
 					if(ConnectorUtils.connectsPort(connection, port)) {
-						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "connector: " + connection.getName());
-						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "end1: " + connection.getEnds().get(0).getPartWithPort());
-						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "end2: " + connection.getEnds().get(1).getPartWithPort());
+						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "connector: " + connection.getName()); //$NON-NLS-1$
+						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "end1: " + connection.getEnds().get(0).getPartWithPort()); //$NON-NLS-1$
+						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "end2: " + connection.getEnds().get(1).getPartWithPort()); //$NON-NLS-1$
 						ConnectorEnd end = ConnectorUtils.connEndForPart(connection, containedProperty);
 						// other connector end targeted at containedProperty?
 						if(end != null) {

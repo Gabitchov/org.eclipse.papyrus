@@ -73,7 +73,7 @@ public class ConfigUtils {
 		EList<Property> list = new BasicEList<Property>();
 		Class composite = rule.getBase_Class(); // a rule should always have a base class, unless malformed
 		if(composite == null) {
-			throw new TransformationException("A container rule has no base class (broken model library?)");
+			throw new TransformationException(Messages.ConfigUtils_RuleWithoutBaseClass);
 		}
 		for(Property part : composite.getAttributes()) {
 			if(part instanceof Port) {

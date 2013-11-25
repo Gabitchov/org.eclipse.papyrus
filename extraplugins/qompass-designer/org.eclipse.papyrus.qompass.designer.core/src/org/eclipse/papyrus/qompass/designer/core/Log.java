@@ -54,19 +54,19 @@ public class Log {
 	static String getModuleInfo(int moduleKind) {
 		if(moduleMap == null) {
 			moduleMap = new HashMap<Integer, String>();
-			moduleMap.put(TRAFO_CONNECTOR, "Trafo connector");
-			moduleMap.put(TRAFO_CONTAINER, "Trafo container");
-			moduleMap.put(TRAFO_COPY, "Trafo copy");
-			moduleMap.put(TRAFO_SYNC, "Synchronization");
-			moduleMap.put(TEMPLATE_BINDING, "Template binding");
-			moduleMap.put(TEMPLATE_INSTANTIATION, "Template instantiation");
-			moduleMap.put(DEPLOYMENT, "Template binding");
-			moduleMap.put(DIALOGS, "Qompass dialogs");
-			moduleMap.put(UTILS, "Utils");
-			moduleMap.put(CODEGEN, "Code generation");
-			moduleMap.put(CALC_PORTKIND, "Calculate portkind");
+			moduleMap.put(TRAFO_CONNECTOR, "Trafo connector"); //$NON-NLS-1$
+			moduleMap.put(TRAFO_CONTAINER, "Trafo container"); //$NON-NLS-1$
+			moduleMap.put(TRAFO_COPY, "Trafo copy"); //$NON-NLS-1$
+			moduleMap.put(TRAFO_SYNC, "Synchronization"); //$NON-NLS-1$
+			moduleMap.put(TEMPLATE_BINDING, "Template binding"); //$NON-NLS-1$
+			moduleMap.put(TEMPLATE_INSTANTIATION, "Template instantiation"); //$NON-NLS-1$
+			moduleMap.put(DEPLOYMENT, "Template binding"); //$NON-NLS-1$
+			moduleMap.put(DIALOGS, "Qompass dialogs"); //$NON-NLS-1$
+			moduleMap.put(UTILS, "Utils"); //$NON-NLS-1$
+			moduleMap.put(CODEGEN, "Code generation"); //$NON-NLS-1$
+			moduleMap.put(CALC_PORTKIND, "Calculate portkind"); //$NON-NLS-1$
 		}
-		return "Module " + moduleMap.get(moduleKind) + ": ";
+		return "Module " + moduleMap.get(moduleKind) + ": "; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public static void log(int msgKind, int moduleKind, String message) {

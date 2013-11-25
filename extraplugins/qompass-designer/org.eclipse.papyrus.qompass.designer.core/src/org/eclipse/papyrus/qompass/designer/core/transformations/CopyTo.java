@@ -17,6 +17,7 @@ public class CopyTo {
 	 * @param targetContainer The container into which it the source should be copied
 	 * @return the copied object
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends Element> T copyTo(T source, Element targetContainer) {
 		Copier copier = new Copier();
 		EObject sourceContainer = source.eContainer();

@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.qompass.designer.core;
 
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.PortKind;
@@ -231,22 +230,7 @@ public class PortUtils {
 	public static boolean sameKinds(Port portA, Port portB) {
 		PortKind kindA = getKind(portA);
 		PortKind kindB = getKind(portB);
-		if((kindA == null) && (kindB == null)) {
-			return true;
-		} else if((kindA == null) || (kindB == null)) {
-			return false;
-		} else {
-			// 	better use eClass?
-			boolean tst = kindA == kindB;
-			boolean tst2 =
-				kindA.getBase_Class().getQualifiedName().equals(
-					kindB.getBase_Class().getQualifiedName());
-			if(tst != tst2) {
-				Log.log(Status.ERROR, Log.UTILS, "different instances of same kind??" + kindA.getBase_Class());
-			}
-			return kindA.getBase_Class().getQualifiedName().equals(
-				kindB.getBase_Class().getQualifiedName());
-		}
+		return kindA == kindB;
 	}
 
 	/**
@@ -285,7 +269,6 @@ public class PortUtils {
 		}
 		// no match found, try weaker condition: find 1st match for provided ...
 		// TODO: check not only for identical interfaces but allow a superclass on the required interface
-		// TODO: should be used by template binding checker
 		if(isAssembly) {
 			return (PortUtils.getProvided(portA) == PortUtils.getRequired(portB)) &&
 				(PortUtils.getProvided(portB) == PortUtils.getRequired(portA));

@@ -27,9 +27,6 @@ public class PrefixConstants {
 
 	public static String connectQ_Prefix = "connect_"; //$NON-NLS-1$
 
-	@Deprecated
-	public static String equivIntfPrefix = "CCM_"; //$NON-NLS-1$
-
 	public static String attributePrefix = ""; //$NON-NLS-1$
 
 	enum CIFvariant {
@@ -39,23 +36,20 @@ public class PrefixConstants {
 	/**
 	 * Initialize a specific CIF variant
 	 * 
-	 * TODO might be currently unused
-	 * @param cif
+	 * TODO currently unused
+	 * @param cif Which CIF variant should used?
 	 */
 	void init(CIFvariant cif) {
 		if(cif == CIFvariant.UML) {
-			getP_Prefix = "get_";
-			// empty indicates that no getConnQ operation should be generated
-			getConnQ_Prefix = "";
-			connectQ_Prefix = "connect_";
-			// equivIntfPrefix = "CCM_";
-			attributePrefix = "";
+			getP_Prefix = "get_"; //$NON-NLS-1$
+			getConnQ_Prefix = ""; //$NON-NLS-1$
+			connectQ_Prefix = "connect_"; //$NON-NLS-1$
+			attributePrefix = ""; //$NON-NLS-1$
 		} else if(cif == CIFvariant.CCM) {
-			getP_Prefix = "get_";
-			getConnQ_Prefix = "getconnection_";
-			connectQ_Prefix = "connect_";
-			// equivIntfPrefix = "CCM_";
-			attributePrefix = "m_";
+			getP_Prefix = "get_"; //$NON-NLS-1$
+			getConnQ_Prefix = "getconnection_"; //$NON-NLS-1$
+			connectQ_Prefix = "connect_"; //$NON-NLS-1$
+			attributePrefix = "m_"; //$NON-NLS-1$
 		}
 	}
 };

@@ -95,7 +95,7 @@ public class PartialCopy implements InstanceDeployer {
 		// Log.log(Status.INFO, Log.DEPLOYMENT, "smCl:" + smCl.getQualifiedName ());
 		// Log.log(Status.INFO, Log.DEPLOYMENT, "tmCl:" + tmCl.getQualifiedName ());
 		
-		String partName = smPart.getName();
+		// String partName = smPart.getName();
 		InstanceSpecification instanceOrThread = DepUtils.getInstance(slot);
 		if (AllocUtils.getNodes(instanceOrThread).contains(node)) {
 			copy.copy(smPart);

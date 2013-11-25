@@ -15,11 +15,10 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
-import org.eclipse.papyrus.qompass.designer.ui.dialogs.ConfigureInstanceDialog;
+import org.eclipse.papyrus.qompass.designer.ui.Messages;
 import org.eclipse.papyrus.qompass.designer.ui.dialogs.ConfigurePortDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
 
@@ -59,31 +58,14 @@ public class ConfigurePortHandler extends CmdHandler {
 		// 2. select implementation group according to connector type
 
 		if(element instanceof Class) {
-			CommandSupport.exec("Configure ports", event, new RunnableWithResult() {
-
-				public CommandResult run() {
-					ConfigurePortDialog configureInstanceDialog =
-						new ConfigurePortDialog(shell);
-					if (configureInstanceDialog.init((Class)element)) {
-						configureInstanceDialog.setTitle("Configure ports");
-						configureInstanceDialog.setMessage("Configure ports of component " + element.getName());
-						configureInstanceDialog.open();
-						if(configureInstanceDialog.getReturnCode() == IDialogConstants.OK_ID) {
-							return CommandResult.newOKCommandResult();
-						}
-					}
-					return CommandResult.newCancelledCommandResult();
-				}
-			});
-		} else if(element instanceof Port) {
-			CommandSupport.exec("Configure ports", event, new RunnableWithResult() {
+			CommandSupport.exec(Messages.ConfigurePortHandler_ConfigurePorts, event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					ConfigurePortDialog configurePortDialog =
 						new ConfigurePortDialog(shell);
-					if (configurePortDialog.init((Port)element)) {
-						configurePortDialog.setTitle("Configure ports");
-						configurePortDialog.setMessage("Configure port " + element.getName());
+					if (configurePortDialog.init((Class)element)) {
+						configurePortDialog.setTitle(Messages.ConfigurePortHandler_ConfigurePorts);
+						configurePortDialog.setMessage(Messages.ConfigurePortHandler_ConfigurePortsOfComponent + " " + element.getName()); //$NON-NLS-1$
 						configurePortDialog.open();
 						if(configurePortDialog.getReturnCode() == IDialogConstants.OK_ID) {
 							return CommandResult.newOKCommandResult();
@@ -92,19 +74,17 @@ public class ConfigurePortHandler extends CmdHandler {
 					return CommandResult.newCancelledCommandResult();
 				}
 			});
-
-			
-		} else if(element instanceof InstanceSpecification) {
-
-			CommandSupport.exec("Configure instance", event, new RunnableWithResult() {
+		} else if(element instanceof Port) {
+			CommandSupport.exec(Messages.ConfigurePortHandler_ConfigurePorts, event, new RunnableWithResult() {
 
 				public CommandResult run() {
-					ConfigureInstanceDialog configureInstanceDialog =
-						new ConfigureInstanceDialog(shell);
-					if (configureInstanceDialog.init((InstanceSpecification)element)) {
-						configureInstanceDialog.setMessage("Configure instance " + element.getName());
-						configureInstanceDialog.open();
-						if(configureInstanceDialog.getReturnCode() == IDialogConstants.OK_ID) {
+					ConfigurePortDialog configurePortDialog =
+						new ConfigurePortDialog(shell);
+					if (configurePortDialog.init((Port)element)) {
+						configurePortDialog.setTitle(Messages.ConfigurePortHandler_ConfigurePorts);
+						configurePortDialog.setMessage(Messages.ConfigurePortHandler_ConfigurePorts + " " + element.getName()); //$NON-NLS-1$
+						configurePortDialog.open();
+						if(configurePortDialog.getReturnCode() == IDialogConstants.OK_ID) {
 							return CommandResult.newOKCommandResult();
 						}
 					}

@@ -49,7 +49,7 @@ public class CreationUtils {
 		int offset = (skipTop ? 2 : 1);
 		for(int i = list.size() - offset; i >= 0; i--) {
 			Namespace ns = list.get(i);
-			Log.log(Status.INFO, Log.UTILS, "getAndCreate:" + ns.getName());
+			Log.log(Status.INFO, Log.UTILS, "getAndCreate:" + ns.getName()); //$NON-NLS-1$
 
 			NamedElement pkg = root.getOwnedMember(ns.getName());
 			if(pkg == null) {

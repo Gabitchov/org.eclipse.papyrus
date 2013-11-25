@@ -50,7 +50,7 @@ public class CommandSupport {
 		try {
 			exec(serviceUtils.getTransactionalEditingDomain(event), label, command);
 		} catch (ServiceException e) {
-			Log.log(Status.ERROR, Log.UTILS, "Can not get editing domain", e);
+			Log.log(Status.ERROR, Log.UTILS, Messages.CommandSupport_NoEditingDomain, e);
 		}
 	}
 
@@ -73,9 +73,9 @@ public class CommandSupport {
 				}
 			}, null, null);
 		} catch (ExecutionException e) {
-			Log.log(Status.ERROR, Log.UTILS, "error during command execution", e);
+			Log.log(Status.ERROR, Log.UTILS, Messages.CommandSupport_ErrorDuringCmdExec, e);
 		} catch (ServiceException e) {
-			Log.log(Status.ERROR, Log.UTILS, "Can not get editing domain", e);
+			Log.log(Status.ERROR, Log.UTILS, Messages.CommandSupport_NoEditingDomain, e);
 		}
 	}
 

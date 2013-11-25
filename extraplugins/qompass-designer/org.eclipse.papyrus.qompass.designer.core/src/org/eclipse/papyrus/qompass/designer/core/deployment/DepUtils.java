@@ -108,7 +108,7 @@ public class DepUtils {
 	 */
 	public static InstanceSpecification getNamedSubInstance(InstanceSpecification owningInstance, String name) {
 		Element cdp = owningInstance.getOwner();
-		String candidateName = owningInstance.getName() + "." + name;
+		String candidateName = owningInstance.getName() + "." + name; //$NON-NLS-1$
 		if(cdp instanceof Package) {
 			for(PackageableElement instance : ((Package)cdp).getPackagedElements()) {
 				if(instance instanceof InstanceSpecification) {
@@ -445,16 +445,16 @@ public class DepUtils {
 	 * Determine which programming language should be generated for a classifier. The
 	 * stereotype CodeGenOptions (which could be on any owning package) is evaluated.
 	 *
-	 * @param cl a classifier
+	 * @param pkg a classifier
 	 * @return the programming language
 	 */
-	public static String getLanguageFromClassifier(Classifier cl) {
-		CodeGenOptions codeGenOpt = UMLUtil.getStereotypeApplication(cl, CodeGenOptions.class);
+	public static String getLanguageFromPackage(Package pkg) {
+		CodeGenOptions codeGenOpt = UMLUtil.getStereotypeApplication(pkg, CodeGenOptions.class);
 		if ((codeGenOpt != null) && (codeGenOpt.getProgLanguage() != null)) {
 			return codeGenOpt.getProgLanguage().getBase_Class().getName();
 		}
-		else if (cl.getOwner() instanceof Classifier) {
-			return getLanguageFromClassifier((Classifier) cl.getOwner());
+		else if (pkg.getOwner() instanceof Package) {
+			return getLanguageFromPackage((Package) pkg.getOwner());
 		}
 		else {
 			return null;

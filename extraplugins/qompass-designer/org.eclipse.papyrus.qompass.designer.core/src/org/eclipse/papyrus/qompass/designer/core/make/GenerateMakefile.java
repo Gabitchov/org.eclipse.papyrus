@@ -14,12 +14,12 @@
 
 package org.eclipse.papyrus.qompass.designer.core.make;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.eclipse.core.runtime.Status;
-import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.Activator;
 
 /*
  * TODO:
@@ -58,13 +58,13 @@ public class GenerateMakefile {
 		ArrayList<String> nodeList = new ArrayList<String>();
 		ArrayList<String> nodeSources = new ArrayList<String>();
 
-		ShowFiles showFiles = new ShowFiles("/local/home/ansgar/workspace-v3.3/TestCppProject/AluSocketGen");
+		ShowFiles showFiles = new ShowFiles("/local/home/ansgar/workspace-v3.3/TestCppProject/AluSocketGen"); //$NON-NLS-1$
 
 		showFiles.getFilesRec(fileList, folderList);
 		nodeList = showFiles.findNodesDir(folderList);
 		for(String node : nodeList) {
 			nodeSources = showFiles.getNodeSources(fileList, node);
-			String nodePath = showFiles.getRootPath() + "/" + node + "/Makefile";
+			String nodePath = showFiles.getRootPath() + File.pathSeparator + node + File.pathSeparator + "Makefile"; //$NON-NLS-1$
 			createFileList(nodePath, nodeSources, node);
 		}
 	}
@@ -87,32 +87,32 @@ public class GenerateMakefile {
 
 			FileOutputStream writer = new java.io.FileOutputStream(makefile);
 
-			writer.write("include $(ACCORD_ROOT)/Makefile.defs\n\n".getBytes());
-			writer.write(("NAME=" + NodeName + "\n\n").getBytes());
+			writer.write("include $(ACCORD_ROOT)/Makefile.defs\n\n".getBytes()); //$NON-NLS-1$
+			writer.write(("NAME=" + NodeName + "\n\n").getBytes()); //$NON-NLS-1$ //$NON-NLS-2$
 
 			// Calculate list of sources
-			writer.write("SRCS=\\\n".getBytes());
+			writer.write("SRCS=\\\n".getBytes()); //$NON-NLS-1$
 
 			if(cppFileList != null && cppFileList.size() != 0) {
 
 				// Calculate list of .cpp files
 				for(int i = 0; i < cppFileList.size(); i++) {
-					writer.write(("\t" + cppFileList.get(i)).getBytes());
+					writer.write(("\t" + cppFileList.get(i)).getBytes()); //$NON-NLS-1$
 					if(i < cppFileList.size() - 1) {
 						// add \ to all but last item
-						writer.write("\\".getBytes());
+						writer.write("\\".getBytes()); //$NON-NLS-1$
 					}
-					writer.write("\n".getBytes());
+					writer.write("\n".getBytes()); //$NON-NLS-1$
 				}
 			}
-			writer.write("\n".getBytes());
+			writer.write("\n".getBytes()); //$NON-NLS-1$
 
-			writer.write("include $(ACCORD_ROOT)/Makefile.rules".getBytes());
+			writer.write("include $(ACCORD_ROOT)/Makefile.rules".getBytes()); //$NON-NLS-1$
 
 			writer.flush();
 			writer.close();
 		} catch (IOException e) {
-			Log.log(Status.ERROR, Log.UTILS, "error during writing of makefile: " + e.getMessage());
+			Activator.log.error(e);
 		}
 	}
 }

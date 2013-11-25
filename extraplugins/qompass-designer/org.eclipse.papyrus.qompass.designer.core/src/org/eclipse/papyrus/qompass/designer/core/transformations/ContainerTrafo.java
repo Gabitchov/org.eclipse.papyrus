@@ -28,6 +28,7 @@ import org.eclipse.papyrus.FCM.InterceptionKind;
 import org.eclipse.papyrus.FCM.InterceptionRule;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
@@ -92,6 +93,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 * 
 	 * @throws TransformationException
 	 */
+	@Override
 	public void createContainer(Class smComponent, Class tmComponent) throws TransformationException {
 		Package tmPkgOwner = (Package)tmComponent.getOwner();
 		// create a container with the suitable postfix
@@ -168,7 +170,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 * @param context
 	 *        Additional information about the container that is used by instance configurators
 	 */
-	public void createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context) {
+	@Override
+	public void createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context) throws TransformationException {
 		// create an instance specification for the container
 		containerIS = (InstanceSpecification)tmCDP.createPackagedElement(tmIS.getName(), UMLPackage.eINSTANCE.getInstanceSpecification());
 		// assign new name to original instance specification which reflects
@@ -182,19 +185,18 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		// containers.put(tmComponent, this);
 		this.context = context;
 		context.executorIS = executorIS;
-		/*
-		 * // now create instances for the contained elements
-		 * for(Property extensionPart : tmContainerImpl.getAttributes()) {
-		 * Type tmContainerExtImpl = extensionPart.getType();
-		 * if(tmContainerExtImpl instanceof Class) {
-		 * InstanceSpecification containerExtIS = DepCreation.createDepPlan(tmCDP, (Class)tmContainerExtImpl, containerIS.getName() + "." +
-		 * extensionPart.getName(), false);
-		 * // configure extension
-		 * InstanceConfigurator.configureInstance(executorIS, smPart, containerExtIS, null);
-		 * DepCreation.createSlot(containerIS, containerExtIS, extensionPart);
-		 * }
-		 * }
-		 */
+		
+		// now create instances for the contained elements
+		for(Property extensionPart : tmContainerImpl.getAttributes()) {
+			Type tmContainerExtImpl = extensionPart.getType();
+			if(tmContainerExtImpl instanceof Class) {
+				InstanceSpecification containerExtIS = DepCreation.createDepPlan(tmCDP, (Class)tmContainerExtImpl, containerIS.getName() + "." + //$NON-NLS-1$
+						extensionPart.getName(), false);
+				// configure extension
+				InstanceConfigurator.configureInstance(containerExtIS, extensionPart, null);
+				DepCreation.createSlot(containerIS, containerExtIS, extensionPart);
+			}
+		 }
 	}
 
 	/**
@@ -239,7 +241,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 *        the instance specification for the application component in the target model
 	 * @throws TransformationException
 	 */
-	public void applyRule(ContainerRule smContainerRule, Class smComponent, Class tmComponent, InstanceSpecification tmIS)
+	@Override
+	public void applyRule(ContainerRule smContainerRule, Class smComponent, Class tmComponent)
 		throws TransformationException
 	{
 		Map<Property, EList<Property>> interceptorPartsMap = new HashMap<Property, EList<Property>>();
@@ -248,7 +251,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			Type type = part.getType();
 			if(type == null) {
 				String ruleName = (smContainerRule.getBase_Class() != null) ? smContainerRule.getBase_Class().getName() : "undefined"; //$NON-NLS-1$
-				throw new TransformationException("Cannot apply container rule <" + ruleName + ">, since the type of one of its parts is undefined. Check for unresolved proxies in imports");
+				throw new TransformationException(String.format(
+					Messages.ContainerTrafo_CannotApplyRule, ruleName));
 			}
 			if(part instanceof Port) {
 				Port newPort = tmContainerImpl.createOwnedPort(part.getName(), part.getType());
@@ -273,8 +277,9 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 					interceptorPartsMap.put(part, interceptorParts);
 				}
 				else if(StereotypeUtil.isApplied(part, InterceptionRule.class)) {
-					throw new TransformationException("The part " + part.getName() + " in rule " + smContainerRule.getBase_Class().getName() + "" +
-						" has an interceptionRule, but is not typed with an interaction component");
+					throw new TransformationException(String.format(
+						Messages.ContainerTrafo_InterceptionRuleButNoInterceptor,
+						part.getName(), smContainerRule.getBase_Class().getName()));
 				}
 				else {
 					Property extensionPart =
@@ -319,13 +324,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				// check whether FCM connector
 				org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getConnector(connector);
 				if(fcmConn != null) {
-					Property connectorPart = ConnectorReification.reifyConnector(copy, tmContainerImpl,
+					ConnectorReification.reifyConnector(copy, tmContainerImpl,
 						UMLTool.varName(connector), connector, containerIS, null);
-					// don't create specific configuration slots (don't know how to specific in source model)
-					// InstanceSpecification tmReifiedConnectorIS =
-					DepCreation.createDepPlan(
-						tmCDP, (Class)connectorPart.getType(),
-						tmIS.getName() + "." + connector.getName(), false); //$NON-NLS-1$
 				}
 				else {
 					copy.remove(connector);
@@ -437,7 +437,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				// interceptionConnector = tmContainerImpl.getOwnedConnector
 				// ("delegation " + port.getName ());
 				if(interceptionConnector == null) {
-					throw new TransformationException("(during interceptor transformation for container): cannot find existing delegation connector");
+					throw new TransformationException(Messages.ContainerTrafo_CannotFindDelegationConn);
 				}
 
 				interceptionConnector.setName(interceptorName + port.getName() + counter);
@@ -480,7 +480,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 * the target model, i.e. the user model is not affected.
 	 */
 	public void moveSlots() {
-		Log.log(Status.INFO, Log.TRAFO_CONTAINER, "Move slots for instance: " + executorIS.getQualifiedName());
+		Log.log(Status.INFO, Log.TRAFO_CONTAINER, String.format(Messages.ContainerTrafo_InfoMoveSlots, executorIS.getQualifiedName()));
 		Classifier mainCl = DepUtils.getClassifier(executorIS);
 		Iterator<Slot> slotIt = executorIS.getSlots().iterator();
 		while(slotIt.hasNext()) {

@@ -23,8 +23,10 @@ import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
 import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.qompass.designer.ui.Messages;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
@@ -34,8 +36,6 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 
 public class CreateDepPlanHandler extends CmdHandler {
-
-	private final String DepPlanPostfix = "DepPlan";
 
 	private Package depPlans;
 
@@ -60,7 +60,7 @@ public class CreateDepPlanHandler extends CmdHandler {
 		}
 		final Class selectedComposite = (Class)selectedEObject;
 
-		CommandSupport.exec("Create deployment plans", event, new Runnable() {
+		CommandSupport.exec(Messages.CreateDepPlanHandler_CreateDPs, event, new Runnable() {
 
 			public void run() {
 				// execute with transaction support
@@ -69,17 +69,16 @@ public class CreateDepPlanHandler extends CmdHandler {
 		});
 
 		try {
-			String name = selectedComposite.getName() + DepPlanPostfix;
+			String name = selectedComposite.getName() + DeployConstants.DepPlanPostfix;
 			if(depPlans.getMember(name) != null) {
 				Shell shell = new Shell();
 				String dialogButtonLabels[] = new String[]{
-					"Cancel",
-					"Synchronize",
-					"create new (auto number name)"
+					Messages.CreateDepPlanHandler_Cancel,
+					Messages.CreateDepPlanHandler_Sync,
+					Messages.CreateDepPlanHandler_CreateNew
 				};
-				MessageDialog dialog = new MessageDialog(shell, "What should I do?", null,
-					"Deployment plan with name \"" + name + "\" exists already. You can always synchronize an " +
-						"existing deployment plan via the context menu \"Synchronize derived elements\"",
+				MessageDialog dialog = new MessageDialog(shell, Messages.CreateDepPlanHandler_WhatShouldIDo, null,
+					String.format(Messages.CreateDepPlanHandler_DPwithNameExistsAlready, name),
 					MessageDialog.QUESTION, dialogButtonLabels, 0);
 				int result = dialog.open();
 				if(result == 0) {
@@ -91,12 +90,13 @@ public class CreateDepPlanHandler extends CmdHandler {
 						DepPlanSync.syncDepPlan((Package)existing);
 					}
 					else {
-						MessageDialog.openError(shell, "Cannot synchronize", "Element with name \"" + name + "\" exists, but is not a package");
+						MessageDialog.openError(shell, Messages.CreateDepPlanHandler_CannotSync,
+							String.format(Messages.CreateDepPlanHandler_DPwithNameExistsNoPackage, name));
 					}
 				}
 				else {
 					for(int i = 2;; i++) {
-						name = selectedComposite.getName() + DepPlanPostfix + i;
+						name = selectedComposite.getName() + DeployConstants.DepPlanPostfix + i;
 						if(depPlans.getMember(name) == null)
 							break;
 					}
@@ -105,24 +105,24 @@ public class CreateDepPlanHandler extends CmdHandler {
 			}
 			final String depPlanName = name;
 
-			CommandSupport.exec("Create deployment plan", event, new RunnableWithResult() {
+			CommandSupport.exec(Messages.CreateDepPlanHandler_CreateDP, event, new RunnableWithResult() {
 
 				public CommandResult run() {
 					Package cdp = depPlans.createNestedPackage(depPlanName);
 					Stereotype st = StereotypeUtil.apply(cdp, org.eclipse.papyrus.FCM.DeploymentPlan.class);
 					if(st == null) {
-						MessageDialog.openInformation(new Shell(), "Cannot create deployment plan",
-							"Application of stereotype \"FCM::DeploymentPlan\" failed. Check, if FCM profile is applied");
-						return CommandResult.newErrorCommandResult("cannot create deployment plan");
+						MessageDialog.openInformation(new Shell(), Messages.CreateDepPlanHandler_CannotCreateDP,
+							Messages.CreateDepPlanHandler_StereoApplicationFailed);
+						return CommandResult.newErrorCommandResult(Messages.CreateDepPlanHandler_CannotCreateDP);
 					}
 					try {
 						InstanceSpecification newRootIS =
-							DepCreation.createDepPlan(cdp, selectedComposite, "mainInstance", true);
+							DepCreation.createDepPlan(cdp, selectedComposite, DeployConstants.MAIN_INSTANCE, true);
 						DepCreation.initAutoValues(newRootIS);
 						return CommandResult.newOKCommandResult();
 					}
 					catch (TransformationException e) {
-						MessageDialog.openInformation(new Shell(), "Error during deployment plan creation",
+						MessageDialog.openInformation(new Shell(), Messages.CreateDepPlanHandler_CannotCreateDP,
 							e.getMessage());
 						return CommandResult.newErrorCommandResult(e.getMessage());
 					}

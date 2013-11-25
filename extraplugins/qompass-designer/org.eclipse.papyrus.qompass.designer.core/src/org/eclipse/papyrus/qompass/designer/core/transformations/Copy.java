@@ -121,9 +121,11 @@ public class Copy extends Copier {
 			// original source package becomes a sub-package in the target model
 			Package newSourceRoot = target.createNestedPackage(source.getName());
 			put(source, newSourceRoot);
+			setStatus(newSourceRoot, CopyStatus.SHALLOW);
 		}
 		else {
 			put(source, target);
+			setStatus(target, CopyStatus.SHALLOW);
 		}
 	};
 
@@ -228,6 +230,11 @@ public class Copy extends Copier {
 		return null;
 	}
 
+	/**
+	 * Set the status of a copy object
+	 * @param targetEObj
+	 * @param status
+	 */
 	public void setStatus(EObject targetEObj, CopyStatus status) {
 		statusMap.put(targetEObj, status);
 	}
@@ -931,7 +938,7 @@ public class Copy extends Copier {
 	 *        corresponding target model element
 	 */
 	public static void copyID(EObject source, EObject target) {
-		copyID(source, target, "");
+		copyID(source, target, ""); //$NON-NLS-1$
 	}
 
 	/**

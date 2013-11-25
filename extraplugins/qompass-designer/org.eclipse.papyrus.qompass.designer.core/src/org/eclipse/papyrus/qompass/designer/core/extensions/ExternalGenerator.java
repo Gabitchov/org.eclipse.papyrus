@@ -16,9 +16,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.uml2.uml.Classifier;
-
 import org.eclipse.papyrus.qompass.designer.core.Activator;
+import org.eclipse.uml2.uml.Classifier;
 
 
 /**
@@ -26,7 +25,7 @@ import org.eclipse.papyrus.qompass.designer.core.Activator;
  */
 public class ExternalGenerator {
 
-	public static final String IEXTERNAL_GENERATOR_ID = Activator.PLUGIN_ID + ".externalGenerator";
+	public static final String IEXTERNAL_GENERATOR_ID = Activator.PLUGIN_ID + ".externalGenerator"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -48,10 +47,10 @@ public class ExternalGenerator {
 		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(IEXTERNAL_GENERATOR_ID);
 		for(IConfigurationElement configElement : configElements) {
 			try {
-				final String iConfiguratorIDext = configElement.getAttribute("extGeneratorID");
+				final String iConfiguratorIDext = configElement.getAttribute("extGeneratorID"); //$NON-NLS-1$
 				if(iConfiguratorIDext.equals(iGeneratorID)) {
 					// TODO: cache returned instance (avoid creating a new instance each time => more efficient, no need for static attributes)
-					final Object obj = configElement.createExecutableExtension("class");
+					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
 					if(obj instanceof IExternalGenerator) {
 						return (IExternalGenerator)obj;
 					}

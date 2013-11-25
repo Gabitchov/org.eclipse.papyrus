@@ -48,24 +48,25 @@ public class EnumService {
 	}
 
 	public static String literalKey(Element dummy, String enumName, String literalKey) {
-		String literal = "";
-		if(literalKey.equals("Port")) {
-			literal = "ID_" + TransformationContext.port.getName();
+		String prefix = "ID_"; //$NON-NLS-1$
+		String literal = ""; //$NON-NLS-1$
+		if(literalKey.equals("Port")) { //$NON-NLS-1$
+			literal = prefix + TransformationContext.port.getName();
 		}
-		else if(literalKey.equals("Formal")) {
-			literal = "ID_" + TransformationContext.formalParameter.getName();
+		else if(literalKey.equals("Formal")) { //$NON-NLS-1$
+			literal = prefix + TransformationContext.formalParameter.getName();
 		}
-		else if(literalKey.equals("Instance")) {
-			literal = "ID_" + TransformationContext.instance.getName();
+		else if(literalKey.equals("Instance")) { //$NON-NLS-1$
+			literal = prefix + TransformationContext.instance.getName();
 		}
-		else if(literalKey.equals("Interface")) {
-			literal = "ID_" + TransformationContext.classifier.getName();
+		else if(literalKey.equals("Interface")) { //$NON-NLS-1$
+			literal = prefix + TransformationContext.classifier.getName();
 		}
 		return literal(enumName, literal);
 	}
 
 	public static String quoteLiteral(Element dummy, String enumName, String literal) {
-		return "\"" + literal(enumName, literal) + "\"";
+		return "\"" + literal(enumName, literal) + "\""; //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 	/**
@@ -101,7 +102,7 @@ public class EnumService {
 			return literal;
 		}
 		if(enumeration == null) {
-			if(enumName.startsWith("L")) {
+			if(enumName.startsWith("L")) { //$NON-NLS-1$
 				// magic prefix for class local
 				enumeration = (Enumeration)
 					((Class)TransformationContext.classifier).createNestedClassifier(enumName, UMLPackage.eINSTANCE.getEnumeration());

@@ -15,10 +15,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.qompass.designer.core.Activator;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Port;
-
-import org.eclipse.papyrus.qompass.designer.core.Activator;
 
 
 /**
@@ -28,7 +27,7 @@ import org.eclipse.papyrus.qompass.designer.core.Activator;
 @Deprecated
 public class EmbeddingRule {
 
-	public static final String IEMBEDDING_RULE_ID = Activator.PLUGIN_ID + ".embeddingRule";
+	public static final String IEMBEDDING_RULE_ID = Activator.PLUGIN_ID + ".embeddingRule"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -49,10 +48,10 @@ public class EmbeddingRule {
 		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(IEMBEDDING_RULE_ID);
 		for(IConfigurationElement configElement : configElements) {
 			try {
-				final String iConfiguratorIDext = configElement.getAttribute("configuratorID");
+				final String iConfiguratorIDext = configElement.getAttribute("configuratorID"); //$NON-NLS-1$
 				if(iConfiguratorIDext.equals(embeddingRuleID)) {
 					// TODO: cache returned instance (avoid creating a new instance each time => more efficient, no need for static attributes)
-					final Object obj = configElement.createExecutableExtension("class");
+					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
 					if(obj instanceof IEmbeddingRule) {
 						return (IEmbeddingRule)obj;
 					}

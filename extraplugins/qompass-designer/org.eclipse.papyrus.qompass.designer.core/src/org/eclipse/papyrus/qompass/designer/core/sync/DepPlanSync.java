@@ -92,7 +92,7 @@ public class DepPlanSync {
 		for(Slot slot : instance.getSlots()) {
 			InstanceSpecification subInstance = DepUtils.getInstance(slot);
 			if(subInstance != null) {
-				addCDP(depPlan, subInstance, canonicalName + "." + slot.getDefiningFeature().getName());
+				addCDP(depPlan, subInstance, canonicalName + "." + slot.getDefiningFeature().getName()); //$NON-NLS-1$
 			}
 		}
 		for(Property attribute : Utils.getParts(implementation)) {
@@ -101,7 +101,7 @@ public class DepPlanSync {
 				if(!hasSlot(instance, attribute)) {
 					try {
 						InstanceSpecification partIS =
-							DepCreation.createDepPlan(depPlan, (Class)type, instance.getName() + "." + attribute.getName(), true);
+							DepCreation.createDepPlan(depPlan, (Class)type, instance.getName() + "." + attribute.getName(), true); //$NON-NLS-1$
 						DepPlanUtils.createSlot(depPlan, instance, partIS, attribute);
 					} catch (TransformationException e) {
 						Log.log(Status.ERROR, Log.DEPLOYMENT, e.getMessage());

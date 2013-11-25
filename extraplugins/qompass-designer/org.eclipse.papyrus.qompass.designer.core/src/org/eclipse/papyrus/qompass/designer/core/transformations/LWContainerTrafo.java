@@ -23,8 +23,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.InterceptionRule;
 import org.eclipse.papyrus.FCM.Template;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
@@ -56,12 +59,12 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class LWContainerTrafo extends AbstractContainerTrafo {
 
 	public final String interceptor =
-		"[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]\n" +
-			"[template public dummy(operation : Operation)]\n" +
-			"[returnCppCall()/];\n" +
-			"[/template]\n";
+		"[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]\n" + //$NON-NLS-1$
+			"[template public dummy(operation : Operation)]\n" + //$NON-NLS-1$
+			"[returnCppCall()/];\n" + //$NON-NLS-1$
+			"[/template]\n"; //$NON-NLS-1$
 
-	public final String origOpPrefix = "orig_";
+	public final String origOpPrefix = "orig_"; //$NON-NLS-1$
 
 	/**
 	 * Constructor
@@ -125,7 +128,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 	}
 
 	/**
-	 * original operation => operation gets interception prefix"
+	 * original operation => operation gets interception prefix
 	 * 
 	 * Objectives: existing call operations call interception operation. Existing operations include CallOperationActions as well as calls within
 	 * opaque behavior
@@ -148,7 +151,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		OpaqueBehavior b = (OpaqueBehavior)tmClass.createOwnedBehavior(operation.getName(), UMLPackage.eINSTANCE.getOpaqueBehavior());
 		String body = AcceleoDriverWrapper.bind(interceptor, copiedOperation);
 		// TODO: solution is specific to C++
-		b.getLanguages().add("C/C++");
+		b.getLanguages().add("C/C++"); //$NON-NLS-1$
 		b.getBodies().add(body);
 		// copy existing methods into new operation, copy method list,
 		// since adding the method to copied operation will remove these from original operation)
@@ -172,7 +175,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 
 	/**
 	 * apply a container rule, i.e. add either a container extension or an
-	 * interceptor to the container
+	 * interceptor to the container.
 	 * 
 	 * @param smContainerRule
 	 *        An container rule
@@ -184,11 +187,9 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 	 *        the instance specification for the application component in the target model
 	 * @throws TransformationException
 	 */
-	public void applyRule(ContainerRule smContainerRule, Class smComponent, Class tmComponent, InstanceSpecification tmIS)
+	public void applyRule(ContainerRule smContainerRule, Class smComponent, Class tmComponent)
 		throws TransformationException
 	{
-		Map<Property, EList<Property>> interceptorPartsMap = new HashMap<Property, EList<Property>>();
-
 		// dependencies of the rule become dependencies of he class. These dependencies must be instantiated
 		for(Dependency dependency : smContainerRule.getBase_Class().getClientDependencies()) {
 			//
@@ -213,8 +214,8 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		for(Property part : smContainerRule.getBase_Class().getAllAttributes()) {
 			Type type = part.getType();
 			if(type == null) {
-				String ruleName = (smContainerRule.getBase_Class() != null) ? smContainerRule.getBase_Class().getName() : "undefined";
-				throw new TransformationException("Cannot apply container rule <" + ruleName + ">, since the type of one of its parts is undefined. Check for unresolved proxies in imports");
+				String ruleName = (smContainerRule.getBase_Class() != null) ? smContainerRule.getBase_Class().getName() : "undefined"; //$NON-NLS-1$
+				throw new TransformationException(String.format(Messages.LWContainerTrafo_0, ruleName));
 			}
 			if(part instanceof Port) {
 				Port newPort = tmClass.createOwnedPort(part.getName(), part.getType());
@@ -243,8 +244,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 				tmClass.getOwnedAttributes().add(newAttribute);
 			}
 		}
-		InstanceConfigurator.configureInstance(smContainerRule, containerIS, null, context);
-
+	
 		// tell copy that tmcontainerImpl is associated with the smContainerRule
 		// register a package template (although it is not a template) to assure that the connectors
 		// get copied, although they are in a different resource (only the connectors are copied, not
@@ -282,7 +282,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		extensionPart.setIsComposite(true);
 		// TODO separation of container creation and instance creation
 		// configure extension
-		InstanceConfigurator.configureInstance(containerIS, extensionPart, context);
+		// InstanceConfigurator.configureInstance(containerIS, extensionPart, context);
 
 		return extensionPart;
 	}
@@ -316,7 +316,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 	{
 		for(Operation smOperation : operations) {
 			Operation tmOperation = copy.getCopy(smOperation);
-			String interceptionBody = "";
+			String interceptionBody = ""; //$NON-NLS-1$
 			for(Behavior behavior : interceptionOperationInRule.getMethods()) {
 				if(behavior instanceof OpaqueBehavior) {
 					EList<String> bodies = ((OpaqueBehavior)behavior).getBodies();
@@ -333,7 +333,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 			}
 			if(interceptionBody.length() > 0) {
 				// only add interception operation, if the interception is not empty
-				interceptionBody = "// --- interception code from rule <" + smContainerRule.getBase_Class().getName() + "> ---\n" +
+				interceptionBody = "// --- interception code from rule <" + smContainerRule.getBase_Class().getName() + "> ---\n" + //$NON-NLS-1$ //$NON-NLS-2$
 					interceptionBody;
 				Operation interceptionOpInClass = interceptionOpMap.get(tmOperation);
 				if(interceptionOpInClass == null) {
@@ -347,7 +347,8 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 						EList<String> bodies = ((OpaqueBehavior)behavior).getBodies();
 						if(bodies.size() > 0) {
 							// always take first
-							String newBody = interceptionBody + "\n" + bodies.get(0);
+							String newBody = interceptionBody + "\n" +  //$NON-NLS-1$
+									bodies.get(0);
 							((OpaqueBehavior)behavior).getBodies().set(0, newBody);
 						}
 					}
@@ -364,9 +365,27 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 	protected Map<Operation, Operation> interceptionOpMap;
 
 	@Override
-	public void createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context) {
+	public void createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context) throws TransformationException {
 		containerIS = tmIS;
 		this.context = context;
 		this.context.executorIS = tmIS;
+		// TODO ... incomplete!
+		// InstanceConfigurator.configureInstance(smContainerRule, containerIS, null, context);
+	
+		// now create instances for the contained elements
+		for(Property extensionPart : tmComponent.getAttributes()) {
+			Type tmContainerExtImpl = extensionPart.getType();
+			if(tmContainerExtImpl instanceof Class) {
+				if (DepUtils.getSlot(tmIS, extensionPart) == null) {
+					// no slot for part exists => assume that the part has been added by the container and create an instance specification for it.
+		
+				}
+				InstanceSpecification containerExtIS = DepCreation.createDepPlan(tmCDP, (Class)tmContainerExtImpl, containerIS.getName() + "." + //$NON-NLS-1$
+						extensionPart.getName(), false);
+				// configure extension
+				InstanceConfigurator.configureInstance(containerExtIS, extensionPart, null);
+				DepCreation.createSlot(containerIS, containerExtIS, extensionPart);
+			}
+		 }
 	}
 }

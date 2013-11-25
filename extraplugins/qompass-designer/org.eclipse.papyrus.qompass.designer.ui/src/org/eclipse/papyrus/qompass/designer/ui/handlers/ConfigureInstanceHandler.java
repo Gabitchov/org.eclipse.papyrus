@@ -56,7 +56,8 @@ public class ConfigureInstanceHandler extends CmdHandler {
 
 		final NamedElement element = (NamedElement)selectedEObject;
 		final Shell shell = new Shell();
-
+		final ExecutionEvent from = event;
+		
 		// 1. select possible connectors according to port types
 		// (only show compatible connectors check-box?)
 		// 2. select implementation group according to connector type
@@ -69,7 +70,7 @@ public class ConfigureInstanceHandler extends CmdHandler {
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =
 						new ConfigureInstanceDialog(shell);
-					if (configureInstanceDialog.init((Class)element)) {
+					if (configureInstanceDialog.init((Class)element, from)) {
 						configureInstanceDialog.setTitle("Configure instance"); //$NON-NLS-1$
 						configureInstanceDialog.setMessage("Configure instance for component " + element.getName()); //$NON-NLS-1$
 						configureInstanceDialog.open();
@@ -86,7 +87,7 @@ public class ConfigureInstanceHandler extends CmdHandler {
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =
 						new ConfigureInstanceDialog(shell);
-					if (configureInstanceDialog.init((Feature)element)) {
+					if (configureInstanceDialog.init((Feature)element, from)) {
 						configureInstanceDialog.setTitle("Configure instance"); //$NON-NLS-1$
 						configureInstanceDialog.setMessage("Configure instance for property/connector " + element.getName()); //$NON-NLS-1$
 						configureInstanceDialog.open();
@@ -106,7 +107,7 @@ public class ConfigureInstanceHandler extends CmdHandler {
 				public CommandResult run() {
 					ConfigureInstanceDialog configureInstanceDialog =
 						new ConfigureInstanceDialog(shell);
-					if (configureInstanceDialog.init((InstanceSpecification)element)) {
+					if (configureInstanceDialog.init((InstanceSpecification)element, from)) {
 						configureInstanceDialog.setMessage("Configure instance " + element.getName()); //$NON-NLS-1$
 						configureInstanceDialog.open();
 						if(configureInstanceDialog.getReturnCode() == IDialogConstants.OK_ID) {

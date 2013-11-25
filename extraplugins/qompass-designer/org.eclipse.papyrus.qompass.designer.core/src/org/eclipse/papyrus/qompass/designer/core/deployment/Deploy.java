@@ -16,6 +16,7 @@ package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import java.util.Stack;
 
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -34,8 +35,6 @@ import org.eclipse.uml2.uml.Slot;
  */
 
 public class Deploy {
-
-	public static final String singletonPrefix = "singleton_";
 
 	/**
 	 * distribute an instance, its contained sub-instances and the referenced
@@ -81,7 +80,8 @@ public class Deploy {
 		// deploy singletons (difficult to embed singletons into main instance,
 		// since there is no attribute for these)
 		for(PackageableElement pe : cdp.getPackagedElements()) {
-			if((pe instanceof InstanceSpecification) && (pe.getName().startsWith(singletonPrefix) && (!pe.getName().contains(".")))) {
+			if((pe instanceof InstanceSpecification) && (pe.getName().startsWith(DeployConstants.singletonPrefix) &&
+					(!pe.getName().contains(".")))) { //$NON-NLS-1$
 				deploy.distributeToNode(false, slotPath, (InstanceSpecification)pe);
 			}
 		}
@@ -110,8 +110,8 @@ public class Deploy {
 		// obtain implementation within source model
 		Classifier smImplementation = DepUtils.getClassifier(instance);
 		if(smImplementation == null) {
-			throw new TransformationException(
-				"Cannot find implementation for instance " + instance.getName());
+			throw new TransformationException(String.format(
+				Messages.Deploy_0, instance.getName()));
 		}
 
 		// copy implementation into node specific model

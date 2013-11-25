@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.ui.dialogs;
 
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
 import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.swt.SWT;
@@ -73,8 +75,6 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * TODO: extend rule application to instances (problematic, since rules
  * transformation is done on type level)
- * 
- * @author ansgar
  */
 public class ConfigureInstanceDialog extends SelectionStatusDialog {
 
@@ -90,7 +90,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 
 	protected Property m_currentAttribute;
 
-	protected final String valueLabelPrefix = "Value:";
+	protected final String valueLabelPrefix = "Value:"; //$NON-NLS-1$
 
 	protected Label fValueLabel;
 
@@ -112,33 +112,33 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		super(parent);
 	}
 
-	public boolean init(Class component) {
+	public boolean init(Class component, ExecutionEvent from) {
 		// visitedPackages = new BasicEList<Package> ();
 		DepPlanSync.syncAllDepPlans(component);
 		m_component = component;
 		m_instance = null;
 		m_feature = null;
-		m_model = Utils.getUserModel();
+		m_model = Utils.getUserModel(from);
 		if(m_model == null) {
 			return false;
 		}
 		return checkAndGetInstances();
 	}
 
-	public boolean init(InstanceSpecification instance) {
+	public boolean init(InstanceSpecification instance, ExecutionEvent from) {
 		// visitedPackages = new BasicEList<Package> ();
 		DepPlanSync.syncDepPlan(instance.getNearestPackage());
 		m_component = DepUtils.getImplementation(instance);
 		m_instance = instance;
 		m_feature = null;
-		m_model = Utils.getUserModel();
+		m_model = Utils.getUserModel(from);
 		return checkAndGetInstances();
 	}
 
-	public boolean init(Feature feature) {
+	public boolean init(Feature feature, ExecutionEvent from) {
 		// visitedPackages = new BasicEList<Package> ();
 		m_feature = feature;
-		m_model = Utils.getUserModel();
+		m_model = Utils.getUserModel(from);
 		m_instance = null;
 		if(feature instanceof Connector) {
 			org.eclipse.papyrus.FCM.Connector fcmConn = UMLUtil.getStereotypeApplication(feature,
@@ -464,7 +464,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 	// TODO(?): need a generic utility function for getting all elements obeying a
 	// certain criteria from a model
 	void getInstances(EList<InstanceSpecification> instanceList) {
-		Package deploymentPlans = Utils.getRoot(m_model, DepPlanUtils.depPlanFolder);
+		Package deploymentPlans = Utils.getRoot(m_model, DeployConstants.depPlanFolder);
 		String featureCandidateName = null;
 		if(deploymentPlans == null) {
 			return;
