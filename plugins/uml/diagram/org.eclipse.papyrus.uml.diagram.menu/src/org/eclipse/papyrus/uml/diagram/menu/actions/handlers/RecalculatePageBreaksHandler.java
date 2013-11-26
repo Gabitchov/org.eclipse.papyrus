@@ -18,7 +18,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.properties.WorkspaceViewerProperties;
 import org.eclipse.gmf.runtime.diagram.ui.internal.requests.RecalculatePageBreaksRequest;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 
 /**
  * 
@@ -37,15 +36,6 @@ public class RecalculatePageBreaksHandler extends AbstractViewHandler {
 	 */
 	public RecalculatePageBreaksHandler() {
 		super(WorkspaceViewerProperties.VIEWPAGEBREAKS);
-	}
-
-	@Override
-	public void setEnabled(Object evaluationContext) {
-		if(super.isEnabled() && (getDiagramGraphicalViewer() instanceof DiagramGraphicalViewer)) {
-			setBaseEnabled(isChecked());
-			return;
-		}
-		setBaseEnabled(false);
 	}
 
 	/**

@@ -1,0 +1,3 @@
+The main part of this plugin must be moved into org.eclipse.papyrus.infra.gmfdiag.menu
+
+The class HandlerStateSourceProvider must be removed and replace by property tester or test in the plugin.xml

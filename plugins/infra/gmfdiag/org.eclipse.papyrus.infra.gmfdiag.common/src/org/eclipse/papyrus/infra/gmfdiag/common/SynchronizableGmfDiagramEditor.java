@@ -24,12 +24,19 @@ import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.internal.properties.WorkspaceViewerProperties;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.CommandIds;
+import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
 
 /**
  * 
@@ -37,6 +44,8 @@ import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
  * 
  */
 
+@SuppressWarnings("restriction")
+//suppress the warning for WorkspaceViewerProperties
 public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implements IRevealSemanticElement, NavigationTarget {
 
 	public SynchronizableGmfDiagramEditor(boolean hasFlyoutPalette) {
@@ -113,8 +122,11 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Object getAdapter(Class type) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class type) {
 		if(type == DiagramEditPart.class) {
 			return getDiagramEditPart();
 		}
@@ -148,5 +160,40 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 
 		DiagramEditDomain diagEditDomain = (DiagramEditDomain)getDiagramEditDomain();
 		diagEditDomain.setActionManager(createActionManager());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setFocus() {
+		super.setFocus();
+		updateToggleActionState();
+	}
+
+
+	/**
+	 * this command update the status of the toggle actions
+	 */
+	protected void updateToggleActionState() {
+		final ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
+		if(commandService != null) {
+			final IPreferenceStore wsPreferenceStore = ((DiagramGraphicalViewer)getDiagramGraphicalViewer()).getWorkspaceViewerPreferenceStore();
+			org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.VIEW_GRID_COMMAND);
+			EclipseCommandUtils.updateToggleCommandState(command, wsPreferenceStore.getBoolean(WorkspaceViewerProperties.VIEWGRID));
+
+			command = commandService.getCommand(CommandIds.VIEW_RULER_COMMAND);
+			EclipseCommandUtils.updateToggleCommandState(command, wsPreferenceStore.getBoolean(WorkspaceViewerProperties.VIEWRULERS));
+
+			command = commandService.getCommand(CommandIds.VIEW_PAGE_BREAK_COMMAND);
+			EclipseCommandUtils.updateToggleCommandState(command, wsPreferenceStore.getBoolean(WorkspaceViewerProperties.VIEWPAGEBREAKS));
+
+			command = commandService.getCommand(CommandIds.SNAP_TO_GRID_COMMAND);
+			EclipseCommandUtils.updateToggleCommandState(command, wsPreferenceStore.getBoolean(WorkspaceViewerProperties.SNAPTOGRID));
+
+		} else {
+			throw new RuntimeException(String.format("The Eclipse service {0} has not been found", ICommandService.class)); //$NON-NLS-1$
+		}
+
 	}
 }
