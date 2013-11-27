@@ -18,6 +18,7 @@ import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.uml.table.common.editor.AbstractUMLTableEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 
@@ -26,7 +27,12 @@ public class UMLTablePropertyTester extends PropertyTester {
 	private static final String IS_UML_TABLE = "isUMLTable"; //$NON-NLS-1$
 
 	public boolean test(final Object receiver, final String property, final Object[] args, final Object expectedValue) {
-		final IWorkbenchPart activePart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+		IWorkbenchWindow activeWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if(activeWindow == null || activeWindow.getActivePage() == null) {
+			return false;
+		}
+
+		final IWorkbenchPart activePart = activeWindow.getActivePage().getActivePart();
 		if(IS_UML_TABLE.equals(property) && activePart instanceof IMultiDiagramEditor) {
 			final IEditorPart editor = ((IMultiDiagramEditor)activePart).getActiveEditor();
 			return expectedValue.equals(new Boolean(editor instanceof AbstractUMLTableEditor));
