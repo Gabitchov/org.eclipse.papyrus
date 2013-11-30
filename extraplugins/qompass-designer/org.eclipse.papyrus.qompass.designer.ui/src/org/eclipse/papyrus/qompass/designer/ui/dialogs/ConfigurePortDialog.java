@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -199,6 +200,9 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 
 		fKindCombo = new Combo(instanceConfigurationGroup, SWT.NONE);
 		portKindList = getAvailableKinds(m_model);
+		if (portKindList.size() == 0) {
+			MessageDialog.openInformation(new Shell(), "No port kinds founds", "No port kinds are available. Please import a Qompass model library");
+		}
 		String[] portKindStrList = new String[portKindList.size() + 1];
 		portKindStrList[0] = Messages.ConfigurePortDialog_None;
 		for(int i = 0; i < portKindList.size(); i++) {

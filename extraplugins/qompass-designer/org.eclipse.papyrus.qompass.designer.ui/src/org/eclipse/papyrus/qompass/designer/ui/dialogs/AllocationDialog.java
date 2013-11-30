@@ -17,6 +17,7 @@ package org.eclipse.papyrus.qompass.designer.ui.dialogs;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
@@ -284,8 +285,8 @@ public class AllocationDialog extends SelectionStatusDialog {
 				Shell shell = new Shell();
 				if(MessageDialog.openQuestion(shell, "Error",
 					"Stereotype application failed. The profile MARTE::Allocation is probably not applied. Try to apply it?")) {
-					AbstractEMFOperation applyProfile = new AddMarteAndFcmProfile(Utils.getTop(is), AddMarteAndFcmProfile.APPLY_ALLOC, null);
-					CommandSupport.exec(null, applyProfile);
+					AbstractEMFOperation applyProfile = new AddMarteAndFcmProfile(Utils.getTop(is), AddMarteAndFcmProfile.APPLY_ALLOC, TransactionUtil.getEditingDomain(is));
+					CommandSupport.exec(applyProfile);
 					AllocUtils.allocate(is, newNode);
 				}
 			}
