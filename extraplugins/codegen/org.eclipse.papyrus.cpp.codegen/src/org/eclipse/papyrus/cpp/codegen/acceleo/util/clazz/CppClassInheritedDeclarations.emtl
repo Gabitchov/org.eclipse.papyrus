@@ -8,7 +8,7 @@
       <takesTypesFrom href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
     </input>
     <imports href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
-    <imports href="platform:/plugin/utils/CppGenUtils.emtl#/0"/>
+    <imports href="../../../utils/CppGenUtils.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Comment">
       <body startPosition="249" endPosition="516" value="&#xA;Return a list of relationships that are either Generalizations or InterfaceRealiazations&#xA;and the target does not point to a classifier that has the no-code-gen Stereotype&#xA;TODO: not sure if it makes sense NOT to declare an inheritance, since we do not generate code.&#xA;"/>
     </ownedModuleElement>
@@ -155,7 +155,7 @@
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" "/>
         <body xsi:type="mtl:QueryInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <definition href="platform:/plugin/utils/CppGenUtils.emtl#/0/cppQualifiedName"/>
+          <definition href="../../../utils/CppGenUtils.emtl#/0/cppQualifiedName"/>
           <argument xsi:type="ocl.ecore:OperationCallExp">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
             <source xsi:type="ocl.ecore:OperationCallExp">
@@ -275,7 +275,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/plugin/utils/CppGenUtils.emtl#/0/cppQualifiedName"/>
+          <references href="../../../utils/CppGenUtils.emtl#/0/cppQualifiedName"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="arg0">

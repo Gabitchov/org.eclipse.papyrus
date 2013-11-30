@@ -8,7 +8,7 @@
       <takesTypesFrom href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
     </input>
     <imports href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
-    <imports href="platform:/plugin/preferences/CppCodeGenUtils.emtl#/0"/>
+    <imports href="../../../preferences/CppCodeGenUtils.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Query" name="includeName" visibility="Public">
       <parameter name="ne">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
@@ -119,7 +119,7 @@
             </source>
             <argument xsi:type="mtl:QueryInvocation">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-              <definition href="platform:/plugin/preferences/CppCodeGenUtils.emtl#/0/getHeaderSuffix"/>
+              <definition href="../../../preferences/CppCodeGenUtils.emtl#/0/getHeaderSuffix"/>
               <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/5">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement"/>
               </argument>
@@ -308,7 +308,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="platform:/plugin/preferences/CppCodeGenUtils.emtl#/0/getHeaderSuffix"/>
+          <references href="../../../preferences/CppCodeGenUtils.emtl#/0/getHeaderSuffix"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eOperations>
