@@ -259,6 +259,7 @@ public class AllocUtils {
 				" to " + node.getName(), UMLPackage.eINSTANCE.getAbstraction()); //$NON-NLS-1$
 		if(StereotypeUtil.apply(allocation, Allocate.class) == null) {
 			// stereotype application failed
+			allocation.destroy();
 			return false;
 		}
 		allocation.getClients().add(instance);

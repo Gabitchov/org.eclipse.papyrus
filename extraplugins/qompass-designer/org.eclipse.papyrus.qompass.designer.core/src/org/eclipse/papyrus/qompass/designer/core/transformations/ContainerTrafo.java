@@ -286,7 +286,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 						expandAggregationExtension(part.getName(), extOrInterceptor, tmComponent);
 					// register relation to facilitate connector copy
 					copy.setPackageTemplate(smContainerRule.getBase_Class(), tmContainerImpl);
-					copy.put(part, extensionPart);
+					copy.putPair(part, extensionPart);
 					copy.setPackageTemplate(null, null);
 				}
 			}
@@ -315,7 +315,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				for(Property interceptorPart : interceptorPartsMap.get(ruleInterceptorPart)) {
 					// map an interceptor part within rule successively to to an interceptor part
 					// within the container
-					copy.put(ruleInterceptorPart, interceptorPart);
+					copy.putPair(ruleInterceptorPart, interceptorPart);
 					copy.removeForCopy(connector);
 					copy.getCopy(connector);
 				}

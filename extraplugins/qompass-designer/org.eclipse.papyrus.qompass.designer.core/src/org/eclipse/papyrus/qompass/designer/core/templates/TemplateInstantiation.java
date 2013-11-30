@@ -106,7 +106,7 @@ public class TemplateInstantiation {
 		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 			ParameterableElement formal = substitution.getFormal().getParameteredElement();
 			ParameterableElement actual = substitution.getActual();
-			copy.put(formal, actual);
+			copy.putPair(formal, actual);
 		}
 
 		// add copy listeners ---
