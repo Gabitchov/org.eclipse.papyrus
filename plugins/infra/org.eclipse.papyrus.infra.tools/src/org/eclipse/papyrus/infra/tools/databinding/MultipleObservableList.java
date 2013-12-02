@@ -17,9 +17,6 @@ import java.util.List;
 
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.ObservableList;
-import org.eclipse.papyrus.infra.widgets.databinding.AggregatedObservable;
-import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
-import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 
 //TODO : Implement the getters
 //The list may be either the union or the intersection of all sublists
