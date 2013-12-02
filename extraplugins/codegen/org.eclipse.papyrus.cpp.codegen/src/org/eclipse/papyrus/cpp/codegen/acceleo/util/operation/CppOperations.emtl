@@ -366,6 +366,53 @@
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
       </parameter>
     </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="CppBehaviorDeclaration" visibility="Public">
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="../CppDocumentation.emtl#/0/CppBehaviorDoc"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/58">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="mtl:TemplateInvocation" definition="/0/InlineTxt">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/59">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="void "/>
+      <body xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="behavior" referredVariable="/0/CppBehaviorDeclaration/behavior">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="("/>
+      <body xsi:type="mtl:TemplateInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="CppParameter.emtl#/0/CppBehaviorParameters"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/61">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+        </argument>
+        <argument xsi:type="ocl.ecore:BooleanLiteralExp" booleanSymbol="true">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=")"/>
+      <body xsi:type="mtl:QueryInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="../../../utils/Modifier.emtl#/0/modConst"/>
+        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/62">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+        </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=";"/>
+      <parameter name="behavior">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+      </parameter>
+    </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="CppConstInit" visibility="Public">
       <body xsi:type="mtl:IfBlock">
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" : "/>
@@ -376,7 +423,7 @@
             <source xsi:type="mtl:QueryInvocation">
               <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
               <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getApplication"/>
-              <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/59">
+              <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/68">
                 <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
               </argument>
               <argument xsi:type="ocl.ecore:TypeExp" eType="/6/ConstInit">
@@ -395,7 +442,7 @@
           <source xsi:type="mtl:QueryInvocation">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
             <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/58">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/67">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
             <argument xsi:type="ocl.ecore:TypeExp" eType="/6/ConstInit">
@@ -405,7 +452,7 @@
           <argument xsi:type="mtl:QueryInvocation">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
             <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/58">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/67">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
             <argument xsi:type="ocl.ecore:TypeExp" eType="/6/Create">
@@ -420,7 +467,7 @@
       </parameter>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Comment">
-      <body startPosition="2074" endPosition="2144" value=" wrapper for native query (otherwise Acceleo does not indent properly)"/>
+      <body startPosition="2250" endPosition="2320" value=" wrapper for native query (otherwise Acceleo does not indent properly)"/>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="getBodyInTemplate" visibility="Public">
       <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/trim">
@@ -428,7 +475,7 @@
         <source xsi:type="mtl:QueryInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getBody"/>
-          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/64">
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/73">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
           </argument>
           <argument xsi:type="ocl.ecore:VariableExp" name="language" referredVariable="/0/getBodyInTemplate/language">
@@ -449,13 +496,13 @@
         <body xsi:type="mtl:ForBlock">
           <body xsi:type="ocl.ecore:PropertyCallExp">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/73">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/82">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Type"/>
             </source>
             <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/4.0.0/UML#//NamedElement/name"/>
           </body>
           <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/25/Set(Type)">
-            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/70">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/79">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </source>
             <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/4.0.0/UML#//BehavioralFeature/raisedException"/>
@@ -491,7 +538,7 @@
       <body xsi:type="mtl:TemplateInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <definition href="../CppDocumentation.emtl#/0/CppOperationDoc"/>
-        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/80">
+        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/89">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
         </argument>
       </body>
@@ -499,7 +546,7 @@
       <body xsi:type="mtl:IfBlock">
         <body xsi:type="mtl:TemplateInvocation" definition="/0/CppReturnSpec">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/82">
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/91">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
           </argument>
         </body>
@@ -514,7 +561,7 @@
         <body xsi:type="mtl:TemplateInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <definition href="CppParameter.emtl#/0/CppOperationParameters"/>
-          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/84">
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/93">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
           </argument>
           <argument xsi:type="ocl.ecore:BooleanLiteralExp" booleanSymbol="false">
@@ -525,7 +572,7 @@
         <body xsi:type="mtl:QueryInvocation">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/getBody"/>
-          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/85">
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/94">
             <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
           </argument>
           <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="C/C++">
@@ -551,19 +598,19 @@
           <body xsi:type="mtl:TemplateInvocation">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
             <definition href="../CppTemplates.emtl#/0/templateSignature.1"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/86">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/95">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
           </body>
           <body xsi:type="mtl:TemplateInvocation" definition="/0/InlineTxt">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/87">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/96">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
           </body>
           <body xsi:type="mtl:TemplateInvocation" definition="/0/CppReturnSpec">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/88">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/97">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
           </body>
@@ -581,14 +628,14 @@
           <body xsi:type="mtl:TemplateInvocation">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
             <definition href="../CppTemplates.emtl#/0/templateShortSignature.1"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/90">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/99">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
           </body>
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="::"/>
           <body xsi:type="mtl:QueryInvocation" definition="/0/destructor">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/91">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/100">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
           </body>
@@ -603,7 +650,7 @@
           <body xsi:type="mtl:TemplateInvocation">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
             <definition href="CppParameter.emtl#/0/CppOperationParameters"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/93">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/102">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
             <argument xsi:type="ocl.ecore:BooleanLiteralExp" booleanSymbol="false">
@@ -613,27 +660,27 @@
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=")"/>
           <body xsi:type="mtl:TemplateInvocation" definition="/0/throws">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/94">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/103">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
           </body>
           <body xsi:type="mtl:QueryInvocation">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
             <definition href="../../../utils/Modifier.emtl#/0/modConst"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/95">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/104">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
           </body>
           <body xsi:type="mtl:TemplateInvocation" definition="/0/CppConstInit">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/96">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/105">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
           </body>
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" {&#xA;&#x9;"/>
           <body xsi:type="mtl:TemplateInvocation" definition="/0/getBodyInTemplate">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/97">
+            <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/106">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
             </argument>
             <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="C/C++">
@@ -750,6 +797,16 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="operation">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="CppBehaviorDeclaration">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/CppBehaviorDeclaration"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="behavior">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
         </eParameters>
       </eOperations>
       <eOperations name="CppConstInit">
@@ -900,6 +957,18 @@
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
         </eParameters>
       </eOperations>
+      <eOperations name="CppBehaviorDoc">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../CppDocumentation.emtl#/0/CppBehaviorDoc"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="behavior">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+        </eParameters>
+      </eOperations>
       <eOperations name="CppOperationParameters">
         <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
           <contents xsi:type="ocl.ecore:Constraint"/>
@@ -910,6 +979,21 @@
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="operation">
           <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+        </eParameters>
+        <eParameters name="showDefault">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="CppBehaviorParameters">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="CppParameter.emtl#/0/CppBehaviorParameters"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="behavior">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
         </eParameters>
         <eParameters name="showDefault">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
@@ -968,6 +1052,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="Element_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Behavior_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Class_Class">
@@ -1188,6 +1277,33 @@
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -1925,490 +2041,580 @@
       <details key="end" value="1666"/>
       <details key="line" value="49"/>
     </eAnnotations>
-    <eAnnotations source="positions.120" references="/0/CppConstInit">
-      <details key="start" value="1864"/>
-      <details key="end" value="2063"/>
-      <details key="line" value="55"/>
+    <eAnnotations source="positions.120" references="/0/CppBehaviorDeclaration">
+      <details key="start" value="1863"/>
+      <details key="end" value="2038"/>
+      <details key="line" value="54"/>
     </eAnnotations>
-    <eAnnotations source="positions.121" references="/0/CppConstInit/%">
-      <details key="start" value="1918"/>
-      <details key="end" value="2051"/>
-      <details key="line" value="56"/>
-    </eAnnotations>
-    <eAnnotations source="positions.122" references="/0/CppConstInit/%/%">
-      <details key="start" value="1979"/>
-      <details key="end" value="1982"/>
-      <details key="line" value="56"/>
-    </eAnnotations>
-    <eAnnotations source="positions.123" references="/0/CppConstInit/%/%.1">
-      <details key="start" value="1983"/>
-      <details key="end" value="2044"/>
+    <eAnnotations source="positions.121" references="/0/CppBehaviorDeclaration/%">
+      <details key="start" value="1926"/>
+      <details key="end" value="1942"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.124" references="/0/CppConstInit/%/%.1/%">
-      <details key="start" value="1983"/>
-      <details key="end" value="2029"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.125" references="/0/CppConstInit/%/%.1/%/%">
-      <details key="start" value="1983"/>
-      <details key="end" value="2008"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.126" references="/0/CppConstInit/%/%.1/%/%/self">
+    <eAnnotations source="positions.122" references="/0/CppBehaviorDeclaration/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.127" references="/0/CppConstInit/%/%.1/%/%/%">
-      <details key="start" value="1998"/>
-      <details key="end" value="2007"/>
+    <eAnnotations source="positions.123" references="/0/CppBehaviorDeclaration/%.1">
+      <details key="start" value="1944"/>
+      <details key="end" value="1945"/>
+      <details key="line" value="56"/>
+    </eAnnotations>
+    <eAnnotations source="positions.124" references="/0/CppBehaviorDeclaration/%.2">
+      <details key="start" value="1946"/>
+      <details key="end" value="1957"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.128" references="/0/CppConstInit/%/%.1/%/%.1">
-      <details key="start" value="2019"/>
-      <details key="end" value="2028"/>
+    <eAnnotations source="positions.125" references="/0/CppBehaviorDeclaration/%.2/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.129" references="/0/CppConstInit/%/%.2">
-      <details key="start" value="1922"/>
+    <eAnnotations source="positions.126" references="/0/CppBehaviorDeclaration/%.3">
+      <details key="start" value="1959"/>
+      <details key="end" value="1964"/>
+      <details key="line" value="56"/>
+    </eAnnotations>
+    <eAnnotations source="positions.127" references="/0/CppBehaviorDeclaration/%.4">
+      <details key="start" value="1965"/>
       <details key="end" value="1978"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.130" references="/0/CppConstInit/%/%.2/%">
-      <details key="start" value="1923"/>
-      <details key="end" value="1947"/>
+    <eAnnotations source="positions.128" references="/0/CppBehaviorDeclaration/%.4/behavior">
+      <details key="start" value="1965"/>
+      <details key="end" value="1973"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.131" references="/0/CppConstInit/%/%.2/%/self">
+    <eAnnotations source="positions.129" references="/0/CppBehaviorDeclaration/%.5">
+      <details key="start" value="1980"/>
+      <details key="end" value="1981"/>
+      <details key="line" value="56"/>
+    </eAnnotations>
+    <eAnnotations source="positions.130" references="/0/CppBehaviorDeclaration/%.6">
+      <details key="start" value="1982"/>
+      <details key="end" value="2009"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.131" references="/0/CppBehaviorDeclaration/%.6/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.132" references="/0/CppConstInit/%/%.2/%/%">
-      <details key="start" value="1937"/>
-      <details key="end" value="1946"/>
+    <eAnnotations source="positions.132" references="/0/CppBehaviorDeclaration/%.6/%">
+      <details key="start" value="2004"/>
+      <details key="end" value="2008"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.133" references="/0/CppConstInit/%/%.2/%.1">
-      <details key="start" value="1952"/>
-      <details key="end" value="1977"/>
+    <eAnnotations source="positions.133" references="/0/CppBehaviorDeclaration/%.7">
+      <details key="start" value="2011"/>
+      <details key="end" value="2012"/>
+      <details key="line" value="56"/>
+    </eAnnotations>
+    <eAnnotations source="positions.134" references="/0/CppBehaviorDeclaration/%.8">
+      <details key="start" value="2013"/>
+      <details key="end" value="2023"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.134" references="/0/CppConstInit/%/%.2/%.1/self">
+    <eAnnotations source="positions.135" references="/0/CppBehaviorDeclaration/%.8/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.135" references="/0/CppConstInit/%/%.2/%.1/%">
-      <details key="start" value="1966"/>
-      <details key="end" value="1976"/>
+    <eAnnotations source="positions.136" references="/0/CppBehaviorDeclaration/%.9">
+      <details key="start" value="2025"/>
+      <details key="end" value="2026"/>
+      <details key="line" value="56"/>
+    </eAnnotations>
+    <eAnnotations source="positions.137" references="/0/CppBehaviorDeclaration/behavior">
+      <details key="start" value="1903"/>
+      <details key="end" value="1922"/>
+      <details key="line" value="54"/>
+    </eAnnotations>
+    <eAnnotations source="positions.138" references="/0/CppConstInit">
+      <details key="start" value="2040"/>
+      <details key="end" value="2239"/>
+      <details key="line" value="59"/>
+    </eAnnotations>
+    <eAnnotations source="positions.139" references="/0/CppConstInit/%">
+      <details key="start" value="2094"/>
+      <details key="end" value="2227"/>
+      <details key="line" value="60"/>
+    </eAnnotations>
+    <eAnnotations source="positions.140" references="/0/CppConstInit/%/%">
+      <details key="start" value="2155"/>
+      <details key="end" value="2158"/>
+      <details key="line" value="60"/>
+    </eAnnotations>
+    <eAnnotations source="positions.141" references="/0/CppConstInit/%/%.1">
+      <details key="start" value="2159"/>
+      <details key="end" value="2220"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.136" references="/0/CppConstInit/operation">
-      <details key="start" value="1894"/>
-      <details key="end" value="1915"/>
-      <details key="line" value="55"/>
-    </eAnnotations>
-    <eAnnotations source="positions.137" references="/0/%">
-      <details key="start" value="2066"/>
-      <details key="end" value="2146"/>
+    <eAnnotations source="positions.142" references="/0/CppConstInit/%/%.1/%">
+      <details key="start" value="2159"/>
+      <details key="end" value="2205"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.138" references="/0/getBodyInTemplate">
-      <details key="start" value="2147"/>
-      <details key="end" value="2264"/>
-      <details key="line" value="61"/>
-    </eAnnotations>
-    <eAnnotations source="positions.139" references="/0/getBodyInTemplate/%">
-      <details key="start" value="2226"/>
-      <details key="end" value="2250"/>
+    <eAnnotations source="positions.143" references="/0/CppConstInit/%/%.1/%/%">
+      <details key="start" value="2159"/>
+      <details key="end" value="2184"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.140" references="/0/getBodyInTemplate/%/%">
-      <details key="start" value="2226"/>
-      <details key="end" value="2243"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.141" references="/0/getBodyInTemplate/%/%/self">
+    <eAnnotations source="positions.144" references="/0/CppConstInit/%/%.1/%/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.142" references="/0/getBodyInTemplate/%/%/language">
-      <details key="start" value="2234"/>
-      <details key="end" value="2242"/>
+    <eAnnotations source="positions.145" references="/0/CppConstInit/%/%.1/%/%/%">
+      <details key="start" value="2174"/>
+      <details key="end" value="2183"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.143" references="/0/getBodyInTemplate/operation">
-      <details key="start" value="2182"/>
-      <details key="end" value="2203"/>
-      <details key="line" value="61"/>
-    </eAnnotations>
-    <eAnnotations source="positions.144" references="/0/getBodyInTemplate/language">
-      <details key="start" value="2205"/>
-      <details key="end" value="2222"/>
-      <details key="line" value="61"/>
-    </eAnnotations>
-    <eAnnotations source="positions.145" references="/0/throws">
-      <details key="start" value="2267"/>
-      <details key="end" value="2435"/>
-      <details key="line" value="66"/>
-    </eAnnotations>
-    <eAnnotations source="positions.146" references="/0/throws/%">
-      <details key="start" value="2314"/>
-      <details key="end" value="2423"/>
-      <details key="line" value="67"/>
-    </eAnnotations>
-    <eAnnotations source="positions.147" references="/0/throws/%/%">
-      <details key="start" value="2359"/>
-      <details key="end" value="2366"/>
-      <details key="line" value="68"/>
-    </eAnnotations>
-    <eAnnotations source="positions.148" references="/0/throws/%/%.1">
-      <details key="start" value="2366"/>
-      <details key="end" value="2417"/>
-      <details key="line" value="68"/>
-    </eAnnotations>
-    <eAnnotations source="positions.149" references="/0/throws/%/%.1/%">
-      <details key="start" value="2405"/>
-      <details key="end" value="2409"/>
+    <eAnnotations source="positions.146" references="/0/CppConstInit/%/%.1/%/%.1">
+      <details key="start" value="2195"/>
+      <details key="end" value="2204"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.150" references="/0/throws/%/%.1/%/self">
+    <eAnnotations source="positions.147" references="/0/CppConstInit/%/%.2">
+      <details key="start" value="2098"/>
+      <details key="end" value="2154"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.148" references="/0/CppConstInit/%/%.2/%">
+      <details key="start" value="2099"/>
+      <details key="end" value="2123"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.149" references="/0/CppConstInit/%/%.2/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.151" references="/0/throws/%/%.1/%.1">
-      <details key="start" value="2372"/>
-      <details key="end" value="2387"/>
+    <eAnnotations source="positions.150" references="/0/CppConstInit/%/%.2/%/%">
+      <details key="start" value="2113"/>
+      <details key="end" value="2122"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.152" references="/0/throws/%/%.1/%.1/self">
+    <eAnnotations source="positions.151" references="/0/CppConstInit/%/%.2/%.1">
+      <details key="start" value="2128"/>
+      <details key="end" value="2153"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.152" references="/0/CppConstInit/%/%.2/%.1/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.153" references="/0/throws/%/%.1/%.2">
-      <details key="start" value="2399"/>
-      <details key="end" value="2402"/>
+    <eAnnotations source="positions.153" references="/0/CppConstInit/%/%.2/%.1/%">
+      <details key="start" value="2142"/>
+      <details key="end" value="2152"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.154" references="/0/throws/%/%.2">
-      <details key="start" value="2417"/>
+    <eAnnotations source="positions.154" references="/0/CppConstInit/operation">
+      <details key="start" value="2070"/>
+      <details key="end" value="2091"/>
+      <details key="line" value="59"/>
+    </eAnnotations>
+    <eAnnotations source="positions.155" references="/0/%">
+      <details key="start" value="2242"/>
+      <details key="end" value="2322"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.156" references="/0/getBodyInTemplate">
+      <details key="start" value="2323"/>
+      <details key="end" value="2440"/>
+      <details key="line" value="65"/>
+    </eAnnotations>
+    <eAnnotations source="positions.157" references="/0/getBodyInTemplate/%">
+      <details key="start" value="2402"/>
+      <details key="end" value="2426"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.158" references="/0/getBodyInTemplate/%/%">
+      <details key="start" value="2402"/>
+      <details key="end" value="2419"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.159" references="/0/getBodyInTemplate/%/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.160" references="/0/getBodyInTemplate/%/%/language">
+      <details key="start" value="2410"/>
       <details key="end" value="2418"/>
-      <details key="line" value="69"/>
-    </eAnnotations>
-    <eAnnotations source="positions.155" references="/0/throws/%/%.3">
-      <details key="start" value="2318"/>
-      <details key="end" value="2357"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.156" references="/0/throws/%/%.3/%">
-      <details key="start" value="2319"/>
-      <details key="end" value="2352"/>
+    <eAnnotations source="positions.161" references="/0/getBodyInTemplate/operation">
+      <details key="start" value="2358"/>
+      <details key="end" value="2379"/>
+      <details key="line" value="65"/>
+    </eAnnotations>
+    <eAnnotations source="positions.162" references="/0/getBodyInTemplate/language">
+      <details key="start" value="2381"/>
+      <details key="end" value="2398"/>
+      <details key="line" value="65"/>
+    </eAnnotations>
+    <eAnnotations source="positions.163" references="/0/throws">
+      <details key="start" value="2443"/>
+      <details key="end" value="2611"/>
+      <details key="line" value="70"/>
+    </eAnnotations>
+    <eAnnotations source="positions.164" references="/0/throws/%">
+      <details key="start" value="2490"/>
+      <details key="end" value="2599"/>
+      <details key="line" value="71"/>
+    </eAnnotations>
+    <eAnnotations source="positions.165" references="/0/throws/%/%">
+      <details key="start" value="2535"/>
+      <details key="end" value="2542"/>
+      <details key="line" value="72"/>
+    </eAnnotations>
+    <eAnnotations source="positions.166" references="/0/throws/%/%.1">
+      <details key="start" value="2542"/>
+      <details key="end" value="2593"/>
+      <details key="line" value="72"/>
+    </eAnnotations>
+    <eAnnotations source="positions.167" references="/0/throws/%/%.1/%">
+      <details key="start" value="2581"/>
+      <details key="end" value="2585"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.157" references="/0/throws/%/%.3/%/%">
-      <details key="start" value="2319"/>
-      <details key="end" value="2344"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.158" references="/0/throws/%/%.3/%/%/operation">
-      <details key="start" value="2319"/>
-      <details key="end" value="2328"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.159" references="/0/throws/%/%.3/%.1">
-      <details key="start" value="2355"/>
-      <details key="end" value="2356"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.160" references="/0/throws/operation">
-      <details key="start" value="2291"/>
-      <details key="end" value="2311"/>
-      <details key="line" value="66"/>
-    </eAnnotations>
-    <eAnnotations source="positions.161" references="/0/CppOperationImplementation">
-      <details key="start" value="2438"/>
-      <details key="end" value="2926"/>
-      <details key="line" value="73"/>
-    </eAnnotations>
-    <eAnnotations source="positions.162" references="/0/CppOperationImplementation/%">
-      <details key="start" value="2507"/>
-      <details key="end" value="2524"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.163" references="/0/CppOperationImplementation/%/self">
+    <eAnnotations source="positions.168" references="/0/throws/%/%.1/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.164" references="/0/CppOperationImplementation/%.1">
-      <details key="start" value="2526"/>
-      <details key="end" value="2527"/>
-      <details key="line" value="75"/>
-    </eAnnotations>
-    <eAnnotations source="positions.165" references="/0/CppOperationImplementation/%.2">
-      <details key="start" value="2527"/>
-      <details key="end" value="2914"/>
-      <details key="line" value="75"/>
-    </eAnnotations>
-    <eAnnotations source="positions.166" references="/0/CppOperationImplementation/%.2/%">
-      <details key="start" value="2559"/>
-      <details key="end" value="2574"/>
+    <eAnnotations source="positions.169" references="/0/throws/%/%.1/%.1">
+      <details key="start" value="2548"/>
+      <details key="end" value="2563"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.167" references="/0/CppOperationImplementation/%.2/%/self">
+    <eAnnotations source="positions.170" references="/0/throws/%/%.1/%.1/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.168" references="/0/CppOperationImplementation/%.2/%.1">
-      <details key="start" value="2577"/>
-      <details key="end" value="2591"/>
+    <eAnnotations source="positions.171" references="/0/throws/%/%.1/%.2">
+      <details key="start" value="2575"/>
+      <details key="end" value="2578"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.169" references="/0/CppOperationImplementation/%.2/%.1/operation">
-      <details key="start" value="2577"/>
-      <details key="end" value="2586"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.170" references="/0/CppOperationImplementation/%.2/%.2">
+    <eAnnotations source="positions.172" references="/0/throws/%/%.2">
       <details key="start" value="2593"/>
       <details key="end" value="2594"/>
-      <details key="line" value="76"/>
+      <details key="line" value="73"/>
     </eAnnotations>
-    <eAnnotations source="positions.171" references="/0/CppOperationImplementation/%.2/%.3">
-      <details key="start" value="2595"/>
-      <details key="end" value="2624"/>
+    <eAnnotations source="positions.173" references="/0/throws/%/%.3">
+      <details key="start" value="2494"/>
+      <details key="end" value="2533"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.172" references="/0/CppOperationImplementation/%.2/%.3/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
+    <eAnnotations source="positions.174" references="/0/throws/%/%.3/%">
+      <details key="start" value="2495"/>
+      <details key="end" value="2528"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.173" references="/0/CppOperationImplementation/%.2/%.3/%">
-      <details key="start" value="2618"/>
-      <details key="end" value="2623"/>
+    <eAnnotations source="positions.175" references="/0/throws/%/%.3/%/%">
+      <details key="start" value="2495"/>
+      <details key="end" value="2520"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.174" references="/0/CppOperationImplementation/%.2/%.4">
-      <details key="start" value="2626"/>
-      <details key="end" value="2631"/>
-      <details key="line" value="76"/>
-    </eAnnotations>
-    <eAnnotations source="positions.175" references="/0/CppOperationImplementation/%.2/%.5">
-      <details key="start" value="2632"/>
-      <details key="end" value="2648"/>
+    <eAnnotations source="positions.176" references="/0/throws/%/%.3/%/%/operation">
+      <details key="start" value="2495"/>
+      <details key="end" value="2504"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.176" references="/0/CppOperationImplementation/%.2/%.5/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.177" references="/0/CppOperationImplementation/%.2/%.5/%">
-      <details key="start" value="2640"/>
-      <details key="end" value="2647"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.178" references="/0/CppOperationImplementation/%.2/%.6">
-      <details key="start" value="2650"/>
-      <details key="end" value="2653"/>
-      <details key="line" value="78"/>
-    </eAnnotations>
-    <eAnnotations source="positions.179" references="/0/CppOperationImplementation/%.2/%.7">
+    <eAnnotations source="positions.177" references="/0/throws/%/%.3/%.1">
       <details key="start" value="2531"/>
-      <details key="end" value="2556"/>
+      <details key="end" value="2532"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.180" references="/0/CppOperationImplementation/%.2/%.7/%">
-      <details key="start" value="2532"/>
-      <details key="end" value="2546"/>
+    <eAnnotations source="positions.178" references="/0/throws/operation">
+      <details key="start" value="2467"/>
+      <details key="end" value="2487"/>
+      <details key="line" value="70"/>
+    </eAnnotations>
+    <eAnnotations source="positions.179" references="/0/CppOperationImplementation">
+      <details key="start" value="2614"/>
+      <details key="end" value="3102"/>
+      <details key="line" value="77"/>
+    </eAnnotations>
+    <eAnnotations source="positions.180" references="/0/CppOperationImplementation/%">
+      <details key="start" value="2683"/>
+      <details key="end" value="2700"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.181" references="/0/CppOperationImplementation/%.2/%.7/%/operation">
-      <details key="start" value="2532"/>
-      <details key="end" value="2541"/>
+    <eAnnotations source="positions.181" references="/0/CppOperationImplementation/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.182" references="/0/CppOperationImplementation/%.2/%.7/%.1">
-      <details key="start" value="2549"/>
-      <details key="end" value="2555"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.183" references="/0/CppOperationImplementation/%.2/%.8">
-      <details key="start" value="2653"/>
-      <details key="end" value="2909"/>
+    <eAnnotations source="positions.182" references="/0/CppOperationImplementation/%.1">
+      <details key="start" value="2702"/>
+      <details key="end" value="2703"/>
       <details key="line" value="79"/>
     </eAnnotations>
-    <eAnnotations source="positions.184" references="/0/CppOperationImplementation/%.2/%.8/%">
-      <details key="start" value="2661"/>
-      <details key="end" value="2680"/>
+    <eAnnotations source="positions.183" references="/0/CppOperationImplementation/%.2">
+      <details key="start" value="2703"/>
+      <details key="end" value="3090"/>
+      <details key="line" value="79"/>
+    </eAnnotations>
+    <eAnnotations source="positions.184" references="/0/CppOperationImplementation/%.2/%">
+      <details key="start" value="2735"/>
+      <details key="end" value="2750"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.185" references="/0/CppOperationImplementation/%.2/%.8/%/self">
+    <eAnnotations source="positions.185" references="/0/CppOperationImplementation/%.2/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.186" references="/0/CppOperationImplementation/%.2/%.8/%.1">
-      <details key="start" value="2683"/>
-      <details key="end" value="2694"/>
+    <eAnnotations source="positions.186" references="/0/CppOperationImplementation/%.2/%.1">
+      <details key="start" value="2753"/>
+      <details key="end" value="2767"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.187" references="/0/CppOperationImplementation/%.2/%.8/%.1/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.188" references="/0/CppOperationImplementation/%.2/%.8/%.2">
-      <details key="start" value="2697"/>
-      <details key="end" value="2712"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.189" references="/0/CppOperationImplementation/%.2/%.8/%.2/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.190" references="/0/CppOperationImplementation/%.2/%.8/%.3">
-      <details key="start" value="2715"/>
-      <details key="end" value="2735"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.191" references="/0/CppOperationImplementation/%.2/%.8/%.3/%">
-      <details key="start" value="2715"/>
-      <details key="end" value="2730"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.192" references="/0/CppOperationImplementation/%.2/%.8/%.3/%/operation">
-      <details key="start" value="2715"/>
-      <details key="end" value="2724"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.193" references="/0/CppOperationImplementation/%.2/%.8/%.4">
-      <details key="start" value="2738"/>
+    <eAnnotations source="positions.187" references="/0/CppOperationImplementation/%.2/%.1/operation">
+      <details key="start" value="2753"/>
       <details key="end" value="2762"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.194" references="/0/CppOperationImplementation/%.2/%.8/%.4/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.195" references="/0/CppOperationImplementation/%.2/%.8/%.5">
-      <details key="start" value="2764"/>
-      <details key="end" value="2766"/>
+    <eAnnotations source="positions.188" references="/0/CppOperationImplementation/%.2/%.2">
+      <details key="start" value="2769"/>
+      <details key="end" value="2770"/>
       <details key="line" value="80"/>
     </eAnnotations>
-    <eAnnotations source="positions.196" references="/0/CppOperationImplementation/%.2/%.8/%.6">
-      <details key="start" value="2767"/>
-      <details key="end" value="2779"/>
+    <eAnnotations source="positions.189" references="/0/CppOperationImplementation/%.2/%.3">
+      <details key="start" value="2771"/>
+      <details key="end" value="2800"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.197" references="/0/CppOperationImplementation/%.2/%.8/%.6/self">
+    <eAnnotations source="positions.190" references="/0/CppOperationImplementation/%.2/%.3/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.198" references="/0/CppOperationImplementation/%.2/%.8/%.7">
-      <details key="start" value="2782"/>
-      <details key="end" value="2796"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.199" references="/0/CppOperationImplementation/%.2/%.8/%.7/operation">
-      <details key="start" value="2782"/>
-      <details key="end" value="2791"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.200" references="/0/CppOperationImplementation/%.2/%.8/%.8">
-      <details key="start" value="2798"/>
+    <eAnnotations source="positions.191" references="/0/CppOperationImplementation/%.2/%.3/%">
+      <details key="start" value="2794"/>
       <details key="end" value="2799"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.192" references="/0/CppOperationImplementation/%.2/%.4">
+      <details key="start" value="2802"/>
+      <details key="end" value="2807"/>
       <details key="line" value="80"/>
     </eAnnotations>
-    <eAnnotations source="positions.201" references="/0/CppOperationImplementation/%.2/%.8/%.9">
-      <details key="start" value="2800"/>
+    <eAnnotations source="positions.193" references="/0/CppOperationImplementation/%.2/%.5">
+      <details key="start" value="2808"/>
+      <details key="end" value="2824"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.194" references="/0/CppOperationImplementation/%.2/%.5/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.195" references="/0/CppOperationImplementation/%.2/%.5/%">
+      <details key="start" value="2816"/>
+      <details key="end" value="2823"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.196" references="/0/CppOperationImplementation/%.2/%.6">
+      <details key="start" value="2826"/>
       <details key="end" value="2829"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.202" references="/0/CppOperationImplementation/%.2/%.8/%.9/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.203" references="/0/CppOperationImplementation/%.2/%.8/%.9/%">
-      <details key="start" value="2823"/>
-      <details key="end" value="2828"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.204" references="/0/CppOperationImplementation/%.2/%.8/%.10">
-      <details key="start" value="2831"/>
-      <details key="end" value="2832"/>
-      <details key="line" value="80"/>
-    </eAnnotations>
-    <eAnnotations source="positions.205" references="/0/CppOperationImplementation/%.2/%.8/%.11">
-      <details key="start" value="2833"/>
-      <details key="end" value="2841"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.206" references="/0/CppOperationImplementation/%.2/%.8/%.11/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.207" references="/0/CppOperationImplementation/%.2/%.8/%.12">
-      <details key="start" value="2844"/>
-      <details key="end" value="2854"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.208" references="/0/CppOperationImplementation/%.2/%.8/%.12/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.209" references="/0/CppOperationImplementation/%.2/%.8/%.13">
-      <details key="start" value="2857"/>
-      <details key="end" value="2871"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.210" references="/0/CppOperationImplementation/%.2/%.8/%.13/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.211" references="/0/CppOperationImplementation/%.2/%.8/%.14">
-      <details key="start" value="2873"/>
-      <details key="end" value="2877"/>
-      <details key="line" value="80"/>
-    </eAnnotations>
-    <eAnnotations source="positions.212" references="/0/CppOperationImplementation/%.2/%.8/%.15">
-      <details key="start" value="2878"/>
-      <details key="end" value="2904"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.213" references="/0/CppOperationImplementation/%.2/%.8/%.15/self">
-      <details key="start" value="-1"/>
-      <details key="end" value="-1"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.214" references="/0/CppOperationImplementation/%.2/%.8/%.15/%">
-      <details key="start" value="2896"/>
-      <details key="end" value="2903"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.215" references="/0/CppOperationImplementation/%.2/%.8/%.16">
-      <details key="start" value="2906"/>
-      <details key="end" value="2909"/>
       <details key="line" value="82"/>
     </eAnnotations>
-    <eAnnotations source="positions.216" references="/0/CppOperationImplementation/operation">
-      <details key="start" value="2482"/>
-      <details key="end" value="2503"/>
-      <details key="line" value="73"/>
+    <eAnnotations source="positions.197" references="/0/CppOperationImplementation/%.2/%.7">
+      <details key="start" value="2707"/>
+      <details key="end" value="2732"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.198" references="/0/CppOperationImplementation/%.2/%.7/%">
+      <details key="start" value="2708"/>
+      <details key="end" value="2722"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.199" references="/0/CppOperationImplementation/%.2/%.7/%/operation">
+      <details key="start" value="2708"/>
+      <details key="end" value="2717"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.200" references="/0/CppOperationImplementation/%.2/%.7/%.1">
+      <details key="start" value="2725"/>
+      <details key="end" value="2731"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.201" references="/0/CppOperationImplementation/%.2/%.8">
+      <details key="start" value="2829"/>
+      <details key="end" value="3085"/>
+      <details key="line" value="83"/>
+    </eAnnotations>
+    <eAnnotations source="positions.202" references="/0/CppOperationImplementation/%.2/%.8/%">
+      <details key="start" value="2837"/>
+      <details key="end" value="2856"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.203" references="/0/CppOperationImplementation/%.2/%.8/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.204" references="/0/CppOperationImplementation/%.2/%.8/%.1">
+      <details key="start" value="2859"/>
+      <details key="end" value="2870"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.205" references="/0/CppOperationImplementation/%.2/%.8/%.1/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.206" references="/0/CppOperationImplementation/%.2/%.8/%.2">
+      <details key="start" value="2873"/>
+      <details key="end" value="2888"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.207" references="/0/CppOperationImplementation/%.2/%.8/%.2/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.208" references="/0/CppOperationImplementation/%.2/%.8/%.3">
+      <details key="start" value="2891"/>
+      <details key="end" value="2911"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.209" references="/0/CppOperationImplementation/%.2/%.8/%.3/%">
+      <details key="start" value="2891"/>
+      <details key="end" value="2906"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.210" references="/0/CppOperationImplementation/%.2/%.8/%.3/%/operation">
+      <details key="start" value="2891"/>
+      <details key="end" value="2900"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.211" references="/0/CppOperationImplementation/%.2/%.8/%.4">
+      <details key="start" value="2914"/>
+      <details key="end" value="2938"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.212" references="/0/CppOperationImplementation/%.2/%.8/%.4/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.213" references="/0/CppOperationImplementation/%.2/%.8/%.5">
+      <details key="start" value="2940"/>
+      <details key="end" value="2942"/>
+      <details key="line" value="84"/>
+    </eAnnotations>
+    <eAnnotations source="positions.214" references="/0/CppOperationImplementation/%.2/%.8/%.6">
+      <details key="start" value="2943"/>
+      <details key="end" value="2955"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.215" references="/0/CppOperationImplementation/%.2/%.8/%.6/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.216" references="/0/CppOperationImplementation/%.2/%.8/%.7">
+      <details key="start" value="2958"/>
+      <details key="end" value="2972"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.217" references="/0/CppOperationImplementation/%.2/%.8/%.7/operation">
+      <details key="start" value="2958"/>
+      <details key="end" value="2967"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.218" references="/0/CppOperationImplementation/%.2/%.8/%.8">
+      <details key="start" value="2974"/>
+      <details key="end" value="2975"/>
+      <details key="line" value="84"/>
+    </eAnnotations>
+    <eAnnotations source="positions.219" references="/0/CppOperationImplementation/%.2/%.8/%.9">
+      <details key="start" value="2976"/>
+      <details key="end" value="3005"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.220" references="/0/CppOperationImplementation/%.2/%.8/%.9/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.221" references="/0/CppOperationImplementation/%.2/%.8/%.9/%">
+      <details key="start" value="2999"/>
+      <details key="end" value="3004"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.222" references="/0/CppOperationImplementation/%.2/%.8/%.10">
+      <details key="start" value="3007"/>
+      <details key="end" value="3008"/>
+      <details key="line" value="84"/>
+    </eAnnotations>
+    <eAnnotations source="positions.223" references="/0/CppOperationImplementation/%.2/%.8/%.11">
+      <details key="start" value="3009"/>
+      <details key="end" value="3017"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.224" references="/0/CppOperationImplementation/%.2/%.8/%.11/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.225" references="/0/CppOperationImplementation/%.2/%.8/%.12">
+      <details key="start" value="3020"/>
+      <details key="end" value="3030"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.226" references="/0/CppOperationImplementation/%.2/%.8/%.12/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.227" references="/0/CppOperationImplementation/%.2/%.8/%.13">
+      <details key="start" value="3033"/>
+      <details key="end" value="3047"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.228" references="/0/CppOperationImplementation/%.2/%.8/%.13/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.229" references="/0/CppOperationImplementation/%.2/%.8/%.14">
+      <details key="start" value="3049"/>
+      <details key="end" value="3053"/>
+      <details key="line" value="84"/>
+    </eAnnotations>
+    <eAnnotations source="positions.230" references="/0/CppOperationImplementation/%.2/%.8/%.15">
+      <details key="start" value="3054"/>
+      <details key="end" value="3080"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.231" references="/0/CppOperationImplementation/%.2/%.8/%.15/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.232" references="/0/CppOperationImplementation/%.2/%.8/%.15/%">
+      <details key="start" value="3072"/>
+      <details key="end" value="3079"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.233" references="/0/CppOperationImplementation/%.2/%.8/%.16">
+      <details key="start" value="3082"/>
+      <details key="end" value="3085"/>
+      <details key="line" value="86"/>
+    </eAnnotations>
+    <eAnnotations source="positions.234" references="/0/CppOperationImplementation/operation">
+      <details key="start" value="2658"/>
+      <details key="end" value="2679"/>
+      <details key="line" value="77"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>
