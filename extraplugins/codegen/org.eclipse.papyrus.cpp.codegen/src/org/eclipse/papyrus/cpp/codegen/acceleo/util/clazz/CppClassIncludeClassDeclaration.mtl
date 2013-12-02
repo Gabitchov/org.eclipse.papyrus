@@ -37,7 +37,7 @@
 		[if(oclIsKindOf(Enumeration) or oclIsKindOf(PrimitiveType))]
 			[comment Enumeration is not defined in a separate file, but in the package that owns it
 				=> include the owning package (might be a duplicate input, if owning package is also the owner of current class/]
-			[if (cl.owner.oclIsKindOf(Package))]
+			[if (cl.owner <> null and cl.owner.oclIsKindOf(Package))]
 [cl.owner.oclAsType(Package).CppOwnerPackageIncludeDeclaration()/]
 			[/if]
 		[else]

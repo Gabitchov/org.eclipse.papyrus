@@ -34,6 +34,8 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Relationship;
+import org.eclipse.uml2.uml.Signal;
+import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.Usage;
 
 
@@ -136,7 +138,14 @@ abstract public class ModelElementsCreator {
 		}
 		else if(element instanceof Relationship) {
 			// no code generation for relationships
-		} else {
+		}
+		else if(element instanceof Signal) {
+			// TODO: not supported, but do nothing 
+		}
+		else if(element instanceof SignalEvent) {
+			// TODO: not supported, but do nothing 
+		}
+		else {
 			throw new RuntimeException("C++ code generator: unsupported model element " + element); //$NON-NLS-1$
 		}
 	}

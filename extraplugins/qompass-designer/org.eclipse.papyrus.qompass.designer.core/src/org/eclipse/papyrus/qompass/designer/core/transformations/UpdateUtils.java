@@ -63,7 +63,12 @@ public class UpdateUtils {
 
 	public static void setSource(Element derivedElement, Element source) {
 		DerivedElement de = StereotypeUtil.applyApp(derivedElement, DerivedElement.class);
-		de.setSource(source);
+		if (de != null) {
+			de.setSource(source);
+		}
+		else {
+			throw new TransformationRTException("cannot apply FCM stereotype. Check whether profile is applied");
+		}
 	}
 
 	public static Element getSource(Element element) {

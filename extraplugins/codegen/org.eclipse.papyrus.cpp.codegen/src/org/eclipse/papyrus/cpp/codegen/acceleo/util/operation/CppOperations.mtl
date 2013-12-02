@@ -35,8 +35,12 @@ return a list of owned operations, since this is not supported directly on a cla
 [/template]
 
 
+[query public isConsOrDestructor(operation : Operation) : Boolean =
+hasStereotype(l2::Create) or hasStereotype(l2::Destroy)
+/]
+
 [query public ConsDestructorOrVoid(operation : Operation) : String =
-if hasStereotype(l2::Create) or hasStereotype(l2::Destroy) then
+if isConsOrDestructor() then
 	''
 else
 	'void '
@@ -44,14 +48,14 @@ endif/]
 
 
 [query public destructor(operation : Operation) : String =
-if hasStereotype(l2::Destroy) then
+if hasStereotype(l2::Destroy) and not operation.name.startsWith('~') then
 	'~'
 else
 	''
 endif/]
 
 [template public CppReturnSpec(operation : Operation)]
-[if (type = null)][ConsDestructorOrVoid()/][else][returnResult().modConst()/] [type.cppQualifiedName()/][returnResult().modPtr()/][returnResult().modRef()/] [/if]
+[if (type = null) or isConsOrDestructor()][ConsDestructorOrVoid()/][else][returnResult().modConst()/] [type.cppQualifiedName()/][returnResult().modPtr()/][returnResult().modRef()/] [/if]
 [/template]
 
 

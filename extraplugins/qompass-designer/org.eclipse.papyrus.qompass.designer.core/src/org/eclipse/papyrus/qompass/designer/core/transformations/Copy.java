@@ -212,6 +212,19 @@ public class Copy extends Copier {
 		return null;
 	}
 
+	/**
+	 * Put a pair into the copy map. Unlike the standard put operation,
+	 * the target object is marked as full copy.
+	 * Just using the put operation lead to bug 422899 - [QDesigner] Regression in
+	 * template instantiation
+	 * @return
+	 */
+	public EObject putPair(EObject sourceEObj, EObject targetEObj) {
+		EObject target = put(sourceEObj, targetEObj);
+		setStatus(targetEObj, CopyStatus.FULL);
+		return target;
+	}
+	
 	@Override
 	public boolean containsKey(Object sourceEObj) {
 		if(sourceEObj instanceof EObject) {
@@ -246,11 +259,6 @@ public class Copy extends Copier {
 	 * @return
 	 */
 	public CopyStatus getStatus(EObject targetEObj) {
-		/*
-		if (targetEObj instanceof Package) {
-			return true;
-		}
-		*/
 		if (targetEObj != null) {
 			CopyStatus status = statusMap.get(targetEObj);
 			if(status != null) {
@@ -259,10 +267,6 @@ public class Copy extends Copier {
 		}
 		return CopyStatus.UNKNOWN;
 	}
-
-	// public Namespace getPackageTemplate() {
-	// return null;
-	// }
 
 	/**
 	 * Set the reference of a bound package template. It must be a member of the target model.

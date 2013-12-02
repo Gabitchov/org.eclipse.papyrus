@@ -182,10 +182,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 				getInstances(m_instanceList);
 				if(m_instanceList.size() == 0) {
 					MessageDialog.openInformation(shell, "Instance configuration",
-						"There are still no instances available\n" +
-							"Check whether you created already a deployment plan for your system." +
-							"Check as well, if the parts in your a composite use \"composite\" as aggregation kind\n." +
-							"(Results of deployment plan synchronizations will be unrolled)");
+						"There are still no instances available\n. Check whether you created already a deployment plan for your system. Check as well, if the parts in your a composite use \"composite\" as aggregation kind. (Results of deployment plan synchronizations will be unrolled)");
 					return false;
 				}
 			}
@@ -231,7 +228,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		// --------------- instance selection -------------------
 		//
 		Group instanceSelGroup = new Group(instanceSelection, SWT.BORDER);
-		instanceSelGroup.setText(" associated instance specifications ");
+		instanceSelGroup.setText(addSpaces("associated instance specifications"));
 		// ruleGroup.setLayout(new RowLayout (SWT.VERTICAL));
 		instanceSelGroup.setLayout(new GridLayout(1, false));
 		instanceSelGroup.setLayoutData(groupGridData);
@@ -304,7 +301,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		GridData groupGridData = DialogUtils.createFillGridData();
 
 		Group instanceConfigurationGroup = new Group(parent, SWT.BORDER);
-		instanceConfigurationGroup.setText(" Configuration ");
+		instanceConfigurationGroup.setText(addSpaces("Configuration"));
 		instanceConfigurationGroup.setLayout(new RowLayout(SWT.VERTICAL));
 		instanceConfigurationGroup.setLayout(new GridLayout(1, false));
 		instanceConfigurationGroup.setLayoutData(groupGridData);
@@ -438,7 +435,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 				}
 			}
 		}
-		fValue.setText("");
+		fValue.setText(""); //$NON-NLS-1$
 	}
 
 	private void setEnabled(boolean enabled) {
@@ -447,8 +444,8 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		fValueLabel.setEnabled(enabled);
 		fValue.setEnabled(enabled);
 		if(!enabled) {
-			fValue.setText("");
-			fDescription.setText("");
+			fValue.setText(""); //$NON-NLS-1$
+			fDescription.setText(""); //$NON-NLS-1$
 			fValueLabel.setText(valueLabelPrefix);
 		}
 	}
@@ -456,7 +453,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 	private String getValueLabel(Property attribute) {
 		String label = valueLabelPrefix;
 		if(attribute.getDefault() != null) {
-			return label + " (Default = " + attribute.getDefault() + ")";
+			return label + " " + String.format("(default = %s)", attribute.getDefault()); //$NON-NLS-1$
 		}
 		return label;
 	}
@@ -488,7 +485,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 							Element owner = m_feature.getOwner();
 							if(DepUtils.getImplementation(candidate) == owner) {
 								// instance is for owner of feature: examine name
-								featureCandidateName = candidate.getName() + "." + m_feature.getName();
+								featureCandidateName = candidate.getName() + "." + m_feature.getName(); //$NON-NLS-1$
 							}
 							else if(featureCandidateName != null) {
 								if(featureCandidateName.equals(candidate.getName())) {
@@ -526,4 +523,13 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		return list;
 	}
 
+	/**
+	 * Add a space before and after
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public static String addSpaces(String text) {
+		return " " + text + " "; //$NON-NLS-1$ //$NON-NLS-2$	
+	}
 }

@@ -100,18 +100,17 @@ public class CommandSupport {
 					}
 				}, null, null);
 			} catch (ExecutionException e) {
-				e.printStackTrace();
+				Activator.log.error(e);
 			}
 		}
 	}
 
-	public static void exec(TransactionalEditingDomain domain, IUndoableOperation command) {
+	public static void exec(IUndoableOperation command) {
 		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
 		try {
 			history.execute(command, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
-
 	}
 }

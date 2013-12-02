@@ -110,6 +110,9 @@ public class BootLoaderGen {
 		 * }
 		 */
 		Include cppInclude = StereotypeUtil.applyApp(m_bootLoader, Include.class);
+		if (cppInclude == null) {
+			throw new TransformationException("Cannot apply cppInclude stereotype. Make sure that C/C++ profile is applied to your model");
+		}
 		Object existingBody = cppInclude.getBody();
 		String existingBodyStr = ""; //$NON-NLS-1$
 		if(existingBody instanceof String) {

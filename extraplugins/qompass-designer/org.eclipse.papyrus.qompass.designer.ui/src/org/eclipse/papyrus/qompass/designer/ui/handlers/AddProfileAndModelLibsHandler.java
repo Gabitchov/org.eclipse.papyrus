@@ -78,8 +78,8 @@ public class AddProfileAndModelLibsHandler extends CmdHandler {
 		int result = dialog.open();
 		if(result == IDialogConstants.OK_ID) {
 			addModelLibs.setImportList(dialog.getResult());
-			CommandSupport.exec(domain, addModelLibs);
-			CommandSupport.exec(domain, addProfiles);
+			CommandSupport.exec(addModelLibs);
+			CommandSupport.exec(addProfiles);
 			// open dialog?
 			// MessageDialog.openWarning(new Shell(),
 			//	"Warning", "The MARTE profile is not available."); //$NON-NLS-1$ //$NON-NLS-2$

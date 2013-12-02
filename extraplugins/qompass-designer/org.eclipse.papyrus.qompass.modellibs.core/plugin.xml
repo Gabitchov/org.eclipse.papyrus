@@ -42,6 +42,14 @@
       <client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.PushProdPullCons" portKindName="PushProdPullCons">
       </client>
    </extension>
+     <extension id="PushProdPullCons" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+      <client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.AMIcallback" portKindName="AMIcallback">
+      </client>
+   </extension>
+     <extension id="PushProdPullCons" point="org.eclipse.papyrus.fcm.profile.fcmPortMappingRule">
+      <client class="org.eclipse.papyrus.qompass.modellibs.core.mappingrules.AMIpoll" portKindName="AMIpoll">
+      </client>
+   </extension>
    <extension point="org.eclipse.papyrus.fcm.profile.fcmEmbeddingRule">
       <client class="org.eclipse.papyrus.qompass.modellibs.core.embeddingrules.AccordCall" portKindName="AccordCall">
       </client>
@@ -51,23 +59,23 @@
       </mapping>
    </extension>
    <extension name="CORBA basic types" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
-      <library description="Qompass: CORBA basic types (long, wchar, ...)" iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: CORBA basic types" path="pathmap://QML_CORE/corba.uml" provider="CEA LIST">
+      <library description="Qompass: CORBA basic types (long, wchar, ...)" iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif" name="Qompass model library: CORBA basic types" path="pathmap://QML_CORE/corba.uml" provider="CEA LIST">
       </library>
    </extension>
    <extension name="Qompass core library" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
-      <library description="Qompass core library" iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: basic" path="pathmap://QML_CORE/core.uml" provider="CEA LIST">
+      <library description="Qompass core library" iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif" name="Qompass model library: basic" path="pathmap://QML_CORE/core.uml" provider="CEA LIST">
       </library>
    </extension>
    <extension name="FIFO" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
-      <library iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: FIFO" path="pathmap://QML_CORE/fifo.uml" provider="CEA LIST">
+      <library iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif" name="Qompass model library: FIFO" path="pathmap://QML_CORE/fifo.uml" provider="CEA LIST">
       </library>
 	</extension>
 	<extension name="OS-AL" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
-		<library iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: OS abstraction layer (OS-AL)" path="pathmap://QML_CORE/osal.uml" provider="CEA LIST">
+		<library iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif" name="Qompass model library: OS abstraction layer (OS-AL)" path="pathmap://QML_CORE/osal.uml" provider="CEA LIST">
 		</library>
 	</extension>
 	<extension name="StateMachine" point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
-		<library iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif" name="Qompass model library: State-machines" path="pathmap://QML_CORE/statemachine.uml" provider="CEA LIST">
+		<library iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif" name="Qompass model library: State-machines" path="pathmap://QML_CORE/statemachine.uml" provider="CEA LIST">
 		</library>
 	</extension>
 	<extension point="org.eclipse.papyrus.uml.diagram.wizards.templates">
@@ -102,7 +110,7 @@
 			category="org.eclipse.ui.Examples/org.eclipse.papyrus.qompass.designer.examples"
 			class="org.eclipse.papyrus.qompass.modellibs.core.HelloWorldModelWizard"
 			finalPerspective="org.eclipse.papyrus.infra.core.perspective"
-			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif"
 			id="org.eclipse.papyrus.qompass.modellibs.core.new.HelloWorld"
 			name="Qompass hello world example">
 			<selection class="org.eclipse.core.resources.IResource"/>
@@ -111,7 +119,7 @@
 			category="org.eclipse.ui.Examples/org.eclipse.papyrus.qompass.designer.examples"
 			class="org.eclipse.papyrus.qompass.modellibs.core.ProducerConsumerModelWizard"
 			finalPerspective="org.eclipse.papyrus.infra.core.perspective"
-			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif"
 			id="org.eclipse.papyrus.qompass.modellibs.core.new.ProducerConsumer"
 			name="Qompass producer/comsumer example">
 			<selection class="org.eclipse.core.resources.IResource"/>

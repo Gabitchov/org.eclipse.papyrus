@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.cpp.profile;
 
 public class StdStereo {
-	public final static String create = "Standard::Create";
-	public final static String destroy = "Standard::Destroy";
+	// CAVEAT: namespace has changed from Standard to StandardProfileL2 (and might change back again)
+	public final static String create = "StandardProfileL2::Create"; //$NON-NLS-1$
+	public final static String destroy = "StandardProfileL2::Destroy"; //$NON-NLS-1$
 }
