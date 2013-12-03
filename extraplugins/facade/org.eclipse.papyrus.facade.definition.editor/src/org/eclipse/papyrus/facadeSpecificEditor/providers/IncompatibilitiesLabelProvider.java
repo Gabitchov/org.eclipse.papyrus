@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facadeSpecificEditor.providers;
 
 import java.util.ArrayList;
@@ -14,7 +27,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.papyrus.facade.extensiondefinition.BaseMetaclass;
 import org.eclipse.papyrus.facade.extensiondefinition.Combination;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinition;
-import org.eclipse.papyrus.facadeSpecificEditor.Activator;
+import org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator;
 import org.eclipse.papyrus.facadeSpecificEditor.FacadeSpecificEditor;
 import org.eclipse.papyrus.facadeSpecificEditor.utils.ProfileUtils;
 import org.eclipse.swt.graphics.Font;
@@ -26,42 +39,60 @@ import com.swtdesigner.ResourceManager;
 
 public class IncompatibilitiesLabelProvider implements ITableLabelProvider, IFontProvider {
 
+	/**
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
+	 * 
+	 * @param listener
+	 */
 
 	public void addListener(ILabelProviderListener listener) {
-		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
+	 * 
+	 */
 
 	public void dispose() {
-		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
+	 * 
+	 * @param element
+	 * @param property
+	 * @return
+	 */
 
 	public boolean isLabelProperty(Object element, String property) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
+	 * 
+	 * @param listener
+	 */
 
 	public void removeListener(ILabelProviderListener listener) {
-		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnImage(java.lang.Object, int)
+	 * 
+	 * @param element
+	 * @param columnIndex
+	 * @return
+	 */
 
 	public Image getColumnImage(Object element, int columnIndex) {
 		switch(columnIndex) {
 		case 0:
 			if(element instanceof Combination) {
-
-				// if (((Extension) ((BaseMetaclass) element).getExtensionDefinition().getExtension()).isRequired()) {
-				// return ResourceManager.getPluginImage("org.eclipse.papyrus.FacadeSpecificEditor", "icons/generalizationRequired.png");
-				// } else {
-				return ResourceManager.getPluginImage(Activator.getDefault(), "icons/combinaison.png");
-				// }
-
+				return ResourceManager.getPluginImage(FacadeDefinitionEditorActivator.getDefault(), "icons/combinaison.png"); //$NON-NLS-1$
 			}
 			break;
 		case 1:
@@ -73,9 +104,9 @@ public class IncompatibilitiesLabelProvider implements ITableLabelProvider, IFon
 					if(first instanceof BaseMetaclass) {
 						EList<Combination> incompatibleStereotypes = ((BaseMetaclass)first).getIncompatibleStereotypes();
 						if(incompatibleStereotypes.contains(element)) {
-							return ResourceManager.getPluginImage(Activator.getDefault(), "icons/unchecked.gif");
+							return ResourceManager.getPluginImage(FacadeDefinitionEditorActivator.getDefault(), "icons/unchecked.gif"); //$NON-NLS-1$
 						} else {
-							return ResourceManager.getPluginImage(Activator.getDefault(), "icons/checked.gif");
+							return ResourceManager.getPluginImage(FacadeDefinitionEditorActivator.getDefault(), "icons/checked.gif"); //$NON-NLS-1$
 						}
 					}
 				}
@@ -90,12 +121,19 @@ public class IncompatibilitiesLabelProvider implements ITableLabelProvider, IFon
 		return null;
 	}
 
+	/**
+	 * Produce sibling list.
+	 * 
+	 * @param stereotype
+	 *        the stereotype
+	 * @return the string
+	 */
 	protected String produceSiblingList(Stereotype stereotype) {
-		String output = "";
+		String output = ""; //$NON-NLS-1$
 		HashSet<Stereotype> siblings = ProfileUtils.getSiblings(stereotype);
 		List<Classifier> siblingsList = new ArrayList<Classifier>(siblings);
 		if(siblingsList.size() > 1) {
-			output += "[";
+			output += "["; //$NON-NLS-1$
 		}
 
 		if(!siblingsList.isEmpty()) {
@@ -103,35 +141,39 @@ public class IncompatibilitiesLabelProvider implements ITableLabelProvider, IFon
 
 			if(siblingsList.size() > 1) {
 				for(int i = 1; i < siblingsList.size(); i++) {
-					output += ", ";
+					output += ", "; //$NON-NLS-1$
 					output += siblingsList.get(i).getQualifiedName();
 				}
 			}
-
 		}
 
 		if(siblings.size() > 1) {
-			output += "]";
+			output += "]"; //$NON-NLS-1$
 		}
 		return output;
 	}
 
+	/**
+	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnText(java.lang.Object, int)
+	 * 
+	 * @param element
+	 * @param columnIndex
+	 * @return
+	 */
 
 	public String getColumnText(Object element, int columnIndex) {
 		switch(columnIndex) {
 		case 0:
-			String name = "";
+			String name = ""; //$NON-NLS-1$
 			if(element instanceof Combination) {
 
 				Combination combination = (Combination)element;
 				if(!combination.getMembers().isEmpty()) {
-					//					name += produceSiblingList(combination.getMembers().get(0).getExtensionDefinition().getStereotype());
 					name += combination.getMembers().get(0).getExtensionDefinition().getStereotype().getName();
 					if(((Combination)element).getMembers().size() > 1) {
 						for(int i = 1; i < combination.getMembers().size(); i++) {
-							name += ", ";
+							name += ", "; //$NON-NLS-1$
 							name += combination.getMembers().get(i).getExtensionDefinition().getStereotype().getName();
-							//							name += produceSiblingList(combination.getMembers().get(i).getExtensionDefinition().getStereotype());
 						}
 					}
 
@@ -142,7 +184,6 @@ public class IncompatibilitiesLabelProvider implements ITableLabelProvider, IFon
 
 			break;
 		case 1:
-
 			break;
 
 		default:
@@ -152,11 +193,15 @@ public class IncompatibilitiesLabelProvider implements ITableLabelProvider, IFon
 		return null;
 	}
 
+	/**
+	 * @see org.eclipse.jface.viewers.IFontProvider#getFont(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 
 	public Font getFont(Object element) {
-
 		if(element instanceof ExtensionDefinition) {
-
 			if(((ExtensionDefinition)element).getStereotype().isAbstract()) {
 				return JFaceResources.getFontRegistry().getItalic(JFaceResources.DEFAULT_FONT);
 			}

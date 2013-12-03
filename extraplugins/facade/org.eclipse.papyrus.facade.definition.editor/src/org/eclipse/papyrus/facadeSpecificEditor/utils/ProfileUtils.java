@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facadeSpecificEditor.utils;
 
 import java.util.ArrayList;
@@ -17,6 +30,7 @@ import org.eclipse.papyrus.facade.extensiondefinition.Combination;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinition;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinitionKind;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensiondefinitionFactory;
+import org.eclipse.papyrus.facade.utils.CombinationGenerator;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Profile;
@@ -71,7 +85,7 @@ public class ProfileUtils {
 		List<Extension> extensions = new ArrayList<Extension>();
 
 		for(Property property : stereotype.getAllAttributes()) {
-			if(property.getName().startsWith("base_")) {
+			if(property.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
 				if(property.getAssociation() instanceof Extension) {
 					extensions.add((Extension)property.getAssociation());
 				}
@@ -81,8 +95,6 @@ public class ProfileUtils {
 		return extensions;
 
 	}
-
-
 
 	public static List<Stereotype> findAllSubsInProfile(Stereotype classifier) {
 		List<Stereotype> output = new ArrayList<Stereotype>();
@@ -114,7 +126,6 @@ public class ProfileUtils {
 	public static HashSet<Stereotype> getSiblings(Stereotype stereotype) {
 		return siblingsReference.get(stereotype);
 	}
-
 
 	protected static HashSet<Stereotype> findSibling(Stereotype stereotype) {
 		HashSet<Stereotype> stereotypeRelatives = new HashSet<Stereotype>();
@@ -191,11 +202,8 @@ public class ProfileUtils {
 	}
 
 	public static List<Combination> getPossibleCombinations(BaseMetaclass inputElement) {
-		// List<BaseMetaclass> compatibleStereotype = new ArrayList<BaseMetaclass>();
 		List<BaseMetaclass> requiredCompatibleStereotypes = new ArrayList<BaseMetaclass>();
 		List<BaseMetaclass> optionalCompatibleStereotypes = new ArrayList<BaseMetaclass>();
-
-		// if (inputElement.isPossible() == true) {
 
 		if(inputElement.getExtensionDefinition().getKind() == ExtensionDefinitionKind.MULTI_GENERALIZATION) {
 
@@ -205,33 +213,12 @@ public class ProfileUtils {
 				if(extensionDefinition.getKind() == ExtensionDefinitionKind.MULTI_GENERALIZATION) {
 					for(BaseMetaclass baseMetaclass : extensionDefinition.getBaseMetaclasses()) {
 						if(baseMetaclass.getBase() == inputElement.getBase()) {
-							// if (((ENamedElement) baseMetaclass.getBase()).getName().equals(((ENamedElement) inputElement.getBase()).getName())) {
 
 							if(baseMetaclass != inputElement) {
-
-								// if (baseMetaclass.isPossible() == true) {
 								Stereotype inputElementStereo = inputElement.getExtensionDefinition().getStereotype();
 								Stereotype baseMetaClassStereo = baseMetaclass.getExtensionDefinition().getStereotype();
 
-								// if (!baseMetaclass.getExtensionDefinition().getExtension().isRequired()) {
 								if(ProfileUtils.areNotRelatives(inputElementStereo, baseMetaClassStereo)) {
-									//									EList<Classifier> generals = baseMetaclass.getExtensionDefinition().getStereotype().getGenerals();
-									// boolean onlyAbstract = true;
-									// for (int i = 0; i < generals.size() && onlyAbstract; i++) {
-									// Classifier classifier = generals.get(i);
-									// if (!classifier.isAbstract()) {
-									// onlyAbstract = false;
-									// }
-									// }
-
-									// if (onlyAbstract) {
-									//									if(generals.isEmpty()) {
-									// Combination combinaison = FacadeMetamodelFactory.eINSTANCE.createCombination();
-									// combinaison.getMetaClasses().add(baseMetaclass);
-									//
-									// compatibleStereotype.add(baseMetaclass);
-
-									// compatibleStereotype.add(baseMetaclass);
 
 									if(!baseMetaclass.getExtensionDefinition().getStereotype().isAbstract()) {
 
@@ -242,17 +229,12 @@ public class ProfileUtils {
 										}
 
 									}
-									//									}
-									// }
 								}
-								// }
-								// }
 							}
 						}
 					}
 				}
 			}
-			// }
 		}
 
 		List<Combination> possibleCombination = generatePossibleCombination(optionalCompatibleStereotypes);

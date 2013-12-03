@@ -1,5 +1,16 @@
-/**
- */
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facade.virtualmetamodel.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -28,6 +39,7 @@ import org.eclipse.papyrus.facade.virtualmetamodel.VirtualMetamodel;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualOperation;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualParameter;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualProperty;
+import org.eclipse.papyrus.facade.virtualmetamodel.VirtualTypedElement;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualmetamodelFactory;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualmetamodelPackage;
 
@@ -111,6 +123,13 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 	 * @generated
 	 */
 	private EClass virtualLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass virtualTypedElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -279,6 +298,15 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVirtualElement_UseRepresented() {
+		return (EAttribute)virtualElementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVirtualClassifier() {
 		return virtualClassifierEClass;
 	}
@@ -369,26 +397,8 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getVirtualProperty_Lower() {
-		return (EAttribute)virtualPropertyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVirtualProperty_Upper() {
-		return (EAttribute)virtualPropertyEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getVirtualProperty_VirtualMetaclass() {
-		return (EReference)virtualPropertyEClass.getEStructuralFeatures().get(2);
+		return (EReference)virtualPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -459,6 +469,42 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVirtualTypedElement() {
+		return virtualTypedElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVirtualTypedElement_Lower() {
+		return (EAttribute)virtualTypedElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVirtualTypedElement_Upper() {
+		return (EAttribute)virtualTypedElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVirtualTypedElement_Type() {
+		return (EReference)virtualTypedElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public VirtualmetamodelFactory getVirtualmetamodelFactory() {
 		return (VirtualmetamodelFactory)getEFactoryInstance();
 	}
@@ -493,6 +539,7 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 		createEAttribute(virtualElementEClass, VIRTUAL_ELEMENT__ALIAS_NAME);
 		createEAttribute(virtualElementEClass, VIRTUAL_ELEMENT__KEPT);
 		createEReference(virtualElementEClass, VIRTUAL_ELEMENT__REPRESENTED_ELEMENT);
+		createEAttribute(virtualElementEClass, VIRTUAL_ELEMENT__USE_REPRESENTED);
 
 		virtualClassifierEClass = createEClass(VIRTUAL_CLASSIFIER);
 		createEReference(virtualClassifierEClass, VIRTUAL_CLASSIFIER__METAMODEL);
@@ -506,8 +553,6 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 		createEAttribute(virtualMetaclassEClass, VIRTUAL_METACLASS__STEREOTYPE_INTERFACE);
 
 		virtualPropertyEClass = createEClass(VIRTUAL_PROPERTY);
-		createEAttribute(virtualPropertyEClass, VIRTUAL_PROPERTY__LOWER);
-		createEAttribute(virtualPropertyEClass, VIRTUAL_PROPERTY__UPPER);
 		createEReference(virtualPropertyEClass, VIRTUAL_PROPERTY__VIRTUAL_METACLASS);
 
 		virtualOperationEClass = createEClass(VIRTUAL_OPERATION);
@@ -521,6 +566,11 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 		createEReference(virtualEnumEClass, VIRTUAL_ENUM__LITERALS);
 
 		virtualLiteralEClass = createEClass(VIRTUAL_LITERAL);
+
+		virtualTypedElementEClass = createEClass(VIRTUAL_TYPED_ELEMENT);
+		createEAttribute(virtualTypedElementEClass, VIRTUAL_TYPED_ELEMENT__LOWER);
+		createEAttribute(virtualTypedElementEClass, VIRTUAL_TYPED_ELEMENT__UPPER);
+		createEReference(virtualTypedElementEClass, VIRTUAL_TYPED_ELEMENT__TYPE);
 	}
 
 	/**
@@ -559,12 +609,13 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 		// Add supertypes to classes
 		virtualClassifierEClass.getESuperTypes().add(this.getVirtualElement());
 		virtualMetaclassEClass.getESuperTypes().add(this.getVirtualClassifier());
-		virtualPropertyEClass.getESuperTypes().add(this.getVirtualElement());
-		virtualOperationEClass.getESuperTypes().add(this.getVirtualElement());
-		virtualParameterEClass.getESuperTypes().add(this.getVirtualElement());
+		virtualPropertyEClass.getESuperTypes().add(this.getVirtualTypedElement());
+		virtualOperationEClass.getESuperTypes().add(this.getVirtualTypedElement());
+		virtualParameterEClass.getESuperTypes().add(this.getVirtualTypedElement());
 		virtualDatatypeEClass.getESuperTypes().add(this.getVirtualClassifier());
 		virtualEnumEClass.getESuperTypes().add(this.getVirtualClassifier());
 		virtualLiteralEClass.getESuperTypes().add(this.getVirtualElement());
+		virtualTypedElementEClass.getESuperTypes().add(this.getVirtualElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(virtualMetamodelEClass, VirtualMetamodel.class, "VirtualMetamodel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -578,6 +629,7 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 		initEAttribute(getVirtualElement_AliasName(), ecorePackage.getEString(), "aliasName", null, 0, 1, VirtualElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVirtualElement_Kept(), ecorePackage.getEBoolean(), "kept", null, 1, 1, VirtualElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVirtualElement_RepresentedElement(), theEcorePackage.getEObject(), null, "representedElement", null, 1, 1, VirtualElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVirtualElement_UseRepresented(), ecorePackage.getEBoolean(), "useRepresented", null, 1, 1, VirtualElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(virtualClassifierEClass, VirtualClassifier.class, "VirtualClassifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVirtualClassifier_Metamodel(), this.getVirtualMetamodel(), this.getVirtualMetamodel_VirtualClassifiers(), "metamodel", null, 1, 1, VirtualClassifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -591,8 +643,6 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 		initEAttribute(getVirtualMetaclass_StereotypeInterface(), theTypesPackage.getBoolean(), "stereotypeInterface", null, 1, 1, VirtualMetaclass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(virtualPropertyEClass, VirtualProperty.class, "VirtualProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getVirtualProperty_Lower(), ecorePackage.getEInt(), "lower", null, 1, 1, VirtualProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVirtualProperty_Upper(), ecorePackage.getEInt(), "upper", null, 1, 1, VirtualProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVirtualProperty_VirtualMetaclass(), this.getVirtualMetaclass(), this.getVirtualMetaclass_Properties(), "virtualMetaclass", null, 1, 1, VirtualProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(virtualOperationEClass, VirtualOperation.class, "VirtualOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -606,6 +656,11 @@ public class VirtualmetamodelPackageImpl extends EPackageImpl implements Virtual
 		initEReference(getVirtualEnum_Literals(), this.getVirtualLiteral(), null, "literals", null, 0, -1, VirtualEnum.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(virtualLiteralEClass, VirtualLiteral.class, "VirtualLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(virtualTypedElementEClass, VirtualTypedElement.class, "VirtualTypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getVirtualTypedElement_Lower(), ecorePackage.getEInt(), "lower", null, 1, 1, VirtualTypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVirtualTypedElement_Upper(), ecorePackage.getEInt(), "upper", null, 1, 1, VirtualTypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVirtualTypedElement_Type(), this.getVirtualClassifier(), null, "type", null, 1, 1, VirtualTypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //VirtualmetamodelPackageImpl

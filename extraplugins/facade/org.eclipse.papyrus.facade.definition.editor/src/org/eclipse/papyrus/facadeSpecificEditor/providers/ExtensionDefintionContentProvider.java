@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facadeSpecificEditor.providers;
 
 import java.util.ArrayList;
@@ -15,43 +28,54 @@ import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinitionKind;
 
 public class ExtensionDefintionContentProvider implements ITreeContentProvider {
 
-
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
+	 * 
+	 */
 	public void dispose() {
-		// TODO Auto-generated method stub
 
 	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+	 * 
+	 * @param viewer
+	 * @param oldInput
+	 * @param newInput
+	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// TODO Auto-generated method stub
 
 	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getElements(java.lang.Object)
+	 * 
+	 * @param inputElement
+	 * @return
+	 */
 	public Object[] getElements(Object inputElement) {
-
 		HashSet<ExtensionDefinition> output = new HashSet<ExtensionDefinition>();
 
 		if(inputElement instanceof Facade) {
-
 			EList<ExtensionDefinition> extensionsDefinitions = ((Facade)inputElement).getExtensionDefinitions();
 			for(ExtensionDefinition extensionDefinition : extensionsDefinitions) {
-
 				output.add(extensionDefinition);
-
-				// if (StereotypeTools.findEClass(((Extension) extensionDefinition.getExtension()).getMetaclass()) == extensionDefinition.getBaseMetaclass()) {
-				// output.add(extensionDefinition);
-				// }
-
 			}
-
 		}
 
 		return output.toArray();
-
 	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
+	 * 
+	 * @param parentElement
+	 * @return
+	 */
 	public Object[] getChildren(Object parentElement) {
 		List<BaseMetaclass> output = new ArrayList<BaseMetaclass>();
 		if(parentElement instanceof ExtensionDefinition) {
@@ -69,20 +93,29 @@ public class ExtensionDefintionContentProvider implements ITreeContentProvider {
 		return output.toArray();
 	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	public Object getParent(Object element) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	public boolean hasChildren(Object element) {
 		if(getChildren(element).length != 0) {
 			return true;
 		} else {
 			return false;
 		}
-
 	}
-
 }

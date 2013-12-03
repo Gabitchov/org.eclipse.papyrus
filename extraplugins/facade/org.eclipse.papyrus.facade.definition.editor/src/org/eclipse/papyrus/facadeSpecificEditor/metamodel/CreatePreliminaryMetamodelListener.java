@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facadeSpecificEditor.metamodel;
 
 import java.util.ArrayList;
@@ -42,8 +55,11 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 		this.editingDomain = editingDomain;
 	}
 
-
-
+	/**
+	 * Interpret the extension as a Generalization and therefore generate the metaclass accordingly
+	 * 
+	 * @param extensionDefinition
+	 */
 	protected void initGeneralization(ExtensionDefinition extensionDefinition) {
 
 		BaseMetaclass baseMetaclass = MetamodelUtils.findActualBaseMetaclass(extensionDefinition);
@@ -52,7 +68,6 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 			ArrayList<BaseMetaclass> stereotypes = new ArrayList<BaseMetaclass>();
 			stereotypes.add(baseMetaclass);
 			MetamodelUtils.addMetaclass(StereotypeUtils.findBase(extensionDefinition), stereotypes, extensionDefinition.getStereotype().getName(), facade, editingDomain);
-			//			MetamodelUtils.addMetaclass(extensionDefinition.getStereotype(), stereotypes, extensionDefinition.getStereotype().getName(), facade, editingDomain);
 
 			if(MetamodelUtils.hasSiblings(extensionDefinition)) {
 				//Create a Stereotype interface
@@ -60,14 +75,15 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 			}
 
 		} else {
-			System.err.println("initGeneralization: Error can't find actual base metaclass : " + extensionDefinition.getStereotype());
+			org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info("initGeneralization: Error can't find actual base metaclass : " + extensionDefinition.getStereotype());
 		}
-
-
 	}
 
-
-
+	/**
+	 * Interpret the extension as an Association and therefore generate the metaclass accordingly
+	 * 
+	 * @param extensionDefinition
+	 */
 	protected void initAssociation(ExtensionDefinition extensionDefinition) {
 
 		BaseMetaclass baseMetaclass = MetamodelUtils.findActualBaseMetaclass(extensionDefinition);
@@ -77,14 +93,13 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 			String name = ((EClass)baseMetaclass.getBase()).getName() + "_" + baseMetaclass.getExtensionDefinition().getStereotype().getName();
 
 			MetamodelUtils.addMetaclass(baseMetaclass.getBase(), stereotypes, name, facade, editingDomain);
-			//			MetamodelUtils.addMetaclass(extensionDefinition.getStereotype(), stereotypes, name, facade, editingDomain);
 
 			//Create property in the virtualmetaclass that represents the base metaclass to facilitate navigation 
 			if(MetamodelUtils.isActualExtensionDefinition(extensionDefinition)) {
 				//Find the base metaclass
 				VirtualMetaclass virtualMetaclass = MetamodelUtils.findMetaclassWithNoRealStereoThatMatch((EClass)baseMetaclass.getBase(), facade);
 				//Add the property
-				MetamodelUtils.addProperty(virtualMetaclass, extensionDefinition.getExtension().getMemberEnds().get(0), name, facade, editingDomain);
+				MetamodelUtils.addProperty(virtualMetaclass, extensionDefinition.getExtension().getMemberEnds().get(0), extensionDefinition.getExtension().getMemberEnds().get(0).getType(), name, facade, editingDomain);
 			}
 
 			if(MetamodelUtils.hasSiblings(extensionDefinition)) {
@@ -92,30 +107,16 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 				MetamodelUtils.addStereotypeInterface(baseMetaclass.getExtensionDefinition().getStereotype(), baseMetaclass.getExtensionDefinition().getStereotype().getName() + "_applied", facade, editingDomain);
 			}
 		}
-
-		//		for(BaseMetaclass baseMetaclass : extensionDefinition.getBaseMetaclasses()) {
-		//
-		//			if(baseMetaclass.getBase() == StereotypeUtils.findEClass(baseMetaclass.getExtensionDefinition().getExtension().getMetaclass())) {
-		//				ArrayList<BaseMetaclass> stereotypes = new ArrayList<BaseMetaclass>();
-		//				stereotypes.add(baseMetaclass);
-		//				String name = ((EClass)baseMetaclass.getBase()).getName() + "_" + baseMetaclass.getExtensionDefinition().getStereotype().getName();
-		//
-		//				MetamodelUtils.addMetaclass(baseMetaclass.getBase(), stereotypes, name, facade, editingDomain);
-		//
-		//				if(baseMetaclass.getExtensionDefinition().getStereotype().getGenerals().isEmpty()) {
-		//					VirtualMetaclass virtualMetaclass = MetamodelUtils.findMetaclassWithNoRealStereoThatMatch((EClass)baseMetaclass.getBase(), facade);
-		//					MetamodelUtils.addProperty(virtualMetaclass, baseMetaclass.getExtensionDefinition().getExtension(), name, facade, editingDomain);
-		//				}
-		//			}
-		//		}
-
 	}
 
+	/**
+	 * Interpret the extension as a MultiGeneralization and therefore generate the metaclass accordingly
+	 * 
+	 * @param extensionDefinition
+	 */
 	protected void initMultiGeneralization(ExtensionDefinition extensionDefinition) {
 		// Prepare possible METACLASS combinations
 		HashMap<EClass, ArrayList<Combination>> possibleMetaclasses = new HashMap<EClass, ArrayList<Combination>>();
-
-
 
 		for(BaseMetaclass baseMetaclass : extensionDefinition.getBaseMetaclasses()) {
 
@@ -136,7 +137,6 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 			// I take the compatible combination
 			for(Combination possibleCombination : baseMetaclass.getCompatibleStereotypes()) {
 
-
 				Combination combination = ExtensiondefinitionFactory.eINSTANCE.createCombination();
 				combination.getMembers().add(baseMetaclass);
 				combination.getMembers().addAll(possibleCombination.getMembers());
@@ -149,8 +149,6 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 			possibleMetaclasses.put((EClass)baseMetaclass.getBase(), possibleCombinations);
 
 		}
-
-
 
 		// Generate the possible METACLASS combinations
 		for(EClass representedElement : possibleMetaclasses.keySet()) {
@@ -168,8 +166,11 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 		}
 	}
 
-
-
+	/**
+	 * Interpret the extension as a Fusion and therefore generate the metaclass accordingly
+	 * 
+	 * @param extensionDefinition
+	 */
 	protected void initFusion(ExtensionDefinition extensionDefinition) {
 
 		if(extensionDefinition.getStereotype().getGenerals().isEmpty()) {
@@ -192,7 +193,9 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 		}
 	}
 
-
+	/**
+	 * Generate the prelimenary metamodel on the basis of the clarification of the extensions
+	 */
 	protected void initMetamodel() {
 
 		// Generate for the UML metamodel
@@ -212,7 +215,7 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 			}
 		}
 
-		initStereotypeInterfaces();
+		//		initStereotypeInterfaces();
 
 		initAbstractMetaclasses(MetamodelUtils.getOnlyVirtualMetaclasses(facade.getVirtualmetamodel().getVirtualClassifiers()));
 
@@ -222,45 +225,45 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 
 		MetamodelUtils.createGeneralizations(facade, editingDomain);
 
-		// // Create a metaclass for each required stereotype that is defined as METACLASS
-		// for (ExtensionDefinition extensionDefinition : facade.getExtensionDefinitions()) {
-		// if (extensionDefinition.getKind() == ExtensionDefinitionKind.METACLASS) {
-		// // if (extensionDefinition.getExtension().isRequired()) {
-		// for (BaseMetaclass baseMetaclass : extensionDefinition.getBaseMetaclasses()) {
-		// String name = ((ENamedElement) baseMetaclass.getMetaclass()).getName() + "_" + baseMetaclass.getExtensionDefinition().getStereotype().getName();
-		// List<BaseMetaclass> stereotypes = new ArrayList<BaseMetaclass>();
-		// stereotypes.add(baseMetaclass);
-		// MetamodelCreationUtils.addMetaclass(baseMetaclass.getMetaclass(), check, true, stereotypes, name, facade, editingDomain);
-		// }
-		// // }
-		// }
-		// }
+		MetamodelUtils.postProcessTypedElements(facade, editingDomain);
 
+		MetamodelUtils.postProcessUseRepresented(facade, editingDomain);
 	}
 
-	private void initStereotypeInterfaces() {
-		//		for(VirtualClassifier classifier : facade.getVirtualmetamodel().getVirtualClassifiers()) {
-		//			if(classifier instanceof VirtualMetaclass) {
-		//				if(!MetamodelUtils.onlyOneKind(((VirtualMetaclass)classifier).getAppliedStereotypes())) {
-		//					List<Stereotype> stereotypes = MetamodelUtils.getStereotypesFromBaseMetaclass(((VirtualMetaclass)classifier).getAppliedStereotypes());
-		//					if(stereotypes.size() == 1) {
-		//						
-		//					} else {
-		//						System.err.println("initStereotypeInterfaces: Error with number of different applied stereotypes");
-		//					}
-		//				}
-		//			}
-		//		}
-	}
+	//	private void initStereotypeInterfaces() {
+	//				for(VirtualClassifier classifier : facade.getVirtualmetamodel().getVirtualClassifiers()) {
+	//					if(classifier instanceof VirtualMetaclass) {
+	//						if(!MetamodelUtils.onlyOneKind(((VirtualMetaclass)classifier).getAppliedStereotypes())) {
+	//							List<Stereotype> stereotypes = MetamodelUtils.getStereotypesFromBaseMetaclass(((VirtualMetaclass)classifier).getAppliedStereotypes());
+	//							if(stereotypes.size() == 1) {
+	//								
+	//							} else {
+	//								org.eclipse.papyrus.facadeSpecificEditor.Activator.log.info("initStereotypeInterfaces: Error with number of different applied stereotypes");
+	//							}
+	//						}
+	//					}
+	//				}
+	//	}
 
-
-
+	/**
+	 * Set the isAbstract value each virtualMetaclass
+	 * 
+	 * @param list
+	 */
 	protected void initAbstractMetaclasses(List<VirtualMetaclass> list) {
 		for(VirtualMetaclass metaclass : list) {
 			metaclass.setAbstract(MetamodelUtils.mustBeAbstract(metaclass));
 		}
 	}
 
+	/**
+	 * Generate a name that is meaningful using a combination of applied stereotypes
+	 * 
+	 * @param representedElement
+	 * @param combination
+	 * @return
+	 *         a meaningful name
+	 */
 	protected String createName(EClass representedElement, Combination combination) {
 		String name = representedElement.getName();
 
@@ -271,6 +274,11 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 		return name;
 	}
 
+	/**
+	 * Check whether two or more required stereotypes are defined as MULTI_GENERALIZATION on a unique base metaclass
+	 * 
+	 * @return
+	 */
 	protected boolean isFeasible() {
 
 		for(ExtensionDefinition extensionDefinition : facade.getExtensionDefinitions()) {
@@ -288,7 +296,7 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 
 										for(EClass eClass : baseMetaclasses) {
 											if(baseMetaclasses2.contains(eClass)) {
-												MessageDialog.openError(Display.getCurrent().getActiveShell(), "Cannot generate metamodel", "Two or more required stereotypes are defined as metaclass on " + eClass.getName() + ". \nYou must define only one as MultiGeneralization.");
+												MessageDialog.openError(Display.getCurrent().getActiveShell(), "Cannot generate metamodel", "Two or more required stereotypes are defined as MULTI_GENERALIZATION on " + eClass.getName() + ". \nYou must define only one as MultiGeneralization.");
 												return false;
 											}
 										}
@@ -304,6 +312,12 @@ public class CreatePreliminaryMetamodelListener extends MouseAdapter {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.swt.events.MouseAdapter#mouseUp(org.eclipse.swt.events.MouseEvent)
+	 * 
+	 * @param e
+	 */
 	@Override
 	public void mouseUp(MouseEvent e) {
 		if(isFeasible()) {

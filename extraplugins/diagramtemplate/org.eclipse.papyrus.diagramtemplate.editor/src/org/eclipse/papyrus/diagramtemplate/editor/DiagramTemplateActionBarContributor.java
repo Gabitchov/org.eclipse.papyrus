@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Florian Noyrit - florian.noyrit@cea.fr (CEA LIST) - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagramtemplate.editor;

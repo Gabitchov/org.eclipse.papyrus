@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facadeSpecificEditor.editingSupport;
 
 import org.eclipse.emf.edit.command.SetCommand;
@@ -28,22 +41,40 @@ public class MetaclassToKeepColumnEditingSupport extends EditingSupport {
 		this.facade = facade;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#setValue(java.lang.Object, java.lang.Object)
+	 * 
+	 * @param element
+	 * @param value
+	 */
 	@Override
 	protected void setValue(Object element, Object value) {
 		if(element instanceof VirtualElement) {
 
 			VirtualMetamodel metamodel = facade.getVirtualmetamodel();
 
-			if(PrunerUtils.canBeUnkept((VirtualElement)element, metamodel)) {
+			if((Boolean)value == false) {
+				if(PrunerUtils.classifierUnkeep((VirtualElement)element, metamodel, editingDomain)) {
+
+					getViewer().refresh();
+				}
+			} else {
 				SetCommand command = new SetCommand(editingDomain, (VirtualElement)element, VirtualmetamodelPackage.eINSTANCE.getVirtualElement_Kept(), (Boolean)value); //$NON-NLS-1$
 				editingDomain.getCommandStack().execute(command);
 				getViewer().refresh();
 			}
 
-
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#getValue(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	protected Object getValue(Object element) {
 		if(element instanceof VirtualElement) {
@@ -52,6 +83,13 @@ public class MetaclassToKeepColumnEditingSupport extends EditingSupport {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#getCellEditor(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	protected CellEditor getCellEditor(Object element) {
 
@@ -59,6 +97,13 @@ public class MetaclassToKeepColumnEditingSupport extends EditingSupport {
 
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#canEdit(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	protected boolean canEdit(Object element) {
 		return true;

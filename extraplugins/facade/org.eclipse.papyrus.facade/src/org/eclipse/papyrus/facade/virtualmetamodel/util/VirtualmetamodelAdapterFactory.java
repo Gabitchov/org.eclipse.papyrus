@@ -1,5 +1,16 @@
-/**
- */
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facade.virtualmetamodel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -106,6 +117,10 @@ public class VirtualmetamodelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseVirtualLiteral(VirtualLiteral object) {
 				return createVirtualLiteralAdapter();
+			}
+			@Override
+			public Adapter caseVirtualTypedElement(VirtualTypedElement object) {
+				return createVirtualTypedElementAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -264,6 +279,20 @@ public class VirtualmetamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVirtualLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.facade.virtualmetamodel.VirtualTypedElement <em>Virtual Typed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.facade.virtualmetamodel.VirtualTypedElement
+	 * @generated
+	 */
+	public Adapter createVirtualTypedElementAdapter() {
 		return null;
 	}
 

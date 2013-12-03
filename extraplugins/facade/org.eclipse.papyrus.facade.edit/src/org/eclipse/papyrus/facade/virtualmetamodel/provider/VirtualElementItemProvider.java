@@ -1,5 +1,16 @@
-/**
- */
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facade.virtualmetamodel.provider;
 
 
@@ -65,6 +76,7 @@ public class VirtualElementItemProvider
 			addAliasNamePropertyDescriptor(object);
 			addKeptPropertyDescriptor(object);
 			addRepresentedElementPropertyDescriptor(object);
+			addUseRepresentedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -136,6 +148,28 @@ public class VirtualElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Use Represented feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addUseRepresentedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VirtualElement_useRepresented_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VirtualElement_useRepresented_feature", "_UI_VirtualElement_type"),
+				 VirtualmetamodelPackage.Literals.VIRTUAL_ELEMENT__USE_REPRESENTED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,6 +182,7 @@ public class VirtualElementItemProvider
 			getString("_UI_VirtualElement_type") :
 			getString("_UI_VirtualElement_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -163,6 +198,7 @@ public class VirtualElementItemProvider
 		switch (notification.getFeatureID(VirtualElement.class)) {
 			case VirtualmetamodelPackage.VIRTUAL_ELEMENT__ALIAS_NAME:
 			case VirtualmetamodelPackage.VIRTUAL_ELEMENT__KEPT:
+			case VirtualmetamodelPackage.VIRTUAL_ELEMENT__USE_REPRESENTED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

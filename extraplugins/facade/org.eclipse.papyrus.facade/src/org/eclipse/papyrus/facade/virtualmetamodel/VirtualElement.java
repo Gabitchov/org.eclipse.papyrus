@@ -1,5 +1,16 @@
-/**
- */
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facade.virtualmetamodel;
 
 import org.eclipse.emf.ecore.EObject;
@@ -15,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.facade.virtualmetamodel.VirtualElement#getAliasName <em>Alias Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.facade.virtualmetamodel.VirtualElement#isKept <em>Kept</em>}</li>
  *   <li>{@link org.eclipse.papyrus.facade.virtualmetamodel.VirtualElement#getRepresentedElement <em>Represented Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.facade.virtualmetamodel.VirtualElement#isUseRepresented <em>Use Represented</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,5 +112,31 @@ public interface VirtualElement extends EObject {
 	 * @generated
 	 */
 	void setRepresentedElement(EObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Use Represented</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Use Represented</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Use Represented</em>' attribute.
+	 * @see #setUseRepresented(boolean)
+	 * @see org.eclipse.papyrus.facade.virtualmetamodel.VirtualmetamodelPackage#getVirtualElement_UseRepresented()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isUseRepresented();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.facade.virtualmetamodel.VirtualElement#isUseRepresented <em>Use Represented</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Use Represented</em>' attribute.
+	 * @see #isUseRepresented()
+	 * @generated
+	 */
+	void setUseRepresented(boolean value);
 
 } // VirtualElement

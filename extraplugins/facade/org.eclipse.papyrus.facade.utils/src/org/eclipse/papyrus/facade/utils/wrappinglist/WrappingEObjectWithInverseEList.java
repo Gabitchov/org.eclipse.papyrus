@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facade.utils.wrappinglist;
 
 import java.util.Collection;
@@ -42,14 +55,10 @@ public class WrappingEObjectWithInverseEList<E extends RepresentingElement> exte
 			return false;
 		} else {
 			super.doAddUnique(object);
-			//			if(hasInverse()) {
-			//				inverseAdd(object, null);
-			//			}
 
 			return true;
 		}
 
-		//		return super.add(object);
 	}
 
 	@Override
@@ -59,11 +68,6 @@ public class WrappingEObjectWithInverseEList<E extends RepresentingElement> exte
 		}
 
 		super.doAddUnique(index, e);
-		//		if(hasInverse()) {
-		//			inverseAdd(e, null);
-		//		}
-
-		//		super.add(index, e);
 	}
 
 	@Override
@@ -79,14 +83,10 @@ public class WrappingEObjectWithInverseEList<E extends RepresentingElement> exte
 		} else {
 			for(E e : collection) {
 				super.doAddUnique(e);
-				//				if(hasInverse()) {
-				//					inverseAdd(e, null);
-				//				}
 			}
 			return true;
 		}
 
-		//		return super.addAll(collection);
 	}
 
 	@Override
@@ -100,16 +100,9 @@ public class WrappingEObjectWithInverseEList<E extends RepresentingElement> exte
 		if(collection.isEmpty()) {
 			return false;
 		} else {
-			for(E e : collection) {
-				super.doAddUnique(e);
-				//				if(hasInverse()) {
-				//					inverseAdd(e, null);
-				//				}
-			}
+			super.doAddAllUnique(index, collection);
 			return true;
 		}
-
-		//		return super.addAll(index, collection);
 	}
 
 
@@ -120,16 +113,11 @@ public class WrappingEObjectWithInverseEList<E extends RepresentingElement> exte
 
 		if(this.contains(object)) {
 			E oldObject = doRemove(indexOf(object));
-			//			if(hasInverse() && oldObject != null) {
-			//				inverseRemove(oldObject, null);
-			//			}
 			return true;
 		} else {
 			return false;
 		}
-		//		return oldObject;
 
-		//		return super.remove(object);
 	}
 
 	@Override
@@ -139,12 +127,8 @@ public class WrappingEObjectWithInverseEList<E extends RepresentingElement> exte
 
 
 		E oldObject = doRemove(index);
-		//		if(hasInverse() && oldObject != null) {
-		//			inverseRemove(oldObject, null);
-		//		}
-		return oldObject;
 
-		//		return super.remove(index);
+		return oldObject;
 	}
 
 	@Override
@@ -159,15 +143,10 @@ public class WrappingEObjectWithInverseEList<E extends RepresentingElement> exte
 		for(Object object : collection) {
 			if(this.contains(object)) {
 				E oldObject = doRemove(indexOf(object));
-				//				if(hasInverse() && oldObject != null) {
-				//					inverseRemove(oldObject, null);
-				//				}
 				result = true;
 			}
 		}
 		return result;
-
-		//		return super.removeAll(collection);
 	}
 
 	@Override
@@ -178,48 +157,30 @@ public class WrappingEObjectWithInverseEList<E extends RepresentingElement> exte
 		for(Object object : this) {
 			if(this.contains(object)) {
 				E oldObject = doRemove(indexOf(object));
-				//				if(hasInverse() && oldObject != null) {
-				//					inverseRemove(oldObject, null);
-				//				}
 
 			}
 		}
-
-
-		//		super.clear();
 	}
 
 	@Override
 	public void notWrappingAdd(E object) {
 		doAddUnique(object);
-
-
-
 	}
 
 	@Override
 	public E notWrappingRemove(E object) {
-
 		return doRemove(indexOf(object));
 	}
 
-
-
-
 	@Override
 	public void silentAdd(int index, E object) {
-
 		super.doAddUnique(index, object);
-
 	}
 
 
 	@Override
 	public E silentRemove(int index) {
 		return super.doRemove(index);
-
 	}
-
-
 
 }

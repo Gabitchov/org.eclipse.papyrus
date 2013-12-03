@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facadeSpecificEditor.editingSupport;
 
 import java.lang.reflect.InvocationTargetException;
@@ -18,6 +31,7 @@ import org.eclipse.papyrus.facade.Facade;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinition;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinitionKind;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensiondefinitionPackage;
+import org.eclipse.papyrus.facadeSpecificEditor.Messages;
 import org.eclipse.papyrus.facadeSpecificEditor.utils.ProfileUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -37,12 +51,22 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 		this.parent = parent;
 	}
 
+	/**
+	 * Change the interpretation to give to an extension to ExtensionDefinitionKind.ASSOCIATION
+	 * 
+	 * @param element
+	 */
 	protected void transformIntoAssociation(ExtensionDefinition element) {
 		SetCommand command = new SetCommand(editingDomain, element, ExtensiondefinitionPackage.eINSTANCE.getExtensionDefinition_Kind(), ExtensionDefinitionKind.ASSOCIATION); //$NON-NLS-1$
 		editingDomain.getCommandStack().execute(command);
 
 	}
 
+	/**
+	 * Change the interpretation to give to an extension to ExtensionDefinitionKind.GENERALIZATION
+	 * 
+	 * @param element
+	 */
 	protected void transformIntoGeneralization(ExtensionDefinition element) {
 
 		SetCommand command = new SetCommand(editingDomain, element, ExtensiondefinitionPackage.eINSTANCE.getExtensionDefinition_Kind(), ExtensionDefinitionKind.GENERALIZATION); //$NON-NLS-1$
@@ -50,6 +74,11 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 
 	}
 
+	/**
+	 * Change the interpretation to give to an extension to ExtensionDefinitionKind.MULTI_GENERALIZATION
+	 * 
+	 * @param element
+	 */
 	protected void transformIntoMultiGeneralization(ExtensionDefinition element) {
 
 		SetCommand command = new SetCommand(editingDomain, element, ExtensiondefinitionPackage.eINSTANCE.getExtensionDefinition_Kind(), ExtensionDefinitionKind.MULTI_GENERALIZATION); //$NON-NLS-1$
@@ -57,6 +86,11 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 
 	}
 
+	/**
+	 * Change the interpretation to give to an extension to ExtensionDefinitionKind.FUSION
+	 * 
+	 * @param element
+	 */
 	protected void transformIntoFusion(ExtensionDefinition element) {
 
 		SetCommand command = new SetCommand(editingDomain, element, ExtensiondefinitionPackage.eINSTANCE.getExtensionDefinition_Kind(), ExtensionDefinitionKind.FUSION); //$NON-NLS-1$
@@ -64,6 +98,12 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 
 	}
 
+	/**
+	 * Check if the stereotype involved in the extensionDefinition is also used to type the property of a stereotype elsewhere
+	 * 
+	 * @param extensionDefinition
+	 * @return
+	 */
 	protected boolean stereotypeUsedElsewhere(ExtensionDefinition extensionDefinition) {
 		EList<ExtensionDefinition> allExtensionDefintion = extensionDefinition.getFacade().getExtensionDefinitions();
 
@@ -80,6 +120,12 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 		return false;
 	}
 
+	/**
+	 * Check if the stereotype involved in the extensionDefinition is also involved in another extensionDefinition
+	 * 
+	 * @param extensionDefinition
+	 * @return
+	 */
 	protected boolean hasOtherExtension(ExtensionDefinition extensionDefinition) {
 		EList<ExtensionDefinition> allExtensionDefintion = extensionDefinition.getFacade().getExtensionDefinitions();
 
@@ -94,10 +140,15 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 		return false;
 	}
 
+	/**
+	 * @see org.eclipse.jface.viewers.EditingSupport#setValue(java.lang.Object, java.lang.Object)
+	 * 
+	 * @param element
+	 * @param value
+	 */
 	@Override
 	protected void setValue(final Object element, final Object value) {
 		final ExtensionDefinitionKind newValue = ExtensionDefinitionKind.get((Integer)value);
-
 
 		if(element instanceof ExtensionDefinition) {
 
@@ -106,7 +157,7 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 				dialog.run(false, false, new IRunnableWithProgress() {
 
 					public void run(IProgressMonitor monitor) {
-						monitor.beginTask("Updating stereotypes definitions", IProgressMonitor.UNKNOWN);
+						monitor.beginTask(Messages.ExtensionKindColumnEditingSupport_0, IProgressMonitor.UNKNOWN);
 
 						Facade facade = ((ExtensionDefinition)element).getFacade();
 
@@ -127,18 +178,15 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 								}
 							}
 
-							// // Clear incompatibilities
-							// EditionUtils.clearStereotypeCombinations(facade, editingDomain);
-
 						} else if(newValue == ExtensionDefinitionKind.GENERALIZATION) {
 
 							if(((ExtensionDefinition)element).getExtension().getMetaclass().isAbstract()) {
 
-								MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Warning", "The extension extends an abstract class. The extension cannot be a generalization.");
+								MessageDialog.openInformation(Display.getCurrent().getActiveShell(), Messages.ExtensionKindColumnEditingSupport_1, Messages.ExtensionKindColumnEditingSupport_2);
 
 							} else {
 								if(((ExtensionDefinition)element).getExtension().isRequired()) {
-									MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Warning", "The extension is required. The extension cannot be a generalization.");
+									MessageDialog.openInformation(Display.getCurrent().getActiveShell(), Messages.ExtensionKindColumnEditingSupport_3, Messages.ExtensionKindColumnEditingSupport_4);
 								} else {
 
 									transformIntoGeneralization((ExtensionDefinition)element);
@@ -155,15 +203,10 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 								}
 							}
 
-
-
-							// // Init incompatibilities
-							// EditionUtils.initStereotypeCombinations(facade, editingDomain);
-
 						} else if(newValue == ExtensionDefinitionKind.MULTI_GENERALIZATION) {
 
 							if(hasOtherExtension((ExtensionDefinition)element) && stereotypeUsedElsewhere((ExtensionDefinition)element)) {
-								MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Warning", "Cannot change the extension kind to MultiGeneralization because stereotype is used to  type a property elsewhere. ");
+								MessageDialog.openInformation(Display.getCurrent().getActiveShell(), Messages.ExtensionKindColumnEditingSupport_5, Messages.ExtensionKindColumnEditingSupport_6);
 							} else {
 								transformIntoMultiGeneralization((ExtensionDefinition)element);
 								// All children and generals must be set to generalization as well
@@ -180,7 +223,7 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 
 						} else if(newValue == ExtensionDefinitionKind.FUSION) {
 							if(hasOtherExtension((ExtensionDefinition)element) && stereotypeUsedElsewhere((ExtensionDefinition)element)) {
-								MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Warning", "Cannot change the extension kind to Fusion because stereotype is used to  type a property elsewhere. ");
+								MessageDialog.openInformation(Display.getCurrent().getActiveShell(), Messages.ExtensionKindColumnEditingSupport_7, Messages.ExtensionKindColumnEditingSupport_8);
 							} else {
 								transformIntoFusion((ExtensionDefinition)element);
 
@@ -219,9 +262,15 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 		}
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#getValue(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	protected Object getValue(Object element) {
-		//		System.err.println("LA : " + element);
 		if(element instanceof ExtensionDefinition) {
 			int value = ((ExtensionDefinition)element).getKind().getValue();
 			return value;
@@ -230,18 +279,21 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#getCellEditor(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	protected CellEditor getCellEditor(Object element) {
 
 		if(element instanceof ExtensionDefinition) {
 
-
-			//			String[] itemsArray = { ExtensionDefinitionKind.ASSOCIATION.getName(), ExtensionDefinitionKind.GENERALIZATION.getName(), ExtensionDefinitionKind.MULTI_GENERALIZATION.getName(), ExtensionDefinitionKind.FUSION.getName() };
 			String[] itemsArray = { ExtensionDefinitionKind.ASSOCIATION.getName(), ExtensionDefinitionKind.GENERALIZATION.getName(), ExtensionDefinitionKind.MULTI_GENERALIZATION.getName() };
 
-
 			ComboBoxCellEditor combo = new ComboBoxCellEditor(parent, itemsArray, SWT.READ_ONLY);
-
 
 			return combo;
 		}
@@ -249,6 +301,13 @@ public class ExtensionKindColumnEditingSupport extends EditingSupport {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#canEdit(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	protected boolean canEdit(Object element) {
 		return true;

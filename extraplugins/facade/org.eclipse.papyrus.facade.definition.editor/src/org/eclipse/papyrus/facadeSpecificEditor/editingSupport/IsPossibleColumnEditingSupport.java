@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facadeSpecificEditor.editingSupport;
 
 import java.lang.reflect.InvocationTargetException;
@@ -17,6 +30,7 @@ import org.eclipse.papyrus.facade.Facade;
 import org.eclipse.papyrus.facade.extensiondefinition.BaseMetaclass;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinition;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensiondefinitionPackage;
+import org.eclipse.papyrus.facadeSpecificEditor.Messages;
 import org.eclipse.papyrus.facadeSpecificEditor.utils.ProfileUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -34,12 +48,22 @@ public class IsPossibleColumnEditingSupport extends EditingSupport {
 		this.parent = parent;
 	}
 
+	/**
+	 * Change IsPossible in the model to impossible
+	 * 
+	 * @param element
+	 */
 	protected void transformPossibleIntoImpossible(BaseMetaclass element) {
 		SetCommand command = new SetCommand(editingDomain, element, ExtensiondefinitionPackage.eINSTANCE.getBaseMetaclass_Possible(), false);
 		editingDomain.getCommandStack().execute(command);
 
 	}
 
+	/**
+	 * Change IsPossible in the model to possible
+	 * 
+	 * @param element
+	 */
 	protected void transformImpossibleIntoPossible(BaseMetaclass element) {
 
 		SetCommand command = new SetCommand(editingDomain, element, ExtensiondefinitionPackage.eINSTANCE.getBaseMetaclass_Possible(), true);
@@ -47,6 +71,11 @@ public class IsPossibleColumnEditingSupport extends EditingSupport {
 
 	}
 
+	/**
+	 * Change IsPossible in the model to impossible and propagate to children and generals
+	 * 
+	 * @param element
+	 */
 	protected void transformAllPossibleIntoImpossible(BaseMetaclass element) {
 		Facade facade = ((BaseMetaclass)element).getExtensionDefinition().getFacade();
 		transformPossibleIntoImpossible((BaseMetaclass)element);
@@ -64,25 +93,13 @@ public class IsPossibleColumnEditingSupport extends EditingSupport {
 				}
 			}
 		}
-
-		// Stereotype incompatibility of required extension must be updated too
-		// for (ExtensionDefinition extensionDefinition : facade.getExtensionDefinitions()) {
-		// if (extensionDefinition.getExtension().isRequired()) {
-		// for (BaseMetaclass baseMetaclass : extensionDefinition.getBaseMetaclasses()) {
-		// Combination fakeCombinaison = VirtualProfileFactory.eINSTANCE.createCombination();
-		// fakeCombinaison.getMetaClasses().add(element);
-		//
-		// Combination combination = EditionUtils.getCombinationThatMatch(baseMetaclass.getCompatibleStereotypes(), fakeCombinaison);
-		// if (combination != null) {
-		// StereotypeIncompatibilityColumnEditingSupport.makeItImcompatible(baseMetaclass, combination, false);
-		// }
-		// }
-		// }
-		// }
-
-		// EditionUtils.clearStereotypeCombinations(facade, editingDomain);
 	}
 
+	/**
+	 * Change IsPossible in the model to possible and propagate to children and generals
+	 * 
+	 * @param element
+	 */
 	protected void transformAllImpossibleIntoPossible(BaseMetaclass element) {
 		Facade facade = ((BaseMetaclass)element).getExtensionDefinition().getFacade();
 		transformImpossibleIntoPossible((BaseMetaclass)element);
@@ -100,31 +117,21 @@ public class IsPossibleColumnEditingSupport extends EditingSupport {
 				}
 			}
 		}
-
-		// Stereotype incompatibility of required extension must be updated too
-		// for (ExtensionDefinition extensionDefinition : facade.getExtensionDefinitions()) {
-		// if (extensionDefinition.getExtension().isRequired()) {
-		// for (BaseMetaclass baseMetaclass : extensionDefinition.getBaseMetaclasses()) {
-		// Combination fakeCombinaison = VirtualProfileFactory.eINSTANCE.createCombination();
-		// fakeCombinaison.getMetaClasses().add(element);
-		//
-		// Combination combination = EditionUtils.getCombinationThatMatch(baseMetaclass.getIncompatibleStereotypes(), fakeCombinaison);
-		// if (combination != null) {
-		// StereotypeIncompatibilityColumnEditingSupport.makeItCompatible(baseMetaclass, combination, false);
-		// }
-		// }
-		// }
-		// }
-
-		// EditionUtils.initStereotypeCombinations(facade, editingDomain);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#setValue(java.lang.Object, java.lang.Object)
+	 * 
+	 * @param element
+	 * @param value
+	 */
 	@Override
 	protected void setValue(final Object element, final Object value) {
 		if(element instanceof BaseMetaclass) {
 
 			if(EditionUtils.hasARequiredCombination((BaseMetaclass)element)) {
-				MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Cannot change possibility", "Cannot change because it contains a required metaclass in the combinations");
+				MessageDialog.openInformation(Display.getCurrent().getActiveShell(), Messages.IsPossibleColumnEditingSupport_0, Messages.IsPossibleColumnEditingSupport_1);
 
 			} else {
 
@@ -133,7 +140,7 @@ public class IsPossibleColumnEditingSupport extends EditingSupport {
 					dialog.run(false, false, new IRunnableWithProgress() {
 
 						public void run(IProgressMonitor monitor) {
-							monitor.beginTask("Updating stereotypes definitions", IProgressMonitor.UNKNOWN);
+							monitor.beginTask(Messages.IsPossibleColumnEditingSupport_2, IProgressMonitor.UNKNOWN);
 
 							if((Boolean)value == true) {
 								transformAllImpossibleIntoPossible((BaseMetaclass)element);
@@ -164,6 +171,13 @@ public class IsPossibleColumnEditingSupport extends EditingSupport {
 
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#getCellEditor(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	protected CellEditor getCellEditor(Object element) {
 		if(element instanceof BaseMetaclass) {
@@ -174,11 +188,25 @@ public class IsPossibleColumnEditingSupport extends EditingSupport {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#canEdit(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	protected boolean canEdit(Object element) {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.jface.viewers.EditingSupport#getValue(java.lang.Object)
+	 * 
+	 * @param element
+	 * @return
+	 */
 	@Override
 	protected Object getValue(Object element) {
 		if(element instanceof BaseMetaclass) {

@@ -23,53 +23,6 @@
    </extension>
 
    <extension point="org.eclipse.ui.editors">
-      <!-- @generated facade -->
-      <editor
-            id="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionEditorID"
-            name="%_UI_ExtensiondefinitionEditor_label"
-            icon="icons/full/obj16/ExtensiondefinitionModelFile.gif"
-            extensions="extensiondefinition"
-            class="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionEditor"
-            contributorClass="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionActionBarContributor">
-      </editor>
-   </extension>
-
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated facade -->
-      <editor
-            id="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelEditorID"
-            name="%_UI_VirtualmetamodelEditor_label"
-            icon="icons/full/obj16/VirtualmetamodelModelFile.gif"
-            extensions="virtualmetamodel"
-            class="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelEditor"
-            contributorClass="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelActionBarContributor">
-      </editor>
-   </extension>
-
-   <extension point="org.eclipse.ui.newWizards">
-      <!-- @generated facade -->
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionModelWizardID"
-            name="%_UI_ExtensiondefinitionModelWizard_label"
-            class="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/ExtensiondefinitionModelFile.gif">
-         <description>%_UI_ExtensiondefinitionModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
-
-null
-null
-null
-null
-null
-null
-null
-   <extension point="org.eclipse.ui.editors">
       <!-- @generated facademapping -->
       <editor
             id="org.eclipse.papyrus.facademapping.presentation.FacademappingEditorID"
@@ -110,10 +63,45 @@ null
    </extension>
 
 null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated facade -->
+      <editor
+            id="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelEditorID"
+            name="%_UI_VirtualmetamodelEditor_label"
+            icon="icons/full/obj16/VirtualmetamodelModelFile.gif"
+            extensions="virtualmetamodel"
+            class="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelEditor"
+            contributorClass="org.eclipse.papyrus.facade.virtualmetamodel.presentation.VirtualmetamodelActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated facade -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionModelWizardID"
+            name="%_UI_ExtensiondefinitionModelWizard_label"
+            class="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ExtensiondefinitionModelFile.gif">
+         <description>%_UI_ExtensiondefinitionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
 null
-null
-null
-null
-null
-null
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated facade -->
+      <editor
+            id="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionEditorID"
+            name="%_UI_ExtensiondefinitionEditor_label"
+            icon="icons/full/obj16/ExtensiondefinitionModelFile.gif"
+            extensions="extensiondefinition"
+            class="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionEditor"
+            contributorClass="org.eclipse.papyrus.facade.extensiondefinition.presentation.ExtensiondefinitionActionBarContributor">
+      </editor>
+   </extension>
+
 </plugin>

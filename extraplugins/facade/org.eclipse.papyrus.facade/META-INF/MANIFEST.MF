@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.facade;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.10.1.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
+Bundle-Vendor: %vendorName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.papyrus.facade,
@@ -24,5 +24,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.uml2;bundle-version="3.2.0",
  org.eclipse.uml2.uml;bundle-version="4.1.0",
- org.eclipse.uml2.types;visibility:=reexport
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.ui;bundle-version="3.105.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.onefile;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1"
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.papyrus.facade.FacadeActivator

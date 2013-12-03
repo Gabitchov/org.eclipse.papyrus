@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facadeSpecificEditor.editingSupport;
 
 import java.util.ArrayList;
@@ -14,9 +27,17 @@ import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinitionKind;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensiondefinitionPackage;
 import org.eclipse.papyrus.facadeSpecificEditor.utils.ProfileUtils;
 
-
 public class EditionUtils {
 
+	/**
+	 * Check is a combination of stereotypes appears in a list (independently from the order of the combination)
+	 * 
+	 * @param list
+	 *        the list to search in
+	 * @param combinaison
+	 *        the combination to find
+	 * @return
+	 */
 	public static boolean containsCombination(List<Combination> list, Combination combinaison) {
 		for(Combination item : list) {
 			if(item.getMembers().size() == combinaison.getMembers().size()) {
@@ -30,6 +51,15 @@ public class EditionUtils {
 
 	}
 
+	/**
+	 * Find a combination of stereotypes appears in a list of combination (independently from the order of the combination)
+	 * 
+	 * @param list
+	 *        the list to search in
+	 * @param combinaison
+	 *        the combination to find
+	 * @return
+	 */
 	public static Combination getCombinationThatMatch(List<Combination> list, Combination combinaison) {
 		for(Combination item : list) {
 			if(item.getMembers().size() == combinaison.getMembers().size()) {
@@ -43,6 +73,13 @@ public class EditionUtils {
 
 	}
 
+	/**
+	 * Generate the stereotype combinations for the facade
+	 * 
+	 * @param facade
+	 *        the facade to generate the combinations for
+	 * @param editingDomain
+	 */
 	public static void initAllStereotypeCombinations(Facade facade, AdapterFactoryEditingDomain editingDomain) {
 
 		for(ExtensionDefinition extensionDefinition : facade.getExtensionDefinitions()) {
@@ -62,59 +99,25 @@ public class EditionUtils {
 				}
 
 				for(Combination combination : toAdd) {
-					// if (baseMeta.getExtensionDefinition().getExtension().isRequired()) {
-					// if (combination.getMetaClasses().size() == 1) {
-					// if (combination.getMetaClasses().get(0).isPossible()) {
-					// AddCommand addIncompatibilitiesCommand = new AddCommand(editingDomain, baseMeta, FacadeMetamodelPackage.eINSTANCE.getBaseMetaclass_CompatibleStereotypes(), combination);
-					// editingDomain.getCommandStack().execute(addIncompatibilitiesCommand);
-					// } else {
-					// AddCommand addIncompatibilitiesCommand = new AddCommand(editingDomain, baseMeta, FacadeMetamodelPackage.eINSTANCE.getBaseMetaclass_IncompatibleStereotypes(), combination);
-					// editingDomain.getCommandStack().execute(addIncompatibilitiesCommand);
-					// }
-					// } else {
-					// AddCommand addIncompatibilitiesCommand = new AddCommand(editingDomain, baseMeta, FacadeMetamodelPackage.eINSTANCE.getBaseMetaclass_IncompatibleStereotypes(), combination);
-					// editingDomain.getCommandStack().execute(addIncompatibilitiesCommand);
-					// }
-					// } else {
-					// if (containsOnlyRequired(combination)) {
-					// AddCommand addIncompatibilitiesCommand = new AddCommand(editingDomain, baseMeta, FacadeMetamodelPackage.eINSTANCE.getBaseMetaclass_CompatibleStereotypes(), combination);
-					// editingDomain.getCommandStack().execute(addIncompatibilitiesCommand);
-					// } else {
+
 					AddCommand addIncompatibilitiesCommand = new AddCommand(editingDomain, baseMeta, ExtensiondefinitionPackage.eINSTANCE.getBaseMetaclass_IncompatibleStereotypes(), combination);
 					editingDomain.getCommandStack().execute(addIncompatibilitiesCommand);
-					// }
-					// }
 				}
-
-				// if (baseMeta.isPossible()) {
-				// // if (baseMeta.getExtensionDefinition().getExtension().isRequired()) {
-				// AddCommand addIncompatibilitiesCommand = new AddCommand(editingDomain, baseMeta, FacadeMetamodelPackage.eINSTANCE.getBaseMetaclass_CompatibleStereotypes(), toAdd);
-				// editingDomain.getCommandStack().execute(addIncompatibilitiesCommand);
-				// // }
-				// } else {
-				// AddCommand addIncompatibilitiesCommand = new AddCommand(editingDomain, baseMeta, FacadeMetamodelPackage.eINSTANCE.getBaseMetaclass_IncompatibleStereotypes(), toAdd);
-				// editingDomain.getCommandStack().execute(addIncompatibilitiesCommand);
-				// }
-
 			}
 		}
 	}
 
+	/**
+	 * Remove the stereotype combinations from the facade
+	 * 
+	 * @param facade
+	 * @param editingDomain
+	 */
 	public static void clearAllStereotypeCombinations(Facade facade, AdapterFactoryEditingDomain editingDomain) {
 		for(ExtensionDefinition extensionDefinition : facade.getExtensionDefinitions()) {
 			for(BaseMetaclass baseMeta : extensionDefinition.getBaseMetaclasses()) {
 
 				List<Combination> possibleCombinations = ProfileUtils.getPossibleCombinations(baseMeta);
-
-				// System.err.println("For : " + baseMeta.getExtensionDefinition().getStereotype().getName());
-				// for (Combination combination : possibleCombinations) {
-				// System.err.print("\t");
-				// for (BaseMetaclass metaclass : combination.getMetaClasses()) {
-				// System.err.print(metaclass.getExtensionDefinition().getStereotype().getName() + ", ");
-				// }
-				// System.err.println();
-				//
-				// }
 
 				List<Combination> incompatibilitiesToRemove = new ArrayList<Combination>();
 
@@ -141,6 +144,12 @@ public class EditionUtils {
 		}
 	}
 
+	/**
+	 * Check whether the baseMetaclass has a combination that is required
+	 * 
+	 * @param baseMeta
+	 * @return
+	 */
 	public static boolean hasARequiredCombination(BaseMetaclass baseMeta) {
 
 		List<Combination> combinaisonsToCheck = new ArrayList<Combination>();
@@ -161,6 +170,12 @@ public class EditionUtils {
 
 	}
 
+	/**
+	 * Initialize the isPossible of all the extension definitions of a Facade
+	 * 
+	 * @param facade
+	 * @param editingDomain
+	 */
 	public static void initIsPossible(Facade facade, AdapterFactoryEditingDomain editingDomain) {
 		for(ExtensionDefinition extensionDefinition : facade.getExtensionDefinitions()) {
 			for(BaseMetaclass baseMeta : extensionDefinition.getBaseMetaclasses()) {

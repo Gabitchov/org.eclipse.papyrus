@@ -1,5 +1,16 @@
-/**
- */
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facade.virtualmetamodel.util;
 
 import org.eclipse.emf.ecore.EObject;
@@ -96,6 +107,7 @@ public class VirtualmetamodelSwitch<T> extends Switch<T> {
 			case VirtualmetamodelPackage.VIRTUAL_PROPERTY: {
 				VirtualProperty virtualProperty = (VirtualProperty)theEObject;
 				T result = caseVirtualProperty(virtualProperty);
+				if (result == null) result = caseVirtualTypedElement(virtualProperty);
 				if (result == null) result = caseVirtualElement(virtualProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -103,6 +115,7 @@ public class VirtualmetamodelSwitch<T> extends Switch<T> {
 			case VirtualmetamodelPackage.VIRTUAL_OPERATION: {
 				VirtualOperation virtualOperation = (VirtualOperation)theEObject;
 				T result = caseVirtualOperation(virtualOperation);
+				if (result == null) result = caseVirtualTypedElement(virtualOperation);
 				if (result == null) result = caseVirtualElement(virtualOperation);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -110,6 +123,7 @@ public class VirtualmetamodelSwitch<T> extends Switch<T> {
 			case VirtualmetamodelPackage.VIRTUAL_PARAMETER: {
 				VirtualParameter virtualParameter = (VirtualParameter)theEObject;
 				T result = caseVirtualParameter(virtualParameter);
+				if (result == null) result = caseVirtualTypedElement(virtualParameter);
 				if (result == null) result = caseVirtualElement(virtualParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -134,6 +148,13 @@ public class VirtualmetamodelSwitch<T> extends Switch<T> {
 				VirtualLiteral virtualLiteral = (VirtualLiteral)theEObject;
 				T result = caseVirtualLiteral(virtualLiteral);
 				if (result == null) result = caseVirtualElement(virtualLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VirtualmetamodelPackage.VIRTUAL_TYPED_ELEMENT: {
+				VirtualTypedElement virtualTypedElement = (VirtualTypedElement)theEObject;
+				T result = caseVirtualTypedElement(virtualTypedElement);
+				if (result == null) result = caseVirtualElement(virtualTypedElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -288,6 +309,21 @@ public class VirtualmetamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVirtualLiteral(VirtualLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Virtual Typed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Virtual Typed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVirtualTypedElement(VirtualTypedElement object) {
 		return null;
 	}
 

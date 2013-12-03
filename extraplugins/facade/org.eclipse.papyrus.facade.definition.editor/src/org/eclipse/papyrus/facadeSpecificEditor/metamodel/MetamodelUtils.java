@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facadeSpecificEditor.metamodel;
 
 import java.util.ArrayList;
@@ -5,6 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -14,6 +28,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.papyrus.facade.Facade;
@@ -22,32 +38,43 @@ import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinition;
 import org.eclipse.papyrus.facade.extensiondefinition.ExtensionDefinitionKind;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualClassifier;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualDatatype;
+import org.eclipse.papyrus.facade.virtualmetamodel.VirtualElement;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualEnum;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualLiteral;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualMetaclass;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualOperation;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualParameter;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualProperty;
+import org.eclipse.papyrus.facade.virtualmetamodel.VirtualTypedElement;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualmetamodelFactory;
 import org.eclipse.papyrus.facade.virtualmetamodel.VirtualmetamodelPackage;
+import org.eclipse.papyrus.facadeSpecificEditor.Messages;
 import org.eclipse.papyrus.facadeSpecificEditor.utils.StereotypeUtils;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.Extension;
+import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.TypedElement;
 
 public class MetamodelUtils {
 
+	/**
+	 * Check whether the list contains only {@link BaseMetaclass} that represent required extensions
+	 * 
+	 * @param list
+	 * @return true if the list contains only required extensions
+	 */
 	public static boolean containsOnlyRequiredBaseMetaclass(List<BaseMetaclass> list) {
 		if(!list.isEmpty()) {
 			for(BaseMetaclass baseMetaclass : list) {
-				if(baseMetaclass.getExtensionDefinition().getKind() == ExtensionDefinitionKind.MULTI_GENERALIZATION) {
+				if(baseMetaclass.getExtensionDefinition().getKind() == ExtensionDefinitionKind.MULTI_GENERALIZATION || baseMetaclass.getExtensionDefinition().getKind() == ExtensionDefinitionKind.GENERALIZATION) {
 					if(!baseMetaclass.getExtensionDefinition().getExtension().isRequired()) {
 						return false;
 					}
@@ -59,6 +86,12 @@ public class MetamodelUtils {
 		}
 	}
 
+	/**
+	 * Check whether the list contains a {@link BaseMetaclass} that represent an abstract stereotype
+	 * 
+	 * @param list
+	 * @return true if the list contains a {@link BaseMetaclass} that represent an abstract stereotype
+	 */
 	public static boolean containsAbstractStereotype(EList<BaseMetaclass> list) {
 		for(BaseMetaclass baseMetaclass : list) {
 			if(baseMetaclass.getExtensionDefinition().getStereotype().isAbstract()) {
@@ -68,6 +101,14 @@ public class MetamodelUtils {
 		return false;
 	}
 
+	/**
+	 * Extract only {@link VirtualMetaclass} from a list of {@link VirtualClassifier}
+	 * 
+	 * @param list
+	 *        a list containing {@link VirtualClassifier}
+	 * @return
+	 *         a list containing only {@link VirtualMetaclass}
+	 */
 	public static List<VirtualMetaclass> getOnlyVirtualMetaclasses(Collection<VirtualClassifier> list) {
 		List<VirtualMetaclass> result = new ArrayList<VirtualMetaclass>();
 		for(VirtualClassifier classifier : list) {
@@ -78,6 +119,14 @@ public class MetamodelUtils {
 		return result;
 	}
 
+
+	/**
+	 * Check whether the list contains only {@link BaseMetaclass} that represent abstract stereotype
+	 * 
+	 * @param list
+	 * @return
+	 *         true if the list contains only {@link BaseMetaclass} that represent abstract stereotype
+	 */
 	public static boolean containsOnlyAbstractStereotype(EList<BaseMetaclass> list) {
 		if(!list.isEmpty()) {
 			for(BaseMetaclass baseMetaclass : list) {
@@ -91,6 +140,14 @@ public class MetamodelUtils {
 		}
 	}
 
+	/**
+	 * Find a {@link VirtualClassifier} that represents the element in the facade
+	 * 
+	 * @param element
+	 *        the element that must be represented by the {@link VirtualClassifier}
+	 * @param facade
+	 * @return a {@link VirtualClassifier} that represents the element or null
+	 */
 	public static VirtualClassifier findClassifierThatMatch(EObject element, Facade facade) {
 
 		for(VirtualClassifier classifier : facade.getVirtualmetamodel().getVirtualClassifiers()) {
@@ -123,15 +180,28 @@ public class MetamodelUtils {
 			}
 		}
 
+		if(element instanceof Classifier) {
+			EClassifier foundEClass = StereotypeUtils.findEClass((Classifier)element);
+			if(foundEClass != null) {
+				return findClassifierThatMatch(foundEClass, facade);
+			}
+		}
 
 		return null;
 	}
 
-	public static VirtualMetaclass findMetaclassWithNoRealStereoThatMatch(EObject eClassifier, Facade facade) {
+	/**
+	 * Find a {@link VirtualClassifier} that represents the element in the facade but that doesn't have a stereotype applied
+	 * 
+	 * @param element
+	 * @param facade
+	 * @return
+	 */
+	public static VirtualMetaclass findMetaclassWithNoRealStereoThatMatch(EObject element, Facade facade) {
 		for(VirtualClassifier classifier : facade.getVirtualmetamodel().getVirtualClassifiers()) {
 
 			if(classifier instanceof VirtualMetaclass) {
-				if(((VirtualMetaclass)classifier).getRepresentedElement() == eClassifier) {
+				if(((VirtualMetaclass)classifier).getRepresentedElement() == element) {
 					if(((VirtualMetaclass)classifier).getAppliedStereotypes().isEmpty() || onlyOneKind(((VirtualMetaclass)classifier).getAppliedStereotypes(), ExtensionDefinitionKind.FUSION)) {
 
 						return ((VirtualMetaclass)classifier);
@@ -142,6 +212,13 @@ public class MetamodelUtils {
 		return null;
 	}
 
+	/**
+	 * Find a {@link VirtualProperty} that represents the feature in the facade
+	 * 
+	 * @param feature
+	 * @param facade
+	 * @return
+	 */
 	public static VirtualProperty findProperty(EObject feature, Facade facade) {
 		for(VirtualClassifier classifier : facade.getVirtualmetamodel().getVirtualClassifiers()) {
 			if(classifier instanceof VirtualMetaclass)
@@ -154,6 +231,12 @@ public class MetamodelUtils {
 		return null;
 	}
 
+	/**
+	 * Find the BaseMetaclass that represents the actual base metaclass among the BaseMetaclasses of an ExtensionDefinition
+	 * 
+	 * @param extensionDefinition
+	 * @return
+	 */
 	public static BaseMetaclass findActualBaseMetaclass(ExtensionDefinition extensionDefinition) {
 		for(BaseMetaclass baseMetaclass : extensionDefinition.getBaseMetaclasses()) {
 			if(baseMetaclass.getBase() == StereotypeUtils.findBase(extensionDefinition)) {
@@ -165,9 +248,17 @@ public class MetamodelUtils {
 
 	}
 
-	public static VirtualMetaclass findMetaclassThatMatch(EObject eClass, Stereotype stereo, Facade facade) {
+	/**
+	 * Find a {@link VirtualMetaclass} that represents the element in the facade
+	 * 
+	 * @param element
+	 * @param stereo
+	 * @param facade
+	 * @return
+	 */
+	public static VirtualMetaclass findMetaclassThatMatch(EObject element, Stereotype stereo, Facade facade) {
 		for(VirtualClassifier classifier : facade.getVirtualmetamodel().getVirtualClassifiers()) {
-			if(classifier.getRepresentedElement() == eClass) {
+			if(classifier.getRepresentedElement() == element) {
 
 				if(classifier instanceof VirtualMetaclass) {
 					if(((VirtualMetaclass)classifier).getAppliedStereotypes().size() == 1) {
@@ -184,6 +275,13 @@ public class MetamodelUtils {
 		return null;
 	}
 
+	/**
+	 * Check whether the stereotype represented by the {@link ExtensionDefinition} is a the same as the stereotype related to the extension
+	 * represented by this {@link ExtensionDefinition}
+	 * 
+	 * @param extensionDefinition
+	 * @return
+	 */
 	public static boolean isActualExtensionDefinition(ExtensionDefinition extensionDefinition) {
 
 		if(extensionDefinition.getExtension().getStereotype() == extensionDefinition.getStereotype()) {
@@ -194,6 +292,13 @@ public class MetamodelUtils {
 
 	}
 
+	/**
+	 * Check whether the list of {@link BaseMetaclass} contains only {@link BaseMetaclass} that are of the same {@link ExtensionDefinitionKind}
+	 * 
+	 * @param list
+	 * @param kind
+	 * @return
+	 */
 	public static boolean onlyOneKind(List<BaseMetaclass> list, ExtensionDefinitionKind kind) {
 		for(BaseMetaclass baseMetaclass : list) {
 			if(baseMetaclass.getExtensionDefinition().getKind() != kind) {
@@ -203,6 +308,12 @@ public class MetamodelUtils {
 		return true;
 	}
 
+	/**
+	 * Check whether the stereotype represented by an {@link ExtensionDefinition} is also represented by another {@link ExtensionDefinition}
+	 * 
+	 * @param extensionDefinition
+	 * @return
+	 */
 	public static boolean hasSiblings(ExtensionDefinition extensionDefinition) {
 		Facade facade = extensionDefinition.getFacade();
 
@@ -230,18 +341,7 @@ public class MetamodelUtils {
 		}
 
 		if(requiredBaseMetaclass != null) {
-
-			// System.err.println("For \"" + metaclassInput.getAliasName() + "\"The required : " + requiredBaseMetaclass.getExtensionDefinition().getStereotype().getName());
-
 			output.add(findMetaclassThatMatch((EClass)requiredBaseMetaclass.getBase(), requiredBaseMetaclass.getExtensionDefinition().getStereotype(), facade));
-			// HashSet<Stereotype> siblings = ProfileUtils.getSiblings(requiredBaseMetaclass.getExtensionDefinition().getStereotype());
-			// for (Stereotype stereotype : siblings) {
-			// if (!stereotype.isAbstract()) {
-			// // Find metaclass corresponding
-			// output.add(findMetaclassThatMatch((EClass) requiredBaseMetaclass.getBase(), stereotype, facade));
-			// }
-			// }
-
 		} else {
 			output.add(findMetaclassWithNoRealStereoThatMatch((EClass)metaclassInput.getRepresentedElement(), facade));
 		}
@@ -250,6 +350,12 @@ public class MetamodelUtils {
 
 	}
 
+	/**
+	 * Get all {@link VirtualMetaclass} (i.e. recursively) that are generals of a {@link VirtualMetaclass}
+	 * 
+	 * @param metaclass
+	 * @return
+	 */
 	public static List<VirtualMetaclass> getAllFathers(VirtualMetaclass metaclass) {
 
 		List<VirtualMetaclass> toProcess = new ArrayList<VirtualMetaclass>();
@@ -266,12 +372,15 @@ public class MetamodelUtils {
 
 	}
 
+	/**
+	 * Get {@link VirtualMetaclass} that are generals of a {@link VirtualMetaclass}
+	 * 
+	 * @param metaclass
+	 * @return
+	 */
 	public static List<VirtualMetaclass> getFathers(VirtualMetaclass metaclass) {
 		List<VirtualMetaclass> output = new ArrayList<VirtualMetaclass>();
 
-		//		System.err.println("\t+" + metaclass);
-		//		System.err.println("\t++" + metaclass.getMetamodel());
-		//		System.err.println("\t+++" + metaclass.getMetamodel().getFacade());
 		Facade facade = ((VirtualMetaclass)metaclass).getMetamodel().getFacade();
 
 		if(metaclass.getAppliedStereotypes().isEmpty() || onlyOneKind(metaclass.getAppliedStereotypes(), ExtensionDefinitionKind.FUSION)) {
@@ -304,33 +413,7 @@ public class MetamodelUtils {
 				output.add(findStereotypeInterface(stereotype));
 			}
 
-		}
-		//		else {
-		//			for(BaseMetaclass baseMetaclass : metaclass.getAppliedStereotypes()) {
-		//				if(baseMetaclass.getExtensionDefinition().getKind() == ExtensionDefinitionKind.ASSOCIATION) {
-		//					EList<Classifier> supersStereo = baseMetaclass.getExtensionDefinition().getStereotype().getGenerals();
-		//					for(Classifier superStereo : supersStereo) {
-		//						output.add(findMetaclassThatMatch((Stereotype)superStereo, (Stereotype)superStereo, facade));
-		//					}
-		//
-		//				} else if(baseMetaclass.getExtensionDefinition().getKind() == ExtensionDefinitionKind.GENERALIZATION) {
-		//					EList<Classifier> supersStereo = baseMetaclass.getExtensionDefinition().getStereotype().getGenerals();
-		//					if(!supersStereo.isEmpty()) {
-		//						for(Classifier superStereo : supersStereo) {
-		//							output.add(findMetaclassThatMatch(metaclass.getRepresentedElement(), (Stereotype)superStereo, facade));
-		//							//							output.add(findMetaclassThatMatch((Stereotype)superStereo, (Stereotype)superStereo, facade));
-		//						}
-		//					} else {
-		//						output.add(findMetaclassWithNoRealStereoThatMatch(metaclass.getRepresentedElement(), facade));
-		//						//						output.add(findMetaclassWithNoRealStereoThatMatch(StereotypeUtils.findBase(metaclass.getAppliedStereotypes().get(0).getExtensionDefinition()), facade));
-		//					}
-		//				} else {
-		//					System.err.println("Don't know how to represent : " + metaclass.getAliasName());
-		//				}
-		//			}
-		//		}
-		else if(onlyOneKind(metaclass.getAppliedStereotypes(), ExtensionDefinitionKind.ASSOCIATION)) {
-			//			EList<Classifier> supersStereo = metaclass.getAppliedStereotypes().get(0).getExtensionDefinition().getStereotype().getGenerals();
+		} else if(onlyOneKind(metaclass.getAppliedStereotypes(), ExtensionDefinitionKind.ASSOCIATION)) {
 			for(BaseMetaclass baseMetaclass : metaclass.getAppliedStereotypes()) {
 				EList<Classifier> supersStereo = baseMetaclass.getExtensionDefinition().getStereotype().getGenerals();
 				for(Classifier superStereo : supersStereo) {
@@ -346,15 +429,12 @@ public class MetamodelUtils {
 			}
 		} else if(onlyOneKind(metaclass.getAppliedStereotypes(), ExtensionDefinitionKind.GENERALIZATION)) {
 			for(BaseMetaclass baseMetaclass : metaclass.getAppliedStereotypes()) {
-				//			EList<Classifier> supersStereo = metaclass.getAppliedStereotypes().get(0).getExtensionDefinition().getStereotype().getGenerals();
 				EList<Classifier> supersStereo = baseMetaclass.getExtensionDefinition().getStereotype().getGenerals();
 				if(!supersStereo.isEmpty()) {
 					for(Classifier superStereo : supersStereo) {
 						output.add(findMetaclassThatMatch(metaclass.getRepresentedElement(), (Stereotype)superStereo, facade));
-						//						output.add(findMetaclassThatMatch((Stereotype)superStereo, (Stereotype)superStereo, facade));
 					}
 				} else {
-					//										output.add(findMetaclassWithNoRealStereoThatMatch(metaclass.getRepresentedElement(), facade));
 					output.add(findMetaclassWithNoRealStereoThatMatch(StereotypeUtils.findBase(metaclass.getAppliedStereotypes().get(0).getExtensionDefinition()), facade));
 				}
 			}
@@ -366,9 +446,8 @@ public class MetamodelUtils {
 				}
 			}
 		} else {
-			System.err.println("Don't know how to get fathers : " + metaclass.getAliasName());
+			org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_0 + metaclass.getAliasName());
 		}
-
 
 		return output;
 	}
@@ -386,6 +465,12 @@ public class MetamodelUtils {
 		return null;
 	}
 
+	/**
+	 * Get {@link VirtualMetaclass} that are children (through generalization relationship) of a {@link VirtualMetaclass}
+	 * 
+	 * @param parent
+	 * @return
+	 */
 	public static List<VirtualMetaclass> getChildren(VirtualMetaclass parent) {
 		List<VirtualMetaclass> children = new ArrayList<VirtualMetaclass>();
 
@@ -400,6 +485,12 @@ public class MetamodelUtils {
 		return children;
 	}
 
+	/**
+	 * Get all {@link VirtualMetaclass} (i.e. recursively) that are children (through generalization relationship) of a {@link VirtualMetaclass}
+	 * 
+	 * @param parent
+	 * @return
+	 */
 	public static List<VirtualMetaclass> getAllChildren(VirtualMetaclass parent) {
 		List<VirtualMetaclass> toProcess = new ArrayList<VirtualMetaclass>();
 		List<VirtualMetaclass> output = new ArrayList<VirtualMetaclass>();
@@ -424,7 +515,9 @@ public class MetamodelUtils {
 					return true;
 				} else {
 
-					if(containsOnlyRequired(getChildren(metaclass))) {
+					List<VirtualMetaclass> children = getChildren(metaclass);
+
+					if(containsOnlyRequired(children)) {
 						return true;
 					}
 				}
@@ -454,7 +547,6 @@ public class MetamodelUtils {
 
 	public static boolean canBeAbstract(VirtualMetaclass metaclass) {
 
-		Facade facade = metaclass.getMetamodel().getFacade();
 		if(!mustBeAbstract(metaclass)) {
 			for(VirtualMetaclass child : getAllChildren(metaclass)) {
 				if(child.isKept()) {
@@ -548,14 +640,7 @@ public class MetamodelUtils {
 				output = metaclass;
 			}
 		} else {
-			//			if(stereotypes != null) {
-			//				for(BaseMetaclass stereo : stereotypes) {
-			//					if(!output.getAppliedStereotypes().contains(stereo)) {
-			//						output.getAppliedStereotypes().add(stereo);
-			//					}
-			//				}
-			//			}
-			System.err.println("addMetaclass: I didn't add because already represented : " + representedElement);
+			org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_1 + representedElement);
 		}
 
 		return output;
@@ -563,8 +648,6 @@ public class MetamodelUtils {
 
 	public static VirtualEnum addEnum(EObject representedElement, String alias, Facade facade, AdapterFactoryEditingDomain editingDomain) {
 		VirtualEnum output = null;
-		// System.err.println("checkIfExists : " + checkIfExists);
-
 
 		boolean found = false;
 		for(VirtualClassifier classifier : facade.getVirtualmetamodel().getVirtualClassifiers()) {
@@ -596,11 +679,10 @@ public class MetamodelUtils {
 					MetamodelUtils.addLiteral(enumeration, literal, literal.getName(), facade, editingDomain);
 				}
 			} else {
-				System.err.println("I don't know how to create literal for the type : " + enumeration.getRepresentedElement());
+				org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_2 + enumeration.getRepresentedElement());
 			}
 
 			output = enumeration;
-
 		}
 
 		return output;
@@ -608,8 +690,6 @@ public class MetamodelUtils {
 
 	public static VirtualOperation addOperation(VirtualMetaclass metaclass, EObject operationElement, String alias, Facade facade, AdapterFactoryEditingDomain editingDomain) {
 		VirtualOperation output = null;
-		// System.err.println("checkIfExists : " + checkIfExists);
-
 
 		boolean found = false;
 		for(VirtualOperation operation : metaclass.getOperations()) {
@@ -621,11 +701,14 @@ public class MetamodelUtils {
 		}
 
 		if(!found) {
-
 			VirtualOperation operation = VirtualmetamodelFactory.eINSTANCE.createVirtualOperation();
 			operation.setKept(true);
 			operation.setRepresentedElement(operationElement);
 			operation.setAliasName(alias);
+			processMultiplicities(operationElement, operation);
+
+			processTypedElement(operationElement, facade, editingDomain);
+
 			AddCommand command = new AddCommand(editingDomain, metaclass, VirtualmetamodelPackage.eINSTANCE.getVirtualMetaclass_Operations(), operation);
 			editingDomain.getCommandStack().execute(command);
 
@@ -640,7 +723,7 @@ public class MetamodelUtils {
 					MetamodelUtils.addParameter(operation, param, param.getName(), facade, editingDomain);
 				}
 			} else {
-				System.err.println("I don't know how to create parameters for the operation : " + operation.getRepresentedElement());
+				org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_3 + operation.getRepresentedElement());
 			}
 
 			output = operation;
@@ -652,8 +735,6 @@ public class MetamodelUtils {
 	public static VirtualDatatype addDatatype(EObject representedElement, String alias, Facade facade, AdapterFactoryEditingDomain editingDomain) {
 
 		VirtualDatatype output = null;
-		// System.err.println("checkIfExists : " + checkIfExists);
-
 
 		boolean found = false;
 		for(VirtualClassifier classifier : facade.getVirtualmetamodel().getVirtualClassifiers()) {
@@ -664,8 +745,6 @@ public class MetamodelUtils {
 					break;
 				}
 		}
-
-
 
 		if(!found) {
 
@@ -699,8 +778,6 @@ public class MetamodelUtils {
 				}
 		}
 
-
-
 		if(!found) {
 			VirtualMetaclass metaclass = VirtualmetamodelFactory.eINSTANCE.createVirtualMetaclass();
 			metaclass.setKept(true);
@@ -711,16 +788,10 @@ public class MetamodelUtils {
 			AddCommand command = new AddCommand(editingDomain, facade.getVirtualmetamodel(), VirtualmetamodelPackage.eINSTANCE.getVirtualMetamodel_VirtualClassifiers(), metaclass);
 			editingDomain.getCommandStack().execute(command);
 
-
-
-
-
 			output = metaclass;
 		} else {
-			System.err.println("addStereotypeInterface: I didn't add because already represented : " + representedElement);
+			org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_4 + representedElement);
 		}
-
-
 
 		return output;
 	}
@@ -747,8 +818,81 @@ public class MetamodelUtils {
 		return null;
 	}
 
-	public static void addProperty(VirtualMetaclass metaclass, EObject propertyElement, String alias, Facade facade, AdapterFactoryEditingDomain editingDomain) {
+	public static void processMultiplicities(EObject element, VirtualTypedElement virtualElement) {
+		int lower = 0;
+		int upper = 0;
 
+		if(element instanceof ETypedElement) {
+			lower = ((ETypedElement)element).getLowerBound();
+			upper = ((ETypedElement)element).getUpperBound();
+		} else if(element instanceof MultiplicityElement) {
+
+			lower = ((MultiplicityElement)element).getLower();
+			upper = ((MultiplicityElement)element).getUpper();
+		}
+
+		virtualElement.setLower(lower);
+		virtualElement.setUpper(upper);
+	}
+
+	public static void processTypedElement(EObject typedElement, Facade facade, AdapterFactoryEditingDomain editingDomain) {
+		if(typedElement instanceof ETypedElement) {
+
+			EClassifier eType = ((ETypedElement)typedElement).getEType();
+
+			if(!containtsType(eType, facade)) {
+				VirtualClassifier newType = createForType(eType, facade, editingDomain);
+				if(newType instanceof VirtualMetaclass) {
+					createProperties((VirtualMetaclass)newType, facade, editingDomain);
+				}
+			}
+		} else if(typedElement instanceof TypedElement) {
+
+			if(!(((TypedElement)typedElement).getType() instanceof Stereotype)) {
+				if(((TypedElement)typedElement).getType() instanceof Enumeration) {
+					EObject eType = ((TypedElement)typedElement).getType();
+					String name = ((TypedElement)typedElement).getType().getName();
+					if(!containtsType(eType, facade)) {
+						MetamodelUtils.addEnum(eType, name, facade, editingDomain);
+					}
+				} else if(((TypedElement)typedElement).getType() instanceof DataType) {
+					if(((TypedElement)typedElement).getType() instanceof PrimitiveType) {
+						//Check if it is a UML primitivetype
+						EObject eType = StereotypeUtils.findEClass((Classifier)((TypedElement)typedElement).getType());
+						if(eType != null) {
+							if(!containtsType(eType, facade)) {
+								VirtualClassifier virtualClassifier = createForType((EClassifier)eType, facade, editingDomain);
+								if(virtualClassifier instanceof VirtualMetaclass) {
+									createProperties((VirtualMetaclass)virtualClassifier, facade, editingDomain);
+								}
+							}
+						} else {
+							createForType(((TypedElement)typedElement).getType(), facade, editingDomain);
+						}
+					} else {
+
+						VirtualClassifier virtualClassifier = createForType(((TypedElement)typedElement).getType(), facade, editingDomain);
+						if(virtualClassifier instanceof VirtualMetaclass) {
+							createProperties((VirtualMetaclass)virtualClassifier, facade, editingDomain);
+						}
+
+					}
+				} else if(((TypedElement)typedElement).getType() instanceof org.eclipse.uml2.uml.Class) {
+					EClassifier eClass = StereotypeUtils.findEClass((Classifier)((TypedElement)typedElement).getType());
+					if(eClass == null) {
+						org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_5);
+					}
+				} else {
+					org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_6 + ((TypedElement)typedElement).getType());
+				}
+			}
+
+		} else {
+			org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_7 + typedElement);
+		}
+	}
+
+	public static void addProperty(VirtualMetaclass metaclass, EObject propertyElement, EObject type, String alias, Facade facade, AdapterFactoryEditingDomain editingDomain) {
 
 		boolean found = false;
 		for(VirtualProperty property : metaclass.getProperties()) {
@@ -757,89 +901,20 @@ public class MetamodelUtils {
 			}
 		}
 
-
 		if(!found) {
-			int lower = 0;
-			int upper = 0;
 
-
-
-			// Check if the type of this property exists and if not create the appropriate metaclass and properties
-			if(propertyElement instanceof EStructuralFeature) {
-				lower = ((EStructuralFeature)propertyElement).getLowerBound();
-				upper = ((EStructuralFeature)propertyElement).getUpperBound();
-
-				EClassifier eType = ((EStructuralFeature)propertyElement).getEType();
-
-				if(!containtsType(eType, facade)) {
-					VirtualClassifier newType = createForType(eType, facade, editingDomain);
-					if(newType instanceof VirtualMetaclass) {
-						createProperties((VirtualMetaclass)newType, facade, editingDomain);
-					}
-				}
-			} else if(propertyElement instanceof Property) {
-
-				lower = ((Property)propertyElement).getLower();
-				upper = ((Property)propertyElement).getUpper();
-
-				if(((Property)propertyElement).getType() instanceof Stereotype) {
-					//System.err.println("Applied stereotype will be generated to type : " + element);
-				} else {
-
-					if(((Property)propertyElement).getType() instanceof Enumeration) {
-						EObject eType = ((Property)propertyElement).getType();
-						String name = ((Property)propertyElement).getType().getName();
-						if(!containtsType(eType, facade)) {
-							VirtualEnum virtualEnum = MetamodelUtils.addEnum(eType, name, facade, editingDomain);
-						}
-					} else if(((Property)propertyElement).getType() instanceof DataType) {
-						if(((Property)propertyElement).getType() instanceof PrimitiveType) {
-							//Check if it is a UML primitivetype
-							EObject eType = StereotypeUtils.findEClass((Classifier)((Property)propertyElement).getType());
-							if(eType != null) {
-								if(!containtsType(eType, facade)) {
-									VirtualClassifier virtualClassifier = createForType((EClassifier)eType, facade, editingDomain);
-									if(virtualClassifier instanceof VirtualMetaclass) {
-										createProperties((VirtualMetaclass)virtualClassifier, facade, editingDomain);
-									}
-								}
-							} else {
-								VirtualClassifier virtualClassifier = createForType(((Property)propertyElement).getType(), facade, editingDomain);
-							}
-						} else {
-
-							VirtualClassifier virtualClassifier = createForType(((Property)propertyElement).getType(), facade, editingDomain);
-							if(virtualClassifier instanceof VirtualMetaclass) {
-								createProperties((VirtualMetaclass)virtualClassifier, facade, editingDomain);
-							}
-
-
-						}
-					} else if(((Property)propertyElement).getType() instanceof Class) {
-						EClassifier eClass = StereotypeUtils.findEClass((Classifier)((Property)propertyElement).getType());
-						if(eClass == null) {
-							System.err.println("Stereotype properties typed by a Class (that are not part of UML metamodel) are not supported yet");
-						}
-					} else {
-						System.err.println("I don't know how to process the type : " + ((Property)propertyElement).getType());
-					}
-				}
-
-			} else {
-				System.err.println("I don't know how to process the element for property : " + propertyElement);
-			}
+			processTypedElement(propertyElement, facade, editingDomain);
 
 			VirtualProperty property = VirtualmetamodelFactory.eINSTANCE.createVirtualProperty();
 			property.setKept(true);
 			property.setAliasName(alias);
 			property.setRepresentedElement(propertyElement);
-			property.setLower(lower);
-			property.setUpper(upper);
+			processMultiplicities(propertyElement, property);
 
 			AddCommand command = new AddCommand(editingDomain, metaclass, VirtualmetamodelPackage.eINSTANCE.getVirtualMetaclass_Properties(), property);
 			editingDomain.getCommandStack().execute(command);
 		} else {
-			System.err.println("addProperty: I didn't add because already represented : " + propertyElement);
+			org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_8 + propertyElement);
 		}
 
 	}
@@ -849,6 +924,9 @@ public class MetamodelUtils {
 		virtualParameter.setKept(true);
 		virtualParameter.setAliasName(alias);
 		virtualParameter.setRepresentedElement(parameterElement);
+		processMultiplicities(parameterElement, virtualParameter);
+
+		processTypedElement(parameterElement, facade, editingDomain);
 
 		AddCommand command = new AddCommand(editingDomain, operation, VirtualmetamodelPackage.eINSTANCE.getVirtualOperation_Parameters(), virtualParameter);
 		editingDomain.getCommandStack().execute(command);
@@ -868,7 +946,6 @@ public class MetamodelUtils {
 		return literal;
 	}
 
-
 	public static void createStereotypeProperties(VirtualMetaclass metaclass, Facade facade, AdapterFactoryEditingDomain editingDomain) {
 		// Add stereotype properties only if it is not already added to a father
 
@@ -886,21 +963,20 @@ public class MetamodelUtils {
 
 				if(!hasSiblings(appliedStereotype.getExtensionDefinition())) {
 
-
 					EList<Property> stereotypeProperties = appliedStereotype.getExtensionDefinition().getStereotype().getAttributes();
 					for(Property property : stereotypeProperties) {
 
 						if(appliedStereotype.getExtensionDefinition().getKind() == ExtensionDefinitionKind.ASSOCIATION) {
-							if(!property.getName().startsWith("base_")) {
-								MetamodelUtils.addProperty(metaclass, property, property.getName(), facade, editingDomain);
+							if(!property.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+								MetamodelUtils.addProperty(metaclass, property, property.getType(), property.getName(), facade, editingDomain);
 							} else {
 								if(appliedStereotype.getExtensionDefinition().getExtension().getMemberEnds().contains(property)) {
-									MetamodelUtils.addProperty(metaclass, property, property.getName(), facade, editingDomain);
+									MetamodelUtils.addProperty(metaclass, property, property.getType(), property.getName(), facade, editingDomain);
 								}
 							}
 						} else {
-							if(!property.getName().startsWith("base_")) {
-								MetamodelUtils.addProperty(metaclass, property, property.getName(), facade, editingDomain);
+							if(!property.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+								MetamodelUtils.addProperty(metaclass, property, property.getType(), property.getName(), facade, editingDomain);
 							}
 						}
 					}
@@ -910,16 +986,16 @@ public class MetamodelUtils {
 					for(Property property : stereotypeProperties) {
 
 						if(appliedStereotype.getExtensionDefinition().getKind() == ExtensionDefinitionKind.ASSOCIATION) {
-							if(property.getName().startsWith("base_")) {
+							if(property.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
 								if(appliedStereotype.getExtensionDefinition().getExtension().getMemberEnds().contains(property)) {
-									MetamodelUtils.addProperty(metaclass, property, property.getName(), facade, editingDomain);
+									MetamodelUtils.addProperty(metaclass, property, property.getType(), property.getName(), facade, editingDomain);
 								}
 							}
 						}
 					}
 				}
 			} else {
-				System.err.println("Stereotype is already applied to a parent");
+				org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_9);
 			}
 		}
 	}
@@ -928,8 +1004,8 @@ public class MetamodelUtils {
 		if(metaclass.isStereotypeInterface()) {
 			EList<Property> stereotypeProperties = ((Stereotype)metaclass.getRepresentedElement()).getAttributes();
 			for(Property property : stereotypeProperties) {
-				if(!property.getName().startsWith("base_")) {
-					MetamodelUtils.addProperty(metaclass, property, property.getName(), facade, editingDomain);
+				if(!property.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+					MetamodelUtils.addProperty(metaclass, property, property.getType(), property.getName(), facade, editingDomain);
 				}
 			}
 		} else {
@@ -938,16 +1014,16 @@ public class MetamodelUtils {
 					if(onlyOneKind(metaclass.getAppliedStereotypes(), ExtensionDefinitionKind.FUSION) || metaclass.getAppliedStereotypes().isEmpty()) {
 						EList<EStructuralFeature> properties = ((EClass)metaclass.getRepresentedElement()).getEStructuralFeatures();
 						for(EStructuralFeature eStructuralFeature : properties) {
-							MetamodelUtils.addProperty(metaclass, eStructuralFeature, eStructuralFeature.getName(), facade, editingDomain);
+							MetamodelUtils.addProperty(metaclass, eStructuralFeature, eStructuralFeature.getEType(), eStructuralFeature.getName(), facade, editingDomain);
 						}
 					}
 				} else if(metaclass.getRepresentedElement() instanceof DataType) {
 					EList<Property> properties = ((DataType)metaclass.getRepresentedElement()).getAttributes();
 					for(Property property : properties) {
-						MetamodelUtils.addProperty(metaclass, property, property.getName(), facade, editingDomain);
+						MetamodelUtils.addProperty(metaclass, property, property.getType(), property.getName(), facade, editingDomain);
 					}
 				} else {
-					System.err.println("I don't know how to create properties for the type : " + metaclass.getRepresentedElement());
+					org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_10 + metaclass.getRepresentedElement());
 				}
 
 				createStereotypeProperties(metaclass, facade, editingDomain);
@@ -987,12 +1063,10 @@ public class MetamodelUtils {
 				} else {
 					elements.add(classifier);
 				}
-
 			}
 		}
 
 		return elements;
-
 	}
 
 	public static void createGeneralizations(Facade facade, AdapterFactoryEditingDomain editingDomain) {
@@ -1020,10 +1094,67 @@ public class MetamodelUtils {
 
 	private static void createOperations(VirtualMetaclass metaclass, Facade facade, AdapterFactoryEditingDomain editingDomain) {
 		if(metaclass.getRepresentedElement() instanceof EClass) {
-			EList<EOperation> operations = ((EClass)metaclass.getRepresentedElement()).getEOperations();
-			for(EOperation eOperation : operations) {
-				addOperation(metaclass, eOperation, eOperation.getName(), facade, editingDomain);
+			if(metaclass.getAppliedStereotypes().isEmpty()) {
+				EList<EOperation> operations = ((EClass)metaclass.getRepresentedElement()).getEOperations();
+				for(EOperation eOperation : operations) {
+					addOperation(metaclass, eOperation, eOperation.getName(), facade, editingDomain);
+				}
 			}
+		}
+	}
+
+	public static void postProcessTypedElements(Facade facade, AdapterFactoryEditingDomain editingDomain) {
+		TreeIterator<EObject> it = facade.eAllContents();
+		while(it.hasNext()) {
+			EObject eObject = (EObject)it.next();
+
+			if(eObject instanceof VirtualTypedElement) {
+				VirtualTypedElement virtualTypedElement = (VirtualTypedElement)eObject;
+				VirtualClassifier representingType = null;
+				if(virtualTypedElement.getRepresentedElement() instanceof TypedElement) {
+					representingType = MetamodelUtils.findClassifierThatMatch(((TypedElement)virtualTypedElement.getRepresentedElement()).getType(), facade);
+					if(representingType != null) {
+						virtualTypedElement.setType(representingType);
+					} else {
+						org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_11 + virtualTypedElement);
+					}
+				} else {
+					if(virtualTypedElement.getRepresentedElement() instanceof ETypedElement) {
+						if(((ETypedElement)virtualTypedElement.getRepresentedElement()).getEType() != null) {
+							representingType = MetamodelUtils.findClassifierThatMatch(((ETypedElement)virtualTypedElement.getRepresentedElement()).getEType(), facade);
+							if(representingType != null) {
+								virtualTypedElement.setType(representingType);
+							} else {
+								org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_12 + virtualTypedElement);
+							}
+						}
+					} else {
+						org.eclipse.papyrus.facadeSpecificEditor.FacadeDefinitionEditorActivator.log.info(Messages.MetamodelUtils_13 + virtualTypedElement);
+					}
+				}
+
+			}
+		}
+	}
+
+	public static void postProcessUseRepresented(Facade facade, AdapterFactoryEditingDomain editingDomain) {
+		TreeIterator<EObject> it = facade.eAllContents();
+		while(it.hasNext()) {
+			EObject virtualElement = (EObject)it.next();
+
+			if(virtualElement instanceof VirtualElement) {
+				EObject represented = ((VirtualElement)virtualElement).getRepresentedElement();
+
+				TreeIterator<EObject> ecoreIt = EcorePackage.eINSTANCE.eAllContents();
+				while(ecoreIt.hasNext()) {
+					EObject ecoreEObject = (EObject)ecoreIt.next();
+					if(ecoreEObject == represented) {
+						((VirtualElement)virtualElement).setUseRepresented(true);
+					}
+				}
+
+			}
+
 		}
 	}
 }

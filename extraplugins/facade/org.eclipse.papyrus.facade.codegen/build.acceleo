@@ -18,7 +18,7 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../org.eclipse.papyrus.facade;"
+            dependencies="${target.folder}/../../org.eclipse.emf.eef.codegen.ecore;${target.folder}/../../org.eclipse.ui.ide;${target.folder}/../../org.eclipse.papyrus.facade;${target.folder}/../../org.eclipse.uml2.uml;${target.folder}/../../org.eclipse.uml2.codegen.ecore;${target.folder}/../../org.eclipse.papyrus.facade.utils;"
             binaryResource="false"
             packagesToRegister="">
         </acceleoCompiler>

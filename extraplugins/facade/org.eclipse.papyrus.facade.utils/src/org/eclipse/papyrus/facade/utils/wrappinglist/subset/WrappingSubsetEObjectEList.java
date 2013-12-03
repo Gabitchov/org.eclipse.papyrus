@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.facade.utils.wrappinglist.subset;
 
 import java.util.ArrayList;
@@ -31,7 +44,6 @@ public class WrappingSubsetEObjectEList<E extends RepresentingElement> extends W
 	//
 	//			Notification notification = new ENotificationImpl((InternalEObject)list.getEObject(), Notification.ADD, list.getEStructuralFeature(), null, object, list.size(), true);
 	//
-	//			System.err.println("Wrapping");
 	//			list.getEObject().eNotify(notification);
 	//
 	//			//			if(!representingSuperSet.contains(object)) {
@@ -52,7 +64,6 @@ public class WrappingSubsetEObjectEList<E extends RepresentingElement> extends W
 	//
 	//				Notification notification = new ENotificationImpl((InternalEObject)list.getEObject(), Notification.ADD, list.getEStructuralFeature(), null, object, list.size(), true);
 	//
-	//				System.err.println("Wrapping");
 	//				list.getEObject().eNotify(notification);
 	//			}
 	//		}
@@ -70,7 +81,6 @@ public class WrappingSubsetEObjectEList<E extends RepresentingElement> extends W
 	//
 	//					Notification notification = new ENotificationImpl((InternalEObject)list.getEObject(), Notification.ADD, list.getEStructuralFeature(), null, e, list.size(), true);
 	//
-	//					System.err.println("Wrapping");
 	//					list.getEObject().eNotify(notification);
 	//				}
 	//			}
@@ -89,7 +99,6 @@ public class WrappingSubsetEObjectEList<E extends RepresentingElement> extends W
 	//
 	//					Notification notification = new ENotificationImpl((InternalEObject)list.getEObject(), Notification.ADD, list.getEStructuralFeature(), null, e, list.size(), true);
 	//
-	//					System.err.println("Wrapping");
 	//					list.getEObject().eNotify(notification);
 	//				}
 	//			}
@@ -106,7 +115,6 @@ public class WrappingSubsetEObjectEList<E extends RepresentingElement> extends W
 	//
 	//			Notification notification = new ENotificationImpl((InternalEObject)list.getEObject(), Notification.REMOVE, list.getEStructuralFeature(), object, null, list.size() - 1, true);
 	//
-	//			System.err.println("Wrapping");
 	//			list.getEObject().eNotify(notification);
 	//		}
 	//
@@ -121,7 +129,6 @@ public class WrappingSubsetEObjectEList<E extends RepresentingElement> extends W
 	//
 	//			Notification notification = new ENotificationImpl((InternalEObject)list.getEObject(), Notification.REMOVE, list.getEStructuralFeature(), get(index), null, list.size() - 1, true);
 	//
-	//			System.err.println("Wrapping");
 	//			list.getEObject().eNotify(notification);
 	//		}
 	//
@@ -137,7 +144,6 @@ public class WrappingSubsetEObjectEList<E extends RepresentingElement> extends W
 	//
 	//				Notification notification = new ENotificationImpl((InternalEObject)list.getEObject(), Notification.REMOVE, list.getEStructuralFeature(), e, null, list.size() - 1, true);
 	//
-	//				System.err.println("Wrapping");
 	//				list.getEObject().eNotify(notification);
 	//			}
 	//		}
@@ -154,7 +160,6 @@ public class WrappingSubsetEObjectEList<E extends RepresentingElement> extends W
 	//
 	//				Notification notification = new ENotificationImpl((InternalEObject)list.getEObject(), Notification.REMOVE, list.getEStructuralFeature(), e, null, list.size() - 1, true);
 	//
-	//				System.err.println("Wrapping");
 	//				list.getEObject().eNotify(notification);
 	//			}
 	//		}
