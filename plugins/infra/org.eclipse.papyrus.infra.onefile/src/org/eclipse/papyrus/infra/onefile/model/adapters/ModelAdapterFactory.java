@@ -14,6 +14,8 @@ package org.eclipse.papyrus.infra.onefile.model.adapters;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.mapping.ResourceMapping;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
@@ -41,6 +43,9 @@ public class ModelAdapterFactory implements IAdapterFactory {
 			if(adaptableObject instanceof IPapyrusFile) {
 				return new PapyrusResourceMapping((IPapyrusFile)adaptableObject);
 			}
+		}
+		if(adapterType == IFile.class || adapterType == IResource.class) {
+			return ((IPapyrusFile)adaptableObject).getMainFile();
 		}
 		if(IContributorResourceAdapter.class.equals(adapterType)) {
 			return new PapyrusModelContributorResourceAdapter();

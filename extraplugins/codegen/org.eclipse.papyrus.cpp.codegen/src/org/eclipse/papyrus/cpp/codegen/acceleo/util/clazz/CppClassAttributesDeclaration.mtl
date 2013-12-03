@@ -2,9 +2,8 @@
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppAttribute/]
 
 
-
 [template public CppClassAttributesDeclaration(class : Classifier, visibilityFilter : VisibilityKind)]
-[for (attribute->select(visibility = visibilityFilter))]
+[for (getOwnedAttributes()->select(visibility = visibilityFilter))]
 
 	[CppAttributeDeclaration()/]
 [/for]

@@ -14,14 +14,17 @@
 package org.eclipse.papyrus.uml.diagram.symbols.provider;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
@@ -29,6 +32,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ProviderNotificationManager;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
 import org.eclipse.papyrus.uml.diagram.symbols.Activator;
 import org.eclipse.papyrus.uml.diagram.symbols.IPapyrusInternalProfileConstants;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener.StereotypeCustomNotification;
@@ -36,20 +40,42 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.w3c.dom.svg.SVGDocument;
 
 /**
- * This provider is linked to the {@link ShapeService}. It returns the shapes for a given typed element corresponding to the stereotypes applied on
- * the business element.
+ * This provider is linked to the {@link ShapeService}. It returns the shapes
+ * for a given typed element corresponding to the stereotypes applied on the
+ * business element.
  */
 public class TypedElementShapeProvider extends AbstractShapeProvider {
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<RenderedImage> getShapes(EObject view) {
 		Type type = getType(view);
 		String path = getSymbolPath(type);
 		if(path != null && path.length() > 0) {
+
+			List<SVGDocument> documents = getSVGDocument(view);
+			if(documents != null && !documents.isEmpty()) {
+				List<RenderedImage> result = new LinkedList<RenderedImage>();
+				for(SVGDocument document : documents) {
+					if(document == null) {
+						continue;
+					}
+					try {
+						result.add(renderSVGDocument(view, document));
+					} catch (IOException ex) {
+						Activator.log.error(ex);
+					}
+				}
+				if(!result.isEmpty()) {
+					return result;
+				}
+			}
+
 			URL url;
 			try {
 				url = new URL(path);
@@ -59,6 +85,7 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 				if(typeResourceURI != null) {
 					String workspaceRelativeFolderPath = typeResourceURI.trimSegments(1).toPlatformString(true);
 					try {
+
 						url = new URL("platform:/resource/" + workspaceRelativeFolderPath + File.separatorChar + path);
 						return Arrays.asList(RenderedImageFactory.getInstance(url));
 					} catch (MalformedURLException e1) {
@@ -73,6 +100,38 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
+	public List<SVGDocument> getSVGDocument(EObject view) {
+		Type type = getType(view);
+		String path = getSymbolPath(type);
+		if(path != null && path.length() > 0) {
+			try {
+				new URL(path);
+				SVGDocument document = getSVGDocument(path);
+				if(document != null) {
+					return Arrays.asList(document);
+				}
+
+				return null;
+			} catch (MalformedURLException e) {
+				URI typeResourceURI = EcoreUtil.getURI(type).trimFragment();
+				if(typeResourceURI != null) {
+					String workspaceRelativeFolderPath = typeResourceURI.trimSegments(1).toPlatformString(true);
+					String newPath = URI.createPlatformResourceURI(workspaceRelativeFolderPath + File.separatorChar + path, false).toString();
+					SVGDocument document = getSVGDocument(newPath);
+					if(document != null) {
+						return Arrays.asList(document);
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public boolean providesShapes(EObject view) {
 		Type type = getType(view);
 		String path = getSymbolPath(type);
@@ -87,7 +146,8 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 	 * 
 	 * @param view
 	 *        the view from which type should be looked
-	 * @return the type of the semantic element or <code>null</code> if none was found
+	 * @return the type of the semantic element or <code>null</code> if none was
+	 *         found
 	 */
 	protected Type getType(EObject view) {
 		if(!(view instanceof View)) {
@@ -131,6 +191,7 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ProviderNotificationManager createProviderNotificationManager(DiagramEventBroker diagramEventBroker, EObject view, NotificationListener listener) {
 		if(view == null || !(view instanceof View)) {
 			return null;
@@ -148,9 +209,11 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 		 * Creates a new StereotypedElementShapeProviderNotificationManager.
 		 * 
 		 * @param diagramEventBroker
-		 *        event broker specific to the diargam displaying the shapes.
+		 *        event broker specific to the diargam displaying the
+		 *        shapes.
 		 * @param view
-		 *        the view from which all elements to listen will be computed.
+		 *        the view from which all elements to listen will be
+		 *        computed.
 		 * @param listener
 		 *        the listener to which notifications will be forwarded.
 		 */
@@ -166,8 +229,10 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 			if(view == null || !(view instanceof View)) {
 				return;
 			}
-			// should register this listener on the type, to listen for stereotype modification
-			// should listen to new value of the typedElement_type feature, in order to remove/add the stereotype listener...
+			// should register this listener on the type, to listen for
+			// stereotype modification
+			// should listen to new value of the typedElement_type feature, in
+			// order to remove/add the stereotype listener...
 			Object semanticElement = ((View)view).getElement();
 			if(semanticElement instanceof Type) {
 				diagramEventBroker.addNotificationListener((Type)semanticElement, this);
@@ -205,6 +270,7 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void notifyChanged(Notification notification) {
 			if(listener == null) {
 				return;
@@ -215,7 +281,8 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 				// add/remove stereotype listener if needed...
 				Object oldValue = notification.getOldValue();
 				if(oldValue instanceof Type) {
-					// a type was removed => remove the listener from this old type
+					// a type was removed => remove the listener from this old
+					// type
 					diagramEventBroker.removeNotificationListener((Type)oldValue, this);
 				}
 				Object newValue = notification.getNewValue();
@@ -224,7 +291,8 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 					diagramEventBroker.removeNotificationListener((Type)newValue, this);
 				}
 			} else if(notification instanceof StereotypeCustomNotification) {
-				// call refresh for all stereotype notifications. could target specific modification on the stereotype Symbol definition
+				// call refresh for all stereotype notifications. could target
+				// specific modification on the stereotype Symbol definition
 				listener.notifyChanged(notification);
 			}
 

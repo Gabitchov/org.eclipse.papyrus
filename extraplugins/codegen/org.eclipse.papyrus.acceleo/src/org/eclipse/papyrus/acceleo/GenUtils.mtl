@@ -93,6 +93,10 @@
 	= invoke('org.eclipse.papyrus.acceleo.GenUtils', 'getBody(org.eclipse.uml2.uml.Operation, java.lang.String)', Sequence{arg0, arg1})
 /]
 
+[query public getBodyFromOB(arg0 : OpaqueBehavior, arg1 : String) : String
+	= invoke('org.eclipse.papyrus.acceleo.GenUtils', 'getBodyFromOB(org.eclipse.uml2.uml.OpaqueBehavior, java.lang.String)', Sequence{arg0, arg1})
+/]
+
 [query public cleanCR(str : String) : String
 	= invoke('org.eclipse.papyrus.acceleo.GenUtils', 'cleanCR(java.lang.String)', Sequence{str})
 /]
@@ -105,3 +109,6 @@
 	= invoke('org.eclipse.papyrus.acceleo.GenUtils', 'getRelativePath(org.eclipse.uml2.uml.NamedElement, org.eclipse.uml2.uml.NamedElement)', Sequence{ne1, ne2})
 /]
 
+[query public returnResult(behavior : Behavior) : Parameter
+	= invoke('org.eclipse.papyrus.acceleo.GenUtils', 'returnResult(org.eclipse.uml2.uml.Behavior)', Sequence{behavior})
+/]

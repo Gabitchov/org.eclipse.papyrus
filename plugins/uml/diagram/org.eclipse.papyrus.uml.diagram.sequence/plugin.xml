@@ -202,7 +202,7 @@
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLSequenceDiagram"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3022,3008,3009,3023,3024"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004,4005,4006,4007,4008,4009,4010,4011,4012"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004,4005,4006,4007,4008,4009,4010,4011,4012,8500"/>
       </viewProvider>
    </extension>
 
@@ -217,7 +217,7 @@
             <method name="getType()" value="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3022,3008,3009,3023,3024"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009,4010,4011,4012"/>
+            <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009,4010,4011,4012,8500"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
             <method name="getType()" value="5001,5003,5004,5007,5002,5008,5009,5013,5010,5014,5011,5015,5005,5012,5006,5018,5019,5016,5017"/>
@@ -563,10 +563,20 @@
             <param name="semanticHint" value="4012"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.uml.diagram.sequence.ConstraintContext_8500"
+               name="%metatype.name.ConstraintContext_8500"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="8500"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
+      
       <clientContext id="org.eclipse.papyrus.uml.diagram.sequence.TypeContext">
          <enablement>
             <test
@@ -575,6 +585,8 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.sequence.TypeContext">
+      
+      
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.Interaction_2001"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_3007"/>
@@ -605,6 +617,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.CommentAnnotatedElement_4010"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.ConstraintConstrainedElement_4011"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.GeneralOrdering_4012"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.sequence.ConstraintContext_8500"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -1217,6 +1230,16 @@
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
  	</entry>
+	<entry
+       defineOnly="true"
+       description="Creation of a context link for a Constraint"
+       id="createContextLink11CreationTool"
+       kind="tool"
+       label="ContextLink"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
+ 	</entry>
 
 			</contribution>
 		</paletteProvider>	
@@ -1367,6 +1390,10 @@
           id="createConstraintlink10CreationTool"
           path="/createEdges2Group">
     </predefinedEntry>
+ 	<predefinedEntry
+          id="createContextLink11CreationTool"
+          path="/createEdges2Group">
+    </predefinedEntry>
 
 
 			</contribution>
@@ -1485,6 +1512,12 @@
       point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
    <editpolicyProvider
          class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
+   <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomNamespaceEditPolicyProvider">
       <Priority
             name="Lowest">
       </Priority>
@@ -2015,6 +2048,10 @@
          <dynamic
                class="org.eclipse.papyrus.uml.diagram.sequence.providers.DurationConstraintContributionItem"
                id="org.eclipse.papyrus.sequence.duraitonconstraint.DynamicMenu">
+         </dynamic>
+         <dynamic
+               class="org.eclipse.papyrus.uml.diagram.sequence.providers.DisplayBehaviorContributionItem"
+               id="org.eclipse.papyrus.uml.diagram.sequence.displayBehaviorMenu">
          </dynamic>
       </menuContribution>
    </extension>          

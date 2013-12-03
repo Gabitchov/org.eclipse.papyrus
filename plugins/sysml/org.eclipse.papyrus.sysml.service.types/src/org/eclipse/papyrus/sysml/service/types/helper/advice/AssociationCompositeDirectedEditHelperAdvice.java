@@ -13,6 +13,7 @@ package org.eclipse.papyrus.sysml.service.types.helper.advice;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 
 /** 
  * Edit helper advice for {@link Association} with "aggregation = composition" (used for creation purpose only).
@@ -31,7 +32,7 @@ public class AssociationCompositeDirectedEditHelperAdvice extends AssociationCom
 	 * </pre>
 	 */
 	@Override
-	protected void addTargetInModel(Property targetEnd, Classifier owner, Classifier sourceType, Association association) {
+	protected void addTargetInModel(Property targetEnd, Classifier owner, Type sourceType, Association association) {
 		association.getOwnedEnds().add(targetEnd);
 	}
 }

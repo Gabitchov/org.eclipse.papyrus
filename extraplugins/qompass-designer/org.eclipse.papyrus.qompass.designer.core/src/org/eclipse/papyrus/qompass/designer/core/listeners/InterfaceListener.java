@@ -22,7 +22,6 @@ import org.eclipse.papyrus.qompass.designer.core.sync.CompImplSync;
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.NamedElement;
 
 public class InterfaceListener implements IPapyrusListener {
 
@@ -36,54 +35,29 @@ public class InterfaceListener implements IPapyrusListener {
 	private static InterfaceListener instance = null;
 
 	public void notifyChanged(Notification notification) {
-		Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface adapter");
+		Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface adapter"); //$NON-NLS-1$
 		int evtType = notification.getEventType();
 		Object notifier = notification.getNotifier();
-		String name = "";
-		if(notifier instanceof NamedElement) {
-			name = ((NamedElement)notifier).getName();
-		}
 		if(evtType == Notification.SET) {
-			Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface.adapter, set " + name);
 			if(notifier instanceof Class) {
 				// UMLExecutor.addCCM_intf ((Class) notifier);
 			}
 		} else if(evtType == Notification.ADD) {
-			Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface.adapter, add " + name);
 
 			if(notifier instanceof Interface) {
 				// Interface intf = (Interface) notifier;
 
-				// never executed? (since name is always unset when
-				// an operation is newly added)
-				/*
-				 * Object obj = notification.getNewValue ();
-				 * if (obj instanceof Operation) {
-				 * Operation operation = (Operation) obj;
-				 * 
-				 * if (operation.getName () == null) {
-				 * // no name yet, don't try to create behavior for it.
-				 * }
-				 * else {
-				 * CompTypeSync.delegateImplSync (intf, null);
-				 * }
-				 * }
-				 */
-				// registerOperations (intf);
+				// never executed since name is always unset when
+				// an operation is newly added
 			}
 		} else if(evtType == Notification.REMOVE) {
 			Object oldValue = notification.getOldValue();
 			if(oldValue instanceof BehavioralFeature) {
 				BehavioralFeature toBeRemoved = (BehavioralFeature)oldValue;
 
-				Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface.adapter, remove " + toBeRemoved.getName() + " from " + name);
-
 				Interface intf = (Interface)notifier;
-				// TODO: share code? with UMLExecutor
 				CompImplSync.syncViaInterface(intf, toBeRemoved);
 			}
-		} else {
-			Log.log(Status.INFO, Log.TRAFO_SYNC, "Interface.adapter, code: " + notification.getEventType() + ", name: " + name);
 		}
 	}
 }

@@ -73,6 +73,6 @@ public class Description {
 			}
 
 		}
-		return "not available";
+		return Messages.Description_NoAvail;
 	}
 }

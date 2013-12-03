@@ -1,56 +1,49 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.uml2.uml,
- org.eclipse.core.resources,
  org.eclipse.ui.ide,
- org.eclipse.papyrus.fcm.profile;bundle-version="0.10.1",
- org.eclipse.emf.edit.ui,
- org.eclipse.papyrus.marte.static.profile;bundle-version="0.10.1",
- org.eclipse.papyrus.qompass.designer.vsl;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.modelexplorer.widgets;bundle-version="0.10.1",
+ org.eclipse.core.resources,
+ org.eclipse.papyrus.fcm.profile;bundle-version="1.0.0",
+ org.eclipse.papyrus.marte.static.profile;bundle-version="1.0.0",
+ org.eclipse.papyrus.qompass.designer.vsl;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.modelexplorer.widgets;bundle-version="1.0.0",
  org.eclipse.emf.compare;bundle-version="3.0.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.widgets;bundle-version="0.10.1",
- org.eclipse.draw2d;bundle-version="3.8.0",
- org.eclipse.papyrus.uml.modelexplorer;bundle-version="0.10.1",
- org.eclipse.gef;bundle-version="3.8.0",
- org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
- org.eclipse.papyrus.uml.profile;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.properties;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.tools;bundle-version="1.0.0",
  org.eclipse.acceleo.engine;bundle-version="3.1.0",
  org.eclipse.acceleo.parser;bundle-version="3.1.0",
- org.eclipse.papyrus.cpp.profile;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.cpp.profile;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.common.core;bundle-version="1.7.0",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.acceleo;bundle-version="0.10.1",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.3.0",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.acceleo;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.ui
 Export-Package: org.eclipse.papyrus.qompass.designer.core,
  org.eclipse.papyrus.qompass.designer.core.acceleo,
+ org.eclipse.papyrus.qompass.designer.core.commands,
  org.eclipse.papyrus.qompass.designer.core.deployment,
- org.eclipse.papyrus.qompass.designer.core.dialogs,
  org.eclipse.papyrus.qompass.designer.core.extensions,
- org.eclipse.papyrus.qompass.designer.core.handlers,
+ org.eclipse.papyrus.qompass.designer.core.generate,
  org.eclipse.papyrus.qompass.designer.core.listeners,
  org.eclipse.papyrus.qompass.designer.core.preferences,
+ org.eclipse.papyrus.qompass.designer.core.sync,
  org.eclipse.papyrus.qompass.designer.core.templates,
  org.eclipse.papyrus.qompass.designer.core.transformations,
  org.eclipse.papyrus.qompass.designer.core.transformations.filters
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.qompass.designer.core.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.core;singlet
  on:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

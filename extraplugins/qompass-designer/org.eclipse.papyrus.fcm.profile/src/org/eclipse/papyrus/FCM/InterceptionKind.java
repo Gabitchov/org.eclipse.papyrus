@@ -1,8 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Ansgar Radermacher - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.FCM;
 
@@ -30,7 +36,9 @@ public enum InterceptionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERCEPT_SOME(0, "InterceptSome", "InterceptSome"), /**
+	INTERCEPT_SOME(0, "InterceptSome", "InterceptSome"), //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * The '<em><b>Intercept All</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,7 +46,9 @@ public enum InterceptionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERCEPT_ALL(1, "InterceptAll", "InterceptAll"), /**
+	INTERCEPT_ALL(1, "InterceptAll", "InterceptAll"), //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * The '<em><b>Intercept All Out</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46,7 +56,9 @@ public enum InterceptionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERCEPT_ALL_OUT(2, "InterceptAllOut", "InterceptAllOut"), /**
+	INTERCEPT_ALL_OUT(2, "InterceptAllOut", "InterceptAllOut"), //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * The '<em><b>Intercept All In</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,7 +66,7 @@ public enum InterceptionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERCEPT_ALL_IN(3, "InterceptAllIn", "InterceptAllIn");
+	INTERCEPT_ALL_IN(3, "InterceptAllIn", "InterceptAllIn"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Intercept Some</b></em>' literal value.

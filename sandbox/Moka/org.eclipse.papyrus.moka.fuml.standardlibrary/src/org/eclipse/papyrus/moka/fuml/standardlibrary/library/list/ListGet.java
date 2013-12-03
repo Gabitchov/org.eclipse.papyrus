@@ -16,11 +16,11 @@ package org.eclipse.papyrus.moka.fuml.standardlibrary.library.list;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.IntegerValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.OpaqueBehaviorExecution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.debug.Debug;
 
 public class ListGet extends OpaqueBehaviorExecution {
 
@@ -35,7 +35,7 @@ public class ListGet extends OpaqueBehaviorExecution {
 			}
 			outputParameters.get(0).values = outputs;
 		} catch (Exception e) {
-			Debug.println("An error occured during the execution of ListGet " + e.getMessage());
+			Activator.log.error("An error occured during the execution of ListGet " + e.getMessage(), e);
 		}
 	}
 

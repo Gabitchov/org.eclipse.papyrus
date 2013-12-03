@@ -17,6 +17,7 @@ package org.eclipse.papyrus.qompass.designer.core.templates;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.Template;
 import org.eclipse.papyrus.FCM.TemplateKind;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -105,7 +106,7 @@ public class TemplateInstantiation {
 		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 			ParameterableElement formal = substitution.getFormal().getParameteredElement();
 			ParameterableElement actual = substitution.getActual();
-			copy.put(formal, actual);
+			copy.putPair(formal, actual);
 		}
 
 		// add copy listeners ---
@@ -189,7 +190,7 @@ public class TemplateInstantiation {
 	public <T extends NamedElement> T bindNamedElement(T namedElement) throws TransformationException {
 		if(namedElement == null) {
 			// user should never see this exception
-			throw new TransformationException("Passed template element is null");
+			throw new TransformationException(Messages.TemplateInstantiation_TemplateIsNull);
 		}
 
 		Package boundPackage = (Package)binding.getBoundElement();

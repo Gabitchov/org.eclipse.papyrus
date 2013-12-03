@@ -3,8 +3,15 @@
 
 
 [template public CppClassOperationsDeclaration(class : Classifier, visibilityFilter : VisibilityKind)]
-[for (getOperations()->select(visibility = visibilityFilter))]
+[for (getOwnedOperations()->select(visibility = visibilityFilter))]
 
  	[CppOperationDeclaration()/]
+[/for]
+[for (b : Behavior | eAllContents(OpaqueBehavior)->select(visibility = visibilityFilter))]
+	[if (b.specification = null)]
+
+	// opaque behavior without specification (typically from state machine)
+	[CppBehaviorDeclaration()/]
+	[/if]
 [/for]
 [/template]

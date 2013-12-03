@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.papyrus.cpp.codegen;
 
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -24,6 +25,8 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
+
+    public static LogHelper log;
 
 	/**
 	 * Returns the shared instance
@@ -49,6 +52,7 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		log = new LogHelper();
 	}
 
 	/*
@@ -60,6 +64,5 @@ public class Activator extends AbstractUIPlugin {
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
-	}
-
+	} 
 }

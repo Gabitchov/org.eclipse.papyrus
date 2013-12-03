@@ -17,9 +17,10 @@ package org.eclipse.papyrus.qompass.designer.core.transformations;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Ptr;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
@@ -46,7 +47,7 @@ import org.eclipse.uml2.uml.Type;
  */
 public class CompTypeTrafos {
 
-	public static final String INDEX_TYPE_FOR_MULTI_RECEPTACLE = "corba::Long";
+	public static final String INDEX_TYPE_FOR_MULTI_RECEPTACLE = "corba::Long"; //$NON-NLS-1$
 	
 	/**
 	 * Complete access operations recursively, i.e. traverse all packageable
@@ -87,7 +88,7 @@ public class CompTypeTrafos {
 				if(component.getOwnedOperation(getName, null, null) == null) {
 					Operation op = component.createOwnedOperation(getName, null, null);
 					op.setIsAbstract(true);
-					Parameter retParam = op.createOwnedParameter("ret", providedIntf);
+					Parameter retParam = op.createOwnedParameter("ret", providedIntf); //$NON-NLS-1$
 					retParam.setDirection(ParameterDirectionKind.RETURN_LITERAL);
 					StereotypeUtil.apply(retParam, Ptr.class);
 					// StereotypeUtil.apply(op, CppVirtual.class);
@@ -107,14 +108,13 @@ public class CompTypeTrafos {
 						// add index parameter
 						Element eLong = Utils.getQualifiedElement(Utils.getTop(component), INDEX_TYPE_FOR_MULTI_RECEPTACLE);
 						if(eLong instanceof Type) {
-							op.createOwnedParameter("index", (Type)eLong);
+							op.createOwnedParameter("index", (Type)eLong); //$NON-NLS-1$
 						}
 						else {
-							throw new RuntimeException("Can not find type " + INDEX_TYPE_FOR_MULTI_RECEPTACLE +
-									". Thus, unable to create suitable connect operation in component to OO transformation");
+							throw new RuntimeException(String.format(Messages.CompTypeTrafos_CannotFindType, INDEX_TYPE_FOR_MULTI_RECEPTACLE));
 						}
 					}
-					Parameter refParam = op.createOwnedParameter("ref", requiredIntf);
+					Parameter refParam = op.createOwnedParameter("ref", requiredIntf); //$NON-NLS-1$
 					refParam.setDirection(ParameterDirectionKind.IN_LITERAL);
 					StereotypeUtil.apply(refParam, Ptr.class);
 					// StereotypeUtil.apply(op, CppVirtual.class);

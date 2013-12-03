@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
+import java.util.Collection;
+import java.util.HashSet;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -81,4 +85,48 @@ public class DiagramEditPartsUtil {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param ep
+	 *        an edit part
+	 * @return
+	 *         all children edit part which are "top" semantic edit part
+	 */
+	public static Collection<EditPart> getAllTopSemanticEditPart(final EditPart ep) {
+		final Collection<EditPart> editparts = new HashSet<EditPart>();
+		for(final Object current : ep.getChildren()) {
+			if(current instanceof EditPart) {
+				editparts.addAll(getAllTopSemanticEditPart((EditPart)current));
+				final EditPart topEP = getTopSemanticEditPart((EditPart)current);
+				if(topEP != null) {
+					editparts.add(topEP);
+				}
+			}
+		}
+		return editparts;
+	}
+
+	/**
+	 * 
+	 * @param ep
+	 *        an editpart
+	 * @return
+	 *         the top edit part representing the same eobject or <code>null</code> if ep doesn't represent an editpart
+	 */
+	public static final EditPart getTopSemanticEditPart(final EditPart ep) {
+		final EObject currentEObject = (EObject)ep.getAdapter(EObject.class);
+		if(currentEObject != null) {
+			EditPart previousParent = ep;
+			EditPart parent = ep;
+			while(parent != null) {
+				if(parent.getAdapter(EObject.class) != currentEObject || parent instanceof DiagramEditPart) {
+					return previousParent;
+				}
+				previousParent = parent;
+				parent = parent.getParent();
+			}
+			return previousParent;
+		}
+		return null;
+	}
 }

@@ -1,8 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Ansgar Radermacher - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.FCM.impl;
 
@@ -10,8 +16,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.papyrus.FCM.*;
 
 /**
@@ -21,7 +30,6 @@ import org.eclipse.papyrus.FCM.*;
  * @generated
  */
 public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
-
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -96,7 +104,7 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.CONNECTOR_CONFIGURATION: return createConnectorConfiguration();
 			case FCMPackage.EXTENDED_SIGNATURE: return createExtendedSignature();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -117,7 +125,7 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.INTERCEPTION_KIND:
 				return createInterceptionKindFromString(eDataType, initialValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -138,7 +146,7 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.INTERCEPTION_KIND:
 				return convertInterceptionKindToString(eDataType, instanceValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -157,119 +165,9 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ContainerRule createContainerRule() {
-		ContainerRuleImpl containerRule = new ContainerRuleImpl();
-		return containerRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Port createPort() {
-		PortImpl port = new PortImpl();
-		return port;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PortKind createPortKind() {
-		PortKindImpl portKind = new PortKindImpl();
-		return portKind;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompImplTemplate createCompImplTemplate() {
-		CompImplTemplateImpl compImplTemplate = new CompImplTemplateImpl();
-		return compImplTemplate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConfigOption createConfigOption() {
-		ConfigOptionImpl configOption = new ConfigOptionImpl();
-		return configOption;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplatePort createTemplatePort() {
-		TemplatePortImpl templatePort = new TemplatePortImpl();
-		return templatePort;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Singleton createSingleton() {
-		SingletonImpl singleton = new SingletonImpl();
-		return singleton;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InteractionComponent createInteractionComponent() {
-		InteractionComponentImpl interactionComponent = new InteractionComponentImpl();
-		return interactionComponent;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Connector createConnector() {
-		ConnectorImpl connector = new ConnectorImpl();
-		return connector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ConfigurationProperty createConfigurationProperty() {
 		ConfigurationPropertyImpl configurationProperty = new ConfigurationPropertyImpl();
 		return configurationProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DeploymentPlan createDeploymentPlan() {
-		DeploymentPlanImpl deploymentPlan = new DeploymentPlanImpl();
-		return deploymentPlan;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DerivedElement createDerivedElement() {
-		DerivedElementImpl derivedElement = new DerivedElementImpl();
-		return derivedElement;
 	}
 
 	/**
@@ -337,9 +235,139 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public InteractionComponent createInteractionComponent() {
+		InteractionComponentImpl interactionComponent = new InteractionComponentImpl();
+		return interactionComponent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Singleton createSingleton() {
+		SingletonImpl singleton = new SingletonImpl();
+		return singleton;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Connector createConnector() {
+		ConnectorImpl connector = new ConnectorImpl();
+		return connector;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UseInstanceConfigurator createUseInstanceConfigurator() {
+		UseInstanceConfiguratorImpl useInstanceConfigurator = new UseInstanceConfiguratorImpl();
+		return useInstanceConfigurator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstanceConfigurator createInstanceConfigurator() {
+		InstanceConfiguratorImpl instanceConfigurator = new InstanceConfiguratorImpl();
+		return instanceConfigurator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RuleApplication createRuleApplication() {
 		RuleApplicationImpl ruleApplication = new RuleApplicationImpl();
 		return ruleApplication;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContainerRule createContainerRule() {
+		ContainerRuleImpl containerRule = new ContainerRuleImpl();
+		return containerRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConfigOption createConfigOption() {
+		ConfigOptionImpl configOption = new ConfigOptionImpl();
+		return configOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplatePort createTemplatePort() {
+		TemplatePortImpl templatePort = new TemplatePortImpl();
+		return templatePort;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Port createPort() {
+		PortImpl port = new PortImpl();
+		return port;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PortKind createPortKind() {
+		PortKindImpl portKind = new PortKindImpl();
+		return portKind;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DeploymentPlan createDeploymentPlan() {
+		DeploymentPlanImpl deploymentPlan = new DeploymentPlanImpl();
+		return deploymentPlan;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DerivedElement createDerivedElement() {
+		DerivedElementImpl derivedElement = new DerivedElementImpl();
+		return derivedElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CompImplTemplate createCompImplTemplate() {
+		CompImplTemplateImpl compImplTemplate = new CompImplTemplateImpl();
+		return compImplTemplate;
 	}
 
 	/**
@@ -370,6 +398,26 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	public TargetArchitecture createTargetArchitecture() {
 		TargetArchitectureImpl targetArchitecture = new TargetArchitectureImpl();
 		return targetArchitecture;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Configuration createConfiguration() {
+		ConfigurationImpl configuration = new ConfigurationImpl();
+		return configuration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InterceptionRule createInterceptionRule() {
+		InterceptionRuleImpl interceptionRule = new InterceptionRuleImpl();
+		return interceptionRule;
 	}
 
 	/**
@@ -467,49 +515,9 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseInstanceConfigurator createUseInstanceConfigurator() {
-		UseInstanceConfiguratorImpl useInstanceConfigurator = new UseInstanceConfiguratorImpl();
-		return useInstanceConfigurator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InstanceConfigurator createInstanceConfigurator() {
-		InstanceConfiguratorImpl instanceConfigurator = new InstanceConfiguratorImpl();
-		return instanceConfigurator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Configuration createConfiguration() {
-		ConfigurationImpl configuration = new ConfigurationImpl();
-		return configuration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InterceptionRule createInterceptionRule() {
-		InterceptionRuleImpl interceptionRule = new InterceptionRuleImpl();
-		return interceptionRule;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public TemplateKind createTemplateKindFromString(EDataType eDataType, String initialValue) {
 		TemplateKind result = TemplateKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -529,7 +537,7 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 */
 	public ActualChoice createActualChoiceFromString(EDataType eDataType, String initialValue) {
 		ActualChoice result = ActualChoice.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -549,7 +557,7 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 */
 	public ContainerRuleKind createContainerRuleKindFromString(EDataType eDataType, String initialValue) {
 		ContainerRuleKind result = ContainerRuleKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -569,7 +577,7 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 */
 	public InterceptionKind createInterceptionKindFromString(EDataType eDataType, String initialValue) {
 		InterceptionKind result = InterceptionKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 

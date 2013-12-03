@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.emf;bundle-version="2.6.0",
+ org.eclipse.emf,
  org.eclipse.emf.ecore,
  org.eclipse.emf.transaction,
  org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.editor;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.editor,
+ org.eclipse.papyrus.infra.core,
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.adl4eclipsetool;bundle-version="0.10.1",
- org.eclipse.pde.core;bundle-version="3.9.0"
+ org.eclipse.papyrus.infra.emf,
+ org.eclipse.papyrus.adl4eclipsetool,
+ org.eclipse.pde.core
 Export-Package: org.eclipse.papyrus.adltool.assistant
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier

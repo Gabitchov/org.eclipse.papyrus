@@ -1,11 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.commands.switchrepresentation;
@@ -15,7 +18,6 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
@@ -26,7 +28,7 @@ import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.part.CustomConstraintBlockPropertyCompositeEditPart;
 
 /**
- * TODO
+ * This command allow to switch ConstraintProperty representation to rounded corner one to square one with structure compartment
  */
 public class SwitchConstraintPropertyRepresentationCommand extends Command {
 
@@ -70,8 +72,10 @@ public class SwitchConstraintPropertyRepresentationCommand extends Command {
 			structureCompartment.setVisible(true);
 		}
 		else {
-			structureCompartment = ViewService.getInstance().createNode(null, (View)editPart.getModel(), SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID, ViewUtil.APPEND, true, new PreferencesHint("org.eclipse.papyrus.sysml.diagram.parametric"));
-			structureCompartment.setElement(editPart.resolveSemanticElement());
+			structureCompartment = ViewService.createNode((View)editPart.getModel(), SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID, new PreferencesHint("org.eclipse.papyrus.sysml.diagram.parametric"));
+			if (structureCompartment != null) {
+				structureCompartment.setElement(editPart.resolveSemanticElement());
+			}
 		}
 		
 		// add the << constraint >> tag
@@ -123,12 +127,12 @@ public class SwitchConstraintPropertyRepresentationCommand extends Command {
 
 	@Override
 	public void undo() {
-		execute();
+		execute(); // switch
 	}
 
 	@Override
 	public void redo() {
-		execute();
+		execute(); // switch
 	}
 	
 }

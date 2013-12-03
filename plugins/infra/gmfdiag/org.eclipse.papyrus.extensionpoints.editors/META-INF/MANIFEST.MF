@@ -1,21 +1,4 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.ui.editors;bundle-version="3.4.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.0",
- org.eclipse.emf.edit.ui;bundle-version="2.4.0",
- org.antlr.runtime;bundle-version="3.0.0",
- org.eclipse.core.runtime;bundle-version="3.7.0",
- org.eclipse.jface.text;bundle-version="3.7.1",
- org.eclipse.draw2d;bundle-version="3.7.1",
- org.eclipse.papyrus.infra.constraints;bundle-version="0.10.0",
- org.eclipse.ui.ide;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.0",
- org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.300",
- org.eclipse.ui.workbench.texteditor;bundle-version="3.8.0",
- org.eclipse.emf.transaction;bundle-version="1.4.0",
- org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
- com.google.inject;bundle-version="3.0.0"
 Export-Package: org.eclipse.papyrus.extensionpoints.editors,
  org.eclipse.papyrus.extensionpoints.editors.configuration,
  org.eclipse.papyrus.extensionpoints.editors.definition,
@@ -23,17 +6,24 @@ Export-Package: org.eclipse.papyrus.extensionpoints.editors,
  org.eclipse.papyrus.extensionpoints.editors.ui,
  org.eclipse.papyrus.extensionpoints.editors.ui.images,
  org.eclipse.papyrus.extensionpoints.editors.utils
-Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.emf.ecore;bundle-version="2.10.0",
+ org.eclipse.ui;bundle-version="3.1.0",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.7.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.constraints;bundle-version="1.0.0"
+Bundle-Vendor: %providerName
+Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.extensionpoints.editors.Activato
  r
 Bundle-SymbolicName: org.eclipse.papyrus.extensionpoints.editors;singl
  eton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.eclipse.xtext.parser,
  org.eclipse.xtext.resource,
  org.eclipse.xtext.util

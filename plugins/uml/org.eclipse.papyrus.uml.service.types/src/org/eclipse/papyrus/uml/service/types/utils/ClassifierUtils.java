@@ -14,6 +14,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Class;
@@ -41,6 +44,20 @@ public class ClassifierUtils {
 	 */
 	public static boolean addOwnedAttribute(Classifier classifier, Property property) {
 		AddOwnedAttributeSwitch classifierSwitch = new AddOwnedAttributeSwitch(property);
+		return classifierSwitch.doSwitch(classifier);
+	}
+
+	/**
+	 * This method provides a switch to ease the addition of a new Property in a Classifier.
+	 * 
+	 * @param classifier
+	 *        the parent classifier.
+	 * @param property
+	 *        the contained property.
+	 * @return false if the addition fails.
+	 */
+	public static List<Property> getOwnedAttributes(Classifier classifier) {
+		GetOwnedAttributesSwitch classifierSwitch = new GetOwnedAttributesSwitch();
 		return classifierSwitch.doSwitch(classifier);
 	}
 
@@ -98,4 +115,50 @@ public class ClassifierUtils {
 			return Boolean.FALSE;
 		}
 	};
+
+	/**
+	 * Switch implementation for Property addition.
+	 */
+	private static class GetOwnedAttributesSwitch extends UMLSwitch<List<Property>> {
+
+		public GetOwnedAttributesSwitch() {
+			super();
+		}
+
+		@Override
+		public List<Property> caseArtifact(Artifact object) {
+			return object.getOwnedAttributes();
+		}
+
+		@Override
+		public List<Property> caseDataType(DataType object) {
+			return object.getOwnedAttributes();
+		}
+
+		@Override
+		public List<Property> caseInterface(Interface object) {
+			return object.getOwnedAttributes();
+		}
+
+		@Override
+		public List<Property> caseSignal(Signal object) {
+			return object.getOwnedAttributes();
+		}
+
+		@Override
+		public List<Property> caseStructuredClassifier(StructuredClassifier object) {
+			return object.getOwnedAttributes();
+		}
+
+		@Override
+		public List<Property> caseClass(Class object) {
+			return object.getOwnedAttributes();
+		}
+
+		@Override
+		public List<Property> defaultCase(EObject object) {
+			return new ArrayList<Property>();
+		}
+	};
+
 }

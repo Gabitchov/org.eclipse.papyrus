@@ -113,6 +113,18 @@ public class TestCompartmentUtils extends AbstractTest {
 			return (ClassifierFigure)primaryShape;
 		}
 
+		@Override
+		protected IFigure createNodePlate() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		protected IFigure setupContentPane(IFigure nodeShape) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 	}
 
 	/**

@@ -596,6 +596,14 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		return xLoc;
 	}
 
+	@Override
+	protected int getAppearanceDelay() {
+		// 420201: [All diagrams - Hyperlinks] The Hyperlinks button (green +) pops up too early
+		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=420201
+
+		return 1000; //In milliseconds (Default is 200). Do not popup hyperlinks too quickly
+	}
+
 	/**
 	 * {@inheritedDoc}.
 	 * 

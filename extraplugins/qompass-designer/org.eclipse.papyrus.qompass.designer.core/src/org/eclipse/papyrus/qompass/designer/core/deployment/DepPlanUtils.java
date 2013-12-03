@@ -21,8 +21,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -41,8 +42,6 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 public class DepPlanUtils {
 
-	public static final String depPlanFolder = "deployment";
-
 	/**
 	 * Return the package in which deployment plans are stored. Caveat: needs to be executed within a
 	 * transition, since the deployment plan package will be created, if it does not exist yet.
@@ -53,7 +52,7 @@ public class DepPlanUtils {
 	 * @return package in which deployment plans are stored
 	 */
 	public static Package getDepPlanRoot(Element element) {
-		return Utils.getRoot(element, depPlanFolder);
+		return Utils.getRoot(element, DeployConstants.depPlanFolder);
 	}
 
 	/**
@@ -66,7 +65,7 @@ public class DepPlanUtils {
 	 */
 	public static EList<Package> getAllDepPlans(Element element) {
 		Package root = Utils.getTop(element);
-		Package depPlanRoot = root.getNestedPackage(depPlanFolder);
+		Package depPlanRoot = root.getNestedPackage(DeployConstants.depPlanFolder);
 		EList<Package> depPlanList = new BasicEList<Package>();
 		if(depPlanRoot != null) {
 			for(Package pkg : depPlanRoot.getNestedPackages()) {
@@ -159,7 +158,7 @@ public class DepPlanUtils {
 		// choose implementation automatically: get the first one that implements the passed type
 		// (problem: further tree expansion might depend on chosen implementation)
 		// get reference to component model, then search all classes contained in it.
-		Package compModel = Utils.getRoot(componentType, "ComponentModel");
+		Package compModel = Utils.getRoot(componentType, DeployConstants.COMPONENT_MODEL);
 		Iterator<Element> elements = compModel.allOwnedElements().iterator();
 		while(elements.hasNext()) {
 			Element element = elements.next();
@@ -185,7 +184,7 @@ public class DepPlanUtils {
 		InstanceSpecification is = (InstanceSpecification)
 			cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
 
-		if(name == "mainInstance") {
+		if(name == DeployConstants.MAIN_INSTANCE) {
 			setMainInstance(cdp, is);
 		}
 
@@ -219,7 +218,7 @@ public class DepPlanUtils {
 				continue;
 			}
 			InstanceSpecification partIS =
-				createDepPlan(cdp, (Classifier)part.getType(), name + "." + part.getName());
+				createDepPlan(cdp, (Classifier)part.getType(), name + "." + part.getName()); //$NON-NLS-1$
 
 			createSlot(cdp, is, partIS, part);
 		}
@@ -234,7 +233,7 @@ public class DepPlanUtils {
 		Classifier extension = DepUtils.getClassifier(instance);
 		Property attribute = (Property)Utils.getNamedElementFromList(extension.getAllAttributes(), propertyName);
 		if(attribute == null) {
-			throw new RuntimeException("cannot find attribute " + propertyName + " in classifier " + extension.getName());
+			throw new RuntimeException(String.format(Messages.DepPlanUtils_CannotFindAttribute, propertyName, extension.getName()));
 		}
 		if(attribute.getType() instanceof Enumeration) {
 			configureEnumProperty(instance, propertyName, value);
@@ -247,7 +246,7 @@ public class DepPlanUtils {
 			}
 			else {
 				// indicates that operation has been called although types do not match
-				throw new RuntimeException("configuration of property " + propertyName + " failed: type is not a string");
+				throw new RuntimeException(String.format(Messages.DepPlanUtils_ConfigOfPropertyFailed, propertyName));
 			}
 		}
 
@@ -261,12 +260,12 @@ public class DepPlanUtils {
 		Classifier extension = DepUtils.getClassifier(instance);
 		Property attribute = (Property)Utils.getNamedElementFromList(extension.getAllAttributes(), propertyName);
 		if(attribute == null) {
-			throw new RuntimeException("cannot find attribute " + propertyName + " in classifier " + extension.getName());
+			throw new RuntimeException(String.format(Messages.DepPlanUtils_CannotFindAttribute, propertyName, extension.getName()));
 		}
 		Slot slotIntVal = instance.createSlot();
 		slotIntVal.setDefiningFeature(attribute);
 		LiteralInteger intValue = (LiteralInteger)
-			slotIntVal.createValue("value for " + attribute.getName(), attribute.getType(), UMLPackage.eINSTANCE.getLiteralInteger());
+			slotIntVal.createValue("value for " + attribute.getName(), attribute.getType(), UMLPackage.eINSTANCE.getLiteralInteger()); //$NON-NLS-1$
 		intValue.setValue(value);
 
 	}
@@ -304,7 +303,7 @@ public class DepPlanUtils {
 		Classifier extension = DepUtils.getClassifier(instance);
 		Property attribute = (Property)Utils.getNamedElementFromList(extension.getAllAttributes(), propertyName);
 		if(attribute == null) {
-			throw new RuntimeException("cannot find attribute " + propertyName + " in classifier " + extension.getName());
+			throw new RuntimeException(String.format(Messages.DepPlanUtils_CannotFindAttribute, propertyName, extension.getName()));
 		}
 
 		if(attribute.getType() instanceof Enumeration) {
@@ -314,7 +313,7 @@ public class DepPlanUtils {
 					Slot slotEnumVal = instance.createSlot();
 					slotEnumVal.setDefiningFeature(attribute);
 					InstanceValue enumLitValue = (InstanceValue)
-						slotEnumVal.createValue("value for " + attribute.getName(), attribute.getType(), UMLPackage.eINSTANCE.getInstanceValue());
+						slotEnumVal.createValue("value for " + attribute.getName(), attribute.getType(), UMLPackage.eINSTANCE.getInstanceValue()); //$NON-NLS-1$
 					enumLitValue.setInstance(enumLiteral);
 					break;
 				}

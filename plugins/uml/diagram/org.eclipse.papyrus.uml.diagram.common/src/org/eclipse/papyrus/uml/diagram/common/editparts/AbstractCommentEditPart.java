@@ -29,7 +29,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * this is a abstract editpart to display a comment
  */
-public class AbstractCommentEditPart extends NodeEditPart {
+public abstract class  AbstractCommentEditPart extends NodeEditPart {
 
 	public AbstractCommentEditPart(View view) {
 		super(view);

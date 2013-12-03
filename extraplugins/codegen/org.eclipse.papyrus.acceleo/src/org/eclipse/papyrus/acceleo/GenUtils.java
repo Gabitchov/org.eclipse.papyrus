@@ -33,6 +33,7 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TemplateBinding;
@@ -549,14 +550,31 @@ public class GenUtils {
 	public static String getBody(Operation operation, String selectedLanguage) {
 		for(Behavior behavior : operation.getMethods()) {
 			if(behavior instanceof OpaqueBehavior) {
-				OpaqueBehavior ob = (OpaqueBehavior)behavior;
-				Iterator<String> bodies = ob.getBodies().iterator();
-				for(String language : ob.getLanguages()) {
-					String body = bodies.next();
-					if(language.equals(selectedLanguage)) {
-						// additional "\r" confuses Acceleo
-						return cleanCR(body);
-					}
+				return getBodyFromOB((OpaqueBehavior) behavior, selectedLanguage);
+			}
+		}
+		return ""; //$NON-NLS-1$
+	}
+	
+	
+	/**
+	 * @param ob
+	 *        an opaque behavior
+	 * @param selectedLanguage
+	 *        the selected language
+	 * @return Return the first body of a selected language that is provided by
+	 *         one of the operation's methods
+	 */
+	public static String getBodyFromOB(OpaqueBehavior ob, String selectedLanguage) {
+		Iterator<String> bodies = ob.getBodies().iterator();
+		for(String language : ob.getLanguages()) {
+			// additional sanity check: number of languages and number of bodies should be synchronized,
+			// 	but there is no guarantee that this is the case 
+			if (bodies.hasNext()) {
+				String body = bodies.next();
+				if(language.equals(selectedLanguage)) {
+					// additional "\r" confuses Acceleo
+					return cleanCR(body);
 				}
 			}
 		}
@@ -589,7 +607,8 @@ public class GenUtils {
 	/**
 	 * Return the relative path of ne2 as seen from ne1
 	 * (might not always be useful, if includes are always done from a common root)
-	 *
+	 * TODO: incomplete, currently unused
+	 * 
 	 * @param ne1 a named element
 	 * @param ne2 a named element
 	 * @return
@@ -597,13 +616,28 @@ public class GenUtils {
 	public static String getRelativePath(NamedElement ne1, NamedElement ne2) {
 		// get common prefix
 		EList<Namespace> ne1namespaces = ne1.allNamespaces();
-		String path = "";
+		String path = ""; //$NON-NLS-1$
 		for (Namespace ns : ne2.allNamespaces()) {
 			if (ne1namespaces.contains(ns)) {
 				// ns is a common prefix
 				return ne2.getName();
 			}
-			path += "../";
+			path += "../"; //$NON-NLS-1$
+		}
+		return path;
+	}
+	
+	/**
+	 * Return the type of a behavior, i.e. the type of the first parameter with
+	 * "return" direction
+	 * @param behavior a behavior
+	 * @return the associated type
+	 */
+	public static Parameter returnResult(Behavior behavior) {
+		for (Parameter parameter : behavior.getOwnedParameters()) {
+			if (parameter.getDirection() == ParameterDirectionKind.RETURN_LITERAL) {
+				return parameter;
+			}
 		}
 		return null;
 	}

@@ -1,14 +1,28 @@
 /**
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.C_Cpp.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.papyrus.C_Cpp.C_CppPackage;
 import org.eclipse.papyrus.C_Cpp.Include;
+
 import org.eclipse.uml2.uml.PackageImport;
 
 /**
@@ -38,7 +52,7 @@ public class IncludeImpl extends EObjectImpl implements Include {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String BODY_EDEFAULT = "";
+	protected static final String BODY_EDEFAULT = ""; //$NON-NLS-1$
 
 	/**
 	 * The cached value of the '{@link #getBody() <em>Body</em>}' attribute.
@@ -58,7 +72,7 @@ public class IncludeImpl extends EObjectImpl implements Include {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PRE_BODY_EDEFAULT = "";
+	protected static final String PRE_BODY_EDEFAULT = ""; //$NON-NLS-1$
 
 	/**
 	 * The cached value of the '{@link #getPreBody() <em>Pre Body</em>}' attribute.
@@ -78,7 +92,7 @@ public class IncludeImpl extends EObjectImpl implements Include {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String HEADER_EDEFAULT = "";
+	protected static final String HEADER_EDEFAULT = ""; //$NON-NLS-1$
 
 	/**
 	 * The cached value of the '{@link #getHeader() <em>Header</em>}' attribute.
@@ -158,6 +172,27 @@ public class IncludeImpl extends EObjectImpl implements Include {
 		body = newBody;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.INCLUDE__BODY, oldBody, body));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getPreBody() {
+		return preBody;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPreBody(String newPreBody) {
+		String oldPreBody = preBody;
+		preBody = newPreBody;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.INCLUDE__PRE_BODY, oldPreBody, preBody));
 	}
 
 	/**
@@ -300,27 +335,6 @@ public class IncludeImpl extends EObjectImpl implements Include {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPreBody() {
-		return preBody;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPreBody(String newPreBody) {
-		String oldPreBody = preBody;
-		preBody = newPreBody;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.INCLUDE__PRE_BODY, oldPreBody, preBody));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -437,11 +451,11 @@ public class IncludeImpl extends EObjectImpl implements Include {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (body: ");
+		result.append(" (body: "); //$NON-NLS-1$
 		result.append(body);
-		result.append(", preBody: ");
+		result.append(", preBody: "); //$NON-NLS-1$
 		result.append(preBody);
-		result.append(", header: ");
+		result.append(", header: "); //$NON-NLS-1$
 		result.append(header);
 		result.append(')');
 		return result.toString();

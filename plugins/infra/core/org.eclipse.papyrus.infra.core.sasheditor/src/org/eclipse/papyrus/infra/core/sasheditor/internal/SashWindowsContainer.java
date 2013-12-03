@@ -189,7 +189,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	protected ISashWindowsContentProvider getContentProvider() {
 		// Content provider should have been set.
 		assert (contentProvider != null);
-		// Double check for developement
+		// Double check for development
 		if(contentProvider == null) {
 			throw new IllegalStateException("ContentProvider should be set before calling any method requiring it.");
 		}

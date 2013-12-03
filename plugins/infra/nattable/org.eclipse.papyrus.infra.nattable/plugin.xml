@@ -628,9 +628,9 @@
    </category>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         description="Export Table to XLS"
+         description="Export Table to XLS Command"
          id="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
-         name="Export Table to XLS Command">
+         name="Export to XLS">
    </command>
 
    <command

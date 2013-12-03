@@ -41,7 +41,7 @@ import com.google.common.collect.Lists;
 /**
  * This is the RenameModelAction type. Enjoy.
  */
-public class RenameModelAction extends AsyncTransactionAction<DIModel> {
+public class RenameModelAction extends AsyncEditAction<DIModel> {
 
 	private final IWorkbenchPart part;
 
@@ -135,6 +135,7 @@ public class RenameModelAction extends AsyncTransactionAction<DIModel> {
 
 		return new IInputValidator() {
 
+			@Override
 			public String isValid(String newText) {
 				String result = null;
 				newText = Strings.nullToEmpty(newText).trim();

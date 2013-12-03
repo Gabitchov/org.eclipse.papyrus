@@ -1,31 +1,32 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime;bundle-version="3.8.0",
- org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.profile;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.profile;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
  org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="1.5.0",
- org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.sysml.diagram.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="1.6.0",
  org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="1.4.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.appearance;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.appearance;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.w3c.dom.svg;bundle-version="1.1.0"
 Export-Package: org.eclipse.papyrus.uml.diagram.symbols,
  org.eclipse.papyrus.uml.diagram.symbols.provider
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.symbols.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.symbols;singleton
  :=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

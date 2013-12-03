@@ -13,11 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
@@ -54,6 +57,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.CommentAnnotatedEl
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
@@ -95,6 +99,13 @@ public class CustomInteractionOperandItemSemanticEditPolicy extends InteractionO
 	 */
 	@Override
 	public Command getCommand(Request request) {
+		if(request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
+			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
+			if(connectionEditPart instanceof ContextLinkEditPart) {
+				return super.getCommand(request);
+			}
+		}
 		if(request instanceof ReconnectRequest) {
 			EditPart combinedFragment = getHost().getParent().getParent();
 			((ReconnectRequest)request).setTargetEditPart(combinedFragment);

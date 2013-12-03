@@ -13,12 +13,25 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 
 
 public abstract class PapyrusCompartmentEditPart extends CompartmentEditPart {
 
 	public PapyrusCompartmentEditPart(EObject model) {
 		super(model);
+	}
+
+	@Override
+	public boolean isSelectable() {
+		return false;
+	}
+
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
+
 	}
 
 }

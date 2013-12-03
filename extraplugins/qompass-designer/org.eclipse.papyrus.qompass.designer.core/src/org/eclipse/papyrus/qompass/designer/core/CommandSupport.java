@@ -19,9 +19,11 @@ import java.util.Collections;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -48,7 +50,7 @@ public class CommandSupport {
 		try {
 			exec(serviceUtils.getTransactionalEditingDomain(event), label, command);
 		} catch (ServiceException e) {
-			Log.log(Status.ERROR, Log.UTILS, "Can not get editing domain", e);
+			Log.log(Status.ERROR, Log.UTILS, Messages.CommandSupport_NoEditingDomain, e);
 		}
 	}
 
@@ -71,9 +73,9 @@ public class CommandSupport {
 				}
 			}, null, null);
 		} catch (ExecutionException e) {
-			Log.log(Status.ERROR, Log.UTILS, "error during command execution", e);
+			Log.log(Status.ERROR, Log.UTILS, Messages.CommandSupport_ErrorDuringCmdExec, e);
 		} catch (ServiceException e) {
-			Log.log(Status.ERROR, Log.UTILS, "Can not get editing domain", e);
+			Log.log(Status.ERROR, Log.UTILS, Messages.CommandSupport_NoEditingDomain, e);
 		}
 	}
 
@@ -98,9 +100,17 @@ public class CommandSupport {
 					}
 				}, null, null);
 			} catch (ExecutionException e) {
-				e.printStackTrace();
+				Activator.log.error(e);
 			}
 		}
 	}
 
+	public static void exec(IUndoableOperation command) {
+		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
+		try {
+			history.execute(command, new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			Activator.log.error(e);
+		}
+	}
 }

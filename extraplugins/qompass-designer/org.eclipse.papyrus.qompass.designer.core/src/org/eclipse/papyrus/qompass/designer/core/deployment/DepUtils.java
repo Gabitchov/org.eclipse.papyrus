@@ -8,18 +8,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.FCM.CodeGenOptions;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.FCM.ImplementationGroup;
 import org.eclipse.papyrus.FCM.ImplementationProperties;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.FCM.Target;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Class;
@@ -29,7 +25,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
@@ -113,7 +108,7 @@ public class DepUtils {
 	 */
 	public static InstanceSpecification getNamedSubInstance(InstanceSpecification owningInstance, String name) {
 		Element cdp = owningInstance.getOwner();
-		String candidateName = owningInstance.getName() + "." + name;
+		String candidateName = owningInstance.getName() + "." + name; //$NON-NLS-1$
 		if(cdp instanceof Package) {
 			for(PackageableElement instance : ((Package)cdp).getPackagedElements()) {
 				if(instance instanceof InstanceSpecification) {
@@ -135,8 +130,13 @@ public class DepUtils {
 	 * (1) is already an implementation, simply return it
 	 * (2) is an implementation group, choose the first implementation that fits the requirements
 	 * (3) is a type: choose the first implementation among the heirs that fits the requirements
+	 * 
+	 * @param componentType a component type or implementation (class, optionally abstract)
+	 * @param nodes a set of instance specification representing nodes on which this component will be allocated
+	 * @param interactive boolean indicating whether the choice should be done interactively
+	 * @return a suitable implementation
 	 */
-	public static Class chooseImplementation(Class componentType, EList<InstanceSpecification> nodes, boolean interactive) {
+	public static Class chooseImplementation(Class componentType, EList<InstanceSpecification> nodes, ImplementationChooser chooser) {
 		// choose implementation automatically: get the first one that implements the passed type
 		// get reference to component model, then search all classes contained in it.
 		// TODO: assumption that implementations are in same package as type;
@@ -179,28 +179,10 @@ public class DepUtils {
 			return null;
 		} else if(implList.size() == 1) {
 			return implList.get(0);
-		} else if(interactive) {
-			// SelectionDialog = SelectionDialog.
-			ILabelProvider ilabel = new LabelProvider() {
-
-				public String getText(Object element) {
-					return ((NamedElement)element).getQualifiedName();
-				}
-			};
-			ElementListSelectionDialog dialog =
-				new ElementListSelectionDialog(new Shell(), ilabel);
-
-			dialog.setTitle("Multiple implementations found");
-			dialog.setMessage("Select an implementation for component type " + componentType.getName());
-
-			dialog.setElements(implList.toArray());
-
-			dialog.open();
-			Object[] selection = dialog.getResult();
-			if(selection.length == 1) {
-				if(selection[0] instanceof Class) {
-					return (Class)selection[0];
-				}
+		} else if(chooser != null) {
+			Class impl = chooser.chooseImplementation(componentType, implList);
+			if (impl != null) {
+				return impl;
 			}
 		} else if(implList.size() > 0) {
 			return implList.get(0);
@@ -463,16 +445,16 @@ public class DepUtils {
 	 * Determine which programming language should be generated for a classifier. The
 	 * stereotype CodeGenOptions (which could be on any owning package) is evaluated.
 	 *
-	 * @param cl a classifier
+	 * @param pkg a classifier
 	 * @return the programming language
 	 */
-	public static String getLanguageFromClassifier(Classifier cl) {
-		CodeGenOptions codeGenOpt = UMLUtil.getStereotypeApplication(cl, CodeGenOptions.class);
+	public static String getLanguageFromPackage(Package pkg) {
+		CodeGenOptions codeGenOpt = UMLUtil.getStereotypeApplication(pkg, CodeGenOptions.class);
 		if ((codeGenOpt != null) && (codeGenOpt.getProgLanguage() != null)) {
 			return codeGenOpt.getProgLanguage().getBase_Class().getName();
 		}
-		else if (cl.getOwner() instanceof Classifier) {
-			return getLanguageFromClassifier((Classifier) cl.getOwner());
+		else if (pkg.getOwner() instanceof Package) {
+			return getLanguageFromPackage((Package) pkg.getOwner());
 		}
 		else {
 			return null;

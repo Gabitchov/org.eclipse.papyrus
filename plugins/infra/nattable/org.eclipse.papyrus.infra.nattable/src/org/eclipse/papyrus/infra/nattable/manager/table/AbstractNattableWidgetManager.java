@@ -61,7 +61,6 @@ import org.eclipse.papyrus.infra.nattable.dataprovider.AbstractDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.RowHeaderDataProvider;
-import org.eclipse.papyrus.infra.nattable.formatter.PapyrusExportFormatter;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
@@ -70,6 +69,7 @@ import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.provider.PapyrusNatTableToolTipProvider;
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
 import org.eclipse.papyrus.infra.nattable.sort.ColumnSortModel;
 import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
@@ -210,7 +210,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			site.registerContextMenu(menuMgr, this.selectionProvider);
 			site.setSelectionProvider(this.selectionProvider);
 		}
-
+		new PapyrusNatTableToolTipProvider(this.natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
 		return this.natTable;
 	}
 
@@ -221,8 +221,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			//commented because seems generate several bugs with edition
 			//newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL,  GridRegion.BODY);
-			configRegistry.registerConfigAttribute(CellConfigAttributes.EXPORT_FORMATTER, new PapyrusExportFormatter());
-
 			this.natTable.setConfigRegistry(configRegistry);
 			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 			this.natTable.configure();

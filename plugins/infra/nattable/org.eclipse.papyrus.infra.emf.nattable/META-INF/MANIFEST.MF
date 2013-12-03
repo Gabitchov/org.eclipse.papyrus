@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.eclipse.nebula.widgets.nattable.core;bundle-version="1.0.0",
  org.eclipse.emf.ecore;bundle-version="2.9.0",
- org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.nattable;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
  org.eclipse.emf.edit,
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.tools;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.tools;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.infra.emf.nattable,
  org.eclipse.papyrus.infra.emf.nattable.celleditor.config,
  org.eclipse.papyrus.infra.emf.nattable.manager.axis,
@@ -24,7 +24,7 @@ Export-Package: org.eclipse.papyrus.infra.emf.nattable,
  org.eclipse.papyrus.infra.emf.nattable.validator
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: EMF Nattable (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.nattable.Activator

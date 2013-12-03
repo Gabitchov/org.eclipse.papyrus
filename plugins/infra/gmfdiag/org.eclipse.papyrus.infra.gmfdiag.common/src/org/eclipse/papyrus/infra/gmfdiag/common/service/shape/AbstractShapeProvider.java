@@ -13,9 +13,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.service.shape;
 
+import java.io.IOException;
+import java.io.StringWriter;
+
+import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
+import org.apache.batik.dom.util.DOMUtilities;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
+import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.svg.SVGDocument;
 
 /**
  * Abstract implementation of the shape provider interface.
@@ -67,6 +77,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -84,6 +95,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	/**
 	 * @{inheritDoc
 	 */
+	@Override
 	public boolean provides(IOperation operation) {
 		return (operation instanceof GetAllShapeProvidersOperation || operation instanceof GetShapeProviderByIdentifierOperation);
 	}
@@ -91,11 +103,61 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void setConfiguration(IConfigurationElement element) {
 		name = element.getAttribute(NAME);
 		id = element.getAttribute(ID);
 		description = element.getAttribute(DESCRIPTION);
 		bundleId = element.getContributor().getName();
 	}
-	
+
+	/**
+	 * 
+	 * @param location
+	 * @return the Document SVG from its location, can return null if this is not a svg
+	 */
+	protected SVGDocument getSVGDocument(String location) {
+		int extensionIndex = location.lastIndexOf('.');
+		if(extensionIndex == 0) {
+			return null;
+		}
+		String fileExtension = location.substring(extensionIndex);
+		if(!fileExtension.equalsIgnoreCase(".svg")) {
+			return null;
+		}
+
+		String parser = org.apache.batik.util.XMLResourceDescriptor.getXMLParserClassName();
+
+		try {
+			SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
+
+			Document doc = f.createDocument(location);
+			SVGDocument svgDocument = (SVGDocument)doc;
+			return svgDocument;
+
+		} catch (Exception e) {
+			org.eclipse.papyrus.infra.core.Activator.log.error(e);
+		}
+		return null;
+	}
+
+	protected RenderedImage renderSVGDocument(EObject view, SVGDocument document) throws IOException {
+		postProcess(view, document);
+		String svgAsText = toString(document);
+		byte[] buffer = svgAsText.getBytes();
+
+		return RenderedImageFactory.getInstance(buffer);
+	}
+
+	protected void postProcess(EObject view, SVGDocument document) {
+		SVGPostProcessor.instance.postProcess(view, document);
+	}
+
+	protected String toString(SVGDocument domDocument) throws IOException {
+		StringWriter writer = new StringWriter();
+
+		DOMUtilities.writeDocument(domDocument, writer);
+
+		return writer.toString();
+	}
 }

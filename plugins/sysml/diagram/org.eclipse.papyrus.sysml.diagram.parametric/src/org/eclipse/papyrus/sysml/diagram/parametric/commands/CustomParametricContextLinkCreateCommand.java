@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.commands;
 
 import java.util.Collection;
@@ -11,12 +24,9 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Connector;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CustomContextLinkCreateCommand;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Constraint;
@@ -31,17 +41,29 @@ public class CustomParametricContextLinkCreateCommand extends
 		super(request, source, target);
 	}
 
+	/**
+	 * Can execute if :
+	 * - source is Constraint
+	 * - target is a Namespace or a Namespace typed property
+	 * - there is no context link already outgoing from the source Constraint
+	 */
 	@Override
 	public boolean canExecute() {
 		if(source == null && target == null) {
 			return false;
 		}
-		if(source != null && (false == source instanceof Constraint)) {
+		if(source != null && !(source instanceof Constraint)) {
 			return false;
 		}
 		if(target != null && !(target instanceof Namespace)) {
-			if (target instanceof Property && !(((Property) target).getType() instanceof Namespace)) {
-				// Part / Reference / ConstraintProperty
+			if (target instanceof Property) {
+				if (!(((Property) target).getType() instanceof Namespace)) {
+					// not a Part / Reference / ConstraintProperty => could not create context link
+					return false;
+				}
+			}
+			else {
+				// not a Property, not a Namespace => could not create context link
 				return false;
 			}
 		}
@@ -50,32 +72,19 @@ public class CustomParametricContextLinkCreateCommand extends
 		}
 		View viewSource = findView(source);
 		
+		// Only one context link per Constraint
 		if(viewSource != null && source instanceof Constraint) {
-			View viewTarget = findView(target);
 			List<?> sourceConnections = ViewUtil.getSourceConnections(viewSource);
-			
-			for(Object connector : sourceConnections) {
-				if(!(connector instanceof Connector)) {
-					continue;
-				}
-				Edge edge = (Edge)connector;
-
-				if(("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
-					if(viewTarget == edge.getTarget()) {
-						// the context link is already
-						//  drawn between the Constraint and the NamedElement
-						return false;
-					}
-				}
+			if (!sourceConnections.isEmpty()) {
+				return false;
 			}
-		}
-				
-		if(resolveTargetNamespace() != null && (resolveTargetNamespace().getOwnedRules().contains(resolveTargetNamespace()))) {
-			return false;
-		}
+		}		
 		return true;
 	}
 	
+	/**
+	 * Set the Constraint context and update Constraint name with new owner ownedRules if necessary
+	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
@@ -84,7 +93,7 @@ public class CustomParametricContextLinkCreateCommand extends
 		Namespace context = resolveTargetNamespace();
 		if(getSource() != null && context != null) {
 			getSource().setContext(context);
-			String defaultNameWithIncrementFromBase = NamedElementHelper.getDefaultNameWithIncrementFromBase(Constraint.class.getSimpleName(), context.getOwnedRules());
+			String defaultNameWithIncrementFromBase = NamedElementHelper.getDefaultNameWithIncrementFromBase(Constraint.class.getSimpleName(), context.getOwnedRules(), getSource());
 			getSource().setName(defaultNameWithIncrementFromBase);
 			return CommandResult.newOKCommandResult();
 		}		
@@ -110,8 +119,9 @@ public class CustomParametricContextLinkCreateCommand extends
 	}
 	
 	/**
-	 * @generated
+	 * Get the property Namespace in case of property typed by a Namespace
 	 */
+	@Override
 	protected Namespace resolveTargetNamespace() {
 		EObject targetNamespace;
 		if (target instanceof Property) {

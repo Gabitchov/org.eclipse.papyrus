@@ -16,6 +16,7 @@ import org.eclipse.papyrus.FCM.RuleApplication;
 import org.eclipse.papyrus.qompass.designer.core.CORBAtypeNames;
 import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
@@ -107,13 +108,13 @@ public class DepCreation {
 				|| qname.equals(CORBAtypeNames.UnsignedLong)
 				|| qname.equals(CORBAtypeNames.Short)
 				|| qname.equals(CORBAtypeNames.UnsignedShort)) {
-				slot.createValue(valueFor + attribute.getName(), type, //$NON-NLS-1$
+				slot.createValue(valueFor + attribute.getName(), type,
 					UMLPackage.eINSTANCE.getLiteralInteger());
-			} else if(name.equals("Boolean")) {
-				slot.createValue(valueFor + attribute.getName(), type, //$NON-NLS-1$
+			} else if(name.equals("Boolean")) { //$NON-NLS-1$
+				slot.createValue(valueFor + attribute.getName(), type,
 					UMLPackage.eINSTANCE.getLiteralBoolean());
 			} else {
-				slot.createValue(valueFor + attribute.getName(), type, //$NON-NLS-1$
+				slot.createValue(valueFor + attribute.getName(), type,
 					UMLPackage.eINSTANCE.getLiteralString());
 			}
 		}
@@ -177,17 +178,16 @@ public class DepCreation {
 				path += cl.getName();
 			}
 			path += ", " + typeOrImplem.getName(); //$NON-NLS-1$
-			throw new TransformationException("Class \"" + typeOrImplem.getQualifiedName() +
-				"\" is referenced in a circle! Thus, an infinite number of instance specifications would be required.\n\n" +
-				"recursion path: " + path);
+			throw new TransformationException(String.format(
+				Messages.DepCreation_CircularReference,
+				typeOrImplem.getQualifiedName(), path));
 		}
 		visitedClassifiers.push(typeOrImplem);
 
 		InstanceSpecification is = (InstanceSpecification)
 			cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
 
-		// TODO: hack, could be named differently.
-		if(name.equals("mainInstance")) { //$NON-NLS-1$
+		if(name.equals(DeployConstants.MAIN_INSTANCE)) {
 			DepUtils.setMainInstance(cdp, is);
 		}
 
@@ -205,13 +205,13 @@ public class DepCreation {
 			// implementation)
 			// TODO: don't know node yet => implementation choice is more
 			// general than necessary
-			implementation = DepUtils.chooseImplementation(typeOrImplem, null, true);
+			implementation = DepUtils.chooseImplementation(typeOrImplem, null, null);
 		}
 
 		if(!(implementation instanceof Class)) {
-			throw new TransformationException(
-				"cannot find suitable implementation for instance <" + name //$NON-NLS-1$
-					+ "> (given type <" + typeOrImplem.getName() + ">)"); //$NON-NLS-1$
+			throw new TransformationException(String.format(
+				Messages.DepCreation_CannotFindImplementation,
+				name, typeOrImplem.getName()));
 		}
 		// else implementation is instance of Class (and not null)
 
@@ -227,12 +227,12 @@ public class DepCreation {
 		for(Connector connector : implementation.getOwnedConnectors()) {
 			org.eclipse.papyrus.FCM.Connector fcmConn = UMLUtil.getStereotypeApplication(connector, org.eclipse.papyrus.FCM.Connector.class);
 			if(fcmConn != null) {
-				String partName = name + "." + connector.getName();
+				String partName = name + "." + connector.getName(); //$NON-NLS-1$
 				InteractionComponent connectorComp = fcmConn.getIc();
 				if(connectorComp != null) {
 					Class cl = fcmConn.getIc().getBase_Class();
 					if(cl == null) {
-						throw new TransformationException("An FCM connector has no base class. Check for broken model library");
+						throw new TransformationException(Messages.DepCreation_FCMconnectorWithoutBaseClass);
 					}
 					// create sub-instance for connector. It is not possible to
 					// create a slot in the owning instance specification,
@@ -282,12 +282,12 @@ public class DepCreation {
 				// no composition - only create slot, if a singleton
 				// (otherwise, it's not clear with which instance the slot
 				// should be associated)
-				Log.log(Status.INFO, Log.DEPLOYMENT,
-					"DepCreation.createDepPlan: " + type.getQualifiedName());
+				Log.log(Status.INFO, Log.DEPLOYMENT, String.format(
+					Messages.DepCreation_InfoCreateDepPlan, type.getQualifiedName()));
 				if(Utils.isSingleton((Class)type)) {
 					// is a singleton - exactly one instance exists
 					// use a common instance prefix for singletons
-					String partName = "singleton_" + attribute.getName();
+					String partName = DeployConstants.singletonPrefix + attribute.getName();
 					PackageableElement pe = cdp.getPackagedElement(partName);
 
 					if(pe instanceof InstanceSpecification) {
@@ -308,9 +308,8 @@ public class DepCreation {
 					}
 				}
 			} else if(type == null) {
-				throw new TransformationException("type of attribute \""
-					+ attribute.getName() + "\" within class \""
-					+ implementation.getName() + "\" is not defined");
+				throw new TransformationException(String.format(Messages.DepCreation_TypeInAttributeUndefined,
+						attribute.getName(), implementation.getName()));
 			}
 		}
 		visitedClassifiers.pop();
@@ -333,7 +332,7 @@ public class DepCreation {
 				&& (type instanceof Class)) {
 				Class aggregateOrInterceptor = DepUtils.chooseImplementation(
 					(Class)type, new BasicEList<InstanceSpecification>(),
-					false);
+					null);
 				// is a configuration property, create slot
 				if(first) {
 					// add contExtImpl to list of classifiers that the instance
@@ -347,7 +346,7 @@ public class DepCreation {
 				//   vs. interceptor specific configuration?
 				// - two different interceptors may not share the same type with
 				//   a configuration attribute
-				Slot slot = createSlotForConfigProp(is, attribute);
+				createSlotForConfigProp(is, attribute);
 			}
 		}
 	}
@@ -400,14 +399,14 @@ public class DepCreation {
 					// hack: ad-hoc replication support. Better solution via
 					// Design patterns
 					int upper = attribute.getUpper();
-					String infix = "";
+					String infix = ""; //$NON-NLS-1$
 					// TODO: check validation constraints
 					for(int i = 0; i < upper; i++) {
 						// prefix with name, unless null
-						String partName = (name != null) ? name + "." : "";
+						String partName = (name != null) ? name + DeployConstants.SEP_CHAR : ""; //$NON-NLS-1$
 						partName += attribute.getName();
 						if(upper > 1) {
-							partName += "_" + infix + i;
+							partName += "_" + infix + i; //$NON-NLS-1$
 						}
 						InstanceSpecification partIS = createPlatformInstances(
 							platform, cl, partName);
@@ -452,7 +451,8 @@ public class DepCreation {
 		for(Slot slot : is.getSlots()) {
 			StructuralFeature sf = slot.getDefiningFeature();
 			if (sf == null) {
-				throw new RuntimeException ("The defining feature of a slot of instance " + slot.getOwningInstance().getName() + " is null");
+				throw new RuntimeException (String.format(Messages.DepCreation_DefiningFeatureNull,
+						slot.getOwningInstance().getName()));
 			}
 			if(StereotypeUtil.isApplied(sf, AutoIndex.class)) {
 				Integer value = null;
@@ -473,7 +473,7 @@ public class DepCreation {
 				// create slot and value specification (literal-integer) for the
 				// auto index
 				LiteralInteger li = (LiteralInteger)slot.createValue(
-					sf.getName() + "_auto", sf.getType(),
+					sf.getName() + DeployConstants.AUTO_POSTFIX, sf.getType(),
 					UMLPackage.eINSTANCE.getLiteralInteger());
 				li.setValue(value);
 

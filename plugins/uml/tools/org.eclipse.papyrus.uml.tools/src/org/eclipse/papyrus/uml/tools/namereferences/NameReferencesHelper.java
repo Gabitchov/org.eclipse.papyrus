@@ -135,6 +135,8 @@ public class NameReferencesHelper extends TextReferencesHelper {
 
 	public void dispose() {
 		this.listener.dispose();
+		this.resourceSet = null;
+		this.baseResource = null;
 	}
 
 	private class ChangeDispatcher extends AdapterImpl {

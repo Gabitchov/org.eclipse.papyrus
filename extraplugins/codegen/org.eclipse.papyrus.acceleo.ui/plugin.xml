@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<extension
+         point="org.eclipse.ui.menus">
+	<menuContribution
+		allPopups="true"
+		locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+		<menu
+			icon="icons/codegen-16x16.gif"
+			id="org.eclipse.papyrus.views.modelexplorer.popup.codegen"
+			label="Code generation">
+		</menu>
+	</menuContribution>
+	<menuContribution
+		allPopups="true"
+		locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
+		<menu
+			icon="icons/codegen-16x16.gif"
+			id="org.eclipse.papyrus.views.modelexplorer.popup.codegen"
+			label="Code generation">
+		</menu>
+	</menuContribution>
+</extension>
+</plugin>

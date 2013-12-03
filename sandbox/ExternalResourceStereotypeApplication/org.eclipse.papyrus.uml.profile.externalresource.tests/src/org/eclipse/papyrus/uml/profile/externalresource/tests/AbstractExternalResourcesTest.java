@@ -15,24 +15,27 @@ package org.eclipse.papyrus.uml.profile.externalresource.tests;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -43,16 +46,17 @@ import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
+import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.uml.profile.externalresource.helper.ExternalResourceProfileUtils;
 import org.eclipse.papyrus.uml.profile.externalresource.helper.OneResourceOnlyStrategy;
-import org.eclipse.papyrus.uml.profile.externalresource.helper.PapyrusStereotypeApplicationHelper;
-import org.eclipse.papyrus.uml.profile.externalresource.helper.StrategyRegistry;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.ResourcePerProfileStrategy;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.StandardApplicationLocationStrategy;
+import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
@@ -62,6 +66,8 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.After;
 import org.junit.Assert;
@@ -100,28 +106,77 @@ public abstract class AbstractExternalResourcesTest {
 
 	public static final String MODEL_CLASS2 = "Class2";
 
+	public static final String MODEL_CLASS3 = "Class3";
+
+	public static final String MODEL_PACKAGE1 = "Package1";
+
+	public static final String MODEL_PACKAGE1_CLASS1 = "Package1_Class1";
+
 	public static final String ELEMENT_STEREOTYPE_NAME = "ElementStereotype";
 
 	public static final String ELEMENT_STEREOTYPE_QN = EXTERNAL_RESOURCES_TEST_PROFILE_SUB_PROFILE + NamedElement.SEPARATOR + ELEMENT_STEREOTYPE_NAME;
-	
+
 	public static final String ONE_PROFILE_MODEL_FILENAME = "oneProfileApplied";
 
-	public final static String DI_FILE =  ONE_PROFILE_MODEL_FILENAME+"."+DiModel.DI_FILE_EXTENSION;
+	public final static String DI_FILE = ONE_PROFILE_MODEL_FILENAME + "." + DiModel.DI_FILE_EXTENSION;
+
+	public final static String UML_FILE = ONE_PROFILE_MODEL_FILENAME + "." + UmlModel.UML_FILE_EXTENSION;
+
+	public final static String NOTATION_FILE = ONE_PROFILE_MODEL_FILENAME + "." + NotationModel.NOTATION_FILE_EXTENSION;
+
+	public static final String PACKAGE1_MODEL_FILENAME = "Package1";
+
+	public final static String PACKAGE1_MODEL_DI_FILE = PACKAGE1_MODEL_FILENAME + "." + DiModel.DI_FILE_EXTENSION;
+
+	public final static String PACKAGE1_MODEL_UML_FILE = PACKAGE1_MODEL_FILENAME + "." + UmlModel.UML_FILE_EXTENSION;
+
+	public final static String PACKAGE1_MODEL_NOTATION_FILE = PACKAGE1_MODEL_FILENAME + "." + NotationModel.NOTATION_FILE_EXTENSION;
+
+	public static final String CLASS3_MODEL_FILENAME = "Class3";
+
+	public final static String CLASS3_MODEL_DI_FILE = CLASS3_MODEL_FILENAME + "." + DiModel.DI_FILE_EXTENSION;
+
+	public final static String CLASS3_MODEL_UML_FILE = CLASS3_MODEL_FILENAME + "." + UmlModel.UML_FILE_EXTENSION;
+
+	public final static String CLASS3_MODEL_NOTATION_FILE = CLASS3_MODEL_FILENAME + "." + NotationModel.NOTATION_FILE_EXTENSION;
+
+	public final static String ALL_PROFILES_FILE = ONE_PROFILE_MODEL_FILENAME + "." + OneResourceOnlyStrategy.PROFILE_DEFAULT_EXTENSION;
+
+	public final static String EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE = ONE_PROFILE_MODEL_FILENAME + "." + EXTERNAL_RESOURCES_TEST_PROFILE + "Profile";
 	
-	public final static String UML_FILE =  ONE_PROFILE_MODEL_FILENAME+"."+UmlModel.UML_FILE_EXTENSION;
+	public final static String PACKAGE1_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE = PACKAGE1_MODEL_FILENAME + "." + EXTERNAL_RESOURCES_TEST_PROFILE + "Profile";
 	
-	public final static String NOTATION_FILE =  ONE_PROFILE_MODEL_FILENAME+"."+NotationModel.NOTATION_FILE_EXTENSION;
+	public final static String CLASS3_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE = CLASS3_MODEL_FILENAME + "." + EXTERNAL_RESOURCES_TEST_PROFILE + "Profile";
+
+	public final static String PACKAGE1_ALL_PROFILES_FILE = PACKAGE1_MODEL_FILENAME + "." + OneResourceOnlyStrategy.PROFILE_DEFAULT_EXTENSION;
 	
-	public final static String ALL_PROFILES_FILE = ONE_PROFILE_MODEL_FILENAME+"."+OneResourceOnlyStrategy.PROFILE_DEFAULT_EXTENSION;
-	
-	public final static String EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE = ONE_PROFILE_MODEL_FILENAME+"."+EXTERNAL_RESOURCES_TEST_PROFILE+"Profile";
+	public final static String CLASS3_ALL_PROFILES_FILE = CLASS3_MODEL_FILENAME + "." + OneResourceOnlyStrategy.PROFILE_DEFAULT_EXTENSION;
 	
 	public static final String STANDARD_STRATEGY_FOLDER = "StandardResource";
-	
+
 	public static final String ONE_RESOURCE_FOR_ALL_PROFILES_FOLDER = "OneResourceForAllProfiles";
-	
+
 	public static final String ONE_RESOURCE_PER_PROFILE_FOLDER = "OneResourcePerProfile";
 	
+	public static final List<String> STANDARD_STRATEGY_FILE_NAMES = Arrays.asList(DI_FILE, UML_FILE, NOTATION_FILE,  
+		/* Class3.di */ CLASS3_MODEL_DI_FILE,  CLASS3_MODEL_NOTATION_FILE,  CLASS3_MODEL_UML_FILE, 
+		/* Package1_Class1.di */PACKAGE1_MODEL_DI_FILE, PACKAGE1_MODEL_NOTATION_FILE, PACKAGE1_MODEL_UML_FILE); 
+	
+	public static final List<String> ONE_RESOURCE_PER_PROFILE_FILE_NAMES = Arrays.asList(DI_FILE, NOTATION_FILE, UML_FILE, EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE, 
+		/* PACKAGE1*/ PACKAGE1_MODEL_DI_FILE, PACKAGE1_MODEL_NOTATION_FILE, PACKAGE1_MODEL_UML_FILE, PACKAGE1_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE,
+		/* CLASS3*/ CLASS3_MODEL_DI_FILE, CLASS3_MODEL_NOTATION_FILE, CLASS3_MODEL_UML_FILE, CLASS3_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE
+	);
+	
+	public static final List<String> ONE_RESOURCE_FOR_ALL_PROFILES_FILE_NAMES = Arrays.asList(DI_FILE, NOTATION_FILE, UML_FILE, ALL_PROFILES_FILE, 
+		/* PACKAGE1*/ PACKAGE1_MODEL_DI_FILE, PACKAGE1_MODEL_NOTATION_FILE, PACKAGE1_MODEL_UML_FILE, PACKAGE1_ALL_PROFILES_FILE,
+		/* CLASS3*/ CLASS3_MODEL_DI_FILE, CLASS3_MODEL_NOTATION_FILE, CLASS3_MODEL_UML_FILE, CLASS3_ALL_PROFILES_FILE
+	);
+	
+	public static final Map<String, List<String>> STRATEGY_FILE_NAMES_MAPPING = new HashMap<String, List<String>>(); {
+		STRATEGY_FILE_NAMES_MAPPING.put(OneResourceOnlyStrategy.ID, ONE_RESOURCE_FOR_ALL_PROFILES_FILE_NAMES);
+		STRATEGY_FILE_NAMES_MAPPING.put(ResourcePerProfileStrategy.ID, ONE_RESOURCE_PER_PROFILE_FILE_NAMES);
+		STRATEGY_FILE_NAMES_MAPPING.put(StandardApplicationLocationStrategy.ID, STANDARD_STRATEGY_FILE_NAMES);
+	}
 	
 	@Before
 	public void initializeRegistry() {
@@ -129,6 +184,11 @@ public abstract class AbstractExternalResourcesTest {
 		IProject project = null;
 		try {
 			project = ProjectUtils.createProject(getTestProjectName());
+			IFolder folder = project.getFolder("result");
+			if(folder.exists()) {
+				folder.delete(true, new NullProgressMonitor());
+			}
+			folder.create(true, true, new NullProgressMonitor());
 		} catch (CoreException e1) {
 			fail(e1.getMessage());
 		}
@@ -137,14 +197,13 @@ public abstract class AbstractExternalResourcesTest {
 		// retrieve the content of the source folder, and copy it into the destination folder
 		for(String fileName : getModelFileNames()) {
 			try {
-				PapyrusProjectUtils.copyIFile("resources/"+getTestProjectName()+"/"+fileName, Platform.getBundle(Activator.PLUGIN_ID), project, fileName);
+				PapyrusProjectUtils.copyIFile("resources/" + getTestProjectName() + "/" + fileName, Platform.getBundle(Activator.PLUGIN_ID), project, fileName);
 			} catch (CoreException e) {
 				fail(e.getMessage());
 			} catch (IOException e) {
 				fail(e.getMessage());
 			}
-		}		
-		
+		}
 		servicesRegistry = getServicesRegistry();
 		modelSet = getModelSet(getURI());
 		Assert.assertNotNull("Model set should not be null", modelSet);
@@ -154,11 +213,12 @@ public abstract class AbstractExternalResourcesTest {
 	 * {@inheritDoc}
 	 */
 	public URI getURI() {
-		return URI.createPlatformResourceURI(getTestProjectName()+"/"+getModelFileNames().get(0), true);
+		return URI.createPlatformResourceURI(getTestProjectName() + "/" + getModelFileNames().get(0), true);
 	}
-	
+
 	/**
 	 * Warning: main Model.di file must be put first!!!
+	 * 
 	 * @return
 	 */
 	protected abstract List<String> getModelFileNames();
@@ -184,7 +244,7 @@ public abstract class AbstractExternalResourcesTest {
 			}
 		}
 	}
-	
+
 	@Test
 	public void testLoadModelOutsidePapyrusEditor() {
 		UmlModel umlModel = null;
@@ -199,7 +259,101 @@ public abstract class AbstractExternalResourcesTest {
 		// test applied profiles
 		checkModel(rootModel);
 	}
+
+	@Test
+	public void testApplyStereotypeOnClassInControlledResource() {
+		UmlModel umlModel = null;
+		// get The model. try to see applied stereotypes
+		try {
+			umlModel = (UmlModel)getModelSet(getURI()).getModelChecked(UmlModel.MODEL_ID);
+		} catch (NotFoundException e) {
+			fail(e.getMessage());
+		}
+		Model rootModel = (Model)umlModel.getResource().getContents().get(0);
+		Assert.assertNotNull("Root model impossible to find", rootModel);
+		// test applied profiles
+		
+		
+		// apply stereotype on Model::Class3. Do not check eveythong, as loading tests should already have fixed that
+		Class class3_ = (Class)rootModel.getPackagedElement(MODEL_CLASS3, true, UMLPackage.eINSTANCE.getClass_(), false);
+		if(class3_ ==null) {
+			return; // should send an ignore or a warning
+		}
+		
+		// try to apply a stereotype and checks where it is located
+		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(class3_);
+		Stereotype stereotype = class3_.getApplicableStereotype(ELEMENT_STEREOTYPE_QN);
+		Assert.assertNotNull("Stereotype to apply should not be null", stereotype);
+		ApplyStereotypeCommand command = new ApplyStereotypeCommand(class3_, stereotype, editingDomain);
+		Assert.assertNotNull("Command should not be null", command);
+		Assert.assertTrue("Command should be executable", command.canExecute());
+		
+		// execute command
+		try {
+			OperationHistoryFactory.getOperationHistory().execute(new EMFCommandOperation(editingDomain, command), new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			fail(e.getMessage());
+		}
+		
+		// check stereotype has been applied 
+		EObject stereotypeApplication = class3_.getStereotypeApplication(stereotype);
+		Assert.assertNotNull("Stereotype "+ ELEMENT_STEREOTYPE_QN+" is not applied on "+MODEL_CLASS3, stereotypeApplication);
+		Assert.assertEquals("Stereotype is not located in good resource", getApplyStereotypeOnClassInControlledResourceURI(), stereotypeApplication.eResource().getURI());
+	}
 	
+	
+	@Test
+	public void testApplyStereotypeOnClassInControlledPackage() {
+		UmlModel umlModel = null;
+		// get The model. try to see applied stereotypes
+		try {
+			umlModel = (UmlModel)getModelSet(getURI()).getModelChecked(UmlModel.MODEL_ID);
+		} catch (NotFoundException e) {
+			fail(e.getMessage());
+		}
+		Model rootModel = (Model)umlModel.getResource().getContents().get(0);
+		Assert.assertNotNull("Root model impossible to find", rootModel);
+		// test applied profiles
+		
+		
+		// apply stereotype on Model::Class3. Do not check eveythong, as loading tests should already have fixed that
+		Package package1 = (Package)rootModel.getNestedPackage(MODEL_PACKAGE1, true, UMLPackage.eINSTANCE.getPackage(), false);
+		Assert.assertNotNull("Impossible to find "+MODEL_PACKAGE1, package1);
+		
+		Class package1_class1 = (Class)package1.getPackagedElement(MODEL_PACKAGE1_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
+		Assert.assertNotNull("Impossible to find "+MODEL_PACKAGE1_CLASS1, package1_class1);
+		
+		// try to apply a stereotype and checks where it is located
+		TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(package1_class1);
+		Stereotype stereotype = package1_class1.getApplicableStereotype(ELEMENT_STEREOTYPE_QN);
+		Assert.assertNotNull("Stereotype to apply should not be null", stereotype);
+		ApplyStereotypeCommand command = new ApplyStereotypeCommand(package1_class1, stereotype, editingDomain);
+		Assert.assertNotNull("Command should not be null", command);
+		Assert.assertTrue("Command should be executable", command.canExecute());
+		
+		// execute command
+		try {
+			OperationHistoryFactory.getOperationHistory().execute(new EMFCommandOperation(editingDomain, command), new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			fail(e.getMessage());
+		}
+		
+		// check stereotype has been applied 
+		EObject stereotypeApplication = package1_class1.getStereotypeApplication(stereotype);
+		Assert.assertNotNull("Stereotype "+ ELEMENT_STEREOTYPE_QN+" is not applied on "+MODEL_PACKAGE1_CLASS1, stereotypeApplication);
+		Assert.assertEquals("Stereotype is not located in good resource", getApplyStereotypeOnClassInControlledPackageResourceURI(), stereotypeApplication.eResource().getURI());
+	}
+	
+	/**
+	 * @return
+	 */
+	protected abstract URI getApplyStereotypeOnClassInControlledPackageResourceURI();
+
+	/**
+	 * @return
+	 */
+	protected abstract URI getApplyStereotypeOnClassInControlledResourceURI();
+
 	/**
 	 * @param rootModel
 	 */
@@ -216,6 +370,16 @@ public abstract class AbstractExternalResourcesTest {
 		Class class2_ = (Class)rootModel.getPackagedElement(MODEL_CLASS2, true, UMLPackage.eINSTANCE.getClass_(), false);
 		Assert.assertNotNull(MODEL_CLASS2 + " should not be null", class2_);
 		Assert.assertNotNull(MODEL_CLASS2 + " should have stereotype " + ELEMENT_STEREOTYPE_NAME + ", but has only: " + class2_.getAppliedStereotypes(), class2_.getAppliedStereotype(ELEMENT_STEREOTYPE_QN));
+		// check controlled resources : Package1 and class3
+		Class class3_ = (Class)rootModel.getPackagedElement(MODEL_CLASS3, true, UMLPackage.eINSTANCE.getClass_(), false);
+		Assert.assertNotNull(MODEL_CLASS3 + " should not be null", class3_);
+		Assert.assertNotNull(MODEL_CLASS3 + " should have stereotype " + CLASS_STEREOTYPE_NAME + ", but has only: " + class3_.getAppliedStereotypes(), class3_.getAppliedStereotype(CLASS_STEREOTYPE_QN));
+		// check controlled resources : Package1 and class3
+		Package package1 = (Package)rootModel.getNestedPackage(MODEL_PACKAGE1);
+		Assert.assertNotNull(MODEL_PACKAGE1 + " should not be null", package1);
+		Class package1_Class1 = (Class)package1.getPackagedElement(MODEL_PACKAGE1_CLASS1, true, UMLPackage.eINSTANCE.getClass_(), false);
+		Assert.assertNotNull(MODEL_PACKAGE1_CLASS1 + " should not be null", package1_Class1);
+		Assert.assertNotNull(MODEL_PACKAGE1_CLASS1 + " should have stereotype " + CLASS_STEREOTYPE_NAME + ", but has only: " + package1_Class1.getAppliedStereotypes(), package1_Class1.getAppliedStereotype(CLASS_STEREOTYPE_QN));
 	}
 
 	public ModelSet createModelSet(URI uri) throws ModelMultiException {
@@ -292,9 +456,8 @@ public abstract class AbstractExternalResourcesTest {
 					getServicesRegistry().add(ServiceUtilsForResourceInitializerService.class, 10, new ServiceUtilsForResourceInitializerService());
 					getServicesRegistry().startServicesByClassKeys(ModelSet.class, ServiceUtilsForResourceInitializerService.class);
 					TransactionalEditingDomain domain = TransactionalEditingDomainManager.createTransactionalEditingDomain(modelSet);
-					getServicesRegistry().add(TransactionalEditingDomain.class, 10, domain);
-					getServicesRegistry().add(EditingDomain.class, 10, domain);
-					
+					getServicesRegistry().add(TransactionalEditingDomain.class, 10, domain, ServiceStartKind.STARTUP);
+					getServicesRegistry().add(EditingDomain.class, 10, domain, ServiceStartKind.STARTUP);
 				} catch (ModelMultiException modelMultiException) {
 					Activator.log.error(modelMultiException);
 				} catch (ServiceMultiException e1) {
@@ -306,6 +469,4 @@ public abstract class AbstractExternalResourcesTest {
 		}
 		return modelSet;
 	}
-	
-
 }

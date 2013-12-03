@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.extra.qompass.designer.basic.feature" label="%featureName" provider-name="%providerName" version="0.10.1.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.extra.qompass.designer.basic.feature"
+      label="%featureName"
+      version="1.0.0.qualifier"
+      provider-name="%providerName">
 
    <description>
       The Qompass tool suite is a component based design methodology
@@ -30,7 +35,9 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <includes id="org.eclipse.papyrus.extra.cpp.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.extra.cpp.feature"
+         version="0.0.0"/>
 
    <requires>
       <import plugin="org.eclipse.ui"/>
@@ -40,61 +47,103 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.draw2d" version="3.8.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.gef" version="3.8.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.gmf.runtime.notation" version="1.5.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.acceleo.engine" version="3.1.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.acceleo.parser" version="3.1.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.gmf.runtime.emf.commands.core" version="1.4.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.help" version="3.5.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.ui.cheatsheets" version="3.4.0"/>
+      <import plugin="org.eclipse.draw2d" version="3.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gef" version="3.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.notation" version="1.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.acceleo.engine" version="3.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.acceleo.parser" version="3.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.emf.commands.core" version="1.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.help" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.cheatsheets" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.cdt.ui"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.emf.validation" version="1.3.0"/>
+      <import plugin="org.eclipse.emf.validation" version="1.3.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.emf.transaction" version="1.4.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.gmf.runtime.common.core" version="1.4.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.fcm.profile" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.marte.static.profile" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.qompass.designer.vsl" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.modelexplorer.widgets" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.emf.compare" version="3.0.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.diagram.common" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.gmfdiag.widgets" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.modelexplorer" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.profile" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.properties" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.uml.tools" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.cpp.profile" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.core" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.gmf.runtime.common.core" version="1.7.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.widgets" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.infra.emf" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.acceleo" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.qompass.designer.core" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.cpp.codegen" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.cdt.managedbuilder.core" version="8.0.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.cdt.core" version="5.4.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.uml2.uml" version="3.0.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.ui.ide" version="3.8.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.uml2.uml" version="4.0.0"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.papyrus.marte.vsl" version="0.10.1"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.xtext" version="2.4.0"/>
+      <import plugin="org.eclipse.emf.transaction" version="1.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.common.core" version="1.4.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.fcm.profile" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.marte.static.profile" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.qompass.designer.vsl" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.uml.modelexplorer.widgets" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.compare" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.uml.diagram.common" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.gmfdiag.widgets" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.uml.modelexplorer" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.uml.profile" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.uml.properties" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.uml.tools" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.cpp.profile" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.core" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gmf.runtime.common.core" version="1.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.widgets" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.infra.emf" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.acceleo" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.qompass.designer.core" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.cpp.codegen" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.cdt.managedbuilder.core" version="8.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.cdt.core" version="5.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.uml2.uml" version="3.0.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.uml2.uml" version="4.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.papyrus.marte.vsl" version="0.10.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext" version="2.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.uml2.types"/>
-      <import match="greaterOrEqual" plugin="org.eclipse.ui" version="3.105.0"/>
+      <import plugin="org.eclipse.ui" version="3.105.0" match="greaterOrEqual"/>
    </requires>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.qompass.designer.core" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.qompass.designer.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.qompass.designer.doc" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.qompass.designer.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.qompass.designer.cpp" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.qompass.designer.cpp"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.qompass.designer.validation" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.qompass.designer.validation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.qompass.modellibs.core" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.qompass.modellibs.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.qompass.designer.vsl" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.qompass.designer.vsl"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.fcm.profile" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.fcm.profile"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.qompass.designer.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

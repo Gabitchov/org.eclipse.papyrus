@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.diagram.common.figure.node;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
+import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -30,6 +31,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.figure.layout.PropertiesCompartmentLayoutManager;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -37,6 +39,8 @@ import org.eclipse.swt.graphics.Image;
  * label + 1 qualified name label + 1 name label
  */
 public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyrusNodeNamedElementFigure, IPapyrusNodeUMLElementFigure {
+
+	protected boolean noBorder = false;
 
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
 
@@ -82,39 +86,56 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	public NodeNamedElementFigure() {
 		this(null);
+
 	}
 
+	@Override
+	public void setBorder(Border border) {
+		if(border == null) {
+			noBorder = true;
+		} else {
+			noBorder = false;
+		}
+		super.setBorder(border);
+	}
 
-	
+	@Override
+	protected Border getDefaultBorder(Color borderColor) {
+		if(noBorder) {
+			return null;
+		} else {
+			return super.getDefaultBorder(borderColor);
+		}
+	}
+
 	@Override
 	public void remove(IFigure figure) {
-		 if(figure instanceof AppliedStereotypeCompartmentFigure){
+		if(figure instanceof AppliedStereotypeCompartmentFigure) {
 			if(stereotypePropertiesContent == null) {
-		 		this.createStereotypePropertiesContent();
-		 	}
-		 	stereotypePropertiesContent.remove(figure);
-		}
-		 else{
+				this.createStereotypePropertiesContent();
+			}
+			stereotypePropertiesContent.remove(figure);
+		} else {
 
 			super.remove(figure);
-	 }
-		
+		}
+
 	}
+
 	@Override
 	public void add(IFigure figure, Object constraint, int index) {
-		if(figure instanceof AppliedStereotypeCompartmentFigure){
-	 		if(stereotypePropertiesContent == null) {
-	 			this.createStereotypePropertiesContent();
+		if(figure instanceof AppliedStereotypeCompartmentFigure) {
+			if(stereotypePropertiesContent == null) {
+				this.createStereotypePropertiesContent();
 			}
 			stereotypePropertiesContent.add(figure);
-		}
-		else{
+		} else {
 
 			super.add(figure, constraint, index);
 		}
 	}
 
-	
+
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 
 		// Set stereotype text on figure
@@ -147,6 +168,61 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		getNameLabelContainer().add(nameLabel, getNameLabelConstraint(), -1);
 	}
 
+	public void restoreNameLabel() {
+		nameLabel.setOpaque(false);
+		nameLabel.setAlignment(PositionConstants.MIDDLE);
+		getNameLabelContainer().add(nameLabel, getNameLabelConstraint(), getNameLabelPosition());
+	}
+
+
+	/**
+	 * Create a label that contains the name of the element.
+	 */
+	public void removeNameLabel() {
+		if(getNameLabelContainer().getChildren().contains(nameLabel)) {
+			getNameLabelContainer().remove(nameLabel);
+		}
+	}
+
+
+	public void restoreStereotypeLabel() {
+		if(stereotypesLabel!=null){
+			stereotypesLabel.setOpaque(false);
+			getStereotypeLabelContainer().add(stereotypesLabel, getStereotypeLabelConstraint(), getStereotypePropertiesLabelPosition());
+		}
+	}
+
+
+	/**
+	 * Create a label that contains the stereotype of the element.
+	 */
+	public void removeStereotypeLabel() {
+		if(stereotypesLabel!=null){
+			if(getStereotypeLabelContainer().getChildren().contains(stereotypesLabel)) {
+				getStereotypeLabelContainer().remove(stereotypesLabel);
+			}
+		}
+	}
+
+
+	public void restoreTaggedLabel() {
+		if(taggedLabel!=null){
+			taggedLabel.setOpaque(false);
+			getTagLabelContainer().add(taggedLabel, getTagLabelConstraint(), 0);
+		}
+	}
+
+
+	/**
+	 * Create a label that contains the stereotype of the element.
+	 */
+	public void removeTaggedLabel() {
+		if(taggedLabel!=null){
+			if(getTagLabelContainer().getChildren().contains(taggedLabel)) {
+				getTagLabelContainer().remove(taggedLabel);
+			}
+		}
+	}
 	/**
 	 * Get the constraint for adding the name label. Children should override
 	 * and implement this method in case the label must be drawn with a specific
@@ -501,9 +577,13 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	public Dimension getMinimumDimension() {
-		int width = getNameLabel().getTextBounds().width + 10;
-		int height = getNameLabel().getTextBounds().height + 10;
+		int width = 0;
+		int height = 0;
 		int temporysize = 0;
+		if(getNameLabelContainer().getChildren().contains(getNameLabel())) {
+			width = getNameLabel().getTextBounds().width + 10;
+			height = getNameLabel().getTextBounds().height + 10;
+		}
 		if(getStereotypesLabel() != null) {
 			temporysize = getStereotypesLabel().getTextBounds().width + 10;
 			height = height + getStereotypesLabel().getTextBounds().height;
@@ -619,6 +699,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		return position;
 
 	}
+
+
 
 	/**
 	 * Returns the position of the stereotype properties location. this is just

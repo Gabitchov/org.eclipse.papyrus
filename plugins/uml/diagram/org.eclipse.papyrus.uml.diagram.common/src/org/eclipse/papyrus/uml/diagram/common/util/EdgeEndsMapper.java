@@ -20,11 +20,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Connector;
 
 /**
- * 
+ * @deprecated : use LinkEndsMapper instead
  * A utils class to map links, with their sources and targets OR with ends, when source/target have no sense for the link (example for
  * {@link Connector})
  * 
  */
+@Deprecated
 public class EdgeEndsMapper {
 
 	/**

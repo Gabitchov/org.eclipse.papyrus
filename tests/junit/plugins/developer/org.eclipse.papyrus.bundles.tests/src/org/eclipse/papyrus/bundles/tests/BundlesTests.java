@@ -19,12 +19,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Enumeration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.osgi.internal.framework.EquinoxBundle;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
@@ -35,6 +38,12 @@ public class BundlesTests {
 	private static final String REGEX_VERSION_NUMBER = BundleTestsUtils.PAPYRUS_VERSION.replaceAll("\\.", "\\\\.") + "\\..*"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	private static final String REGEX_INCUBATION = ".*\\(Incubation\\)"; //$NON-NLS-1$
+
+	private static final String BATIK_VERSION = "[1.6.0,1.7.0)";
+
+	private static final String NATTABLE_VERSION = "1.0.0";
+
+	private static final String PAPYRUS_VERSION = "1.0.0";
 
 	@Test
 	public void featureVersionNumberTest() {
@@ -189,7 +198,7 @@ public class BundlesTests {
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			URL url = current.getResource(filepath);
 			// specific behavior for the fragment!
-			
+
 			//never provides the url, so commented...
 			//			if((url == null) && current instanceof EquinoxBundle) {// Platform.isFragment(current))
 			//																	// {
@@ -219,39 +228,192 @@ public class BundlesTests {
 	 */
 	@Test
 	public void papyrusDependencyVersionTest() {
-		String message = null;
+		testPapyrusDependencies2("org.eclipse.papyrus", PAPYRUS_VERSION);//$NON-NLS-1$
+	}
+
+	/**
+	 * We want that all Papyrus batik dependencies will be defines
+	 */
+	@Test
+	public void batikDependencyVersionTest() {
+		testPapyrusDependencies2("org.apache.batik", BATIK_VERSION);//$NON-NLS-1$
+	}
+
+	@Test
+	public void natTableDependencyVersionText() {
+		testPapyrusDependencies2("org.eclipse.nebula.widgets.nattable", NATTABLE_VERSION);//$NON-NLS-1$
+	}
+
+	@Test
+	@Ignore
+	public void guavaDependencyVersionText() {
+		testPapyrusDependencies2("com.google.guava", "[10.0.0,12.0.0)");//$NON-NLS-1$
+	}
+
+	public final static String REGEX_PACKAGE_WORD = "\\w(?:\\w|\\d)*";//match a package name
+
+	public static final String REGEX_PLUGIN = "(?:\\." + REGEX_PACKAGE_WORD + ")*";//match plugin name
+
+	public static final String REGEX_DEPENDENCY = "(?:;bundle-version=\"([^\"]*)\")?";
+
+	public static class Version {
+
+		private boolean minIncluding;
+
+		private boolean maxIncluding;
+
+		private int[] min = null;
+
+		private int[] max = null;
+
+		public Version(final String versionAsString) {
+			this.minIncluding = true;
+			this.maxIncluding = true;
+			if(versionAsString != null) {
+				this.minIncluding = !versionAsString.startsWith("(");
+				this.maxIncluding = !versionAsString.endsWith(")");
+				final Pattern versionNumber = Pattern.compile("\\d+(\\.\\d+)*");
+				final Matcher matcher = versionNumber.matcher(versionAsString);
+				while(matcher.find()) {
+					final String grp = matcher.group();
+					final String[] versions = grp.split("\\.");
+					int[] vers = new int[versions.length];
+					for(int i = 0; i < versions.length; i++) {
+						vers[i] = Integer.parseInt(versions[i]);
+					}
+					if(min == null) {
+						min = vers;
+					} else {
+						max = vers;
+					}
+				}
+			}
+			if(min == null) {
+				min = new int[]{ 0, 0, 0 };
+			}
+			if(max == null) {
+				max = new int[]{ 99, 99, 99 };
+			}
+		}
+
+		public boolean inInlucedIn(final Version version) {
+			//verifying intersaction between versions!
+			if(compare(this.max, version.min) < 0) {
+				return false;
+			}
+			if(compare(version.max, this.min) < 0) {
+				return false;
+			}
+			if(compare(this.max, version.min) == 0 && (!this.maxIncluding || !version.minIncluding)) {
+				return false;
+			}
+			if(compare(version.max, this.min) == 0 && (!version.maxIncluding || !this.minIncluding)) {
+				return false;
+			}
+
+			//verifying inclusion
+			if(compare(this.min, version.min) < 0) {
+				return false;
+			}
+
+			if(compare(this.min, version.min) == 0 && (this.minIncluding != version.minIncluding)) {
+				return false;
+			}
+
+			if(compare(this.max, version.max) > 0) {
+				return false;
+			}
+
+			if(compare(this.max, version.max) == 0 && (this.maxIncluding != version.maxIncluding)) {
+				return false;
+			}
+			return true;
+		}
+
+
+		/**
+		 * 
+		 * @param first
+		 * @param second
+		 * @return
+		 *         <ul>
+		 *         <li>0 when they are equal</li>
+		 *         <li>1 if first is greater than second</li>
+		 *         <li>-1 if first is smaller than second</li>
+		 *         </ul>
+		 */
+		protected int compare(int[] first, int[] second) {
+			int min = Math.min(first.length, second.length);
+			for(int i = 0; i < min; i++) {
+				if(first[i] < second[i]) {
+					return -1;
+				} else if(first[i] > second[i]) {
+					return 1;
+				}
+			}
+			if(first.length == second.length) {
+				return 0;
+			} else if(first.length > second.length) {
+				return 1;
+			}
+			return -1;
+		}
+	}
+
+
+	/**
+	 * 
+	 * @param partialDependencyName
+	 *        the fullName or a part of the name of the plugin
+	 * @param wantedBundleVersionRegex
+	 *        a string like this : "bundle-version=\"[1.6.0,1.7.0)\")"
+	 */
+	protected void testPapyrusDependencies2(final String partialDependencyName, final String wantedVersion) {
+		final StringBuilder builder = new StringBuilder();
 		int nb = 0;
+		final Version wanted = new Version(wantedVersion);
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			final String value = current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
 			if(value == null) {
 				continue;
 			}
-			final String[] bundles = value.split(","); //$NON-NLS-1$
-			String localMessage = null;
-			for(final String bundle : bundles) {
-				if(bundle.contains("org.eclipse.papyrus")) { //$NON-NLS-1$
-					if(!bundle.contains("bundle-version=" + '"' + BundleTestsUtils.PAPYRUS_VERSION + '"')) { //$NON-NLS-1$ 
+			Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + REGEX_DEPENDENCY);
+			Matcher matcher = pattern.matcher(value);
+			final StringBuilder localBuilder = new StringBuilder();
+			while(matcher.find()) {
+				final String pluginName = matcher.group(1);
+				String versionString = null;
+				if(matcher.groupCount() > 1) {
+					versionString = matcher.group(2);
+				}
+				if(versionString == null) {
+					if(localBuilder.length() == 0) {
+						localBuilder.append(NLS.bind("{0} incorrect required bundle-version:\n", current.getSymbolicName())); //$NON-NLS-1$
+					}
+					localBuilder.append(NLS.bind("No Version number for {0}\n", pluginName)); //$NON-NLS-1$
+					nb++;
+				} else {
+					Version version = new Version(versionString);
+					if(!version.inInlucedIn(wanted)) {
+						if(localBuilder.length() == 0) {
+							localBuilder.append(NLS.bind("{0} incorrect required bundle-version:\n", current.getSymbolicName())); //$NON-NLS-1$
+						}
+						localBuilder.append(NLS.bind("Bad version for {0}\n", pluginName)); //$NON-NLS-1$
 						nb++;
-						if(localMessage == null) {
-							localMessage = NLS.bind("{0} incorrect required bundle-version:", current.getSymbolicName()); //$NON-NLS-1$
-						}
-						if(bundle.contains(";")) { //$NON-NLS-1$
-							localMessage += NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";"))); //$NON-NLS-1$ //$NON-NLS-2$
-						} else {
-							localMessage += NLS.bind("\n  - {0}", bundle); //$NON-NLS-1$ 
-						}
 					}
 				}
 			}
-			if(localMessage != null) {
-				if(message == null) {
-					message = ""; //$NON-NLS-1$
-				}
-				message += localMessage + "\n"; //$NON-NLS-1$
+			if(localBuilder.length() != 0) {
+				builder.append(localBuilder.toString());
+				builder.append("\n");//$NON-NLS-1$
 			}
 		}
-		Assert.assertNull(nb + " problems!", message); //$NON-NLS-1$
+		if(builder.length() != 0) {
+			builder.insert(0, NLS.bind("{0} problems. We want this version : {1} for the plugin {2}\n", new String[]{ Integer.toString(nb), wantedVersion, partialDependencyName }));
+		}
+		Assert.assertTrue(builder.toString(), builder.length() == 0);
 	}
+
 
 	/**
 	 * This test verify that the plugin contains pdoc file

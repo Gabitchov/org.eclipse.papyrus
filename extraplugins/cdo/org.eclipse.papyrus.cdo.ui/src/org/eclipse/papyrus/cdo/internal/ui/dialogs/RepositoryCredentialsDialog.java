@@ -18,6 +18,8 @@ import org.eclipse.net4j.util.security.PasswordCredentials;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.eclipse.papyrus.cdo.internal.ui.Activator;
+import org.eclipse.papyrus.cdo.internal.ui.SharedImages;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -31,8 +33,7 @@ import org.eclipse.swt.widgets.Text;
 /**
  * This is the AddRepositoryDialog type. Enjoy.
  */
-public class RepositoryCredentialsDialog
-		extends TitleAreaDialog {
+public class RepositoryCredentialsDialog extends TitleAreaDialog {
 
 	private static final String TITLE = Messages.RepositoryCredentialsDialog_0;
 
@@ -50,8 +51,7 @@ public class RepositoryCredentialsDialog
 
 	private IPasswordCredentials credentials;
 
-	public RepositoryCredentialsDialog(Shell parentShell,
-			IPapyrusRepository repository) {
+	public RepositoryCredentialsDialog(Shell parentShell, IPapyrusRepository repository) {
 		super(parentShell);
 		setShellStyle(getShellStyle() | SWT.APPLICATION_MODAL | SWT.TITLE);
 
@@ -69,8 +69,9 @@ public class RepositoryCredentialsDialog
 	protected Control createDialogArea(Composite parent) {
 		setTitle(TITLE);
 		setMessage(message);
+		setTitleImage(SharedImages.getImage(Activator.ICON_PAPYRUS_CDO_WIZARD));
 
-		Composite result = (Composite) super.createDialogArea(parent);
+		Composite result = (Composite)super.createDialogArea(parent);
 
 		Composite main = new Composite(result, SWT.NONE);
 		main.setLayout(new GridLayout(2, false));
@@ -78,21 +79,21 @@ public class RepositoryCredentialsDialog
 
 		new Label(main, SWT.NONE).setText(Messages.RepositoryCredentialsDialog_2);
 		usernameText = new Text(main, SWT.BORDER);
-		GridDataFactory.fillDefaults().applyTo(usernameText);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(usernameText);
 
 		new Label(main, SWT.NONE).setText(Messages.RepositoryCredentialsDialog_3);
 		passwordText = new Text(main, SWT.BORDER | SWT.PASSWORD);
-		GridDataFactory.fillDefaults().applyTo(passwordText);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(passwordText);
 
 		rememberCheckbox = new Button(main, SWT.CHECK);
 		rememberCheckbox.setText(Messages.RepositoryCredentialsDialog_4);
 		GridDataFactory.fillDefaults().span(2, 1).applyTo(rememberCheckbox);
 
-		if (repository.getUsername() != null) {
+		if(repository.getUsername() != null) {
 			usernameText.setText(repository.getUsername());
 		}
 
-		if (repository.getPassword() != null) {
+		if(repository.getPassword() != null) {
 			passwordText.setText(repository.getPassword());
 		}
 
@@ -115,7 +116,7 @@ public class RepositoryCredentialsDialog
 		String password = passwordText.getText().trim();
 		credentials = new PasswordCredentials(username, password.toCharArray());
 
-		if (rememberCheckbox.getSelection()) {
+		if(rememberCheckbox.getSelection()) {
 			repository.setUsername(username);
 			repository.setPassword(password);
 			PapyrusRepositoryManager.INSTANCE.saveRepositories();

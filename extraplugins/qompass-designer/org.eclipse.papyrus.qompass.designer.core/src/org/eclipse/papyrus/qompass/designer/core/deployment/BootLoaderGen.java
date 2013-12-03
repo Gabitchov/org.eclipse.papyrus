@@ -26,6 +26,7 @@ import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.FCM.InitPrecedence;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
@@ -85,7 +86,8 @@ public class BootLoaderGen {
 		m_copy = copy;
 		Class template = (Class)Utils.getQualifiedElement(copy.source, bootloaderQNAME);
 		if(template == null) {
-			throw new TransformationException("Cannot retrieve bootLoader template (should be in " + bootloaderQNAME + ")");
+			throw new TransformationException(String.format(
+					Messages.BootLoaderGen_CannotRetrieveTemplate, bootloaderQNAME));
 		}
 		// TODO: currently, only stereotypes are copied from template
 		StUtils.copyStereotypes(template, m_bootLoader);
@@ -108,6 +110,9 @@ public class BootLoaderGen {
 		 * }
 		 */
 		Include cppInclude = StereotypeUtil.applyApp(m_bootLoader, Include.class);
+		if (cppInclude == null) {
+			throw new TransformationException("Cannot apply cppInclude stereotype. Make sure that C/C++ profile is applied to your model");
+		}
 		Object existingBody = cppInclude.getBody();
 		String existingBodyStr = ""; //$NON-NLS-1$
 		if(existingBody instanceof String) {
@@ -246,8 +251,9 @@ public class BootLoaderGen {
 				// TODO: Need path that uses the right dereference operator ("->" or ".")
 				m_initCodeRun = varName + "." + get_start + "()->run()" + EOL;  //$NON-NLS-1$ //$NON-NLS-2$
 			} else {
-				throw new TransformationException("There must be at most one blocking \"run\" operation per node. " +
-					"refuse to add \"run\" call for component instance \"" + varName + "\". Existing invocations: " + m_initCodeRun);
+				throw new TransformationException(String.format(
+						Messages.BootLoaderGen_AtLeastOneBlockingCall,
+								varName, m_initCodeRun));
 			}
 		}
 		if(hasUnconnectedLifeCycle(m_copy, implementation, containerSlot)) {
@@ -448,8 +454,8 @@ public class BootLoaderGen {
 			code += "// initial user start\n" + m_initCodeRun; //$NON-NLS-1$
 		} else {
 			// this change broke client-server example!
-			code += "// sleep forever\n";
-			code += "for (;;) { sleep(100); }\n";
+			code += "// sleep forever\n"; //$NON-NLS-1$
+			code += "for (;;) { sleep(100); }\n"; //$NON-NLS-1$
 			// throw new TransformationRTException("no component implements the initial start. Assure that one component inherits from the CStart component");
 		}
 		if(activationKeys.length > 0) {

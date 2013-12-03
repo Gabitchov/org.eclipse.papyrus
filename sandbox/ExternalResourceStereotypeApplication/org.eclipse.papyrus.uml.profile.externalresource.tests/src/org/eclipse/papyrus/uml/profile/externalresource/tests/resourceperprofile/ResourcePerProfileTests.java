@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.profile.externalresource.tests.resourceperprofil
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.uml.profile.externalresource.tests.AbstractChangeStrategyTests;
 
 /**
@@ -35,7 +36,24 @@ public class ResourcePerProfileTests extends AbstractChangeStrategyTests {
 	 */
 	@Override
 	protected List<String> getModelFileNames() {
-		return Arrays.asList(DI_FILE, NOTATION_FILE, UML_FILE, EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE);
+		return ONE_RESOURCE_PER_PROFILE_FILE_NAMES;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected URI getApplyStereotypeOnClassInControlledPackageResourceURI() {
+		return getResultFolderURI().appendSegment(EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected URI getApplyStereotypeOnClassInControlledResourceURI() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

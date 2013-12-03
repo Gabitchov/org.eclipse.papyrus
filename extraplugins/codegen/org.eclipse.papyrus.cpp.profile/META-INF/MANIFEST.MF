@@ -3,11 +3,6 @@ Export-Package: org.eclipse.papyrus.C_Cpp,
  org.eclipse.papyrus.C_Cpp.impl,
  org.eclipse.papyrus.C_Cpp.util,
  org.eclipse.papyrus.cpp.profile
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
@@ -15,8 +10,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.uml2.uml;bundle-version="3.1.0"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.cpp.profile.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.cpp.profile;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

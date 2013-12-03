@@ -39,11 +39,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -112,6 +115,14 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	protected Set<URI> toDeleteOnSave = new HashSet<URI>();
 
+	/** list of listeners of resources to know if the resource are loaded or not */  
+	protected ArrayList<IResourceLoadStateListener> resourceLoadStateListeners;
+
+	/** map of resource loaded in the resource set, with resource as the key and a boolean indicating if the resource is loaded or not has the valuer */
+	protected Map<Resource, Boolean> resourcesToLoadState = new HashMap<Resource, Boolean>();
+
+	
+	
 	/**
 	 * 
 	 * Constructor.
@@ -125,6 +136,8 @@ public class ModelSet extends ResourceSetImpl {
 		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		getLoadOptions().put(XMIResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
 		getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+
+		this.eAdapters.add(new ResourceAddRemoveTracker());
 	}
 
 	/**
@@ -1032,8 +1045,88 @@ public class ModelSet extends ResourceSetImpl {
 			model.saveCopy(targetPathWithoutExtension, targetMap);
 		}
 	}
-
+	
+	public boolean addResourceLoadStateListener(IResourceLoadStateListener listener) {
+		return resourceLoadStateListeners.add(listener);
+	}
+	
+	public boolean removeResourceLoadStateListener(IResourceLoadStateListener listener) {
+		return resourceLoadStateListeners.remove(listener);
+	}
+	
+	public void notifyResourceLoadState(Resource resource, boolean newState) {
+		if(resourceLoadStateListeners !=null) {
+			for(IResourceLoadStateListener listener : resourceLoadStateListeners) {
+				try {
+					listener.notifyLoadStateChanged(resource, newState);
+				} catch(Throwable e) {
+					Activator.log.error(e);
+				}
+			}
+		}
+	}
+	
 	public boolean isUserModelResource(URI uri) {
 		return uri.isPlatformResource() || uri.isFile();
+	}
+	
+	public class ResourceAddRemoveTracker implements Adapter {
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void notifyChanged(Notification notification) {
+			// if notification = add, add many or remove/remove many resource(s) to list of resources, process..
+			if(RESOURCE_SET__RESOURCES == notification.getFeatureID(ResourceSet.class)) {
+				switch(notification.getEventType()) {
+				case Notification.ADD:
+					Object object = notification.getNewValue();
+					if(object instanceof Resource) {
+						resourcesToLoadState.put(((Resource)object), ((Resource)object).isLoaded());
+					} 
+					break;
+				case Notification.REMOVE:
+					object = notification.getNewValue();
+					if(object instanceof Resource) {
+						resourcesToLoadState.remove(((Resource)object));
+					} 
+					break;
+				case Notification.ADD_MANY:
+					
+					break;
+					
+				case Notification.REMOVE_MANY:
+					
+					break;
+					
+					default: 
+						// nothing to do
+						break;
+				}
+				
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Notifier getTarget() {
+			return ModelSet.this;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void setTarget(Notifier newTarget) {
+			// nothing here
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public boolean isAdapterForType(Object type) {
+			return false;
+		}
+		
 	}
 }

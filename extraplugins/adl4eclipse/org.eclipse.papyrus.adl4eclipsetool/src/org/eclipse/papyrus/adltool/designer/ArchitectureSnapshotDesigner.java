@@ -334,8 +334,8 @@ public abstract class ArchitectureSnapshotDesigner{
 	protected void modelRelationExtensionBased(Component bundleComponent, IExtension extension, Port clientPort, Port supplierPort) {
 		Dependency dependency=UMLFactory.eINSTANCE.createDependency();
 		dependency.setName(extension.getExtensionPointUniqueIdentifier());
-		bundleComponent.getNearestPackage().getPackagedElements().add(dependency);
-		//bundleComponent.getPackagedElements().add(dependency);
+		//bundleComponent.getNearestPackage().getPackagedElements().add(dependency);
+		bundleComponent.getPackagedElements().add(dependency);
 		dependency.getClients().add(clientPort);
 		dependency.getSuppliers().add(supplierPort);
 	}
@@ -458,7 +458,11 @@ public abstract class ArchitectureSnapshotDesigner{
 			if(bundleRef.isOptional()||foundBundle!=null){
 				if (foundBundle!=null){
 					if((!(createdFeatureIndex.containsKey(bundleRef.getSymbolicName())))&&(!(createdFeatureIndex.containsKey(bundleRef.getSymbolicName()))))	{
-						modelBundle(library,foundBundle, currentLevel+1);
+						if( isInitialPlugin(bundleRef.getSymbolicName())){
+							modelBundle(library,foundBundle, currentLevel);
+						}
+						else{
+						modelBundle(library,foundBundle, currentLevel+1);}
 					}
 				}
 				else {
@@ -509,6 +513,16 @@ public abstract class ArchitectureSnapshotDesigner{
 			out=out+"\n"+id;
 		}
 		return out;
+	}
+	protected boolean isInitialPlugin(String name) {
+		Iterator<Object> bundleProjectsIterator= bundleInitialList.iterator();
+		while(bundleProjectsIterator.hasNext()) {
+			Object bundleProject = (Object)bundleProjectsIterator.next();
+			if(name.equals(bundleDesignerRegistry.getSymbolicName(bundleProject))){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

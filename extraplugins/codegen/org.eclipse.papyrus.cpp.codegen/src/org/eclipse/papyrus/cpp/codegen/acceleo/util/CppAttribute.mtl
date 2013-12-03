@@ -34,11 +34,30 @@
 
 
 [comment
+return a list of owned attributes, since this is not supported directly on a classifier/]
+[query public getOwnedAttributes(cl : Classifier) : Sequence(Property) =
+	if (cl.oclIsKindOf(Class)) then
+		oclAsType(Class).ownedAttribute
+	else
+		if (cl.oclIsKindOf(DataType)) then
+			oclAsType(DataType).ownedAttribute
+		else
+			if (cl.oclIsKindOf(Interface)) then
+				oclAsType(Interface).ownedAttribute
+			else
+				Sequence{}
+			endif
+		endif
+	endif
+/]
+
+
+[comment
 Loop over attributes. Check that the attribute is not a static const.
 Constant static attributes are declared within the class declaration/] 
 [template public CppStaticAttributes(classifier : Classifier)]
 [constStaticAttributes()/]
-[for (classifier.attribute)]
+[for (getOwnedAttributes())]
 	[if(isStatic and (not hasStereotype(C_Cpp::Const)))]
 [CppStaticAttributeImplementation()/]
 

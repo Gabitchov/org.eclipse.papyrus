@@ -1,11 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.texteditor.cdt;singleton:=true
-Bundle-Version: 0.10.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.texteditor.cdt.Activator
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.editors;bundle-version="3.7.0",
@@ -19,19 +12,29 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.type.core,
  org.eclipse.cdt.core;bundle-version="5.4.0",
  org.eclipse.cdt.ui;bundle-version="5.4.0",
- org.eclipse.papyrus.cpp.codegen;bundle-version="0.10.1",
+ org.eclipse.papyrus.cpp.codegen;bundle-version="1.0.0",
  org.eclipse.cdt.codan.ui.cxx;bundle-version="3.2.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
- org.eclipse.papyrus.cpp.profile;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
- org.eclipse.papyrus.texteditor.model;bundle-version="0.9.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.0.0",
+ org.eclipse.papyrus.cpp.profile;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools;bundle-version="1.0.0",
+ org.eclipse.papyrus.texteditor.model;bundle-version="1.0.0",
  org.eclipse.ui.ide;bundle-version="3.9.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.papyrus.acceleo;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
+ org.eclipse.papyrus.acceleo;bundle-version="1.0.0",
+ org.eclipse.papyrus.acceleo.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.0"
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.texteditor.cdt.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.texteditor.cdt;singleton:=tru
+ e
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+

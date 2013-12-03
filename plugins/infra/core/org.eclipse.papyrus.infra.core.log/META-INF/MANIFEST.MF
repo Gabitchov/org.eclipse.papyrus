@@ -3,7 +3,7 @@ Export-Package: org.eclipse.papyrus.infra.core.log
 Require-Bundle: org.eclipse.core.runtime
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.core.log.internal.Activato

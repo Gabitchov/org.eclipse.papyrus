@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.uml.service.types;bundle-version="0.10.1",
+Require-Bundle: org.eclipse.papyrus.uml.service.types;bundle-version="1.0.0",
  org.junit;bundle-version="4.10.0"
 Export-Package: org.eclipse.papyrus.infra.extendedtypes
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.infra.extendedtypes;bundle-version=
  "0.10.0"
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %fragmentName
 Bundle-Localization: fragment
 Bundle-ManifestVersion: 2

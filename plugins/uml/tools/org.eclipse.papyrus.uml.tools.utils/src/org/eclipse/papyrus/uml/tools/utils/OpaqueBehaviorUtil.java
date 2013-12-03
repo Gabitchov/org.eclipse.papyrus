@@ -57,7 +57,7 @@ public class OpaqueBehaviorUtil {
 	}
 
 	/**
-	 * Returns the index of the body for a given langauge.
+	 * Returns the index of the body for a given language.
 	 * 
 	 * @param language
 	 *        the language of the body to find

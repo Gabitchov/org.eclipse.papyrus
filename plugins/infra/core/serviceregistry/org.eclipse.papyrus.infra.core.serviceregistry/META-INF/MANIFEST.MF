@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.8.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.junit,
  org.eclipse.emf.common,
  org.eclipse.emf.ecore
@@ -13,7 +13,7 @@ Export-Package: org.eclipse.papyrus.infra.core.serviceregistry,
  org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.impl,
  org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.util
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

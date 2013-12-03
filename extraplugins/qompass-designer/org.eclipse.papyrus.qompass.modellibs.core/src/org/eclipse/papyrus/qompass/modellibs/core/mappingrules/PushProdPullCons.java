@@ -44,7 +44,7 @@ public class PushProdPullCons implements IMappingRule {
 		Element owner = umlPort.getOwner();
 		String ownerStr = ""; //$NON-NLS-1$
 		if(owner instanceof NamedElement) {
-			ownerStr = " of class " + ((NamedElement)owner).getQualifiedName();
+			ownerStr = " of class " + ((NamedElement)owner).getQualifiedName(); //$NON-NLS-1$
 		}
 		Log.log(Status.INFO, Log.CALC_PORTKIND,
 			p.getKind().getBase_Class().getName() + " => GetRequired on " + umlPort.getName() + ownerStr);

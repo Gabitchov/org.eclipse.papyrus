@@ -13,6 +13,7 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 
 
 public abstract class PapyrusLabelEditPart extends LabelEditPart {
@@ -21,4 +22,10 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart {
 		super(view);
 	}
 
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+
+		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
+	}
 }

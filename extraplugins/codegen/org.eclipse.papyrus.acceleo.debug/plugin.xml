@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.acceleo.debug.handlers.TestAcceleoHandler"
+            description="Test Acceleo Template"
+            id="org.eclipse.papyrus.acceleo.debug.menuActions.TestAcceleoCmd"
+            name="dummy">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.acceleo.debug.handlers.ResetAcceleoHandler"
+            description="Reset Acceleo driver"
+            id="org.eclipse.papyrus.acceleo.debug.menuActions.ResetAcceleoCmd"
+            name="dummy">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popup.codegen">
+         <command
+               commandId="org.eclipse.papyrus.acceleo.debug.menuActions.TestAcceleoCmd"
+               icon="icons/allocation.gif"
+               label="Test Acceleo template"
+               mnemonic="T"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.acceleo.debug.menuActions.ResetAcceleoCmd"
+               icon="icons/allocation.gif"
+               label="Reset Acceleo driver"
+               mnemonic="R"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+	  </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu.codegen">
+         <command
+               commandId="org.eclipse.papyrus.acceleo.debug.menuActions.TestAcceleoCmd"
+               icon="icons/allocation.gif"
+               id="org.eclipse.papyrus.acceleo.debug.menuActions.TestAcceleoMenu"
+               label="Qompass: Test Acceleo template"
+               mnemonic="T"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.acceleo.debug.menuActions.ResetAcceleoCmd"
+               icon="icons/allocation.gif"
+               id="org.eclipse.papyrus.acceleo.debug.menuActions.ResetAcceleoMenu"
+               label="Reset Acceleo driver"
+               mnemonic="R"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menuContribution>
+	</extension>
+</plugin>

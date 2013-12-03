@@ -78,7 +78,10 @@ public class ConnectorEditHelperAdvice extends AbstractEditHelperAdvice {
 				int reorientDirection = request.getDirection();
 				Edge reorientedEdgeView = RequestParameterUtils.getReconnectedEdge(request);
 				View newEndView = RequestParameterUtils.getReconnectedEndView(request);
-				View oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
+				View oppositeEndView = null;
+				if(reorientedEdgeView != null) {
+					oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
+				}
 				List<Property> newNestedPath = null;
 				if(reorientedEdgeView != null && newEndView != null) {
 					//we are working with a 'graphical' reconnect request
@@ -99,11 +102,13 @@ public class ConnectorEditHelperAdvice extends AbstractEditHelperAdvice {
 						} else if(reorientDirection == ReorientReferenceRelationshipRequest.REORIENT_TARGET) {
 							oldEndView = current.getTarget();
 						}
-						final List<Property> oldNestedPath = utils.getNestedPropertyPath(oldEndView, oppositeEndView);
-						if(!newNestedPath.equals(oldNestedPath)) {
-							final DestroyElementRequest destroyRequest = new DestroyElementRequest(request.getEditingDomain(), current, false);
-							final IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(current);
-							compositeCommand.add(commandProvider.getEditCommand(destroyRequest));
+						if(oppositeEndView != null) {
+							final List<Property> oldNestedPath = utils.getNestedPropertyPath(oldEndView, oppositeEndView);
+							if(!newNestedPath.equals(oldNestedPath)) {
+								final DestroyElementRequest destroyRequest = new DestroyElementRequest(request.getEditingDomain(), current, false);
+								final IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(current);
+								compositeCommand.add(commandProvider.getEditCommand(destroyRequest));
+							}
 						}
 					}
 				}

@@ -23,5 +23,14 @@
       </specificHyperLink>
       
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
+      <contributor
+            contributor="org.eclipse.papyrus.infra.gmfdiag.hyperlink.navigation.DiagramNavigationProvider"
+            description="Navigates to the current element&apos;s diagram(s)"
+            id="org.eclipse.papyrus.infra.gmfdiag.hyperlink.diagram"
+            label="Automatic Diagram Navigation">
+      </contributor>
+   </extension>
 
 </plugin>

@@ -16,8 +16,12 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MarginBorder;
+import org.eclipse.draw2d.ScrollPane;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -28,9 +32,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
+import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
+import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.MaintainSymbolRatioEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.BorderedScalableImageFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ShapeFlowLayout;
@@ -62,9 +71,9 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	@Override
 	public void activate() {
 		super.activate();
-		
+
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -81,6 +90,8 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		super.createDefaultEditPolicies();
 		// Start of user code custom edit policies
 		installEditPolicy(ShapeRefreshEditPolicy.SHAPE_REFRESH_EDIT_POLICY_ROLE, new ShapeRefreshEditPolicy());
+		installEditPolicy(MaintainSymbolRatioEditPolicy.MAINTAIN_SYMBOL_RATIO_EDITPOLICY, new MaintainSymbolRatioEditPolicy());
+		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 		// End of user code
 	}
 
@@ -90,6 +101,29 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	@Override
 	public String getCompartmentName() {
 		return COMPARTMENT_NAME;
+	}
+
+	/**
+	 * this method is used to set the ratio of the figure.
+	 * pay attention if the ratio is true, the only figure is displayed
+	 * 
+	 * @param maintainRatio
+	 */
+	protected void maintainRatio(boolean maintainRatio) {
+		IFigure contentPane = ((ResizableCompartmentFigure)getFigure()).getContentPane();
+		for(Object subFigure : contentPane.getChildren()) {
+			if(subFigure instanceof BorderedScalableImageFigure) {
+				((BorderedScalableImageFigure)subFigure).setMaintainAspectRatio(maintainRatio);
+			}
+
+		}
+		if(!maintainRatio) {
+			OneShapeLayoutManager layout = new OneShapeLayoutManager();
+			contentPane.setLayoutManager(layout);
+		} else {
+			ShapeFlowLayout layout = new ShapeFlowLayout();
+			contentPane.setLayoutManager(layout);
+		}
 	}
 
 	/**
@@ -104,10 +138,10 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		ShapeCompartmentLayoutManager layoutManager = new ShapeCompartmentLayoutManager();
 		result.setLayoutManager(layoutManager);
 		ShapeFlowLayout layout = new ShapeFlowLayout();
-//		layout.setHorizontal(true);
-//		layout.setStretchMinorAxis(true);
-//		layout.setStretchMajorAxis(true);
-//		layout.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
+		//		layout.setHorizontal(true);
+		//		layout.setStretchMinorAxis(true);
+		//		layout.setStretchMajorAxis(true);
+		//		layout.setMinorAlignment(OrderedLayout.ALIGN_CENTER);
 
 		result.getContentPane().setLayoutManager(layout);
 
@@ -115,9 +149,14 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	}
 
 	/**
-	 * Refreshes the displayed shapes on the figure. 
-	 * <P>To be sure everything is clean, it removes all the current displayed shapes and then redraw all of the demanded shapes. This could be probably improved in case of performance issues.</P> 
-	 * @param contentPane the figure where to add the new shapes
+	 * Refreshes the displayed shapes on the figure.
+	 * <P>
+	 * To be sure everything is clean, it removes all the current displayed shapes and then redraw all of the demanded shapes. This could be probably
+	 * improved in case of performance issues.
+	 * </P>
+	 * 
+	 * @param contentPane
+	 *        the figure where to add the new shapes
 	 */
 	protected void refreshShapes(IFigure contentPane) {
 		List<Object> children = new ArrayList<Object>(contentPane.getChildren());
@@ -130,8 +169,8 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		List<RenderedImage> shapesToDisplay = ShapeService.getInstance().getShapesToDisplay(getNotationView().eContainer());
 		if(shapesToDisplay != null && !shapesToDisplay.isEmpty()) {
 			for(RenderedImage image : shapesToDisplay) {
-				if(image !=null) {
-					IFigure imageFigure = new BorderedScalableImageFigure(image, false, false, true);
+				if(image != null) {
+					IFigure imageFigure = new BorderedScalableImageFigure(image, false, true, true);
 					imageFigure.setOpaque(false);
 					imageFigure.setVisible(true);
 					contentPane.add(imageFigure);
@@ -149,6 +188,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
+		refreshSymbolCompartment();
 	}
 
 	/**
@@ -164,45 +204,96 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	/**
 	 * Specific layout manager for the shape compartment. The main goal of this class is to ease the debug process. no specific implementation is
 	 * planned yet.
+	 * We prevent to display the label of the compartment shape
 	 */
 	public class ShapeCompartmentLayoutManager extends SubCompartmentLayoutManager {
 
-		public static final int MIN_PREFERRED_SIZE = 40; 
-		
+		public static final int MIN_PREFERRED_SIZE = 40;
+
 		/**
 		 * {@inheritDoc}
 		 */
 		@Override
 		public void layout(IFigure container) {
 			super.layout(container);
+			for(int i = 0; i < container.getChildren().size(); i++) {
+				if(container.getChildren().get(i) instanceof ScrollPane) {
+					((ScrollPane)container.getChildren().get(i)).setBounds(container.getBounds());
+				}
+			}
+
 		}
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
 		@Override
 		protected Dimension calculatePreferredSize(IFigure figure, int wHint, int hHint) {
-			Dimension dim =  super.calculatePreferredSize(figure, wHint, hHint);
-			
+			Dimension dim = super.calculatePreferredSize(figure, wHint, hHint);
+
 			dim.height = Math.max(MIN_PREFERRED_SIZE, dim.height);
-			
+
 			return dim;
 		}
-		
+
+
+	}
+
+	public class OneShapeLayoutManager extends AbstractLayout {
+
+		/**
+		 * 
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
+
+			int minimumWith = 50;
+			int minimumHeight = 50;
+
+			return new Dimension(minimumWith, minimumHeight);
+		}
+
+		/**
+		 * 
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void layout(IFigure container) {
+			Rectangle compartmentBound = new Rectangle(container.getBounds());
+			if(container.getBorder() instanceof MarginBorder) {
+				MarginBorder marginBorder = ((MarginBorder)container.getBorder());
+				compartmentBound = compartmentBound.shrink(marginBorder.getInsets(container));
+			}
+
+
+			IFigure contentPane = ((ResizableCompartmentFigure)getFigure()).getContentPane();
+			ScalableImageFigure scalableImageFigure = null;
+			if(contentPane.getChildren().size() > 0) {
+				Object lastFig = contentPane.getChildren().get(contentPane.getChildren().size() - 1);
+				if(lastFig instanceof ScalableImageFigure) {
+					scalableImageFigure = (ScalableImageFigure)lastFig;
+				}
+			}
+			if(scalableImageFigure != null) {
+				scalableImageFigure.setBounds(compartmentBound);
+			}
+
+		}
 	}
 
 	/**
-	 * Edit Policy in charge of the graphical update of the compartment 
+	 * Edit Policy in charge of the graphical update of the compartment
 	 */
 	@SuppressWarnings("restriction")
 	public class ShapeRefreshEditPolicy extends GraphicalEditPolicyEx implements NotificationListener {
 
 		/** role for this edit policy */
 		public static final String SHAPE_REFRESH_EDIT_POLICY_ROLE = "shape_refresh_edit_policy"; ////$NON-NLS-1$
-		
+
 		/** manager for notifications */
 		protected NotificationManager notificationManager;
-		
+
 		/**
 		 * {@inheritDoc}
 		 */
@@ -236,7 +327,6 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		/**
 		 * {@inheritDoc}
 		 */
-		@SuppressWarnings("restriction")
 		@Override
 		public void refresh() {
 			super.refresh();
@@ -246,10 +336,11 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
 		public void notifyChanged(Notification notification) {
 			refresh();
 		}
-		
+
 		/**
 		 * Gets the diagram event broker from the editing domain.
 		 * 
@@ -262,7 +353,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 			}
 			return null;
 		}
-		
+
 		/**
 		 * Returns the view controlled by the host edit part
 		 * 
@@ -271,5 +362,46 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		protected View getView() {
 			return (View)getHost().getModel();
 		}
+	}
+
+	/**
+	 * refresh the qualified name
+	 */
+	protected void refreshSymbolCompartment() {
+		BooleanValueStyle maintainRatio = getMaintainSymbolRatioStyle(getNotationView());
+		if(maintainRatio != null && maintainRatio.isBooleanValue() == false) {
+			maintainRatio(false);
+		} else {
+			maintainRatio(true);
+		}
+	}
+
+	/**
+	 * 
+	 * @param currentView
+	 * @return the current Style that reperesent the boder
+	 */
+	protected BooleanValueStyle getMaintainSymbolRatioStyle(View currentView) {
+		View parentView = currentView;
+		while(parentView.getElement() == currentView.getElement()) {
+			BooleanValueStyle style = (BooleanValueStyle)parentView.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), MaintainSymbolRatioEditPolicy.MAINTAIN_SYMBOL_RATIO);
+			if(style != null) {
+				return style;
+			}
+
+			if(parentView.eContainer() instanceof View) {
+				parentView = (View)parentView.eContainer();
+			} else {
+				break;
+			}
+
+		}
+
+		return null;
+	}
+
+	@Override
+	public boolean isSelectable() {
+		return false;
 	}
 }

@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<di:SashWindowsMngr xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.eclipse.org/papyrus/0.7.0/sashdi" xmi:id="_AfdmYPccEd-KM6l7lmIPkw">
-  <pageList xmi:id="_AfdmYfccEd-KM6l7lmIPkw">
+<di:SashWindowsMngr xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.eclipse.org/papyrus/0.7.0/sashdi">
+  <pageList>
     <availablePage>
-      <emfPageIdentifier href="TestCDTintegration.notation#_s2zhQBlCEeOWi_t2E10dLQ"/>
+      <emfPageIdentifier href="TestCDTintegration.notation#_8vp88DcVEeO6UdbIk03c9Q"/>
     </availablePage>
     <availablePage>
-      <emfPageIdentifier href="TestCDTintegration.notation#_7RQ-EC-bEeO2L7HZ7MAV3w"/>
+      <emfPageIdentifier href="TestCDTintegration.notation"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="TestCDTintegration.notation#_EItkYEG6EeOMv8cdTsw5Zg"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="TestCDTintegration.notation#_6nABcFG7EeOLNIKOajeerQ"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="TestCDTintegration.notation#_rGh10FG-EeOLNIKOajeerQ"/>
     </availablePage>
   </pageList>
-  <sashModel xmi:id="_AfdmYvccEd-KM6l7lmIPkw" currentSelection="//@sashModel/@windows.0/@children.0">
-    <windows xmi:id="_AfdmY_ccEd-KM6l7lmIPkw">
-      <children xsi:type="di:TabFolder">
-        <children>
-          <emfPageIdentifier href="TestCDTintegration.notation#_JOw40PccEd-KM6l7lmIPkw"/>
+  <sashModel currentSelection="//@sashModel/@windows.0/@children.0/@children.1">
+    <windows>
+      <children xsi:type="di:SashPanel" direction="256">
+        <children xsi:type="di:TabFolder">
+          <children>
+            <emfPageIdentifier href="TestCDTintegration.notation#_8vp88DcVEeO6UdbIk03c9Q"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="TestCDTintegration.notation#_6nABcFG7EeOLNIKOajeerQ"/>
+          </children>
         </children>
-        <children>
-          <emfPageIdentifier href="TestCDTintegration.notation#_7RQ-EC-bEeO2L7HZ7MAV3w"/>
+        <children xsi:type="di:TabFolder">
+          <children>
+            <emfPageIdentifier href="TestCDTintegration.notation#_EItkYEG6EeOMv8cdTsw5Zg"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="TestCDTintegration.notation#_rGh10FG-EeOLNIKOajeerQ"/>
+          </children>
         </children>
       </children>
     </windows>

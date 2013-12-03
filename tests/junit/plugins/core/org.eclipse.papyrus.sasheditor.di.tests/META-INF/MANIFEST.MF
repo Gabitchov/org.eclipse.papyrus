@@ -3,7 +3,7 @@ Require-Bundle: org.junit;bundle-version="4.10.0"
 Bundle-Vendor: %Bundle-Vendor
 Fragment-Host: org.eclipse.papyrus.infra.core.sasheditor.di;bundle-ver
  sion="0.10.0"
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor.di.test

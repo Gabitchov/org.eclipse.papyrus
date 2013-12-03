@@ -1,8 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Ansgar Radermacher - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.FCM;
 
@@ -30,7 +36,7 @@ public enum TemplateKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PASS_FORMAL(0, "PassFormal", "PassFormal"),
+	PASS_FORMAL(0, "PassFormal", "PassFormal"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Loop Operations</b></em>' literal object.
@@ -40,7 +46,7 @@ public enum TemplateKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOOP_OPERATIONS(1, "LoopOperations", "LoopOperations"),
+	LOOP_OPERATIONS(1, "LoopOperations", "LoopOperations"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Loop Property</b></em>' literal object.
@@ -50,7 +56,9 @@ public enum TemplateKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOOP_PROPERTY(2, "LoopProperty", "LoopProperty"), /**
+	LOOP_PROPERTY(2, "LoopProperty", "LoopProperty"), //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * The '<em><b>Accumulate</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58,7 +66,7 @@ public enum TemplateKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ACCUMULATE(3, "Accumulate", "Accumulate"),
+	ACCUMULATE(3, "Accumulate", "Accumulate"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Loop Literals</b></em>' literal object.
@@ -68,7 +76,7 @@ public enum TemplateKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOOP_LITERALS(4, "LoopLiterals", "LoopLiterals"),
+	LOOP_LITERALS(4, "LoopLiterals", "LoopLiterals"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Late Evaluation</b></em>' literal object.
@@ -78,7 +86,9 @@ public enum TemplateKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LATE_EVALUATION(5, "LateEvaluation", "LateEvaluation"), /**
+	LATE_EVALUATION(5, "LateEvaluation", "LateEvaluation"), //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * The '<em><b>Loop Ports</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,7 +96,9 @@ public enum TemplateKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOOP_PORTS(6, "LoopPorts", "LoopPorts"), /**
+	LOOP_PORTS(6, "LoopPorts", "LoopPorts"), //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * The '<em><b>Pass Classifier</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,7 +106,7 @@ public enum TemplateKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PASS_CLASSIFIER(7, "PassClassifier", "PassClassifier");
+	PASS_CLASSIFIER(7, "PassClassifier", "PassClassifier"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Pass Formal</b></em>' literal value.

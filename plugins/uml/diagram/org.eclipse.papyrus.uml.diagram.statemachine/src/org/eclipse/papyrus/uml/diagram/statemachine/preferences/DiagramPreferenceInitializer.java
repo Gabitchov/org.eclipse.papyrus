@@ -2,6 +2,7 @@ package org.eclipse.papyrus.uml.diagram.statemachine.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.CustomTransitionPreferencePage;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
 
 /**
@@ -34,6 +35,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		StateMachinePreferencePage.initDefaults(store);
 		InternalTransitionPreferencePage.initDefaults(store);
 		GeneralizationPreferencePage.initDefaults(store);
-		TransitionPreferencePage.initDefaults(store);
+		CustomTransitionPreferencePage.initDefaults(store);
 	}
 }

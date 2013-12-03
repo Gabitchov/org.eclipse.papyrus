@@ -1,5 +1,6 @@
 [module CppClassTypeAndEnum('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/papyrus/C_Cpp/1')/]
 [import org::eclipse::papyrus::acceleo::GenUtils/]
+[import org::eclipse::papyrus::cpp::codegen::utils::CppGenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppPrimitiveTypes/]
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppEnumerations/]
 
@@ -15,14 +16,10 @@
 [/template]
 
 [template public CppClassTypeAndEnum(class : Classifier)]
-  public:
-	[TypesAndEnumsForVisibility(VisibilityKind::public)/]
-  protected:
-	[TypesAndEnumsForVisibility(VisibilityKind::protected)/]
-  private:
-	[TypesAndEnumsForVisibility(VisibilityKind::private)/]
+    [VisibilityKind::public.getSection(TypesAndEnumsForVisibility(VisibilityKind::public))/]
+    [VisibilityKind::protected.getSection(TypesAndEnumsForVisibility(VisibilityKind::protected))/]
+    [VisibilityKind::private.getSection(TypesAndEnumsForVisibility(VisibilityKind::private))/]
 [/template]
-
 
 [template public CppClassTypeAndEnumPackage(pkg : Package)]
 [TypesAndEnumsForVisibility(VisibilityKind::_package)/]

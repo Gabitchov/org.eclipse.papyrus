@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.preferences,
  org.eclipse.papyrus.infra.gmfdiag.preferences.initializer,
  org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference;x-internal:=true,
@@ -13,7 +13,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.preferences,
  org.eclipse.papyrus.infra.gmfdiag.preferences.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

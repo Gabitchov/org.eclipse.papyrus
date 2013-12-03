@@ -34,6 +34,8 @@ import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelPacka
  *   <li>{@link org.eclipse.papyrus.texteditor.model.texteditormodel.impl.TextEditorModelImpl#getEditedObject <em>Edited Object</em>}</li>
  *   <li>{@link org.eclipse.papyrus.texteditor.model.texteditormodel.impl.TextEditorModelImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.papyrus.texteditor.model.texteditormodel.impl.TextEditorModelImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.texteditor.model.texteditormodel.impl.TextEditorModelImpl#getSelectedObject <em>Selected Object</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.texteditor.model.texteditormodel.impl.TextEditorModelImpl#getLineNumber <em>Line Number</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,6 +91,36 @@ public class TextEditorModelImpl extends EModelElementImpl implements TextEditor
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSelectedObject() <em>Selected Object</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSelectedObject()
+	 * @generated
+	 * @ordered
+	 */
+	protected EObject selectedObject;
+
+	/**
+	 * The default value of the '{@link #getLineNumber() <em>Line Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLineNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LINE_NUMBER_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getLineNumber() <em>Line Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLineNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected int lineNumber = LINE_NUMBER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,6 +226,65 @@ public class TextEditorModelImpl extends EModelElementImpl implements TextEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EObject getSelectedObject() {
+		if (selectedObject != null && selectedObject.eIsProxy()) {
+			InternalEObject oldSelectedObject = (InternalEObject)selectedObject;
+			selectedObject = eResolveProxy(oldSelectedObject);
+			if (selectedObject != oldSelectedObject) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextEditorModelPackage.TEXT_EDITOR_MODEL__SELECTED_OBJECT, oldSelectedObject, selectedObject));
+			}
+		}
+		return selectedObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetSelectedObject() {
+		return selectedObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSelectedObject(EObject newSelectedObject) {
+		EObject oldSelectedObject = selectedObject;
+		selectedObject = newSelectedObject;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextEditorModelPackage.TEXT_EDITOR_MODEL__SELECTED_OBJECT, oldSelectedObject, selectedObject));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getLineNumber() {
+		return lineNumber;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLineNumber(int newLineNumber) {
+		int oldLineNumber = lineNumber;
+		lineNumber = newLineNumber;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextEditorModelPackage.TEXT_EDITOR_MODEL__LINE_NUMBER, oldLineNumber, lineNumber));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -204,6 +295,11 @@ public class TextEditorModelImpl extends EModelElementImpl implements TextEditor
 				return getType();
 			case TextEditorModelPackage.TEXT_EDITOR_MODEL__NAME:
 				return getName();
+			case TextEditorModelPackage.TEXT_EDITOR_MODEL__SELECTED_OBJECT:
+				if (resolve) return getSelectedObject();
+				return basicGetSelectedObject();
+			case TextEditorModelPackage.TEXT_EDITOR_MODEL__LINE_NUMBER:
+				return getLineNumber();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -224,6 +320,12 @@ public class TextEditorModelImpl extends EModelElementImpl implements TextEditor
 				return;
 			case TextEditorModelPackage.TEXT_EDITOR_MODEL__NAME:
 				setName((String)newValue);
+				return;
+			case TextEditorModelPackage.TEXT_EDITOR_MODEL__SELECTED_OBJECT:
+				setSelectedObject((EObject)newValue);
+				return;
+			case TextEditorModelPackage.TEXT_EDITOR_MODEL__LINE_NUMBER:
+				setLineNumber((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -246,6 +348,12 @@ public class TextEditorModelImpl extends EModelElementImpl implements TextEditor
 			case TextEditorModelPackage.TEXT_EDITOR_MODEL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case TextEditorModelPackage.TEXT_EDITOR_MODEL__SELECTED_OBJECT:
+				setSelectedObject((EObject)null);
+				return;
+			case TextEditorModelPackage.TEXT_EDITOR_MODEL__LINE_NUMBER:
+				setLineNumber(LINE_NUMBER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -264,6 +372,10 @@ public class TextEditorModelImpl extends EModelElementImpl implements TextEditor
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case TextEditorModelPackage.TEXT_EDITOR_MODEL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case TextEditorModelPackage.TEXT_EDITOR_MODEL__SELECTED_OBJECT:
+				return selectedObject != null;
+			case TextEditorModelPackage.TEXT_EDITOR_MODEL__LINE_NUMBER:
+				return lineNumber != LINE_NUMBER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -282,6 +394,8 @@ public class TextEditorModelImpl extends EModelElementImpl implements TextEditor
 		result.append(type);
 		result.append(", name: ");
 		result.append(name);
+		result.append(", lineNumber: ");
+		result.append(lineNumber);
 		result.append(')');
 		return result.toString();
 	}

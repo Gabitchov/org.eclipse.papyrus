@@ -22,12 +22,12 @@ public class QompassPreferenceConstants {
 	 * For attributes, the default "aggregation kind" value is "none". When this option is set
 	 * it will be treated as composite
 	 */
-	public static final String P_TREAT_NONE_AS_COMPOSITE = "treatNoneAsComposite";
+	public static final String P_TREAT_NONE_AS_COMPOSITE = "treatNoneAsComposite"; //$NON-NLS-1$
 
-	public static final String P_ALL_ATTRIBUTES_ARE_CONFIG_ATTRIBUTES = "allAttributesAreConfigAttributes";
+	public static final String P_ALL_ATTRIBUTES_ARE_CONFIG_ATTRIBUTES = "allAttributesAreConfigAttributes"; //$NON-NLS-1$
 
-	public static final String P_SHOW_PROV_REQ_AS_PORT_ICONS = "showProvReqAsPortIcons";
+	public static final String P_SHOW_PROV_REQ_AS_PORT_ICONS = "showProvReqAsPortIcons"; //$NON-NLS-1$
 
-	public static final String P_CODE_GEN_PREFIX = "codeGenPrefix";
+	public static final String P_CODE_GEN_PREFIX = "codeGenPrefix"; //$NON-NLS-1$
 
 }

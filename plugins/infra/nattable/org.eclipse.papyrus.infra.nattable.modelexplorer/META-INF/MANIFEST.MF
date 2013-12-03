@@ -1,20 +1,19 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.1",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="1.0.0",
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.gmf.runtime.notation,
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.common.core,
  org.eclipse.gmf.runtime.emf.commands.core,
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.core.expressions,
- com.google.guava
+ org.eclipse.core.expressions
 Export-Package: org.eclipse.papyrus.infra.nattable.modelexplorer,
  org.eclipse.papyrus.infra.nattable.modelexplorer.handlers,
  org.eclipse.papyrus.infra.nattable.modelexplorer.messages,
@@ -24,7 +23,7 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.modelexplorer.Act

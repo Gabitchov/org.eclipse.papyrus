@@ -5,21 +5,7 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
-          <command
-               commandId="org.eclipse.papyrus.cpp.codegen.command"
-               icon="icons/codegen.gif"
-               label="Generate C++ code"
-               style="push"
-               tooltip="Generate C++ code">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-      </menuContribution>
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.popup.codegen">
           <command
                commandId="org.eclipse.papyrus.cpp.codegen.command"
                icon="icons/codegen.gif"
@@ -36,8 +22,9 @@
          point="org.eclipse.ui.commands">
       <command
             description="Generate C++ code"
+            categoryId="org.eclipse.papyrus.editor.category"
             id="org.eclipse.papyrus.cpp.codegen.command"
-            defaultHandler="org.eclipse.papyrus.cpp.codegen.ui.handler.GenerateCodeHandler"
+            defaultHandler="org.eclipse.papyrus.cpp.codegen.ui.handlers.GenerateCodeHandler"
             name="Generate C++ code">
       </command>
    </extension>

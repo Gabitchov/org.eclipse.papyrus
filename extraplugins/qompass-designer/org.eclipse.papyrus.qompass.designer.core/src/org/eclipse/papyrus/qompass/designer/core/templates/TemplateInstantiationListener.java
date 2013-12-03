@@ -22,6 +22,7 @@ import org.eclipse.papyrus.C_Cpp.ConstInit;
 import org.eclipse.papyrus.FCM.ActualChoice;
 import org.eclipse.papyrus.FCM.Template;
 import org.eclipse.papyrus.FCM.TemplateKind;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
@@ -187,7 +188,7 @@ public class TemplateInstantiationListener implements CopyListener {
 
 		} catch (TransformationException e) {
 			// throw runtime exception
-			throw new RuntimeException("TransformationException: " + e.getMessage());
+			throw new RuntimeException(String.format(Messages.TemplateInstantiationListener_TrafoException, e.getMessage()));
 		}
 	}
 
@@ -211,7 +212,7 @@ public class TemplateInstantiationListener implements CopyListener {
 			return newOperation;
 		} catch (TransformationException e) {
 			// throw runtime exception
-			throw new RuntimeException("TransformationException: " + e.getMessage());
+			throw new RuntimeException(String.format(Messages.TemplateInstantiationListener_TrafoException, e.getMessage()));
 		}
 	}
 

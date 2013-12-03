@@ -90,7 +90,7 @@ public class TransformationContext {
 			return actual.getQualifiedName();
 		}
 		else {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 	}
 

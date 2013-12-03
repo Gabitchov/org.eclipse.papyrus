@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *		Régis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 /**
  * <pre>
  * Customization of the DND edit policy for the StructureClassifier compartments, that enables the direct
- * creation of typed Part, Reference, Value, ActorPart or Property by dragging types in a Block structure compartment.
+ * creation of typed Part, Reference, ConstraintProperty, Value, ActorPart or Property by dragging types in a Block structure compartment.
  * </pre>
  */
 public class CustomStructureClassifierDropEditPolicy extends CustomDragDropEditPolicy {
@@ -95,7 +95,7 @@ public class CustomStructureClassifierDropEditPolicy extends CustomDragDropEditP
 			if((dropAsTypedProperty != null) && (dropAsTypedProperty.canExecute())) {
 				commandChoice.add(dropAsTypedProperty);
 			}
-			
+
 			// 6. Try to create a ConstraintProperty typed by the dropped object
 			Command dropAsTypedConstraintProperty = helper.getDropAsStructureItem(dropRequest, (GraphicalEditPart)getHost(), SysMLElementTypes.CONSTRAINT_PROPERTY);
 			if((dropAsTypedConstraintProperty != null) && (dropAsTypedConstraintProperty.canExecute())) {
@@ -104,8 +104,8 @@ public class CustomStructureClassifierDropEditPolicy extends CustomDragDropEditP
 
 			// 7. Build default drop command (show view of the dropped object)
 			Command defaultDropCommand = super.getDropObjectsCommand(dropRequest);
-			defaultDropCommand.setLabel("Default drop (Show dropped object in diagram)");
 			if((defaultDropCommand != null) && (defaultDropCommand.canExecute())) {
+				defaultDropCommand.setLabel("Default drop (Show dropped object in diagram)");
 				commandChoice.add(defaultDropCommand);
 			}
 
@@ -134,7 +134,7 @@ public class CustomStructureClassifierDropEditPolicy extends CustomDragDropEditP
 
 		return super.getDropObjectsCommand(dropRequest);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -142,16 +142,16 @@ public class CustomStructureClassifierDropEditPolicy extends CustomDragDropEditP
 	protected View getReferenceViewForConnectorEnd() {
 		return ViewUtil.getContainerView(super.getReferenceViewForConnectorEnd());
 	}
-	
+
 	@Override
 	protected ICommand getDropObjectCommand(DropObjectsRequest dropRequest, EObject droppedObject) {
 		View dropTargetView = ((IGraphicalEditPart)getHost()).getNotationView();
 		EObject dropTargetElement = dropTargetView.getElement();
 
 		EObject diagramOwner = getDiagramOwner(dropTargetView);
-		if (UMLUtil.getStereotypeApplication((Element)diagramOwner, ConstraintBlock.class) != null) {
+		if(UMLUtil.getStereotypeApplication((Element)diagramOwner, ConstraintBlock.class) != null) {
 			// ConstraintBlock
-			if (UMLUtil.getStereotypeApplication((Element)dropTargetElement, ConstraintProperty.class) == null) {
+			if(UMLUtil.getStereotypeApplication((Element)dropTargetElement, ConstraintProperty.class) == null) {
 				// only ConstraintProperty can be dropped in structure compartment of a diagram owned by a ConstraintBlock
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 			}

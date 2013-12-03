@@ -26,7 +26,7 @@ import org.eclipse.swt.graphics.Font;
  * this is an abstract editpart to manage a constraint
  * 
  */
-public class AbstractConstraintEditPart extends NamedElementEditPart {
+public abstract class AbstractConstraintEditPart extends NamedElementEditPart {
 
 	protected static final String CONSTRAINT_VALUE_SPECIFICATION_LISTENER = "Constraint_valueSpecification_Listener";
 

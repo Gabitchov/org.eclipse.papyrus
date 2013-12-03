@@ -25,6 +25,9 @@
 			<aspectTool description="Create a new PackageImport" id="package.tool.packageimport"
 				name="PackageImport" refToolId="clazz.tool.packageimport">
 			</aspectTool>
+			<aspectTool description="Create a new Context link" id="package.tool.contextLink"
+				name="ContextLink" refToolId="createContextLink22CreationTool">
+			</aspectTool>
 			
 			<!-- Attention : The element is added manually, can combine the two links comment and constraint, and therefore is not deleted -->
 			<aspectTool description="Create a new Link" id="package.tool.link"

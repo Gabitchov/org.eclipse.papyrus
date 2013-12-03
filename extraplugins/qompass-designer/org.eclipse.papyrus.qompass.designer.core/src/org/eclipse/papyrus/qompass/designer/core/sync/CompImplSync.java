@@ -24,6 +24,7 @@ import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.OperationUtils;
 import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
@@ -86,7 +87,7 @@ public class CompImplSync {
 			InterfaceRealization ir = (InterfaceRealization)relationship;
 			Classifier cl = ir.getImplementingClassifier();
 			if(cl instanceof Class) {
-				Log.log(Status.INFO, Log.TRAFO_SYNC, "interface rel-ship:" + cl.getName());
+				Log.log(Status.INFO, Log.TRAFO_SYNC, String.format(Messages.CompImplSync_InfoSyncIntf, cl.getName()));
 				Class implementation = (Class)cl;
 				// syncRealizations (implementation);
 				CompImplSync.interfaceModifications(implementation, toBeRemoved);
@@ -113,7 +114,7 @@ public class CompImplSync {
 				foundGeneralization = true;
 				Classifier cl = ((Generalization)relationship).getSpecific();
 				if(cl instanceof Class) {
-					Log.log(Status.INFO, Log.TRAFO_SYNC, "syncViaType => implementation: " + cl.getName());
+					Log.log(Status.INFO, Log.TRAFO_SYNC, String.format(Messages.CompImplSync_InfoSyncViaType, cl.getName()));
 					Class implementation = (Class)cl;
 					updatePorts(implementation);
 					if(Utils.isCompImpl(cl)) {
@@ -192,9 +193,9 @@ public class CompImplSync {
 	protected static String calcRealizationName(Interface providedIntf) {
 		String name = providedIntf.getName();
 		if(name == null) {
-			name = "undefined";
+			name = "undefined"; //$NON-NLS-1$
 		}
-		return "derived realization of " + name;
+		return "derived realization of " + name; //$NON-NLS-1$
 	}
 
 	/**
@@ -287,7 +288,7 @@ public class CompImplSync {
 			String name = ir.getName();
 			// automatically added interface realization is identified via its name (simpler
 			// compared to use of stereotype)
-			if((name != null) && name.startsWith("derived")) {
+			if((name != null) && name.startsWith("derived")) { //$NON-NLS-1$
 				Interface inheritedIntf = ir.getContract();
 				if(!providedIntfs.contains(inheritedIntf)) {
 					toBeRemoved.add(ir);
@@ -296,7 +297,7 @@ public class CompImplSync {
 		}
 		if(toBeRemoved.size() > 0) {
 			// remove InterfaceRealization, since not part of provided interfaces
-			CommandSupport.exec(TransactionUtil.getEditingDomain(implementation), "Sync. type and implementation", new Runnable() {
+			CommandSupport.exec(TransactionUtil.getEditingDomain(implementation), Messages.CompImplSync_InfoSyncViaImpl, new Runnable() {
 
 				public void run() {
 					// implCopy = implementation;

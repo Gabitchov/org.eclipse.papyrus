@@ -8,19 +8,21 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.p
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.provider,
  org.eclipse.papyrus.infra.nattable.model.nattable.provider
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.edit;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.pr
+ ovider.NattableEditPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.edit;sin
+ gleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

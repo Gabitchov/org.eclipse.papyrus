@@ -30,7 +30,9 @@ import org.eclipse.swt.graphics.Image;
 public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNamedElementFigure, ILabelFigure, IMultilineEditableFigure {
 
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
+
 	protected static final String LEFT_BRACE = "{";
+
 	private Label taggedLabel;
 
 	protected static final String RIGHT_BRACE = "}";
@@ -125,12 +127,13 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		return null;
 	}
 
-	public ConstraintFigure( ) {
+	public ConstraintFigure() {
 		this(null);
 	}
-	public ConstraintFigure( String tagLabel) {
+
+	public ConstraintFigure(String tagLabel) {
 		super();
-		
+
 		nameLabel = new WrappingLabel();
 
 		nameLabel.setOpaque(false);
@@ -175,6 +178,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 			this.add(taggedLabel, null, 0);
 		}
 	}
+
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#setDepth(int)
@@ -283,8 +287,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 * @param icon
 	 */
 	public void setIcon(Image icon) {
-		// TODO Auto-generated method stub
-
+		//Nothing
 	}
 
 	/**
@@ -294,7 +297,6 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 * @return
 	 */
 	public Image getIcon() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -304,8 +306,8 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 * 
 	 * 
 	 */
+	@Override
 	public Dimension getMinimumSize(int wHint, int hHint) {
-		// TODO Auto-generated method stub
 		return new Dimension(20, 20);
 	}
 
@@ -317,5 +319,41 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	public Point getEditionLocation() {
 		return page.getLocation();
 	}
+
+	/**
+	 * Create a label that contains the name of the element.
+	 */
+	public void restoreNameLabel() {
+		//		nameLabel.setOpaque(false);
+		//		nameLabel.setAlignment(PositionConstants.MIDDLE);
+		//		getNameLabelContainer().add(nameLabel, getNameLabelConstraint(), getNameLabelPosition());
+	}
+
+	public void removeNameLabel() {
+		//		if(getNameLabelContainer().getChildren().contains(nameLabel)) {
+		//			getNameLabelContainer().remove(nameLabel);
+		//		}
+	}
+
+	public void removeStereotypeLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void restoreStereotypeLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void restoreTaggedLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removeTaggedLabel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

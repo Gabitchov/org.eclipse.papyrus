@@ -104,8 +104,8 @@ out->writeEvent (event);
           </defaultValue>
         </ownedAttribute>
         <interfaceRealization xmi:id="_3GXWYCWSEeGB3KV6qwTHBw" name="derived realization of ILifeCycle" client="_ens7QOUTEd-P08Bciq_LqQ">
-          <supplier xmi:type="uml:Interface" href="pathmap://QML_CORE/SystemInterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
-          <contract href="pathmap://QML_CORE/SystemInterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
+          <supplier xmi:type="uml:Interface" href="pathmap://QML_CORE/sysinterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
+          <contract href="pathmap://QML_CORE/sysinterfaces.uml#_T3li0Dz6Ed-v9PxuTj6Elw"/>
         </interfaceRealization>
         <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_rglykOupEeCTfOY57pgE3w" name="processEvents" visibility="package" specification="_b5mYgCaiEeGRo-gX9igNzw">
           <language>C/C++</language>
@@ -394,10 +394,10 @@ out->writeEvent (event);
   <FCM:UseInstanceConfigurator xmi:id="_StgB8CNYEeGj_4swHBbKwg" base_Class="_u-qioOUTEd-P08Bciq_LqQ" configurator="_QQYfQCNYEeGj_4swHBbKwg"/>
   <FCM:ConfigurationProperty xmi:id="_uhdD8CVvEeGaL60JjVj19Q" base_Property="_bL0sACVvEeGaL60JjVj19Q"/>
   <FCM:DerivedElement xmi:id="_3GrfcCWSEeGB3KV6qwTHBw" base_Element="_3GbAwCWSEeGB3KV6qwTHBw">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/SystemInterfaces.uml#_WHyq4Dz6Ed-v9PxuTj6Elw"/>
+    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_WHyq4Dz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
   <FCM:DerivedElement xmi:id="_3G7-ICWSEeGB3KV6qwTHBw" base_Element="_3G6I8CWSEeGB3KV6qwTHBw">
-    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/SystemInterfaces.uml#_W7YrADz6Ed-v9PxuTj6Elw"/>
+    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_W7YrADz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
   <FCM:Template xmi:id="_nngKECaiEeGRo-gX9igNzw" base_Element="_b5mYgCaiEeGRo-gX9igNzw"/>
   <FCM:Port xmi:id="_JZGWgF8xEeGerN33d-RdRg" base_Port="_xUE3QF8wEeGerN33d-RdRg">

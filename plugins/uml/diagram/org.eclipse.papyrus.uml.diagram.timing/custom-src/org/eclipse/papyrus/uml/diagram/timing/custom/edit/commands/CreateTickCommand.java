@@ -45,7 +45,7 @@ public class CreateTickCommand extends GraphicalCommandHandler {
 	protected Command getCommand() {
 		final CompoundCommand cmd = new CompoundCommand(Messages.CreateTickCommand_attachTick);
 		final ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
-		if(!selection.isEmpty() && selection instanceof IStructuredSelection) {
+		if(selection instanceof IStructuredSelection && !selection.isEmpty()) {
 			final IStructuredSelection structSelection = (IStructuredSelection)selection;
 			for(final Object object : structSelection.toArray()) {
 				if(object instanceof OccurrenceSpecificationEditPartCN || object instanceof MessageOccurrenceSpecificationEditPartCN || object instanceof DestructionOccurrenceSpecificationEditPartCN) {

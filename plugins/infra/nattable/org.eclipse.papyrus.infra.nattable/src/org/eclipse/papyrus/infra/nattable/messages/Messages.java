@@ -123,6 +123,8 @@ public class Messages extends NLS {
 
 	public static String PrintTableHandler_TablePrint;
 
+	public static String ProblemLabelProvider_StringsValuesCanBeResolved;
+
 	public static String TableLabelProvider_ErrorGettingIconForTable;
 
 	public static String TableTesterRegistry_SeveralTesterAreRegisteredWithTheSameId;

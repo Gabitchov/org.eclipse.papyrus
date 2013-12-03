@@ -7,6 +7,24 @@
 [import org::eclipse::papyrus::cpp::codegen::acceleo::util::CppTemplates/]
 
 
+[comment
+return a list of owned operations, since this is not supported directly on a classifier/]
+[query public getOwnedOperations(cl : Classifier) : Sequence(Operation) =
+	if (cl.oclIsKindOf(Class)) then
+		oclAsType(Class).ownedOperation
+	else
+		if (cl.oclIsKindOf(DataType)) then
+			oclAsType(DataType).ownedOperation
+		else
+			if (cl.oclIsKindOf(Interface)) then
+				oclAsType(Interface).ownedOperation
+			else
+				Sequence{}
+			endif
+		endif
+	endif
+/]
+
 [template public virtualTxt(operation : Operation)]
 [if((operation.interface <> null) or (operation.isAbstract) or (operation.hasStereotype(Virtual)))]virtual [/if]
 [/template]
@@ -17,8 +35,12 @@
 [/template]
 
 
+[query public isConsOrDestructor(operation : Operation) : Boolean =
+hasStereotype(l2::Create) or hasStereotype(l2::Destroy)
+/]
+
 [query public ConsDestructorOrVoid(operation : Operation) : String =
-if hasStereotype(l2::Create) or hasStereotype(l2::Destroy) then
+if isConsOrDestructor() then
 	''
 else
 	'void '
@@ -26,14 +48,19 @@ endif/]
 
 
 [query public destructor(operation : Operation) : String =
-if hasStereotype(l2::Destroy) then
+if hasStereotype(l2::Destroy) and not operation.name.startsWith('~') then
 	'~'
 else
 	''
 endif/]
 
 [template public CppReturnSpec(operation : Operation)]
-[if (type = null)][ConsDestructorOrVoid()/][else][returnResult().modConst()/] [type.cppQualifiedName()/] [/if][returnResult().modPtr()/][returnResult().modRef()/]
+[if (type = null) or isConsOrDestructor()][ConsDestructorOrVoid()/][else][returnResult().modConst()/] [type.cppQualifiedName()/][returnResult().modPtr()/][returnResult().modRef()/] [/if]
+[/template]
+
+
+[template public CppReturnSpec(behavior : Behavior)]
+[if (returnResult() = null)]void [else][returnResult().modConst()/] [returnResult().type.cppQualifiedName()/][returnResult().modPtr()/][returnResult().modRef()/] [/if]
 [/template]
 
 
@@ -48,9 +75,13 @@ endif/]
 
 [template public CppOperationDeclaration(operation : Operation)]
 [CppOperationDoc()/]
-[InlineTxt()/][virtualTxt()/][staticTxt()/][CppReturnSpec()/] [destructor()/][operation.name/]([CppOperationParameters(true)/])[modConst()/][virtualSuffix()/];
+[InlineTxt()/][virtualTxt()/][staticTxt()/][CppReturnSpec()/][destructor()/][operation.name/]([CppOperationParameters(true)/])[modConst()/][virtualSuffix()/];
 [/template]
 
+[template public CppBehaviorDeclaration(behavior : Behavior)]
+[CppBehaviorDoc()/]
+[InlineTxt()/][CppReturnSpec()/][behavior.name/]([CppBehaviorParameters(true)/])[modConst()/];
+[/template]
 
 [template public CppConstInit(operation : Operation)]
 [if (hasStereotype(ConstInit) and hasStereotype(l2::Create))] : [getApplication(ConstInit).oclAsType(ConstInit).initialisation/][/if]
@@ -77,8 +108,16 @@ throws [for (raisedException) separator(',')][name/][/for]
 	[getBody('C/C++')/]
 }
 [else]
-[templateSignature()/][InlineTxt()/][CppReturnSpec()/][operation.class.name/][templateShortSignature()/]::[destructor()/][operation.name/]([CppOperationParameters(false)/])[throws()/][modConst()/][CppConstInit()/] {
+[templateSignature()/][InlineTxt()/][CppReturnSpec()/][operation.featuringClassifier.name/][templateShortSignature()/]::[destructor()/][operation.name/]([CppOperationParameters(false)/])[throws()/][modConst()/][CppConstInit()/] {
 	[getBodyInTemplate('C/C++')/]
 }
 [/if]
+[/template]
+
+
+[template public CppBehaviorImplementation(behavior : OpaqueBehavior)]
+[CppBehaviorDoc()/]
+[CppReturnSpec()/][behavior._context.name/]::[behavior.name/]([CppBehaviorParameters(false)/])[modConst()/] {
+	[getBodyFromOB('C/C++')/]
+}
 [/template]

@@ -41,7 +41,6 @@ public class InstantiateCppInclude implements CopyListener {
 
 	public void init(TemplateBinding binding, Object[] args) {
 		this.binding = binding;
-		this.args = args;
 	}
 
 	public EObject copyEObject(Copy copy, EObject targetEObj) {
@@ -74,6 +73,4 @@ public class InstantiateCppInclude implements CopyListener {
 	private TemplateBinding binding;
 
 	// private Copy copy;
-
-	private Object[] args;
 }

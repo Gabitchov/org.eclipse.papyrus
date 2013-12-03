@@ -13,7 +13,6 @@ package org.eclipse.papyrus.sysml.service.types.helper.advice;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Type;
 
 /** 
  * Edit helper advice for {@link Association} with "aggregation = composition" and navigable in one way (used for creation purpose only). 
@@ -33,11 +32,7 @@ public class AssociationCompositeEditHelperAdvice extends AssociationNoneEditHel
 	 * </pre>
 	 */
 	@Override
-	protected Property createSourceProperty(Type targetType) {
-			
-		Property sourceProperty = super.createSourceProperty(targetType);
+	protected void configureSourceProperty(Property sourceProperty) {	
 		sourceProperty.setIsComposite(true);
-				
-		return sourceProperty;
 	}
 }

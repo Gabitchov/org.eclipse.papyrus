@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.C_Cpp.impl;
 
@@ -6,8 +16,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
 import org.eclipse.papyrus.C_Cpp.*;
 
 /**
@@ -77,7 +90,7 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 			case C_CppPackage.UNION: return createUnion();
 			case C_CppPackage.STORAGE_CLASS: return createStorageClass();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -96,7 +109,7 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 			case C_CppPackage.ESTORAGE_CLASS:
 				return createEStorageClassFromString(eDataType, initialValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -115,7 +128,7 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 			case C_CppPackage.ESTORAGE_CLASS:
 				return convertEStorageClassToString(eDataType, instanceValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -147,6 +160,36 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	public ManualGeneration createManualGeneration() {
 		ManualGenerationImpl manualGeneration = new ManualGenerationImpl();
 		return manualGeneration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExternLibrary createExternLibrary() {
+		ExternLibraryImpl externLibrary = new ExternLibraryImpl();
+		return externLibrary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NoCodeGen createNoCodeGen() {
+		NoCodeGenImpl noCodeGen = new NoCodeGenImpl();
+		return noCodeGen;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CppRoot createCppRoot() {
+		CppRootImpl cppRoot = new CppRootImpl();
+		return cppRoot;
 	}
 
 	/**
@@ -187,36 +230,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	public External createExternal() {
 		ExternalImpl external = new ExternalImpl();
 		return external;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExternLibrary createExternLibrary() {
-		ExternLibraryImpl externLibrary = new ExternLibraryImpl();
-		return externLibrary;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CppRoot createCppRoot() {
-		CppRootImpl cppRoot = new CppRootImpl();
-		return cppRoot;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NoCodeGen createNoCodeGen() {
-		NoCodeGenImpl noCodeGen = new NoCodeGenImpl();
-		return noCodeGen;
 	}
 
 	/**
@@ -346,7 +359,7 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	 */
 	public VisibilityKind createVisibilityKindFromString(EDataType eDataType, String initialValue) {
 		VisibilityKind result = VisibilityKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -366,7 +379,7 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	 */
 	public EAccessKind createEAccessKindFromString(EDataType eDataType, String initialValue) {
 		EAccessKind result = EAccessKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
@@ -386,7 +399,7 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	 */
 	public EStorageClass createEStorageClassFromString(EDataType eDataType, String initialValue) {
 		EStorageClass result = EStorageClass.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 

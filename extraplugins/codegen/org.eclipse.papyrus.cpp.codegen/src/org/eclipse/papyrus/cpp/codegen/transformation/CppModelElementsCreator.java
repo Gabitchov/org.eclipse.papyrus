@@ -11,10 +11,18 @@
 
 package org.eclipse.papyrus.cpp.codegen.transformation;
 
+import org.eclipse.cdt.core.CCorePlugin;
+import org.eclipse.cdt.core.ToolFactory;
+import org.eclipse.cdt.core.formatter.CodeFormatter;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.Document;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.papyrus.C_Cpp.CppRoot;
 import org.eclipse.papyrus.C_Cpp.ExternLibrary;
 import org.eclipse.papyrus.C_Cpp.External;
@@ -23,9 +31,13 @@ import org.eclipse.papyrus.C_Cpp.ManualGeneration;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Template;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
+import org.eclipse.papyrus.acceleo.AcceleoException;
 import org.eclipse.papyrus.acceleo.GenUtils;
 import org.eclipse.papyrus.acceleo.ModelElementsCreator;
+import org.eclipse.papyrus.cpp.codegen.Activator;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
+import org.eclipse.text.edits.MalformedTreeException;
+import org.eclipse.text.edits.TextEdit;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -104,17 +116,26 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 		if(GenUtils.hasStereotype(classifier, ManualGeneration.class)) {
 			ManualGeneration mg = UMLUtil.getStereotypeApplication(classifier, ManualGeneration.class);
 			Include cppInclude = UMLUtil.getStereotypeApplication(classifier, Include.class);
-			String fileContent = commentHeader + cppInclude.getHeader();
-			createFile(container, classifier.getName() + DOT + hppExt, fileContent, true);
+			try {
+				String fileContent = commentHeader +
+					AcceleoDriver.evaluate(cppInclude.getHeader(), classifier, null);
+				createFile(container, classifier.getName() + DOT + hppExt, fileContent, true);
 
-			String manualURI = "TODO"; // fileContent = AcceleoDriver.evaluateURI(new URI(CppPackageHeader)), classifier);
+			// String manualURI = "TODO";
+			// fileContent = AcceleoDriver.evaluateURI(new URI(CppPackageHeader)), classifier);
 
-			fileContent = commentHeader + cppInclude.getPreBody() + GenUtils.NL + manualURI + GenUtils.NL + cppInclude.getBody();
-			String ext = GenUtils.maskNull(mg.getExtensionBody());
-			if(ext.length() == 0) {
-				ext = cppExt;
+				fileContent = commentHeader + 
+						AcceleoDriver.evaluate(cppInclude.getPreBody(), classifier, null) + GenUtils.NL +
+						AcceleoDriver.evaluate(cppInclude.getBody(), classifier, null) + GenUtils.NL;
+				String ext = GenUtils.maskNull(mg.getExtensionBody());
+				if(ext.length() == 0) {
+					ext = cppExt;
+				}
+				createFile(container, classifier.getName() + DOT + ext, fileContent, true);
 			}
-			createFile(container, classifier.getName() + DOT + ext, fileContent, true);
+			catch (AcceleoException e) {
+				Activator.log.error(e);
+			}
 		}
 
 		// Only generate when no CppNoCodeGen stereotype is applied to the class
@@ -144,7 +165,45 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 		}
 	}
 
+	@Override
+	protected void createFile(IFile file, String content, boolean force) throws CoreException {
+		String formatted = format(content);
+		super.createFile(file, formatted, force);
+	}
 
+	/**
+	 * Apply the user's currently selected formatting options to the input content.  Return the
+	 * input String in case of error.
+	 */
+	private static String format(String content) {
+
+		// do nothing if the CDT plugin is not loaded
+		if (Platform.getBundle(CCorePlugin.PLUGIN_ID) == null)
+			return content;
+
+		CodeFormatter codeFormatter = ToolFactory.createCodeFormatter(null);
+		IDocument doc = new Document(content);
+
+		TextEdit edit = codeFormatter.format(CodeFormatter.K_TRANSLATION_UNIT, doc.get(), 0, doc.get().length(), 0, null);
+
+		if (edit == null) {
+			Activator.log.debug("Cannot format content");
+			return content;
+		}
+
+		try {
+			edit.apply(doc);
+			return doc.get();
+		} catch (MalformedTreeException e) {
+			Activator.log.error(e);
+		} catch (BadLocationException e) {
+			Activator.log.error(e);
+		}
+
+		return content;
+	}
+
+	@Override
 	protected void createPackageFiles(IContainer packageContainer, IProgressMonitor monitor, Package pkg) throws CoreException {
 		// Creates the header for the package.
 		String fileContent = commentHeader + AcceleoDriver.evaluateURI(CppPackageHeader, pkg);

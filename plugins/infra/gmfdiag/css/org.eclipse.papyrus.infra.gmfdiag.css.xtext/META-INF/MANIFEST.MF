@@ -27,7 +27,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag,
  org.eclipse.papyrus.infra.gmfdiag.validation
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: CSS Editor (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext;singl

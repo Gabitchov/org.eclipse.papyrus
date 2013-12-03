@@ -20,3 +20,9 @@
 [template public CppOperationParameters(operation : Operation, showDefault : Boolean)]
 [for (ownedParameter->select(direction <> ParameterDirectionKind::return)) separator(', ')][CppParameter(showDefault)/][/for]
 [/template]
+
+
+[comment signature for a given behavior (e.g. effect within state machine)/]
+[template public CppBehaviorParameters(behavior : Behavior, showDefault : Boolean)]
+[for (ownedParameter->select(direction <> ParameterDirectionKind::return)) separator(', ')][CppParameter(showDefault)/][/for]
+[/template]

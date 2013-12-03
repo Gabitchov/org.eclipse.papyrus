@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 
 public abstract class ResizeableListCompartmentEditPart extends ListCompartmentEditPart {
 
@@ -62,6 +63,18 @@ public abstract class ResizeableListCompartmentEditPart extends ListCompartmentE
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);
+	}
+
+	@Override
+	public boolean isSelectable() {
+		return false;
+	}
+
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+
+		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
 
 }

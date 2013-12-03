@@ -47,7 +47,7 @@ public class OperationListener implements IPapyrusListener {
 	public void notifyChanged(Notification notification) {
 		int evtType = notification.getEventType();
 		Object notifier = notification.getNotifier();
-		String name = "";
+		String name = ""; //$NON-NLS-1$
 		if(notifier instanceof NamedElement) {
 			name = ((NamedElement)notifier).getName();
 		}

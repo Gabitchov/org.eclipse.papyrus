@@ -7,7 +7,8 @@
     <input>
       <takesTypesFrom href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
     </input>
-    <imports href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
+    <imports href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0"/>
+    <imports href="../../../utils/CppGenUtils.emtl#/0"/>
     <imports href="../CppPrimitiveTypes.emtl#/0"/>
     <imports href="../CppEnumerations.emtl#/0"/>
     <ownedModuleElement xsi:type="mtl:Template" name="TypeAndEnumForVisibility" visibility="Public">
@@ -74,7 +75,7 @@
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
               <source xsi:type="mtl:QueryInvocation">
                 <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-                <definition href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
+                <definition href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
                 <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/7">
                   <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
                 </argument>
@@ -153,37 +154,61 @@
       </parameter>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="CppClassTypeAndEnum" visibility="Public">
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="  public:&#xA;&#x9;"/>
-      <body xsi:type="mtl:TemplateInvocation" definition="/0/TypesAndEnumsForVisibility">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="    "/>
+      <body xsi:type="mtl:QueryInvocation">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/26">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
-        </argument>
+        <definition href="../../../utils/CppGenUtils.emtl#/0/getSection"/>
         <argument xsi:type="ocl.ecore:EnumLiteralExp">
           <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
           <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind/public"/>
         </argument>
-      </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;  protected:&#xA;&#x9;"/>
-      <body xsi:type="mtl:TemplateInvocation" definition="/0/TypesAndEnumsForVisibility">
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/27">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        <argument xsi:type="mtl:TemplateInvocation" definition="/0/TypesAndEnumsForVisibility">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/26">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+          </argument>
+          <argument xsi:type="ocl.ecore:EnumLiteralExp">
+            <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+            <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind/public"/>
+          </argument>
         </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;    "/>
+      <body xsi:type="mtl:QueryInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="../../../utils/CppGenUtils.emtl#/0/getSection"/>
         <argument xsi:type="ocl.ecore:EnumLiteralExp">
           <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
           <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind/protected"/>
         </argument>
-      </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;  private:&#xA;&#x9;"/>
-      <body xsi:type="mtl:TemplateInvocation" definition="/0/TypesAndEnumsForVisibility">
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/28">
-          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        <argument xsi:type="mtl:TemplateInvocation" definition="/0/TypesAndEnumsForVisibility">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/27">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+          </argument>
+          <argument xsi:type="ocl.ecore:EnumLiteralExp">
+            <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+            <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind/protected"/>
+          </argument>
         </argument>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;    "/>
+      <body xsi:type="mtl:QueryInvocation">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <definition href="../../../utils/CppGenUtils.emtl#/0/getSection"/>
         <argument xsi:type="ocl.ecore:EnumLiteralExp">
           <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
           <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind/private"/>
+        </argument>
+        <argument xsi:type="mtl:TemplateInvocation" definition="/0/TypesAndEnumsForVisibility">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/28">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+          </argument>
+          <argument xsi:type="ocl.ecore:EnumLiteralExp">
+            <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+            <referredEnumLiteral xsi:type="ecore:EEnumLiteral" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind/private"/>
+          </argument>
         </argument>
       </body>
       <parameter name="class">
@@ -288,7 +313,7 @@
           <contents xsi:type="ocl.ecore:Constraint"/>
         </eAnnotations>
         <eAnnotations source="MTL">
-          <references href="../../../../../../../../../../org.eclipse.papyrus.acceleo/bin/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
+          <references href="platform:/plugin/org.eclipse.papyrus.acceleo/org/eclipse/papyrus/acceleo/GenUtils.emtl#/0/hasStereotype.1"/>
         </eAnnotations>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
         <eParameters name="arg0">
@@ -296,6 +321,21 @@
         </eParameters>
         <eParameters name="definition">
           <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="getSection">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../../utils/CppGenUtils.emtl#/0/getSection"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="arg0">
+          <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
+        </eParameters>
+        <eParameters name="arg1">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </eParameters>
       </eOperations>
       <eOperations name="CppPrimitiveTypeDefinition">
@@ -383,9 +423,24 @@
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Operation"/>
       </eAnnotations>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehavior_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//OpaqueBehavior"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Behavior_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//Behavior"/>
+      </eAnnotations>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/uml2/4.0.0/UML#//PrimitiveType"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VisibilityKind_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/4.0.0/UML#//VisibilityKind"/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Enumeration_Class">
@@ -511,28 +566,28 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/TypeAndEnumForVisibility">
-      <details key="start" value="323"/>
-      <details key="end" value="745"/>
-      <details key="line" value="6"/>
-    </eAnnotations>
-    <eAnnotations source="positions.1" references="/0/TypeAndEnumForVisibility/%">
-      <details key="start" value="420"/>
-      <details key="end" value="733"/>
+      <details key="start" value="389"/>
+      <details key="end" value="811"/>
       <details key="line" value="7"/>
     </eAnnotations>
-    <eAnnotations source="positions.2" references="/0/TypeAndEnumForVisibility/%/%">
-      <details key="start" value="540"/>
-      <details key="end" value="630"/>
+    <eAnnotations source="positions.1" references="/0/TypeAndEnumForVisibility/%">
+      <details key="start" value="486"/>
+      <details key="end" value="799"/>
       <details key="line" value="8"/>
     </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/TypeAndEnumForVisibility/%/%">
+      <details key="start" value="606"/>
+      <details key="end" value="696"/>
+      <details key="line" value="9"/>
+    </eAnnotations>
     <eAnnotations source="positions.3" references="/0/TypeAndEnumForVisibility/%/%/%">
-      <details key="start" value="574"/>
-      <details key="end" value="623"/>
+      <details key="start" value="640"/>
+      <details key="end" value="689"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/TypeAndEnumForVisibility/%/%/%/%">
-      <details key="start" value="574"/>
-      <details key="end" value="596"/>
+      <details key="start" value="640"/>
+      <details key="end" value="662"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/TypeAndEnumForVisibility/%/%/%/%/self">
@@ -541,13 +596,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/TypeAndEnumForVisibility/%/%/%/%/%">
-      <details key="start" value="584"/>
-      <details key="end" value="595"/>
+      <details key="start" value="650"/>
+      <details key="end" value="661"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/TypeAndEnumForVisibility/%/%/%.1">
-      <details key="start" value="546"/>
-      <details key="end" value="572"/>
+      <details key="start" value="612"/>
+      <details key="end" value="638"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/TypeAndEnumForVisibility/%/%/%.1/self">
@@ -556,28 +611,28 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/TypeAndEnumForVisibility/%/%/%.1/%">
-      <details key="start" value="559"/>
-      <details key="end" value="570"/>
+      <details key="start" value="625"/>
+      <details key="end" value="636"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/TypeAndEnumForVisibility/%/%.1">
-      <details key="start" value="630"/>
-      <details key="end" value="631"/>
-      <details key="line" value="9"/>
+      <details key="start" value="696"/>
+      <details key="end" value="697"/>
+      <details key="line" value="10"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/TypeAndEnumForVisibility/%/%.2">
-      <details key="start" value="631"/>
-      <details key="end" value="727"/>
-      <details key="line" value="9"/>
+      <details key="start" value="697"/>
+      <details key="end" value="793"/>
+      <details key="line" value="10"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/TypeAndEnumForVisibility/%/%.2/%">
-      <details key="start" value="667"/>
-      <details key="end" value="720"/>
+      <details key="start" value="733"/>
+      <details key="end" value="786"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/TypeAndEnumForVisibility/%/%.2/%/%">
-      <details key="start" value="667"/>
-      <details key="end" value="691"/>
+      <details key="start" value="733"/>
+      <details key="end" value="757"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/TypeAndEnumForVisibility/%/%.2/%/%/self">
@@ -586,13 +641,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/TypeAndEnumForVisibility/%/%.2/%/%/%">
-      <details key="start" value="677"/>
-      <details key="end" value="690"/>
+      <details key="start" value="743"/>
+      <details key="end" value="756"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/TypeAndEnumForVisibility/%/%.2/%.1">
-      <details key="start" value="637"/>
-      <details key="end" value="665"/>
+      <details key="start" value="703"/>
+      <details key="end" value="731"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/TypeAndEnumForVisibility/%/%.2/%.1/self">
@@ -601,33 +656,33 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/TypeAndEnumForVisibility/%/%.2/%.1/%">
-      <details key="start" value="650"/>
-      <details key="end" value="663"/>
+      <details key="start" value="716"/>
+      <details key="end" value="729"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/TypeAndEnumForVisibility/%/%.3">
-      <details key="start" value="727"/>
-      <details key="end" value="728"/>
-      <details key="line" value="10"/>
+      <details key="start" value="793"/>
+      <details key="end" value="794"/>
+      <details key="line" value="11"/>
     </eAnnotations>
     <eAnnotations source="positions.20" references="/0/TypeAndEnumForVisibility/%/%.4">
-      <details key="start" value="424"/>
-      <details key="end" value="538"/>
+      <details key="start" value="490"/>
+      <details key="end" value="604"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/TypeAndEnumForVisibility/%/%.4/%">
-      <details key="start" value="425"/>
-      <details key="end" value="481"/>
+      <details key="start" value="491"/>
+      <details key="end" value="547"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/TypeAndEnumForVisibility/%/%.4/%/%">
-      <details key="start" value="425"/>
-      <details key="end" value="453"/>
+      <details key="start" value="491"/>
+      <details key="end" value="519"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/TypeAndEnumForVisibility/%/%.4/%/%/%">
-      <details key="start" value="429"/>
-      <details key="end" value="453"/>
+      <details key="start" value="495"/>
+      <details key="end" value="519"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/TypeAndEnumForVisibility/%/%.4/%/%/%/self">
@@ -636,13 +691,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.25" references="/0/TypeAndEnumForVisibility/%/%.4/%/%/%/%">
-      <details key="start" value="443"/>
-      <details key="end" value="452"/>
+      <details key="start" value="509"/>
+      <details key="end" value="518"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.26" references="/0/TypeAndEnumForVisibility/%/%.4/%/%.1">
-      <details key="start" value="458"/>
-      <details key="end" value="481"/>
+      <details key="start" value="524"/>
+      <details key="end" value="547"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.27" references="/0/TypeAndEnumForVisibility/%/%.4/%/%.1/self">
@@ -651,23 +706,23 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.28" references="/0/TypeAndEnumForVisibility/%/%.4/%/%.1/%">
-      <details key="start" value="470"/>
-      <details key="end" value="480"/>
+      <details key="start" value="536"/>
+      <details key="end" value="546"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.29" references="/0/TypeAndEnumForVisibility/%/%.4/%.1">
-      <details key="start" value="486"/>
-      <details key="end" value="537"/>
+      <details key="start" value="552"/>
+      <details key="end" value="603"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.30" references="/0/TypeAndEnumForVisibility/%/%.4/%.1/%">
-      <details key="start" value="486"/>
-      <details key="end" value="518"/>
+      <details key="start" value="552"/>
+      <details key="end" value="584"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/TypeAndEnumForVisibility/%/%.4/%.1/%/%">
-      <details key="start" value="486"/>
-      <details key="end" value="507"/>
+      <details key="start" value="552"/>
+      <details key="end" value="573"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/TypeAndEnumForVisibility/%/%.4/%.1/%/%/self">
@@ -676,38 +731,38 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/TypeAndEnumForVisibility/%/%.4/%.1/%/%/%">
-      <details key="start" value="496"/>
-      <details key="end" value="506"/>
+      <details key="start" value="562"/>
+      <details key="end" value="572"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/TypeAndEnumForVisibility/%/%.4/%.1/visibilityFilter">
-      <details key="start" value="521"/>
-      <details key="end" value="537"/>
+      <details key="start" value="587"/>
+      <details key="end" value="603"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/TypeAndEnumForVisibility/element">
-      <details key="start" value="365"/>
-      <details key="end" value="382"/>
-      <details key="line" value="6"/>
+      <details key="start" value="431"/>
+      <details key="end" value="448"/>
+      <details key="line" value="7"/>
     </eAnnotations>
     <eAnnotations source="positions.36" references="/0/TypeAndEnumForVisibility/visibilityFilter">
-      <details key="start" value="384"/>
-      <details key="end" value="417"/>
-      <details key="line" value="6"/>
+      <details key="start" value="450"/>
+      <details key="end" value="483"/>
+      <details key="line" value="7"/>
     </eAnnotations>
     <eAnnotations source="positions.37" references="/0/TypesAndEnumsForVisibility">
-      <details key="start" value="747"/>
-      <details key="end" value="926"/>
-      <details key="line" value="13"/>
-    </eAnnotations>
-    <eAnnotations source="positions.38" references="/0/TypesAndEnumsForVisibility/%">
-      <details key="start" value="843"/>
-      <details key="end" value="914"/>
+      <details key="start" value="813"/>
+      <details key="end" value="992"/>
       <details key="line" value="14"/>
     </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/TypesAndEnumsForVisibility/%">
+      <details key="start" value="909"/>
+      <details key="end" value="980"/>
+      <details key="line" value="15"/>
+    </eAnnotations>
     <eAnnotations source="positions.39" references="/0/TypesAndEnumsForVisibility/%/%">
-      <details key="start" value="864"/>
-      <details key="end" value="906"/>
+      <details key="start" value="930"/>
+      <details key="end" value="972"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.40" references="/0/TypesAndEnumsForVisibility/%/%/self">
@@ -716,13 +771,13 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.41" references="/0/TypesAndEnumsForVisibility/%/%/visibilityFilter">
-      <details key="start" value="889"/>
-      <details key="end" value="905"/>
+      <details key="start" value="955"/>
+      <details key="end" value="971"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.42" references="/0/TypesAndEnumsForVisibility/%/%.1">
-      <details key="start" value="849"/>
-      <details key="end" value="861"/>
+      <details key="start" value="915"/>
+      <details key="end" value="927"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.43" references="/0/TypesAndEnumsForVisibility/%/%.1/self">
@@ -731,129 +786,159 @@
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.44" references="/0/TypesAndEnumsForVisibility/ne">
-      <details key="start" value="791"/>
-      <details key="end" value="805"/>
-      <details key="line" value="13"/>
+      <details key="start" value="857"/>
+      <details key="end" value="871"/>
+      <details key="line" value="14"/>
     </eAnnotations>
     <eAnnotations source="positions.45" references="/0/TypesAndEnumsForVisibility/visibilityFilter">
-      <details key="start" value="807"/>
-      <details key="end" value="840"/>
-      <details key="line" value="13"/>
+      <details key="start" value="873"/>
+      <details key="end" value="906"/>
+      <details key="line" value="14"/>
     </eAnnotations>
     <eAnnotations source="positions.46" references="/0/CppClassTypeAndEnum">
-      <details key="start" value="928"/>
-      <details key="end" value="1200"/>
-      <details key="line" value="17"/>
-    </eAnnotations>
-    <eAnnotations source="positions.47" references="/0/CppClassTypeAndEnum/%">
-      <details key="start" value="986"/>
-      <details key="end" value="997"/>
+      <details key="start" value="994"/>
+      <details key="end" value="1350"/>
       <details key="line" value="18"/>
     </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/CppClassTypeAndEnum/%">
+      <details key="start" value="1052"/>
+      <details key="end" value="1056"/>
+      <details key="line" value="19"/>
+    </eAnnotations>
     <eAnnotations source="positions.48" references="/0/CppClassTypeAndEnum/%.1">
-      <details key="start" value="998"/>
-      <details key="end" value="1048"/>
+      <details key="start" value="1057"/>
+      <details key="end" value="1142"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.49" references="/0/CppClassTypeAndEnum/%.1/self">
+    <eAnnotations source="positions.49" references="/0/CppClassTypeAndEnum/%.1/%">
+      <details key="start" value="1057"/>
+      <details key="end" value="1079"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/CppClassTypeAndEnum/%.1/%.1">
+      <details key="start" value="1091"/>
+      <details key="end" value="1141"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/CppClassTypeAndEnum/%.1/%.1/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.50" references="/0/CppClassTypeAndEnum/%.1/%">
-      <details key="start" value="1025"/>
-      <details key="end" value="1047"/>
+    <eAnnotations source="positions.52" references="/0/CppClassTypeAndEnum/%.1/%.1/%">
+      <details key="start" value="1118"/>
+      <details key="end" value="1140"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.51" references="/0/CppClassTypeAndEnum/%.2">
-      <details key="start" value="1050"/>
-      <details key="end" value="1065"/>
+    <eAnnotations source="positions.53" references="/0/CppClassTypeAndEnum/%.2">
+      <details key="start" value="1144"/>
+      <details key="end" value="1149"/>
       <details key="line" value="20"/>
     </eAnnotations>
-    <eAnnotations source="positions.52" references="/0/CppClassTypeAndEnum/%.3">
-      <details key="start" value="1066"/>
-      <details key="end" value="1119"/>
+    <eAnnotations source="positions.54" references="/0/CppClassTypeAndEnum/%.3">
+      <details key="start" value="1150"/>
+      <details key="end" value="1241"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.53" references="/0/CppClassTypeAndEnum/%.3/self">
+    <eAnnotations source="positions.55" references="/0/CppClassTypeAndEnum/%.3/%">
+      <details key="start" value="1150"/>
+      <details key="end" value="1175"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/CppClassTypeAndEnum/%.3/%.1">
+      <details key="start" value="1187"/>
+      <details key="end" value="1240"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/CppClassTypeAndEnum/%.3/%.1/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.54" references="/0/CppClassTypeAndEnum/%.3/%">
-      <details key="start" value="1093"/>
-      <details key="end" value="1118"/>
+    <eAnnotations source="positions.58" references="/0/CppClassTypeAndEnum/%.3/%.1/%">
+      <details key="start" value="1214"/>
+      <details key="end" value="1239"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.55" references="/0/CppClassTypeAndEnum/%.4">
-      <details key="start" value="1121"/>
-      <details key="end" value="1134"/>
-      <details key="line" value="22"/>
+    <eAnnotations source="positions.59" references="/0/CppClassTypeAndEnum/%.4">
+      <details key="start" value="1243"/>
+      <details key="end" value="1248"/>
+      <details key="line" value="21"/>
     </eAnnotations>
-    <eAnnotations source="positions.56" references="/0/CppClassTypeAndEnum/%.5">
-      <details key="start" value="1135"/>
-      <details key="end" value="1186"/>
+    <eAnnotations source="positions.60" references="/0/CppClassTypeAndEnum/%.5">
+      <details key="start" value="1249"/>
+      <details key="end" value="1336"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.57" references="/0/CppClassTypeAndEnum/%.5/self">
+    <eAnnotations source="positions.61" references="/0/CppClassTypeAndEnum/%.5/%">
+      <details key="start" value="1249"/>
+      <details key="end" value="1272"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/CppClassTypeAndEnum/%.5/%.1">
+      <details key="start" value="1284"/>
+      <details key="end" value="1335"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/CppClassTypeAndEnum/%.5/%.1/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.58" references="/0/CppClassTypeAndEnum/%.5/%">
-      <details key="start" value="1162"/>
-      <details key="end" value="1185"/>
+    <eAnnotations source="positions.64" references="/0/CppClassTypeAndEnum/%.5/%.1/%">
+      <details key="start" value="1311"/>
+      <details key="end" value="1334"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.59" references="/0/CppClassTypeAndEnum/class">
-      <details key="start" value="965"/>
-      <details key="end" value="983"/>
-      <details key="line" value="17"/>
+    <eAnnotations source="positions.65" references="/0/CppClassTypeAndEnum/class">
+      <details key="start" value="1031"/>
+      <details key="end" value="1049"/>
+      <details key="line" value="18"/>
     </eAnnotations>
-    <eAnnotations source="positions.60" references="/0/CppClassTypeAndEnumPackage">
-      <details key="start" value="1203"/>
-      <details key="end" value="1384"/>
-      <details key="line" value="27"/>
+    <eAnnotations source="positions.66" references="/0/CppClassTypeAndEnumPackage">
+      <details key="start" value="1352"/>
+      <details key="end" value="1533"/>
+      <details key="line" value="24"/>
     </eAnnotations>
-    <eAnnotations source="positions.61" references="/0/CppClassTypeAndEnumPackage/%">
-      <details key="start" value="1264"/>
-      <details key="end" value="1316"/>
+    <eAnnotations source="positions.67" references="/0/CppClassTypeAndEnumPackage/%">
+      <details key="start" value="1413"/>
+      <details key="end" value="1465"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.62" references="/0/CppClassTypeAndEnumPackage/%/self">
+    <eAnnotations source="positions.68" references="/0/CppClassTypeAndEnumPackage/%/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.63" references="/0/CppClassTypeAndEnumPackage/%/%">
-      <details key="start" value="1291"/>
-      <details key="end" value="1315"/>
+    <eAnnotations source="positions.69" references="/0/CppClassTypeAndEnumPackage/%/%">
+      <details key="start" value="1440"/>
+      <details key="end" value="1464"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.64" references="/0/CppClassTypeAndEnumPackage/%.1">
-      <details key="start" value="1318"/>
-      <details key="end" value="1319"/>
-      <details key="line" value="29"/>
+    <eAnnotations source="positions.70" references="/0/CppClassTypeAndEnumPackage/%.1">
+      <details key="start" value="1467"/>
+      <details key="end" value="1468"/>
+      <details key="line" value="26"/>
     </eAnnotations>
-    <eAnnotations source="positions.65" references="/0/CppClassTypeAndEnumPackage/%.2">
-      <details key="start" value="1320"/>
-      <details key="end" value="1370"/>
+    <eAnnotations source="positions.71" references="/0/CppClassTypeAndEnumPackage/%.2">
+      <details key="start" value="1469"/>
+      <details key="end" value="1519"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.66" references="/0/CppClassTypeAndEnumPackage/%.2/self">
+    <eAnnotations source="positions.72" references="/0/CppClassTypeAndEnumPackage/%.2/self">
       <details key="start" value="-1"/>
       <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.67" references="/0/CppClassTypeAndEnumPackage/%.2/%">
-      <details key="start" value="1347"/>
-      <details key="end" value="1369"/>
+    <eAnnotations source="positions.73" references="/0/CppClassTypeAndEnumPackage/%.2/%">
+      <details key="start" value="1496"/>
+      <details key="end" value="1518"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.68" references="/0/CppClassTypeAndEnumPackage/pkg">
-      <details key="start" value="1247"/>
-      <details key="end" value="1260"/>
-      <details key="line" value="27"/>
+    <eAnnotations source="positions.74" references="/0/CppClassTypeAndEnumPackage/pkg">
+      <details key="start" value="1396"/>
+      <details key="end" value="1409"/>
+      <details key="line" value="24"/>
     </eAnnotations>
   </ecore:EAnnotation>
 </xmi:XMI>

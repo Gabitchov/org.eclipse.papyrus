@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.C_Cpp;
 
@@ -26,7 +36,7 @@ public enum EAccessKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	READ(0, "read", "read"),
+	READ(0, "read", "read"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Write</b></em>' literal object.
@@ -36,7 +46,7 @@ public enum EAccessKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	WRITE(1, "write", "write"),
+	WRITE(1, "write", "write"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Read Write</b></em>' literal object.
@@ -46,7 +56,7 @@ public enum EAccessKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	READ_WRITE(2, "readWrite", "readWrite");
+	READ_WRITE(2, "readWrite", "readWrite"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Read</b></em>' literal value.

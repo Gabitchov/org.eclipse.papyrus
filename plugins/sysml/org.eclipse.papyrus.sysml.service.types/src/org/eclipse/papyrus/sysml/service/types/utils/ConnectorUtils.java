@@ -21,9 +21,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -246,5 +248,50 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * 
+	 * @param connector
+	 *        a connector existing in the model
+	 * @param sourceView
+	 *        a potential source for this connector
+	 * @param targetView
+	 *        a potential target for this connector
+	 * @return
+	 *         <code>true</code> if displaying the existing connector between this source and this target view is correct
+	 */
+	public final boolean canDisplayExistingConnectorBetweenViewsAccordingToNestedPaths(final Connector connector, final View sourceView, final View targetView) {
+		ConnectorUtils utils = new ConnectorUtils();
+		final List<Property> sourcePath = utils.getNestedPropertyPath(sourceView, targetView);
+		final List<Property> targetPath = utils.getNestedPropertyPath(targetView, sourceView);
+		boolean hasWantedPath = true;
+		for(final ConnectorEnd end : connector.getEnds()) {
+			if(sourceView != null && end.getRole() == sourceView.getElement()) {
+				hasWantedPath = hasWantedPath && haveSamePath(sourcePath, end);
+			} else if(targetView != null && end.getRole() == targetView.getElement()) {
+				hasWantedPath = hasWantedPath && haveSamePath(targetPath, end);
+			}
+		}
+		return hasWantedPath;
+	}
+
+	/**
+	 * 
+	 * @param wantedPath
+	 *        the wanted nested path for the end
+	 * @param end
+	 *        an end
+	 * @return
+	 *         true if the end has as nested path THE wanted path
+	 */
+	protected boolean haveSamePath(final List<Property> wantedPath, final ConnectorEnd end) {
+		Stereotype ste = end.getAppliedStereotype("SysML::Blocks::NestedConnectorEnd");//$NON-NLS-1$
+		if(ste != null) {
+			final NestedConnectorEnd nestedConnectorEnd = (NestedConnectorEnd)end.getStereotypeApplication(ste);
+			return nestedConnectorEnd.getPropertyPath().equals(wantedPath);
+		} else {
+			return wantedPath.isEmpty();
+		}
 	}
 }

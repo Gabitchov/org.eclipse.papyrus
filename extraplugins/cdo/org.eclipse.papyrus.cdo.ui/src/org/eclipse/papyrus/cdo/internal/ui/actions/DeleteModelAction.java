@@ -16,14 +16,18 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorInput;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
@@ -38,7 +42,7 @@ import com.google.common.collect.Lists;
 /**
  * This is the DeleteModelAction type. Enjoy.
  */
-public class DeleteModelAction extends AsyncTransactionAction<DIModel> {
+public class DeleteModelAction extends AsyncEditAction<DIModel> {
 
 	private final IWorkbenchPart part;
 
@@ -100,4 +104,20 @@ public class DeleteModelAction extends AsyncTransactionAction<DIModel> {
 		}
 	}
 
+	@Override
+	protected boolean updateSelection(IStructuredSelection selection) {
+		boolean result = super.updateSelection(selection);
+
+		if(result) {
+			// must also be able to modify the containing folder/resource
+			CDOObject toDelete = getSelectedCDOObject();
+			EObject container = toDelete.eContainer();
+			if(container != null) {
+				CDOObject cdoContainer = CDOUtils.getCDOObject(container);
+				result = (cdoContainer == null) || cdoContainer.cdoPermission().isWritable();
+			}
+		}
+
+		return result;
+	}
 }

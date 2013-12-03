@@ -77,9 +77,17 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 		super.initFields();
 		reorientedEdgeView = RequestParameterUtils.getReconnectedEdge(getRequest());
 		newEndView = RequestParameterUtils.getReconnectedEndView(getRequest());
-		oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
-		setNewPartWithPort(getNewPartWithPort());
-		setOppositePartWithPort(getOppositePartWithPort());
+		if(this.reorientedEdgeView != null) {
+			oppositeEndView = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? reorientedEdgeView.getTarget() : reorientedEdgeView.getSource();
+		} else {
+			oppositeEndView = null;
+		}
+		if(getNewPartWithPort() == null) {
+			setNewPartWithPort(findNewPartWithPort());
+		}
+		if(getOppositePartWithPort() == null) {
+			setOppositePartWithPort(findNewOppositePartWithPort());
+		}
 	}
 
 	//	/**
@@ -229,8 +237,11 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 	 * @return the new {@link Connector} end graphical parent.
 	 */
 	protected Element getEndParent(View endView) {
-		EObject parent = ViewUtil.getContainerView(endView).getElement();
-		return (parent instanceof Element) ? (Element)parent : null;
+		if(endView != null) {
+			EObject parent = ViewUtil.getContainerView(endView).getElement();
+			return (parent instanceof Element) ? (Element)parent : null;
+		}
+		return null;
 	}
 
 
@@ -260,10 +271,10 @@ public class ConnectorReorientCommand extends ConnectorReorientSemanticCommand {
 	 * 
 	 * @return the new {@link Connector} opposite end part with port.
 	 */
-	protected Property getNewOppositePartWithPort() {
+	protected Property findNewOppositePartWithPort() {
 		Property partWithPort = null;
 		Element oppositeEndParent = getEndParent(this.oppositeEndView);
-		if(this.oppositeEndView.getElement() instanceof Port) {
+		if(this.oppositeEndView != null && this.oppositeEndView.getElement() instanceof Port) {
 			// Only look for PartWithPort if the role is a Port.
 
 			if((oppositeEndParent != null) && (oppositeEndParent instanceof Property) && !(oppositeEndParent instanceof Port)) {

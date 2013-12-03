@@ -1,8 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    Ansgar Radermacher - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.FCM;
 
@@ -30,7 +36,9 @@ public enum ActualChoice implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PASS_ACTUAL(0, "PassActual", "PassActual"), /**
+	PASS_ACTUAL(0, "PassActual", "PassActual"), //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
 	 * The '<em><b>Interface Of PPort</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,7 +46,7 @@ public enum ActualChoice implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERFACE_OF_PPORT(1, "InterfaceOfPPort", "InterfaceOfPPort"),
+	INTERFACE_OF_PPORT(1, "InterfaceOfPPort", "InterfaceOfPPort"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Interface Of Rport</b></em>' literal object.
@@ -48,7 +56,7 @@ public enum ActualChoice implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERFACE_OF_RPORT(2, "InterfaceOfRport", "InterfaceOfRport");
+	INTERFACE_OF_RPORT(2, "InterfaceOfRport", "InterfaceOfRport"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Pass Actual</b></em>' literal value.

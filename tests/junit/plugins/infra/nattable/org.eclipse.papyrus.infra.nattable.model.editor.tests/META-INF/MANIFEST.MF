@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable.model.editor;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.nattable.model.editor;bundle-version="1.0.0",
  org.junit;bundle-version="4.11.0",
- org.eclipse.papyrus.junit.utils;bundle-version="0.10.1",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.0.0",
  org.eclipse.emf.transaction
 Export-Package: org.eclipse.papyrus.infra.nattable.model.editor.tests,
  org.eclipse.papyrus.infra.nattable.model.editor.tests.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.editor.test

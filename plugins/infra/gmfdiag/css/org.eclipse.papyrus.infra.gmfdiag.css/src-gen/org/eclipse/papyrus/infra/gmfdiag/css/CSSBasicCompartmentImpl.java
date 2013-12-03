@@ -11,7 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.impl.BasicCompartmentImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
@@ -137,6 +139,24 @@ public class CSSBasicCompartmentImpl extends BasicCompartmentImpl implements CSS
 
 		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(this, feature);
+	}
+
+	//////////////////////////////////
+	//	Implements the getNamedStyle //
+	//////////////////////////////////
+
+	@Override
+	public NamedStyle getNamedStyle(EClass eClass, String name) {
+		return getCSSNamedStyle(eClass, name);
+	}
+
+	public NamedStyle getCSSNamedStyle(EClass eClass, String name) {
+		NamedStyle userStyle = super.getNamedStyle(eClass, name);
+		if(userStyle != null) {
+			return userStyle;
+		}
+
+		return getCSSView().getCSSNamedStyle(eClass, name);
 	}
 
 

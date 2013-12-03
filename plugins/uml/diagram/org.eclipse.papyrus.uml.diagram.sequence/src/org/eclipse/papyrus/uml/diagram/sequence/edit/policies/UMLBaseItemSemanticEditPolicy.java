@@ -63,6 +63,7 @@ import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -477,6 +478,21 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public boolean canCreateConstraintContext_8500(Constraint source, Namespace target) {
+			if(source != null) {
+				if(source.getContext() != null) {
+					return false;
+				}
+			}
+			if(target != null && (target.getOwnedRules().contains(target))) {
+				return false;
+			}
+			return canExistConstraintContext_8500(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public boolean canExistMessage_4003(Interaction container, Message linkInstance, Element source, Element target) {
 			try {
 				if(source == null) {
@@ -702,6 +718,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistGeneralOrdering_4012(InteractionFragment container, GeneralOrdering linkInstance, OccurrenceSpecification source, OccurrenceSpecification target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistConstraintContext_8500(Constraint source, Namespace target) {
 			return true;
 		}
 	}

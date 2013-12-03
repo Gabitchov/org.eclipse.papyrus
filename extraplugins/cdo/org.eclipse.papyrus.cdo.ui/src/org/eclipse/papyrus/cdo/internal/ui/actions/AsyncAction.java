@@ -56,6 +56,10 @@ public abstract class AsyncAction<T> extends BaseSelectionListenerAction {
 		return (this.selection != null) && super.updateSelection(selection);
 	}
 
+	protected T getSelection() {
+		return selection;
+	}
+
 	protected T coerce(Object selection) {
 		T result = null;
 
