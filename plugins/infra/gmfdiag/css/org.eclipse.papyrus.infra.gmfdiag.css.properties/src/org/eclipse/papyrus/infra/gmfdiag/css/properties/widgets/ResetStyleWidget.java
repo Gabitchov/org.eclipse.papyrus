@@ -11,12 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.widgets;
 
-import java.util.HashMap;
-
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.gmfdiag.css.handler.ResetStyleHandler;
-import org.eclipse.papyrus.infra.gmfdiag.css.properties.Activator;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.css.helper.ResetStyleHelper;
+import org.eclipse.papyrus.views.properties.modelelement.DataSource;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -28,6 +25,8 @@ public class ResetStyleWidget implements SelectionListener {
 
 	private Button button;
 
+	private DataSource input;
+
 	public ResetStyleWidget(Composite parent, int style) {
 		button = new Button(parent, SWT.PUSH);
 		button.addSelectionListener(this);
@@ -36,17 +35,12 @@ public class ResetStyleWidget implements SelectionListener {
 	}
 
 	public void widgetSelected(SelectionEvent event) {
-		if(event.widget != button) {
+		if(event.widget != button || input == null) {
 			return;
 		}
 
-		ResetStyleHandler handler = new ResetStyleHandler();
-		try {
-			//FIXME: The ExecutionEvent needs the EclipseContext
-			handler.execute(new ExecutionEvent(null, new HashMap<String, String>(), event, null));
-		} catch (ExecutionException ex) {
-			Activator.log.error(ex);
-		}
+		IStructuredSelection viewSelection = input.getSelection();
+		ResetStyleHelper.resetStyle(viewSelection);
 	}
 
 	public void widgetDefaultSelected(SelectionEvent e) {
@@ -67,5 +61,13 @@ public class ResetStyleWidget implements SelectionListener {
 
 	public String getToolTipText() {
 		return button.getToolTipText();
+	}
+
+	public void setInput(DataSource input) {
+		this.input = input;
+	}
+
+	public DataSource getInput() {
+		return input;
 	}
 }
