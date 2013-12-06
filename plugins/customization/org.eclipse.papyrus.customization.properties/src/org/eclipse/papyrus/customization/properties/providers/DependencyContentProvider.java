@@ -33,8 +33,9 @@ public class DependencyContentProvider extends AbstractStaticContentProvider {
 		this.source = source;
 	}
 
+	@Override
 	public Object[] getElements() {
-		List<Context> registeredContexts = new LinkedList<Context>(ConfigurationManager.instance.getContexts());
+		List<Context> registeredContexts = new LinkedList<Context>(ConfigurationManager.getInstance().getContexts());
 		List<Context> localContexts = new LinkedList<Context>();
 		for(Resource resource : source.eResource().getResourceSet().getResources()) {
 			for(EObject element : resource.getContents()) {

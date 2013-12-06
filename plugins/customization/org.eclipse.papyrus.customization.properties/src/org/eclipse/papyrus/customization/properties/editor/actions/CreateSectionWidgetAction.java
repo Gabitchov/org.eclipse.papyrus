@@ -87,10 +87,10 @@ public class CreateSectionWidgetAction extends StaticSelectionCommandAction {
 			newWidget.getAttributes().add(attribute);
 		}
 
-		newWidget.setWidgetType(ConfigurationManager.instance.getDefaultCompositeType());
+		newWidget.setWidgetType(ConfigurationManager.getInstance().getDefaultCompositeType());
 
 		Layout layout = UiFactory.eINSTANCE.createLayout();
-		layout.setLayoutType(ConfigurationManager.instance.getDefaultLayoutType());
+		layout.setLayoutType(ConfigurationManager.getInstance().getDefaultLayoutType());
 		newWidget.setLayout(layout);
 
 		return newWidget;
@@ -119,9 +119,10 @@ public class CreateSectionWidgetAction extends StaticSelectionCommandAction {
 	}
 
 	private Command getSetWidgetCommand(CompositeWidget newWidget) {
-		if(section.getWidget() == null)
+		if(section.getWidget() == null) {
 			return SetCommand.create(editingDomain, section, section.eClass().getEStructuralFeature("widget"), newWidget); //$NON-NLS-1$
-		else
+		} else {
 			return UnexecutableCommand.INSTANCE;
+		}
 	}
 }

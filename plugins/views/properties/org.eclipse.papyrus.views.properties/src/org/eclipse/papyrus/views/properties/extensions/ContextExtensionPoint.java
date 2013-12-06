@@ -49,7 +49,7 @@ public class ContextExtensionPoint {
 				URI uri = URI.createURI("ppe:/context/" + e.getContributor().getName() + "/" + contextResource); //$NON-NLS-1$ //$NON-NLS-2$
 				//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + contextResource, true); //$NON-NLS-1$
 
-				ConfigurationManager.instance.addContext(uri, isCustomizable);
+				ConfigurationManager.getInstance().addContext(uri, isCustomizable);
 			} catch (IOException ex) {
 				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid extension for " + EXTENSION_ID, ex); //$NON-NLS-1$//$NON-NLS-2$
 			} catch (Exception ex) {

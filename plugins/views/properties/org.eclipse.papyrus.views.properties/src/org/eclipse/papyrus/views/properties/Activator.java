@@ -12,6 +12,10 @@
 package org.eclipse.papyrus.views.properties;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
@@ -54,7 +58,18 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
-		ConfigurationManager.init();
+
+		Job startProperties = new Job("Starting Configuration Manager") {
+
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				ConfigurationManager.getInstance();
+				return Status.OK_STATUS;
+			}
+		};
+
+		startProperties.setSystem(true);
+		startProperties.schedule();
 	}
 
 	/**

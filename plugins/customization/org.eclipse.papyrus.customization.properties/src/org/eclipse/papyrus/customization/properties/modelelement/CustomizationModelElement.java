@@ -122,7 +122,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 			if(feature.getEType() == EnvironmentPackage.eINSTANCE.getPropertyEditorType()) {
 				return new PropertyEditorTypeContentProvider(strategyProvider, (PropertyEditor)delegate.getSource());
 			} else {
-				return new EMFGraphicalContentProvider(strategyProvider, ConfigurationManager.instance.getResourceSet(), "history_" + feature.getName());
+				return new EMFGraphicalContentProvider(strategyProvider, ConfigurationManager.getInstance().getResourceSet(), "history_" + feature.getName());
 			}
 		}
 		return provider;

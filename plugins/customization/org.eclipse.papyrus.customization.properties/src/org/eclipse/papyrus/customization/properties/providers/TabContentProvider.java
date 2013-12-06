@@ -42,22 +42,25 @@ public class TabContentProvider extends AbstractContextualContentProvider {
 		super(source);
 	}
 
+	@Override
 	public Object[] getElements() {
 		List<Tab> tabs = new LinkedList<Tab>();
 		for(Context context : contexts) {
-			if(isValidContext(context))
+			if(isValidContext(context)) {
 				tabs.addAll(context.getTabs());
+			}
 		}
 		return tabs.toArray();
 	}
 
 	private boolean isValidContext(Context context) {
 		if(editableTabsOnly) {
-			return !ConfigurationManager.instance.isPlugin(context);
+			return !ConfigurationManager.getInstance().isPlugin(context);
 		}
 		return true;
 	}
 
+	@Override
 	public Object[] getElements(Object inputElement) {
 		return getElements();
 	}
