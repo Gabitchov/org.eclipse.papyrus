@@ -52,10 +52,11 @@ public class RemoveContextAction {
 		try {
 			dialog.run(false, false, new IRunnableWithProgress() {
 
+				@Override
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					try {
 						delegate.delete(sourceContext, monitor);
-						ConfigurationManager.instance.deleteContext(sourceContext);
+						ConfigurationManager.getInstance().deleteContext(sourceContext);
 					} catch (CoreException ex) {
 						Activator.log.error(ex);
 					}

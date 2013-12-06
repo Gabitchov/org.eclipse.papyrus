@@ -344,7 +344,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			return null;
 		}
 		Context context = getContext();
-		return ConfigurationManager.instance.getProperty(propertyPath, context);
+		return ConfigurationManager.getInstance().getProperty(propertyPath, context);
 	}
 
 	private Context getContext() {

@@ -130,7 +130,7 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 	public void selectionChanged(SelectionChangedEvent event) {
 		ISelection selection = event.getSelection();
 
-		Set<View> views = ConfigurationManager.instance.constraintEngine.getViews(selection);
+		Set<View> views = ConfigurationManager.getInstance().getConstraintEngine().getViews(selection);
 		displayEngine.display(views, propertiesComposite, selection, SWT.NONE);
 		this.layout();
 		propertiesComposite.layout();

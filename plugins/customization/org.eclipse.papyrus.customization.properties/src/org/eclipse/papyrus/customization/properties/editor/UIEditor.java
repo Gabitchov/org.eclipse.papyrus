@@ -126,6 +126,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			final StringEditor filterPattern = new StringEditor(parent, SWT.NONE, Messages.UIEditor_FilterViews);
 			filterPattern.addCommitListener(new ICommitListener() {
 
+				@Override
 				public void commit(AbstractEditor editor) {
 					filter.setPattern((String)filterPattern.getValue());
 					selectionViewer.refresh();
@@ -321,7 +322,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 	private void refreshContext() {
 		Context context = getContext();
 		if(context != null) {
-			ConfigurationManager.instance.refresh(context);
+			ConfigurationManager.getInstance().refresh(context);
 		}
 	}
 
@@ -333,6 +334,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 		return iPropertySheetPage;
 	}
 
+	@Override
 	public String getContributorId() {
 		return "CustomizationPropertyView"; //$NON-NLS-1$
 	}
@@ -375,6 +377,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 	 */
 	protected IPropertySheetPage iPropertySheetPage;
 
+	@Override
 	public void commandStackChanged(EventObject event) {
 		getViewer().refresh();
 		for(Preview preview : previews) {
@@ -416,9 +419,11 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 		//
 		commandStack.addCommandStackListener(new CommandStackListener() {
 
+			@Override
 			public void commandStackChanged(final EventObject event) {
 				getContainer().getDisplay().asyncExec(new Runnable() {
 
+					@Override
 					public void run() {
 						firePropertyChange(IEditorPart.PROP_DIRTY);
 

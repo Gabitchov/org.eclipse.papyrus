@@ -48,6 +48,7 @@ import org.eclipse.papyrus.customization.properties.model.xwt.format.XMLFormatte
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
+import org.eclipse.papyrus.views.properties.ui.UiPackage;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
@@ -169,7 +170,7 @@ public class XWTResource extends ResourceImpl {
 		List<Context> contexts = new LinkedList<Context>(findContexts());
 
 		ModelExtent inXml = getModelExtent(genericXMLRoot);
-		ModelExtent inRoot = getModelExtent(ConfigurationManager.instance.getPropertiesRoot());
+		ModelExtent inRoot = getModelExtent(ConfigurationManager.getInstance().getPropertiesRoot());
 		ModelExtent inContexts = new BasicModelExtent(contexts);
 		ModelExtent outUI = new BasicModelExtent();
 

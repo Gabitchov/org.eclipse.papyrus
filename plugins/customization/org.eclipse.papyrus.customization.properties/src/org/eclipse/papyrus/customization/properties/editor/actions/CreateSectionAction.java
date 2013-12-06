@@ -111,8 +111,9 @@ public class CreateSectionAction extends StaticSelectionCommandAction {
 
 		if(tab == null) {
 			Context context = (Context)view.eContainer();
-			if(context.getTabs().size() > 0)
+			if(context.getTabs().size() > 0) {
 				tab = context.getTabs().get(0);
+			}
 		}
 
 		if(tab == null) {
@@ -152,10 +153,10 @@ public class CreateSectionAction extends StaticSelectionCommandAction {
 			newWidget.getAttributes().add(attribute);
 		}
 
-		newWidget.setWidgetType(ConfigurationManager.instance.getDefaultCompositeType());
+		newWidget.setWidgetType(ConfigurationManager.getInstance().getDefaultCompositeType());
 
 		Layout layout = UiFactory.eINSTANCE.createLayout();
-		layout.setLayoutType(ConfigurationManager.instance.getDefaultLayoutType());
+		layout.setLayoutType(ConfigurationManager.getInstance().getDefaultLayoutType());
 		newWidget.setLayout(layout);
 
 		return newWidget;
@@ -184,10 +185,11 @@ public class CreateSectionAction extends StaticSelectionCommandAction {
 	}
 
 	private Command getSetWidgetCommand(CompositeWidget newWidget, Section section) {
-		if(section.getWidget() == null)
+		if(section.getWidget() == null) {
 			return SetCommand.create(editingDomain, section, section.eClass().getEStructuralFeature("widget"), newWidget); //$NON-NLS-1$
-		else
+		} else {
 			return UnexecutableCommand.INSTANCE;
+		}
 	}
 
 	private String getSectionFile() {

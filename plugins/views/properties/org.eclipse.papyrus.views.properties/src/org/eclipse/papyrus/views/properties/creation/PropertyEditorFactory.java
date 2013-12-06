@@ -84,7 +84,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 
 		IStructuredSelection selection = new StructuredSelection(source);
 
-		ViewConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
+		ViewConstraintEngine constraintEngine = ConfigurationManager.getInstance().getConstraintEngine();
 		Set<View> views = constraintEngine.getViews(selection);
 		if(!views.isEmpty()) {
 			EditionDialog dialog = new EditionDialog(widget.getShell(), true);
@@ -130,7 +130,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	public Object edit(Control widget, Object source) {
 		IStructuredSelection selection = new StructuredSelection(source);
 
-		ViewConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
+		ViewConstraintEngine constraintEngine = ConfigurationManager.getInstance().getConstraintEngine();
 
 		Set<View> views = constraintEngine.getViews(selection);
 		if(!views.isEmpty()) {
