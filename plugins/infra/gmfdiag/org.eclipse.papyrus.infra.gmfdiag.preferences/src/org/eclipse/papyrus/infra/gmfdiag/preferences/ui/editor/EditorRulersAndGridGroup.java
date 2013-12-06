@@ -1,39 +1,40 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram;
+
+package org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor;
 
 import org.eclipse.jface.dialogs.DialogPage;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.RulersAndGridGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * The Class DiagramDecorationGroupthat specialize Decoration group for the diagram level
+ * The Class EditorRulersAndGridGroup is the rulers and grid group specialized at the papyrus editor level.
  */
-public class DiagramDecorationGroup extends DecorationGroup {
+public class EditorRulersAndGridGroup extends RulersAndGridGroup {
 
 	/**
-	 * Instantiates a new diagram decoration group.
+	 * Instantiates a new editor background color.
 	 * 
 	 * @param parent
-	 *        the parent
+	 *        the parent composite
 	 * @param key
-	 *        the prefix preference key the kind of diagram
+	 *        the key of the preference
 	 * @param dialogPage
 	 *        the dialog page
 	 */
-	public DiagramDecorationGroup(Composite parent, String key, DialogPage dialogPage) {
+	public EditorRulersAndGridGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 	}
 
@@ -43,6 +44,6 @@ public class DiagramDecorationGroup extends DecorationGroup {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup#getPreferenceConstant(int)
 	 */
 	protected String getPreferenceConstant(int preferenceType) {
-		return PreferenceConstantHelper.getDiagramConstant(getKey(), preferenceType);
+		return PreferenceConstantHelper.getPapyrusEditorConstant(preferenceType);
 	}
 }

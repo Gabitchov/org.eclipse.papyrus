@@ -19,7 +19,14 @@ import org.eclipse.papyrus.sysml.diagram.requirement.Activator;
 
 public class RequirementDiagramGeneralPreferencePage extends DiagramPreferencePage {
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @G
+	 */
 	public RequirementDiagramGeneralPreferencePage() {
 		setPreferenceStore(Activator.getInstance().getPreferenceStore());
+		setPreferenceKey("Requirement");
 	}
 }

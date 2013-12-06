@@ -28,6 +28,7 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
  * 
  * @author tlandre
  */
+//TODO supprimer cette page et fair eles initialisation ailleurs!
 public class PapyrusRulersAndGridPreferencePage extends RulerGridPreferencePage implements IWorkbenchPropertyPage {
 
 	private IProject project;

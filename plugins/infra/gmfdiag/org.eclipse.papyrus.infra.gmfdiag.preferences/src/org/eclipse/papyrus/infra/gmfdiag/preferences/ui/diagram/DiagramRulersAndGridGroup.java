@@ -1,48 +1,51 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *		
+ *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram;
 
 import org.eclipse.jface.dialogs.DialogPage;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.RulersAndGridGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * The Class DiagramDecorationGroupthat specialize Decoration group for the diagram level
+ * 
+ * @author vl222926
+ * 
  */
-public class DiagramDecorationGroup extends DecorationGroup {
+public class DiagramRulersAndGridGroup extends RulersAndGridGroup {
 
 	/**
-	 * Instantiates a new diagram decoration group.
+	 * 
+	 * Constructor.
 	 * 
 	 * @param parent
-	 *        the parent
 	 * @param key
-	 *        the prefix preference key the kind of diagram
 	 * @param dialogPage
-	 *        the dialog page
 	 */
-	public DiagramDecorationGroup(Composite parent, String key, DialogPage dialogPage) {
+	public DiagramRulersAndGridGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup#getPreferenceConstant(int)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.preferences.ui.RulersAndGridGroup#getPreferenceConstant(int)
+	 * 
+	 * @param preferenceType
+	 * @return
 	 */
 	protected String getPreferenceConstant(int preferenceType) {
 		return PreferenceConstantHelper.getDiagramConstant(getKey(), preferenceType);
 	}
+
 }

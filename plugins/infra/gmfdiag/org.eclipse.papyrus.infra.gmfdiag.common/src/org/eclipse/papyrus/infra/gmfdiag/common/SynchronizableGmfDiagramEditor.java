@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
@@ -31,6 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocument
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.CommandIds;
 import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
@@ -162,6 +164,27 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		diagEditDomain.setActionManager(createActionManager());
 	}
 
+	@Override
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		final DiagramGraphicalViewer viewer = (DiagramGraphicalViewer)getDiagramGraphicalViewer();
+		final IPreferenceStore prefStore = viewer.getWorkspaceViewerPreferenceStore();
+		//		prefStore.setDefault(name, value);
+		//		IPropertyChangeListener listener = new IPropertyChangeListener() {
+		//			
+		//			@Override
+		//			public void propertyChange(PropertyChangeEvent event) {
+		//				if(event.getProperty().equals(WorkspaceViewerProperties.GRIDLINECOLOR)){
+		//				
+		//			}
+		//		};
+		//		prefStore.addPropertyChangeListener(listener);
+		//		String lineColor = viewer.getWorkspaceViewerPreferenceStore().getDefaultString(WorkspaceViewerProperties.GRIDLINECOLOR);
+		//		getDiagramGraphicalViewer().setProperty(WorkspaceViewerProperties.GRIDLINECOLOR, FigureUtilities.colorToInteger(new Color(Display.getDefault(), new RGB(255, 0, 255))));
+		int i = 0;
+		i++;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -194,6 +217,37 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		} else {
 			throw new RuntimeException(String.format("The Eclipse service {0} has not been found", ICommandService.class)); //$NON-NLS-1$
 		}
-
 	}
+
+
+	@Override
+	protected void addDefaultPreferences() {
+		super.addDefaultPreferences();
+		final PreferencesHint preferencesHint = getPreferencesHint();
+		final IPreferenceStore globalPreferenceStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		final String diagramType = getDiagram().getType();
+		//get the preferences
+		final boolean viewGrid = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.SHOW_GRID));
+		final boolean viewRuler = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.SHOW_RULER));
+		final int rulerUnit = globalPreferenceStore.getInt(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.RULER_UNITS));
+		final boolean snapToGrid = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.SNAP_TO_GRID));;
+		final boolean snapToGeometry = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.SNAP_TO_SHAPE));;;
+		final int gridLineColor; //FIXME
+		final double gridSpacing; //FIXME
+		final boolean gridOrder = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_IN_FRONT));;;
+		final int gridLineStyle = globalPreferenceStore.getInt(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_STYLE));
+
+		//set the preferences
+		//		getWorkspaceViewerPreferenceStore().setValue(WorkspaceViewerProperties.VIEWGRID, value);
+		//		if(globalPreferenceStore instanceof PapyrusScopedPreferenceStore) {
+
+		//		}
+		//		String color = globalPreferenceStore.getString(WorkspaceViewerProperties.GRIDLINECOLOR);
+		//		this.workspaceViewerPreferenceStore.s
+
+		final IPreferenceStore localStore = getWorkspaceViewerPreferenceStore();
+		//		localStore.set
+	}
+
+
 }

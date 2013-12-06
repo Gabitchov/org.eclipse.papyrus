@@ -25,11 +25,13 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.ConnectionGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.FontGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.NodeColorGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.RulersAndGridGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramBackgroundColor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramConnectionGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramDecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramFontGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramNodeColorGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramRulersAndGridGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -73,6 +75,9 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 
 		DecorationGroup decorationGroupComposite = new DiagramDecorationGroup(contentGroup, getPreferenceKey(), this);
 		addAbstractGroup(decorationGroupComposite);
+
+		RulersAndGridGroup viewGroupComposite = new DiagramRulersAndGridGroup(parent, getPreferenceKey(), this);
+		addAbstractGroup(viewGroupComposite);
 		return super.createContents(parent);
 	}
 
@@ -168,7 +173,6 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 
 	@Override
 	public void setVisible(boolean visible) {
-		// TODO Auto-generated method stub
 		if(visible == true) {
 			VisiblePageSingleton.getInstance().setVisiblePage(this);
 			initGroup();
