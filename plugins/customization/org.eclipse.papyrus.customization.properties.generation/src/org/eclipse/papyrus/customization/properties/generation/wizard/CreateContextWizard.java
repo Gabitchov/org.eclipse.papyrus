@@ -98,7 +98,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 			return false;
 		}
 
-		ConfigurationManager configManager = ConfigurationManager.instance;
+		ConfigurationManager configManager = ConfigurationManager.getInstance();
 
 		for(Context context : contexts) {
 			Tab defaultTab = ContextsFactory.eINSTANCE.createTab();

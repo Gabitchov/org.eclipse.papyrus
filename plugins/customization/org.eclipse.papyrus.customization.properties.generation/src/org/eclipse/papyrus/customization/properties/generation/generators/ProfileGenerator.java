@@ -96,7 +96,7 @@ public class ProfileGenerator extends AbstractQVTGenerator {
 			}
 			ModelExtent inUml = new BasicModelExtent(Collections.singletonList(umlContext));
 
-			PropertiesRoot root = ConfigurationManager.instance.getPropertiesRoot();
+			PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
 			ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
 
 			LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
