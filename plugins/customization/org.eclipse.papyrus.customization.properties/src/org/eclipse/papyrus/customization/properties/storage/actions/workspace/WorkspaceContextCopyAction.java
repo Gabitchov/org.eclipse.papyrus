@@ -54,12 +54,10 @@ import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
  */
 public class WorkspaceContextCopyAction implements IContextCopyAction {
 
-	@Override
 	public String getLabel() {
 		return Messages.CustomizationDialog_copyToWorkspace;
 	}
 
-	@Override
 	public String getToolTip() {
 		return Messages.CustomizationDialog_createNewCopyByCopy;
 	}
@@ -82,7 +80,6 @@ public class WorkspaceContextCopyAction implements IContextCopyAction {
 	 *         If an error occured : the previous context cannot be read, or
 	 *         the new context cannot be created
 	 */
-	@Override
 	public Context copy(Context source, String targetName, IProgressMonitor monitor) throws CoreException {
 		SubMonitor sub = SubMonitor.convert(monitor, 1);
 

@@ -64,7 +64,6 @@ public class CopyContextAction {
 		try {
 			dialog.run(true, true, new IRunnableWithProgress() {
 
-				@Override
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					try {
 						result[0] = delegate.copy(source, targetName, monitor);

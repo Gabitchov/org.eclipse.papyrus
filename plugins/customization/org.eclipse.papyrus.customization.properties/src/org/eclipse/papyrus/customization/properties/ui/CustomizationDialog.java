@@ -154,7 +154,6 @@ public class CustomizationDialog extends TrayDialog implements SelectionListener
 
 		availableContextsViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-			@Override
 			public void selectionChanged(final SelectionChangedEvent event) {
 				IStructuredSelection selection = (IStructuredSelection)event.getSelection();
 				boolean activate = false;
@@ -228,7 +227,6 @@ public class CustomizationDialog extends TrayDialog implements SelectionListener
 			try {
 				InputDialog dialog = new InputDialog(getShell(), Messages.CustomizationDialog_enterConfigurationName, Messages.CustomizationDialog_enterConfigurationName, Messages.CustomizationDialog_copyOf + sourceContext.getName(), new IInputValidator() {
 
-					@Override
 					public String isValid(final String newText) {
 						if(newText.trim().equals("")) { //$NON-NLS-1$
 							return Messages.CustomizationDialog_configurationNameNotEmpty;
@@ -297,8 +295,6 @@ public class CustomizationDialog extends TrayDialog implements SelectionListener
 		return (Composite)super.getDialogArea();
 	}
 
-
-	@Override
 	public void widgetSelected(final SelectionEvent e) {
 		if(e.widget == editContext) {
 			editAction();
@@ -309,7 +305,6 @@ public class CustomizationDialog extends TrayDialog implements SelectionListener
 		}
 	}
 
-	@Override
 	public void widgetDefaultSelected(final SelectionEvent e) {
 		if(e.widget == availableContexts) {
 			IStructuredSelection selection = (IStructuredSelection)availableContextsViewer.getSelection();
