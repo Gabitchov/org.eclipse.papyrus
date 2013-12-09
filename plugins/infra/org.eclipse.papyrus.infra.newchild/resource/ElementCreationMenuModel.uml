@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_sYse0YZLEeKyw49uR6nx3g">
+  <uml:Model xmi:id="_VJPLEFXPEeOhVe6k7yzS3A" name="ElementCreationMenuModel">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_VJPLEVXPEeOhVe6k7yzS3A">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_mxFLgFXPEeOhVe6k7yzS3A" name="CreationMenu">
+      <generalization xmi:type="uml:Generalization" xmi:id="_0fDh8FXQEeOhVe6k7yzS3A" general="_97LTkFXPEeOhVe6k7yzS3A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_bHiDkFXREeOhVe6k7yzS3A" name="elementTypeIDRef">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fUXQYFXREeOhVe6k7yzS3A"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fUXQYVXREeOhVe6k7yzS3A" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8Pa5AFgXEeOKQOyOw2l5lw" name="role">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8Pa5AVgXEeOKQOyOw2l5lw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8Pa5AlgXEeOKQOyOw2l5lw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_G2lsAFgYEeOKQOyOw2l5lw" name="displayAllRoles">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G2lsAVgYEeOKQOyOw2l5lw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_G2lsAlgYEeOKQOyOw2l5lw" value="1"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_Pb58AFgYEeOKQOyOw2l5lw" name="defaultValue" value="true"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_z-H0kFXPEeOhVe6k7yzS3A" name="Folder">
+      <generalization xmi:type="uml:Generalization" xmi:id="_y1kboFXQEeOhVe6k7yzS3A" general="_97LTkFXPEeOhVe6k7yzS3A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8fSH4FXQEeOhVe6k7yzS3A" name="menu" type="_97LTkFXPEeOhVe6k7yzS3A" isOrdered="true" aggregation="composite" association="_8fSH41XQEeOhVe6k7yzS3A">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8fSH4VXQEeOhVe6k7yzS3A"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8fSH4lXQEeOhVe6k7yzS3A" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_97LTkFXPEeOhVe6k7yzS3A" name="Menu" isAbstract="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_HvDL8FXREeOhVe6k7yzS3A" name="label">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_rF1woFgREeOKQOyOw2l5lw" name="icon">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wcwyAFgREeOKQOyOw2l5lw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wcwyAVgREeOKQOyOw2l5lw" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_8fSH41XQEeOhVe6k7yzS3A" name="folder_menu_1" memberEnd="_8fSH5FXQEeOhVe6k7yzS3A _8fSH4FXQEeOhVe6k7yzS3A">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_8fSH5FXQEeOhVe6k7yzS3A" name="folder" type="_z-H0kFXPEeOhVe6k7yzS3A" association="_8fSH41XQEeOhVe6k7yzS3A">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8fSH5VXQEeOhVe6k7yzS3A" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8fSH5lXQEeOhVe6k7yzS3A" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_sUiYYlgREeOKQOyOw2l5lw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sU1TUFgREeOKQOyOw2l5lw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_sYse0YZLEeKyw49uR6nx3g"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <ActionLanguage:TextualRepresentation xmi:id="_sU1TUVgREeOKQOyOw2l5lw" language="org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty"/>
+</xmi:XMI>
