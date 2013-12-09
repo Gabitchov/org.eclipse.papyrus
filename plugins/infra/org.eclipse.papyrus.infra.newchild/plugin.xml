@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.eclipse.papyrus.infra.newchild" name="ElementCreationMenuModel" schema="schema/org.eclipse.papyrus.infra.newchild.exsd"/>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated elementCreationMenuModel -->
+      <package
+            uri="http://ElementCreationMenuModel"
+            class="ElementCreationMenuModel.ElementCreationMenuModelPackage"
+            genModel="resource/elementCreationMenuModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated elementCreationMenuModel -->
+      <parser
+            type="elementcreationmenumodel"
+            class="ElementCreationMenuModel.util.ElementCreationMenuModelResourceFactoryImpl"/>
+   </extension>
+</plugin>
