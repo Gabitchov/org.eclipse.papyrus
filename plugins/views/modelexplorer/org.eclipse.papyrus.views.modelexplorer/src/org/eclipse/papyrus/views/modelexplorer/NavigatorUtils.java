@@ -101,7 +101,7 @@ public class NavigatorUtils {
 		public RootsIterator(Iterator<Resource> resources) {
 			this.resources = resources;
 			if(resources.hasNext()) {
-				inner = resources.next().getAllContents();
+				inner = resources.next().getContents().iterator();
 			}
 		}
 
@@ -115,7 +115,7 @@ public class NavigatorUtils {
 			}
 
 			while(resources.hasNext()) {
-				inner = resources.next().getAllContents();
+				inner = resources.next().getContents().iterator();
 				if(inner.hasNext()) {
 					return true;
 				}
@@ -135,7 +135,7 @@ public class NavigatorUtils {
 			}
 
 			while(resources.hasNext()) {
-				inner = resources.next().getAllContents();
+				inner = resources.next().getContents().iterator();
 				if(inner.hasNext()) {
 					return inner.next();
 				}
