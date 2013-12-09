@@ -47,7 +47,7 @@ import ElementCreationMenuModel.Folder;
  */
 public class CreationMenuFactory {
 	private TransactionalEditingDomain editingDomain;
-	
+
 	/**
 	 * 
 	 * Constructor.
@@ -70,6 +70,16 @@ public class CreationMenuFactory {
 		if(selectedObject!=null){
 			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu,SWT.CASCADE );
 			topMenuItem.setText(folder.getLabel());
+			if(folder.getIcon()!=null){
+				URL url;
+				try {
+					url = new URL(folder.getIcon());
+					ImageDescriptor imgDesc=ImageDescriptor.createFromURL(url);
+					topMenuItem.setImage(imgDesc.createImage());
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
+			}
 			Menu topMenu=new Menu(menu);
 			topMenuItem.setMenu(topMenu);
 			boolean oneDisplayedMenu=false;
@@ -230,8 +240,8 @@ public class CreationMenuFactory {
 		}
 		return false;
 	}
-	
-	
+
+
 	/**
 	 * associate the icon from the element type
 	 * @param currentCreationMenu 
@@ -243,7 +253,7 @@ public class CreationMenuFactory {
 			item.setImage(imgDesc.createImage());
 		}
 	}
-	
+
 	/**
 	 * create a submenu 
 	 * @param selectedObject the selected object
@@ -252,20 +262,20 @@ public class CreationMenuFactory {
 	 * @param reference the role of the new element
 	 * @return true if the menu can be created
 	 */
-		protected boolean constructMenu(EObject selectedObject, Menu topMenu,  CreationMenu currentCreationMenu, EReference reference) {
-			boolean oneDisplayedMenu=false;
-			Command cmd=buildCommand(reference, selectedObject, currentCreationMenu.getElementTypeIdRef());
-			if( cmd.canExecute()){
-				oneDisplayedMenu=true;
-				MenuItem item = new MenuItem(topMenu, SWT.NONE);
-				fillIcon(currentCreationMenu, item);
-				item.setEnabled(true);
-				item.setText(currentCreationMenu.getLabel());
-				item.addSelectionListener(new CreationMenuListener(cmd, editingDomain));
-			}
-			return oneDisplayedMenu;
+	protected boolean constructMenu(EObject selectedObject, Menu topMenu,  CreationMenu currentCreationMenu, EReference reference) {
+		boolean oneDisplayedMenu=false;
+		Command cmd=buildCommand(reference, selectedObject, currentCreationMenu.getElementTypeIdRef());
+		if( cmd.canExecute()){
+			oneDisplayedMenu=true;
+			MenuItem item = new MenuItem(topMenu, SWT.NONE);
+			fillIcon(currentCreationMenu, item);
+			item.setEnabled(true);
+			item.setText(currentCreationMenu.getLabel());
+			item.addSelectionListener(new CreationMenuListener(cmd, editingDomain));
 		}
-	
+		return oneDisplayedMenu;
+	}
+
 	/**
 	 * get the IelementType from a string
 	 * @param extendedType the string that represents the element type
@@ -281,31 +291,31 @@ public class CreationMenuFactory {
 	 * @param extendedType the extended type of the created element 
 	 * @return a command that can be executed by the domain
 	 */
-		protected Command buildCommand(EReference reference, EObject container, String extendedType) {
+	protected Command buildCommand(EReference reference, EObject container, String extendedType) {
 
 
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
-			if(provider == null) {
-				return UnexecutableCommand.INSTANCE;
-			}
-
-			ICommand createGMFCommand = provider.getEditCommand(buildRequest(reference, container, extendedType));
-			if(createGMFCommand != null) {
-				Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
-				return emfCommand;
-			}
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
+		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		/**
-		 * 
-		 * @return
-		 *         the creation request to use in this handler
-		 */
-		protected CreateElementRequest buildRequest(EReference reference, EObject container, String extendedType) {
-			if(reference==null){
-				return new CreateElementRequest(editingDomain, container,  getElementType(extendedType)) ;
-			}
-			return new CreateElementRequest(editingDomain, container,  getElementType(extendedType), reference);
+
+		ICommand createGMFCommand = provider.getEditCommand(buildRequest(reference, container, extendedType));
+		if(createGMFCommand != null) {
+			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
+			return emfCommand;
 		}
+		return UnexecutableCommand.INSTANCE;
+	}
+	/**
+	 * 
+	 * @return
+	 *         the creation request to use in this handler
+	 */
+	protected CreateElementRequest buildRequest(EReference reference, EObject container, String extendedType) {
+		if(reference==null){
+			return new CreateElementRequest(editingDomain, container,  getElementType(extendedType)) ;
+		}
+		return new CreateElementRequest(editingDomain, container,  getElementType(extendedType), reference);
+	}
 }
 
