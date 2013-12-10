@@ -66,18 +66,7 @@ public class DynamicNewChild extends CompoundContributionItem  {
 	
 	
 	 protected IContributionItem[] getContributionItems() {
-	        int size = creationMenuRegistry.getRootFolder().size();
-	        IContributionItem[] list = new IContributionItem[size];
-
-	        IWorkbench wb = PlatformUI.getWorkbench();
-	        IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
-
-	        for(int i = 0 ; i< size ; i++){
-	        	list[i] = new CommandContributionItem(new CommandContributionItemParameter(win, "MenuCommandeId_"+i, "CommandeId_"+i, SWT.None));
-	        }
-
-
-	        return list;
+	        return new IContributionItem[0];
 	    }
 	
 	  public boolean isDynamic(){

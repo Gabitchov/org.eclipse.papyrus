@@ -14,8 +14,7 @@
       label="Class"
       elementTypeIdRef="org.eclipse.papyrus.uml.Class"/>
   <menu xsi:type="ElementCreationMenuModel:Folder"
-      label="ElementWithFeature"
-      icon="">
+      label="ElementWithFeature">
     <menu xsi:type="ElementCreationMenuModel:CreationMenu"
         label="NestedClass"
         icon="platform:/plugin/org.eclipse.papyrus.infra.newchild.test/icon/M.gif"
