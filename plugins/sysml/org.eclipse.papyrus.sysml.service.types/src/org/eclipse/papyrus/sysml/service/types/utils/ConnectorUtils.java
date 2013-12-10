@@ -16,6 +16,8 @@ package org.eclipse.papyrus.sysml.service.types.utils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.blocks.Block;
@@ -23,6 +25,7 @@ import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -44,6 +47,16 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 	 * the separator used in the role path to distinguish the part
 	 */
 	public static final String PART_SEPARATOR = "."; //$NON-NLS-1$
+
+	/**
+	 * allow to know if a string contains others characters than a-z A-Z 0-9 and _
+	 */
+	public static final String HAS_NO_WORD_CHAR_REGEX = "\\W+";
+
+	/**
+	 * String used to delimit a name with contains special chars
+	 */
+	public static final String STRING_DELIMITER = "\'";
 
 	/**
 	 * @param view
@@ -195,6 +208,8 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 		return nearestStructureContainer;
 	}
 
+
+
 	/**
 	 * 
 	 * @param end
@@ -210,21 +225,48 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 			if(nestedConnectorEnd != null) {
 				final List<Property> properties = nestedConnectorEnd.getPropertyPath();
 				for(final Property current : properties) {
-					rolePath.append(current.getName());
+					rolePath.append(getNameWithQuotes(current));
 					rolePath.append(ConnectorUtils.PART_SEPARATOR);
 				}
 			} else {
 				//when the stereotype is applied, the Property for partWithPort is included in the stereotype#path
 				final Property partWithPort = end.getPartWithPort();
 				if(partWithPort != null) {
-					rolePath.append(partWithPort.getName());
+					rolePath.append(getNameWithQuotes(partWithPort));
 					rolePath.append(ConnectorUtils.PART_SEPARATOR);
 				}
 			}
-			rolePath.append(role.getName());
+			rolePath.append(getNameWithQuotes(role));
 		}
 
 		return rolePath.toString();
+	}
+
+	/**
+	 * 
+	 * @param property
+	 *        a property
+	 * @return
+	 *         the property name with name delimiter if it is required
+	 */
+	public static final String getNameWithQuotes(final NamedElement property) {
+		final String partName = property.getName();
+		final StringBuffer partNameBuffer = new StringBuffer();
+		final Pattern pattern = Pattern.compile(ConnectorUtils.HAS_NO_WORD_CHAR_REGEX);
+		final Matcher matcher = pattern.matcher(partName);
+		boolean mustHaveQuote = false;
+		while(matcher.find() && !mustHaveQuote) {
+			mustHaveQuote = true;
+		}
+		if(mustHaveQuote) {
+			partNameBuffer.append(ConnectorUtils.STRING_DELIMITER);
+			partNameBuffer.append(partName);
+			partNameBuffer.append(ConnectorUtils.STRING_DELIMITER);
+		} else {
+			partNameBuffer.append(partName);
+		}
+
+		return partNameBuffer.toString();
 	}
 
 	/**
