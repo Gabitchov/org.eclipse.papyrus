@@ -17,6 +17,8 @@ package org.eclipse.papyrus.views.modelexplorer.newchild;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.eclipse.core.commands.Category;
+import org.eclipse.core.commands.Command;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -34,6 +36,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
+import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 
@@ -66,18 +69,7 @@ public class DynamicNewChild extends CompoundContributionItem  {
 	
 	
 	 protected IContributionItem[] getContributionItems() {
-	        int size = creationMenuRegistry.getRootFolder().size();
-	        IContributionItem[] list = new IContributionItem[size];
-
-	        IWorkbench wb = PlatformUI.getWorkbench();
-	        IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
-
-	        for(int i = 0 ; i< size ; i++){
-	        	list[i] = new CommandContributionItem(new CommandContributionItemParameter(win, "MenuCommandeId_"+i, "CommandeId_"+i, SWT.None));
-	        }
-
-
-	        return list;
+	        return new IContributionItem[0]; 
 	    }
 	
 	  public boolean isDynamic(){
