@@ -12,5 +12,8 @@
       <strategy
             strategy="org.eclipse.papyrus.uml.diagram.dnd.lifeline.ClassifierToLifelineDropStrategy">
       </strategy>
+      <strategy
+            strategy="org.eclipse.papyrus.uml.diagram.dnd.lifeline.ClassifierToInteractionDropStrategy">
+      </strategy>
    </extension>
 </plugin>
