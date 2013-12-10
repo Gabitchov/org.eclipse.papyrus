@@ -1,12 +1,16 @@
 /**
+ * Copyright (c) 2013 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
-package ElementCreationMenuModel.impl;
-
-import ElementCreationMenuModel.CreationMenu;
-import ElementCreationMenuModel.ElementCreationMenuModelFactory;
-import ElementCreationMenuModel.ElementCreationMenuModelPackage;
-import ElementCreationMenuModel.Folder;
-import ElementCreationMenuModel.Menu;
+package org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -14,6 +18,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelFactory;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,7 +63,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see ElementCreationMenuModel.ElementCreationMenuModelPackage#eNS_URI
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
@@ -79,7 +88,6 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("javadoc")

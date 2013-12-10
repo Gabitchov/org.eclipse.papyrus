@@ -32,14 +32,13 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-
-import ElementCreationMenuModel.CreationMenu;
-import ElementCreationMenuModel.Folder;
 
 /**
  * this class contains code to construct menu from a Menu and a selected object
@@ -83,7 +82,7 @@ public class CreationMenuFactory {
 			Menu topMenu=new Menu(menu);
 			topMenuItem.setMenu(topMenu);
 			boolean oneDisplayedMenu=false;
-			for(ElementCreationMenuModel.Menu currentMenu : folder.getMenu()) {
+			for(org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu currentMenu : folder.getMenu()) {
 				if( currentMenu instanceof Folder){
 					boolean subMenu=populateMenu(topMenu, (Folder) currentMenu, selectedObject);
 					if(subMenu){

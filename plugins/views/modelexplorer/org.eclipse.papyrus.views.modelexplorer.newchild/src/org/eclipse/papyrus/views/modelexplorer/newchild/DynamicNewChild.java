@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
 import org.eclipse.papyrus.infra.newchild.CreationMenuRegistry;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.ISelectionService;
@@ -36,21 +37,21 @@ import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 
-import ElementCreationMenuModel.Folder;
-
 /**
  * This class has in charge to create menu from elementCreationMenuModel
  *
  */
 public class DynamicNewChild extends CompoundContributionItem  {
 
-	private TransactionalEditingDomain editingDomain;
+	protected TransactionalEditingDomain editingDomain;
+	protected CreationMenuRegistry creationMenuRegistry;
 	/**
 	 * 
 	 * Constructor.
 	 *
 	 */
 	public DynamicNewChild() {
+		creationMenuRegistry = new CreationMenuRegistry();
 	}
 
 	/**
@@ -65,15 +66,13 @@ public class DynamicNewChild extends CompoundContributionItem  {
 	
 	
 	 protected IContributionItem[] getContributionItems() {
-	        // TODO Auto-generated method stub
-	        int size = 2;
+	        int size = creationMenuRegistry.getRootFolder().size();
 	        IContributionItem[] list = new IContributionItem[size];
 
 	        IWorkbench wb = PlatformUI.getWorkbench();
 	        IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
 
 	        for(int i = 0 ; i< size ; i++){
-	            //list[i] = new CommandContributionItem(new CommandContributionItemParameter(win, "MenuCommandeId_"+i, "CommandeId_"+i, SWT.None));
 	        	list[i] = new CommandContributionItem(new CommandContributionItemParameter(win, "MenuCommandeId_"+i, "CommandeId_"+i, SWT.None));
 	        }
 
@@ -88,14 +87,7 @@ public class DynamicNewChild extends CompoundContributionItem  {
 	
 	
 	public void fill(Menu menu, int index) {
-		// TODO Auto-generated method stub
 		super.fill(menu, index);
-		
-		//org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu,SWT.CASCADE );
-		//topMenuItem.setText("New Child");
-		//Menu topMenu=new Menu(menu);
-		//topMenuItem.setMenu(topMenu);
-		CreationMenuRegistry creationMenuRegistry= new CreationMenuRegistry();
 		EObject eObject= getSelection();
 		CreationMenuFactory creationMenuFactory= new CreationMenuFactory(editingDomain);
 		ArrayList<Folder> folders= creationMenuRegistry.getRootFolder();
