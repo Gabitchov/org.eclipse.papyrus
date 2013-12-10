@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.gmfdiag.common.service.shape;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
 import org.apache.batik.dom.util.DOMUtilities;
@@ -52,6 +54,9 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 
 	/** description of the factory */
 	protected String description;
+
+	/** Cache for the loaded SVG document */
+	private Map<String, SVGDocument> cache;
 
 
 	/**
@@ -112,11 +117,31 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	}
 
 	/**
+	 * Loads a SVG document from the given location.
+	 * This method uses a cache so that any given document is only loaded once.
 	 * 
 	 * @param location
+	 *            The location to load the document from
 	 * @return the Document SVG from its location, can return null if this is not a svg
 	 */
 	protected SVGDocument getSVGDocument(String location) {
+		if (cache == null)
+			cache = new HashMap<String, SVGDocument>();
+		if (cache.containsKey(location))
+			return cache.get(location);
+		SVGDocument doc = doGetSVGDocument(location);
+		cache.put(location, doc);
+		return doc;
+	}
+
+	/**
+	 * Loads a SVG document from the given location
+	 * 
+	 * @param location
+	 *            The location to load the document from
+	 * @return the Document SVG from its location, can return null if this is not a svg
+	 */
+	private SVGDocument doGetSVGDocument(String location) {
 		int extensionIndex = location.lastIndexOf('.');
 		if(extensionIndex == 0) {
 			return null;
