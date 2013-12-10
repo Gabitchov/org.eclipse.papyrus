@@ -83,11 +83,10 @@ public class CreationMenuFactory {
 			topMenuItem.setMenu(topMenu);
 			boolean oneDisplayedMenu=false;
 			for(org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu currentMenu : folder.getMenu()) {
+				boolean result=false;
 				if( currentMenu instanceof Folder){
-					boolean subMenu=populateMenu(topMenu, (Folder) currentMenu, selectedObject);
-					if(subMenu){
-						oneDisplayedMenu=true;
-					}
+					 result=populateMenu(topMenu, (Folder) currentMenu, selectedObject);
+					
 
 				}
 
@@ -100,19 +99,22 @@ public class CreationMenuFactory {
 						EStructuralFeature feature= selectedObject.eClass().getEStructuralFeature(role);
 						if( feature instanceof EReference){
 							reference=(EReference)feature;
-							oneDisplayedMenu = constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
+							 result =constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
 						}
 					}
 					else{//no precisison
 						//test if all roles must be displayed
 						if(currentCreationMenu.isDisplayAllRoles()){
-							oneDisplayedMenu = constructMenu(selectedObject, topMenu, currentCreationMenu);
+							 result  = constructMenu(selectedObject, topMenu, currentCreationMenu);
 						}
 						else{
 
-							oneDisplayedMenu = constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
+							result  = constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
 						}
 					}
+				}
+				if(result){
+					oneDisplayedMenu=true;
 				}
 			}
 			if(!oneDisplayedMenu){
