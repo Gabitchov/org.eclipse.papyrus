@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
 
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.sysml.diagram.requirement.Activator;
+import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
 
 public class RequirementDiagramGeneralPreferencePage extends DiagramPreferencePage {
 
@@ -27,6 +28,6 @@ public class RequirementDiagramGeneralPreferencePage extends DiagramPreferencePa
 	 */
 	public RequirementDiagramGeneralPreferencePage() {
 		setPreferenceStore(Activator.getInstance().getPreferenceStore());
-		setPreferenceKey("Requirement");
+		setPreferenceKey(ElementTypes.DIAGRAM_ID);
 	}
 }
