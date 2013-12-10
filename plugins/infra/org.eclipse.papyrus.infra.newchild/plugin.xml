@@ -7,7 +7,7 @@
       <!-- @generated elementCreationMenuModel -->
       <package
             uri="http://ElementCreationMenuModel"
-            class="ElementCreationMenuModel.ElementCreationMenuModelPackage"
+            class="org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage"
             genModel="resource/elementCreationMenuModel.genmodel"/>
    </extension>
 
@@ -15,6 +15,6 @@
       <!-- @generated elementCreationMenuModel -->
       <parser
             type="elementcreationmenumodel"
-            class="ElementCreationMenuModel.util.ElementCreationMenuModelResourceFactoryImpl"/>
+            class="org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.util.ElementCreationMenuModelResourceFactoryImpl"/>
    </extension>
 </plugin>

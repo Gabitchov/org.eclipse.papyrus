@@ -1,6 +1,16 @@
 /**
+ * Copyright (c) 2013 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
-package ElementCreationMenuModel;
+package org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,7 +29,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see ElementCreationMenuModel.ElementCreationMenuModelFactory
+ * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelFactory
  * @model kind="package"
  * @generated
  */
@@ -54,14 +64,14 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ElementCreationMenuModelPackage eINSTANCE = ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl.init();
+	ElementCreationMenuModelPackage eINSTANCE = org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link ElementCreationMenuModel.impl.MenuImpl <em>Menu</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.MenuImpl <em>Menu</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ElementCreationMenuModel.impl.MenuImpl
-	 * @see ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getMenu()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.MenuImpl
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getMenu()
 	 * @generated
 	 */
 	int MENU = 1;
@@ -103,11 +113,11 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	int MENU_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link ElementCreationMenuModel.impl.FolderImpl <em>Folder</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.FolderImpl <em>Folder</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ElementCreationMenuModel.impl.FolderImpl
-	 * @see ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getFolder()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.FolderImpl
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getFolder()
 	 * @generated
 	 */
 	int FOLDER = 0;
@@ -158,11 +168,11 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	int FOLDER_OPERATION_COUNT = MENU_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link ElementCreationMenuModel.impl.CreationMenuImpl <em>Creation Menu</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.CreationMenuImpl <em>Creation Menu</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ElementCreationMenuModel.impl.CreationMenuImpl
-	 * @see ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getCreationMenu()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.CreationMenuImpl
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getCreationMenu()
 	 * @generated
 	 */
 	int CREATION_MENU = 2;
@@ -232,96 +242,96 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link ElementCreationMenuModel.Folder <em>Folder</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder <em>Folder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Folder</em>'.
-	 * @see ElementCreationMenuModel.Folder
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder
 	 * @generated
 	 */
 	EClass getFolder();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ElementCreationMenuModel.Folder#getMenu <em>Menu</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder#getMenu <em>Menu</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Menu</em>'.
-	 * @see ElementCreationMenuModel.Folder#getMenu()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder#getMenu()
 	 * @see #getFolder()
 	 * @generated
 	 */
 	EReference getFolder_Menu();
 
 	/**
-	 * Returns the meta object for class '{@link ElementCreationMenuModel.Menu <em>Menu</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu <em>Menu</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Menu</em>'.
-	 * @see ElementCreationMenuModel.Menu
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu
 	 * @generated
 	 */
 	EClass getMenu();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ElementCreationMenuModel.Menu#getLabel <em>Label</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu#getLabel <em>Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Label</em>'.
-	 * @see ElementCreationMenuModel.Menu#getLabel()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu#getLabel()
 	 * @see #getMenu()
 	 * @generated
 	 */
 	EAttribute getMenu_Label();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ElementCreationMenuModel.Menu#getIcon <em>Icon</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu#getIcon <em>Icon</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Icon</em>'.
-	 * @see ElementCreationMenuModel.Menu#getIcon()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu#getIcon()
 	 * @see #getMenu()
 	 * @generated
 	 */
 	EAttribute getMenu_Icon();
 
 	/**
-	 * Returns the meta object for class '{@link ElementCreationMenuModel.CreationMenu <em>Creation Menu</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu <em>Creation Menu</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Creation Menu</em>'.
-	 * @see ElementCreationMenuModel.CreationMenu
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu
 	 * @generated
 	 */
 	EClass getCreationMenu();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ElementCreationMenuModel.CreationMenu#getElementTypeIdRef <em>Element Type Id Ref</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#getElementTypeIdRef <em>Element Type Id Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Element Type Id Ref</em>'.
-	 * @see ElementCreationMenuModel.CreationMenu#getElementTypeIdRef()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#getElementTypeIdRef()
 	 * @see #getCreationMenu()
 	 * @generated
 	 */
 	EAttribute getCreationMenu_ElementTypeIdRef();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ElementCreationMenuModel.CreationMenu#getRole <em>Role</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#getRole <em>Role</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Role</em>'.
-	 * @see ElementCreationMenuModel.CreationMenu#getRole()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#getRole()
 	 * @see #getCreationMenu()
 	 * @generated
 	 */
 	EAttribute getCreationMenu_Role();
 
 	/**
-	 * Returns the meta object for the attribute '{@link ElementCreationMenuModel.CreationMenu#isDisplayAllRoles <em>Display All Roles</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#isDisplayAllRoles <em>Display All Roles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Display All Roles</em>'.
-	 * @see ElementCreationMenuModel.CreationMenu#isDisplayAllRoles()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#isDisplayAllRoles()
 	 * @see #getCreationMenu()
 	 * @generated
 	 */
@@ -351,11 +361,11 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link ElementCreationMenuModel.impl.FolderImpl <em>Folder</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.FolderImpl <em>Folder</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ElementCreationMenuModel.impl.FolderImpl
-		 * @see ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getFolder()
+		 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.FolderImpl
+		 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getFolder()
 		 * @generated
 		 */
 		EClass FOLDER = eINSTANCE.getFolder();
@@ -369,11 +379,11 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 		EReference FOLDER__MENU = eINSTANCE.getFolder_Menu();
 
 		/**
-		 * The meta object literal for the '{@link ElementCreationMenuModel.impl.MenuImpl <em>Menu</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.MenuImpl <em>Menu</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ElementCreationMenuModel.impl.MenuImpl
-		 * @see ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getMenu()
+		 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.MenuImpl
+		 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getMenu()
 		 * @generated
 		 */
 		EClass MENU = eINSTANCE.getMenu();
@@ -395,11 +405,11 @@ public interface ElementCreationMenuModelPackage extends EPackage {
 		EAttribute MENU__ICON = eINSTANCE.getMenu_Icon();
 
 		/**
-		 * The meta object literal for the '{@link ElementCreationMenuModel.impl.CreationMenuImpl <em>Creation Menu</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.CreationMenuImpl <em>Creation Menu</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ElementCreationMenuModel.impl.CreationMenuImpl
-		 * @see ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getCreationMenu()
+		 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.CreationMenuImpl
+		 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.ElementCreationMenuModelPackageImpl#getCreationMenu()
 		 * @generated
 		 */
 		EClass CREATION_MENU = eINSTANCE.getCreationMenu();

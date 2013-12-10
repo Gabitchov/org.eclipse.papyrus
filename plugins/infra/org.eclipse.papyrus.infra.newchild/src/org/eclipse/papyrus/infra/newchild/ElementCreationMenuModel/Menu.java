@@ -1,6 +1,16 @@
 /**
+ * Copyright (c) 2013 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
-package ElementCreationMenuModel;
+package org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -12,12 +22,12 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link ElementCreationMenuModel.Menu#getLabel <em>Label</em>}</li>
- *   <li>{@link ElementCreationMenuModel.Menu#getIcon <em>Icon</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu#getIcon <em>Icon</em>}</li>
  * </ul>
  * </p>
  *
- * @see ElementCreationMenuModel.ElementCreationMenuModelPackage#getMenu()
+ * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage#getMenu()
  * @model abstract="true"
  * @generated
  */
@@ -32,14 +42,14 @@ public interface Menu extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
-	 * @see ElementCreationMenuModel.ElementCreationMenuModelPackage#getMenu_Label()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage#getMenu_Label()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	String getLabel();
 
 	/**
-	 * Sets the value of the '{@link ElementCreationMenuModel.Menu#getLabel <em>Label</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu#getLabel <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Label</em>' attribute.
@@ -58,14 +68,14 @@ public interface Menu extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Icon</em>' attribute.
 	 * @see #setIcon(String)
-	 * @see ElementCreationMenuModel.ElementCreationMenuModelPackage#getMenu_Icon()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage#getMenu_Icon()
 	 * @model ordered="false"
 	 * @generated
 	 */
 	String getIcon();
 
 	/**
-	 * Sets the value of the '{@link ElementCreationMenuModel.Menu#getIcon <em>Icon</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu#getIcon <em>Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Icon</em>' attribute.

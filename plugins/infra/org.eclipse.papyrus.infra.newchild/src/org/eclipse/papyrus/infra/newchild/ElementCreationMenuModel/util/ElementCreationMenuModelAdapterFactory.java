@@ -1,8 +1,16 @@
 /**
+ * Copyright (c) 2013 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
-package ElementCreationMenuModel.util;
-
-import ElementCreationMenuModel.*;
+package org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -11,12 +19,14 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.*;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see ElementCreationMenuModel.ElementCreationMenuModelPackage
+ * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage
  * @generated
  */
 public class ElementCreationMenuModelAdapterFactory extends AdapterFactoryImpl {
@@ -100,13 +110,13 @@ public class ElementCreationMenuModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ElementCreationMenuModel.Folder <em>Folder</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder <em>Folder</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ElementCreationMenuModel.Folder
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder
 	 * @generated
 	 */
 	public Adapter createFolderAdapter() {
@@ -114,13 +124,13 @@ public class ElementCreationMenuModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ElementCreationMenuModel.Menu <em>Menu</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu <em>Menu</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ElementCreationMenuModel.Menu
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu
 	 * @generated
 	 */
 	public Adapter createMenuAdapter() {
@@ -128,13 +138,13 @@ public class ElementCreationMenuModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link ElementCreationMenuModel.CreationMenu <em>Creation Menu</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu <em>Creation Menu</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see ElementCreationMenuModel.CreationMenu
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu
 	 * @generated
 	 */
 	public Adapter createCreationMenuAdapter() {

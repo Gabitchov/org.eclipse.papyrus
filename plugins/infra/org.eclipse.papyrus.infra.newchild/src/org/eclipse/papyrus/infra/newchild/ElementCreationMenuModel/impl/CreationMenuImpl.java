@@ -1,15 +1,25 @@
 /**
+ * Copyright (c) 2013 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
-package ElementCreationMenuModel.impl;
-
-import ElementCreationMenuModel.CreationMenu;
-import ElementCreationMenuModel.ElementCreationMenuModelPackage;
+package org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,9 +28,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link ElementCreationMenuModel.impl.CreationMenuImpl#getElementTypeIdRef <em>Element Type Id Ref</em>}</li>
- *   <li>{@link ElementCreationMenuModel.impl.CreationMenuImpl#getRole <em>Role</em>}</li>
- *   <li>{@link ElementCreationMenuModel.impl.CreationMenuImpl#isDisplayAllRoles <em>Display All Roles</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.CreationMenuImpl#getElementTypeIdRef <em>Element Type Id Ref</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.CreationMenuImpl#getRole <em>Role</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.CreationMenuImpl#isDisplayAllRoles <em>Display All Roles</em>}</li>
  * </ul>
  * </p>
  *

@@ -23,10 +23,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Folder;
 import org.osgi.framework.Bundle;
-
-import ElementCreationMenuModel.ElementCreationMenuModelPackage;
-import ElementCreationMenuModel.Folder;
 /**
  * This class is used to load all extension point call org.eclipse.papyrus.infra.newchild
  * It gives the set of all Folder that has to be displayed

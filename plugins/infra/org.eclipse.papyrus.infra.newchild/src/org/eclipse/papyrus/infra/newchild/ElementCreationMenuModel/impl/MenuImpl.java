@@ -1,9 +1,16 @@
 /**
+ * Copyright (c) 2013 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
-package ElementCreationMenuModel.impl;
-
-import ElementCreationMenuModel.ElementCreationMenuModelPackage;
-import ElementCreationMenuModel.Menu;
+package org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -12,6 +19,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage;
+import org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.Menu;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Menu</b></em>'.
@@ -19,8 +29,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link ElementCreationMenuModel.impl.MenuImpl#getLabel <em>Label</em>}</li>
- *   <li>{@link ElementCreationMenuModel.impl.MenuImpl#getIcon <em>Icon</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.MenuImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl.MenuImpl#getIcon <em>Icon</em>}</li>
  * </ul>
  * </p>
  *

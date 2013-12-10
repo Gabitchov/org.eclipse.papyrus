@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.newchild;singleton:=true
-Bundle-Version: 0.10.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.newchild.Activator
 Require-Bundle: org.eclipse.ui,
@@ -18,11 +18,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.type.core,
  org.eclipse.papyrus.infra.services.edit,
  org.eclipse.papyrus.infra.gmfdiag.commands
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: ElementCreationMenuModel,
- ElementCreationMenuModel.impl,
- ElementCreationMenuModel.util,
- org.eclipse.papyrus.infra.newchild
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.infra.newchild,
+ org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel,
+ org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.impl,
+ org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.util
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

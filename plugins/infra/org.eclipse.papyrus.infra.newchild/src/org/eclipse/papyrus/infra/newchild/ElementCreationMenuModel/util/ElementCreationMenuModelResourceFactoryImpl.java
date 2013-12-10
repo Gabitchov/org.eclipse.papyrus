@@ -1,6 +1,16 @@
 /**
+ * Copyright (c) 2013 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
-package ElementCreationMenuModel.util;
+package org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.util;
 
 import org.eclipse.emf.common.util.URI;
 
@@ -12,7 +22,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * <!-- begin-user-doc -->
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
- * @see ElementCreationMenuModel.util.ElementCreationMenuModelResourceImpl
+ * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.util.ElementCreationMenuModelResourceImpl
  * @generated
  */
 public class ElementCreationMenuModelResourceFactoryImpl extends ResourceFactoryImpl {

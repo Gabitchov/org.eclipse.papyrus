@@ -1,6 +1,16 @@
 /**
+ * Copyright (c) 2013 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
-package ElementCreationMenuModel;
+package org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel;
 
 
 /**
@@ -11,13 +21,13 @@ package ElementCreationMenuModel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link ElementCreationMenuModel.CreationMenu#getElementTypeIdRef <em>Element Type Id Ref</em>}</li>
- *   <li>{@link ElementCreationMenuModel.CreationMenu#getRole <em>Role</em>}</li>
- *   <li>{@link ElementCreationMenuModel.CreationMenu#isDisplayAllRoles <em>Display All Roles</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#getElementTypeIdRef <em>Element Type Id Ref</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#getRole <em>Role</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#isDisplayAllRoles <em>Display All Roles</em>}</li>
  * </ul>
  * </p>
  *
- * @see ElementCreationMenuModel.ElementCreationMenuModelPackage#getCreationMenu()
+ * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage#getCreationMenu()
  * @model
  * @generated
  */
@@ -32,14 +42,14 @@ public interface CreationMenu extends Menu {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Type Id Ref</em>' attribute.
 	 * @see #setElementTypeIdRef(String)
-	 * @see ElementCreationMenuModel.ElementCreationMenuModelPackage#getCreationMenu_ElementTypeIdRef()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage#getCreationMenu_ElementTypeIdRef()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	String getElementTypeIdRef();
 
 	/**
-	 * Sets the value of the '{@link ElementCreationMenuModel.CreationMenu#getElementTypeIdRef <em>Element Type Id Ref</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#getElementTypeIdRef <em>Element Type Id Ref</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Element Type Id Ref</em>' attribute.
@@ -58,14 +68,14 @@ public interface CreationMenu extends Menu {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Role</em>' attribute.
 	 * @see #setRole(String)
-	 * @see ElementCreationMenuModel.ElementCreationMenuModelPackage#getCreationMenu_Role()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage#getCreationMenu_Role()
 	 * @model ordered="false"
 	 * @generated
 	 */
 	String getRole();
 
 	/**
-	 * Sets the value of the '{@link ElementCreationMenuModel.CreationMenu#getRole <em>Role</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#getRole <em>Role</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Role</em>' attribute.
@@ -85,14 +95,14 @@ public interface CreationMenu extends Menu {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Display All Roles</em>' attribute.
 	 * @see #setDisplayAllRoles(boolean)
-	 * @see ElementCreationMenuModel.ElementCreationMenuModelPackage#getCreationMenu_DisplayAllRoles()
+	 * @see org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.ElementCreationMenuModelPackage#getCreationMenu_DisplayAllRoles()
 	 * @model default="true" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isDisplayAllRoles();
 
 	/**
-	 * Sets the value of the '{@link ElementCreationMenuModel.CreationMenu#isDisplayAllRoles <em>Display All Roles</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.newchild.ElementCreationMenuModel.CreationMenu#isDisplayAllRoles <em>Display All Roles</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Display All Roles</em>' attribute.
