@@ -16,10 +16,18 @@ package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
 
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.sysml.diagram.requirement.Activator;
+import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
 
 public class RequirementDiagramGeneralPreferencePage extends DiagramPreferencePage {
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @G
+	 */
 	public RequirementDiagramGeneralPreferencePage() {
 		setPreferenceStore(Activator.getInstance().getPreferenceStore());
+		setPreferenceKey(ElementTypes.DIAGRAM_ID);
 	}
 }

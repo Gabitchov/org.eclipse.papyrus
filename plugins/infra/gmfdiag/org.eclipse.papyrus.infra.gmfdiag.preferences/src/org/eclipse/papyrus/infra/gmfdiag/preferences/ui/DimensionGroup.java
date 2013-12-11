@@ -15,8 +15,8 @@ package org.eclipse.papyrus.infra.gmfdiag.preferences.ui;
 
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.IntegerFieldEditor;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Messages;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -65,12 +65,12 @@ public class DimensionGroup extends AbstractGroup {
 		decorationGroup.setLayout(new GridLayout());
 		decorationGroup.setText(Messages.DimensionGroupName);
 
-		widthFiedEditor = new IntegerFieldEditor(getPreferenceConstant(PreferenceConstantHelper.WIDTH), WIDTH_INTFIELDEDITOR_LABEL, decorationGroup);
+		widthFiedEditor = new IntegerFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.WIDTH), WIDTH_INTFIELDEDITOR_LABEL, decorationGroup);
 		widthFiedEditor.setPage(dialogPage);
 
 		addFieldEditor(widthFiedEditor);
 
-		heightFiedEditor = new IntegerFieldEditor(getPreferenceConstant(PreferenceConstantHelper.HEIGHT), HEIGHT_INTFIELDEDITOR_LABEL, decorationGroup);
+		heightFiedEditor = new IntegerFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.HEIGHT), HEIGHT_INTFIELDEDITOR_LABEL, decorationGroup);
 		heightFiedEditor.setPage(dialogPage);
 
 		addFieldEditor(heightFiedEditor);

@@ -14,9 +14,9 @@
 package org.eclipse.papyrus.infra.gmfdiag.preferences.ui;
 
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference.FontFieldEditor;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -58,7 +58,7 @@ public class FontGroup extends AbstractGroup {
 		Group fontGroup = new Group(parent, SWT.SHADOW_NONE);
 		fontGroup.setLayout(new GridLayout(1, true));
 		fontGroup.setText(FONT_GROUPBOX_LABEL);
-		fontFieldEditor = new FontFieldEditor(getPreferenceConstant(PreferenceConstantHelper.FONT), fontGroup);
+		fontFieldEditor = new FontFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.FONT), fontGroup);
 
 		addFieldEditor(fontFieldEditor);
 	}

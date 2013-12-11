@@ -21,7 +21,7 @@ import java.util.Set;
 import org.eclipse.gmf.runtime.common.ui.preferences.CheckBoxFieldEditor;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -84,12 +84,12 @@ public class NodeCompartmentGroup extends AbstractGroup {
 		gridData.horizontalSpan = 2;
 		group.setLayoutData(gridData);
 
-		String compartmentVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+		String compartmentVisibilityPreference = PreferencesConstantsHelper.getCompartmentElementConstant(getKey(), compartment, PreferencesConstantsHelper.COMPARTMENT_VISIBILITY);
 		String compartmentVisibilityLabel = "Show compartment";
 		Button showCompartmentButton = addCheckboxField(group, compartmentVisibilityPreference, compartmentVisibilityLabel);
 
 		if(this.compartmentsWithTitle.contains(compartment)) {
-			String compartmentNameVisibilityPreference = PreferenceConstantHelper.getCompartmentElementConstant(getKey(), compartment, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			String compartmentNameVisibilityPreference = PreferencesConstantsHelper.getCompartmentElementConstant(getKey(), compartment, PreferencesConstantsHelper.COMPARTMENT_NAME_VISIBILITY);
 			String compartmentNameVisibilityLabel = "Show title";
 			Button showNameButton = addCheckboxField(group, compartmentNameVisibilityPreference, compartmentNameVisibilityLabel);
 
