@@ -26,13 +26,16 @@ import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
+import org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
+import org.eclipse.ui.IEditorPart;
 import org.w3c.dom.Document;
 import org.w3c.dom.svg.SVGDocument;
 
 /**
  * Abstract implementation of the shape provider interface.
  */
-public abstract class AbstractShapeProvider extends AbstractProvider implements IShapeProvider {
+public abstract class AbstractShapeProvider extends AbstractProvider implements IShapeProvider, IRefreshHandlerPart {
 
 	/** field for name */
 	protected static final String NAME = "name";
@@ -58,6 +61,13 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	/** Cache for the loaded SVG document */
 	private Map<String, SVGDocument> cache;
 
+
+	/**
+	 * Initializes this provider
+	 */
+	public AbstractShapeProvider() {
+		RefreshHandler.register(this);
+	}
 
 	/**
 	 * Returns the bundle identifier for this provider
@@ -124,7 +134,7 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 	 *            The location to load the document from
 	 * @return the Document SVG from its location, can return null if this is not a svg
 	 */
-	protected SVGDocument getSVGDocument(String location) {
+	protected synchronized SVGDocument getSVGDocument(String location) {
 		if (cache == null)
 			cache = new HashMap<String, SVGDocument>();
 		if (cache.containsKey(location))
@@ -184,5 +194,15 @@ public abstract class AbstractShapeProvider extends AbstractProvider implements 
 		DOMUtilities.writeDocument(domDocument, writer);
 
 		return writer.toString();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart#refresh(org.eclipse.ui.IEditorPart)
+	 */
+	public synchronized void refresh(IEditorPart editorPart) {
+		// Clears the cache of loaded SVG documents
+		// This will force their reloading
+		if (cache != null)
+			cache.clear();
 	}
 }
