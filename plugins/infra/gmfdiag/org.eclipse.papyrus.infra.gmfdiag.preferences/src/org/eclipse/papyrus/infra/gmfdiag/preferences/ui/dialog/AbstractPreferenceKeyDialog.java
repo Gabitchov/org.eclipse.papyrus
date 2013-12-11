@@ -23,8 +23,8 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
@@ -126,10 +126,10 @@ public class AbstractPreferenceKeyDialog extends org.eclipse.jface.dialogs.Statu
 		 */
 		public Image getColumnImage(Object element, int columnIndex) {
 			if(columnIndex == 0) {
-				if(element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
+				if(element.toString().startsWith(PreferencesConstantsHelper.DIAGRAM_ELEMENT)) {
 					return Activator.getPluginIconImage(Activator.PLUGIN_ID, "/icons/pref.gif");
 				}
-				if(element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+				if(element.toString().startsWith(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX)) {
 					return Activator.getPluginIconImage(Activator.PLUGIN_ID, "/icons/diag.gif");
 				}
 			}
@@ -148,16 +148,16 @@ public class AbstractPreferenceKeyDialog extends org.eclipse.jface.dialogs.Statu
 				out = out.substring(out.indexOf(".") + 1, out.length()).toUpperCase();
 			}
 			if(columnIndex == 1) {
-				if(element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
+				if(element.toString().startsWith(PreferencesConstantsHelper.DIAGRAM_ELEMENT)) {
 					return "ELEMENT";
 				}
-				if(element.toString().startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+				if(element.toString().startsWith(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX)) {
 					return "DIAGRAM";
 				}
 			}
 			if(columnIndex == 2) {
-				if(initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
-					out = initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_ELEMENT, "");
+				if(initialKey.startsWith(PreferencesConstantsHelper.DIAGRAM_ELEMENT)) {
+					out = initialKey.toString().replaceAll(PreferencesConstantsHelper.DIAGRAM_ELEMENT, "");
 					// Reorganize display
 					if(out.indexOf(".") > 0) {
 						String beforePoint = out.substring(0, out.indexOf("."));
@@ -166,8 +166,8 @@ public class AbstractPreferenceKeyDialog extends org.eclipse.jface.dialogs.Statu
 						}
 					}
 				}
-				if(initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
-					out = initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX, "");
+				if(initialKey.startsWith(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+					out = initialKey.toString().replaceAll(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX, "");
 					out = out.substring(0, out.indexOf("."));
 				}
 			}
@@ -205,10 +205,10 @@ public class AbstractPreferenceKeyDialog extends org.eclipse.jface.dialogs.Statu
 		public Object[] getElements(Object inputElement) {
 			ArrayList<String> result = new ArrayList<String>();
 			for(int i = 0; i < keys.length; i++) {
-				if(keys[i].startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+				if(keys[i].startsWith(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX)) {
 					result.add(keys[i]);
 				}
-				if(keys[i].startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
+				if(keys[i].startsWith(PreferencesConstantsHelper.DIAGRAM_ELEMENT)) {
 					result.add(keys[i]);
 				}
 			}

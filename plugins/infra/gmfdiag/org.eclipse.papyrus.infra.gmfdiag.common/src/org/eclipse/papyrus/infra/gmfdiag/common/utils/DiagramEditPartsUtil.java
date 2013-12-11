@@ -18,15 +18,26 @@ import java.util.HashSet;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.tools.util.EditorHelper;
+import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * Different utility methods to manage and manipulate edit parts in diagrams.
  */
 public class DiagramEditPartsUtil {
+
+	private DiagramEditPartsUtil() {
+		//to prevent instanciation
+	}
 
 	/**
 	 * Returns the edit part that controls the given view.
@@ -126,6 +137,55 @@ public class DiagramEditPartsUtil {
 				parent = parent.getParent();
 			}
 			return previousParent;
+		}
+		return null;
+	}
+
+
+	/**
+	 * A utility method to return the active <code>DiagramEditPart</code> if
+	 * the current part implements <code>IDiagramWorkbenchPart</code>
+	 * 
+	 * @return The current diagram if the parts implements <code>IDiagramWorkbenchPart</code>; <code>null</code> otherwise
+	 */
+	public static final IDiagramGraphicalViewer getActiveDiagramGraphicalViewer() {
+		IDiagramWorkbenchPart part = getActiveDiagramWorkbenchPart();
+		return part != null ? part.getDiagramGraphicalViewer() : null;
+	}
+
+	/**
+	 * A utility method to return the active part if it implements
+	 * or adapts to the <code>IDiagramWorkbenchPart</code> interface
+	 * 
+	 * @return The current part if it implements or adapts to <code>IDiagramWorkbenchPart</code>; <code>null</code> otherwise
+	 */
+	public static final IDiagramWorkbenchPart getActiveDiagramWorkbenchPart() {
+		IDiagramWorkbenchPart diagramPart = null;
+
+		IWorkbenchPart part = EditorHelper.getActivePart();
+
+		if(part instanceof IDiagramWorkbenchPart) {
+			diagramPart = (IDiagramWorkbenchPart)part;
+
+		} else if(part != null) {
+			diagramPart = (IDiagramWorkbenchPart)part.getAdapter(IDiagramWorkbenchPart.class);
+		}
+
+		return diagramPart;
+	}
+
+	/**
+	 * 
+	 * @param anEditPart
+	 *        an edit part
+	 * @return
+	 *         the preference store for the diagram owning this edit part or <code>null</code> if not found
+	 * 
+	 */
+	public static final IPreferenceStore getDiagramWorkspacePreferenceStore(final EditPart anEditPart) {
+		final EditPartViewer viewer = anEditPart.getViewer();
+		if(viewer instanceof DiagramGraphicalViewer) {
+			return ((DiagramGraphicalViewer)viewer).getWorkspaceViewerPreferenceStore();
 		}
 		return null;
 	}

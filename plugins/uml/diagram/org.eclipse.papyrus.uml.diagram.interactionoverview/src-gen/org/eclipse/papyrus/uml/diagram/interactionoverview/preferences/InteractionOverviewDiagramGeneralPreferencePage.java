@@ -12,10 +12,12 @@ package org.eclipse.papyrus.uml.diagram.interactionoverview.preferences;
 
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.provider.ElementTypes;
 
 public class InteractionOverviewDiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	public InteractionOverviewDiagramGeneralPreferencePage() {
 		setPreferenceStore(Activator.getInstance().getPreferenceStore());
+		setPreferenceKey(ElementTypes.DIAGRAM_ID);
 	}
 }

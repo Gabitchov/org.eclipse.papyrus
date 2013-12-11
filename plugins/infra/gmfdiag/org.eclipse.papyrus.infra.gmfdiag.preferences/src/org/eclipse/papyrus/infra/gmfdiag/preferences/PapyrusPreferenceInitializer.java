@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.PapyrusAllDiagramsPreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusPrintingPreferencePage;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusRulersAndGridPreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusUML2PreferencePage;
 
 /**
@@ -39,10 +38,8 @@ public class PapyrusPreferenceInitializer extends AbstractPreferenceInitializer 
 	@Override
 	public void initializeDefaultPreferences() {
 		PapyrusAllDiagramsPreferencePage.initDefaults(store);
-		PapyrusRulersAndGridPreferencePage.initDefaults(store);
 		PapyrusPrintingPreferencePage.initDefaults(store);
 		PapyrusUML2PreferencePage.initDefaults(store);
-
 	}
 
 }

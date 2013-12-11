@@ -15,9 +15,9 @@ package org.eclipse.papyrus.infra.gmfdiag.preferences.ui;
 
 import org.eclipse.gmf.runtime.diagram.ui.properties.internal.l10n.DiagramUIPropertiesImages;
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference.ColorFieldEditor;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -74,13 +74,13 @@ public class LinkColorGroup extends AbstractGroup {
 		toolbar.setLayout(new GridLayout(3, false));
 
 		Composite fontColorEditorCompo = getEncapsulatedCompo(toolbar);
-		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FONT), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
+		fontColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.COLOR_FONT), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FONT_COLOR), fontColorEditorCompo);
 		fontColorEditor.setPage(dialogPage);
 
 		addFieldEditor(fontColorEditor);
 
 		Composite lineColorEditorCompo = getEncapsulatedCompo(toolbar);
-		lineColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_LINE), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
+		lineColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.COLOR_LINE), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), lineColorEditorCompo);
 
 		lineColorEditor.setPage(dialogPage);
 
