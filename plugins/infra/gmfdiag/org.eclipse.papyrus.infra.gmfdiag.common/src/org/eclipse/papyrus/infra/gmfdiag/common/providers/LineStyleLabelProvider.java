@@ -16,7 +16,6 @@ package org.eclipse.papyrus.infra.gmfdiag.common.providers;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.infra.gmfdiag.common.messages.Messages;
 import org.eclipse.swt.graphics.Image;
 
 /**

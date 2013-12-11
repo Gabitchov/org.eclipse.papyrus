@@ -13,10 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.preferences.pages;
 
-import java.util.Locale;
-
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.gef.rulers.RulerProvider;
 import org.eclipse.gmf.runtime.notation.JumpLinkStatus;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Smoothness;
@@ -122,21 +118,8 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.WIDTH), 100);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.HEIGHT), 100);
 
-		//rulers and grid
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SHOW_RULER), false);
-		String defaultCountry = Locale.getDefault().getCountry();
-		if(defaultCountry == null || defaultCountry.equals(Locale.US.getCountry()) || defaultCountry.equals(Locale.CANADA.getCountry())) {
-			store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RULER_UNITS), RulerProvider.UNIT_INCHES);
-		} else {
-			store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RULER_UNITS), RulerProvider.UNIT_CENTIMETERS);
-		}
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SHOW_GRID), false);
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SNAP_TO_GRID), false);
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SNAP_TO_SHAPE), false);
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_STYLE), Graphics.LINE_CUSTOM);
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_IN_FRONT), false);
-		PreferenceConverter.setDefault(store, PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_STYLE), new org.eclipse.swt.graphics.RGB(100, 100, 100));
-		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_SPACING), 0.125);
+		//Rulers and grid group
+		RulersAndGridGroup.initDefaults(store);
 	}
 
 	/**

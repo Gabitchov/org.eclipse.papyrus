@@ -14,9 +14,9 @@
 package org.eclipse.papyrus.infra.gmfdiag.properties.widget;
 
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.internal.properties.WorkspaceViewerProperties;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.properties.messages.Messages;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
@@ -119,15 +119,26 @@ public class DiagramPreferencesDefaultButton extends Composite {
 	protected void resetProperties() {
 		final IPreferenceStore store = getPreferencesStore();
 		if(store != null) {
-			store.setToDefault(WorkspaceViewerProperties.VIEWGRID);
-			store.setToDefault(WorkspaceViewerProperties.VIEWRULERS);
-			store.setToDefault(WorkspaceViewerProperties.GRIDORDER);
-			store.setToDefault(WorkspaceViewerProperties.GRIDLINECOLOR);
-			store.setToDefault(WorkspaceViewerProperties.GRIDLINESTYLE);
-			store.setToDefault(WorkspaceViewerProperties.GRIDSPACING);
-			store.setToDefault(WorkspaceViewerProperties.SNAPTOGRID);
-			store.setToDefault(WorkspaceViewerProperties.SNAPTOGEOMETRY);
-			store.setToDefault(WorkspaceViewerProperties.RULERUNIT);
+			store.setValue(PreferencesConstantsHelper.SHOW_GRID_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.SHOW_GRID_CONSTANT));
+			store.setValue(PreferencesConstantsHelper.SHOW_RULER_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.SHOW_RULER_CONSTANT));
+			store.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.GRID_ORDER_CONSTANT));
+			store.setValue(PreferencesConstantsHelper.GRID_COLOR_CONSTANT, store.getDefaultInt(PreferencesConstantsHelper.GRID_COLOR_CONSTANT));
+			store.setValue(PreferencesConstantsHelper.GRID_STYLE_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.GRID_STYLE_CONSTANT));
+			store.setValue(PreferencesConstantsHelper.GRID_SPACING_CONSTANT, store.getDefaultDouble(PreferencesConstantsHelper.GRID_SPACING_CONSTANT));
+			store.setValue(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT));
+			store.setValue(PreferencesConstantsHelper.SNAP_TO_SHAPE_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.SNAP_TO_SHAPE_CONSTANT));
+			store.setValue(PreferencesConstantsHelper.RULER_UNITS_CONSTANT, store.getDefaultInt(PreferencesConstantsHelper.RULER_UNITS_CONSTANT));
+
+			//doesn't work (ClassCastException due to GMF)
+			//			store.setToDefault(PreferencesConstantsHelper.SHOW_GRID_CONSTANT);
+			//			store.setToDefault(PreferencesConstantsHelper.SHOW_RULER_CONSTANT);
+			//			store.setToDefault(PreferencesConstantsHelper.GRID_ORDER_CONSTANT);
+			//			store.setToDefault(PreferencesConstantsHelper.GRID_COLOR_CONSTANT);
+			//			store.setToDefault(PreferencesConstantsHelper.GRID_STYLE_CONSTANT);
+			//			store.setToDefault(PreferencesConstantsHelper.GRID_SPACING_CONSTANT);
+			//			store.setToDefault(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT);
+			//			store.setToDefault(PreferencesConstantsHelper.SNAP_TO_SHAPE_CONSTANT);
+			//			store.setToDefault(PreferencesConstantsHelper.RULER_UNITS_CONSTANT);
 		}
 	}
 

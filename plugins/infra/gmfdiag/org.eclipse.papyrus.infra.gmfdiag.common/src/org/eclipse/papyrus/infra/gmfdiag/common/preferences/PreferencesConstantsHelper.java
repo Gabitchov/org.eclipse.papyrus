@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.preferences;
 
 import org.eclipse.gmf.runtime.diagram.ui.internal.properties.WorkspaceViewerProperties;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
 
 
 
@@ -121,23 +120,23 @@ public class PreferencesConstantsHelper {
 
 	private final static String LOCATION_Y_CONSTANT = "location_y"; //$NON-NLS-1$
 
-	private final static String SHOW_RULER_CONSTANT = WorkspaceViewerProperties.VIEWRULERS;
+	public final static String SHOW_RULER_CONSTANT = WorkspaceViewerProperties.VIEWRULERS;
 
-	private final static String SHOW_GRID_CONSTANT = WorkspaceViewerProperties.VIEWGRID;
+	public final static String SHOW_GRID_CONSTANT = WorkspaceViewerProperties.VIEWGRID;
 
-	private final static String RULER_UNITS_CONSTANT = IPreferenceConstants.PREF_RULER_UNITS;
+	public final static String RULER_UNITS_CONSTANT = WorkspaceViewerProperties.RULERUNIT;
 
-	private final static String SNAP_TO_GRID_CONSTANT = WorkspaceViewerProperties.SNAPTOGRID;
+	public final static String SNAP_TO_GRID_CONSTANT = WorkspaceViewerProperties.SNAPTOGRID;
 
-	private final static String SNAP_TO_SHAPE_CONSTANT = WorkspaceViewerProperties.SNAPTOGEOMETRY;
+	public final static String SNAP_TO_SHAPE_CONSTANT = WorkspaceViewerProperties.SNAPTOGEOMETRY;
 
-	private final static String GRID_COLOR_CONSTANT = WorkspaceViewerProperties.GRIDLINECOLOR;
+	public final static String GRID_COLOR_CONSTANT = WorkspaceViewerProperties.GRIDLINECOLOR;
 
-	private final static String GRID_SPACING_CONSTANT = WorkspaceViewerProperties.GRIDSPACING;
+	public final static String GRID_SPACING_CONSTANT = WorkspaceViewerProperties.GRIDSPACING;
 
-	private final static String GRID_ORDER_CONSTANT = WorkspaceViewerProperties.GRIDORDER;
+	public final static String GRID_ORDER_CONSTANT = WorkspaceViewerProperties.GRIDORDER;
 
-	private final static String GRID_STYLE_CONSTANT = WorkspaceViewerProperties.GRIDLINESTYLE;
+	public final static String GRID_STYLE_CONSTANT = WorkspaceViewerProperties.GRIDLINESTYLE;
 
 
 	/**
@@ -295,12 +294,12 @@ public class PreferencesConstantsHelper {
 	/**
 	 * A preference to change the Z order of the Grid
 	 */
-	public static final int GRID_IN_FRONT = GRID_SPACING + 1;
+	public static final int GRID_ORDER = GRID_SPACING + 1;
 
 	/**
 	 * A preference to change the style of the grid
 	 */
-	public static final int GRID_STYLE = GRID_IN_FRONT + 1;
+	public static final int GRID_STYLE = GRID_ORDER + 1;
 
 
 	/**
@@ -408,7 +407,7 @@ public class PreferencesConstantsHelper {
 		case GRID_SPACING:
 			sb.append(GRID_SPACING_CONSTANT);
 			break;
-		case GRID_IN_FRONT:
+		case GRID_ORDER:
 			sb.append(GRID_ORDER_CONSTANT);
 			break;
 		case GRID_STYLE:

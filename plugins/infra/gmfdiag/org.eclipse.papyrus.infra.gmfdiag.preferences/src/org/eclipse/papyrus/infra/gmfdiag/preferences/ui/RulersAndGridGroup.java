@@ -16,12 +16,15 @@ package org.eclipse.papyrus.infra.gmfdiag.preferences.ui;
 import java.text.ParseException;
 import java.text.ParsePosition;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.gef.rulers.RulerProvider;
 import org.eclipse.gmf.runtime.common.ui.preferences.ComboFieldEditor;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.properties.internal.l10n.DiagramUIPropertiesImages;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.LineStyleLabelProvider;
@@ -105,6 +108,31 @@ public class RulersAndGridGroup extends AbstractGroup {
 
 	/**
 	 * 
+	 * @param store
+	 *        the preference store to initialize
+	 */
+	public static void initDefaults(IPreferenceStore store) {
+		//rulers and grid
+		//		String defaultCountry = Locale.getDefault().getCountry();
+		//		if(defaultCountry == null || defaultCountry.equals(Locale.US.getCountry()) || defaultCountry.equals(Locale.CANADA.getCountry())) {
+		//			store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RULER_UNITS), RulerProvider.UNIT_INCHES);
+		//		} else {
+		//			store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RULER_UNITS), RulerProvider.UNIT_CENTIMETERS);
+		//		}
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RULER_UNITS), RulerProvider.UNIT_PIXELS);
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SHOW_RULER), false);
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SHOW_GRID), false);
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SNAP_TO_GRID), false);
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SNAP_TO_SHAPE), false);
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_STYLE), Graphics.LINE_CUSTOM);
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_ORDER), false);
+		final int rgbValue = 50;
+		PreferenceConverter.setDefault(store, PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_COLOR), new org.eclipse.swt.graphics.RGB(rgbValue, rgbValue, rgbValue));
+		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_SPACING), 20);
+	}
+
+	/**
+	 * 
 	 * Constructor.
 	 * 
 	 * @param parent
@@ -141,15 +169,12 @@ public class RulersAndGridGroup extends AbstractGroup {
 		showRulers = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.SHOW_RULER), SHOW_RULERS_LABEL, group);
 		addFieldEditor(showRulers);
 
-		rulerUnits = new ComboFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.RULER_UNITS), RULER_UNITS_LABEL, group, ComboFieldEditor.INT_TYPE, false, 0, 0, true);
+		rulerUnits = new ComboFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.RULER_UNITS), RULER_UNITS_LABEL, group, ComboFieldEditor.INT_TYPE_INDEXED, false, 0, 0, true);
 		addFieldEditor(rulerUnits);
-
-		Combo rulerUnitsCombo;
-		rulerUnitsCombo = rulerUnits.getComboControl();
-		rulerUnitsCombo.add(RULER_UNITS_IN_LABEL);
-		rulerUnitsCombo.add(RULER_UNITS_CM_LABEL);
-		rulerUnitsCombo.add(RULER_UNITS_PIXEL_LABEL);
-
+		rulerUnits.addIndexedItemToCombo(RULER_UNITS_IN_LABEL, RulerProvider.UNIT_INCHES);
+		rulerUnits.addIndexedItemToCombo(RULER_UNITS_CM_LABEL, RulerProvider.UNIT_CENTIMETERS);
+		rulerUnits.addIndexedItemToCombo(RULER_UNITS_PIXEL_LABEL, RulerProvider.UNIT_PIXELS);
+		final Combo rulerUnitsCombo = rulerUnits.getComboControl();
 		rulerUnitsCombo.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -186,7 +211,7 @@ public class RulersAndGridGroup extends AbstractGroup {
 		snapToGeometry = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.SNAP_TO_SHAPE), SNAP_TO_GEOMETRY_LABEL, group);
 		addFieldEditor(snapToGeometry);
 
-		gridInFront = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.GRID_IN_FRONT), org.eclipse.papyrus.infra.gmfdiag.preferences.messages.DiagramUIMessages.RulersAndGridGroup_GridInFront, group); //TODO : verify the preference
+		gridInFront = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.GRID_ORDER), org.eclipse.papyrus.infra.gmfdiag.preferences.messages.DiagramUIMessages.RulersAndGridGroup_GridInFront, group);
 		addFieldEditor(gridInFront);
 
 		addGridStyle(group);
@@ -202,14 +227,13 @@ public class RulersAndGridGroup extends AbstractGroup {
 	private void addGridStyle(final Composite parent) {
 		final Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout(2, true));
-		gridStyle = new ComboFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.GRID_STYLE), org.eclipse.papyrus.infra.gmfdiag.preferences.messages.DiagramUIMessages.RulersAndGridGroup_GridStyle, composite, ComboFieldEditor.INT_TYPE, false, 0, 0, true);
-		Combo combo = gridStyle.getComboControl();
-		combo.add(LineStyleLabelProvider.LINE_STYLE_SOLID_STRING);
-		combo.add(LineStyleLabelProvider.LINE_STYLE_DASH_STRING);
-		combo.add(LineStyleLabelProvider.LINE_STYLE_DOT_STRING);
-		combo.add(LineStyleLabelProvider.LINE_STYLE_DASH_DOT_STRING);
-		combo.add(LineStyleLabelProvider.LINE_STYLE_DASH_DOT_DOT_STRING);
-		combo.add(LineStyleLabelProvider.LINE_STYLE_CUSTOM);
+		this.gridStyle = new ComboFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.GRID_STYLE), org.eclipse.papyrus.infra.gmfdiag.preferences.messages.DiagramUIMessages.RulersAndGridGroup_GridStyle, composite, ComboFieldEditor.INT_TYPE_INDEXED, false, 0, 0, true);
+		this.gridStyle.addIndexedItemToCombo(LineStyleLabelProvider.LINE_STYLE_SOLID_STRING, Graphics.LINE_SOLID);
+		this.gridStyle.addIndexedItemToCombo(LineStyleLabelProvider.LINE_STYLE_DASH_STRING, Graphics.LINE_DASH);
+		this.gridStyle.addIndexedItemToCombo(LineStyleLabelProvider.LINE_STYLE_DOT_STRING, Graphics.LINE_DOT);
+		this.gridStyle.addIndexedItemToCombo(LineStyleLabelProvider.LINE_STYLE_DASH_DOT_STRING, Graphics.LINE_DASHDOT);
+		this.gridStyle.addIndexedItemToCombo(LineStyleLabelProvider.LINE_STYLE_DASH_DOT_DOT_STRING, Graphics.LINE_DASHDOTDOT);
+		this.gridStyle.addIndexedItemToCombo(LineStyleLabelProvider.LINE_STYLE_CUSTOM, Graphics.LINE_CUSTOM);
 		addFieldEditor(gridStyle);
 	}
 
@@ -218,42 +242,7 @@ public class RulersAndGridGroup extends AbstractGroup {
 		Label label = new Label(composite, SWT.NONE);
 
 		label.setText(org.eclipse.papyrus.infra.gmfdiag.preferences.messages.DiagramUIMessages.RulersAndGridGroup_GridColor);
-		gridColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.GRID_COLOR), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), composite) {
-			//			@Override
-			//			protected void doLoad() {
-			//				doLoadColor(PreferenceConverter.getColor(getPreferenceStore(), getPreferenceName()));
-			//			}
-			//
-			//			@Override
-			//			protected void doLoadDefault() {
-			//				doLoadColor(FigureUtilities.PreferenceConverter.getDefaultColor(getPreferenceStore(), getPreferenceName()));
-			//
-			//			}
-
-			//			private void doLoadColor(RGB rgb) {
-			//				updateButtonImage(rgb);
-			//				if(colorSelector != null) {
-			//					colorSelector.setPreviousColor(FigureUtilities.RGBToInteger(rgb));
-			//				}
-			//
-			//			}
-
-			//			@Override
-			//			protected void doStore() {
-			//				if(colorSelector != null) {
-			//					RGB color = colorSelector.getSelectedColor();
-			//					if(color == null) {
-			//						color = getDefaultColor();
-			//					}
-			//					PreferenceConverter.setValue(getPreferenceStore(), getPreferenceName(), color);
-			//				}
-			//			}
-
-			//			private RGB getDefaultColor() {
-			//				return PreferenceConverter.getDefaultColor(getPreferenceStore(), getPreferenceName());
-			//			}
-
-		};
+		gridColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.GRID_COLOR), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_LINE_COLOR), composite);
 		addFieldEditor(gridColorEditor);
 		composite.setLayout(new GridLayout(2, true));
 	}
