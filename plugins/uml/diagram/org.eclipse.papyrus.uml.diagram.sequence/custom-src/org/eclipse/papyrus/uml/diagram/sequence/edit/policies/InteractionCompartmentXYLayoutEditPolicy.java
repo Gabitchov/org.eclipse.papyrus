@@ -666,6 +666,9 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	public Command getCommand(Request request) {
 		if(request instanceof ChangeBoundsRequest) {
 			ChangeBoundsRequest cbr = (ChangeBoundsRequest)request;
+			if (cbr.getEditParts() == null){
+				return super.getCommand(request);
+			}
 			int resizeDirection = cbr.getResizeDirection();
 			CompoundCommand compoundCmd = new CompoundCommand("Resize of Interaction Compartment Elements");
 			for(EditPart ep : (List<EditPart>)cbr.getEditParts()) {
