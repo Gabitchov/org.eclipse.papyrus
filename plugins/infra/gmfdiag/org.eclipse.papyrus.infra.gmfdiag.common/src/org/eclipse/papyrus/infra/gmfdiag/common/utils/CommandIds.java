@@ -29,5 +29,4 @@ public class CommandIds {
 	public static final String SNAP_TO_GRID_COMMAND = "org.eclipse.papyrus.infra.gmfdiag.menu.SnapToGridCommand"; //$NON-NLS-1$
 
 
-
 }
