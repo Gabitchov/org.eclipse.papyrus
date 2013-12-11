@@ -84,4 +84,10 @@ public class DecorationGroup extends AbstractGroup {
 		addFieldEditor(qualifiedname);
 
 	}
+
+	@Override
+	protected String getPreferenceConstant(int preferenceType) {
+		System.out.println(super.getPreferenceConstant(preferenceType));
+		return super.getPreferenceConstant(preferenceType);
+	}
 }

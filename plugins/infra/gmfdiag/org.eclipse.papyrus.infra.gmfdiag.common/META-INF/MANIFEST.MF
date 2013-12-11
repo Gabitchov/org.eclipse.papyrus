@@ -48,7 +48,8 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.apache.batik.dom.svg;bundle-version="[1.6.0,1.7.0)",
  org.apache.batik.dom;bundle-version="[1.6.0,1.7.0)",
  org.apache.batik.xml;bundle-version="[1.6.0,1.7.0)",
- org.eclipse.gmf.tooling.runtime
+ org.eclipse.gmf.tooling.runtime,
+ com.ibm.icu
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram;
 
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.ConnectionGroup;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -39,6 +39,6 @@ public class DiagramConnectionGroup extends ConnectionGroup {
 	}
 
 	protected String getPreferenceConstant(int preferenceType) {
-		return PreferenceConstantHelper.getDiagramConstant(getKey(), preferenceType);
+		return PreferencesConstantsHelper.getDiagramConstant(getKey(), preferenceType);
 	}
 }

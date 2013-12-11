@@ -12,8 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.preferences.pages;
 
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.FontGroup;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -68,11 +68,11 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 	 * Get the specified preference type associated with this preference page.
 	 * 
 	 * @param preferenceType
-	 *        an int representing the preference type to retrieve. It must be a value defined in {@link PreferenceConstantHelper}
+	 *        an int representing the preference type to retrieve. It must be a value defined in {@link PreferencesConstantsHelper}
 	 * @return the preference constant used to store the given prefence type.
 	 */
 	protected String getPreferenceConstant(int preferenceType) {
-		return PreferenceConstantHelper.getElementConstant(getTitle(), preferenceType);
+		return PreferencesConstantsHelper.getElementConstant(getTitle(), preferenceType);
 	}
 
 }

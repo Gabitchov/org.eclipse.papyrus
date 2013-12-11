@@ -18,9 +18,9 @@ import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference.GradientFieldEditor;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -75,13 +75,13 @@ public class BackgroundColor extends AbstractGroup {
 		Label useGradientLabel = new Label(useGradientCompo, SWT.NULL);
 		useGradientLabel.setText(Messages.AbstractPapyrusNodePreferencePage_Activate);
 		Composite useGradientFillEditorCompo = getEncapsulatedCompo(useGradientCompo);
-		useGradientFillEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.GRADIENT_POLICY), "", useGradientFillEditorCompo); //$NON-NLS-1$
+		useGradientFillEditor = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.GRADIENT_POLICY), "", useGradientFillEditorCompo); //$NON-NLS-1$
 		useGradientFillEditor.setPage(dialogPage);
 
 		addFieldEditor(useGradientFillEditor);
 
 		Composite gradientFillEditorCompo = getEncapsulatedCompo(fillColorGroup);
-		gradientFillEditor = new GradientFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_GRADIENT), gradientFillEditorCompo);
+		gradientFillEditor = new GradientFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.COLOR_GRADIENT), gradientFillEditorCompo);
 		gradientFillEditor.setPage(dialogPage);
 		gradientFillEditor.setEnabled(useGradientFillEditor.getBooleanValue());
 

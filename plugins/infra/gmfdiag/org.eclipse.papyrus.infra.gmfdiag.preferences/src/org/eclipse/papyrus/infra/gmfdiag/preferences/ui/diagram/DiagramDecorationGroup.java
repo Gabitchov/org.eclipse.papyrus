@@ -18,7 +18,6 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.widgets.Composite;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DiagramDecorationGroupthat specialize Decoration group for the diagram level
  */

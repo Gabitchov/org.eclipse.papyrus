@@ -19,6 +19,7 @@ import java.util.TreeSet;
 
 import org.eclipse.core.commands.Category;
 import org.eclipse.core.commands.Command;
+import org.eclipse.core.commands.State;
 import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.tools.Activator;
@@ -38,6 +39,11 @@ public class EclipseCommandUtils {
 	private EclipseCommandUtils() {
 		//to prevent instanciation
 	}
+
+	public static final String TOGGLE_STATE = "org.eclipse.ui.commands.toggleState"; //$NON-NLS-1$
+
+	public static final String RADIO_STATE = "org.eclipse.ui.commands.radioState"; //$NON-NLS-1$
+
 
 	/**
 	 * 
@@ -77,5 +83,39 @@ public class EclipseCommandUtils {
 		final ICommandImageService service = (ICommandImageService)workbench.getService(ICommandImageService.class);
 		final ImageDescriptor imageDescriptor = service.getImageDescriptor(command.getId());
 		return imageDescriptor;
+	}
+
+	/**
+	 * 
+	 * @param command
+	 *        an eclipse command
+	 * @param newValue
+	 *        the new boolean value to set to the state of this command
+	 */
+	//TODO : the nattable integration must use me
+	public static final void updateToggleCommandState(final org.eclipse.core.commands.Command command, final boolean newValue) {
+		if(command != null) {
+			final State state = command.getState(TOGGLE_STATE);
+			if(state != null) {
+				state.setValue(newValue);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param command
+	 *        an eclipse command
+	 * @param newValue
+	 *        the new value to set to the state of this command
+	 */
+	//TODO : the nattable integration must use me
+	public static final void updateRadioCommandState(final org.eclipse.core.commands.Command command, final Object newValue) {
+		if(command != null) {
+			final State state = command.getState(RADIO_STATE);
+			if(state != null) {
+				state.setValue(newValue);
+			}
+		}
 	}
 }
