@@ -14,10 +14,13 @@
 
 package org.eclipse.papyrus.layers.stackmodel.exprmatcher;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -27,13 +30,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
+import org.eclipse.papyrus.layers.stackmodel.util.FakeNotifyingListListener;
+import org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList;
+import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.categories.Categories.ExcludeCategory;
 
 /**
  * @author cedric dumoulin
@@ -110,6 +117,34 @@ public class ExpressionMatcherTest {
 
 		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, searchRoots);
 		assertNotNull("object created", expressionMatcher);
+		
+	}
+
+	/**
+	 * Test an expression
+	 * @throws LayersException 
+	 */
+	@Test
+	public void testExpression() throws LayersException {
+		
+//		Shape s;
+//		((NamedElement)s.getElement()).getName().startsWith(prefix);
+		
+		String expression = "self.element.oclAsType(uml::NamedElement).name.startsWith('C') = true";
+//		self.oclAsType(Shape).element.oclAsType(uml::NamedElement).name.startsWith('C') = true
+//		"self.element.oclAsType(uml::NamedElement).name.startsWith('C') = true";
+//	    "self.oclIsKindOf(Shape)",
+//	    "self.oclIsKindOf(Shape) and self.oclAsType(Shape).visible = true",
+//		    "self.oclAsType(Shape).visible = true",
+
+		String modelFileName = "/test/models/model1";
+		Diagram diagram = getDiagram(modelFileName);
+		List<EObject> searchRoots = diagram.getChildren();
+
+		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, searchRoots);
+		assertNotNull("object created", expressionMatcher);
+		
+		assertTrue("result not empty", !expressionMatcher.getMatchingElements().isEmpty());
 		
 	}
 
@@ -258,5 +293,155 @@ public class ExpressionMatcherTest {
 		assertNotNull("Diagram exist", diagram);
 	}
 
-	
+	/**
+	 * Test removing elements.
+	 * @throws LayersException 
+	 */
+	@Test
+	public void testRemoveElements() throws LayersException {
+		String expression = "self.oclIsKindOf(Shape)";
+//	    "self.oclIsKindOf(Shape)",
+//	    "self.oclIsKindOf(Shape) and self.oclAsType(Shape).visible = true",
+//		    "self.oclAsType(Shape).visible = true",
+
+		String modelFileName = "/test/models/model1";
+		Diagram diagram = getDiagram(modelFileName);
+		
+		int removedElementCount = 5;
+		int addedElementCount = 0;
+		int expectedEventCount = 1;
+		
+		FakeNotifyingListListener<View> notifyingListListener = new FakeNotifyingListListener<View>();
+		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, diagram);
+		
+		expressionMatcher.getMatchingElements().getEventBus().register(notifyingListListener);
+
+		// Action
+		notifyingListListener.traces.clear();
+		removeElements(diagram, removedElementCount);
+		expressionMatcher.refreshMatchingElements();
+		
+		// Assert
+		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
+		
+		NotyfyingList<View>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+
+		assertEquals("expected removed count", removedElementCount, event.getRemovedElements().size());
+		assertEquals("expected added count", addedElementCount, event.getAddedElements().size());
+	}
+
+	/**
+	 * Test removing elements.
+	 * @throws LayersException 
+	 */
+	@Test
+	public void testAddElements() throws LayersException {
+		String expression = "self.oclIsKindOf(Shape)";
+//	    "self.oclIsKindOf(Shape)",
+//	    "self.oclIsKindOf(Shape) and self.oclAsType(Shape).visible = true",
+//		    "self.oclAsType(Shape).visible = true",
+
+		String modelFileName = "/test/models/model1";
+		Diagram diagram = getDiagram(modelFileName);
+		
+		int removedElementCount = 0;
+		int addedElementCount = 5;
+		int expectedEventCount = 1;
+		int viewsCount = diagram.getChildren().size();
+		
+		FakeNotifyingListListener<View> notifyingListListener = new FakeNotifyingListListener<View>();
+		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, diagram);
+		
+		expressionMatcher.getMatchingElements().getEventBus().register(notifyingListListener);
+
+		// Action
+		notifyingListListener.traces.clear();
+		addShapeElements(diagram, addedElementCount);
+		removeElements(diagram, removedElementCount);
+		expressionMatcher.refreshMatchingElements();
+		
+		// Assert
+		assertSame("elements added", viewsCount+addedElementCount, diagram.getChildren().size());
+				
+		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
+		
+		NotyfyingList<View>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+
+		assertEquals("expected removed count", removedElementCount, event.getRemovedElements().size());
+		assertEquals("expected added count", addedElementCount, event.getAddedElements().size());
+	}
+
+	/**
+	 * Test removing elements.
+	 * @throws LayersException 
+	 */
+	@Test
+	public void testAddAndRemoveElements() throws LayersException {
+		String expression = "self.oclIsKindOf(Shape)";
+//	    "self.oclIsKindOf(Shape)",
+//	    "self.oclIsKindOf(Shape) and self.oclAsType(Shape).visible = true",
+//		    "self.oclAsType(Shape).visible = true",
+
+		String modelFileName = "/test/models/model1";
+		Diagram diagram = getDiagram(modelFileName);
+		
+		int removedElementCount = 4;
+		int addedElementCount = 5;
+		int expectedEventCount = 1;
+		int viewsCount = diagram.getChildren().size();
+		
+		FakeNotifyingListListener<View> notifyingListListener = new FakeNotifyingListListener<View>();
+		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, diagram);
+		
+		expressionMatcher.getMatchingElements().getEventBus().register(notifyingListListener);
+
+		// Action
+		notifyingListListener.traces.clear();
+		removeElements(diagram, removedElementCount);
+		addShapeElements(diagram, addedElementCount);
+		expressionMatcher.refreshMatchingElements();
+		
+		// Assert
+		assertSame("elements added", viewsCount+addedElementCount-removedElementCount, diagram.getChildren().size());
+				
+		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
+		
+		NotyfyingList<View>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+
+		assertEquals("expected removed count", removedElementCount, event.getRemovedElements().size());
+		assertEquals("expected added count", addedElementCount, event.getAddedElements().size());
+	}
+
+
+	/**
+	 * Remove n Views from the provided diagram
+	 * @param diagram
+	 * @param removedElementCount
+	 */
+	private void removeElements(Diagram diagram, int removedElementCount) {
+
+		List<View> views = diagram.getChildren();
+		
+		int index = views.size()-1;
+		for( int i=0; i<removedElementCount&&index>=0; i++) {
+			diagram.removeChild(views.get(index));
+			index = views.size()-1;
+		}
+		
+	}
+
+	/**
+	 * Add n Views to the provided diagram
+	 * @param diagram
+	 * @param removedElementCount
+	 */
+	private void addShapeElements(Diagram diagram, int elementCount) {
+
+		for( int i=0; i<elementCount; i++) {
+			diagram.createChild(NotationPackage.eINSTANCE.getShape());
+		}
+		
+	}
+
+
 }

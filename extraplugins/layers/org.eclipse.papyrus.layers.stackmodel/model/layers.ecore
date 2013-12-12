@@ -405,7 +405,7 @@
     <eOperations name="deactivate" ordered="false" lowerBound="1">
       <eParameters name="oldParentLayer" ordered="false" lowerBound="1" eType="#//AbstractLayerOperator"/>
     </eOperations>
-    <eOperations name="isDerivedView" ordered="false" upperBound="-1" eType="#//boolean"
+    <eOperations name="isDerivedView" ordered="false" lowerBound="1" eType="#//boolean"
         eExceptions="#//LayersException">
       <eParameters name="view" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
     </eOperations>
@@ -416,7 +416,7 @@
       <eParameters name="views" ordered="false" upperBound="-1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
     </eOperations>
     <eOperations name="attachDerivedViews" ordered="false" lowerBound="1" eExceptions="#//LayersException"/>
-    <eOperations name="lookupDerivedViews" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"
+    <eOperations name="lookupDerivedViews" ordered="false" upperBound="-1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"
         eExceptions="#//LayersException">
       <eParameters name="views" ordered="false" upperBound="-1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
     </eOperations>

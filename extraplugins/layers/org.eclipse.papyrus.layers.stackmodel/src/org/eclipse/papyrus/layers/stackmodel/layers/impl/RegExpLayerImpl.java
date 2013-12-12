@@ -13,17 +13,33 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
+import org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition;
+import org.eclipse.emf.query.statements.FROM;
+import org.eclipse.emf.query.statements.IQueryResult;
+import org.eclipse.emf.query.statements.SELECT;
+import org.eclipse.emf.query.statements.WHERE;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
+import org.eclipse.papyrus.layers.stackmodel.exprmatcher.ExpressionMatcher;
 import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.EventLevel;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
@@ -31,6 +47,9 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer;
 import org.eclipse.papyrus.layers.stackmodel.notifier.DiagramViewEventNotifier;
 import org.eclipse.papyrus.layers.stackmodel.notifier.IDiagramViewEventListener;
+import org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList;
+
+import com.google.common.eventbus.Subscribe;
 
 /**
  * <!-- begin-user-doc -->
@@ -190,17 +209,11 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 				  switch(msg.getEventType()) {
 					case Notification.SET:
 						// 
-						Object newValue = msg.getNewValue();
-						if( newValue == null) {
-							deactivate((AbstractLayerOperator)msg.getOldValue());
-						}
-						else {
-							activate((AbstractLayerOperator)msg.getNewValue());
-						}
+						parentLayerChanged((AbstractLayerOperator)msg.getNewValue(), (AbstractLayerOperator)msg.getOldValue());
 						break;
 
 					case Notification.UNSET:
-						deactivate((AbstractLayerOperator)msg.getOldValue());
+						parentLayerChanged((AbstractLayerOperator)msg.getNewValue(), (AbstractLayerOperator)msg.getOldValue());
 						break;
 
 					default:
@@ -212,6 +225,11 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	};
 	
 	protected DiagramViewEventNotifier diagramViewEventNotifier;
+	
+	/**
+	 * Expression matcher computing the expr, and firing events when the matching elements change.
+	 */
+	protected ExpressionMatcher expressionMatcher;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,9 +238,16 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 */
 	protected RegExpLayerImpl() {
 		super();
+
+		// Initialize expressionmatcher
+		expressionMatcher = new ExpressionMatcher();
+		resetExpressionMatcherRoots();
+
+		// listen to expression matcher changes
+		expressionMatcher.getMatchingElements().getEventBus().register(this);
+
 		// Listen on this object attachment / detachment from its container.
 		eAdapters().add(containerListener);
-		
 	}
 
 	/**
@@ -247,15 +272,32 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setExpr(String newExpr) {
 		String oldExpr = expr;
 		expr = newExpr;
+		// Try to set the expression
+		try {
+			// First, reset expr roots. Do it because actually the roots are not properly set.
+			resetExpressionMatcherRoots();
+			// Change the expression, and recompute the matching elements.
+			expressionMatcher.setExpression(newExpr);
+			expressionMatcher.refreshMatchingElements();
+		} catch (LayersException e) {
+			// silently fails, but log the error.
+			System.err.println( "Error - " + this.getClass().getSimpleName() + " - " + e.getMessage());
+		}
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__EXPR, oldExpr, expr));
 	}
 
+	/**
+	 * OCL Condition computed from the expr.
+	 */
+	protected EObjectCondition  condition;
+	protected OCL ocl;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -383,6 +425,57 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	}
 
 	/**
+	 * The parent that contains this Layer has changed. 
+	 * Check if the associated Diagram has changed, and if true, change it in the ExpressionMatcher.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param newLayerParent 
+	 * @generated NOT
+	 */
+	public void parentLayerChanged(AbstractLayerOperator newLayerParent, AbstractLayerOperator oldLayerParent) {
+
+		// Try to change the diagram in the expressionMatcher.
+		// The expressionMatcher takes care to change it only if it this changed.
+		resetExpressionMatcherRoots();
+		}
+		
+	/**
+	 * Listener on {@link NotyfyingList} eventBus. This method is called each time a change occurs in the 
+	 * result of the expression.
+	 * When the result change, the list of attached views is updated accordingly.
+	 * 
+	 * 
+	 * @param event
+	 */
+	@Subscribe
+	public void expressionResultChanged( NotyfyingList<View>.NotifyingListEvent event) {
+		
+		System.out.println( this.getClass().getSimpleName() + ".expressionResultChanged()");
+		if( ! event.getAddedElements().isEmpty()) {
+			getViews().addAll(event.getAddedElements());
+		}
+		if( ! event.getRemovedElements().isEmpty()) {
+			getViews().removeAll(event.getRemovedElements());
+		}
+
+	}
+	
+	/**
+	 * Check if the associated Diagram has changed, and if true, change it in the ExpressionMatcher.
+	 */
+	private void resetExpressionMatcherRoots() {
+	
+		try {
+			expressionMatcher.setSearchRoots( getLayersStack().getDiagram() );
+		} catch (NotFoundException e) {
+			// layerStack not found ==> no roots
+			expressionMatcher.setSearchRoots( (List<EObject>)Collections.EMPTY_LIST);
+		}
+		
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param newLayerParent 
@@ -434,56 +527,215 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EList<Boolean> isDerivedView(View view) throws LayersException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public boolean isDerivedView(View view) throws LayersException {
+
+		if(condition == null) {
+			return false;
+		}
+		
+		// Create the OCL statement
+		SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
+			new FROM(view), new WHERE(condition),
+			new NullProgressMonitor());
+
+		// Execute the OCL statement
+		IQueryResult results = statement.execute();
+
+		// the view is derived if the condition match the view.
+		return !results.isEmpty();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Check if the view satisfy the expr condition.
+	 * If the condition is satisfied, ensure that the view is attached.
+	 * If the condition is not satisfied, ensure that the view is not attached.
+	 * 
+	 * 
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void attachDerivedView(View view) throws LayersException {
 		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if(condition == null) {
+			return;
+		}
+		
+		// Create the OCL statement
+		SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
+			new FROM(view), new WHERE(condition),
+			new NullProgressMonitor());
+
+		// Execute the OCL statement
+		IQueryResult results = statement.execute();
+		
+		//
+		if( ! results.isEmpty()) {
+			// The condition is satisfied. Ensure the view is attached
+			List<View> attachedViews = getViews();
+			if (attachedViews.contains(view)) {
+				return;
+			}
+			attachedViews.add(view);
+		} 
+		else {
+			// The condition is not satisfied. Ensure the view is not attached.
+			getViews().remove(view);
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Attach each view that satisfy the condition.
+	 * Detach each view that do not satisfy the condition.
+	 * TODO rename to updateDerivedViews() ?
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void attachDerivedViews(EList<View> views) throws LayersException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+
+		if(condition == null) {
+			return;
+		}
+		
+		// Create the OCL statement
+		SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
+			new FROM(views), new WHERE(condition),
+			new NullProgressMonitor());
+
+		// Execute the OCL statement
+		IQueryResult results = statement.execute();
+		
+		// viewsToCheck
+		// attachedViews -- list of views that are attached
+		//    -- getViews()
+		// viewsToAttach -- list of views that should be attached
+		//    -- query result
+		// toAdd - views that are in viewsToAttach, but not in attachedViews
+		//    -- 
+		// toRemove - views that are in attachedViews, and viewsToCheck, but not in viewsToAttach
+		
+		// Compute views to add
+		// This are views in the result, but not in the list of attached
+		// viewsToAdd = results - getViews()
+		List<View> viewsToAdd = new ArrayList<View>();
+		List<View> attachedViews = getViews();
+		for( Object o : results ) {
+			View v = (View)o;
+			if( !attachedViews.contains(v)) {
+				viewsToAdd.add(v);
+			}
+		}
+		
+		// Compute views to remove
+		// Their is two ways to compute it:
+		//    - viewsToremove = diagramViews - results
+		//    - or viewsToremove = getViews() - result  
+		// Use the cheaper one.
+		// The computed viewsToRemove list contains also views that are not in the layer,
+		// But this is cheaper than checking for the existence.
+		
+		List<View> viewsToRemove = new ArrayList<View>();
+		for( View v : (views.size()<getViews().size()?views:getViews()) ) {
+			if( !results.contains(v)) {
+				viewsToRemove.add(v);
+			}
+		}
+		
+		// Do operations
+		getViews().removeAll(viewsToRemove);
+		getViews().addAll(viewsToAdd);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Update all views directly own by the diagram.
+	 * 
+	 * If a view satisfy the expr condition, attach it to the Layer.
+	 * Remove all others view from the layer.
+	 * <br>
+	 * To avoid multiple events, we compute the list of views to remove from the layer, and the list
+	 * of views to add to layer. Then, we preform two operations; removeAll(toRemove) and addAll(toAdd);
+	 *
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void attachDerivedViews() throws LayersException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		
+		if(condition == null) {
+			return;
+		}
+		
+		// Check views from the diagram.
+		@SuppressWarnings("unchecked")
+		EList<View> diagramViews = (EList<View>)getLayersStack().getDiagram().getChildren();
+
+		// Create the OCL statement
+		SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
+			new FROM(diagramViews), new WHERE(condition),
+			new NullProgressMonitor());
+
+		// Execute the OCL statement
+		IQueryResult results = statement.execute();
+		
+		// Compute views to add
+		// This are views in the result, but not in the list of attached
+		// viewsToAdd = results - getViews()
+		List<View> viewsToAdd = new ArrayList<View>();
+		List<View> attachedViews = getViews();
+		for( Object o : results ) {
+			View v = (View)o;
+			if( !attachedViews.contains(v)) {
+				viewsToAdd.add(v);
+			}
+		}
+		
+		// Compute views to remove
+		// Their is two ways to compute it:
+		//    - viewsToremove = diagramViews - results
+		//    - or viewsToremove = getViews() - result  
+		// Use the cheaper one.
+		// The computed viewsToRemove list contains also views that are not in the layer,
+		// But this is cheaper than checking for the existence.
+		
+//		List<View> viewsToRemove = new ArrayList<View>();
+//		for( View v : (views.size()<getViews().size()?views:getViews()) ) {
+//			if( !results.contains(v)) {
+//				viewsToRemove.add(v);
+//			}
+//		}
+		
+		// Do operations
+		getViews().retainAll(results);
+//		getViews().removeAll(viewsToRemove);
+		getViews().addAll(viewsToAdd);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public View lookupDerivedViews(EList<View> views) throws LayersException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public EList<View> lookupDerivedViews(EList<View> views) throws LayersException {
+//		if(condition == null) {
+//			return EList.EMPTY_LIST;
+//		}
+//		
+//		// Check views from the diagram.
+//		@SuppressWarnings("unchecked")
+//		EList<View> diagramViews = (EList<View>)getLayersStack().getDiagram().getChildren();
+//
+//		// Create the OCL statement
+//		SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
+//			new FROM(diagramViews), new WHERE(condition),
+//			new NullProgressMonitor());
+//
+//		// Execute the OCL statement
+//		IQueryResult results = statement.execute();
+//		return new ;
+		return null;
 	}
 
 	/**

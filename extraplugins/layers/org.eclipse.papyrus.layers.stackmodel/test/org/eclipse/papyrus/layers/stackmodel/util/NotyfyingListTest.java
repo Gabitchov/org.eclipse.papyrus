@@ -385,7 +385,7 @@ public class NotyfyingListTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#resetTo(java.util.Collection)}.
 	 */
 	@Test
-	public void testResetToNoRemoved() {
+	public void testResetToWithAddition() {
 		List<String> list = Lists.newArrayList( "red", "orange", "yellow", "green", "blue",  "purple");
 		
 		List<String> listToReset = Lists.newArrayList( "red", "orange", "yellow", "green", "blue",  "purple", "falseColor");

@@ -19,8 +19,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.gmf.runtime.notation.View;
-
 import com.google.common.collect.ForwardingList;
 import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;

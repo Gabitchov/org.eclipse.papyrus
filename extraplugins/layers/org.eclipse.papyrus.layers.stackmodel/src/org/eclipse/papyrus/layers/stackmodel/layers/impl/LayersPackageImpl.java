@@ -3443,7 +3443,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		op = initEOperation(getRegExpLayer__Deactivate__AbstractLayerOperator(), null, "deactivate", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getAbstractLayerOperator(), "oldParentLayer", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		op = initEOperation(getRegExpLayer__IsDerivedView__View(), this.getboolean(), "isDerivedView", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getRegExpLayer__IsDerivedView__View(), this.getboolean(), "isDerivedView", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theNotationPackage.getView(), "view", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEException(op, this.getLayersException());
 
@@ -3458,7 +3458,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		op = initEOperation(getRegExpLayer__AttachDerivedViews(), null, "attachDerivedViews", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEException(op, this.getLayersException());
 
-		op = initEOperation(getRegExpLayer__LookupDerivedViews__EList(), theNotationPackage.getView(), "lookupDerivedViews", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		op = initEOperation(getRegExpLayer__LookupDerivedViews__EList(), theNotationPackage.getView(), "lookupDerivedViews", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theNotationPackage.getView(), "views", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEException(op, this.getLayersException());
 

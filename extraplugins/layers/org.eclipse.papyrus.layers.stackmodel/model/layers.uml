@@ -908,8 +908,8 @@ This class carry a referenceto the Application.</body>
       </ownedOperation>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_pKKxsBZ0EeOZwp016gnCFQ" name="isDerivedView" raisedException="_iYKFMNxGEeKwptaAAanMDg">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_-UwgIBZ0EeOZwp016gnCFQ" name="res" type="_TqqsYNa8EeKPiuTfpuvqHA" direction="return">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LLUi4BZ1EeOZwp016gnCFQ"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LLnd0BZ1EeOZwp016gnCFQ" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LLUi4BZ1EeOZwp016gnCFQ" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LLnd0BZ1EeOZwp016gnCFQ" value="1"/>
         </ownedParameter>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_0YIjYFVIEeOah7Z-UYdQAA" name="view">
           <type xmi:type="uml:Class" href="notation/notation.uml#_AziHOrcnEeKeLJDBCBPhPw"/>
@@ -949,6 +949,8 @@ This class carry a referenceto the Application.</body>
         </ownedParameter>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_X28v8FVKEeOah7Z-UYdQAA" name="res" direction="return">
           <type xmi:type="uml:Class" href="notation/notation.uml#_AziHOrcnEeKeLJDBCBPhPw"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hTG1cFVXEeOeP67GJGKDkA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hTG1cVVXEeOeP67GJGKDkA" value="*"/>
         </ownedParameter>
       </ownedOperation>
     </packagedElement>

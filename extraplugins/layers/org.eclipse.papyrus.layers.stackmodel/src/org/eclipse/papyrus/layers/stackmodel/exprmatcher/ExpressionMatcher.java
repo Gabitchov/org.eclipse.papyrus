@@ -34,6 +34,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
+import org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList;
+
+import com.google.common.collect.Lists;
 
 /**
  * This class evaluate its associated expression against the associated models.
@@ -48,13 +51,13 @@ import org.eclipse.papyrus.layers.stackmodel.LayersException;
  */
 public class ExpressionMatcher {
 
-	protected String expression;
+	protected String expression="";
 	
 	/**
 	 * List of element matching the expression.
 	 * This class maintains the list.
 	 */
-	protected List<View> matchingElements;
+	protected NotyfyingList<View> matchingElements;
 	
 	/**
 	 * List of element used as starting point for search.
@@ -68,6 +71,38 @@ public class ExpressionMatcher {
 	protected OCL ocl;
 	
 
+	public ExpressionMatcher() {
+		this.expression = "";
+		this.searchRoots = Collections.emptyList();
+		// init matchingElements
+		matchingElements = new NotyfyingList<View>(new ArrayList<View>());
+	}
+	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param searchRoots
+	 * @throws LayersException
+	 */
+	public ExpressionMatcher(List<EObject> searchRoots) {
+		this.expression = "";
+		this.searchRoots = searchRoots;
+		// init matchingElements
+		matchingElements = new NotyfyingList<View>(new ArrayList<View>());
+	}
+	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param searchRoot
+	 * @throws LayersException
+	 */
+	public ExpressionMatcher(EObject searchRoot) {
+		this(Collections.singletonList(searchRoot));
+	}
+	
 	/**
 	 * Constructor.
 	 *
@@ -76,13 +111,22 @@ public class ExpressionMatcher {
 	 * @throws LayersException If the Condition can't be computed from the expression.
 	 */
 	public ExpressionMatcher(String expression, List<EObject> searchRoots) throws LayersException {
-		this.expression = expression;
 		this.searchRoots = searchRoots;
-		matchingElements = new ArrayList<View>();
+		matchingElements = new NotyfyingList<View>(new ArrayList<View>());
 		
 		// compute expr
-		computeCondition();
-		refreshMatchingElements();
+		setExpression(expression);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param expression
+	 * @param searchRoots
+	 * @throws LayersException If the Condition can't be computed from the expression.
+	 */
+	public ExpressionMatcher(String expression, EObject searchRoot) throws LayersException {
+		this(expression, Collections.singletonList(searchRoot));
 	}
 
 	/**
@@ -99,6 +143,8 @@ public class ExpressionMatcher {
 		}
 		// Create the condition
 		try {
+			// If the 3rd args is null, this is a context free condition.
+			
 			condition = new BooleanOCLCondition<EClassifier, EClass, EObject>(
 				    ocl.getEnvironment(),
 //			    "self.oclIsKindOf(Shape)",
@@ -106,15 +152,15 @@ public class ExpressionMatcher {
 //				    "self.oclAsType(Shape).visible = true",
 				    getExpression(),
 				    NotationPackage.Literals.VIEW
+//				    null
 				    );
 		} catch (ParserException e) {
 			// TODO Auto-generated catch block
 			condition = null;
-			throw new LayersException("Can't parse expression", e);
+			throw new LayersException("Can't parse expression : " + e.getMessage(), e);
 		}
 		
 	}
-
 
 	/**
 	 * Recompute the matching elements.
@@ -152,36 +198,39 @@ public class ExpressionMatcher {
 	 * @param results
 	 */
 	private void resetMatchingElements(Collection<?> newElements) {
-		// Compute views to add
-		// This are views in the newElements, but not in the actual list of matchingElement
-		// viewsToAdd = results - getViews()
-		List<View> viewsToAdd = new ArrayList<View>();
-		for( Object o : newElements ) {
-			View v = (View)o;
-			if( !getMatchingElements().contains(v)) {
-				viewsToAdd.add(v);
-			}
-		}
 		
-		// Compute views to remove
-		// Their is two ways to compute it:
-		//    - viewsToremove = diagramViews - results
-		//    - or viewsToremove = getViews() - result  
-		// Use the cheaper one.
-		// The computed viewsToRemove list contains also views that are not in the layer,
-		// But this is cheaper than checking for the existence.
+		matchingElements.resetTo((Collection<View>)newElements);
 		
-//		List<View> viewsToRemove = new ArrayList<View>();
-//		for( View v : (views.size()<getViews().size()?views:getViews()) ) {
-//			if( !results.contains(v)) {
-//				viewsToRemove.add(v);
+//		// Compute views to add
+//		// This are views in the newElements, but not in the actual list of matchingElement
+//		// viewsToAdd = results - getViews()
+//		List<View> viewsToAdd = new ArrayList<View>();
+//		for( Object o : newElements ) {
+//			View v = (View)o;
+//			if( !getMatchingElements().contains(v)) {
+//				viewsToAdd.add(v);
 //			}
 //		}
-		
-		// Do operations
-		getMatchingElements().retainAll(newElements);
-//		getViews().removeAll(viewsToRemove);
-		getMatchingElements().addAll(viewsToAdd);
+//		
+//		// Compute views to remove
+//		// Their is two ways to compute it:
+//		//    - viewsToremove = diagramViews - results
+//		//    - or viewsToremove = getViews() - result  
+//		// Use the cheaper one.
+//		// The computed viewsToRemove list contains also views that are not in the layer,
+//		// But this is cheaper than checking for the existence.
+//		
+////		List<View> viewsToRemove = new ArrayList<View>();
+////		for( View v : (views.size()<getViews().size()?views:getViews()) ) {
+////			if( !results.contains(v)) {
+////				viewsToRemove.add(v);
+////			}
+////		}
+//		
+//		// Do operations
+//		getMatchingElements().retainAll(newElements);
+////		getViews().removeAll(viewsToRemove);
+//		getMatchingElements().addAll(viewsToAdd);
 		
 	}
 
@@ -198,6 +247,15 @@ public class ExpressionMatcher {
 	 * @throws LayersException If the Condition can't be computed from the expression.
 	 */
 	public void setExpression(String expression) throws LayersException {
+		
+		if( expression == null || expression.length() == 0 ) {
+			// standardize noop expr
+			expression = "";
+		}
+		if( expression.equals(this.expression)) {
+			return;
+		}
+		
 		this.expression = expression;
 		
 		computeCondition();
@@ -208,7 +266,7 @@ public class ExpressionMatcher {
 	/**
 	 * @return the matchingElements
 	 */
-	public List<View> getMatchingElements() {
+	public NotyfyingList<View> getMatchingElements() {
 		return matchingElements;
 	}
 
@@ -218,6 +276,31 @@ public class ExpressionMatcher {
 	 */
 	public List<EObject> getSearchRoots() {
 		return searchRoots;
+	}
+
+	/**
+	 * 
+	 * @param searchRoots
+	 */
+	public void setSearchRoots(List<EObject> searchRoots) {
+		if( searchRoots == null) {
+			searchRoots = Collections.emptyList();
+		}
+		this.searchRoots = searchRoots;
+		// Do not refresh. Let user do it.
+	}
+
+	/**
+	 * 
+	 * @param searchRoots
+	 */
+	public void setSearchRoots(EObject searchRoot) {
+		if( searchRoot == null) {
+			searchRoots = Collections.emptyList();
+			return;
+		}
+
+		setSearchRoots( Collections.singletonList(searchRoot) );
 	}
 
 	

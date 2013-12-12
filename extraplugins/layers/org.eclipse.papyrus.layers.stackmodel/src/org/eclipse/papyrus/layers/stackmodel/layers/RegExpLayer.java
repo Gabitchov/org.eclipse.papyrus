@@ -248,10 +248,10 @@ public interface RegExpLayer extends AbstractLayer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewRequired="true" viewOrdered="false"
+	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" required="true" ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewRequired="true" viewOrdered="false"
 	 * @generated
 	 */
-	EList<Boolean> isDerivedView(View view) throws LayersException;
+	boolean isDerivedView(View view) throws LayersException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -280,8 +280,8 @@ public interface RegExpLayer extends AbstractLayer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true" ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewsMany="true" viewsOrdered="false"
+	 * @model ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewsMany="true" viewsOrdered="false"
 	 * @generated
 	 */
-	View lookupDerivedViews(EList<View> views) throws LayersException;
+	EList<View> lookupDerivedViews(EList<View> views) throws LayersException;
 } // RegExpLayer
