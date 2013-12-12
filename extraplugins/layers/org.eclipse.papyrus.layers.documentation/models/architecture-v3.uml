@@ -278,6 +278,133 @@ This notifier tracks the diagram root elements, and listen to their asociated do
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gjmto0ywEeObF6ELIGKT-g" value="1"/>
       </ownedEnd>
     </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_bAQtoFzGEeOeP67GJGKDkA" name="regexp">
+      <packagedElement xmi:type="uml:Class" xmi:id="_sc15QFzGEeOeP67GJGKDkA" clientDependency="_vWp3oFzJEeOeP67GJGKDkA" name="ExpressionMatcher">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_lp2GAFzHEeOeP67GJGKDkA" annotatedElement="_sc15QFzGEeOeP67GJGKDkA">
+          <body>This class evaluate its associated expression against the associated models.&#xD;
+It provide a list of elements matching the expression in the model.&#xD;
+It fire some events when the list of matching elements change.&#xD;
+The expression is evaluated  each time a change impacting the result occurs in the model.&#xD;
+&#xD;
+It maybe necessary to adjust the listeners on model changes to improve performances.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_GIXm0FzIEeOeP67GJGKDkA" name="expr" visibility="public" type="_70TEoNIPEeKovM8ingMMQQ">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Hwmv8FzIEeOeP67GJGKDkA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Hwmv8VzIEeOeP67GJGKDkA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_Hwmv8lzIEeOeP67GJGKDkA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_ISLL8FzIEeOeP67GJGKDkA" name="model" visibility="public" type="_t0NNoM9UEeKO_rl5MA6s9A">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RvpL8FzIEeOeP67GJGKDkA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RvpL8VzIEeOeP67GJGKDkA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_RvpL8lzIEeOeP67GJGKDkA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_oFbiMFzIEeOeP67GJGKDkA" name="modelChangedListeners" visibility="public">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qariUFzIEeOeP67GJGKDkA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qariUVzIEeOeP67GJGKDkA" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_qariUlzIEeOeP67GJGKDkA">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_dTKyIFzLEeOeP67GJGKDkA" name="expressionMatchElementsChangedListeners" type="_rYYgsFzIEeOeP67GJGKDkA" association="_dTQ4wFzLEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dTKyIVzLEeOeP67GJGKDkA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dTKyIlzLEeOeP67GJGKDkA" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IDVscFzNEeOeP67GJGKDkA" name="matchingElements" type="_j52EYNIUEeKovM8ingMMQQ" association="_IDVsc1zNEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IDVscVzNEeOeP67GJGKDkA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IDVsclzNEeOeP67GJGKDkA" value="*"/>
+        </ownedAttribute>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_vWp3oFzJEeOeP67GJGKDkA" name="InterfaceRealization1" client="_sc15QFzGEeOeP67GJGKDkA" supplier="_hd8bYFzJEeOeP67GJGKDkA" contract="_hd8bYFzJEeOeP67GJGKDkA"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_dUYacFzIEeOeP67GJGKDkA" name="addMatchingElementsChangedListener"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_f2gY8FzIEeOeP67GJGKDkA" name="removematchingElementsChangedListener"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_kFdssFzIEeOeP67GJGKDkA" name="fireMatchingElementChanged"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_rYYgsFzIEeOeP67GJGKDkA" clientDependency="_bBitwFzLEeOeP67GJGKDkA" name="ExpressionMatchElementsChangedListener">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_rjEmYFzLEeOeP67GJGKDkA" name="expresionResultChanged"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_4ZF98FzIEeOeP67GJGKDkA" clientDependency="_Yg2SoFzLEeOeP67GJGKDkA _ZvbloFzLEeOeP67GJGKDkA" name="IModelChangedNotifier">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_O9YDMFzJEeOeP67GJGKDkA" annotatedElement="_4ZF98FzIEeOeP67GJGKDkA">
+          <body>Interface to be implemented by class notifying changes in a model.&#xD;
+This interface is used by ExpressionMatcher to listen on various part of model changes.</body>
+        </ownedComment>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="__cB1MFzIEeOeP67GJGKDkA" name="addModelChangedListener">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_46F8wFzJEeOeP67GJGKDkA" name="listener" type="_hd8bYFzJEeOeP67GJGKDkA"/>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_fsE1IFzJEeOeP67GJGKDkA" name="removeModelChangedListener">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_8TL_gFzJEeOeP67GJGKDkA" name="listener" type="_hd8bYFzJEeOeP67GJGKDkA"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_hd8bYFzJEeOeP67GJGKDkA" name="IModelChangedListener">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_oer6QFzJEeOeP67GJGKDkA" annotatedElement="_hd8bYFzJEeOeP67GJGKDkA">
+          <body>Interface implemented by listener whishing to listen on a IModelChangedNotifier.</body>
+        </ownedComment>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_-Vl8IFzJEeOeP67GJGKDkA" name="modelchanged">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_KmJHwFzKEeOeP67GJGKDkA" name="event" type="_Aii74FzKEeOeP67GJGKDkA"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Aii74FzKEeOeP67GJGKDkA" name="ModelChangedEvent"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_SOF7IFzLEeOeP67GJGKDkA" name="ExpressionMatcherElementsChangedEvent">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_yKWcYFzLEeOeP67GJGKDkA" name="expressionMatcher" type="_sc15QFzGEeOeP67GJGKDkA" association="_yKWcY1zLEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yKWcYVzLEeOeP67GJGKDkA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yKWcYlzLEeOeP67GJGKDkA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_oS7O0FzMEeOeP67GJGKDkA" name="removedElements" type="_j52EYNIUEeKovM8ingMMQQ" association="_oS7O01zMEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oS7O0VzMEeOeP67GJGKDkA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oS7O0lzMEeOeP67GJGKDkA" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_o7viUFzMEeOeP67GJGKDkA" name="addedElements" type="_j52EYNIUEeKovM8ingMMQQ" association="_o7viU1zMEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_o7viUVzMEeOeP67GJGKDkA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_o7viUlzMEeOeP67GJGKDkA" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_Yg2SoFzLEeOeP67GJGKDkA" name="Usage1" client="_4ZF98FzIEeOeP67GJGKDkA" supplier="_hd8bYFzJEeOeP67GJGKDkA"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_ZvbloFzLEeOeP67GJGKDkA" name="Usage2" client="_4ZF98FzIEeOeP67GJGKDkA" supplier="_Aii74FzKEeOeP67GJGKDkA"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_bBitwFzLEeOeP67GJGKDkA" name="Usage3" client="_rYYgsFzIEeOeP67GJGKDkA" supplier="_SOF7IFzLEeOeP67GJGKDkA"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_dTQ4wFzLEeOeP67GJGKDkA" name="expressionMatcher_expressionMatchElementsChangedListener_1" memberEnd="_dTQ4wVzLEeOeP67GJGKDkA _dTKyIFzLEeOeP67GJGKDkA">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_dTQ4wVzLEeOeP67GJGKDkA" name="expressionMatcher" type="_sc15QFzGEeOeP67GJGKDkA" association="_dTQ4wFzLEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dTQ4wlzLEeOeP67GJGKDkA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dTQ4w1zLEeOeP67GJGKDkA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_yKWcY1zLEeOeP67GJGKDkA" name="expressionMatcherElementsChangedEvent_expressionMatcher_1" memberEnd="_yKWcZFzLEeOeP67GJGKDkA _yKWcYFzLEeOeP67GJGKDkA">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_yKWcZFzLEeOeP67GJGKDkA" name="expressionMatcherElementsChangedEvent" type="_SOF7IFzLEeOeP67GJGKDkA" association="_yKWcY1zLEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yKWcZVzLEeOeP67GJGKDkA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yKWcZlzLEeOeP67GJGKDkA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_oS7O01zMEeOeP67GJGKDkA" name="expressionMatcherElementsChangedEvent_view_1" memberEnd="_oS7O1FzMEeOeP67GJGKDkA _oS7O0FzMEeOeP67GJGKDkA">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_oS7O1FzMEeOeP67GJGKDkA" name="expressionMatcherElementsChangedEvent" type="_SOF7IFzLEeOeP67GJGKDkA" association="_oS7O01zMEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oS7O1VzMEeOeP67GJGKDkA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oS7O1lzMEeOeP67GJGKDkA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_o7viU1zMEeOeP67GJGKDkA" name="expressionMatcherElementsChangedEvent_view_2" memberEnd="_o7viVFzMEeOeP67GJGKDkA _o7viUFzMEeOeP67GJGKDkA">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_o7viVFzMEeOeP67GJGKDkA" name="expressionMatcherElementsChangedEvent" type="_SOF7IFzLEeOeP67GJGKDkA" association="_o7viU1zMEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_o7viVVzMEeOeP67GJGKDkA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_o7viVlzMEeOeP67GJGKDkA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_IDVsc1zNEeOeP67GJGKDkA" clientDependency="_PlHmYFzOEeOeP67GJGKDkA" name="expressionMatcher_view_1" memberEnd="_IDVsdFzNEeOeP67GJGKDkA _IDVscFzNEeOeP67GJGKDkA">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_IDVsdFzNEeOeP67GJGKDkA" name="expressionMatcher" type="_sc15QFzGEeOeP67GJGKDkA" association="_IDVsc1zNEeOeP67GJGKDkA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IDVsdVzNEeOeP67GJGKDkA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IDVsdlzNEeOeP67GJGKDkA" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_G65oQFzOEeOeP67GJGKDkA" name="NotifyingList"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_PlHmYFzOEeOeP67GJGKDkA" name="Usage4" client="_IDVsc1zNEeOeP67GJGKDkA" supplier="_G65oQFzOEeOeP67GJGKDkA"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IwYtwFzPEeOeP67GJGKDkA" name="NotationChangedNotifier">
+        <generalization xmi:type="uml:Generalization" xmi:id="_Y_TMYFzPEeOeP67GJGKDkA" general="_SNeTQFzPEeOeP67GJGKDkA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_PA30YFzPEeOeP67GJGKDkA" clientDependency="_R09soFzPEeOeP67GJGKDkA" name="UMLChangedNotifier">
+        <generalization xmi:type="uml:Generalization" xmi:id="_ZwmtgFzPEeOeP67GJGKDkA" general="_SNeTQFzPEeOeP67GJGKDkA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_SNeTQFzPEeOeP67GJGKDkA" clientDependency="_R09soFzPEeOeP67GJGKDkA" name="AbstractModelChangedNotifier">
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_R09soFzPEeOeP67GJGKDkA" name="InterfaceRealization1" client="_PA30YFzPEeOeP67GJGKDkA _SNeTQFzPEeOeP67GJGKDkA" supplier="_4ZF98FzIEeOeP67GJGKDkA" contract="_4ZF98FzIEeOeP67GJGKDkA"/>
+      </packagedElement>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_KAehQLZKEeK8zaQi-hvdlw" clientDependency="_OVNs4LZKEeK8zaQi-hvdlw" name="ui">
     <ownedComment xmi:type="uml:Comment" xmi:id="_1S4tEM9REeKO_rl5MA6s9A">
@@ -542,6 +669,10 @@ operate on one type of property.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_u6-HIM-xEeKO_rl5MA6s9A" name="RegExpLayer">
       <generalization xmi:type="uml:Generalization" xmi:id="_zKNHsM-xEeKO_rl5MA6s9A" general="_uIcTcM-wEeKO_rl5MA6s9A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_pRx2AFzHEeOeP67GJGKDkA" name="expressionMatcher" type="_sc15QFzGEeOeP67GJGKDkA" aggregation="composite" association="_pR38oFzHEeOeP67GJGKDkA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pRx2AVzHEeOeP67GJGKDkA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pRx2AlzHEeOeP67GJGKDkA" value="1"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_LTBBsEysEeObF6ELIGKT-g" name="computeExpression"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_SZ1McM-yEeKO_rl5MA6s9A" name="PropertyOperator" isAbstract="true">
@@ -745,6 +876,12 @@ The class can be observed to listen to selection changed.</body>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_Ft6TwN9mEeKCZbxNW-U3VQ" name="viewRemovedEvent"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Usage" xmi:id="_SokpEEyjEeObF6ELIGKT-g" name="Usage1" client="_JwRLoEyjEeObF6ELIGKT-g" supplier="_HJLoANNqEeKwWoA8j13SIg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_pR38oFzHEeOeP67GJGKDkA" name="regExpLayer_expressionMatcher_1" memberEnd="_pR38oVzHEeOeP67GJGKDkA _pRx2AFzHEeOeP67GJGKDkA">
+      <ownedEnd xmi:type="uml:Property" xmi:id="_pR38oVzHEeOeP67GJGKDkA" name="regExpLayer" type="_u6-HIM-xEeKO_rl5MA6s9A" association="_pR38oFzHEeOeP67GJGKDkA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pR38olzHEeOeP67GJGKDkA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pR38o1zHEeOeP67GJGKDkA" value="1"/>
+      </ownedEnd>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_ShE8QL2QEeKKJJ5BmR3W3Q" name="notation">

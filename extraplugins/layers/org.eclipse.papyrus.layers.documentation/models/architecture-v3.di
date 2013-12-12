@@ -46,6 +46,12 @@
     <availablePage>
       <emfPageIdentifier href="architecture-v3.notation#_uPIkIEydEeObF6ELIGKT-g"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="architecture-v3.notation#_harzYFzGEeOeP67GJGKDkA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="architecture-v3.notation#_HLcwQFzPEeOeP67GJGKDkA"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -91,6 +97,12 @@
         </children>
         <children>
           <emfPageIdentifier href="architecture-v3.notation#_rVlkIEydEeObF6ELIGKT-g"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="architecture-v3.notation#_harzYFzGEeOeP67GJGKDkA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="architecture-v3.notation#_HLcwQFzPEeOeP67GJGKDkA"/>
         </children>
       </children>
     </windows>
