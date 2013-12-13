@@ -536,6 +536,21 @@ When the user disable a layer, the isEnable property also return false.</body>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_tBHGIAxEEeOjX-JbGFEH7w" value="1"/>
         <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_hvDRIAxGEeOjX-JbGFEH7w" value="true"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xcbgQGQ7EeOlpfB_tZS-QA" name="isBranchEnabled" visibility="public" type="_TqqsYNa8EeKPiuTfpuvqHA">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_egbT0GQ8EeOlpfB_tZS-QA" annotatedElement="_xcbgQGQ7EeOlpfB_tZS-QA">
+          <body>Is the branch from this node to the root enabled ?&#xD;
+A branch is enabled if all node of the branch are enabled.&#xD;
+In other world, if an ancestor node is disable, the branch is disabled.&#xD;
+Setting the value of this node set the value of the subnodes.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xcbgQmQ7EeOlpfB_tZS-QA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xcbgQ2Q7EeOlpfB_tZS-QA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_xcbgRGQ7EeOlpfB_tZS-QA" value="true"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_PznBcGQ5EeOlpfB_tZS-QA" name="owningLayersStack" type="_gT0asNa7EeKPiuTfpuvqHA" association="_PznBc2Q5EeOlpfB_tZS-QA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PznBcWQ5EeOlpfB_tZS-QA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PznBcmQ5EeOlpfB_tZS-QA" value="1"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_VdSFsO7HEeK0p4PkXjd-_Q" name="getComputePropertyValueCommand" raisedException="_iYKFMNxGEeKwptaAAanMDg">
         <ownedComment xmi:type="uml:Comment" xmi:id="_CI71QO7JEeK0p4PkXjd-_Q">
           <body>Get the ComputePropertyValueCommands for the specified views and Property.&#xD;
@@ -579,9 +594,6 @@ When the user disable a layer, the isEnable property also return false.</body>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_coyNoO7IEeK0p4PkXjd-_Q"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cpKoIO7IEeK0p4PkXjd-_Q" value="*"/>
         </ownedParameter>
-      </ownedOperation>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_yI1mQPMcEeKJ5-vFCuMpLA" name="getLayersStack" raisedException="_k-dZENxGEeKwptaAAanMDg">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_-Exz0PMcEeKJ5-vFCuMpLA" name="return" type="_gT0asNa7EeKPiuTfpuvqHA" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_HoKjcNjjEeKQqZMBCFd2Uw" name="LayerOperator" isAbstract="true">
@@ -1364,6 +1376,19 @@ plugin (ie the layer model plugin).&#xD;
         <specification xmi:type="uml:LiteralInteger" xmi:id="_gy8lIFVLEeOah7Z-UYdQAA" name="intValue" value="-1"/>
       </ownedLiteral>
     </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_PznBc2Q5EeOlpfB_tZS-QA" name="layerExpression_layersStack_1" memberEnd="_PznBdGQ5EeOlpfB_tZS-QA _PznBcGQ5EeOlpfB_tZS-QA">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_KyI2MGQ6EeOlpfB_tZS-QA" annotatedElement="_PznBc2Q5EeOlpfB_tZS-QA">
+        <body>The LayerStack owning this LayerExpression.&#xD;
+This property is set by the LayerStack when the LayerExpression is attach to a parent.&#xD;
+The LayerStack listen to node addition/removal.&#xD;
+During the load from the Resource, this property is set by the LayerStack calling &#xD;
+layerStackChanged().</body>
+      </ownedComment>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_PznBdGQ5EeOlpfB_tZS-QA" name="layerExpression" type="_9IaAANjiEeKQqZMBCFd2Uw" association="_PznBc2Q5EeOlpfB_tZS-QA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PznBdWQ5EeOlpfB_tZS-QA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PznBdmQ5EeOlpfB_tZS-QA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_X07z8LcsEeK8_t7Rpq6ZJA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_X2lZwLcsEeK8_t7Rpq6ZJA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
@@ -1405,4 +1430,5 @@ plugin (ie the layer model plugin).&#xD;
   <Ecore:EDataType xmi:id="_Fya_cAxMEeOjX-JbGFEH7w" instanceClassName="org.eclipse.papyrus.layers.stackmodel.operators.CustomPropertyOperatorsInstance" base_PrimitiveType="__ADTwAxLEeOjX-JbGFEH7w"/>
   <Ecore:EReference xmi:id="_1yMvsA2hEeOjX-JbGFEH7w" isTransient="true" base_Property="_rTr0UA2fEeOjX-JbGFEH7w"/>
   <Ecore:EAttribute xmi:id="_iczSMA2qEeOjX-JbGFEH7w" isTransient="true" base_Property="_RrX8YA2qEeOjX-JbGFEH7w"/>
+  <Ecore:EAttribute xmi:id="_8zffIGQ7EeOlpfB_tZS-QA" isTransient="true" base_Property="_xcbgQGQ7EeOlpfB_tZS-QA"/>
 </xmi:XMI>

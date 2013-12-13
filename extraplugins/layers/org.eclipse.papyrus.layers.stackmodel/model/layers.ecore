@@ -46,8 +46,6 @@
       <eParameters name="view" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
       <eParameters name="property" lowerBound="1" upperBound="-1" eType="#//Property"/>
     </eOperations>
-    <eOperations name="getLayersStack" ordered="false" lowerBound="1" eType="#//LayersStack"
-        eExceptions="#//NotFoundException"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
@@ -57,6 +55,14 @@
         transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLayerEnabled" ordered="false"
         lowerBound="1" eType="#//boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isBranchEnabled" ordered="false"
+        lowerBound="1" eType="#//boolean" transient="true" defaultValueLiteral="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Is the branch from this node to the root enabled ?&#xD;&#xA;A branch is enabled if all node of the branch are enabled.&#xD;&#xA;In other world, if an ancestor node is disable, the branch is disabled.&#xD;&#xA;Setting the value of this node set the value of the subnodes."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningLayersStack" ordered="false"
+        eType="#//LayersStack"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ApplicationDependantElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="application" ordered="false"

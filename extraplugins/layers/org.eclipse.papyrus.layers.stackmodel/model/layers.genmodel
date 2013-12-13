@@ -73,6 +73,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
           ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/isLayerEnabledInternal"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/isLayerEnabled"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/isBranchEnabled"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference layers.ecore#//LayerExpression/owningLayersStack"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/getComputePropertyValueCommand">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getComputePropertyValueCommand/view"/>
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getComputePropertyValueCommand/property"/>
@@ -85,7 +88,6 @@
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getPropertiesComputePropertyValueCommand/view"/>
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getPropertiesComputePropertyValueCommand/property"/>
       </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/getLayersStack"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//ApplicationDependantElement">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
