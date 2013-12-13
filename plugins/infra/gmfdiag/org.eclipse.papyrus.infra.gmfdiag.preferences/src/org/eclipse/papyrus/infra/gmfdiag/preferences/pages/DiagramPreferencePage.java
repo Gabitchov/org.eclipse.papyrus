@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramDecoratio
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramFontGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramNodeColorGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramRulersAndGridGroup;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -119,7 +119,7 @@ public class DiagramPreferencePage extends DiagramsPreferencePage {
 	 */
 	public void storeAllPreferences() {
 		storePreferences();
-		((PapyrusPreferenceStore)getPreferenceStore()).deleteAllSubPreference(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX);
+		((PapyrusPreferenceStore)getPreferenceStore()).deleteAllSubPreference(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX);
 
 	}
 

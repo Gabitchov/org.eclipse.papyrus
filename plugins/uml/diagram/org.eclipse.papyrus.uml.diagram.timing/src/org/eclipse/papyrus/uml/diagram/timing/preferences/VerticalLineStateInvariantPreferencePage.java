@@ -10,7 +10,7 @@ package org.eclipse.papyrus.uml.diagram.timing.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.timing.part.UMLDiagramEditorPlugin;
 
@@ -43,27 +43,27 @@ public class VerticalLineStateInvariantPreferencePage extends AbstractPapyrusNod
 	public static void initDefaults(final IPreferenceStore store) {
 
 		final String key = TimingDiagramEditPart.MODEL_ID + "_VerticalLineStateInvariant";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.WIDTH), 40);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.HEIGHT), 40);
 
 		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
-		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
-		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new
+		// org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_FILL), new
 		// org.eclipse.swt.graphics.RGB(255, 255, 255));
 		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
-		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
-		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new
+		// org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_LINE), new
 		// org.eclipse.swt.graphics.RGB(0, 0, 0));
 
 		// Set the default for the gradient
-		// store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
-		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
+		// store.setDefault(org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.GRADIENT_POLICY),false);
 		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter gradientPreferenceConverter =
 		// new org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter(
 		// new org.eclipse.swt.graphics.RGB(255, 255, 255),
 		// new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
-		// store.setDefault(org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
-		// org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT),
+		// store.setDefault(org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_GRADIENT),
 		// gradientPreferenceConverter.getPreferenceValue());
 
 	}
