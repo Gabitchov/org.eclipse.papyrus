@@ -51,6 +51,9 @@ public interface ILayersModelEventListener {
 	 */
 	public void viewAddedToLayer( Notification notification );
 	public void viewRemovedFromLayer( Notification notification );
+	public void multiViewsRemovedFromLayer(Notification notification);
+	public void multiViewsAddedToLayer(Notification notification);
+
 	/**
 	 * Method called when a view is moved from one layer to another.
 	 * The event contains: the layer, the view.

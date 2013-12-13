@@ -508,7 +508,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void viewAddedToLayer(Notification notification) {
-		System.out.println("viewAddedToLayer" + notification.getNewValue());
+		System.out.println(this.getClass().getSimpleName() + " viewAddedToLayer( " + notification.getNewValue() + " )");
 
 		// We need to find the view, the layer in which it is added,
 		// and the properties attached to this layer.
@@ -548,6 +548,28 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	}
 
 
+	@Override
+	public void multiViewsAddedToLayer(Notification notification) {
+		System.out.println(this.getClass().getSimpleName() + ".multiViewsAddedToLayer( " + notification.getNewValue() + " )");
+
+		// We need to find the view, the layer in which it is added,
+		// and the properties attached to this layer.
+		// Then, we compute this property and set it to the view.
+		try {
+			AbstractLayer layer = LayersModelEventUtils.PropertyEvents.getAbstractLayer(notification);
+			List<View> views = LayersModelEventUtils.ViewEvents.getViewsAdded(notification);
+			
+			checkApplication();
+			List<Property> properties  = layer.getAttachedProperties();
+			recompute(views, properties);
+			
+		} catch (LayersException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
 
 	/**
 	 * 
@@ -557,24 +579,64 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 	 */
 	@Override
 	public void viewRemovedFromLayer(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " viewRemovedFromLayer(Not Implemented) " + notification.getOldValue());
+		System.out.println(this.getClass().getSimpleName() + " viewRemovedFromLayer( " + notification.getOldValue() + " )");
 		// We need to find the view, the layer in which it is added,
 		// and the properties attached to this layer.
 		// Then, we compute this property and set it to the view.
 		try {
 			AbstractLayer layer = LayersModelEventUtils.PropertyEvents.getAbstractLayer(notification);
-//			View view = LayersModelEventUtils.ViewEvents.getViewRemoved(notification);
+			View view = LayersModelEventUtils.ViewEvents.getViewRemoved(notification);
 			
+			checkApplication();
+			List<Property> properties  = layer.getAttachedProperties();
 			
-//			List<Property> properties  = layer.getAttachedProperties();
+			List<ComputePropertyValueCommand> commands = layersStack.getPropertiesComputePropertyValueCommand(view, properties);
+			if(commands == null) {
+				// No property to set
+				return;
+			}
 			
-			// Here we need to reset default values to the view
-			// TODO: reset default values for specified properties.
+			PropertySetter setter;
+			// Walk each cmd and set the property
+			for( int i=0; i<commands.size(); i++) {
+				try {
+					Property property = properties.get(i);
+					setter = application.getPropertySetterRegistry().getPropertySetter(property);
+					setter.setValue(view, commands.get(i).getCmdValue() );
+				} catch (NotFoundException e) {
+					// No setter found
+					System.err.println(e.getMessage());
+				} catch (NullPointerException e) {
+					// A command is null
+				}
+			}
 		} catch (LayersException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void multiViewsRemovedFromLayer(Notification notification) {
+		System.out.println(this.getClass().getSimpleName() + " multiViewsRemovedFromLayer( " + notification.getOldValue() + " )");
+
+		// We need to find the view, the layer in which it is added,
+		// and the properties attached to this layer.
+		// Then, we compute this property and set it to the view.
+		try {
+			AbstractLayer layer = LayersModelEventUtils.PropertyEvents.getAbstractLayer(notification);
+			List<View> views = LayersModelEventUtils.ViewEvents.getViewsRemoved(notification);
+			
+			checkApplication();
+			List<Property> properties  = layer.getAttachedProperties();
+			recompute(views, properties);
+			
+		} catch (LayersException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 
 
 
@@ -629,6 +691,8 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 		// Only events on Shape and Links are useful. So, we need to 
 		// do some filtering (in the DiagramViewEventNotifier ?).
 	}
+
+
 
 
 

@@ -94,6 +94,14 @@ public class LayersModelEventNotifier {
 							
 					fireViewAddedToLayer(notification);
 					break;
+				case Notification.ADD_MANY:
+					// A layer is added
+					// the concerned view
+//					View view = (View)notification.getNewValue();
+//					AbstractLayer layer = (AbstractLayer)notification.getNotifier()
+							
+					fireMultiViewsAddedToLayer(notification);
+					break;
 				case Notification.REMOVE:
 					// A layer is removed
 					// the concerned view
@@ -101,6 +109,14 @@ public class LayersModelEventNotifier {
 //					AbstractLayer layer = (AbstractLayer)notification.getNotifier()
 
 					fireViewRemovedFromLayer(notification);
+					break;
+				case Notification.REMOVE_MANY:
+					// A layer is removed
+					// the concerned view
+//					View view = (View)notification.getOldValue();
+//					AbstractLayer layer = (AbstractLayer)notification.getNotifier()
+
+					fireMultiViewsRemovedFromLayer(notification);
 					break;
 				}
 				
@@ -374,6 +390,19 @@ public class LayersModelEventNotifier {
 	}
 	
 	/**
+	 * Method called when a view is added to one layer.
+	 * The event contains: the layer, the view.
+	 * 
+	 * @param notification
+	 */
+	public void fireMultiViewsAddedToLayer( Notification notification ) {
+		
+		for(ILayersModelEventListener listener : listeners) {
+			listener.multiViewsAddedToLayer(notification);
+		}
+	}
+	
+	/**
 	 * Method called when a view is removed from one layer.
 	 * The event contains: the layer, the view.
 	 * 
@@ -383,6 +412,19 @@ public class LayersModelEventNotifier {
 		
 		for(ILayersModelEventListener listener : listeners) {
 			listener.viewRemovedFromLayer(notification);
+		}
+	}
+	
+	/**
+	 * Method called when a view is removed from one layer.
+	 * The event contains: the layer, the view.
+	 * 
+	 * @param notification
+	 */
+	public void fireMultiViewsRemovedFromLayer( Notification notification ) {
+		
+		for(ILayersModelEventListener listener : listeners) {
+			listener.multiViewsRemovedFromLayer(notification);
 		}
 	}
 	

@@ -128,4 +128,26 @@ public class TraceLayersModelEventListener implements ILayersModelEventListener 
 		traces.addTrace("viewMovedBetweenLayer", notification);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.layers.runtime.ILayersModelEventListener#multiViewsRemovedFromLayer(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notification
+	 */
+	@Override
+	public void multiViewsRemovedFromLayer(Notification notification) {
+		traces.addTrace("multiViewsRemovedFromLayer", notification);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.layers.runtime.ILayersModelEventListener#multiViewsAddedToLayer(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notification
+	 */
+	@Override
+	public void multiViewsAddedToLayer(Notification notification) {
+		traces.addTrace("multiViewsAddedToLayer", notification);
+	}
+
 }

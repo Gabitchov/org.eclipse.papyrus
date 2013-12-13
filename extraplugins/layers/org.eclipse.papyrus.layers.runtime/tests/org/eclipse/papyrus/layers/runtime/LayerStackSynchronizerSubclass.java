@@ -170,5 +170,15 @@ public class LayerStackSynchronizerSubclass extends LayerStackSynchronizer {
 		super.diagramViewRemoved(msg);
 	}
 
+	@Override
+	public void multiViewsAddedToLayer(Notification notification) {
+		traces.addTrace( "multiViewsAddedToLayer", notification);
+		super.multiViewsAddedToLayer(notification);
+	}
 	
+	@Override
+	public void multiViewsRemovedFromLayer(Notification notification) {
+		traces.addTrace( "multiViewsRemovedFromLayer", notification);
+		super.multiViewsRemovedFromLayer(notification);
+	}
 }

@@ -10,6 +10,8 @@
  ******************************************************************************/
 package org.eclipse.papyrus.layers.runtime;
 
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
@@ -108,6 +110,20 @@ public class LayersModelEventUtils {
 		 */
 		static public View getViewRemoved(Notification notification) throws NotFoundException {
 			return (View)notification.getOldValue();
+		}
+
+		/**
+		 * Get the views[*] that have been removed from the layer.
+		 * 
+		 * @param notification
+		 * @return
+		 */
+		public static List<View> getViewsRemoved(Notification notification) {
+			return (List<View>)notification.getOldValue();
+		}
+
+		public static List<View> getViewsAdded(Notification notification) {
+			return (List<View>)notification.getNewValue();
 		}
 		
 
