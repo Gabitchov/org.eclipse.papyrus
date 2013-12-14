@@ -351,13 +351,31 @@ public interface LayersPackage extends EPackage {
 	int LAYER_EXPRESSION__IS_LAYER_ENABLED = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_EXPRESSION__IS_BRANCH_ENABLED = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_EXPRESSION__OWNING_LAYERS_STACK = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Layer Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_EXPRESSION_FEATURE_COUNT = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 4;
+	int LAYER_EXPRESSION_FEATURE_COUNT = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Get Compute Property Value Command</em>' operation.
@@ -387,22 +405,13 @@ public interface LayersPackage extends EPackage {
 	int LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Get Layers Stack</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAYER_EXPRESSION___GET_LAYERS_STACK = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 3;
-
-	/**
 	 * The number of operations of the '<em>Layer Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_EXPRESSION_OPERATION_COUNT = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 4;
+	int LAYER_EXPRESSION_OPERATION_COUNT = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerApplicationFactoryImpl <em>Layer Application Factory</em>}' class.
@@ -1996,6 +2005,24 @@ public interface LayersPackage extends EPackage {
 	int LAYER_OPERATOR__IS_LAYER_ENABLED = LAYER_EXPRESSION__IS_LAYER_ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR__IS_BRANCH_ENABLED = LAYER_EXPRESSION__IS_BRANCH_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR__OWNING_LAYERS_STACK = LAYER_EXPRESSION__OWNING_LAYERS_STACK;
+
+	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2039,15 +2066,6 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
-
-	/**
-	 * The operation id for the '<em>Get Layers Stack</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAYER_OPERATOR___GET_LAYERS_STACK = LAYER_EXPRESSION___GET_LAYERS_STACK;
 
 	/**
 	 * The number of operations of the '<em>Layer Operator</em>' class.
@@ -2102,6 +2120,24 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_LAYER_OPERATOR__IS_LAYER_ENABLED = LAYER_OPERATOR__IS_LAYER_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR__IS_BRANCH_ENABLED = LAYER_OPERATOR__IS_BRANCH_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR__OWNING_LAYERS_STACK = LAYER_OPERATOR__OWNING_LAYERS_STACK;
 
 	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
@@ -2165,15 +2201,6 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
-
-	/**
-	 * The operation id for the '<em>Get Layers Stack</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_LAYER_OPERATOR___GET_LAYERS_STACK = LAYER_OPERATOR___GET_LAYERS_STACK;
 
 	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
@@ -2284,6 +2311,24 @@ public interface LayersPackage extends EPackage {
 	int ABSTRACT_LAYER__IS_LAYER_ENABLED = LAYER_EXPRESSION__IS_LAYER_ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER__IS_BRANCH_ENABLED = LAYER_EXPRESSION__IS_BRANCH_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER__OWNING_LAYERS_STACK = LAYER_EXPRESSION__OWNING_LAYERS_STACK;
+
+	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2363,15 +2408,6 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
-
-	/**
-	 * The operation id for the '<em>Get Layers Stack</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_LAYER___GET_LAYERS_STACK = LAYER_EXPRESSION___GET_LAYERS_STACK;
 
 	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
@@ -2923,6 +2959,24 @@ public interface LayersPackage extends EPackage {
 	int TOP_LAYER_OPERATOR__IS_LAYER_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_LAYER_ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR__IS_BRANCH_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_BRANCH_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR__OWNING_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR__OWNING_LAYERS_STACK;
+
+	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2984,15 +3038,6 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOP_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
-
-	/**
-	 * The operation id for the '<em>Get Layers Stack</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOP_LAYER_OPERATOR___GET_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR___GET_LAYERS_STACK;
 
 	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
@@ -3067,6 +3112,24 @@ public interface LayersPackage extends EPackage {
 	int STACKED_LAYER_OPERATOR__IS_LAYER_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_LAYER_ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR__IS_BRANCH_ENABLED = ABSTRACT_LAYER_OPERATOR__IS_BRANCH_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR__OWNING_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR__OWNING_LAYERS_STACK;
+
+	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3128,15 +3191,6 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int STACKED_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
-
-	/**
-	 * The operation id for the '<em>Get Layers Stack</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STACKED_LAYER_OPERATOR___GET_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR___GET_LAYERS_STACK;
 
 	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
@@ -3211,6 +3265,24 @@ public interface LayersPackage extends EPackage {
 	int CUSTOM_LAYER_OPERATOR__IS_LAYER_ENABLED = LAYER_OPERATOR__IS_LAYER_ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR__IS_BRANCH_ENABLED = LAYER_OPERATOR__IS_BRANCH_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR__OWNING_LAYERS_STACK = LAYER_OPERATOR__OWNING_LAYERS_STACK;
+
+	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3254,15 +3326,6 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
-
-	/**
-	 * The operation id for the '<em>Get Layers Stack</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOM_LAYER_OPERATOR___GET_LAYERS_STACK = LAYER_OPERATOR___GET_LAYERS_STACK;
 
 	/**
 	 * The number of operations of the '<em>Custom Layer Operator</em>' class.
@@ -3499,6 +3562,24 @@ public interface LayersPackage extends EPackage {
 	int REG_EXP_LAYER__IS_LAYER_ENABLED = ABSTRACT_LAYER__IS_LAYER_ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER__IS_BRANCH_ENABLED = ABSTRACT_LAYER__IS_BRANCH_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER__OWNING_LAYERS_STACK = ABSTRACT_LAYER__OWNING_LAYERS_STACK;
+
+	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3641,15 +3722,6 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int REG_EXP_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
-
-	/**
-	 * The operation id for the '<em>Get Layers Stack</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REG_EXP_LAYER___GET_LAYERS_STACK = ABSTRACT_LAYER___GET_LAYERS_STACK;
 
 	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
@@ -3805,6 +3877,24 @@ public interface LayersPackage extends EPackage {
 	int LAYER__IS_LAYER_ENABLED = ABSTRACT_LAYER__IS_LAYER_ENABLED;
 
 	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER__IS_BRANCH_ENABLED = ABSTRACT_LAYER__IS_BRANCH_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER__OWNING_LAYERS_STACK = ABSTRACT_LAYER__OWNING_LAYERS_STACK;
+
+	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3884,15 +3974,6 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
-
-	/**
-	 * The operation id for the '<em>Get Layers Stack</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LAYER___GET_LAYERS_STACK = ABSTRACT_LAYER___GET_LAYERS_STACK;
 
 	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
@@ -6364,6 +6445,28 @@ public interface LayersPackage extends EPackage {
 	EAttribute getLayerExpression_IsLayerEnabled();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isBranchEnabled <em>Is Branch Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Branch Enabled</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isBranchEnabled()
+	 * @see #getLayerExpression()
+	 * @generated
+	 */
+	EAttribute getLayerExpression_IsBranchEnabled();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getOwningLayersStack <em>Owning Layers Stack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owning Layers Stack</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getOwningLayersStack()
+	 * @see #getLayerExpression()
+	 * @generated
+	 */
+	EReference getLayerExpression_OwningLayersStack();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getComputePropertyValueCommand(org.eclipse.gmf.runtime.notation.View, org.eclipse.papyrus.layers.stackmodel.layers.Property) <em>Get Compute Property Value Command</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6392,16 +6495,6 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getLayerExpression__GetPropertiesComputePropertyValueCommand__View_EList();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getLayersStack() <em>Get Layers Stack</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Layers Stack</em>' operation.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getLayersStack()
-	 * @generated
-	 */
-	EOperation getLayerExpression__GetLayersStack();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.layers.ApplicationDependantElement <em>Application Dependant Element</em>}'.
@@ -8534,6 +8627,22 @@ public interface LayersPackage extends EPackage {
 		EAttribute LAYER_EXPRESSION__IS_LAYER_ENABLED = eINSTANCE.getLayerExpression_IsLayerEnabled();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Branch Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYER_EXPRESSION__IS_BRANCH_ENABLED = eINSTANCE.getLayerExpression_IsBranchEnabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Layers Stack</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LAYER_EXPRESSION__OWNING_LAYERS_STACK = eINSTANCE.getLayerExpression_OwningLayersStack();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Compute Property Value Command</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8556,14 +8665,6 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = eINSTANCE.getLayerExpression__GetPropertiesComputePropertyValueCommand__View_EList();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Layers Stack</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation LAYER_EXPRESSION___GET_LAYERS_STACK = eINSTANCE.getLayerExpression__GetLayersStack();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.ApplicationDependantElementImpl <em>Application Dependant Element</em>}' class.

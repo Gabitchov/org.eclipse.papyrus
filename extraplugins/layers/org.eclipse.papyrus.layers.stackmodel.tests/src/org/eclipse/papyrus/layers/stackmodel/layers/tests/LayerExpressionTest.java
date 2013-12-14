@@ -20,7 +20,6 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getComputePropertyValueCommand(org.eclipse.gmf.runtime.notation.View, org.eclipse.papyrus.layers.stackmodel.layers.Property) <em>Get Compute Property Value Command</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getViewsComputePropertyValueCommand(org.eclipse.emf.common.util.EList, org.eclipse.papyrus.layers.stackmodel.layers.Property) <em>Get Views Compute Property Value Command</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getPropertiesComputePropertyValueCommand(org.eclipse.gmf.runtime.notation.View, org.eclipse.emf.common.util.EList) <em>Get Properties Compute Property Value Command</em>}</li>
- *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getLayersStack() <em>Get Layers Stack</em>}</li>
  * </ul>
  * </p>
  * @generated
@@ -95,19 +94,6 @@ public abstract class LayerExpressionTest extends ApplicationDependantElementTes
 	 * @generated
 	 */
 	public void testGetPropertiesComputePropertyValueCommand__View_EList() {
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-	}
-
-	/**
-	 * Tests the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getLayersStack() <em>Get Layers Stack</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getLayersStack()
-	 * @generated
-	 */
-	public void testGetLayersStack() {
 		// TODO: implement this operation test method
 		// Ensure that you remove @generated or mark it @generated NOT
 		fail();

@@ -175,4 +175,38 @@ public abstract class LayerOperatorImpl extends LayerExpressionImpl implements L
 		return (LayersStack)ECoreUtils.lookupAncestorOfType(this, LayersPackage.eINSTANCE.getLayersStack());
 	}
 
+	/**
+	 * Propagate the change to children
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#setIsBranchEnabled(boolean)
+	 *
+	 * @param newIsBranchEnabled
+	 */
+	@Override
+	public void setIsBranchEnabled(boolean newIsBranchEnabled) {
+		// First, set the value.
+		super.setIsBranchEnabled(newIsBranchEnabled);
+		// Now, propagate
+		boolean value = isBranchEnabled();
+		for( LayerExpression layer : getLayers() ) {
+			layer.setIsBranchEnabled(value);
+		}
+	}
+	
+	/**
+	 * Set the value then propagate to children nodes.
+	 * 
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#setOwningLayersStack(org.eclipse.papyrus.layers.stackmodel.layers.LayersStack)
+	 *
+	 * @param newOwningLayersStack
+	 */
+	@Override
+	public void setOwningLayersStack(LayersStack newOwningLayersStack) {
+		// Set the value
+		super.setOwningLayersStack(newOwningLayersStack);
+		// Now propagate to children
+		LayersStack value = getOwningLayersStack();
+		for( LayerExpression layer : getLayers() ) {
+			layer.setOwningLayersStack(value);
+		}
+	}
 } //LayerOperatorImpl

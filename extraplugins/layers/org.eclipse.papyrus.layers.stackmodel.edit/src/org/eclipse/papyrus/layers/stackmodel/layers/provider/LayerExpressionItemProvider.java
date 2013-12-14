@@ -69,6 +69,8 @@ ApplicationDependantElementItemProvider
 			addDescriptionPropertyDescriptor(object);
 			addIsLayerEnabledInternalPropertyDescriptor(object);
 			addIsLayerEnabledPropertyDescriptor(object);
+			addIsBranchEnabledPropertyDescriptor(object);
+			addOwningLayersStackPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -162,6 +164,50 @@ ApplicationDependantElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Is Branch Enabled feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIsBranchEnabledPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LayerExpression_isBranchEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LayerExpression_isBranchEnabled_feature", "_UI_LayerExpression_type"),
+				 LayersPackage.Literals.LAYER_EXPRESSION__IS_BRANCH_ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Owning Layers Stack feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwningLayersStackPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LayerExpression_owningLayersStack_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LayerExpression_owningLayersStack_feature", "_UI_LayerExpression_type"),
+				 LayersPackage.Literals.LAYER_EXPRESSION__OWNING_LAYERS_STACK,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -191,6 +237,7 @@ ApplicationDependantElementItemProvider
 			case LayersPackage.LAYER_EXPRESSION__DESCRIPTION:
 			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL:
 			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
+			case LayersPackage.LAYER_EXPRESSION__IS_BRANCH_ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

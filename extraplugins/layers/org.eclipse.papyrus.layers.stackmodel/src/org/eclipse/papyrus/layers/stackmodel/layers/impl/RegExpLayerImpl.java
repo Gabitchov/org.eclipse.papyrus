@@ -16,26 +16,21 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
-import org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition;
 import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.IQueryResult;
 import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
@@ -48,7 +43,6 @@ import org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer;
 import org.eclipse.papyrus.layers.stackmodel.notifier.DiagramViewEventNotifier;
 import org.eclipse.papyrus.layers.stackmodel.notifier.IDiagramViewEventListener;
 import org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList;
-
 import com.google.common.eventbus.Subscribe;
 
 /**
@@ -480,22 +474,23 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @param newLayerParent 
 	 * @generated NOT
+	 * @deprecated not used
 	 */
 	public void activate(AbstractLayerOperator newLayerParent) {
 
-		LayersStack layersStack;
-		try {
-			layersStack = newLayerParent.getLayersStack();
-		} catch (NotFoundException e) {
-			// silently fails
-			return;
-		}
-		
-		// Listen on view events
-		if(diagramViewEventNotifier == null) {
-			diagramViewEventNotifier = new DiagramViewEventNotifier(layersStack.getDiagram());
-			return;
-		}
+//		LayersStack layersStack;
+//		try {
+//			layersStack = newLayerParent.getLayersStack();
+//		} catch (NotFoundException e) {
+//			// silently fails
+//			return;
+//		}
+//		
+//		// Listen on view events
+//		if(diagramViewEventNotifier == null) {
+//			diagramViewEventNotifier = new DiagramViewEventNotifier(layersStack.getDiagram());
+//			return;
+//		}
 		
 //		diagramViewEventNotifier.
 		
@@ -506,22 +501,23 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * <!-- end-user-doc -->
 	 * @param oldParentLayer 
 	 * @generated NOT
+	 * @deprecated
 	 */
 	public void deactivate(AbstractLayerOperator oldParentLayer) {
 		
-		if( oldParentLayer == null) {
-			return;
-		}
-		
-		LayersStack layersStack;
-		try {
-			layersStack = oldParentLayer.getLayersStack();
-		} catch (NotFoundException e) {
-			// silently fails
-			return;
-		}
-		
-		layersStack.getDiagram();
+//		if( oldParentLayer == null) {
+//			return;
+//		}
+//		
+//		LayersStack layersStack;
+//		try {
+//			layersStack = oldParentLayer.getLayersStack();
+//		} catch (NotFoundException e) {
+//			// silently fails
+//			return;
+//		}
+//		
+//		layersStack.getDiagram();
 	}
 
 	/**

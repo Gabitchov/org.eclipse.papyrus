@@ -850,6 +850,24 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getLayerExpression_IsBranchEnabled() {
+		return (EAttribute)layerExpressionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLayerExpression_OwningLayersStack() {
+		return (EReference)layerExpressionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getLayerExpression__GetComputePropertyValueCommand__View_Property() {
 		return layerExpressionEClass.getEOperations().get(0);
 	}
@@ -870,15 +888,6 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 */
 	public EOperation getLayerExpression__GetPropertiesComputePropertyValueCommand__View_EList() {
 		return layerExpressionEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getLayerExpression__GetLayersStack() {
-		return layerExpressionEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -2753,10 +2762,11 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__DESCRIPTION);
 		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL);
 		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__IS_LAYER_ENABLED);
+		createEAttribute(layerExpressionEClass, LAYER_EXPRESSION__IS_BRANCH_ENABLED);
+		createEReference(layerExpressionEClass, LAYER_EXPRESSION__OWNING_LAYERS_STACK);
 		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_PROPERTY);
 		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_VIEWS_COMPUTE_PROPERTY_VALUE_COMMAND__ELIST_PROPERTY);
 		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST);
-		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_LAYERS_STACK);
 
 		applicationDependantElementEClass = createEClass(APPLICATION_DEPENDANT_ELEMENT);
 		createEReference(applicationDependantElementEClass, APPLICATION_DEPENDANT_ELEMENT__APPLICATION);
@@ -3139,6 +3149,8 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		initEAttribute(getLayerExpression_Description(), this.getString(), "description", null, 1, 1, LayerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getLayerExpression_IsLayerEnabledInternal(), this.getboolean(), "isLayerEnabledInternal", null, 1, 1, LayerExpression.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getLayerExpression_IsLayerEnabled(), this.getboolean(), "isLayerEnabled", "true", 1, 1, LayerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getLayerExpression_IsBranchEnabled(), this.getboolean(), "isBranchEnabled", "true", 1, 1, LayerExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getLayerExpression_OwningLayersStack(), this.getLayersStack(), null, "owningLayersStack", null, 0, 1, LayerExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = initEOperation(getLayerExpression__GetComputePropertyValueCommand__View_Property(), this.getComputePropertyValueCommand(), "getComputePropertyValueCommand", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theNotationPackage.getView(), "view", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -3154,9 +3166,6 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		addEParameter(op, theNotationPackage.getView(), "view", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getProperty(), "property", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getLayersException());
-
-		op = initEOperation(getLayerExpression__GetLayersStack(), this.getLayersStack(), "getLayersStack", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEException(op, this.getNotFoundException());
 
 		initEClass(applicationDependantElementEClass, ApplicationDependantElement.class, "ApplicationDependantElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getApplicationDependantElement_Application(), this.getLayersStackApplication(), null, "application", null, 0, 1, ApplicationDependantElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3551,7 +3560,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
 		addAnnotation
 		  (badStateExceptionEDataType, 
 		   source, 

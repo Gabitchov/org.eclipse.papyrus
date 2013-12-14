@@ -13,11 +13,9 @@
 package org.eclipse.papyrus.layers.stackmodel.layers;
 
 import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
-import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand;
 
 
@@ -33,6 +31,8 @@ import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isLayerEnabledInternal <em>Is Layer Enabled Internal</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isLayerEnabled <em>Is Layer Enabled</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isBranchEnabled <em>Is Branch Enabled</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getOwningLayersStack <em>Owning Layers Stack</em>}</li>
  * </ul>
  * </p>
  *
@@ -137,6 +137,61 @@ public interface LayerExpression extends ApplicationDependantElement {
 	void setIsLayerEnabled(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Is the branch from this node to the root enabled ?
+	 * A branch is enabled if all node of the branch are enabled.
+	 * In other world, if an ancestor node is disable, the branch is disabled.
+	 * Setting the value of this node set the value of the subnodes.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Branch Enabled</em>' attribute.
+	 * @see #setIsBranchEnabled(boolean)
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getLayerExpression_IsBranchEnabled()
+	 * @model default="true" dataType="org.eclipse.papyrus.layers.stackmodel.layers.boolean" required="true" transient="true" ordered="false"
+	 * @generated
+	 */
+	boolean isBranchEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#isBranchEnabled <em>Is Branch Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Branch Enabled</em>' attribute.
+	 * @see #isBranchEnabled()
+	 * @generated
+	 */
+	void setIsBranchEnabled(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Layers Stack</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Layers Stack</em>' reference.
+	 * @see #setOwningLayersStack(LayersStack)
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getLayerExpression_OwningLayersStack()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	LayersStack getOwningLayersStack();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getOwningLayersStack <em>Owning Layers Stack</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Layers Stack</em>' reference.
+	 * @see #getOwningLayersStack()
+	 * @generated
+	 */
+	void setOwningLayersStack(LayersStack value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.ComputePropertyValueCommand" required="true" ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewRequired="true" viewOrdered="false" propertyRequired="true" propertyOrdered="false"
@@ -159,14 +214,6 @@ public interface LayerExpression extends ApplicationDependantElement {
 	 * @generated
 	 */
 	EList<ComputePropertyValueCommand> getPropertiesComputePropertyValueCommand(View view, EList<Property> property) throws LayersException;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model kind="operation" required="true" ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.NotFoundException"
-	 * @generated
-	 */
-	LayersStack getLayersStack() throws NotFoundException;
 
 	/**
 	 * <!-- begin-user-doc -->

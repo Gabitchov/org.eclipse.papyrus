@@ -15,18 +15,24 @@ package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
+import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
+import org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,6 +45,8 @@ import org.eclipse.papyrus.layers.stackmodel.layers.Property;
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isLayerEnabledInternal <em>Is Layer Enabled Internal</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isLayerEnabled <em>Is Layer Enabled</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isBranchEnabled <em>Is Branch Enabled</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#getOwningLayersStack <em>Owning Layers Stack</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,12 +119,74 @@ ApplicationDependantElementImpl implements LayerExpression {
 	 */
 	protected boolean isLayerEnabled = IS_LAYER_ENABLED_EDEFAULT;
 	/**
+	 * The default value of the '{@link #isBranchEnabled() <em>Is Branch Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBranchEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_BRANCH_ENABLED_EDEFAULT = true;
+	/**
+	 * The cached value of the '{@link #isBranchEnabled() <em>Is Branch Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBranchEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isBranchEnabled = IS_BRANCH_ENABLED_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getOwningLayersStack() <em>Owning Layers Stack</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwningLayersStack()
+	 * @generated
+	 * @ordered
+	 */
+	protected LayersStack owningLayersStack;
+	
+	/**
+	 * Listener on this object container (i.e owner) attached/detached events
+	 */
+	protected Adapter containerListener = new AdapterImpl() {
+		public void notifyChanged(Notification msg) {
+			
+			switch(msg.getFeatureID(LayerExpression.class)) {
+			  case EcorePackage.EOBJECT___ECONTAINER :
+				  switch(msg.getEventType()) {
+					case Notification.SET:
+						// 
+						owningLayerChanged((LayerOperator)msg.getNewValue(), (LayerOperator)msg.getOldValue());
+						break;
+
+					case Notification.UNSET:
+						owningLayerChanged((LayerOperator)msg.getNewValue(), (LayerOperator)msg.getOldValue());
+						break;
+
+					default:
+						break;
+				  }
+				  break;
+			};
+		}
+
+	};
+
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected LayerExpressionImpl() {
 		super();
+		
+		// Listen on this object attachment / detachment from its container.
+		// When this node is atttached to a parent, the owningLayerStack property is set.
+		// This is done in owningLayerChanged.
+		eAdapters().add(containerListener);
+
 	}
 
 	/**
@@ -192,13 +262,88 @@ ApplicationDependantElementImpl implements LayerExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setIsLayerEnabled(boolean newIsLayerEnabled) {
 		boolean oldIsLayerEnabled = isLayerEnabled;
 		isLayerEnabled = newIsLayerEnabled;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED, oldIsLayerEnabled, isLayerEnabled));
+
+		// Disable the branch
+		setIsBranchEnabled(isLayerEnabled);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isBranchEnabled() {
+		return isBranchEnabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setIsBranchEnabled(boolean newIsBranchEnabled) {
+		boolean oldIsBranchEnabled = isBranchEnabled;
+		isBranchEnabled = newIsBranchEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.LAYER_EXPRESSION__IS_BRANCH_ENABLED, oldIsBranchEnabled, isBranchEnabled));
+
+		// Propagate to children.
+		// This is done in LayerOperation.
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LayersStack getOwningLayersStack() {
+		if (owningLayersStack != null && owningLayersStack.eIsProxy()) {
+			InternalEObject oldOwningLayersStack = (InternalEObject)owningLayersStack;
+			owningLayersStack = (LayersStack)eResolveProxy(oldOwningLayersStack);
+			if (owningLayersStack != oldOwningLayersStack) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK, oldOwningLayersStack, owningLayersStack));
+			}
+		}
+		return owningLayersStack;
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LayersStack basicGetOwningLayersStack() {
+		return owningLayersStack;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningLayersStack(LayersStack newOwningLayersStack) {
+		LayersStack oldOwningLayersStack = owningLayersStack;
+		owningLayersStack = newOwningLayersStack;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK, oldOwningLayersStack, owningLayersStack));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public LayersStack getLayersStack() throws NotFoundException {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();		
 	}
 
 	/**
@@ -229,17 +374,6 @@ ApplicationDependantElementImpl implements LayerExpression {
 	 * @generated
 	 */
 	public EList<ComputePropertyValueCommand> getPropertiesComputePropertyValueCommand(View view, EList<Property> property) throws LayersException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LayersStack getLayersStack() throws NotFoundException {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -283,6 +417,11 @@ ApplicationDependantElementImpl implements LayerExpression {
 				return isLayerEnabledInternal();
 			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
 				return isLayerEnabled();
+			case LayersPackage.LAYER_EXPRESSION__IS_BRANCH_ENABLED:
+				return isBranchEnabled();
+			case LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK:
+				if (resolve) return getOwningLayersStack();
+				return basicGetOwningLayersStack();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -303,6 +442,12 @@ ApplicationDependantElementImpl implements LayerExpression {
 				return;
 			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
 				setIsLayerEnabled((Boolean)newValue);
+				return;
+			case LayersPackage.LAYER_EXPRESSION__IS_BRANCH_ENABLED:
+				setIsBranchEnabled((Boolean)newValue);
+				return;
+			case LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK:
+				setOwningLayersStack((LayersStack)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -325,6 +470,12 @@ ApplicationDependantElementImpl implements LayerExpression {
 			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
 				setIsLayerEnabled(IS_LAYER_ENABLED_EDEFAULT);
 				return;
+			case LayersPackage.LAYER_EXPRESSION__IS_BRANCH_ENABLED:
+				setIsBranchEnabled(IS_BRANCH_ENABLED_EDEFAULT);
+				return;
+			case LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK:
+				setOwningLayersStack((LayersStack)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -345,6 +496,10 @@ ApplicationDependantElementImpl implements LayerExpression {
 				return isLayerEnabledInternal() != IS_LAYER_ENABLED_INTERNAL_EDEFAULT;
 			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
 				return isLayerEnabled != IS_LAYER_ENABLED_EDEFAULT;
+			case LayersPackage.LAYER_EXPRESSION__IS_BRANCH_ENABLED:
+				return isBranchEnabled != IS_BRANCH_ENABLED_EDEFAULT;
+			case LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK:
+				return owningLayersStack != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -379,13 +534,6 @@ ApplicationDependantElementImpl implements LayerExpression {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case LayersPackage.LAYER_EXPRESSION___GET_LAYERS_STACK:
-				try {
-					return getLayersStack();
-				}
-				catch (Throwable throwable) {
-					throw new InvocationTargetException(throwable);
-				}
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -406,8 +554,24 @@ ApplicationDependantElementImpl implements LayerExpression {
 		result.append(description);
 		result.append(", isLayerEnabled: ");
 		result.append(isLayerEnabled);
+		result.append(", isBranchEnabled: ");
+		result.append(isBranchEnabled);
 		result.append(')');
 		return result.toString();
 	}
+
+	/**
+	 * This method is called when the container of this parent has changed.
+	 * Set the #owningLayerStack property and the {@link #isBranchEnabled()} property
+	 * @param newValue
+	 * @param oldValue
+	 */
+	private void owningLayerChanged(LayerOperator newParent, LayerOperator oldParent) {
+		// propagate values
+		if (newParent != null ) {
+			setOwningLayersStack(newParent.getOwningLayersStack());
+			setIsBranchEnabled(newParent.isBranchEnabled());
+		}
+	};
 
 } //LayerExpressionImpl
