@@ -13,7 +13,6 @@ package org.eclipse.papyrus.layers.stackmodel.notifier;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 
 
