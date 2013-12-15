@@ -328,4 +328,14 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 //			this.removedElements = Collections.singletonList(removedElement);
 //		}
 	}
+
+	/**
+	 * Return the underlying list. This can be used as an unnotifying version of the list.
+	 * 
+	 * @return
+	 */
+	public List<E> getUnnotifyingList() {
+		return delegate();
+		
+	}
 }

@@ -130,7 +130,7 @@ public class ExpressionMatcherTest {
 //		Shape s;
 //		((NamedElement)s.getElement()).getName().startsWith(prefix);
 		
-		String expression = "self.element.oclAsType(uml::NamedElement).name.startsWith('C') = true";
+		String expression = "self.oclAsType(Shape).visible = true";
 //		self.oclAsType(Shape).element.oclAsType(uml::NamedElement).name.startsWith('C') = true
 //		"self.element.oclAsType(uml::NamedElement).name.startsWith('C') = true";
 //	    "self.oclIsKindOf(Shape)",
@@ -144,6 +144,7 @@ public class ExpressionMatcherTest {
 		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, searchRoots);
 		assertNotNull("object created", expressionMatcher);
 		
+		// Expression with uml can't works because there is no uml model.
 		assertTrue("result not empty", !expressionMatcher.getMatchingElements().isEmpty());
 		
 	}

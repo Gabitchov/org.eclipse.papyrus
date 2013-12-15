@@ -14,16 +14,15 @@ package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.query.statements.FROM;
@@ -43,6 +42,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer;
 import org.eclipse.papyrus.layers.stackmodel.notifier.DiagramViewEventNotifier;
 import org.eclipse.papyrus.layers.stackmodel.notifier.IDiagramViewEventListener;
 import org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList;
+
 import com.google.common.eventbus.Subscribe;
 
 /**
@@ -192,32 +192,7 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * @ordered
 	 */
 	protected String expressionContextObjectType = EXPRESSION_CONTEXT_OBJECT_TYPE_EDEFAULT;
-	/**
-	 * listener on this object container (i.e owner) attached/detached events
-	 */
-	protected Adapter containerListener = new AdapterImpl() {
-		public void notifyChanged(Notification msg) {
-			
-			switch(msg.getFeatureID(RegExpLayer.class)) {
-			  case EcorePackage.EOBJECT___ECONTAINER :
-				  switch(msg.getEventType()) {
-					case Notification.SET:
-						// 
-						parentLayerChanged((AbstractLayerOperator)msg.getNewValue(), (AbstractLayerOperator)msg.getOldValue());
-						break;
 
-					case Notification.UNSET:
-						parentLayerChanged((AbstractLayerOperator)msg.getNewValue(), (AbstractLayerOperator)msg.getOldValue());
-						break;
-
-					default:
-						break;
-				  }
-				  break;
-			};
-		};
-	};
-	
 	protected DiagramViewEventNotifier diagramViewEventNotifier;
 	
 	/**
@@ -240,8 +215,6 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 		// listen to expression matcher changes
 		expressionMatcher.getMatchingElements().getEventBus().register(this);
 
-		// Listen on this object attachment / detachment from its container.
-		eAdapters().add(containerListener);
 	}
 
 	/**
@@ -273,6 +246,9 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 		expr = newExpr;
 		// Try to set the expression
 		try {
+			// Check synchro between RegExp::views and ExpressionMatcher::matchingElements
+			// they can be unsync after the model was loaded by EMF
+			checkViewsAndMatchingElementsSync();
 			// First, reset expr roots. Do it because actually the roots are not properly set.
 			resetExpressionMatcherRoots();
 			// Change the expression, and recompute the matching elements.
@@ -284,6 +260,30 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 		}
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__EXPR, oldExpr, expr));
+	}
+
+	/**
+	 * Check synchro between RegExp::views and ExpressionMatcher::matchingElements
+	 * they can be unsync after the model was loaded by EMF.
+	 * <b>
+	 * This method is used to correct the bug where both list are unsync after the model was loaded by EMF.
+	 * 
+	 */
+	private void checkViewsAndMatchingElementsSync() {
+		
+		// Check if both list have the same size.
+		// We don't to check the content, because we want a quick check
+		// Actually, unsync appear only after the model was reloded by EMF.
+		if( getViews().size() == expressionMatcher.getMatchingElements().size() ) {
+			// ok
+			return;
+		}
+		
+		// Sync is required
+		List<View> matchElements = expressionMatcher.getMatchingElements().getUnnotifyingList();
+		matchElements.clear();
+		matchElements.addAll(getViews());
+		
 	}
 
 	/**
@@ -417,22 +417,6 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.REG_EXP_LAYER__EXPRESSION_CONTEXT_OBJECT_TYPE, oldExpressionContextObjectType, expressionContextObjectType));
 	}
-
-	/**
-	 * The parent that contains this Layer has changed. 
-	 * Check if the associated Diagram has changed, and if true, change it in the ExpressionMatcher.
-	 * 
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param newLayerParent 
-	 * @generated NOT
-	 */
-	public void parentLayerChanged(AbstractLayerOperator newLayerParent, AbstractLayerOperator oldLayerParent) {
-
-		// Try to change the diagram in the expressionMatcher.
-		// The expressionMatcher takes care to change it only if it this changed.
-		resetExpressionMatcherRoots();
-		}
 		
 	/**
 	 * Listener on {@link NotyfyingList} eventBus. This method is called each time a change occurs in the 
@@ -456,7 +440,53 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	}
 	
 	/**
+	 * This layer has just been added to a LayerStack.
+	 * Set the root of the expression.
+	 * Set the views to match the result of the expression.
+	 * 
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#initLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayersStack)
+	 *
+	 * @param owningLayersStack
+	 */
+	@Override
+	public void initLayer(LayersStack owningLayersStack) {
+		super.initLayer(owningLayersStack);
+		
+		resetExpressionMatcherRoots();
+		checkViewsAndMatchingElementsSync();
+		
+//		// Synchronize the layer views with the result of expressionMatcher.
+//		// Try to minimize the number of events.
+//		// For that, freeze temporarily the events from this layer
+//		// Refresh the result and reset the views list while events are disabled.
+//		boolean isDeliveringEvents = eDeliver();
+//		eSetDeliver(false);
+//		
+//		expressionMatcher.refreshMatchingElements();
+//		List<View> toAdd = expressionMatcher.getMatchingElements();
+//		if( !toAdd.isEmpty() ) {
+//			getViews().clear();
+//		}
+//		
+//		// Reenable events 
+//		eSetDeliver(true);
+//		
+//		// Set the views
+//		
+//		if( !toAdd.isEmpty() ) {
+//		   getViews().addAll(expressionMatcher.getMatchingElements());
+//		}
+//		else {
+//			// If there is nothing to add, clear the list, in order to send appropriate event.
+//			getViews().clear();
+//		}
+		
+		
+	}
+	
+	/**
 	 * Check if the associated Diagram has changed, and if true, change it in the ExpressionMatcher.
+	 * This does not compute the result.
 	 */
 	private void resetExpressionMatcherRoots() {
 	
@@ -970,5 +1000,49 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 		viewRemoved((View)msg.getNewValue());
 	}
 		
+	}
+	
+	/**
+	 * Reset the toChange list to the content of the newContent list.
+	 * Minimize the change calls on the toChange list.
+	 * This method ensure that there is at most 2 writing calls to the list to modify: one 
+	 * removeAll(toBeRemoved) and one addAll(toBeAdded).
+	 * 
+	 * @param toChange
+	 * @param newContent
+	 */
+	static <E> void resetListTo(Collection<E> toChange, Collection<E> newContent)		{
+
+		// Compute removed and added
+		Collection<E> elementsToRemove = new ArrayList<E>();
+		Collection<E> elementsToAdd = new ArrayList<E>();
+
+		// Compute added and removed elements. Walk both list 2 times. 
+		// This could certainly be improved.
+		// TODO improve the algorithm
+
+		// Compute added elements
+		for( E o : newContent ) {
+			if( !toChange.contains(o)) {
+				elementsToAdd.add(o);
+				continue;
+			}
+		}
+
+		// Compute removed elements
+		for( E o : toChange ) {
+			if( !newContent.contains(o)) {
+				elementsToRemove.add(o);
+				continue;
+			}
+		}
+
+		// Change the list
+		if( ! elementsToRemove.isEmpty()) {
+			toChange.removeAll(elementsToRemove);
+		}
+		if( !elementsToAdd.isEmpty()) {
+			toChange.addAll(elementsToAdd);
+		}
 	}
 } //RegExpLayerImpl
