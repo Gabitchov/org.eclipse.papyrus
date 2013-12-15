@@ -22,12 +22,12 @@ import com.google.common.eventbus.Subscribe;
  * @author cedric dumoulin
  *
  */
-public class FakeNotifyingListListener<E> {
+public class FakeObservableListListener<E> {
 
 	/**
 	 * Trace object tracking events
 	 */
-	public TriggeredEventTraces<NotyfyingList<E>.NotifyingListEvent> traces = new TriggeredEventTraces<NotyfyingList<E>.NotifyingListEvent>();
+	public TriggeredEventTraces<ObservableListView<E>.ObservableListEvent> traces = new TriggeredEventTraces<ObservableListView<E>.ObservableListEvent>();
 
 	
 	/**
@@ -35,7 +35,7 @@ public class FakeNotifyingListListener<E> {
 	 * @param event
 	 */
 	@Subscribe 
-	public void elementAddedToList(NotyfyingList<E>.NotifyingListEvent event) {
+	public void elementAddedToList(ObservableListView<E>.ObservableListEvent event) {
 		traces.addTrace("elementAddedToList", event);
 	}
 }

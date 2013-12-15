@@ -527,6 +527,10 @@ MinimalEObjectImpl.Container implements LayersStack {
 	 * @param addedLayer The added layer.
 	 */
 	protected void layerAdded(LayerExpression addedLayer) {
+		// Stop if there is no layer
+		if( addedLayer == null) {
+			return;
+		}
 		// init the layer
 		addedLayer.initLayer(this);
 		

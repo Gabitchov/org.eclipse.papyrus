@@ -24,7 +24,8 @@ import com.google.common.collect.Lists;
 import com.google.common.eventbus.EventBus;
 
 /**
- * A delegate list  notifying of events on the delegated list.
+ * An observable list  notifying of events on the delegated list.
+ * This view allows to observe a provided list.
  * The following events are notified:
  * <ul>
  *   <li>elements added</li>
@@ -35,18 +36,19 @@ import com.google.common.eventbus.EventBus;
  * @author cedric dumoulin
  *
  */
-public class NotyfyingList<E> extends ForwardingList<E>{
+public class ObservableListView<E> extends ForwardingList<E>{
 
 	protected List<E> delegate;
 	
-	protected EventBus eventBus = new EventBus(NotyfyingList.class.getName());
+	protected EventBus eventBus = new EventBus(ObservableListView.class.getName());
 	
 	/**
 	 * Constructor.
+	 * Build an observable list based on the provided list.
 	 *
 	 * @param delegate
 	 */
-	public NotyfyingList(List<E> delegate) {
+	public ObservableListView(List<E> delegate) {
 		this.delegate = delegate;
 	}
 
@@ -66,7 +68,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 	public boolean add(E element) {
 		boolean isModified = delegate().add( element);
 		if( isModified) {
-			eventBus.post(new NotifyingListEvent(element));
+			eventBus.post(new ObservableListEvent(element));
 		}
 
 		return isModified;
@@ -76,7 +78,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 	public boolean addAll(Collection<? extends E> collection) {
 		boolean isModified = delegate().addAll(collection);
 		if( isModified) {
-			eventBus.post(new NotifyingListEvent(collection));
+			eventBus.post(new ObservableListEvent(collection));
 		}
 		
 		return isModified;
@@ -85,7 +87,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 	@Override
 	public void add(int index, E element) {
 		delegate().add(index, element);
-		eventBus.post(new NotifyingListEvent(element));
+		eventBus.post(new ObservableListEvent(element));
 	}
 	
 	@Override
@@ -93,7 +95,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 		// TODO Auto-generated method stub
 		boolean isModified = delegate().addAll(index, elements);
 		if( isModified) {
-			eventBus.post(new NotifyingListEvent(elements));
+			eventBus.post(new ObservableListEvent(elements));
 		}
 		
 		return isModified;
@@ -102,7 +104,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 	@Override
 	public E remove(int index) {
 		E removed = super.remove(index);
-		getEventBus().post( new NotifyingListEvent(null, removed));
+		getEventBus().post( new ObservableListEvent(null, removed));
 		
 		return removed;
 	}
@@ -112,7 +114,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 	public boolean remove(Object object) {
 		boolean isRemoved = super.remove(object);
 		if( isRemoved ) {
-		  getEventBus().post( new NotifyingListEvent(null, (E)object));
+		  getEventBus().post( new ObservableListEvent(null, (E)object));
 		}
 		return isRemoved;
 	}
@@ -133,7 +135,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 		// Do remove
 		boolean isRemoved = super.removeAll(collection);
 		if( isRemoved ) {
-		  getEventBus().post( new NotifyingListEvent(null, (Collection<? extends E>) removedElements));
+		  getEventBus().post( new ObservableListEvent(null, (Collection<? extends E>) removedElements));
 		}
 		return isRemoved;
 	}
@@ -181,7 +183,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 		// Fire event
 		boolean isModified = !(elementsToAdd.isEmpty() && elementsToRemove.isEmpty() );
 		if( isModified ) {
-		  getEventBus().post( new NotifyingListEvent(elementsToAdd, elementsToRemove));
+		  getEventBus().post( new ObservableListEvent(elementsToAdd, elementsToRemove));
 		}
 
 		return isModified;
@@ -192,7 +194,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 	 * @author cedric dumoulin
 	 *
 	 */
-	public class NotifyingListEvent {
+	public class ObservableListEvent {
 		
 		Collection<? extends E> addedElements = Collections.emptyList();
 		Collection<? extends E> removedElements = Collections.emptyList();
@@ -202,7 +204,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 		 * Constructor.
 		 *
 		 */
-		public NotifyingListEvent() {
+		public ObservableListEvent() {
 			this.addedElements = Collections.emptyList();
 			this.removedElements = Collections.emptyList();
 		}
@@ -212,7 +214,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 		 * Constructor.
 		 *
 		 */
-		public NotifyingListEvent(Collection<? extends E> addedElements) {
+		public ObservableListEvent(Collection<? extends E> addedElements) {
 			if( addedElements!=null ) {
 				this.addedElements = addedElements;
 			}
@@ -229,7 +231,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 		 * @param addedElements added elements or null
 		 * @param removedElements removed elements or null
 		 */
-		public NotifyingListEvent(Collection<? extends E> addedElements, Collection<? extends E> removedElements) {
+		public ObservableListEvent(Collection<? extends E> addedElements, Collection<? extends E> removedElements) {
 			if( addedElements!=null ) {
 				this.addedElements = addedElements;
 			}
@@ -252,7 +254,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 		 * @param addedElement An element added or null;
 		 * @param removedElement An element added or null
 		 */
-		public NotifyingListEvent( E addedElement, E removedElement) {
+		public ObservableListEvent( E addedElement, E removedElement) {
 			
 			if( addedElement!=null ) {
 				addedElements = Collections.singletonList(addedElement);
@@ -275,7 +277,7 @@ public class NotyfyingList<E> extends ForwardingList<E>{
 		 *
 		 * @param addedElement An element added or null;
 		 */
-		public NotifyingListEvent( E addedElement) {
+		public ObservableListEvent( E addedElement) {
 
 			if( addedElement!=null ) {
 				addedElements = Collections.singletonList(addedElement);

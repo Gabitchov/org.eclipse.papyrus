@@ -30,6 +30,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.TopLayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.util.LayersFactoryTestUtils;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -157,6 +158,7 @@ public class LayerExpressionInitWithApplicationImplTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isLayerEnabled()}.
 	 */
 	@Test
+	@Ignore
 	public void testIsLayerEnabled() {
 		fail("Not yet implemented");
 	}
@@ -165,6 +167,7 @@ public class LayerExpressionInitWithApplicationImplTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isBranchEnabled()}.
 	 */
 	@Test
+	@Ignore
 	public void testIsBranchEnabled() {
 		fail("Not yet implemented");
 	}

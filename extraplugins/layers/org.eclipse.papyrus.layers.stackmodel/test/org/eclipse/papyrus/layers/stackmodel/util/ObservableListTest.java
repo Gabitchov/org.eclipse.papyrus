@@ -27,10 +27,10 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 
 /**
- * @author dumoulin
+ * @author cedric dumoulin
  *
  */
-public class NotyfyingListTest {
+public class ObservableListTest {
 
 	/**
 	 * @throws java.lang.Exception
@@ -47,44 +47,44 @@ public class NotyfyingListTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#NotyfyingList(java.util.List)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#ObservableList(java.util.List)}.
 	 */
 	@Test
-	public void testNotyfyingList() {
+	public void testObservableList() {
 		
 		List<String> list = Lists.newArrayList( "red", "orange", "yellow", "green", "blue",  "purple");
 		
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		assertNotNull("Object created", notyfyingList);
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#delegate()}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#delegate()}.
 	 */
 	@Test
 	public void testDelegate() {
 		List<String> list = Lists.newArrayList( "red", "orange", "yellow", "green", "blue",  "purple");
 		
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		assertSame("delegate is set", list, notyfyingList.delegate() );
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#getEventBus()}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#getEventBus()}.
 	 */
 	@Test
 	public void testGetEventBus() {
 		List<String> list = Lists.newArrayList( "red", "orange", "yellow", "green", "blue",  "purple");
 		
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		assertNotNull("eventBus found", notyfyingList.getEventBus() );
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#add(java.lang.Object)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#add(java.lang.Object)}.
 	 */
 	@Test
 	public void testAddE() {
@@ -93,8 +93,8 @@ public class NotyfyingListTest {
 		int listSizeBefore = list.size();
 		int expectedListSizeAfter = listSizeBefore+1;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -113,7 +113,7 @@ public class NotyfyingListTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#addAll(java.util.Collection)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#addAll(java.util.Collection)}.
 	 */
 	@Test
 	public void testAddAllCollectionOfQextendsE() {
@@ -122,8 +122,8 @@ public class NotyfyingListTest {
 		int listSizeBefore = list.size();
 		int expectedListSizeAfter = listSizeBefore+addedElements.size();
 		
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -140,7 +140,7 @@ public class NotyfyingListTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#add(int, java.lang.Object)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#add(int, java.lang.Object)}.
 	 */
 	@Test
 	public void testAddIntE() {
@@ -149,8 +149,8 @@ public class NotyfyingListTest {
 		int listSizeBefore = list.size();
 		int expectedListSizeAfter = listSizeBefore+1;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -169,7 +169,7 @@ public class NotyfyingListTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#addAll(int, java.util.Collection)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#addAll(int, java.util.Collection)}.
 	 */
 	@Test
 	public void testAddAllIntCollectionOfQextendsE() {
@@ -178,8 +178,8 @@ public class NotyfyingListTest {
 		int listSizeBefore = list.size();
 		int expectedListSizeAfter = listSizeBefore+addedElements.size();
 		
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -196,7 +196,7 @@ public class NotyfyingListTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#remove(int)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#remove(int)}.
 	 */
 	@Test
 	public void testRemoveInt() {
@@ -205,8 +205,8 @@ public class NotyfyingListTest {
 		int listSizeBefore = list.size();
 		int expectedListSizeAfter = listSizeBefore-1;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -215,7 +215,7 @@ public class NotyfyingListTest {
 		
 		// Assertions
 		assertSame("event propagated", 1, notifyingListListener.traces.size());
-		NotyfyingList<String>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<String>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 		assertTrue("event removesElement is correct", event.getRemovedElements().contains(removedElement));
 		
 		assertEquals("addedElement size", 0, event.getAddedElements().size() );
@@ -226,7 +226,7 @@ public class NotyfyingListTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#remove(java.lang.Object)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#remove(java.lang.Object)}.
 	 */
 	@Test
 	public void testRemoveObject() {
@@ -236,8 +236,8 @@ public class NotyfyingListTest {
 		int listSizeBefore = list.size();
 		int expectedListSizeAfter = listSizeBefore-1;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -246,7 +246,7 @@ public class NotyfyingListTest {
 		
 		// Assertions
 		assertSame("event propagated", 1, notifyingListListener.traces.size());
-		NotyfyingList<String>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<String>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 		assertTrue("event removesElement is correct", event.getRemovedElements().contains(removedElement));
 		
 		assertEquals("addedElement size", 0, event.getAddedElements().size() );
@@ -257,7 +257,7 @@ public class NotyfyingListTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#removeAll(java.util.Collection)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#removeAll(java.util.Collection)}.
 	 */
 	@Test
 	public void testRemoveAllCollectionOfQ() {
@@ -267,8 +267,8 @@ public class NotyfyingListTest {
 		int removedElementsCount = elementsToRemove.size();
 		int expectedListSizeAfter = listSizeBefore-removedElementsCount;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -278,7 +278,7 @@ public class NotyfyingListTest {
 		// Assertions
 		assertSame("event propagated", 1, notifyingListListener.traces.size());
 		
-		NotyfyingList<String>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<String>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 		assertTrue("event removesElement is correct", event.getRemovedElements().containsAll(elementsToRemove));
 		
 		assertEquals("addedElement size", 0, event.getAddedElements().size() );
@@ -289,7 +289,7 @@ public class NotyfyingListTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#removeAll(java.util.Collection)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#removeAll(java.util.Collection)}.
 	 */
 	@Test
 	public void testRemoveAllCollectionOfQWithTooMuchElements() {
@@ -299,8 +299,8 @@ public class NotyfyingListTest {
 		int removedElementsCount = elementsToRemove.size()-2; // 2 = falseColors
 		int expectedListSizeAfter = listSizeBefore-removedElementsCount;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -310,7 +310,7 @@ public class NotyfyingListTest {
 		// Assertions
 		assertSame("event propagated", 1, notifyingListListener.traces.size());
 		
-		NotyfyingList<String>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<String>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 //		assertTrue("event removesElement is correct", event.getRemovedElements().containsAll(elementsToRemove));
 		assertTrue("removed elements are from the required list", elementsToRemove.containsAll(event.getRemovedElements()));
 		
@@ -322,7 +322,7 @@ public class NotyfyingListTest {
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#resetTo(java.util.Collection)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#resetTo(java.util.Collection)}.
 	 */
 	@Test
 	public void testResetTo() {
@@ -334,8 +334,8 @@ public class NotyfyingListTest {
 		
 		int expectedEventCount = 1;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -346,13 +346,13 @@ public class NotyfyingListTest {
 		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
 		assertArrayEquals("List equals", listToReset.toArray(), notyfyingList.toArray());
 		
-		NotyfyingList<String>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<String>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 		assertArrayEquals("Removed list ok", expectedRemovedElement.toArray(), event.getRemovedElements().toArray());
 		assertArrayEquals("Added list ok", expectedAddedElement.toArray(), event.getAddedElements().toArray());	
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#resetTo(java.util.Collection)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#resetTo(java.util.Collection)}.
 	 */
 	@Test
 	public void testResetToNoAdded() {
@@ -364,8 +364,8 @@ public class NotyfyingListTest {
 		
 		int expectedEventCount = 1;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -376,13 +376,13 @@ public class NotyfyingListTest {
 		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
 		assertArrayEquals("List equals", listToReset.toArray(), notyfyingList.toArray());
 		
-		NotyfyingList<String>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<String>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 		assertArrayEquals("Removed list ok", expectedRemovedElement.toArray(), event.getRemovedElements().toArray());
 		assertArrayEquals("Added list ok", expectedAddedElement.toArray(), event.getAddedElements().toArray());	
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#resetTo(java.util.Collection)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#resetTo(java.util.Collection)}.
 	 */
 	@Test
 	public void testResetToWithAddition() {
@@ -394,8 +394,8 @@ public class NotyfyingListTest {
 		
 		int expectedEventCount = 1;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -406,13 +406,13 @@ public class NotyfyingListTest {
 		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
 		assertArrayEquals("List equals", listToReset.toArray(), notyfyingList.toArray());
 		
-		NotyfyingList<String>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<String>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 		assertArrayEquals("Removed list ok", expectedRemovedElement.toArray(), event.getRemovedElements().toArray());
 		assertArrayEquals("Added list ok", expectedAddedElement.toArray(), event.getAddedElements().toArray());	
 	}
 
 	/**
-	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList#resetTo(java.util.Collection)}.
+	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.util.ObservableListView#resetTo(java.util.Collection)}.
 	 */
 	@Test
 	public void testResetToNoChanges() {
@@ -425,8 +425,8 @@ public class NotyfyingListTest {
 		// No change, no events
 		int expectedEventCount = 0;
 
-		FakeNotifyingListListener<String> notifyingListListener = new FakeNotifyingListListener<String>();
-		NotyfyingList<String> notyfyingList = new NotyfyingList<String>(list);
+		FakeObservableListListener<String> notifyingListListener = new FakeObservableListListener<String>();
+		ObservableListView<String> notyfyingList = new ObservableListView<String>(list);
 		
 		notyfyingList.getEventBus().register(notifyingListListener );
 		
@@ -437,7 +437,7 @@ public class NotyfyingListTest {
 		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
 		assertArrayEquals("List equals", listToReset.toArray(), notyfyingList.toArray());
 		
-//		NotyfyingList<String>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+//		ObservableList<String>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
 //		assertArrayEquals("Removed list ok", expectedRemovedElement.toArray(), event.getRemovedElements().toArray());
 //		assertArrayEquals("Added list ok", expectedAddedElement.toArray(), event.getAddedElements().toArray());	
 	}

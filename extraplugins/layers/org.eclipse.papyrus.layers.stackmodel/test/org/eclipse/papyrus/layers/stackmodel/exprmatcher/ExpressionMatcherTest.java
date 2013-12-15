@@ -35,8 +35,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
-import org.eclipse.papyrus.layers.stackmodel.util.FakeNotifyingListListener;
-import org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList;
+import org.eclipse.papyrus.layers.stackmodel.util.FakeObservableListListener;
+import org.eclipse.papyrus.layers.stackmodel.util.ObservableListView;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
 import org.junit.Before;
@@ -312,7 +312,7 @@ public class ExpressionMatcherTest {
 		int addedElementCount = 0;
 		int expectedEventCount = 1;
 		
-		FakeNotifyingListListener<View> notifyingListListener = new FakeNotifyingListListener<View>();
+		FakeObservableListListener<View> notifyingListListener = new FakeObservableListListener<View>();
 		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, diagram);
 		
 		expressionMatcher.getMatchingElements().getEventBus().register(notifyingListListener);
@@ -325,7 +325,7 @@ public class ExpressionMatcherTest {
 		// Assert
 		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
 		
-		NotyfyingList<View>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<View>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 
 		assertEquals("expected removed count", removedElementCount, event.getRemovedElements().size());
 		assertEquals("expected added count", addedElementCount, event.getAddedElements().size());
@@ -350,7 +350,7 @@ public class ExpressionMatcherTest {
 		int expectedEventCount = 1;
 		int viewsCount = diagram.getChildren().size();
 		
-		FakeNotifyingListListener<View> notifyingListListener = new FakeNotifyingListListener<View>();
+		FakeObservableListListener<View> notifyingListListener = new FakeObservableListListener<View>();
 		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, diagram);
 		
 		expressionMatcher.getMatchingElements().getEventBus().register(notifyingListListener);
@@ -366,7 +366,7 @@ public class ExpressionMatcherTest {
 				
 		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
 		
-		NotyfyingList<View>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<View>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 
 		assertEquals("expected removed count", removedElementCount, event.getRemovedElements().size());
 		assertEquals("expected added count", addedElementCount, event.getAddedElements().size());
@@ -391,7 +391,7 @@ public class ExpressionMatcherTest {
 		int expectedEventCount = 1;
 		int viewsCount = diagram.getChildren().size();
 		
-		FakeNotifyingListListener<View> notifyingListListener = new FakeNotifyingListListener<View>();
+		FakeObservableListListener<View> notifyingListListener = new FakeObservableListListener<View>();
 		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, diagram);
 		
 		expressionMatcher.getMatchingElements().getEventBus().register(notifyingListListener);
@@ -407,7 +407,7 @@ public class ExpressionMatcherTest {
 				
 		assertSame("event propagated", expectedEventCount, notifyingListListener.traces.size());
 		
-		NotyfyingList<View>.NotifyingListEvent event = notifyingListListener.traces.get(0).notifier;
+		ObservableListView<View>.ObservableListEvent event = notifyingListListener.traces.get(0).notifier;
 
 		assertEquals("expected removed count", removedElementCount, event.getRemovedElements().size());
 		assertEquals("expected added count", addedElementCount, event.getAddedElements().size());

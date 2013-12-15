@@ -34,7 +34,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
-import org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList;
+import org.eclipse.papyrus.layers.stackmodel.util.ObservableListView;
 
 import com.google.common.collect.Lists;
 
@@ -57,7 +57,7 @@ public class ExpressionMatcher {
 	 * List of element matching the expression.
 	 * This class maintains the list.
 	 */
-	protected NotyfyingList<View> matchingElements;
+	protected ObservableListView<View> matchingElements;
 	
 	/**
 	 * List of element used as starting point for search.
@@ -75,7 +75,7 @@ public class ExpressionMatcher {
 		this.expression = "";
 		this.searchRoots = Collections.emptyList();
 		// init matchingElements
-		matchingElements = new NotyfyingList<View>(new ArrayList<View>());
+		matchingElements = new ObservableListView<View>(new ArrayList<View>());
 	}
 	
 	/**
@@ -89,7 +89,7 @@ public class ExpressionMatcher {
 		this.expression = "";
 		this.searchRoots = searchRoots;
 		// init matchingElements
-		matchingElements = new NotyfyingList<View>(new ArrayList<View>());
+		matchingElements = new ObservableListView<View>(new ArrayList<View>());
 	}
 	
 	/**
@@ -112,7 +112,7 @@ public class ExpressionMatcher {
 	 */
 	public ExpressionMatcher(String expression, List<EObject> searchRoots) throws LayersException {
 		this.searchRoots = searchRoots;
-		matchingElements = new NotyfyingList<View>(new ArrayList<View>());
+		matchingElements = new ObservableListView<View>(new ArrayList<View>());
 		
 		// compute expr
 		setExpression(expression);
@@ -266,7 +266,7 @@ public class ExpressionMatcher {
 	/**
 	 * @return the matchingElements
 	 */
-	public NotyfyingList<View> getMatchingElements() {
+	public ObservableListView<View> getMatchingElements() {
 		return matchingElements;
 	}
 

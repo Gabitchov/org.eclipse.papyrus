@@ -41,7 +41,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer;
 import org.eclipse.papyrus.layers.stackmodel.notifier.DiagramViewEventNotifier;
 import org.eclipse.papyrus.layers.stackmodel.notifier.IDiagramViewEventListener;
-import org.eclipse.papyrus.layers.stackmodel.util.NotyfyingList;
+import org.eclipse.papyrus.layers.stackmodel.util.ObservableListView;
 
 import com.google.common.eventbus.Subscribe;
 
@@ -419,7 +419,7 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	}
 		
 	/**
-	 * Listener on {@link NotyfyingList} eventBus. This method is called each time a change occurs in the 
+	 * Listener on {@link ObservableListView} eventBus. This method is called each time a change occurs in the 
 	 * result of the expression.
 	 * When the result change, the list of attached views is updated accordingly.
 	 * 
@@ -427,7 +427,7 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * @param event
 	 */
 	@Subscribe
-	public void expressionResultChanged( NotyfyingList<View>.NotifyingListEvent event) {
+	public void expressionResultChanged( ObservableListView<View>.ObservableListEvent event) {
 		
 		System.out.println( this.getClass().getSimpleName() + ".expressionResultChanged()");
 		if( ! event.getAddedElements().isEmpty()) {
