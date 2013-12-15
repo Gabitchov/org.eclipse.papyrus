@@ -14,7 +14,6 @@ package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -32,7 +31,6 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
-import org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer;
 
 /**
  * <!-- begin-user-doc -->
@@ -181,12 +179,6 @@ ApplicationDependantElementImpl implements LayerExpression {
 	 */
 	protected LayerExpressionImpl() {
 		super();
-		
-		// Listen on this object attachment / detachment from its container.
-		// When this node is atttached to a parent, the owningLayerStack property is set.
-		// This is done in owningLayerChanged.
-		eAdapters().add(containerListener);
-
 	}
 
 	/**
@@ -341,9 +333,13 @@ ApplicationDependantElementImpl implements LayerExpression {
 	 * @generated NOT
 	 */
 	public LayersStack getLayersStack() throws NotFoundException {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();		
+		
+		LayersStack res = getOwningLayersStack();
+		if( res != null) {
+			return res;
+		}
+			
+		throw new NotFoundException("LayersStack is not set in the Layer '" + getName() +"'");		
 	}
 
 	/**
@@ -377,6 +373,21 @@ ApplicationDependantElementImpl implements LayerExpression {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Init this Layer.
+	 * Called by the LayerStack as soon as the layer is added in the tree of layers.
+	 * This method can be subclassed to init a particular layer.
+	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void initLayer(LayersStack owningLayersStack) {
+		
+		// the owning stack
+		setOwningLayersStack(owningLayersStack);
 	}
 
 	/**
@@ -530,6 +541,16 @@ ApplicationDependantElementImpl implements LayerExpression {
 			case LayersPackage.LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST:
 				try {
 					return getPropertiesComputePropertyValueCommand((View)arguments.get(0), (EList<Property>)arguments.get(1));
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK:
+				initLayer((LayersStack)arguments.get(0));
+				return null;
+			case LayersPackage.LAYER_EXPRESSION___GET_LAYERS_STACK:
+				try {
+					return getLayersStack();
 				}
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);

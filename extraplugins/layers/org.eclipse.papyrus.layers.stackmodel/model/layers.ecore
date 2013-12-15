@@ -46,6 +46,18 @@
       <eParameters name="view" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
       <eParameters name="property" lowerBound="1" upperBound="-1" eType="#//Property"/>
     </eOperations>
+    <eOperations name="initLayer" ordered="false" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Method called to specify that this Layer should be initialized for the specified LayerStack.&#xD;&#xA;Init this Layer for the specified LayersStack."/>
+      </eAnnotations>
+      <eParameters name="owningLayersStack" ordered="false" lowerBound="1" eType="#//LayersStack"/>
+    </eOperations>
+    <eOperations name="getLayersStack" ordered="false" lowerBound="1" eType="#//LayersStack"
+        eExceptions="#//NotFoundException">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A checked version of getOwningLayersStack.&#xD;&#xA;"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"

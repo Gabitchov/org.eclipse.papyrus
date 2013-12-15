@@ -76,6 +76,7 @@ public class LayerExpressionInitWithApplicationImplTest {
 				);
 		     
 	    TopLayerOperator top = (TopLayerOperator)factory.getLayer("top");
+	    stack.setLayers(top);
 	    TopLayerOperator container1 = (TopLayerOperator)factory.getLayer("top");
 		Layer layer1 = (Layer)factory.getLayer("layer1");
 		Layer layer2 = (Layer)factory.getLayer("layer1");
@@ -97,6 +98,59 @@ public class LayerExpressionInitWithApplicationImplTest {
 
 		assertNotNull("object created", layer3);
 		assertEquals("application initialized", application, layer3.getApplication() );
+	}
+
+	/**
+	 * Test if properties are set after adding a subtree
+	 */
+	@Test
+	public void testAddSubTreeImpl() {
+		// Create requested objects
+		LayersStackApplication application = LayersFactory.eINSTANCE.createLayersStackApplication();
+		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
+		// Create stack
+		LayersStack stack = application.getLayersStackFor(diagram);
+		
+		// Create layers
+		LayersFactoryTestUtils factory = new LayersFactoryTestUtils(application);
+		factory.newTopLayer("top", 
+				factory.newLayer("layer1"),
+				factory.newLayer("layer2"),
+				factory.newTopLayer("container1", 
+				  factory.newLayer("layer3") )
+				);
+		     
+		factory.newTopLayer("container2", 
+				factory.newLayer("layer21"),
+				factory.newLayer("layer22")
+				);
+		     
+		TopLayerOperator top = (TopLayerOperator)factory.getLayer("top");
+		stack.setLayers(top);
+	    TopLayerOperator container2 = (TopLayerOperator)factory.getLayer("container2");
+		Layer layer21 = (Layer)factory.getLayer("layer21");
+		Layer layer22 = (Layer)factory.getLayer("layer22");
+		
+		// action
+		// Add subtree
+		top.getLayers().add(container2);
+		
+		// Assert
+		assertNotNull("object created", top);
+		assertEquals("application initialized", application, top.getApplication() );
+		
+		assertNotNull("object created", container2);
+		assertEquals("application initialized", application, container2.getApplication() );
+		assertEquals("container (stack) initialized", stack, container2.getOwningLayersStack() );
+
+		assertNotNull("object created", layer21);
+		assertEquals("application initialized", application, layer21.getApplication() );
+		assertEquals("container (stack) initialized", stack, layer21.getOwningLayersStack() );
+
+		assertNotNull("object created", layer22);
+		assertEquals("application initialized", application, layer22.getApplication() );
+		assertEquals("container (stack) initialized", stack, layer22.getOwningLayersStack() );
+
 	}
 
 	/**
@@ -136,6 +190,7 @@ public class LayerExpressionInitWithApplicationImplTest {
 				);
 		     
 	    TopLayerOperator top = (TopLayerOperator)factory.getLayer("top");
+	    stack.setLayers(top);
 	    TopLayerOperator container1 = (TopLayerOperator)factory.getLayer("top");
 		Layer layer1 = (Layer)factory.getLayer("layer1");
 		Layer layer2 = (Layer)factory.getLayer("layer1");

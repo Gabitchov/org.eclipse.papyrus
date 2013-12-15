@@ -405,13 +405,31 @@ public interface LayersPackage extends EPackage {
 	int LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_EXPRESSION___GET_LAYERS_STACK = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Layer Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_EXPRESSION_OPERATION_COUNT = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 3;
+	int LAYER_EXPRESSION_OPERATION_COUNT = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerApplicationFactoryImpl <em>Layer Application Factory</em>}' class.
@@ -2068,6 +2086,24 @@ public interface LayersPackage extends EPackage {
 	int LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR___GET_LAYERS_STACK = LAYER_EXPRESSION___GET_LAYERS_STACK;
+
+	/**
 	 * The number of operations of the '<em>Layer Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2201,6 +2237,24 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
+
+	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR___GET_LAYERS_STACK = LAYER_OPERATOR___GET_LAYERS_STACK;
 
 	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
@@ -2408,6 +2462,24 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
+
+	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER___INIT_LAYER__LAYERSSTACK = LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER___GET_LAYERS_STACK = LAYER_EXPRESSION___GET_LAYERS_STACK;
 
 	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
@@ -3040,6 +3112,24 @@ public interface LayersPackage extends EPackage {
 	int TOP_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR___GET_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR___GET_LAYERS_STACK;
+
+	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3193,6 +3283,24 @@ public interface LayersPackage extends EPackage {
 	int STACKED_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR___GET_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR___GET_LAYERS_STACK;
+
+	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3326,6 +3434,24 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
+
+	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR___GET_LAYERS_STACK = LAYER_OPERATOR___GET_LAYERS_STACK;
 
 	/**
 	 * The number of operations of the '<em>Custom Layer Operator</em>' class.
@@ -3724,6 +3850,24 @@ public interface LayersPackage extends EPackage {
 	int REG_EXP_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER___INIT_LAYER__LAYERSSTACK;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___GET_LAYERS_STACK = ABSTRACT_LAYER___GET_LAYERS_STACK;
+
+	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3974,6 +4118,24 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
+
+	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER___INIT_LAYER__LAYERSSTACK;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER___GET_LAYERS_STACK = ABSTRACT_LAYER___GET_LAYERS_STACK;
 
 	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
@@ -6497,6 +6659,26 @@ public interface LayersPackage extends EPackage {
 	EOperation getLayerExpression__GetPropertiesComputePropertyValueCommand__View_EList();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#initLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayersStack) <em>Init Layer</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Init Layer</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#initLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayersStack)
+	 * @generated
+	 */
+	EOperation getLayerExpression__InitLayer__LayersStack();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getLayersStack() <em>Get Layers Stack</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Layers Stack</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getLayersStack()
+	 * @generated
+	 */
+	EOperation getLayerExpression__GetLayersStack();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.layers.ApplicationDependantElement <em>Application Dependant Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8665,6 +8847,22 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = eINSTANCE.getLayerExpression__GetPropertiesComputePropertyValueCommand__View_EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Init Layer</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK = eINSTANCE.getLayerExpression__InitLayer__LayersStack();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Layers Stack</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYER_EXPRESSION___GET_LAYERS_STACK = eINSTANCE.getLayerExpression__GetLayersStack();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.ApplicationDependantElementImpl <em>Application Dependant Element</em>}' class.

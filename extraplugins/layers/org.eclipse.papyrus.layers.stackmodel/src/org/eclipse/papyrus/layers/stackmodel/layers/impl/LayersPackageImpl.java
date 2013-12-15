@@ -895,6 +895,24 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getLayerExpression__InitLayer__LayersStack() {
+		return layerExpressionEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLayerExpression__GetLayersStack() {
+		return layerExpressionEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getApplicationDependantElement() {
 		return applicationDependantElementEClass;
 	}
@@ -2767,6 +2785,8 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_PROPERTY);
 		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_VIEWS_COMPUTE_PROPERTY_VALUE_COMMAND__ELIST_PROPERTY);
 		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST);
+		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK);
+		createEOperation(layerExpressionEClass, LAYER_EXPRESSION___GET_LAYERS_STACK);
 
 		applicationDependantElementEClass = createEClass(APPLICATION_DEPENDANT_ELEMENT);
 		createEReference(applicationDependantElementEClass, APPLICATION_DEPENDANT_ELEMENT__APPLICATION);
@@ -3167,6 +3187,12 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		addEParameter(op, this.getProperty(), "property", 1, -1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getLayersException());
 
+		op = initEOperation(getLayerExpression__InitLayer__LayersStack(), null, "initLayer", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getLayersStack(), "owningLayersStack", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = initEOperation(getLayerExpression__GetLayersStack(), this.getLayersStack(), "getLayersStack", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEException(op, this.getNotFoundException());
+
 		initEClass(applicationDependantElementEClass, ApplicationDependantElement.class, "ApplicationDependantElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getApplicationDependantElement_Application(), this.getLayersStackApplication(), null, "application", null, 0, 1, ApplicationDependantElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
@@ -3560,7 +3586,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";			
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";					
 		addAnnotation
 		  (badStateExceptionEDataType, 
 		   source, 

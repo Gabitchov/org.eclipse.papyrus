@@ -595,6 +595,20 @@ Setting the value of this node set the value of the subnodes.</body>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cpKoIO7IEeK0p4PkXjd-_Q" value="*"/>
         </ownedParameter>
       </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Ps2L4GUaEeOlpfB_tZS-QA" name="initLayer">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_nC1a4GUaEeOlpfB_tZS-QA" annotatedElement="_Ps2L4GUaEeOlpfB_tZS-QA">
+          <body>Method called to specify that this Layer should be initialized for the specified LayerStack.&#xD;
+Init this Layer for the specified LayersStack.</body>
+        </ownedComment>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_cr5cQGUaEeOlpfB_tZS-QA" name="owningLayersStack" type="_gT0asNa7EeKPiuTfpuvqHA"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_kzSSwGUdEeOlpfB_tZS-QA" name="getLayersStack" raisedException="_k-dZENxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_04NH4GUdEeOlpfB_tZS-QA" annotatedElement="_kzSSwGUdEeOlpfB_tZS-QA">
+          <body>A checked version of getOwningLayersStack.&#xD;
+</body>
+        </ownedComment>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_r3jmwGUdEeOlpfB_tZS-QA" name="layersStack" type="_gT0asNa7EeKPiuTfpuvqHA" direction="return"/>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_HoKjcNjjEeKQqZMBCFd2Uw" name="LayerOperator" isAbstract="true">
       <generalization xmi:type="uml:Generalization" xmi:id="_OJCPcNjjEeKQqZMBCFd2Uw" general="_9IaAANjiEeKQqZMBCFd2Uw"/>

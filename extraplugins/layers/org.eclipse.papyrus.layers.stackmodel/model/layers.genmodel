@@ -88,6 +88,10 @@
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getPropertiesComputePropertyValueCommand/view"/>
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getPropertiesComputePropertyValueCommand/property"/>
       </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/initLayer">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/initLayer/owningLayersStack"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/getLayersStack"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//ApplicationDependantElement">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

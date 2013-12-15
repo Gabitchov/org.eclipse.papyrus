@@ -31,6 +31,9 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
+import org.eclipse.papyrus.layers.stackmodel.notifier.ILayersTreeEventListener;
+import org.eclipse.papyrus.layers.stackmodel.notifier.LayersTreeEventNotifier;
+import org.eclipse.papyrus.layers.stackmodel.notifier.LayersTreeEventNotifierFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -109,12 +112,54 @@ MinimalEObjectImpl.Container implements LayersStack {
 	protected Diagram diagram;
 
 	/**
+	 * Listener on layers tree events.
+	 * This listener take in charge the initialization of added layers.
+	 */
+	private ILayersTreeEventListener layersTreeEventListener = new ILayersTreeEventListener() {
+		
+		@Override
+		public void layerSet(Notification notification) {
+			LayersStackImpl.this.layerAdded( (LayerExpression)notification.getNewValue() );
+		}
+		
+		@Override
+		public void layerRemoved(Notification notification) {
+			// nothing to do
+			
+		}
+		
+		@Override
+		public void layerMoved(Notification notification) {
+			// nothing to do
+			
+		}
+		
+		@Override
+		public void layerAdded(Notification notification) {
+			LayersStackImpl.this.layerAdded( (LayerExpression)notification.getNewValue() );
+		}
+
+	};
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected LayersStackImpl() {
 		super();
+		init();
+	}
+
+	/**
+	 * Init this object.
+	 * Create a listener on tree events.
+	 */
+	private void init() {
+		
+		LayersTreeEventNotifier layersTreeEventnotifier = LayersTreeEventNotifierFactory.instance.adapt(this);
+		
+		layersTreeEventnotifier.addLayersModelEventListener(layersTreeEventListener);
 	}
 
 	/**
@@ -472,6 +517,19 @@ MinimalEObjectImpl.Container implements LayersStack {
 		result.append(description);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * A layer has been added to the layerTree.
+	 * Init this layer.
+	 * This method is called by the listener on layerTree events.
+	 * 
+	 * @param addedLayer The added layer.
+	 */
+	protected void layerAdded(LayerExpression addedLayer) {
+		// init the layer
+		addedLayer.initLayer(this);
+		
 	}
 
 } //LayersStackImpl

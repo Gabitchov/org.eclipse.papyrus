@@ -83,7 +83,7 @@ public class AttachDiagramViewsToLayer extends AbstractLayersCommand {
 			AbstractLayer layer = (AbstractLayer)getSelections(context).get(0);
 
 			// Get the diagram and the views
-			Diagram diagram = layer.getLayersStack().getDiagram();
+			Diagram diagram = layer.getOwningLayersStack().getDiagram();
 			
 
 			// Label and content providers

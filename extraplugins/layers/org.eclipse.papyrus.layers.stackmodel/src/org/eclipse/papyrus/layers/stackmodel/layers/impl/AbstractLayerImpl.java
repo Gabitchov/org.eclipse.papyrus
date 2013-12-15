@@ -780,13 +780,13 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 	 * @return
 	 * @throws NotFoundException
 	 */
-	@Override
-	public LayersStack getLayersStack() throws NotFoundException {
-		// TODO: performance improvment. It is possible to avoid the lookup 
-		// by caching the LayersStack, or by setting a corresponding property
-		// in the model
-		return (LayersStack)ECoreUtils.lookupAncestorOfType(this, LayersPackage.eINSTANCE.getLayersStack());
-	}
+//	@Override
+//	public LayersStack getLayersStack() throws NotFoundException {
+//		// TODO: performance improvment. It is possible to avoid the lookup 
+//		// by caching the LayersStack, or by setting a corresponding property
+//		// in the model
+//		return (LayersStack)ECoreUtils.lookupAncestorOfType(this, LayersPackage.eINSTANCE.getLayersStack());
+//	}
 	
 
 } //AbstractLayerImpl

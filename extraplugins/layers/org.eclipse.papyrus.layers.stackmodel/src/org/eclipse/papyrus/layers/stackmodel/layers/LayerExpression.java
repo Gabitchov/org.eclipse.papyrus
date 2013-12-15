@@ -16,6 +16,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
+import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand;
 
 
@@ -214,6 +215,30 @@ public interface LayerExpression extends ApplicationDependantElement {
 	 * @generated
 	 */
 	EList<ComputePropertyValueCommand> getPropertiesComputePropertyValueCommand(View view, EList<Property> property) throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Method called to specify that this Layer should be initialized for the specified LayerStack.
+	 * Init this Layer for the specified LayersStack.
+	 * <!-- end-model-doc -->
+	 * @model owningLayersStackRequired="true" owningLayersStackOrdered="false"
+	 * @generated
+	 */
+	void initLayer(LayersStack owningLayersStack);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A checked version of getOwningLayersStack.
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" required="true" ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.NotFoundException"
+	 * @generated
+	 */
+	LayersStack getLayersStack() throws NotFoundException;
 
 	/**
 	 * <!-- begin-user-doc -->
