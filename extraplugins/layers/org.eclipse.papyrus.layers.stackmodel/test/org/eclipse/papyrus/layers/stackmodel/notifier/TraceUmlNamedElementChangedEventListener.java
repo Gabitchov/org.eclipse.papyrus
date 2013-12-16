@@ -21,7 +21,7 @@ import org.eclipse.papyrus.layers.stackmodel.util.TriggeredEventTraces;
  * @author cedric dumoulin
  *
  */
-public class TraceDiagramViewChangedEventListener implements IDiagramViewEventListener {
+public class TraceUmlNamedElementChangedEventListener implements IUmlNamedElementChangedEventListener {
 
 	public TriggeredEventTraces<Notification> traces = new TriggeredEventTraces<Notification>();
 	
@@ -31,29 +31,10 @@ public class TraceDiagramViewChangedEventListener implements IDiagramViewEventLi
 	 * @param notification
 	 */
 	@Override
-	public void diagramViewAdded(Notification notification) {
-		traces.addTrace("diagramViewAdded", notification);
+	public void valueChanged(Notification notification) {
+		traces.addTrace("valueChanged", notification);
 		
 	}
 	
-	/**
-	 * @see org.eclipse.papyrus.layers.runtime.ILayersModelEventListener#layerAdded(org.eclipse.emf.common.notify.Notification)
-	 *
-	 * @param notification
-	 */
-	@Override
-	public void diagramViewRemoved(Notification notification) {
-		traces.addTrace("diagramViewRemoved", notification);
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.layers.runtime.ILayersModelEventListener#layerRemoved(org.eclipse.emf.common.notify.Notification)
-	 * This does not exist actually.
-	 * @param notification
-	 */
-	public void diagramViewMoved(Notification notification) {
-		traces.addTrace("diagramViewMoved", notification);
-	}
-
 
 }

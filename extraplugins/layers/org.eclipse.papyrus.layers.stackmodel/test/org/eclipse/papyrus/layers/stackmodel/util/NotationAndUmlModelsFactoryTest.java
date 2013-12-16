@@ -22,6 +22,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * 
@@ -116,5 +117,21 @@ public class NotationAndUmlModelsFactoryTest {
 		assertNull("lookupResult null after remove", lookupResult);
 		
 	}
+
+	/**
+	 * Test
+	 */
+	@Test
+	public void testNewProperty() {
+		NotationAndUmlModelsFactory factory = new NotationAndUmlModelsFactory();
+		
+		Diagram diagram1 =factory.newDiagram();
+		Class c1 = factory.newClass(diagram1, "C1");
+		Property p1 = factory.newProperty(c1, "p1");
+		
+		assertNotNull("property created", p1);
+		
+	}
+
 
 }

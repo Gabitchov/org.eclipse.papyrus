@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -75,6 +76,26 @@ public class NotationAndUmlModelsFactory {
 		return c;
 	}
 
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public Property newProperty( String name) {
+		Property c = UMLFactory.eINSTANCE.createProperty();
+		c.setName(name);
+		return c;
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public Property newProperty( Class c, String name) {
+		return c.createOwnedAttribute(name, null);
+	}
+	
 	/**
 	 * Lookup the View owning the specified {@link NamedElement}.
 	 * return null if not found.
