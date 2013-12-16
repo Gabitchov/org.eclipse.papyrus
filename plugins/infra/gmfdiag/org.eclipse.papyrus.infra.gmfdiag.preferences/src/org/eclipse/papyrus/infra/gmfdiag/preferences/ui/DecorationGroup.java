@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.preferences.ui;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Messages;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -70,16 +70,16 @@ public class DecorationGroup extends AbstractGroup {
 		decorationGroup.setLayout(new GridLayout());
 		decorationGroup.setText(Messages.DecorationGroup_Name);
 
-		shadowFiedEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.SHADOW), SHADOW_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
+		shadowFiedEditor = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.SHADOW), SHADOW_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
 		shadowFiedEditor.setPage(dialogPage);
 
 		addFieldEditor(shadowFiedEditor);
 
-		elementIcon = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.ELEMENTICON), ELEMENTICON_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
+		elementIcon = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.ELEMENTICON), ELEMENTICON_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
 		elementIcon.setPage(dialogPage);
 		addFieldEditor(elementIcon);
 
-		qualifiedname = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.QUALIFIEDNAME), QUALIFIEDNAME_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
+		qualifiedname = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.QUALIFIEDNAME), QUALIFIEDNAME_BOOLEANFIELDEDITOR_LABEL, decorationGroup);
 		qualifiedname.setPage(dialogPage);
 		addFieldEditor(qualifiedname);
 

@@ -41,8 +41,8 @@ public class BlockCompositeClassifierViewFactory extends ShapeViewFactory {
 			return;
 		}
 		// Get default size from preferences use set view size.
-		String preferenceConstantWitdh = org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(view, view.getType(), org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(view, view.getType(), org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.HEIGHT);
+		String preferenceConstantWitdh = org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(view, view.getType(), org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.WIDTH);
+		String preferenceConstantHeight = org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(view, view.getType(), org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.HEIGHT);
 		ViewUtil.setStructuralFeatureValue(view, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width(), store.getInt(preferenceConstantWitdh));
 		ViewUtil.setStructuralFeatureValue(view, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Height(), store.getInt(preferenceConstantHeight));
 	}

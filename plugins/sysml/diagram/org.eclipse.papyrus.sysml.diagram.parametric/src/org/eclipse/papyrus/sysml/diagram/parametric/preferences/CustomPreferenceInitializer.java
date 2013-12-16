@@ -7,14 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		Rï¿½gis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.Activator;
 import org.eclipse.papyrus.sysml.diagram.parametric.provider.ElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
@@ -66,8 +66,8 @@ public class CustomPreferenceInitializer extends ParametricDiagramPreferenceInit
 	protected void initDefaultPosition(String parentGraphicalType, String graphicalType, int x, int y) {
 		IPreferenceStore store = getPreferenceStore();
 
-		String xKey = PreferenceConstantHelper.getElementConstant(ElementTypes.DIAGRAM_ID + "_" + parentGraphicalType + "-" + graphicalType, PreferenceConstantHelper.LOCATION_X);
-		String yKey = PreferenceConstantHelper.getElementConstant(ElementTypes.DIAGRAM_ID + "_" + parentGraphicalType + "-" + graphicalType, PreferenceConstantHelper.LOCATION_Y);
+		String xKey = PreferencesConstantsHelper.getElementConstant(ElementTypes.DIAGRAM_ID + "_" + parentGraphicalType + "-" + graphicalType, PreferencesConstantsHelper.LOCATION_X);
+		String yKey = PreferencesConstantsHelper.getElementConstant(ElementTypes.DIAGRAM_ID + "_" + parentGraphicalType + "-" + graphicalType, PreferencesConstantsHelper.LOCATION_Y);
 
 		store.setDefault(xKey, x);
 		store.setDefault(yKey, y);
