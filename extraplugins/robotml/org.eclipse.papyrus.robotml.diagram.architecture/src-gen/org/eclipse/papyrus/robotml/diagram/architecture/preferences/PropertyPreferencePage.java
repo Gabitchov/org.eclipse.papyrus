@@ -13,7 +13,7 @@
 package org.eclipse.papyrus.robotml.diagram.architecture.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.robotml.diagram.architecture.edit.part.ArchitectureDiagramEditPart;
 
 public class PropertyPreferencePage extends ArchitectureDiagramNodePreferencePage {
@@ -33,7 +33,7 @@ public class PropertyPreferencePage extends ArchitectureDiagramNodePreferencePag
 	public static void initDefaults(IPreferenceStore store) {
 		// set the true value for the compartment visibility
 		for(String name : compartments) {
-			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			String preferenceName = PreferencesConstantsHelper.getCompartmentElementConstant(prefKey, name, PreferencesConstantsHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
 	}

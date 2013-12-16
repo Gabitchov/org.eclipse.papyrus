@@ -54,13 +54,13 @@ public class PropertyPreferencePage extends BlockDefinitionDiagramNodePreference
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
 
-		//		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		//		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(177, 207, 229));
+		//		PreferenceConverter.setDefault(store, PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		//		PreferenceConverter.setDefault(store, PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(177, 207, 229));
 
 		// Set the default for the gradient
-		//		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.GRADIENT_POLICY), false);
+		//		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.GRADIENT_POLICY), false);
 		//		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(177, 207, 229), 0, 0);
-		//		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+		//		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
 		// custom code
 		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY | DISP_UNDEFINED_TYPE);
