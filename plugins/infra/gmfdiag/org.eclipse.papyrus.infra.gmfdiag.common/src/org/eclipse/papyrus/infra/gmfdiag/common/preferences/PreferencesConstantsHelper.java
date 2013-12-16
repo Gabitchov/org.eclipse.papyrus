@@ -140,6 +140,7 @@ public class PreferencesConstantsHelper {
 
 	public final static String VIEW_PAGE_BREAK_CONSTANT = WorkspaceViewerProperties.VIEWPAGEBREAKS;
 
+	public final static String DRAW_CONNECTION_POINT_CONSTANT = "drawConnectionPoint"; //$NON-NLS-1$
 
 	/**
 	 * A preference of type COLOR FILL
@@ -307,6 +308,11 @@ public class PreferencesConstantsHelper {
 	 * A preference to view the page break on the diagram
 	 */
 	public static final int VIEW_PAGE_BREAK = GRID_LINE_STYLE + 1;
+	
+	/**
+	 * A preference to draw big point when 2 links have a common part
+	 */
+	public static final int DRAW_CONNECTION_POINT = VIEW_PAGE_BREAK +1;
 
 
 	/**
