@@ -15,6 +15,8 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.FillStyle;
@@ -23,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.snap.PapyrusDragEditPartsTrackerEx;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -169,5 +172,17 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 	 */
 	protected final void refreshShadow() {
 		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getDragTracker(org.eclipse.gef.Request)
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@Override
+	public DragTracker getDragTracker(final Request request) {
+		return new PapyrusDragEditPartsTrackerEx(this, true, false, false);
 	}
 }
