@@ -94,9 +94,6 @@ import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
-
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager, IAdaptable {
 
 	/**
@@ -502,8 +499,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	@Override
 	public void dispose() {
 		if(this.tableEditingDomain != null && this.contextEditingDomain != null) {
-			this.tableEditingDomain.getCommandStack().removeCommandStackListener(this.refreshListener);
-			this.contextEditingDomain.getCommandStack().removeCommandStackListener(this.refreshListener);
+			if(this.tableEditingDomain.getCommandStack() != null) {
+				this.tableEditingDomain.getCommandStack().removeCommandStackListener(this.refreshListener);
+			}
+			if(this.contextEditingDomain.getCommandStack() != null) {
+				this.contextEditingDomain.getCommandStack().removeCommandStackListener(this.refreshListener);
+			}
 			this.columnManager.dispose();
 			this.rowManager.dispose();
 			Table table = getTable();
