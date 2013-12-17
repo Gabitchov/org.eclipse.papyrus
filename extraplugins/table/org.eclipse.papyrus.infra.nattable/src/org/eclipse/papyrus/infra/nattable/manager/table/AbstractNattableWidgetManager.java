@@ -422,9 +422,15 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	@Override
 	public void dispose() {
-		this.bodyDataProvider.dispose();
-		this.rowHeaderDataProvider.dispose();
-		this.columnHeaderDataProvider.dispose();
+		if(this.bodyDataProvider != null) {
+			this.bodyDataProvider.dispose();
+		}
+		if(this.rowHeaderDataProvider != null) {
+			this.rowHeaderDataProvider.dispose();
+		}
+		if(this.columnHeaderDataProvider != null) {
+			this.columnHeaderDataProvider.dispose();
+		}
 		this.tableContext = null;
 	}
 
