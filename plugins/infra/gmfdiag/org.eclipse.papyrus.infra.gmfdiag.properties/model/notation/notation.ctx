@@ -685,8 +685,8 @@
   </dataContexts>
   <dataContexts name="decoratedElement" label="decoratedElement">
     <elements name="ShapeDecorableElement">
-      <properties name="shape_visibility" label="" type="Boolean" description="Boolean that indicates if the decorations should be visible or not"/>
-      <properties name="shape_direction" type="Reference" description="Direction where the decorations should be placed."/>
+      <properties name="shapeVisibility" label="" type="Boolean" description="Boolean that indicates if the decorations should be visible or not"/>
+      <properties name="shapeDirection" type="Reference" description="Direction where the decorations should be placed."/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@modelElementFactories.3"/>
   </dataContexts>
