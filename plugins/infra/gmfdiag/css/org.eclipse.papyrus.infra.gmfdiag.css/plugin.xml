@@ -75,4 +75,10 @@
           startKind="lazy">
     </service>
  </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.gmfdiag.common.svgPostProcessors">
+    <postProcessor
+          implementation="org.eclipse.papyrus.infra.gmfdiag.css.CssSvgPostProcessor">
+    </postProcessor>
+ </extension>
 </plugin>
