@@ -11,14 +11,6 @@
 		</factory>
 	</extension>
  <extension
-       point="org.eclipse.ui.contexts">
-    <context
-          description="A context used to indicate that the Papyrus CSS support is available"
-          id="Papyrus CSS"
-          name="Papyrus CSS context">
-    </context>
- </extension>
- <extension
        point="org.eclipse.papyrus.infra.emf.appearance.styleProvider">
     <styleprovider
           priority="40"
