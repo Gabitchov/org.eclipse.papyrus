@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 CEA LIST.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA; CEA LIST - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.infra.extendedtypes/src-gen" editDirectory="/org.eclipse.papyrus.infra.extendedtypes.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.infra.extendedtypes.editor/src-gen" modelPluginID="org.eclipse.papyrus.infra.extendedtypes"
+    modelName="InvariantContainerConfiguration" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ExtendedTypes.genmodel#//extendedtypes InvariantSemanticTypeConfiguration.genmodel#//invariantsemantictypeconfiguration ../../org.eclipse.emf.facet.infra.query/model/query.genmodel#//query ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>InvariantContainerConfiguration.ecore</foreignModel>
+  <genPackages prefix="InvariantContainerConfiguration" basePackage="org.eclipse.papyrus.infra.extendedtypes"
+      resource="XML" disposableProviderFactory="true" ecorePackage="InvariantContainerConfiguration.ecore#/">
+    <genClasses ecoreClass="InvariantContainerConfiguration.ecore#//InvariantContainerConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference InvariantContainerConfiguration.ecore#//InvariantContainerConfiguration/permissions"/>
+    </genClasses>
+    <genClasses ecoreClass="InvariantContainerConfiguration.ecore#//HierarchyPermission">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute InvariantContainerConfiguration.ecore#//HierarchyPermission/parentType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute InvariantContainerConfiguration.ecore#//HierarchyPermission/isPermitted"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute InvariantContainerConfiguration.ecore#//HierarchyPermission/directContainerLevelOnly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute InvariantContainerConfiguration.ecore#//HierarchyPermission/isStrict"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
