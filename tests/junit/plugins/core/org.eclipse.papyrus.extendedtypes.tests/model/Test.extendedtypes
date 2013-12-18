@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extendedtypes:ExtendedElementTypeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extendedtypes="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0" xmlns:invariantcontainerconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0" xmlns:invariantsemantictypeconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0" xmlns:invariantstereotypeconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/stereotype/1.0" name="Tests extended types" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.tests">
+  <elementType xsi:type="invariantsemantictypeconfiguration:InvariantSemanticTypeConfiguration" name="Component in specific package only" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.specificcomponent">
+    <iconEntry iconPath="icons/full/obj16/add_obj.gif" bundleId="org.eclipse.ui"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
+    <invariantRuleConfiguration xsi:type="invariantcontainerconfiguration:InvariantContainerConfiguration">
+      <permissions childType="org.eclipse.papyrus.uml.Package"/>
+      <permissions childType="org.eclipse.papyrus.infra.extendedtypes.tests.packagewithcomponentsonly" isPermitted="true" isStrict="true"/>
+    </invariantRuleConfiguration>
+  </elementType>
+  <elementType xsi:type="invariantsemantictypeconfiguration:InvariantSemanticTypeConfiguration" name="PackageWithComponentsOnly" description="Package that can contain only components" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.packagewithcomponentsonly">
+    <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
+    <invariantRuleConfiguration xsi:type="invariantstereotypeconfiguration:InvariantStereotypeConfiguration" stereotypeQualifiedName="ExtendedTypesTestsProfile::PackageWithComponents"/>
+  </elementType>
+</extendedtypes:ExtendedElementTypeSet>

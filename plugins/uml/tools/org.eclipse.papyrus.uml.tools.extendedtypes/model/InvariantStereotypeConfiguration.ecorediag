@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_oukREFguEeOZc_L6ctfnzA" type="EcoreTools" name="InvariantStereotypeConfiguration" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_4F8qwFguEeOZc_L6ctfnzA" type="1001">
+    <children xmi:type="notation:Node" xmi:id="_4F_uEFguEeOZc_L6ctfnzA" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_4GAVIFguEeOZc_L6ctfnzA" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_8KMjUFguEeOZc_L6ctfnzA" type="2001">
+        <element xmi:type="ecore:EAttribute" href="InvariantStereotypeConfiguration.ecore#//InvariantStereotypeConfiguration/stereotypeQualifiedName"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_8KMjUVguEeOZc_L6ctfnzA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_VdH5YGQSEeOl5OaKZvi8pw" type="2001">
+        <element xmi:type="ecore:EAttribute" href="InvariantStereotypeConfiguration.ecore#//InvariantStereotypeConfiguration/requiredProfile"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_VdH5YWQSEeOl5OaKZvi8pw"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_4GAVIVguEeOZc_L6ctfnzA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_4GAVIlguEeOZc_L6ctfnzA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_4GAVI1guEeOZc_L6ctfnzA"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_4GA8MFguEeOZc_L6ctfnzA" type="5002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_4GA8MVguEeOZc_L6ctfnzA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_4GA8MlguEeOZc_L6ctfnzA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_4GA8M1guEeOZc_L6ctfnzA"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_4F8qwVguEeOZc_L6ctfnzA" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="InvariantStereotypeConfiguration.ecore#//InvariantStereotypeConfiguration"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4F8qwlguEeOZc_L6ctfnzA" x="260" y="355" width="281" height="121"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_4a9FYGM6EeOMru3CBHS08Q" type="1001">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_4fcj0GM6EeOMru3CBHS08Q" source="Shortcut">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_4fcj0WM6EeOMru3CBHS08Q" key="modelID" value="EcoreTools"/>
+    </eAnnotations>
+    <children xmi:type="notation:Node" xmi:id="_4bAIsGM6EeOMru3CBHS08Q" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_4bAvwGM6EeOMru3CBHS08Q" type="5001">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_4bAvwWM6EeOMru3CBHS08Q"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_4bAvwmM6EeOMru3CBHS08Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_4bAvw2M6EeOMru3CBHS08Q"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_4bBW0GM6EeOMru3CBHS08Q" type="5002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_4bBW0WM6EeOMru3CBHS08Q"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_4bBW0mM6EeOMru3CBHS08Q"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_4bBW02M6EeOMru3CBHS08Q"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_4a9FYWM6EeOMru3CBHS08Q" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="platform:/resource/org.eclipse.papyrus.infra.extendedtypes/model/InvariantSemanticTypeConfiguration.ecore#//InvariantRuleConfiguration"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4a9FYmM6EeOMru3CBHS08Q" x="260" y="130" width="283"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_oukREVguEeOZc_L6ctfnzA"/>
+  <element xmi:type="ecore:EPackage" href="InvariantStereotypeConfiguration.ecore#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_6U9T8GM6EeOMru3CBHS08Q" type="3003" source="_4F8qwFguEeOZc_L6ctfnzA" target="_4a9FYGM6EeOMru3CBHS08Q">
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_6U9T8WM6EeOMru3CBHS08Q" routing="Rectilinear" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_6U9T8mM6EeOMru3CBHS08Q" fontName="Segoe UI"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_6U9T82M6EeOMru3CBHS08Q" points="[18, -13, -15, 196]$[18, -180, -15, 29]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_6VAXQGM6EeOMru3CBHS08Q" id="(0.38434163701067614,0.11570247933884298)"/>
+  </edges>
+</notation:Diagram>
