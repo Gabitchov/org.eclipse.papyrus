@@ -34,7 +34,7 @@ import org.w3c.dom.Element;
 public class WorkspaceCSSEngine extends ExtendedCSSEngineImpl {
 
 	private WorkspaceCSSEngine() {
-		super(BaseCSSEngine.instance);
+		super(BaseCSSEngine.INSTANCE);
 	}
 
 	public static ExtendedCSSEngine instance = new WorkspaceCSSEngine();

@@ -655,19 +655,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			if (referencePoint == null) {
 				referencePoint = getHostFigure().getBounds().getCenter();
 			}
-			// Point position = getHostFigure().getBounds().getBottomLeft();
-			// Point position = new Point();
-			// getHostFigure().translateToAbsolute(position);
-			// EditPartViewer viewer = getHost().getRoot().getViewer();
-			// Viewport viewport = null;
-			// if(viewer instanceof DiagramGraphicalViewer) {
-			// viewport =
-			// ((FigureCanvas)((DiagramGraphicalViewer)viewer).getControl()).getViewport();
-			// }
-			// if(viewport != null) {
-			// position.x = referencePoint.x + viewport.getClientArea().x;
-			// position.y = referencePoint.y + viewport.getClientArea().y;
-			// }
+
 			getHostFigure().translateToAbsolute(position);
 			getFigureBar().translateToRelative(position);
 			
@@ -680,10 +668,6 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			getFigureBar().setLocation(position);
 			getFigureBar().setBackgroundColor(ColorConstants.white);
 			getFigureBar().setForegroundColor(ColorConstants.orange);
-
-			System.out.println("ReferencePoint: " + referencePoint);
-			// System.out.println("ClientArea: "+viewport.getClientArea());
-			System.out.println("Result: " + position);
 
 			// dismiss the popup bar after a delay
 			if (!shouldAvoidHidingDiagramAssistant()) {
