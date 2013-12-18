@@ -94,6 +94,9 @@ import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager, IAdaptable {
 
 	/**
