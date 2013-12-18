@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		Rï¿½gis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -18,7 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.provider.ElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
@@ -55,7 +55,7 @@ public class DependencyPreferencePage extends ParametricDiagramLinkPreferencePag
 		
 		// Initialize default visibility for labels in preference page.
 		for(String labelName : labelDefaultVisibilityMap.keySet()) {
-			String showLabelKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, labelName, PreferenceConstantHelper.LABEL_VISIBILITY);
+			String showLabelKey = PreferencesConstantsHelper.getCompartmentElementConstant(prefKey, labelName, PreferencesConstantsHelper.LABEL_VISIBILITY);
 			store.setDefault(showLabelKey, labelDefaultVisibilityMap.get(labelName));
 		}
 	}

@@ -1,17 +1,21 @@
-/****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *  
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Thibault Landre (Atos Origin) - Initial API and implementation
- *      Lorenzo Vincent (CEA LIST) - Add Compartment Visibility
- *      Vincent Lorenzo (CEA-LIst) -  bug 335989: [Preferences] [Enhancement] Add a group for labels in each Connection Preference Page
+ *		
+ *		CEA LIST - Initial API and implementation
+ *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.preferences.utils;
+package org.eclipse.papyrus.infra.gmfdiag.common.preferences;
+
+import org.eclipse.gmf.runtime.diagram.ui.internal.properties.WorkspaceViewerProperties;
+
+
 
 /**
  * <p>
@@ -40,7 +44,8 @@ package org.eclipse.papyrus.infra.gmfdiag.preferences.utils;
  * </p>
  * 
  */
-public class PreferenceConstantHelper {
+@SuppressWarnings("restriction")
+public class PreferencesConstantsHelper {
 
 	/**
 	 * Prefix for preference for Papyrus Level editor
@@ -81,7 +86,7 @@ public class PreferenceConstantHelper {
 
 	private final static String GRADIENT_POLICY_CONSTANT = GRADIENT + POLICY;
 
-	private final static String JUMPLINK_STATUS_CONSTANT = JUMPLINK + "status"; //$NON-NLS-1$
+	private final static String JUMPLINK_STATUS_CONSTANT = JUMPLINK + "status"; //$NON-NLS-1$ 
 
 	private final static String JUMPLINK_REVERSE_CONSTANT = JUMPLINK + "reverse"; //$NON-NLS-1$
 
@@ -114,6 +119,28 @@ public class PreferenceConstantHelper {
 	private final static String LOCATION_X_CONSTANT = "location_x";//$NON-NLS-1$
 
 	private final static String LOCATION_Y_CONSTANT = "location_y"; //$NON-NLS-1$
+
+	public final static String VIEW_RULERS_CONSTANT = WorkspaceViewerProperties.VIEWRULERS;
+
+	public final static String VIEW_GRID_CONSTANT = WorkspaceViewerProperties.VIEWGRID;
+
+	public final static String RULER_UNITS_CONSTANT = WorkspaceViewerProperties.RULERUNIT;
+
+	public final static String SNAP_TO_GRID_CONSTANT = WorkspaceViewerProperties.SNAPTOGRID;
+
+	public final static String SNAP_TO_GEOMETRY_CONSTANT = WorkspaceViewerProperties.SNAPTOGEOMETRY;
+
+	public final static String GRID_LINE_COLOR_CONSTANT = WorkspaceViewerProperties.GRIDLINECOLOR;
+
+	public final static String GRID_SPACING_CONSTANT = WorkspaceViewerProperties.GRIDSPACING;
+
+	public final static String GRID_ORDER_CONSTANT = WorkspaceViewerProperties.GRIDORDER;
+
+	public final static String GRID_LINE_STYLE_CONSTANT = WorkspaceViewerProperties.GRIDLINESTYLE;
+
+	public final static String VIEW_PAGE_BREAK_CONSTANT = WorkspaceViewerProperties.VIEWPAGEBREAKS;
+
+	public final static String DRAW_CONNECTION_POINT_CONSTANT = "drawConnectionPoint"; //$NON-NLS-1$
 
 	/**
 	 * A preference of type COLOR FILL
@@ -230,6 +257,63 @@ public class PreferenceConstantHelper {
 	 */
 	public static final int LOCATION_Y = LOCATION_X + 1;
 
+	/**
+	 * A preference to diplay or not the rulers
+	 */
+	public static final int VIEW_RULER = LOCATION_Y + 1;
+
+	/**
+	 * A preference to diplay or not the grid
+	 */
+
+	public static final int VIEW_GRID = VIEW_RULER + 1;
+
+	/**
+	 * A preference to change the ruler unit
+	 */
+
+	public static final int RULER_UNITS = VIEW_GRID + 1;
+
+	/**
+	 * A preference to snap the created element to the grid
+	 */
+	public static final int SNAP_TO_GRID = RULER_UNITS + 1;
+
+	/**
+	 * A preference to snap the created element to the shape
+	 */
+	public static final int SNAP_TO_GEOMETRY = SNAP_TO_GRID + 1;
+
+	/**
+	 * A preference to change the grid color
+	 */
+	public static final int GRID_LINE_COLOR = SNAP_TO_GEOMETRY + 1;
+
+	/**
+	 * A preference to change the grid spacing
+	 */
+	public static final int GRID_SPACING = GRID_LINE_COLOR + 1;
+
+	/**
+	 * A preference to change the Z order of the Grid
+	 */
+	public static final int GRID_ORDER = GRID_SPACING + 1;
+
+	/**
+	 * A preference to change the style of the grid
+	 */
+	public static final int GRID_LINE_STYLE = GRID_ORDER + 1;
+
+	/**
+	 * A preference to view the page break on the diagram
+	 */
+	public static final int VIEW_PAGE_BREAK = GRID_LINE_STYLE + 1;
+	
+	/**
+	 * A preference to draw big point when 2 links have a common part
+	 */
+	public static final int DRAW_CONNECTION_POINT = VIEW_PAGE_BREAK +1;
+
 
 	/**
 	 * Get the preference constant used to store the preference of an element.
@@ -314,6 +398,36 @@ public class PreferenceConstantHelper {
 			break;
 		case LOCATION_Y:
 			sb.append(LOCATION_Y_CONSTANT);
+			break;
+		case VIEW_RULER:
+			sb.append(VIEW_RULERS_CONSTANT);
+			break;
+		case VIEW_GRID:
+			sb.append(VIEW_GRID_CONSTANT);
+			break;
+		case RULER_UNITS:
+			sb.append(RULER_UNITS_CONSTANT);
+			break;
+		case SNAP_TO_GRID:
+			sb.append(SNAP_TO_GRID_CONSTANT);
+			break;
+		case SNAP_TO_GEOMETRY:
+			sb.append(SNAP_TO_GEOMETRY_CONSTANT);
+			break;
+		case GRID_LINE_COLOR:
+			sb.append(GRID_LINE_COLOR_CONSTANT);
+			break;
+		case GRID_SPACING:
+			sb.append(GRID_SPACING_CONSTANT);
+			break;
+		case GRID_ORDER:
+			sb.append(GRID_ORDER_CONSTANT);
+			break;
+		case GRID_LINE_STYLE:
+			sb.append(GRID_LINE_STYLE_CONSTANT);
+			break;
+		case VIEW_PAGE_BREAK:
+			sb.append(VIEW_PAGE_BREAK_CONSTANT);
 			break;
 		default:
 			break;

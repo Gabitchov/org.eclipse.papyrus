@@ -179,6 +179,11 @@
       <widget href="ui/SingleDecorableElement.xwt#/"/>
     </sections>
   </tabs>
+  <tabs label="Rulers And Grid" id="rulersAndGrid" category="org.eclipse.papyrus" afterTab="//@tabs.0" priority="75">
+    <sections name="Single RulersAndGrid" sectionFile="ui/SingleRulersAndGrid.xwt">
+      <widget href="ui/SingleRulersAndGrid.xwt#/"/>
+    </sections>
+  </tabs>
   <views name="Single Diagram" sections="//@tabs.0/@sections.12" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleDiagram">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
@@ -385,6 +390,12 @@
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="SemanticListCompartment"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+    </constraints>
+  </views>
+  <views name="Single RulersAndGrid" sections="//@tabs.1/@sections.0" datacontexts="//@dataContexts.2">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleDiagramEditorConstraint" overrideable="false">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+      <properties xsi:type="constraints:ValueProperty" name="className" value="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.IsSingleDiagramEditorConstraint"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple Edge" sections="//@tabs.0/@sections.29" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
@@ -678,5 +689,21 @@
       <properties name="shapeDirection" type="Reference" description="Direction where the decorations should be placed."/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@modelElementFactories.3"/>
+  </dataContexts>
+  <dataContexts name="rulersAndGrid" label="rulersAndGrid">
+    <elements name="grid">
+      <properties name="grid.isDisplayingGrid" label="Show Grid" type="Boolean" description=""/>
+      <properties name="grid.isInFront" label="Grid In Front" type="Boolean" description=""/>
+      <properties name="grid.color" label="Color"/>
+      <properties name="grid.style" label="Style" type="Enumeration"/>
+      <properties name="grid.spacing" label="Grid Spacing"/>
+      <properties name="grid.isSnapToGrid" label="Snap To Grid"/>
+      <properties name="grid.isSnapToShapes" label="Snap To Shapes"/>
+    </elements>
+    <elements name="rulers">
+      <properties name="rulers.isDisplayingRulers" label="Show Ruler" type="Boolean"/>
+      <properties name="rulers.units" label="Ruler Units"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@modelElementFactories.4"/>
   </dataContexts>
 </contexts:Context>

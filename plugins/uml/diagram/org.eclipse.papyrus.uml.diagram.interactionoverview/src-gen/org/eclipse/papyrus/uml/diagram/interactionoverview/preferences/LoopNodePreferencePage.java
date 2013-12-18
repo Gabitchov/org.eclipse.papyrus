@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.provider.ElementTypes;
 
 public class LoopNodePreferencePage extends InteractionOverviewDiagramNodePreferencePage {
@@ -62,14 +62,14 @@ public class LoopNodePreferencePage extends InteractionOverviewDiagramNodePrefer
 
 		// Initialize default visibility for compartments in preference page.
 		for(final String compartmentName : compartmentDefaultVisibilityMap.keySet()) {
-			final String showCompartmentKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			final String showCompartmentKey = PreferencesConstantsHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferencesConstantsHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(showCompartmentKey, compartmentDefaultVisibilityMap.get(compartmentName));
 		}
 
 		// Initialize default title visibility for compartments in preference
 		// page.
 		for(final String compartmentName : compartmentTitleDefaultVisibilityMap.keySet()) {
-			final String showCompartmentTitleKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			final String showCompartmentTitleKey = PreferencesConstantsHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferencesConstantsHelper.COMPARTMENT_NAME_VISIBILITY);
 			store.setDefault(showCompartmentTitleKey, compartmentTitleDefaultVisibilityMap.get(compartmentName));
 		}
 	}

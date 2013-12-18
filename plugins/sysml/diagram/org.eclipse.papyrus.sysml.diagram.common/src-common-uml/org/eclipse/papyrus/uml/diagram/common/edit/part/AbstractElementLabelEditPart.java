@@ -71,7 +71,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextSelectionEditPolic
 import org.eclipse.papyrus.gmf.diagram.common.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
@@ -644,8 +644,8 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 		// Use default view position as snap back position
 		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
 
-		String xKey = PreferenceConstantHelper.getElementConstant(getLabelPreferenceKey(), PreferenceConstantHelper.LOCATION_X);
-		String yKey = PreferenceConstantHelper.getElementConstant(getLabelPreferenceKey(), PreferenceConstantHelper.LOCATION_Y);
+		String xKey = PreferencesConstantsHelper.getElementConstant(getLabelPreferenceKey(), PreferencesConstantsHelper.LOCATION_X);
+		String yKey = PreferencesConstantsHelper.getElementConstant(getLabelPreferenceKey(), PreferencesConstantsHelper.LOCATION_Y);
 
 		Point snapBackPosition = new Point(store.getInt(xKey), store.getInt(yKey));
 

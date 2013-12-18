@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.extra.uml.diagram.css.feature"
+      id="org.eclipse.papyrus.uml.diagram.css.feature"
       label="Papyrus CSS UML Feature (Incubation)"
       version="1.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
@@ -19,7 +19,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <requires>
-      <import feature="org.eclipse.papyrus.extra.infra.gmfdiag.css.feature" version="0.10.1.qualifier"/>
+      <import feature="org.eclipse.papyrus.infra.gmfdiag.css.feature" version="0.10.1.qualifier"/>
    </requires>
 
    <plugin

@@ -18,8 +18,8 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.IScopeContext;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.dialog.ApplyValueOnPreferenceKeyDialog;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 
 /**
  * this class is a specific store that is used to look for value of element
@@ -44,14 +44,14 @@ public class PapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 		try {
 			for(int i = 0; i < getStorePreferences().keys().length; i++) {
 				//level diagram collect only element
-				if(level.startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
-					if(getStorePreferences().keys()[i].startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
+				if(level.startsWith(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+					if(getStorePreferences().keys()[i].startsWith(PreferencesConstantsHelper.DIAGRAM_ELEMENT)) {
 						elementKey.add(getStorePreferences().keys()[i]);
 					}
 				}
 				//editor level, collect all element+diagram
-				else if(level.startsWith(PreferenceConstantHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX)) {
-					if((getStorePreferences().keys()[i].startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) || (getStorePreferences().keys()[i].startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX))) {
+				else if(level.startsWith(PreferencesConstantsHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX)) {
+					if((getStorePreferences().keys()[i].startsWith(PreferencesConstantsHelper.DIAGRAM_ELEMENT)) || (getStorePreferences().keys()[i].startsWith(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX))) {
 						elementKey.add(getStorePreferences().keys()[i]);
 					}
 				}
@@ -194,19 +194,19 @@ public class PapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 	protected String getUpperKey(String initialKey) {
 
 		String out = initialKey.toString();
-		if(initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT)) {
-			out = initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_ELEMENT, PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX);
+		if(initialKey.startsWith(PreferencesConstantsHelper.DIAGRAM_ELEMENT)) {
+			out = initialKey.toString().replaceAll(PreferencesConstantsHelper.DIAGRAM_ELEMENT, PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX);
 			out = out.substring(0, out.lastIndexOf("_")) + out.substring(out.indexOf("."), out.length());
 		}
-		if(initialKey.startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
-			//	out=initialKey.toString().replaceAll(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX, PreferenceConstantHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX);
-			out = PreferenceConstantHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX + out.substring(out.indexOf("."), out.length());
+		if(initialKey.startsWith(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+			//	out=initialKey.toString().replaceAll(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX, PreferencesConstantsHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX);
+			out = PreferencesConstantsHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX + out.substring(out.indexOf("."), out.length());
 		}
 		return out;
 	}
 
 	protected boolean hasPrefix(String key) {
-		if(key.startsWith(PreferenceConstantHelper.DIAGRAM_ELEMENT) || key.startsWith(PreferenceConstantHelper.DIAGRAM_PREFERENCE_PREFIX)) {
+		if(key.startsWith(PreferencesConstantsHelper.DIAGRAM_ELEMENT) || key.startsWith(PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX)) {
 			return true;
 		}
 		return false;

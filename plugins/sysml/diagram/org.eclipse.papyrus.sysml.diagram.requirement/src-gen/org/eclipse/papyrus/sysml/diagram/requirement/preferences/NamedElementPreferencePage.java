@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.sysml.diagram.requirement.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
 
 public class NamedElementPreferencePage extends RequirementDiagramNodePreferencePage {
@@ -40,8 +40,8 @@ public class NamedElementPreferencePage extends RequirementDiagramNodePreference
 		// Start of user code custom default initializations
 		// End of user code
 
-		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 100);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 50);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.WIDTH), 100);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.HEIGHT), 50);
 	}
 
 

@@ -19,10 +19,10 @@ import java.util.TreeMap;
 
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.CLabelBooleanFieldEditor;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
@@ -72,7 +72,7 @@ public class LabelGroup extends AbstractGroup {
 		group.setLayout(new GridLayout());
 		group.setText(Messages.LabelGroup_Labels_To_Display);
 		for(String role : myRoles.keySet()) {
-			String key = PreferenceConstantHelper.getLabelElementConstant(getKey(), role, PreferenceConstantHelper.LABEL_VISIBILITY);
+			String key = PreferencesConstantsHelper.getLabelElementConstant(getKey(), role, PreferencesConstantsHelper.LABEL_VISIBILITY);
 			Image im = null;
 			String iconPath = myRoles.get(role);
 			if(iconPath != null && iconPath != "") { //$NON-NLS-1$

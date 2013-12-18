@@ -19,7 +19,7 @@ import java.util.Set;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.FieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -92,12 +92,12 @@ public abstract class AbstractGroup extends Composite {
 	 * Get the specified preference type associated with this preference page.
 	 * 
 	 * @param preferenceType
-	 *        an int representing the preference type to retrieve. It must be a value defined in {@link PreferenceConstantHelper}
+	 *        an int representing the preference type to retrieve. It must be a value defined in {@link PreferencesConstantsHelper}
 	 * 
 	 * @return the preference constant used to store the given preference type.
 	 */
 	protected String getPreferenceConstant(int preferenceType) {
-		return PreferenceConstantHelper.getElementConstant(key, preferenceType);
+		return PreferencesConstantsHelper.getElementConstant(key, preferenceType);
 	}
 
 	/**

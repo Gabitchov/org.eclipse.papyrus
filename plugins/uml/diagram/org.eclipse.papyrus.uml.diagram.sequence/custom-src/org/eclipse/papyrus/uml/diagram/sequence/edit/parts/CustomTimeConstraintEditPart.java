@@ -149,8 +149,8 @@ public class CustomTimeConstraintEditPart extends TimeConstraintEditPart {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(TimeConstraintFigure.TIME_MARK_LENGTH, 1);
 		//String prefElementId = "TimeConstraint";
 		//IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
+		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
 		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());

@@ -19,7 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.requirement.provider.ElementTypes;
 
 public class PackageImportPreferencePage extends RequirementDiagramLinkPreferencePage {
@@ -58,7 +58,7 @@ public class PackageImportPreferencePage extends RequirementDiagramLinkPreferenc
 		// End of user code
 
 		for(String labelName : labelDefaultVisibilityMap.keySet()) {
-			String showLabelKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, labelName, PreferenceConstantHelper.LABEL_VISIBILITY);
+			String showLabelKey = PreferencesConstantsHelper.getCompartmentElementConstant(prefKey, labelName, PreferencesConstantsHelper.LABEL_VISIBILITY);
 			store.setDefault(showLabelKey, labelDefaultVisibilityMap.get(labelName));
 		}
 	}

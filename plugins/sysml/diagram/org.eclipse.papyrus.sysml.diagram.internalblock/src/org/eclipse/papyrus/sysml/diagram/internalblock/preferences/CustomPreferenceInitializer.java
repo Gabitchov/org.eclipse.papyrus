@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
@@ -69,8 +69,8 @@ public class CustomPreferenceInitializer extends InternalBlockDiagramPreferenceI
 	protected void initDefaultPosition(String parentGraphicalType, String graphicalType, int x, int y) {
 		IPreferenceStore store = getPreferenceStore();
 
-		String xKey = PreferenceConstantHelper.getElementConstant(ElementTypes.DIAGRAM_ID + "_" + parentGraphicalType + "-" + graphicalType, PreferenceConstantHelper.LOCATION_X);
-		String yKey = PreferenceConstantHelper.getElementConstant(ElementTypes.DIAGRAM_ID + "_" + parentGraphicalType + "-" + graphicalType, PreferenceConstantHelper.LOCATION_Y);
+		String xKey = PreferencesConstantsHelper.getElementConstant(ElementTypes.DIAGRAM_ID + "_" + parentGraphicalType + "-" + graphicalType, PreferencesConstantsHelper.LOCATION_X);
+		String yKey = PreferencesConstantsHelper.getElementConstant(ElementTypes.DIAGRAM_ID + "_" + parentGraphicalType + "-" + graphicalType, PreferencesConstantsHelper.LOCATION_Y);
 
 		store.setDefault(xKey, x);
 		store.setDefault(yKey, y);
