@@ -222,25 +222,19 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 
 		//set the preferences
 		final IPreferenceStore localStore = getWorkspaceViewerPreferenceStore();
-		//		localStore.setValue(PreferencesConstantsHelper.SHOW_GRID_CONSTANT, viewGrid);
-		//		localStore.setValue(PreferencesConstantsHelper.SHOW_RULER_CONSTANT, viewRuler);
-		//		localStore.setValue(PreferencesConstantsHelper.RULER_UNITS_CONSTANT, rulerUnit);
-		//		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, snapToGrid);
-		//		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_SHAPE_CONSTANT, snapToGeometry);
-		//		localStore.setValue(PreferencesConstantsHelper.GRID_COLOR_CONSTANT, gridLineColor);
-		//		localStore.setValue(PreferencesConstantsHelper.GRID_SPACING_CONSTANT, gridSpacing);
-		//		localStore.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, gridOrder);
-		//		localStore.setValue(PreferencesConstantsHelper.GRID_STYLE_CONSTANT, gridLineStyle);
-
-		localStore.setDefault(PreferencesConstantsHelper.VIEW_GRID_CONSTANT, viewGrid);
-		localStore.setDefault(PreferencesConstantsHelper.VIEW_RULERS_CONSTANT, viewRuler);
-		localStore.setDefault(PreferencesConstantsHelper.RULER_UNITS_CONSTANT, rulerUnit);
-		localStore.setDefault(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, snapToGrid);
-		localStore.setDefault(PreferencesConstantsHelper.SNAP_TO_GEOMETRY_CONSTANT, snapToGeometry);
-		localStore.setDefault(PreferencesConstantsHelper.GRID_LINE_COLOR_CONSTANT, gridLineColor);
-		localStore.setDefault(PreferencesConstantsHelper.GRID_SPACING_CONSTANT, gridSpacing);
-		localStore.setDefault(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, gridOrder);
-		localStore.setDefault(PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT, gridLineStyle);
+		localStore.setValue(PreferencesConstantsHelper.VIEW_GRID_CONSTANT, viewGrid);
+		localStore.setValue(PreferencesConstantsHelper.VIEW_RULERS_CONSTANT, viewRuler);
+		localStore.setValue(PreferencesConstantsHelper.RULER_UNITS_CONSTANT, rulerUnit);
+		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, snapToGrid);
+		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_GEOMETRY_CONSTANT, snapToGeometry);
+		localStore.setValue(PreferencesConstantsHelper.GRID_LINE_COLOR_CONSTANT, gridLineColor);
+		localStore.setValue(PreferencesConstantsHelper.GRID_SPACING_CONSTANT, gridSpacing);
+		
+		//to force refresh
+		localStore.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, !gridOrder);
+		localStore.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, gridOrder);
+		
+		localStore.setValue(PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT, gridLineStyle);
 
 	}
 

@@ -14,15 +14,22 @@
 package org.eclipse.papyrus.infra.gmfdiag.properties.widget;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.messages.Messages;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -80,11 +87,9 @@ public class DiagramPreferencesDefaultButton extends Composite {
 		return input;
 	}
 
-
 	/**
 	 * 
-	 * @return
-	 *         the listener to use for the button
+	 * @return the listener to use for the button
 	 */
 	private SelectionListener createListener() {
 		final SelectionListener listener = new SelectionListener() {
@@ -94,7 +99,7 @@ public class DiagramPreferencesDefaultButton extends Composite {
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				//nothing to do
+				// nothing to do
 			}
 		};
 		return listener;
@@ -116,36 +121,28 @@ public class DiagramPreferencesDefaultButton extends Composite {
 	 * Reset the properties to their default values
 	 */
 	protected void resetProperties() {
-		final IPreferenceStore store = getPreferencesStore();
-		if(store != null) {
-			store.setValue(PreferencesConstantsHelper.VIEW_GRID_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.VIEW_GRID_CONSTANT));
-			store.setValue(PreferencesConstantsHelper.VIEW_RULERS_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.VIEW_RULERS_CONSTANT));
-			store.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.GRID_ORDER_CONSTANT));
-			store.setValue(PreferencesConstantsHelper.GRID_LINE_COLOR_CONSTANT, store.getDefaultInt(PreferencesConstantsHelper.GRID_LINE_COLOR_CONSTANT));
-			store.setValue(PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT));
-			store.setValue(PreferencesConstantsHelper.GRID_SPACING_CONSTANT, store.getDefaultDouble(PreferencesConstantsHelper.GRID_SPACING_CONSTANT));
-			store.setValue(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT));
-			store.setValue(PreferencesConstantsHelper.SNAP_TO_GEOMETRY_CONSTANT, store.getDefaultBoolean(PreferencesConstantsHelper.SNAP_TO_GEOMETRY_CONSTANT));
-			store.setValue(PreferencesConstantsHelper.RULER_UNITS_CONSTANT, store.getDefaultInt(PreferencesConstantsHelper.RULER_UNITS_CONSTANT));
 
-			//doesn't work (ClassCastException due to GMF)
-			//			store.setToDefault(PreferencesConstantsHelper.SHOW_GRID_CONSTANT);
-			//			store.setToDefault(PreferencesConstantsHelper.SHOW_RULER_CONSTANT);
-			//			store.setToDefault(PreferencesConstantsHelper.GRID_ORDER_CONSTANT);
-			//			store.setToDefault(PreferencesConstantsHelper.GRID_COLOR_CONSTANT);
-			//			store.setToDefault(PreferencesConstantsHelper.GRID_STYLE_CONSTANT);
-			//			store.setToDefault(PreferencesConstantsHelper.GRID_SPACING_CONSTANT);
-			//			store.setToDefault(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT);
-			//			store.setToDefault(PreferencesConstantsHelper.SNAP_TO_SHAPE_CONSTANT);
-			//			store.setToDefault(PreferencesConstantsHelper.RULER_UNITS_CONSTANT);
+		final IPreferenceStore store = getPreferencesStore();
+		final IPreferenceStore globalPreferenceStore = Activator.getDefault().getPreferenceStore();
+		final String diagramType = getDiagramType();
+		if(store != null && diagramType != null && !diagramType.equals("")) { //$NON-NLS-1$
+			store.setValue(PreferencesConstantsHelper.VIEW_GRID_CONSTANT, globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.VIEW_GRID)));
+			store.setValue(PreferencesConstantsHelper.VIEW_RULERS_CONSTANT, globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.VIEW_RULER)));
+			store.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_ORDER)));
+
+			final RGB gridColor = PreferenceConverter.getColor(globalPreferenceStore, PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_LINE_COLOR));
+			store.setValue(PreferencesConstantsHelper.GRID_LINE_COLOR_CONSTANT, FigureUtilities.RGBToInteger(gridColor));
+			store.setValue(PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT, globalPreferenceStore.getInt(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_LINE_STYLE)));
+			store.setValue(PreferencesConstantsHelper.GRID_SPACING_CONSTANT, globalPreferenceStore.getDouble(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_SPACING)));
+			store.setValue(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.SNAP_TO_GRID)));
+			store.setValue(PreferencesConstantsHelper.SNAP_TO_GEOMETRY_CONSTANT, globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.SNAP_TO_GEOMETRY)));
+			store.setValue(PreferencesConstantsHelper.RULER_UNITS_CONSTANT, globalPreferenceStore.getInt(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.RULER_UNITS)));
 		}
 	}
 
-
 	/**
 	 * 
-	 * @return
-	 *         the preference store
+	 * @return the preference store
 	 */
 	protected IPreferenceStore getPreferencesStore() {
 		final IStructuredSelection selection = this.input.getSelection();
@@ -154,6 +151,22 @@ public class DiagramPreferencesDefaultButton extends Composite {
 			return DiagramEditPartsUtil.getDiagramWorkspacePreferenceStore((EditPart)firstElement);
 		}
 		return null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         the type of the diagram
+	 */
+	protected String getDiagramType() {
+		final IStructuredSelection selection = this.input.getSelection();
+		final Object firstElement = selection.getFirstElement();
+		if(firstElement instanceof EditPart) {
+			final DiagramEditPart diagramEditPart = DiagramEditPartsUtil.getDiagramEditPart((EditPart)firstElement);
+			final Diagram diagram = (Diagram)diagramEditPart.getAdapter(Diagram.class);
+			return diagram.getType();
+		}
+		return ""; //$NON-NLS-1$
 	}
 
 }
