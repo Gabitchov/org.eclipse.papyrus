@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2013 CEA LIST.
+ 
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+  CEA LIST - Initial API and implementation
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated StereotypedElementMatcherConfiguration -->
+      <factory
+            uri="http://www.eclipse.org/payrus/extendedtypes/uml/stereotypematcherconfiguration"
+            class="org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.provider.StereotypedElementMatcherConfigurationItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated InvariantStereotypeConfiguration -->
+      <factory
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/stereotype/1.0"
+            class="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.provider.InvariantStereotypeConfigurationItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.childCreationExtenders">
+      <extender
+            class="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.provider.InvariantStereotypeChildCreationExtender"
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0">
+      </extender>
+   </extension>
+
+</plugin>

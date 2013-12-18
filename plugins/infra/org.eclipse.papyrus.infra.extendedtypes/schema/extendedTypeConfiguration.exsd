@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.infra.extendedtypes" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.papyrus.infra.extendedtypes" id="extendedTypeConfiguration" name="extendedTypeConfiguration"/>
+      </appInfo>
+      <documentation>
+         This extension point is used to registered new kind of extended element types set configuration for creation of semantic/graphical elements
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="configuration"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="configuration">
+      <annotation>
+         <documentation>
+            define a new configuration for an extended element type set
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  Name of this model file, used in user interface
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  Path to an icon, used in user interface
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Description of the configuration
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="factoryClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  factory class that creates new ElementTypes based on the configuration model
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.IExtendedElementTypeFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="configurationClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Configuration class of the element type.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="itemProvider" type="string">
+            <annotation>
+               <documentation>
+                  optional item provider used to add creation menus in the standard emf editor
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         0.10.2
+      </documentation>
+   </annotation>
+
+
+
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2010-2013 CEA LIST
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0 which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+Contributors:
+CEA LIST - initial API and implementation
+      </documentation>
+   </annotation>
+
+</schema>

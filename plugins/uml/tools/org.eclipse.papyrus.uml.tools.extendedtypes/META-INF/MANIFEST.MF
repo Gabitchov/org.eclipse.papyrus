@@ -1,8 +1,11 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.tools.extendedtypes,
- org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration,
- org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl,
- org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.util
+ org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration,
+ org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.impl,
+ org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.util,
+ org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration,
+ org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.impl,
+ org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.util
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -11,9 +14,10 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.10.1";visibility:=reexport,
- org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration;visibility:=reexport;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.extendedtypes;visibility:=reexport;bundle-version="0.10.1",
  org.eclipse.emf.facet.infra.query;visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
@@ -21,8 +25,6 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.tools.extendedtypes.Activato
- r$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.extendedtypes;singl
- eton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.tools.extendedtypes.Activator$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.extendedtypes;singleton:=true
 

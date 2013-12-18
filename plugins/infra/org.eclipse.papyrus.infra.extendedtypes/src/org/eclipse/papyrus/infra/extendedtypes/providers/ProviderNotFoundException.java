@@ -30,7 +30,7 @@ public class ProviderNotFoundException extends Exception {
 	 * 
 	 */
 	public ProviderNotFoundException(ActionConfiguration configuration) {
-		super("Provider not found for configuration " + ((configuration != null) ? configuration.getLabel() : "null") + "[" + ((configuration != null) ? configuration.getId() : "null") + "]");
+		super();
 	}
 
 }

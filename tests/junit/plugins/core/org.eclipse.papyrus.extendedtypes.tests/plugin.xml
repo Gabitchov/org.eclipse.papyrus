@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.extendedElementTypeSet">
+      <extendedTypesSet
+            icon="icons/debug.gif"
+            id="org.eclipse.papyrus.infra.extendedtypes.tests.set1"
+            name="Test extended type set"
+            path="model/Test.extendedtypes">
+      </extendedTypesSet>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.newchild">
+      <menuCreationModel
+            model="model/TestMenu.xmi">
+      </menuCreationModel>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+      <paletteDefinition
+            ID="org.eclipse.papyrus.infra.extendedtypes.tests.palette"
+            class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
+            icon="icons/debug.gif"
+            name="Test Palette For Extended Types"
+            path="model/Test.palette.xml"
+            provider="Eclipse Modeling Project">
+         <Priority
+               name="Medium">
+         </Priority>
+         <editor
+               id="org.eclipse.papyrus.sysml.diagram.blockdefinition">
+         </editor>
+      </paletteDefinition>
+   </extension>
+</plugin>
