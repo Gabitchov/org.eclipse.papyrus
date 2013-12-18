@@ -464,9 +464,9 @@
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component/packagedElement"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/nestedClassifier"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
