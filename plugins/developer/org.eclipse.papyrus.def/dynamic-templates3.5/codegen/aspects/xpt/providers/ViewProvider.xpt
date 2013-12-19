@@ -507,8 +507,8 @@ protected org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementT
 	«EXPAND xpt::Common::generatedMemberComment»
 	private void initFontStyleFromPrefs(org.eclipse.gmf.runtime.notation.View view, final org.eclipse.jface.preference.IPreferenceStore store, String elementName)
 	{
-		String fontConstant = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.FONT);
-		String fontColorConstant = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FONT);
+		String fontConstant = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.FONT);
+		String fontColorConstant = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_FONT);
 				
 		org.eclipse.gmf.runtime.notation.FontStyle viewFontStyle = (org.eclipse.gmf.runtime.notation.FontStyle) view.getStyle(org.eclipse.gmf.runtime.notation.NotationPackage.Literals.FONT_STYLE);
 		if (viewFontStyle != null) 
@@ -527,7 +527,7 @@ protected org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementT
 	«EXPAND xpt::Common::generatedMemberComment»
 	private void initForegroundFromPrefs(org.eclipse.gmf.runtime.notation.View view, final org.eclipse.jface.preference.IPreferenceStore store, String elementName)
 	{
-		String lineColorConstant = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_LINE);
+		String lineColorConstant = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_LINE);
 		org.eclipse.swt.graphics.RGB lineRGB = org.eclipse.jface.preference.PreferenceConverter.getColor(store, lineColorConstant);
 		org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(view, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor(), org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities.RGBToInteger(lineRGB));
 	}
@@ -535,9 +535,9 @@ protected org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementT
 	«EXPAND xpt::Common::generatedMemberComment»
 	private void initBackgroundFromPrefs(org.eclipse.gmf.runtime.notation.View view, final org.eclipse.jface.preference.IPreferenceStore store, String elementName)
 	{
-		String fillColorConstant = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_FILL);
-		String gradientColorConstant = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT);
-		String gradientPolicyConstant = org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY);
+		String fillColorConstant = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_FILL);
+		String gradientColorConstant = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName,org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_GRADIENT);
+		String gradientPolicyConstant = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName,org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.GRADIENT_POLICY);
 	
 	
 		org.eclipse.swt.graphics.RGB fillRGB = org.eclipse.jface.preference.PreferenceConverter.getColor(store, fillColorConstant);

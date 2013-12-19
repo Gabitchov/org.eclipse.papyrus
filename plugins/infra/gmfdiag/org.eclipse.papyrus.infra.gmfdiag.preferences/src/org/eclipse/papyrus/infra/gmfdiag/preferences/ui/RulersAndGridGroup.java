@@ -126,10 +126,14 @@ public class RulersAndGridGroup extends AbstractGroup {
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SNAP_TO_GEOMETRY), false);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_LINE_STYLE), Graphics.LINE_CUSTOM);
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_ORDER), false);
-		final int rgbValue = 80;
+		//to force the refresh of the value
+		PreferenceConverter.setDefault(store, PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_LINE_COLOR), new org.eclipse.swt.graphics.RGB(250, 0, 0));
+		final int rgbValue = 50;
 		PreferenceConverter.setDefault(store, PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_LINE_COLOR), new org.eclipse.swt.graphics.RGB(rgbValue, rgbValue, rgbValue));
+
 		store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRID_SPACING), 20);
 	}
+
 
 	/**
 	 * 
