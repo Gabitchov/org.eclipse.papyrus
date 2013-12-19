@@ -325,9 +325,12 @@
 	</metamodelType>
 	
 	<!-- IMetamodelType for Component -->
-	<metamodelType id="org.eclipse.papyrus.uml.Component" name="UML::Component"
-		eclass="Component"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+	<metamodelType
+       eclass="Component"
+       edithelper="org.eclipse.papyrus.uml.service.types.helper.ComponentEditHelper"
+       id="org.eclipse.papyrus.uml.Component"
+       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+       name="UML::Component">
 			<param name="semanticHint" value="UML::Component"/>
 	</metamodelType>
 	
