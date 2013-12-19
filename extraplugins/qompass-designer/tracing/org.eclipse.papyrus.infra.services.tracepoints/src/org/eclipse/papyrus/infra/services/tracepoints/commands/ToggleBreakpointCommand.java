@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 public class ToggleBreakpointCommand extends AbstractTracepointCommand {
 
 	public ToggleBreakpointCommand(EObject selectedElement) {
-		super("Toggle Breakpoint", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
+		super("Toggle Breakpoint", TransactionUtil.getEditingDomain(selectedElement), selectedElement); //$NON-NLS-1$
 	}
 
 	/**

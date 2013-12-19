@@ -18,9 +18,13 @@ import com.google.inject.Injector;
 
 public class ParseVSL {
 
+	private static final String UNIT = "unit"; //$NON-NLS-1$
+
+	private static final String VALUE = "value"; //$NON-NLS-1$
+
 	private Injector injector;
 
-	private static final String SYNTHETIC_SCHEME = "synthetic";
+	private static final String SYNTHETIC_SCHEME = "synthetic"; //$NON-NLS-1$
 
 
 	/**
@@ -41,7 +45,7 @@ public class ParseVSL {
 		IGrammarAccess grammarAccess = injector.getInstance(IGrammarAccess.class);
 
 		XtextResource xtextResource = (XtextResource)resourceFactory.createResource(
-			URI.createURI(SYNTHETIC_SCHEME + ":/" + grammarAccess.getGrammar().getName() + ".vsl"));
+			URI.createURI(SYNTHETIC_SCHEME + ":/" + grammarAccess.getGrammar().getName() + ".vsl")); //$NON-NLS-1$ //$NON-NLS-2$
 
 		try {
 			xtextResource.load(new StringInputStream(expression, xtextResource.getEncoding()), Collections.emptyMap());
@@ -74,8 +78,8 @@ public class ParseVSL {
 	
 	public static int getSizeFromVSL(String nfpDatasize) {
 		if(nfpDatasize != null) {
-			String unit = MarteUtils.getValueFromTuple(nfpDatasize, "unit");
-			String value = MarteUtils.getValueFromTuple(nfpDatasize, "value");
+			String unit = MarteUtils.getValueFromTuple(nfpDatasize, UNIT);
+			String value = MarteUtils.getValueFromTuple(nfpDatasize, VALUE);
 			return Float.valueOf(value).intValue() * getMultiplicatorFromSizeUnit(unit);
 		}
 		return 0;
@@ -92,8 +96,8 @@ public class ParseVSL {
 	 */
 	public static long getDurationFromVSL(String nfpDuration) {
 		if(nfpDuration != null) {
-			String unit = MarteUtils.getValueFromTuple(nfpDuration, "unit");
-			String value = MarteUtils.getValueFromTuple(nfpDuration, "value");
+			String unit = MarteUtils.getValueFromTuple(nfpDuration, UNIT);
+			String value = MarteUtils.getValueFromTuple(nfpDuration, VALUE);
 			return Float.valueOf(value).intValue() * getMultiplicatorFromTimeUnit(unit);
 		}
 		return 0;
@@ -107,8 +111,8 @@ public class ParseVSL {
 	 */
 	public static long getFrequencyFromVSL(String nfpFrequency) {
 		if(nfpFrequency != null) {
-			String unit = MarteUtils.getValueFromTuple(nfpFrequency, "unit");
-			String value = MarteUtils.getValueFromTuple(nfpFrequency, "value");
+			String unit = MarteUtils.getValueFromTuple(nfpFrequency, UNIT);
+			String value = MarteUtils.getValueFromTuple(nfpFrequency, VALUE);
 			return (int)(Float.valueOf(value) * getMultiplicatorFromFrequencyUnit(unit));
 		}
 		return 0;
@@ -116,7 +120,7 @@ public class ParseVSL {
 
 	public static long getPeriodFromArrivalPattern(String arrivalPattern) {
 		if(arrivalPattern != null) {
-			String period = MarteUtils.getValueFromTuple(arrivalPattern, "period");
+			String period = MarteUtils.getValueFromTuple(arrivalPattern, "period"); //$NON-NLS-1$
 			return getDurationFromVSL(period);
 		}
 		return 0;
@@ -134,7 +138,7 @@ public class ParseVSL {
 			return 1024 * 1024 * 1024;
 		} else {
 			// do not support bits here.
-			throw new RuntimeException("Error parsing VSL expression, unexpected size unit (expecting byte, kb, mb, or gb): '" + unit + "'");
+			throw new RuntimeException(String.format(Messages.ParseVSL_ErrorInExp_SIZE, unit));
 		}
 	}
 
@@ -156,7 +160,7 @@ public class ParseVSL {
 		} else if(tuk == TimeUnitKind.MIN) {
 			return 60 * 1000 * 1000;
 		} else {
-			throw new RuntimeException("Error parsing VSL expression, unexpected duration unit (expecting us, ms, s or min): '" + unit + "'");
+			throw new RuntimeException(String.format(Messages.ParseVSL_ErrorInExp_TIME, unit));
 		}
 	}
 
@@ -174,7 +178,7 @@ public class ParseVSL {
 			return 1 / 60;
 		} else {
 			// do not support bits here.
-			throw new RuntimeException("Error parsing VSL expression, unexpected frequency unit (expecting Hz, KHz, MHz, GHz or rpm: '" + unit + "'");
+			throw new RuntimeException(String.format(Messages.ParseVSL_ErrotInExp_FREQ, unit));
 		}
 	}
 }

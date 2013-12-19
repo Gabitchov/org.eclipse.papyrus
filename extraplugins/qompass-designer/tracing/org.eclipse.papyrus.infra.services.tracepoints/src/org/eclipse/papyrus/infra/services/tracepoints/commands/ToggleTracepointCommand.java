@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
 public class ToggleTracepointCommand extends AbstractTracepointCommand {
 
 	public ToggleTracepointCommand(EObject selectedElement) {
-		super("Toggle tracepoint", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
+		super("Toggle tracepoint", TransactionUtil.getEditingDomain(selectedElement), selectedElement); //$NON-NLS-1$
 	}
 
 	/**

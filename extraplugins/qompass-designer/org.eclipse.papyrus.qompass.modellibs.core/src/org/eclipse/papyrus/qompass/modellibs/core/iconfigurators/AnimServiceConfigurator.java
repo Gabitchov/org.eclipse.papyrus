@@ -14,14 +14,18 @@
 
 package org.eclipse.papyrus.qompass.modellibs.core.iconfigurators;
 
-import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.IInstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerContext;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 
 /**
- * Configurator of a call event (for a state machine): it sets the
+ * Configurator for the Eclipse animation server. This instance is systematically
+ * allocated to a node named "Eclipse" call event (for a state machine): it sets the
  * portID attribute of the call event interceptor. The interceptor uses this
  * attribute to initialize the portID attribute within the produced CallEvent
  * data structure.
@@ -29,9 +33,9 @@ import org.eclipse.uml2.uml.Property;
  * @author ansgar
  * 
  */
-public class CallEventConfigurator implements IInstanceConfigurator {
+public class AnimServiceConfigurator implements IInstanceConfigurator {
 
-	public final static String portAttribute = "portID"; //$NON-NLS-1$
+	public final static String eclipseAnimService = "Eclipse"; //$NON-NLS-1$
 
 	/**
 	 * Configure the instance of a CallEvent interceptor. The configuration parameter is the
@@ -49,14 +53,16 @@ public class CallEventConfigurator implements IInstanceConfigurator {
 	 */
 	public void configureInstance(InstanceSpecification instance, Property componentPart, ContainerContext context)
 	{
-		if(context != null) {
-			// make sure that there is an enum par port
-			// String literalName = "port_" + UMLTool.varName(context.port); //$NON-NLS-1$
-
-			// the associated enumeration is declared by the statemachine (which is included by the bootloader as well)
-
-			DepPlanUtils.configureProperty(instance, portAttribute, 0);
+		EList<InstanceSpecification> nodes = AllocUtils.getAllNodesOrThreadsParent(context.smIS);
+		if (nodes.size() > 0) {
+			InstanceSpecification node = nodes.get(0);
+			NamedElement animService = node.getNearestPackage().getMember(eclipseAnimService);
+			if (animService instanceof InstanceSpecification) {
+				AllocUtils.allocate(instance, (InstanceSpecification)animService);
+				return;
+			}
 		}
+		throw new TransformationRTException(String.format("Cannot find node <%s> in platform definition", eclipseAnimService)); 
 	}
 
 }

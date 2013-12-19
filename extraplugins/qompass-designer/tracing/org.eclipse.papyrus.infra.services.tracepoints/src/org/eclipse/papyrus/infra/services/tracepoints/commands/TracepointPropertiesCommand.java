@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.Element;
 public class TracepointPropertiesCommand extends AbstractTracepointCommand {
 
 	public TracepointPropertiesCommand(EObject selectedElement) {
-		super("Tracepoint properties", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
+		super("Tracepoint properties", TransactionUtil.getEditingDomain(selectedElement), selectedElement); //$NON-NLS-1$
 	}
 
 	/**

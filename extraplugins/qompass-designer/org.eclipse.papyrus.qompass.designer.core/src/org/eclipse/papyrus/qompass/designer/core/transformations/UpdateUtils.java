@@ -19,6 +19,7 @@ import java.util.Iterator;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.DerivedElement;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -67,7 +68,7 @@ public class UpdateUtils {
 			de.setSource(source);
 		}
 		else {
-			throw new TransformationRTException("cannot apply FCM stereotype. Check whether profile is applied");
+			throw new TransformationRTException(Messages.UpdateUtils_CannotApplyFCMstereo);
 		}
 	}
 

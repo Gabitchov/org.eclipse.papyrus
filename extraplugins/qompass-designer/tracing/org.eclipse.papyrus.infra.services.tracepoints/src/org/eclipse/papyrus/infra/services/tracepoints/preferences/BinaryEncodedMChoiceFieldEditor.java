@@ -61,7 +61,7 @@ public class BinaryEncodedMChoiceFieldEditor extends MultipleChoiceFieldEditor {
 	 *        display contents within a group
 	 */
 	public BinaryEncodedMChoiceFieldEditor(String labeltext, int numColumns, String[][] labelsAndValues, Composite parent, boolean useGroup) {
-		super("", labeltext, numColumns, labelsAndValues, parent, useGroup);
+		super("", labeltext, numColumns, labelsAndValues, parent, useGroup); //$NON-NLS-1$
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class BinaryEncodedMChoiceFieldEditor extends MultipleChoiceFieldEditor {
 		int index = 0;
 		for(String setting[] : settings) {
 			// [0] = name, [1] = value [2] = checked
-			if(setting[2].equals("true")) {
+			if(setting[2].equals("true")) { //$NON-NLS-1$
 				traceActionValue += 1 << index;
 			}
 			index++;

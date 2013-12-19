@@ -30,11 +30,11 @@ public class IConfiguratorTrace implements IInstanceConfigurator {
 			}
 		}
 
-		DepPlanUtils.configureProperty(instance, PROP_INSTANCE_NAME, "\"" + instanceName + "\"");
+		DepPlanUtils.configureProperty(instance, PROP_INSTANCE_NAME, StringConstants.QUOTE + instanceName + StringConstants.QUOTE);
 
 		// port in context => interception of port => provide information about port and interface
 		if(context.port != null) {
-			DepPlanUtils.configureProperty(instance, PROP_PORT_NAME, "\"" + context.port.getName() + "\"");
+			DepPlanUtils.configureProperty(instance, PROP_PORT_NAME, StringConstants.QUOTE + context.port.getName() + StringConstants.QUOTE);
 		}
 	}
 }

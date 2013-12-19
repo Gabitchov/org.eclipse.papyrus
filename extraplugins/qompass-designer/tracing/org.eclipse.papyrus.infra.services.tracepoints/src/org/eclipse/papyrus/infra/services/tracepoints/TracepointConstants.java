@@ -20,13 +20,13 @@ public class TracepointConstants {
 	/**
 	 * The id of the marker used for tracepoints and breakpoints
 	 */
-	public static final String tpOrbpMarker = "org.eclipse.papyrus.tporbpmarker";
+	public static final String tpOrbpMarker = "org.eclipse.papyrus.tporbpmarker"; //$NON-NLS-1$
 
-	public static final String isActive = "isActive";
+	public static final String isActive = "isActive"; //$NON-NLS-1$
 
-	public static final String isTracepoint = "isTracepoint";
+	public static final String isTracepoint = "isTracepoint"; //$NON-NLS-1$
 
-	public static final String traceAction = "traceAction";
+	public static final String traceAction = "traceAction"; //$NON-NLS-1$
 
-	public static final String traceMechanism = "traceMechanism";
+	public static final String traceMechanism = "traceMechanism"; //$NON-NLS-1$
 }

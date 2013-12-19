@@ -19,6 +19,7 @@ import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.papyrus.infra.services.tracepoints.Activator;
 import org.eclipse.papyrus.infra.services.tracepoints.ITraceMechanism;
+import org.eclipse.papyrus.infra.services.tracepoints.Messages;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAClass;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAOperation;
@@ -41,7 +42,7 @@ public class TPPreferencePage
 	public TPPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
-		setDescription("Trace options");
+		setDescription(Messages.TPPreferencePage_TraceOptions);
 	}
 
 	/**
@@ -74,25 +75,25 @@ public class TPPreferencePage
 		String[][] taStateOptions = TraceActions.getStringFields(TAState.values());
 		String[][] taOperationOptions = TraceActions.getStringFields(TAOperation.values());
 
-		addField(new BinaryEncodedMChoiceFieldEditor(TPPreferenceConstants.P_TRACE_OPTION_CLASS, "Class options", 3, taClassOptions, getFieldEditorParent(), true));
+		addField(new BinaryEncodedMChoiceFieldEditor(TPPreferenceConstants.P_TRACE_OPTION_CLASS, Messages.TPPreferencePage_ClassOptions, 3, taClassOptions, getFieldEditorParent(), true));
 
-		addField(new BinaryEncodedMChoiceFieldEditor(TPPreferenceConstants.P_TRACE_OPTION_STATE, "State options", 3, taStateOptions, getFieldEditorParent(), true));
+		addField(new BinaryEncodedMChoiceFieldEditor(TPPreferenceConstants.P_TRACE_OPTION_STATE, Messages.TPPreferencePage_StateOptions, 3, taStateOptions, getFieldEditorParent(), true));
 
 		addField(new RadioGroupFieldEditor(
 			TPPreferenceConstants.P_TRACE_OPTION_OP,
-			"Operations options", 3, taOperationOptions, getFieldEditorParent(), true));
+			Messages.TPPreferencePage_OperationOptions, 3, taOperationOptions, getFieldEditorParent(), true));
 
 		addField(new ComboFieldEditor(
 			TPPreferenceConstants.P_TRACE_IMPLEMENTATION_PORT,
-			"Trace Mechanism for ports", mechList, getFieldEditorParent()));
+			Messages.TPPreferencePage_TMforPorts, mechList, getFieldEditorParent()));
 
 		addField(new ComboFieldEditor(
 			TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP,
-			"Trace Mechanism for operations (+construction/destruction)", mechList, getFieldEditorParent()));
+			Messages.TPPreferencePage_TMforOperations, mechList, getFieldEditorParent()));
 
 		addField(new ComboFieldEditor(
 			TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM,
-			"Trace Mechanism for state machines", mechList, getFieldEditorParent()));
+			Messages.TPPreferencePage_TMforStateMachines, mechList, getFieldEditorParent()));
 
 	}
 

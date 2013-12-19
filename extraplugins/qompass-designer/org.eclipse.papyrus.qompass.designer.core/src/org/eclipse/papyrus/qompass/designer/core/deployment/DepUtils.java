@@ -14,6 +14,7 @@ import org.eclipse.papyrus.FCM.ImplementationGroup;
 import org.eclipse.papyrus.FCM.ImplementationProperties;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.FCM.Target;
+import org.eclipse.papyrus.qompass.designer.core.ElementFilter;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.common.util.UML2Util;
@@ -306,9 +307,7 @@ public class DepUtils {
 	 * @return the associated slot or null, if it does not exist
 	 */
 	public static Slot getSlot(InstanceSpecification is, Property property) {
-		Iterator<Slot> slots = is.getSlots().iterator();
-		while(slots.hasNext()) {
-			Slot slot = slots.next();
+		for (Slot slot : is.getSlots()) {
 			if(slot.getDefiningFeature() == property) {
 				return slot;
 			}
@@ -370,8 +369,8 @@ public class DepUtils {
 	}
 
 	/**
-	 * Return an instance specification that refers to the composite in which the
-	 * passed instance is contained
+	 * Return a slot for a given instance specification. The slot is the first one in a list of slots
+	 * whose value points to the passed instance.
 	 * 
 	 * @param is
 	 *        an instance that is contained within an composite (i.e. that
@@ -380,7 +379,6 @@ public class DepUtils {
 	 */
 	public static Slot getParentSlot(InstanceSpecification is) {
 		for(Slot slot : getReferencingSlots(is)) {
-			// no trigger is referencing the event any more, delete call event
 			if(slot.getDefiningFeature() instanceof Property) {
 				if(((Property)slot.getDefiningFeature()).getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
 					return slot;
@@ -458,6 +456,26 @@ public class DepUtils {
 		}
 		else {
 			return null;
+		}
+	}
+	
+	/**
+	 * Get all instances within a package that comply with a filter criterion. Recurse into sub-packages.
+	 * @param pkg Starting package for search
+	 * @param instanceList list of instances
+	 * @param filter filter criterion.
+	 */
+	public static void getAllInstances(Package pkg, EList<InstanceSpecification> instanceList, ElementFilter filter) {
+		for(PackageableElement el : pkg.getPackagedElements()) {
+			if(el instanceof Package) {
+				getAllInstances((Package)el, instanceList, filter);
+			}
+			else if(el instanceof InstanceSpecification) {
+				InstanceSpecification instance = (InstanceSpecification)el;
+				if (filter.acceptElement(instance)) { 
+					instanceList.add(instance);
+				}
+			}
 		}
 	}
 }
