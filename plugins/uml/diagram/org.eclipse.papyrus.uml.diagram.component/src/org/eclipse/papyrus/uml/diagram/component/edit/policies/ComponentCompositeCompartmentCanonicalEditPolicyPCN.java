@@ -65,7 +65,7 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyPCN extends Canonic
 	 * @generated
 	 */
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getClass_NestedClassifier();
+		return UMLPackage.eINSTANCE.getComponent_PackagedElement();
 	}
 
 	/**

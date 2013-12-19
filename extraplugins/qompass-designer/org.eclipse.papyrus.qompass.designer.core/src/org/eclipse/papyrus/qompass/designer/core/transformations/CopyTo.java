@@ -7,7 +7,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * This class enables the copy from a source to a given target element.
  * It assumes that a copy has already been created, but will just not copy it...
- * Unlike the @see Copy class, the element might be copied to a different placed
+ * Unlike the @see Copy class, the element might be copied to a different place
  */
 public class CopyTo {
 	/**

@@ -23,8 +23,8 @@ import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAOperation;
 import org.eclipse.papyrus.infra.services.tracepoints.TracepointConstants;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Property;
 
 public class QompassTraceMechanism implements ITraceMechanism {
 
-	public static final String EC3M_TRACING_URI = "pathmap://QML_TRACE/tracing.uml";
+	public static final String EC3M_TRACING_URI = "pathmap://QML_TRACE/tracing.uml"; //$NON-NLS-1$
 
 	public static final URI tracingURI = URI.createURI(EC3M_TRACING_URI);
 
@@ -104,7 +104,7 @@ public class QompassTraceMechanism implements ITraceMechanism {
 	public boolean isForTracing(ContainerRule rule) {
 		for(ConfigOption co : rule.getForConfig()) {
 			// TODO: not very clean to used fixed string
-			if(co.getBase_Class().getName().equals("Trace")) {
+			if(co.getBase_Class().getName().equals("Trace")) { //$NON-NLS-1$
 				return true;
 			}
 		}

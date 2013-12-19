@@ -30,6 +30,21 @@ public class Messages extends NLS {
 	
 	public static String LWContainerTrafo_CannotApplyRule;
 	
+	public static String ConnectorBinding_CannotFindBinding;
+	public static String ConnectorBinding_CannotFindBindingForPort;
+	public static String ConnectorBinding_CannotFindConsistentBinding;
+	public static String ConnectorBinding_ConnectorsPort;
+	public static String ConnectorBinding_FormalAlreadyBound;
+	public static String ConnectorBinding_InfoActualReturnIntfIs;
+	public static String ConnectorBinding_InfoConnPortConnectedVia;
+	public static String ConnectorBinding_InfoConnectsPort;
+	public static String ConnectorBinding_InfoCreateBoundPackage;
+
+	public static String ConnectorBinding_InfoMatchOtherEnd;
+
+	public static String ConnectorBinding_InfoProvidedPortTypeMatches;
+	public static String ConnectorBinding_NoTemplateSignature;
+
 	public static String ConnectorReification_CannotFindMatchingPort;
 	public static String ConnectorReification_CouldNotBind;
 	public static String ConnectorReification_CouldNotConnectPort;
@@ -45,6 +60,10 @@ public class Messages extends NLS {
 
 	public static String LanguageSupport_LanguageNotSupported;
 
+	public static String TemplateUtils_InfoCreateBoundPackage;
+	public static String TemplateUtils_InfoGetActualFrom;
+	public static String TemplateUtils_NoTemplateSignature;
+	
 	public static String TemplateInstantiation_TemplateIsNull;
 	public static String TemplateInstantiationListener_TrafoException;
 
@@ -54,7 +73,6 @@ public class Messages extends NLS {
 
 	public static String ContainerTrafo_CannotApplyRule;
 	public static String ContainerTrafo_CannotFindDelegationConn;
-	public static String ContainerTrafo_InfoMoveSlots;
 	public static String ContainerTrafo_InterceptionRuleButNoInterceptor;
 	
 	public static String InstantiateDepPlan_AcceleoErrors;
@@ -88,6 +106,8 @@ public class Messages extends NLS {
 
 	public static String DepPlanUtils_CannotFindAttribute;
 	public static String DepPlanUtils_ConfigOfPropertyFailed;
+
+	public static String UpdateUtils_CannotApplyFCMstereo;
 	
 	static {
 		// initialize resource bundle

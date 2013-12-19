@@ -20,6 +20,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.swt.widgets.Shell;
@@ -55,12 +56,12 @@ public class CreatePlatformHandler extends CmdHandler {
 
 			public void run() {
 				// execute with transaction support
-				platform = Utils.getRoot(selectedComposite, "PlatformModel");//$NON-NLS-1$
+				platform = Utils.getRoot(selectedComposite, DeployConstants.depPlanFolderHw);
 			}
 		});
 
-		final String newPlatform = selectedComposite.getName() + "Platform"; //$NON-NLS-1$
-
+		final String newPlatform = selectedComposite.getName() + DeployConstants.DepPlanPostfixHw;
+		
 		try {
 			if(platform.getMember(newPlatform) != null) {
 				Shell shell = new Shell();

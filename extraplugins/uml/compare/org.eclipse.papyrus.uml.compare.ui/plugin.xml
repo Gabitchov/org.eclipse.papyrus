@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <!-- <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Open the Papyrus Model Compare Editor"
+            id="org.eclipse.papyrus.uml.compare.ui.command"
+            name="Papyrus Model Compare Editor">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.uml.compare.ui.handler.CompareUMLFileHandler"
+            commandId="org.eclipse.papyrus.uml.compare.ui.command">
+      </handler>
+      
+      
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+    allPopups="true"
+    locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+	<command
+	       commandId="org.eclipse.papyrus.uml.compare.ui.command"
+	       style="push">
+	    <visibleWhen
+	          checkEnabled="false">
+	       <with
+	             variable="selection">
+	          <iterate
+	                ifEmpty="false"
+	                operator="and">
+	             <adapt
+	                   type="org.eclipse.core.resources.IFile">
+	             </adapt>
+	          </iterate>
+	       </with>
+	    </visibleWhen>
+	</command>
+</menuContribution>
+   </extension> -->
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.eclipse.papyrus.uml.compare.ui.provider.SampleUMLProvider"
+            supportedTypes="org.eclipse.emf.edit.provider.IItemLabelProvider"
+            uri="http://www.eclipse.org/uml2/4.0.0/UML">
+      </factory>
+   </extension>
+
+</plugin>

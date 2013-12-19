@@ -128,15 +128,15 @@ public class AllocUtils {
 	}
 
 	/**
-	 * This method returns a list of nodes when given an instance.
+	 * This method returns a list of nodes (or threads) to which the passed instance is allocated.
 	 * It is based on MARTE Allocation (a stereotyped abstraction) which is a generic
 	 * mechanism to deploy UML elements to nodes.
 	 * 
 	 * @param instanceOrThread
-	 *        The instance that should be deployed
+	 *        The instance for which we like to know the allocation information
 	 * @return
 	 */
-	public static EList<InstanceSpecification> getNodesOrThreads(NamedElement instanceOrThread) {
+	public static EList<InstanceSpecification> getNodesOrThreads(InstanceSpecification instanceOrThread) {
 		EList<InstanceSpecification> nodeList = new UniqueEList<InstanceSpecification>();
 
 		for(DirectedRelationship relationship : instanceOrThread.getSourceDirectedRelationships(UMLPackage.eINSTANCE.getAbstraction())) {
@@ -153,22 +153,22 @@ public class AllocUtils {
 	}
 
 	/**
-	 * This method returns a list of nodes when given an instance.
-	 * It is based on MARTE Allocation (a stereotyped abstraction) which is a generic
-	 * mechanism to deploy UML elements to nodes.
-	 * 
+	 * This method returns a list of nodes to which the passed instance is allocated. If
+	 * the instance is allocated directly to a node, this node is returned. If the instance
+	 * is allocated to a thread, the allocation of the thread to a node is returned.
+	 *
 	 * @param instanceOrThread
 	 *        The instance that should be deployed
 	 * @return
 	 */
-	public static EList<InstanceSpecification> getNodes(NamedElement instanceOrThread) {
+	public static EList<InstanceSpecification> getNodes(InstanceSpecification instanceOrThread) {
 		EList<InstanceSpecification> nodeList = new UniqueEList<InstanceSpecification>();
 		EList<InstanceSpecification> nodeOrThreads = getNodesOrThreads(instanceOrThread);
 		for(InstanceSpecification nodeOrThread : nodeOrThreads)
 		{
 			Classifier nodeOrThreadC = DepUtils.getClassifier(nodeOrThread);
 			if(StereotypeUtil.isApplied(nodeOrThreadC, SwSchedulableResource.class)) {
-				// tread case that instance is allocated to a thread
+				// treat case that instance is allocated to a thread
 				// follow allocation of Thread
 				nodeList.add(getNode(nodeOrThread));
 			}

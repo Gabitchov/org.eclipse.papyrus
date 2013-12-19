@@ -17,16 +17,13 @@ public class CustomRegionCompartmentEditPart extends RegionCompartmentEditPart {
 
 	public CustomRegionCompartmentEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void createDefaultEditPolicies() {
-		// TODO Auto-generated method stub
 		super.createDefaultEditPolicies();
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
-
 	}
 
 	public IFigure createFigure() {

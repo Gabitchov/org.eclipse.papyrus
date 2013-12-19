@@ -33,6 +33,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class EnumService {
 
+	private static final String GLOBALENUMS = "globalenums"; //$NON-NLS-1$
+
 	public static void init() {
 		enumHash.clear();
 	}
@@ -134,7 +136,7 @@ public class EnumService {
 	}
 
 	public static void createEnumPackage(Package root) {
-		enumPkg = root.createNestedPackage("globalenums");
+		enumPkg = root.createNestedPackage(GLOBALENUMS);
 	}
 
 	public static Package enumPkg;

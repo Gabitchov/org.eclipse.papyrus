@@ -24,21 +24,21 @@ import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 
 public class TraceFunctions implements IDecorationSpecificFunctions {
 
-	public static final String activeBreakpoint16 = "icons/etool16/brkp_16x16.gif";
+	public static final String activeBreakpoint16 = "icons/etool16/brkp_16x16.gif"; //$NON-NLS-1$
 
-	public static final String inActiveBreakpoint16 = "icons/etool16/brkpd_16x16.gif";
+	public static final String inActiveBreakpoint16 = "icons/etool16/brkpd_16x16.gif"; //$NON-NLS-1$
 
-	public static final String activeTracepoint16 = "icons/etool16/trcp_16x16.gif";
+	public static final String activeTracepoint16 = "icons/etool16/trcp_16x16.gif"; //$NON-NLS-1$
 
-	public static final String inActiveTracepoint16 = "icons/etool16/trcpd_16x16.gif";
+	public static final String inActiveTracepoint16 = "icons/etool16/trcpd_16x16.gif"; //$NON-NLS-1$
 
-	public static final String activeBreakpoint9 = "icons/etool16/brkp_9x9.gif";
+	public static final String activeBreakpoint9 = "icons/etool16/brkp_9x9.gif"; //$NON-NLS-1$
 
-	public static final String inActiveBreakpoint9 = "icons/etool16/brkpd_9x9.gif";
+	public static final String inActiveBreakpoint9 = "icons/etool16/brkpd_9x9.gif"; //$NON-NLS-1$
 
-	public static final String activeTracepoint11 = "icons/etool16/trcp_11x12.gif";
+	public static final String activeTracepoint11 = "icons/etool16/trcp_11x12.gif"; //$NON-NLS-1$
 
-	public static final String inActiveTracepoint11 = "icons/etool16/trcp_11x12.gif";
+	public static final String inActiveTracepoint11 = "icons/etool16/trcp_11x12.gif"; //$NON-NLS-1$
 
 	/**
 	 * Return the image descriptor associated with a trace or breakpoint marker
@@ -95,8 +95,8 @@ public class TraceFunctions implements IDecorationSpecificFunctions {
 	public String getMessage(IPapyrusMarker marker) {
 		boolean isActive = marker.getAttribute(TracepointConstants.isActive, false);
 		boolean isTracepoint = marker.getAttribute(TracepointConstants.isTracepoint, false);
-		return (isActive ? "active" : "inactive") + " " +
-			(isTracepoint ? "trace point" : "break point");
+		return (isActive ? "active" : "inactive") + " " +   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+			(isTracepoint ? "trace point" : "break point");  //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 	public int getPriority(IMarker marker) {

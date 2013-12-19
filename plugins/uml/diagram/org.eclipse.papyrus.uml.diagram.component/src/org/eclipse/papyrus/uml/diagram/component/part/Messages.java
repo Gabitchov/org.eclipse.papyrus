@@ -255,222 +255,222 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NodesGroup_title;
+	public static String createNodesGroup_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NodesGroup_desc;
+	public static String createNodesGroup_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String LinksGroup_title;
+	public static String createLinksGroup_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LinksGroup_desc;
+	public static String createLinksGroup_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstraintCreationTool_title;
+	public static String createConstraintCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstraintCreationTool_desc;
+	public static String createConstraintCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String CommentCreationTool_title;
+	public static String createCommentCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String CommentCreationTool_desc;
+	public static String createCommentCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ComponentCreationTool_title;
+	public static String createComponentCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ComponentCreationTool_desc;
+	public static String createComponentCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String RectancleInterfaceCreationTool_title;
+	public static String createRectancleInterfaceCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String RectancleInterfaceCreationTool_desc;
+	public static String createRectancleInterfaceCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ModelCreationTool_title;
+	public static String createModelCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ModelCreationTool_desc;
+	public static String createModelCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String PropertyCreationTool_title;
+	public static String createPropertyCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PropertyCreationTool_desc;
+	public static String createPropertyCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String OperationCreationTool_title;
+	public static String createOperationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String OperationCreationTool_desc;
+	public static String createOperationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageCreationTool_title;
+	public static String createPackageCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageCreationTool_desc;
+	public static String createPackageCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String PortCreationTool_title;
+	public static String createPortCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PortCreationTool_desc;
+	public static String createPortCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ReceptionCreationTool_title;
+	public static String createReceptionCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ReceptionCreationTool_desc;
+	public static String createReceptionCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String LinkCreationTool_title;
+	public static String createLinkCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String LinkCreationTool_desc;
+	public static String createLinkCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DependencyCreationTool_title;
+	public static String createDependencyCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DependencyCreationTool_desc;
+	public static String createDependencyCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DependencyBranchCreationTool_title;
+	public static String createDependencyBranchCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DependencyBranchCreationTool_desc;
+	public static String createDependencyBranchCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String AbstractionCreationTool_title;
+	public static String createAbstractionCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String AbstractionCreationTool_desc;
+	public static String createAbstractionCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ManifestationCreationTool_title;
+	public static String createManifestationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ManifestationCreationTool_desc;
+	public static String createManifestationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String GeneralizationCreationTool_title;
+	public static String createGeneralizationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String GeneralizationCreationTool_desc;
+	public static String createGeneralizationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String UsageCreationTool_title;
+	public static String createUsageCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String UsageCreationTool_desc;
+	public static String createUsageCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String SubstitutionCreationTool_title;
+	public static String createSubstitutionCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String SubstitutionCreationTool_desc;
+	public static String createSubstitutionCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String InterfaceRealizationCreationTool_title;
+	public static String createInterfaceRealizationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InterfaceRealizationCreationTool_desc;
+	public static String createInterfaceRealizationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ComponentRealizationCreationTool_title;
+	public static String createComponentRealizationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ComponentRealizationCreationTool_desc;
+	public static String createComponentRealizationCreationTool_desc;
 
 	/**
 	 * @generated

@@ -112,7 +112,7 @@ tracepoint([tpName1()/], [operation.tpName2()/], instanceName[if (operation.para
 [/template]
 
 
-[template flattenParNameAndType(parameter : Parameter) post(trim())]
+[template public flattenParNameAndType(parameter : Parameter) post(trim())]
 [if (type.oclIsTypeOf(DataType))]
 	[for (attribute : Property | type.oclAsType(DataType).attribute) separator(', ')][attribute.type.cppTypeWB()/], [parameter.name + '_' + attribute.name/][/for]
 [else]
@@ -120,7 +120,7 @@ tracepoint([tpName1()/], [operation.tpName2()/], instanceName[if (operation.para
 [/if]
 [/template]
 
-[template flattenParName(parameter : Parameter) post(trim())]
+[template public flattenParName(parameter : Parameter) post(trim())]
 [if (type.oclIsTypeOf(DataType))]
 	[for (attribute : Property | type.oclAsType(DataType).attribute) separator(', ')][parameter.name + '.' + attribute.name/][/for]
 [else]
@@ -129,7 +129,7 @@ tracepoint([tpName1()/], [operation.tpName2()/], instanceName[if (operation.para
 [/template]
 
 
-[template flattenCtfType(type : Type, name : String) post(trim())]
+[template public flattenCtfType(type : Type, name : String) post(trim())]
 [if (type.oclIsTypeOf(DataType))]
 	[for (attribute : Property | type.oclAsType(DataType).attribute) separator('\n')][ctfType(attribute.type, name + '_' + attribute.name)/][/for]
 [else]
@@ -138,7 +138,7 @@ tracepoint([tpName1()/], [operation.tpName2()/], instanceName[if (operation.para
 [/template]
 
 
-[template cppTypeWB(type : Type) post(trim())]
+[template public cppTypeWB(type : Type) post(trim())]
 [if
 	(type.qualifiedName = 'UMLPrimitiveTypes::Boolean') or
 	(type.qualifiedName = 'PrimitiveTypes::Boolean') or

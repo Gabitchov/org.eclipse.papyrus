@@ -21,31 +21,31 @@ public class TPPreferenceConstants {
 	/**
 	 * The trace mechanism that should be used by default
 	 */
-	public static final String P_TRACE_IMPLEMENTATION_PORT = "papyrus.trace.implementation.port";
+	public static final String P_TRACE_IMPLEMENTATION_PORT = "papyrus.trace.implementation.port"; //$NON-NLS-1$
 
 	/**
 	 * The trace mechanism that should be used by default
 	 */
-	public static final String P_TRACE_IMPLEMENTATION_OP = "papyrus.trace.implementation.op";
+	public static final String P_TRACE_IMPLEMENTATION_OP = "papyrus.trace.implementation.op"; //$NON-NLS-1$
 
 	/**
 	 * The trace mechanism that should be used by default
 	 */
-	public static final String P_TRACE_IMPLEMENTATION_SM = "papyrus.trace.implementation.sm";
+	public static final String P_TRACE_IMPLEMENTATION_SM = "papyrus.trace.implementation.sm"; //$NON-NLS-1$
 
 
 	/**
 	 * Options for trace implementation via state machines
 	 */
-	public static final String P_TRACE_OPTION_CLASS = "papyrus.trace.option.class";
+	public static final String P_TRACE_OPTION_CLASS = "papyrus.trace.option.class"; //$NON-NLS-1$
 
 	/**
 	 * Options for trace implementation for operations
 	 */
-	public static final String P_TRACE_OPTION_STATE = "papyrus.trace.option.state";
-
+	public static final String P_TRACE_OPTION_STATE = "papyrus.trace.option.state"; //$NON-NLS-1$
+	
 	/**
 	 * Options for trace implementation via state machines
 	 */
-	public static final String P_TRACE_OPTION_OP = "papyrus.trace.option.op";
+	public static final String P_TRACE_OPTION_OP = "papyrus.trace.option.op"; //$NON-NLS-1$
 }

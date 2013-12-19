@@ -25,7 +25,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.component.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -95,8 +94,8 @@ public class ComponentCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Component newElement = UMLFactory.eINSTANCE.createComponent();
-		Class owner = (Class)getElementToEdit();
-		owner.getNestedClassifiers().add(newElement);
+		Component owner = (Component)getElementToEdit();
+		owner.getPackagedElements().add(newElement);
 		ElementInitializers.getInstance().init_Component_3070(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
