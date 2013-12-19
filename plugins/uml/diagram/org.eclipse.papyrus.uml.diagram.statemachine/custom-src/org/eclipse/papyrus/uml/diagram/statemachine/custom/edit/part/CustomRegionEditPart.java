@@ -19,16 +19,13 @@ public class CustomRegionEditPart extends RegionEditPart {
 
 	public CustomRegionEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void createDefaultEditPolicies() {
-		// TODO Auto-generated method stub
 		super.createDefaultEditPolicies();
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
-
 	}
 
 	/**
@@ -66,7 +63,6 @@ public class CustomRegionEditPart extends RegionEditPart {
 
 	@Override
 	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
 		super.refreshVisuals();
 
 		View view = (View)getModel();
@@ -74,23 +70,28 @@ public class CustomRegionEditPart extends RegionEditPart {
 
 		// check the region zone
 		String zone = Zone.getZone(view);
-		// check the neighbours if any and change the corresponding flags in the
-		// figure
-		if(Zone.hasRightNeighbours(zone))
-			f.setDisplayRightBorder(true);
-		else
-			f.setDisplayRightBorder(false);
-		if(Zone.hasBottomNeighbours(zone))
-			f.setDisplayBottomBorder(true);
-		else
+		if (zone != null) {
+			// check the neighbours if any and change the corresponding flags in the
+			// figure
+			if(Zone.hasRightNeighbours(zone))
+				f.setDisplayRightBorder(true);
+			else
+				f.setDisplayRightBorder(false);
+			if(Zone.hasBottomNeighbours(zone))
+				f.setDisplayBottomBorder(true);
+			else
+				f.setDisplayBottomBorder(false);
+			
+			CustomRegionResizableEditPolicy policy = (CustomRegionResizableEditPolicy)getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+			// test for allowed directions
+			int dirs = Zone.getAllowedResizeDirections(zone);
+			// constrain the edit policy with these directions
+			if(policy != null)
+				policy.setResizeDirections(dirs);
+		}
+		else {
 			f.setDisplayBottomBorder(false);
-
-		CustomRegionResizableEditPolicy policy = (CustomRegionResizableEditPolicy)getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		// test for allowed directions
-		int dirs = Zone.getAllowedResizeDirections(zone);
-		// constrain the edit policy with these directions
-		if(policy != null)
-			policy.setResizeDirections(dirs);
-
+			f.setDisplayRightBorder(false);
+		}
 	}
 }

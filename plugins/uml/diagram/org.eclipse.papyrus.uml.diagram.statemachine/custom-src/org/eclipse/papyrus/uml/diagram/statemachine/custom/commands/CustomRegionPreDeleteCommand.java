@@ -17,7 +17,6 @@ public class CustomRegionPreDeleteCommand extends DeleteCommand {
 
 	public CustomRegionPreDeleteCommand(TransactionalEditingDomain editingDomain, View view) {
 		super(editingDomain, view);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -29,7 +28,7 @@ public class CustomRegionPreDeleteCommand extends DeleteCommand {
 		if(compartment.getElement() instanceof StateMachine) {
 			if(compartment.getChildren().size() != 1)
 				return true;
-			return false;
+			//return false;
 		}
 		return true;
 	}
