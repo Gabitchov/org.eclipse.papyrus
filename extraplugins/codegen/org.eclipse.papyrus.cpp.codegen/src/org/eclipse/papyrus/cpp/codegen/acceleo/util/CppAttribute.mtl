@@ -36,16 +36,20 @@
 [comment
 return a list of owned attributes, since this is not supported directly on a classifier/]
 [query public getOwnedAttributes(cl : Classifier) : Sequence(Property) =
-	if (cl.oclIsKindOf(Class)) then
+	if cl.oclIsKindOf(Class) then
 		oclAsType(Class).ownedAttribute
 	else
-		if (cl.oclIsKindOf(DataType)) then
+		if cl.oclIsKindOf(DataType) then
 			oclAsType(DataType).ownedAttribute
 		else
-			if (cl.oclIsKindOf(Interface)) then
+			if cl.oclIsKindOf(Interface) then
 				oclAsType(Interface).ownedAttribute
 			else
-				Sequence{}
+				if cl.oclIsKindOf(Signal) then
+					oclAsType(Signal).ownedAttribute
+				else
+					Sequence{}
+				endif
 			endif
 		endif
 	endif
