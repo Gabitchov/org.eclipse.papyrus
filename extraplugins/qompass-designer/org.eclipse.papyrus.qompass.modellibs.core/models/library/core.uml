@@ -1127,6 +1127,7 @@ for (;;) {
         </ownedBehavior>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_F-cDMCjbEeGFbebITJYb9g" name="activate" method="_RMkvkCjbEeGFbebITJYb9g"/>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_F-iJ0CjbEeGFbebITJYb9g" name="deactivate"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_rljQcFy8EeOwKfaVRwV11Q" name="configuration_complete"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_1sCBICjZEeGFbebITJYb9g" name="PeriodicTimerRule">
         <ownedAttribute xmi:type="uml:Property" xmi:id="_6yVMkCjZEeGFbebITJYb9g" name="timer" visibility="public" type="_9V8OQCjYEeGFbebITJYb9g">
@@ -1534,4 +1535,7 @@ Be aware that the number of instantiated template packages will be considerably 
   </FCM:DerivedElement>
   <C_Cpp:Ptr xmi:id="_TKlisCxyEeOMQpc6Y-MAJw" base_parameter="_TJjA4CxyEeOMQpc6Y-MAJw"/>
   <C_Cpp:Ptr xmi:id="_TTpYECxyEeOMQpc6Y-MAJw" base_parameter="_TKyXACxyEeOMQpc6Y-MAJw"/>
+  <FCM:DerivedElement xmi:id="_rlowAFy8EeOwKfaVRwV11Q" base_Element="_rljQcFy8EeOwKfaVRwV11Q">
+    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_ns4qsClUEeO4bs_nkcnKOg"/>
+  </FCM:DerivedElement>
 </xmi:XMI>
