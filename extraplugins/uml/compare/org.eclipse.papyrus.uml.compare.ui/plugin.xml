@@ -44,9 +44,10 @@
 </menuContribution>
    </extension> -->
    <extension
-         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+         point="org.eclipse.emf.compare.edit.adapterFactory">
       <factory
-            class="org.eclipse.papyrus.uml.compare.ui.provider.SampleUMLProvider"
+            class="org.eclipse.papyrus.uml.compare.ui.provider.PapyrusCompareAdapterFactory"
+            ranking="11"
             supportedTypes="org.eclipse.emf.edit.provider.IItemLabelProvider"
             uri="http://www.eclipse.org/uml2/4.0.0/UML">
       </factory>
