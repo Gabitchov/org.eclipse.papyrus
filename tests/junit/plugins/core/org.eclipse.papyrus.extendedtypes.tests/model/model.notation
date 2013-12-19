@@ -41,7 +41,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SYJhfmfAEeOeZsTtUeHY9w"/>
           </children>
           <element xmi:type="uml:Component" href="model.uml#_TCAGQGc9EeOeFPMFS4Wv8Q"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SYI6YWfAEeOeZsTtUeHY9w" x="45" y="15"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_SYI6YWfAEeOeZsTtUeHY9w" x="13" y="1"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_NqqepGfAEeOeZsTtUeHY9w"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NqqepWfAEeOeZsTtUeHY9w"/>

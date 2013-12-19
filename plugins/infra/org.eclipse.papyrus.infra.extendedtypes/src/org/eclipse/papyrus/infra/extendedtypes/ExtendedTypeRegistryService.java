@@ -42,6 +42,7 @@ public class ExtendedTypeRegistryService implements IService {
 	 */
 	public void disposeService() throws ServiceException {
 		// extended element type set registry should unregister all added element types in the gmf registry
+		ElementTypeSetUtils.resetRegistry();
 		
 	}
 	

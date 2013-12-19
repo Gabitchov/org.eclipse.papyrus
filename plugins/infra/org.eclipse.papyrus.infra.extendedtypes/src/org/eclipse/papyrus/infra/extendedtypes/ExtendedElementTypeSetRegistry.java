@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -33,36 +34,37 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.extendedtypes.preferences.ExtendedTypesPreferences;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.osgi.framework.Bundle;
-
 
 /**
  * Registry to manage load/unloaded {@link ExtendedElementTypeSet}.
  */
 public class ExtendedElementTypeSetRegistry {
 
+	public static final String LOCAL_CONTRIBUTOR_ID = "local contribution";
+
 	/** private singleton instance */
 	private static ExtendedElementTypeSetRegistry registry;
-	
+
 	/** list of retrieved extended type sets */
 	protected List<ExtendedElementTypeSet> extendedTypeSets = null;
 
 	/** unique resource set to load all extended types models */
 	protected ResourceSet extendedTypesResourceSet = null;
-	
-	protected List<ExtendedElementTypeSet> loadedExtendedElementTypeSets = null;   
-	
+
+	protected List<ExtendedElementTypeSet> loadedExtendedElementTypeSets = null;
+
 	protected Map<String, IExtendedElementTypeFactory<ElementTypeConfiguration>> configurationTypeToElementTypeFactory = null;
 
 	protected List<String> configurationTypeFactoryExceptions = null;
-	
+
 	/**
 	 * returns the singleton instance of this registry
 	 * 
@@ -75,7 +77,7 @@ public class ExtendedElementTypeSetRegistry {
 		}
 		return registry;
 	}
-	
+
 	/**
 	 * Inits the registry.
 	 */
@@ -84,23 +86,18 @@ public class ExtendedElementTypeSetRegistry {
 		extendedTypesResourceSet = null;
 		extendedTypeSets = null;
 		configurationTypeToElementTypeFactory = new HashMap<String, IExtendedElementTypeFactory<ElementTypeConfiguration>>();
-		
 		// 1. creates the resource set
 		extendedTypesResourceSet = createResourceSet();
-		
 		// 2. creates the list only when registry is acceded for the first time, (or on reload?)
 		extendedTypeSets = loadExtendedTypeSets();
-		
-//		// 3. loads each extended types sets, and creates types 
-//		for(ExtendedElementTypeSet extendedElementTypeSet : extendedTypeSets) {
-//			loadExtendedElementTypeSet(extendedElementTypeSet);
-//		}
 	}
 
-	/** 
-	 * Loads the specified extended element type set. 
-	 * This does not take care to unload a similar set (a set with the same id) before loading. This should be handled before calling this method. 
-	 * @param extendedElementTypeSet {@link ExtendedElementTypeSet} to load.
+	/**
+	 * Loads the specified extended element type set.
+	 * This does not take care to unload a similar set (a set with the same id) before loading. This should be handled before calling this method.
+	 * 
+	 * @param extendedElementTypeSet
+	 *        {@link ExtendedElementTypeSet} to load.
 	 */
 	public void loadExtendedElementTypeSet(ExtendedElementTypeSet extendedElementTypeSet) {
 		IClientContext context;
@@ -110,29 +107,25 @@ public class ExtendedElementTypeSetRegistry {
 			Activator.log.error(e1);
 			return;
 		}
-		
 		List<ElementTypeConfiguration> elementTypeConfigurations = extendedElementTypeSet.getElementType();
-		
 		for(ElementTypeConfiguration configuration : elementTypeConfigurations) {
 			// load class associated to the configuration model => read extension point that defines this kind of configuration. 
 			String configurationType = configuration.eClass().getInstanceTypeName();
 			// retrieve the factory for a given kind of configuration
-			IExtendedElementTypeFactory factory = configurationTypeToElementTypeFactory.get(configurationType);
+			IExtendedElementTypeFactory<ElementTypeConfiguration> factory = configurationTypeToElementTypeFactory.get(configurationType);
 			// check factory is not on the exception table
-			
-			
-			if(factory ==null && isNotInFactoryExceptionList(configurationType)) {
-				Class<IExtendedElementTypeFactory> factoryClass = retrieveFactoryClassFromExtensionPoint(configurationType);
-				if(factoryClass !=null) {
+			if(factory == null && isNotInFactoryExceptionList(configurationType)) {
+				Class<IExtendedElementTypeFactory<ElementTypeConfiguration>> factoryClass = retrieveFactoryClassFromExtensionPoint(configurationType);
+				if(factoryClass != null) {
 					try {
 						factory = factoryClass.newInstance();
 					} catch (InstantiationException e) {
-						if(configurationTypeFactoryExceptions== null) {
+						if(configurationTypeFactoryExceptions == null) {
 							configurationTypeFactoryExceptions = new ArrayList<String>();
 						}
 						configurationTypeFactoryExceptions.add(configurationType);
 					} catch (IllegalAccessException e) {
-						if(configurationTypeFactoryExceptions== null) {
+						if(configurationTypeFactoryExceptions == null) {
 							configurationTypeFactoryExceptions = new ArrayList<String>();
 						}
 						configurationTypeFactoryExceptions.add(configurationType);
@@ -140,8 +133,8 @@ public class ExtendedElementTypeSetRegistry {
 					configurationTypeToElementTypeFactory.put(configurationType, factory);
 				}
 			}
-			if(factory != null)  {
-				ISpecializationType type = factory.createElementType(configuration);
+			if(factory != null) {
+				IExtendedHintedElementType type = factory.createElementType(configuration);
 				// register element Type
 				ElementTypeRegistry.getInstance().register(type);
 				context.bindId(type.getId());
@@ -149,39 +142,35 @@ public class ExtendedElementTypeSetRegistry {
 			// TODO handle errors here: no factory, impossible to create element type from configuration, impossible to register, etc.
 		}
 	}
-	
-	
-	
+
 	/**
 	 * check this configuration type has not already caused issues du
+	 * 
 	 * @param configurationType
 	 * @return
 	 */
 	protected boolean isNotInFactoryExceptionList(String configurationType) {
-		if(configurationTypeFactoryExceptions ==null) {
+		if(configurationTypeFactoryExceptions == null) {
 			return true;
 		}
 		// this is not null, check the configuration type is not in the list
 		return !configurationTypeFactoryExceptions.contains(configurationType);
-		
 	}
 
 	/**
 	 * Returns the {@link IExtendedElementTypeFactory} class used to instantiate element type for the given configuration
+	 * 
 	 * @return the {@link IExtendedElementTypeFactory} found or <code>null</code> if none was found
 	 */
 	@SuppressWarnings("unchecked")
-	protected Class<IExtendedElementTypeFactory> retrieveFactoryClassFromExtensionPoint(String configurationType) {
+	protected Class<IExtendedElementTypeFactory<ElementTypeConfiguration>> retrieveFactoryClassFromExtensionPoint(String configurationType) {
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(IExtendedTypeConfigurationExtensionPoint.EXTENSION_POINT_ID);
 		for(IConfigurationElement configurationElement : elements) {
-			
 			String eCoreClassName = configurationElement.getAttribute(IExtendedTypeConfigurationExtensionPoint.CONFIGURATION_CLASS);
-			
 			if(configurationType.equals(eCoreClassName)) {
-				
 				// retrieve factory to load
 				String factoryClassName = configurationElement.getAttribute(IExtendedTypeConfigurationExtensionPoint.FACTORY_CLASS);
-				return (Class<IExtendedElementTypeFactory>)loadClass(factoryClassName, configurationElement.getContributor().getName());
+				return (Class<IExtendedElementTypeFactory<ElementTypeConfiguration>>)loadClass(factoryClassName, configurationElement.getContributor().getName());
 			}
 		}
 		return null;
@@ -192,22 +181,49 @@ public class ExtendedElementTypeSetRegistry {
 	 */
 	protected List<ExtendedElementTypeSet> loadExtendedTypeSets() {
 		List<ExtendedElementTypeSet> extendedElementTypeSets = new ArrayList<ExtendedElementTypeSet>();
-
 		// 1. retrieve from the workspace
-		// TODO implement retrieve from workspace. could be an activated/deactivated set of additions selected in the workspace
-
-		// 2. retrieve from the platform.
-		List<ExtendedElementTypeSet> registeredSets = loadExtendedTypeSetsFromPlatform();
-		if(registeredSets != null && !registeredSets.isEmpty()) {
-			extendedElementTypeSets.addAll(registeredSets);
+		Map<String, ExtendedElementTypeSet> localSets = loadExtendedTypeSetsFromWorkspace();
+		if(localSets != null && !localSets.isEmpty()) {
+			extendedElementTypeSets.addAll(localSets.values());
 		}
-
+		
+		// 2. retrieve from the platform. If already in workspace (id), do not load the platform ones
+		Map<String, ExtendedElementTypeSet> registeredSets = loadExtendedTypeSetsFromPlatform(localSets.keySet());
+		if(registeredSets != null && !registeredSets.isEmpty()) {
+			extendedElementTypeSets.addAll(registeredSets.values());
+		}
 		// load each extended element type set
 		for(ExtendedElementTypeSet extendedElementTypeSet : extendedElementTypeSets) {
 			loadExtendedElementTypeSet(extendedElementTypeSet);
 		}
-		
 		return extendedElementTypeSets;
+	}
+
+	/**
+	 * @return
+	 */
+	protected Map<String, ExtendedElementTypeSet> loadExtendedTypeSetsFromWorkspace() {
+		Map<String, String> localFilesPath = ExtendedTypesPreferences.getLocalExtendedTypesDefinitions();
+		Map<String, ExtendedElementTypeSet> workspaceElementTypeSets = new HashMap<String, ExtendedElementTypeSet>();
+		if(localFilesPath != null && !localFilesPath.isEmpty()) {
+			for(Entry<String, String> idToPath : localFilesPath.entrySet()) {
+				String filePath = idToPath.getValue();
+				String id = idToPath.getKey();
+				
+				URI localURI = URI.createPlatformResourceURI(filePath, true);
+				Resource resource = extendedTypesResourceSet.createResource(localURI);
+				try {
+					resource.load(null);
+					EObject content = resource.getContents().get(0);
+					if(content instanceof ExtendedElementTypeSet) {
+						workspaceElementTypeSets.put(id, (ExtendedElementTypeSet)content);
+					}
+				} catch (IOException e) {
+					Activator.log.error(e);
+				}
+			}
+		}
+		return workspaceElementTypeSets;
 	}
 
 	/**
@@ -215,9 +231,8 @@ public class ExtendedElementTypeSetRegistry {
 	 * 
 	 * @return the list of extension registered in the platform
 	 */
-	protected List<ExtendedElementTypeSet> loadExtendedTypeSetsFromPlatform() {
-		List<ExtendedElementTypeSet> platformElementTypeSets = new ArrayList<ExtendedElementTypeSet>();
-
+	protected Map<String, ExtendedElementTypeSet> loadExtendedTypeSetsFromPlatform(Set<String> workspaceDefinitions) {
+		Map<String, ExtendedElementTypeSet> platformElementTypeSets = new HashMap<String, ExtendedElementTypeSet>();
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(IExtendedElementTypeSetExtensionPoint.EXTENSION_POINT_ID);
 		// for each element, parses and retrieve the model file. then loads it and returns the root element 
 		for(IConfigurationElement element : elements) {
@@ -231,14 +246,13 @@ public class ExtendedElementTypeSetRegistry {
 				Activator.log.debug("-  id of the extended type set: " + extendedTypeSetId);
 			}
 			ExtendedElementTypeSet set = getExtendedElementTypeSet(extendedTypeSetId, modelPath, contributorID);
-			if(set != null) {
-				platformElementTypeSets.add(set);
+			if(set != null && !workspaceDefinitions.contains(extendedTypeSetId)) { // do not add if it is locally redefined
+				platformElementTypeSets.put(extendedTypeSetId, set);
 			}
 		}
-
 		return platformElementTypeSets;
 	}
-	
+
 	/**
 	 * <p>
 	 * Loads the resource containing the extended element type set model.
@@ -262,7 +276,6 @@ public class ExtendedElementTypeSetRegistry {
 		if(filePath != null) {
 			getExtendedElementTypeSetInPluginStateArea(extendedTypesID);
 		}
-
 		// 2. no local redefinition. Load extended type set from plugin definition
 		Bundle bundle = Platform.getBundle(bundleId);
 		if(Platform.isFragment(bundle)) {
@@ -284,7 +297,7 @@ public class ExtendedElementTypeSetRegistry {
 			}
 		}
 	}
-	
+
 	/**
 	 * Retrieves the contribution in the plugin area
 	 * 
@@ -334,7 +347,7 @@ public class ExtendedElementTypeSetRegistry {
 		Activator.log.error("Impossible to cast the object into an ExtendedElementTypeSet: " + content, null);
 		return null;
 	}
-	
+
 	/**
 	 * Creates the resource set that contains all models for extended types
 	 * 
@@ -344,55 +357,54 @@ public class ExtendedElementTypeSetRegistry {
 		ResourceSet set = new ResourceSetImpl();
 		return set;
 	}
-	
+
 	///////////////////////////////////////////////////////////////////////////
 	// loading resource
 	///////////////////////////////////////////////////////////////////////////
 	/** A map of classes that have been successfully loaded, keyed on the class name optionally prepended by the plugin ID, if specified. */
 	private static Map<String, WeakReference<Class<?>>> successLookupTable = new HashMap<String, WeakReference<Class<?>>>();
-	
+
 	/** A map of classes that could not be loaded, keyed on the class name, optionally prepended by the plugin ID if specified. */
 	private static Set<String> failureLookupTable = new HashSet<String>();
-	
-	  /** A map to hold the bundle to exception list */
-    private static Map<Bundle, Set<String>> bundleToExceptionsSetMap = new HashMap<Bundle, Set<String>>();	
-	
+
+	/** A map to hold the bundle to exception list */
+	private static Map<Bundle, Set<String>> bundleToExceptionsSetMap = new HashMap<Bundle, Set<String>>();
+
 	/**
 	 * A utility method to load a class using its name and a given class loader.
 	 * 
 	 * @param className
-	 *            The class name
+	 *        The class name
 	 * @param bundle
-	 *            The class loader
+	 *        The class loader
 	 * @return The loaded class or <code>null</code> if could not be loaded
 	 */
 	protected static Class<?> loadClass(String className, String pluginId) {
-		StringBuffer keyStringBuf = new StringBuffer(className.length()
-			+ pluginId.length() + 2); // 2 is for . and extra.
+		StringBuffer keyStringBuf = new StringBuffer(className.length() + pluginId.length() + 2); // 2 is for . and extra.
 		keyStringBuf.append(pluginId);
 		keyStringBuf.append('.');
 		keyStringBuf.append(className);
 		String keyString = keyStringBuf.toString();
 		WeakReference<Class<?>> ref = successLookupTable.get(keyString);
 		Class<?> found = (ref != null) ? ref.get() : null;
-		if (found == null) {
-			if (ref != null)
+		if(found == null) {
+			if(ref != null)
 				successLookupTable.remove(keyString);
-			if (!failureLookupTable.contains(keyString)) {
+			if(!failureLookupTable.contains(keyString)) {
 				try {
 					Bundle bundle = basicGetPluginBundle(pluginId);
-					if (bundle!=null){
-                        // never load the class if the bundle is not active other wise
-                        // we will cause the plugin to load
-                        // unless the class is in the exception list
-                        int state = bundle.getState();
-                        if ( state == org.osgi.framework.Bundle.ACTIVE || isInExceptionList(bundle,className)){
-    						found = bundle.loadClass(className);
-    						successLookupTable.put(keyString, new WeakReference<Class<?>>(found));
-                            if (state == org.osgi.framework.Bundle.ACTIVE){
-                                bundleToExceptionsSetMap.remove(bundle);
-                            }
-                        }
+					if(bundle != null) {
+						// never load the class if the bundle is not active other wise
+						// we will cause the plugin to load
+						// unless the class is in the exception list
+						int state = bundle.getState();
+						if(state == org.osgi.framework.Bundle.ACTIVE || isInExceptionList(bundle, className)) {
+							found = bundle.loadClass(className);
+							successLookupTable.put(keyString, new WeakReference<Class<?>>(found));
+							if(state == org.osgi.framework.Bundle.ACTIVE) {
+								bundleToExceptionsSetMap.remove(bundle);
+							}
+						}
 					} else {
 						failureLookupTable.add(keyString);
 					}
@@ -403,57 +415,64 @@ public class ExtendedElementTypeSetRegistry {
 		}
 		return found;
 	}
-	
-    /**
+
+	/**
 	 * Given a bundle id, it checks if the bundle is found and activated. If it
 	 * is, the method returns the bundle, otherwise it returns <code>null</code>.
 	 * 
 	 * @param pluginId
-	 *            the bundle ID
+	 *        the bundle ID
 	 * @return the bundle, if found
 	 */
 	protected static Bundle getPluginBundle(String pluginId) {
 		Bundle bundle = basicGetPluginBundle(pluginId);
-		if (null != bundle && bundle.getState() == org.osgi.framework.Bundle.ACTIVE)
+		if(null != bundle && bundle.getState() == org.osgi.framework.Bundle.ACTIVE)
 			return bundle;
 		return null;
 	}
-    
-    private static Bundle basicGetPluginBundle(String pluginId) {
-        return Platform.getBundle(pluginId);   
-    }
 
-    private static boolean isInExceptionList(Bundle bundle, String className) {
-        String packageName = className.substring(0,className.lastIndexOf('.'));
-        Set<String> exceptionSet = bundleToExceptionsSetMap.get(bundle);
-        if (exceptionSet==null){
-            Dictionary<String, String> dict = bundle.getHeaders();
-            String value = dict.get("Eclipse-LazyStart"); //$NON-NLS-1$
-            if (value!=null){
-                int index  = value.indexOf("exceptions"); //$NON-NLS-1$
-                if (index!=-1){
-                    try {
-                        int start = value.indexOf('"',index+1);
-                        int end = value.indexOf('"',start+1);
-                        String exceptions = value.substring(start+1,end);
-                        exceptionSet = new HashSet<String>(2);
-                        StringTokenizer tokenizer = new StringTokenizer(exceptions, ","); //$NON-NLS-1$
-                        while (tokenizer.hasMoreTokens()) {
-                            exceptionSet.add(tokenizer.nextToken().trim());
-                        }
-                    } catch(IndexOutOfBoundsException exception) {
-                        // this means the MF did not follow the documented format for the exceptions list  so i'll consider it empty
-                        exceptionSet = Collections.emptySet();
-                    }
-                    
-                } else {
-                    exceptionSet = Collections.emptySet();
-                }
-            } else {
-                exceptionSet = Collections.emptySet();
-            }
-            bundleToExceptionsSetMap.put(bundle, exceptionSet);
-        }
-        return exceptionSet.contains(packageName);
-    }
+	private static Bundle basicGetPluginBundle(String pluginId) {
+		return Platform.getBundle(pluginId);
+	}
+
+	private static boolean isInExceptionList(Bundle bundle, String className) {
+		String packageName = className.substring(0, className.lastIndexOf('.'));
+		Set<String> exceptionSet = bundleToExceptionsSetMap.get(bundle);
+		if(exceptionSet == null) {
+			Dictionary<String, String> dict = bundle.getHeaders();
+			String value = dict.get("Eclipse-LazyStart"); //$NON-NLS-1$
+			if(value != null) {
+				int index = value.indexOf("exceptions"); //$NON-NLS-1$
+				if(index != -1) {
+					try {
+						int start = value.indexOf('"', index + 1);
+						int end = value.indexOf('"', start + 1);
+						String exceptions = value.substring(start + 1, end);
+						exceptionSet = new HashSet<String>(2);
+						StringTokenizer tokenizer = new StringTokenizer(exceptions, ","); //$NON-NLS-1$
+						while(tokenizer.hasMoreTokens()) {
+							exceptionSet.add(tokenizer.nextToken().trim());
+						}
+					} catch (IndexOutOfBoundsException exception) {
+						// this means the MF did not follow the documented format for the exceptions list  so i'll consider it empty
+						exceptionSet = Collections.emptySet();
+					}
+				} else {
+					exceptionSet = Collections.emptySet();
+				}
+			} else {
+				exceptionSet = Collections.emptySet();
+			}
+			bundleToExceptionsSetMap.put(bundle, exceptionSet);
+		}
+		return exceptionSet.contains(packageName);
+	}
+
+	/**
+	 * 
+	 */
+	public void reset() {
+		init();
+		
+	}
 }

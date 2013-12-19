@@ -3,7 +3,7 @@
 
 <!--
  <copyright>
- </copyright>
+ </copyright>r
 
  $Id$
 -->
@@ -14,21 +14,6 @@
    <extension-point id="extendedTypeConfiguration" name="extended type configuration" schema="schema/extendedTypeConfiguration.exsd"/>
    <extension-point id="invariantRule" name="Invariant Rule Extension Point" schema="schema/invariantRule.exsd"/>
    <extension-point id="elementMatcherConfiguration" name="Element Macher Configuration" schema="schema/elementMatcherConfiguration.exsd"/>
-
-<!--
-   <extension
-         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-      <metamodel
-            nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <adviceBinding
-               class="org.eclipse.papyrus.infra.extendedtypes.advices.ExtendedTypesOwnerAdvice"
-               id="org.eclipse.papyrus.uml.advice.ExtendedTypesOwnerAdvice"
-               inheritance="all"
-               typeId="org.eclipse.papyrus.uml.Element">
-         </adviceBinding>
-      </metamodel>
-   </extension>
-  --> 
    
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated AspectSemantic -->
@@ -151,5 +136,75 @@
       <parser
             type="invariantcontainerconfiguration"
             class="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.util.InvariantContainerConfigurationResourceFactoryImpl"/>
+   </extension>
+   
+   
+      <extension
+         point="org.eclipse.ui.menus">
+         <menuContribution
+    allPopups="false"
+    locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+	<command
+       commandId="org.eclipse.papyrus.infra.extendedtypes.deploy"
+       icon="icons/configuration.gif"
+       style="push">
+	    <visibleWhen
+	          checkEnabled="false">
+	       <with
+	             variable="selection">
+	          <iterate
+	                ifEmpty="false"
+	                operator="and">
+	             <adapt
+	                   type="org.eclipse.core.resources.IFile">
+	                <or>
+	                   <test
+	                         property="org.eclipse.core.resources.extension"
+	                         value="extendedtypes">
+	                   </test>
+	                </or>
+	             </adapt>
+	          </iterate>
+	       </with>
+	    </visibleWhen>
+	</command>
+ <command
+       commandId="org.eclipse.papyrus.infra.extendedtypes.undeploy"
+       icon="icons/configuration.gif"
+       style="push">
+    <visibleWhen
+          checkEnabled="false">
+       <with
+             variable="selection">
+          <iterate
+                ifEmpty="false"
+                operator="and">
+             <adapt
+                   type="org.eclipse.core.resources.IFile">
+                <or>
+                   <test
+                         property="org.eclipse.core.resources.extension"
+                         value="extendedtypes">
+                   </test>
+                </or>
+             </adapt>
+          </iterate>
+       </with>
+    </visibleWhen>
+ </command>
+</menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.extendedtypes.handler.DeployExtendedTypeSetConfigurationHandler"
+            id="org.eclipse.papyrus.infra.extendedtypes.deploy"
+            name="Deploy Extended Types Set configuration">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.extendedtypes.handler.UndeployExtendedTypeSetConfigurationHandler"
+            id="org.eclipse.papyrus.infra.extendedtypes.undeploy"
+            name="Disable Extended Types Set configuration">
+      </command>
    </extension>
 </plugin>
