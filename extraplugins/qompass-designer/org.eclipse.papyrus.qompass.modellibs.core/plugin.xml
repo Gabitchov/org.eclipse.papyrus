@@ -97,7 +97,11 @@
 		</template>
 	</extension>
 	<extension point="org.eclipse.papyrus.qompass.designer.core.instanceConfig">
-		<client class="org.eclipse.papyrus.qompass.modellibs.core.CallEventConfigurator" configuratorID="CallEventConfigurator">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.iconfigurators.CallEventConfigurator" configuratorID="CallEventConfigurator">
+		</client>
+	</extension>
+	<extension point="org.eclipse.papyrus.qompass.designer.core.instanceConfig">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.iconfigurators.AnimServiceConfigurator" configuratorID="AnimServiceConfigurator">
 		</client>
 	</extension>
 	<extension point="org.eclipse.ui.newWizards">

@@ -203,14 +203,9 @@ public class MainModelTrafo {
 		// the method createContainerInstance must be called for each instance of the application component
 		// (caveat: don't mix-up with instance of Java classes of the development tool)
 		// TODO: since we support multiple container kinds, we need to keep their container map separate!
-		if(containerTrafo != null) {
-			// create instance, if container exists already (if a container exists, all instances are
-			// instances of the container
-			containerTrafo.configureOnly();
-			containerTrafo.createContainerInstance(tmComponent, tmIS, new ContainerContext(smDF, null));
-		}
-		else {
-			// process container rules
+		InstanceSpecification containerIS = null;
+		if(containerTrafo == null) {
+			// no container exists, check rules and create eventually
 			for(ContainerRule rule : rules) {
 				if(RuleManagement.isRuleActive(rule)) {
 					// at least one active rule => create container (or get previously instantiated))
@@ -219,26 +214,36 @@ public class MainModelTrafo {
 							containerTrafo = new LWContainerTrafo(copy, tmCDP);
 						}
 						else {
-							containerTrafo = new ContainerTrafo(copy, tmCDP);
+							containerTrafo = new ContainerTrafo(copy, tmCDP, tmIS);
 						}
-						// create container instance once for all rules (that use same container kind)
 						containerTrafo.createContainer(smComponent, tmComponent);
-						containerTrafo.createContainerInstance(tmComponent, tmIS, new ContainerContext(smDF, null));
 					}
 					else {
 						// configure only??
 					}
 					containerTrafo.applyRule(rule, smComponent, tmComponent);
 				}
-				// TODO(?) check if rule has already been applied (don't mix-up instances/classes)
+			}
+			if (containerTrafo != null) {
+				containerTrafo.finalize();
 			}
 		}
+		if (containerTrafo != null) {
+			// create instance of container. This is done after rule application, since
+			// elements that are added by the rules need to be instantiated as well.
+			// TODO: Cannot mix both rules.
+			containerIS = containerTrafo.createContainerInstance(tmComponent, tmIS, new ContainerContext(copy, smIS, smDF, null));
+		}
+		// ------------------- end of container handling of SW nodes
+
 		// copy node allocation
 		for(InstanceSpecification smNode : AllocUtils.getNodes(smIS)) {
 			InstanceSpecification tmNode = copy.getCopy(smNode);
 			AllocUtils.allocate(tmIS, tmNode);
 
 			if(!nodeHandled.containsKey(tmNode)) {
+				// check if node (on an instance level) has already been treated. This is required, since many
+				// instances might be allocated to the same node.
 				nodeHandled.put(tmNode, true);
 
 				// check, whether a container rule is applied on the tmNode
@@ -249,65 +254,58 @@ public class MainModelTrafo {
 
 					if(hwRules.size() > 0) {
 
-						AbstractContainerTrafo abstractNodeContainerTrafo = ContainerTrafo.get((Class)tmCS);
-						if(abstractNodeContainerTrafo instanceof ContainerTrafo) {
+						ContainerTrafo nodeContainerTrafo = (ContainerTrafo) ContainerTrafo.get((Class)tmCS);
+						
+						// issues
+						//   - unlike SW component container, don't update references pointing towards the HW node 
+						//   - create additional part in system (top-level) component for the node container
+						//   - container (_cc class) appears in platform component (same package as HW node)
+						//	 - port copying and creation of delegation connectors does not make much sense, creation of
+						//	   executor itself does not make much sense, additional operation "createHwContainer"
 
-							ContainerTrafo nodeContainerTrafo = (ContainerTrafo)abstractNodeContainerTrafo;
-							// make copy of inheritedRule list (avoid that added elements remain in single rule list passed to all)
+						// obtain property related to node instance
+						Slot smNodeSlot = DepUtils.getParentSlot(smNode);
+						ContainerContext context = new ContainerContext(copy, smIS, smDF, smNodeSlot != null ? smNodeSlot.getDefiningFeature() : null);
+						Package smCDP = smIS.getNearestPackage();
+						DeploymentPlan smFCM_CDP = UMLUtil.getStereotypeApplication(smCDP, DeploymentPlan.class);
 
-							// issues
-							//   - unlike SW component container, don't update references pointing towards the HW node 
-							//   - create additional part in system (top-level) component for the node container
-							//   - container (_cc class) appears in platform component (same package as HW node)
-							//	 - port copying and creation of delegation connectors does not make much sense, creation of
-							//	   executor itself does not make much sense, additional operation "createHwContainer"
-
-							// obtain property related to node instance
-							Slot smNodeSlot = DepUtils.getParentSlot(smNode);
-							ContainerContext context = new ContainerContext(smDF, smNodeSlot != null ? smNodeSlot.getDefiningFeature() : null);
-
-							if(nodeContainerTrafo != null) {
-								// only create instance, if container exists already
-								nodeContainerTrafo.configureOnly();
-								nodeContainerTrafo.createHwContainerInstance(tmComponent, tmNode, context);
-							}
-
-							Package smCDP = smIS.getNearestPackage();
-							DeploymentPlan smFCM_CDP = UMLUtil.getStereotypeApplication(smCDP, DeploymentPlan.class);
-
+						if(nodeContainerTrafo == null) {
+							// container does not exist, check rules and create eventually
 							for(ContainerRule rule : hwRules) {
 								if(RuleManagement.isRuleActive(rule)) {
 									if(nodeContainerTrafo == null) {
 										// at least one active rule => create container (or get previously instantiated))
-										nodeContainerTrafo = new ContainerTrafo(copy, tmCDP);
+										nodeContainerTrafo = new ContainerTrafo(copy, tmCDP, tmIS);
 										nodeContainerTrafo.createHwContainer((Class)tmCS);
-										nodeContainerTrafo.createHwContainerInstance(tmComponent, tmNode, context);
+										nodeContainerTrafo.applyRule(rule, smComponent, tmComponent);
 									}
-									nodeContainerTrafo.applyRule(rule, smComponent, tmComponent);
-
-									// now add attribute in system (obtain via classifier of main instance in smCDP)
-									if(smFCM_CDP != null) {
-										InstanceSpecification smMI = smFCM_CDP.getMainInstance();
-										Classifier smSystem = DepUtils.getClassifier(smMI);
-										Classifier tmSystem = copy.getCopy(smSystem);
-										InstanceSpecification tmMI = DepUtils.getInstanceForClassifier(tmCDP, tmSystem);
-										if(tmSystem instanceof Class) {
-											Property hwcPart =
-												((Class)tmSystem).createOwnedAttribute(smNode.getName() + HW_COMP_PREFIX, nodeContainerTrafo.getContainer());
-											// and now create a slot for the created instance.
-											DepPlanUtils.createSlot(tmCDP, tmMI, nodeContainerTrafo.getContainerIS(), hwcPart);
-										}
-									}
-
-									// now allocate instance
-									AllocUtils.allocate(nodeContainerTrafo.getContainerIS(), tmNode);
 								}
+							}
+						}
+						if (nodeContainerTrafo != null) {
+							InstanceSpecification hwContainerIS =
+								nodeContainerTrafo.createHwContainerInstance(tmComponent, tmNode, context);
+							// now add attribute in system (obtain via classifier of main instance in smCDP)
+							if(smFCM_CDP != null) {
+								InstanceSpecification smMI = smFCM_CDP.getMainInstance();
+								Classifier smSystem = DepUtils.getClassifier(smMI);
+								Classifier tmSystem = copy.getCopy(smSystem);
+								InstanceSpecification tmMI = DepUtils.getInstanceForClassifier(tmCDP, tmSystem);
+								if(tmSystem instanceof Class) {
+									Property hwcPart =
+										((Class)tmSystem).createOwnedAttribute(smNode.getName() + HW_COMP_PREFIX, nodeContainerTrafo.getContainer());
+									// and now create a slot for the created instance.
+									DepPlanUtils.createSlot(tmCDP, tmMI, hwContainerIS, hwcPart);
+								}
+
+								// now allocate instance
+								AllocUtils.allocate(hwContainerIS, tmNode);
 							}
 						}
 					}
 				}
 			}
-		} // ------------------- handling of HW nodes
+		} // ------------------- end of container handling of HW nodes
 
 
 		// reread instName (may have been changed by container transformation).
@@ -418,13 +416,13 @@ public class MainModelTrafo {
 						 */
 					}
 
-					// configure connector
-					InstanceConfigurator.configureInstance(tmReifiedConnectorIS, connectorPart, null);
-
 					Slot partSlot =
 						DepCreation.createSlot(tmIS, tmReifiedConnectorIS, connectorPart);
 
 					ConnectorReification.propagateNodeAllocation(tmComponent, tmIS, partSlot);
+					
+					// configure connector
+					InstanceConfigurator.configureInstance(tmReifiedConnectorIS, connectorPart, null);
 				}
 			}
 		}
@@ -444,10 +442,9 @@ public class MainModelTrafo {
 		AllocTransfo at = new AllocTransfo();
 		at.transformAllocs(copy, tmComponent);
 		
-		if(containerTrafo != null) {
+		if(containerIS != null) {
 			// return containerIS
-			containerTrafo.moveSlots();
-			return containerTrafo.getContainerIS();
+			return containerIS;
 		} else {
 			return tmIS;
 		}
@@ -455,7 +452,13 @@ public class MainModelTrafo {
 
 	protected Map<InstanceSpecification, Boolean> nodeHandled;
 	
-	protected Copy copy;
+	/**
+	 * Copier from source to target model
+	 */
+	protected Copy copy;	
 	
+	/**
+	 * deployment plan within target model
+	 */
 	protected Package tmCDP;
 }

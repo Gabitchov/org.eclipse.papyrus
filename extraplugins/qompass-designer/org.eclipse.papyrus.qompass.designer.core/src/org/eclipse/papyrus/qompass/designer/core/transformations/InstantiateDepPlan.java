@@ -111,10 +111,10 @@ public class InstantiateDepPlan {
 		boolean generateCACOnly = (genOptions & GenerationOptions.CAC_ONLY) != 0;
 
 		AcceleoDriver.clearErrors();
-		Package cdp;
+		Package smCDP;
 		Configuration configuration = null;
 		if(cdpOrConfig instanceof Package) {
-			cdp = (Package)cdpOrConfig;
+			smCDP = (Package)cdpOrConfig;
 			RuleManagement.setConfiguration(null);
 		}
 		else if(StereotypeUtil.isApplied(cdpOrConfig, Configuration.class)) {
@@ -132,7 +132,7 @@ public class InstantiateDepPlan {
 				});
 				return;
 			}
-			cdp = fcmCDP.getBase_Package();
+			smCDP = fcmCDP.getBase_Package();
 			RuleManagement.setConfiguration(configuration);
 		} else {
 			return;
@@ -140,7 +140,7 @@ public class InstantiateDepPlan {
 
 		try {
 			EnumService.init();
-			InstanceSpecification rootIS = DepUtils.getMainInstance(cdp);
+			InstanceSpecification rootIS = DepUtils.getMainInstance(smCDP);
 			// Package copyCDP = dt.getCopyCDT (selectedCDP);
 
 			EList<InstanceSpecification> nodes = AllocUtils.getAllNodes(rootIS);
@@ -160,7 +160,7 @@ public class InstantiateDepPlan {
 			}
 
 			// 1a: create a new model (and applies same profiles / imports)
-			Model existingModel = cdp.getModel();
+			Model existingModel = smCDP.getModel();
 			TransformationContext.sourceRoot = existingModel;
 			tmpMM = createTargetModel(existingModel, monitor, existingModel.getName(), true);
 			tmpModel = tmpMM.getModel();
@@ -190,7 +190,7 @@ public class InstantiateDepPlan {
 			// obtain reference to CDP in target model
 			// 
 			tmpCopy.createShallowContainer(rootIS);
-			Package tmCDP = (Package)tmpCopy.get(cdp);
+			Package tmCDP = (Package)tmpCopy.get(smCDP);
 
 			ContainerTrafo.init();
 			MainModelTrafo mainModelTrafo = new MainModelTrafo(tmpCopy, tmCDP);
@@ -231,7 +231,7 @@ public class InstantiateDepPlan {
 					if(configuration != null) {
 						modelName += "_" + configuration.getBase_Class().getName(); //$NON-NLS-1$
 					} else {
-						modelName += "_" + cdp.getName(); //$NON-NLS-1$
+						modelName += "_" + smCDP.getName(); //$NON-NLS-1$
 					}
 					ModelManagement genMM = createTargetModel(existingModel, monitor, MapUtil.rootModelName, false);
 					Model genModel = genMM.getModel();

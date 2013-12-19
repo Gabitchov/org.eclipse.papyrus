@@ -31,6 +31,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.services.tracepoints.ITraceMechanism;
+import org.eclipse.papyrus.infra.services.tracepoints.Messages;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAClass;
 import org.eclipse.papyrus.infra.services.tracepoints.TraceActions.TAOperation;
@@ -106,7 +107,7 @@ public class TraceActionSelection extends SelectionStatusDialog {
 		else if(m_me instanceof Operation) {
 			traceActionValue = operationOptions.getResult();
 		}
-		String traceMechanism = "";
+		String traceMechanism = ""; //$NON-NLS-1$
 		for(Object tableElement : fTraceImplementations.getCheckedElements()) {
 			traceMechanism = (String)tableElement;
 		};
@@ -149,7 +150,7 @@ public class TraceActionSelection extends SelectionStatusDialog {
 
 			EList<ITraceMechanism> mechanisms = TraceMechanism.getTraceMechanisms();
 			if(mechanisms.size() == 0) {
-				items = new String[]{ "no plugins provide trace extension mechanism" };
+				items = new String[]{ Messages.TraceActionSelection_NoPluginsProvideTraceExt };
 			}
 			else {
 				EList<String> idList = new BasicEList<String>();
@@ -168,7 +169,7 @@ public class TraceActionSelection extends SelectionStatusDialog {
 		Composite contents = (Composite)super.createDialogArea(parent);
 
 		Label label = new Label(contents, SWT.NONE);
-		label.setText("Select trace action for this element");
+		label.setText(Messages.TraceActionSelection_SelectTraceAction);
 
 		// need context dependent dialogs on options
 		// we may need more than one options (e.g. AllOperations + OperationsWithParameters + (begin/end or both?))
@@ -177,28 +178,28 @@ public class TraceActionSelection extends SelectionStatusDialog {
 		String[][] taClassOptions = TraceActions.getStringFields(TAClass.values());
 		String[][] taStateOptions = TraceActions.getStringFields(TAState.values());
 		String[][] taOperationOptions = TraceActions.getStringFields(TAOperation.values());
-		String actionString = m_marker.getAttribute(TracepointConstants.traceAction, "");
-		String mechanismID = m_marker.getAttribute(TracepointConstants.traceMechanism, "");
+		String actionString = m_marker.getAttribute(TracepointConstants.traceAction, ""); //$NON-NLS-1$
+		String mechanismID = m_marker.getAttribute(TracepointConstants.traceMechanism, ""); //$NON-NLS-1$
 
 		if(m_me instanceof State) {
-			stateOptions = new BinaryEncodedMChoiceFieldEditor("State options", 3, taStateOptions, contents, true);
+			stateOptions = new BinaryEncodedMChoiceFieldEditor(Messages.TraceActionSelection_StateOptions, 3, taStateOptions, contents, true);
 			stateOptions.setupViaString(actionString);
 		}
 		else if(m_me instanceof Class) {
-			classOptions = new BinaryEncodedMChoiceFieldEditor("Class options", 3, taClassOptions, contents, true);
-			stateOptions = new BinaryEncodedMChoiceFieldEditor("State options", 3, taStateOptions, contents, true);
-			operationOptions = new BinaryEncodedMChoiceFieldEditor("Operation options", 3, taOperationOptions, contents, true);
+			classOptions = new BinaryEncodedMChoiceFieldEditor(Messages.TraceActionSelection_ClassOptions, 3, taClassOptions, contents, true);
+			stateOptions = new BinaryEncodedMChoiceFieldEditor(Messages.TraceActionSelection_StateOptions, 3, taStateOptions, contents, true);
+			operationOptions = new BinaryEncodedMChoiceFieldEditor(Messages.TraceActionSelection_OperationOptions, 3, taOperationOptions, contents, true);
 			classOptions.setupViaString(TraceActions.getOptions(actionString, TraceFeature.Class));
 			stateOptions.setupViaString(TraceActions.getOptions(actionString, TraceFeature.State));
 			operationOptions.setupViaString(TraceActions.getOptions(actionString, TraceFeature.Operation));
 		}
 		else if(m_me instanceof Operation) {
-			operationOptions = new BinaryEncodedMChoiceFieldEditor("Operation options", 3, taOperationOptions, contents, true);
+			operationOptions = new BinaryEncodedMChoiceFieldEditor(Messages.TraceActionSelection_OperationOptions, 3, taOperationOptions, contents, true);
 			operationOptions.setupViaString(actionString);
 		}
 
 		Group implementationGroup = new Group(parent, SWT.NONE);
-		implementationGroup.setText("Implementation options");
+		implementationGroup.setText(Messages.TraceActionSelection_ImplementationOptions);
 
 		// need additional item how the trace mechanism should be realized, i.e. available tracing mechanisms
 		fTraceImplementations = CheckboxTableViewer.newCheckList(implementationGroup, SWT.H_SCROLL | SWT.V_SCROLL);
@@ -241,7 +242,7 @@ public class TraceActionSelection extends SelectionStatusDialog {
 							}
 						}
 						if(noDesc) {
-							fDescription.setText("<not available>");
+							fDescription.setText(Messages.TraceActionSelection_NotAvail);
 						}
 					}
 				}

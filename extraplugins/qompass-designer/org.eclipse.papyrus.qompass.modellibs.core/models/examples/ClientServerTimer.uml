@@ -16,11 +16,41 @@
           <ownedAttribute xmi:type="uml:Port" xmi:id="_4KiE8DLbEd2qeKRLMdIx_A" name="p" type="_cn-H0DLbEd2qeKRLMdIx_A" aggregation="composite"/>
           <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_YQqH0JYlEd6G9q9hwr11bw" name="derived realization of ICompute" client="_oqZNUDLaEd2qeKRLMdIx_A" supplier="_cn-H0DLbEd2qeKRLMdIx_A" contract="_cn-H0DLbEd2qeKRLMdIx_A"/>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ML-4AKI5Ed6FqJCjEUrkqQ" name="add" specification="_TbIjUJYlEd6G9q9hwr11bw">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8CfgFy9EeORBN8YBc21fg" name="a">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8DGkFy9EeORBN8YBc21fg" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8DtoFy9EeORBN8YBc21fg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8EUsFy9EeORBN8YBc21fg" name="b">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8Fi0Fy9EeORBN8YBc21fg" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8Fi0Vy9EeORBN8YBc21fg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8GJ4Fy9EeORBN8YBc21fg" name="res" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8GJ4Vy9EeORBN8YBc21fg" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8Gw8Fy9EeORBN8YBc21fg" value="1"/>
+            </ownedParameter>
             <language>C/C++</language>
             <body>cout &lt;&lt; &quot;server: got add request for a=&quot; &lt;&lt; a &lt;&lt; &quot; and b=&quot; &lt;&lt; b &lt;&lt; endl;
 return a+b;</body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_I1R3YAcDEeGnrLqQ0OQeAg" name="mult" specification="_4ZEZwHecEd6r18stFZxmFQ">
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8HYAFy9EeORBN8YBc21fg" name="a">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8HYAVy9EeORBN8YBc21fg" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8H_EFy9EeORBN8YBc21fg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8H_EVy9EeORBN8YBc21fg" name="b">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8H_Ely9EeORBN8YBc21fg" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8ImIFy9EeORBN8YBc21fg" value="1"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_p8ImIVy9EeORBN8YBc21fg" name="res" direction="return">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
+              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p8JNMFy9EeORBN8YBc21fg" value="1"/>
+              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p8JNMVy9EeORBN8YBc21fg" value="1"/>
+            </ownedParameter>
             <language>C/C++</language>
             <body>cout &lt;&lt; &quot;server: got mult request for a=&quot; &lt;&lt; a &lt;&lt; &quot; and b=&quot; &lt;&lt; b &lt;&lt; endl;
 return a*b;</body>
@@ -56,25 +86,16 @@ return a*b;</body>
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DGs6wzLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DGs6wjLgEd28fJKJJnUaeQ" value="1"/>
-              <defaultValue xmi:type="uml:LiteralString" xmi:id="_DGs6xDLgEd28fJKJJnUaeQ">
-                <value xsi:nil="true"/>
-              </defaultValue>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_DGs6xTLgEd28fJKJJnUaeQ" name="b">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DGs6xzLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DGs6xjLgEd28fJKJJnUaeQ" value="1"/>
-              <defaultValue xmi:type="uml:LiteralString" xmi:id="_DGs6yDLgEd28fJKJJnUaeQ">
-                <value xsi:nil="true"/>
-              </defaultValue>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_DGs6yTLgEd28fJKJJnUaeQ" name="res" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DGs6yzLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DGs6yjLgEd28fJKJJnUaeQ" value="1"/>
-              <defaultValue xmi:type="uml:LiteralString" xmi:id="_DGs6zDLgEd28fJKJJnUaeQ">
-                <value xsi:nil="true"/>
-              </defaultValue>
             </ownedParameter>
           </ownedOperation>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_L8EY8DLgEd28fJKJJnUaeQ" name="mult" isAbstract="true">
@@ -82,25 +103,16 @@ return a*b;</body>
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L8EY8zLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L8EY8jLgEd28fJKJJnUaeQ" value="1"/>
-              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L8EY9DLgEd28fJKJJnUaeQ">
-                <value xsi:nil="true"/>
-              </defaultValue>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_L8EY9TLgEd28fJKJJnUaeQ" name="b">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L8EY9zLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L8EY9jLgEd28fJKJJnUaeQ" value="1"/>
-              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L8EY-DLgEd28fJKJJnUaeQ">
-                <value xsi:nil="true"/>
-              </defaultValue>
             </ownedParameter>
             <ownedParameter xmi:type="uml:Parameter" xmi:id="_L8EY-TLgEd28fJKJJnUaeQ" name="res" direction="return">
               <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_FxVBkB6LEd6Nj_33Eb_pxw"/>
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_L8EY-zLgEd28fJKJJnUaeQ" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_L8EY-jLgEd28fJKJJnUaeQ" value="1"/>
-              <defaultValue xmi:type="uml:LiteralString" xmi:id="_L8EY_DLgEd28fJKJJnUaeQ">
-                <value xsi:nil="true"/>
-              </defaultValue>
             </ownedParameter>
           </ownedOperation>
         </packagedElement>

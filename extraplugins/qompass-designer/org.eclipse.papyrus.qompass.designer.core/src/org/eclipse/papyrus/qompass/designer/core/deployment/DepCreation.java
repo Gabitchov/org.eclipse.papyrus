@@ -270,15 +270,16 @@ public class DepCreation {
 
 						createSlot(is, partIS, attribute);
 					}
-				} else if(StereotypeUtil.isApplied(attribute,
-					ConfigurationProperty.class)
+				}
+				else if(StereotypeUtil.isApplied(attribute, ConfigurationProperty.class)
 					&& createSlotsForConfigValues) {
 					// is a configuration property, create slot
 					// TODO: implicit assumption that configuration attributes
 					// are not components
 					createSlotForConfigProp(is, attribute);
 				}
-			} else if(type instanceof Class) {
+			}
+			else if(type instanceof Class) {
 				// no composition - only create slot, if a singleton
 				// (otherwise, it's not clear with which instance the slot
 				// should be associated)
@@ -374,13 +375,10 @@ public class DepCreation {
 		throws TransformationException {
 		// create an instance specification for the composite
 		InstanceSpecification is = null;
-		if(name != null) {
-			// donn't create instance specification for root element (detectable via the empty name)
-			is = (InstanceSpecification)platform.createPackagedElement(name,
-				UMLPackage.eINSTANCE.getInstanceSpecification());
-			is.getClassifiers().add(implementation);
-		}
-
+		is = (InstanceSpecification)platform.createPackagedElement(name,
+			UMLPackage.eINSTANCE.getInstanceSpecification());
+		is.getClassifiers().add(implementation);
+		
 		// add connector and container implementations
 
 		for(Property attribute : implementation.getAllAttributes()) {
@@ -396,8 +394,6 @@ public class DepCreation {
 				if(type instanceof Class) { // should be a node, but do not require it
 					Class cl = (Class)type;
 
-					// hack: ad-hoc replication support. Better solution via
-					// Design patterns
 					int upper = attribute.getUpper();
 					String infix = ""; //$NON-NLS-1$
 					// TODO: check validation constraints
@@ -543,7 +539,6 @@ public class DepCreation {
 	 *        specification
 	 * @return The value specifications for the passed source property or null
 	 */
-
 	public static ValueSpecification getNearestValue(
 		Stack<InstanceSpecification> isStack, Property source) {
 		Stack<InstanceSpecification> copy = new Stack<InstanceSpecification>();
@@ -561,7 +556,7 @@ public class DepCreation {
 	/**
 	 * Helper for getNearestValue: search for an instance specification that has
 	 * source as defining feature. Start at the passed instance specification,
-	 * but do not recursed into elements that are contained in the stack.
+	 * but do not recurse into elements that are contained in the stack.
 	 * 
 	 * @param isStack
 	 *        A stack of instance specifications corresponding to a path

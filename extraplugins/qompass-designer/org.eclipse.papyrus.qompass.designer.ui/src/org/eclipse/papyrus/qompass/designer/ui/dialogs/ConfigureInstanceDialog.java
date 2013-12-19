@@ -31,11 +31,11 @@ import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
 import org.eclipse.papyrus.qompass.designer.core.Description;
+import org.eclipse.papyrus.qompass.designer.core.ElementFilter;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
 import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.swt.SWT;
@@ -62,7 +62,6 @@ import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Type;
@@ -157,9 +156,51 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		return false;
 	}
 
-
 	/**
-	 * retrieve the instance list. Returns false, if no deploymentplan could be found.
+	 * A filter class that selects instances associated with the selected feature or component
+	 */
+	class InstanceFilter implements ElementFilter {
+				
+		private String featureCandidateName;
+		
+		public boolean acceptElement(Element element) {
+			if(element instanceof InstanceSpecification) {
+				InstanceSpecification instance = (InstanceSpecification)element;
+				if(m_feature instanceof Property) {
+					EList<Slot> slots = DepUtils.getReferencingSlots(instance);
+					for (Slot slot : slots) {
+						if(slot.getDefiningFeature() == m_feature) {
+							return true;
+						}
+					}
+				}
+				else if(m_feature instanceof Connector) {
+					// Connector instances cannot be found via a slot. Since a connector is not a structural feature,
+					// it cannot be referenced via the "definingFeature" property of a slot. Therefore, the deployment
+					// plan creation (@see DepCreation.createDepPlan) simply omits slots, but still creates instances
+					// for the interaction components referenced by an FCM connector.
+					// TODO: the following code relies on specific order of instances and might not always work.
+					Element owner = m_feature.getOwner();
+					if(DepUtils.getImplementation(instance) == owner) {
+						// instance is for owner of feature: examine name
+						featureCandidateName = instance.getName() + "." + m_feature.getName(); //$NON-NLS-1$
+					}
+					else if(featureCandidateName != null) {
+						if(featureCandidateName.equals(instance.getName())) {
+							return true;
+						}
+					}
+				} else if(DepUtils.getImplementation(instance) == m_component) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	
+	
+	/**
+	 * retrieve the instance list. Returns false, if no deployment plan could be found.
 	 * 
 	 * @return
 	 */
@@ -167,7 +208,9 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		visitedPackages = new BasicEList<Package>();
 		m_instanceList = new BasicEList<InstanceSpecification>();
 
-		getInstances(m_instanceList);
+		ElementFilter filter = new InstanceFilter();
+		DepUtils.getAllInstances(m_model, m_instanceList, filter);		
+		
 		if(m_instanceList.size() == 0) {
 			Shell shell = new Shell();
 			if(DepPlanUtils.getAllDepPlans(m_model).size() == 0) {
@@ -179,7 +222,8 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 				"The list of available instances is empty. Synchronize deployment plans?")) {
 				DepPlanSync.syncAllDepPlans(m_model);
 				visitedPackages = new BasicEList<Package>();
-				getInstances(m_instanceList);
+				DepUtils.getAllInstances(m_model, m_instanceList, filter);
+				
 				if(m_instanceList.size() == 0) {
 					MessageDialog.openInformation(shell, "Instance configuration",
 						"There are still no instances available\n. Check whether you created already a deployment plan for your system. Check as well, if the parts in your a composite use \"composite\" as aggregation kind. (Results of deployment plan synchronizations will be unrolled)");
@@ -453,52 +497,9 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 	private String getValueLabel(Property attribute) {
 		String label = valueLabelPrefix;
 		if(attribute.getDefault() != null) {
-			return label + " " + String.format("(default = %s)", attribute.getDefault()); //$NON-NLS-1$
+			return label + " " + String.format("(default = %s)", attribute.getDefault()); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return label;
-	}
-
-	// TODO(?): need a generic utility function for getting all elements obeying a
-	// certain criteria from a model
-	void getInstances(EList<InstanceSpecification> instanceList) {
-		Package deploymentPlans = Utils.getRoot(m_model, DeployConstants.depPlanFolder);
-		String featureCandidateName = null;
-		if(deploymentPlans == null) {
-			return;
-		}
-		for(PackageableElement deploymentPlan : deploymentPlans
-			.getPackagedElements()) {
-			if(deploymentPlan instanceof Package) {
-				for(PackageableElement instance : ((Package)deploymentPlan).getPackagedElements()) {
-					if(instance instanceof InstanceSpecification) {
-						InstanceSpecification candidate = (InstanceSpecification)instance;
-						if(m_feature instanceof Property) {
-							for(Slot slot : candidate.getSlots()) {
-								if(slot.getDefiningFeature() == m_feature) {
-									instanceList
-										.add(DepUtils.getInstance(slot));
-								}
-							}
-						} else if(m_feature instanceof Connector) {
-							// Connector cannot be found directly, since there is no slot in containing composite (defining
-							// feature is a structural-feature, not a feature): find via name.
-							Element owner = m_feature.getOwner();
-							if(DepUtils.getImplementation(candidate) == owner) {
-								// instance is for owner of feature: examine name
-								featureCandidateName = candidate.getName() + "." + m_feature.getName(); //$NON-NLS-1$
-							}
-							else if(featureCandidateName != null) {
-								if(featureCandidateName.equals(candidate.getName())) {
-									instanceList.add(candidate);
-								}
-							}
-						} else if(DepUtils.getImplementation(candidate) == m_component) {
-							instanceList.add(candidate);
-						}
-					}
-				}
-			}
-		}
 	}
 
 	private EList<Property> getConfigAttributes(Classifier component) {

@@ -26,16 +26,11 @@ import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FillColorHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.FontHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineColorHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.LineStyleHandler;
-import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.RecalculatePageBreaksHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SelectHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideCompartmentHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideContentsHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ShowHideLabelsHandler;
-import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SnapToGridHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SortFilterCompartmentItemsHandler;
-import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ViewGridHandler;
-import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ViewPageBreaksHandler;
-import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ViewRulersHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZOrderHandler;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.ZoomHandler;
 import org.eclipse.ui.ISources;
@@ -60,16 +55,6 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 	public static final String SHOW_HIDE_COMPARTMENTS = "showHideCompartments"; //$NON-NLS-1$
 
 	public static final String COPY_APPEARANCE_PROPERTIES = "copyAppearanceProperties";//$NON-NLS-1$
-
-	public static final String GRID = "grid";//$NON-NLS-1$
-
-	public static final String RULERS = "rulers";//$NON-NLS-1$
-
-	public static final String PAGE_BREAKS = "pageBreaks";//$NON-NLS-1$
-
-	public static final String RECALCULATE_PAGE_BREAKS = "recalculatePageBreaks";//$NON-NLS-1$
-
-	public static final String SNAP_TO_GRID = "snapToGrid";//$NON-NLS-1$
 
 	public static final String SORT_FILTER_COMPARTMENT_ITEMS = "sortFilterCompartmentItems"; //$NON-NLS-1$
 
@@ -115,11 +100,6 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 		currentState.put(SHOW_HIDE_CONTENTS, DISABLED);
 		currentState.put(SHOW_HIDE_COMPARTMENTS, DISABLED);
 		currentState.put(COPY_APPEARANCE_PROPERTIES, DISABLED);
-		currentState.put(GRID, DISABLED);
-		currentState.put(RULERS, DISABLED);
-		currentState.put(PAGE_BREAKS, DISABLED);
-		currentState.put(RECALCULATE_PAGE_BREAKS, DISABLED);
-		currentState.put(SNAP_TO_GRID, DISABLED);
 		currentState.put(SORT_FILTER_COMPARTMENT_ITEMS, DISABLED);
 		currentState.put(ZOOM, DISABLED);
 
@@ -155,7 +135,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 	 */
 	@Override
 	public String[] getProvidedSourceNames() {
-		return new String[]{ SHOW_HIDE_CONTENTS, SHOW_HIDE_COMPARTMENTS, COPY_APPEARANCE_PROPERTIES, GRID, RULERS, PAGE_BREAKS, RECALCULATE_PAGE_BREAKS, SNAP_TO_GRID, ZOOM
+		return new String[]{ SHOW_HIDE_CONTENTS, SHOW_HIDE_COMPARTMENTS, COPY_APPEARANCE_PROPERTIES, ZOOM
 
 
 		, BRING_TO_FRONT, SEND_TO_BACK, BRING_FORWARD, SEND_BACKWARD
@@ -181,11 +161,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 		refresh(SHOW_HIDE_CONTENTS, new ShowHideContentsHandler());
 		refresh(SHOW_HIDE_COMPARTMENTS, new ShowHideCompartmentHandler());
 		refresh(COPY_APPEARANCE_PROPERTIES, new CopyAppearancePropertiesHandler());
-		refresh(GRID, new ViewGridHandler());
-		refresh(RULERS, new ViewRulersHandler());
-		refresh(PAGE_BREAKS, new ViewPageBreaksHandler());
-		refresh(RECALCULATE_PAGE_BREAKS, new RecalculatePageBreaksHandler());
-		refresh(SNAP_TO_GRID, new SnapToGridHandler());
+
 		refresh(SORT_FILTER_COMPARTMENT_ITEMS, new SortFilterCompartmentItemsHandler());
 		refresh(ZOOM, new ZoomHandler());
 

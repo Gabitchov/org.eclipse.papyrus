@@ -135,16 +135,16 @@ public class TraceActions {
 	 */
 	public static String getStringPrefix(TraceFeature feature) {
 		if(feature == TraceFeature.Class) {
-			return "C:";
+			return "C:"; //$NON-NLS-1$
 		}
 		if(feature == TraceFeature.Port) {
-			return "P:";
+			return "P:"; //$NON-NLS-1$
 		}
 		else if(feature == TraceFeature.State) {
-			return "S:";
+			return "S:"; //$NON-NLS-1$
 		}
 		else if(feature == TraceFeature.Operation) {
-			return "O:";
+			return "O:"; //$NON-NLS-1$
 		}
 		return null;
 	}
@@ -171,12 +171,12 @@ public class TraceActions {
 		else if(feature == TraceFeature.Operation) {
 			return store.getString(TPPreferenceConstants.P_TRACE_OPTION_OP);
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	public static String compositeClassOption(int classOption, int stateOption, int operationOption) {
-		return getStringPrefix(TraceFeature.Class) + classOption + "," +
-			getStringPrefix(TraceFeature.State) + stateOption + "," +
+		return getStringPrefix(TraceFeature.Class) + classOption + "," + //$NON-NLS-1$
+			getStringPrefix(TraceFeature.State) + stateOption + "," + //$NON-NLS-1$
 			getStringPrefix(TraceFeature.Operation) + operationOption;
 	}
 

@@ -184,7 +184,8 @@ public class ConnectorReification {
 	 *        connector element within the source model
 	 * @param tmIS
 	 *        target model instance specification of the composite in which the reified connector
-	 *        (the part typed with the instantiated interaction component) should be created
+	 *        (the part typed with the instantiated interaction component) should be created.
+	 *        The instance is only used to find a suitable implementation.
 	 * @param args
 	 *        addtion args for the Acceleo transformation
 	 * @return the created part within tmComponent
@@ -463,13 +464,12 @@ public class ConnectorReification {
 			// find instance that is associated with other part.
 			for(Slot slot : compositeIS.getSlots()) {
 				if(slot.getDefiningFeature() == otherPart) {
-					InstanceSpecification containedInstance = DepUtils
-						.getInstance(slot);
+					InstanceSpecification containedInstance = DepUtils.getInstance(slot);
 					// TODO: too complicated, if the non-connector is a composite as well, it must be clearly allocated
 					EList<InstanceSpecification> nodes = AllocUtils.getAllNodesForPort(
 						containedInstance, otherPort);
-					AllocUtils.propagateNodesViaPort(DepUtils
-						.getInstance(partSlot), myPort, nodes);
+					AllocUtils.propagateNodesViaPort(
+							DepUtils.getInstance(partSlot), myPort, nodes);
 					break;
 				}
 			}

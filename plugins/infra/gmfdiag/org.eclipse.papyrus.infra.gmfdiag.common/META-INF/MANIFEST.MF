@@ -6,6 +6,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom,
  org.eclipse.papyrus.infra.gmfdiag.common.editpart,
  org.eclipse.papyrus.infra.gmfdiag.common.editpolicies,
+ org.eclipse.papyrus.infra.gmfdiag.common.figure.edge,
  org.eclipse.papyrus.infra.gmfdiag.common.figure.node,
  org.eclipse.papyrus.infra.gmfdiag.common.handler,
  org.eclipse.papyrus.infra.gmfdiag.common.helper,
@@ -14,6 +15,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.preferences,
  org.eclipse.papyrus.infra.gmfdiag.common.providers,
  org.eclipse.papyrus.infra.gmfdiag.common.service.shape,
+ org.eclipse.papyrus.infra.gmfdiag.common.snap,
  org.eclipse.papyrus.infra.gmfdiag.common.types,
  org.eclipse.papyrus.infra.gmfdiag.common.undocontext,
  org.eclipse.papyrus.infra.gmfdiag.common.utils
@@ -48,7 +50,8 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.apache.batik.dom.svg;bundle-version="[1.6.0,1.7.0)",
  org.apache.batik.dom;bundle-version="[1.6.0,1.7.0)",
  org.apache.batik.xml;bundle-version="[1.6.0,1.7.0)",
- org.eclipse.gmf.tooling.runtime
+ org.eclipse.gmf.tooling.runtime,
+ com.ibm.icu
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

@@ -43,3 +43,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Export-Package: org.eclipse.papyrus.qompass.designer.ui.handlers

@@ -77,7 +77,6 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 	public LWContainerTrafo(Copy copy, Package tmCDP) {
 		this.copy = copy;
 		this.tmCDP = tmCDP;
-		configureOnly = false;
 		interceptionOpMap = new HashMap<Operation, Operation>();
 	}
 
@@ -114,14 +113,6 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		this.tmClass = tmClass;
 		// create a copy of all operations
 		operations = new BasicEList<Operation>(smClass.getAllOperations());
-	}
-
-	/**
-	 * Only configure the instances, i.e. avoid re-creating elements of the container, but create
-	 * the UML instance specifications
-	 */
-	public void configureOnly() {
-		configureOnly = true;
 	}
 
 	public void createInstance() {
@@ -263,26 +254,14 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 	 * extension in order to avoid copying ports.
 	 */
 	Property expandAggregationExtension(String name, Class smContainerExtImpl, Class tmComponent) throws TransformationException {
-		Property extensionPart;
-		Class tmContainerExtImpl = null;
-		if(configureOnly) {
-			extensionPart = tmClass.getAttribute(name, null);
-			if((extensionPart != null) && extensionPart.getType() instanceof Class) {
-				tmContainerExtImpl = (Class)extensionPart.getType();
-			}
-		}
-		else {
-			tmContainerExtImpl = expandAggregationDep(smContainerExtImpl, tmComponent);
+		Class tmContainerExtImpl = expandAggregationDep(smContainerExtImpl, tmComponent);
 
-			// add part associated with the extension to the container
-			extensionPart = tmClass.createOwnedAttribute(name, tmContainerExtImpl);
-		}
+		// add part associated with the extension to the container
+		Property extensionPart = tmClass.createOwnedAttribute(name, tmContainerExtImpl);
+
 		// problem: would not be unique in case of multiple extensions
 		// Copy.copyID(tmComponent, extensionPart, "a");
 		extensionPart.setIsComposite(true);
-		// TODO separation of container creation and instance creation
-		// configure extension
-		// InstanceConfigurator.configureInstance(containerIS, extensionPart, context);
 
 		return extensionPart;
 	}
@@ -364,11 +343,13 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 
 	protected Map<Operation, Operation> interceptionOpMap;
 
+	/**
+	 * @see AbstractContainerTrafo.createContainerInstance
+	 */
 	@Override
-	public void createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context) throws TransformationException {
-		containerIS = tmIS;
-		this.context = context;
-		this.context.executorIS = tmIS;
+	public InstanceSpecification createContainerInstance(Class tmComponent, InstanceSpecification executorIS, ContainerContext context) throws TransformationException {
+		InstanceSpecification containerIS = executorIS;
+		context.executorIS = executorIS;
 		// TODO ... incomplete!
 		// InstanceConfigurator.configureInstance(smContainerRule, containerIS, null, context);
 	
@@ -376,16 +357,17 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		for(Property extensionPart : tmComponent.getAttributes()) {
 			Type tmContainerExtImpl = extensionPart.getType();
 			if(tmContainerExtImpl instanceof Class) {
-				if (DepUtils.getSlot(tmIS, extensionPart) == null) {
+				if (DepUtils.getSlot(executorIS, extensionPart) == null) {
 					// no slot for part exists => assume that the part has been added by the container and create an instance specification for it.
 		
-				}
-				InstanceSpecification containerExtIS = DepCreation.createDepPlan(tmCDP, (Class)tmContainerExtImpl, containerIS.getName() + "." + //$NON-NLS-1$
+					InstanceSpecification containerExtIS = DepCreation.createDepPlan(tmCDP, (Class)tmContainerExtImpl, containerIS.getName() + "." + //$NON-NLS-1$
 						extensionPart.getName(), false);
-				// configure extension
-				InstanceConfigurator.configureInstance(containerExtIS, extensionPart, null);
-				DepCreation.createSlot(containerIS, containerExtIS, extensionPart);
+					// configure extension
+					InstanceConfigurator.configureInstance(containerExtIS, extensionPart, null);
+					DepCreation.createSlot(containerIS, containerExtIS, extensionPart);
+				}
 			}
-		 }
+		}
+		return containerIS;
 	}
 }

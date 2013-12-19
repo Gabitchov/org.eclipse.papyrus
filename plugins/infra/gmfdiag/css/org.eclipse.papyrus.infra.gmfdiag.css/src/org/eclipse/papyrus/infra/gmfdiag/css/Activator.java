@@ -12,9 +12,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -57,18 +54,6 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
-
-		if(Display.getCurrent() != null) {
-			Display.getCurrent().asyncExec(new Runnable() {
-
-				public void run() {
-					IContextService contextService = (IContextService)PlatformUI.getWorkbench().getService(IContextService.class);
-					contextService.activateContext(CSS);
-				}
-			});
-		} else {
-			log.warn("Cannot activate the CSS Context");
-		}
 	}
 
 	/*

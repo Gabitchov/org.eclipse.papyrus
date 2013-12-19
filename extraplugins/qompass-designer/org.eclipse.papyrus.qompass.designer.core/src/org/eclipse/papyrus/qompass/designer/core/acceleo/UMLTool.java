@@ -55,6 +55,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class UMLTool {
 
+	private static final String UNDERSCORE = "_"; //$NON-NLS-1$
+
 	/**
 	 * @param operation
 	 * @return all in and inout parameters of an operation
@@ -115,8 +117,8 @@ public class UMLTool {
 	 * Unlike varName2, replace scoping signs as well
 	 */
 	public static String varName(String umlName) {
-		umlName = umlName.replace(".", "_");
-		umlName = umlName.replace("::", "_");
+		umlName = umlName.replace(".", UNDERSCORE);  //$NON-NLS-1$
+		umlName = umlName.replace(Namespace.SEPARATOR, UNDERSCORE);
 		return varName2(umlName);
 	}
 
@@ -137,10 +139,10 @@ public class UMLTool {
 	 * @return
 	 */
 	public static String varName2(String umlName) {
-		umlName = umlName.replace(" ", "_");
-		umlName = umlName.replace("-", "_");
-		umlName = umlName.replace("+", "_");
-		umlName = umlName.replace("?", "_");
+		umlName = umlName.replace(" ", UNDERSCORE); //$NON-NLS-1$
+		umlName = umlName.replace("-", UNDERSCORE); //$NON-NLS-1$
+		umlName = umlName.replace("+", UNDERSCORE); //$NON-NLS-1$
+		umlName = umlName.replace("?", UNDERSCORE); //$NON-NLS-1$
 		return umlName;
 	}
 
@@ -320,7 +322,7 @@ public class UMLTool {
 
 		if(resource instanceof XMLResource) {
 			XMLResource xmlResource = (XMLResource)resource;
-			return "\"" + xmlResource.getURIFragment(element) + "\"";
+			return "\"" + xmlResource.getURIFragment(element) + "\"";  //$NON-NLS-1$//$NON-NLS-2$
 		}
 		return null;
 	}
@@ -376,7 +378,7 @@ public class UMLTool {
 	public static String encodeID(String uri) {
 		// _ becomes escape character. original _ is __, '-' becomes _M
 		return uri.
-				replace("_", "__"). //$NON-NLS-1$ //$NON-NLS-2$
+				replace(UNDERSCORE, UNDERSCORE + UNDERSCORE).
 				replace("-", "_M"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 

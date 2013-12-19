@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -46,8 +46,8 @@ public class CustomLifelinePreferencePage extends LifelinePreferencePage {
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 		String key = PackageEditPart.MODEL_ID + "_Lifeline";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 250);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.WIDTH), 100);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(key, PreferencesConstantsHelper.HEIGHT), 250);
 		store.setDefault(LABEL_DISPLAY_PREFERENCE, DEFAULT_LABEL_DISPLAY);
 	}
 

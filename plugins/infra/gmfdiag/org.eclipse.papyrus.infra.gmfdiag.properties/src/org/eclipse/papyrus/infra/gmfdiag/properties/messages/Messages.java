@@ -35,6 +35,8 @@ public class Messages extends NLS {
 
 	public static String DecoratedModelElement_WEST;
 
+	public static String DiagramPreferencesDefaultButton_ResetDefault;
+
 	public static String GradientDataModelElement_Horizontal;
 
 	public static String GradientDataModelElement_Vertical;

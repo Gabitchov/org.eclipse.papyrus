@@ -20,8 +20,8 @@ import org.eclipse.gmf.runtime.notation.Smoothness;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.ComboFieldEditor;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Messages;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -111,7 +111,7 @@ public class ConnectionGroup extends AbstractGroup {
 		connectionGroup.setLayout(new GridLayout());
 		connectionGroup.setText(Messages.AbstractPapyrusLinkPreferencePage_Connection);
 
-		ComboFieldEditor smoothnessComboFieldEditor = new ComboFieldEditor(getPreferenceConstant(PreferenceConstantHelper.SMOOTHNESS), Messages.AbstractPapyrusLinkPreferencePage_Smoothness, SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES, connectionGroup);
+		ComboFieldEditor smoothnessComboFieldEditor = new ComboFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.SMOOTHNESS), Messages.AbstractPapyrusLinkPreferencePage_Smoothness, SMOOTHNESS_COMBOFIELDEDITOR_NAMES_AND_VALUES, connectionGroup);
 
 		addFieldEditor(smoothnessComboFieldEditor);
 
@@ -131,17 +131,17 @@ public class ConnectionGroup extends AbstractGroup {
 		jumpLinkGroup.setLayout(new GridLayout());
 		jumpLinkGroup.setText(Messages.AbstractPapyrusLinkPreferencePage_JUMPLINKS);
 
-		jumpLinkStatusComboFieldEditor = new ComboFieldEditor(getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_STATUS), JUMPLINK_STATUS_COMBOFIELDEDITOR_LABEL, JUMPLINK_STATUS_COMBOFIELDEDITOR_NAMES_AND_VALUES, jumpLinkGroup);
+		jumpLinkStatusComboFieldEditor = new ComboFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.JUMPLINK_STATUS), JUMPLINK_STATUS_COMBOFIELDEDITOR_LABEL, JUMPLINK_STATUS_COMBOFIELDEDITOR_NAMES_AND_VALUES, jumpLinkGroup);
 		jumpLinkStatusComboFieldEditor.setPage(dialogPage);
 
 		addFieldEditor(jumpLinkStatusComboFieldEditor);
 
-		jumpLinkTypeComboFieldEditor = new ComboFieldEditor(getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_TYPE), JUMPLINK_TYPE_COMBOFIELDEDITOR_LABEL, JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES, jumpLinkGroup);
+		jumpLinkTypeComboFieldEditor = new ComboFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.JUMPLINK_TYPE), JUMPLINK_TYPE_COMBOFIELDEDITOR_LABEL, JUMPLINK_TYPE_COMBOFIELDEDITOR_NAMES_AND_VALUES, jumpLinkGroup);
 		jumpLinkTypeComboFieldEditor.setPage(dialogPage);
 
 		addFieldEditor(jumpLinkTypeComboFieldEditor);
 
-		jumpLinkReverseBooleanFieldEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.JUMPLINK_REVERSE), JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL, jumpLinkGroup);
+		jumpLinkReverseBooleanFieldEditor = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.JUMPLINK_REVERSE), JUMPLINK_REVERSE_BOOLEANFIELDEDITOR_LABEL, jumpLinkGroup);
 		jumpLinkReverseBooleanFieldEditor.setPage(dialogPage);
 
 		addFieldEditor(jumpLinkReverseBooleanFieldEditor);
@@ -158,17 +158,17 @@ public class ConnectionGroup extends AbstractGroup {
 		routingGroup.setLayout(new GridLayout());
 		routingGroup.setText(Messages.AbstractPapyrusLinkPreferencePage_Routing);
 
-		routingStylesComboFieldEditor = new ComboFieldEditor(getPreferenceConstant(PreferenceConstantHelper.ROUTING_STYLE), ROUTING_STYLES_COMBOFIELDEDITOR_LABEL, ROUTING_STYLES_COMBOFIELDEDITOR_NAMES_AND_VALUES, routingGroup);
+		routingStylesComboFieldEditor = new ComboFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.ROUTING_STYLE), ROUTING_STYLES_COMBOFIELDEDITOR_LABEL, ROUTING_STYLES_COMBOFIELDEDITOR_NAMES_AND_VALUES, routingGroup);
 		routingStylesComboFieldEditor.setPage(dialogPage);
 
 		addFieldEditor(routingStylesComboFieldEditor);
 
-		routingObstructionPolicyBooleanFieldEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.ROUTING_POLICY_OBSTRUCTION), ROUTING_OBSTRUCTION_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
+		routingObstructionPolicyBooleanFieldEditor = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.ROUTING_POLICY_OBSTRUCTION), ROUTING_OBSTRUCTION_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
 		routingObstructionPolicyBooleanFieldEditor.setPage(dialogPage);
 
 		addFieldEditor(routingObstructionPolicyBooleanFieldEditor);
 
-		routingDistancePolicyBooleanFieldEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.ROUTING_POLICY_DISTANCE), ROUTING_DISTANCE_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
+		routingDistancePolicyBooleanFieldEditor = new BooleanFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.ROUTING_POLICY_DISTANCE), ROUTING_DISTANCE_POLICY_BOOLEANFIELDEDITOR_LABEL, routingGroup);
 		routingDistancePolicyBooleanFieldEditor.setPage(dialogPage);
 
 		addFieldEditor(routingDistancePolicyBooleanFieldEditor);

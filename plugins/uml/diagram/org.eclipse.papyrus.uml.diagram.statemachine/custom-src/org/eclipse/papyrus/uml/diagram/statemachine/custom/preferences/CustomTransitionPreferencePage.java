@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.uml.diagram.statemachine.preferences.TransitionPreferencePage;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.swt.SWT;
@@ -37,22 +38,29 @@ public class CustomTransitionPreferencePage extends TransitionPreferencePage {
 	 * @param store the preference store associated with the state machine diagram.
 	 */
 	public static void initDefaults(IPreferenceStore store) {
+		boolean refresh = false;
 		int cutLength = 1;
 		if(cutLength != store.getInt(PreferenceConstants.BODY_CUT_LENGTH)) {
 			store.setValue(PreferenceConstants.BODY_CUT_LENGTH, cutLength);
+			refresh = true;
 		}
 		
 		boolean indicateParams = true;
 		if(indicateParams != store.getBoolean(PreferenceConstants.INDICATE_PARAMETERS)) {
 			store.setValue(PreferenceConstants.INDICATE_PARAMETERS, indicateParams);
+			refresh = true;
 		}
 		TransitionPreferencePage.initDefaults(store);
 		
 		boolean lineBreakBeforeEffect = true;
 		if(lineBreakBeforeEffect != store.getBoolean(PreferenceConstants.LINEBREAK_BEFORE_EFFECT)) {
 			store.setValue(PreferenceConstants.LINEBREAK_BEFORE_EFFECT, lineBreakBeforeEffect);
+			refresh = true;
 		}
 		TransitionPreferencePage.initDefaults(store);
+		if (refresh) {
+			DiagramHelper.refreshDiagrams();
+		}
 	}
 	
 	
@@ -161,21 +169,29 @@ public class CustomTransitionPreferencePage extends TransitionPreferencePage {
 	 */
 	protected void storePreferences() {
 		IPreferenceStore store = getPreferenceStore();
+		boolean refresh = false;
 		// checks the stored value and the actual one, so does not refresh diagram if it is not
 		// needed
 		boolean lineBreakBeforeEffect = bLineBreakBeforeEffector.getSelection();
 		if(lineBreakBeforeEffect != store.getBoolean(PreferenceConstants.LINEBREAK_BEFORE_EFFECT)) {
 			store.setValue(PreferenceConstants.LINEBREAK_BEFORE_EFFECT, lineBreakBeforeEffect);
+			refresh = true;
 		}
 
 		int cutLength = new Integer(tBodyCutLength.getText().trim());
 		if(cutLength != store.getInt(PreferenceConstants.BODY_CUT_LENGTH)) {
 			store.setValue(PreferenceConstants.BODY_CUT_LENGTH, cutLength);
+			refresh = true;
 		}
 		
 		boolean indicateParams = bIndicateParameters.getSelection();
 		if(indicateParams != store.getBoolean(PreferenceConstants.INDICATE_PARAMETERS)) {
 			store.setValue(PreferenceConstants.INDICATE_PARAMETERS, indicateParams);
+			refresh = true;
+		}
+		if (refresh) {
+			DiagramHelper.setNeedsRefresh();
+			DiagramHelper.refreshDiagrams();
 		}
 	}
 }

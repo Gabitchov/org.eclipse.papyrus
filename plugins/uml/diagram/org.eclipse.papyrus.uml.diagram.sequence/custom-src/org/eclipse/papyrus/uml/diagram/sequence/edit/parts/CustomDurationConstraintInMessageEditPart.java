@@ -154,8 +154,8 @@ public class CustomDurationConstraintInMessageEditPart extends DurationConstrain
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(-1, -1);
 		//String prefElementId = "DurationConstraint";
 		//IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
+		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
 		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		return result;
 	}

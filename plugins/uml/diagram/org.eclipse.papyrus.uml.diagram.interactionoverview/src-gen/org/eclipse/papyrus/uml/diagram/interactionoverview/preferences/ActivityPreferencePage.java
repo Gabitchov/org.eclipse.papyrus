@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.provider.ElementTypes;
 
 public class ActivityPreferencePage extends InteractionOverviewDiagramNodePreferencePage {
@@ -66,18 +66,18 @@ public class ActivityPreferencePage extends InteractionOverviewDiagramNodePrefer
 		// Start of user code custom default initializations
 		// End of user code
 
-		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 857);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 757);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.WIDTH), 857);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.HEIGHT), 757);
 		// Initialize default visibility for compartments in preference page.
 		for(final String compartmentName : compartmentDefaultVisibilityMap.keySet()) {
-			final String showCompartmentKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			final String showCompartmentKey = PreferencesConstantsHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferencesConstantsHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(showCompartmentKey, compartmentDefaultVisibilityMap.get(compartmentName));
 		}
 
 		// Initialize default title visibility for compartments in preference
 		// page.
 		for(final String compartmentName : compartmentTitleDefaultVisibilityMap.keySet()) {
-			final String showCompartmentTitleKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferenceConstantHelper.COMPARTMENT_NAME_VISIBILITY);
+			final String showCompartmentTitleKey = PreferencesConstantsHelper.getCompartmentElementConstant(prefKey, compartmentName, PreferencesConstantsHelper.COMPARTMENT_NAME_VISIBILITY);
 			store.setDefault(showCompartmentTitleKey, compartmentTitleDefaultVisibilityMap.get(compartmentName));
 		}
 	}

@@ -1,6 +1,8 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
+ com.ibm.icu
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.preferences,
  org.eclipse.papyrus.infra.gmfdiag.preferences.initializer,
  org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference;x-internal:=true,
