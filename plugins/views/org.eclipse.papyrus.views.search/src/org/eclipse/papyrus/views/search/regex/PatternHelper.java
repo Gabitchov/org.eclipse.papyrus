@@ -35,14 +35,13 @@ public class PatternHelper {
 	 * @return the helper
 	 */
 	public final static PatternHelper getInstance() {
-
-		if(PatternHelper.instance == null) {
+		
 			synchronized(PatternHelper.class) {
 				if(PatternHelper.instance == null) {
 					PatternHelper.instance = new PatternHelper();
 				}
 			}
-		}
+		
 		return PatternHelper.instance;
 	}
 

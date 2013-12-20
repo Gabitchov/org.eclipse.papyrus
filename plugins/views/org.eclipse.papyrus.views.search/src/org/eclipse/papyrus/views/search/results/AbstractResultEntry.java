@@ -266,5 +266,8 @@ public abstract class AbstractResultEntry extends Match {
 		return this.getClass().getSimpleName() + "(" + super.hashCode() + ") : source -> " + source; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
+	public URI getURI() {
 
+		return uriSource;
+	}
 }

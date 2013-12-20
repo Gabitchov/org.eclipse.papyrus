@@ -51,6 +51,8 @@ public class Messages extends NLS {
 
 	public static String PapyrusSearchPage_12;
 
+	public static String PapyrusSearchPage_13;
+
 	public static String PapyrusSearchPage_14;
 
 	public static String PapyrusSearchPage_15;
@@ -150,6 +152,16 @@ public class Messages extends NLS {
 	public static String ReplaceDialog_3;
 
 	public static String ReplaceDialog_4;
+
+	public static String ReplaceRefactoring_0;
+
+	public static String ReplaceRefactoring_1;
+
+	public static String ReplaceRefactoring_2;
+
+	public static String ReplaceRefactoring_3;
+
+	public static String ReplaceRefactoring_4;
 
 	public static String ResultContentProvider_0;
 

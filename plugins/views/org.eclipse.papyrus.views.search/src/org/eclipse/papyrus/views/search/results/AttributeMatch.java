@@ -33,7 +33,7 @@ public class AttributeMatch extends ModelMatch {
 	 * The element containing the value of the attribute that matches
 	 */
 
-	protected URI uriSource;
+
 
 	protected Object attribute;
 
@@ -180,6 +180,11 @@ public class AttributeMatch extends ModelMatch {
 
 	public void setStereotype(Stereotype stereotype) {
 		this.stereotype = stereotype;
+	}
+
+	public URI getURISource() {
+
+		return uriSource;
 	}
 
 }

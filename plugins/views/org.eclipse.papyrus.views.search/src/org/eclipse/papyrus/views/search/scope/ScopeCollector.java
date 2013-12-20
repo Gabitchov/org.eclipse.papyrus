@@ -41,7 +41,7 @@ import org.eclipse.ui.IWorkingSet;
 
 public class ScopeCollector implements IScopeCollector {
 
-	private static final ScopeCollector instance = new ScopeCollector();
+	private static ScopeCollector instance = new ScopeCollector();
 
 	private final Iterable<? extends IScopeProvider> scopeProviders;
 	
@@ -52,6 +52,15 @@ public class ScopeCollector implements IScopeCollector {
 	}
 
 	public final static ScopeCollector getInstance() {
+
+
+		
+			synchronized(ScopeCollector.class) {
+				if(ScopeCollector.instance == null) {
+				ScopeCollector.instance = new ScopeCollector();
+
+			}
+		}
 		return ScopeCollector.instance;
 	}
 

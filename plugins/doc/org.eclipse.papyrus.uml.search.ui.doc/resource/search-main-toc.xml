@@ -2,7 +2,7 @@
 <toc label="Search" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
    <topic href="resource/search.html" label="Search in Models">
       <link toc="resource/search-toc.xml"/>
-      <anchor id="searchInModel"/>
+      <anchor id="SearchID"/>
    </topic>
 	
 </toc>

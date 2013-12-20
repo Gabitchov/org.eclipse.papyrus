@@ -26,6 +26,7 @@ import org.eclipse.papyrus.views.search.results.AttributeMatch;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -72,18 +73,8 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 					Class containingClass = source.getClass_();
 					if(containingClass instanceof Stereotype) {
 						if(target instanceof Element) {
-
-							Object tagValue = ((Element)target).getValue((Stereotype)containingClass, ((Property)attributeMatch.getMetaAttribute()).getName());
-
-							if(tagValue instanceof String) {
-								String value = (String)tagValue;
-								int end = attributeMatch.getOffset() + attributeMatch.getLength();
-								return printResult(value.substring(attributeMatch.getOffset(), end), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
-							} else {
-								String value = String.valueOf(tagValue);
-								int end = attributeMatch.getOffset() + attributeMatch.getLength();
-								return printResult(value.substring(attributeMatch.getOffset(), end), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
-							}
+							String value = getStringValueOfProperty(((Element)target), (Stereotype)containingClass, (Property)attributeMatch.getMetaAttribute());
+							return printResult(value.substring(attributeMatch.getOffset(), attributeMatch.getLength()), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 
 						}
 					}
@@ -118,6 +109,17 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 
 		}
 		return false;
+	}
+
+	private String getStringValueOfProperty(Element element, Stereotype stereotype, Property property) {
+		Object value = element.getValue(stereotype, property.getName());
+		if(value instanceof String) {
+			return (String)value;
+		} else if(value instanceof EnumerationLiteral) {
+			return ((EnumerationLiteral)value).getName();
+		} else {
+			return String.valueOf(value);
+		}
 	}
 
 }

@@ -36,11 +36,11 @@ public class ParticipantValidator implements IParticipantValidator {
 
 	public final static ParticipantValidator getInstance() {
 
-		if(ParticipantValidator.instance == null) {
+		
 			synchronized(ParticipantValidator.class) {
-				if(ParticipantValidator.instance == null) {
-					ParticipantValidator.instance = new ParticipantValidator();
-				}
+			if(ParticipantValidator.instance == null) {
+				ParticipantValidator.instance = new ParticipantValidator();
+
 			}
 		}
 		return ParticipantValidator.instance;

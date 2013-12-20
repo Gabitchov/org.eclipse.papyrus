@@ -133,7 +133,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 	 * @param scopeEntry
 	 *        the scopeEntry that contains the participant
 	 */
-	protected void evaluateAndAddToResult(String value, Object attribute, Pattern pattern, Object participant, ScopeEntry scopeEntry) {
+	protected void evaluateAndAddToResult(String value, Object attribute, Pattern pattern, Object participant, ScopeEntry scopeEntry, Stereotype stereotype) {
 
 		value = value != null ? value : ""; //$NON-NLS-1$
 
@@ -143,7 +143,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			if(m.matches()) {
 				int start = m.start();
 				int end = m.end();
-				ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, null);
+				ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, stereotype);
 
 				fResults.add(match);
 			}
@@ -151,7 +151,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			while(m.find()) {
 				int start = m.start();
 				int end = m.end();
-				AttributeMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, null);
+				AttributeMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, stereotype);
 				fResults.add(match);
 			}
 		}
@@ -190,7 +190,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 
 						if(value instanceof String) {
 							String stringValue = (String)value;
-							evaluateAndAddToResult(stringValue, attribute, pattern, participant, scopeEntry);
+							evaluateAndAddToResult(stringValue, attribute, pattern, participant, scopeEntry, null);
 						}
 					}
 
@@ -203,7 +203,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 
 									if(value instanceof String) {
 										String stringValue = (String)value;
-										evaluateAndAddToResult(stringValue, stereotypeProperty, pattern, participant, scopeEntry);
+										evaluateAndAddToResult(stringValue, stereotypeProperty, pattern, participant, scopeEntry, stereotype);
 									}
 								}
 							}
@@ -215,7 +215,7 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 						String umlElementName = ((NamedElement)participant).getName();
 						umlElementName = umlElementName != null ? umlElementName : ""; //$NON-NLS-1$
 
-						evaluateAndAddToResult(umlElementName, UMLPackage.eINSTANCE.getNamedElement_Name(), pattern, participant, scopeEntry);
+						evaluateAndAddToResult(umlElementName, UMLPackage.eINSTANCE.getNamedElement_Name(), pattern, participant, scopeEntry, null);
 					}
 				}
 
@@ -255,12 +255,17 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 		}
 	}
 
+
+	public Set<AbstractResultEntry> getResults() {
+		return fResults;
+	}
+
 	public String getLabel() {
 		return Messages.PapyrusQuery_6;
 	}
 
 	public boolean canRerun() {
-		return true;
+		return false;
 	}
 
 	public boolean canRunInBackground() {

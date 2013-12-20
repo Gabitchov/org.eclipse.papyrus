@@ -50,8 +50,10 @@ The following image shows the advanced text search dialog.
 [[image:advanced_search.png]]
 
 * As in the simple search the user can specify the string pattern he/she is looking for, and may indicate if he uses regular expression or if he wants to consider case, in the A area. 
-* The user can filter the types of elements to search the string pattern in by selecting the UML metaClasses or applied stereotypes in area B . He can also choose in which attributes he wants to do the research.
-* In the C area, the user can select all subelements of the actual selected element. For example, if the user selects "NamedElement" and clicks on "Select subelements",all metaClasses which inherit of UML::NamedElement will be checked. If the name attribute of "NamedElement" is checked and the user selects "NamedElement" and then clicks on "Select subelements",all instances of UML::NamedElement and their name attribute will be checked.
+* The user can filter the types of elements to search the string pattern in by selecting the UML metaClasses or applied stereotypes in area B . He can also choose in which attributes he wants to do the research. The stereotypes displayed in the B area are the stereotypes which can be applied on elements from the model(s) corresponding to the selected scope, for example if the selected scope is "Selected resources" only the stereotypes defined in the profiles applied on the current model will be displayed, but if the selected scope is "Workspace" the stereotypes defined in all the profiles applied on models from the current workspace will be displayed.
+* In the C area, the user can select all subelements of the actual selected element. For example, if the user selects "NamedElement" and clicks on "Select subelements",all metaClasses which inherit of UML::NamedElement will be checked. If the name attribute of "NamedElement" is checked and the user selects "NamedElement" and then clicks on "Select subelements",all metaClasses which inherit UML::NamedElement and their name attribute will be checked.    If the user changes the selected scope he should click on the refresh types button, this will update the list of stereotypes displayed.
+*The user can specify, in the D area, if he wants to search for model elements with all the specified stereotype (the ones checked in the B area).
+
 
 
 In the following image we search the pattern "my"  in the attribute body of the metaClass "Comment". The research will give us all the instances of "Comment" having an attribute body matching with the string pattern. 
@@ -88,7 +90,7 @@ Should the user want to replace the matches of your search with another string, 
 
 [[Image:replace.png]]
 
-As mentioned on the dialog, the replace action is mostly undoable. Matches that are found in a resource that is not opened in an editor will be replaced and will be save so that the user cannot undo the modification. 
+More details about the refactoring tool in the Model Refactor Wizard page.
 
 =Filter=
 The user can filter the results of the search by selecting the types of the elements he/she wants to show.

@@ -32,6 +32,8 @@ public class QueryInfo {
 	private boolean searchAllStringAttributes;
 
 	private Collection<? extends ParticipantTypeElement> participantTypes;
+	
+	private boolean searchForAllSter;
 
 	private Collection<URI> scope;
 
@@ -53,6 +55,7 @@ public class QueryInfo {
 	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, boolean searchAllStringAttributes, Collection<URI> scope) {
 		super();
 
+		
 		this.queryText = queryText;
 		this.caseSensitive = caseSensitive;
 		this.regularExpression = regularExpression;
@@ -72,10 +75,12 @@ public class QueryInfo {
 	 *        whether the {@code queryText} is to be taken as a regular expression
 	 * @param participantTypes
 	 *        the participant types (identifying specific metaclasses and/or attributes) to include in the search
+	 * @param searchForAllSter
+	 *        stereotype application must all applied or not
 	 * @param scope
 	 *        the domain-specific search scope
 	 */
-	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, Collection<? extends ParticipantTypeElement> participantTypes, Collection<URI> scope) {
+	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, Collection<? extends ParticipantTypeElement> participantTypes, Collection<URI> scope,boolean searchForAllSter) {
 		super();
 
 		this.queryText = queryText;
@@ -84,6 +89,7 @@ public class QueryInfo {
 		this.searchAllStringAttributes = false;
 		this.participantTypes = participantTypes;
 		this.scope = scope;
+		this.searchForAllSter = searchForAllSter;
 	}
 	
 	/**
@@ -97,6 +103,7 @@ public class QueryInfo {
 		this.regularExpression = original.regularExpression;
 		this.searchAllStringAttributes = original.searchAllStringAttributes;
 		this.participantTypes = original.participantTypes;
+		this.searchForAllSter = original.searchForAllSter;
 		this.scope = scope;
 	}
 
@@ -123,6 +130,11 @@ public class QueryInfo {
 	public Collection<URI> getScope() {
 		return scope;
 	}
+	
+	public boolean isSearchForAllSter() {
+		return searchForAllSter;
+	}
+
 
 	/**
 	 * Creates a new instance encapsulating query parameters for the specified partition (strict subset) of my {@linkplain #getScope() scope}.
