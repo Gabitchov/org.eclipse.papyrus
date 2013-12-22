@@ -11,13 +11,21 @@
 package org.eclipse.papyrus.layers.stackmodel.exprmatcher;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 import org.eclipse.papyrus.layers.stackmodel.notifier.LayersTreeEventNotifier;
@@ -56,6 +64,9 @@ public class ValueChangedEventNotifier extends EContentAdapter {
 		// Self atttach
 		super.notifyChanged(notification);
 
+		// Take into account the domain hierarchy found from the notation.
+		
+		// Now, filter
 		if( isDiagramRootView(notification)) {
 			fireValueChangedEvent(notification);
 		}
@@ -231,6 +242,90 @@ public class ValueChangedEventNotifier extends EContentAdapter {
 	protected void fireValueChangedEvent(Notification msg) {
 		for(IValueChangedEventListener listener : listeners) {
 			listener.valueChanged(msg);
+		}
+	}
+
+	/**
+	 * Handle View::element hierarchy in the self adapt mechanism.
+	 * Handles a notification by calling {@link #handleContainment handleContainment}
+	 * for any containment-based notification.
+	 */
+	@Override
+	protected void selfAdapt(Notification notification)
+	{
+		System.err.println( this.getClass().getSimpleName() + ".selfAdapt("+ notification+")" );
+		// Handle the View::element tree
+		if (notification.getFeature() == NotationPackage.eINSTANCE.getView_Element())
+		{
+			handleContainment(notification);
+		}
+		else {
+			super.selfAdapt(notification);			
+		}
+	}
+
+	/**
+	 * Handle View::element hierarchy in the self adapt mechanism.
+	 * @see org.eclipse.emf.ecore.util.EContentAdapter#setTarget(org.eclipse.emf.ecore.EObject)
+	 *
+	 * @param target
+	 */
+	@Override
+	protected void setTarget(EObject target) {
+		System.err.println( this.getClass().getSimpleName() + ".setTarget("+ target+")" );
+		super.setTarget(target);
+		// Handle the View::element tree
+		if( target instanceof View ) {
+			EObject extraTarget = ((View)target).getElement();
+			if( extraTarget != null) {
+				System.err.println( this.getClass().getSimpleName() + ".setExtraTarget("+ extraTarget+")" );
+				// copied from org.eclipse.emf.ecore.util.EContentAdapter.setTarget(EObject)
+//			    basicSetTarget(target);
+				// Add the extra object
+				addAdapter(extraTarget);
+				// Add the content of the extra object
+//			    for (Iterator<? extends Notifier> i = resolve() ? 
+//			    		extraTarget.eContents().iterator() : 
+//			           ((InternalEList<? extends Notifier>)extraTarget.eContents()).basicIterator();
+//			         i.hasNext(); )
+//			    {
+//			      Notifier notifier = i.next();
+//			      addAdapter(notifier);
+//			    }
+
+			}
+		}
+	}
+	
+	/**
+	 * Handle View::element hierarchy in the self adapt mechanism.
+	 * @see org.eclipse.emf.ecore.util.EContentAdapter#unsetTarget(org.eclipse.emf.ecore.EObject)
+	 *
+	 * @param target
+	 */
+	@Override
+	protected void unsetTarget(EObject target) {
+		// TODO Auto-generated method stub
+		super.unsetTarget(target);
+		// Handle the View::element tree
+		if( target instanceof View ) {
+			EObject extraTarget = ((View)target).getElement();
+			if( extraTarget != null) {
+				// copied from org.eclipse.emf.ecore.util.EContentAdapter.setTarget(EObject)
+//			    basicSetTarget(target);
+				// Remove the extra object
+				removeAdapter(extraTarget);
+				// Remove contents of the extra object
+//			    for (Iterator<? extends Notifier> i = resolve() ? 
+//			    		extraTarget.eContents().iterator() : 
+//			           ((InternalEList<? extends Notifier>)extraTarget.eContents()).basicIterator();
+//			         i.hasNext(); )
+//			    {
+//			      Notifier notifier = i.next();
+//			      removeAdapter(notifier);
+//			    }
+
+			}
 		}
 	}
 

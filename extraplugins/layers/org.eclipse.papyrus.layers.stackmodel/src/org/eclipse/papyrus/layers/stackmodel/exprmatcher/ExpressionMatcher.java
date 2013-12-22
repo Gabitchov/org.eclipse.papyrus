@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -36,8 +37,6 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.util.ObservableListView;
 
-import com.google.common.collect.Lists;
-
 /**
  * This class evaluate its associated expression against the associated models.
  * It provide a list of elements matching the expression in the model.
@@ -49,7 +48,7 @@ import com.google.common.collect.Lists;
  * @author cedric dumoulin
  *
  */
-public class ExpressionMatcher {
+public class ExpressionMatcher implements IValueChangedEventListener {
 
 	protected String expression="";
 	
@@ -87,7 +86,7 @@ public class ExpressionMatcher {
 	 */
 	public ExpressionMatcher(List<EObject> searchRoots) {
 		this.expression = "";
-		this.searchRoots = searchRoots;
+		setSearchRoots(searchRoots);
 		// init matchingElements
 		matchingElements = new ObservableListView<View>(new ArrayList<View>());
 	}
@@ -283,10 +282,17 @@ public class ExpressionMatcher {
 	 * @param searchRoots
 	 */
 	public void setSearchRoots(List<EObject> searchRoots) {
+		
+		// Remove any existing observers
+			removeSearchRootsObservers();
+		
 		if( searchRoots == null) {
 			searchRoots = Collections.emptyList();
 		}
 		this.searchRoots = searchRoots;
+		// add observers on roots changes
+			addSearchRootsObservers();
+		
 		// Do not refresh. Let user do it.
 	}
 
@@ -296,6 +302,8 @@ public class ExpressionMatcher {
 	 */
 	public void setSearchRoots(EObject searchRoot) {
 		if( searchRoot == null) {
+			// Remove any existing observers
+			removeSearchRootsObservers();
 			searchRoots = Collections.emptyList();
 			return;
 		}
@@ -303,5 +311,47 @@ public class ExpressionMatcher {
 		setSearchRoots( Collections.singletonList(searchRoot) );
 	}
 
+	/**
+	 * Observes all searchRoots for changes. If a change occurs, refresh the matching elements.
+	 * 
+	 */
+	protected void addSearchRootsObservers() {
+		
+		if( searchRoots == null) {
+			return;
+		}
+
+		
+		for( EObject root : searchRoots) {
+		  ValueChangedEventNotifier notifier = ValueChangedEventNotifierFactory.instance.adapt(root);
+		  notifier.addEventListener(this);
+		}
+	}
+	
+	/**
+	 * Observes all searchRoots for changes. If a change occurs, refresh the matching elements.
+	 * 
+	 */
+	protected void removeSearchRootsObservers() {
+		
+		if( searchRoots == null) {
+			return;
+		}
+		
+		for( EObject root : searchRoots) {
+		  ValueChangedEventNotifier notifier = ValueChangedEventNotifierFactory.instance.adapt(root);
+		  notifier.removeEventListener(this);
+		}
+	}
+
+	/** 
+	 * Called when a value change in one of the elements of the observed  roots.
+	 * @param msg
+	 */
+	@Override
+	public void valueChanged(Notification msg) {
+		refreshMatchingElements();
+	}
+	
 	
 }

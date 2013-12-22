@@ -108,7 +108,7 @@ public class ValueChangedEventNotifierTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.notifier.ValueChangedEventNotifier#fireDiagramViewAddedEvent(org.eclipse.emf.common.notify.Notification)}.
 	 */
 	@Test
-	public void testNameChangedEvent() {
+	public void testClassNameChangedEvent() {
 		NotationAndUmlModelsFactory modelsFactory = new NotationAndUmlModelsFactory();
 		Diagram diagram1 = modelsFactory.newDiagram();
 		Class c1 = modelsFactory.newClass(diagram1, "C1");
@@ -173,7 +173,7 @@ public class ValueChangedEventNotifierTest {
 		Property p1 = modelsFactory.newProperty(c1, "p1");
 
 		ValueChangedEventNotifierFactory notifierFactory = new ValueChangedEventNotifierFactory();		
-		ValueChangedEventNotifier eventNotifier = (ValueChangedEventNotifier)notifierFactory.adapt(diagram1, ValueChangedEventNotifier.class);
+		ValueChangedEventNotifier eventNotifier = (ValueChangedEventNotifier)notifierFactory.adapt(diagram1);
 
 		TraceValueChangedEventListener listener = new TraceValueChangedEventListener();
 		eventNotifier.addEventListener(listener);
