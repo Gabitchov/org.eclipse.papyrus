@@ -16,10 +16,11 @@ package org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedTypesRegistry;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor;
 
 
@@ -47,7 +48,7 @@ public class ExtendedCreationToolEntry extends PaletteToolEntry implements IElem
 		this.elementDescriptors = elementDescriptors;
 		
 		for(ElementDescriptor elementDescriptor : elementDescriptors) {
-			elementTypes.add(ExtendedTypesRegistry.getInstance().getType(elementDescriptor.getElementTypeId()));
+			elementTypes.add(ElementTypeRegistry.getInstance().getType(elementDescriptor.getElementTypeId()));
 		}
 	}
 
