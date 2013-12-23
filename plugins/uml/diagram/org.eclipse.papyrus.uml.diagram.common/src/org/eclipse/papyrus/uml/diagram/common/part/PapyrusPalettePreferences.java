@@ -672,7 +672,7 @@ public class PapyrusPalettePreferences implements IPapyrusPaletteConstant {
 		IMemento propertiesMemento = paletteMemento.getChild(PALETTE_DESCRIPTION_PROPERTIES);
 		if(propertiesMemento !=null)  {
 			String profilesSerializedList = propertiesMemento.getString(PROFILE_LIST);
-			if(profilesSerializedList!=null && !profilesSerializedList.isEmpty()) {
+			if(profilesSerializedList!=null && profilesSerializedList.length()>0) {
 				return PaletteUtil.getProfileSetFromString(profilesSerializedList);
 			}
 		}
