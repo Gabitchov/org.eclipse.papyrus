@@ -17,8 +17,6 @@ import java.util.Iterator;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -59,11 +57,11 @@ public class UndeployExtendedTypeSetConfigurationHandler extends AbstractHandler
 
 		final Shell activeShell = HandlerUtil.getActiveShell(event);
 
-		Job job = new Job("Deploy extended type set configuration") {
+		Job job = new Job("Undeploy extended type set configuration") {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				monitor.beginTask("Deploying selected configurations", selection.size());
+				monitor.beginTask("Undeploying selected configurations", selection.size());
 
 				return doExecute(selection, monitor);
 			}
@@ -95,7 +93,7 @@ public class UndeployExtendedTypeSetConfigurationHandler extends AbstractHandler
 	protected IStatus doExecute(IStructuredSelection selection, IProgressMonitor monitor) {
 		Iterator<?> selectionIterator = selection.iterator();
 
-		MultiStatus result = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, "The properties view configuration has been successfully deployed and activated", null);
+		MultiStatus result = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, "The extended types configuration has been successfully undeployed", null);
 
 		while(selectionIterator.hasNext()) {
 			Object selectedElement = selectionIterator.next();
@@ -133,7 +131,7 @@ public class UndeployExtendedTypeSetConfigurationHandler extends AbstractHandler
 				// relaunch papyrus service
 				ExtendedElementTypeSetRegistry.getInstance().reset();
 				
-				result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, "The extended types configuration has been successfully deployed and activated"));
+				result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, "The extended types configuration has been successfully undeployed"));
 			}
 		}
 
@@ -143,7 +141,7 @@ public class UndeployExtendedTypeSetConfigurationHandler extends AbstractHandler
 			if(result.isOK()) {
 				return result;
 			} else {
-				MultiStatus actualResult = new MultiStatus(Activator.PLUGIN_ID, result.getCode(), "Some errors occurred during the deployment", result.getException());
+				MultiStatus actualResult = new MultiStatus(Activator.PLUGIN_ID, result.getCode(), "Some errors occurred during the undeployment", result.getException());
 				actualResult.merge(result);
 				return actualResult;
 			}
