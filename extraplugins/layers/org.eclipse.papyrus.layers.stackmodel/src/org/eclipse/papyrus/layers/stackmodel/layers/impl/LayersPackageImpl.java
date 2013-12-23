@@ -28,6 +28,7 @@ import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand;
 import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayer;
 import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayerOperator;
+import org.eclipse.papyrus.layers.stackmodel.layers.AllViewsDerivedLayer;
 import org.eclipse.papyrus.layers.stackmodel.layers.AndStackedLayerOperatorDescriptor;
 import org.eclipse.papyrus.layers.stackmodel.layers.ApplicationDependantElement;
 import org.eclipse.papyrus.layers.stackmodel.layers.BooleanInstance;
@@ -568,6 +569,13 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * @generated
 	 */
 	private EClass isAbstractUmlSetterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass allViewsDerivedLayerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2641,6 +2649,15 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAllViewsDerivedLayer() {
+		return allViewsDerivedLayerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getEventLevel() {
 		return eventLevelEEnum;
 	}
@@ -3044,6 +3061,8 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 
 		isAbstractUmlSetterEClass = createEClass(IS_ABSTRACT_UML_SETTER);
 
+		allViewsDerivedLayerEClass = createEClass(ALL_VIEWS_DERIVED_LAYER);
+
 		// Create enums
 		eventLevelEEnum = createEEnum(EVENT_LEVEL);
 
@@ -3138,6 +3157,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		andStackedLayerOperatorDescriptorEClass.getESuperTypes().add(this.getStackedLayerOperatorDescriptor());
 		orStackedLayerOperatorDescriptorEClass.getESuperTypes().add(this.getStackedLayerOperatorDescriptor());
 		isAbstractUmlSetterEClass.getESuperTypes().add(this.getPropertySetter());
+		allViewsDerivedLayerEClass.getESuperTypes().add(this.getAbstractLayer());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(layerNamedStyleEClass, LayerNamedStyle.class, "LayerNamedStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3553,6 +3573,8 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		initEClass(orStackedLayerOperatorDescriptorEClass, OrStackedLayerOperatorDescriptor.class, "OrStackedLayerOperatorDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(isAbstractUmlSetterEClass, IsAbstractUmlSetter.class, "IsAbstractUmlSetter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(allViewsDerivedLayerEClass, AllViewsDerivedLayer.class, "AllViewsDerivedLayer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(eventLevelEEnum, EventLevel.class, "EventLevel");

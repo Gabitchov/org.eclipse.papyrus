@@ -56,6 +56,7 @@ public class DiagramViewChangedEventNotifier extends EContentAdapter {
 		super.notifyChanged(notification);
 
 		// We are only interested in views (from newValue if set, or oldValue if removed)
+		// TODO Use an appropriate filter / Predicate to filter views.
 		Object newValue = notification.getNewValue();
 		if( ! (newValue instanceof View || notification.getOldValue() instanceof View ) ) {
 			return;

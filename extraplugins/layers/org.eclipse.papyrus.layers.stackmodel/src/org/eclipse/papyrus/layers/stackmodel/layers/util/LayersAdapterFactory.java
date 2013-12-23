@@ -351,6 +351,10 @@ public class LayersAdapterFactory extends AdapterFactoryImpl {
 				return createIsAbstractUmlSetterAdapter();
 			}
 			@Override
+			public Adapter caseAllViewsDerivedLayer(AllViewsDerivedLayer object) {
+				return createAllViewsDerivedLayerAdapter();
+			}
+			@Override
 			public Adapter caseStyle(Style object) {
 				return createStyleAdapter();
 			}
@@ -711,6 +715,20 @@ public class LayersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIsAbstractUmlSetterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.layers.stackmodel.layers.AllViewsDerivedLayer <em>All Views Derived Layer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.AllViewsDerivedLayer
+	 * @generated
+	 */
+	public Adapter createAllViewsDerivedLayerAdapter() {
 		return null;
 	}
 

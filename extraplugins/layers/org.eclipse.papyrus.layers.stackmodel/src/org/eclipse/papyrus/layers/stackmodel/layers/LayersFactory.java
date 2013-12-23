@@ -248,6 +248,15 @@ public interface LayersFactory extends EFactory {
 	IsAbstractUmlSetter createIsAbstractUmlSetter();
 
 	/**
+	 * Returns a new object of class '<em>All Views Derived Layer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>All Views Derived Layer</em>'.
+	 * @generated
+	 */
+	AllViewsDerivedLayer createAllViewsDerivedLayer();
+
+	/**
 	 * Returns a new object of class '<em>Layer Descriptor</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -509,4 +509,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="AndStackedLayerOperatorDescriptor" eSuperTypes="#//StackedLayerOperatorDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="OrStackedLayerOperatorDescriptor" eSuperTypes="#//StackedLayerOperatorDescriptor"/>
   <eClassifiers xsi:type="ecore:EClass" name="IsAbstractUmlSetter" eSuperTypes="#//PropertySetter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AllViewsDerivedLayer" eSuperTypes="#//AbstractLayer"/>
 </ecore:EPackage>

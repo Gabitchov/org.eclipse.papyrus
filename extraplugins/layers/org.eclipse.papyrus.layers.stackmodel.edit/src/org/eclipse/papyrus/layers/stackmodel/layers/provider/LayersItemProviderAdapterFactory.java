@@ -726,6 +726,29 @@ public class LayersItemProviderAdapterFactory extends LayersAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.layers.stackmodel.layers.AllViewsDerivedLayer} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AllViewsDerivedLayerItemProvider allViewsDerivedLayerItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.layers.stackmodel.layers.AllViewsDerivedLayer}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAllViewsDerivedLayerAdapter() {
+		if (allViewsDerivedLayerItemProvider == null) {
+			allViewsDerivedLayerItemProvider = new AllViewsDerivedLayerItemProvider(this);
+		}
+
+		return allViewsDerivedLayerItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1548,6 +1571,7 @@ public class LayersItemProviderAdapterFactory extends LayersAdapterFactory imple
 		if (andStackedLayerOperatorDescriptorItemProvider != null) andStackedLayerOperatorDescriptorItemProvider.dispose();
 		if (orStackedLayerOperatorDescriptorItemProvider != null) orStackedLayerOperatorDescriptorItemProvider.dispose();
 		if (isAbstractUmlSetterItemProvider != null) isAbstractUmlSetterItemProvider.dispose();
+		if (allViewsDerivedLayerItemProvider != null) allViewsDerivedLayerItemProvider.dispose();
 	}
 
 }

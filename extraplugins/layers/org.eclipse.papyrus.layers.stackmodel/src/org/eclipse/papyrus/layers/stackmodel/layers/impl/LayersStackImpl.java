@@ -144,7 +144,7 @@ MinimalEObjectImpl.Container implements LayersStack {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected LayersStackImpl() {
 		super();

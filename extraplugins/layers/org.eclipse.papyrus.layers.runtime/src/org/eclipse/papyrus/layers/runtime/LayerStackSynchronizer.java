@@ -399,10 +399,10 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 
 	@Override
 	public void layerAdded(Notification notification) {
-		System.out.println(this.getClass().getSimpleName() + " layerAdded() " + notification.getNewValue());
+		System.out.println(this.getClass().getSimpleName() + ".layerAdded() " + notification.getNewValue());
 
-		if( ! (notification.getOldValue() instanceof AbstractLayer) ) {
-			System.err.println( this.getClass().getSimpleName() + "TODO: layerRemoved() " + notification.getOldValue() + " - removing layerOperator not implemented yet.");;
+		if( ! (notification.getNewValue() instanceof AbstractLayer) ) {
+			System.err.println( "TODO: " + this.getClass().getSimpleName() + ".layerAdded() " + notification.getOldValue() + " - recompute for LayerOperator not implemented yet.");;
             return;
 		}
 
@@ -425,7 +425,7 @@ public class LayerStackSynchronizer implements IDiagramViewEventListener, ILayer
 		System.out.println(this.getClass().getSimpleName() + " layerRemoved() " + notification.getOldValue());
 
 		if( ! (notification.getOldValue() instanceof AbstractLayer) ) {
-			System.err.println( this.getClass().getSimpleName() + "TODO: layerRemoved() " + notification.getOldValue() + " - removing layerOperator not implemented yet.");;
+			System.err.println( "TODO: " + this.getClass().getSimpleName() + ".layerRemoved() " + notification.getOldValue() + " - recompute() after removing layerOperator not implemented yet.");;
             return;
 		}
 		// Extract the affected layer

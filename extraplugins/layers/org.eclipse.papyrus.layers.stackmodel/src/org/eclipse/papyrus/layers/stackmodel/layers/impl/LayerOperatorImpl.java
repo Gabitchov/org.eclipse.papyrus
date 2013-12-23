@@ -13,19 +13,16 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
-import org.eclipse.papyrus.layers.stackmodel.layers.util.ECoreUtils;
 
 /**
  * <!-- begin-user-doc -->

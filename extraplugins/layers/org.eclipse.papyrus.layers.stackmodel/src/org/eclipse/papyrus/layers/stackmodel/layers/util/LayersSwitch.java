@@ -565,6 +565,15 @@ public class LayersSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case LayersPackage.ALL_VIEWS_DERIVED_LAYER: {
+				AllViewsDerivedLayer allViewsDerivedLayer = (AllViewsDerivedLayer)theEObject;
+				T result = caseAllViewsDerivedLayer(allViewsDerivedLayer);
+				if (result == null) result = caseAbstractLayer(allViewsDerivedLayer);
+				if (result == null) result = caseLayerExpression(allViewsDerivedLayer);
+				if (result == null) result = caseApplicationDependantElement(allViewsDerivedLayer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -926,6 +935,21 @@ public class LayersSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIsAbstractUmlSetter(IsAbstractUmlSetter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>All Views Derived Layer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>All Views Derived Layer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAllViewsDerivedLayer(AllViewsDerivedLayer object) {
 		return null;
 	}
 

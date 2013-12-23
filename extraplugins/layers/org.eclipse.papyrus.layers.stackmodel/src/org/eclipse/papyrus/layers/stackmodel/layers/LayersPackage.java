@@ -5395,6 +5395,223 @@ public interface LayersPackage extends EPackage {
 	int IS_ABSTRACT_UML_SETTER_OPERATION_COUNT = PROPERTY_SETTER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.AllViewsDerivedLayerImpl <em>All Views Derived Layer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.AllViewsDerivedLayerImpl
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getAllViewsDerivedLayer()
+	 * @generated
+	 */
+	int ALL_VIEWS_DERIVED_LAYER = 67;
+
+	/**
+	 * The feature id for the '<em><b>Application</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__APPLICATION = ABSTRACT_LAYER__APPLICATION;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__NAME = ABSTRACT_LAYER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__DESCRIPTION = ABSTRACT_LAYER__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Is Layer Enabled Internal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__IS_LAYER_ENABLED_INTERNAL = ABSTRACT_LAYER__IS_LAYER_ENABLED_INTERNAL;
+
+	/**
+	 * The feature id for the '<em><b>Is Layer Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__IS_LAYER_ENABLED = ABSTRACT_LAYER__IS_LAYER_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Is Branch Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__IS_BRANCH_ENABLED = ABSTRACT_LAYER__IS_BRANCH_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Owning Layers Stack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__OWNING_LAYERS_STACK = ABSTRACT_LAYER__OWNING_LAYERS_STACK;
+
+	/**
+	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__PROPERTY_VALUES = ABSTRACT_LAYER__PROPERTY_VALUES;
+
+	/**
+	 * The feature id for the '<em><b>Property Value Map</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__PROPERTY_VALUE_MAP = ABSTRACT_LAYER__PROPERTY_VALUE_MAP;
+
+	/**
+	 * The feature id for the '<em><b>Layer Descriptor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__LAYER_DESCRIPTOR = ABSTRACT_LAYER__LAYER_DESCRIPTOR;
+
+	/**
+	 * The feature id for the '<em><b>Views</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__VIEWS = ABSTRACT_LAYER__VIEWS;
+
+	/**
+	 * The feature id for the '<em><b>Attached Properties</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__ATTACHED_PROPERTIES = ABSTRACT_LAYER__ATTACHED_PROPERTIES;
+
+	/**
+	 * The number of structural features of the '<em>All Views Derived Layer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER_FEATURE_COUNT = ABSTRACT_LAYER_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Compute Property Value Command</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___GET_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_PROPERTY = ABSTRACT_LAYER___GET_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_PROPERTY;
+
+	/**
+	 * The operation id for the '<em>Get Views Compute Property Value Command</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___GET_VIEWS_COMPUTE_PROPERTY_VALUE_COMMAND__ELIST_PROPERTY = ABSTRACT_LAYER___GET_VIEWS_COMPUTE_PROPERTY_VALUE_COMMAND__ELIST_PROPERTY;
+
+	/**
+	 * The operation id for the '<em>Get Properties Compute Property Value Command</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
+
+	/**
+	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER___INIT_LAYER__LAYERSSTACK;
+
+	/**
+	 * The operation id for the '<em>Get Layers Stack</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___GET_LAYERS_STACK = ABSTRACT_LAYER___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Add Property Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___ADD_PROPERTY_INSTANCE__PROPERTY = ABSTRACT_LAYER___ADD_PROPERTY_INSTANCE__PROPERTY;
+
+	/**
+	 * The operation id for the '<em>Remove Property Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___REMOVE_PROPERTY_INSTANCE__PROPERTY = ABSTRACT_LAYER___REMOVE_PROPERTY_INSTANCE__PROPERTY;
+
+	/**
+	 * The operation id for the '<em>Get Property Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___GET_PROPERTY_INSTANCE__PROPERTY = ABSTRACT_LAYER___GET_PROPERTY_INSTANCE__PROPERTY;
+
+	/**
+	 * The operation id for the '<em>Get Property Instance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___GET_PROPERTY_INSTANCE__STRING = ABSTRACT_LAYER___GET_PROPERTY_INSTANCE__STRING;
+
+	/**
+	 * The number of operations of the '<em>All Views Derived Layer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER_OPERATION_COUNT = ABSTRACT_LAYER_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5402,7 +5619,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getEventLevel()
 	 * @generated
 	 */
-	int EVENT_LEVEL = 67;
+	int EVENT_LEVEL = 68;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -5412,7 +5629,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 68;
+	int STRING = 69;
 
 	/**
 	 * The meta object id for the '<em>boolean</em>' data type.
@@ -5421,7 +5638,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getboolean()
 	 * @generated
 	 */
-	int BOOLEAN = 69;
+	int BOOLEAN = 70;
 
 	/**
 	 * The meta object id for the '<em>EPackage</em>' data type.
@@ -5431,7 +5648,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getEPackage()
 	 * @generated
 	 */
-	int EPACKAGE = 70;
+	int EPACKAGE = 71;
 
 	/**
 	 * The meta object id for the '<em>Not Found Exception</em>' data type.
@@ -5441,7 +5658,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getNotFoundException()
 	 * @generated
 	 */
-	int NOT_FOUND_EXCEPTION = 74;
+	int NOT_FOUND_EXCEPTION = 75;
 
 	/**
 	 * The meta object id for the '<em>Compute Property Value Command</em>' data type.
@@ -5451,7 +5668,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getComputePropertyValueCommand()
 	 * @generated
 	 */
-	int COMPUTE_PROPERTY_VALUE_COMMAND = 75;
+	int COMPUTE_PROPERTY_VALUE_COMMAND = 76;
 
 	/**
 	 * The meta object id for the '<em>Exception</em>' data type.
@@ -5461,7 +5678,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayersException()
 	 * @generated
 	 */
-	int LAYERS_EXCEPTION = 71;
+	int LAYERS_EXCEPTION = 72;
 
 	/**
 	 * The meta object id for the '<em>int</em>' data type.
@@ -5470,7 +5687,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getint()
 	 * @generated
 	 */
-	int INT = 72;
+	int INT = 73;
 
 
 	/**
@@ -5481,7 +5698,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 76;
+	int OBJECT = 77;
 
 
 	/**
@@ -5492,7 +5709,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getCustomPropertyOpertorInstance()
 	 * @generated
 	 */
-	int CUSTOM_PROPERTY_OPERTOR_INSTANCE = 77;
+	int CUSTOM_PROPERTY_OPERTOR_INSTANCE = 78;
 
 	/**
 	 * The meta object id for the '<em>Bad State Exception</em>' data type.
@@ -5502,7 +5719,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getBadStateException()
 	 * @generated
 	 */
-	int BAD_STATE_EXCEPTION = 73;
+	int BAD_STATE_EXCEPTION = 74;
 
 
 	/**
@@ -6075,6 +6292,16 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIsAbstractUmlSetter();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.layers.AllViewsDerivedLayer <em>All Views Derived Layer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>All Views Derived Layer</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.AllViewsDerivedLayer
+	 * @generated
+	 */
+	EClass getAllViewsDerivedLayer();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}'.
@@ -8381,6 +8608,16 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IS_ABSTRACT_UML_SETTER = eINSTANCE.getIsAbstractUmlSetter();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.AllViewsDerivedLayerImpl <em>All Views Derived Layer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.AllViewsDerivedLayerImpl
+		 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getAllViewsDerivedLayer()
+		 * @generated
+		 */
+		EClass ALL_VIEWS_DERIVED_LAYER = eINSTANCE.getAllViewsDerivedLayer();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}' enum.

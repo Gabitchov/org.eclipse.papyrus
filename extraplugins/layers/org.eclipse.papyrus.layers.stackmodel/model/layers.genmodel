@@ -436,5 +436,6 @@
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="layers.ecore#//AndStackedLayerOperatorDescriptor"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="layers.ecore#//OrStackedLayerOperatorDescriptor"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="layers.ecore#//IsAbstractUmlSetter"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="layers.ecore#//AllViewsDerivedLayer"/>
   </genPackages>
 </genmodel:GenModel>

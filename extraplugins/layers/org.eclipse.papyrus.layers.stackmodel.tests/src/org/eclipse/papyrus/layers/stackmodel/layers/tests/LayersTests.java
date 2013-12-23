@@ -74,6 +74,7 @@ public class LayersTests extends TestSuite {
 		suite.addTestSuite(AndStackedLayerOperatorDescriptorTest.class);
 		suite.addTestSuite(OrStackedLayerOperatorDescriptorTest.class);
 		suite.addTestSuite(IsAbstractUmlSetterTest.class);
+		suite.addTestSuite(AllViewsDerivedLayerTest.class);
 		return suite;
 	}
 

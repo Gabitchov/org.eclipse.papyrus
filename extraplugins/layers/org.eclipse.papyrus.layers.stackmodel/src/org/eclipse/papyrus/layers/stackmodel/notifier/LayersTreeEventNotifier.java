@@ -70,7 +70,8 @@ public class LayersTreeEventNotifier extends EContentAdapter {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		System.err.println( this.getClass().getSimpleName() + ".event received " + notification.getFeature());
+		System.err.println( this.getClass().getSimpleName() + ".notifyChanged( " 
+	                   + notification.getFeature() + ")");
 		// Self atttach
 		super.notifyChanged(notification);
 

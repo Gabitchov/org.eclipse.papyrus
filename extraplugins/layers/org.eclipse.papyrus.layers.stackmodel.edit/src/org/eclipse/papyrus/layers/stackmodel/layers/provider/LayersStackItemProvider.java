@@ -263,6 +263,11 @@ public class LayersStackItemProvider
 			(createChildParameter
 				(LayersPackage.Literals.LAYERS_STACK__LAYERS,
 				 LayersFactory.eINSTANCE.createLayer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LayersPackage.Literals.LAYERS_STACK__LAYERS,
+				 LayersFactory.eINSTANCE.createAllViewsDerivedLayer()));
 	}
 
 	/**

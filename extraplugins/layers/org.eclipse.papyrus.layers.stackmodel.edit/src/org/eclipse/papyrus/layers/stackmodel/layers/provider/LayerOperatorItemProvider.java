@@ -170,6 +170,11 @@ public class LayerOperatorItemProvider
 			(createChildParameter
 				(LayersPackage.Literals.LAYER_OPERATOR__LAYERS,
 				 LayersFactory.eINSTANCE.createLayer()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(LayersPackage.Literals.LAYER_OPERATOR__LAYERS,
+				 LayersFactory.eINSTANCE.createAllViewsDerivedLayer()));
 	}
 
 }

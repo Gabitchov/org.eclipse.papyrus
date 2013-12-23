@@ -16,7 +16,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -26,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -39,16 +37,11 @@ import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand;
 import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayer;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerDescriptor;
-import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
-import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
-import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 import org.eclipse.papyrus.layers.stackmodel.layers.NullInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
-import org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer;
 import org.eclipse.papyrus.layers.stackmodel.layers.TypeInstance;
-import org.eclipse.papyrus.layers.stackmodel.layers.util.ECoreUtils;
 
 /**
  * <!-- begin-user-doc -->

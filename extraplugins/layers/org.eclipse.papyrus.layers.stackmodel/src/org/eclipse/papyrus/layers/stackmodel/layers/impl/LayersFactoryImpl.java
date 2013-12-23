@@ -132,6 +132,7 @@ public class LayersFactoryImpl extends EFactoryImpl implements LayersFactory {
 			case LayersPackage.AND_STACKED_LAYER_OPERATOR_DESCRIPTOR: return createAndStackedLayerOperatorDescriptor();
 			case LayersPackage.OR_STACKED_LAYER_OPERATOR_DESCRIPTOR: return createOrStackedLayerOperatorDescriptor();
 			case LayersPackage.IS_ABSTRACT_UML_SETTER: return createIsAbstractUmlSetter();
+			case LayersPackage.ALL_VIEWS_DERIVED_LAYER: return createAllViewsDerivedLayer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -775,6 +776,16 @@ public class LayersFactoryImpl extends EFactoryImpl implements LayersFactory {
 	public IsAbstractUmlSetter createIsAbstractUmlSetter() {
 		IsAbstractUmlSetterImpl isAbstractUmlSetter = new IsAbstractUmlSetterImpl();
 		return isAbstractUmlSetter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AllViewsDerivedLayer createAllViewsDerivedLayer() {
+		AllViewsDerivedLayerImpl allViewsDerivedLayer = new AllViewsDerivedLayerImpl();
+		return allViewsDerivedLayer;
 	}
 
 	/**
