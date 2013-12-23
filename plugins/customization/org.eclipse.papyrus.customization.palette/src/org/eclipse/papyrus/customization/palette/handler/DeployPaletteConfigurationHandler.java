@@ -111,7 +111,7 @@ public class DeployPaletteConfigurationHandler extends AbstractHandler implement
 					boolean alreadyDeployed = false;
 					
 					// update values from the editor
-					if(dialog.paletteName !=null && !dialog.paletteName.isEmpty()) {
+					if(dialog.paletteName !=null && dialog.paletteName.length()>0) {
 						paletteName = dialog.paletteName;	
 						alreadyDeployed = true;
 					} else {
@@ -125,14 +125,14 @@ public class DeployPaletteConfigurationHandler extends AbstractHandler implement
 						validUpdate = false;
 					}
 					
-					if(dialog.editorID !=null && !dialog.editorID.isEmpty()) {
+					if(dialog.editorID !=null && dialog.editorID.length()>0) {
 						editorID = dialog.editorID;	
 						alreadyDeployed = true;
 					}else {
 						validUpdate = false;
 					}
 					
-					if(dialog.requiredProfiles !=null && !dialog.requiredProfiles.isEmpty()) {
+					if(dialog.requiredProfiles !=null && dialog.requiredProfiles.length()>0) {
 						requiredProfiles = PaletteUtil.getProfileSetFromString(dialog.requiredProfiles);
 					}else {
 						validUpdate = false;
