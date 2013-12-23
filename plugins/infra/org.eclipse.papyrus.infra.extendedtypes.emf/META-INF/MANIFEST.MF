@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.extendedtypes.emf,
- org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration,
- org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration.impl,
- org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration.util,
- org.eclipse.papyrus.infra.extendedtypes.emf.providers
+Export-Package: org.eclipse.papyrus.infra.extendedtypes.emf
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -25,8 +21,6 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.extendedtypes.emf.Activato
- r
-Bundle-SymbolicName: org.eclipse.papyrus.infra.extendedtypes.emf;singl
- eton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.extendedtypes.emf.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.extendedtypes.emf;singleton:=true
 

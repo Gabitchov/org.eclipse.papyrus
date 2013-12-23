@@ -10,31 +10,4 @@
 
 <plugin>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"
-            class="org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration.ModifySemanticValuesActionConfigurationPackage"
-            genModel="model/ModifySemanticValuesActionConfiguration.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="modifysemanticvaluesactionconfiguration"
-            class="org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration.util.ModifySemanticValuesActionConfigurationResourceFactoryImpl"/>
-   </extension>
-
-	<extension
-         point="org.eclipse.papyrus.infra.extendedtypes.extendedElementTypeActionProvider">
-      <extendedElementTypeActionProvider
-            class="org.eclipse.papyrus.infra.extendedtypes.emf.providers.ModifySemanticValuesActionProvider"
-            configurationClass="org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration.ModifySemanticValuesActionConfiguration"
-            description="Post action to set semantic values on created element"
-            icon="icons/Values.gif"
-            id="org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration"
-            name="Extended Element Type Modify Semantic Values Post Action">
-         <Priority
-               name="Lowest">
-         </Priority>
-      </extendedElementTypeActionProvider>
-   </extension>
 </plugin>
