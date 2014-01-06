@@ -1,6 +1,4 @@
-/*
- * 
- */
+
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import java.util.Collections;
@@ -10,6 +8,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -50,11 +49,15 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.PropertyLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
@@ -70,12 +73,12 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class RectangleInterfaceNameEditPartCN extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
+public class PropertyPartNameEditPartCN extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5267;
+	public static final int VISUAL_ID = 5268;
 
 	/**
 	 * @generated
@@ -114,7 +117,7 @@ public class RectangleInterfaceNameEditPartCN extends PapyrusCompartmentEditPart
 	/**
 	 * @generated
 	 */
-	public RectangleInterfaceNameEditPartCN(View view) {
+	public PropertyPartNameEditPartCN(View view) {
 		super(view);
 	}
 
@@ -126,6 +129,7 @@ public class RectangleInterfaceNameEditPartCN extends PapyrusCompartmentEditPart
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new DefaultNodeLabelDragPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new PropertyLabelEditPolicy());
 	}
 
 	/**
@@ -223,6 +227,16 @@ public class RectangleInterfaceNameEditPartCN extends PapyrusCompartmentEditPart
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
+		EObject parserElement = getParserElement();
+		if(parserElement == null) {
+			return null;
+		}
+		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		for(View view : views) {
+			if(NameLabelIconHelper.showLabelIcon(view)) {
+				return UMLElementTypes.getImage(parserElement.eClass());
+			}
+		}
 		return null;
 	}
 
@@ -323,7 +337,7 @@ public class RectangleInterfaceNameEditPartCN extends PapyrusCompartmentEditPart
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Interface_3078, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPartCN.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Property_3079, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartNameEditPartCN.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -731,6 +745,9 @@ public class RectangleInterfaceNameEditPartCN extends PapyrusCompartmentEditPart
 					refreshLabel();
 				}
 			}
+		}
+		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
+			refreshLabel();
 		}
 		super.handleNotificationEvent(event);
 	}

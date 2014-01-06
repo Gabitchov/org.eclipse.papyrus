@@ -222,6 +222,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_Property_3079(Property instance) {
+		try {
+			Object value_0 = name_Property_3079(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_Comment_3074(Comment instance) {
 		try {
 			Object value_0 = body_Comment_3074(instance);
@@ -473,6 +485,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Reception_6(Reception self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Property_3079(Property self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

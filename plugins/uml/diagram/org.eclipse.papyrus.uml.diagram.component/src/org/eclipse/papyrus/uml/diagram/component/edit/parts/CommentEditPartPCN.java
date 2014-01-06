@@ -39,8 +39,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -349,6 +349,9 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4015);
+		}
 		return types;
 	}
 
@@ -376,6 +379,7 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 			types.add(UMLElementTypes.Comment_3074);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		}
 		return types;
 	}

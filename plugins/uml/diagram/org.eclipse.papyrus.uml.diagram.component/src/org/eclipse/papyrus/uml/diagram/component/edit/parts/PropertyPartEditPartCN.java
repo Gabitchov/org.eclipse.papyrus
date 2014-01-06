@@ -1,15 +1,5 @@
-/*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
+
+
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import java.util.ArrayList;
@@ -19,6 +9,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -27,11 +18,8 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -43,12 +31,14 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.InterfaceFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.component.edit.policies.RectangleInterfaceItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes.PropertyPartFigure;
+import org.eclipse.papyrus.uml.diagram.component.edit.policies.PropertyItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
@@ -57,12 +47,12 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
+public class PropertyPartEditPartCN extends org.eclipse.papyrus.uml.diagram.component.custom.edit.part.PropertyPartEditPartCN {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3205;
+	public static final int VISUAL_ID = 3079;
 
 	/**
 	 * @generated
@@ -77,7 +67,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public RectangleInterfaceEditPart(View view) {
+	public PropertyPartEditPartCN(View view) {
 		super(view);
 	}
 
@@ -85,14 +75,24 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new RectangleInterfaceItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PropertyItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
-		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
+
+	/**
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
 	}
 
 	/**
@@ -124,34 +124,22 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new InterfaceFigure();
+		return primaryShape = new PropertyPartFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public InterfaceFigure getPrimaryShape() {
-		return (InterfaceFigure)primaryShape;
+	public PropertyPartFigure getPrimaryShape() {
+		return (PropertyPartFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof RectangleInterfaceNameEditPart) {
-			((RectangleInterfaceNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
-			return true;
-		}
-		if(childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((InterfaceAttributeCompartmentEditPart)childEditPart).getFigure());
-			return true;
-		}
-		if(childEditPart instanceof InterfaceOperationCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((InterfaceOperationCompartmentEditPart)childEditPart).getFigure());
+		if(childEditPart instanceof PropertyPartNameEditPartCN) {
+			((PropertyPartNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
 		return false;
@@ -161,17 +149,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof RectangleInterfaceNameEditPart) {
-			return true;
-		}
-		if(childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			pane.remove(((InterfaceAttributeCompartmentEditPart)childEditPart).getFigure());
-			return true;
-		}
-		if(childEditPart instanceof InterfaceOperationCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			pane.remove(((InterfaceOperationCompartmentEditPart)childEditPart).getFigure());
+		if(childEditPart instanceof PropertyPartNameEditPartCN) {
 			return true;
 		}
 		return false;
@@ -201,12 +179,6 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof InterfaceAttributeCompartmentEditPart) {
-			return getPrimaryShape().getAttributeCompartmentFigure();
-		}
-		if(editPart instanceof InterfaceOperationCompartmentEditPart) {
-			return getPrimaryShape().getOperationCompartmentFigure();
-		}
 		return getContentPane();
 	}
 
@@ -214,7 +186,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "Interface";
+		String prefElementId = "Property";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
@@ -297,17 +269,16 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(RectangleInterfaceNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(PropertyPartNameEditPartCN.VISUAL_ID));
 	}
 
 	/**
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnSource() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(8);
 		types.add(UMLElementTypes.Usage_4001);
 		types.add(UMLElementTypes.InterfaceRealization_4006);
-		types.add(UMLElementTypes.Generalization_4003);
 		types.add(UMLElementTypes.Substitution_4012);
 		types.add(UMLElementTypes.Manifestation_4014);
 		types.add(UMLElementTypes.ComponentRealization_4007);
@@ -334,7 +305,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart) {
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -370,10 +341,10 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
-		if(targetEditPart instanceof PropertyPartEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart) {
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
 		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
@@ -382,24 +353,6 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
-		if(targetEditPart instanceof ComponentEditPart) {
-			types.add(UMLElementTypes.Generalization_4003);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart) {
-			types.add(UMLElementTypes.Generalization_4003);
-		}
-		if(targetEditPart instanceof RectangleInterfaceEditPartCN) {
-			types.add(UMLElementTypes.Generalization_4003);
-		}
-		if(targetEditPart instanceof ComponentEditPartCN) {
-			types.add(UMLElementTypes.Generalization_4003);
-		}
-		if(targetEditPart instanceof ComponentEditPartPCN) {
-			types.add(UMLElementTypes.Generalization_4003);
-		}
-		if(targetEditPart instanceof InterfaceEditPartPCN) {
-			types.add(UMLElementTypes.Generalization_4003);
-		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
@@ -412,7 +365,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart) {
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -448,7 +401,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
-		if(targetEditPart instanceof PropertyPartEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -463,7 +416,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart) {
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -499,7 +452,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
-		if(targetEditPart instanceof PropertyPartEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -514,7 +467,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart) {
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -550,7 +503,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
-		if(targetEditPart instanceof PropertyPartEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -565,7 +518,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart) {
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -601,7 +554,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
-		if(targetEditPart instanceof PropertyPartEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -616,7 +569,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart) {
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -652,7 +605,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
-		if(targetEditPart instanceof PropertyPartEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
@@ -667,7 +620,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof PackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart) {
+		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -703,7 +656,7 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
-		if(targetEditPart instanceof PropertyPartEditPartCN) {
+		if(targetEditPart instanceof org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		return types;
@@ -735,13 +688,6 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
 			types.add(UMLElementTypes.Interface_3205);
 			types.add(UMLElementTypes.Interface_3078);
-			types.add(UMLElementTypes.Interface_3072);
-		} else if(relationshipType == UMLElementTypes.Generalization_4003) {
-			types.add(UMLElementTypes.Component_2002);
-			types.add(UMLElementTypes.Interface_3205);
-			types.add(UMLElementTypes.Interface_3078);
-			types.add(UMLElementTypes.Component_3070);
-			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Substitution_4012) {
 			types.add(UMLElementTypes.Dependency_3203);
@@ -859,10 +805,8 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(11);
+		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
 		types.add(UMLElementTypes.Usage_4001);
-		types.add(UMLElementTypes.InterfaceRealization_4006);
-		types.add(UMLElementTypes.Generalization_4003);
 		types.add(UMLElementTypes.Substitution_4012);
 		types.add(UMLElementTypes.Manifestation_4014);
 		types.add(UMLElementTypes.ComponentRealization_4007);
@@ -897,31 +841,6 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
 			types.add(UMLElementTypes.Property_3079);
-		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
-			types.add(UMLElementTypes.Dependency_3203);
-			types.add(UMLElementTypes.Component_2002);
-			types.add(UMLElementTypes.Model_3202);
-			types.add(UMLElementTypes.Package_3200);
-			types.add(UMLElementTypes.Interface_3205);
-			types.add(UMLElementTypes.Constraint_3199);
-			types.add(UMLElementTypes.NamedElement_3204);
-			types.add(UMLElementTypes.NamedElement_2003);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Model_3077);
-			types.add(UMLElementTypes.Package_3076);
-			types.add(UMLElementTypes.Interface_3078);
-			types.add(UMLElementTypes.Component_3070);
-			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Constraint_3075);
-			types.add(UMLElementTypes.Interface_3072);
-			types.add(UMLElementTypes.Property_3079);
-		} else if(relationshipType == UMLElementTypes.Generalization_4003) {
-			types.add(UMLElementTypes.Component_2002);
-			types.add(UMLElementTypes.Interface_3205);
-			types.add(UMLElementTypes.Interface_3078);
-			types.add(UMLElementTypes.Component_3070);
-			types.add(UMLElementTypes.Component_3071);
-			types.add(UMLElementTypes.Interface_3072);
 		} else if(relationshipType == UMLElementTypes.Substitution_4012) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -1043,26 +962,6 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public EditPart getTargetEditPart(Request request) {
-		if(request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.Property_1) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPart.VISUAL_ID));
-			}
-			if(type == UMLElementTypes.Operation_5) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID));
-			}
-			if(type == UMLElementTypes.Reception_6) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID));
-			}
-		}
-		return super.getTargetEditPart(request);
-	}
-
-	/**
-	 * @generated
-	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
 		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
@@ -1070,15 +969,15 @@ public class RectangleInterfaceEditPart extends ShapeNodeEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferencesConstantsHelper.getElementConstant("Interface", PreferencesConstantsHelper.COLOR_LINE);
+				prefColor = PreferencesConstantsHelper.getElementConstant("Property", PreferencesConstantsHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferencesConstantsHelper.getElementConstant("Interface", PreferencesConstantsHelper.COLOR_FONT);
+				prefColor = PreferencesConstantsHelper.getElementConstant("Property", PreferencesConstantsHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferencesConstantsHelper.getElementConstant("Interface", PreferencesConstantsHelper.COLOR_FILL);
+				prefColor = PreferencesConstantsHelper.getElementConstant("Property", PreferencesConstantsHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferencesConstantsHelper.getElementConstant("Interface", PreferencesConstantsHelper.COLOR_GRADIENT);
+			String prefGradient = PreferencesConstantsHelper.getElementConstant("Property", PreferencesConstantsHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());

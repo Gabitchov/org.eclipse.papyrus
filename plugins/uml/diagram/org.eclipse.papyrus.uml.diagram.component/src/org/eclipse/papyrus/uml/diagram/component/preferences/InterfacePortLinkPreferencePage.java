@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.component.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;

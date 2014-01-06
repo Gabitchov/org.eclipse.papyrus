@@ -53,6 +53,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.part.Messages;
@@ -114,8 +115,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ComponentCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.Component_3070);
+			types.add(UMLElementTypes.Property_3079);
 			return types;
 		}
 		if(editPart instanceof ModelPackageableElementCompartmentEditPart) {
@@ -163,13 +165,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ComponentCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.Component_3070);
+			types.add(UMLElementTypes.Property_3079);
 			return types;
 		}
 		if(editPart instanceof ComponentCompositeCompartmentEditPartPCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.Component_3070);
+			types.add(UMLElementTypes.Property_3079);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -234,6 +238,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof InterfaceEditPartPCN) {
 			return ((InterfaceEditPartPCN)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof PropertyPartEditPartCN) {
+			return ((PropertyPartEditPartCN)sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -295,6 +302,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			return ((InterfaceEditPartPCN)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			return ((PropertyPartEditPartCN)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -359,6 +369,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof InterfaceEditPartPCN) {
 			return ((InterfaceEditPartPCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof PropertyPartEditPartCN) {
+			return ((PropertyPartEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -421,6 +434,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			return ((InterfaceEditPartPCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			return ((PropertyPartEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -482,6 +498,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof InterfaceEditPartPCN) {
 			return ((InterfaceEditPartPCN)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof PropertyPartEditPartCN) {
+			return ((PropertyPartEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

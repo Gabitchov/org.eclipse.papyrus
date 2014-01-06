@@ -124,6 +124,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InterfaceEditPartPCN(view);
 			case InterfaceNameEditPartPCN.VISUAL_ID:
 				return new InterfaceNameEditPartPCN(view);
+			case PropertyPartEditPartCN.VISUAL_ID:
+				return new PropertyPartEditPartCN(view);
+			case PropertyPartNameEditPartCN.VISUAL_ID:
+				return new PropertyPartNameEditPartCN(view);
 			case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 				return new ComponentCompositeCompartmentEditPart(view);
 			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:

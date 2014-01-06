@@ -39,8 +39,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -368,6 +368,9 @@ public class ModelEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Usage_4001);
+		}
 		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
@@ -425,6 +428,9 @@ public class ModelEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Substitution_4012);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
@@ -473,6 +479,9 @@ public class ModelEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4014);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
@@ -521,6 +530,9 @@ public class ModelEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.ComponentRealization_4007);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
@@ -569,6 +581,9 @@ public class ModelEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4013);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
@@ -617,6 +632,9 @@ public class ModelEditPart extends NamedElementEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
@@ -663,6 +681,9 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
+			types.add(UMLElementTypes.Dependency_4017);
+		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		return types;
@@ -690,6 +711,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
 			types.add(UMLElementTypes.Interface_3205);
 			types.add(UMLElementTypes.Interface_3078);
@@ -711,6 +733,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4014) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -728,6 +751,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.ComponentRealization_4007) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -745,6 +769,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4013) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -762,6 +787,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -779,6 +805,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -796,6 +823,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		}
 		return types;
 	}
@@ -839,6 +867,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Substitution_4012) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -856,6 +885,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4014) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -873,6 +903,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.ComponentRealization_4007) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -890,6 +921,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4013) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -907,6 +939,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4015) {
 			types.add(UMLElementTypes.Comment_3201);
 			types.add(UMLElementTypes.Comment_3074);
@@ -930,6 +963,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -947,6 +981,7 @@ public class ModelEditPart extends NamedElementEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		}
 		return types;
 	}

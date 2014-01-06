@@ -54,6 +54,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
@@ -173,6 +174,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Interface_3072 = getElementType("org.eclipse.papyrus.uml.diagram.component.Interface_3072"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Property_3079 = getElementType("org.eclipse.papyrus.uml.diagram.component.Property_3079"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -323,6 +329,7 @@ public class UMLElementTypes {
 			elements.put(Operation_5, UMLPackage.eINSTANCE.getOperation());
 			elements.put(Reception_6, UMLPackage.eINSTANCE.getReception());
 			elements.put(Interface_3072, UMLPackage.eINSTANCE.getInterface());
+			elements.put(Property_3079, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Usage_4001, UMLPackage.eINSTANCE.getUsage());
 			elements.put(InterfaceRealization_4006, UMLPackage.eINSTANCE.getInterfaceRealization());
 			elements.put(Generalization_4003, UMLPackage.eINSTANCE.getGeneralization());
@@ -373,6 +380,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Operation_5);
 			KNOWN_ELEMENT_TYPES.add(Reception_6);
 			KNOWN_ELEMENT_TYPES.add(Interface_3072);
+			KNOWN_ELEMENT_TYPES.add(Property_3079);
 			KNOWN_ELEMENT_TYPES.add(Usage_4001);
 			KNOWN_ELEMENT_TYPES.add(InterfaceRealization_4006);
 			KNOWN_ELEMENT_TYPES.add(Generalization_4003);
@@ -439,6 +447,8 @@ public class UMLElementTypes {
 			return Reception_6;
 		case InterfaceEditPartPCN.VISUAL_ID:
 			return Interface_3072;
+		case PropertyPartEditPartCN.VISUAL_ID:
+			return Property_3079;
 		case UsageEditPart.VISUAL_ID:
 			return Usage_4001;
 		case InterfaceRealizationEditPart.VISUAL_ID:

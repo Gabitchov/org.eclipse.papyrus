@@ -57,6 +57,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageNameEditPartC
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNameEditPartCN;
@@ -375,6 +376,26 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			interfaceName_0Parser = parser;
 		}
 		return interfaceName_0Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser propertyName_5268Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPropertyName_5268Parser() {
+		if(propertyName_5268Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			propertyName_5268Parser = parser;
+		}
+		return propertyName_5268Parser;
 	}
 
 	/**
@@ -706,6 +727,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getReception_6Parser();
 		case InterfaceNameEditPartPCN.VISUAL_ID:
 			return getInterfaceName_0Parser();
+		case PropertyPartNameEditPartCN.VISUAL_ID:
+			return getPropertyName_5268Parser();
 		case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_2Parser();
 		case SubstitutionNameEditPart.VISUAL_ID:

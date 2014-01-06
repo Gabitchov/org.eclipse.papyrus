@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.uml.diagram.component.edit.commands.ComponentCreateCommandCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.commands.PropertyCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 
 // TODO: Auto-generated Javadoc
@@ -68,6 +69,12 @@ public class ComponentCompositeCompartmentItemSemanticEditPolicyPCN extends UMLB
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
 			}
 			return getGEFWrapper(new ComponentCreateCommandCN(req));
+		}
+		if(UMLElementTypes.Property_3079 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new PropertyCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

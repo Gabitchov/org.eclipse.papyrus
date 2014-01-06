@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
 import org.eclipse.draw2d.geometry.Dimension;
