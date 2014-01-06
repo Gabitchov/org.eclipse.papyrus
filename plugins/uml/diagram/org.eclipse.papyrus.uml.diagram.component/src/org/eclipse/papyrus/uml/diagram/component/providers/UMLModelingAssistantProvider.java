@@ -114,6 +114,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Port_3069);
 			return types;
 		}
+		if(editPart instanceof PropertyPartEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
 		if(editPart instanceof ComponentCompositeCompartmentEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.Component_3070);

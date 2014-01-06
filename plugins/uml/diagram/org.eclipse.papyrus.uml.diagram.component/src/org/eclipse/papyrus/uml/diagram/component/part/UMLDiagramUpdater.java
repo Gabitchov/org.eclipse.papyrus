@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.uml.diagram.common.part.ICustomDiagramUpdater;
+import org.eclipse.papyrus.uml.diagram.component.custom.parts.PropertyDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPart;
@@ -113,6 +115,8 @@ public class UMLDiagramUpdater {
 			return getComponent_3070SemanticChildren(view);
 		case ComponentEditPartPCN.VISUAL_ID:
 			return getComponent_3071SemanticChildren(view);
+		case PropertyPartEditPartCN.VISUAL_ID:
+			return getProperty_3079SemanticChildren(view);
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 			return getComponentCompositeCompartment_7001SemanticChildren(view);
 		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
@@ -261,6 +265,14 @@ public class UMLDiagramUpdater {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getProperty_3079SemanticChildren(View view) {
+		ICustomDiagramUpdater customUpdater = new PropertyDiagramUpdater();
+		return customUpdater.getSemanticChildren(view);
 	}
 
 	/**

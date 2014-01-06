@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.preferences;
 
+import org.eclipse.uml2.uml.Property;
+
 
 // TODO: Auto-generated Javadoc
 /**

@@ -243,6 +243,11 @@ public class UMLVisualIDRegistry {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
+		case PropertyPartEditPartCN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
+				return PortEditPart.VISUAL_ID;
+			}
+			break;
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
@@ -582,6 +587,9 @@ public class UMLVisualIDRegistry {
 			if(PropertyPartNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 			if(ComponentEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -871,7 +879,6 @@ public class UMLVisualIDRegistry {
 		case InterfaceEditPartPCN.VISUAL_ID:
 		case CommentEditPartPCN.VISUAL_ID:
 		case ConstraintEditPartPCN.VISUAL_ID:
-		case PropertyPartEditPartCN.VISUAL_ID:
 		case ConstraintEditPart.VISUAL_ID:
 		case CommentEditPart.VISUAL_ID:
 		case DependencyNodeEditPart.VISUAL_ID:
