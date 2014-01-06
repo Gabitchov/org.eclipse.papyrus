@@ -312,10 +312,11 @@ public class ExpressionMatcherTest {
 		int addedElementCount = 0;
 		int expectedEventCount = 1;
 		
-		FakeObservableListListener<View> notifyingListListener = new FakeObservableListListener<View>();
-		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, diagram);
+		ObservableListView<View> matchingElements = new ObservableListView<View>();
+		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, matchingElements, diagram);
 		
-		expressionMatcher.getMatchingElements().getEventBus().register(notifyingListListener);
+		FakeObservableListListener<View> notifyingListListener = new FakeObservableListListener<View>();
+		matchingElements.getEventBus().register(notifyingListListener);
 
 		// Action
 		notifyingListListener.traces.clear();
@@ -350,10 +351,11 @@ public class ExpressionMatcherTest {
 		int expectedEventCount = 1;
 		int viewsCount = diagram.getChildren().size();
 		
-		FakeObservableListListener<View> notifyingListListener = new FakeObservableListListener<View>();
-		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, diagram);
+		ObservableListView<View> matchingElements = new ObservableListView<View>();
+		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, matchingElements, diagram);
 		
-		expressionMatcher.getMatchingElements().getEventBus().register(notifyingListListener);
+		FakeObservableListListener<View> notifyingListListener = new FakeObservableListListener<View>();
+		matchingElements.getEventBus().register(notifyingListListener);
 
 		// Action
 		notifyingListListener.traces.clear();
@@ -391,10 +393,11 @@ public class ExpressionMatcherTest {
 		int expectedEventCount = 1;
 		int viewsCount = diagram.getChildren().size();
 		
-		FakeObservableListListener<View> notifyingListListener = new FakeObservableListListener<View>();
-		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, diagram);
+		ObservableListView<View> matchingElements = new ObservableListView<View>();
+		ExpressionMatcher expressionMatcher = new ExpressionMatcher(expression, matchingElements, diagram);
 		
-		expressionMatcher.getMatchingElements().getEventBus().register(notifyingListListener);
+		FakeObservableListListener<View> notifyingListListener = new FakeObservableListListener<View>();
+		matchingElements.getEventBus().register(notifyingListListener);
 
 		// Action
 		notifyingListListener.traces.clear();

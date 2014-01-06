@@ -43,6 +43,15 @@ public class ObservableListView<E> extends ForwardingList<E>{
 	protected EventBus eventBus = new EventBus(ObservableListView.class.getName());
 	
 	/**
+	 * Construct an observable list with a {@link ArrayList} as delegate.
+	 * Constructor.
+	 *
+	 */
+	public ObservableListView() {
+		this( new ArrayList<E>());
+	}
+	
+	/**
 	 * Constructor.
 	 * Build an observable list based on the provided list.
 	 *

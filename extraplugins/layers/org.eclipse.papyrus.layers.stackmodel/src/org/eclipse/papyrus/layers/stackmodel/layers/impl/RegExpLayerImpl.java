@@ -209,11 +209,11 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 		super();
 
 		// Initialize expressionmatcher
-		expressionMatcher = new ExpressionMatcher();
+		// The expression Macher use this class views list.
+		// When expressionMatcher::refreshMatchingElements() is called, the provided list is refreshed.
+		// So,  views is synchronized and events are fired.
+		expressionMatcher = new ExpressionMatcher(getViews());
 		resetExpressionMatcherRoots();
-
-		// listen to expression matcher changes
-		expressionMatcher.getMatchingElements().getEventBus().register(this);
 
 	}
 
@@ -267,22 +267,22 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 	 * they can be unsync after the model was loaded by EMF.
 	 * <b>
 	 * This method is used to correct the bug where both list are unsync after the model was loaded by EMF.
-	 * 
+	 * @Deprecated Not needed anymore
 	 */
 	private void checkViewsAndMatchingElementsSync() {
 		
-		// Check if both list have the same size.
-		// We don't to check the content, because we want a quick check
-		// Actually, unsync appear only after the model was reloded by EMF.
-		if( getViews().size() == expressionMatcher.getMatchingElements().size() ) {
-			// ok
-			return;
-		}
-		
-		// Sync is required
-		List<View> matchElements = expressionMatcher.getMatchingElements().getUnnotifyingList();
-		matchElements.clear();
-		matchElements.addAll(getViews());
+//		// Check if both list have the same size.
+//		// We don't to check the content, because we want a quick check
+//		// Actually, unsync appear only after the model was reloded by EMF.
+//		if( getViews().size() == expressionMatcher.getMatchingElements().size() ) {
+//			// ok
+//			return;
+//		}
+//		
+//		// Sync is required
+//		List<View> matchElements = expressionMatcher.getMatchingElements().getUnnotifyingList();
+//		matchElements.clear();
+//		matchElements.addAll(getViews());
 		
 	}
 
@@ -1002,47 +1002,4 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 		
 	}
 	
-	/**
-	 * Reset the toChange list to the content of the newContent list.
-	 * Minimize the change calls on the toChange list.
-	 * This method ensure that there is at most 2 writing calls to the list to modify: one 
-	 * removeAll(toBeRemoved) and one addAll(toBeAdded).
-	 * 
-	 * @param toChange
-	 * @param newContent
-	 */
-	static <E> void resetListTo(Collection<E> toChange, Collection<E> newContent)		{
-
-		// Compute removed and added
-		Collection<E> elementsToRemove = new ArrayList<E>();
-		Collection<E> elementsToAdd = new ArrayList<E>();
-
-		// Compute added and removed elements. Walk both list 2 times. 
-		// This could certainly be improved.
-		// TODO improve the algorithm
-
-		// Compute added elements
-		for( E o : newContent ) {
-			if( !toChange.contains(o)) {
-				elementsToAdd.add(o);
-				continue;
-			}
-		}
-
-		// Compute removed elements
-		for( E o : toChange ) {
-			if( !newContent.contains(o)) {
-				elementsToRemove.add(o);
-				continue;
-			}
-		}
-
-		// Change the list
-		if( ! elementsToRemove.isEmpty()) {
-			toChange.removeAll(elementsToRemove);
-		}
-		if( !elementsToAdd.isEmpty()) {
-			toChange.addAll(elementsToAdd);
-		}
-	}
 } //RegExpLayerImpl

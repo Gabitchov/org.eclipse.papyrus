@@ -35,15 +35,18 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
+import org.eclipse.papyrus.layers.stackmodel.util.Collections3;
 import org.eclipse.papyrus.layers.stackmodel.util.ObservableListView;
 
 /**
  * This class evaluate its associated expression against the associated models.
  * It provide a list of elements matching the expression in the model.
- * It fire some events when the list of matching elements change.
- * The expression is evaluated  each time a change impacting the result occurs in the model.
+ * The list of matching elements is synchronized by the matcher. The list can be provided  at construction 
+ * time. The ExpressinMatcher takes care to minimize the number of write to the underlying list of matching elements.
+ * Usually, there is two writes (see {@link Collections3#resetListTo(Collection, Collection)}.
+ * <br>
+ * It is possible to be inform of changes in the underlying list by wrapping it in an {@link ObservableListView}.
  * 
- * It maybe necessary to adjust the listeners on model changes to improve performances.
  * 
  * @author cedric dumoulin
  *
@@ -56,7 +59,7 @@ public class ExpressionMatcher implements IValueChangedEventListener {
 	 * List of element matching the expression.
 	 * This class maintains the list.
 	 */
-	protected ObservableListView<View> matchingElements;
+	protected List<View> matchingElements;
 	
 	/**
 	 * List of element used as starting point for search.
@@ -70,11 +73,16 @@ public class ExpressionMatcher implements IValueChangedEventListener {
 	protected OCL ocl;
 	
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
 	public ExpressionMatcher() {
 		this.expression = "";
 		this.searchRoots = Collections.emptyList();
 		// init matchingElements
-		matchingElements = new ObservableListView<View>(new ArrayList<View>());
+		matchingElements = new ArrayList<View>();
 	}
 	
 	/**
@@ -84,12 +92,26 @@ public class ExpressionMatcher implements IValueChangedEventListener {
 	 * @param searchRoots
 	 * @throws LayersException
 	 */
-	public ExpressionMatcher(List<EObject> searchRoots) {
+	public ExpressionMatcher(List<View> matchingElementsList) {
 		this.expression = "";
-		setSearchRoots(searchRoots);
+		this.searchRoots = Collections.emptyList();
 		// init matchingElements
-		matchingElements = new ObservableListView<View>(new ArrayList<View>());
+		matchingElements = matchingElementsList;
 	}
+	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param searchRoots
+	 * @throws LayersException
+	 */
+//	public ExpressionMatcher(List<EObject> searchRoots) {
+//		this.expression = "";
+//		setSearchRoots(searchRoots);
+//		// init matchingElements
+//		matchingElements = new ObservableListView<View>(new ArrayList<View>());
+//	}
 	
 	/**
 	 * 
@@ -99,7 +121,10 @@ public class ExpressionMatcher implements IValueChangedEventListener {
 	 * @throws LayersException
 	 */
 	public ExpressionMatcher(EObject searchRoot) {
-		this(Collections.singletonList(searchRoot));
+		this.expression = "";
+		setSearchRoots(Collections.singletonList(searchRoot));
+		// init matchingElements
+		matchingElements = new ArrayList<View>();
 	}
 	
 	/**
@@ -111,7 +136,22 @@ public class ExpressionMatcher implements IValueChangedEventListener {
 	 */
 	public ExpressionMatcher(String expression, List<EObject> searchRoots) throws LayersException {
 		this.searchRoots = searchRoots;
-		matchingElements = new ObservableListView<View>(new ArrayList<View>());
+		matchingElements = new ArrayList<View>();
+		
+		// compute expr
+		setExpression(expression);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param expression
+	 * @param searchRoots
+	 * @throws LayersException If the Condition can't be computed from the expression.
+	 */
+	public ExpressionMatcher(String expression, List<View> matchingElementsList, List<EObject> searchRoots) throws LayersException {
+		this.searchRoots = searchRoots;
+		matchingElements = matchingElementsList;
 		
 		// compute expr
 		setExpression(expression);
@@ -126,6 +166,17 @@ public class ExpressionMatcher implements IValueChangedEventListener {
 	 */
 	public ExpressionMatcher(String expression, EObject searchRoot) throws LayersException {
 		this(expression, Collections.singletonList(searchRoot));
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param expression
+	 * @param searchRoots
+	 * @throws LayersException If the Condition can't be computed from the expression.
+	 */
+	public ExpressionMatcher(String expression, List<View> matchingElementsList, EObject searchRoot) throws LayersException {
+		this(expression, matchingElementsList, Collections.singletonList(searchRoot));
 	}
 
 	/**
@@ -196,9 +247,11 @@ public class ExpressionMatcher implements IValueChangedEventListener {
 	 * 
 	 * @param results
 	 */
+	@SuppressWarnings("unchecked")
 	private void resetMatchingElements(Collection<?> newElements) {
 		
-		matchingElements.resetTo((Collection<View>)newElements);
+		Collections3.resetListTo(matchingElements, (Collection<View>)newElements);
+//		matchingElements.resetTo((Collection<View>)newElements);
 		
 //		// Compute views to add
 //		// This are views in the newElements, but not in the actual list of matchingElement
@@ -265,7 +318,7 @@ public class ExpressionMatcher implements IValueChangedEventListener {
 	/**
 	 * @return the matchingElements
 	 */
-	public ObservableListView<View> getMatchingElements() {
+	public List<View> getMatchingElements() {
 		return matchingElements;
 	}
 
