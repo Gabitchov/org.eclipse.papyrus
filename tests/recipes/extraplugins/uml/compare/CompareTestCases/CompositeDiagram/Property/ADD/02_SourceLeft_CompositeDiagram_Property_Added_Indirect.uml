@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_r-nNQMhqEeKmlJkz37Cc-A" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_uEswAMhqEeKmlJkz37Cc-A" name="A">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_0W_NcMhqEeKmlJkz37Cc-A" name="p" visibility="public">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_0iiWIMhqEeKmlJkz37Cc-A" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0iocwMhqEeKmlJkz37Cc-A" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_0i0qAMhqEeKmlJkz37Cc-A">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xZFR4MhqEeKmlJkz37Cc-A" name="B">
+    <generalization xmi:type="uml:Generalization" xmi:id="_7-CeYMhqEeKmlJkz37Cc-A" general="_uEswAMhqEeKmlJkz37Cc-A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_f2yWIMnmEeKThIJF6ZPKoA" name="C"/>
+</uml:Model>
