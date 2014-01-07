@@ -33,6 +33,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPartPCN;
@@ -273,6 +274,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Connector_4019 = getElementType("org.eclipse.papyrus.uml.diagram.component.Connector_4019"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		return elementTypeImages.getImageDescriptor(element);
 	}
@@ -341,6 +347,7 @@ public class UMLElementTypes {
 			elements.put(ConstraintConstrainedElement_4009, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 			elements.put(Dependency_4010, UMLPackage.eINSTANCE.getDependency());
 			elements.put(Dependency_4017, UMLPackage.eINSTANCE.getDependency());
+			elements.put(Connector_4019, UMLPackage.eINSTANCE.getConnector());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -394,6 +401,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Dependency_4010);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4017);
 			KNOWN_ELEMENT_TYPES.add(Link_4018);
+			KNOWN_ELEMENT_TYPES.add(Connector_4019);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -475,6 +483,8 @@ public class UMLElementTypes {
 			return Dependency_4017;
 		case InterfacePortLinkEditPart.VISUAL_ID:
 			return Link_4018;
+		case ConnectorEditPart.VISUAL_ID:
+			return Connector_4019;
 		}
 		return null;
 	}

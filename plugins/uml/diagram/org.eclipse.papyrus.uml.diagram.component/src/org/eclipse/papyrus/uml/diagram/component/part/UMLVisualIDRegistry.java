@@ -38,6 +38,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentNameEditPar
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationNameEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintNameEditPart;
@@ -778,6 +781,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ConnectorEditPart.VISUAL_ID:
+			if(ConnectorAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConnectorNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -815,6 +826,9 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())) {
 			return DependencyBranchEditPart.VISUAL_ID;
+		}
+		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())) {
+			return ConnectorEditPart.VISUAL_ID;
 		}
 		return -1;
 	}

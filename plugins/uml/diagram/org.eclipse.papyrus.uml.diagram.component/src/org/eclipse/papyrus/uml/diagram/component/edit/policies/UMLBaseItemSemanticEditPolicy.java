@@ -59,6 +59,8 @@ import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ComponentRealization;
+import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
@@ -68,6 +70,7 @@ import org.eclipse.uml2.uml.InterfaceRealization;
 import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
@@ -717,6 +720,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
+		 * @generated
+		 */
+		public boolean canCreateConnector_4019(StructuredClassifier container, ConnectorEnd source, ConnectorEnd target) {
+			return canExistConnector_4019(container, null, source, target);
+		}
+
+		/**
 		 * Can exist usage_4001.
 		 * 
 		 * @param container
@@ -955,6 +965,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canExistLink_4018() {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistConnector_4019(StructuredClassifier container, Connector linkInstance, ConnectorEnd source, ConnectorEnd target) {
 			return true;
 		}
 	}
