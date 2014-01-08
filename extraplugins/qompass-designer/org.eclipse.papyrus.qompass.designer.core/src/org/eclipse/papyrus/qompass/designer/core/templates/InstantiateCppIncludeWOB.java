@@ -17,7 +17,6 @@ package org.eclipse.papyrus.qompass.designer.core.templates;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.FCM.Template;
-import org.eclipse.papyrus.FCM.TemplateKind;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
@@ -50,7 +49,7 @@ public class InstantiateCppIncludeWOB implements CopyListener {
 			Classifier targetCl = (Classifier)targetEObj;
 			Template template = UMLUtil.getStereotypeApplication(targetCl, Template.class);
 			// apply, in case of pass-classifier
-			if((template != null) && (template.getKind() == TemplateKind.PASS_CLASSIFIER)) {
+			if((template != null) && (template.getHelper() == null)) {
 				try {
 					Include cppInclude = UMLUtil.getStereotypeApplication(targetCl, Include.class);
 					TransformationContext.classifier = targetCl;

@@ -17,7 +17,6 @@ package org.eclipse.papyrus.qompass.modellibs.core.iconfigurators;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.IInstanceConfigurator;
-import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
@@ -51,9 +50,9 @@ public class AnimServiceConfigurator implements IInstanceConfigurator {
 	 * @param context
 	 *        container context
 	 */
-	public void configureInstance(InstanceSpecification instance, Property componentPart, ContainerContext context)
+	public void configureInstance(InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstance)
 	{
-		EList<InstanceSpecification> nodes = AllocUtils.getAllNodesOrThreadsParent(context.smIS);
+		EList<InstanceSpecification> nodes = AllocUtils.getAllNodesOrThreadsParent(parentInstance);
 		if (nodes.size() > 0) {
 			InstanceSpecification node = nodes.get(0);
 			NamedElement animService = node.getNearestPackage().getMember(eclipseAnimService);

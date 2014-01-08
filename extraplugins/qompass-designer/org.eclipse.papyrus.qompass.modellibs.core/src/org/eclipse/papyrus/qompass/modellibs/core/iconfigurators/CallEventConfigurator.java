@@ -16,7 +16,6 @@ package org.eclipse.papyrus.qompass.modellibs.core.iconfigurators;
 
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.IInstanceConfigurator;
-import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerContext;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
 
@@ -47,9 +46,9 @@ public class CallEventConfigurator implements IInstanceConfigurator {
 	 * @param context
 	 *        container context
 	 */
-	public void configureInstance(InstanceSpecification instance, Property componentPart, ContainerContext context)
+	public void configureInstance(InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstance)
 	{
-		if(context != null) {
+		if(parentInstance != null) {
 			// make sure that there is an enum par port
 			// String literalName = "port_" + UMLTool.varName(context.port); //$NON-NLS-1$
 

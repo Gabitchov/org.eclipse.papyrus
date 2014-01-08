@@ -49,9 +49,9 @@ public class InstantiateCppInclude implements CopyListener {
 			// TODO: C++ specific code!
 			Classifier targetCl = (Classifier)targetEObj;
 			try {
-				Classifier actual = TemplateInstantiationListener.getFirstActualFromBinding(binding, targetCl);
-				if(actual != null) {
-					Include cppInclude = UMLUtil.getStereotypeApplication(targetCl, Include.class);
+				Classifier actual = TemplateUtils.getFirstActualFromBinding(binding);
+				Include cppInclude = UMLUtil.getStereotypeApplication(targetCl, Include.class);
+				if((actual != null) && (cppInclude != null)) {
 					TransformationContext.classifier = targetCl;
 					String newBody = AcceleoDriverWrapper.evaluate(cppInclude.getBody(), actual, null);
 					String newPreBody = AcceleoDriverWrapper.evaluate(cppInclude.getPreBody(), actual, null);
