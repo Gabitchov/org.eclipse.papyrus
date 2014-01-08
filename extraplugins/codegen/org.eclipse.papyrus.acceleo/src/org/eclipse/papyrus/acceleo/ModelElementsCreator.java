@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
@@ -145,8 +146,11 @@ abstract public class ModelElementsCreator {
 		else if(element instanceof SignalEvent) {
 			// TODO: not supported, but do nothing 
 		}
+		else if(element instanceof InstanceSpecification) {
+			// TODO: not supported, but do nothing 
+		}
 		else {
-			throw new RuntimeException("C++ code generator: unsupported model element " + element); //$NON-NLS-1$
+			throw new RuntimeException(String.format(Messages.ModelElementsCreator_UnsupportedModelElement, element));
 		}
 	}
 
