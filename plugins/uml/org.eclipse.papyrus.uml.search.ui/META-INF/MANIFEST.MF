@@ -26,6 +26,7 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.uml.search.ui.actions,
  org.eclipse.papyrus.uml.search.ui.providers,
  org.eclipse.papyrus.uml.search.ui.query,
+ org.eclipse.papyrus.uml.search.ui.results,
  org.eclipse.papyrus.uml.search.ui.validator
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
