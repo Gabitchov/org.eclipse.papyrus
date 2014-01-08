@@ -68,6 +68,7 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case FCMPackage.TEMPLATE: return createTemplate();
+			case FCMPackage.BINDING_HELPER: return createBindingHelper();
 			case FCMPackage.CONFIGURATION_PROPERTY: return createConfigurationProperty();
 			case FCMPackage.IMPLEMENTATION_GROUP: return createImplementationGroup();
 			case FCMPackage.ASSEMBLY: return createAssembly();
@@ -102,7 +103,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.AUTO_INDEX_PER_NODE: return createAutoIndexPerNode();
 			case FCMPackage.INIT_PRECEDENCE: return createInitPrecedence();
 			case FCMPackage.CONNECTOR_CONFIGURATION: return createConnectorConfiguration();
-			case FCMPackage.EXTENDED_SIGNATURE: return createExtendedSignature();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -116,10 +116,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case FCMPackage.TEMPLATE_KIND:
-				return createTemplateKindFromString(eDataType, initialValue);
-			case FCMPackage.ACTUAL_CHOICE:
-				return createActualChoiceFromString(eDataType, initialValue);
 			case FCMPackage.CONTAINER_RULE_KIND:
 				return createContainerRuleKindFromString(eDataType, initialValue);
 			case FCMPackage.INTERCEPTION_KIND:
@@ -137,10 +133,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case FCMPackage.TEMPLATE_KIND:
-				return convertTemplateKindToString(eDataType, instanceValue);
-			case FCMPackage.ACTUAL_CHOICE:
-				return convertActualChoiceToString(eDataType, instanceValue);
 			case FCMPackage.CONTAINER_RULE_KIND:
 				return convertContainerRuleKindToString(eDataType, instanceValue);
 			case FCMPackage.INTERCEPTION_KIND:
@@ -158,6 +150,16 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	public Template createTemplate() {
 		TemplateImpl template = new TemplateImpl();
 		return template;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BindingHelper createBindingHelper() {
+		BindingHelperImpl bindingHelper = new BindingHelperImpl();
+		return bindingHelper;
 	}
 
 	/**
@@ -498,56 +500,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	public ConnectorConfiguration createConnectorConfiguration() {
 		ConnectorConfigurationImpl connectorConfiguration = new ConnectorConfigurationImpl();
 		return connectorConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExtendedSignature createExtendedSignature() {
-		ExtendedSignatureImpl extendedSignature = new ExtendedSignatureImpl();
-		return extendedSignature;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateKind createTemplateKindFromString(EDataType eDataType, String initialValue) {
-		TemplateKind result = TemplateKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertTemplateKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActualChoice createActualChoiceFromString(EDataType eDataType, String initialValue) {
-		ActualChoice result = ActualChoice.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertActualChoiceToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

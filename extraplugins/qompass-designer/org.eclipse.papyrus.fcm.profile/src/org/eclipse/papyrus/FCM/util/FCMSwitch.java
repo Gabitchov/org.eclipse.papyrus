@@ -82,6 +82,12 @@ public class FCMSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FCMPackage.BINDING_HELPER: {
+				BindingHelper bindingHelper = (BindingHelper)theEObject;
+				T result = caseBindingHelper(bindingHelper);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case FCMPackage.CONFIGURATION_PROPERTY: {
 				ConfigurationProperty configurationProperty = (ConfigurationProperty)theEObject;
 				T result = caseConfigurationProperty(configurationProperty);
@@ -297,12 +303,6 @@ public class FCMSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case FCMPackage.EXTENDED_SIGNATURE: {
-				ExtendedSignature extendedSignature = (ExtendedSignature)theEObject;
-				T result = caseExtendedSignature(extendedSignature);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -319,6 +319,21 @@ public class FCMSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTemplate(Template object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Binding Helper</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Binding Helper</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBindingHelper(BindingHelper object) {
 		return null;
 	}
 
@@ -844,21 +859,6 @@ public class FCMSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConnectorConfiguration(ConnectorConfiguration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Extended Signature</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Extended Signature</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExtendedSignature(ExtendedSignature object) {
 		return null;
 	}
 

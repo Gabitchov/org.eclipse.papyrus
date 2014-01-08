@@ -13,17 +13,14 @@
 
 package org.eclipse.papyrus.FCM.util;
 
-import org.eclipse.papyrus.FCM.Connector;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.TemplateBinding;
 
 /**
- * Interface used by extension point for embedding rules
+ * BindingHelper interface. The interface is intentionally left empty. Implementations
+ * (such as Qompass designer) might check for subclasses.
+ *
  */
-public interface IEmbeddingRule {
-	/**
-	 * Return a role binding table for a given connector
-	 * @param connector the connector
-	 * @return role binding table
-	 */
-	public FCMUtil.RoleBindingTable getRoleBindings (Connector connector);
-
+public interface IBindingHelper {
+	public void handleElement(TemplateBinding binding, Element object);
 }

@@ -17,13 +17,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.papyrus.FCM.ActualChoice;
 import org.eclipse.papyrus.FCM.Assembly;
 import org.eclipse.papyrus.FCM.AutoIndex;
 import org.eclipse.papyrus.FCM.AutoIndexPerNode;
+import org.eclipse.papyrus.FCM.BindingHelper;
 import org.eclipse.papyrus.FCM.CodeGenOptions;
 import org.eclipse.papyrus.FCM.CompImplTemplate;
 import org.eclipse.papyrus.FCM.CompToOOmapping;
@@ -39,7 +37,6 @@ import org.eclipse.papyrus.FCM.ContainerRuleKind;
 import org.eclipse.papyrus.FCM.CopyAttributeValue;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.FCM.DerivedElement;
-import org.eclipse.papyrus.FCM.ExtendedSignature;
 import org.eclipse.papyrus.FCM.FCMFactory;
 import org.eclipse.papyrus.FCM.FCMPackage;
 import org.eclipse.papyrus.FCM.Flatten;
@@ -60,12 +57,9 @@ import org.eclipse.papyrus.FCM.Singleton;
 import org.eclipse.papyrus.FCM.Target;
 import org.eclipse.papyrus.FCM.TargetArchitecture;
 import org.eclipse.papyrus.FCM.Template;
-import org.eclipse.papyrus.FCM.TemplateKind;
 import org.eclipse.papyrus.FCM.TemplatePort;
 import org.eclipse.papyrus.FCM.UseInstanceConfigurator;
-
 import org.eclipse.uml2.types.TypesPackage;
-
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -81,6 +75,13 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * @generated
 	 */
 	private EClass templateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bindingHelperEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -332,27 +333,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass extendedSignatureEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum templateKindEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum actualChoiceEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EEnum containerRuleKindEEnum = null;
 
 	/**
@@ -440,7 +420,7 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplate_TemplateParams() {
+	public EReference getTemplate_Base_Element() {
 		return (EReference)templateEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -449,7 +429,7 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTemplate_Base_Element() {
+	public EReference getTemplate_Helper() {
 		return (EReference)templateEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -458,8 +438,8 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTemplate_Kind() {
-		return (EAttribute)templateEClass.getEStructuralFeatures().get(2);
+	public EClass getBindingHelper() {
+		return bindingHelperEClass;
 	}
 
 	/**
@@ -467,8 +447,8 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTemplate_ActualChoice() {
-		return (EAttribute)templateEClass.getEStructuralFeatures().get(3);
+	public EReference getBindingHelper_Base_Class() {
+		return (EReference)bindingHelperEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -766,6 +746,15 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 */
 	public EReference getInstanceConfigurator_Base_Class() {
 		return (EReference)instanceConfiguratorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getInstanceConfigurator_OnNodeModel() {
+		return (EAttribute)instanceConfiguratorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1457,51 +1446,6 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExtendedSignature() {
-		return extendedSignatureEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExtendedSignature_Base_TemplateSignature() {
-		return (EReference)extendedSignatureEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExtendedSignature_BaseSignature() {
-		return (EReference)extendedSignatureEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getTemplateKind() {
-		return templateKindEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getActualChoice() {
-		return actualChoiceEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getContainerRuleKind() {
 		return containerRuleKindEEnum;
 	}
@@ -1544,10 +1488,11 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 
 		// Create classes and their features
 		templateEClass = createEClass(TEMPLATE);
-		createEReference(templateEClass, TEMPLATE__TEMPLATE_PARAMS);
 		createEReference(templateEClass, TEMPLATE__BASE_ELEMENT);
-		createEAttribute(templateEClass, TEMPLATE__KIND);
-		createEAttribute(templateEClass, TEMPLATE__ACTUAL_CHOICE);
+		createEReference(templateEClass, TEMPLATE__HELPER);
+
+		bindingHelperEClass = createEClass(BINDING_HELPER);
+		createEReference(bindingHelperEClass, BINDING_HELPER__BASE_CLASS);
 
 		configurationPropertyEClass = createEClass(CONFIGURATION_PROPERTY);
 		createEReference(configurationPropertyEClass, CONFIGURATION_PROPERTY__BASE_PROPERTY);
@@ -1594,6 +1539,7 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 
 		instanceConfiguratorEClass = createEClass(INSTANCE_CONFIGURATOR);
 		createEReference(instanceConfiguratorEClass, INSTANCE_CONFIGURATOR__BASE_CLASS);
+		createEAttribute(instanceConfiguratorEClass, INSTANCE_CONFIGURATOR__ON_NODE_MODEL);
 
 		ruleApplicationEClass = createEClass(RULE_APPLICATION);
 		createEReference(ruleApplicationEClass, RULE_APPLICATION__BASE_CLASS);
@@ -1693,13 +1639,7 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		createEReference(connectorConfigurationEClass, CONNECTOR_CONFIGURATION__BASE_SLOT);
 		createEReference(connectorConfigurationEClass, CONNECTOR_CONFIGURATION__CONNECTOR);
 
-		extendedSignatureEClass = createEClass(EXTENDED_SIGNATURE);
-		createEReference(extendedSignatureEClass, EXTENDED_SIGNATURE__BASE_TEMPLATE_SIGNATURE);
-		createEReference(extendedSignatureEClass, EXTENDED_SIGNATURE__BASE_SIGNATURE);
-
 		// Create enums
-		templateKindEEnum = createEEnum(TEMPLATE_KIND);
-		actualChoiceEEnum = createEEnum(ACTUAL_CHOICE);
 		containerRuleKindEEnum = createEEnum(CONTAINER_RULE_KIND);
 		interceptionKindEEnum = createEEnum(INTERCEPTION_KIND);
 	}
@@ -1743,10 +1683,11 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(templateEClass, Template.class, "Template", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getTemplate_TemplateParams(), theUMLPackage.getClassifier(), null, "templateParams", null, 0, -1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplate_Base_Element(), theUMLPackage.getElement(), null, "base_Element", null, 1, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTemplate_Kind(), this.getTemplateKind(), "kind", null, 1, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTemplate_ActualChoice(), this.getActualChoice(), "actualChoice", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplate_Helper(), this.getBindingHelper(), null, "helper", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(bindingHelperEClass, BindingHelper.class, "BindingHelper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getBindingHelper_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, BindingHelper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(configurationPropertyEClass, ConfigurationProperty.class, "ConfigurationProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getConfigurationProperty_Base_Property(), theUMLPackage.getProperty(), null, "base_Property", null, 1, 1, ConfigurationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -1793,6 +1734,7 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 
 		initEClass(instanceConfiguratorEClass, InstanceConfigurator.class, "InstanceConfigurator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getInstanceConfigurator_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 1, 1, InstanceConfigurator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getInstanceConfigurator_OnNodeModel(), theTypesPackage.getBoolean(), "onNodeModel", null, 0, 1, InstanceConfigurator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(ruleApplicationEClass, RuleApplication.class, "RuleApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRuleApplication_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 0, 1, RuleApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -1892,26 +1834,7 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEReference(getConnectorConfiguration_Base_Slot(), theUMLPackage.getSlot(), null, "base_Slot", null, 1, 1, ConnectorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConnectorConfiguration_Connector(), this.getConnector(), null, "connector", null, 1, 1, ConnectorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(extendedSignatureEClass, ExtendedSignature.class, "ExtendedSignature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getExtendedSignature_Base_TemplateSignature(), theUMLPackage.getTemplateSignature(), null, "base_TemplateSignature", null, 1, 1, ExtendedSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getExtendedSignature_BaseSignature(), theUMLPackage.getTemplateSignature(), null, "baseSignature", null, 1, 1, ExtendedSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
 		// Initialize enums and add enum literals
-		initEEnum(templateKindEEnum, TemplateKind.class, "TemplateKind"); //$NON-NLS-1$
-		addEEnumLiteral(templateKindEEnum, TemplateKind.PASS_FORMAL);
-		addEEnumLiteral(templateKindEEnum, TemplateKind.LOOP_OPERATIONS);
-		addEEnumLiteral(templateKindEEnum, TemplateKind.LOOP_PROPERTY);
-		addEEnumLiteral(templateKindEEnum, TemplateKind.ACCUMULATE);
-		addEEnumLiteral(templateKindEEnum, TemplateKind.LOOP_LITERALS);
-		addEEnumLiteral(templateKindEEnum, TemplateKind.LATE_EVALUATION);
-		addEEnumLiteral(templateKindEEnum, TemplateKind.LOOP_PORTS);
-		addEEnumLiteral(templateKindEEnum, TemplateKind.PASS_CLASSIFIER);
-
-		initEEnum(actualChoiceEEnum, ActualChoice.class, "ActualChoice"); //$NON-NLS-1$
-		addEEnumLiteral(actualChoiceEEnum, ActualChoice.PASS_ACTUAL);
-		addEEnumLiteral(actualChoiceEEnum, ActualChoice.INTERFACE_OF_PPORT);
-		addEEnumLiteral(actualChoiceEEnum, ActualChoice.INTERFACE_OF_RPORT);
-
 		initEEnum(containerRuleKindEEnum, ContainerRuleKind.class, "ContainerRuleKind"); //$NON-NLS-1$
 		addEEnumLiteral(containerRuleKindEEnum, ContainerRuleKind.COMPONENT_RULE);
 		addEEnumLiteral(containerRuleKindEEnum, ContainerRuleKind.LIGHT_WEIGHT_OO_RULE);
