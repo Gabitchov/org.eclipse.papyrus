@@ -1,0 +1,14 @@
+instructions.configure=\
+	org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/eclipsec.exe);\
+	org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/eclipse.exe);\
+	org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/Eclipse.app/Contents/Resources/Eclipse.icns);\
+	org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/Eclipse.app/Contents/Resources);\
+	org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/Eclipse.app/Contents/Info.plist);\
+	org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/Eclipse.app/Contents/MacOS);\
+	org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/Eclipse.app/Contents);\
+	org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/Eclipse.app);\
+	org.eclipse.equinox.p2.touchpoint.natives.remove(path:${installFolder}/eclipse);\
+	addRepository(type:0,name:Eclipse Luna,location:http${#58}//download.eclipse.org/releases/luna/);\
+	addRepository(type:1,name:Eclipse Luna,location:http${#58}//download.eclipse.org/releases/luna/);\
+	addRepository(type:0,name:Eclipse Platform 4.4,location:http${#58}//download.eclipse.org/eclipse/updates/4.4);\
+	addRepository(type:1,name:Eclipse Platform 4.4,location:http${#58}//download.eclipse.org/eclipse/updates/4.4);
