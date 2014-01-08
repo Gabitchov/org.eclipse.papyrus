@@ -288,7 +288,8 @@ public class DepCreation {
 				if(Utils.isSingleton((Class)type)) {
 					// is a singleton - exactly one instance exists
 					// use a common instance prefix for singletons
-					String partName = DeployConstants.singletonPrefix + attribute.getName();
+					InstanceSpecification mainInstance = DepUtils.getMainInstance(cdp);
+					String partName = mainInstance.getName() + DeployConstants.SEP_CHAR + DeployConstants.singletonPrefix + attribute.getName();
 					PackageableElement pe = cdp.getPackagedElement(partName);
 
 					if(pe instanceof InstanceSpecification) {
@@ -302,10 +303,17 @@ public class DepCreation {
 						// [case that a non-instance specification with the name
 						// <partName> exists already
 						// is not handled]
-						InstanceSpecification partIS = createDepPlan(cdp,
+						
+						Classifier system = DepUtils.getClassifier(mainInstance);
+						Property singletonAttr = null;
+						if (system instanceof Class) {
+							singletonAttr = ((Class) system).createOwnedAttribute(DeployConstants.singletonPrefix + attribute.getName(), type);
+						}
+						
+						InstanceSpecification singletonIS = createDepPlan(cdp,
 							(Class)type, partName, createSlotsForConfigValues, visitedClassifiers);
-						Slot slot = createSlot(is, partIS, attribute);
-						slot.setDefiningFeature(attribute);
+						createSlot(is, singletonIS, attribute);
+						createSlot(mainInstance, singletonIS, singletonAttr);
 					}
 				}
 			} else if(type == null) {

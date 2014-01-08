@@ -18,14 +18,15 @@ import java.util.Stack;
 
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
+import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
+import org.eclipse.uml2.uml.StructuralFeature;
 
 /*
  * This file is part of Qompass GenTools
@@ -66,25 +67,7 @@ public class Deploy {
 		// TODO: not nice at all (make non-static?)
 		Stack<Slot> slotPath = new Stack<Slot>();
 		deploy.distributeToNode(false, slotPath, instance);
-/*
-		for (Slot topLevelSlot : instance.getSlots()) {
-			InstanceSpecification topLevelInstance = DepUtils.getInstance(topLevelSlot);
-			if ((topLevelInstance != null) && AllocUtils.getAllNodes(topLevelInstance).contains(node)) {
-				slotPath.push(topLevelSlot);
-				deploy.distributeToNode(false, slotPath, topLevelInstance);
-				slotPath.pop();
-			}
-		}
-*/
-		Package cdp = instance.getNearestPackage();
-		// deploy singletons (difficult to embed singletons into main instance,
-		// since there is no attribute for these)
-		for(PackageableElement pe : cdp.getPackagedElements()) {
-			if((pe instanceof InstanceSpecification) && (pe.getName().startsWith(DeployConstants.singletonPrefix) &&
-					(!pe.getName().contains(".")))) { //$NON-NLS-1$
-				deploy.distributeToNode(false, slotPath, (InstanceSpecification)pe);
-			}
-		}
+
 		deploy.bootLoaderGen.addCreateConnections();
 		deploy.bootLoaderGen.addInit();
 		return deploy;
@@ -97,7 +80,7 @@ public class Deploy {
 	 * @param instance
 	 * @throws TransformationException
 	 */
-	public void distributeToNode(boolean allocAll, Stack<Slot> slotPath, InstanceSpecification instance)
+	public InstanceSpecification distributeToNode(boolean allocAll, Stack<Slot> slotPath, InstanceSpecification instance)
 		throws TransformationException {
 
 		// once an instance is explicitly allocated on a partition (use of getNodes instead of getAllNodes)
@@ -106,7 +89,7 @@ public class Deploy {
 		if(AllocUtils.getNodesOrThreads(instance).contains(node)) {
 			allocAll = true;
 		}
-
+		
 		// obtain implementation within source model
 		Classifier smImplementation = DepUtils.getClassifier(instance);
 		if(smImplementation == null) {
@@ -115,17 +98,33 @@ public class Deploy {
 		}
 
 		// copy implementation into node specific model
-		Classifier tmImplementation = depInstance.deployInstance(instance, slotPath);
+		InstanceSpecification tmInstance = depInstance.deployInstance(instance, slotPath);
+		Classifier tmImplementation = DepUtils.getClassifier(tmInstance);
 		// Classifier tmImplementation = copy.getCopy(smImplementation);
 
 		for(Slot slot : instance.getSlots()) {
 			InstanceSpecification containedInstance = DepUtils.getInstance(slot);
 
 			if(containedInstance != null) {
-				if(allocAll || AllocUtils.getAllNodes(containedInstance).contains(node)) {
+				StructuralFeature sf = slot.getDefiningFeature();
+				boolean viaAllocAll = allocAll;
+				if (allocAll && (sf instanceof Property)) {
+					// only take allocation of parent instance into account, if composition
+					// However, problematic, since code gets copied anyway.
+					// viaAllocAll = (((Property) sf).getAggregation() == AggregationKind.COMPOSITE_LITERAL);
+				}
+				if(viaAllocAll || AllocUtils.getAllNodes(containedInstance).contains(node)) {
 					// if(!containedInstance.getName().startsWith(singletonPrefix)) {
 					slotPath.push(slot);
-					distributeToNode(allocAll, slotPath, containedInstance);
+					if (sf instanceof Property) {
+						// place configurator before recursive call. Otherwise
+						// values put here would be ignored.
+						// TODO: instances are not copied to node model. Thus, the instances here are the same as in the
+						// configuration on the intermediate model.
+						// TODO: MIX of bootloaderGeneration and splitting.
+						InstanceConfigurator.configureInstance(containedInstance, (Property) sf, tmInstance);
+					}
+					InstanceSpecification tmSubInstance = distributeToNode(allocAll, slotPath, containedInstance);
 					slotPath.pop();
 				}
 			} else {
@@ -145,8 +144,8 @@ public class Deploy {
 		if(tmImplementation instanceof Class) {
 			bootLoaderGen.addInstance(slotPath, instance, (Class)tmImplementation, node);
 		}
+		return tmInstance;
 	}
-
 
 	public Class getBootloader() {
 		return bootLoaderGen.getUML();

@@ -478,4 +478,16 @@ public class DepUtils {
 			}
 		}
 	}
+	
+	/**
+	 * Return the first value for a slot.
+	 * @param slot the slot for which the first value should be returned.
+	 * @return
+	 */
+	public static ValueSpecification firstValue(Slot slot) {
+		if (slot.getValues().size() > 0) {
+			return slot.getValues().get(0);
+		}
+		return null;
+	}
 }
