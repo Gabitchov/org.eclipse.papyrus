@@ -38,6 +38,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentNameEditPar
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationNameEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintNameEditPart;
@@ -83,6 +86,8 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotyp
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
@@ -241,9 +246,17 @@ public class UMLVisualIDRegistry {
 				return PortEditPart.VISUAL_ID;
 			}
 			break;
+		case PropertyPartEditPartCN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())) {
+				return PortEditPart.VISUAL_ID;
+			}
+			break;
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			break;
 		case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
@@ -342,10 +355,16 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+				return PropertyPartEditPartCN.VISUAL_ID;
+			}
 			break;
 		case ComponentCompositeCompartmentEditPartPCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
 				return ComponentEditPartCN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+				return PropertyPartEditPartCN.VISUAL_ID;
 			}
 			break;
 		case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
@@ -567,8 +586,19 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case PropertyPartEditPartCN.VISUAL_ID:
+			if(PropertyPartNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
 			if(ComponentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -668,9 +698,15 @@ public class UMLVisualIDRegistry {
 			if(ComponentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ComponentCompositeCompartmentEditPartPCN.VISUAL_ID:
 			if(ComponentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -745,6 +781,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ConnectorEditPart.VISUAL_ID:
+			if(ConnectorAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConnectorNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}
@@ -782,6 +826,9 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())) {
 			return DependencyBranchEditPart.VISUAL_ID;
+		}
+		if(UMLPackage.eINSTANCE.getConnector().isSuperTypeOf(domainElement.eClass())) {
+			return ConnectorEditPart.VISUAL_ID;
 		}
 		return -1;
 	}

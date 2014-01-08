@@ -385,6 +385,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String createConnectorCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createConnectorCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String createDependencyCreationTool_title;
 
 	/**

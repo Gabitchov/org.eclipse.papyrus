@@ -14,9 +14,11 @@ package org.eclipse.papyrus.uml.diagram.component.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -33,6 +35,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
@@ -49,6 +52,11 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 	/**
 	 * @generated
 	 */
+	private Set<EStructuralFeature> myFeaturesToSynchronize;
+
+	/**
+	 * @generated
+	 */
 	protected void refreshOnActivate() {
 		// Need to activate editpart children before invoking the canonical refresh for EditParts to add event listeners
 		List<?> c = getHost().getChildren();
@@ -59,13 +67,15 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 	}
 
 	/**
-	 * Gets the feature to synchronize.
-	 * 
-	 * @return the feature to synchronize
 	 * @generated
 	 */
-	protected EStructuralFeature getFeatureToSynchronize() {
-		return UMLPackage.eINSTANCE.getComponent_PackagedElement();
+	protected Set getFeaturesToSynchronize() {
+		if(myFeaturesToSynchronize == null) {
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getComponent_PackagedElement());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+		}
+		return myFeaturesToSynchronize;
 	}
 
 	/**
@@ -108,7 +118,8 @@ public class ComponentCompositeCompartmentCanonicalEditPolicyCN extends Canonica
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return ComponentEditPartCN.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		return visualID == ComponentEditPartCN.VISUAL_ID || visualID == PropertyPartEditPartCN.VISUAL_ID;
 	}
 
 	/**
