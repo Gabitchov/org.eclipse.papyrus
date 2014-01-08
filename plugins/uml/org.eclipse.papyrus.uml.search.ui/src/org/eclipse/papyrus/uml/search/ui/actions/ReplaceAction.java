@@ -14,8 +14,7 @@
 package org.eclipse.papyrus.uml.search.ui.actions;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.papyrus.infra.refactoring.core.PapyrusRefactoringOperation;
-import org.eclipse.papyrus.uml.search.ui.dialogs.ReplaceRefactoring;
+import org.eclipse.papyrus.uml.search.ui.dialogs.ReplaceDialog;
 import org.eclipse.papyrus.uml.search.ui.pages.PapyrusSearchResultPage;
 import org.eclipse.swt.widgets.Shell;
 
@@ -25,18 +24,21 @@ public class ReplaceAction extends Action {
 
 	private final Object[] fSelection;
 
+	private final Shell fShell;
+
 	/**
 	 * Creates the replace action to be
 	 * 
 	 * @param shell
-	 *        the parent shell
+	 *            the parent shell
 	 * @param resultPage
-	 *        .getInput()
-	 *        the file search page to
+	 *            .getInput()
+	 *            the file search page to
 	 * @param selection
-	 *        the selected entries or <code>null</code> to replace all
+	 *            the selected entries or <code>null</code> to replace all
 	 */
 	public ReplaceAction(Shell shell, PapyrusSearchResultPage resultPage, Object[] selection) {
+		fShell = shell;
 		fResultPage = resultPage;
 		fSelection = selection;
 	}
@@ -49,10 +51,9 @@ public class ReplaceAction extends Action {
 	@Override
 	public void run() {
 
+		ReplaceDialog replaceDialog = new ReplaceDialog(fShell, fResultPage, fSelection);
+		replaceDialog.open();
 
-		ReplaceRefactoring replaceRef = new ReplaceRefactoring(fResultPage, fSelection);
-		PapyrusRefactoringOperation refactoringOperation = new PapyrusRefactoringOperation(replaceRef);
-		refactoringOperation.run();
 	}
 
 }
