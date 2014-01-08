@@ -14,9 +14,9 @@ package org.eclipse.papyrus.uml.diagram.component.custom.factory;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomDependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomDependencyNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomInterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomModelEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomModelEditPartCN;

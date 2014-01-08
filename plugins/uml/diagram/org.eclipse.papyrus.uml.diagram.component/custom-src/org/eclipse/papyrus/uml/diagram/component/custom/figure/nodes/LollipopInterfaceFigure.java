@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST)- Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes;
 
 import org.eclipse.draw2d.Graphics;
@@ -130,25 +142,21 @@ public class LollipopInterfaceFigure  extends PapyrusNodeFigure implements IPapy
 
 	}
 
-	@Override
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public Label getStereotypesLabel() {
 		// TODO Auto-generated method stub
 		return null;

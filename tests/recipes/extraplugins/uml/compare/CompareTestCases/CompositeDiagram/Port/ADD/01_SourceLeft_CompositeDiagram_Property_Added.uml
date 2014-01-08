@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_r-nNQMhqEeKmlJkz37Cc-A" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_uEswAMhqEeKmlJkz37Cc-A" name="A">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_xycJwMnuEeKThIJF6ZPKoA" name="Port1" visibility="public" aggregation="composite">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_x9TV8MnuEeKThIJF6ZPKoA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_x9TV8cnuEeKThIJF6ZPKoA" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_x9m38MnuEeKThIJF6ZPKoA">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xZFR4MhqEeKmlJkz37Cc-A" name="B">
+    <generalization xmi:type="uml:Generalization" xmi:id="_7-CeYMhqEeKmlJkz37Cc-A" general="_uEswAMhqEeKmlJkz37Cc-A"/>
+  </packagedElement>
+</uml:Model>

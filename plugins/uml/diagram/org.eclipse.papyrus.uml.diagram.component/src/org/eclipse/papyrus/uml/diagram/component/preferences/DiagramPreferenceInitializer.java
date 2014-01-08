@@ -47,6 +47,7 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ConstraintConstrainedElementPreferencePage.initDefaults(store);
 		AbstractionPreferencePage.initDefaults(store);
 		InterfacePortLinkPreferencePage.initDefaults(store);
+		ConnectorPreferencePage.initDefaults(store);
 		ManifestationPreferencePage.initDefaults(store);
 		GeneralizationPreferencePage.initDefaults(store);
 		DependencyPreferencePage.initDefaults(store);

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_MolOcMh-EeKwLPTeb1CTLg" type="CompositeStructure" name="CompositeDiagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_Nnz20Mh-EeKwLPTeb1CTLg" type="2073">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TL6Ylch-EeKwLPTeb1CTLg" source="PapyrusCSSForceValue">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TL6Ylsh-EeKwLPTeb1CTLg" key="visible" value="true"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Nnz20sh-EeKwLPTeb1CTLg" type="5156"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Nnz208h-EeKwLPTeb1CTLg" type="7073">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PWPHgMh-EeKwLPTeb1CTLg" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PWPHgch-EeKwLPTeb1CTLg" key="showTitle" value="true"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TL6Yl8h-EeKwLPTeb1CTLg" key="visible" value="true"/>
+      </eAnnotations>
+      <children xmi:type="notation:Shape" xmi:id="_QRw7oMh-EeKwLPTeb1CTLg" type="3070">
+        <children xmi:type="notation:DecorationNode" xmi:id="_QRw7osh-EeKwLPTeb1CTLg" type="5126"/>
+        <children xmi:type="notation:BasicCompartment" xmi:id="_QRw7o8h-EeKwLPTeb1CTLg" type="7077">
+          <styles xmi:type="notation:TitleStyle" xmi:id="_QRw7pMh-EeKwLPTeb1CTLg" showTitle="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QRw7pch-EeKwLPTeb1CTLg"/>
+        </children>
+        <element xmi:type="uml:Property" href="01_SourceLeft_CompositeDiagram_Property_Added_Indirect.uml#_0W_NcMhqEeKmlJkz37Cc-A"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_QRw7och-EeKwLPTeb1CTLg" x="10" y="10"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_Nnz21Mh-EeKwLPTeb1CTLg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Nnz21ch-EeKwLPTeb1CTLg"/>
+    </children>
+    <element xmi:type="uml:Class" href="01_SourceLeft_CompositeDiagram_Property_Added_Indirect.uml#_uEswAMhqEeKmlJkz37Cc-A"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Nnz20ch-EeKwLPTeb1CTLg" x="295" y="158" width="421" height="118"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_ShWYoMh-EeKwLPTeb1CTLg" type="2073">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TL6YkMh-EeKwLPTeb1CTLg" source="PapyrusCSSForceValue">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TL6Ykch-EeKwLPTeb1CTLg" key="visible" value="true"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ShWYosh-EeKwLPTeb1CTLg" type="5156"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_ShWYo8h-EeKwLPTeb1CTLg" type="7073">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_TL6Yksh-EeKwLPTeb1CTLg" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TL6Yk8h-EeKwLPTeb1CTLg" key="visible" value="true"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_TL6YlMh-EeKwLPTeb1CTLg" key="showTitle" value="true"/>
+      </eAnnotations>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_ShWYpMh-EeKwLPTeb1CTLg"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ShWYpch-EeKwLPTeb1CTLg"/>
+    </children>
+    <element xmi:type="uml:Class" href="01_SourceLeft_CompositeDiagram_Property_Added_Indirect.uml#_xZFR4MhqEeKmlJkz37Cc-A"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ShWYoch-EeKwLPTeb1CTLg" x="295" y="315" width="421" height="118"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_f3h9AMnmEeKThIJF6ZPKoA" type="2073">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iiK-UMnmEeKThIJF6ZPKoA" source="PapyrusCSSForceValue">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iiK-UcnmEeKThIJF6ZPKoA" key="visible" value="true"/>
+    </eAnnotations>
+    <children xmi:type="notation:DecorationNode" xmi:id="_f3h9AsnmEeKThIJF6ZPKoA" type="5156"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_f3h9A8nmEeKThIJF6ZPKoA" type="7073">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_iiK-UsnmEeKThIJF6ZPKoA" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iiK-U8nmEeKThIJF6ZPKoA" key="visible" value="true"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_iiK-VMnmEeKThIJF6ZPKoA" key="showTitle" value="true"/>
+      </eAnnotations>
+      <children xmi:type="notation:Shape" xmi:id="_oDD0AMnmEeKThIJF6ZPKoA" type="3070">
+        <children xmi:type="notation:DecorationNode" xmi:id="_oDD0AsnmEeKThIJF6ZPKoA" type="5126"/>
+        <children xmi:type="notation:BasicCompartment" xmi:id="_oDD0A8nmEeKThIJF6ZPKoA" type="7077">
+          <styles xmi:type="notation:TitleStyle" xmi:id="_oDD0BMnmEeKThIJF6ZPKoA" showTitle="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oDD0BcnmEeKThIJF6ZPKoA"/>
+        </children>
+        <element xmi:type="uml:Property" href="01_SourceLeft_CompositeDiagram_Property_Added_Indirect.uml#_0W_NcMhqEeKmlJkz37Cc-A"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oDD0AcnmEeKThIJF6ZPKoA" x="10" y="10"/>
+      </children>
+      <styles xmi:type="notation:TitleStyle" xmi:id="_f3h9BMnmEeKThIJF6ZPKoA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f3h9BcnmEeKThIJF6ZPKoA"/>
+    </children>
+    <element xmi:type="uml:Class" href="01_SourceLeft_CompositeDiagram_Property_Added_Indirect.uml#_f2yWIMnmEeKThIJF6ZPKoA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_f3h9AcnmEeKThIJF6ZPKoA" x="295" y="475" width="421" height="118"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_MolOcch-EeKwLPTeb1CTLg"/>
+  <element xmi:type="uml:Model" href="01_SourceLeft_CompositeDiagram_Property_Added_Indirect.uml#_r-nNQMhqEeKmlJkz37Cc-A"/>
+</notation:Diagram>

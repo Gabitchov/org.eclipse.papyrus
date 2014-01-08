@@ -45,12 +45,12 @@ public class NoExtraHeightLayoutManager extends AutomaticCompartmentLayoutManage
 	protected void optimizeCompartmentSize(IFigure container, int vOffset) {
 		int compartmentsHeight = 0;
 		int notCompartmentsHeight = vOffset;
-		for(int i = 0; i < notCompartmentList.size(); i++) {
-			notCompartmentsHeight += notCompartmentList.get(i).getBounds().height;
+		for(int i = 0; i < visibleOthers.size(); i++) {
+			notCompartmentsHeight += visibleOthers.get(i).getBounds().height;
 		}
 
-		for(int i = 0; i < compartmentList.size(); i++) {
-			compartmentsHeight += compartmentList.get(i).getBounds().height;
+		for(int i = 0; i < visibleCompartments.size(); i++) {
+			compartmentsHeight += visibleCompartments.get(i).getBounds().height;
 		}
 		int remainingspace = container.getBounds().height - notCompartmentsHeight;
 
@@ -58,23 +58,23 @@ public class NoExtraHeightLayoutManager extends AutomaticCompartmentLayoutManage
 		// compartments container.
 		double ratio = new Integer(compartmentsHeight).doubleValue() / new Integer(remainingspace).doubleValue();
 
-		for(int i = 0; i < compartmentList.size(); i++) {
-			Rectangle bound = new Rectangle((compartmentList.get(i)).getBounds());
+		for(int i = 0; i < visibleCompartments.size(); i++) {
+			Rectangle bound = new Rectangle((visibleCompartments.get(i)).getBounds());
 			int value = (int)(bound.height / ratio);
 			bound.height = value;
 			bound.x = container.getBounds().x;
 			if(i > 0) {
-				bound.y = (compartmentList.get(i - 1)).getBounds().getBottomLeft().y;
+				bound.y = (visibleCompartments.get(i - 1)).getBounds().getBottomLeft().y;
 			}
-			(compartmentList.get(i)).setBounds(bound);
+			(visibleCompartments.get(i)).setBounds(bound);
 		}
 	}
 
 	@Override
 	public void layout(IFigure container) {
 
-		collectInformationOnChildren(container);
-		if(compartmentList.size() != 0) {
+		collectInformation(container);
+		if(visibleCompartments.size() != 0) {
 			// visit all compartments
 			IFigure previousCompartment = null;
 			int vOffset = 0;
@@ -104,7 +104,7 @@ public class NoExtraHeightLayoutManager extends AutomaticCompartmentLayoutManage
 						bounds.y = container.getBounds().y;
 						// difference to superclass: first visible compartment does not start with a vertical offset of 3 pixels, unless
 						// a "not"-compartment, i.e. a label
-						if(notCompartmentList.contains(currentCompartment)) {
+						if(visibleOthers.contains(currentCompartment)) {
 							vOffset = 3; // is taken into account by optimizeCompartmentSize;
 							bounds.y += vOffset;
 						}
@@ -121,7 +121,7 @@ public class NoExtraHeightLayoutManager extends AutomaticCompartmentLayoutManage
 			}
 			optimizeCompartmentSize(container, vOffset);
 		} else {
-			layoutCenterForLabel(container);
+			layoutOthers(container.getBounds());
 		}
 	}
 }
