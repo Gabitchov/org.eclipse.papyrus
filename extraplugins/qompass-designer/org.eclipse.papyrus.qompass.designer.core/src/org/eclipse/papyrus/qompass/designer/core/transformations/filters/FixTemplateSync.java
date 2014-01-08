@@ -26,6 +26,7 @@ import org.eclipse.uml2.uml.Class;
  * Synchronize derived realizations (after copying). If re-synchronization is not done, the
  * relationship would point to wrong interface, if it is derived and depending on a formal parameter. 
  * (e.g. derived push interface with formal parameter T would be at wrong location).
+ * TODO: need better explanation. Solution is quite a hack.
  */
 public class FixTemplateSync implements CopyListener {
 
@@ -43,7 +44,9 @@ public class FixTemplateSync implements CopyListener {
 				Class implementation = (Class)targetEObj;
 				CompImplSync.updatePorts(implementation);
 				CompImplSync.syncRealizations(implementation);
-				CompImplSync.syncDerivedOperations(implementation);
+				// commented out, since it causes dangling references
+				// TODO: why needed originally? (
+				// CompImplSync.syncDerivedOperations(implementation);
 			}
 		}
 		return targetEObj;

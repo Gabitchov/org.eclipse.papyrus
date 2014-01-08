@@ -14,8 +14,6 @@ package org.eclipse.papyrus.qompass.designer.core.extensions;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
 
-import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerContext;
-
 /**
  * Interface used by Qompass extensions that supports specific instance configurators,
  * used for containers.
@@ -27,12 +25,12 @@ public interface IInstanceConfigurator {
 	 * 
 	 * @param instance
 	 *        the instance of an element which should be configured.
-	 * @param componentPort
+	 * @param componentPart
 	 *        the property that represents the component within the enclosing composite. May be null, if the instance
 	 *        that should be configured is the main instance.
-	 * @param containerContext
+	 * @param parentInstance
 	 *        additional information, if the element that should be configured is part of a container, e.g. an interceptor
 	 *        or an extension within the container.
 	 */
-	public void configureInstance(InstanceSpecification instance, Property componentPart, ContainerContext containerContext);
+	public void configureInstance(InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstnace);
 }

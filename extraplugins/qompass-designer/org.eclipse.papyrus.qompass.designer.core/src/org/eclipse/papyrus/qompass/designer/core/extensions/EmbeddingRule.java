@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.Port;
 
 /**
  * Support for embedding rules.
- * Currently not used, unclear if kept
+ * CAVEAT: Currently not used, unclear if kept
  */
 @Deprecated
 public class EmbeddingRule {

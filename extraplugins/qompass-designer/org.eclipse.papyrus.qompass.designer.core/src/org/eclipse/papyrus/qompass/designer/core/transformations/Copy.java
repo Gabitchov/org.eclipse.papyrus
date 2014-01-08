@@ -483,7 +483,8 @@ public class Copy extends Copier {
 					// e.g. if an operation is referenced, we need to copy the whole interface
 					// Currently: only the standard owning reference is not copied recursively.
 				
-					else if (!eReference.getName().equals("owner")) { //$NON-NLS-1$
+					else if (!eReference.getName().equals("owner") &&  //$NON-NLS-1$
+							(!eReference.getName().equals("owningInstance"))) { //$NON-NLS-1$
 						Object feature = sourceEObj.eGet(eStructuralFeature);
 						if(feature instanceof Element) {
 							copy((Element)feature);

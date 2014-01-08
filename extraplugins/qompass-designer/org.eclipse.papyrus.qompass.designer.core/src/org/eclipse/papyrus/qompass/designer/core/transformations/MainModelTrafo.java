@@ -42,7 +42,6 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
-import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -232,7 +231,7 @@ public class MainModelTrafo {
 			// create instance of container. This is done after rule application, since
 			// elements that are added by the rules need to be instantiated as well.
 			// TODO: Cannot mix both rules.
-			containerIS = containerTrafo.createContainerInstance(tmComponent, tmIS, new ContainerContext(copy, smIS, smDF, null));
+			containerIS = containerTrafo.createContainerInstance(tmComponent, tmIS);
 		}
 		// ------------------- end of container handling of SW nodes
 
@@ -265,7 +264,6 @@ public class MainModelTrafo {
 
 						// obtain property related to node instance
 						Slot smNodeSlot = DepUtils.getParentSlot(smNode);
-						ContainerContext context = new ContainerContext(copy, smIS, smDF, smNodeSlot != null ? smNodeSlot.getDefiningFeature() : null);
 						Package smCDP = smIS.getNearestPackage();
 						DeploymentPlan smFCM_CDP = UMLUtil.getStereotypeApplication(smCDP, DeploymentPlan.class);
 
@@ -284,7 +282,7 @@ public class MainModelTrafo {
 						}
 						if (nodeContainerTrafo != null) {
 							InstanceSpecification hwContainerIS =
-								nodeContainerTrafo.createHwContainerInstance(tmComponent, tmNode, context);
+								nodeContainerTrafo.createHwContainerInstance(tmComponent, tmNode);
 							// now add attribute in system (obtain via classifier of main instance in smCDP)
 							if(smFCM_CDP != null) {
 								InstanceSpecification smMI = smFCM_CDP.getMainInstance();
@@ -373,8 +371,12 @@ public class MainModelTrafo {
 
 		}
 
+		// NamedElement socket = Utils.getQualifiedElement(smComponent.getModel(), "SocketRuntime::Socket");
+		// NamedElement socketCopy = copy.getCopy(socket);
+		
 		// loop on connectors
 		// TODO: check, if true (no instance specification exists for these - unlike a connector which is explicitly specified via a part)
+		// TODO: quite inefficient (and likely wrong), if same composite is instantiated several times (re-reification of connectors)
 		for(Connector smConnector : smComponent.getOwnedConnectors()) {
 			if(StUtils.isConnector(smConnector)) {
 				org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getConnector(smConnector);
@@ -405,24 +407,12 @@ public class MainModelTrafo {
 						for(Slot smSlot : smConnectorIS.getSlots()) {
 							copy.getCopy(smSlot);
 						}
-						/*
-						 * InstanceSpecification tmConnectorIS = copy.getCopy(smConnectorIS);
-						 * Iterator<Slot> tmSlotIter = tmConnectorIS.getSlots().iterator();
-						 * while(tmSlotIter.hasNext()) {
-						 * Slot tmSlot = tmSlotIter.next();
-						 * tmReifiedConnectorIS.getSlots().add(hhtmSlot);
-						 * }
-						 * tmConnectorIS.getSlots().clear();
-						 */
 					}
 
 					Slot partSlot =
 						DepCreation.createSlot(tmIS, tmReifiedConnectorIS, connectorPart);
 
 					ConnectorReification.propagateNodeAllocation(tmComponent, tmIS, partSlot);
-					
-					// configure connector
-					InstanceConfigurator.configureInstance(tmReifiedConnectorIS, connectorPart, null);
 				}
 			}
 		}

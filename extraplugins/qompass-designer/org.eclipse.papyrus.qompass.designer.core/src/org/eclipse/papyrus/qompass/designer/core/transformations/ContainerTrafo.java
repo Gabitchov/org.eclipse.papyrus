@@ -34,7 +34,6 @@ import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
-import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
@@ -99,7 +98,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 */
 	@Override
 	public void createContainer(Class smComponent, Class tmComponent) throws TransformationException {
-		Package tmPkgOwner = (Package)tmComponent.getOwner();
+		Package tmPkgOwner = tmComponent.getNearestPackage();
 		// create a container with the suitable postfix
 		tmContainerImpl = tmPkgOwner.createOwnedClass(tmComponent.getName() + containerPostfix, false);
 		Copy.copyID(tmComponent, tmContainerImpl, containerPostfix);
@@ -177,7 +176,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 *        Additional information about the container that is used by instance configurators
 	 */
 	@Override
-	public InstanceSpecification createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context) throws TransformationException {
+	public InstanceSpecification createContainerInstance(Class tmComponent, InstanceSpecification tmIS) throws TransformationException {
 		// create an instance specification for the container
 		InstanceSpecification containerIS =
 				(InstanceSpecification)tmCDP.createPackagedElement(tmIS.getName(), UMLPackage.eINSTANCE.getInstanceSpecification());
@@ -189,7 +188,6 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		DepCreation.createSlot(containerIS, tmIS, executorPart);
 		counter = 0;
 		// containers.put(tmComponent, this);
-		context.executorIS = tmIS;
 		EList<Slot> connectorSlots = new BasicEList<Slot>();
 		
 		// now create instances for the contained elements
@@ -212,12 +210,10 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 					else {
 						isName = containerIS.getName() + "." + extensionPart.getName(); //$NON-NLS-1$
 					}
+					// create sub-instance and slot for extensions
 					if (containerExtIS == null) {
 						containerExtIS = DepCreation.createDepPlan(tmCDP, (Class)tmContainerExtImpl, isName, false);
 					}
-					// configure extension
-					context.port = portInfo.get(extensionPart);
-					InstanceConfigurator.configureInstance(containerExtIS, extensionPart, context);
 					Slot partSlot = DepCreation.createSlot(containerIS, containerExtIS, extensionPart);
 					if (StereotypeUtil.isApplied(tmContainerExtImpl, InteractionComponent.class)) {
 						connectorSlots.add(partSlot);
@@ -241,7 +237,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 * @param tmComponent
 	 * @param tmIS
 	 */
-	public InstanceSpecification createHwContainerInstance(Class tmComponent, InstanceSpecification tmNode, ContainerContext context) {
+	public InstanceSpecification createHwContainerInstance(Class tmComponent, InstanceSpecification tmNode) {
 		// create an instance specification for the container
 		InstanceSpecification containerIS =
 				(InstanceSpecification)tmCDP.createPackagedElement(tmNode.getName() + hwContainerPostfix, UMLPackage.eINSTANCE.getInstanceSpecification());
@@ -251,7 +247,6 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		// containers.put(tmComponent, this);
 		counter = 0;
 		executorIS = tmNode;
-		context.executorIS = executorIS;
 		// copy slots from HW instance specification
 		for (Slot slot : tmNode.getSlots()) {
 			Slot slotCopy = containerIS.createSlot();
@@ -612,6 +607,35 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Return the containerTrafo associated with a container. This operation is useful for instance
+	 * configurators that need more information about the container context, in particular to associate
+	 * a part with a port that is intercepted.
+	 *  
+	 * @param containerInstance the container instance (the parent instance of an instance of a container extension)ight be a container instance)
+	 * @return the containerTrafo info, if found.
+	 */
+	public static ContainerTrafo getContainerTrafo(InstanceSpecification containerInstance) {
+		Classifier containerCandidate = DepUtils.getClassifier(containerInstance);
+		Property executorPart = containerCandidate.getAttribute(executorPartName, null);
+		if ((executorPart != null) && executorPart.getType() instanceof Class) {
+			AbstractContainerTrafo containerTrafo = ContainerTrafo.get((Class) executorPart.getType());
+			if (containerTrafo instanceof ContainerTrafo) {
+				return (ContainerTrafo) containerTrafo;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Return the port that is intercepted when given a part
+	 * @param containerPart a part that participates in a port interception
+	 * @return intercepted port
+	 */
+	public Port getInterceptedPort(Property containerPart) {
+		return portInfo.get(containerPart);
 	}
 	
 	/**

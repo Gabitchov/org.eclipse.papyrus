@@ -21,11 +21,13 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
@@ -62,6 +64,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class FlattenInteractionComponents {
 
+	private static final String FLATTEN_SEP = "_"; //$NON-NLS-1$
+
 	public static FlattenInteractionComponents getInstance() {
 		return instance;
 	}
@@ -89,7 +93,9 @@ public class FlattenInteractionComponents {
 				flattenAssembly((Class) cl, instance, containingInstance, containingSlot);
 			}
 		}
-		// create a copy, since flatten might modify the number of slots
+		// loop over sub-instances and apply flatten recursively.
+		// create a copy of the slots, since the recursive flatten call might modify
+		// the number of slots
 		EList<Slot> slots =  new BasicEList<Slot>(instance.getSlots());
 		for (Slot subISslot : slots) {
 			InstanceSpecification subIS = DepUtils.getInstance(subISslot);
@@ -100,6 +106,7 @@ public class FlattenInteractionComponents {
 	}
 	
 	/**
+	 * 
 	 * Flatten a composite interaction component, i.e. replace it by the containing fragments. This includes the following actions
 	 * 1. Parts typed with the interaction component must be replaced with a set of parts typed with the fragment.
 	 * 2. Connectors must be redirected.
@@ -125,7 +132,7 @@ public class FlattenInteractionComponents {
 			
 			for (Property fragmentPart : composite.getAllAttributes()) {
 				if (fragmentPart instanceof Port) continue;
-				String partName = partForIA.getName() + "_" + fragmentPart.getName(); //$NON-NLS-1$
+				String partName = partForIA.getName() + FLATTEN_SEP + fragmentPart.getName();
 				// create a new part in the containing composite
 				Property newPartForFragment = containingComposite.createOwnedAttribute(partName, fragmentPart.getType());
 				replaceParts.put(fragmentPart, newPartForFragment);
@@ -159,11 +166,20 @@ public class FlattenInteractionComponents {
 				StructuralFeature sf = slot.getDefiningFeature();
 				if (replaceParts.containsKey(sf)) {
 					slot.setDefiningFeature(replaceParts.get(sf));
+					// assure naming convention for instances: here, we update the name of the instance
+					// and its sub-instances with the name of the containingInstance
+					InstanceSpecification subInstance = DepUtils.getInstance(slot);
+					if ((subInstance != null) && !DepUtils.isShared(slot)) {
+						DepPlanUtils.updateInstanceNames(subInstance, instance.getName() + FLATTEN_SEP + sf.getName());
+					}
 				}
 			}
-			// TODO: assure naming convention for instances
-			
+		
 			containingSlot.destroy();
+			// destroy relationships of flattened instance, in particular allocation
+			for (DirectedRelationship dr : instance.getSourceDirectedRelationships()) {
+				dr.destroy();
+			}
 			instance.destroy();
 			partForIA.destroy();
 			

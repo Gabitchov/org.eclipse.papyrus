@@ -347,9 +347,8 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 	 * @see AbstractContainerTrafo.createContainerInstance
 	 */
 	@Override
-	public InstanceSpecification createContainerInstance(Class tmComponent, InstanceSpecification executorIS, ContainerContext context) throws TransformationException {
+	public InstanceSpecification createContainerInstance(Class tmComponent, InstanceSpecification executorIS) throws TransformationException {
 		InstanceSpecification containerIS = executorIS;
-		context.executorIS = executorIS;
 		// TODO ... incomplete!
 		// InstanceConfigurator.configureInstance(smContainerRule, containerIS, null, context);
 	

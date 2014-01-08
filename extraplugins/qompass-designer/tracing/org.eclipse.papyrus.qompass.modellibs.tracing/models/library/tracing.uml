@@ -45,7 +45,7 @@
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mfTKMBavEeGq1uSGvh4rcQ" value="1"/>
             <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_u-498Ba1EeGq1uSGvh4rcQ"/>
           </ownedAttribute>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_aF1w6DKeEd-WprEKTCaiMA" name="&lt;%name%>" specification="_aF1w7zKeEd-WprEKTCaiMA">
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_aF1w6DKeEd-WprEKTCaiMA" name="[name/]" specification="_aF1w7zKeEd-WprEKTCaiMA">
             <language>C/C++</language>
             <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]
 [import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]
@@ -247,7 +247,7 @@ OTF_Writer_writeDefFunction (writer, streamNr, &lt;%enumSvcPrefix%>::id_&lt;%own
           <ownedAttribute xmi:type="uml:Property" xmi:id="_EWKx4KD0EeCFDJJCA2W5wg" name="m_first">
             <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_Bv7l0B-VEd6nGq8wpI2tjg"/>
           </ownedAttribute>
-          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_4LoXcKAeEeCF0uoVQbVQRg" name="&lt;%name%>" specification="_k4TsoKAeEeCF0uoVQbVQRg">
+          <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_4LoXcKAeEeCF0uoVQbVQRg" name="[name/]" specification="_k4TsoKAeEeCF0uoVQbVQRg">
             <language>C/C++</language>
             <body>// &lt;instance>_&lt;port>_&lt;operation>
 // easier: &lt;component>_&lt;port>_&lt;operation>
@@ -307,7 +307,7 @@ if (doTrace) {
             <language>C/C++</language>
             <body>m_first = true;</body>
           </ownedBehavior>
-          <ownedOperation xmi:type="uml:Operation" xmi:id="_k4TsoKAeEeCF0uoVQbVQRg" name="&lt;%name%>" method="_4LoXcKAeEeCF0uoVQbVQRg"/>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_k4TsoKAeEeCF0uoVQbVQRg" name="[name/]" method="_4LoXcKAeEeCF0uoVQbVQRg"/>
           <ownedOperation xmi:type="uml:Operation" xmi:id="_rlkwoKD0EeCFDJJCA2W5wg" name="OTFTrace_vc" method="_CyKWkKD2EeCFDJJCA2W5wg"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Dependency" xmi:id="_Mgn2cKKXEeCdIOXlyrCmKQ" name="OTFTrace_vc => BString" client="_aoSDwKAdEeCF0uoVQbVQRg">
@@ -653,6 +653,7 @@ return processID;</body>
   </uml:Model>
   <l2:ModelLibrary xmi:id="_ICaAoDKeEd-WprEKTCaiMA" base_Package="_H-ZqYDKeEd-WprEKTCaiMA"/>
   <FCM:Template xmi:id="_bKc-kDNZEd-0bO2vHbUkEA" base_Element="_aF1w7zKeEd-WprEKTCaiMA" kind="LoopOperations">
+    <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_nLe_sHJDEeOMF7YEvnQt5g"/>
     <formalParam xmi:type="uml:Interface" href="pathmap://QML_CORE/core.uml#_ZzlzMPfBEd2TbIfwytOyPA"/>
     <templateParam xmi:type="uml:Interface" href="pathmap://QML_CORE/core.uml#_ZzlzMPfBEd2TbIfwytOyPA"/>
   </FCM:Template>
@@ -727,7 +728,9 @@ return processID;</body>
   <FCM:ContainerRule xmi:id="_6FqQoKAdEeCF0uoVQbVQRg" base_Class="_wHuA0KAdEeCF0uoVQbVQRg" extensionKind="InterceptAllPorts" interceptor="_JvP0oKAeEeCF0uoVQbVQRg" propagate="true">
     <forConfig xmi:type="FCM:ConfigOption" href="pathmap://QML_CORE/core.uml#_u6LqoH7eEd-FNNgSS03RxQ"/>
   </FCM:ContainerRule>
-  <FCM:Template xmi:id="_pplDQKAeEeCF0uoVQbVQRg" base_Element="_k4TsoKAeEeCF0uoVQbVQRg" kind="LoopOperations"/>
+  <FCM:Template xmi:id="_pplDQKAeEeCF0uoVQbVQRg" base_Element="_k4TsoKAeEeCF0uoVQbVQRg" kind="LoopOperations">
+    <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_nLe_sHJDEeOMF7YEvnQt5g"/>
+  </FCM:Template>
   <FCM:InstanceConfigurator xmi:id="_nTMOYKbnEeC0_qP7CUZIiQ" base_Class="_kIcwsKbnEeC0_qP7CUZIiQ"/>
   <FCM:UseInstanceConfigurator xmi:id="_plb90KbnEeC0_qP7CUZIiQ" base_Class="_aF1w4DKeEd-WprEKTCaiMA" configurator="_nUB1YC8HEeKwPrQVP28AQw"/>
   <FCM:UseInstanceConfigurator xmi:id="_MmzO0KboEeC0_qP7CUZIiQ" base_Class="_aoSDwKAdEeCF0uoVQbVQRg" configurator="_nUB1YC8HEeKwPrQVP28AQw"/>
