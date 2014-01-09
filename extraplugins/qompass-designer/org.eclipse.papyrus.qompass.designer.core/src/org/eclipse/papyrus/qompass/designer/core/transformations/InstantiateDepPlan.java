@@ -41,7 +41,9 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.Deploy;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
+import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.extensions.LanguageSupport;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerateCode;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerationOptions;
@@ -59,6 +61,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -193,13 +196,18 @@ public class InstantiateDepPlan {
 			Package tmCDP = (Package)tmpCopy.get(smCDP);
 
 			ContainerTrafo.init();
+			InstanceConfigurator.onNodeModel = false;
 			MainModelTrafo mainModelTrafo = new MainModelTrafo(tmpCopy, tmCDP);
 			InstanceSpecification newRootIS = mainModelTrafo.transformInstance(rootIS, null);
+			DeploymentPlan newCDP = StereotypeUtil.applyApp(tmCDP, DeploymentPlan.class);
+			newCDP.setMainInstance(newRootIS);
 			monitor.worked(1);
 
 			// 1c: late bindings
 			// LateEval.bindLateOperations();
 			// 3: distribute to nodes
+
+			ApplyInstanceConfigurators.applyInstanceConfigurators(newRootIS);
 
 			FlattenInteractionComponents.getInstance().flattenAssembly(newRootIS, null);
 			
@@ -225,7 +233,8 @@ public class InstantiateDepPlan {
 				if (targetLanguage == null) {
 					targetLanguage = "C++"; //$NON-NLS-1$
 				}
-				
+	
+				InstanceConfigurator.onNodeModel = true;
 				for(InstanceSpecification node : nodes) {
 					String modelName = existingModel.getName() + "_" + node.getName(); //$NON-NLS-1$
 					if(configuration != null) {
@@ -294,6 +303,10 @@ public class InstantiateDepPlan {
 					}
 					monitor.worked(1);
 
+					PackageableElement depPlanFolder = genModel.getPackagedElement(DeployConstants.depPlanFolderHw);
+					if (depPlanFolder != null) {
+						depPlanFolder.destroy();
+					}
 					IProject genProject = ProjectManagement.getNamedProject(modelName);
 					if((genProject == null) || !genProject.exists()) {
 						genProject = langSupport.createProject(modelName, node);
@@ -305,6 +318,7 @@ public class InstantiateDepPlan {
 						}
 					}
 
+					
 					if(generateCode) {
 						GenerateCode codeGen = new GenerateCode(genProject, langSupport, genMM, monitor);
 						codeGen.generate(node, targetLanguage, (genOptions & GenerationOptions.ONLY_CHANGED) != 0);

@@ -145,14 +145,18 @@ out->writeEvent (event);
     <packagedElement xmi:type="uml:Class" xmi:id="_CV_x4O68EeCZ9MjsZTV1zw" name="CallEvents"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_KEMp0CNYEeGj_4swHBbKwg" name="CallEventConfigurator"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_F5DMoF8wEeGerN33d-RdRg" name="Animation">
-      <packagedElement xmi:type="uml:Class" xmi:id="_xELAwF81EeGbQoflzrdx0g" clientDependency="_bmInQF_4EeGbQoflzrdx0g" name="AnimationServer">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_z94Y0F81EeGbQoflzrdx0g" name="animServer" visibility="public" type="_L-I7kF8wEeGerN33d-RdRg" aggregation="composite">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_BLcrgHhAEeOejZqJpKQeww">
+        <body>Animation service configurator takes care of allocating the RemoveAnimService on the &quot;right&quot; node and to connect local and remote service configurators.</body>
+      </ownedComment>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xELAwF81EeGbQoflzrdx0g" clientDependency="_bmInQF_4EeGbQoflzrdx0g" name="LocalAnimService">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_z94Y0F81EeGbQoflzrdx0g" name="animSvc" visibility="public" type="_L-I7kF8wEeGerN33d-RdRg" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2Y7e8F81EeGbQoflzrdx0g" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2ZEB0F81EeGbQoflzrdx0g" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_2ZSEQF81EeGbQoflzrdx0g">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_ZXYggHg_EeOejZqJpKQeww" name="outAnimSvc" type="_L-I7kF8wEeGerN33d-RdRg" aggregation="composite"/>
         <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_bmInQF_4EeGbQoflzrdx0g" name="derived realization of IAnimation" client="_xELAwF81EeGbQoflzrdx0g" supplier="_L-I7kF8wEeGerN33d-RdRg" contract="_L-I7kF8wEeGerN33d-RdRg"/>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_bmbiMF_4EeGbQoflzrdx0g" name="enterState">
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_OJXykGEpEeGzd_21sXyuog" name="stateEnum">
@@ -212,6 +216,9 @@ out->writeEvent (event);
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_QH7R8GGDEeO2F4QRMDSOXg" name="AnimServiceConfigurator"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_B0gFAHg_EeOejZqJpKQeww" name="RemoteAnimService">
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_MLu-kHg_EeOejZqJpKQeww" name="animSvc" type="_L-I7kF8wEeGerN33d-RdRg" aggregation="composite"/>
+      </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_DEJCwF81EeGbQoflzrdx0g" name="rules">
       <packagedElement xmi:type="uml:Class" xmi:id="_18qdsO67EeCZ9MjsZTV1zw" name="StateMachineWCallEvents">
@@ -379,7 +386,9 @@ out->writeEvent (event);
     </profileApplication>
   </uml:Model>
   <FCM:InteractionComponent xmi:id="_hanSUOUUEd-P08Bciq_LqQ" base_Class="_u-qioOUTEd-P08Bciq_LqQ"/>
-  <FCM:Template xmi:id="_9E8EUOUUEd-P08Bciq_LqQ" base_Element="_2qJyMOUUEd-P08Bciq_LqQ" kind="LoopOperations"/>
+  <FCM:Template xmi:id="_9E8EUOUUEd-P08Bciq_LqQ" base_Element="_2qJyMOUUEd-P08Bciq_LqQ" kind="LoopOperations">
+    <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_nLe_sHJDEeOMF7YEvnQt5g"/>
+  </FCM:Template>
   <FCM:Port xmi:id="_a45twOuMEeCTfOY57pgE3w" base_Port="_a4NKMOuMEeCTfOY57pgE3w">
     <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_9Fif4FRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
@@ -417,4 +426,12 @@ out->writeEvent (event);
   <FCM:DerivedElement xmi:id="_bmyukF_4EeGbQoflzrdx0g" base_Element="_bmo9kF_4EeGbQoflzrdx0g" source="_ZgY_oF8wEeGerN33d-RdRg"/>
   <FCM:InstanceConfigurator xmi:id="_SdiecGGDEeO2F4QRMDSOXg" base_Class="_QH7R8GGDEeO2F4QRMDSOXg"/>
   <FCM:UseInstanceConfigurator xmi:id="_VnhuMGGDEeO2F4QRMDSOXg" base_Class="_xELAwF81EeGbQoflzrdx0g" configurator="_SdiecGGDEeO2F4QRMDSOXg"/>
+  <FCM:Singleton xmi:id="_JOwQEHg_EeOejZqJpKQeww" base_Class="_B0gFAHg_EeOejZqJpKQeww"/>
+  <FCM:Port xmi:id="_hw3T8Hg_EeOejZqJpKQeww" base_Port="_ZXYggHg_EeOejZqJpKQeww">
+    <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_9Fif4FRxEd6GqrP6fkWBoQ"/>
+  </FCM:Port>
+  <FCM:Port xmi:id="_ncWQEHg_EeOejZqJpKQeww" base_Port="_MLu-kHg_EeOejZqJpKQeww">
+    <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_wySlkFRxEd6GqrP6fkWBoQ"/>
+  </FCM:Port>
+  <FCM:UseInstanceConfigurator xmi:id="_4HKnkHg_EeOejZqJpKQeww" base_Class="_B0gFAHg_EeOejZqJpKQeww" configurator="_SdiecGGDEeO2F4QRMDSOXg"/>
 </xmi:XMI>

@@ -4338,4 +4338,51 @@
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eKfIIF7sEeGEmrrwB1vhPg" id="(0.504424778761062,0.1694915254237288)"/>
     </edges>
   </notation:Diagram>
+  <notation:Diagram xmi:id="_zCsUsHI3EeOCrdvV8oxOKA" type="PapyrusUMLClassDiagram" name="Binding helpers" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_z30l4HI3EeOCrdvV8oxOKA" type="2008" fontName="" lineColor="0">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z33CIHI3EeOCrdvV8oxOKA" source="ShadowFigure">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z33CIXI3EeOCrdvV8oxOKA" key="ShadowFigure_Value" value="true"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z33CInI3EeOCrdvV8oxOKA" source="displayNameLabelIcon">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z33CI3I3EeOCrdvV8oxOKA" key="displayNameLabelIcon_value" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z33CJHI3EeOCrdvV8oxOKA" source="QualifiedName">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z33pMHI3EeOCrdvV8oxOKA" key="QualifiedNameDepth" value="1000"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nLx6oHJDEeOMF7YEvnQt5g" source="Stereotype_Annotation">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nLx6oXJDEeOMF7YEvnQt5g" key="StereotypeWithQualifiedNameList" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nLx6onJDEeOMF7YEvnQt5g" key="StereotypeList" value="FCM::BindingHelper"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nLyhsHJDEeOMF7YEvnQt5g" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nLyhsXJDEeOMF7YEvnQt5g" key="PropStereoDisplay" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nLyhsnJDEeOMF7YEvnQt5g" key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <children xmi:type="notation:DecorationNode" xmi:id="_z33pMXI3EeOCrdvV8oxOKA" type="5029"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_z33pMnI3EeOCrdvV8oxOKA" type="7017">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_z33pM3I3EeOCrdvV8oxOKA"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_z33pNHI3EeOCrdvV8oxOKA"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_z33pNXI3EeOCrdvV8oxOKA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z33pNnI3EeOCrdvV8oxOKA"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_z33pN3I3EeOCrdvV8oxOKA" type="7018">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_z33pOHI3EeOCrdvV8oxOKA"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_z33pOXI3EeOCrdvV8oxOKA"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_z33pOnI3EeOCrdvV8oxOKA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z33pO3I3EeOCrdvV8oxOKA"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_z33pPHI3EeOCrdvV8oxOKA" type="7019">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_z33pPXI3EeOCrdvV8oxOKA"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_z33pPnI3EeOCrdvV8oxOKA"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_z33pP3I3EeOCrdvV8oxOKA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z33pQHI3EeOCrdvV8oxOKA"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_z4FroHI3EeOCrdvV8oxOKA" visible="false" type="compartment_shape_display">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_z4FroXI3EeOCrdvV8oxOKA"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z4FronI3EeOCrdvV8oxOKA"/>
+      </children>
+      <element xmi:type="uml:Class" href="core.uml#_z2tyoHI3EeOCrdvV8oxOKA"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_z30l4XI3EeOCrdvV8oxOKA" x="64" y="17" width="135"/>
+    </children>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_zCs7wHI3EeOCrdvV8oxOKA"/>
+    <element xmi:type="uml:Package" href="core.uml#_tkiC4HI3EeOCrdvV8oxOKA"/>
+  </notation:Diagram>
 </xmi:XMI>

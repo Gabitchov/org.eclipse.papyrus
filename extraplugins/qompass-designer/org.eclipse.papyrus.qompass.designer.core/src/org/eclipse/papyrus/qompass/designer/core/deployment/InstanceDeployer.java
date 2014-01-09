@@ -18,7 +18,6 @@ import java.util.Stack;
 
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Slot;
 
@@ -60,5 +59,5 @@ public interface InstanceDeployer {
 	 * @return the classifier modified for deployment
 	 * @throws TransformationException
 	 */
-	public Classifier deployInstance(InstanceSpecification is, Stack<Slot> slotPath) throws TransformationException;
+	public InstanceSpecification deployInstance(InstanceSpecification is, Stack<Slot> slotPath) throws TransformationException;
 }

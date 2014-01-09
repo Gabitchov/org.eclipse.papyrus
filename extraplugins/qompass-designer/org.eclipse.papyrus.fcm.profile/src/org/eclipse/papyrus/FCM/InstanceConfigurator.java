@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.FCM.InstanceConfigurator#getBase_Class <em>Base Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.InstanceConfigurator#isOnNodeModel <em>On Node Model</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,5 +57,31 @@ public interface InstanceConfigurator extends EObject {
 	 * @generated
 	 */
 	void setBase_Class(org.eclipse.uml2.uml.Class value);
+
+	/**
+	 * Returns the value of the '<em><b>On Node Model</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>On Node Model</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>On Node Model</em>' attribute.
+	 * @see #setOnNodeModel(boolean)
+	 * @see org.eclipse.papyrus.FCM.FCMPackage#getInstanceConfigurator_OnNodeModel()
+	 * @model dataType="org.eclipse.uml2.types.Boolean" ordered="false"
+	 * @generated
+	 */
+	boolean isOnNodeModel();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.InstanceConfigurator#isOnNodeModel <em>On Node Model</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>On Node Model</em>' attribute.
+	 * @see #isOnNodeModel()
+	 * @generated
+	 */
+	void setOnNodeModel(boolean value);
 
 } // InstanceConfigurator

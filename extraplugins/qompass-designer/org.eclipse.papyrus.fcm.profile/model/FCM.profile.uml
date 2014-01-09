@@ -8,7 +8,7 @@ of a particular PortKind). Further experiments are still needed to confirm that 
     <ownedComment xmi:type="uml:Comment" xmi:id="_dxcGcDTvEd-aL8GNXYXa-Q" annotatedElement="_BOnDoFLpEd6rYflXebIz1g">
       <body>The template parameters list defines the parameters that are passed to the Acceleo template. If empty, the formal parameter list of the package template is used.</body>
     </ownedComment>
-    <ownedComment xmi:type="uml:Comment" xmi:id="_2Lq5wDR4Ed-aL8GNXYXa-Q" annotatedElement="_zZEPQDR4Ed-aL8GNXYXa-Q">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_2Lq5wDR4Ed-aL8GNXYXa-Q">
       <body>LateEvaluation is more a tempalte binding rather than a template definition. In</body>
     </ownedComment>
     <ownedComment xmi:type="uml:Comment" xmi:id="_tP3jMLy-Ed-9GLEvRgvEyg" annotatedElement="_L8b3wMtvEd2H_o0jIC6qDQ">
@@ -60,6 +60,9 @@ The system component is also an assembly</body>
     <ownedComment xmi:type="uml:Comment" xmi:id="_hkxRcOHNEeKl1vaXi7stuw" annotatedElement="_KBrOsDyEEeCYGtteoBz6vQ">
       <body>Template ports are ports that enable the binding of an extended port with an actual parameter: the resulting port kind is the port kind bound to the current port type.
 For instance, we cound type a port with &quot;MyType&quot; and use an extended port Writer with a template with formal parameter T. Resulting port would be Writer with T bound to MyType.</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_MyfoAHJqEeOMF7YEvnQt5g" annotatedElement="_8IkbcHI0EeOZxcUd14vDog">
+      <body>A binding helper is responsible for creating sub-elements. For instance, if the formal parameter of a template is an interface, it might be required to instantiate an operation for each operation of the interface.</body>
     </ownedComment>
     <elementImport xmi:type="uml:ElementImport" xmi:id="_NYUA4MtkEd2H_o0jIC6qDQ" alias="Package">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
@@ -286,24 +289,12 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_BOnDoFLpEd6rYflXebIz1g" name="Template">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_W5NH0FLpEd6rYflXebIz1g" name="templateParams" isUnique="false">
-        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZHrGADTvEd-aL8GNXYXa-Q"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZHzB0DTvEd-aL8GNXYXa-Q" value="*"/>
-      </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_hEi6cFLpEd6rYflXebIz1g" name="base_Element" isUnique="false" association="_hC4tkFLpEd6rYflXebIz1g">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_aPnHoAswEd-UGs2QNFrwPw" name="kind" visibility="public" type="_HSVlUAswEd-UGs2QNFrwPw" isUnique="false">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fFnNQAswEd-UGs2QNFrwPw" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fFt68AswEd-UGs2QNFrwPw" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_fF1PsAswEd-UGs2QNFrwPw">
-          <value xsi:nil="true"/>
-        </defaultValue>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_AAI-UObPEd-oHsJhS1620Q" name="actualChoice" visibility="public" type="_jnxwsObFEd-oHsJhS1620Q" isUnique="false">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GdgDUObPEd-oHsJhS1620Q"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Gdh4gObPEd-oHsJhS1620Q" value="1"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_AROS4HI1EeOZxcUd14vDog" name="helper" type="_8IkbcHI0EeOZxcUd14vDog">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IRor8HJqEeOMF7YEvnQt5g"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IRpTAHJqEeOMF7YEvnQt5g" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_eamcsFLpEd6rYflXebIz1g" name="Extension_DeploymentPlan" memberEnd="_ecAK4FLpEd6rYflXebIz1g _ecD1QFLpEd6rYflXebIz1g">
@@ -365,16 +356,6 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_s6giAAAjEd-0dMgailnZgA" name="E_ContainerRule_Class0" memberEnd="_s9YP0AAjEd-0dMgailnZgA _s9dIUAAjEd-0dMgailnZgA">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_s9YP0AAjEd-0dMgailnZgA" name="extension_ContainerRule" type="_5SI38AAhEd-0dMgailnZgA" aggregation="composite" association="_s6giAAAjEd-0dMgailnZgA"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Enumeration" xmi:id="_HSVlUAswEd-UGs2QNFrwPw" name="TemplateKind">
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Mn7J8AswEd-UGs2QNFrwPw" name="PassFormal"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_NRzNYAswEd-UGs2QNFrwPw" name="LoopOperations"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_T3PQUAswEd-UGs2QNFrwPw" name="LoopProperty"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_Ub5RUDNYEd-t359GOtEoBQ" name="Accumulate"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_3YQuwDNyEd-l9qP5D2-iXA" name="LoopLiterals"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_zZEPQDR4Ed-aL8GNXYXa-Q" name="LateEvaluation"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_p-jDYOhjEd-oHsJhS1620Q" name="LoopPorts"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_8n-OADWzEeKiyvmIR-KbrA" name="PassClassifier"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_aQTf0FSdEd-w9f5DG2hQCA" name="ImplementationGroup">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_5OkHcEzuEeG_JK8KIEXPxQ" name="base_Class" association="_5OkugEzuEeG_JK8KIEXPxQ">
@@ -598,22 +579,6 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
     <packagedElement xmi:type="uml:Extension" xmi:id="_ZfRJoNXwEd-CUqOXH3INsw" name="E_ConnectorConfiguration_Slot0" memberEnd="_ZfRJodXwEd-CUqOXH3INsw _ZfQikNXwEd-CUqOXH3INsw">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_ZfRJodXwEd-CUqOXH3INsw" name="extension_ConnectorConfiguration" type="_mditANXnEd-CUqOXH3INsw" aggregation="composite" association="_ZfRJoNXwEd-CUqOXH3INsw"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Enumeration" xmi:id="_jnxwsObFEd-oHsJhS1620Q" name="ActualChoice">
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_udxp4ObFEd-oHsJhS1620Q" name="PassActual"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_vSnAIObFEd-oHsJhS1620Q" name="InterfaceOfPPort"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_6qjZsObOEd-oHsJhS1620Q" name="InterfaceOfRport"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Stereotype" xmi:id="_UsmDYPPBEd-Tz5tQ_F9baw" name="ExtendedSignature">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_ZiQx0PPBEd-Tz5tQ_F9baw" name="base_TemplateSignature" association="_ZiRY4PPBEd-Tz5tQ_F9baw">
-        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TemplateSignature"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_cqIhsPPBEd-Tz5tQ_F9baw" name="baseSignature">
-        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#TemplateSignature"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_ZiRY4PPBEd-Tz5tQ_F9baw" name="E_ExtendedSignature_TemplateSignature0" memberEnd="_ZiRY4fPBEd-Tz5tQ_F9baw _ZiQx0PPBEd-Tz5tQ_F9baw">
-      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_ZiRY4fPBEd-Tz5tQ_F9baw" name="extension_ExtendedSignature" type="_UsmDYPPBEd-Tz5tQ_F9baw" aggregation="composite" association="_ZiRY4PPBEd-Tz5tQ_F9baw"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_KBrOsDyEEeCYGtteoBz6vQ" name="TemplatePort">
       <generalization xmi:type="uml:Generalization" xmi:id="_OUdSgDyEEeCYGtteoBz6vQ" general="_pP-ckMtqEd2H_o0jIC6qDQ"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_RgadAOHNEeKl1vaXi7stuw" name="boundType" visibility="public" type="_tBRZYMtpEd2H_o0jIC6qDQ" isDerived="true">
@@ -642,6 +607,11 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_kDGFMEZ0EeCLCJBkU67iDQ" name="InstanceConfigurator">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_rsCMgEZ0EeCLCJBkU67iDQ" name="base_Class" association="_rsCMgUZ0EeCLCJBkU67iDQ">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_sE27MGm4EeOEG7lSPuRLag" name="onNodeModel">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ceiysGsuEeOoCYTKo-XKlQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cekA0GsuEeOoCYTKo-XKlQ" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_rsCMgUZ0EeCLCJBkU67iDQ" name="E_InstanceConfigurator_Class0" memberEnd="_rsCMgkZ0EeCLCJBkU67iDQ _rsCMgEZ0EeCLCJBkU67iDQ">
@@ -730,6 +700,14 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_jzYnINRxEeKiLbHSN_MIRQ" name="E_CompilerChain_Class1" memberEnd="_jzYnIdRxEeKiLbHSN_MIRQ _jzVj0NRxEeKiLbHSN_MIRQ">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_jzYnIdRxEeKiLbHSN_MIRQ" name="extension_CompilerChain" type="_iDiaINRxEeKiLbHSN_MIRQ" aggregation="composite" association="_jzYnINRxEeKiLbHSN_MIRQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_8IkbcHI0EeOZxcUd14vDog" name="BindingHelper">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_SdmcYHI4EeOCrdvV8oxOKA" name="base_Class" association="_SdnDcHI4EeOCrdvV8oxOKA">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_SdnDcHI4EeOCrdvV8oxOKA" name="E_BindingHelper_Class1" memberEnd="_SdnDcXI4EeOCrdvV8oxOKA _SdmcYHI4EeOCrdvV8oxOKA">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_SdnDcXI4EeOCrdvV8oxOKA" name="extension_BindingHelper" type="_8IkbcHI0EeOZxcUd14vDog" aggregation="composite" association="_SdnDcHI4EeOCrdvV8oxOKA"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_aTo0UC27Ed6q9cO948d5Fw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aa7vIC27Ed6q9cO948d5Fw" source="http://www.eclipse.org/uml2/2.0.0/UML">

@@ -19,7 +19,6 @@ import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.UseInstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.Activator;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerContext;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
@@ -33,6 +32,8 @@ public class InstanceConfigurator {
 
 	public static final String IINSTANCE_CONFIG_ID = Activator.PLUGIN_ID + ".instanceConfig"; //$NON-NLS-1$
 
+	public static boolean onNodeModel = false;
+	
 	/**
 	 * Configure an instance. The configurator is selected by means of a stereotype on the classifier of
 	 * the passed instance. 
@@ -45,10 +46,10 @@ public class InstanceConfigurator {
 	 * @param port
 	 *        a port within the context of container
 	 */
-	public static void configureInstance(InstanceSpecification instance, Property componentPart, ContainerContext containerContext) {
+	public static void configureInstance(InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstance) {
 		Classifier component = DepUtils.getClassifier(instance);
 		UseInstanceConfigurator useInstanceConfigurator = UMLUtil.getStereotypeApplication(component, UseInstanceConfigurator.class);
-		configureInstance(useInstanceConfigurator, instance, componentPart, containerContext);
+		configureInstance(useInstanceConfigurator, instance, componentPart, parentInstance);
 	}
 
 	/**
@@ -64,9 +65,9 @@ public class InstanceConfigurator {
 	 * @param port
 	 *        a port within the context of container
 	 */
-	public static void configureInstance(ContainerRule rule, InstanceSpecification instance, Property componentPart, ContainerContext containerContext) {
+	public static void configureInstance(ContainerRule rule, InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstance) {
 		UseInstanceConfigurator useInstanceConfigurator = UMLUtil.getStereotypeApplication(rule.getBase_Class(), UseInstanceConfigurator.class);
-		configureInstance(useInstanceConfigurator, instance, componentPart, containerContext);
+		configureInstance(useInstanceConfigurator, instance, componentPart, parentInstance);
 	}
 
 	/**
@@ -77,15 +78,17 @@ public class InstanceConfigurator {
 	 * @param componentPart
 	 * @param containerContext
 	 */
-	public static void configureInstance(UseInstanceConfigurator useInstanceConfigurator, InstanceSpecification instance, Property componentPart, ContainerContext containerContext) {
+	public static void configureInstance(UseInstanceConfigurator useInstanceConfigurator, InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstance) {
 		if(useInstanceConfigurator != null) {
 			org.eclipse.papyrus.FCM.InstanceConfigurator instanceConfigurator = useInstanceConfigurator.getConfigurator();
-			if(instanceConfigurator != null) {
-				String id = instanceConfigurator.getBase_Class().getName();
-				IInstanceConfigurator iConfigurator = getInstanceConfigurator(id);
-				if(iConfigurator != null) {
-					iConfigurator.configureInstance(instance, componentPart, containerContext);
+			if (instanceConfigurator.isOnNodeModel() == onNodeModel) {
+				if(instanceConfigurator != null) {
+					String id = instanceConfigurator.getBase_Class().getName();
+					IInstanceConfigurator iConfigurator = getInstanceConfigurator(id);
+					if(iConfigurator != null) {
+						iConfigurator.configureInstance(instance, componentPart, parentInstance);
 
+					}
 				}
 			}
 		}

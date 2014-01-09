@@ -5,33 +5,17 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The template parameters list defines the parameters that are passed to the Acceleo template. If empty, the formal parameter list of the package template is used."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templateParams" ordered="false"
-        unique="false" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Element" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" unique="false"
-        lowerBound="1" eType="#//TemplateKind"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actualChoice" ordered="false"
-        unique="false" eType="#//ActualChoice"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="helper" ordered="false"
+        eType="#//BindingHelper"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="TemplateKind">
-    <eLiterals name="PassFormal"/>
-    <eLiterals name="LoopOperations" value="1"/>
-    <eLiterals name="LoopProperty" value="2"/>
-    <eLiterals name="Accumulate" value="3"/>
-    <eLiterals name="LoopLiterals" value="4"/>
-    <eLiterals name="LateEvaluation" value="5">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="LateEvaluation is more a tempalte binding rather than a template definition. In"/>
-      </eAnnotations>
-    </eLiterals>
-    <eLiterals name="LoopPorts" value="6"/>
-    <eLiterals name="PassClassifier" value="7"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ActualChoice">
-    <eLiterals name="PassActual"/>
-    <eLiterals name="InterfaceOfPPort" value="1"/>
-    <eLiterals name="InterfaceOfRport" value="2"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BindingHelper">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A binding helper is responsible for creating sub-elements. For instance, if the formal parameter of a template is an interface, it might be required to instantiate an operation for each operation of the interface."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
+        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationProperty">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -132,6 +116,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="InstanceConfigurator">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base_Class" ordered="false"
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onNodeModel" ordered="false"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.uml2.types/model/Types.ecore#//Boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RuleApplication">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -305,11 +291,5 @@
         lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Slot"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connector" ordered="false"
         lowerBound="1" eType="#//Connector"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExtendedSignature">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base_TemplateSignature"
-        ordered="false" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateSignature"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="baseSignature" ordered="false"
-        lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//TemplateSignature"/>
   </eClassifiers>
 </ecore:EPackage>

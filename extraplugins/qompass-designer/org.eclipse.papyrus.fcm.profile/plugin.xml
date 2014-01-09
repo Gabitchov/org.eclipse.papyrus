@@ -11,7 +11,8 @@
 <plugin>
 	<extension-point id="fcmPortMappingRule" name="Port Mapping Rule" schema="schema/fcmPortMappingRule.exsd"/>
 	<extension-point id="fcmEmbeddingRule" name="Connector embedding rule" schema="schema/fcmPortMappingRule.exsd"/>
-
+	<extension-point id="fcmBindingHelper" name="Helper for template binnding" schema="schema/fcmBindingHelper.exsd"/>
+	
 	<extension point="org.eclipse.emf.ecore.generated_package">
 		<package
 			uri = "http://www.eclipse.org/papyrus/FCM/1" 

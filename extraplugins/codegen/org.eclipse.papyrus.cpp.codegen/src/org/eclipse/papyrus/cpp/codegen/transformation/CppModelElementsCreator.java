@@ -35,9 +35,11 @@ import org.eclipse.papyrus.acceleo.AcceleoException;
 import org.eclipse.papyrus.acceleo.GenUtils;
 import org.eclipse.papyrus.acceleo.ModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.Activator;
+import org.eclipse.papyrus.cpp.codegen.Messages;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.text.edits.MalformedTreeException;
 import org.eclipse.text.edits.TextEdit;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -140,11 +142,11 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 
 		// Only generate when no CppNoCodeGen stereotype is applied to the class
 		else if((!noCodeGen(classifier)) &&
-				(!GenUtils.hasStereotype(classifier, Template.class))) {
+				(!GenUtils.hasStereotype(classifier, Template.class)) &&
+				(!(classifier instanceof Association))) {
 
 			// Template Bound Class
 			if(GenUtils.isTemplateBoundElement(classifier)) {
-				// TODO: Acceleo template is only defined for class (not for all classifiers)
 				String fileContent = commentHeader + AcceleoDriver.evaluateURI(CppBindHeader, classifier);
 				createFile(container, classifier.getName() + DOT + hppExt, fileContent, true);
 
@@ -187,7 +189,7 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 		TextEdit edit = codeFormatter.format(CodeFormatter.K_TRANSLATION_UNIT, doc.get(), 0, doc.get().length(), 0, null);
 
 		if (edit == null) {
-			Activator.log.debug("Cannot format content");
+			Activator.log.debug(Messages.CppModelElementsCreator_CannotFormatContent);
 			return content;
 		}
 

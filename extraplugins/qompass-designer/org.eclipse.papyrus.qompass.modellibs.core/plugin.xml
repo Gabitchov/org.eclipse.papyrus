@@ -129,6 +129,10 @@
 			<selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
 	</extension>
+	<extension id="LoopOperations" point="org.eclipse.papyrus.fcm.profile.fcmBindingHelper">
+		<client class="org.eclipse.papyrus.qompass.modellibs.core.bindinghelpers.LoopOperations" bindingHelperName="LoopOperations">
+		</client>
+	</extension>
 	<extension point="org.eclipse.help.toc">
 		<toc file="help/modellibs-core-examples.xml"/>
 		<toc file="help/modellibs-core-library.xml"/>

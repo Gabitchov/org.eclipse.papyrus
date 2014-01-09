@@ -12,26 +12,14 @@
  */
 package org.eclipse.papyrus.FCM.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import org.eclipse.papyrus.FCM.ActualChoice;
+import org.eclipse.papyrus.FCM.BindingHelper;
 import org.eclipse.papyrus.FCM.FCMPackage;
 import org.eclipse.papyrus.FCM.Template;
-import org.eclipse.papyrus.FCM.TemplateKind;
-
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -41,26 +29,14 @@ import org.eclipse.uml2.uml.Element;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.FCM.impl.TemplateImpl#getTemplateParams <em>Template Params</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.impl.TemplateImpl#getBase_Element <em>Base Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.FCM.impl.TemplateImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipse.papyrus.FCM.impl.TemplateImpl#getActualChoice <em>Actual Choice</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.TemplateImpl#getHelper <em>Helper</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class TemplateImpl extends EObjectImpl implements Template {
-	/**
-	 * The cached value of the '{@link #getTemplateParams() <em>Template Params</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTemplateParams()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Classifier> templateParams;
-
 	/**
 	 * The cached value of the '{@link #getBase_Element() <em>Base Element</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -72,44 +48,14 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	protected Element base_Element;
 
 	/**
-	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+	 * The cached value of the '{@link #getHelper() <em>Helper</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKind()
+	 * @see #getHelper()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final TemplateKind KIND_EDEFAULT = TemplateKind.PASS_FORMAL;
-
-	/**
-	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
-	protected TemplateKind kind = KIND_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getActualChoice() <em>Actual Choice</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActualChoice()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ActualChoice ACTUAL_CHOICE_EDEFAULT = ActualChoice.PASS_ACTUAL;
-
-	/**
-	 * The cached value of the '{@link #getActualChoice() <em>Actual Choice</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getActualChoice()
-	 * @generated
-	 * @ordered
-	 */
-	protected ActualChoice actualChoice = ACTUAL_CHOICE_EDEFAULT;
+	protected BindingHelper helper;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,18 +74,6 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	@Override
 	protected EClass eStaticClass() {
 		return FCMPackage.Literals.TEMPLATE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Classifier> getTemplateParams() {
-		if (templateParams == null) {
-			templateParams = new EObjectResolvingEList<Classifier>(Classifier.class, this, FCMPackage.TEMPLATE__TEMPLATE_PARAMS);
-		}
-		return templateParams;
 	}
 
 	/**
@@ -185,8 +119,16 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateKind getKind() {
-		return kind;
+	public BindingHelper getHelper() {
+		if (helper != null && helper.eIsProxy()) {
+			InternalEObject oldHelper = (InternalEObject)helper;
+			helper = (BindingHelper)eResolveProxy(oldHelper);
+			if (helper != oldHelper) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FCMPackage.TEMPLATE__HELPER, oldHelper, helper));
+			}
+		}
+		return helper;
 	}
 
 	/**
@@ -194,32 +136,20 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKind(TemplateKind newKind) {
-		TemplateKind oldKind = kind;
-		kind = newKind == null ? KIND_EDEFAULT : newKind;
+	public BindingHelper basicGetHelper() {
+		return helper;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHelper(BindingHelper newHelper) {
+		BindingHelper oldHelper = helper;
+		helper = newHelper;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.TEMPLATE__KIND, oldKind, kind));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActualChoice getActualChoice() {
-		return actualChoice;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setActualChoice(ActualChoice newActualChoice) {
-		ActualChoice oldActualChoice = actualChoice;
-		actualChoice = newActualChoice == null ? ACTUAL_CHOICE_EDEFAULT : newActualChoice;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.TEMPLATE__ACTUAL_CHOICE, oldActualChoice, actualChoice));
+			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.TEMPLATE__HELPER, oldHelper, helper));
 	}
 
 	/**
@@ -230,15 +160,12 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FCMPackage.TEMPLATE__TEMPLATE_PARAMS:
-				return getTemplateParams();
 			case FCMPackage.TEMPLATE__BASE_ELEMENT:
 				if (resolve) return getBase_Element();
 				return basicGetBase_Element();
-			case FCMPackage.TEMPLATE__KIND:
-				return getKind();
-			case FCMPackage.TEMPLATE__ACTUAL_CHOICE:
-				return getActualChoice();
+			case FCMPackage.TEMPLATE__HELPER:
+				if (resolve) return getHelper();
+				return basicGetHelper();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -248,22 +175,14 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FCMPackage.TEMPLATE__TEMPLATE_PARAMS:
-				getTemplateParams().clear();
-				getTemplateParams().addAll((Collection<? extends Classifier>)newValue);
-				return;
 			case FCMPackage.TEMPLATE__BASE_ELEMENT:
 				setBase_Element((Element)newValue);
 				return;
-			case FCMPackage.TEMPLATE__KIND:
-				setKind((TemplateKind)newValue);
-				return;
-			case FCMPackage.TEMPLATE__ACTUAL_CHOICE:
-				setActualChoice((ActualChoice)newValue);
+			case FCMPackage.TEMPLATE__HELPER:
+				setHelper((BindingHelper)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -277,17 +196,11 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FCMPackage.TEMPLATE__TEMPLATE_PARAMS:
-				getTemplateParams().clear();
-				return;
 			case FCMPackage.TEMPLATE__BASE_ELEMENT:
 				setBase_Element((Element)null);
 				return;
-			case FCMPackage.TEMPLATE__KIND:
-				setKind(KIND_EDEFAULT);
-				return;
-			case FCMPackage.TEMPLATE__ACTUAL_CHOICE:
-				setActualChoice(ACTUAL_CHOICE_EDEFAULT);
+			case FCMPackage.TEMPLATE__HELPER:
+				setHelper((BindingHelper)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -301,34 +214,12 @@ public class TemplateImpl extends EObjectImpl implements Template {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FCMPackage.TEMPLATE__TEMPLATE_PARAMS:
-				return templateParams != null && !templateParams.isEmpty();
 			case FCMPackage.TEMPLATE__BASE_ELEMENT:
 				return base_Element != null;
-			case FCMPackage.TEMPLATE__KIND:
-				return kind != KIND_EDEFAULT;
-			case FCMPackage.TEMPLATE__ACTUAL_CHOICE:
-				return actualChoice != ACTUAL_CHOICE_EDEFAULT;
+			case FCMPackage.TEMPLATE__HELPER:
+				return helper != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (kind: "); //$NON-NLS-1$
-		result.append(kind);
-		result.append(", actualChoice: "); //$NON-NLS-1$
-		result.append(actualChoice);
-		result.append(')');
-		return result.toString();
 	}
 
 } //TemplateImpl

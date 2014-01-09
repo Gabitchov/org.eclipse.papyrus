@@ -52,6 +52,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class Utils {
 
+	public static final String QUOTE = "\""; //$NON-NLS-1$
+
 	/**
 	 * Retrieve an element from a list of named elements via its name
 	 * 
@@ -494,6 +496,21 @@ public class Utils {
 					contRuleList.add(rule);
 				}
 			}
+		}
+	}
+
+	/**
+	 * Put quotes around a string, unless string already starts with a quote.
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String quoteString(String str) {
+		if (str.startsWith(QUOTE)) {
+			return str;
+		}
+		else {
+			return QUOTE + str + QUOTE;
 		}
 	}
 }

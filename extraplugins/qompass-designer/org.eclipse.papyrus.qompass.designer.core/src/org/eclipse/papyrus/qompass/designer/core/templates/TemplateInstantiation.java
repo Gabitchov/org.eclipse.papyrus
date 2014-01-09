@@ -15,8 +15,8 @@
 package org.eclipse.papyrus.qompass.designer.core.templates;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.FCM.BindingHelper;
 import org.eclipse.papyrus.FCM.Template;
-import org.eclipse.papyrus.FCM.TemplateKind;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
@@ -54,6 +54,13 @@ public class TemplateInstantiation {
 		this(copy, binding, null);
 	}
 
+	/**
+	 * 
+	 * @param copy_ copier
+	 * @param binding UML template binding
+	 * @param args currently unused
+	 * @throws TransformationException
+	 */
 	public TemplateInstantiation(final Copy copy_, final TemplateBinding binding, Object args[]) throws TransformationException {
 		if(binding == null) {
 			// user should never see this exception
@@ -124,6 +131,7 @@ public class TemplateInstantiation {
 		if(!copy.postCopyListeners.contains(FixTemplateSync.getInstance())) {
 			copy.postCopyListeners.add(FixTemplateSync.getInstance());
 		}
+		
 		// TODO: programming language specific code!!
 		InstantiateCppInclude.getInstance().init(binding, args);
 		if(!copy.postCopyListeners.contains(InstantiateCppInclude.getInstance())) {
@@ -137,7 +145,6 @@ public class TemplateInstantiation {
 	 * TODO: A more efficient way would be to cache the copy function and only re-sync, if a new model has been loaded.
 	 *   On the other hand, the bound package is normally not very large
 	 *   
-	 * @param copy A copy map
 	 * @param sourcePkg The package template (source)
 	 * @param targetPkg The bound package (target)
 	 */
@@ -196,10 +203,10 @@ public class TemplateInstantiation {
 		Package boundPackage = (Package)binding.getBoundElement();
 		EList<Namespace> path = TemplateUtils.relativePathWithMerge(namedElement, packageTemplate);
 		Template template = UMLUtil.getStereotypeApplication(namedElement, Template.class);
-		TemplateKind templateKind = (template != null) ?
-			templateKind = template.getKind() :
-			TemplateKind.PASS_FORMAL;
-
+		BindingHelper helper = (template != null) ?
+			template.getHelper() : null;
+	
+		/*
 		if((templateKind == TemplateKind.ACCUMULATE) || (templateKind == TemplateKind.LATE_EVALUATION)) {
 			// TODO: not very clean yet
 			path = TemplateUtils.relativePathWithMerge(namedElement, copy.source);
@@ -210,6 +217,7 @@ public class TemplateInstantiation {
 			boundPackage = copy.target; // CreationUtils.getAndCreate
 										// (sat.target, "accumulate");
 		}
+		*/
 
 		if(path != null) {
 			// register owning package template (template can be defined in
@@ -248,19 +256,19 @@ public class TemplateInstantiation {
 		// bound package.
 
 		NamedElement existingMember = (NamedElement)copy.get(namedElement);
+		/*
 		if((existingMember != null) && (templateKind != TemplateKind.ACCUMULATE)) {
 			// element is already existing (and thus bound), nothing to do
 			// additional check, whether the ACCUMULATE information is unset)
 			// however: if the element is a package, existence is not sufficient
 			// since it might have been created via getAndCreate above
-			/*
-			 * if(namedElement instanceof Package) {
-			 * bindPackage((Package)namedElement);
-			 * }
-			 */
+			
+			//if(namedElement instanceof Package) {
+			//	bindPackage((Package)namedElement);
+			//}
 			return (T)existingMember;
 		}
-
+		*/
 		if(existingMember == null) {
 			FilterTemplate.getInstance().setActive(false);
 			T copiedElement = copy.getCopy(namedElement);
@@ -268,6 +276,7 @@ public class TemplateInstantiation {
 			copy.setPackageTemplate(null, null);
 			return copiedElement;
 		}
+
 		return (T)existingMember;
 	}
 

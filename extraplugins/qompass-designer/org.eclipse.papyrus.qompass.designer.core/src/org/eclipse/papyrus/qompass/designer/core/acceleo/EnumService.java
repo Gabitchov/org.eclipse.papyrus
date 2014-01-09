@@ -17,6 +17,7 @@ package org.eclipse.papyrus.qompass.designer.core.acceleo;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -68,7 +69,7 @@ public class EnumService {
 	}
 
 	public static String quoteLiteral(Element dummy, String enumName, String literal) {
-		return "\"" + literal(enumName, literal) + "\""; //$NON-NLS-1$//$NON-NLS-2$
+		return Utils.quoteString(literal(enumName, literal));
 	}
 
 	/**

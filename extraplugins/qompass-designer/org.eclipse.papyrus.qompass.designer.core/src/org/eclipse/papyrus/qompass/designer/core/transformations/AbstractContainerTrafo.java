@@ -59,7 +59,7 @@ public abstract class AbstractContainerTrafo {
 	 * @param context
 	 *        Additional information about the container that is used by instance configurators
 	 */
-	public abstract InstanceSpecification createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context)
+	public abstract InstanceSpecification createContainerInstance(Class tmComponent, InstanceSpecification tmIS)
 		throws TransformationException;
 
 	/**

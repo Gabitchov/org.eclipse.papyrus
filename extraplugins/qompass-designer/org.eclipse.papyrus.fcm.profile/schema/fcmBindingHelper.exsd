@@ -3,10 +3,10 @@
 <schema targetNamespace="org.eclipse.papyrus.fcm.profile" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.fcm.profile" id="fcmPortMappingRule" name="Port Mapping Rule"/>
+         <meta.schema plugin="org.eclipse.papyrus.fcm.profile" id="fcmBindingHelper" name="Binding Helper"/>
       </appInfo>
       <documentation>
-         A port mapping rule, i.e. a rule that maps port kinds to a provider and/or required interface
+         [Enter description of this extension point.]
       </documentation>
    </annotation>
 
@@ -39,7 +39,7 @@
 
    <element name="client">
       <complexType>
-         <attribute name="portKindName" type="string" use="required">
+         <attribute name="bindingHelperName" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -52,7 +52,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":FCM.util.IMappingRule"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.FCM.util.IBindingHelper"/>
                </appInfo>
             </annotation>
          </attribute>

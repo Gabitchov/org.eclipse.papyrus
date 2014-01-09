@@ -238,8 +238,7 @@ public class TemplateUtils {
 	 *         parameter, or null if the 2nd parameter does not correspond to a
 	 *         formal parameter of the binding.
 	 */
-	public static Classifier getActualFromBinding(
-		TemplateBinding binding, Type formal) {
+	public static Classifier getActualFromBinding(TemplateBinding binding, Type formal) {
 		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 			ParameterableElement pe = substitution.getFormal().getParameteredElement();
 			if(pe == formal) {
@@ -251,8 +250,7 @@ public class TemplateUtils {
 		return null;
 	}
 
-	public static Classifier getActualFromBinding(
-		TemplateBinding binding, String formalName) {
+	public static Classifier getActualFromBinding(TemplateBinding binding, String formalName) {
 		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 			ParameterableElement pe = substitution.getFormal().getParameteredElement();
 			Log.log(Status.INFO, Log.TEMPLATE_INSTANTIATION, String.format(
@@ -265,6 +263,22 @@ public class TemplateUtils {
 		return null;
 	}
 
+	/**
+	 * Get the first actual from the binding.
+	 * 
+	 * @param binding the template binding
+	 * @return the first actual.
+	 */
+	public static Classifier getFirstActualFromBinding(TemplateBinding binding) {
+		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
+			ParameterableElement pe = substitution.getFormal().getParameteredElement();
+			Log.log(Status.INFO, Log.TEMPLATE_INSTANTIATION, String.format(
+					Messages.TemplateUtils_InfoGetActualFrom, pe));
+			return (Classifier)substitution.getActual();
+		}
+		return null;
+	}
+	
 	/**
 	 * Return a sequence of namespaces for a given element, starting from the "bottom"
 	 * one, i.e. the one in which the element is contained. It will end before the
