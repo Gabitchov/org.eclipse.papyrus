@@ -24,8 +24,8 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusResizableShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.commands.FixPortLocationCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.UpdatePortLocationCommand;
 
@@ -38,7 +38,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.UpdatePortLocationCommand
  * the kind of attached IBorderItem and that would only rely on its IBorderItemLocator.
  * </pre>
  */
-public class EncapsulatedClassifierResizableShapeEditPolicy extends ResizableShapeEditPolicy {
+public class EncapsulatedClassifierResizableShapeEditPolicy extends PapyrusResizableShapeEditPolicy {
 
 	/**
 	 * <pre>
@@ -54,8 +54,8 @@ public class EncapsulatedClassifierResizableShapeEditPolicy extends ResizableSha
 	protected Command getResizeCommand(ChangeBoundsRequest request) {
 		
 		// Prepare command to move the affixed children as well (and an optional fix command)
-		CompoundCommand updatePortLocationsCommand = new CompoundCommand("Update border items location");
-		CompoundCommand fixPortLocationsCommand = new CompoundCommand("Fix border items location");
+		CompoundCommand updatePortLocationsCommand = new CompoundCommand("Update border items location"); //$NON-NLS-1$
+		CompoundCommand fixPortLocationsCommand = new CompoundCommand("Fix border items location"); //$NON-NLS-1$
 		
 		Iterator<?> it = getHost().getChildren().iterator();
 		while(it.hasNext()) {
@@ -74,7 +74,7 @@ public class EncapsulatedClassifierResizableShapeEditPolicy extends ResizableSha
 				fixPortLocationsCommand.add(new ICommandProxy(fixPortLocationCommand));
 			}
 					
-			ICommand updatePortLocationCommand = new UpdatePortLocationCommand(editingDomain, (GraphicalEditPart) getHost(), borderItem, borderItem.getBorderItemLocator().getCurrentSideOfParent());
+			ICommand updatePortLocationCommand = new UpdatePortLocationCommand(editingDomain, request, (GraphicalEditPart)getHost(), borderItem, borderItem.getBorderItemLocator().getCurrentSideOfParent());
 			if (updatePortLocationCommand.canExecute()) {
 				updatePortLocationsCommand.add(new ICommandProxy(updatePortLocationCommand));
 			}
@@ -82,7 +82,7 @@ public class EncapsulatedClassifierResizableShapeEditPolicy extends ResizableSha
 		
 		
 		// Create the complete resize command
-		CompoundCommand resizeCommand = new CompoundCommand("Resize command");
+		CompoundCommand resizeCommand = new CompoundCommand("Resize command"); //$NON-NLS-1$
 	
 		// Add command to fix border item locations.
 		// The role of this command is to make sure that the Port is correctly located (here this means 
