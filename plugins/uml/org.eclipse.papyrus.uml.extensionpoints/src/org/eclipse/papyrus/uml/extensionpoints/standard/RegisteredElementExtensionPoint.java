@@ -50,7 +50,7 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Creates a new AbstractExtensionPoint.
-	 * 
+	 *
 	 * @param configElt
 	 *        the configuration element for the extension point
 	 * @param ordinal
@@ -71,7 +71,7 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Returns the given value for the specified element
-	 * 
+	 *
 	 * @param defaultValue
 	 *        value given to the property if it is not already set
 	 * @param isRequired
@@ -82,8 +82,7 @@ public abstract class RegisteredElementExtensionPoint {
 	 *        name of the property
 	 * @return the value of the given property, or the specified defaultValue
 	 */
-	protected static String getAttribute(IConfigurationElement configElt, String name, String defaultValue,
-			boolean isRequired) {
+	protected static String getAttribute(IConfigurationElement configElt, String name, String defaultValue, boolean isRequired) {
 		String value = configElt.getAttribute(name);
 
 		if(value != null) {
@@ -101,13 +100,13 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Returns the icon associated to the given configuration element
-	 * 
+	 *
 	 * @return the icon which path is in extension
 	 */
 	protected Image getImage(String iconPath, IConfigurationElement configElement) {
 
 		// no image associated to this plug-in
-		if(iconPath == null) {
+		if(iconPath == null || "".equals(iconPath)) { //$NON-NLS-1$
 			return null;
 		}
 
@@ -125,7 +124,7 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Get the image associated to the registered element
-	 * 
+	 *
 	 * @return an icon for the transformation or <code>null</code> if no icon is associated to the
 	 *         profile
 	 */
@@ -135,7 +134,7 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Returns the name of the extension point
-	 * 
+	 *
 	 * @return the name of the extension point
 	 */
 	public String getName() {
@@ -144,7 +143,7 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Sets the name of the extension point
-	 * 
+	 *
 	 * @param name
 	 *        the name to set
 	 */
@@ -154,7 +153,7 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Returns the description of the extension point
-	 * 
+	 *
 	 * @return the description of the extension point
 	 */
 	public String getDescription() {
@@ -163,7 +162,7 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Sets the description of the extension point
-	 * 
+	 *
 	 * @param description
 	 *        the description to set
 	 */
@@ -173,7 +172,7 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Returns the provider of the extension point
-	 * 
+	 *
 	 * @return the provider of the extension point
 	 */
 	public String getProvider() {
@@ -182,7 +181,7 @@ public abstract class RegisteredElementExtensionPoint {
 
 	/**
 	 * Sets the provider of the extension point
-	 * 
+	 *
 	 * @param provider
 	 *        the provider to set
 	 */
