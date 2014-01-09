@@ -18,16 +18,16 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gef.tools.DeselectAllTracker;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.tools.RubberbandDragTracker;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.XYLayoutShapeCompartmentEditPart;
 
 /**
  * this is an abstract editpart used to allow double click on XY layout compartment
  * 
  */
 @SuppressWarnings("restriction")
-public abstract class AbstractPackageableElementCompartmentEditPart extends ShapeCompartmentEditPart {
+public abstract class AbstractPackageableElementCompartmentEditPart extends XYLayoutShapeCompartmentEditPart {
 
 	public AbstractPackageableElementCompartmentEditPart(View view) {
 		super(view);
