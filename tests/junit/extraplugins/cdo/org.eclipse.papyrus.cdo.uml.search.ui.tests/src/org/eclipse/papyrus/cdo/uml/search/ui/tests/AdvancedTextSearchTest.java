@@ -46,7 +46,7 @@ public class AdvancedTextSearchTest extends AbstractPapyrusCDOSearchTest {
 		ParticipantTypeElement e = new ParticipantTypeElement(UMLPackage.Literals.STATE);
 		ParticipantTypeAttribute a = new ParticipantTypeAttribute(UMLPackage.Literals.NAMED_ELEMENT__NAME, e);
 
-		QueryInfo info = new QueryInfo("close", false, false, Arrays.asList(e, a), Collections.singleton(getTestFolderURI()));
+		QueryInfo info = new QueryInfo("close", false, false, Arrays.asList(e, a), Collections.singleton(getTestFolderURI()), false);
 
 		AbstractPapyrusQuery query = provider.createAdvancedSearchQuery(info);
 		query.run(new NullProgressMonitor());
@@ -65,7 +65,7 @@ public class AdvancedTextSearchTest extends AbstractPapyrusCDOSearchTest {
 		ParticipantTypeElement e2 = new ParticipantTypeElement(UMLPackage.Literals.ACTION);
 		ParticipantTypeAttribute a2 = new ParticipantTypeAttribute(UMLPackage.Literals.NAMED_ELEMENT__NAME, e2);
 
-		QueryInfo info = new QueryInfo("close", false, false, Arrays.asList(e1, e2, a1, a2), Collections.singleton(getTestFolderURI()));
+		QueryInfo info = new QueryInfo("close", false, false, Arrays.asList(e1, e2, a1, a2), Collections.singleton(getTestFolderURI()), false);
 
 		AbstractPapyrusQuery query = provider.createAdvancedSearchQuery(info);
 		query.run(new NullProgressMonitor());
@@ -82,7 +82,7 @@ public class AdvancedTextSearchTest extends AbstractPapyrusCDOSearchTest {
 		ParticipantTypeElement e = new ParticipantTypeElement(UMLPackage.Literals.PROPERTY);
 		ParticipantTypeAttribute a = new ParticipantTypeAttribute(UMLPackage.Literals.NAMED_ELEMENT__VISIBILITY, e);
 
-		QueryInfo info = new QueryInfo("public", true, false, Arrays.asList(e, a), Collections.singleton(getTestFolderURI()));
+		QueryInfo info = new QueryInfo("public", true, false, Arrays.asList(e, a), Collections.singleton(getTestFolderURI()), false);
 
 		AbstractPapyrusQuery query = provider.createAdvancedSearchQuery(info);
 		query.run(new NullProgressMonitor());
@@ -97,7 +97,7 @@ public class AdvancedTextSearchTest extends AbstractPapyrusCDOSearchTest {
 
 		ParticipantTypeElement e = new ParticipantTypeElement(UMLPackage.Literals.NAMED_ELEMENT);
 
-		QueryInfo info = new QueryInfo("bug", false, false, Collections.singleton(e), Collections.singleton(getTestFolderURI()));
+		QueryInfo info = new QueryInfo("bug", false, false, Collections.singleton(e), Collections.singleton(getTestFolderURI()), false);
 
 		AbstractPapyrusQuery query = provider.createAdvancedSearchQuery(info);
 		query.run(new NullProgressMonitor());
