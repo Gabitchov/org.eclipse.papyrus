@@ -46,9 +46,14 @@ import org.eclipse.ui.IEditorPart;
 public abstract class PapyrusEdgeFigure extends PolylineConnectionEx {
 
 	/**
-	 * Diameter to use for the bendpoitns
+	 * Diameter to use for the bendpoints
 	 */
 	private int bendpointDiameter;
+
+	/**
+	 * Data of the dash style
+	 */
+	private int[] lineDashData;
 
 	/**
 	 * 
@@ -58,8 +63,15 @@ public abstract class PapyrusEdgeFigure extends PolylineConnectionEx {
 	public PapyrusEdgeFigure() {
 		super();
 		setBendPointDiameter(7);
+		lineDashData = null;
 	}
 
+	/**
+	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx#setLineDash(int[])
+	 */
+	public void setLineDash(int[] data) {
+		lineDashData = data;
+	}
 
 	/**
 	 * We override this method to circle on bendpoints when a segment of the link is shared with another link of the same kind
@@ -69,6 +81,10 @@ public abstract class PapyrusEdgeFigure extends PolylineConnectionEx {
 	 * @param g
 	 */
 	protected void outlineShape(Graphics g) {
+		g.setLineStyle(getLineStyle());
+		if (getLineStyle() == Graphics.LINE_DASH) {
+			g.setLineDash(lineDashData);
+		}
 		super.outlineShape(g);
 		drawConnectionPoint(g);
 	}
