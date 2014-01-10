@@ -192,4 +192,14 @@
          type="6034">
    </mapping>
 </extension>
+<extension
+      point="org.eclipse.core.runtime.adapters">
+   <factory
+         adaptableType="org.eclipse.gmf.runtime.notation.View"
+         class="org.eclipse.papyrus.infra.gmfdiag.common.providers.ViewLabelMaskManagerAdapterFactory">
+      <adapter
+            type="org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider">
+      </adapter>
+   </factory>
+</extension>
 </plugin>

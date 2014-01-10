@@ -9,22 +9,29 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.provider;
+package org.eclipse.papyrus.infra.emf.appearance.style;
+
+import java.util.Map;
 
 /**
- * An element which supports Papyrus custom styles (elementIcon,
- * qualifiedNameDepth, shadow).
+ * An interface to retrieve the label masks associated to an element
  * 
  * @author Camille Letavernier
+ * 
  */
-public interface CustomStyle {
+public interface ILabelMaskProvider {
 
-	public boolean showElementIcon();
+	/**
+	 * Returns the list of masks for this provider
+	 * 
+	 * @return
+	 */
+	public Map<Integer, String> getMasks();
 
-	public int getQualifiedNameDepth();
-
-	public boolean showShadow();
-	
-	public int getLabelDisplay();
-	
+	/**
+	 * Returns the default mask value for this provider
+	 * 
+	 * @return
+	 */
+	public int getDefaultValue();
 }

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * An IObservableValue for custom Papyrus properties.
  * This enables to edit a few preferences-based values.
- * 
+ *
  * @author Camille Letavernier
  */
 public class ElementCustomizationObservableValue extends AbstractUMLAggregatedObservableValue implements CommandBasedObservableValue, AggregatedObservable {
@@ -49,9 +49,9 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 	private Element semanticElement;
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param sourceElement
 	 *        The selected EditPart
 	 * @param property
@@ -90,7 +90,7 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 	protected Object doGetValue() {
 		switch(property) {
 		case LABEL_CUSTOMIZATION:
-			return getEditPolicy().getCurrentDisplayValue();
+			return AppearanceHelper.getLabelDisplay(notationElement);
 		case ELEMENT_ICON:
 			return AppearanceHelper.showElementIcon(notationElement);
 		case SHADOW:
@@ -103,7 +103,7 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the {@link IMaskManagedLabelEditPolicy#MASK_MANAGED_LABEL_EDIT_POLICY} edit policy
 	 */
 	protected IMaskManagedLabelEditPolicy getEditPolicy() {
@@ -159,9 +159,9 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 
 	/**
 	 * The list of valid properties for {@link ElementCustomizationObservableValue}
-	 * 
+	 *
 	 * @author Camille Letavernier
-	 * 
+	 *
 	 */
 	public enum Property {
 		/**

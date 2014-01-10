@@ -20,7 +20,8 @@ import java.util.Set;
 
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
+import org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.uml2.uml.Property;
@@ -28,7 +29,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * Helper for labels displaying {@link Property}
  */
-public class PropertyLabelHelper extends StereotypedElementLabelHelper {
+public class PropertyLabelHelper extends StereotypedElementLabelHelper implements ILabelMaskProvider {
 
 	// Einstance
 	private static PropertyLabelHelper labelHelper;
@@ -65,17 +66,28 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 *         ("default" display given by preferences or specific display given
 	 *         by eAnnotation).
 	 */
+	@Override
 	protected String elementLabel(GraphicalEditPart editPart) {
-		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
+		//		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
+		//
+		//		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		//		if(policy != null) {
+		//			displayValue = policy.getCurrentDisplayValue();
+		//		}
+		//		Property elem = getUMLElement(editPart);
+		//		if(elem != null) {
+		//			return PropertyUtil.getCustomLabel(elem, displayValue);
+		//		}
+		//		return "";
+		Object model = editPart.getModel();
+		if(model instanceof View) {
+			Property element = getUMLElement(editPart);
+			if(element != null) {
+				int displayValue = AppearanceHelper.getLabelDisplay((View)model);
+				return PropertyUtil.getCustomLabel(element, displayValue);
+			}
+		}
 
-		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if(policy != null) {
-			displayValue = policy.getCurrentDisplayValue();
-		}
-		Property elem = getUMLElement(editPart);
-		if(elem != null) {
-			return PropertyUtil.getCustomLabel(elem, displayValue);
-		}
 		return "";
 	}
 
@@ -118,6 +130,7 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Property getUMLElement(GraphicalEditPart editPart) {
 		if(editPart.getModel() instanceof View) {
 			View view = (View)editPart.getModel();
@@ -126,6 +139,10 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 			}
 		}
 		return null;
+	}
+
+	public int getDefaultValue() {
+		return ICustomAppearence.DEFAULT_UML_PROPERTY;
 	}
 
 }

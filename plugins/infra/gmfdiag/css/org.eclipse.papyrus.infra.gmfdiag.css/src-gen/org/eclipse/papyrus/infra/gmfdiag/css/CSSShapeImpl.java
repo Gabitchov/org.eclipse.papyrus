@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -312,7 +312,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 
 	////////////////////////////////////////////////
 	//	Implements a setter for each CSS property //
-	////////////////////////////////////////////////	
+	////////////////////////////////////////////////
 
 	@Override
 	public void setVisible(boolean value) {
@@ -478,6 +478,10 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 
 	public boolean showShadow() {
 		return getCustomStyle().showShadow();
+	}
+
+	public int getLabelDisplay() {
+		return getCustomStyle().getLabelDisplay();
 	}
 
 	//////////////////////////////////

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndPropertyLabelHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * Helper for labels displaying {@link Property}
  */
-public class AssociationEndTargetLabelHelper extends PropertyLabelHelper {
+public class AssociationEndTargetLabelHelper extends AssociationEndPropertyLabelHelper {
 
 	private static AssociationEndTargetLabelHelper labelHelper;
 

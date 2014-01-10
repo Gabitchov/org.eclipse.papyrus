@@ -608,4 +608,21 @@
       </Priority>
    </editpolicyProvider>
 </extension>
+<extension
+      point="org.eclipse.core.runtime.adapters">
+   <factory
+         adaptableType="org.eclipse.uml2.uml.Property"
+         class="org.eclipse.papyrus.uml.diagram.common.providers.PropertyLabelMaskProviderAdapterFactory">
+      <adapter
+            type="org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider">
+      </adapter>
+   </factory>
+   <factory
+         adaptableType="org.eclipse.uml2.uml.Operation"
+         class="org.eclipse.papyrus.uml.diagram.common.providers.OperationLabelMaskProviderAdapterFactory">
+      <adapter
+            type="org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider">
+      </adapter>
+   </factory>
++</extension>
 </plugin>

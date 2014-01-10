@@ -20,9 +20,11 @@ import org.eclipse.papyrus.infra.emf.appearance.style.AppearanceStyleProvider;
 
 
 public class AppearanceHelper {
-
+	
 	public static String EXTENSION_ID = Activator.PLUGIN_ID + ".styleProvider";
-
+	
+	private static AppearanceStyleProvider styleProvider = findStyleProvider();
+	
 	public static boolean showElementIcon(EModelElement modelElement) {
 		return styleProvider.showElementIcon(modelElement);
 	}
@@ -33,6 +35,10 @@ public class AppearanceHelper {
 
 	public static boolean showShadow(EModelElement modelElement) {
 		return styleProvider.showShadow(modelElement);
+	}
+	
+	public static int getLabelDisplay(EModelElement modelElement){
+		return styleProvider.getLabelDisplay(modelElement);
 	}
 
 	private static AppearanceStyleProvider findStyleProvider() {
@@ -57,5 +63,6 @@ public class AppearanceHelper {
 		return provider;
 	}
 
-	private static AppearanceStyleProvider styleProvider = findStyleProvider();
+	
+	
 }
