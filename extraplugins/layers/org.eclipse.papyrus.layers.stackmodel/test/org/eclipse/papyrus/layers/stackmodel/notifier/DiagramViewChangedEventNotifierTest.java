@@ -26,6 +26,7 @@ import org.eclipse.papyrus.layers.stackmodel.util.TriggeredEventTraces.Triggered
 import org.eclipse.uml2.uml.Class;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -66,6 +67,7 @@ public class DiagramViewChangedEventNotifierTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.notifier.DiagramViewChangedEventNotifier#addEventListener(org.eclipse.papyrus.layers.stackmodel.notifier.IDiagramViewEventListener)}.
 	 */
 	@Test
+	@Ignore
 	public void testAddEventListener() {
 		fail("Not yet implemented");
 	}
@@ -74,6 +76,7 @@ public class DiagramViewChangedEventNotifierTest {
 	 * Test method for {@link org.eclipse.papyrus.layers.stackmodel.notifier.DiagramViewChangedEventNotifier#removeEventListener(org.eclipse.papyrus.layers.stackmodel.notifier.IDiagramViewEventListener)}.
 	 */
 	@Test
+	@Ignore
 	public void testRemoveEventListener() {
 		fail("Not yet implemented");
 	}

@@ -33,6 +33,7 @@ import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getDiagram <em>Diagram</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -146,6 +147,36 @@ public interface LayersStack extends EObject {
 	void setDiagram(Diagram value);
 
 	/**
+	 * Returns the value of the '<em><b>State</b></em>' attribute.
+	 * The default value is <code>"detached"</code>.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.layers.stackmodel.layers.LayerState}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>State</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State</em>' attribute.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerState
+	 * @see #setState(LayerState)
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage#getLayersStack_State()
+	 * @model default="detached" unique="false" required="true" ordered="false"
+	 * @generated
+	 */
+	LayerState getState();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getState <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>State</em>' attribute.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerState
+	 * @see #getState()
+	 * @generated
+	 */
+	void setState(LayerState value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model dataType="org.eclipse.papyrus.layers.stackmodel.layers.ComputePropertyValueCommand" required="true" ordered="false" exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException" viewRequired="true" viewOrdered="false" propertyRequired="true" propertyOrdered="false"
@@ -168,6 +199,83 @@ public interface LayersStack extends EObject {
 	 * @generated
 	 */
 	EList<ComputePropertyValueCommand> getViewsComputePropertyValueCommand(EList<View> view, Property property) throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void startAfterCreation();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Start the LayersStack after a reloading by EMF. This method should be explicitly called after a reloading.
+	 * The method usually start the layer behaviors.
+	 * <!-- end-model-doc -->
+	 * @model exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException"
+	 * @generated
+	 */
+	void attachLayers() throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Try to attach this Layer. If successful, the state go to "attached". Otherwise, an exception is thrown.
+	 * A Layer can be attached if its required attributes are set.
+	 * Required attributes:
+	 * <ul>
+	 *   <li>application</li>
+	 *   <li>owningLayerStack</li>
+	 *   <li>parent container</li>
+	 *   <li></li>
+	 * </ul>
+	 * Just after enterring in "attached" state, the enterAttachedState() method is called.
+	 * If this Layer is successfully attached, then attach subLayers.
+	 * <!-- end-model-doc -->
+	 * @model exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException"
+	 * @generated
+	 */
+	void attach() throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Detach the Layer. The state go to "detached".
+	 * Associated behavior are stopped.
+	 * <!-- end-model-doc -->
+	 * @model exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException"
+	 * @generated
+	 */
+	void detach() throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This method is called by the class immediately after entering in attached state.
+	 * The methodcan be used to start the layer behaviors.
+	 * <!-- end-model-doc -->
+	 * @model exceptions="org.eclipse.papyrus.layers.stackmodel.layers.LayersException"
+	 * @generated
+	 */
+	void enterAttachedState() throws LayersException;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This method is called just before this Layer leave the attached state.
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	void exitAttachedState();
 
 	/**
 	 * <!-- begin-user-doc -->

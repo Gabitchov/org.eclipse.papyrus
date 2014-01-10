@@ -175,6 +175,7 @@ public abstract class AbstractLayerOperatorImpl extends LayerOperatorImpl implem
 	 * Nothing is done if one of the attribute is not set.
 	 * Nothing is done if the descriptor can not be found (maybe a log is issue).
 	 * <!-- begin-user-doc -->
+	 * Not used ?
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated NOT

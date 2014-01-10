@@ -34,6 +34,12 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * Start the LayesStack.
+ * This method should be called after the LayersStack creation. It is not called from the constructor, because 
+ * the initialisation can differ if the LayersStack is created by the user or by EMF after a reloading.
+ * 
+ * <!-- end-model-doc -->
  * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersFactory
  * @model kind="package"
  * @generated
@@ -224,13 +230,22 @@ public interface LayersPackage extends EPackage {
 	int LAYERS_STACK__DIAGRAM = 3;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_STACK__STATE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Stack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK_FEATURE_COUNT = 4;
+	int LAYERS_STACK_FEATURE_COUNT = 5;
 
 	/**
 	 * The operation id for the '<em>Get Compute Property Value Command</em>' operation.
@@ -260,13 +275,67 @@ public interface LayersPackage extends EPackage {
 	int LAYERS_STACK___GET_VIEWS_COMPUTE_PROPERTY_VALUE_COMMAND__ELIST_PROPERTY = 2;
 
 	/**
+	 * The operation id for the '<em>Start After Creation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_STACK___START_AFTER_CREATION = 3;
+
+	/**
+	 * The operation id for the '<em>Attach Layers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_STACK___ATTACH_LAYERS = 4;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_STACK___ATTACH = 5;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_STACK___DETACH = 6;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_STACK___ENTER_ATTACHED_STATE = 7;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_STACK___EXIT_ATTACHED_STATE = 8;
+
+	/**
 	 * The number of operations of the '<em>Stack</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK_OPERATION_COUNT = 3;
+	int LAYERS_STACK_OPERATION_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.ApplicationDependantElementImpl <em>Application Dependant Element</em>}' class.
@@ -369,13 +438,22 @@ public interface LayersPackage extends EPackage {
 	int LAYER_EXPRESSION__OWNING_LAYERS_STACK = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_EXPRESSION__STATE = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Layer Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_EXPRESSION_FEATURE_COUNT = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 6;
+	int LAYER_EXPRESSION_FEATURE_COUNT = APPLICATION_DEPENDANT_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Get Compute Property Value Command</em>' operation.
@@ -405,13 +483,13 @@ public interface LayersPackage extends EPackage {
 	int LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 3;
+	int LAYER_EXPRESSION___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -423,13 +501,49 @@ public interface LayersPackage extends EPackage {
 	int LAYER_EXPRESSION___GET_LAYERS_STACK = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_EXPRESSION___ENTER_ATTACHED_STATE = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_EXPRESSION___ATTACH = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 6;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_EXPRESSION___DETACH = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_EXPRESSION___EXIT_ATTACHED_STATE = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 8;
+
+	/**
 	 * The number of operations of the '<em>Layer Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_EXPRESSION_OPERATION_COUNT = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 5;
+	int LAYER_EXPRESSION_OPERATION_COUNT = APPLICATION_DEPENDANT_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerApplicationFactoryImpl <em>Layer Application Factory</em>}' class.
@@ -2041,6 +2155,15 @@ public interface LayersPackage extends EPackage {
 	int LAYER_OPERATOR__OWNING_LAYERS_STACK = LAYER_EXPRESSION__OWNING_LAYERS_STACK;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR__STATE = LAYER_EXPRESSION__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2086,13 +2209,13 @@ public interface LayersPackage extends EPackage {
 	int LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK;
+	int LAYER_OPERATOR___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = LAYER_EXPRESSION___ATTACH_TO_LAYERS_STACK__LAYERSSTACK;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -2102,6 +2225,42 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAYER_OPERATOR___GET_LAYERS_STACK = LAYER_EXPRESSION___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR___ENTER_ATTACHED_STATE = LAYER_EXPRESSION___ENTER_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR___ATTACH = LAYER_EXPRESSION___ATTACH;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR___DETACH = LAYER_EXPRESSION___DETACH;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR___EXIT_ATTACHED_STATE = LAYER_EXPRESSION___EXIT_ATTACHED_STATE;
 
 	/**
 	 * The number of operations of the '<em>Layer Operator</em>' class.
@@ -2176,6 +2335,15 @@ public interface LayersPackage extends EPackage {
 	int ABSTRACT_LAYER_OPERATOR__OWNING_LAYERS_STACK = LAYER_OPERATOR__OWNING_LAYERS_STACK;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR__STATE = LAYER_OPERATOR__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2239,13 +2407,13 @@ public interface LayersPackage extends EPackage {
 	int ABSTRACT_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK;
+	int ABSTRACT_LAYER_OPERATOR___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = LAYER_OPERATOR___ATTACH_TO_LAYERS_STACK__LAYERSSTACK;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -2255,6 +2423,42 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_LAYER_OPERATOR___GET_LAYERS_STACK = LAYER_OPERATOR___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR___ENTER_ATTACHED_STATE = LAYER_OPERATOR___ENTER_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR___ATTACH = LAYER_OPERATOR___ATTACH;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR___DETACH = LAYER_OPERATOR___DETACH;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR___EXIT_ATTACHED_STATE = LAYER_OPERATOR___EXIT_ATTACHED_STATE;
 
 	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
@@ -2383,6 +2587,15 @@ public interface LayersPackage extends EPackage {
 	int ABSTRACT_LAYER__OWNING_LAYERS_STACK = LAYER_EXPRESSION__OWNING_LAYERS_STACK;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER__STATE = LAYER_EXPRESSION__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2464,13 +2677,13 @@ public interface LayersPackage extends EPackage {
 	int ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_LAYER___INIT_LAYER__LAYERSSTACK = LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK;
+	int ABSTRACT_LAYER___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = LAYER_EXPRESSION___ATTACH_TO_LAYERS_STACK__LAYERSSTACK;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -2480,6 +2693,42 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_LAYER___GET_LAYERS_STACK = LAYER_EXPRESSION___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER___ENTER_ATTACHED_STATE = LAYER_EXPRESSION___ENTER_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER___ATTACH = LAYER_EXPRESSION___ATTACH;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER___DETACH = LAYER_EXPRESSION___DETACH;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER___EXIT_ATTACHED_STATE = LAYER_EXPRESSION___EXIT_ATTACHED_STATE;
 
 	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
@@ -3049,6 +3298,15 @@ public interface LayersPackage extends EPackage {
 	int TOP_LAYER_OPERATOR__OWNING_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR__OWNING_LAYERS_STACK;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR__STATE = ABSTRACT_LAYER_OPERATOR__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3112,13 +3370,13 @@ public interface LayersPackage extends EPackage {
 	int TOP_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOP_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK;
+	int TOP_LAYER_OPERATOR___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = ABSTRACT_LAYER_OPERATOR___ATTACH_TO_LAYERS_STACK__LAYERSSTACK;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -3128,6 +3386,42 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int TOP_LAYER_OPERATOR___GET_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR___ENTER_ATTACHED_STATE = ABSTRACT_LAYER_OPERATOR___ENTER_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR___ATTACH = ABSTRACT_LAYER_OPERATOR___ATTACH;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR___DETACH = ABSTRACT_LAYER_OPERATOR___DETACH;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR___EXIT_ATTACHED_STATE = ABSTRACT_LAYER_OPERATOR___EXIT_ATTACHED_STATE;
 
 	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
@@ -3220,6 +3514,15 @@ public interface LayersPackage extends EPackage {
 	int STACKED_LAYER_OPERATOR__OWNING_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR__OWNING_LAYERS_STACK;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR__STATE = ABSTRACT_LAYER_OPERATOR__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3283,13 +3586,13 @@ public interface LayersPackage extends EPackage {
 	int STACKED_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STACKED_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK;
+	int STACKED_LAYER_OPERATOR___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = ABSTRACT_LAYER_OPERATOR___ATTACH_TO_LAYERS_STACK__LAYERSSTACK;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -3299,6 +3602,42 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int STACKED_LAYER_OPERATOR___GET_LAYERS_STACK = ABSTRACT_LAYER_OPERATOR___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR___ENTER_ATTACHED_STATE = ABSTRACT_LAYER_OPERATOR___ENTER_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR___ATTACH = ABSTRACT_LAYER_OPERATOR___ATTACH;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR___DETACH = ABSTRACT_LAYER_OPERATOR___DETACH;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR___EXIT_ATTACHED_STATE = ABSTRACT_LAYER_OPERATOR___EXIT_ATTACHED_STATE;
 
 	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
@@ -3391,6 +3730,15 @@ public interface LayersPackage extends EPackage {
 	int CUSTOM_LAYER_OPERATOR__OWNING_LAYERS_STACK = LAYER_OPERATOR__OWNING_LAYERS_STACK;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR__STATE = LAYER_OPERATOR__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Layers</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3436,13 +3784,13 @@ public interface LayersPackage extends EPackage {
 	int CUSTOM_LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYER_OPERATOR___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOM_LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK = LAYER_OPERATOR___INIT_LAYER__LAYERSSTACK;
+	int CUSTOM_LAYER_OPERATOR___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = LAYER_OPERATOR___ATTACH_TO_LAYERS_STACK__LAYERSSTACK;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -3452,6 +3800,42 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_LAYER_OPERATOR___GET_LAYERS_STACK = LAYER_OPERATOR___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR___ENTER_ATTACHED_STATE = LAYER_OPERATOR___ENTER_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR___ATTACH = LAYER_OPERATOR___ATTACH;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR___DETACH = LAYER_OPERATOR___DETACH;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR___EXIT_ATTACHED_STATE = LAYER_OPERATOR___EXIT_ATTACHED_STATE;
 
 	/**
 	 * The number of operations of the '<em>Custom Layer Operator</em>' class.
@@ -3706,6 +4090,15 @@ public interface LayersPackage extends EPackage {
 	int REG_EXP_LAYER__OWNING_LAYERS_STACK = ABSTRACT_LAYER__OWNING_LAYERS_STACK;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER__STATE = ABSTRACT_LAYER__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3850,13 +4243,13 @@ public interface LayersPackage extends EPackage {
 	int REG_EXP_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REG_EXP_LAYER___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER___INIT_LAYER__LAYERSSTACK;
+	int REG_EXP_LAYER___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = ABSTRACT_LAYER___ATTACH_TO_LAYERS_STACK__LAYERSSTACK;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -3866,6 +4259,42 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int REG_EXP_LAYER___GET_LAYERS_STACK = ABSTRACT_LAYER___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___ENTER_ATTACHED_STATE = ABSTRACT_LAYER___ENTER_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___ATTACH = ABSTRACT_LAYER___ATTACH;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___DETACH = ABSTRACT_LAYER___DETACH;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REG_EXP_LAYER___EXIT_ATTACHED_STATE = ABSTRACT_LAYER___EXIT_ATTACHED_STATE;
 
 	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
@@ -4039,6 +4468,15 @@ public interface LayersPackage extends EPackage {
 	int LAYER__OWNING_LAYERS_STACK = ABSTRACT_LAYER__OWNING_LAYERS_STACK;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER__STATE = ABSTRACT_LAYER__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4120,13 +4558,13 @@ public interface LayersPackage extends EPackage {
 	int LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER___INIT_LAYER__LAYERSSTACK;
+	int LAYER___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = ABSTRACT_LAYER___ATTACH_TO_LAYERS_STACK__LAYERSSTACK;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -4136,6 +4574,42 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int LAYER___GET_LAYERS_STACK = ABSTRACT_LAYER___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER___ENTER_ATTACHED_STATE = ABSTRACT_LAYER___ENTER_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER___ATTACH = ABSTRACT_LAYER___ATTACH;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER___DETACH = ABSTRACT_LAYER___DETACH;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER___EXIT_ATTACHED_STATE = ABSTRACT_LAYER___EXIT_ATTACHED_STATE;
 
 	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
@@ -5468,6 +5942,15 @@ public interface LayersPackage extends EPackage {
 	int ALL_VIEWS_DERIVED_LAYER__OWNING_LAYERS_STACK = ABSTRACT_LAYER__OWNING_LAYERS_STACK;
 
 	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER__STATE = ABSTRACT_LAYER__STATE;
+
+	/**
 	 * The feature id for the '<em><b>Property Values</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5549,13 +6032,13 @@ public interface LayersPackage extends EPackage {
 	int ALL_VIEWS_DERIVED_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = ABSTRACT_LAYER___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST;
 
 	/**
-	 * The operation id for the '<em>Init Layer</em>' operation.
+	 * The operation id for the '<em>Attach To Layers Stack</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ALL_VIEWS_DERIVED_LAYER___INIT_LAYER__LAYERSSTACK = ABSTRACT_LAYER___INIT_LAYER__LAYERSSTACK;
+	int ALL_VIEWS_DERIVED_LAYER___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = ABSTRACT_LAYER___ATTACH_TO_LAYERS_STACK__LAYERSSTACK;
 
 	/**
 	 * The operation id for the '<em>Get Layers Stack</em>' operation.
@@ -5565,6 +6048,42 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int ALL_VIEWS_DERIVED_LAYER___GET_LAYERS_STACK = ABSTRACT_LAYER___GET_LAYERS_STACK;
+
+	/**
+	 * The operation id for the '<em>Enter Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___ENTER_ATTACHED_STATE = ABSTRACT_LAYER___ENTER_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Attach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___ATTACH = ABSTRACT_LAYER___ATTACH;
+
+	/**
+	 * The operation id for the '<em>Detach</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___DETACH = ABSTRACT_LAYER___DETACH;
+
+	/**
+	 * The operation id for the '<em>Exit Attached State</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL_VIEWS_DERIVED_LAYER___EXIT_ATTACHED_STATE = ABSTRACT_LAYER___EXIT_ATTACHED_STATE;
 
 	/**
 	 * The operation id for the '<em>Add Property Instance</em>' operation.
@@ -5612,6 +6131,16 @@ public interface LayersPackage extends EPackage {
 	int ALL_VIEWS_DERIVED_LAYER_OPERATION_COUNT = ABSTRACT_LAYER_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerState <em>Layer State</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerState
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayerState()
+	 * @generated
+	 */
+	int LAYER_STATE = 68;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5619,7 +6148,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getEventLevel()
 	 * @generated
 	 */
-	int EVENT_LEVEL = 68;
+	int EVENT_LEVEL = 69;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -5629,7 +6158,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 69;
+	int STRING = 70;
 
 	/**
 	 * The meta object id for the '<em>boolean</em>' data type.
@@ -5638,7 +6167,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getboolean()
 	 * @generated
 	 */
-	int BOOLEAN = 70;
+	int BOOLEAN = 71;
 
 	/**
 	 * The meta object id for the '<em>EPackage</em>' data type.
@@ -5648,7 +6177,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getEPackage()
 	 * @generated
 	 */
-	int EPACKAGE = 71;
+	int EPACKAGE = 72;
 
 	/**
 	 * The meta object id for the '<em>Not Found Exception</em>' data type.
@@ -5658,7 +6187,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getNotFoundException()
 	 * @generated
 	 */
-	int NOT_FOUND_EXCEPTION = 75;
+	int NOT_FOUND_EXCEPTION = 76;
 
 	/**
 	 * The meta object id for the '<em>Compute Property Value Command</em>' data type.
@@ -5668,7 +6197,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getComputePropertyValueCommand()
 	 * @generated
 	 */
-	int COMPUTE_PROPERTY_VALUE_COMMAND = 76;
+	int COMPUTE_PROPERTY_VALUE_COMMAND = 77;
 
 	/**
 	 * The meta object id for the '<em>Exception</em>' data type.
@@ -5678,7 +6207,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayersException()
 	 * @generated
 	 */
-	int LAYERS_EXCEPTION = 72;
+	int LAYERS_EXCEPTION = 73;
 
 	/**
 	 * The meta object id for the '<em>int</em>' data type.
@@ -5687,7 +6216,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getint()
 	 * @generated
 	 */
-	int INT = 73;
+	int INT = 74;
 
 
 	/**
@@ -5698,7 +6227,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 77;
+	int OBJECT = 78;
 
 
 	/**
@@ -5709,7 +6238,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getCustomPropertyOpertorInstance()
 	 * @generated
 	 */
-	int CUSTOM_PROPERTY_OPERTOR_INSTANCE = 78;
+	int CUSTOM_PROPERTY_OPERTOR_INSTANCE = 79;
 
 	/**
 	 * The meta object id for the '<em>Bad State Exception</em>' data type.
@@ -5719,7 +6248,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getBadStateException()
 	 * @generated
 	 */
-	int BAD_STATE_EXCEPTION = 74;
+	int BAD_STATE_EXCEPTION = 75;
 
 
 	/**
@@ -5798,6 +6327,17 @@ public interface LayersPackage extends EPackage {
 	EReference getLayersStack_Diagram();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getState <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getState()
+	 * @see #getLayersStack()
+	 * @generated
+	 */
+	EAttribute getLayersStack_State();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getComputePropertyValueCommand(org.eclipse.gmf.runtime.notation.View, org.eclipse.papyrus.layers.stackmodel.layers.Property) <em>Get Compute Property Value Command</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5826,6 +6366,66 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getLayersStack__GetViewsComputePropertyValueCommand__EList_Property();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#startAfterCreation() <em>Start After Creation</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Start After Creation</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#startAfterCreation()
+	 * @generated
+	 */
+	EOperation getLayersStack__StartAfterCreation();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#attachLayers() <em>Attach Layers</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Attach Layers</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#attachLayers()
+	 * @generated
+	 */
+	EOperation getLayersStack__AttachLayers();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#attach() <em>Attach</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Attach</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#attach()
+	 * @generated
+	 */
+	EOperation getLayersStack__Attach();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#detach() <em>Detach</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Detach</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#detach()
+	 * @generated
+	 */
+	EOperation getLayersStack__Detach();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#enterAttachedState() <em>Enter Attached State</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Enter Attached State</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#enterAttachedState()
+	 * @generated
+	 */
+	EOperation getLayersStack__EnterAttachedState();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#exitAttachedState() <em>Exit Attached State</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Exit Attached State</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#exitAttachedState()
+	 * @generated
+	 */
+	EOperation getLayersStack__ExitAttachedState();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.layers.Layer <em>Layer</em>}'.
@@ -6302,6 +6902,16 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAllViewsDerivedLayer();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerState <em>Layer State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Layer State</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerState
+	 * @generated
+	 */
+	EEnum getLayerState();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}'.
@@ -6856,6 +7466,17 @@ public interface LayersPackage extends EPackage {
 	EReference getLayerExpression_OwningLayersStack();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getState <em>State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>State</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getState()
+	 * @see #getLayerExpression()
+	 * @generated
+	 */
+	EAttribute getLayerExpression_State();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getComputePropertyValueCommand(org.eclipse.gmf.runtime.notation.View, org.eclipse.papyrus.layers.stackmodel.layers.Property) <em>Get Compute Property Value Command</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6886,14 +7507,14 @@ public interface LayersPackage extends EPackage {
 	EOperation getLayerExpression__GetPropertiesComputePropertyValueCommand__View_EList();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#initLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayersStack) <em>Init Layer</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#attachToLayersStack(org.eclipse.papyrus.layers.stackmodel.layers.LayersStack) <em>Attach To Layers Stack</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Init Layer</em>' operation.
-	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#initLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayersStack)
+	 * @return the meta object for the '<em>Attach To Layers Stack</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#attachToLayersStack(org.eclipse.papyrus.layers.stackmodel.layers.LayersStack)
 	 * @generated
 	 */
-	EOperation getLayerExpression__InitLayer__LayersStack();
+	EOperation getLayerExpression__AttachToLayersStack__LayersStack();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#getLayersStack() <em>Get Layers Stack</em>}' operation.
@@ -6904,6 +7525,46 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getLayerExpression__GetLayersStack();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#enterAttachedState() <em>Enter Attached State</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Enter Attached State</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#enterAttachedState()
+	 * @generated
+	 */
+	EOperation getLayerExpression__EnterAttachedState();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#attach() <em>Attach</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Attach</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#attach()
+	 * @generated
+	 */
+	EOperation getLayerExpression__Attach();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#detach() <em>Detach</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Detach</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#detach()
+	 * @generated
+	 */
+	EOperation getLayerExpression__Detach();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#exitAttachedState() <em>Exit Attached State</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Exit Attached State</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression#exitAttachedState()
+	 * @generated
+	 */
+	EOperation getLayerExpression__ExitAttachedState();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.layers.ApplicationDependantElement <em>Application Dependant Element</em>}'.
@@ -8182,6 +8843,14 @@ public interface LayersPackage extends EPackage {
 		EReference LAYERS_STACK__DIAGRAM = eINSTANCE.getLayersStack_Diagram();
 
 		/**
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYERS_STACK__STATE = eINSTANCE.getLayersStack_State();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Compute Property Value Command</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8204,6 +8873,54 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LAYERS_STACK___GET_VIEWS_COMPUTE_PROPERTY_VALUE_COMMAND__ELIST_PROPERTY = eINSTANCE.getLayersStack__GetViewsComputePropertyValueCommand__EList_Property();
+
+		/**
+		 * The meta object literal for the '<em><b>Start After Creation</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYERS_STACK___START_AFTER_CREATION = eINSTANCE.getLayersStack__StartAfterCreation();
+
+		/**
+		 * The meta object literal for the '<em><b>Attach Layers</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYERS_STACK___ATTACH_LAYERS = eINSTANCE.getLayersStack__AttachLayers();
+
+		/**
+		 * The meta object literal for the '<em><b>Attach</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYERS_STACK___ATTACH = eINSTANCE.getLayersStack__Attach();
+
+		/**
+		 * The meta object literal for the '<em><b>Detach</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYERS_STACK___DETACH = eINSTANCE.getLayersStack__Detach();
+
+		/**
+		 * The meta object literal for the '<em><b>Enter Attached State</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYERS_STACK___ENTER_ATTACHED_STATE = eINSTANCE.getLayersStack__EnterAttachedState();
+
+		/**
+		 * The meta object literal for the '<em><b>Exit Attached State</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYERS_STACK___EXIT_ATTACHED_STATE = eINSTANCE.getLayersStack__ExitAttachedState();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerImpl <em>Layer</em>}' class.
@@ -8618,6 +9335,16 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ALL_VIEWS_DERIVED_LAYER = eINSTANCE.getAllViewsDerivedLayer();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayerState <em>Layer State</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayerState
+		 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayerState()
+		 * @generated
+		 */
+		EEnum LAYER_STATE = eINSTANCE.getLayerState();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}' enum.
@@ -9062,6 +9789,14 @@ public interface LayersPackage extends EPackage {
 		EReference LAYER_EXPRESSION__OWNING_LAYERS_STACK = eINSTANCE.getLayerExpression_OwningLayersStack();
 
 		/**
+		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LAYER_EXPRESSION__STATE = eINSTANCE.getLayerExpression_State();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Compute Property Value Command</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9086,12 +9821,12 @@ public interface LayersPackage extends EPackage {
 		EOperation LAYER_EXPRESSION___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = eINSTANCE.getLayerExpression__GetPropertiesComputePropertyValueCommand__View_EList();
 
 		/**
-		 * The meta object literal for the '<em><b>Init Layer</b></em>' operation.
+		 * The meta object literal for the '<em><b>Attach To Layers Stack</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK = eINSTANCE.getLayerExpression__InitLayer__LayersStack();
+		EOperation LAYER_EXPRESSION___ATTACH_TO_LAYERS_STACK__LAYERSSTACK = eINSTANCE.getLayerExpression__AttachToLayersStack__LayersStack();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Layers Stack</b></em>' operation.
@@ -9100,6 +9835,38 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LAYER_EXPRESSION___GET_LAYERS_STACK = eINSTANCE.getLayerExpression__GetLayersStack();
+
+		/**
+		 * The meta object literal for the '<em><b>Enter Attached State</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYER_EXPRESSION___ENTER_ATTACHED_STATE = eINSTANCE.getLayerExpression__EnterAttachedState();
+
+		/**
+		 * The meta object literal for the '<em><b>Attach</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYER_EXPRESSION___ATTACH = eINSTANCE.getLayerExpression__Attach();
+
+		/**
+		 * The meta object literal for the '<em><b>Detach</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYER_EXPRESSION___DETACH = eINSTANCE.getLayerExpression__Detach();
+
+		/**
+		 * The meta object literal for the '<em><b>Exit Attached State</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYER_EXPRESSION___EXIT_ATTACHED_STATE = eINSTANCE.getLayerExpression__ExitAttachedState();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.ApplicationDependantElementImpl <em>Application Dependant Element</em>}' class.

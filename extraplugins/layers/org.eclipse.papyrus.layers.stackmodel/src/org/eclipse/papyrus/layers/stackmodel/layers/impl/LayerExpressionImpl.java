@@ -14,6 +14,7 @@ package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -23,11 +24,13 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.layers.stackmodel.BadStateException;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
+import org.eclipse.papyrus.layers.stackmodel.layers.LayerState;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
@@ -45,6 +48,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.Property;
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isLayerEnabled <em>Is Layer Enabled</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#isBranchEnabled <em>Is Branch Enabled</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#getOwningLayersStack <em>Owning Layers Stack</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -145,6 +149,24 @@ ApplicationDependantElementImpl implements LayerExpression {
 	protected LayersStack owningLayersStack;
 	
 	/**
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final LayerState STATE_EDEFAULT = LayerState.DETACHED;
+	/**
+	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected LayerState state = STATE_EDEFAULT;
+	/**
 	 * Listener on this object container (i.e owner) attached/detached events
 	 */
 	protected Adapter containerListener = new AdapterImpl() {
@@ -175,12 +197,26 @@ ApplicationDependantElementImpl implements LayerExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected LayerExpressionImpl() {
 		super();
+		
+		// Listen on this object attachment / detachment from its container.
+		// When this node is atttached to a parent, the owningLayerStack property is set.
+		// This is done in owningLayerChanged.
+		eAdapters().add(containerListener);
+
 	}
 
+	/**
+	 * Start the behaviors associated to this layer.
+	 * This method is called by one of the methods: {@link #startAfterReloading()} or {@link #attachToLayersStack(LayersStack)}.
+	 */
+	protected void startBehaviors() {
+		
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -330,6 +366,27 @@ ApplicationDependantElementImpl implements LayerExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LayerState getState() {
+		return state;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setState(LayerState newState) {
+		LayerState oldState = state;
+		state = newState == null ? STATE_EDEFAULT : newState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.LAYER_EXPRESSION__STATE, oldState, state));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public LayersStack getLayersStack() throws NotFoundException {
@@ -340,6 +397,80 @@ ApplicationDependantElementImpl implements LayerExpression {
 		}
 			
 		throw new NotFoundException("LayersStack is not set in the Layer '" + getName() +"'");		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void enterAttachedState() throws LayersException {
+		// do nothing
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void attach() throws LayersException {
+		
+		// Stop if already in ATTACHED state.
+		if(getState() == LayerState.ATTACHED) {
+			return;
+		}
+		
+		// Check required attributes
+		if( getApplication()==null || getOwningLayersStack() == null || eContainer() == null) {
+			throw new BadStateException("A required attribute is not set. The Layer can't be attached."
+					+ "[layerName=" + getName() 
+					+ ", application=" + (getApplication()==null?"null":"ok")
+					+ ", owningLayersStack=" + (getOwningLayersStack()==null?"null":"ok")
+					+ ", container=" + (eContainer()==null?"null":"ok")
+					+ "]"
+					);
+		}
+		
+		// Can go in attached mode
+		setState(LayerState.ATTACHED);
+		enterAttachedState();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Subclass can overload in order to stop some behaviors.
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void detach() throws LayersException {
+		
+
+		// Change the state
+		exitAttachedState();
+		setState(LayerState.DETACHED);		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void exitAttachedState() {
+		// do nothing.
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Start this element after its reloading by EMF
+	 * This method is called recursively by the parent of this element.
+	 * <br>
+	 * This default implementation start the associated behaviors.
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void startAfterReloading() {
+		startBehaviors();
 	}
 
 	/**
@@ -373,6 +504,24 @@ ApplicationDependantElementImpl implements LayerExpression {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * This default implementation set the layerStack, and start behaviors.
+	 * This method can be overriden by subclasses. In this case, subclass must ensure that
+	 * the {@link #owningLayersStack} is set and the behaviors are started.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public void attachToLayersStack(LayersStack owningLayersStack) {
+		
+		// the owning stack
+		setOwningLayersStack(owningLayersStack);
+
+		// Start associated behavior
+		startBehaviors();
 	}
 
 	/**
@@ -433,6 +582,8 @@ ApplicationDependantElementImpl implements LayerExpression {
 			case LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK:
 				if (resolve) return getOwningLayersStack();
 				return basicGetOwningLayersStack();
+			case LayersPackage.LAYER_EXPRESSION__STATE:
+				return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -459,6 +610,9 @@ ApplicationDependantElementImpl implements LayerExpression {
 				return;
 			case LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK:
 				setOwningLayersStack((LayersStack)newValue);
+				return;
+			case LayersPackage.LAYER_EXPRESSION__STATE:
+				setState((LayerState)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -487,6 +641,9 @@ ApplicationDependantElementImpl implements LayerExpression {
 			case LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK:
 				setOwningLayersStack((LayersStack)null);
 				return;
+			case LayersPackage.LAYER_EXPRESSION__STATE:
+				setState(STATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -511,6 +668,8 @@ ApplicationDependantElementImpl implements LayerExpression {
 				return isBranchEnabled != IS_BRANCH_ENABLED_EDEFAULT;
 			case LayersPackage.LAYER_EXPRESSION__OWNING_LAYERS_STACK:
 				return owningLayersStack != null;
+			case LayersPackage.LAYER_EXPRESSION__STATE:
+				return state != STATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -545,8 +704,8 @@ ApplicationDependantElementImpl implements LayerExpression {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
-			case LayersPackage.LAYER_EXPRESSION___INIT_LAYER__LAYERSSTACK:
-				initLayer((LayersStack)arguments.get(0));
+			case LayersPackage.LAYER_EXPRESSION___ATTACH_TO_LAYERS_STACK__LAYERSSTACK:
+				attachToLayersStack((LayersStack)arguments.get(0));
 				return null;
 			case LayersPackage.LAYER_EXPRESSION___GET_LAYERS_STACK:
 				try {
@@ -555,6 +714,33 @@ ApplicationDependantElementImpl implements LayerExpression {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case LayersPackage.LAYER_EXPRESSION___ENTER_ATTACHED_STATE:
+				try {
+					enterAttachedState();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.LAYER_EXPRESSION___ATTACH:
+				try {
+					attach();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.LAYER_EXPRESSION___DETACH:
+				try {
+					detach();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.LAYER_EXPRESSION___EXIT_ATTACHED_STATE:
+				exitAttachedState();
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -577,6 +763,8 @@ ApplicationDependantElementImpl implements LayerExpression {
 		result.append(isLayerEnabled);
 		result.append(", isBranchEnabled: ");
 		result.append(isBranchEnabled);
+		result.append(", state: ");
+		result.append(state);
 		result.append(')');
 		return result.toString();
 	}

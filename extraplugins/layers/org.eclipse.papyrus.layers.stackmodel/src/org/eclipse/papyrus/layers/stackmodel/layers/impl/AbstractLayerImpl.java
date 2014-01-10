@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand
 import org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayer;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerDescriptor;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
+import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 import org.eclipse.papyrus.layers.stackmodel.layers.NullInstance;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
@@ -108,13 +110,22 @@ public abstract class AbstractLayerImpl extends LayerExpressionImpl implements A
 	 */
 	protected AbstractLayerImpl() {
 		super();
-		
-		// Add an observer
+		// Listen on application changed and propertyValues changed
+		// This behavior is set from the constructor, has it doesn't interfered with
+		// reloading
 		Adapter adapter = new PropertyValuesSynchronizer();
-		this.eAdapters().add(adapter);
+		this.eAdapters().add(adapter);		
 		
 	}
 
+	/**
+	 * Start the behaviors associated to this layer.
+	 * This method is called by one of the methods: {@link #startAfterReloading()} or {@link #attachToLayersStack(LayersStack)}.
+	 */
+	protected void startBehaviors() {
+		super.startBehaviors();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

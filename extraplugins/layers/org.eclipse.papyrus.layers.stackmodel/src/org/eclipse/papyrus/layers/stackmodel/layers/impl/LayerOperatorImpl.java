@@ -13,12 +13,14 @@
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
@@ -206,4 +208,60 @@ public abstract class LayerOperatorImpl extends LayerExpressionImpl implements L
 			layer.setOwningLayersStack(value);
 		}
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * Start this element after its reloading by EMF
+	 * This method is called recursively by the parent of this element.
+	 * 
+	 * <!-- end-user-doc -->
+	 * @throws LayersException 
+	 * @generated NOT
+	 */
+	@Override
+	public void attach() throws LayersException {
+		// Try to attach this Layer
+		super.attach();
+		// attach children
+		for( LayerExpression l : getLayers()) {
+			l.attach();
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#detach()
+	 *
+	 * @throws LayersException
+	 */
+	@Override
+	public void detach() throws LayersException {
+		// Detach this Layer
+		super.detach();
+		// detach children
+		for( LayerExpression l : getLayers()) {
+			l.detach();
+		}
+	}
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @deprecated unless we need it again
+	 * @generated NOT
+	 */
+	public void attachToLayersStack(LayersStack owningLayersStack) {
+		
+		// the owning stack
+		setOwningLayersStack(owningLayersStack);
+		
+		// Ensure child is started, if any
+		for( LayerExpression l : getLayers()) {
+			l.attachToLayersStack(owningLayersStack);
+		}
+		
+		// Start local behaviors
+		startBehaviors();
+	}
+
+
 } //LayerOperatorImpl

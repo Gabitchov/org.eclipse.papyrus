@@ -29,6 +29,10 @@
   <foreignModel>layers.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Layers" basePackage="org.eclipse.papyrus.layers.stackmodel"
       disposableProviderFactory="true" ecorePackage="layers.ecore#/">
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="layers.ecore#//LayerState">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="layers.ecore#//LayerState/detached"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="layers.ecore#//LayerState/attached"/>
+    </genEnums>
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="layers.ecore#//EventLevel">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="layers.ecore#//EventLevel/level1"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="layers.ecore#//EventLevel/allLevels"/>
@@ -54,6 +58,7 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayersStack/description"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference layers.ecore#//LayersStack/diagram"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayersStack/state"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayersStack/getComputePropertyValueCommand">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayersStack/getComputePropertyValueCommand/view"/>
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayersStack/getComputePropertyValueCommand/property"/>
@@ -66,6 +71,12 @@
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayersStack/getViewsComputePropertyValueCommand/view"/>
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayersStack/getViewsComputePropertyValueCommand/property"/>
       </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayersStack/startAfterCreation"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayersStack/attachLayers"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayersStack/attach"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayersStack/detach"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayersStack/enterAttachedState"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayersStack/exitAttachedState"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//LayerExpression">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/name"/>
@@ -76,6 +87,7 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/isBranchEnabled"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference layers.ecore#//LayerExpression/owningLayersStack"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute layers.ecore#//LayerExpression/state"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/getComputePropertyValueCommand">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getComputePropertyValueCommand/view"/>
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getComputePropertyValueCommand/property"/>
@@ -88,10 +100,14 @@
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getPropertiesComputePropertyValueCommand/view"/>
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/getPropertiesComputePropertyValueCommand/property"/>
       </genOperations>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/initLayer">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/initLayer/owningLayersStack"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/attachToLayersStack">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayerExpression/attachToLayersStack/owningLayersStack"/>
       </genOperations>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/getLayersStack"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/enterAttachedState"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/attach"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/detach"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayerExpression/exitAttachedState"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//ApplicationDependantElement">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

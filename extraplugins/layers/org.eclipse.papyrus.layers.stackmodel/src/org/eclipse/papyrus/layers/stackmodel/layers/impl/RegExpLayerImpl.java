@@ -14,7 +14,6 @@ package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -217,6 +216,39 @@ public class RegExpLayerImpl extends AbstractLayerImpl implements RegExpLayer {
 
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.AbstractLayerImpl#startBehaviors()
+	 *
+	 */
+	@Override
+	protected void startBehaviors() {
+		// TODO Auto-generated method stub
+		super.startBehaviors();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#startAfterReloading()
+	 *
+	 */
+	@Override
+	public void startAfterReloading() {
+		// TODO Auto-generated method stub
+		super.startAfterReloading();
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerExpressionImpl#attachToLayersStack(org.eclipse.papyrus.layers.stackmodel.layers.LayersStack)
+	 *
+	 * @param owningLayersStack
+	 */
+	@Override
+	public void attachToLayersStack(LayersStack owningLayersStack) {
+		// TODO Auto-generated method stub
+		super.attachToLayersStack(owningLayersStack);
+	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

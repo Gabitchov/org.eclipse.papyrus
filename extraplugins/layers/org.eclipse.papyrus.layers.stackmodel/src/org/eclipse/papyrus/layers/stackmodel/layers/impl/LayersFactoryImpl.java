@@ -146,6 +146,8 @@ public class LayersFactoryImpl extends EFactoryImpl implements LayersFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case LayersPackage.LAYER_STATE:
+				return createLayerStateFromString(eDataType, initialValue);
 			case LayersPackage.EVENT_LEVEL:
 				return createEventLevelFromString(eDataType, initialValue);
 			case LayersPackage.STRING:
@@ -181,6 +183,8 @@ public class LayersFactoryImpl extends EFactoryImpl implements LayersFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case LayersPackage.LAYER_STATE:
+				return convertLayerStateToString(eDataType, instanceValue);
 			case LayersPackage.EVENT_LEVEL:
 				return convertEventLevelToString(eDataType, instanceValue);
 			case LayersPackage.STRING:
@@ -786,6 +790,26 @@ public class LayersFactoryImpl extends EFactoryImpl implements LayersFactory {
 	public AllViewsDerivedLayer createAllViewsDerivedLayer() {
 		AllViewsDerivedLayerImpl allViewsDerivedLayer = new AllViewsDerivedLayerImpl();
 		return allViewsDerivedLayer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LayerState createLayerStateFromString(EDataType eDataType, String initialValue) {
+		LayerState result = LayerState.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLayerStateToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

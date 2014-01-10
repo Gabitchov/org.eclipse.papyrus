@@ -531,6 +531,7 @@ FolderElementImpl implements LayersStackApplication {
 		
 		// Create a new LayerStack and add it to application (this)
 		LayersStack layer = LayersFactory.eINSTANCE.createLayersStack();
+		layer.startAfterCreation();
 		layer.setDiagram(diagram);
 		
 		// Create first layer in stack

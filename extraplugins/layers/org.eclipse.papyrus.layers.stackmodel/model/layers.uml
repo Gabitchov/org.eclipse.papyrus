@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_gAOFQLcqEeK8_t7Rpq6ZJA" name="layers">
-    <ownedComment xmi:type="uml:Comment" xmi:id="_M28u8NkDEeKQqZMBCFd2Uw">
-      <body>Not use anymore</body>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_7_dC4HbuEeOlpfB_tZS-QA" annotatedElement="_gAOFQLcqEeK8_t7Rpq6ZJA">
+      <body>Start the LayesStack.&#xD;
+This method should be called after the LayersStack creation. It is not called from the constructor, because &#xD;
+the initialisation can differ if the LayersStack is created by the user or by EMF after a reloading.&#xD;
+</body>
     </ownedComment>
     <packageImport xmi:type="uml:PackageImport" xmi:id="_uhlc8LcqEeK8_t7Rpq6ZJA">
       <importedPackage xmi:type="uml:Model" href="notation/notation.uml#_AziHILcnEeKeLJDBCBPhPw"/>
@@ -47,6 +50,11 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hQIS8dkhEeKQqZMBCFd2Uw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hQIS8tkhEeKQqZMBCFd2Uw" value="1"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_c5OEgHl8EeOlpfB_tZS-QA" name="state" visibility="public" type="_8__xgHltEeOlpfB_tZS-QA" isUnique="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_c5OEgXl8EeOlpfB_tZS-QA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c5OEgnl8EeOlpfB_tZS-QA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_c5OEg3l8EeOlpfB_tZS-QA" name="detached" value="detached"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_8H1xgO70EeK0p4PkXjd-_Q" name="getComputePropertyValueCommand" raisedException="_iYKFMNxGEeKwptaAAanMDg">
         <ownedComment xmi:type="uml:Comment" xmi:id="_8H1xge70EeK0p4PkXjd-_Q">
           <body>Get the ComputePropertyValueCommands for the specified views and Property.&#xD;
@@ -90,6 +98,46 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8ILIt-70EeK0p4PkXjd-_Q"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8ILIuO70EeK0p4PkXjd-_Q" value="*"/>
         </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_rQGJoHbuEeOlpfB_tZS-QA" name="startAfterCreation"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_9n-f4HbuEeOlpfB_tZS-QA" name="attachLayers" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Go6U4HbvEeOlpfB_tZS-QA" annotatedElement="_9n-f4HbuEeOlpfB_tZS-QA">
+          <body>Start the LayersStack after a reloading by EMF. This method should be explicitly called after a reloading.&#xD;
+The method usually start the layer behaviors.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_RnmmUHl8EeOlpfB_tZS-QA" name="attach" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_RnmmUXl8EeOlpfB_tZS-QA" annotatedElement="_RnmmUHl8EeOlpfB_tZS-QA">
+          <body>Try to attach this Layer. If successful, the state go to &quot;attached&quot;. Otherwise, an exception is thrown.&#xD;
+A Layer can be attached if its required attributes are set.&#xD;
+Required attributes:&#xD;
+&lt;ul>&#xD;
+  &lt;li>application&lt;/li>&#xD;
+  &lt;li>owningLayerStack&lt;/li>&#xD;
+  &lt;li>parent container&lt;/li>&#xD;
+  &lt;li>&lt;/li>&#xD;
+&lt;/ul>&#xD;
+Just after enterring in &quot;attached&quot; state, the enterAttachedState() method is called.&#xD;
+If this Layer is successfully attached, then attach subLayers.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_RnmmUnl8EeOlpfB_tZS-QA" name="detach" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_RnmmU3l8EeOlpfB_tZS-QA" annotatedElement="_RnmmUnl8EeOlpfB_tZS-QA">
+          <body>Detach the Layer. The state go to &quot;detached&quot;.&#xD;
+Associated behavior are stopped.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_RnmmVHl8EeOlpfB_tZS-QA" name="enterAttachedState" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_RnmmVXl8EeOlpfB_tZS-QA" annotatedElement="_RnmmVHl8EeOlpfB_tZS-QA">
+          <body>This method is called by the class immediately after entering in attached state.&#xD;
+The methodcan be used to start the layer behaviors.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_RnmmVnl8EeOlpfB_tZS-QA" name="exitAttachedState">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_RnmmV3l8EeOlpfB_tZS-QA" annotatedElement="_RnmmVnl8EeOlpfB_tZS-QA">
+          <body>This method is called just before this Layer leave the attached state.&#xD;
+</body>
+        </ownedComment>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_jWQ4ANa7EeKPiuTfpuvqHA" name="layerNamedStyle_layerStack_1" memberEnd="_jWQ4Ada7EeKPiuTfpuvqHA _jWHHANa7EeKPiuTfpuvqHA">
@@ -551,6 +599,11 @@ Setting the value of this node set the value of the subnodes.</body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PznBcWQ5EeOlpfB_tZS-QA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PznBcmQ5EeOlpfB_tZS-QA" value="1"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_E2soAHluEeOlpfB_tZS-QA" name="state" visibility="public" type="_8__xgHltEeOlpfB_tZS-QA" isUnique="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ISCtgHluEeOlpfB_tZS-QA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ISCtgXluEeOlpfB_tZS-QA" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_QPjWoHluEeOlpfB_tZS-QA" name="detached" value="detached"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_VdSFsO7HEeK0p4PkXjd-_Q" name="getComputePropertyValueCommand" raisedException="_iYKFMNxGEeKwptaAAanMDg">
         <ownedComment xmi:type="uml:Comment" xmi:id="_CI71QO7JEeK0p4PkXjd-_Q">
           <body>Get the ComputePropertyValueCommands for the specified views and Property.&#xD;
@@ -595,10 +648,12 @@ Setting the value of this node set the value of the subnodes.</body>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cpKoIO7IEeK0p4PkXjd-_Q" value="*"/>
         </ownedParameter>
       </ownedOperation>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_Ps2L4GUaEeOlpfB_tZS-QA" name="initLayer">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Ps2L4GUaEeOlpfB_tZS-QA" name="attachToLayersStack">
         <ownedComment xmi:type="uml:Comment" xmi:id="_nC1a4GUaEeOlpfB_tZS-QA" annotatedElement="_Ps2L4GUaEeOlpfB_tZS-QA">
           <body>Method called to specify that this Layer should be initialized for the specified LayerStack.&#xD;
-Init this Layer for the specified LayersStack.</body>
+Init this Layer for the specified LayersStack.&#xD;
+This method is called by the LayersStack when it detect that tha layer is attached to it.&#xD;
+</body>
         </ownedComment>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_cr5cQGUaEeOlpfB_tZS-QA" name="owningLayersStack" type="_gT0asNa7EeKPiuTfpuvqHA"/>
       </ownedOperation>
@@ -608,6 +663,39 @@ Init this Layer for the specified LayersStack.</body>
 </body>
         </ownedComment>
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_r3jmwGUdEeOlpfB_tZS-QA" name="layersStack" type="_gT0asNa7EeKPiuTfpuvqHA" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_YeJ4IHbvEeOlpfB_tZS-QA" name="enterAttachedState" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_YeJ4IXbvEeOlpfB_tZS-QA" annotatedElement="_YeJ4IHbvEeOlpfB_tZS-QA">
+          <body>This method is called by the class immediately after entering in attached state.&#xD;
+The methodcan be used to start the layer behaviors.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_VTcHQHluEeOlpfB_tZS-QA" name="attach" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_tUEZQHlvEeOlpfB_tZS-QA" annotatedElement="_VTcHQHluEeOlpfB_tZS-QA">
+          <body>Try to attach this Layer. If successful, the state go to &quot;attached&quot;. Otherwise, an exception is thrown.&#xD;
+A Layer can be attached if its required attributes are set.&#xD;
+Required attributes:&#xD;
+&lt;ul>&#xD;
+  &lt;li>application&lt;/li>&#xD;
+  &lt;li>owningLayerStack&lt;/li>&#xD;
+  &lt;li>parent container&lt;/li>&#xD;
+  &lt;li>&lt;/li>&#xD;
+&lt;/ul>&#xD;
+Just after enterring in &quot;attached&quot; state, the enterAttachedState() method is called.&#xD;
+If this Layer is successfully attached, then attach subLayers.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_XeS1QHluEeOlpfB_tZS-QA" name="detach" raisedException="_iYKFMNxGEeKwptaAAanMDg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_yitoYHlvEeOlpfB_tZS-QA" annotatedElement="_XeS1QHluEeOlpfB_tZS-QA">
+          <body>Detach the Layer. The state go to &quot;detached&quot;.&#xD;
+Associated behavior are stopped.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_XNTkMHl0EeOlpfB_tZS-QA" name="exitAttachedState">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_e9TVwHl0EeOlpfB_tZS-QA" annotatedElement="_XNTkMHl0EeOlpfB_tZS-QA">
+          <body>This method is called just before this Layer leave the attached state.&#xD;
+</body>
+        </ownedComment>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_HoKjcNjjEeKQqZMBCFd2Uw" name="LayerOperator" isAbstract="true">
@@ -1405,6 +1493,10 @@ layerStackChanged().</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_ft-hUGtpEeOlpfB_tZS-QA" name="AllViewsDerivedLayer">
       <generalization xmi:type="uml:Generalization" xmi:id="_p-dSoGtpEeOlpfB_tZS-QA" general="_51zAINa7EeKPiuTfpuvqHA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_8__xgHltEeOlpfB_tZS-QA" name="LayerState">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_AKMcoHluEeOlpfB_tZS-QA" name="detached"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_BUS4QHluEeOlpfB_tZS-QA" name="attached"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_X07z8LcsEeK8_t7Rpq6ZJA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_X2lZwLcsEeK8_t7Rpq6ZJA" source="http://www.eclipse.org/uml2/2.0.0/UML">

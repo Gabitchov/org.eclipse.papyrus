@@ -28,6 +28,7 @@ import org.eclipse.papyrus.layers.stackmodel.BadStateException;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
+import org.eclipse.papyrus.layers.stackmodel.layers.LayerState;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.Property;
@@ -46,6 +47,7 @@ import org.eclipse.papyrus.layers.stackmodel.notifier.LayersTreeEventNotifierFac
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersStackImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersStackImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersStackImpl#getDiagram <em>Diagram</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersStackImpl#getState <em>State</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,6 +114,26 @@ MinimalEObjectImpl.Container implements LayersStack {
 	protected Diagram diagram;
 
 	/**
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final LayerState STATE_EDEFAULT = LayerState.DETACHED;
+
+	/**
+	 * The cached value of the '{@link #getState() <em>State</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getState()
+	 * @generated
+	 * @ordered
+	 */
+	protected LayerState state = STATE_EDEFAULT;
+
+	/**
 	 * Listener on layers tree events.
 	 * This listener take in charge the initialization of added layers.
 	 */
@@ -148,7 +170,9 @@ MinimalEObjectImpl.Container implements LayersStack {
 	 */
 	protected LayersStackImpl() {
 		super();
-		init();
+		
+		// Now, init should be called explicitly after creation.
+		//init();
 	}
 
 	/**
@@ -298,6 +322,27 @@ MinimalEObjectImpl.Container implements LayersStack {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LayerState getState() {
+		return state;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setState(LayerState newState) {
+		LayerState oldState = state;
+		state = newState == null ? STATE_EDEFAULT : newState;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LayersPackage.LAYERS_STACK__STATE, oldState, state));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @throws LayersException 
 	 * @generated NOT
 	 */
@@ -330,6 +375,98 @@ MinimalEObjectImpl.Container implements LayersStack {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Start this LayersStack after its creation. This method should be explicitly called by
+	 * user after the creation of a LayersStack.
+	 * <!-- end-user-doc -->
+	 * @deprecated Not used anymore
+	 * @generated NOT
+	 */
+	public void startAfterCreation() {
+		// Ensure child is initialized, if any
+		if( getLayers() != null ) {
+			getLayers().attachToLayersStack(this);
+		}
+		
+		// Start local behaviors
+		init();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Attach recursively the tree of layers.
+	 * <!-- end-user-doc -->
+	 * @throws LayersException 
+	 * @generated NOT
+	 */
+	public void attachLayers() throws LayersException {
+		// Ensure child is started, if any
+		if( getLayers() != null ) {
+			getLayers().attach();
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void attach() throws LayersException {
+		// Stop if already in ATTACHED state.
+		if(getState() == LayerState.ATTACHED) {
+			return;
+		}
+		
+		// Check required attributes
+		if( getDiagram()==null ) {
+			throw new BadStateException("A required attribute is not set. The Layer can't be attached."
+					+ "[layerName=" + getName()
+					+ ", diagram=" + (getDiagram()==null?"null":"ok")
+					+ "]"
+					);
+		}
+		
+		// Can go in attached mode
+		setState(LayerState.ATTACHED);
+		enterAttachedState();
+		attachLayers();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void detach() throws LayersException {
+		// Change the state
+		exitAttachedState();
+		setState(LayerState.DETACHED);		
+		// Ensure child is started, if any
+		if( getLayers() != null ) {
+			getLayers().detach();
+		}
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void enterAttachedState() throws LayersException {
+		init();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void exitAttachedState() {
+		// do nothing;
 	}
 
 	/**
@@ -394,6 +531,8 @@ MinimalEObjectImpl.Container implements LayersStack {
 			case LayersPackage.LAYERS_STACK__DIAGRAM:
 				if (resolve) return getDiagram();
 				return basicGetDiagram();
+			case LayersPackage.LAYERS_STACK__STATE:
+				return getState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -403,7 +542,6 @@ MinimalEObjectImpl.Container implements LayersStack {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -418,6 +556,9 @@ MinimalEObjectImpl.Container implements LayersStack {
 				return;
 			case LayersPackage.LAYERS_STACK__DIAGRAM:
 				setDiagram((Diagram)newValue);
+				return;
+			case LayersPackage.LAYERS_STACK__STATE:
+				setState((LayerState)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -443,6 +584,9 @@ MinimalEObjectImpl.Container implements LayersStack {
 			case LayersPackage.LAYERS_STACK__DIAGRAM:
 				setDiagram((Diagram)null);
 				return;
+			case LayersPackage.LAYERS_STACK__STATE:
+				setState(STATE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -463,6 +607,8 @@ MinimalEObjectImpl.Container implements LayersStack {
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case LayersPackage.LAYERS_STACK__DIAGRAM:
 				return diagram != null;
+			case LayersPackage.LAYERS_STACK__STATE:
+				return state != STATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -497,6 +643,44 @@ MinimalEObjectImpl.Container implements LayersStack {
 				catch (Throwable throwable) {
 					throw new InvocationTargetException(throwable);
 				}
+			case LayersPackage.LAYERS_STACK___START_AFTER_CREATION:
+				startAfterCreation();
+				return null;
+			case LayersPackage.LAYERS_STACK___ATTACH_LAYERS:
+				try {
+					attachLayers();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.LAYERS_STACK___ATTACH:
+				try {
+					attach();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.LAYERS_STACK___DETACH:
+				try {
+					detach();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.LAYERS_STACK___ENTER_ATTACHED_STATE:
+				try {
+					enterAttachedState();
+					return null;
+				}
+				catch (Throwable throwable) {
+					throw new InvocationTargetException(throwable);
+				}
+			case LayersPackage.LAYERS_STACK___EXIT_ATTACHED_STATE:
+				exitAttachedState();
+				return null;
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -515,6 +699,8 @@ MinimalEObjectImpl.Container implements LayersStack {
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
+		result.append(", state: ");
+		result.append(state);
 		result.append(')');
 		return result.toString();
 	}
@@ -532,7 +718,7 @@ MinimalEObjectImpl.Container implements LayersStack {
 			return;
 		}
 		// init the layer
-		addedLayer.initLayer(this);
+		addedLayer.attachToLayersStack(this);
 		
 	}
 

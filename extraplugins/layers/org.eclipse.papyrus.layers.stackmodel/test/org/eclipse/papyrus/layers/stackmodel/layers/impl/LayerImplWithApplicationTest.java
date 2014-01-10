@@ -154,6 +154,7 @@ public class LayerImplWithApplicationTest {
 	public void testAutomaticSynchronizationAfterRemove() throws BadStateException {
 		// Create objets to test
 		LayerImpl layer = (LayerImpl)LayersFactory.eINSTANCE.createLayer();
+		layer.startBehaviors();
 		LayersStackApplication application = LayersFactory.eINSTANCE.createLayersStackApplication();
 		layer.setApplication(application);
 		PropertyRegistry propertyRegistry = application.getPropertyRegistry();

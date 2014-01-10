@@ -72,6 +72,7 @@ public class LayersStackItemProvider
 			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addDiagramPropertyDescriptor(object);
+			addStatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -138,6 +139,28 @@ public class LayersStackItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the State feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LayersStack_state_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LayersStack_state_feature", "_UI_LayersStack_type"),
+				 LayersPackage.Literals.LAYERS_STACK__STATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -219,6 +242,7 @@ public class LayersStackItemProvider
 		switch (notification.getFeatureID(LayersStack.class)) {
 			case LayersPackage.LAYERS_STACK__NAME:
 			case LayersPackage.LAYERS_STACK__DESCRIPTION:
+			case LayersPackage.LAYERS_STACK__STATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case LayersPackage.LAYERS_STACK__LAYERS:

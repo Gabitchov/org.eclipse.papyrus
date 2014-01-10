@@ -71,6 +71,7 @@ ApplicationDependantElementItemProvider
 			addIsLayerEnabledPropertyDescriptor(object);
 			addIsBranchEnabledPropertyDescriptor(object);
 			addOwningLayersStackPropertyDescriptor(object);
+			addStatePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -208,6 +209,28 @@ ApplicationDependantElementItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the State feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addStatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LayerExpression_state_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LayerExpression_state_feature", "_UI_LayerExpression_type"),
+				 LayersPackage.Literals.LAYER_EXPRESSION__STATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -238,6 +261,7 @@ ApplicationDependantElementItemProvider
 			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED_INTERNAL:
 			case LayersPackage.LAYER_EXPRESSION__IS_LAYER_ENABLED:
 			case LayersPackage.LAYER_EXPRESSION__IS_BRANCH_ENABLED:
+			case LayersPackage.LAYER_EXPRESSION__STATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
