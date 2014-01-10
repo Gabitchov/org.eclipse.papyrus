@@ -25,6 +25,31 @@
 			<url>http://download.eclipse.org/releases/luna</url>
 		</repository>
 		<repository>
+			<id>papyrus-main</id>
+			<layout>p2</layout>
+			<url>${papyrus.repo.main}</url>
+		</repository>
+		<repository>
+			<id>papyrus-extras</id>
+			<layout>p2</layout>
+			<url>${papyrus.repo.extras}</url>
+		</repository>
+		<repository>
+			<id>cdo-dawn</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/emf/cdo/drops/R20130918-0029</url>
+		</repository>
+		<repository>
+			<id>xpand-1.4.1</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201308130726</url>
+		</repository>
+		<repository>
+			<id>xpand-2.0.0</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201312170329</url>
+		</repository>
+		<repository>
 			<id>eclipse-update</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/eclipse/updates/4.4</url>
