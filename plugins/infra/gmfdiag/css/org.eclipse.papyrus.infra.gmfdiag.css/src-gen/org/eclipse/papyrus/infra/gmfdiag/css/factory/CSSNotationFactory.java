@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.notation.Compartment;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.ConnectorStyle;
 import org.eclipse.gmf.runtime.notation.DataTypeStyle;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.DescriptionStyle;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.DiagramLinkStyle;
@@ -56,6 +57,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.CSSCompartmentImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSConnectorImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSConnectorStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSDataTypeStyleImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.CSSDecorationNodeImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSDescriptionStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSDiagramLinkStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSDiagramStyleImpl;
@@ -267,6 +269,11 @@ public class CSSNotationFactory extends NotationFactoryImpl {
 	@Override
 	public RoundedCornersStyle createRoundedCornersStyle() {
 		return new CSSRoundedCornersStyleImpl();
+	}
+
+	@Override
+	public DecorationNode createDecorationNode() {
+		return new CSSDecorationNodeImpl();
 	}
 
 }

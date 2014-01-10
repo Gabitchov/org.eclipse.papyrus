@@ -169,4 +169,27 @@
          type="java.util.Collection">
    </propertyTester>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+   <mapping
+         humanReadableType="Name"
+         type="6002">
+   </mapping>
+   <mapping
+         humanReadableType="Source role"
+         type="6003">
+   </mapping>
+   <mapping
+         humanReadableType="Target role"
+         type="6005">
+   </mapping>
+   <mapping
+         humanReadableType="Source multiplicity"
+         type="6033">
+   </mapping>
+   <mapping
+         humanReadableType="Target multiplicity"
+         type="6034">
+   </mapping>
+</extension>
 </plugin>

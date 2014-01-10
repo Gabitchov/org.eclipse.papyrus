@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,20 +9,30 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.common.helper;
+package org.eclipse.papyrus.infra.gmfdiag.css.helper;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.Connector;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.Activator;
 
 /**
  * A Helper for retrieving Views and Semantic elements from a
- * compatible object.
+ * compatible object. It differs from {@link org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper} as it is used
+ * for building the CSS DOM Model, which is slightly different from the semantics
+ * containment model (i.e. Compartments and Floating Labels appear in the DOM model,
+ * although they are not semantics elements)
+ * 
+ * Used for building the CSS DOM Model
  * 
  * @author Camille Letavernier
+ * 
  */
-public class SemanticElementHelper {
+public class CSSDOMSemanticElementHelper {
 
 	/**
 	 * Returns the semantic element attached to the given notation element
@@ -37,10 +47,22 @@ public class SemanticElementHelper {
 			return null;
 		}
 
+		//Add diagrams to the DOM model
 		if(notationElement instanceof Diagram) {
 			return notationElement;
 		}
 
+		//Add compartments to the DOM model
+		if(notationElement instanceof BasicCompartment) {
+			return notationElement;
+		}
+
+		//Add floating labels to the DOM model
+		if(isFloatingLabel(notationElement)) {
+			return notationElement;
+		}
+
+		//Copied from the generic Semantic Element Helper
 		if(notationElement instanceof View) {
 			View view = (View)notationElement;
 			EObject semanticElement = view.getElement();
@@ -75,7 +97,6 @@ public class SemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	//@unused
 	public static View findPrimaryView(EObject notationElement) {
 		return findTopView(notationElement);
 	}
@@ -87,7 +108,6 @@ public class SemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	//@unused
 	public static View findTopView(EObject notationElement) {
 		EObject semanticElement = findSemanticElement(notationElement);
 
@@ -108,5 +128,36 @@ public class SemanticElementHelper {
 		}
 
 		return (View)lastNotationElement;
+	}
+
+	/**
+	 * Tests whether the given View is a Floating label
+	 * 
+	 * @param view
+	 * @return
+	 *         True if this is a Floating Label
+	 */
+	public static boolean isFloatingLabel(EObject notationElement) {
+		if(!(notationElement instanceof DecorationNode)) {
+			return false;
+		}
+
+		DecorationNode node = (DecorationNode)notationElement;
+
+		if(node instanceof BasicCompartment) {
+			return false;
+		}
+
+		if(node.eContainer() instanceof Connector) {
+			return true;
+		}
+
+		if(node.eContainer() instanceof Shape) {
+			if(node.getLayoutConstraint() != null) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
