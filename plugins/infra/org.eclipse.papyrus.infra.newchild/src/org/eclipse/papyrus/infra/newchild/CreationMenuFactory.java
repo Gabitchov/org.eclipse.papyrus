@@ -213,7 +213,8 @@ public class CreationMenuFactory {
 			if(eStructuralFeature instanceof EReference) {
 				EReference ref = (EReference)eStructuralFeature;
 				if(ref.isContainment()) {
-					if(isSubClass(ref.getEType(), getElementType(currentCreationMenu.getElementTypeIdRef()).getEClass())) {
+					IElementType menuType =  getElementType(currentCreationMenu.getElementTypeIdRef());
+					if(menuType!=null && isSubClass(ref.getEType(), menuType.getEClass())) {
 						possibleEFeatures.add(eStructuralFeature);
 					}
 				}

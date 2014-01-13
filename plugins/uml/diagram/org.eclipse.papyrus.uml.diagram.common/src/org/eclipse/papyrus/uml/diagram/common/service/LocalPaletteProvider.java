@@ -53,7 +53,11 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 */
 	@SuppressWarnings("unchecked")
 	public void contributeToPalette(IEditorPart editor, Object content, PaletteRoot root, Map predefinedEntries) {
+		if(contributions ==null) {
+			return;
+		}
 		parser = new XMLDefinitionPaletteParser(new XMLDefinitionPaletteFactory(root, predefinedEntries));
+		
 		for(int i = 0; i < contributions.getLength(); i++) {
 			Node node = contributions.item(i);
 			if(PALETTE_DEFINITION.equals(node.getNodeName())) {
@@ -112,10 +116,14 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 			// the file should never be null in this implementation, but
 			// sub-classes could return null
 			if(inputStream == null) {
+				contributions = new EmptyNodeList();
 				throw new IOException("Impossible to load file: " + path);
 			} else {
 				Document document = documentBuilder.parse(inputStream);
 				contributions = document.getChildNodes();
+				if(contributions == null) {
+					contributions = new EmptyNodeList();
+				}
 			}
 		} catch (ParserConfigurationException e) {
 			Activator.log.error(e);

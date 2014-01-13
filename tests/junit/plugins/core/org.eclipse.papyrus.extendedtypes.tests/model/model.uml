@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExtendedTypesTestsProfile="http:///schemas/ExtendedTypesTestsProfile/_5IfFAGcEEeO5043Nsj3xUw/2" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/ExtendedTypesTestsProfile/_5IfFAGcEEeO5043Nsj3xUw/2 ExtendedTypesTestsProfile.profile.uml#_5IfFAWcEEeO5043Nsj3xUw">
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ExtendedTypesTestsProfile="http:///schemas/ExtendedTypesTestsProfile/_4fuMcHk6EeOwQstt3pSj0Q/6" xmlns:ExtendedTypesTestsProfile_1="http:///schemas/ExtendedTypesTestsProfile/_3cQg8HkREeOwQstt3pSj0Q/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/ExtendedTypesTestsProfile/_4fuMcHk6EeOwQstt3pSj0Q/6 ExtendedTypesTestsProfile.profile.uml#_4fuMcXk6EeOwQstt3pSj0Q http:///schemas/ExtendedTypesTestsProfile/_3cQg8HkREeOwQstt3pSj0Q/5 ExtendedTypesTestsProfile.profile.uml#_3cRIAHkREeOwQstt3pSj0Q">
   <uml:Model xmi:id="_X66aUf1VEd-WkaQf4YgINA" name="Model">
     <packageImport xmi:type="uml:PackageImport" xmi:id="_X66aUv1VEd-WkaQf4YgINA">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -15,7 +15,7 @@
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_dj-KoGcFEeOea9k8XF7uAg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dkH7oGcFEeOea9k8XF7uAg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="ExtendedTypesTestsProfile.profile.uml#_5IfFAWcEEeO5043Nsj3xUw"/>
+        <references xmi:type="ecore:EPackage" href="ExtendedTypesTestsProfile.profile.uml#_4fuMcXk6EeOwQstt3pSj0Q"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="ExtendedTypesTestsProfile.profile.uml#_sK148Gb7EeOyHY5evmQkxA"/>
     </profileApplication>
@@ -85,7 +85,25 @@
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
     </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_OqmBEHkYEeOHVq64OdBxbA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OrziAHkYEeOHVq64OdBxbA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_INTERNAL_PROFILES/PapyrusInternal.profile.uml#_eijPgUBcEeKj6r7ThQagKA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_INTERNAL_PROFILES/PapyrusInternal.profile.uml#_dL4lkPXAEeGSQON-DQ-5eg"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Or1XMHkYEeOHVq64OdBxbA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OsllIHkYEeOHVq64OdBxbA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_INTERNAL_PROFILES/PapyrusInternal.profile.uml#_eikdoEBcEeKj6r7ThQagKA"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_INTERNAL_PROFILES/PapyrusInternal.profile.uml#_16oYAD-SEeKj6r7ThQagKA"/>
+    </profileApplication>
   </uml:Model>
   <ExtendedTypesTestsProfile:PackageWithComponents xmi:id="_keWi0GcFEeOea9k8XF7uAg" base_Element="_b1QI8P1VEd-WkaQf4YgINA"/>
   <ExtendedTypesTestsProfile:PackageWithComponents xmi:id="_FHOZAGczEeO-Gf1_f5pJdw" base_Element="_Caa0gGczEeO-Gf1_f5pJdw"/>
+  <ExtendedTypesTestsProfile_1:Equipment xmi:id="_e-46gHkOEeOwQstt3pSj0Q"/>
+  <ExtendedTypesTestsProfile_1:Equipment xmi:id="_fmnB0HkOEeOwQstt3pSj0Q"/>
+  <ExtendedTypesTestsProfile_1:Module xmi:id="_bWIEEHkOEeOwQstt3pSj0Q"/>
+  <ExtendedTypesTestsProfile_1:Module xmi:id="_cjKe8HkOEeOwQstt3pSj0Q" kind="Electrical"/>
+  <ExtendedTypesTestsProfile_1:Partition xmi:id="_gW-u0HkOEeOwQstt3pSj0Q"/>
+  <ExtendedTypesTestsProfile_1:Partition xmi:id="_hAeXwHkOEeOwQstt3pSj0Q"/>
 </xmi:XMI>

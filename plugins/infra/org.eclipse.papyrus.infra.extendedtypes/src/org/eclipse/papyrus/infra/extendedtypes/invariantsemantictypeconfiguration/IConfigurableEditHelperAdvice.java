@@ -14,14 +14,15 @@ package org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfigurati
 
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 
-
 /**
- * @author RS211865
+ * Interface for all {@link IEditHelperAdvice} that are configured by an {@link InvariantRuleConfiguration}.
  */
 public interface IConfigurableEditHelperAdvice<T extends InvariantRuleConfiguration> extends IEditHelperAdvice {
 
 	/**
-	 * @param ruleConfiguration
+	 * Inits the edit helper advice with its given configuration
+	 * 
+	 * @param ruleConfiguration the configuration of the edit helper advice
 	 */
 	void init(T ruleConfiguration);
 }
