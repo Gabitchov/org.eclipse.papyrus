@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc label="Papyrus UML Starter Guide" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
+   <topic href="resource/PapyrusStarterGuide.html" label="Papyrus UML Starter Guide">
+      <link toc="resource/PapyrusStarterGuide-toc.xml"/>
+      <anchor id="UMLStarterDoc"/>
+   </topic>	
+</toc>
