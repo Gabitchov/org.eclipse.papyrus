@@ -91,6 +91,14 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	}
 
 	/**
+	 * Resets the style of this figure to its default implementation
+	 */
+	@Override
+	public void resetStyle() {
+		setStyle();
+	}
+
+	/**
 	 * Sets initial Style for the figure. It does not give any special Color for
 	 * Background and Foreground. This is the style used for classic arrows:
 	 * ------>

@@ -15,13 +15,13 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.IntValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusConnectionEndEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.edge.PapyrusEdgeFigure;
 
 
 /**
@@ -56,14 +56,16 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 		super.refresh();
 		IFigure figure = this.getFigure();
 		Object model = this.getModel();
-		if (figure instanceof PolylineConnectionEx && model instanceof Connector) {
+		if (figure instanceof PapyrusEdgeFigure && model instanceof Connector) {
 			Connector connector = (Connector) model;
-			PolylineConnectionEx polyline = (PolylineConnectionEx) figure;
+			PapyrusEdgeFigure edge = (PapyrusEdgeFigure) figure;
 			String lineStyle = extract((StringValueStyle) connector.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), LINE_STYLE));
 			int lineDashLength = extract((IntValueStyle) connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_LENGTH));
 			int lineDashGap = extract((IntValueStyle) connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_GAP));
 			if (lineStyle != null) {
-				setupLineStyle(polyline, lineStyle, connector.getLineWidth(), lineDashLength, lineDashGap);
+				setupLineStyle(edge, lineStyle, connector.getLineWidth(), lineDashLength, lineDashGap);
+			} else {
+				edge.resetStyle();
 			}
 		}
 	}
@@ -97,9 +99,9 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 	}
 
 	/**
-	 * Setups the line style of the polyline according to the given CSS style
+	 * Setups the line style of the edge according to the given CSS style
 	 * 
-	 * @param polyline
+	 * @param edge
 	 *            The shape to setup
 	 * @param style
 	 *            The CSS style
@@ -110,29 +112,30 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 	 * @param lineDashGap
 	 *            Length of the gap between dashes
 	 */
-	private void setupLineStyle(PolylineConnectionEx polyline, String style, int originalWidth, int lineDashLength, int lineDashGap) {
+	private void setupLineStyle(PapyrusEdgeFigure edge, String style, int originalWidth, int lineDashLength, int lineDashGap) {
 		if ("none".equals(style)) {
-			polyline.setLineStyle(Graphics.LINE_SOLID);
-			polyline.setLineWidth(0);
-			polyline.setVisible(false);
-		} else if ("hidden".equals(style)) {
-			polyline.setLineStyle(Graphics.LINE_SOLID);
-			polyline.setLineWidth(0);
-			polyline.setVisible(false);
-		} else if ("dotted".equals(style)) {
-			polyline.setLineStyle(Graphics.LINE_DOT);
-			polyline.setLineWidth(originalWidth);
-		} else if ("dashed".equals(style)) {
-			polyline.setLineStyle(Graphics.LINE_DASH);
-			polyline.setLineWidth(originalWidth);
-			polyline.setLineDash(new int[] { lineDashLength, lineDashGap });
-		} else if ("solid".equals(style)) {
-			polyline.setLineStyle(Graphics.LINE_SOLID);
-			polyline.setLineWidth(originalWidth);
-		} else if ("double".equals(style)) {
-			polyline.setLineWidth(originalWidth * 2);
+			edge.resetStyle();
+		} else {
+			if ("hidden".equals(style)) {
+				edge.setLineStyle(Graphics.LINE_SOLID);
+				edge.setLineWidth(0);
+				edge.setVisible(false);
+			} else if ("dotted".equals(style)) {
+				edge.setLineStyle(Graphics.LINE_DOT);
+				edge.setLineWidth(originalWidth);
+			} else if ("dashed".equals(style)) {
+				edge.setLineStyle(Graphics.LINE_CUSTOM);
+				edge.setLineWidth(originalWidth);
+				edge.setLineDash(new int[] { lineDashLength, lineDashGap });
+			} else if ("solid".equals(style)) {
+				edge.setLineStyle(Graphics.LINE_SOLID);
+				edge.setLineWidth(originalWidth);
+			} else if ("double".equals(style)) {
+				edge.setLineWidth(originalWidth * 2);
+			}
 		}
 	}
+
 
 
 	/**

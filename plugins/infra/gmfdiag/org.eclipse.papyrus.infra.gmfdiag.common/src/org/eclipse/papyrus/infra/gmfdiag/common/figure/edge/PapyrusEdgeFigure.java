@@ -51,11 +51,6 @@ public abstract class PapyrusEdgeFigure extends PolylineConnectionEx {
 	private int bendpointDiameter;
 
 	/**
-	 * Data of the dash style
-	 */
-	private int[] lineDashData;
-
-	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -63,14 +58,6 @@ public abstract class PapyrusEdgeFigure extends PolylineConnectionEx {
 	public PapyrusEdgeFigure() {
 		super();
 		setBendPointDiameter(7);
-		lineDashData = null;
-	}
-
-	/**
-	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx#setLineDash(int[])
-	 */
-	public void setLineDash(int[] data) {
-		lineDashData = data;
 	}
 
 	/**
@@ -81,12 +68,15 @@ public abstract class PapyrusEdgeFigure extends PolylineConnectionEx {
 	 * @param g
 	 */
 	protected void outlineShape(Graphics g) {
-		g.setLineStyle(getLineStyle());
-		if (getLineStyle() == Graphics.LINE_DASH) {
-			g.setLineDash(lineDashData);
-		}
 		super.outlineShape(g);
 		drawConnectionPoint(g);
+	}
+
+	/**
+	 * Resets the style of this figure to its default implementation
+	 */
+	public void resetStyle() {
+
 	}
 
 	/**
