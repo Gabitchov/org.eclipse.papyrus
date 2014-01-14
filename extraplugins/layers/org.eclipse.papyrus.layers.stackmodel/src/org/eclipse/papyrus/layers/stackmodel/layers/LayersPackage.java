@@ -124,6 +124,43 @@ public interface LayersPackage extends EPackage {
 	int LAYER_NAMED_STYLE_OPERATION_COUNT = /*NotationPackage.NAMED_STYLE_OPERATION_COUNT +*/ 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer <em>Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayersContainer()
+	 * @generated
+	 */
+	int LAYERS_CONTAINER = 26;
+
+	/**
+	 * The number of structural features of the '<em>Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_CONTAINER_FEATURE_COUNT = 0;
+
+	/**
+	 * The operation id for the '<em>Add Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_CONTAINER___ADD_LAYER__LAYEREXPRESSION = 0;
+
+	/**
+	 * The number of operations of the '<em>Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_CONTAINER_OPERATION_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersStackImpl <em>Stack</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -151,7 +188,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayer()
 	 * @generated
 	 */
-	int LAYER = 46;
+	int LAYER = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.TypeInstanceImpl <em>Type Instance</em>}' class.
@@ -171,7 +208,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getStringToTypeInstanceMap()
 	 * @generated
 	 */
-	int STRING_TO_TYPE_INSTANCE_MAP = 28;
+	int STRING_TO_TYPE_INSTANCE_MAP = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerDescriptorImpl <em>Layer Descriptor</em>}' class.
@@ -200,7 +237,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK__LAYERS = 0;
+	int LAYERS_STACK__LAYERS = LAYERS_CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -209,7 +246,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK__NAME = 1;
+	int LAYERS_STACK__NAME = LAYERS_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -218,7 +255,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK__DESCRIPTION = 2;
+	int LAYERS_STACK__DESCRIPTION = LAYERS_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Diagram</b></em>' reference.
@@ -227,7 +264,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK__DIAGRAM = 3;
+	int LAYERS_STACK__DIAGRAM = LAYERS_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -236,7 +273,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK__STATE = 4;
+	int LAYERS_STACK__STATE = LAYERS_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Stack</em>' class.
@@ -245,7 +282,16 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK_FEATURE_COUNT = 5;
+	int LAYERS_STACK_FEATURE_COUNT = LAYERS_CONTAINER_FEATURE_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Add Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYERS_STACK___ADD_LAYER__LAYEREXPRESSION = LAYERS_CONTAINER___ADD_LAYER__LAYEREXPRESSION;
 
 	/**
 	 * The operation id for the '<em>Get Compute Property Value Command</em>' operation.
@@ -254,7 +300,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK___GET_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_PROPERTY = 0;
+	int LAYERS_STACK___GET_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_PROPERTY = LAYERS_CONTAINER_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Properties Compute Property Value Command</em>' operation.
@@ -263,7 +309,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = 1;
+	int LAYERS_STACK___GET_PROPERTIES_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_ELIST = LAYERS_CONTAINER_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Views Compute Property Value Command</em>' operation.
@@ -272,7 +318,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK___GET_VIEWS_COMPUTE_PROPERTY_VALUE_COMMAND__ELIST_PROPERTY = 2;
+	int LAYERS_STACK___GET_VIEWS_COMPUTE_PROPERTY_VALUE_COMMAND__ELIST_PROPERTY = LAYERS_CONTAINER_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Start After Creation</em>' operation.
@@ -281,7 +327,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK___START_AFTER_CREATION = 3;
+	int LAYERS_STACK___START_AFTER_CREATION = LAYERS_CONTAINER_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Attach Layers</em>' operation.
@@ -290,7 +336,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK___ATTACH_LAYERS = 4;
+	int LAYERS_STACK___ATTACH_LAYERS = LAYERS_CONTAINER_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Attach</em>' operation.
@@ -299,7 +345,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK___ATTACH = 5;
+	int LAYERS_STACK___ATTACH = LAYERS_CONTAINER_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Detach</em>' operation.
@@ -308,7 +354,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK___DETACH = 6;
+	int LAYERS_STACK___DETACH = LAYERS_CONTAINER_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Enter Attached State</em>' operation.
@@ -317,7 +363,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK___ENTER_ATTACHED_STATE = 7;
+	int LAYERS_STACK___ENTER_ATTACHED_STATE = LAYERS_CONTAINER_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Exit Attached State</em>' operation.
@@ -326,7 +372,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK___EXIT_ATTACHED_STATE = 8;
+	int LAYERS_STACK___EXIT_ATTACHED_STATE = LAYERS_CONTAINER_OPERATION_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Stack</em>' class.
@@ -335,7 +381,7 @@ public interface LayersPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LAYERS_STACK_OPERATION_COUNT = 9;
+	int LAYERS_STACK_OPERATION_COUNT = LAYERS_CONTAINER_OPERATION_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.ApplicationDependantElementImpl <em>Application Dependant Element</em>}' class.
@@ -611,7 +657,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getFolder()
 	 * @generated
 	 */
-	int FOLDER = 29;
+	int FOLDER = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.IntInstanceImpl <em>Int Instance</em>}' class.
@@ -621,7 +667,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getIntInstance()
 	 * @generated
 	 */
-	int INT_INSTANCE = 30;
+	int INT_INSTANCE = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.BooleanInstanceImpl <em>Boolean Instance</em>}' class.
@@ -631,7 +677,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getBooleanInstance()
 	 * @generated
 	 */
-	int BOOLEAN_INSTANCE = 31;
+	int BOOLEAN_INSTANCE = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.StringInstanceImpl <em>String Instance</em>}' class.
@@ -641,7 +687,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getStringInstance()
 	 * @generated
 	 */
-	int STRING_INSTANCE = 32;
+	int STRING_INSTANCE = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.IntTypeImpl <em>Int Type</em>}' class.
@@ -651,7 +697,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getIntType()
 	 * @generated
 	 */
-	int INT_TYPE = 33;
+	int INT_TYPE = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.BooleanTypeImpl <em>Boolean Type</em>}' class.
@@ -661,7 +707,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getBooleanType()
 	 * @generated
 	 */
-	int BOOLEAN_TYPE = 34;
+	int BOOLEAN_TYPE = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.StringTypeImpl <em>String Type</em>}' class.
@@ -671,7 +717,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getStringType()
 	 * @generated
 	 */
-	int STRING_TYPE = 35;
+	int STRING_TYPE = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.CustomTypeImpl <em>Custom Type</em>}' class.
@@ -681,7 +727,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getCustomType()
 	 * @generated
 	 */
-	int CUSTOM_TYPE = 36;
+	int CUSTOM_TYPE = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersStackApplicationImpl <em>Stack Application</em>}' class.
@@ -1226,7 +1272,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getStringToPropertyIndexMap()
 	 * @generated
 	 */
-	int STRING_TO_PROPERTY_INDEX_MAP = 41;
+	int STRING_TO_PROPERTY_INDEX_MAP = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.PropertyIndexImpl <em>Property Index</em>}' class.
@@ -1236,7 +1282,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getPropertyIndex()
 	 * @generated
 	 */
-	int PROPERTY_INDEX = 40;
+	int PROPERTY_INDEX = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.TypeRegistryImpl <em>Type Registry</em>}' class.
@@ -1603,7 +1649,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getAbstractLayer()
 	 * @generated
 	 */
-	int ABSTRACT_LAYER = 27;
+	int ABSTRACT_LAYER = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerOperatorImpl <em>Layer Operator</em>}' class.
@@ -1653,7 +1699,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getDefaultPropertyOperator()
 	 * @generated
 	 */
-	int DEFAULT_PROPERTY_OPERATOR = 26;
+	int DEFAULT_PROPERTY_OPERATOR = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.TopLayerOperatorImpl <em>Top Layer Operator</em>}' class.
@@ -1663,7 +1709,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getTopLayerOperator()
 	 * @generated
 	 */
-	int TOP_LAYER_OPERATOR = 37;
+	int TOP_LAYER_OPERATOR = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.StackedLayerOperatorImpl <em>Stacked Layer Operator</em>}' class.
@@ -1673,7 +1719,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getStackedLayerOperator()
 	 * @generated
 	 */
-	int STACKED_LAYER_OPERATOR = 38;
+	int STACKED_LAYER_OPERATOR = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.CustomLayerOperatorImpl <em>Custom Layer Operator</em>}' class.
@@ -1683,7 +1729,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getCustomLayerOperator()
 	 * @generated
 	 */
-	int CUSTOM_LAYER_OPERATOR = 39;
+	int CUSTOM_LAYER_OPERATOR = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.SimpleLayerDescriptorImpl <em>Simple Layer Descriptor</em>}' class.
@@ -1693,7 +1739,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getSimpleLayerDescriptor()
 	 * @generated
 	 */
-	int SIMPLE_LAYER_DESCRIPTOR = 42;
+	int SIMPLE_LAYER_DESCRIPTOR = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerDescriptorImpl <em>Reg Exp Layer Descriptor</em>}' class.
@@ -1703,7 +1749,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getRegExpLayerDescriptor()
 	 * @generated
 	 */
-	int REG_EXP_LAYER_DESCRIPTOR = 43;
+	int REG_EXP_LAYER_DESCRIPTOR = 44;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.NullInstanceImpl <em>Null Instance</em>}' class.
@@ -1713,7 +1759,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getNullInstance()
 	 * @generated
 	 */
-	int NULL_INSTANCE = 44;
+	int NULL_INSTANCE = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.RegExpLayerImpl <em>Reg Exp Layer</em>}' class.
@@ -1723,7 +1769,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getRegExpLayer()
 	 * @generated
 	 */
-	int REG_EXP_LAYER = 45;
+	int REG_EXP_LAYER = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.ColorImpl <em>Color</em>}' class.
@@ -1733,7 +1779,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getColor()
 	 * @generated
 	 */
-	int COLOR = 47;
+	int COLOR = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.ColorInstanceImpl <em>Color Instance</em>}' class.
@@ -1743,7 +1789,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getColorInstance()
 	 * @generated
 	 */
-	int COLOR_INSTANCE = 48;
+	int COLOR_INSTANCE = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.FillInstanceImpl <em>Fill Instance</em>}' class.
@@ -1753,7 +1799,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getFillInstance()
 	 * @generated
 	 */
-	int FILL_INSTANCE = 49;
+	int FILL_INSTANCE = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.FillImpl <em>Fill</em>}' class.
@@ -1763,7 +1809,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getFill()
 	 * @generated
 	 */
-	int FILL = 50;
+	int FILL = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.FillPropertySetterImpl <em>Fill Property Setter</em>}' class.
@@ -1773,7 +1819,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getFillPropertySetter()
 	 * @generated
 	 */
-	int FILL_PROPERTY_SETTER = 51;
+	int FILL_PROPERTY_SETTER = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.IsValidPropertySetterImpl <em>Is Valid Property Setter</em>}' class.
@@ -1783,7 +1829,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getIsValidPropertySetter()
 	 * @generated
 	 */
-	int IS_VALID_PROPERTY_SETTER = 52;
+	int IS_VALID_PROPERTY_SETTER = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.NullPropertySetterImpl <em>Null Property Setter</em>}' class.
@@ -1793,7 +1839,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getNullPropertySetter()
 	 * @generated
 	 */
-	int NULL_PROPERTY_SETTER = 53;
+	int NULL_PROPERTY_SETTER = 54;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LineTypeImpl <em>Line Type</em>}' class.
@@ -1803,7 +1849,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLineType()
 	 * @generated
 	 */
-	int LINE_TYPE = 54;
+	int LINE_TYPE = 55;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LineInstanceImpl <em>Line Instance</em>}' class.
@@ -1813,7 +1859,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLineInstance()
 	 * @generated
 	 */
-	int LINE_INSTANCE = 55;
+	int LINE_INSTANCE = 56;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LinePropertySetterImpl <em>Line Property Setter</em>}' class.
@@ -1823,7 +1869,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLinePropertySetter()
 	 * @generated
 	 */
-	int LINE_PROPERTY_SETTER = 56;
+	int LINE_PROPERTY_SETTER = 57;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.FontPropertySetterImpl <em>Font Property Setter</em>}' class.
@@ -1833,7 +1879,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getFontPropertySetter()
 	 * @generated
 	 */
-	int FONT_PROPERTY_SETTER = 57;
+	int FONT_PROPERTY_SETTER = 58;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.FontInstanceImpl <em>Font Instance</em>}' class.
@@ -1843,7 +1889,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getFontInstance()
 	 * @generated
 	 */
-	int FONT_INSTANCE = 58;
+	int FONT_INSTANCE = 59;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.FontTypeImpl <em>Font Type</em>}' class.
@@ -1853,7 +1899,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getFontType()
 	 * @generated
 	 */
-	int FONT_TYPE = 59;
+	int FONT_TYPE = 60;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.IsVisiblePropertySetterImpl <em>Is Visible Property Setter</em>}' class.
@@ -1863,7 +1909,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getIsVisiblePropertySetter()
 	 * @generated
 	 */
-	int IS_VISIBLE_PROPERTY_SETTER = 60;
+	int IS_VISIBLE_PROPERTY_SETTER = 61;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.LayerOperatorDescriptorRegistryImpl <em>Layer Operator Descriptor Registry</em>}' class.
@@ -2263,13 +2309,22 @@ public interface LayersPackage extends EPackage {
 	int LAYER_OPERATOR___EXIT_ATTACHED_STATE = LAYER_EXPRESSION___EXIT_ATTACHED_STATE;
 
 	/**
+	 * The operation id for the '<em>Add Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION = LAYER_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Layer Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LAYER_OPERATOR_OPERATION_COUNT = LAYER_EXPRESSION_OPERATION_COUNT + 0;
+	int LAYER_OPERATOR_OPERATION_COUNT = LAYER_EXPRESSION_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Application</b></em>' reference.
@@ -2459,6 +2514,15 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_LAYER_OPERATOR___EXIT_ATTACHED_STATE = LAYER_OPERATOR___EXIT_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Add Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION = LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION;
 
 	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
@@ -3424,6 +3488,15 @@ public interface LayersPackage extends EPackage {
 	int TOP_LAYER_OPERATOR___EXIT_ATTACHED_STATE = ABSTRACT_LAYER_OPERATOR___EXIT_ATTACHED_STATE;
 
 	/**
+	 * The operation id for the '<em>Add Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOP_LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION = ABSTRACT_LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION;
+
+	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3640,6 +3713,15 @@ public interface LayersPackage extends EPackage {
 	int STACKED_LAYER_OPERATOR___EXIT_ATTACHED_STATE = ABSTRACT_LAYER_OPERATOR___EXIT_ATTACHED_STATE;
 
 	/**
+	 * The operation id for the '<em>Add Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STACKED_LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION = ABSTRACT_LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION;
+
+	/**
 	 * The operation id for the '<em>Is Descriptor Set</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3836,6 +3918,15 @@ public interface LayersPackage extends EPackage {
 	 * @ordered
 	 */
 	int CUSTOM_LAYER_OPERATOR___EXIT_ATTACHED_STATE = LAYER_OPERATOR___EXIT_ATTACHED_STATE;
+
+	/**
+	 * The operation id for the '<em>Add Layer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOM_LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION = LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION;
 
 	/**
 	 * The number of operations of the '<em>Custom Layer Operator</em>' class.
@@ -5411,7 +5502,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getTopLayerOperatorDescriptor()
 	 * @generated
 	 */
-	int TOP_LAYER_OPERATOR_DESCRIPTOR = 61;
+	int TOP_LAYER_OPERATOR_DESCRIPTOR = 62;
 
 	/**
 	 * The feature id for the '<em><b>Property Operators</b></em>' reference list.
@@ -5493,7 +5584,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getStackedLayerOperatorDescriptor()
 	 * @generated
 	 */
-	int STACKED_LAYER_OPERATOR_DESCRIPTOR = 62;
+	int STACKED_LAYER_OPERATOR_DESCRIPTOR = 63;
 
 	/**
 	 * The feature id for the '<em><b>Property Operators</b></em>' reference list.
@@ -5575,7 +5666,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getCustomPropertyOperator()
 	 * @generated
 	 */
-	int CUSTOM_PROPERTY_OPERATOR = 63;
+	int CUSTOM_PROPERTY_OPERATOR = 64;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -5657,7 +5748,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getAndStackedLayerOperatorDescriptor()
 	 * @generated
 	 */
-	int AND_STACKED_LAYER_OPERATOR_DESCRIPTOR = 64;
+	int AND_STACKED_LAYER_OPERATOR_DESCRIPTOR = 65;
 
 	/**
 	 * The feature id for the '<em><b>Property Operators</b></em>' reference list.
@@ -5739,7 +5830,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getOrStackedLayerOperatorDescriptor()
 	 * @generated
 	 */
-	int OR_STACKED_LAYER_OPERATOR_DESCRIPTOR = 65;
+	int OR_STACKED_LAYER_OPERATOR_DESCRIPTOR = 66;
 
 	/**
 	 * The feature id for the '<em><b>Property Operators</b></em>' reference list.
@@ -5821,7 +5912,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getIsAbstractUmlSetter()
 	 * @generated
 	 */
-	int IS_ABSTRACT_UML_SETTER = 66;
+	int IS_ABSTRACT_UML_SETTER = 67;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -5876,7 +5967,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getAllViewsDerivedLayer()
 	 * @generated
 	 */
-	int ALL_VIEWS_DERIVED_LAYER = 67;
+	int ALL_VIEWS_DERIVED_LAYER = 68;
 
 	/**
 	 * The feature id for the '<em><b>Application</b></em>' reference.
@@ -6138,7 +6229,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayerState()
 	 * @generated
 	 */
-	int LAYER_STATE = 68;
+	int LAYER_STATE = 69;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.EventLevel <em>Event Level</em>}' enum.
@@ -6148,7 +6239,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getEventLevel()
 	 * @generated
 	 */
-	int EVENT_LEVEL = 69;
+	int EVENT_LEVEL = 70;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -6158,7 +6249,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 70;
+	int STRING = 71;
 
 	/**
 	 * The meta object id for the '<em>boolean</em>' data type.
@@ -6167,7 +6258,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getboolean()
 	 * @generated
 	 */
-	int BOOLEAN = 71;
+	int BOOLEAN = 72;
 
 	/**
 	 * The meta object id for the '<em>EPackage</em>' data type.
@@ -6177,7 +6268,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getEPackage()
 	 * @generated
 	 */
-	int EPACKAGE = 72;
+	int EPACKAGE = 73;
 
 	/**
 	 * The meta object id for the '<em>Not Found Exception</em>' data type.
@@ -6187,7 +6278,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getNotFoundException()
 	 * @generated
 	 */
-	int NOT_FOUND_EXCEPTION = 76;
+	int NOT_FOUND_EXCEPTION = 77;
 
 	/**
 	 * The meta object id for the '<em>Compute Property Value Command</em>' data type.
@@ -6197,7 +6288,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getComputePropertyValueCommand()
 	 * @generated
 	 */
-	int COMPUTE_PROPERTY_VALUE_COMMAND = 77;
+	int COMPUTE_PROPERTY_VALUE_COMMAND = 78;
 
 	/**
 	 * The meta object id for the '<em>Exception</em>' data type.
@@ -6207,7 +6298,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayersException()
 	 * @generated
 	 */
-	int LAYERS_EXCEPTION = 73;
+	int LAYERS_EXCEPTION = 74;
 
 	/**
 	 * The meta object id for the '<em>int</em>' data type.
@@ -6216,7 +6307,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getint()
 	 * @generated
 	 */
-	int INT = 74;
+	int INT = 75;
 
 
 	/**
@@ -6227,7 +6318,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 78;
+	int OBJECT = 79;
 
 
 	/**
@@ -6238,7 +6329,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getCustomPropertyOpertorInstance()
 	 * @generated
 	 */
-	int CUSTOM_PROPERTY_OPERTOR_INSTANCE = 79;
+	int CUSTOM_PROPERTY_OPERTOR_INSTANCE = 80;
 
 	/**
 	 * The meta object id for the '<em>Bad State Exception</em>' data type.
@@ -6248,7 +6339,7 @@ public interface LayersPackage extends EPackage {
 	 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getBadStateException()
 	 * @generated
 	 */
-	int BAD_STATE_EXCEPTION = 75;
+	int BAD_STATE_EXCEPTION = 76;
 
 
 	/**
@@ -8455,6 +8546,26 @@ public interface LayersPackage extends EPackage {
 	EReference getLayerOperator_Layers();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Container</em>'.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer
+	 * @generated
+	 */
+	EClass getLayersContainer();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer#addLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression) <em>Add Layer</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Add Layer</em>' operation.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer#addLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression)
+	 * @generated
+	 */
+	EOperation getLayersContainer__AddLayer__LayerExpression();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.layers.stackmodel.layers.AbstractLayerOperator <em>Abstract Layer Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10587,6 +10698,24 @@ public interface LayersPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LAYER_OPERATOR__LAYERS = eINSTANCE.getLayerOperator_Layers();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer <em>Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer
+		 * @see org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersPackageImpl#getLayersContainer()
+		 * @generated
+		 */
+		EClass LAYERS_CONTAINER = eINSTANCE.getLayersContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Add Layer</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LAYERS_CONTAINER___ADD_LAYER__LAYEREXPRESSION = eINSTANCE.getLayersContainer__AddLayer__LayerExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.layers.stackmodel.layers.impl.AbstractLayerOperatorImpl <em>Abstract Layer Operator</em>}' class.

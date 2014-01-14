@@ -92,6 +92,7 @@ public class LayersSwitch<T> extends Switch<T> {
 			case LayersPackage.LAYERS_STACK: {
 				LayersStack layersStack = (LayersStack)theEObject;
 				T result = caseLayersStack(layersStack);
+				if (result == null) result = caseLayersContainer(layersStack);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -238,6 +239,7 @@ public class LayersSwitch<T> extends Switch<T> {
 				T result = caseAbstractLayerOperator(abstractLayerOperator);
 				if (result == null) result = caseLayerOperator(abstractLayerOperator);
 				if (result == null) result = caseLayerExpression(abstractLayerOperator);
+				if (result == null) result = caseLayersContainer(abstractLayerOperator);
 				if (result == null) result = caseApplicationDependantElement(abstractLayerOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -246,7 +248,14 @@ public class LayersSwitch<T> extends Switch<T> {
 				LayerOperator layerOperator = (LayerOperator)theEObject;
 				T result = caseLayerOperator(layerOperator);
 				if (result == null) result = caseLayerExpression(layerOperator);
+				if (result == null) result = caseLayersContainer(layerOperator);
 				if (result == null) result = caseApplicationDependantElement(layerOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case LayersPackage.LAYERS_CONTAINER: {
+				LayersContainer layersContainer = (LayersContainer)theEObject;
+				T result = caseLayersContainer(layersContainer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -340,6 +349,7 @@ public class LayersSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAbstractLayerOperator(topLayerOperator);
 				if (result == null) result = caseLayerOperator(topLayerOperator);
 				if (result == null) result = caseLayerExpression(topLayerOperator);
+				if (result == null) result = caseLayersContainer(topLayerOperator);
 				if (result == null) result = caseApplicationDependantElement(topLayerOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -350,6 +360,7 @@ public class LayersSwitch<T> extends Switch<T> {
 				if (result == null) result = caseAbstractLayerOperator(stackedLayerOperator);
 				if (result == null) result = caseLayerOperator(stackedLayerOperator);
 				if (result == null) result = caseLayerExpression(stackedLayerOperator);
+				if (result == null) result = caseLayersContainer(stackedLayerOperator);
 				if (result == null) result = caseApplicationDependantElement(stackedLayerOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -359,6 +370,7 @@ public class LayersSwitch<T> extends Switch<T> {
 				T result = caseCustomLayerOperator(customLayerOperator);
 				if (result == null) result = caseLayerOperator(customLayerOperator);
 				if (result == null) result = caseLayerExpression(customLayerOperator);
+				if (result == null) result = caseLayersContainer(customLayerOperator);
 				if (result == null) result = caseApplicationDependantElement(customLayerOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -1490,6 +1502,21 @@ public class LayersSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLayerOperator(LayerOperator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLayersContainer(LayersContainer object) {
 		return null;
 	}
 

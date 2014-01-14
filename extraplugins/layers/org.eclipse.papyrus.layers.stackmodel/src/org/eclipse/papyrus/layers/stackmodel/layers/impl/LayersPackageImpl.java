@@ -64,6 +64,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperatorDescriptor;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperatorDescriptorRegistry;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerStackDescriptorRegistry;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerState;
+import org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersFactory;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
@@ -325,6 +326,13 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * @generated
 	 */
 	private EClass layerOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass layersContainerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1964,6 +1972,24 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLayersContainer() {
+		return layersContainerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getLayersContainer__AddLayer__LayerExpression() {
+		return layersContainerEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAbstractLayerOperator() {
 		return abstractLayerOperatorEClass;
 	}
@@ -3067,6 +3093,9 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		layerOperatorEClass = createEClass(LAYER_OPERATOR);
 		createEReference(layerOperatorEClass, LAYER_OPERATOR__LAYERS);
 
+		layersContainerEClass = createEClass(LAYERS_CONTAINER);
+		createEOperation(layersContainerEClass, LAYERS_CONTAINER___ADD_LAYER__LAYEREXPRESSION);
+
 		defaultPropertyOperatorEClass = createEClass(DEFAULT_PROPERTY_OPERATOR);
 
 		abstractLayerEClass = createEClass(ABSTRACT_LAYER);
@@ -3249,6 +3278,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 
 		// Add supertypes to classes
 		layerNamedStyleEClass.getESuperTypes().add(theNotationPackage.getNamedStyle());
+		layersStackEClass.getESuperTypes().add(this.getLayersContainer());
 		layerExpressionEClass.getESuperTypes().add(this.getApplicationDependantElement());
 		layersStackApplicationEClass.getESuperTypes().add(this.getFolderElement());
 		propertyEClass.getESuperTypes().add(this.getFolderElement());
@@ -3257,6 +3287,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		typeInstanceEClass.getESuperTypes().add(this.getComputePropertyValueCommandItf());
 		abstractLayerOperatorEClass.getESuperTypes().add(this.getLayerOperator());
 		layerOperatorEClass.getESuperTypes().add(this.getLayerExpression());
+		layerOperatorEClass.getESuperTypes().add(this.getLayersContainer());
 		defaultPropertyOperatorEClass.getESuperTypes().add(this.getPropertyOperator());
 		abstractLayerEClass.getESuperTypes().add(this.getLayerExpression());
 		folderEClass.getESuperTypes().add(this.getFolderElement());
@@ -3578,6 +3609,11 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		initEClass(layerOperatorEClass, LayerOperator.class, "LayerOperator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLayerOperator_Layers(), this.getLayerExpression(), null, "layers", null, 0, -1, LayerOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(layersContainerEClass, LayersContainer.class, "LayersContainer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = initEOperation(getLayersContainer__AddLayer__LayerExpression(), null, "addLayer", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getLayerExpression(), "layer", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
 		initEClass(defaultPropertyOperatorEClass, DefaultPropertyOperator.class, "DefaultPropertyOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(abstractLayerEClass, AbstractLayer.class, "AbstractLayer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3791,7 +3827,7 @@ public class LayersPackageImpl extends EPackageImpl implements LayersPackage {
 		   source, 
 		   new String[] {
 			 "baseType", "LayersException"
-		   });
+		   });	
 	}
 
 } //LayersPackageImpl

@@ -315,6 +315,11 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference layers.ecore#//LayerOperator/layers"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//LayersContainer">
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="layers.ecore#//LayersContainer/addLayer">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="layers.ecore#//LayersContainer/addLayer/layer"/>
+      </genOperations>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="layers.ecore#//DefaultPropertyOperator"/>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="layers.ecore#//AbstractLayer">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

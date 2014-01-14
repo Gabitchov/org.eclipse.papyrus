@@ -187,6 +187,10 @@ public class LayersAdapterFactory extends AdapterFactoryImpl {
 				return createLayerOperatorAdapter();
 			}
 			@Override
+			public Adapter caseLayersContainer(LayersContainer object) {
+				return createLayersContainerAdapter();
+			}
+			@Override
 			public Adapter caseDefaultPropertyOperator(DefaultPropertyOperator object) {
 				return createDefaultPropertyOperatorAdapter();
 			}
@@ -1233,6 +1237,20 @@ public class LayersAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLayerOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer
+	 * @generated
+	 */
+	public Adapter createLayersContainerAdapter() {
 		return null;
 	}
 

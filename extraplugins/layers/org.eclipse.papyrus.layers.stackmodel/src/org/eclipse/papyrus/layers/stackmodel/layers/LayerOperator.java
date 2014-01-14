@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface LayerOperator extends LayerExpression {
+public interface LayerOperator extends LayerExpression, LayersContainer {
 
 	/**
 	 * Returns the value of the '<em><b>Layers</b></em>' containment reference list.

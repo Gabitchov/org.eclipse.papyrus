@@ -2,11 +2,13 @@
  */
 package org.eclipse.papyrus.layers.stackmodel.layers.tests;
 
-import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
+import junit.framework.TestCase;
+
+import org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Layer Operator</b></em>'.
+ * A test case for the model object '<em><b>Container</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following operations are tested:
@@ -16,27 +18,44 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
  * </p>
  * @generated
  */
-public abstract class LayerOperatorTest extends LayerExpressionTest {
+public abstract class LayersContainerTest extends TestCase {
 
 	/**
-	 * Constructs a new Layer Operator test case with the given name.
+	 * The fixture for this Container test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LayerOperatorTest(String name) {
+	protected LayersContainer fixture = null;
+
+	/**
+	 * Constructs a new Container test case with the given name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LayersContainerTest(String name) {
 		super(name);
 	}
 
 	/**
-	 * Returns the fixture for this Layer Operator test case.
+	 * Sets the fixture for this Container test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected LayerOperator getFixture() {
-		return (LayerOperator)fixture;
+	protected void setFixture(LayersContainer fixture) {
+		this.fixture = fixture;
+	}
+
+	/**
+	 * Returns the fixture for this Container test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LayersContainer getFixture() {
+		return fixture;
 	}
 
 	/**
@@ -52,4 +71,4 @@ public abstract class LayerOperatorTest extends LayerExpressionTest {
 		fail();
 	}
 
-} //LayerOperatorTest
+} //LayersContainerTest

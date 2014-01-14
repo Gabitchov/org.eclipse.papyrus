@@ -16,6 +16,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
  * <p>
  * The following operations are tested:
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer#addLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression) <em>Add Layer</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getComputePropertyValueCommand(org.eclipse.gmf.runtime.notation.View, org.eclipse.papyrus.layers.stackmodel.layers.Property) <em>Get Compute Property Value Command</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getPropertiesComputePropertyValueCommand(org.eclipse.gmf.runtime.notation.View, org.eclipse.emf.common.util.EList) <em>Get Properties Compute Property Value Command</em>}</li>
  *   <li>{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersStack#getViewsComputePropertyValueCommand(org.eclipse.emf.common.util.EList, org.eclipse.papyrus.layers.stackmodel.layers.Property) <em>Get Views Compute Property Value Command</em>}</li>
@@ -98,6 +99,19 @@ public class LayersStackTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer#addLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression) <em>Add Layer</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer#addLayer(org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression)
+	 * @generated
+	 */
+	public void testAddLayer__LayerExpression() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
 	}
 
 	/**

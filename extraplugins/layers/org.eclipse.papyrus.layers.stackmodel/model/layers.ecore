@@ -8,7 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="layersStack" ordered="false"
         upperBound="-1" eType="#//LayersStack" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LayersStack">
+  <eClassifiers xsi:type="ecore:EClass" name="LayersStack" eSuperTypes="#//LayersContainer">
     <eOperations name="getComputePropertyValueCommand" ordered="false" lowerBound="1"
         eType="#//ComputePropertyValueCommand" eExceptions="#//LayersException">
       <eParameters name="view" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//View"/>
@@ -385,9 +385,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="layerOperatorDescriptorName"
         ordered="false" lowerBound="1" eType="#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LayerOperator" abstract="true" eSuperTypes="#//LayerExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="LayerOperator" abstract="true" eSuperTypes="#//LayerExpression #//LayersContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="layers" upperBound="-1"
         eType="#//LayerExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LayersContainer" abstract="true" interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Layers implementing this interface can contains others layers.&#xD;&#xA;The interface provide one method allowing to add a LayerExpression to the container."/>
+    </eAnnotations>
+    <eOperations name="addLayer" ordered="false" lowerBound="1">
+      <eParameters name="layer" ordered="false" lowerBound="1" eType="#//LayerExpression"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DefaultPropertyOperator" eSuperTypes="#//PropertyOperator"/>
   <eClassifiers xsi:type="ecore:EEnum" name="LayerState">

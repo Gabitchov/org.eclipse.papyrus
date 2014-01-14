@@ -26,7 +26,7 @@ the initialisation can differ if the LayersStack is created by the user or by EM
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iiUlMtqCEeKQqZMBCFd2Uw" value="1"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_gT0asNa7EeKPiuTfpuvqHA" name="LayersStack">
+    <packagedElement xmi:type="uml:Class" xmi:id="_gT0asNa7EeKPiuTfpuvqHA" clientDependency="_2bk1oHpGEeOlpfB_tZS-QA" name="LayersStack">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_cHaqsNbGEeKPiuTfpuvqHA" name="layers" type="_9IaAANjiEeKQqZMBCFd2Uw" aggregation="composite" association="_cHkbsNbGEeKPiuTfpuvqHA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cHaqsdbGEeKPiuTfpuvqHA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cHaqstbGEeKPiuTfpuvqHA" value="1"/>
@@ -55,6 +55,7 @@ the initialisation can differ if the LayersStack is created by the user or by EM
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_c5OEgnl8EeOlpfB_tZS-QA" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_c5OEg3l8EeOlpfB_tZS-QA" name="detached" value="detached"/>
       </ownedAttribute>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_2bk1oHpGEeOlpfB_tZS-QA" name="InterfaceRealization1" client="_gT0asNa7EeKPiuTfpuvqHA" supplier="_RopgYHpGEeOlpfB_tZS-QA" contract="_RopgYHpGEeOlpfB_tZS-QA"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_8H1xgO70EeK0p4PkXjd-_Q" name="getComputePropertyValueCommand" raisedException="_iYKFMNxGEeKwptaAAanMDg">
         <ownedComment xmi:type="uml:Comment" xmi:id="_8H1xge70EeK0p4PkXjd-_Q">
           <body>Get the ComputePropertyValueCommands for the specified views and Property.&#xD;
@@ -698,12 +699,13 @@ Associated behavior are stopped.</body>
         </ownedComment>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_HoKjcNjjEeKQqZMBCFd2Uw" name="LayerOperator" isAbstract="true">
+    <packagedElement xmi:type="uml:Class" xmi:id="_HoKjcNjjEeKQqZMBCFd2Uw" clientDependency="_0RxQgHpGEeOlpfB_tZS-QA" name="LayerOperator" isAbstract="true">
       <generalization xmi:type="uml:Generalization" xmi:id="_OJCPcNjjEeKQqZMBCFd2Uw" general="_9IaAANjiEeKQqZMBCFd2Uw"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_emyegNjnEeKQqZMBCFd2Uw" name="layers" type="_9IaAANjiEeKQqZMBCFd2Uw" isOrdered="true" aggregation="composite" association="_em-rwNjnEeKQqZMBCFd2Uw">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_emyegdjnEeKQqZMBCFd2Uw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_emyegtjnEeKQqZMBCFd2Uw" value="*"/>
       </ownedAttribute>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_0RxQgHpGEeOlpfB_tZS-QA" name="InterfaceRealization1" client="_HoKjcNjjEeKQqZMBCFd2Uw" supplier="_RopgYHpGEeOlpfB_tZS-QA" contract="_RopgYHpGEeOlpfB_tZS-QA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_WuVRUNjjEeKQqZMBCFd2Uw" name="AbstractLayerOperator" isAbstract="true">
       <generalization xmi:type="uml:Generalization" xmi:id="_0lwNANjjEeKQqZMBCFd2Uw" general="_HoKjcNjjEeKQqZMBCFd2Uw"/>
@@ -1497,6 +1499,15 @@ layerStackChanged().</body>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="_8__xgHltEeOlpfB_tZS-QA" name="LayerState">
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_AKMcoHluEeOlpfB_tZS-QA" name="detached"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_BUS4QHluEeOlpfB_tZS-QA" name="attached"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_RopgYHpGEeOlpfB_tZS-QA" name="LayersContainer">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_igIa4HpGEeOlpfB_tZS-QA" annotatedElement="_RopgYHpGEeOlpfB_tZS-QA">
+        <body>Layers implementing this interface can contains others layers.&#xD;
+The interface provide one method allowing to add a LayerExpression to the container.</body>
+      </ownedComment>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_jHtYQHpGEeOlpfB_tZS-QA" name="addLayer">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_qpEQ4HpGEeOlpfB_tZS-QA" name="layer" type="_9IaAANjiEeKQqZMBCFd2Uw"/>
+      </ownedOperation>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_X07z8LcsEeK8_t7Rpq6ZJA">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_X2lZwLcsEeK8_t7Rpq6ZJA" source="http://www.eclipse.org/uml2/2.0.0/UML">

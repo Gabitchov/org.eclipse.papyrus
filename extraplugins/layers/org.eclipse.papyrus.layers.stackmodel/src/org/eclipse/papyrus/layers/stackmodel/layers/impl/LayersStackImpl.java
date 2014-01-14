@@ -343,6 +343,15 @@ MinimalEObjectImpl.Container implements LayersStack {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void addLayer(LayerExpression layer) {
+		setLayers(layer);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @throws LayersException 
 	 * @generated NOT
 	 */
@@ -466,7 +475,9 @@ MinimalEObjectImpl.Container implements LayersStack {
 	 * @generated
 	 */
 	public void exitAttachedState() {
-		// do nothing;
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -622,6 +633,9 @@ MinimalEObjectImpl.Container implements LayersStack {
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case LayersPackage.LAYERS_STACK___ADD_LAYER__LAYEREXPRESSION:
+				addLayer((LayerExpression)arguments.get(0));
+				return null;
 			case LayersPackage.LAYERS_STACK___GET_COMPUTE_PROPERTY_VALUE_COMMAND__VIEW_PROPERTY:
 				try {
 					return getComputePropertyValueCommand((View)arguments.get(0), (Property)arguments.get(1));

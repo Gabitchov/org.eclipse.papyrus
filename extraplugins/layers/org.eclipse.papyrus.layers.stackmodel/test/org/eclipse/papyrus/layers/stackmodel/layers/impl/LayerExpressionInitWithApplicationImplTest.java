@@ -80,8 +80,8 @@ public class LayerExpressionInitWithApplicationImplTest {
 	    stack.setLayers(top);
 	    TopLayerOperator container1 = (TopLayerOperator)factory.getLayer("top");
 		Layer layer1 = (Layer)factory.getLayer("layer1");
-		Layer layer2 = (Layer)factory.getLayer("layer1");
-		Layer layer3 = (Layer)factory.getLayer("layer1");
+		Layer layer2 = (Layer)factory.getLayer("layer2");
+		Layer layer3 = (Layer)factory.getLayer("layer3");
 		
 		
 		// Assert
@@ -196,8 +196,8 @@ public class LayerExpressionInitWithApplicationImplTest {
 	    stack.setLayers(top);
 	    TopLayerOperator container1 = (TopLayerOperator)factory.getLayer("top");
 		Layer layer1 = (Layer)factory.getLayer("layer1");
-		Layer layer2 = (Layer)factory.getLayer("layer1");
-		Layer layer3 = (Layer)factory.getLayer("layer1");
+		Layer layer2 = (Layer)factory.getLayer("layer2");
+		Layer layer3 = (Layer)factory.getLayer("layer3");
 		
 		
 		// Assert

@@ -13,9 +13,7 @@
 package org.eclipse.papyrus.layers.stackmodel.layers;
 
 import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
@@ -41,7 +39,7 @@ import org.eclipse.papyrus.layers.stackmodel.command.ComputePropertyValueCommand
  * @model
  * @generated
  */
-public interface LayersStack extends EObject {
+public interface LayersStack extends LayersContainer {
 	/**
 	 * Returns the value of the '<em><b>Layers</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

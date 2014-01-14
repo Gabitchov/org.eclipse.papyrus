@@ -12,6 +12,7 @@
  */
 package org.eclipse.papyrus.layers.stackmodel.layers.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.layers.stackmodel.LayersException;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
+import org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersPackage;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 
@@ -79,6 +81,15 @@ public abstract class LayerOperatorImpl extends LayerExpressionImpl implements L
 			layers = new EObjectContainmentEList<LayerExpression>(LayerExpression.class, this, LayersPackage.LAYER_OPERATOR__LAYERS);
 		}
 		return layers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void addLayer(LayerExpression layer) {
+		getLayers().add(layer);
 	}
 
 	/**
@@ -153,6 +164,37 @@ public abstract class LayerOperatorImpl extends LayerExpressionImpl implements L
 				return layers != null && !layers.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == LayersContainer.class) {
+			switch (baseOperationID) {
+				case LayersPackage.LAYERS_CONTAINER___ADD_LAYER__LAYEREXPRESSION: return LayersPackage.LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case LayersPackage.LAYER_OPERATOR___ADD_LAYER__LAYEREXPRESSION:
+				addLayer((LayerExpression)arguments.get(0));
+				return null;
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
