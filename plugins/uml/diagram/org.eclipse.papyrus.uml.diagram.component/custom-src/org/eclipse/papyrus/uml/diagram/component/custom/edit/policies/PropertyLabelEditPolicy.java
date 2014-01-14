@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 - 2010 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,17 +17,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
-import org.eclipse.papyrus.uml.diagram.component.custom.preferences.IPapyrusPropertyPreferencesConstant;
 import org.eclipse.papyrus.uml.diagram.component.custom.preferences.PropertyPreferencePage;
-import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -42,7 +36,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Adds the additional listeners.
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -64,87 +58,72 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * Gets the current display value.
-	 * 
-	 * @return the current display value {@inheritDoc}
-	 */
-	public int getCurrentDisplayValue() {
-		EAnnotation propertyDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		int displayValue = getDefaultDisplayValue();
-		if(propertyDisplay != null) {
-			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
-		} else {
-			// no specific information => look in preferences
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IPapyrusPropertyPreferencesConstant.LABEL_DISPLAY_PREFERENCE);
-			if(displayValueTemp != 0) {
-				displayValue = displayValueTemp;
-			}
-		}
-		return displayValue;
-	}
-
-	/**
 	 * Gets the default display value.
-	 * 
+	 *
 	 * @return the default display value {@inheritDoc}
 	 */
+	@Override
 	public int getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_PROPERTY;
 	}
 
 	/**
 	 * Gets the mask label.
-	 * 
+	 *
 	 * @param value
 	 *        the value
 	 * @return the mask label {@inheritDoc}
 	 */
+	@Override
 	public String getMaskLabel(int value) {
 		return PropertyLabelHelper.getInstance().getMaskLabel(value);
 	}
 
 	/**
 	 * Gets the mask labels.
-	 * 
+	 *
 	 * @return the mask labels {@inheritDoc}
 	 */
+	@Override
 	public Collection<String> getMaskLabels() {
 		return PropertyLabelHelper.getInstance().getMaskLabels();
 	}
 
 	/**
 	 * Gets the masks.
-	 * 
+	 *
 	 * @return the masks {@inheritDoc}
 	 */
+	@Override
 	public Map<Integer, String> getMasks() {
 		return PropertyLabelHelper.getInstance().getMasks();
 	}
 
 	/**
 	 * Gets the mask values.
-	 * 
+	 *
 	 * @return the mask values {@inheritDoc}
 	 */
+	@Override
 	public Collection<Integer> getMaskValues() {
 		return PropertyLabelHelper.getInstance().getMaskValues();
 	}
 
 	/**
 	 * Gets the preference page id.
-	 * 
+	 *
 	 * @return the preference page id
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getPreferencePageID()
 	 */
 
+	@Override
 	public String getPreferencePageID() {
 		return PropertyPreferencePage.ID;
 	}
 
 	/**
 	 * Gets the uML element.
-	 * 
+	 *
 	 * @return the uML element {@inheritDoc}
 	 */
 	@Override
@@ -154,7 +133,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Notify changed.
-	 * 
+	 *
 	 * @param notification
 	 *        the notification {@inheritedDoc}
 	 */
@@ -197,7 +176,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the property has changed.
-	 * 
+	 *
 	 * @param property
 	 *        the property that has changed
 	 * @param notification
@@ -280,7 +259,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the type of the property has changed.
-	 * 
+	 *
 	 * @param type
 	 *        the type of the property that has changed
 	 * @param notification
@@ -308,7 +287,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Removes the additional listeners.
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override

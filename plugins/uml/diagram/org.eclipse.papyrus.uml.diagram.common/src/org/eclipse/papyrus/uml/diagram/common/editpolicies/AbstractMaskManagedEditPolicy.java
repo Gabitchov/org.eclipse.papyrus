@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyE
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.emf.appearance.commands.AddMaskManagedLabelDisplayCommand;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
@@ -246,6 +247,18 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 		if(editingDomain != null) {
 			editingDomain.getCommandStack().execute(new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(), newValue));
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public int getCurrentDisplayValue() {
+		if(getHost().getModel() instanceof View) {
+			View view = (View)getHost().getModel();
+			//Delegate to AppearanceHelper (May delegate to either e.g. Notation EAnnotations or CSS)
+			return AppearanceHelper.getLabelDisplay(view);
+		}
+		return getDefaultDisplayValue();
 	}
 
 }

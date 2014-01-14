@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,35 +9,33 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.providers;
+package org.eclipse.papyrus.uml.diagram.sequence.providers;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider;
-import org.eclipse.papyrus.uml.diagram.common.helper.PortLabelHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
-import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Property;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.MessageLabelHelper;
+import org.eclipse.uml2.uml.Message;
 
 /**
  * An IAdapterFactory for retrieving the {@link ILabelMaskProvider} from a UML
- * Property
- *
+ * Message
+ * 
  * @author Camille Letavernier
- *
+ * 
  */
-public class PropertyLabelMaskProviderAdapterFactory implements IAdapterFactory {
+public class MessageLabelMaskProviderAdapterFactory implements IAdapterFactory {
 
-	public Object getAdapter(Object adaptableObject, Class adapterType) {
+	@Override
+	public ILabelMaskProvider getAdapter(Object adaptableObject, Class adapterType) {
 		if(adapterType == ILabelMaskProvider.class) {
-			if(adaptableObject instanceof Port) {
-				return PortLabelHelper.getInstance();
-			} else if(adaptableObject instanceof Property) {
-				return PropertyLabelHelper.getInstance();
+			if(adaptableObject instanceof Message) {
+				return MessageLabelHelper.getInstance();
 			}
 		}
 		return null;
 	}
 
+	@Override
 	public Class<?>[] getAdapterList() {
 		return new Class[]{ ILabelMaskProvider.class };
 	}

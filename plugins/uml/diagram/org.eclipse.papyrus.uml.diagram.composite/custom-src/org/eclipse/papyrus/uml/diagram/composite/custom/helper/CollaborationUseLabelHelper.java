@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,6 @@
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - customization for CollaborationUse
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.composite.custom.helper;
 
 import java.util.Collection;
@@ -21,7 +20,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.CollaborationUseUtil;
@@ -31,7 +30,7 @@ import org.eclipse.uml2.uml.CollaborationUse;
 /**
  * Helper for labels displaying {@link CollaborationUse} in Composite Diagram
  */
-public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
+public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper implements ILabelMaskProvider {
 
 	/** Single instance */
 	private static CollaborationUseLabelHelper labelHelper;
@@ -70,6 +69,7 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	 * 
 	 * @return the {@link Map} of masks used to display a {@link Property}
 	 */
+	@Override
 	public Map<Integer, String> getMasks() {
 		return masks;
 	}
@@ -96,6 +96,7 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected String elementLabel(GraphicalEditPart editPart) {
 		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
 
@@ -113,12 +114,18 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public CollaborationUse getUMLElement(GraphicalEditPart editPart) {
-		EObject element = super.getUMLElement(editPart); 
+		EObject element = super.getUMLElement(editPart);
 		if(element instanceof CollaborationUse) {
 			return (CollaborationUse)element;
 		}
 		return null;
+	}
+
+	@Override
+	public int getDefaultValue() {
+		return ICustomAppearence.DEFAULT_UML_PROPERTY;
 	}
 
 }

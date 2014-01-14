@@ -19,9 +19,9 @@ import org.eclipse.uml2.uml.Operation;
 /**
  * An IAdapterFactory for retrieving the {@link ILabelMaskProvider} from a UML
  * Operation
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class OperationLabelMaskProviderAdapterFactory implements IAdapterFactory {
 
@@ -34,7 +34,7 @@ public class OperationLabelMaskProviderAdapterFactory implements IAdapterFactory
 		return null;
 	}
 
-	public Class[] getAdapterList() {
+	public Class<?>[] getAdapterList() {
 		return new Class[]{ ILabelMaskProvider.class };
 	}
 
