@@ -103,4 +103,3 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common;singleton:
  =true
-
