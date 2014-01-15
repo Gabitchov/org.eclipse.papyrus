@@ -33,6 +33,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 import org.eclipse.papyrus.layers.stackmodel.layers.RegExpLayer;
 import org.eclipse.papyrus.layers.stackmodel.layers.StackedLayerOperator;
 import org.eclipse.papyrus.layers.stackmodel.layers.TopLayerOperator;
+import org.eclipse.papyrus.layers.stackmodel.layers.impl.LayersFactoryForStackImpl;
 import org.eclipse.papyrus.layers.stackmodel.layers.util.LayersFactoryTestUtils;
 import org.junit.After;
 import org.junit.Before;

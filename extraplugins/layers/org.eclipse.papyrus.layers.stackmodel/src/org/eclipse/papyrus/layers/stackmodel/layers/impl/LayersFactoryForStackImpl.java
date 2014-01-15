@@ -41,7 +41,7 @@ public class LayersFactoryForStackImpl implements LayersFactoryForStack {
 	 */
 	protected int newIndex = 0;
 	
-	final protected String LAYER_NAME_PREFIX = "layer";
+	public final String LAYER_NAME_PREFIX = "layer";
 	
 	/**
 	 * Creates the default factory implementation.
