@@ -169,4 +169,15 @@
          type="java.util.Collection">
    </propertyTester>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.shapeProvider">
+   <shapeProvider
+         class="org.eclipse.papyrus.infra.gmfdiag.common.providers.StyleBasedShapeProvider"
+         description="Provides shapes based on the applied styles."
+         id="org.eclipse.papyrus.infra.gmfdiag.common.providers.StyleBasedShapeProvider"
+         name="StyleBasedShapeProvider">
+      <Priority
+            name="Low"></Priority>
+   </shapeProvider>
+</extension>
 </plugin>

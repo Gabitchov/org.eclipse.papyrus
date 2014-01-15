@@ -99,6 +99,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 		}
 	}
 
+	protected SVGDocument svgDocument = null;
 
 	private PrecisionDimension svgDimension = null;
 
@@ -131,6 +132,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	 *        the SVG document
 	 */
 	public void setSVGDocument(SVGDocument svgDocument) {
+		this.svgDocument = svgDocument;
 		if(svgDocument != null) {
 			this.svgDimension = getSvgDimension(svgDocument);
 			Element element = svgDocument.getElementById("PapyrusPath");
@@ -142,6 +144,11 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 			if(element != null) {
 				labelBounds = toDraw2DRectangle((SVGRectElement)element);
 			}
+		} else {
+			this.svgDimension = null;
+			this.outlinePoints = null;
+			this.outlineDimension = null;
+			this.labelBounds = null;
 		}
 	}
 
