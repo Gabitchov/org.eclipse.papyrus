@@ -30,7 +30,6 @@ import org.eclipse.papyrus.uml.diagram.activity.activitygroup.groupcontainment.S
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.groupcontainment.StructuredActivityNodeContainment;
 import org.eclipse.uml2.uml.UMLPackage;
 
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 /**
@@ -79,7 +78,7 @@ public final class ContainerNodeDescriptorRegistry {
 			IContainerNodeDescriptor result = registry.get(eclass);
 			if(result == null) {
 				ArrayList<EClass> superTypes = Lists.newArrayList(eclass.getEAllSuperTypes());
-				for(EClass aux : Iterables.reverse(superTypes)) {
+				for(EClass aux : Lists.reverse(superTypes)) {
 					result = registry.get(aux);
 					if(result != null) {
 						return result;

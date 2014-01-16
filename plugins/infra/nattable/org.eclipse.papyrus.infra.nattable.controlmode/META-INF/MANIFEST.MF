@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.nattable.model;bundle-version="1.0.0",
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
- com.google.guava,
+ com.google.guava;bundle-version="11.0.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.nattable.common;bundle-version="1.0.0"
