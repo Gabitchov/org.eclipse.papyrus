@@ -41,7 +41,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 */
 	public DashedEdgeFigure() {
 		super();
-		setStyle();
+		setupDefaultStyle();
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	public DashedEdgeFigure(Boolean arrow) {
 		super();
 		this.arrow = arrow;
-		setStyle();
+		setupDefaultStyle();
 		createContents();
 	}
 
@@ -72,7 +72,6 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 */
 	public void setArrow(Boolean arrow) {
 		this.arrow = arrow;
-		setStyle();
 	}
 
 	/**
@@ -93,15 +92,17 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 */
 	@Override
 	public void resetStyle() {
-		setStyle();
+		setupDefaultStyle();
 	}
 
 	/**
 	 * Sets initial Style for the figure. It does not give any special Color for
 	 * Background and Foreground. This is the style used for classic arrows:
 	 * ------>
+	 * This method should not be overridden as it defines the default style for the arrow.
+	 * Instead, custom styles should be defined by overriding the resetStyle method.
 	 */
-	protected void setStyle() {
+	protected final void setupDefaultStyle() {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
 		dec.setLineWidth(1);
@@ -117,6 +118,5 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 			dashes[i] = 5;
 		}
 		setLineDash(dashes);
-
 	}
 }
