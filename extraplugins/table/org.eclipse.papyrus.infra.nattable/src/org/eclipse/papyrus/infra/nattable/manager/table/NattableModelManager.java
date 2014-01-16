@@ -42,6 +42,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.preference.PreferenceStore;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
@@ -149,6 +150,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	private Adapter tableCellsListener;
 
 	private BiMap<CellMapKey, Cell> cellsMap;
+
+	/**
+    * the local preference store for the table
+    */
+	private PreferenceStore localPreferenceStore;
 
 	/**
 	 * 
@@ -1331,6 +1337,28 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		}
 		return new CellMapKey(cell.getColumnWrapper().getElement(), cell.getRowWrapper().getElement());
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getTablePreferenceStore()
+	 * 
+	 * @return
+	 */
+	@Override
+	public PreferenceStore getTablePreferenceStore() {
+		return this.localPreferenceStore;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#setWorkspacePreferenceStore(org.eclipse.jface.preference.PreferenceStore)
+	 * 
+	 * @param store
+	 */
+	@Override
+	public void setWorkspacePreferenceStore(final PreferenceStore store) {
+		this.localPreferenceStore = store;
 	}
 
 }

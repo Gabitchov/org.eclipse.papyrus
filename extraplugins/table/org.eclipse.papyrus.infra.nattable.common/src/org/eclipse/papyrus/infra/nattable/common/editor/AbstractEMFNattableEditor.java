@@ -14,11 +14,14 @@
 package org.eclipse.papyrus.infra.nattable.common.editor;
 
 
+import java.io.IOException;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.preference.PreferenceStore;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -58,6 +61,13 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	private PartNameSynchronizer synchronizer;
 
 	/**
+	 * the workspace preference store for this table editor
+	 */
+	@SuppressWarnings("unused")
+	//not yet used in the table
+	private PreferenceStore workspacePreferenceStore;
+
+	/**
 	 * @param servicesRegistry
 	 * @param rawModel
 	 * 
@@ -66,8 +76,69 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		this.servicesRegistry = servicesRegistry;
 		this.tableManager = new NattableModelManager(rawModel);
 		this.synchronizer = new PartNameSynchronizer(rawModel);
+		this.workspacePreferenceStore = getWorkspaceViewerPreferenceStore();
 	}
 
+	/**
+	 * Returns the workspace viewer <code>PreferenceStore</code>
+	 * 
+	 * @return the workspace viewer <code>PreferenceStore</code>
+	 */
+	public PreferenceStore getWorkspaceViewerPreferenceStore() {
+		//not yet used by tables
+		return null;
+
+		//		if(this.workspacePreferenceStore != null) {
+		//			return this.workspacePreferenceStore;
+		//		} else {
+		//			// Try to load it
+		//			IPath path = Activator.getDefault().getStateLocation();
+		//			String id = getIdStr(this.tableManager.getTable());
+		//
+		//			String fileName = path.toString() + "/" + id;//$NON-NLS-1$
+		//			java.io.File file = new File(fileName);
+		//			this.workspacePreferenceStore = new PreferenceStore(fileName);
+		//			if(file.exists()) {
+		//				// Load it
+		//				try {
+		//					this.workspacePreferenceStore.load();
+		//				} catch (Exception e) {
+		//					// Create the default
+		//					addDefaultPreferences();
+		//				}
+		//			} else {
+		//				// Create it
+		//				addDefaultPreferences();
+		//			}
+		//			return this.workspacePreferenceStore;
+		//		}
+	}
+
+	//	/**
+	//	 * returns the unique GUID of the view
+	//	 * 
+	//	 * @param view
+	//	 *        the view
+	//	 * @return String the GUID of a view (constant)
+	//	 */
+	//	private static String getIdStr(Table table) {
+	//		Resource resource = table.eResource();
+	//		if(resource instanceof XMLResource) {
+	//			String id = ((XMLResource)resource).getID(table);
+	//			if(id != null) {
+	//				return id;
+	//			}
+	//		}
+	//
+	//		// Remain compatible with previous behavior.
+	//		return StringStatics.BLANK;
+	//	}
+
+	// not used : add a workspace preference to the table
+	//	private void addDefaultPreferences() {
+	//				final IPreferenceStore globalPreferenceStore = Activator.getDefault().getPreferenceStore();
+	//				String tableKind = this.tableManager.getTable().getTableConfiguration().getType();
+	//	}
 
 	/**
 	 * 
@@ -134,7 +205,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	}
 
 	@Override
-	public Object getAdapter(final Class adapter) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") final Class adapter) {
 		if(adapter == INattableModelManager.class) {
 			return this.tableManager;
 		}
@@ -153,9 +224,20 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	@Override
 	public void dispose() {
+		saveLocalPreferenceStoreValues();
 		this.tableManager.dispose();
 		this.synchronizer.dispose();
 		super.dispose();
+	}
+
+	protected void saveLocalPreferenceStoreValues() {
+		// Write the settings, if necessary
+		try {
+			if(getWorkspaceViewerPreferenceStore() != null && getWorkspaceViewerPreferenceStore().needsSaving())
+				getWorkspaceViewerPreferenceStore().save();
+		} catch (IOException ioe) {
+			Activator.log.warn("Preferences can' be saved"); //$NON-NLS-1$
+		}
 	}
 
 	/**
