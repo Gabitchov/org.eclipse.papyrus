@@ -60,7 +60,7 @@ public class ApplyValueOnPreferenceKeyDialog extends AbstractApplyValueOnPrefere
 	/**
 	 * The Class KeyLabelProvider.
 	 */
-	protected class KeyLabelProvider extends LabelProvider implements ITableLabelProvider, ITableColorProvider {
+	protected static class KeyLabelProvider extends LabelProvider implements ITableLabelProvider, ITableColorProvider {
 
 
 		/*

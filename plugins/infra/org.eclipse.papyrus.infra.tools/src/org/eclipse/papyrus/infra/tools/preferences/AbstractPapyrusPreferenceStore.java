@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.tools.preferences;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.IScopeContext;
@@ -95,9 +96,9 @@ public abstract class AbstractPapyrusPreferenceStore extends PapyrusScopedPrefer
 
 	public void deleteAllSubPreference(String level) {
 		//remove all sub value diagram+ element
-		ArrayList<String> keytoRemove = new ArrayList<String>();
+
 		//key to collect
-		ArrayList<String> elementKey = new ArrayList<String>();
+		List<String> elementKey = new ArrayList<String>();
 		try {
 			for(int i = 0; i < getStorePreferences().keys().length; i++) {
 				//level diagram collect only element
@@ -119,6 +120,7 @@ public abstract class AbstractPapyrusPreferenceStore extends PapyrusScopedPrefer
 			Activator.log.error(e);
 		}
 		if(elementKey.size() > 0) {
+			List<String> keytoRemove = new ArrayList<String>();
 			String[] keyRoconsult = new String[elementKey.size()];
 			AbstractApplyValueOnPreferenceKeyDialog dialog = createPreferenceKeyDialog(elementKey.toArray(keyRoconsult));
 			dialog.open();
