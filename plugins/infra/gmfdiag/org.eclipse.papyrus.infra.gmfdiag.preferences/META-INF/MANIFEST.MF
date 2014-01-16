@@ -3,7 +3,8 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.jface,
  com.ibm.icu,
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.preferences,
  org.eclipse.papyrus.infra.gmfdiag.preferences.initializer,
  org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference;x-internal:=true,
