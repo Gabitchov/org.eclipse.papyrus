@@ -27,7 +27,8 @@ public class StereotypedElementMatcher implements IConfigurableElementMatcher<St
 	/**
 	 * @param stereotypedQualifiedName
 	 */
-	public StereotypedElementMatcher() {
+	public StereotypedElementMatcher(StereotypedElementMatcherConfiguration configuration) {
+		this.setStereotypedQualifiedName(configuration.getStereotypedQualifiedName());
 	}
 
 	/**
@@ -56,10 +57,4 @@ public class StereotypedElementMatcher implements IConfigurableElementMatcher<St
 		this.stereotypedQualifiedName = stereotypedQualifiedName;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void init(StereotypedElementMatcherConfiguration configuration) {
-		this.setStereotypedQualifiedName(stereotypedQualifiedName);
-	}
 }

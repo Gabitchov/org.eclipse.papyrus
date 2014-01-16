@@ -83,14 +83,14 @@ public class RuleConfigurationFactoryRegistry {
 	 *        the rule configuration that will configure the created matcher
 	 * @return the {@link IElementMatcher} created or <code>null</code> if none could be created
 	 */
-	public IConfigurableElementMatcher<InvariantRuleConfiguration> createMatcher(InvariantRuleConfiguration ruleConfiguration) {
+	public IInvariantElementMatcher<InvariantRuleConfiguration> createMatcher(InvariantRuleConfiguration ruleConfiguration) {
 		// creates the matcher from the extension points
-		Class<IConfigurableElementMatcher<InvariantRuleConfiguration>> elementMatcherClass = getMatcherClass(ruleConfiguration);
+		Class<IInvariantElementMatcher<InvariantRuleConfiguration>> elementMatcherClass = getMatcherClass(ruleConfiguration);
 		if(elementMatcherClass == null) {
 			return null;
 		}
 		try {
-			IConfigurableElementMatcher<InvariantRuleConfiguration> matcher = elementMatcherClass.newInstance();
+			IInvariantElementMatcher<InvariantRuleConfiguration> matcher = elementMatcherClass.newInstance();
 			if(matcher != null) {
 				matcher.init(ruleConfiguration);
 			}
@@ -107,13 +107,13 @@ public class RuleConfigurationFactoryRegistry {
 	 * @param ruleConfiguration
 	 * @return
 	 */
-	public IConfigurableContainerDescriptor<InvariantRuleConfiguration> createContainerDescriptor(InvariantRuleConfiguration ruleConfiguration) {
-		Class<IConfigurableContainerDescriptor<InvariantRuleConfiguration>> containerDescriptorClass = getContainerDescriptorClass(ruleConfiguration);
+	public IInvariantContainerDescriptor<InvariantRuleConfiguration> createContainerDescriptor(InvariantRuleConfiguration ruleConfiguration) {
+		Class<IInvariantContainerDescriptor<InvariantRuleConfiguration>> containerDescriptorClass = getContainerDescriptorClass(ruleConfiguration);
 		if(containerDescriptorClass == null) {
 			return null;
 		}
 		try {
-			IConfigurableContainerDescriptor<InvariantRuleConfiguration> containerDescriptor = containerDescriptorClass.newInstance();
+			IInvariantContainerDescriptor<InvariantRuleConfiguration> containerDescriptor = containerDescriptorClass.newInstance();
 			if(containerDescriptor != null) {
 				containerDescriptor.init(ruleConfiguration);
 			}
@@ -130,14 +130,14 @@ public class RuleConfigurationFactoryRegistry {
 	 * @param ruleConfiguration
 	 * @return
 	 */
-	public IConfigurableEditHelperAdvice<InvariantRuleConfiguration> createEditHelperAdvice(InvariantRuleConfiguration ruleConfiguration) {
-		Class<IConfigurableEditHelperAdvice<InvariantRuleConfiguration>> editHelperAdviceClass = getEditHelperAdviceClass(ruleConfiguration);
+	public IInvariantEditHelperAdvice<InvariantRuleConfiguration> createEditHelperAdvice(InvariantRuleConfiguration ruleConfiguration) {
+		Class<IInvariantEditHelperAdvice<InvariantRuleConfiguration>> editHelperAdviceClass = getEditHelperAdviceClass(ruleConfiguration);
 		if(editHelperAdviceClass == null) {
 			Activator.log.error("impossible to find the edit helper advice implementation for configuration type : " + ((ruleConfiguration!=null) ? ruleConfiguration.eClass().getName() : "null"), null);
 			return null;
 		}
 		try {
-			IConfigurableEditHelperAdvice<InvariantRuleConfiguration> editHelperAdvice = editHelperAdviceClass.newInstance();
+			IInvariantEditHelperAdvice<InvariantRuleConfiguration> editHelperAdvice = editHelperAdviceClass.newInstance();
 			if(editHelperAdvice != null) {
 				editHelperAdvice.init(ruleConfiguration);
 			}
@@ -199,7 +199,7 @@ public class RuleConfigurationFactoryRegistry {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	protected Class<IConfigurableElementMatcher<InvariantRuleConfiguration>> getMatcherClass(InvariantRuleConfiguration configuration) {
+	protected Class<IInvariantElementMatcher<InvariantRuleConfiguration>> getMatcherClass(InvariantRuleConfiguration configuration) {
 		
 		String configurationType = configuration.eClass().getInstanceClassName();
 		String className = configurationTypeToClassDescriptor.get(configurationType).getElementMatcherClassName();
@@ -207,7 +207,7 @@ public class RuleConfigurationFactoryRegistry {
 		
 		// look in the list of registered matcher for the right one
 		if(className !=null && contributorName !=null) {
-			return (Class<IConfigurableElementMatcher<InvariantRuleConfiguration>>)loadClass(className, contributorName);
+			return (Class<IInvariantElementMatcher<InvariantRuleConfiguration>>)loadClass(className, contributorName);
 		}
 		return null;
 	}
@@ -217,13 +217,13 @@ public class RuleConfigurationFactoryRegistry {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	protected Class<IConfigurableEditHelperAdvice<InvariantRuleConfiguration>> getEditHelperAdviceClass(InvariantRuleConfiguration configuration) {
+	protected Class<IInvariantEditHelperAdvice<InvariantRuleConfiguration>> getEditHelperAdviceClass(InvariantRuleConfiguration configuration) {
 		String configurationType = configuration.eClass().getInstanceClassName();
 		String className = configurationTypeToClassDescriptor.get(configurationType).getEditHelperAdviceClassName();
 		String contributorName = configurationTypeToClassDescriptor.get(configurationType).getEditHelperAdviceContributorName();
 		
 		// look in the list of registered edit helper advices for the right one
-		return (Class<IConfigurableEditHelperAdvice<InvariantRuleConfiguration>>)loadClass(className, contributorName);
+		return (Class<IInvariantEditHelperAdvice<InvariantRuleConfiguration>>)loadClass(className, contributorName);
 	}
 
 	/**
@@ -231,7 +231,7 @@ public class RuleConfigurationFactoryRegistry {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	protected Class<IConfigurableContainerDescriptor<InvariantRuleConfiguration>> getContainerDescriptorClass(InvariantRuleConfiguration configuration) {
+	protected Class<IInvariantContainerDescriptor<InvariantRuleConfiguration>> getContainerDescriptorClass(InvariantRuleConfiguration configuration) {
 		String configurationType = configuration.eClass().getInstanceClassName();
 		String className = configurationTypeToClassDescriptor.get(configurationType).getContainerDescriptorClassName();
 		String contributorName = configurationTypeToClassDescriptor.get(configurationType).getContainerDescriptorContributorName();
@@ -239,7 +239,7 @@ public class RuleConfigurationFactoryRegistry {
 		
 		// look in the list of registered edit helper advices for the right one
 		if(className !=null && contributorName !=null) {
-			return (Class<IConfigurableContainerDescriptor<InvariantRuleConfiguration>>)loadClass(className, contributorName);
+			return (Class<IInvariantContainerDescriptor<InvariantRuleConfiguration>>)loadClass(className, contributorName);
 		}
 		return null;
 	}

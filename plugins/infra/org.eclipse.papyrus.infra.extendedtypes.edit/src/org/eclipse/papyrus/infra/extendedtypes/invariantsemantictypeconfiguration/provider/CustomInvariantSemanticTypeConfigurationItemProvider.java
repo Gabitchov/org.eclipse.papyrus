@@ -11,7 +11,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.papyrus.infra.extendedtypes.Activator;
-import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurationModelCreation;
+import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantConfigurationModelCreation;
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantRuleExtensionPoint;
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.InvariantRuleConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.InvariantSemanticTypeConfiguration;
@@ -25,7 +25,7 @@ import org.osgi.framework.Bundle;
 public class CustomInvariantSemanticTypeConfigurationItemProvider extends
 		InvariantSemanticTypeConfigurationItemProvider {
 
-	protected Map<String, IConfigurationModelCreation<InvariantRuleConfiguration>> configurationToFactory = new HashMap<String,IConfigurationModelCreation<InvariantRuleConfiguration>>();
+	protected Map<String, IInvariantConfigurationModelCreation<InvariantRuleConfiguration>> configurationToFactory = new HashMap<String,IInvariantConfigurationModelCreation<InvariantRuleConfiguration>>();
 	
 	public CustomInvariantSemanticTypeConfigurationItemProvider(
 			AdapterFactory adapterFactory) {
@@ -61,9 +61,9 @@ public class CustomInvariantSemanticTypeConfigurationItemProvider extends
 			String configurationModelCreationClassName = configurationElement.getAttribute(IInvariantRuleExtensionPoint.CONFIGURATION_MODEL_CREATION);
 			if(configurationModelCreationClassName !=null) {
 				String contributorName = configurationElement.getContributor().getName();
-				IConfigurationModelCreation<InvariantRuleConfiguration> configurationModelCreation = configurationToFactory.get(configurationModelCreationClassName);
+				IInvariantConfigurationModelCreation<InvariantRuleConfiguration> configurationModelCreation = configurationToFactory.get(configurationModelCreationClassName);
 				if(configurationModelCreation == null) {
-					Class<IConfigurationModelCreation<InvariantRuleConfiguration>> configurationClass = null;
+					Class<IInvariantConfigurationModelCreation<InvariantRuleConfiguration>> configurationClass = null;
 					try {
 						configurationClass = loadInvariantRulecModelCreationClass(configurationModelCreationClassName, contributorName);
 					} catch (ClassNotFoundException e1) {
@@ -93,13 +93,14 @@ public class CustomInvariantSemanticTypeConfigurationItemProvider extends
 	}
 
 	
-	protected Class<IConfigurationModelCreation<InvariantRuleConfiguration>> loadInvariantRulecModelCreationClass(String className, String bundleId) throws ClassNotFoundException {
-		Class<IConfigurationModelCreation<InvariantRuleConfiguration>> found = null;
+	@SuppressWarnings("unchecked")
+	protected Class<IInvariantConfigurationModelCreation<InvariantRuleConfiguration>> loadInvariantRulecModelCreationClass(String className, String bundleId) throws ClassNotFoundException {
+		Class<IInvariantConfigurationModelCreation<InvariantRuleConfiguration>> found = null;
 		Bundle bundle = basicGetBundle(bundleId);
 		if (bundle!=null){
             int state = bundle.getState();
             if ( state == org.osgi.framework.Bundle.ACTIVE || state == org.osgi.framework.Bundle.STARTING ){
-            	found = (Class<IConfigurationModelCreation<InvariantRuleConfiguration>>)bundle.loadClass(className);
+            	found = (Class<IInvariantConfigurationModelCreation<InvariantRuleConfiguration>>)bundle.loadClass(className);
             	return found;
             }
 		}

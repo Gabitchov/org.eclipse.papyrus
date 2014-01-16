@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 /**
  * {@link IElementMatcher} for the {@link AndRule}
  */
-public class AndRuleElementMatcher implements IConfigurableElementMatcher<AndRule> {
+public class AndRuleElementMatcher implements IInvariantElementMatcher<AndRule> {
 
 	protected List<IElementMatcher> composedMatchers;
 

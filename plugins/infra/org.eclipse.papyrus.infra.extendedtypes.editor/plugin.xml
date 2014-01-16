@@ -44,17 +44,6 @@
       </editor>
    </extension>
 
-   <extension point="org.eclipse.ui.editors">
-      <!-- @generated AspectSemantic -->
-      <editor
-            id="org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.presentation.AspectSemanticEditorID"
-            name="%_UI_AspectSemanticEditor_label"
-            icon="icons/full/obj16/AspectSemanticModelFile.gif"
-            extensions="aspectsemantic"
-            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.presentation.AspectSemanticEditor"
-            contributorClass="org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.presentation.AspectSemanticActionBarContributor">
-      </editor>
-   </extension>
 
    <extension point="org.eclipse.ui.editors">
       <!-- @generated NOT Custom ExtendedTypes -->

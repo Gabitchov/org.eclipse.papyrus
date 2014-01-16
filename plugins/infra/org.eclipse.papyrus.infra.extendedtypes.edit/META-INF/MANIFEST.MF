@@ -8,7 +8,8 @@ Bundle-Activator: org.eclipse.papyrus.infra.extendedtypes.provider.ExtendedTypes
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.provider,
+Export-Package: org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.provider,
+ org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.provider,
  org.eclipse.papyrus.infra.extendedtypes.provider,
  org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.provider,
  org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.provider
@@ -19,6 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.queries.core.configuration.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.extendedtypes.edit;visibility:=reexport,
  org.eclipse.emf.facet.infra.query;visibility:=reexport,
  org.eclipse.emf.facet.infra.query.edit;visibility:=reexport,
  org.eclipse.uml2.types;visibility:=reexport,

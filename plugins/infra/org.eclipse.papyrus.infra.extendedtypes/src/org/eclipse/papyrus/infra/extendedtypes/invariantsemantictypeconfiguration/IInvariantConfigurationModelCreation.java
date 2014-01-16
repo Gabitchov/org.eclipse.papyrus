@@ -12,17 +12,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration;
 
-import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
-
 
 /**
- * Interface that all {@link IElementMatcher} that can be configured at runtime using a model should implement
+ * Interface used to create new invariant rule model element in the configuration model
  */
-public interface IConfigurableElementMatcher<T extends InvariantRuleConfiguration> extends IElementMatcher {
+public interface IInvariantConfigurationModelCreation<T extends InvariantRuleConfiguration> {
 	
-	/**
-	 * Initialize the element matcher with the given configuration
-	 * @param configuration the runtime configuration of the matcher 
-	 */
-	void init(T configuration);
+	public T createConfigurationModel();
 }

@@ -14,20 +14,19 @@
    <extension-point id="extendedTypeConfiguration" name="extended type configuration" schema="schema/extendedTypeConfiguration.exsd"/>
    <extension-point id="invariantRule" name="Invariant Rule Extension Point" schema="schema/invariantRule.exsd"/>
    <extension-point id="elementMatcherConfiguration" name="Element Macher Configuration" schema="schema/elementMatcherConfiguration.exsd"/>
-   
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated AspectSemantic -->
+    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated AspectSemanticTypeConfiguration -->
       <package
             uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantic/aspect/1.0"
-            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.AspectSemanticPackage"
-            genModel="model/AspectSemantic.genmodel"/>
+            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationPackage"
+            genModel="model/AspectSemanticTypeConfiguration.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated AspectSemantic -->
+      <!-- @generated AspectSemanticTypeConfiguration -->
       <parser
-            type="aspectsemantic"
-            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.util.AspectSemanticResourceFactoryImpl"/>
+            type="aspectsemantictypeconfiguration"
+            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.util.AspectSemanticTypeConfigurationResourceFactoryImpl"/>
    </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated InvariantSemanticTypeConfiguration -->
@@ -207,4 +206,5 @@
             name="Disable Extended Types Set configuration">
       </command>
    </extension>
+  
 </plugin>

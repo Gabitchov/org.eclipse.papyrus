@@ -19,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurableElementMatcher;
+import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantElementMatcher;
 
 /**
  * Matcher of the hierarchy matcher
  */
-public class InvariantContainerMatcher implements IConfigurableElementMatcher<InvariantContainerConfiguration> {
+public class InvariantContainerMatcher implements IInvariantElementMatcher<InvariantContainerConfiguration> {
 
 	protected EList<HierarchyPermission> permissions;
 

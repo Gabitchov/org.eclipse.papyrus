@@ -25,6 +25,6 @@ public class StereotypedElementMatcherFactory implements IConfigurableElementMat
 	 * {@inheritDoc}
 	 */
 	public StereotypedElementMatcher createElementMatcher(StereotypedElementMatcherConfiguration configuration) {
-		return new StereotypedElementMatcher();
+		return new StereotypedElementMatcher(configuration);
 	}
 }

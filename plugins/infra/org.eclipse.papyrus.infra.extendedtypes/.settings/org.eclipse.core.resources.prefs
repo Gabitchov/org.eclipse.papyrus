@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
-encoding//model/AspectSemantic.ecore=UTF-8
-encoding//model/AspectSemantic.ecorediag=UTF-8
+encoding//model/AspectSemanticTypeConfiguration.ecore=UTF-8
+encoding//model/AspectSemanticTypeConfiguration.ecorediag=UTF-8
 encoding//model/AspectViewTypeConfiguration.ecore=UTF-8
 encoding//model/AspectViewTypeConfiguration.ecorediag=UTF-8
 encoding//model/ExtendedTypes.ecore=UTF-8

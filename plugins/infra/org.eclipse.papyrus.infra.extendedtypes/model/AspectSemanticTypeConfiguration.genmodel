@@ -3,23 +3,23 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 CEA LIST.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA; CEA LIST - Initial API and implementation"
     modelDirectory="/org.eclipse.papyrus.infra.extendedtypes/src-gen" creationSubmenus="true"
     editDirectory="/org.eclipse.papyrus.infra.extendedtypes.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.extendedtypes.editor/src-gen"
-    modelPluginID="org.eclipse.papyrus.infra.extendedtypes" modelName="AspectSemantic"
+    modelPluginID="org.eclipse.papyrus.infra.extendedtypes" modelName="AspectSemanticTypeConfiguration"
     modelPluginClass="" editPluginClass="org.eclipse.papyrus.infra.extendedtypes.provider.ExtendedTypesEditPlugin"
     editorPluginClass="org.eclipse.papyrus.infra.extendedtypes.presentation.ExtendedTypesEditorPlugin"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
     commentFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" language="" usedGenPackages="../../org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query ../../org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true">
-  <foreignModel>AspectSemantic.ecore</foreignModel>
-  <genPackages prefix="AspectSemantic" basePackage="org.eclipse.papyrus.infra.extendedtypes"
+  <foreignModel>AspectSemanticTypeConfiguration.ecore</foreignModel>
+  <genPackages prefix="AspectSemanticTypeConfiguration" basePackage="org.eclipse.papyrus.infra.extendedtypes"
       resource="XML" disposableProviderFactory="true" literalsInterface="false" contentTypeIdentifier=""
-      ecorePackage="AspectSemantic.ecore#/">
-    <genClasses ecoreClass="AspectSemantic.ecore#//AspectSemanticTypeConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AspectSemantic.ecore#//AspectSemanticTypeConfiguration/adviceConfiguration"/>
+      ecorePackage="AspectSemanticTypeConfiguration.ecore#/">
+    <genClasses ecoreClass="AspectSemanticTypeConfiguration.ecore#//AspectSemanticTypeConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AspectSemanticTypeConfiguration.ecore#//AspectSemanticTypeConfiguration/adviceConfiguration"/>
     </genClasses>
-    <genClasses ecoreClass="AspectSemantic.ecore#//AspectSemanticTypeAdviceConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AspectSemantic.ecore#//AspectSemanticTypeAdviceConfiguration/preActionConfiguration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AspectSemantic.ecore#//AspectSemanticTypeAdviceConfiguration/postActionConfiguration"/>
+    <genClasses ecoreClass="AspectSemanticTypeConfiguration.ecore#//AspectSemanticTypeAdviceConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AspectSemanticTypeConfiguration.ecore#//AspectSemanticTypeAdviceConfiguration/preActionConfiguration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AspectSemanticTypeConfiguration.ecore#//AspectSemanticTypeAdviceConfiguration/postActionConfiguration"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

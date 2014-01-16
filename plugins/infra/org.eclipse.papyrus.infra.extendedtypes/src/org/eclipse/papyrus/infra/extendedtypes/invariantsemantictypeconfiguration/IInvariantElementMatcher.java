@@ -12,16 +12,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration;
 
-import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
+import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 
 
 /**
- * Descriptor for the configurable container descriptor
+ * Interface that all {@link IElementMatcher} that can be configured at runtime using a model should implement
  */
-public interface IConfigurableContainerDescriptor<T extends InvariantRuleConfiguration> extends IContainerDescriptor {
-
+public interface IInvariantElementMatcher<T extends InvariantRuleConfiguration> extends IElementMatcher {
+	
 	/**
-	 * @param ruleConfiguration
+	 * Initialize the element matcher with the given configuration
+	 * @param configuration the runtime configuration of the matcher 
 	 */
-	void init(T ruleConfiguration);
+	void init(T configuration);
 }

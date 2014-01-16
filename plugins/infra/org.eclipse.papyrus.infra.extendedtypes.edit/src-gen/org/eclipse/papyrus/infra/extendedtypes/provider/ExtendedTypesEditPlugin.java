@@ -50,7 +50,7 @@ public final class ExtendedTypesEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public ExtendedTypesEditPlugin() {
-		super(new ResourceLocator[]{ ConfigurationEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, QueryEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
+		super(new ResourceLocator[]{ ConfigurationEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, ExtendedTypesEditPlugin.INSTANCE, QueryEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
 	}
 
 	/**

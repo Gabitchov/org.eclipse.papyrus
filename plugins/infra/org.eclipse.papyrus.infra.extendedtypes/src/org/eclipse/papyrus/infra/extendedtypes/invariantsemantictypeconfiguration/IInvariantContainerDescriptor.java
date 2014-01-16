@@ -12,11 +12,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration;
 
+import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
+
 
 /**
- * Interface used to create new invariant rule model element in the configuration model
+ * Descriptor for the configurable container descriptor
  */
-public interface IConfigurationModelCreation<T extends InvariantRuleConfiguration> {
-	
-	public T createConfigurationModel();
+public interface IInvariantContainerDescriptor<T extends InvariantRuleConfiguration> extends IContainerDescriptor {
+
+	/**
+	 * @param ruleConfiguration
+	 */
+	void init(T ruleConfiguration);
 }

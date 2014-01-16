@@ -20,7 +20,7 @@
       <!-- @generated AspectSemantic -->
       <factory
             uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantic/aspect/1.0"
-            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.provider.AspectSemanticItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.provider.AspectSemanticTypeConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -67,6 +67,19 @@
       <factory
             uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0"
             class="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.provider.InvariantContainerConfigurationItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated AspectSemanticTypeConfiguration -->
+      <factory
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantic/aspect/1.0"
+            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.provider.AspectSemanticTypeConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

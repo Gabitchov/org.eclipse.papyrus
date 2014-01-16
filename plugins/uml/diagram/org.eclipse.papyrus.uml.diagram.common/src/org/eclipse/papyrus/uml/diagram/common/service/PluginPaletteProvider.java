@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -101,6 +102,9 @@ public class PluginPaletteProvider extends LocalPaletteProvider implements IProf
 	 * {@inheritDoc}
 	 */
 	public Collection<String> getRequiredProfiles() {
+		if(contributions==null) {
+			return Collections.emptyList();
+		}
 		if(requiredProfiles == null) {
 			requiredProfiles = new HashSet<String>();
 

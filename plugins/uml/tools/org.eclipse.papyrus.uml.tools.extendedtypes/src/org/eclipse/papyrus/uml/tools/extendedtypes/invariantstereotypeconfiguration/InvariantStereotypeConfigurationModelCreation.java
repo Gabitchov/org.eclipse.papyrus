@@ -12,13 +12,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration;
 
-import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurationModelCreation;
+import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantConfigurationModelCreation;
 
 
 /**
  * @author RS211865
  */
-public class InvariantStereotypeConfigurationModelCreation implements IConfigurationModelCreation<InvariantStereotypeConfiguration> {
+public class InvariantStereotypeConfigurationModelCreation implements IInvariantConfigurationModelCreation<InvariantStereotypeConfiguration> {
 
 	/**
 	 * {@inheritDoc}

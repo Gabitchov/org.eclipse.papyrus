@@ -16,7 +16,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 
 
 /**
- * interface for factories that instantiate {@link IConfigurableElementMatcher} with their given configuration
+ * interface for factories that instantiate {@link IInvariantElementMatcher} with their given configuration
  */
 public interface IConfigurableElementMatcherFactory<T extends MatcherConfiguration> {
 	

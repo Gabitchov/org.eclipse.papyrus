@@ -13,7 +13,7 @@
 package org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurableElementMatcher;
+import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantElementMatcher;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -21,7 +21,7 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * @author RS211865
  */
-public class InvariantStereotypeElementMatcher implements IConfigurableElementMatcher<InvariantStereotypeConfiguration> {
+public class InvariantStereotypeElementMatcher implements IInvariantElementMatcher<InvariantStereotypeConfiguration> {
 
 	private String stereotypeQualifiedName;
 	

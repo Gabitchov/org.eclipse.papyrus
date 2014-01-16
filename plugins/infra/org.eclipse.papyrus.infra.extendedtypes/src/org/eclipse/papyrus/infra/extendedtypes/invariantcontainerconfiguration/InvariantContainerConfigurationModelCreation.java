@@ -12,13 +12,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration;
 
-import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurationModelCreation;
+import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantConfigurationModelCreation;
 
 
 /**
  * @author RS211865
  */
-public class InvariantContainerConfigurationModelCreation implements IConfigurationModelCreation<InvariantContainerConfiguration> {
+public class InvariantContainerConfigurationModelCreation implements IInvariantConfigurationModelCreation<InvariantContainerConfiguration> {
 
 	/**
 	 * {@inheritDoc}

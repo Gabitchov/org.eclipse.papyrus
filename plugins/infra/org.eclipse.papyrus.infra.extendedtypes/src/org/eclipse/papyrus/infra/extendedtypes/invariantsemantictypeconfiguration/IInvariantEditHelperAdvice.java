@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 /**
  * Interface for all {@link IEditHelperAdvice} that are configured by an {@link InvariantRuleConfiguration}.
  */
-public interface IConfigurableEditHelperAdvice<T extends InvariantRuleConfiguration> extends IEditHelperAdvice {
+public interface IInvariantEditHelperAdvice<T extends InvariantRuleConfiguration> extends IEditHelperAdvice {
 
 	/**
 	 * Inits the edit helper advice with its given configuration

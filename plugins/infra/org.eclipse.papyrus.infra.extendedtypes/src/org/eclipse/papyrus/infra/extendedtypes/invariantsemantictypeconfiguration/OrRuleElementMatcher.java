@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 /**
  * @author RS211865
  */
-public class OrRuleElementMatcher implements IConfigurableElementMatcher<OrRule> {
+public class OrRuleElementMatcher implements IInvariantElementMatcher<OrRule> {
 
 	protected List<IElementMatcher> composedMatchers;
 

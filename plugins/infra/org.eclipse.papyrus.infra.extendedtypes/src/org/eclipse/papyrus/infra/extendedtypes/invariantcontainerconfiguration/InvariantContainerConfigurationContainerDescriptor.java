@@ -26,13 +26,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.extendedtypes.Activator;
-import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurableContainerDescriptor;
+import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantContainerDescriptor;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 
 /**
  * @author RS211865
  */
-public class InvariantContainerConfigurationContainerDescriptor implements IConfigurableContainerDescriptor<InvariantContainerConfiguration> {
+public class InvariantContainerConfigurationContainerDescriptor implements IInvariantContainerDescriptor<InvariantContainerConfiguration> {
 
 	protected EList<HierarchyPermission> permissions;
 
