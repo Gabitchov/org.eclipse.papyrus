@@ -63,7 +63,7 @@ public abstract class ArchitectureSnapshotDesigner{
 	protected BundleDesignerRegistry bundleDesignerRegistry=null;
 	protected int dependenciesN=0;
 	protected ArrayList<Object>bundleInitialList=null;
-	protected int dependencyLevelMax=15; 
+	protected int dependencyLevelMax=1; 
 
 
 
