@@ -15,12 +15,14 @@ package org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfigurati
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
+import org.eclipse.papyrus.infra.extendedtypes.AbstractConfigurableElementTypeFactory;
+import org.eclipse.papyrus.infra.extendedtypes.ComposedElementMatcher;
 import org.eclipse.papyrus.infra.extendedtypes.ICreationElementValidator;
 
 /**
  * Factory used to create ElementType from a {@link InvariantSemanticTypeConfiguration}.
  */
-public class InvariantElementTypeFactory extends AbstractExtendedElementTypeFactory<InvariantSemanticTypeConfiguration> {
+public class InvariantElementTypeFactory extends AbstractConfigurableElementTypeFactory<InvariantSemanticTypeConfiguration> {
 
 	/**
 	 * {@inheritDoc}
@@ -58,6 +60,14 @@ public class InvariantElementTypeFactory extends AbstractExtendedElementTypeFact
 	 */
 	@Override
 	protected IElementMatcher createElementMatcher(InvariantSemanticTypeConfiguration configuration) {
+		IElementMatcher superMatcher = super.createElementMatcher(configuration);
+		if(superMatcher !=null)  {
+			// create a composed matcher to have the matcher described by the model configuration element type and the one for the specific invariants
+			IElementMatcher invariantMatcher = RuleConfigurationFactoryRegistry.getInstance().createMatcher(configuration.getInvariantRuleConfiguration());
+			ComposedElementMatcher composedMatcher = new ComposedElementMatcher(superMatcher, invariantMatcher);
+			return composedMatcher;
+		}
+		// no configured matcher. Return the invariant one
 		return RuleConfigurationFactoryRegistry.getInstance().createMatcher(configuration.getInvariantRuleConfiguration());
 	}
 	

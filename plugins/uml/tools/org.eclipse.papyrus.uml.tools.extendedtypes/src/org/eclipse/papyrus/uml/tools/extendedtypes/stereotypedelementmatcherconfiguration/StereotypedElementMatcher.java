@@ -13,22 +13,21 @@
 package org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
+import org.eclipse.papyrus.infra.extendedtypes.IConfigurableElementMatcher;
 import org.eclipse.uml2.uml.Element;
 
 
 /**
  * Matcher for UML elements that should be stereotypes
  */
-public class StereotypedElementMatcher implements IElementMatcher {
+public class StereotypedElementMatcher implements IConfigurableElementMatcher<StereotypedElementMatcherConfiguration> {
 
 	private String stereotypedQualifiedName;
 
 	/**
 	 * @param stereotypedQualifiedName
 	 */
-	public StereotypedElementMatcher(String stereotypedQualifiedName) {
-		this.setStereotypedQualifiedName(stereotypedQualifiedName);
+	public StereotypedElementMatcher() {
 	}
 
 	/**
@@ -55,5 +54,12 @@ public class StereotypedElementMatcher implements IElementMatcher {
 	 */
 	public void setStereotypedQualifiedName(String stereotypedQualifiedName) {
 		this.stereotypedQualifiedName = stereotypedQualifiedName;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void init(StereotypedElementMatcherConfiguration configuration) {
+		this.setStereotypedQualifiedName(stereotypedQualifiedName);
 	}
 }

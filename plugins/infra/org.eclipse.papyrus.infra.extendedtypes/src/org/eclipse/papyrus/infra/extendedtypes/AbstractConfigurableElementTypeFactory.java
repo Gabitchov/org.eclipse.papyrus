@@ -10,7 +10,7 @@
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration;
+package org.eclipse.papyrus.infra.extendedtypes;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,17 +24,15 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.ICreationElementValidator;
-import org.eclipse.papyrus.infra.extendedtypes.IExtendedElementTypeFactory;
 import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 import org.eclipse.papyrus.infra.extendedtypes.types.ExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.osgi.framework.Bundle;
 
 /**
- * 
+ * Factory to create element type from its {@link ElementTypeConfiguration}
  */
-public abstract class AbstractExtendedElementTypeFactory<T extends ElementTypeConfiguration> implements IExtendedElementTypeFactory<T> {
+public abstract class AbstractConfigurableElementTypeFactory<T extends ElementTypeConfiguration> implements IExtendedElementTypeFactory<T> {
 
 	/**
 	 * {@inheritDoc}
@@ -82,7 +80,15 @@ public abstract class AbstractExtendedElementTypeFactory<T extends ElementTypeCo
 	 * @param configuration
 	 * @return
 	 */
-	protected abstract IElementMatcher createElementMatcher(T configuration);
+	protected IElementMatcher createElementMatcher(T configuration) {
+		MatcherConfiguration matcherConfiguration = configuration.getMatcherConfiguration();
+		if(matcherConfiguration==null) {
+			return null;
+		} 
+		// create matcher from the configuration
+		IElementMatcher matcher = ConfigurableElementMatcherFactoryRegistry.getInstance().createElementMatcher(matcherConfiguration);
+		return matcher;
+	}
 
 	/**
 	 * {@inheritDoc}

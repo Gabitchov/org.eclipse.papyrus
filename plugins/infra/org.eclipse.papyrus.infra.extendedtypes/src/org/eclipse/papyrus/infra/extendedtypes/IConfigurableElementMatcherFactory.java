@@ -13,18 +13,17 @@
 package org.eclipse.papyrus.infra.extendedtypes;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
-import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurableElementMatcher;
 
 
 /**
  * interface for factories that instantiate {@link IConfigurableElementMatcher} with their given configuration
  */
-public interface IElementMatcherFactory<T extends MatcherConfiguration> {
+public interface IConfigurableElementMatcherFactory<T extends MatcherConfiguration> {
 	
 	/**
 	 * Creates an element matcher with the specified configuration
 	 * @param configuration the configuration of the {@link IElementMatcher}
 	 * @return the created element matcher or <code>null</code> if none was created
 	 */
-	public IElementMatcher createElementMatcher(T configuration); 
+	public IConfigurableElementMatcher<T> createElementMatcher(T configuration); 
 }

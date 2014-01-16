@@ -12,19 +12,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration;
 
-import org.eclipse.papyrus.infra.extendedtypes.IElementMatcherFactory;
+import org.eclipse.papyrus.infra.extendedtypes.IConfigurableElementMatcherFactory;
 import org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherConfiguration;
 
 
 /**
  * Factory to create matcher based on stereotypes applied on the element
  */
-public class StereotypedElementMatcherFactory implements IElementMatcherFactory<StereotypedElementMatcherConfiguration> {
+public class StereotypedElementMatcherFactory implements IConfigurableElementMatcherFactory<StereotypedElementMatcherConfiguration> {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public StereotypedElementMatcher createElementMatcher(StereotypedElementMatcherConfiguration configuration) {
-		return new StereotypedElementMatcher(configuration.getStereotypedQualifiedName());
+		return new StereotypedElementMatcher();
 	}
 }
