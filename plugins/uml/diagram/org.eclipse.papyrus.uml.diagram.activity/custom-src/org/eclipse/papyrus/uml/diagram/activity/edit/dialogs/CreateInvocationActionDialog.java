@@ -133,7 +133,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		labelProvider = getCustomLabelProvider();
 		this.invocationAction = newAction;
 		try {
-			LabelProviderService labelProviderService=(LabelProviderService)ServiceUtilsForEObject.getInstance().getServiceRegistry(owner).getService("org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService");
+			LabelProviderService labelProviderService=(LabelProviderService)ServiceUtilsForEObject.getInstance().getServiceRegistry(owner).getService(LabelProviderService.class);
 			labelProvider=labelProviderService.getLabelProvider(owner);
 		} catch (ServiceException e) {
 			e.printStackTrace();
