@@ -32,7 +32,11 @@ import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.uml.diagram.activity.part.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
@@ -112,6 +116,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * New Object about to be created
 	 */
 	private InvocationAction invocationAction;
+	
 
 	/**
 	 * Create a new dialog to initialize a CallAction.
@@ -127,6 +132,12 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		selectedParent = getDefaultParent(owner);
 		labelProvider = getCustomLabelProvider();
 		this.invocationAction = newAction;
+		try {
+			LabelProviderService labelProviderService=(LabelProviderService)ServiceUtilsForEObject.getInstance().getServiceRegistry(owner).getService("org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService");
+			labelProvider=labelProviderService.getLabelProvider(owner);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -510,9 +521,12 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * 
 	 */
 	protected void handleChooseInvoked() {
+		
+		
 		TreeSelectorDialog dialog = new TreeSelectorDialog(Display.getDefault().getActiveShell());
 		dialog.setContentProvider(new UMLContentProvider(getInvocationAction(), getInvocationFeature()));
-		dialog.setLabelProvider(new UMLLabelProvider());
+		
+		dialog.setLabelProvider(labelProvider);
 		//		UMLMultiEClassifierTreeSelectorDialog dialog = new UMLMultiEClassifierTreeSelectorDialog(getShell(), actionParent, Collections.singleton(getInvocationFeature().getEType()));
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
