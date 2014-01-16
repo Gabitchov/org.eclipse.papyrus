@@ -14,10 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.common.figure.edge;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.swt.graphics.Color;
 
 /**
  * This is a custom figure to represents a default edge. This code was used in
@@ -121,52 +119,4 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 		setLineDash(dashes);
 
 	}
-
-	/**
-	 * Sets initial style for this figure. This is the style used for full
-	 * arrows: ------|>
-	 * 
-	 * @param lineWidth
-	 *        the width of the link
-	 */
-	// @unused
-	protected void setStyle(int lineWidth) {
-		setStyle();
-		// set link appearence
-		setLineWidth(lineWidth);
-	}
-
-	/**
-	 * Sets initial style for this figure. This is the style used for full
-	 * arrows: ------|>
-	 * 
-	 * @param lineWidth
-	 *        the width of the link
-	 * @param foregroundColor
-	 *        the foreground color of the link
-	 * @param backgroundColor
-	 *        the background color of the link
-	 */
-	// @unused
-	protected void setStyle(Color backgroundColor, Color foregroundColor, int lineWidth) {
-		// set the target arrow style
-		PolygonDecoration dec = new PolygonDecoration();
-		dec.setScale(15, 5);
-		dec.setBackgroundColor(backgroundColor);
-		dec.setLineWidth(1);
-		if(arrow) {
-			setTargetDecoration(dec);
-		}
-		// set link appearence
-		setLineWidth(lineWidth);
-		setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
-		setForegroundColor(foregroundColor);
-
-		// set dashes
-		for(int i = 0; i < 10; i++) {
-			dashes[i] = 5;
-		}
-		setLineDash(dashes);
-	}
-
 }
