@@ -28,17 +28,17 @@ public class TablePreferencesConstantsHelper {
 	/**
 	 * Prefix for preference for Papyrus nattable Level editor
 	 */
-	public static String PAPYRUS_TABLE_EDITOR_PREFERENCE_PREFIX = "PAPYRUS_TABLE_EDITOR"; //$NON-NLS-1$
+	public final static String PAPYRUS_TABLE_EDITOR_PREFERENCE_PREFIX = "PAPYRUS_TABLE_EDITOR"; //$NON-NLS-1$
 
 	/**
 	 * Prefix for preference for Diagram Level
 	 */
-	public static String TABLE_PREFERENCE_PREFIX = "NATTABLE_"; //$NON-NLS-1$
+	public final static String TABLE_PREFERENCE_PREFIX = "NATTABLE_"; //$NON-NLS-1$
 
 	/**
 	 * Prefix for preference for element Level
 	 */
-	public static String TABLE_ELEMENT = "TABLE_ELEMENT_"; //$NON-NLS-1$
+	public final static String TABLE_ELEMENT = "TABLE_ELEMENT_"; //$NON-NLS-1$
 
 
 	/**
