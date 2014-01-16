@@ -14,6 +14,7 @@
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             description="ADL4Eclipse profile"
+            iconpath="img/adl.png"
             name="ADL4Eclipse"
             path="pathmap://ADL4ECLIPSE_PROFILES/adl4eclipse.profile.uml"
             provider="Eclipse.org">
