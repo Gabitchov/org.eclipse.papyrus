@@ -205,7 +205,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			final Menu menu = menuMgr.createContextMenu(this.natTable);
 			this.natTable.setMenu(menu);
 
-			this.selectionProvider = new TableSelectionProvider(this.bodyLayerStack.getSelectionLayer());
+			this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
 			site.registerContextMenu(menuMgr, this.selectionProvider);
 			site.setSelectionProvider(this.selectionProvider);
 		}
