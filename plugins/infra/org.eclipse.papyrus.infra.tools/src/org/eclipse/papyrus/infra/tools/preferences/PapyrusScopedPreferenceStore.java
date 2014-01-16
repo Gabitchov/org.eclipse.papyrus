@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.preferences;
+package org.eclipse.papyrus.infra.tools.preferences;
 
 /***************************************************************************
  Copyright (c) 2010 CEA LIST.
@@ -235,13 +235,13 @@ public class PapyrusScopedPreferenceStore extends EventManager implements IPrefe
 		if(obj instanceof String) {
 			return defaults.get(key, STRING_DEFAULT_DEFAULT);
 		} else if(obj instanceof Integer) {
-			return new Integer(defaults.getInt(key, INT_DEFAULT_DEFAULT));
+			return Integer.valueOf(defaults.getInt(key, INT_DEFAULT_DEFAULT));
 		} else if(obj instanceof Double) {
 			return new Double(defaults.getDouble(key, DOUBLE_DEFAULT_DEFAULT));
 		} else if(obj instanceof Float) {
 			return new Float(defaults.getFloat(key, FLOAT_DEFAULT_DEFAULT));
 		} else if(obj instanceof Long) {
-			return new Long(defaults.getLong(key, LONG_DEFAULT_DEFAULT));
+			return Long.valueOf(defaults.getLong(key, LONG_DEFAULT_DEFAULT));
 		} else if(obj instanceof Boolean) {
 			return defaults.getBoolean(key, BOOLEAN_DEFAULT_DEFAULT) ? Boolean.TRUE : Boolean.FALSE;
 		} else {
@@ -664,7 +664,7 @@ public class PapyrusScopedPreferenceStore extends EventManager implements IPrefe
 			// removing a non-existing preference is a no-op so call the Core
 			// API directly
 			getStorePreferences().remove(name);
-			if(oldValue != defaultValue) {
+			if(!oldValue.equals(defaultValue)) {
 				dirty = true;
 				firePropertyChangeEvent(name, oldValue, defaultValue);
 			}
@@ -744,7 +744,7 @@ public class PapyrusScopedPreferenceStore extends EventManager implements IPrefe
 				getStorePreferences().putInt(name, value);
 			}
 			dirty = true;
-			firePropertyChangeEvent(name, new Integer(oldValue), new Integer(value));
+			firePropertyChangeEvent(name, Integer.valueOf(oldValue), Integer.valueOf(value));
 		} finally {
 			silentRunning = false;// Restart listening to preferences
 		}
@@ -769,7 +769,7 @@ public class PapyrusScopedPreferenceStore extends EventManager implements IPrefe
 				getStorePreferences().putLong(name, value);
 			}
 			dirty = true;
-			firePropertyChangeEvent(name, new Long(oldValue), new Long(value));
+			firePropertyChangeEvent(name, Long.valueOf(oldValue), Long.valueOf(value));
 		} finally {
 			silentRunning = false;// Restart listening to preferences
 		}

@@ -13,7 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable;
 
+import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.nattable.preferences.PapyrusTablePreferenceStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -29,6 +32,12 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	public static LogHelper log;
+
+	/**
+	 * Storage for preferences.
+	 */
+	protected IPreferenceStore papyrusPreferenceStore;
+
 
 	/**
 	 * The constructor
@@ -64,6 +73,21 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#getPreferenceStore()
+	 * 
+	 * @return
+	 */
+	@Override
+	public IPreferenceStore getPreferenceStore() {
+		// Create the preference store lazily.
+		if(this.papyrusPreferenceStore == null) {
+			this.papyrusPreferenceStore = new PapyrusTablePreferenceStore(new InstanceScope(), getBundle().getSymbolicName());
+		}
+		return this.papyrusPreferenceStore;
 	}
 
 }

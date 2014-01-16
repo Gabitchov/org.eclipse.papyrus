@@ -11,11 +11,9 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.preferences;
+package org.eclipse.papyrus.infra.nattable.preferences;
 
 import org.eclipse.core.runtime.preferences.IScopeContext;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.dialog.ApplyValueOnPreferenceKeyDialog;
 import org.eclipse.papyrus.infra.tools.preferences.AbstractPapyrusPreferenceStore;
 import org.eclipse.papyrus.infra.tools.preferences.ui.dialog.AbstractApplyValueOnPreferenceKeyDialog;
 
@@ -24,7 +22,7 @@ import org.eclipse.papyrus.infra.tools.preferences.ui.dialog.AbstractApplyValueO
  * by taking account the structure of preferences : papyrus editor-> Diagram -> Elements of Diagram
  * 
  */
-public class PapyrusPreferenceStore extends AbstractPapyrusPreferenceStore {
+public class PapyrusTablePreferenceStore extends AbstractPapyrusPreferenceStore {
 
 	/**
 	 * 
@@ -34,8 +32,8 @@ public class PapyrusPreferenceStore extends AbstractPapyrusPreferenceStore {
 	 * @param qualifier
 	 * @param defaultQualifierPath
 	 */
-	public PapyrusPreferenceStore(IScopeContext context, String qualifier, String defaultQualifierPath) {
-		super(context, qualifier, defaultQualifierPath, PreferencesConstantsHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX, PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX, PreferencesConstantsHelper.DIAGRAM_ELEMENT);
+	public PapyrusTablePreferenceStore(IScopeContext context, String qualifier, String defaultQualifierPath) {
+		super(context, qualifier, defaultQualifierPath, TablePreferencesConstantsHelper.PAPYRUS_TABLE_EDITOR_PREFERENCE_PREFIX, TablePreferencesConstantsHelper.TABLE_PREFERENCE_PREFIX, TablePreferencesConstantsHelper.TABLE_ELEMENT);
 	}
 
 
@@ -46,8 +44,8 @@ public class PapyrusPreferenceStore extends AbstractPapyrusPreferenceStore {
 	 * @param context
 	 * @param qualifier
 	 */
-	public PapyrusPreferenceStore(IScopeContext context, String qualifier) {
-		super(context, qualifier, PreferencesConstantsHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX, PreferencesConstantsHelper.DIAGRAM_PREFERENCE_PREFIX, PreferencesConstantsHelper.DIAGRAM_ELEMENT);
+	public PapyrusTablePreferenceStore(IScopeContext context, String qualifier) {
+		super(context, qualifier, TablePreferencesConstantsHelper.PAPYRUS_TABLE_EDITOR_PREFERENCE_PREFIX, TablePreferencesConstantsHelper.TABLE_PREFERENCE_PREFIX, TablePreferencesConstantsHelper.TABLE_ELEMENT);
 	}
 
 
@@ -60,7 +58,7 @@ public class PapyrusPreferenceStore extends AbstractPapyrusPreferenceStore {
 	 */
 	@Override
 	protected AbstractApplyValueOnPreferenceKeyDialog createPreferenceKeyDialog(String[] keys) {
-		return new ApplyValueOnPreferenceKeyDialog(keys);
+		throw new UnsupportedOperationException("not yet implemented"); //$NON-NLS-1$
 	}
 
 

@@ -19,6 +19,10 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.gmfdiag.preferences.messages.messages"; //$NON-NLS-1$
 
+	public static String ApplyValueOnPreferenceKeyDialog_DIAGRAM;
+
+	public static String ApplyValueOnPreferenceKeyDialog_ELEMENT;
+
 	public static String LabelGroup_Labels_To_Display;
 
 	public static String RulersAndGridGroup_GridColor;

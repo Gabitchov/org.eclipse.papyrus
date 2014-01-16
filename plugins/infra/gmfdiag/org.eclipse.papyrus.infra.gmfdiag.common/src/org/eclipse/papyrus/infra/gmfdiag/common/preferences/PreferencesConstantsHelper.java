@@ -50,17 +50,17 @@ public class PreferencesConstantsHelper {
 	/**
 	 * Prefix for preference for Papyrus Level editor
 	 */
-	public static String PAPYRUS_EDITOR_PREFERENCE_PREFIX = "PAPYRUS_EDITOR"; //$NON-NLS-1$
+	public final static String PAPYRUS_EDITOR_PREFERENCE_PREFIX = "PAPYRUS_EDITOR"; //$NON-NLS-1$
 
 	/**
 	 * Prefix for preference for Diagram Level
 	 */
-	public static String DIAGRAM_PREFERENCE_PREFIX = "DIAGRAM_"; //$NON-NLS-1$
+	public final static String DIAGRAM_PREFERENCE_PREFIX = "DIAGRAM_"; //$NON-NLS-1$
 
 	/**
 	 * Prefix for preference for element Level
 	 */
-	public static String DIAGRAM_ELEMENT = "ELEMENT_"; //$NON-NLS-1$
+	public final static String DIAGRAM_ELEMENT = "ELEMENT_"; //$NON-NLS-1$
 
 	private final static String COLOR = "color."; //$NON-NLS-1$
 
