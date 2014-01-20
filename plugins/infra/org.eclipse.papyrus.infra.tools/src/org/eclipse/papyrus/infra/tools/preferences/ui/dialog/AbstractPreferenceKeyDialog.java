@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.tools.preferences.ui.dialog;
 
-import java.util.Arrays;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
@@ -47,11 +45,11 @@ public abstract class AbstractPreferenceKeyDialog extends org.eclipse.jface.dial
 	 * Instantiates a new abstract preference key dialog.
 	 * 
 	 * @param keys
-	 *        the array of preference jy to display
+	 *        the array of preferences to display
 	 */
 	public AbstractPreferenceKeyDialog(String[] keys) {
 		super(new Shell());
-		this.keys = Arrays.copyOf(keys, keys.length);
+		this.keys = keys;
 		setStatusLineAboveButtons(true);
 		updateStatus(new Status(IStatus.INFO, Activator.PLUGIN_ID, Messages.AbstractPreferenceKeyDialog_WouldYouLikeOverloadPreferences));
 	}
