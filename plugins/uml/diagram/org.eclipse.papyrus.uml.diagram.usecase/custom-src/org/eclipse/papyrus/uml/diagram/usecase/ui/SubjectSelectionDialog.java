@@ -21,9 +21,9 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -61,13 +61,10 @@ public class SubjectSelectionDialog extends AbstractSubjectMetaclassesSelectionD
 	 * 
 	 */
 	protected void createContents() {
-		// TODO Auto-generated method stub
 		super.createContents();
-		final ILabelProvider labelProvider = new EMFLabelProvider() {
-
+		final ILabelProvider labelProvider = new LabelProvider() {
 			@Override
 			public String getText(Object element) {
-				// TODO Auto-generated method stub
 				if(element instanceof IHintedType) {
 					String out = ((IHintedType)element).getDisplayName();
 					return out;
@@ -77,7 +74,6 @@ public class SubjectSelectionDialog extends AbstractSubjectMetaclassesSelectionD
 
 			@Override
 			public Image getImage(Object element) {
-				// TODO Auto-generated method stub
 				final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 				return labelProvider.getImage(UMLFactory.eINSTANCE.createClass());
 			}
