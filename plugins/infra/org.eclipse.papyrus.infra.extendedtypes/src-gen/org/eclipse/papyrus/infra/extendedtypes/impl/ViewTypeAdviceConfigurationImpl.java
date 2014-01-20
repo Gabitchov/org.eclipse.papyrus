@@ -18,7 +18,9 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.ViewTypeAdviceConfiguration;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>View Type Advice Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>View Type Advice Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * </p>
  * 
@@ -27,7 +29,8 @@ import org.eclipse.papyrus.infra.extendedtypes.ViewTypeAdviceConfiguration;
 public abstract class ViewTypeAdviceConfigurationImpl extends ElementTypeAdviceConfigurationImpl implements ViewTypeAdviceConfiguration {
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -36,7 +39,8 @@ public abstract class ViewTypeAdviceConfigurationImpl extends ElementTypeAdviceC
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -44,4 +48,4 @@ public abstract class ViewTypeAdviceConfigurationImpl extends ElementTypeAdviceC
 	protected EClass eStaticClass() {
 		return ExtendedtypesPackage.eINSTANCE.getViewTypeAdviceConfiguration();
 	}
-} // ViewTypeAdviceConfigurationImpl
+} //ViewTypeAdviceConfigurationImpl

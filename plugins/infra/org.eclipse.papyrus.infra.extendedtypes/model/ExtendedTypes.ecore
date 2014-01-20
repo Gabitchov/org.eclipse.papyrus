@@ -44,10 +44,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MatcherConfiguration" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ActionConfiguration" abstract="true"
-      eSuperTypes="#//ConfigurationElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="preValidationQueryConfiguration"
-        eType="ecore:EClass platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.ecore#//QueryConfiguration"/>
-  </eClassifiers>
+      eSuperTypes="#//ConfigurationElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ViewActionConfiguration" abstract="true"
       eSuperTypes="#//ActionConfiguration"/>
   <eClassifiers xsi:type="ecore:EClass" name="SemanticActionConfiguration" abstract="true"
@@ -68,4 +65,25 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementTypeAdviceConfiguration" abstract="true"
       eSuperTypes="#//ConfigurationElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AspectSemanticTypeConfiguration" eSuperTypes="#//SemanticTypeConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adviceConfiguration" lowerBound="1"
+        eType="#//AspectSemanticTypeAdviceConfiguration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AspectSemanticTypeAdviceConfiguration"
+      eSuperTypes="#//SemanticTypeAdviceConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preActionConfiguration"
+        upperBound="-1" eType="#//SemanticActionConfiguration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="postActionConfiguration"
+        upperBound="-1" eType="#//SemanticActionConfiguration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AspectViewTypeConfiguration" eSuperTypes="#//ViewTypeConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="adviceConfiguration" lowerBound="1"
+        eType="#//AspectViewTypeAdviceConfiguration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AspectViewTypeAdviceConfiguration" eSuperTypes="#//ViewTypeAdviceConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preActionConfiguration"
+        upperBound="-1" eType="#//ViewActionConfiguration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="postActionConfiguration"
+        upperBound="-1" eType="#//ViewActionConfiguration" containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

@@ -18,8 +18,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 /**
- * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains
- * accessors for the meta objects to represent
+ * <!-- begin-user-doc -->
+ * The <b>Package</b> for the model.
+ * It contains accessors for the meta objects to represent
  * <ul>
  * <li>each class,</li>
  * <li>each feature of each class,</li>
@@ -36,7 +37,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The package name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -44,7 +46,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The package namespace URI.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -52,7 +55,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The package namespace name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -60,8 +64,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The singleton instance of the package.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -70,8 +74,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ConfigurationElementImpl <em>Configuration Element</em>}'
 	 * class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ConfigurationElementImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getConfigurationElement()
@@ -80,8 +84,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int CONFIGURATION_ELEMENT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -89,8 +94,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int CONFIGURATION_ELEMENT__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -98,8 +104,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int CONFIGURATION_ELEMENT__DESCRIPTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -108,7 +115,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -117,7 +125,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Configuration Element</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -127,8 +136,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedElementTypeSetImpl <em>Extended Element Type Set</em>}'
 	 * class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedElementTypeSetImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getExtendedElementTypeSet()
@@ -137,8 +146,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int EXTENDED_ELEMENT_TYPE_SET = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -146,8 +156,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int EXTENDED_ELEMENT_TYPE_SET__NAME = CONFIGURATION_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -155,8 +166,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int EXTENDED_ELEMENT_TYPE_SET__DESCRIPTION = CONFIGURATION_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -165,7 +177,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -174,7 +187,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -193,8 +207,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Extended Element Type Set</em>' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -204,8 +218,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ElementTypeConfigurationImpl
 	 * <em>Element Type Configuration</em>}' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ElementTypeConfigurationImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getElementTypeConfiguration()
@@ -214,8 +228,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ELEMENT_TYPE_CONFIGURATION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -223,8 +238,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ELEMENT_TYPE_CONFIGURATION__NAME = CONFIGURATION_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -232,8 +248,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ELEMENT_TYPE_CONFIGURATION__DESCRIPTION = CONFIGURATION_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -242,7 +259,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -250,8 +268,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY = CONFIGURATION_ELEMENT__ICON_ENTRY;
 
 	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -259,8 +278,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ELEMENT_TYPE_CONFIGURATION__HINT = CONFIGURATION_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Kind Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Kind Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -269,7 +289,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Specialized Types ID</b></em>' attribute list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -288,8 +309,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Element Type Configuration</em>' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -297,9 +318,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT = CONFIGURATION_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the ' {@link org.eclipse.papyrus.infra.extendedtypes.impl.IconEntryImpl
-	 * <em>Icon Entry</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.IconEntryImpl <em>Icon Entry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.IconEntryImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getIconEntry()
@@ -308,8 +329,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ICON_ENTRY = 2;
 
 	/**
-	 * The feature id for the '<em><b>Icon Path</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Icon Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -317,8 +339,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ICON_ENTRY__ICON_PATH = 0;
 
 	/**
-	 * The feature id for the '<em><b>Bundle Id</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Bundle Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -327,7 +350,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Icon Entry</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -337,8 +361,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ElementTypeAdviceConfigurationImpl
 	 * <em>Element Type Advice Configuration</em>}' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ElementTypeAdviceConfigurationImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getElementTypeAdviceConfiguration()
@@ -347,8 +371,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ELEMENT_TYPE_ADVICE_CONFIGURATION = 12;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -356,8 +381,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ELEMENT_TYPE_ADVICE_CONFIGURATION__NAME = CONFIGURATION_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -365,8 +391,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ELEMENT_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = CONFIGURATION_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -375,7 +402,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -384,8 +412,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Element Type Advice Configuration</em>' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -405,8 +433,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_ADVICE_CONFIGURATION = 4;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -414,8 +443,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_ADVICE_CONFIGURATION__NAME = ELEMENT_TYPE_ADVICE_CONFIGURATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -423,8 +453,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = ELEMENT_TYPE_ADVICE_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -433,7 +464,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -453,8 +485,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.SemanticTypeAdviceConfigurationImpl
 	 * <em>Semantic Type Advice Configuration</em>}' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.SemanticTypeAdviceConfigurationImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getSemanticTypeAdviceConfiguration()
@@ -463,8 +495,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_TYPE_ADVICE_CONFIGURATION = 5;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -472,8 +505,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_TYPE_ADVICE_CONFIGURATION__NAME = ELEMENT_TYPE_ADVICE_CONFIGURATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -481,8 +515,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = ELEMENT_TYPE_ADVICE_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -491,7 +526,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -500,8 +536,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Semantic Type Advice Configuration</em>' class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -511,8 +547,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.MatcherConfigurationImpl <em>Matcher Configuration</em>}'
 	 * class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.MatcherConfigurationImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getMatcherConfiguration()
@@ -522,7 +558,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Matcher Configuration</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -531,8 +568,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ActionConfigurationImpl <em>Action Configuration</em>}' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ActionConfigurationImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getActionConfiguration()
@@ -541,8 +578,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ACTION_CONFIGURATION = 7;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -550,8 +588,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ACTION_CONFIGURATION__NAME = CONFIGURATION_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -559,8 +598,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ACTION_CONFIGURATION__DESCRIPTION = CONFIGURATION_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -569,7 +609,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -577,28 +618,20 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ACTION_CONFIGURATION__ICON_ENTRY = CONFIGURATION_ELEMENT__ICON_ENTRY;
 
 	/**
-	 * The feature id for the ' <em><b>Pre Validation Query Configuration</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_CONFIGURATION__PRE_VALIDATION_QUERY_CONFIGURATION = CONFIGURATION_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Action Configuration</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_CONFIGURATION_FEATURE_COUNT = CONFIGURATION_ELEMENT_FEATURE_COUNT + 1;
+	int ACTION_CONFIGURATION_FEATURE_COUNT = CONFIGURATION_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ViewActionConfigurationImpl <em>View Action Configuration</em>}
 	 * ' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ViewActionConfigurationImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getViewActionConfiguration()
@@ -607,8 +640,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_ACTION_CONFIGURATION = 8;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -616,8 +650,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_ACTION_CONFIGURATION__NAME = ACTION_CONFIGURATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -625,8 +660,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_ACTION_CONFIGURATION__DESCRIPTION = ACTION_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -635,7 +671,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -643,18 +680,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_ACTION_CONFIGURATION__ICON_ENTRY = ACTION_CONFIGURATION__ICON_ENTRY;
 
 	/**
-	 * The feature id for the ' <em><b>Pre Validation Query Configuration</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_ACTION_CONFIGURATION__PRE_VALIDATION_QUERY_CONFIGURATION = ACTION_CONFIGURATION__PRE_VALIDATION_QUERY_CONFIGURATION;
-
-	/**
 	 * The number of structural features of the '<em>View Action Configuration</em>' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -674,8 +702,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_ACTION_CONFIGURATION = 9;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -683,8 +712,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_ACTION_CONFIGURATION__NAME = ACTION_CONFIGURATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -692,8 +722,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_ACTION_CONFIGURATION__DESCRIPTION = ACTION_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -702,21 +733,13 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SEMANTIC_ACTION_CONFIGURATION__ICON_ENTRY = ACTION_CONFIGURATION__ICON_ENTRY;
-
-	/**
-	 * The feature id for the ' <em><b>Pre Validation Query Configuration</b></em>' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SEMANTIC_ACTION_CONFIGURATION__PRE_VALIDATION_QUERY_CONFIGURATION = ACTION_CONFIGURATION__PRE_VALIDATION_QUERY_CONFIGURATION;
 
 	/**
 	 * The number of structural features of the '<em>Semantic Action Configuration</em>' class.
@@ -741,8 +764,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_TYPE_CONFIGURATION = 10;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -750,8 +774,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_TYPE_CONFIGURATION__NAME = ELEMENT_TYPE_CONFIGURATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -759,8 +784,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_TYPE_CONFIGURATION__DESCRIPTION = ELEMENT_TYPE_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -769,7 +795,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -777,8 +804,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_TYPE_CONFIGURATION__ICON_ENTRY = ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY;
 
 	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -786,8 +814,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int SEMANTIC_TYPE_CONFIGURATION__HINT = ELEMENT_TYPE_CONFIGURATION__HINT;
 
 	/**
-	 * The feature id for the '<em><b>Kind Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Kind Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -796,7 +825,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Specialized Types ID</b></em>' attribute list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -815,8 +845,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>Semantic Type Configuration</em>' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -826,8 +856,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ViewTypeConfigurationImpl <em>View Type Configuration</em>}'
 	 * class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ViewTypeConfigurationImpl
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getViewTypeConfiguration()
@@ -836,8 +866,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_CONFIGURATION = 11;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -845,8 +876,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_CONFIGURATION__NAME = ELEMENT_TYPE_CONFIGURATION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -854,8 +886,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_CONFIGURATION__DESCRIPTION = ELEMENT_TYPE_CONFIGURATION__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -864,7 +897,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -872,8 +906,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_CONFIGURATION__ICON_ENTRY = ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY;
 
 	/**
-	 * The feature id for the '<em><b>Hint</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -881,8 +916,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_CONFIGURATION__HINT = ELEMENT_TYPE_CONFIGURATION__HINT;
 
 	/**
-	 * The feature id for the '<em><b>Kind Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Kind Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -891,7 +927,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Specialized Types ID</b></em>' attribute list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -910,7 +947,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Specialized Diagram Type ID</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -919,8 +957,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * The number of structural features of the '<em>View Type Configuration</em>' class.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -928,9 +966,407 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_CONFIGURATION_FEATURE_COUNT = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectSemanticTypeConfigurationImpl
+	 * <em>Aspect Semantic Type Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.AspectSemanticTypeConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getAspectSemanticTypeConfiguration()
+	 * @generated
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__NAME = SEMANTIC_TYPE_CONFIGURATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__DESCRIPTION = SEMANTIC_TYPE_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__IDENTIFIER = SEMANTIC_TYPE_CONFIGURATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__ICON_ENTRY = SEMANTIC_TYPE_CONFIGURATION__ICON_ENTRY;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__HINT = SEMANTIC_TYPE_CONFIGURATION__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Kind Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__KIND_NAME = SEMANTIC_TYPE_CONFIGURATION__KIND_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specialized Types ID</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID = SEMANTIC_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID;
+
+	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = SEMANTIC_TYPE_CONFIGURATION__MATCHER_CONFIGURATION;
+
+	/**
+	 * The feature id for the '<em><b>Advice Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION = SEMANTIC_TYPE_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Aspect Semantic Type Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION_FEATURE_COUNT = SEMANTIC_TYPE_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectSemanticTypeAdviceConfigurationImpl
+	 * <em>Aspect Semantic Type Advice Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.AspectSemanticTypeAdviceConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getAspectSemanticTypeAdviceConfiguration()
+	 * @generated
+	 */
+	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION = 14;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__NAME = SEMANTIC_TYPE_ADVICE_CONFIGURATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = SEMANTIC_TYPE_ADVICE_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__IDENTIFIER = SEMANTIC_TYPE_ADVICE_CONFIGURATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY = SEMANTIC_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY;
+
+	/**
+	 * The feature id for the '<em><b>Pre Action Configuration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION = SEMANTIC_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Post Action Configuration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION = SEMANTIC_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Aspect Semantic Type Advice Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = SEMANTIC_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeConfigurationImpl
+	 * <em>Aspect View Type Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getAspectViewTypeConfiguration()
+	 * @generated
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION = 15;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__NAME = VIEW_TYPE_CONFIGURATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__DESCRIPTION = VIEW_TYPE_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__IDENTIFIER = VIEW_TYPE_CONFIGURATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__ICON_ENTRY = VIEW_TYPE_CONFIGURATION__ICON_ENTRY;
+
+	/**
+	 * The feature id for the '<em><b>Hint</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__HINT = VIEW_TYPE_CONFIGURATION__HINT;
+
+	/**
+	 * The feature id for the '<em><b>Kind Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__KIND_NAME = VIEW_TYPE_CONFIGURATION__KIND_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Specialized Types ID</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID = VIEW_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID;
+
+	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = VIEW_TYPE_CONFIGURATION__MATCHER_CONFIGURATION;
+
+	/**
+	 * The feature id for the '<em><b>Specialized Diagram Type ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID = VIEW_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID;
+
+	/**
+	 * The feature id for the '<em><b>Advice Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION = VIEW_TYPE_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Aspect View Type Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_CONFIGURATION_FEATURE_COUNT = VIEW_TYPE_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeAdviceConfigurationImpl
+	 * <em>Aspect View Type Advice Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeAdviceConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getAspectViewTypeAdviceConfiguration()
+	 * @generated
+	 */
+	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION = 16;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__NAME = VIEW_TYPE_ADVICE_CONFIGURATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = VIEW_TYPE_ADVICE_CONFIGURATION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__IDENTIFIER = VIEW_TYPE_ADVICE_CONFIGURATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY = VIEW_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY;
+
+	/**
+	 * The feature id for the '<em><b>Pre Action Configuration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION = VIEW_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Post Action Configuration</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION = VIEW_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Aspect View Type Advice Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = VIEW_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet <em>Extended Element Type Set</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Extended Element Type Set</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet
@@ -941,7 +1377,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the containment reference list '
 	 * {@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet#getElementType <em>Element Type</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '<em>Element Type</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet#getElementType()
@@ -966,8 +1403,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration <em>Element Type Configuration</em>}
 	 * '.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Element Type Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration
@@ -977,7 +1414,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration#getHint <em>Hint</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Hint</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration#getHint()
@@ -989,7 +1427,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration#getKindName
 	 * <em>Kind Name</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Kind Name</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration#getKindName()
@@ -1001,8 +1440,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration#getSpecializedTypesID
 	 * <em>Specialized Types ID</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute list '<em>Specialized Types ID</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration#getSpecializedTypesID()
@@ -1026,7 +1465,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.IconEntry <em>Icon Entry</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Icon Entry</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.IconEntry
@@ -1036,7 +1476,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.IconEntry#getIconPath <em>Icon Path</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Icon Path</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.IconEntry#getIconPath()
@@ -1047,7 +1488,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.IconEntry#getBundleId <em>Bundle Id</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Bundle Id</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.IconEntry#getBundleId()
@@ -1058,8 +1500,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement <em>Configuration Element</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Configuration Element</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement
@@ -1069,7 +1511,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement#getName()
@@ -1081,7 +1524,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement#getDescription
 	 * <em>Description</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement#getDescription()
@@ -1093,7 +1537,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement#getIdentifier
 	 * <em>Identifier</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement#getIdentifier()
@@ -1105,7 +1550,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement#getIconEntry
 	 * <em>Icon Entry</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference '<em>Icon Entry</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement#getIconEntry()
@@ -1117,8 +1563,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ViewTypeAdviceConfiguration
 	 * <em>View Type Advice Configuration</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>View Type Advice Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ViewTypeAdviceConfiguration
@@ -1140,8 +1586,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.MatcherConfiguration <em>Matcher Configuration</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Matcher Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.MatcherConfiguration
@@ -1151,8 +1597,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration <em>Action Configuration</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Action Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration
@@ -1161,23 +1607,9 @@ public interface ExtendedtypesPackage extends EPackage {
 	EClass getActionConfiguration();
 
 	/**
-	 * Returns the meta object for the reference '
-	 * {@link org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration#getPreValidationQueryConfiguration
-	 * <em>Pre Validation Query Configuration</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ViewActionConfiguration <em>View Action Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the reference '<em>Pre Validation Query Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration#getPreValidationQueryConfiguration()
-	 * @see #getActionConfiguration()
-	 * @generated
-	 */
-	EReference getActionConfiguration_PreValidationQueryConfiguration();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ViewActionConfiguration <em>View Action Configuration</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>View Action Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ViewActionConfiguration
@@ -1188,8 +1620,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration
 	 * <em>Semantic Action Configuration</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Semantic Action Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration
@@ -1200,8 +1632,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.SemanticTypeConfiguration
 	 * <em>Semantic Type Configuration</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Semantic Type Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.SemanticTypeConfiguration
@@ -1211,8 +1643,8 @@ public interface ExtendedtypesPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ViewTypeConfiguration <em>View Type Configuration</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>View Type Configuration</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ViewTypeConfiguration
@@ -1223,8 +1655,8 @@ public interface ExtendedtypesPackage extends EPackage {
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.ViewTypeConfiguration#getSpecializedDiagramTypeID
 	 * <em>Specialized Diagram Type ID</em>}'.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Specialized Diagram Type ID</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.ViewTypeConfiguration#getSpecializedDiagramTypeID()
@@ -1246,11 +1678,141 @@ public interface ExtendedtypesPackage extends EPackage {
 	EClass getElementTypeAdviceConfiguration();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration
+	 * <em>Aspect Semantic Type Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Aspect Semantic Type Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration
+	 * @generated
+	 */
+	EClass getAspectSemanticTypeConfiguration();
+
+	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration#getAdviceConfiguration <em>Advice Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Advice Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration#getAdviceConfiguration()
+	 * @see #getAspectSemanticTypeConfiguration()
+	 * @generated
+	 */
+	EReference getAspectSemanticTypeConfiguration_AdviceConfiguration();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration
+	 * <em>Aspect Semantic Type Advice Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Aspect Semantic Type Advice Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration
+	 * @generated
+	 */
+	EClass getAspectSemanticTypeAdviceConfiguration();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPreActionConfiguration
+	 * <em>Pre Action Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Pre Action Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPreActionConfiguration()
+	 * @see #getAspectSemanticTypeAdviceConfiguration()
+	 * @generated
+	 */
+	EReference getAspectSemanticTypeAdviceConfiguration_PreActionConfiguration();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPostActionConfiguration
+	 * <em>Post Action Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Post Action Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPostActionConfiguration()
+	 * @see #getAspectSemanticTypeAdviceConfiguration()
+	 * @generated
+	 */
+	EReference getAspectSemanticTypeAdviceConfiguration_PostActionConfiguration();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration
+	 * <em>Aspect View Type Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Aspect View Type Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration
+	 * @generated
+	 */
+	EClass getAspectViewTypeConfiguration();
+
+	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration#getAdviceConfiguration <em>Advice Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Advice Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration#getAdviceConfiguration()
+	 * @see #getAspectViewTypeConfiguration()
+	 * @generated
+	 */
+	EReference getAspectViewTypeConfiguration_AdviceConfiguration();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration
+	 * <em>Aspect View Type Advice Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Aspect View Type Advice Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration
+	 * @generated
+	 */
+	EClass getAspectViewTypeAdviceConfiguration();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration#getPreActionConfiguration <em>Pre Action Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Pre Action Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration#getPreActionConfiguration()
+	 * @see #getAspectViewTypeAdviceConfiguration()
+	 * @generated
+	 */
+	EReference getAspectViewTypeAdviceConfiguration_PreActionConfiguration();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration#getPostActionConfiguration <em>Post Action Configuration</em>}
+	 * '.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Post Action Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration#getPostActionConfiguration()
+	 * @see #getAspectViewTypeAdviceConfiguration()
+	 * @generated
+	 */
+	EReference getAspectViewTypeAdviceConfiguration_PostActionConfiguration();
+
+	/**
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
 	ExtendedtypesFactory getExtendedtypesFactory();
-} // ExtendedtypesPackage
+} //ExtendedtypesPackage

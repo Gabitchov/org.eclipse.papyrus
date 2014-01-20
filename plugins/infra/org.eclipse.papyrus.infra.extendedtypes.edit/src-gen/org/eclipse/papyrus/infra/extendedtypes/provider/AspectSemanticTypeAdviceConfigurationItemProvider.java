@@ -10,15 +10,13 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.provider;
+package org.eclipse.papyrus.infra.extendedtypes.provider;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -30,15 +28,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeAdviceConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationPackage;
-
-import org.eclipse.papyrus.infra.extendedtypes.provider.ExtendedTypesEditPlugin;
-import org.eclipse.papyrus.infra.extendedtypes.provider.SemanticTypeAdviceConfigurationItemProvider;
+import org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeAdviceConfiguration} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
@@ -85,8 +79,8 @@ public class AspectSemanticTypeAdviceConfigurationItemProvider extends SemanticT
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(AspectSemanticTypeConfigurationPackage.eINSTANCE.getAspectSemanticTypeAdviceConfiguration_PreActionConfiguration());
-			childrenFeatures.add(AspectSemanticTypeConfigurationPackage.eINSTANCE.getAspectSemanticTypeAdviceConfiguration_PostActionConfiguration());
+			childrenFeatures.add(ExtendedtypesPackage.eINSTANCE.getAspectSemanticTypeAdviceConfiguration_PreActionConfiguration());
+			childrenFeatures.add(ExtendedtypesPackage.eINSTANCE.getAspectSemanticTypeAdviceConfiguration_PostActionConfiguration());
 		}
 		return childrenFeatures;
 	}
@@ -113,7 +107,7 @@ public class AspectSemanticTypeAdviceConfigurationItemProvider extends SemanticT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/AspectSemanticTypeAdviceConfiguration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AspectSemanticTypeAdviceConfiguration")); //$NON-NLS-1$
 	}
 
 	/**
@@ -126,7 +120,8 @@ public class AspectSemanticTypeAdviceConfigurationItemProvider extends SemanticT
 	@Override
 	public String getText(Object object) {
 		String label = ((AspectSemanticTypeAdviceConfiguration)object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_AspectSemanticTypeAdviceConfiguration_type") : getString("_UI_AspectSemanticTypeAdviceConfiguration_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_AspectSemanticTypeAdviceConfiguration_type") : //$NON-NLS-1$
+		getString("_UI_AspectSemanticTypeAdviceConfiguration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -141,8 +136,8 @@ public class AspectSemanticTypeAdviceConfigurationItemProvider extends SemanticT
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		switch(notification.getFeatureID(AspectSemanticTypeAdviceConfiguration.class)) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -160,17 +155,5 @@ public class AspectSemanticTypeAdviceConfigurationItemProvider extends SemanticT
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ExtendedTypesEditPlugin.INSTANCE;
 	}
 }

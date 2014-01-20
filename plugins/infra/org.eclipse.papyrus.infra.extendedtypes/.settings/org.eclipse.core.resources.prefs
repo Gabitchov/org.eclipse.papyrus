@@ -1,13 +1,7 @@
 eclipse.preferences.version=1
-encoding//model/AspectSemanticTypeConfiguration.ecore=UTF-8
-encoding//model/AspectSemanticTypeConfiguration.ecorediag=UTF-8
-encoding//model/AspectViewTypeConfiguration.ecore=UTF-8
-encoding//model/AspectViewTypeConfiguration.ecorediag=UTF-8
 encoding//model/ExtendedTypes.ecore=UTF-8
 encoding//model/ExtendedTypes.ecorediag=UTF-8
 encoding//model/InvariantContainerConfiguration.ecore=UTF-8
 encoding//model/InvariantContainerConfiguration.ecorediag=UTF-8
 encoding//model/InvariantSemanticTypeConfiguration.ecore=UTF-8
 encoding//model/InvariantSemanticTypeConfiguration.ecorediag=UTF-8
-encoding//model/QueryBasedMatcherConfiguration.ecore=UTF-8
-encoding//model/QueryBasedMatcherConfiguration.ecorediag=UTF-8

@@ -13,7 +13,9 @@
 package org.eclipse.papyrus.infra.extendedtypes;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>View Type Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>View Type Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * 
  * <!-- begin-model-doc -->
  * Configuration specific to element types registered to manipulate graphical elements in GMF diagrams

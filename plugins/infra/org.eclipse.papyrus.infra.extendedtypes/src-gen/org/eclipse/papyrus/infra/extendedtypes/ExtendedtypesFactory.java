@@ -15,8 +15,10 @@ package org.eclipse.papyrus.infra.extendedtypes;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
- * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
- * create method for each non-abstract class of the model. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * The <b>Factory</b> for the model.
+ * It provides a create method for each non-abstract class of the model.
+ * <!-- end-user-doc -->
  * 
  * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage
  * @generated
@@ -25,16 +27,17 @@ public interface ExtendedtypesFactory extends EFactory {
 
 	/**
 	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	ExtendedtypesFactory eINSTANCE = org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Extended Element Type Set</em>'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Extended Element Type Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Extended Element Type Set</em>'.
 	 * @generated
@@ -43,13 +46,53 @@ public interface ExtendedtypesFactory extends EFactory {
 
 	/**
 	 * Returns a new object of class '<em>Icon Entry</em>'.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Icon Entry</em>'.
 	 * @generated
 	 */
 	IconEntry createIconEntry();
+
+	/**
+	 * Returns a new object of class '<em>Aspect Semantic Type Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Aspect Semantic Type Configuration</em>'.
+	 * @generated
+	 */
+	AspectSemanticTypeConfiguration createAspectSemanticTypeConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Aspect Semantic Type Advice Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Aspect Semantic Type Advice Configuration</em>'.
+	 * @generated
+	 */
+	AspectSemanticTypeAdviceConfiguration createAspectSemanticTypeAdviceConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Aspect View Type Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Aspect View Type Configuration</em>'.
+	 * @generated
+	 */
+	AspectViewTypeConfiguration createAspectViewTypeConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Aspect View Type Advice Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Aspect View Type Advice Configuration</em>'.
+	 * @generated
+	 */
+	AspectViewTypeAdviceConfiguration createAspectViewTypeAdviceConfiguration();
 
 	/**
 	 * Returns the package supported by this factory.
@@ -60,4 +103,4 @@ public interface ExtendedtypesFactory extends EFactory {
 	 * @generated
 	 */
 	ExtendedtypesPackage getExtendedtypesPackage();
-} // ExtendedtypesFactory
+} //ExtendedtypesFactory

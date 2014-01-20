@@ -16,7 +16,6 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationFactory;
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.InvariantSemanticTypeConfigurationFactory;
 
 /**
@@ -46,11 +45,6 @@ public class CustomExtendedElementTypeSetItemProvider extends
 
 		// TODO try to implement this using the extension points => this should
 		// be added automatically by each extension
-		newChildDescriptors.add(createChildParameter(
-				ExtendedtypesPackage.eINSTANCE
-						.getExtendedElementTypeSet_ElementType(),
-				AspectSemanticTypeConfigurationFactory.eINSTANCE
-						.createAspectSemanticTypeConfiguration()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExtendedtypesPackage.eINSTANCE

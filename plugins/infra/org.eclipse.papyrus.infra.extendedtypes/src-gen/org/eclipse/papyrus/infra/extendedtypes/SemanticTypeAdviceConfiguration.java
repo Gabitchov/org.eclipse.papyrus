@@ -13,7 +13,9 @@
 package org.eclipse.papyrus.infra.extendedtypes;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Semantic Type Advice Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Semantic Type Advice Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * 
  * <!-- begin-model-doc -->
  * Configuration dedicated to edit helper advices that will manage the new kind of element for its entire lifecycle (Creation, Update, Deletion)

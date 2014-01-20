@@ -10,7 +10,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.impl;
+package org.eclipse.papyrus.infra.extendedtypes.impl;
 
 import java.util.Collection;
 
@@ -24,32 +24,27 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration;
-
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeAdviceConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationPackage;
-
-import org.eclipse.papyrus.infra.extendedtypes.impl.SemanticTypeAdviceConfigurationImpl;
+import org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
+import org.eclipse.papyrus.infra.extendedtypes.ViewActionConfiguration;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Aspect Semantic Type Advice Configuration</b></em>'.
+ * An implementation of the model object '<em><b>Aspect View Type Advice Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.impl.AspectSemanticTypeAdviceConfigurationImpl#getPreActionConfiguration
- * <em>Pre Action Configuration</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.impl.AspectSemanticTypeAdviceConfigurationImpl#getPostActionConfiguration
- * <em>Post Action Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeAdviceConfigurationImpl#getPreActionConfiguration <em>Pre Action
+ * Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeAdviceConfigurationImpl#getPostActionConfiguration <em>Post Action
+ * Configuration</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdviceConfigurationImpl implements AspectSemanticTypeAdviceConfiguration {
+public class AspectViewTypeAdviceConfigurationImpl extends ViewTypeAdviceConfigurationImpl implements AspectViewTypeAdviceConfiguration {
 
 	/**
 	 * The cached value of the '{@link #getPreActionConfiguration() <em>Pre Action Configuration</em>}' containment reference list.
@@ -60,7 +55,7 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SemanticActionConfiguration> preActionConfiguration;
+	protected EList<ViewActionConfiguration> preActionConfiguration;
 
 	/**
 	 * The cached value of the '{@link #getPostActionConfiguration() <em>Post Action Configuration</em>}' containment reference list.
@@ -71,7 +66,7 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SemanticActionConfiguration> postActionConfiguration;
+	protected EList<ViewActionConfiguration> postActionConfiguration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,7 +74,7 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	 * 
 	 * @generated
 	 */
-	protected AspectSemanticTypeAdviceConfigurationImpl() {
+	protected AspectViewTypeAdviceConfigurationImpl() {
 		super();
 	}
 
@@ -91,7 +86,7 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AspectSemanticTypeConfigurationPackage.eINSTANCE.getAspectSemanticTypeAdviceConfiguration();
+		return ExtendedtypesPackage.eINSTANCE.getAspectViewTypeAdviceConfiguration();
 	}
 
 	/**
@@ -100,9 +95,9 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	 * 
 	 * @generated
 	 */
-	public EList<SemanticActionConfiguration> getPreActionConfiguration() {
+	public EList<ViewActionConfiguration> getPreActionConfiguration() {
 		if(preActionConfiguration == null) {
-			preActionConfiguration = new EObjectContainmentEList<SemanticActionConfiguration>(SemanticActionConfiguration.class, this, AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION);
+			preActionConfiguration = new EObjectContainmentEList<ViewActionConfiguration>(ViewActionConfiguration.class, this, ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION);
 		}
 		return preActionConfiguration;
 	}
@@ -113,9 +108,9 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	 * 
 	 * @generated
 	 */
-	public EList<SemanticActionConfiguration> getPostActionConfiguration() {
+	public EList<ViewActionConfiguration> getPostActionConfiguration() {
 		if(postActionConfiguration == null) {
-			postActionConfiguration = new EObjectContainmentEList<SemanticActionConfiguration>(SemanticActionConfiguration.class, this, AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION);
+			postActionConfiguration = new EObjectContainmentEList<ViewActionConfiguration>(ViewActionConfiguration.class, this, ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION);
 		}
 		return postActionConfiguration;
 	}
@@ -129,9 +124,9 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
 			return ((InternalEList<?>)getPreActionConfiguration()).basicRemove(otherEnd, msgs);
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
 			return ((InternalEList<?>)getPostActionConfiguration()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -146,9 +141,9 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
 			return getPreActionConfiguration();
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
 			return getPostActionConfiguration();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -164,13 +159,13 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
 			getPreActionConfiguration().clear();
-			getPreActionConfiguration().addAll((Collection<? extends SemanticActionConfiguration>)newValue);
+			getPreActionConfiguration().addAll((Collection<? extends ViewActionConfiguration>)newValue);
 			return;
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
 			getPostActionConfiguration().clear();
-			getPostActionConfiguration().addAll((Collection<? extends SemanticActionConfiguration>)newValue);
+			getPostActionConfiguration().addAll((Collection<? extends ViewActionConfiguration>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -185,10 +180,10 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	@Override
 	public void eUnset(int featureID) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
 			getPreActionConfiguration().clear();
 			return;
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
 			getPostActionConfiguration().clear();
 			return;
 		}
@@ -204,11 +199,11 @@ public class AspectSemanticTypeAdviceConfigurationImpl extends SemanticTypeAdvic
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION:
 			return preActionConfiguration != null && !preActionConfiguration.isEmpty();
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION:
 			return postActionConfiguration != null && !postActionConfiguration.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
-} //AspectSemanticTypeAdviceConfigurationImpl
+} //AspectViewTypeAdviceConfigurationImpl

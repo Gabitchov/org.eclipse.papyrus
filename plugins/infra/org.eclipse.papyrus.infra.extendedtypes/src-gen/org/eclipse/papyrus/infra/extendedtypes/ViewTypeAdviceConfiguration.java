@@ -13,7 +13,9 @@
 package org.eclipse.papyrus.infra.extendedtypes;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>View Type Advice Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>View Type Advice Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * 
  * <!-- begin-model-doc -->
  * Configuration for edit helper advices dedicated to the creation of new elements only.

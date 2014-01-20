@@ -59,7 +59,7 @@ public class PluginPaletteProvider extends LocalPaletteProvider implements IProf
 	public InputStream getXmlFile(String path) throws IOException {
 		// try to read it in a plugin...
 		Bundle bundle = Platform.getBundle(getProviderID());
-		if(bundle != null) {
+		if(bundle != null && bundle.getEntry(path)!=null) {
 			URL urlFile = bundle.getEntry(path);
 			urlFile = FileLocator.resolve(urlFile);
 			urlFile = FileLocator.toFileURL(urlFile);

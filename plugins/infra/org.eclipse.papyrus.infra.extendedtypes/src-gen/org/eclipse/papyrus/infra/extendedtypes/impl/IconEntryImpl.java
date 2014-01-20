@@ -23,7 +23,9 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Icon Entry</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Icon Entry</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -38,7 +40,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 
 	/**
 	 * The default value of the '{@link #getIconPath() <em>Icon Path</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getIconPath()
 	 * @generated
@@ -48,7 +51,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 
 	/**
 	 * The cached value of the '{@link #getIconPath() <em>Icon Path</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getIconPath()
 	 * @generated
@@ -58,7 +62,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 
 	/**
 	 * The default value of the '{@link #getBundleId() <em>Bundle Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getBundleId()
 	 * @generated
@@ -68,7 +73,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 
 	/**
 	 * The cached value of the '{@link #getBundleId() <em>Bundle Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getBundleId()
 	 * @generated
@@ -77,7 +83,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	protected String bundleId = BUNDLE_ID_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -86,7 +93,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -96,7 +104,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -105,7 +114,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -117,7 +127,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -126,7 +137,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -138,7 +150,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -154,7 +167,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -172,7 +186,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -190,7 +205,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -206,7 +222,8 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -222,4 +239,4 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 		result.append(')');
 		return result.toString();
 	}
-} // IconEntryImpl
+} //IconEntryImpl

@@ -6,7 +6,7 @@
     modelPluginID="org.eclipse.papyrus.infra.extendedtypes" modelName="ExtendedTypes"
     nonNLSMarkers="true" codeFormatting="true" commentFormatting="true" testsDirectory="/org.eclipse.papyrus.infra.extendedtypes.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    language="" usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query ../../org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
     importOrganizing="true">
   <foreignModel>ExtendedTypes.ecore</foreignModel>
   <genPackages prefix="Extendedtypes" basePackage="org.eclipse.papyrus.infra" resource="XML"
@@ -35,9 +35,7 @@
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ViewTypeAdviceConfiguration"/>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//SemanticTypeAdviceConfiguration"/>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//MatcherConfiguration"/>
-    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ActionConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ActionConfiguration/preValidationQueryConfiguration"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ActionConfiguration"/>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ViewActionConfiguration"/>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//SemanticActionConfiguration"/>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//SemanticTypeConfiguration"/>
@@ -45,5 +43,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ViewTypeConfiguration/specializedDiagramTypeID"/>
     </genClasses>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ElementTypeAdviceConfiguration"/>
+    <genClasses ecoreClass="ExtendedTypes.ecore#//AspectSemanticTypeConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectSemanticTypeConfiguration/adviceConfiguration"/>
+    </genClasses>
+    <genClasses ecoreClass="ExtendedTypes.ecore#//AspectSemanticTypeAdviceConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectSemanticTypeAdviceConfiguration/preActionConfiguration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectSemanticTypeAdviceConfiguration/postActionConfiguration"/>
+    </genClasses>
+    <genClasses ecoreClass="ExtendedTypes.ecore#//AspectViewTypeConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectViewTypeConfiguration/adviceConfiguration"/>
+    </genClasses>
+    <genClasses ecoreClass="ExtendedTypes.ecore#//AspectViewTypeAdviceConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectViewTypeAdviceConfiguration/preActionConfiguration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectViewTypeAdviceConfiguration/postActionConfiguration"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -10,7 +10,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.impl;
+package org.eclipse.papyrus.infra.extendedtypes.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,27 +20,24 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeAdviceConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationPackage;
-
-import org.eclipse.papyrus.infra.extendedtypes.impl.SemanticTypeConfigurationImpl;
+import org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration;
+import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Aspect Semantic Type Configuration</b></em>'.
+ * An implementation of the model object '<em><b>Aspect View Type Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.impl.AspectSemanticTypeConfigurationImpl#getAdviceConfiguration
- * <em>Advice Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeConfigurationImpl#getAdviceConfiguration <em>Advice Configuration</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurationImpl implements AspectSemanticTypeConfiguration {
+public class AspectViewTypeConfigurationImpl extends ViewTypeConfigurationImpl implements AspectViewTypeConfiguration {
 
 	/**
 	 * The cached value of the '{@link #getAdviceConfiguration() <em>Advice Configuration</em>}' containment reference.
@@ -51,7 +48,7 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	 * @generated
 	 * @ordered
 	 */
-	protected AspectSemanticTypeAdviceConfiguration adviceConfiguration;
+	protected AspectViewTypeAdviceConfiguration adviceConfiguration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -59,7 +56,7 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	 * 
 	 * @generated
 	 */
-	protected AspectSemanticTypeConfigurationImpl() {
+	protected AspectViewTypeConfigurationImpl() {
 		super();
 	}
 
@@ -71,7 +68,7 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AspectSemanticTypeConfigurationPackage.eINSTANCE.getAspectSemanticTypeConfiguration();
+		return ExtendedtypesPackage.eINSTANCE.getAspectViewTypeConfiguration();
 	}
 
 	/**
@@ -80,7 +77,7 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	 * 
 	 * @generated
 	 */
-	public AspectSemanticTypeAdviceConfiguration getAdviceConfiguration() {
+	public AspectViewTypeAdviceConfiguration getAdviceConfiguration() {
 		return adviceConfiguration;
 	}
 
@@ -90,11 +87,11 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetAdviceConfiguration(AspectSemanticTypeAdviceConfiguration newAdviceConfiguration, NotificationChain msgs) {
-		AspectSemanticTypeAdviceConfiguration oldAdviceConfiguration = adviceConfiguration;
+	public NotificationChain basicSetAdviceConfiguration(AspectViewTypeAdviceConfiguration newAdviceConfiguration, NotificationChain msgs) {
+		AspectViewTypeAdviceConfiguration oldAdviceConfiguration = adviceConfiguration;
 		adviceConfiguration = newAdviceConfiguration;
 		if(eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, oldAdviceConfiguration, newAdviceConfiguration);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, oldAdviceConfiguration, newAdviceConfiguration);
 			if(msgs == null)
 				msgs = notification;
 			else
@@ -109,18 +106,18 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	 * 
 	 * @generated
 	 */
-	public void setAdviceConfiguration(AspectSemanticTypeAdviceConfiguration newAdviceConfiguration) {
+	public void setAdviceConfiguration(AspectViewTypeAdviceConfiguration newAdviceConfiguration) {
 		if(newAdviceConfiguration != adviceConfiguration) {
 			NotificationChain msgs = null;
 			if(adviceConfiguration != null)
-				msgs = ((InternalEObject)adviceConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, null, msgs);
+				msgs = ((InternalEObject)adviceConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, null, msgs);
 			if(newAdviceConfiguration != null)
-				msgs = ((InternalEObject)newAdviceConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, null, msgs);
+				msgs = ((InternalEObject)newAdviceConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, null, msgs);
 			msgs = basicSetAdviceConfiguration(newAdviceConfiguration, msgs);
 			if(msgs != null)
 				msgs.dispatch();
 		} else if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, newAdviceConfiguration, newAdviceConfiguration));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, newAdviceConfiguration, newAdviceConfiguration));
 	}
 
 	/**
@@ -132,7 +129,7 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
 			return basicSetAdviceConfiguration(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -147,7 +144,7 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
 			return getAdviceConfiguration();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -162,8 +159,8 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
-			setAdviceConfiguration((AspectSemanticTypeAdviceConfiguration)newValue);
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
+			setAdviceConfiguration((AspectViewTypeAdviceConfiguration)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -178,8 +175,8 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	@Override
 	public void eUnset(int featureID) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
-			setAdviceConfiguration((AspectSemanticTypeAdviceConfiguration)null);
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
+			setAdviceConfiguration((AspectViewTypeAdviceConfiguration)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -194,9 +191,9 @@ public class AspectSemanticTypeConfigurationImpl extends SemanticTypeConfigurati
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch(featureID) {
-		case AspectSemanticTypeConfigurationPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
 			return adviceConfiguration != null;
 		}
 		return super.eIsSet(featureID);
 	}
-} //AspectSemanticTypeConfigurationImpl
+} //AspectViewTypeConfigurationImpl

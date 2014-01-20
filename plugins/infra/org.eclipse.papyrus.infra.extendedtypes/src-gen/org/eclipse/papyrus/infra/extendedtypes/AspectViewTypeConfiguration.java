@@ -10,28 +10,25 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration;
-
-import org.eclipse.papyrus.infra.extendedtypes.SemanticTypeConfiguration;
+package org.eclipse.papyrus.infra.extendedtypes;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Aspect Semantic Type Configuration</b></em>'.
+ * A representation of the model object '<em><b>Aspect View Type Configuration</b></em>'.
  * <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfiguration#getAdviceConfiguration <em>
- * Advice Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration#getAdviceConfiguration <em>Advice Configuration</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationPackage#getAspectSemanticTypeConfiguration()
+ * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getAspectViewTypeConfiguration()
  * @model
  * @generated
  */
-public interface AspectSemanticTypeConfiguration extends SemanticTypeConfiguration {
+public interface AspectViewTypeConfiguration extends ViewTypeConfiguration {
 
 	/**
 	 * Returns the value of the '<em><b>Advice Configuration</b></em>' containment reference.
@@ -42,16 +39,15 @@ public interface AspectSemanticTypeConfiguration extends SemanticTypeConfigurati
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Advice Configuration</em>' containment reference.
-	 * @see #setAdviceConfiguration(AspectSemanticTypeAdviceConfiguration)
-	 * @see org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationPackage#getAspectSemanticTypeConfiguration_AdviceConfiguration()
+	 * @see #setAdviceConfiguration(AspectViewTypeAdviceConfiguration)
+	 * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getAspectViewTypeConfiguration_AdviceConfiguration()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	AspectSemanticTypeAdviceConfiguration getAdviceConfiguration();
+	AspectViewTypeAdviceConfiguration getAdviceConfiguration();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfiguration#getAdviceConfiguration
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration#getAdviceConfiguration
 	 * <em>Advice Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,5 +57,5 @@ public interface AspectSemanticTypeConfiguration extends SemanticTypeConfigurati
 	 * @see #getAdviceConfiguration()
 	 * @generated
 	 */
-	void setAdviceConfiguration(AspectSemanticTypeAdviceConfiguration value);
-} // AspectSemanticTypeConfiguration
+	void setAdviceConfiguration(AspectViewTypeAdviceConfiguration value);
+} // AspectViewTypeConfiguration

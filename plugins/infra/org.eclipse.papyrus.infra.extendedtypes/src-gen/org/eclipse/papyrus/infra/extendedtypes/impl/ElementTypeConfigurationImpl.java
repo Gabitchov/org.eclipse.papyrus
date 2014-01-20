@@ -15,13 +15,13 @@ package org.eclipse.papyrus.infra.extendedtypes.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
@@ -31,7 +31,9 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.MatcherConfiguration;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Element Type Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Element Type Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -48,7 +50,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 
 	/**
 	 * The default value of the '{@link #getHint() <em>Hint</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getHint()
 	 * @generated
@@ -58,7 +61,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 
 	/**
 	 * The cached value of the '{@link #getHint() <em>Hint</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getHint()
 	 * @generated
@@ -68,7 +72,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 
 	/**
 	 * The default value of the '{@link #getKindName() <em>Kind Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getKindName()
 	 * @generated
@@ -78,7 +83,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 
 	/**
 	 * The cached value of the '{@link #getKindName() <em>Kind Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getKindName()
 	 * @generated
@@ -109,7 +115,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	protected MatcherConfiguration matcherConfiguration;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -118,7 +125,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -128,7 +136,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -137,7 +146,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -149,7 +159,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -158,7 +169,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -170,7 +182,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -246,7 +259,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -266,7 +280,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -292,7 +307,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -316,7 +332,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -336,7 +353,8 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -354,4 +372,4 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 		result.append(')');
 		return result.toString();
 	}
-} // ElementTypeConfigurationImpl
+} //ElementTypeConfigurationImpl

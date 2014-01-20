@@ -13,7 +13,9 @@
 package org.eclipse.papyrus.infra.extendedtypes;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>View Action Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>View Action Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * 
  * 
  * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getViewActionConfiguration()

@@ -10,12 +10,9 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration;
+package org.eclipse.papyrus.infra.extendedtypes;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.SemanticTypeAdviceConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,15 +22,14 @@ import org.eclipse.papyrus.infra.extendedtypes.SemanticTypeAdviceConfiguration;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeAdviceConfiguration#getPreActionConfiguration
- * <em>Pre Action Configuration</em>}</li>
- * <li>
- * {@link org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeAdviceConfiguration#getPostActionConfiguration
- * <em>Post Action Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPreActionConfiguration <em>Pre Action Configuration
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPostActionConfiguration <em>Post Action Configuration
+ * </em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationPackage#getAspectSemanticTypeAdviceConfiguration()
+ * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getAspectSemanticTypeAdviceConfiguration()
  * @model
  * @generated
  */
@@ -50,7 +46,7 @@ public interface AspectSemanticTypeAdviceConfiguration extends SemanticTypeAdvic
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Pre Action Configuration</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationPackage#getAspectSemanticTypeAdviceConfiguration_PreActionConfiguration()
+	 * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getAspectSemanticTypeAdviceConfiguration_PreActionConfiguration()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -67,7 +63,7 @@ public interface AspectSemanticTypeAdviceConfiguration extends SemanticTypeAdvic
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Post Action Configuration</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.aspectsemantictypeconfiguration.AspectSemanticTypeConfigurationPackage#getAspectSemanticTypeAdviceConfiguration_PostActionConfiguration()
+	 * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getAspectSemanticTypeAdviceConfiguration_PostActionConfiguration()
 	 * @model containment="true"
 	 * @generated
 	 */

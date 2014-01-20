@@ -15,7 +15,9 @@ package org.eclipse.papyrus.infra.extendedtypes;
 import org.eclipse.emf.common.util.EList;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element Type Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Element Type Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
@@ -52,7 +54,8 @@ public interface ElementTypeConfiguration extends ConfigurationElement {
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration#getHint <em>Hint</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Hint</em>' attribute.
@@ -62,9 +65,9 @@ public interface ElementTypeConfiguration extends ConfigurationElement {
 	void setHint(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Kind Name</b></em>' attribute. The
-	 * default value is <code>"org.eclipse.gmf.runtime.emf.type.core.IHintedType"</code>. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Kind Name</b></em>' attribute.
+	 * The default value is <code>"org.eclipse.gmf.runtime.emf.type.core.IHintedType"</code>.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Kind Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -79,9 +82,9 @@ public interface ElementTypeConfiguration extends ConfigurationElement {
 	String getKindName();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration#getKindName
-	 * <em>Kind Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.extendedtypes.ElementTypeConfiguration#getKindName <em>Kind Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Kind Name</em>' attribute.
@@ -91,9 +94,9 @@ public interface ElementTypeConfiguration extends ConfigurationElement {
 	void setKindName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Specialized Types ID</b></em>' attribute
-	 * list. The list contents are of type {@link java.lang.String}. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Specialized Types ID</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Specialized Types ID</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
