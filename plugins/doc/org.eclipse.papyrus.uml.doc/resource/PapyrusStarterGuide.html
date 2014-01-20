@@ -16,14 +16,14 @@
 			Language</a> ) and MARTE (<a
 			href="http://www.omg.org/omgmarte/Specification.htm/">Modeling
 			and Analysis of Real-Time and Embedded systems</a> ). Papyrus also offers
-		very advanced support of UML profiles that enables users to define
+		very advanced support for UML profiles that enables users to define
 		editors for DSLs (Domain Specific Languages) based on the UML 2
 		standard.
 	</p>
 	<p>
 		Papyrus is a collection of plug-ins and features on top of the Eclipse
-		framework. For more information about Eclipse, please go to the
-		Eclipse web site <a href="http://www.eclipse.org/">eclipse.org</a>.
+		Modeling Framework. For more information about Eclipse, please go to
+		the Eclipse web site <a href="http://www.eclipse.org/">eclipse.org</a>.
 		Some of the terminology used in this Papyrus user guide are basic
 		Eclipse concepts and briefly described here. To get more information
 		about the Eclipse concepts, please visit the <i>Workbench User
@@ -46,9 +46,8 @@
 						Eclipse Standard</a></li>
 				<li><a href="#3.2_Install_basic_Papyrus">3.2 Install basic
 						Papyrus</a></li>
-				<li><a
-					href="#3.3_Additional_installation_for_Papyrus_UML_RT_modeling">3.3
-						Additional installation for Papyrus UML RT modeling</a></li>
+				<li><a href="#3.3_Additional_installation_steps">3.3
+						Additional installation steps</a></li>
 			</ol></li>
 		<li><a href="#4_Eclipse">4 Eclipse</a>
 		<ol style="list-style: none;">
@@ -87,8 +86,9 @@
 									href="#6.1.1.2_Exploring_and_customizing_the_Resource_perspective">6.1.1.2
 										Exploring and customizing the Resource perspective</a></li>
 							</ol></li>
-						<li><a href="#6.1.2_Creating_a_project.2C_folder_and_files">6.1.2
-								Creating a project, folder and files</a>
+						<li><a
+							href="#6.1.2_Creating_a_new_project.2C_folder_and_files">6.1.2
+								Creating a new project, folder and files</a>
 						<ol style="list-style: none;">
 								<li><a href="#6.1.2.1_Creating_a_new_general_project">6.1.2.1
 										Creating a new general project</a></li>
@@ -129,10 +129,25 @@
 				<li><a href="#6.2_Creating_profiles">6.2 Creating profiles</a></li>
 				<li><a href="#6.3_Creating_models">6.3 Creating models</a>
 				<ol style="list-style: none;">
-						<li><a href="#6.3.1_Use_case_modeling">6.3.1 Use case
+						<li><a href="#6.3.1_Use-case_modeling">6.3.1 Use-case
 								modeling</a></li>
 						<li><a href="#6.3.2_Design_modeling">6.3.2 Design
-								modeling</a></li>
+								modeling</a>
+						<ol style="list-style: none;">
+								<li><a href="#6.3.2.1_Create_a_new_UML_project">6.3.2.1
+										Create a new UML project</a></li>
+								<li><a href="#6.3.2.2_Creating_new_packages">6.3.2.2
+										Creating new packages</a></li>
+								<li><a href="#6.3.2.3_Create_new_classes">6.3.2.3
+										Create new classes</a></li>
+								<li><a href="#6.3.2.4_Create_new_class_diagrams">6.3.2.4
+										Create new class diagrams</a></li>
+								<li><a href="#6.3.2.5_Create_new_operations_and_attributes">6.3.2.5
+										Create new operations and attributes</a></li>
+								<li><a href="#6.3.2.6_Create_new_relationships">6.3.2.6
+										Create new relationships</a></li>
+								<li><a href="#6.3.2.7_Conclusion">6.3.2.7 Conclusion</a></li>
+							</ol></li>
 						<li><a href="#6.3.3_RT_modeling">6.3.3 RT modeling</a></li>
 					</ol></li>
 			</ol></li>
@@ -177,64 +192,39 @@
 					</ol></li>
 				<li><a href="#7.4_UML_modeling">7.4 UML modeling</a>
 				<ol style="list-style: none;">
-						<li><a href="#7.4.1_Diagrams">7.4.1 Diagrams</a>
+						<li><a href="#7.4.1_Package">7.4.1 Package</a></li>
+						<li><a href="#7.4.2_Use-case">7.4.2 Use-case</a></li>
+						<li><a href="#7.4.3_Actor">7.4.3 Actor</a></li>
+						<li><a href="#7.4.4_Class">7.4.4 Class</a>
 						<ol style="list-style: none;">
-								<li><a href="#7.4.1.1_Diagrams_related_to_Use_Cases">7.4.1.1
-										Diagrams related to Use Cases</a>
-								<ol style="list-style: none;">
-										<li><a href="#7.4.1.1.1_Use_case_diagram">7.4.1.1.1
-												Use case diagram</a></li>
-										<li><a href="#7.4.1.1.2_Activity_diagram">7.4.1.1.2
-												Activity diagram</a></li>
-										<li><a href="#7.4.1.1.3_Interaction_diagrams">7.4.1.1.3
-												Interaction diagrams</a>
-										<ol style="list-style: none;">
-												<li><a href="#7.4.1.1.3.1_Sequence_diagram">7.4.1.1.3.1
-														Sequence diagram</a></li>
-												<li><a href="#7.4.1.1.3.2_Communication_diagram">7.4.1.1.3.2
-														Communication diagram</a></li>
-											</ol></li>
-									</ol></li>
-								<li><a href="#7.4.1.2_Diagrams_related_to_Classes">7.4.1.2
-										Diagrams related to Classes</a>
-								<ol style="list-style: none;">
-										<li><a href="#7.4.1.2.1_Class_diagram">7.4.1.2.1
-												Class diagram</a></li>
-										<li><a href="#7.4.1.2.2_Composite_structure_diagram">7.4.1.2.2
-												Composite structure diagram</a></li>
-										<li><a href="#7.4.1.2.3_State_machine_diagram">7.4.1.2.3
-												State machine diagram</a></li>
-									</ol></li>
+								<li><a href="#7.4.4.1_Attributes_on_classes">7.4.4.1
+										Attributes on classes</a></li>
+								<li><a href="#7.4.4.2_Operations_on_classes">7.4.4.2
+										Operations on classes</a></li>
 							</ol></li>
-						<li><a href="#7.4.2_Model_elements">7.4.2 Model elements</a>
+						<li><a href="#7.4.5_Relationships">7.4.5 Relationships</a></li>
+						<li><a href="#7.4.6_Diagrams">7.4.6 Diagrams</a>
 						<ol style="list-style: none;">
-								<li><a href="#7.4.2.1_Package">7.4.2.1 Package</a></li>
-								<li><a href="#7.4.2.2_Use_Case">7.4.2.2 Use Case</a></li>
-								<li><a href="#7.4.2.3_Actor">7.4.2.3 Actor</a></li>
-								<li><a href="#7.4.2.4_Class">7.4.2.4 Class</a>
-								<ol style="list-style: none;">
-										<li><a href="#7.4.2.5.1_Attributes_on_Classes">7.4.2.5.1
-												Attributes on Classes</a></li>
-										<li><a href="#7.4.2.5.2_Operations_on_Classes">7.4.2.5.2
-												Operations on Classes</a></li>
-									</ol></li>
+								<li><a href="#7.4.6.1_Diagrams_related_to_use-cases">7.4.6.1
+										Diagrams related to use-cases</a></li>
+								<li><a href="#7.4.6.2_Diagrams_related_to_classes">7.4.6.2
+										Diagrams related to classes</a></li>
 							</ol></li>
-						<li><a href="#7.4.3_Relationships">7.4.3 Relationships</a></li>
 					</ol></li>
 				<li><a href="#7.5_UML_RT_modeling">7.5 UML RT modeling</a>
 				<ol style="list-style: none;">
 						<li><a href="#7.5.1_Additional_modeling_elements">7.5.1
 								Additional modeling elements</a>
 						<ol style="list-style: none;">
-								<li><a href="#7.5.1.1_Capsule_Class">7.5.1.1 Capsule
-										Class</a></li>
-								<li><a href="#7.5.1.2_Protocol_Class">7.5.1.2 Protocol
-										Class</a></li>
+								<li><a href="#7.5.1.1_Capsule_class">7.5.1.1 Capsule
+										class</a></li>
+								<li><a href="#7.5.1.2_Protocol_class">7.5.1.2 Protocol
+										class</a></li>
 							</ol></li>
-						<li><a href="#7.5.2_Using_C_in_a_model">7.5.2 Using C in
-								a model</a></li>
-						<li><a href="#7.5.3_C_service_library">7.5.3 C service
-								library</a>
+						<li><a href="#7.5.2_Using_C.2B.2B_in_a_model">7.5.2 Using
+								C++ in a model</a></li>
+						<li><a href="#7.5.3_C.2B.2B_service_library">7.5.3 C++
+								service library</a>
 						<ol style="list-style: none;">
 								<li><a href="#7.5.3.1_Sending_messages">7.5.3.1 Sending
 										messages</a></li>
@@ -247,10 +237,8 @@
 								Compiling and linking the generated code</a></li>
 						<li><a href="#7.5.7_Using_external_libraries">7.5.7 Using
 								external libraries</a></li>
-						<li><a href="#7.5.8_Running_the_application">7.5.8
-								Running the application</a></li>
-						<li><a href="#7.5.9_Model_components">7.5.9 Model
-								components</a></li>
+						<li><a href="#7.5.8_Running_the_system">7.5.8 Running the
+								system</a></li>
 					</ol></li>
 				<li><a href="#7.6_Papyrus_in_a_team_environment">7.6
 						Papyrus in a team environment</a>
@@ -293,38 +281,39 @@
 		environment, where many diagrams can be used to view different aspects
 		of a system. Behind all diagrams, there is a model where all modeling
 		elements, used in these diagrams, are kept. The model keeps the
-		consistency between all diagrams.
+		consistency between the diagrams.
 	</p>
 	<p>UML diagrams can help system architects and developers
-		understand, collaborate on and develop an application. Architects and
+		understand, collaborate on and develop a system. Architects and
 		managers can use diagrams to visualize an entire system or project and
-		separate applications into smaller components for development.</p>
+		separate systems into smaller components for development.</p>
 	<p>System developers can use diagrams to specify, visualize, and
-		document applications, which can increase efficiency and improve their
-		application design.</p>
-	<p>Since UML is very general, it is possible to adapt UML to
-		specific domains. This is done by creating and applying UML profiles.
-		Papyrus is a complete UML modeling environment and can also be used to
-		develop UML profiles.</p>
+		document systems, which can increase efficiency and improve their
+		system design. Also code can be generated from UML models.</p>
+	<p>Since UML is general-purpose modeling language in the field of
+		software engineering, it is possible to adapt UML to specific domains.
+		This is done by creating and applying UML profiles. Papyrus is a
+		complete UML modeling environment, which also can be used to develop
+		UML profiles.</p>
 	<h2 id="2.1_Legend">2.1 Legend</h2>
 	<p>
 		In this user guide, bold text is used for menu selections, e.g. <b>Help
-			&gt; Welcome</b> means form the <b>Help</b> item on the main menu, select
+			&gt; Welcome</b> means from the <b>Help</b> item on the main menu, select
 		the <b>Welcome</b> item.
 	</p>
 	<p>
-		A context menu is the pop up menu that appears when right clicking on
+		A context menu is the pop-up menu that appears when right clicking on
 		something, e.g. right click on a class select <b>New Child &gt;
 			Create a new Operation</b>, will create a new operation on the class,
 		using the class' context menu.
 	</p>
 	<p>
-		When a text should be typed in, it is indicated by inline code, e.g.
+		When text should be typed in, it is indicated by inline code, e.g.
 		<code>this text should be typed in</code>
 		.
 	</p>
 	<p>
-		Fields in wizards, pop up windows, different editors, radio buttons
+		Fields in wizards, pop-up windows, different editors, radio buttons
 		and check boxes are indicated by italic text, e.g. set the field <i>Name</i>
 		to
 		<code>MyClass</code>
@@ -333,20 +322,24 @@
 	<h1 id="3_Installation">
 		<div id="Installation">3 Installation</div>
 	</h1>
-	<p>It is a several step process to install Papyrus and its
-		features. The Eclipse Standard must first be installed and when that
-		is done, Papyrus is installed on top of Eclipse Standard.</p>
+	<p>
+		It is a several step process to install Papyrus and its optional
+		components. The <i>Eclipse Standard</i> must first be installed and
+		when that is done, Papyrus is installed on top of <i>Eclipse
+			Standard</i>.
+	</p>
 	<h2 id="3.1_Install_Eclipse_Standard">3.1 Install Eclipse Standard</h2>
 	<p>
-		Eclipse Standard is installed from the <a
+		<i>Eclipse Standard</i> is installed from the <a
 			href="http://www.eclipse.org/downloads/">Eclipse download page</a>.
-		On the download page select <i>Eclipse Standard ....</i> to install.
-		Follow the install wizard to complete the installation.
+		On the download page select <i>Eclipse Standard &lt;version
+			number&gt;</i> to install. Follow the install wizard to complete the
+		installation.
 	</p>
 	<h2 id="3.2_Install_basic_Papyrus">3.2 Install basic Papyrus</h2>
 	<p>
-		When Eclipse Standard is installed, go to <b>Help &gt; Install New
-			Software</b> and type in
+		When <i>Eclipse Standard</i> is installed, go to <b>Help &gt;
+			Install New Software</b> and type in
 		<code>
 			<a href="http://download.eclipse.org/releases/kepler/">http://download.eclipse.org/releases/kepler/</a>
 		</code>
@@ -358,7 +351,11 @@
 	</p>
 	<p>
 		<b>Note!</b> In some industrial environments, a proxy has to be used
-		instead of this type of direct URL to the Eclipse web-site.
+		instead of this type of direct URL to the Eclipse web-site. To
+		configure Eclipse to use a proxy is done under <b>Windows &gt;
+			Preferences</b> and <b>General &gt; Network Connections</b>
+	</p>
+	<p>
 		<center>
 			<div class="thumb middle">
 				<div class="thumbinner" style="width: 566px;">
@@ -378,14 +375,14 @@
 	</p>
 	<p>When Eclipse is restarted, the environment is now ready for UML
 		modeling.</p>
-	<h2 id="3.3_Additional_installation_for_Papyrus_UML_RT_modeling">3.3
-		Additional installation for Papyrus UML RT modeling</h2>
+	<h2 id="3.3_Additional_installation_steps">3.3 Additional
+		installation steps</h2>
 	<p>
 		After installation of the basic Papyrus feature, go to <b>Help
 			&gt; Install Papyrus Additional Components</b>. In the wizard that pops
-		up, select the needed additional Papyrus components. To be able to do
-		UML RT modeling, the <i>Real Time</i> component is needed. It is also
-		recommended to install the <i>Diagram Stylesheets</i> and <i>Papyrus
+		up, select the needed additional Papyrus components, e.g. to be able
+		to do UML RT modeling, the <i>Real Time</i> component is needed. It is
+		also recommended to install the <i>Diagram Stylesheets</i> and <i>Papyrus
 			Compare</i> components. Follow the installation wizard to complete the
 		installation.
 	</p>
@@ -403,8 +400,8 @@
 		</center>
 	</p>
 	<h1 id="4_Eclipse">4 Eclipse</h1>
-	<p>Since Papyrus is built on the Eclipse framework, most of its
-		look and feel is inherited from Eclipse.</p>
+	<p>Papyrus is built on the Eclipse framework, so most of its look
+		and feel is inherited from Eclipse.</p>
 	<p>The Eclipse framework has a plug-in architecture, where plug-ins
 		can be grouped into features. Features and plug-ins can be added to an
 		existing Eclipse installation.</p>
@@ -414,7 +411,7 @@
 		can be developed and delivered separately. Usually, a small tool is
 		written as a single plug-in, whereas a complex tool has its
 		functionality split across several plug-ins. Except for a small kernel
-		known as the Platform Runtime, all of the Eclipse PlatformÃ¢â‚¬â„¢s
+		known as the Platform Runtime, all of the Eclipse Platform's
 		functionality is located in plug-ins. Plug-ins can be grouped into
 		features.</p>
 	<p>
@@ -483,7 +480,7 @@
 	</p>
 	<h2 id="4.3_Resources">4.3 Resources</h2>
 	<p>
-		Resources is a collective term for the projects, folders, and files
+		Resources are a collective term for the projects, folders, and files
 		that exist in the workbench. The resources are stored in the
 		workspace, where the projects are on the first level. Inside a
 		project, there are files and folders in the same hierarchical
@@ -510,9 +507,8 @@
 	<p>
 		The workbench is the Eclipse user interface and is used to navigate,
 		view, and edit resources in a workspace, i.e. the workbench is the
-		Eclipse IDEÃ¢â‚¬â„¢s application window. The workbench presents one or
-		more editors and <i>views</i> that are gathered into adjustable groups
-		(<i>perspectives</i>).
+		Eclipse IDE's application window. The workbench presents one or more
+		editors and <i>views</i> that are gathered into adjustable groups (<i>perspectives</i>).
 	</p>
 	<p>
 		The first time Eclipse is started, after the installation, a <i>Welcome</i>
@@ -677,14 +673,14 @@
 	<p>When exporting a project, browse to the place where to export it
 		to name it and select if and how compression should be used.</p>
 	<h1 id="5_Modeling">5 Modeling</h1>
-	<p>Papyrus is a comprehensive UML modeling environment, where many
+	<p>Papyrus is a comprehensive UML modeling environment, where
 		diagrams can be used to view different aspects of a system. Behind all
-		diagrams, there is a model where all modeling elements, used in these
-		diagrams, are stored. The model keeps the consistency between all
-		diagrams.</p>
+		the diagrams, there is a model where the modeling elements, used in
+		these diagrams, are stored. The model maintains the consistency
+		between all diagrams.</p>
 	<p>
-		A model is the collection of all the modeling elements, definitions
-		and relationships that compose a software system. Papyrus enables the
+		A model is the collection of all the modeling elements and
+		relationships that compose a software system. Papyrus enables the
 		creation, viewing and manipulation of UML diagrams as specified in the
 		<a href="http://www.omg.org/spec/UML/2.4.1/">UML 2 specification</a>.
 	</p>
@@ -692,34 +688,37 @@
 		system. Multiple model diagrams can reference an element many times.
 		Each of the different diagrams can view a different aspect of the
 		system.</p>
-	<p>The model is the basis of the diagrams and keep the diagrams
+	<p>
+		The model is the basis of the diagrams and keep the diagrams
 		consistent. The diagrams are stored in the model's hierarchical
 		structure. Some are owned by a modeling element like a class and some
-		are just organized into some packages (a.k.a folders in basic Eclipse
-		projects).</p>
+		are just organized into packages and then owned by the package (a.k.a
+		folders in basic Eclipse projects). <b>Note!</b> the top level of the
+		model is the model package, which is a special kind of a package.
+	</p>
 	<h2 id="5.1_Model_and_diagrams">5.1 Model and diagrams</h2>
-	<p>The model is the basis of all diagrams and keeps the consistency
-		between the diagrams. The model is a collection of definitions of
-		elements that compose the system and the relationships between them.
-		Diagrams can be used to view subsets of the underlying model and from
-		various view points. A model of a system may require many different
-		diagrams to represent different views of the system for different
-		project stakeholders.</p>
+	<p>The model is the basis for all diagrams and maintains the
+		consistency between the diagrams. The model is a collection of
+		definitions of elements that compose the system and the relationships
+		between them. Diagrams can be used to view subsets of the underlying
+		model and from various view points. A model of a system may require
+		many different diagrams to represent different views of the system for
+		different project stakeholders.</p>
 	<p>
-		In Papyrus, you can open and add diagrams to the model in the <i>Model
-			Explorer</i> view. The <i>Models Explorer</i> shows diagrams in their
+		In Papyrus, diagrams are be viewed and created in the <i>Model
+			Explorer</i> view. The <i>Model Explorer</i> shows diagrams in their
 		logical place within the model.
 	</p>
 	<p>The visual representation of a system that diagrams provide can
 		offer both low-level and high-level insights into the concepts and
-		design of an application.</p>
+		design of a system.</p>
 	<h1 id="6_Tutorials">6 Tutorials</h1>
 	<p>The tutorials are focused on selected topics regarding the use
 		of Papyrus and contains step by step instructions on how to create and
 		manipulate the workbench and models.</p>
 	<h2 id="6.1_Getting_started">6.1 Getting started</h2>
 	<p>This tutorial is about to understand the workbench environment
-		and the basic Eclipse features.</p>
+		and the basic Eclipse terminology.</p>
 	<h3 id="6.1.1_Exploring_perspectives">6.1.1 Exploring perspectives</h3>
 	<p>
 		This part demonstrates the differences between the <i>Papyrus</i> and
@@ -730,7 +729,7 @@
 		6.1.1.1 Exploring the <i>Papyrus</i> perspective
 	</h4>
 	<p>
-		Explore the default menu, toolbar, and views in the <i>Papyrus</i>
+		Explore the Papyrus default menus, toolbar, and views in the <i>Papyrus</i>
 		perspective.
 	</p>
 	<ol>
@@ -775,9 +774,9 @@
 			the workbench title bar and perspective bar reflect that the <i>Resource</i>
 			perspective is active.
 		</li>
-		<li>In the <i>Customize Perspective Ã¢â‚¬â€œ Resource</i> pop up
-			window, select the <i>Shortcuts</i> tab and select <b>Show View</b>
-			from the <i>Submenus</i> combo box.
+		<li>In the <i>Customize Perspective - Resource</i> pop-up window,
+			select the <i>Shortcuts</i> tab and select <b>Show View</b> from the
+			<i>Submenus</i> combo box.
 		</li>
 		<li>Clear all check boxes in the <i>Shortcut Categories</i> list.
 		</li>
@@ -789,8 +788,8 @@
 			just contains the <i>Project Explorer</i> item.
 		</li>
 	</ol>
-	<h3 id="6.1.2_Creating_a_project.2C_folder_and_files">6.1.2
-		Creating a project, folder and files</h3>
+	<h3 id="6.1.2_Creating_a_new_project.2C_folder_and_files">6.1.2
+		Creating a new project, folder and files</h3>
 	<p>
 		In this section a new project, folder and files will be created in the
 		<i>Resource</i> perspective.
@@ -981,7 +980,7 @@
 		<li>Right-click <i>My Project</i> in the <i>Project Explorer</i>
 			and select <b>Delete</b> from the context menu.
 		</li>
-		<li>In the <i>Delete Resources</i> pop up window, make sure to
+		<li>In the <i>Delete Resources</i> pop-up window, make sure to
 			check the
 		</li>
 	</ol>
@@ -1027,8 +1026,256 @@
 	</ul>
 	<h2 id="6.2_Creating_profiles">6.2 Creating profiles</h2>
 	<h2 id="6.3_Creating_models">6.3 Creating models</h2>
-	<h3 id="6.3.1_Use_case_modeling">6.3.1 Use case modeling</h3>
+	<h3 id="6.3.1_Use-case_modeling">6.3.1 Use-case modeling</h3>
 	<h3 id="6.3.2_Design_modeling">6.3.2 Design modeling</h3>
+	<p>This is a tutorial about general class modeling.</p>
+	<h4 id="6.3.2.1_Create_a_new_UML_project">6.3.2.1 Create a new UML
+		project</h4>
+	<p>Create a new UML modeling project by completing these steps:</p>
+	<ol>
+		<li>If necessary switch to the <i>Papyrus</i> perspective by
+			clicking on <b>Window &gt; Open Perspective &gt; Other</b>. Then
+			choose the <i>Papyrus</i> perspective. If the <i>Papyrus</i>
+			perspective already is active, click on <b>Window &gt; Reset
+				Perspective...</b> to get back to its default configuration.
+		</li>
+		<li>Click <b>File &gt; New &gt; Papyrus Project</b>.
+		</li>
+		<li>In the <i>New Papyrus Project</i> wizard, name the project <code>My
+				Design Model</code> and click <i>Next</i>.
+		</li>
+		<li>Make sure that the radio button <i>UML</i> is selected and
+			click <i>Next</i>.
+		</li>
+		<li>Under the section <i>You can load a template</i>, check the
+			box <i>A UML model with basic primitive types
+				(ModelWithBasicTypes)</i> and click on <i>Finish</i>.
+		</li>
+	</ol>
+	<h4 id="6.3.2.2_Creating_new_packages">6.3.2.2 Creating new
+		packages</h4>
+	<p>Create two packages in the model:</p>
+	<ol>
+		<li>Right-click on the <i>model</i> package in the <i>Model
+				Explorer</i>, select <b>New Child &gt; Create a new Package</b> and
+			select the created package in the <i>Model Explorer</i>.
+		</li>
+		<li>In the <i>Properties</i> view type <code>Clients</code> in
+			the the field <i>Name</i>.
+		</li>
+		<li>Right-click on the <i>model</i> package in the <i>Model
+				Explorer</i>, select <b>New Child &gt; Create a new Package</b> and
+			select the created package in the <i>Model Explorer</i>.
+		</li>
+		<li>In the <i>Properties</i> view type <code>Server</code> in the
+			the field <i>Name</i>.
+		</li>
+	</ol>
+	<h4 id="6.3.2.3_Create_new_classes">6.3.2.3 Create new classes</h4>
+	<p>
+		Create a server class and a data class in the <i>Server</i> package:
+	</p>
+	<ol>
+		<li>Right-click on the <i>Server</i> package in the <i>Model
+				Explorer</i>, select <b>New Child &gt; Create a new Class</b>and select
+			the created class in the <i>Model Explorer</i>.
+		</li>
+		<li>In the <i>Properties</i> view type <code>Server1</code> in
+			the the field <i>Name</i>.
+		</li>
+		<li>Right-click on the <i>Server</i> package in the <i>Model
+				Explorer</i>, select <b>New Child &gt; Create a new Class</b>and select
+			the created class in the <i>Model Explorer</i>.
+		</li>
+		<li>In the <i>Properties</i> view type <code>DataClass1</code> in
+			the the field <i>Name</i>.
+		</li>
+	</ol>
+	<p>
+		Create three different client classes in the <i>Clients</i> package:
+	</p>
+	<ol>
+		<li>Right-click on the <i>Clients</i> package in the <i>Model
+				Explorer</i>, select <b>New Child &gt; Create a new Class</b>and select
+			the created class in the <i>Model Explorer</i>.
+		</li>
+		<li>In the <i>Properties</i> view type <code>Client1</code> in
+			the the field <i>Name</i>.
+		</li>
+		<li>Right-click on the <i>Clients</i> package in the <i>Model
+				Explorer</i>, select <b>New Child &gt; Create a new Class</b>and select
+			the created class in the <i>Model Explorer</i>.
+		</li>
+		<li>In the <i>Properties</i> view type <code>Client2</code> in
+			the the field <i>Name</i>.
+		</li>
+		<li>Right-click on the <i>Clients</i> package in the <i>Model
+				Explorer</i>, select <b>New Child &gt; Create a new Class</b>and select
+			the created class in the <i>Model Explorer</i>.
+		</li>
+		<li>In the <i>Properties</i> view type <code>ClientRoot</code> in
+			the the field <i>Name</i>.
+		</li>
+	</ol>
+	<h4 id="6.3.2.4_Create_new_class_diagrams">6.3.2.4 Create new
+		class diagrams</h4>
+	<p>Create two class diagrams in the model:</p>
+	<ol>
+		<li>Right-click on the <i>model</i> package in the <i>Model
+				Explorer</i>, select <b>New Diagram &gt; Create a new Class Diagram</b>
+			and type <code>Packages</code> in the the <i>Enter a new diagram
+				name</i> pop-up window.
+		</li>
+		<li>Right-click on the <i>model</i> package in the <i>Model
+				Explorer</i>, select <b>New Diagram &gt; Create a new Class Diagram</b>
+			and type <code>Classes</code> in the the <i>Enter a new diagram
+				name</i> pop-up window.
+		</li>
+	</ol>
+	<h4 id="6.3.2.5_Create_new_operations_and_attributes">6.3.2.5
+		Create new operations and attributes</h4>
+	<ol>
+		<li>Right-click on the class <i>DataClass1</i> and select <b>New
+				Child &gt; Create a new Property</b> and select the created attribute in
+			the <i>Model Explorer</i>.
+		</li>
+		<li>In the <i>Properties</i> view, type <code>Field1</code> in
+			the the field <i>Name</i> and by the <i>Type</i> field click on the <img
+			border="0" src="TypeKey.bmp" /> key and select <i>Integer</i> from
+			the <i>UML Primitive Types</i>. This cause the created attribute to
+			be named <i>Field1</i> and to be of type <i>Integer</i>.
+		</li>
+		<li>Follow the above pattern to also create the attributes <i>Field2</i>
+			of type <i>Integer</i>, <i>Field3</i> of type <i>String</i>, and <i>Field4</i>
+			of type <i>String</i> on class <i>DataClass1</i>.
+		</li>
+		<li>Create the attributes <i>Attribute2</i> of type <i>String</i>,
+			<i>Attribute4</i> of type <i>Integer</i> and <i>Attribute5</i> of
+			type <i>DataClass1</i> on class <i>Client1</i>.
+		</li>
+		<li>Create the attribute <i>Attribute3</i> on class <i>Client2</i>.
+		</li>
+		<li>Create the attribute <i>Attribute1</i> on class <i>Server1</i>.
+		</li>
+		<li>Create the operation <i>service1</i> on class <i>Server1</i>
+			by right-click on on the class <i>Server1</i> and select <b>New
+				Child &gt; Create a new Operation</b> and select the created operation
+			in the <i>Model Explorer</i>.
+		</li>
+		<li>In the <i>Properties</i> view, type <code>service1</code> in
+			the the field <i>Name</i> and by the <i>Owned parameter</i> field
+			click on the <img border="0" src="PlusKey.bmp" /> key.
+		</li>
+		<li>In the <i>Create a new parameter</i> pop-up window, type <code>service1return</code>
+			in the <i>Name</i> field, select <i>return</i> from the <i>Direction</i>
+			field drop down list and by the <i>Type</i> field click on the <img
+			border="0" src="TypeKey.bmp" /> key and select <i>Integer</i> from
+			the <i>UML Primitive Types</i>. This cause the return type of the
+			operation to be defined as an integer.
+		</li>
+	</ol>
+	<h4 id="6.3.2.6_Create_new_relationships">6.3.2.6 Create new
+		relationships</h4>
+	<p>
+		Create a <i>Dependency</i> relationship between the <i>Clients</i> and
+		the <i>Server</i> packages:
+	</p>
+	<ol>
+		<li>Open the <i>Diagram Packages</i> diagram by double click on
+			it in the <i>Model Explorer</i></li>
+		<li>Drag the <i>Clients</i> package to the class diagram (by
+			click on it and while holding the mouse button down, move the cursor
+			to the editing area in the class diagram editor and release it).
+		</li>
+		<li>Drag the <i> Server</i> package to the class diagram.
+		</li>
+		<li>Select the <i>Dependency</i> tool from the <i>Edges</i>
+			drawer in the <i>Palette</i>, click on the <i>Clients</i> package and
+			then on the <i>Server</i> package in the class diagram.
+		</li>
+		<li>Type <code>Dependency</code> as the name of the relationship.
+		</li>
+	</ol>
+	<p>
+		Create a <i>Generalization</i> relationship between the classes <i>Client2</i>
+		and <i>Client1</i>, i.e. make <i>Client2</i> a sub-class of <i>Client1</i>:
+	</p>
+	<ol>
+		<li>Open the <i>Diagram Classes</i> diagram by double click on it
+			in the <i>Model Explorer</i></li>
+		<li>Drag the <i>Client1</i> class to the class diagram.
+		</li>
+		<li>Drag the <i>Client2</i> class to the class diagram.
+		</li>
+		<li>Select the <i>Generalization</i> tool from the <i>Edges</i>
+			drawer in the <i>Palette</i>, click on the <i>Client2</i> class and
+			then on the <i>Client1</i> class in the class diagram.
+		</li>
+	</ol>
+	<p>
+		Create a <i>Composite</i> relationships between the classes <i>ClientRoot</i>
+		and <i>Client1</i> plus <i>ClientRoot</i> and <i>Client2</i>:
+	</p>
+	<ol>
+		<li>Continue with the already opened class diagram <i>Diagram
+				Classes</i>.
+		</li>
+		<li>Drag the <i>ClientRoot</i> class to the class diagram.
+		</li>
+		<li>Select the <i>Association</i> tool from the <i>Edges</i>
+			drawer in the <i>Palette</i>, click on the <i>ClientRoot</i> class
+			and the on the <i>Client1</i> class in the class diagram.
+		</li>
+		<li>Select the created association in the class diagram and in
+			the <i>Properties</i> view, rename the association to <code>cr-c1</code>.
+		</li>
+		<li>Also in the same <i>Properties</i> view, at the member end,
+			named <i>client1</i>, by the <i>Aggregation</i> field, select <i>composite</i>
+			from the drop down list.
+		</li>
+		<li>Select the <i>Association</i> tool from the <i>Edges</i>
+			drawer in the <i>Palette</i>, click on the <i>ClientRoot</i> class
+			and the on the <i>Client2</i> class in the class diagram.
+		</li>
+		<li>Select the created association in the class diagram and in
+			the <i>Properties</i> view, rename the association to <code>cr-c2</code>.
+		</li>
+		<li>Also in the same <i>Properties</i> view, at the member end,
+			named <i>client2</i>, by the <i>Aggregation</i> field, select <i>composite</i>
+			from the drop down list.
+		</li>
+	</ol>
+	<h4 id="6.3.2.7_Conclusion">6.3.2.7 Conclusion</h4>
+	<p>In this tutorial the following model was created:</p>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 402px;">
+					<a href="DesignModelEx1.bmp" class="image"><img
+						class="thumbimage" width="400" align="middle" border="0"
+						src="DesignModelEx1.bmp" /></a>
+					<div class="thumbcaption">Figure 11: Two packages on top in
+						the model</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 402px;">
+					<a href="DesignModelEx2.bmp" class="image"><img
+						class="thumbimage" width="400" align="middle" border="0"
+						src="DesignModelEx2.bmp" /></a>
+					<div class="thumbcaption">Figure 12: Relationships between
+						the client classes</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		<b>Note!</b> The inherited attributes in the <i>Client2</i> class.
+	</p>
 	<h3 id="6.3.3_RT_modeling">6.3.3 RT modeling</h3>
 	<h1 id="7_Papyrus">7 Papyrus</h1>
 	<p>Papyrus can be used to do</p>
@@ -1063,7 +1310,7 @@
 							<a href="ModelProjResourcesFS.bmp" class="image"><img
 								class="thumbimage" width="400" align="middle" border="0"
 								src="ModelProjResourcesFS.bmp" /></a>
-							<div class="thumbcaption">Figure 11: Resources in the file
+							<div class="thumbcaption">Figure 13: Resources in the file
 								system</div>
 						</div>
 					</div>
@@ -1074,8 +1321,8 @@
 							<a href="ModelProjResourcesPE.bmp" class="image"><img
 								class="thumbimage" width="200" align="middle" border="0"
 								src="ModelProjResourcesPE.bmp" /></a>
-							<div class="thumbcaption">Figure 12: Resources in the
-								Project 'Explorer'</div>
+							<div class="thumbcaption">Figure 14: Resources in the
+								Project Explorer</div>
 						</div>
 					</div>
 				</p></td>
@@ -1084,14 +1331,14 @@
 	<ul>
 		<li><b>.di</b> file persists the status of the workbench, i.e.
 			which diagrams and views are opened, etc.</li>
-		<li><b>.notation</b> file keeps the information about the
+		<li><b>.notation</b> file persists the information about the
 			diagrams in the model.</li>
-		<li><b>.uml</b> file contains the UML model.</li>
+		<li><b>.uml</b> file persists the UML model.</li>
 	</ul>
 	<p>
 		Note! In this case the model is contained in three files. When working
 		in an industrial context, the model may need to be split up into
-		several fragments in order for several designers to work in parallel
+		several fragments in order for several designers to work concurrently
 		with the same model. This is described in section <a
 			href="#7.6_Papyrus_in_a_team_environment">Papyrus in a team
 			environment</a> .
@@ -1108,9 +1355,9 @@
 	<p>
 		The <i>Project Explorer</i> view is used to browse, select and
 		manipulate resources in the workspace. Projects or working sets are
-		the top level in this view. From the <i>Project ExplorerÃ¢â‚¬â„¢s</i>
-		(right click on the white space) context menu, e.g. new projects can
-		be created.
+		the top level in this view. From the <i>Project Explorer's</i> (right
+		click on the white space) context menu, e.g. new projects can be
+		created.
 	</p>
 	<p>
 		<center>
@@ -1118,14 +1365,14 @@
 				<div class="thumbinner" style="width: 202px;">
 					<a href="ProjectExpl.bmp" class="image"><img class="thumbimage"
 						width="200" align="middle" border="0" src="ProjectExpl.bmp" /></a>
-					<div class="thumbcaption">Figure 13: The Project Explorer</div>
+					<div class="thumbcaption">Figure 15: The Project Explorer</div>
 				</div>
 			</div>
 		</center>
 	</p>
 	<p>In some views, as in this case, there is a view specific menu
-		(indicated in Figure 13 with a red ring). Here some settings could be
-		done for the view, e.g. if the top level should be working sets or
+		(indicated in Figure 13 with a red ring). Here some settings can be
+		applied for the view, e.g. if the top level should be working sets or
 		projects.</p>
 	<h3 id="7.2.2_Model_Explorer_view">7.2.2 Model Explorer view</h3>
 	<p>
@@ -1143,7 +1390,7 @@
 				<div class="thumbinner" style="width: 202px;">
 					<a href="ModelExpl.bmp" class="image"><img class="thumbimage"
 						width="200" align="middle" border="0" src="ModelExpl.bmp" /></a>
-					<div class="thumbcaption">Figure 14: The Model Explorer</div>
+					<div class="thumbcaption">Figure 16: The Model Explorer</div>
 				</div>
 			</div>
 		</center>
@@ -1153,7 +1400,7 @@
 		The <i>Editing View</i> is in the middle part of the workbench and
 		here opens different types of editors, depending on the type of
 		resource to edit, e.g. if a class diagram is opened, the class diagram
-		editor will be started in the <i>Editing View</i>.
+		editor will be visible in the <i>Editing View</i>.
 	</p>
 	<p>
 		<center>
@@ -1161,19 +1408,19 @@
 				<div class="thumbinner" style="width: 402px;">
 					<a href="EditingView.bmp" class="image"><img class="thumbimage"
 						width="400" align="middle" border="0" src="EditingView.bmp" /></a>
-					<div class="thumbcaption">Figure 15: The 'Editing View'</div>
+					<div class="thumbcaption">Figure 17: The Editing View</div>
 				</div>
 			</div>
 		</center>
 	</p>
 	<p>
 		How to use editors is described in section <a
-			href="#7.3_Diagram_editing_in_Papyrus">Editors in Papyrus</a> .
+			href="#7.3_Diagram_editing_in_Papyrus">Editors in Papyrus</a>.
 	</p>
 	<h3 id="7.2.4_Outline_view">7.2.4 Outline view</h3>
 	<p>
 		The <i>Outline View</i> is connected to the <i>Editing View</i> and
-		gives an overview of what is opened in the <i>Editing View</i>. The <i>Outline
+		gives an overview of what is open in the <i>Editing View</i>. The <i>Outline
 			View</i> may be used to pan the <i>Editing View</i> or to select some
 		information that will be highlighted in the <i>Editing View</i>. The
 		shaded area is the area that is visible in the <i>Editing View</i>.
@@ -1184,18 +1431,18 @@
 				<div class="thumbinner" style="width: 202px;">
 					<a href="OutlineView.bmp" class="image"><img class="thumbimage"
 						width="200" align="middle" border="0" src="OutlineView.bmp" /></a>
-					<div class="thumbcaption">Figure 16: The 'Outline View'</div>
+					<div class="thumbcaption">Figure 18: The Outline View</div>
 				</div>
 			</div>
 		</center>
 	</p>
 	<h3 id="7.2.5_Properties_view">7.2.5 Properties view</h3>
 	<p>
-		The <i>Properties view</i> is located as a stacked view at the bottom
-		of the workbench and shows the properties of a selected modeling
-		element. The modeling element can be selected in the Model Explorer or
-		in a diagram. The properties are categorized under different tabs to
-		the left in the <i>Properties view</i>.
+		The <i>Properties view</i> is a stacked view which is located at the
+		bottom of the workbench and shows the properties of a selected
+		modeling element. The modeling element can be selected in the Model
+		Explorer or in a diagram. The properties are categorized under
+		different tabs located to the left in the <i>Properties view</i>.
 	</p>
 	<p>
 		<center>
@@ -1204,7 +1451,7 @@
 					<a href="PropertiesView.bmp" class="image"><img
 						class="thumbimage" width="500" align="middle" border="0"
 						src="PropertiesView.bmp" /></a>
-					<div class="thumbcaption">Figure 17: The 'Properties View'</div>
+					<div class="thumbcaption">Figure 19: The Properties View</div>
 				</div>
 			</div>
 		</center>
@@ -1227,8 +1474,8 @@
 					<a href="ModelValidationView.bmp" class="image"><img
 						class="thumbimage" width="500" align="middle" border="0"
 						src="ModelValidationView.bmp" /></a>
-					<div class="thumbcaption">Figure 18: The 'Model Validation
-						View'</div>
+					<div class="thumbcaption">Figure 20: The Model Validation
+						View</div>
 				</div>
 			</div>
 		</center>
@@ -1252,13 +1499,13 @@
 				<div class="thumbinner" style="width: 502px;">
 					<a href="SearchView.bmp" class="image"><img class="thumbimage"
 						width="500" align="middle" border="0" src="SearchView.bmp" /></a>
-					<div class="thumbcaption">Figure 19: The Search View</div>
+					<div class="thumbcaption">Figure 21: The Search View</div>
 				</div>
 			</div>
 		</center>
 	</p>
 	<p>
-		The example in Figure 19 shows the result of a model search for <i>Class1</i>
+		The example in Figure 21 shows the result of a model search for <i>Class1</i>
 		in the entire workspace.
 	</p>
 	<h2 id="7.3_Diagram_editing_in_Papyrus">
@@ -1274,7 +1521,7 @@
 	</p>
 	<h3 id="7.3.1_Diagram_editors">7.3.1 Diagram editors</h3>
 	<p>When a diagram editor is opened in Papyrus, three views are
-		opened</p>
+		opened:</p>
 	<ul>
 		<li>Editing surface</li>
 		<li>Palette</li>
@@ -1287,27 +1534,30 @@
 					<a href="DiagramEditorFieldsPointers.bmp" class="image"><img
 						class="thumbimage" width="500" align="middle" border="0"
 						src="DiagramEditorFieldsPointers.bmp" /></a>
-					<div class="thumbcaption">Figure 20: Parts of a diagram
-						editor, e.g. class diagram editor</div>
+					<div class="thumbcaption">Figure 22: Parts of a diagram
+						editor (as an example, the class diagram editor is used)</div>
 				</div>
 			</div>
 		</center>
 	</p>
-	<p>Figure 20 shows the different parts of a diagram editor. In this
-		case the class diagram editor has been chosen as an example. The
-		editing surface is where the diagram editing is taken place. The
-		outline view gives an overview of the entire diagram. The blue shaded
-		part in the outline view shows what is visible in the editing surface.
-		The palette contains drawers and in each drawer there are tools to be
-		used to add different things into the diagram. In Figure 20, the Nodes
-		drawer is closed and the edge drawer is opened. In the edge drawer
-		there are tools to create different types of edges. By clicking on a
-		drawer, it toggles open and close drawer.</p>
+	<p>
+		Figure 22 shows the different parts of a diagram editor. In this case
+		the class diagram editor has been chosen as an example. The <i>Editing
+			surface</i> is where the diagram editing is taken place. The <i>Outline
+			view</i> gives an overview of the entire diagram. The blue shaded part in
+		the <i>Outline view</i> shows what is visible in the editing surface.
+		The <i>Palette</i> contains <i>Drawers</i> and in each drawer there
+		are <i>Tools</i> to be used to add different things into the diagram.
+		In Figure 22, the <i>Nodes</i> drawer is closed and the <i>Edges</i>
+		drawer is opened. In the <i>Edges</i> drawer there are <i>Tools</i> to
+		create different types of edges. By clicking on a drawer, it toggles
+		open and close drawer.
+	</p>
 	<h3 id="7.3.2_Basic_tool_techniques">7.3.2 Basic tool techniques</h3>
 	<p>Diagrams can be created in different places in the model such as
-		they can be owned by model elements like classes or packages (a.k.a
-		folders in basic Eclipse). Diagrams can also be placed on top of the
-		model directly under the model package.</p>
+		they can be owned by model elements like classes or packages. Diagrams
+		can also be placed on top of the model directly under the model
+		package.</p>
 	<h4 id="7.3.2.1_Creating_diagrams">7.3.2.1 Creating diagrams</h4>
 	<p>
 		To create a diagram, right click on the model element that should be
@@ -1323,17 +1573,15 @@
 				<div class="thumbinner" style="width: 502px;">
 					<a href="NewDiagram.bmp" class="image"><img class="thumbimage"
 						width="500" align="middle" border="0" src="NewDiagram.bmp" /></a>
-					<div class="thumbcaption">Figure 21: Available diagram types
+					<div class="thumbcaption">Figure 23: Available diagram types
 						that can be created directly under the model package</div>
 				</div>
 			</div>
 		</center>
 	</p>
 	<p>
-		<b>Note!</b> In Figure 21, no adaptation of Papyrus has taken place,
-		hence all diagram types according to UML pops up. In a project
-		environment, it is recommended that a support organization minimize
-		the available choices in menus like this.
+		<b>Note!</b> In Figure 23, no adaptation of Papyrus has taken place,
+		hence all diagram types according pops up.
 	</p>
 	<h4 id="7.3.2.2_Scrolling_and_panning_in_diagrams">7.3.2.2
 		Scrolling and panning in diagrams</h4>
@@ -1341,7 +1589,7 @@
 	<ul>
 		<li>Use the outline view and click (hold down) and drag the blue
 			shaded area around, which simultaneously pans the editing surface.</li>
-		<li>Use the vertical and horisontal scroll bars in the editing
+		<li>Use the vertical and horizontal scroll bars in the editing
 			surface.</li>
 	</ul>
 	<h4 id="7.3.2.3_Creating_an_element_in_a_diagram">7.3.2.3 Creating
@@ -1370,7 +1618,7 @@
 					<a href="ElementContextMenuDiaDelHide.bmp" class="image"><img
 						class="thumbimage" width="200" align="middle" border="0"
 						src="ElementContextMenuDiaDelHide.bmp" /></a>
-					<div class="thumbcaption">Figure 22: Context menu of an
+					<div class="thumbcaption">Figure 24: Context menu of an
 						element in a diagram</div>
 				</div>
 			</div>
@@ -1379,7 +1627,7 @@
 	<p>Right click on an element in a diagram and do</p>
 	<ul>
 		<li><b>Delete Selected Element</b> will delete the element from
-			the entire model and also from all diagrams where it appears.</li>
+			the entire model and also from all diagrams where it was present.</li>
 		<li><b>Hide Selected Element</b> will hide the element just in
 			this diagram.</li>
 	</ul>
@@ -1392,7 +1640,8 @@
 		Formating and validating diagrams</h4>
 	<p>Diagrams can be adjusted and graphically edited to get a nicer
 		look also using the element context menu. From the same context menu
-		it is also possible to validate the model or parts of the model.</p>
+		it is also possible to validate the model or specific parts of the
+		model.</p>
 	<p>
 		<center>
 			<div class="thumb middle">
@@ -1400,20 +1649,18 @@
 					<a href="ElementContextMenuDiaFormat.bmp" class="image"><img
 						class="thumbimage" width="300" align="middle" border="0"
 						src="ElementContextMenuDiaFormat.bmp" /></a>
-					<div class="thumbcaption">Figure 23: Example of the Format
+					<div class="thumbcaption">Figure 25: Example of the Format
 						sub context menu</div>
 				</div>
 			</div>
 		</center>
 	</p>
-	<p>In Figure 23 several menu items are shown</p>
+	<p>In Figure 25 several menu items are shown, e.g.:</p>
 	<ul>
-		<li><b>Edit</b> to do some basic graphical editing like
-			copy/paste</li>
-		<li><b>Validation</b> to validate the model partly or totally</li>
+		<li><b>Validation</b> to validate the model partly or fully</li>
 		<li><b>Format</b> to do some advanced formating of the diagram
 			like adjustments, routing, etc. as shown in the sub context menu in
-			Figure 23</li>
+			Figure 25</li>
 		<li><b>Filter</b> to select/unselect parts of symbols that should
 			be visible or not</li>
 	</ul>
@@ -1421,372 +1668,22 @@
 		<div id="UMLmodeling">7.4 UML modeling</div>
 	</h2>
 	<p>
-		With Papyrus, UML models can be created. Preferably this is done using
-		different types of diagrams. Modeling elements can be created in these
-		diagrams or directly in the <i>Model Explorer</i>. Diagrams are
-		created in the <i>Model Explorer</i> and when doing so, a diagram
-		editor together with its tool palette and outline view are also
-		opened. Section <a href="#7.3_Diagram_editing_in_Papyrus">Diagram
-			editing in Papyrus</a> describes how to work with diagram editors.
+		With Papyrus, UML models can be created. This is done using different
+		types of diagrams. Modeling elements can be created in these diagrams
+		or directly in the <i>Model Explorer</i>. Diagrams are created in the
+		<i>Model Explorer</i> and when doing so a diagram editor together with
+		its tool palette and outline view are also opened. Section <a
+			href="#7.3_Diagram_editing_in_Papyrus">Diagram editing in Papyrus</a>
+		describes how to work with diagram editors.
 	</p>
-	<h3 id="7.4.1_Diagrams">
-		<div id="UMLdiagrams">7.4.1 Diagrams</div>
-	</h3>
-	<p>UML has many different types of diagrams to capture all
-		different aspects of a system. To capture and refine requirements,
-		diagrams related to use cases are used. To specify the architecture
-		and design, diagrams related to classes and packages are used, To
-		specify the implementation, state and activity diagrams are used, etc.</p>
-	<h4 id="7.4.1.1_Diagrams_related_to_Use_Cases">7.4.1.1 Diagrams
-		related to Use Cases</h4>
-	<p>When working with requirement capture and refinement, use case
-		modeling is used and any or all of the following diagrams can be used:</p>
+	<p>The most common modeling elements are:</p>
 	<ul>
-		<li>Use Case diagram</li>
-		<li>Activity diagram</li>
-		<li>Interaction diagram
-			<ul>
-				<li>Sequence diagram</li>
-				<li>Collaboration diagram</li>
-			</ul>
-		</li>
+		<li>Package</li>
+		<li>Use-case</li>
+		<li>Actor</li>
+		<li>Class</li>
 	</ul>
-	<h5 id="7.4.1.1.1_Use_case_diagram">7.4.1.1.1 Use case diagram</h5>
-	<p>
-		A <i>use case diagram</i> describe how different <i>Actors</i> use
-		different functionality of the system. Implicitly, it also define the
-		system boundary, since it shows what should be performed by the system
-		and what exists outside the system. The elements used in <i>use
-			case diagrams</i> are:
-	</p>
-	<ul>
-		<li><b>Actors</b> interact with, but are outside the system.</li>
-		<li><b>Use cases</b> are some functionality that are performed by
-			the system.</li>
-		<li><b>Relationships</b> between elements.</li>
-	</ul>
-	<p>A diagram may depict all or some of the use cases of a system.</p>
-	<p>
-		<center>
-			<div class="thumb middle">
-				<div class="thumbinner" style="width: 402px;">
-					<a href="UCdiagram.bmp" class="image"><img class="thumbimage"
-						width="400" align="middle" border="0" src="UCdiagram.bmp" /></a>
-					<div class="thumbcaption">Figure 24: 'Use case diagram'</div>
-				</div>
-			</div>
-		</center>
-	</p>
-	<p>
-		A <i>use case</i> interacts with an <i>actor</i> and perform something
-		useful for that <i>actor</i>. A <i>use case</i> exist because of its
-		main flow, but all odd cases and error situations have to be
-		specified. A <i>use case</i> has a black box and a white box view. The
-		black box view is preferably described in plain text or by using
-		activity diagrams. The white box view is described by one or several
-		sequence diagrams.
-	</p>
-	<p>
-		All <i>use cases</i> together, spans the entire functionality of the
-		system. <i>Actors</i>, <i>use cases</i> and <i>use case diagrams</i>
-		are owned by packages (general UML packages or model packages).
-	</p>
-	<p>
-		To create a <i>use case diagram</i>, right click on the owning package
-		and select <b>New Diagram &gt; Create a new UseCase Diagram</b> from
-		its context menu.
-	</p>
-	<h5 id="7.4.1.1.2_Activity_diagram">7.4.1.1.2 Activity diagram</h5>
-	<p>
-		An <i>activity diagram</i> is a kind of behavioral diagram and shows
-		flow of control from activity to activity. It is used to specify a use
-		case black box view. It can also be used to specify a flow chart for a
-		class operation.
-	</p>
-	<p>
-		The main elements in an <i>activity diagram</i> are:
-	</p>
-	<ul>
-		<li>Initial and end states</li>
-		<li>Activities</li>
-		<li>States</li>
-		<li>Transitions</li>
-		<li>Synchronization lines</li>
-		<li>Decisions</li>
-		<li>Partitions</li>
-	</ul>
-	<p>
-		<center>
-			<div class="thumb middle">
-				<div class="thumbinner" style="width: 402px;">
-					<a href="ActivityDiagram.bmp" class="image"><img
-						class="thumbimage" width="400" align="middle" border="0"
-						src="ActivityDiagram.bmp" /></a>
-					<div class="thumbcaption">Figure 25: 'Activity diagram'</div>
-				</div>
-			</div>
-		</center>
-	</p>
-	<p>
-		The <i>activity diagram</i> is preferable used to specify the black
-		box behavior of a use case instead of using plain text. It may also be
-		used to specify a flow chart for a class operation.<i>Activity
-			diagrams</i> are owned by use cases or classes.
-	</p>
-	<p>
-		To create an <i>activity diagram</i>, right click on the owning use
-		case or class and select <b>New Diagram &gt; Create a new Activity
-			Diagram</b> from its context menu.
-	</p>
-	<h5 id="7.4.1.1.3_Interaction_diagrams">7.4.1.1.3 Interaction
-		diagrams</h5>
-	<p>
-		Interaction diagrams are used to specify how different modeling
-		elements interacts. Here two types are described, the <i>sequence
-			diagram</i> and the <i>communication diagram</i>.
-	</p>
-	<h6 id="7.4.1.1.3.1_Sequence_diagram">7.4.1.1.3.1 Sequence diagram</h6>
-	<p>
-		A <i>sequence diagram</i> describes the interactions between elements
-		as a time ordered set of messages. One or several <i>sequence
-			diagrams</i> are used to specify the white box view of a use case.
-	</p>
-	<p>
-		Sequences involving collaborating elementsThe main elements in a <i>sequence
-			diagram</i> are:
-	</p>
-	<ul>
-		<li>Class instances (objects)</li>
-		<li>Life lines</li>
-		<li>Messages</li>
-		<li>Combined fragments</li>
-	</ul>
-	<p>
-		<center>
-			<div class="thumb middle">
-				<div class="thumbinner" style="width: 402px;">
-					<a href="SequenceDiagram.bmp" class="image"><img
-						class="thumbimage" width="400" align="middle" border="0"
-						src="SequenceDiagram.bmp" /></a>
-					<div class="thumbcaption">Figure 26: 'Sequence diagram'</div>
-				</div>
-			</div>
-		</center>
-	</p>
-	<p>
-		The example (Figure 26) describes Interaction1, two objects (instances
-		of Class1 and Class2) are created and interacts by messages. The time
-		goes down along the life lines. In the bottom, there is a combined
-		fragment of type "Ref" which is a reference to another interaction,
-		Interaction2, meaning that the sequences in that interaction are
-		executed.There are a lot of combined fragment types, e.g. type "Loop"
-		specifies a loop, type "Alt" specifies alternatives, etc. All combined
-		fragment types are defined in <a
-			href="http://www.omg.org/spec/UML/2.4.1/">Unified Modeling
-			Language (UML) version 2.4.1</a>
-	</p>
-	<p>
-		<i>Sequence diagrams</i> are owned by use cases or communication
-		diagrams (see below).
-	</p>
-	<p>
-		To create a <i>sequence diagram</i>, right click on the owning use
-		case or communication diagram and select <b>New Diagram &gt;
-			Create a new Sequence Diagram</b> from its context menu.
-	</p>
-	<h6 id="7.4.1.1.3.2_Communication_diagram">7.4.1.1.3.2
-		Communication diagram</h6>
-	<p>
-		<i>Communication diagrams</i> show the lines of communication among a
-		set of objects to accomplish a specific purpose. They act as the
-		framework for sequence diagrams and define access paths between
-		elements. i.e. <i>communication diagrams</i> are used to specify a use
-		case's white box communication channels between elements in the
-		system.
-	</p>
-	<p>
-		The main elements in a <i>collaboration diagram</i> are:
-	</p>
-	<ul>
-		<li>Class instances (objects)</li>
-		<li>Access paths</li>
-		<li>Messages</li>
-	</ul>
-	<p>
-		<center>
-			<div class="thumb middle">
-				<div class="thumbinner" style="width: 402px;">
-					<a href="CommunicationDiagram.bmp" class="image"><img
-						class="thumbimage" width="400" align="middle" border="0"
-						src="CommunicationDiagram.bmp" /></a>
-					<div class="thumbcaption">Figure 27: 'Communication diagram'</div>
-				</div>
-			</div>
-		</center>
-	</p>
-	<p>
-		The example (Figure 27) describes access paths between objects and
-		which messages are passed in these paths.<i>Communication diagrams</i>
-		are owned by use cases.
-	</p>
-	<p>
-		To create a <i>communication diagram</i>, right click on the owning
-		use case and select <b>New Diagram &gt; Create a new Communication
-			Diagram</b> from its context menu.
-	</p>
-	<h4 id="7.4.1.2_Diagrams_related_to_Classes">7.4.1.2 Diagrams
-		related to Classes</h4>
-	<p>When modeling classes, any or all of the following diagrams may
-		be used:</p>
-	<ul>
-		<li><i>Class diagrams</i></li>
-		<li><i>Composite structure diagrams</i></li>
-		<li><i>State diagrams</i></li>
-	</ul>
-	<p>As described above, activity diagrams may also be used to
-		specify a flowchart for a class operation.</p>
-	<h5 id="7.4.1.2.1_Class_diagram">7.4.1.2.1 Class diagram</h5>
-	<p>
-		<i>Class diagrams</i> depict static views of the system. A <i>class
-			diagram</i> may represent all or part of the class structure of a system.
-		Typically there are many <i>class diagrams</i> in a model. Usually one
-		or many <i>class diagrams</i> are used to specify the inheritance
-		structure in the system. <i>Class diagrams</i> may also be used to
-		define dependency rules between packages.
-	</p>
-	<p>
-		The main elements in a <i>class diagram</i> are:
-	</p>
-	<ul>
-		<li>Packages</li>
-		<li>Classes</li>
-		<li>Relationships</li>
-	</ul>
-	<p>
-		<center>
-			<div class="thumb middle">
-				<div class="thumbinner" style="width: 402px;">
-					<a href="ClassDiagram.bmp" class="image"><img
-						class="thumbimage" width="400" align="middle" border="0"
-						src="ClassDiagram.bmp" /></a>
-					<div class="thumbcaption">Figure 28: 'Class diagram'</div>
-				</div>
-			</div>
-		</center>
-	</p>
-	<p>
-		The example (Figure 28) shows a <i>class diagram</i> used to specify
-		an inheritance structure between classes. Note: The <i>Generalization</i>
-		relationship and the indication of the inherited attributes in Class1
-		and Class2.
-	</p>
-	<p>
-		<i>Class diagrams</i> are owned by ordinary UML packages or model
-		packages.
-	</p>
-	<p>
-		To create a <i>class diagram</i>, right click on the owning package
-		and select <b>New Diagram &gt; Create a new Class Diagram</b> from its
-		context menu.
-	</p>
-	<h5 id="7.4.1.2.2_Composite_structure_diagram">7.4.1.2.2 Composite
-		structure diagram</h5>
-	<p>
-		The <i>composite structure diagram</i> specifies structure classes
-		contents, i.e. how the class uses <i>roles</i> (instances from other
-		classes) and how they are connected to fulfill its responsibility.
-	</p>
-	<p>
-		The main elements in a <i>composite structure diagram</i> are:
-	</p>
-	<ul>
-		<li>Contained roles (instances of classes)</li>
-		<li>Ports (interface objects)</li>
-		<li>Connectors</li>
-	</ul>
-	<p>
-		<center>
-			<div class="thumb middle">
-				<div class="thumbinner" style="width: 402px;">
-					<a href="CompositeStructure.bmp" class="image"><img
-						class="thumbimage" width="400" align="middle" border="0"
-						src="CompositeStructure.bmp" /></a>
-					<div class="thumbcaption">Figure 29: 'Composite structure
-						diagram'</div>
-				</div>
-			</div>
-		</center>
-	</p>
-	<p>
-		The example (Figure 29) shows a <i>composite structure diagram</i>
-		used to specify the structural contents of Class4. Note: Class4 uses
-		one instance (class2) of Class2 and one instance (class3) of Class3
-		and they are connected between Class2/Port1 and Class3/Port2.
-	</p>
-	<p>
-		<i>Composite structure diagrams</i> are owned by structured classes.
-	</p>
-	<p>
-		To create a <i>composite structure diagram</i>, right click on the
-		owning class and select <b>New Diagram &gt; Create a new Composite
-			Structure Diagram</b> from its context menu.
-	</p>
-	<h5 id="7.4.1.2.3_State_machine_diagram">7.4.1.2.3 State machine
-		diagram</h5>
-	<p>
-		The <i>state machine diagram</i> specifies the behavior of a class. It
-		is used when the class is state rich, i.e. has an event driven
-		behavior. If the class has no states, activity diagrams can be used.
-	</p>
-	<p>
-		The main elements in a <i>state machine diagram</i> are:
-	</p>
-	<ul>
-		<li>States</li>
-		<li>Transitions</li>
-		<li>Effect code</li>
-		<li>Triggering events</li>
-		<li>Pseudo states, e.g. initial, final and choice points</li>
-	</ul>
-	<p>
-		<center>
-			<div class="thumb middle">
-				<div class="thumbinner" style="width: 402px;">
-					<a href="StateDiagram.bmp" class="image"><img
-						class="thumbimage" width="400" align="middle" border="0"
-						src="StateDiagram.bmp" /></a>
-					<div class="thumbcaption">Figure 30: 'State machine diagram'</div>
-				</div>
-			</div>
-		</center>
-	</p>
-	<p>
-		The example (Figure 30) shows a <i>state machine diagram</i> that has
-		an initial pseudo state, three states and transitions between them. On
-		each transition (except for initialize), a <i>triggering event</i> is
-		specified, which defines the event that makes the transition to be
-		taken. Transitions and states may have effect code, which specify
-		detailed behavior to be executed when an associated transition is
-		taken.
-	</p>
-	<p>
-		<i>State machine diagrams</i> are owned by classes.
-	</p>
-	<p>
-		To create a <i>state machine diagram</i>, right click on the owning
-		class and select <b>New Diagram &gt; Create a new State Machine
-			Diagram</b> from its context menu.
-	</p>
-	<h3 id="7.4.2_Model_elements">7.4.2 Model elements</h3>
-	<p>When doing ordinary UML modeling in Papyrus, the most common
-		modeling elements are packages, use cases, actors and classes.</p>
-	<p>
-		Modeling elements can be added in some appropriate diagram type
-		described in section <a href="#7.4.1_Diagrams">Diagrams</a> or just
-		added direct in the Model Explorer, using the context menu of the
-		owning modeling element.
-	</p>
-	<h4 id="7.4.2.1_Package">7.4.2.1 Package</h4>
+	<h3 id="7.4.1_Package">7.4.1 Package</h3>
 	<p>
 		A <i>package</i> is a general UML grouping element, comparable to a
 		folder in Windows or a directory in Unix. It is used to bring order in
@@ -1798,35 +1695,49 @@
 			Child &gt; Create a new Package</b>
 	</p>
 	<p>
-		<img title="Figure 31: Create a new ''Package'"
-			alt="Figure 31: Create a new ''Package'" border="0"
-			src="NewPackage.bmp" />
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 502px;">
+					<a href="NewPackage.bmp" class="image"><img class="thumbimage"
+						width="500" align="middle" border="0" src="NewPackage.bmp" /></a>
+					<div class="thumbcaption">Figure 26: Create a new Package</div>
+				</div>
+			</div>
+		</center>
 	</p>
-	<h4 id="7.4.2.2_Use_Case">7.4.2.2 Use Case</h4>
+	<h3 id="7.4.2_Use-case">7.4.2 Use-case</h3>
 	<p>
-		A <i>use case</i> is a functionality in the system. A <i>use case</i>
+		A <i>use-case</i> is a functionality in the system. A <i>use-case</i>
 		is a model of the dialogue between actors and the system. It should
-		return a result of measurable value to at least one actor. A <i>use
-			case</i> is initiated by an actor to invoke a certain functionality in
-		the system. A <i>use case</i> is a complete and meaningful flow of
-		events. Taken together, all <i>use cases</i> constitute all possible
-		ways of using the system.
+		return a result of measurable value to at least one actor. A <i>use-case</i>
+		is initiated by an actor to invoke a certain functionality in the
+		system. A <i>use-case</i> is a complete and meaningful flow of events.
+		Taken together, all <i>use-cases</i> constitute all possible ways of
+		using the system.
 	</p>
 	<p>
-		To create a new <i>use case</i>, right click on the owning element,
+		To create a new <i>use-case</i>, right click on the owning element,
 		e.g. a package and from the context menu select <b>New Child &gt;
 			Create a new UseCase</b>
 	</p>
 	<p>
-		[[Image:NewUseCase.bmp|Figure 32: Create a new <i>use case</i>]]
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 502px;">
+					<a href="NewUseCase.bmp" class="image"><img class="thumbimage"
+						width="500" align="middle" border="0" src="NewUseCase.bmp" /></a>
+					<div class="thumbcaption">Figure 27: Create a new use-case</div>
+				</div>
+			</div>
+		</center>
 	</p>
-	<h4 id="7.4.2.3_Actor">7.4.2.3 Actor</h4>
+	<h3 id="7.4.3_Actor">7.4.3 Actor</h3>
 	<p>
 		An <i>actor</i> is something external to the system, but interacts
 		with it. An <i>actor</i> may be a human being or another system. It
 		may be active or passive. An <i>actor</i> interacts (active <i>actor</i>)
-		or receive (passive <i>actor</i>) information from one or several use
-		cases.
+		or receive (passive <i>actor</i>) information from one or several
+		use-cases.
 	</p>
 	<p>
 		To create a new <i>actor</i>, right click on the owning element, e.g.
@@ -1834,12 +1745,21 @@
 			Create a new Actor</b>
 	</p>
 	<p>
-		[[Image:NewActor.bmp|Figure 33: Create a new <i>actor</i>]]
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 502px;">
+					<a href="NewActor.bmp" class="image"><img class="thumbimage"
+						width="500" align="middle" border="0" src="NewActor.bmp" /></a>
+					<div class="thumbcaption">Figure 28: Create a new actor</div>
+				</div>
+			</div>
+		</center>
 	</p>
-	<h4 id="7.4.2.4_Class">7.4.2.4 Class</h4>
+	<h3 id="7.4.4_Class">7.4.4 Class</h3>
 	<p>
-		A <i>class</i> fulfills all its responsibilities through its
-		attributes, operations and relationships.
+		A <i>class</i> is an extensible template for creating objects,
+		providing initial values for state (member variables, attributes) and
+		implementations of behavior (member functions, methods, operations).
 	</p>
 	<p>
 		Collectively attributes define the structure of a <i>class</i>. A
@@ -1860,10 +1780,18 @@
 			Create a new Class</b>
 	</p>
 	<p>
-		[[Image:NewClass.bmp|Figure 34: Create a new <i>class</i>]]
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 502px;">
+					<a href="NewClass.bmp" class="image"><img class="thumbimage"
+						width="500" align="middle" border="0" src="NewClass.bmp" /></a>
+					<div class="thumbcaption">Figure 29: Create a new class</div>
+				</div>
+			</div>
+		</center>
 	</p>
-	<h5 id="7.4.2.5.1_Attributes_on_Classes">7.4.2.5.1 Attributes on
-		Classes</h5>
+	<h4 id="7.4.4.1_Attributes_on_classes">7.4.4.1 Attributes on
+		classes</h4>
 	<p>
 		When a <i>class</i> is created, <i>attributes</i> can be added to it
 		by using the context menu of the <i>class</i>. To create a new <i>attribute</i>
@@ -1871,12 +1799,21 @@
 			Property</b> from its context menu.
 	</p>
 	<p>
-		[[Image:NewAttribute.bmp|Figure 35: Create a new <i>attribute</i>]]
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 502px;">
+					<a href="NewAttribute.bmp" class="image"><img
+						class="thumbimage" width="500" align="middle" border="0"
+						src="NewAttribute.bmp" /></a>
+					<div class="thumbcaption">Figure 30: Create a new attribute</div>
+				</div>
+			</div>
+		</center>
 	</p>
 	<p>The visibility, type and default value of the attribute are set
 		in the properties view when the attribute is selected.</p>
-	<h5 id="7.4.2.5.2_Operations_on_Classes">7.4.2.5.2 Operations on
-		Classes</h5>
+	<h4 id="7.4.4.2_Operations_on_classes">7.4.4.2 Operations on
+		classes</h4>
 	<p>
 		When a <i>class</i> is created, <i>operations</i> can be added to it
 		by using the context menu of the <i>class</i>. To create a new <i>operation</i>
@@ -1884,11 +1821,58 @@
 			Operation</b> from its context menu.
 	</p>
 	<p>
-		[[Image:NewOperation.bmp|Figure 36: Create a new <i>operation</i>]]
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 502px;">
+					<a href="NewOperation.bmp" class="image"><img
+						class="thumbimage" width="500" align="middle" border="0"
+						src="NewOperation.bmp" /></a>
+					<div class="thumbcaption">Figure 31: Create a new operation</div>
+				</div>
+			</div>
+		</center>
 	</p>
 	<p>The visibility, arguments and return type of the operation are
 		set in the properties view when the operation is selected.</p>
-	<h3 id="7.4.3_Relationships">7.4.3 Relationships</h3>
+	<p>
+		Regarding the arguments and return type of the an operation, select
+		the <img border="0" src="PlusKey.bmp" /> key by the <i>Owned
+			parameter</i> field.
+	</p>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 602px;">
+					<a href="ClassOp1.bmp" class="image"><img class="thumbimage"
+						width="600" align="middle" border="0" src="ClassOp1.bmp" /></a>
+					<div class="thumbcaption">Figure 32: Create a new argument</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		Then the following window pops up and from the drop list in the <i>Direction</i>
+		field, select the direction of the argument. In the <i>Name</i> field
+		the name of the argument is written and the type is defined in the <i>Type</i>
+		field.
+	</p>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 602px;">
+					<a href="ClassOp2.bmp" class="image"><img class="thumbimage"
+						width="600" align="middle" border="0" src="ClassOp2.bmp" /></a>
+					<div class="thumbcaption">Figure 33: Select the argument´s
+						direction</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		The direction <i>return</i> defines the return type of the operation.
+		Only one argument can have the return direction.
+	</p>
+	<h3 id="7.4.5_Relationships">7.4.5 Relationships</h3>
 	<p>There are different types of relationships that can be used in
 		diagrams, hence in the model between different modeling elements.</p>
 	<pre>    <div class="thumb middle">
@@ -1948,12 +1932,18 @@
 		To create a relationship between two modeling elements, use the tool
 		palette in the diagram editor, e.g. to create an <i>Association</i>
 		between two classes, select the <i>Association</i> tool in the tool
-		åalette, click on the source element and then click on the destination
+		palette, click on the source element and then click on the destination
 		element as described in figure 37.
 	</p>
 	<p>
-		[[Image:ClassDiagramEditorNewAss.bmp|center|thumb|500px|Figure 37:
-		Create a new <i>Association</i>]]
+		<div class="thumb middle">
+			<div class="thumbinner" style="width: 502px;">
+				<a href="ClassDiagramEditorNewAss.bmp" class="image"><img
+					class="thumbimage" width="500" align="middle" border="0"
+					src="ClassDiagramEditorNewAss.bmp" /></a>
+				<div class="thumbcaption">Figure 34: Create a new Association</div>
+			</div>
+		</div>
 	</p>
 	<p>
 		In the <i>Edges</i> drawer in the tool palette, all available
@@ -1971,35 +1961,376 @@
 		(if a <i>Composition</i> is desired). Figure 38 shows how to do it.
 	</p>
 	<p>
-		[[Image:ClassDiagramEditorNewAgg.bmp|center|thumb|500px|Figure 38:
-		Create a new <i>Association</i>]]
+		<div class="thumb middle">
+			<div class="thumbinner" style="width: 502px;">
+				<a href="ClassDiagramEditorNewAgg.bmp" class="image"><img
+					class="thumbimage" width="500" align="middle" border="0"
+					src="ClassDiagramEditorNewAgg.bmp" /></a>
+				<div class="thumbcaption">Figure 35: Create a new Association</div>
+			</div>
+		</div>
 	</p>
 	<p>
 		When the <i>Association</i> is created, the <i>Aggregation</i> field
 		is set to <i>none</i> by default. When doing the change at the
-		destination end (as in figure 38), the diamond shows up at the source
+		destination end (as in figure 35), the diamond shows up at the source
 		end of the relationship.
+	</p>
+	<h3 id="7.4.6_Diagrams">7.4.6 Diagrams</h3>
+	<p>UML has many different types of diagrams to capture all
+		different aspects of a system. To capture and refine requirements,
+		diagrams related to use-cases are used. To specify the architecture
+		and design, diagrams related to classes and packages are used. To
+		specify the implementation, state and activity diagrams are used, etc.</p>
+	<h4 id="7.4.6.1_Diagrams_related_to_use-cases">7.4.6.1 Diagrams
+		related to use-cases</h4>
+	<p>When working with requirement capture and refinement, use-case
+		modeling is used and any or all of the following diagrams can be used:</p>
+	<ul>
+		<li>Use-case diagram</li>
+		<li>Activity diagram</li>
+		<li>Interaction diagram
+			<ul>
+				<li>Sequence diagram</li>
+				<li>Collaboration diagram</li>
+			</ul>
+		</li>
+	</ul>
+	<p>
+		A <i>use-case diagram</i> describe how different <i>Actors</i> use
+		different functionality of the system. Implicitly, it also define the
+		system boundary, since it shows what should be performed by the system
+		and what exists outside the system. The elements used in <i>use-case
+			diagrams</i> are:
+	</p>
+	<ul>
+		<li><b>Actors</b> interact with, but are outside the system.</li>
+		<li><b>Use-cases</b> are some functionality that are performed by
+			the system.</li>
+		<li><b>Relationships</b> between elements.</li>
+	</ul>
+	<p>A diagram may depict all or some of the use-cases of a system.</p>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 602px;">
+					<a href="UCdiagram.bmp" class="image"><img class="thumbimage"
+						width="600" align="middle" border="0" src="UCdiagram.bmp" /></a>
+					<div class="thumbcaption">Figure 36: Use-case diagram</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		A <i>use-case</i> interacts with an <i>actor</i> and perform something
+		useful for that <i>actor</i>. A <i>use-case</i> exist because of its
+		main flow, but all odd cases and error situations have to be
+		specified. A <i>use-case</i> has a black box and a white box view. The
+		black box view is preferably described in plain text or by using
+		activity diagrams. The white box view is described by one or several
+		sequence diagrams.
+	</p>
+	<p>
+		All <i>use-cases</i> together span the entire functionality of the
+		system. <i>Actors</i>, <i>use-cases</i> and <i>use-case diagrams</i>
+		are owned by packages (general UML packages or model packages).
+	</p>
+	<p>
+		To create a <i>use-case diagram</i>, right click on the owning package
+		and select <b>New Diagram &gt; Create a new UseCase Diagram</b> from
+		its context menu.
+	</p>
+	<p>
+		An <i>activity diagram</i> is a kind of behavioral diagram and shows
+		flow of control from activity to activity. It is used to specify a
+		use-case black box view. It can also be used to specify a flow chart
+		for a class operation.
+	</p>
+	<p>
+		The main elements in an <i>activity diagram</i> are:
+	</p>
+	<ul>
+		<li>Initial and end states</li>
+		<li>Activities</li>
+		<li>States</li>
+		<li>Transitions</li>
+		<li>Synchronization lines</li>
+		<li>Decisions</li>
+		<li>Partitions</li>
+	</ul>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 602px;">
+					<a href="ActivityDiagram.bmp" class="image"><img
+						class="thumbimage" width="600" align="middle" border="0"
+						src="ActivityDiagram.bmp" /></a>
+					<div class="thumbcaption">Figure 37: Activity diagram</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		The <i>activity diagram</i> is preferably used to specify the black
+		box behavior of a use-case instead of using plain text. It may also be
+		used to specify a flow chart for a class operation.<i>Activity
+			diagrams</i> are owned by use-cases or classes.
+	</p>
+	<p>
+		To create an <i>activity diagram</i>, right click on the owning
+		use-case or class and select <b>New Diagram &gt; Create a new
+			Activity Diagram</b> from its context menu.
+	</p>
+	<p>
+		Interaction diagrams are used to specify how different modeling
+		elements interacts. Here two types are described, the <i>sequence
+			diagram</i> and the <i>communication diagram</i>.
+	</p>
+	<p>
+		A <i>sequence diagram</i> describes the interactions between elements
+		as a time ordered set of messages. One or several <i>sequence
+			diagrams</i> are used to specify the white box view of a use-case.
+	</p>
+	<p>
+		Sequences involving collaborating elementsThe main elements in a <i>sequence
+			diagram</i> are:
+	</p>
+	<ul>
+		<li>Class instances (objects)</li>
+		<li>Life lines</li>
+		<li>Messages</li>
+		<li>Combined fragments</li>
+	</ul>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 602px;">
+					<a href="SequenceDiagram.bmp" class="image"><img
+						class="thumbimage" width="600" align="middle" border="0"
+						src="SequenceDiagram.bmp" /></a>
+					<div class="thumbcaption">Figure 38: Sequence diagram</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		The example (Figure 38) describes Interaction1, two objects (instances
+		of Class1 and Class2) are created and interacts by messages. The time
+		goes down along the life lines. In the bottom, there is a combined
+		fragment of type "Ref" which is a reference to another interaction,
+		Interaction2, meaning that the sequences in that interaction are
+		executed.There are a lot of combined fragment types, e.g. type "Loop"
+		specifies a loop, type "Alt" specifies alternatives, etc. All combined
+		fragment types are defined in <a
+			href="http://www.omg.org/spec/UML/2.4.1/">Unified Modeling
+			Language (UML) version 2.4.1</a>
+	</p>
+	<p>
+		<i>Sequence diagrams</i> are owned by use-cases or communication
+		diagrams (see below).
+	</p>
+	<p>
+		To create a <i>sequence diagram</i>, right click on the owning
+		use-case or communication diagram and select <b>New Diagram &gt;
+			Create a new Sequence Diagram</b> from its context menu.
+	</p>
+	<p>
+		<i>Communication diagrams</i> show the lines of communication among a
+		set of objects to accomplish a specific purpose. They act as the
+		framework for sequence diagrams and define access paths between
+		elements. i.e. <i>communication diagrams</i> are used to specify a
+		use-case's white box communication channels between elements in the
+		system.
+	</p>
+	<p>
+		The main elements in a <i>collaboration diagram</i> are:
+	</p>
+	<ul>
+		<li>Class instances (objects)</li>
+		<li>Access paths</li>
+		<li>Messages</li>
+	</ul>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 602px;">
+					<a href="CommunicationDiagram.bmp" class="image"><img
+						class="thumbimage" width="600" align="middle" border="0"
+						src="CommunicationDiagram.bmp" /></a>
+					<div class="thumbcaption">Figure 39: Communication diagram</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		The example (Figure 39) describes access paths between objects and
+		which messages are passed in these paths.<i>Communication diagrams</i>
+		are owned by use-cases.
+	</p>
+	<p>
+		To create a <i>communication diagram</i>, right click on the owning
+		use-case and select <b>New Diagram &gt; Create a new Communication
+			Diagram</b> from its context menu.
+	</p>
+	<h4 id="7.4.6.2_Diagrams_related_to_classes">7.4.6.2 Diagrams
+		related to classes</h4>
+	<p>When modeling classes, any or all of the following diagrams may
+		be used:</p>
+	<ul>
+		<li><i>Class diagrams</i></li>
+		<li><i>Composite structure diagrams</i></li>
+		<li><i>State diagrams</i></li>
+	</ul>
+	<p>As described above, activity diagrams may also be used to
+		specify a flowchart for a class operation.</p>
+	<p>
+		<i>Class diagrams</i> depict static views of the system. A <i>class
+			diagram</i> may represent all or part of the class structure of a system.
+		Typically there are many <i>class diagrams</i> in a model. Usually one
+		or many <i>class diagrams</i> are used to specify the inheritance
+		structure in the system. <i>Class diagrams</i> may also be used to
+		define dependency rules between packages.
+	</p>
+	<p>
+		The main elements in a <i>class diagram</i> are:
+	</p>
+	<ul>
+		<li>Packages</li>
+		<li>Classes</li>
+		<li>Relationships</li>
+	</ul>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 602px;">
+					<a href="ClassDiagram.bmp" class="image"><img
+						class="thumbimage" width="600" align="middle" border="0"
+						src="ClassDiagram.bmp" /></a>
+					<div class="thumbcaption">Figure 40: Class diagram</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		The example (Figure 40) shows a <i>class diagram</i> used to specify
+		an inheritance structure between classes. Note: The <i>Generalization</i>
+		relationship and the indication of the inherited attributes in Class1
+		and Class2.
+	</p>
+	<p>
+		<i>Class diagrams</i> are owned by ordinary UML packages or model
+		packages.
+	</p>
+	<p>
+		To create a <i>class diagram</i>, right click on the owning package
+		and select <b>New Diagram &gt; Create a new Class Diagram</b> from its
+		context menu.
+	</p>
+	<p>
+		The <i>composite structure diagram</i> specifies structure classes
+		contents, i.e. how the class uses <i>roles</i> (instances from other
+		classes) and how they are connected to fulfill its responsibility.
+	</p>
+	<p>
+		The main elements in a <i>composite structure diagram</i> are:
+	</p>
+	<ul>
+		<li>Contained roles (instances of classes)</li>
+		<li>Ports (interface objects)</li>
+		<li>Connectors</li>
+	</ul>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 602px;">
+					<a href="CompositeStructure.bmp" class="image"><img
+						class="thumbimage" width="600" align="middle" border="0"
+						src="CompositeStructure.bmp" /></a>
+					<div class="thumbcaption">Figure 41: Composite structure
+						diagram</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		The example (Figure 41) shows a <i>composite structure diagram</i>
+		used to specify the structural contents of Class4. Note: Class4 uses
+		one instance (class2) of Class2 and one instance (class3) of Class3
+		and they are connected between Class2/Port1 and Class3/Port2.
+	</p>
+	<p>
+		<i>Composite structure diagrams</i> are owned by structured classes.
+	</p>
+	<p>
+		To create a <i>composite structure diagram</i>, right click on the
+		owning class and select <b>New Diagram &gt; Create a new Composite
+			Structure Diagram</b> from its context menu.
+	</p>
+	<p>
+		The <i>state machine diagram</i> specifies the behavior of a class. It
+		is used when the class is state rich, i.e. has an event driven
+		behavior. If the class has no states, activity diagrams can be used.
+	</p>
+	<p>
+		The main elements in a <i>state machine diagram</i> are:
+	</p>
+	<ul>
+		<li>States</li>
+		<li>Transitions</li>
+		<li>Effect code</li>
+		<li>Triggering events</li>
+		<li>Pseudo states, e.g. initial, final and choice points</li>
+	</ul>
+	<p>
+		<center>
+			<div class="thumb middle">
+				<div class="thumbinner" style="width: 602px;">
+					<a href="StateDiagram.bmp" class="image"><img
+						class="thumbimage" width="600" align="middle" border="0"
+						src="StateDiagram.bmp" /></a>
+					<div class="thumbcaption">Figure 42: State machine diagram</div>
+				</div>
+			</div>
+		</center>
+	</p>
+	<p>
+		The example (Figure 42) shows a <i>state machine diagram</i> that has
+		an initial pseudo state, three states and transitions between them. On
+		each transition (except for initialize), a <i>triggering event</i> is
+		specified, which defines the event that makes the transition to be
+		taken. Transitions and states may have effect code, which specify
+		detailed behavior to be executed when an associated transition is
+		taken.
+	</p>
+	<p>
+		<i>State machine diagrams</i> are owned by classes.
+	</p>
+	<p>
+		To create a <i>state machine diagram</i>, right click on the owning
+		class and select <b>New Diagram &gt; Create a new State Machine
+			Diagram</b> from its context menu.
 	</p>
 	<h2 id="7.5_UML_RT_modeling">
 		<div id="UMLRTmodeling">7.5 UML RT modeling</div>
 	</h2>
 	<p>
-		When creating models, UML is used. UML is very general and provides
-		possibilities to profile the basic UML in order to efficiently use it
-		for a specific domain. When using UML for RT modeling with Capsules
+		When creating models UML is used. Since UML is general-purpose
+		modeling language in the field of software engineering, it is possible
+		to adapt UML to specific domains. This is done by creating and
+		applying UML profiles. When using UML for RT modeling with Capsules
 		and Protocols, the UML RT profile is applied. When a profile is
-		applied, it can be viewed as Papyrus is specialized. There is a
-		specific use case of Papyrus to develop UML profiles and when doing
-		so, a domain specific modeling language is defined. This use case is
+		applied we can say that Papyrus has been specialized. There is a
+		specific use-case in Papyrus to develop UML profiles and when doing so
+		a domain specific modeling language is defined. This use-case is
 		described in section <a href="#7.10_UML_profiling">UML profiling</a>
 		in this user guide.
 	</p>
 	<h3 id="7.5.1_Additional_modeling_elements">7.5.1 Additional
 		modeling elements</h3>
-	<h4 id="7.5.1.1_Capsule_Class">7.5.1.1 Capsule Class</h4>
-	<h4 id="7.5.1.2_Protocol_Class">7.5.1.2 Protocol Class</h4>
-	<h3 id="7.5.2_Using_C_in_a_model">7.5.2 Using C in a model</h3>
-	<h3 id="7.5.3_C_service_library">7.5.3 C service library</h3>
+	<h4 id="7.5.1.1_Capsule_class">7.5.1.1 Capsule class</h4>
+	<h4 id="7.5.1.2_Protocol_class">7.5.1.2 Protocol class</h4>
+	<h3 id="7.5.2_Using_C.2B.2B_in_a_model">7.5.2 Using C++ in a model</h3>
+	<h3 id="7.5.3_C.2B.2B_service_library">7.5.3 C++ service library</h3>
 	<h4 id="7.5.3.1_Sending_messages">7.5.3.1 Sending messages</h4>
 	<h3 id="7.5.4_Transformation_from_model_to_code">7.5.4
 		Transformation from model to code</h3>
@@ -2009,9 +2340,7 @@
 		Compiling and linking the generated code</h3>
 	<h3 id="7.5.7_Using_external_libraries">7.5.7 Using external
 		libraries</h3>
-	<h3 id="7.5.8_Running_the_application">7.5.8 Running the
-		application</h3>
-	<h3 id="7.5.9_Model_components">7.5.9 Model components</h3>
+	<h3 id="7.5.8_Running_the_system">7.5.8 Running the system</h3>
 	<h2 id="7.6_Papyrus_in_a_team_environment">
 		<div id="Papyrusinateamenvironment">7.6 Papyrus in a team
 			environment</div>
@@ -2057,5 +2386,17 @@
 			href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=&amp;classification=Modeling&amp;product=MDT.Papyrus&amp;component=Core&amp;long_desc_type=allwordssubstr&amp;long_desc=&amp;bug_file_loc_type=allwordssubstr&amp;bug_file_loc=&amp;status_whiteboard_type=allwordssubstr&amp;status_whiteboard=&amp;keywords_type=allwords&amp;keywords=&amp;bug_status=NEW&amp;bug_status=ASSIGNED&amp;bug_status=REOPENED&amp;emailtype1=exact&amp;email1=&amp;emailtype2=substring&amp;email2=&amp;bugidtype=include&amp;bug_id=&amp;votes=&amp;chfieldfrom=&amp;chfieldto=Now&amp;chfieldvalue=&amp;cmdtype=doit&amp;order=Reuse%20same%20sort%20as%20last%20time&amp;field0-0-0=noop&amp;type0-0-0=noop&amp;value0-0-0=">Bugzilla_to_report_bugs</a></li>
 	</ul>
 	<h1 id="9_References">9 References</h1>
+	<ol>
+		<li><a href="http://www.eclipse.org/">eclipse.org</a></li>
+		<li><a href="http://www.eclipse.org/modeling/emf/">EMF model</a></li>
+		<li><a href="http://www.eclipse.org/downloads/">Eclipse
+				download page</a></li>
+		<li><a href="http://www.omg.org/spec/UML/2.4.1/">Unified
+				Modeling Language (UML) version 2.4.1</a></li>
+		<li><a href="http://www.omg.org/spec/SysML/">System Modeling
+				Language</a></li>
+		<li><a href="http://www.omg.org/omgmarte/Specification.htm/">Modeling
+				and Analysis of Real-Time and Embedded systems</a></li>
+	</ol>
 </body>
 </html>
