@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
@@ -54,38 +55,44 @@ public class FixPortsLocationOnOpening {
 			if(!(current instanceof Shape)) {
 				continue;
 			}
-
-			String currentType = ((Shape)current).getType();
+			
+			Shape portView = (Shape)current;
+			String currentType = portView.getType();
 			if(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID.equals(currentType) || UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID.equals(currentType)) {
 
 				int borderItemOffset = 10;
-				Shape portView = (Shape)current;
-				Shape parentView = (Shape)ViewUtil.getViewContainer(portView);
-				Bounds portViewBounds = (Bounds)portView.getLayoutConstraint();
-				Bounds parentViewBounds = (Bounds)parentView.getLayoutConstraint();
+				View parentView = ViewUtil.getViewContainer(portView);
+				
+				if (parentView instanceof Shape){
+					Shape parentShape = (Shape)parentView;
+					
+					Bounds portViewBounds = (Bounds)portView.getLayoutConstraint();
+					Bounds parentViewBounds = (Bounds)parentShape.getLayoutConstraint();
 
-				final Rectangle portBounds = new Rectangle(portViewBounds.getX(), portViewBounds.getY(), portViewBounds.getWidth(), portViewBounds.getHeight());
+					final Rectangle portBounds = new Rectangle(portViewBounds.getX(), portViewBounds.getY(), portViewBounds.getWidth(), portViewBounds.getHeight());
 
-				int parentWidth = parentViewBounds.getWidth();
-				int parentHeight = parentViewBounds.getHeight();
-				if((parentWidth == -1) && (parentHeight == -1)) {
-					// warning the size may not be set in notation (default size), in such a case get default size from preferences.
-					String parentPrefKey = ElementTypes.DIAGRAM_ID + "_" + parentView.getType();
-					parentWidth = Activator.getInstance().getPreferenceStore().getInt(PreferencesConstantsHelper.getElementConstant(parentPrefKey, PreferencesConstantsHelper.WIDTH));
-					parentHeight = Activator.getInstance().getPreferenceStore().getInt(PreferencesConstantsHelper.getElementConstant(parentPrefKey, PreferencesConstantsHelper.HEIGHT));
+					int parentWidth = parentViewBounds.getWidth();
+					int parentHeight = parentViewBounds.getHeight();
+					if((parentWidth == -1) && (parentHeight == -1)) {
+						// warning the size may not be set in notation (default size), in such a case get default size from preferences.
+						String parentPrefKey = ElementTypes.DIAGRAM_ID + "_" + parentShape.getType();
+						parentWidth = Activator.getInstance().getPreferenceStore().getInt(PreferencesConstantsHelper.getElementConstant(parentPrefKey, PreferencesConstantsHelper.WIDTH));
+						parentHeight = Activator.getInstance().getPreferenceStore().getInt(PreferencesConstantsHelper.getElementConstant(parentPrefKey, PreferencesConstantsHelper.HEIGHT));
+					}
+					final Rectangle parentBounds = new Rectangle(parentViewBounds.getX(), parentViewBounds.getY(), parentWidth, parentHeight);
+
+					// Calculate the valid location based on currently stored location and parent bounds
+					final Rectangle validLocation = PortPositionLocatorUtils.getBorderLocation(parentBounds, portBounds, borderItemOffset);
+
+					// Fix when current location is not the valid location (only possible if parent size is set)
+					if((!portBounds.equals(validLocation)) && (parentViewBounds.getWidth() != -1) && (parentViewBounds.getHeight() != -1)) {
+
+						TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
+						Command fixCommand = new FixLocationCommand(editingDomain, "Fix Port location on opening", portViewBounds, validLocation);
+						editingDomain.getCommandStack().execute(fixCommand);
+					}
 				}
-				final Rectangle parentBounds = new Rectangle(parentViewBounds.getX(), parentViewBounds.getY(), parentWidth, parentHeight);
 
-				// Calculate the valid location based on currently stored location and parent bounds
-				final Rectangle validLocation = PortPositionLocatorUtils.getBorderLocation(parentBounds, portBounds, borderItemOffset);
-
-				// Fix when current location is not the valid location (only possible if parent size is set)
-				if((!portBounds.equals(validLocation)) && (parentViewBounds.getWidth() != -1) && (parentViewBounds.getHeight() != -1)) {
-
-					TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(diagram);
-					Command fixCommand = new FixLocationCommand(editingDomain, "Fix Port location on opening", portViewBounds, validLocation);
-					editingDomain.getCommandStack().execute(fixCommand);
-				}
 
 			}
 		}
