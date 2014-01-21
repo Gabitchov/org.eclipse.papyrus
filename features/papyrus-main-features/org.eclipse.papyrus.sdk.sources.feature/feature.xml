@@ -67,10 +67,6 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.sysml.table.source.feature"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.papyrus.uml.source.feature"
          version="0.0.0"/>
 
@@ -80,10 +76,6 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <includes
          id="org.eclipse.papyrus.uml.properties.source.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.papyrus.uml.table.source.feature"
          version="0.0.0"/>
 
    <includes
@@ -157,7 +149,7 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.uml.nattable.source.feature"
          version="0.0.0"/>
-         
+
    <includes
          id="org.eclipse.papyrus.infra.gmfdiag.css.source.feature"
          version="0.0.0"/>
