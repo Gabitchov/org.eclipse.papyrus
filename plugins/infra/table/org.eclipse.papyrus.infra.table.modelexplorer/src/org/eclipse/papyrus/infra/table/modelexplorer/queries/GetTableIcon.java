@@ -26,6 +26,8 @@ public class GetTableIcon extends AbstractGetEditorIconQuery implements IJavaMod
 	 * {@inheritDoc}
 	 */
 	public String evaluate(final PapyrusTableInstance context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		return "/" + getEditorRegistry(context).getEditorURLIcon(context); //$NON-NLS-1$
+		
+		System.out.println("/org.eclipse.papyrus.infra.table.modelexplorer/icons/table.png");
+		return "/org.eclipse.papyrus.infra.table.modelexplorer/icons/table.png";// + getEditorRegistry(context).getEditorURLIcon(context); //$NON-NLS-1$
 	}
 }
