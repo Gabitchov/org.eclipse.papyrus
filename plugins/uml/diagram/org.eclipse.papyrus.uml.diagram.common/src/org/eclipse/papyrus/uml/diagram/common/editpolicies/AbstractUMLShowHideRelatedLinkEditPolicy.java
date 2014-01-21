@@ -35,12 +35,12 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractShowHideRelatedLinkEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.Domain2Notation;
 import org.eclipse.papyrus.uml.diagram.common.helper.LinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.ui.dialogs.ShowHideRelatedLinkSelectionDialog;
 import org.eclipse.papyrus.uml.diagram.common.util.LinkEndsMapper;
@@ -89,7 +89,7 @@ public abstract class AbstractUMLShowHideRelatedLinkEditPolicy extends AbstractS
 	 *         to the user selection
 	 */
 	@Override
-	protected Command getShowHideRelatedLinkCommandWithDialog(final Collection<EditPart> selectedEditParts, final Map<EditPart, Set<EObject>> availableLinks, final Set<EObject> visibleLinks, final Map<EObject, View> domain2NotationMap, final Collection<UpdaterLinkDescriptor> linksDescriptors) {
+	protected Command getShowHideRelatedLinkCommandWithDialog(final Collection<EditPart> selectedEditParts, final Map<EditPart, Set<EObject>> availableLinks, final Set<EObject> visibleLinks, final Domain2Notation domain2NotationMap, final Collection<UpdaterLinkDescriptor> linksDescriptors) {
 		//0. build the mapping between semantic link and their representations used in the dialog
 		final Map<EObject, LinkEndsMapper> linkMapping = new HashMap<EObject, LinkEndsMapper>();
 		final Iterator<UpdaterLinkDescriptor> iter = linksDescriptors.iterator();
