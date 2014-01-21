@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2014 CEA.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.figures;
 
 import org.eclipse.draw2d.Graphics;
@@ -16,15 +28,14 @@ public class TransitionFigure extends DashedEdgeFigure {
 	 */
 	public TransitionFigure() {
 		super();
-		setStyle();
+		setupDefaultStyle();
 	}
 
 	/**
-	 * Sets initial Style for the figure. It does not give any special Color for
-	 * Background and Foreground. This is the style used for classic arrows:
-	 * ------>
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure#resetStyle()
 	 */
-	protected void setStyle() {
+	@Override
+	public void resetStyle() {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
 		dec.setLineWidth(1);
@@ -34,6 +45,5 @@ public class TransitionFigure extends DashedEdgeFigure {
 			this.setTargetDecoration(null);
 		}// arrow at target endpoint
 		this.setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
-
 	}
 }

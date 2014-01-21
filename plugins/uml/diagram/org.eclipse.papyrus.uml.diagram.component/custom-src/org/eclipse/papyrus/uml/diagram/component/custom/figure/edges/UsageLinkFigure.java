@@ -21,21 +21,33 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 **/
 public class UsageLinkFigure extends DashedEdgeFigure{
 	
+	private boolean asLink = true;
 	
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure#resetStyle()
+	 */
+	@Override
+	public void resetStyle() {
+		this.arrow = !asLink;
+		setupDefaultStyle();
+		if (asLink) {
+			this.setLineStyle(Graphics.LINE_SOLID);
+		} else {
+			this.setLineStyle(Graphics.LINE_CUSTOM);
+		}
+	}
+
 	/**
 	 * display it as a line
 	 */
 	public void displayAsAlink(){
-		setArrow(false);
-		this.setLineStyle(Graphics.LINE_SOLID);
-		
+		asLink = true;
 	}
+
 	/**
 	 * display it as the UML representation with its decoration
 	 */
 	public void displayAsUMLShape(){
-		this.setLineStyle(Graphics.LINE_CUSTOM);
-		setArrow(true);
-		
+		asLink = false;
 	}
 }
