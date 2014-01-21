@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.infra.table.feature" label="Papyrus table (Incubation)" provider-name="Eclipse Modeling Project" version="1.0.0.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.infra.table.feature"
+      label="Papyrus table (Incubation)"
+      version="1.0.0.qualifier"
+      provider-name="Eclipse Modeling Project">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012 CEA LIST
@@ -13,22 +18,18 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.table.common" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.table.instance"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.table.instance" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.table.menu" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.table.modelexplorer" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.table.properties" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.table.controlmode" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.edit" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.editor" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.infra.table.modelexplorer"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
