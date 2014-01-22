@@ -34,6 +34,14 @@
       </rm:uri>
     </rm:provider>
     
+    <!-- tablemigration -->
+    <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/extraplugins/tablemigration/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    
     <!-- dsml-validation -->
     <rm:provider componentTypes="osgi.bundle" readerType="local">
       <rm:uri format="{0}/extraplugins/dsml.validation/{1}">
