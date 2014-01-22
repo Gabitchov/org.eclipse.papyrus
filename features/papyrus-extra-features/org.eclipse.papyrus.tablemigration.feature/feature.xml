@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.papyrus.infra.table.feature"
+      id="org.eclipse.papyrus.tablemigration.feature"
       label="Papyrus table (Incubation)"
       version="1.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
