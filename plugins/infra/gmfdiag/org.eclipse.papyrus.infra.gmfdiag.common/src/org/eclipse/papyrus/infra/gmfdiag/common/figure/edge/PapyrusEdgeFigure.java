@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.common.figure.edge;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -31,11 +32,16 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gmf.runtime.common.ui.services.editor.EditorService;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * 
@@ -199,7 +205,7 @@ public abstract class PapyrusEdgeFigure extends PolylineConnectionEx {
 	 *         the visual part map for this figure or <code>null</code> if not found
 	 */
 	protected Map<?, ?> getVisualPartMap(final IFigure figure) {
-		final IEditorPart part = EditorHelper.getCurrentEditor();
+		IEditorPart part = EditorHelper.getCurrentEditor();
 		if(part instanceof CoreMultiDiagramEditor) {
 			final List<IEditorPart> visibleEditors = ((CoreMultiDiagramEditor)part).getISashWindowsContainer().getVisibleIEditorParts();
 			for(final IEditorPart current : visibleEditors) {
@@ -207,6 +213,28 @@ public abstract class PapyrusEdgeFigure extends PolylineConnectionEx {
 				final Map<?, ?> visualPartMap = viewer.getVisualPartMap();
 				if(visualPartMap.containsKey(figure)) {
 					return visualPartMap;
+				}
+			}
+		} else {
+			//used when papyrus has been "unsashified"
+			final IWorkbench workbench = PlatformUI.getWorkbench();
+			if(workbench != null) {
+				final IWorkbenchWindow window = workbench.getActiveWorkbenchWindow();
+				if(window != null) {
+					final List<?> editors = EditorService.getInstance().getRegisteredEditorParts();
+					for(Iterator<?> j = editors.iterator(); j.hasNext();) {
+						final IEditorPart editor = (IEditorPart)j.next();
+						if(editor.getEditorSite().getWorkbenchWindow() == window) {
+							if(editor instanceof IDiagramWorkbenchPart) {
+								final IDiagramWorkbenchPart de = (IDiagramWorkbenchPart)editor;
+								final GraphicalViewer viewer = de.getDiagramGraphicalViewer();
+								final Map<?, ?> visualPartMap = viewer.getVisualPartMap();
+								if(visualPartMap.containsKey(figure)) {
+									return visualPartMap;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
