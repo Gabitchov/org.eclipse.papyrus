@@ -194,5 +194,14 @@
             name="Disable Extended Types Set configuration">
       </command>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.extendedTypeConfiguration">
+      <configuration
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration"
+            description="configuration for semantic element types that have aspect actions for creation"
+            factoryClass="org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeFactory"
+            name="Aspect Semantic Type Configuration">
+      </configuration>
+   </extension>
   
 </plugin>

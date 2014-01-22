@@ -160,31 +160,6 @@ public class ExtendedtypesItemProviderAdapterFactory extends ExtendedtypesAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration}
-	 * instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected AspectSemanticTypeAdviceConfigurationItemProvider aspectSemanticTypeAdviceConfigurationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createAspectSemanticTypeAdviceConfigurationAdapter() {
-		if(aspectSemanticTypeAdviceConfigurationItemProvider == null) {
-			aspectSemanticTypeAdviceConfigurationItemProvider = new AspectSemanticTypeAdviceConfigurationItemProvider(this);
-		}
-		return aspectSemanticTypeAdviceConfigurationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -206,30 +181,6 @@ public class ExtendedtypesItemProviderAdapterFactory extends ExtendedtypesAdapte
 			aspectViewTypeConfigurationItemProvider = new AspectViewTypeConfigurationItemProvider(this);
 		}
 		return aspectViewTypeConfigurationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected AspectViewTypeAdviceConfigurationItemProvider aspectViewTypeAdviceConfigurationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createAspectViewTypeAdviceConfigurationAdapter() {
-		if(aspectViewTypeAdviceConfigurationItemProvider == null) {
-			aspectViewTypeAdviceConfigurationItemProvider = new AspectViewTypeAdviceConfigurationItemProvider(this);
-		}
-		return aspectViewTypeAdviceConfigurationItemProvider;
 	}
 
 	/**
@@ -344,11 +295,7 @@ public class ExtendedtypesItemProviderAdapterFactory extends ExtendedtypesAdapte
 			iconEntryItemProvider.dispose();
 		if(aspectSemanticTypeConfigurationItemProvider != null)
 			aspectSemanticTypeConfigurationItemProvider.dispose();
-		if(aspectSemanticTypeAdviceConfigurationItemProvider != null)
-			aspectSemanticTypeAdviceConfigurationItemProvider.dispose();
 		if(aspectViewTypeConfigurationItemProvider != null)
 			aspectViewTypeConfigurationItemProvider.dispose();
-		if(aspectViewTypeAdviceConfigurationItemProvider != null)
-			aspectViewTypeAdviceConfigurationItemProvider.dispose();
 	}
 }

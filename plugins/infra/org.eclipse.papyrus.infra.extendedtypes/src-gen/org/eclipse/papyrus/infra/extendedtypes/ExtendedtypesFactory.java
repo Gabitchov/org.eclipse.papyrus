@@ -65,16 +65,6 @@ public interface ExtendedtypesFactory extends EFactory {
 	AspectSemanticTypeConfiguration createAspectSemanticTypeConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Aspect Semantic Type Advice Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Aspect Semantic Type Advice Configuration</em>'.
-	 * @generated
-	 */
-	AspectSemanticTypeAdviceConfiguration createAspectSemanticTypeAdviceConfiguration();
-
-	/**
 	 * Returns a new object of class '<em>Aspect View Type Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,16 +73,6 @@ public interface ExtendedtypesFactory extends EFactory {
 	 * @generated
 	 */
 	AspectViewTypeConfiguration createAspectViewTypeConfiguration();
-
-	/**
-	 * Returns a new object of class '<em>Aspect View Type Advice Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Aspect View Type Advice Configuration</em>'.
-	 * @generated
-	 */
-	AspectViewTypeAdviceConfiguration createAspectViewTypeAdviceConfiguration();
 
 	/**
 	 * Returns the package supported by this factory.

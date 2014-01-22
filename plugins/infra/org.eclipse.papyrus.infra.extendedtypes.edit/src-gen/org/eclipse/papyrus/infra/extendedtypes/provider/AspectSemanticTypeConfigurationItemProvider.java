@@ -29,7 +29,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesFactory;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 /**
@@ -80,7 +79,7 @@ public class AspectSemanticTypeConfigurationItemProvider extends SemanticTypeCon
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ExtendedtypesPackage.eINSTANCE.getAspectSemanticTypeConfiguration_AdviceConfiguration());
+			childrenFeatures.add(ExtendedtypesPackage.eINSTANCE.getAspectSemanticTypeConfiguration_ActionConfiguration());
 		}
 		return childrenFeatures;
 	}
@@ -136,7 +135,7 @@ public class AspectSemanticTypeConfigurationItemProvider extends SemanticTypeCon
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		switch(notification.getFeatureID(AspectSemanticTypeConfiguration.class)) {
-		case ExtendedtypesPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION__ACTION_CONFIGURATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -154,6 +153,5 @@ public class AspectSemanticTypeConfigurationItemProvider extends SemanticTypeCon
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-		newChildDescriptors.add(createChildParameter(ExtendedtypesPackage.eINSTANCE.getAspectSemanticTypeConfiguration_AdviceConfiguration(), ExtendedtypesFactory.eINSTANCE.createAspectSemanticTypeAdviceConfiguration()));
 	}
 }

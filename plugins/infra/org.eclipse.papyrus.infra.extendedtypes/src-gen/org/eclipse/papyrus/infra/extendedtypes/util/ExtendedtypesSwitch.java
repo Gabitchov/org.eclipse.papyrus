@@ -117,30 +117,6 @@ public class ExtendedtypesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ExtendedtypesPackage.VIEW_TYPE_ADVICE_CONFIGURATION:
-		{
-			ViewTypeAdviceConfiguration viewTypeAdviceConfiguration = (ViewTypeAdviceConfiguration)theEObject;
-			T result = caseViewTypeAdviceConfiguration(viewTypeAdviceConfiguration);
-			if(result == null)
-				result = caseElementTypeAdviceConfiguration(viewTypeAdviceConfiguration);
-			if(result == null)
-				result = caseConfigurationElement(viewTypeAdviceConfiguration);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ExtendedtypesPackage.SEMANTIC_TYPE_ADVICE_CONFIGURATION:
-		{
-			SemanticTypeAdviceConfiguration semanticTypeAdviceConfiguration = (SemanticTypeAdviceConfiguration)theEObject;
-			T result = caseSemanticTypeAdviceConfiguration(semanticTypeAdviceConfiguration);
-			if(result == null)
-				result = caseElementTypeAdviceConfiguration(semanticTypeAdviceConfiguration);
-			if(result == null)
-				result = caseConfigurationElement(semanticTypeAdviceConfiguration);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case ExtendedtypesPackage.MATCHER_CONFIGURATION:
 		{
 			MatcherConfiguration matcherConfiguration = (MatcherConfiguration)theEObject;
@@ -231,20 +207,6 @@ public class ExtendedtypesSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ExtendedtypesPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION:
-		{
-			AspectSemanticTypeAdviceConfiguration aspectSemanticTypeAdviceConfiguration = (AspectSemanticTypeAdviceConfiguration)theEObject;
-			T result = caseAspectSemanticTypeAdviceConfiguration(aspectSemanticTypeAdviceConfiguration);
-			if(result == null)
-				result = caseSemanticTypeAdviceConfiguration(aspectSemanticTypeAdviceConfiguration);
-			if(result == null)
-				result = caseElementTypeAdviceConfiguration(aspectSemanticTypeAdviceConfiguration);
-			if(result == null)
-				result = caseConfigurationElement(aspectSemanticTypeAdviceConfiguration);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION:
 		{
 			AspectViewTypeConfiguration aspectViewTypeConfiguration = (AspectViewTypeConfiguration)theEObject;
@@ -255,20 +217,6 @@ public class ExtendedtypesSwitch<T> extends Switch<T> {
 				result = caseElementTypeConfiguration(aspectViewTypeConfiguration);
 			if(result == null)
 				result = caseConfigurationElement(aspectViewTypeConfiguration);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION:
-		{
-			AspectViewTypeAdviceConfiguration aspectViewTypeAdviceConfiguration = (AspectViewTypeAdviceConfiguration)theEObject;
-			T result = caseAspectViewTypeAdviceConfiguration(aspectViewTypeAdviceConfiguration);
-			if(result == null)
-				result = caseViewTypeAdviceConfiguration(aspectViewTypeAdviceConfiguration);
-			if(result == null)
-				result = caseElementTypeAdviceConfiguration(aspectViewTypeAdviceConfiguration);
-			if(result == null)
-				result = caseConfigurationElement(aspectViewTypeAdviceConfiguration);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -343,40 +291,6 @@ public class ExtendedtypesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConfigurationElement(ConfigurationElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>View Type Advice Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>View Type Advice Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseViewTypeAdviceConfiguration(ViewTypeAdviceConfiguration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Semantic Type Advice Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Semantic Type Advice Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSemanticTypeAdviceConfiguration(SemanticTypeAdviceConfiguration object) {
 		return null;
 	}
 
@@ -517,23 +431,6 @@ public class ExtendedtypesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Aspect Semantic Type Advice Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Aspect Semantic Type Advice Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAspectSemanticTypeAdviceConfiguration(AspectSemanticTypeAdviceConfiguration object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Aspect View Type Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -547,23 +444,6 @@ public class ExtendedtypesSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAspectViewTypeConfiguration(AspectViewTypeConfiguration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Aspect View Type Advice Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Aspect View Type Advice Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAspectViewTypeAdviceConfiguration(AspectViewTypeAdviceConfiguration object) {
 		return null;
 	}
 

@@ -32,8 +32,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ConfigurationElement/identifier"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ConfigurationElement/iconEntry"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ViewTypeAdviceConfiguration"/>
-    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//SemanticTypeAdviceConfiguration"/>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//MatcherConfiguration"/>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ActionConfiguration"/>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ViewActionConfiguration"/>
@@ -44,18 +42,10 @@
     </genClasses>
     <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ElementTypeAdviceConfiguration"/>
     <genClasses ecoreClass="ExtendedTypes.ecore#//AspectSemanticTypeConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectSemanticTypeConfiguration/adviceConfiguration"/>
-    </genClasses>
-    <genClasses ecoreClass="ExtendedTypes.ecore#//AspectSemanticTypeAdviceConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectSemanticTypeAdviceConfiguration/preActionConfiguration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectSemanticTypeAdviceConfiguration/postActionConfiguration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectSemanticTypeConfiguration/actionConfiguration"/>
     </genClasses>
     <genClasses ecoreClass="ExtendedTypes.ecore#//AspectViewTypeConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectViewTypeConfiguration/adviceConfiguration"/>
-    </genClasses>
-    <genClasses ecoreClass="ExtendedTypes.ecore#//AspectViewTypeAdviceConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectViewTypeAdviceConfiguration/preActionConfiguration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectViewTypeAdviceConfiguration/postActionConfiguration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectViewTypeConfiguration/actionConfiguration"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

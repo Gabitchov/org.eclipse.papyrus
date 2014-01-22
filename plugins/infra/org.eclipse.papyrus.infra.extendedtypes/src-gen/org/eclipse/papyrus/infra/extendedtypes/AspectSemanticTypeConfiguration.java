@@ -12,6 +12,8 @@
  */
 package org.eclipse.papyrus.infra.extendedtypes;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Aspect Semantic Type Configuration</b></em>'.
@@ -20,7 +22,7 @@ package org.eclipse.papyrus.infra.extendedtypes;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration#getAdviceConfiguration <em>Advice Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration#getActionConfiguration <em>Action Configuration</em>}</li>
  * </ul>
  * </p>
  * 
@@ -31,31 +33,19 @@ package org.eclipse.papyrus.infra.extendedtypes;
 public interface AspectSemanticTypeConfiguration extends SemanticTypeConfiguration {
 
 	/**
-	 * Returns the value of the '<em><b>Advice Configuration</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Action Configuration</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Advice Configuration</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Action Configuration</em>' containment reference list isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Advice Configuration</em>' containment reference.
-	 * @see #setAdviceConfiguration(AspectSemanticTypeAdviceConfiguration)
-	 * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getAspectSemanticTypeConfiguration_AdviceConfiguration()
-	 * @model containment="true" required="true"
+	 * @return the value of the '<em>Action Configuration</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getAspectSemanticTypeConfiguration_ActionConfiguration()
+	 * @model containment="true"
 	 * @generated
 	 */
-	AspectSemanticTypeAdviceConfiguration getAdviceConfiguration();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration#getAdviceConfiguration
-	 * <em>Advice Configuration</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Advice Configuration</em>' containment reference.
-	 * @see #getAdviceConfiguration()
-	 * @generated
-	 */
-	void setAdviceConfiguration(AspectSemanticTypeAdviceConfiguration value);
+	EList<SemanticActionConfiguration> getActionConfiguration();
 } // AspectSemanticTypeConfiguration

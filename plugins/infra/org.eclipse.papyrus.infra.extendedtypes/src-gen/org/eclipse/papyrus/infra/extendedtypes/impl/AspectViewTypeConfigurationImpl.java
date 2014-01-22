@@ -12,17 +12,21 @@
  */
 package org.eclipse.papyrus.infra.extendedtypes.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
+import org.eclipse.papyrus.infra.extendedtypes.ViewActionConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +35,7 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeConfigurationImpl#getAdviceConfiguration <em>Advice Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeConfigurationImpl#getActionConfiguration <em>Action Configuration</em>}</li>
  * </ul>
  * </p>
  * 
@@ -40,15 +44,15 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 public class AspectViewTypeConfigurationImpl extends ViewTypeConfigurationImpl implements AspectViewTypeConfiguration {
 
 	/**
-	 * The cached value of the '{@link #getAdviceConfiguration() <em>Advice Configuration</em>}' containment reference.
+	 * The cached value of the '{@link #getActionConfiguration() <em>Action Configuration</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @see #getAdviceConfiguration()
+	 * @see #getActionConfiguration()
 	 * @generated
 	 * @ordered
 	 */
-	protected AspectViewTypeAdviceConfiguration adviceConfiguration;
+	protected EList<ViewActionConfiguration> actionConfiguration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -77,47 +81,11 @@ public class AspectViewTypeConfigurationImpl extends ViewTypeConfigurationImpl i
 	 * 
 	 * @generated
 	 */
-	public AspectViewTypeAdviceConfiguration getAdviceConfiguration() {
-		return adviceConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public NotificationChain basicSetAdviceConfiguration(AspectViewTypeAdviceConfiguration newAdviceConfiguration, NotificationChain msgs) {
-		AspectViewTypeAdviceConfiguration oldAdviceConfiguration = adviceConfiguration;
-		adviceConfiguration = newAdviceConfiguration;
-		if(eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, oldAdviceConfiguration, newAdviceConfiguration);
-			if(msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+	public EList<ViewActionConfiguration> getActionConfiguration() {
+		if(actionConfiguration == null) {
+			actionConfiguration = new EObjectContainmentEList<ViewActionConfiguration>(ViewActionConfiguration.class, this, ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ACTION_CONFIGURATION);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setAdviceConfiguration(AspectViewTypeAdviceConfiguration newAdviceConfiguration) {
-		if(newAdviceConfiguration != adviceConfiguration) {
-			NotificationChain msgs = null;
-			if(adviceConfiguration != null)
-				msgs = ((InternalEObject)adviceConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, null, msgs);
-			if(newAdviceConfiguration != null)
-				msgs = ((InternalEObject)newAdviceConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, null, msgs);
-			msgs = basicSetAdviceConfiguration(newAdviceConfiguration, msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION, newAdviceConfiguration, newAdviceConfiguration));
+		return actionConfiguration;
 	}
 
 	/**
@@ -129,8 +97,8 @@ public class AspectViewTypeConfigurationImpl extends ViewTypeConfigurationImpl i
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch(featureID) {
-		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
-			return basicSetAdviceConfiguration(null, msgs);
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ACTION_CONFIGURATION:
+			return ((InternalEList<?>)getActionConfiguration()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -144,8 +112,8 @@ public class AspectViewTypeConfigurationImpl extends ViewTypeConfigurationImpl i
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch(featureID) {
-		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
-			return getAdviceConfiguration();
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ACTION_CONFIGURATION:
+			return getActionConfiguration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,11 +124,13 @@ public class AspectViewTypeConfigurationImpl extends ViewTypeConfigurationImpl i
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {
-		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
-			setAdviceConfiguration((AspectViewTypeAdviceConfiguration)newValue);
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ACTION_CONFIGURATION:
+			getActionConfiguration().clear();
+			getActionConfiguration().addAll((Collection<? extends ViewActionConfiguration>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -175,8 +145,8 @@ public class AspectViewTypeConfigurationImpl extends ViewTypeConfigurationImpl i
 	@Override
 	public void eUnset(int featureID) {
 		switch(featureID) {
-		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
-			setAdviceConfiguration((AspectViewTypeAdviceConfiguration)null);
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ACTION_CONFIGURATION:
+			getActionConfiguration().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -191,8 +161,8 @@ public class AspectViewTypeConfigurationImpl extends ViewTypeConfigurationImpl i
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch(featureID) {
-		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
-			return adviceConfiguration != null;
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ACTION_CONFIGURATION:
+			return actionConfiguration != null && !actionConfiguration.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

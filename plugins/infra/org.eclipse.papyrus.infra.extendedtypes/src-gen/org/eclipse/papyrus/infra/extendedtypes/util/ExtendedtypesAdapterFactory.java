@@ -104,16 +104,6 @@ public class ExtendedtypesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseViewTypeAdviceConfiguration(ViewTypeAdviceConfiguration object) {
-			return createViewTypeAdviceConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseSemanticTypeAdviceConfiguration(SemanticTypeAdviceConfiguration object) {
-			return createSemanticTypeAdviceConfigurationAdapter();
-		}
-
-		@Override
 		public Adapter caseMatcherConfiguration(MatcherConfiguration object) {
 			return createMatcherConfigurationAdapter();
 		}
@@ -154,18 +144,8 @@ public class ExtendedtypesAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseAspectSemanticTypeAdviceConfiguration(AspectSemanticTypeAdviceConfiguration object) {
-			return createAspectSemanticTypeAdviceConfigurationAdapter();
-		}
-
-		@Override
 		public Adapter caseAspectViewTypeConfiguration(AspectViewTypeConfiguration object) {
 			return createAspectViewTypeConfigurationAdapter();
-		}
-
-		@Override
-		public Adapter caseAspectViewTypeAdviceConfiguration(AspectViewTypeAdviceConfiguration object) {
-			return createAspectViewTypeAdviceConfigurationAdapter();
 		}
 
 		@Override
@@ -249,38 +229,6 @@ public class ExtendedtypesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConfigurationElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.ViewTypeAdviceConfiguration
-	 * <em>View Type Advice Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.ViewTypeAdviceConfiguration
-	 * @generated
-	 */
-	public Adapter createViewTypeAdviceConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.SemanticTypeAdviceConfiguration
-	 * <em>Semantic Type Advice Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.SemanticTypeAdviceConfiguration
-	 * @generated
-	 */
-	public Adapter createSemanticTypeAdviceConfigurationAdapter() {
 		return null;
 	}
 
@@ -413,22 +361,6 @@ public class ExtendedtypesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration
-	 * <em>Aspect Semantic Type Advice Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration
-	 * @generated
-	 */
-	public Adapter createAspectSemanticTypeAdviceConfigurationAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration
 	 * <em>Aspect View Type Configuration</em>}'.
 	 * <!-- begin-user-doc -->
@@ -441,22 +373,6 @@ public class ExtendedtypesAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAspectViewTypeConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration
-	 * <em>Aspect View Type Advice Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration
-	 * @generated
-	 */
-	public Adapter createAspectViewTypeAdviceConfigurationAdapter() {
 		return null;
 	}
 

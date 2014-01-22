@@ -33,12 +33,21 @@ public class CustomExtendedtypesItemProviderAdapterFactory extends
 	@Override
 	public Adapter createExtendedElementTypeSetAdapter() {
 		if (extendedElementTypeSetItemProvider == null) {
-			extendedElementTypeSetItemProvider = new CustomExtendedElementTypeSetItemProvider(
-					this);
+			extendedElementTypeSetItemProvider = new CustomExtendedElementTypeSetItemProvider(this);
 		}
 
 		return extendedElementTypeSetItemProvider;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Adapter createAspectSemanticTypeConfigurationAdapter() {
+		if(aspectSemanticTypeConfigurationItemProvider == null) {
+			aspectSemanticTypeConfigurationItemProvider = new CustomAspectSemanticTypeConfigurationItemProvider(this);
+		}
+		return aspectSemanticTypeConfigurationItemProvider;
+	}
 	
 }

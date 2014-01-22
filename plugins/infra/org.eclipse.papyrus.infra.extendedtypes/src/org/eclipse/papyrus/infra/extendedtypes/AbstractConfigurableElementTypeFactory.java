@@ -59,10 +59,11 @@ public abstract class AbstractConfigurableElementTypeFactory<T extends ElementTy
 	}
 
 	/**
-	 * @param configuration
-	 * @return
+	 * Returns the semantic hint for the element type from the given configuration
 	 */
-	protected abstract String getSemanticHint(T configuration);
+	protected String getSemanticHint(T configuration) {
+		return configuration.getHint();
+	}
 
 	/**
 	 * @param configuration
@@ -77,8 +78,9 @@ public abstract class AbstractConfigurableElementTypeFactory<T extends ElementTy
 	protected abstract IContainerDescriptor createContainerDescriptor(T configuration);
 
 	/**
-	 * @param configuration
-	 * @return
+	 * Creates the element matcher for the given configuration
+	 * @param configuration the configuration from which element matcher should be created
+	 * @return the new element matcher for the created element type
 	 */
 	protected IElementMatcher createElementMatcher(T configuration) {
 		MatcherConfiguration matcherConfiguration = configuration.getMatcherConfiguration();

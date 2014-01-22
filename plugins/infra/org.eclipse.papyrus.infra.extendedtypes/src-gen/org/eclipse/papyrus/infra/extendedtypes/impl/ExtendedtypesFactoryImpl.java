@@ -76,12 +76,8 @@ public class ExtendedtypesFactoryImpl extends EFactoryImpl implements Extendedty
 			return createIconEntry();
 		case ExtendedtypesPackage.ASPECT_SEMANTIC_TYPE_CONFIGURATION:
 			return createAspectSemanticTypeConfiguration();
-		case ExtendedtypesPackage.ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION:
-			return createAspectSemanticTypeAdviceConfiguration();
 		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION:
 			return createAspectViewTypeConfiguration();
-		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION:
-			return createAspectViewTypeAdviceConfiguration();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -126,31 +122,9 @@ public class ExtendedtypesFactoryImpl extends EFactoryImpl implements Extendedty
 	 * 
 	 * @generated
 	 */
-	public AspectSemanticTypeAdviceConfiguration createAspectSemanticTypeAdviceConfiguration() {
-		AspectSemanticTypeAdviceConfigurationImpl aspectSemanticTypeAdviceConfiguration = new AspectSemanticTypeAdviceConfigurationImpl();
-		return aspectSemanticTypeAdviceConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public AspectViewTypeConfiguration createAspectViewTypeConfiguration() {
 		AspectViewTypeConfigurationImpl aspectViewTypeConfiguration = new AspectViewTypeConfigurationImpl();
 		return aspectViewTypeConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public AspectViewTypeAdviceConfiguration createAspectViewTypeAdviceConfiguration() {
-		AspectViewTypeAdviceConfigurationImpl aspectViewTypeAdviceConfiguration = new AspectViewTypeAdviceConfigurationImpl();
-		return aspectViewTypeAdviceConfiguration;
 	}
 
 	/**

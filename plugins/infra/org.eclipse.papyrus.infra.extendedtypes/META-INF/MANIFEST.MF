@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.extendedtypes,
  org.eclipse.papyrus.infra.extendedtypes.advices,
+ org.eclipse.papyrus.infra.extendedtypes.handler,
  org.eclipse.papyrus.infra.extendedtypes.impl,
  org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration,
  org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.impl,

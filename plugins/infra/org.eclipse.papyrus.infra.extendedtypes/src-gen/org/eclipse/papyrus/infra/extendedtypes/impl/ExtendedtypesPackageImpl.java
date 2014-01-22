@@ -21,9 +21,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement;
 import org.eclipse.papyrus.infra.extendedtypes.ElementTypeAdviceConfiguration;
@@ -34,10 +32,8 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 import org.eclipse.papyrus.infra.extendedtypes.MatcherConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.SemanticTypeAdviceConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.SemanticTypeConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.ViewActionConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.ViewTypeAdviceConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.ViewTypeConfiguration;
 
 /**
@@ -80,22 +76,6 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 	 * @generated
 	 */
 	private EClass configurationElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass viewTypeAdviceConfigurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass semanticTypeAdviceConfigurationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -167,23 +147,7 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 	 * 
 	 * @generated
 	 */
-	private EClass aspectSemanticTypeAdviceConfigurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	private EClass aspectViewTypeConfigurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass aspectViewTypeAdviceConfigurationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
@@ -407,26 +371,6 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 	 * 
 	 * @generated
 	 */
-	public EClass getViewTypeAdviceConfiguration() {
-		return viewTypeAdviceConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getSemanticTypeAdviceConfiguration() {
-		return semanticTypeAdviceConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EClass getMatcherConfiguration() {
 		return matcherConfigurationEClass;
 	}
@@ -517,38 +461,8 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 	 * 
 	 * @generated
 	 */
-	public EReference getAspectSemanticTypeConfiguration_AdviceConfiguration() {
+	public EReference getAspectSemanticTypeConfiguration_ActionConfiguration() {
 		return (EReference)aspectSemanticTypeConfigurationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getAspectSemanticTypeAdviceConfiguration() {
-		return aspectSemanticTypeAdviceConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getAspectSemanticTypeAdviceConfiguration_PreActionConfiguration() {
-		return (EReference)aspectSemanticTypeAdviceConfigurationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getAspectSemanticTypeAdviceConfiguration_PostActionConfiguration() {
-		return (EReference)aspectSemanticTypeAdviceConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -567,38 +481,8 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 	 * 
 	 * @generated
 	 */
-	public EReference getAspectViewTypeConfiguration_AdviceConfiguration() {
+	public EReference getAspectViewTypeConfiguration_ActionConfiguration() {
 		return (EReference)aspectViewTypeConfigurationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getAspectViewTypeAdviceConfiguration() {
-		return aspectViewTypeAdviceConfigurationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getAspectViewTypeAdviceConfiguration_PreActionConfiguration() {
-		return (EReference)aspectViewTypeAdviceConfigurationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getAspectViewTypeAdviceConfiguration_PostActionConfiguration() {
-		return (EReference)aspectViewTypeAdviceConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -648,8 +532,6 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		createEAttribute(configurationElementEClass, CONFIGURATION_ELEMENT__DESCRIPTION);
 		createEAttribute(configurationElementEClass, CONFIGURATION_ELEMENT__IDENTIFIER);
 		createEReference(configurationElementEClass, CONFIGURATION_ELEMENT__ICON_ENTRY);
-		viewTypeAdviceConfigurationEClass = createEClass(VIEW_TYPE_ADVICE_CONFIGURATION);
-		semanticTypeAdviceConfigurationEClass = createEClass(SEMANTIC_TYPE_ADVICE_CONFIGURATION);
 		matcherConfigurationEClass = createEClass(MATCHER_CONFIGURATION);
 		actionConfigurationEClass = createEClass(ACTION_CONFIGURATION);
 		viewActionConfigurationEClass = createEClass(VIEW_ACTION_CONFIGURATION);
@@ -659,15 +541,9 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		createEAttribute(viewTypeConfigurationEClass, VIEW_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID);
 		elementTypeAdviceConfigurationEClass = createEClass(ELEMENT_TYPE_ADVICE_CONFIGURATION);
 		aspectSemanticTypeConfigurationEClass = createEClass(ASPECT_SEMANTIC_TYPE_CONFIGURATION);
-		createEReference(aspectSemanticTypeConfigurationEClass, ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION);
-		aspectSemanticTypeAdviceConfigurationEClass = createEClass(ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION);
-		createEReference(aspectSemanticTypeAdviceConfigurationEClass, ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION);
-		createEReference(aspectSemanticTypeAdviceConfigurationEClass, ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION);
+		createEReference(aspectSemanticTypeConfigurationEClass, ASPECT_SEMANTIC_TYPE_CONFIGURATION__ACTION_CONFIGURATION);
 		aspectViewTypeConfigurationEClass = createEClass(ASPECT_VIEW_TYPE_CONFIGURATION);
-		createEReference(aspectViewTypeConfigurationEClass, ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION);
-		aspectViewTypeAdviceConfigurationEClass = createEClass(ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION);
-		createEReference(aspectViewTypeAdviceConfigurationEClass, ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION);
-		createEReference(aspectViewTypeAdviceConfigurationEClass, ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION);
+		createEReference(aspectViewTypeConfigurationEClass, ASPECT_VIEW_TYPE_CONFIGURATION__ACTION_CONFIGURATION);
 	}
 
 	/**
@@ -701,8 +577,6 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		// Add supertypes to classes
 		extendedElementTypeSetEClass.getESuperTypes().add(this.getConfigurationElement());
 		elementTypeConfigurationEClass.getESuperTypes().add(this.getConfigurationElement());
-		viewTypeAdviceConfigurationEClass.getESuperTypes().add(this.getElementTypeAdviceConfiguration());
-		semanticTypeAdviceConfigurationEClass.getESuperTypes().add(this.getElementTypeAdviceConfiguration());
 		actionConfigurationEClass.getESuperTypes().add(this.getConfigurationElement());
 		viewActionConfigurationEClass.getESuperTypes().add(this.getActionConfiguration());
 		semanticActionConfigurationEClass.getESuperTypes().add(this.getActionConfiguration());
@@ -710,9 +584,7 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		viewTypeConfigurationEClass.getESuperTypes().add(this.getElementTypeConfiguration());
 		elementTypeAdviceConfigurationEClass.getESuperTypes().add(this.getConfigurationElement());
 		aspectSemanticTypeConfigurationEClass.getESuperTypes().add(this.getSemanticTypeConfiguration());
-		aspectSemanticTypeAdviceConfigurationEClass.getESuperTypes().add(this.getSemanticTypeAdviceConfiguration());
 		aspectViewTypeConfigurationEClass.getESuperTypes().add(this.getViewTypeConfiguration());
-		aspectViewTypeAdviceConfigurationEClass.getESuperTypes().add(this.getViewTypeAdviceConfiguration());
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedElementTypeSetEClass, ExtendedElementTypeSet.class, "ExtendedElementTypeSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getExtendedElementTypeSet_ElementType(), this.getElementTypeConfiguration(), null, "elementType", null, 1, -1, ExtendedElementTypeSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -730,8 +602,6 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		initEAttribute(getConfigurationElement_Description(), theEcorePackage.getEString(), "description", null, 0, 1, ConfigurationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConfigurationElement_Identifier(), theEcorePackage.getEString(), "identifier", null, 1, 1, ConfigurationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConfigurationElement_IconEntry(), this.getIconEntry(), null, "iconEntry", null, 0, 1, ConfigurationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEClass(viewTypeAdviceConfigurationEClass, ViewTypeAdviceConfiguration.class, "ViewTypeAdviceConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEClass(semanticTypeAdviceConfigurationEClass, SemanticTypeAdviceConfiguration.class, "SemanticTypeAdviceConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEClass(matcherConfigurationEClass, MatcherConfiguration.class, "MatcherConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEClass(actionConfigurationEClass, ActionConfiguration.class, "ActionConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEClass(viewActionConfigurationEClass, ViewActionConfiguration.class, "ViewActionConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -741,15 +611,9 @@ public class ExtendedtypesPackageImpl extends EPackageImpl implements Extendedty
 		initEAttribute(getViewTypeConfiguration_SpecializedDiagramTypeID(), ecorePackage.getEString(), "specializedDiagramTypeID", null, 0, 1, ViewTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEClass(elementTypeAdviceConfigurationEClass, ElementTypeAdviceConfiguration.class, "ElementTypeAdviceConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEClass(aspectSemanticTypeConfigurationEClass, AspectSemanticTypeConfiguration.class, "AspectSemanticTypeConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAspectSemanticTypeConfiguration_AdviceConfiguration(), this.getAspectSemanticTypeAdviceConfiguration(), null, "adviceConfiguration", null, 1, 1, AspectSemanticTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEClass(aspectSemanticTypeAdviceConfigurationEClass, AspectSemanticTypeAdviceConfiguration.class, "AspectSemanticTypeAdviceConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAspectSemanticTypeAdviceConfiguration_PreActionConfiguration(), this.getSemanticActionConfiguration(), null, "preActionConfiguration", null, 0, -1, AspectSemanticTypeAdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAspectSemanticTypeAdviceConfiguration_PostActionConfiguration(), this.getSemanticActionConfiguration(), null, "postActionConfiguration", null, 0, -1, AspectSemanticTypeAdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAspectSemanticTypeConfiguration_ActionConfiguration(), this.getSemanticActionConfiguration(), null, "actionConfiguration", null, 0, -1, AspectSemanticTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEClass(aspectViewTypeConfigurationEClass, AspectViewTypeConfiguration.class, "AspectViewTypeConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAspectViewTypeConfiguration_AdviceConfiguration(), this.getAspectViewTypeAdviceConfiguration(), null, "adviceConfiguration", null, 1, 1, AspectViewTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEClass(aspectViewTypeAdviceConfigurationEClass, AspectViewTypeAdviceConfiguration.class, "AspectViewTypeAdviceConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAspectViewTypeAdviceConfiguration_PreActionConfiguration(), this.getViewActionConfiguration(), null, "preActionConfiguration", null, 0, -1, AspectViewTypeAdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAspectViewTypeAdviceConfiguration_PostActionConfiguration(), this.getViewActionConfiguration(), null, "postActionConfiguration", null, 0, -1, AspectViewTypeAdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAspectViewTypeConfiguration_ActionConfiguration(), this.getViewActionConfiguration(), null, "actionConfiguration", null, 0, -1, AspectViewTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		// Create resource
 		createResource(eNS_URI);
 	}

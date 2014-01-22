@@ -12,6 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
@@ -64,7 +67,7 @@ public class InvariantElementTypeFactory extends AbstractConfigurableElementType
 		if(superMatcher !=null)  {
 			// create a composed matcher to have the matcher described by the model configuration element type and the one for the specific invariants
 			IElementMatcher invariantMatcher = RuleConfigurationFactoryRegistry.getInstance().createMatcher(configuration.getInvariantRuleConfiguration());
-			ComposedElementMatcher composedMatcher = new ComposedElementMatcher(superMatcher, invariantMatcher);
+			ComposedElementMatcher composedMatcher = new ComposedElementMatcher(Arrays.asList(superMatcher, invariantMatcher));
 			return composedMatcher;
 		}
 		// no configured matcher. Return the invariant one

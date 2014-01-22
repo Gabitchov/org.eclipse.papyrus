@@ -359,192 +359,6 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ICON_ENTRY_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ElementTypeAdviceConfigurationImpl
-	 * <em>Element Type Advice Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ElementTypeAdviceConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getElementTypeAdviceConfiguration()
-	 * @generated
-	 */
-	int ELEMENT_TYPE_ADVICE_CONFIGURATION = 12;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE_ADVICE_CONFIGURATION__NAME = CONFIGURATION_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = CONFIGURATION_ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE_ADVICE_CONFIGURATION__IDENTIFIER = CONFIGURATION_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY = CONFIGURATION_ELEMENT__ICON_ENTRY;
-
-	/**
-	 * The number of structural features of the '<em>Element Type Advice Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = CONFIGURATION_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ViewTypeAdviceConfigurationImpl
-	 * <em>View Type Advice Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ViewTypeAdviceConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getViewTypeAdviceConfiguration()
-	 * @generated
-	 */
-	int VIEW_TYPE_ADVICE_CONFIGURATION = 4;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_TYPE_ADVICE_CONFIGURATION__NAME = ELEMENT_TYPE_ADVICE_CONFIGURATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = ELEMENT_TYPE_ADVICE_CONFIGURATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_TYPE_ADVICE_CONFIGURATION__IDENTIFIER = ELEMENT_TYPE_ADVICE_CONFIGURATION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY = ELEMENT_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY;
-
-	/**
-	 * The number of structural features of the '<em>View Type Advice Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = ELEMENT_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.SemanticTypeAdviceConfigurationImpl
-	 * <em>Semantic Type Advice Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.SemanticTypeAdviceConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getSemanticTypeAdviceConfiguration()
-	 * @generated
-	 */
-	int SEMANTIC_TYPE_ADVICE_CONFIGURATION = 5;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SEMANTIC_TYPE_ADVICE_CONFIGURATION__NAME = ELEMENT_TYPE_ADVICE_CONFIGURATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SEMANTIC_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = ELEMENT_TYPE_ADVICE_CONFIGURATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SEMANTIC_TYPE_ADVICE_CONFIGURATION__IDENTIFIER = ELEMENT_TYPE_ADVICE_CONFIGURATION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SEMANTIC_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY = ELEMENT_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY;
-
-	/**
-	 * The number of structural features of the '<em>Semantic Type Advice Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SEMANTIC_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = ELEMENT_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.MatcherConfigurationImpl <em>Matcher Configuration</em>}'
 	 * class.
 	 * <!-- begin-user-doc -->
@@ -554,7 +368,7 @@ public interface ExtendedtypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getMatcherConfiguration()
 	 * @generated
 	 */
-	int MATCHER_CONFIGURATION = 6;
+	int MATCHER_CONFIGURATION = 4;
 
 	/**
 	 * The number of structural features of the '<em>Matcher Configuration</em>' class.
@@ -575,7 +389,7 @@ public interface ExtendedtypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getActionConfiguration()
 	 * @generated
 	 */
-	int ACTION_CONFIGURATION = 7;
+	int ACTION_CONFIGURATION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -637,7 +451,7 @@ public interface ExtendedtypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getViewActionConfiguration()
 	 * @generated
 	 */
-	int VIEW_ACTION_CONFIGURATION = 8;
+	int VIEW_ACTION_CONFIGURATION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -699,7 +513,7 @@ public interface ExtendedtypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getSemanticActionConfiguration()
 	 * @generated
 	 */
-	int SEMANTIC_ACTION_CONFIGURATION = 9;
+	int SEMANTIC_ACTION_CONFIGURATION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -761,7 +575,7 @@ public interface ExtendedtypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getSemanticTypeConfiguration()
 	 * @generated
 	 */
-	int SEMANTIC_TYPE_CONFIGURATION = 10;
+	int SEMANTIC_TYPE_CONFIGURATION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -863,7 +677,7 @@ public interface ExtendedtypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getViewTypeConfiguration()
 	 * @generated
 	 */
-	int VIEW_TYPE_CONFIGURATION = 11;
+	int VIEW_TYPE_CONFIGURATION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -966,6 +780,68 @@ public interface ExtendedtypesPackage extends EPackage {
 	int VIEW_TYPE_CONFIGURATION_FEATURE_COUNT = ELEMENT_TYPE_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.ElementTypeAdviceConfigurationImpl
+	 * <em>Element Type Advice Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ElementTypeAdviceConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getElementTypeAdviceConfiguration()
+	 * @generated
+	 */
+	int ELEMENT_TYPE_ADVICE_CONFIGURATION = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE_ADVICE_CONFIGURATION__NAME = CONFIGURATION_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = CONFIGURATION_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE_ADVICE_CONFIGURATION__IDENTIFIER = CONFIGURATION_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY = CONFIGURATION_ELEMENT__ICON_ENTRY;
+
+	/**
+	 * The number of structural features of the '<em>Element Type Advice Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = CONFIGURATION_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectSemanticTypeConfigurationImpl
 	 * <em>Aspect Semantic Type Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -975,7 +851,7 @@ public interface ExtendedtypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getAspectSemanticTypeConfiguration()
 	 * @generated
 	 */
-	int ASPECT_SEMANTIC_TYPE_CONFIGURATION = 13;
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1058,14 +934,14 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = SEMANTIC_TYPE_CONFIGURATION__MATCHER_CONFIGURATION;
 
 	/**
-	 * The feature id for the '<em><b>Advice Configuration</b></em>' containment reference.
+	 * The feature id for the '<em><b>Action Configuration</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__ADVICE_CONFIGURATION = SEMANTIC_TYPE_CONFIGURATION_FEATURE_COUNT + 0;
+	int ASPECT_SEMANTIC_TYPE_CONFIGURATION__ACTION_CONFIGURATION = SEMANTIC_TYPE_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Aspect Semantic Type Configuration</em>' class.
@@ -1078,88 +954,6 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ASPECT_SEMANTIC_TYPE_CONFIGURATION_FEATURE_COUNT = SEMANTIC_TYPE_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectSemanticTypeAdviceConfigurationImpl
-	 * <em>Aspect Semantic Type Advice Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.AspectSemanticTypeAdviceConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getAspectSemanticTypeAdviceConfiguration()
-	 * @generated
-	 */
-	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION = 14;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__NAME = SEMANTIC_TYPE_ADVICE_CONFIGURATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = SEMANTIC_TYPE_ADVICE_CONFIGURATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__IDENTIFIER = SEMANTIC_TYPE_ADVICE_CONFIGURATION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY = SEMANTIC_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY;
-
-	/**
-	 * The feature id for the '<em><b>Pre Action Configuration</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION = SEMANTIC_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Post Action Configuration</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION = SEMANTIC_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Aspect Semantic Type Advice Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_SEMANTIC_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = SEMANTIC_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeConfigurationImpl
 	 * <em>Aspect View Type Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
@@ -1169,7 +963,7 @@ public interface ExtendedtypesPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getAspectViewTypeConfiguration()
 	 * @generated
 	 */
-	int ASPECT_VIEW_TYPE_CONFIGURATION = 15;
+	int ASPECT_VIEW_TYPE_CONFIGURATION = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1262,14 +1056,14 @@ public interface ExtendedtypesPackage extends EPackage {
 	int ASPECT_VIEW_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID = VIEW_TYPE_CONFIGURATION__SPECIALIZED_DIAGRAM_TYPE_ID;
 
 	/**
-	 * The feature id for the '<em><b>Advice Configuration</b></em>' containment reference.
+	 * The feature id for the '<em><b>Action Configuration</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION = VIEW_TYPE_CONFIGURATION_FEATURE_COUNT + 0;
+	int ASPECT_VIEW_TYPE_CONFIGURATION__ACTION_CONFIGURATION = VIEW_TYPE_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Aspect View Type Configuration</em>' class.
@@ -1280,88 +1074,6 @@ public interface ExtendedtypesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASPECT_VIEW_TYPE_CONFIGURATION_FEATURE_COUNT = VIEW_TYPE_CONFIGURATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeAdviceConfigurationImpl
-	 * <em>Aspect View Type Advice Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.AspectViewTypeAdviceConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.extendedtypes.impl.ExtendedtypesPackageImpl#getAspectViewTypeAdviceConfiguration()
-	 * @generated
-	 */
-	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION = 16;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__NAME = VIEW_TYPE_ADVICE_CONFIGURATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__DESCRIPTION = VIEW_TYPE_ADVICE_CONFIGURATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__IDENTIFIER = VIEW_TYPE_ADVICE_CONFIGURATION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Icon Entry</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY = VIEW_TYPE_ADVICE_CONFIGURATION__ICON_ENTRY;
-
-	/**
-	 * The feature id for the '<em><b>Pre Action Configuration</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__PRE_ACTION_CONFIGURATION = VIEW_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Post Action Configuration</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION__POST_ACTION_CONFIGURATION = VIEW_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Aspect View Type Advice Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ASPECT_VIEW_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = VIEW_TYPE_ADVICE_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet <em>Extended Element Type Set</em>}'.
@@ -1561,30 +1273,6 @@ public interface ExtendedtypesPackage extends EPackage {
 	EReference getConfigurationElement_IconEntry();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.ViewTypeAdviceConfiguration
-	 * <em>View Type Advice Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>View Type Advice Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.ViewTypeAdviceConfiguration
-	 * @generated
-	 */
-	EClass getViewTypeAdviceConfiguration();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.SemanticTypeAdviceConfiguration
-	 * <em>Semantic Type Advice Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Semantic Type Advice Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.SemanticTypeAdviceConfiguration
-	 * @generated
-	 */
-	EClass getSemanticTypeAdviceConfiguration();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.MatcherConfiguration <em>Matcher Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1690,57 +1378,17 @@ public interface ExtendedtypesPackage extends EPackage {
 	EClass getAspectSemanticTypeConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration#getAdviceConfiguration <em>Advice Configuration</em>}'.
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration#getActionConfiguration <em>Action Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the containment reference '<em>Advice Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration#getAdviceConfiguration()
+	 * @return the meta object for the containment reference list '<em>Action Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration#getActionConfiguration()
 	 * @see #getAspectSemanticTypeConfiguration()
 	 * @generated
 	 */
-	EReference getAspectSemanticTypeConfiguration_AdviceConfiguration();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration
-	 * <em>Aspect Semantic Type Advice Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Aspect Semantic Type Advice Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration
-	 * @generated
-	 */
-	EClass getAspectSemanticTypeAdviceConfiguration();
-
-	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPreActionConfiguration
-	 * <em>Pre Action Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '<em>Pre Action Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPreActionConfiguration()
-	 * @see #getAspectSemanticTypeAdviceConfiguration()
-	 * @generated
-	 */
-	EReference getAspectSemanticTypeAdviceConfiguration_PreActionConfiguration();
-
-	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPostActionConfiguration
-	 * <em>Post Action Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '<em>Post Action Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeAdviceConfiguration#getPostActionConfiguration()
-	 * @see #getAspectSemanticTypeAdviceConfiguration()
-	 * @generated
-	 */
-	EReference getAspectSemanticTypeAdviceConfiguration_PostActionConfiguration();
+	EReference getAspectSemanticTypeConfiguration_ActionConfiguration();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration
@@ -1755,56 +1403,17 @@ public interface ExtendedtypesPackage extends EPackage {
 	EClass getAspectViewTypeConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration#getAdviceConfiguration <em>Advice Configuration</em>}'.
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration#getActionConfiguration <em>Action Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the containment reference '<em>Advice Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration#getAdviceConfiguration()
+	 * @return the meta object for the containment reference list '<em>Action Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration#getActionConfiguration()
 	 * @see #getAspectViewTypeConfiguration()
 	 * @generated
 	 */
-	EReference getAspectViewTypeConfiguration_AdviceConfiguration();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration
-	 * <em>Aspect View Type Advice Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Aspect View Type Advice Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration
-	 * @generated
-	 */
-	EClass getAspectViewTypeAdviceConfiguration();
-
-	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration#getPreActionConfiguration <em>Pre Action Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '<em>Pre Action Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration#getPreActionConfiguration()
-	 * @see #getAspectViewTypeAdviceConfiguration()
-	 * @generated
-	 */
-	EReference getAspectViewTypeAdviceConfiguration_PreActionConfiguration();
-
-	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration#getPostActionConfiguration <em>Post Action Configuration</em>}
-	 * '.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '<em>Post Action Configuration</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeAdviceConfiguration#getPostActionConfiguration()
-	 * @see #getAspectViewTypeAdviceConfiguration()
-	 * @generated
-	 */
-	EReference getAspectViewTypeAdviceConfiguration_PostActionConfiguration();
+	EReference getAspectViewTypeConfiguration_ActionConfiguration();
 
 	/**
 	 * Returns the factory that creates the instances of the model.

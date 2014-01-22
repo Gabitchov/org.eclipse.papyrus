@@ -12,6 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 
@@ -21,36 +23,28 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
  */
 public class ComposedElementMatcher implements IElementMatcher {
 
-	protected final IElementMatcher mainMatcher;
-	protected final IElementMatcher composedElementMatcher;
+	private final List<IElementMatcher> matchers;
 	
-	public ComposedElementMatcher(IElementMatcher mainMatcher, IElementMatcher composedElementMatcher) {
-		this.composedElementMatcher = composedElementMatcher;
-		this.mainMatcher = mainMatcher;
+	public ComposedElementMatcher(List<IElementMatcher> matchers) {
+		this.matchers = matchers;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	public void init(MatcherConfiguration configuration) {
-		throw new RuntimeException("Not Expected to be called");
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
 	public boolean matches(EObject eObject) {
-		// matches if both matcher matches
-		if(mainMatcher!=null) {
-			if(!mainMatcher.matches(eObject)) {
-				return false;
-			}
-		}
-		if(composedElementMatcher!=null) {
-			if(!composedElementMatcher.matches(eObject)) {
+		for(IElementMatcher matcher : getMatchers()) {
+			if(!matcher.matches(eObject)) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * @return the matchers
+	 */
+	protected List<IElementMatcher> getMatchers() {
+		return matchers;
 	}
 }

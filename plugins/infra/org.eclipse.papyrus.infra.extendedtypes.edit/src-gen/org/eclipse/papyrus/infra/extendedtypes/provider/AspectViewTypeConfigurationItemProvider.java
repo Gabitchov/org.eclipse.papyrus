@@ -29,7 +29,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesFactory;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 /**
@@ -80,7 +79,7 @@ public class AspectViewTypeConfigurationItemProvider extends ViewTypeConfigurati
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if(childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ExtendedtypesPackage.eINSTANCE.getAspectViewTypeConfiguration_AdviceConfiguration());
+			childrenFeatures.add(ExtendedtypesPackage.eINSTANCE.getAspectViewTypeConfiguration_ActionConfiguration());
 		}
 		return childrenFeatures;
 	}
@@ -136,7 +135,7 @@ public class AspectViewTypeConfigurationItemProvider extends ViewTypeConfigurati
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		switch(notification.getFeatureID(AspectViewTypeConfiguration.class)) {
-		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ADVICE_CONFIGURATION:
+		case ExtendedtypesPackage.ASPECT_VIEW_TYPE_CONFIGURATION__ACTION_CONFIGURATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -154,6 +153,5 @@ public class AspectViewTypeConfigurationItemProvider extends ViewTypeConfigurati
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-		newChildDescriptors.add(createChildParameter(ExtendedtypesPackage.eINSTANCE.getAspectViewTypeConfiguration_AdviceConfiguration(), ExtendedtypesFactory.eINSTANCE.createAspectViewTypeAdviceConfiguration()));
 	}
 }
