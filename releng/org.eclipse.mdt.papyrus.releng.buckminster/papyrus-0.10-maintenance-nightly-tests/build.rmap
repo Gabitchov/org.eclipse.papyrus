@@ -218,8 +218,8 @@
     
     <!-- MDT OCL -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <!-- updateFrom("MDT OCL 4.1.1",0) -->
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/maintenance/4.1.1">
+      <!-- updateFrom("MDT OCL 4.1.2",0) -->
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/maintenance/4.1.2/M201401201522">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -227,7 +227,7 @@
     <!-- EMF Facet -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF Facet",0) -->
-       <rm:uri format="{0}/facet/updates/integration/0.3.1/I201309110554/">
+       <rm:uri format="{0}/facet/updates/integration/0.3.2/I201401021956/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -235,7 +235,7 @@
     <!-- MoDisco -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MoDisco",0) -->
-      <rm:uri format="{0}/modeling/mdt/modisco/updates/integration/0.11.1/I201309110624/">
+      <rm:uri format="{0}/modeling/mdt/modisco/updates/integration/0.11.2/I201401201005/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -343,7 +343,7 @@
     <!-- WST -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("WebTools",0) -->
-      <rm:uri format="{0}/webtools/downloads/drops/R3.5.1/R-3.5.1-20130913223750/repository/">
+      <rm:uri format="{0}/webtools/downloads/drops/R3.5.2/M-3.5.2RC1-20140121182103/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -351,7 +351,7 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.3/R-4.3.1-201309111000/">
+		<rm:uri format="{0}/eclipse/updates/4.3-M-builds/M-4.3.2RC1-201401170910/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>
