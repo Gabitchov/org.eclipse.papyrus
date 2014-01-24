@@ -28,13 +28,13 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
+import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
@@ -66,7 +66,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 *         the current active part
 	 */
 	protected IWorkbenchPart getActivePart() {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+		return WorkbenchPartHelper.getCurrentActiveWorkbenchPart();
 	}
 
 	/**

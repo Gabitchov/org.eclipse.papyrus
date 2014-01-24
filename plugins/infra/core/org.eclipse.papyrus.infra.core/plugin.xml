@@ -329,6 +329,13 @@
       </category>
    </extension>
    <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="org.eclipse.papyrus.infra.core.importcategory"
+            name="Papyrus">
+      </category>
+   </extension>
+   <extension
        id="org.eclipse.papyrus.modelmarker"
        name="model marker"
        point="org.eclipse.core.resources.markers">

@@ -31,6 +31,42 @@ public class Messages extends NLS {
 
 	public static String AbstractCreateNattableEditorHandler_PapyrusTableCreation;
 
+	public static String AbstractPasteImportInNattableManager_column;
+
+	public static String AbstractPasteImportInNattableManager_EnablementStatusForPasteInTheTable;
+
+	public static String AbstractPasteImportInNattableManager_INVERTED_MESSAGE;
+
+	public static String AbstractPasteImportInNattableManager_NoPasteConfiguration;
+
+	public static String AbstractPasteImportInNattableManager_NoPasteConfiguration2;
+
+	public static String AbstractPasteImportInNattableManager_NumberOfColumnsAreEquals;
+
+	public static String AbstractPasteImportInNattableManager_NumberOfColumnsAreNotEquals;
+
+	public static String AbstractPasteImportInNattableManager_PasteColumnsError;
+
+	public static String AbstractPasteImportInNattableManager_PasteRowsError;
+
+	public static String AbstractPasteImportInNattableManager_row;
+
+	public static String AbstractPasteImportInNattableManager_TheContextOfTheTableHasNotTheContainmentFeatureDefinedForThePaste;
+
+	public static String AbstractPasteImportInNattableManager_TheContextOfTheTableHasTheContainmentFeatureDefinedForThePaste;
+
+	public static String AbstractPasteImportInNattableManager_TheTableCanCreateElement;
+
+	public static String AbstractPasteImportInNattableManager_TheTableCantCreateElement;
+
+	public static String AbstractPasteImportInNattableManager_TheTableHasAConfigurationToPaste;
+
+	public static String AbstractPasteImportInNattableManager_TheUserChosesToPasteColumns;
+
+	public static String AbstractPasteImportInNattableManager_TheUserChosesToPasteRows;
+
+	public static String AbstractPasteImportInNattableManager_WhatAreYouPasting;
+
 	public static String AbstractSaveCurrentAxisProvidersHandler_0;
 
 	public static String AbstractSaveCurrentAxisProvidersHandler_1;
@@ -131,7 +167,37 @@ public class Messages extends NLS {
 
 	public static String TableTesterRegistry_TheClassCantBeLoaded;
 
+	public static String TextDelimiter_DoubleQuote;
+
+	public static String TextDelimiter_Quote;
+
 	public static String ICellManager_NotAvailable;
+
+	public static String ImportCSVConfigurationPage_SelectTheTextDelimiter;
+
+	public static String ImportCSVConfigurationPage_Separators;
+
+	public static String ImportCSVConfigurationPage_TheCellSeparatorIsNotDefined;
+
+	public static String ImportCSVConfigurationPage_TheCellSeparatorMustBeExcatlyOneChar;
+
+	public static String ImportFilePage_BeSureThatYourImportFileHasTheSameNumberOfColumns;
+
+	public static String ImportFilePage_SelectTheFileToImport;
+
+	public static String ImportFilePage_TheImportedElementWillBeAddedTo;
+
+	public static String ImportFilePage_YourFileWillBeImported;
+
+	public static String ImportTableErrorPage_PleaseOpenAPapyrusEditor;
+
+	public static String ImportTableWizard_ConfigureImport;
+
+	public static String ImportTableWizard_ImportTable;
+
+	public static String ImportTableWizard_ImportTableError;
+
+	public static String ImportTableWizard_ImportTableFromFileInPapyrusModel;
 
 	public static String AbstractUMLTableEFacetEditor_UMLTableCreationErrorMessage;
 
@@ -169,6 +235,20 @@ public class Messages extends NLS {
 
 	public static String LoadCurrentAxisProvidersDialog_3;
 
+	public static String PasteConfigurationUtils_ContainementFeatureIsNotAReference;
+
+	public static String PasteConfigurationUtils_ContainmentFeatureIsNotAReferenceContainment;
+
+	public static String PasteConfigurationUtils_ContainmentFeatureIsNull;
+
+	public static String PasteConfigurationUtils_CreatesElementsAreNotCompatibleWithContainmentFeature;
+
+	public static String PasteConfigurationUtils_ElementIdNotDefined;
+
+	public static String PasteConfigurationUtils_ElementTypeCantBeFound;
+
+	public static String PasteConfigurationUtils_PasteConfigurationIsConsistent;
+
 	public static String PasteEObjectAxisInTableCommandProvider_AddingElementToTheTable;
 
 	public static String PasteEObjectAxisInTableCommandProvider_CommandCreationHasBeenCancelled;
@@ -188,6 +268,10 @@ public class Messages extends NLS {
 	public static String PasteEObjectAxisInTableCommandProvider_PasteFromStringCommand;
 
 	public static String PasteEObjectAxisInTableCommandProvider_PasteRows;
+
+	public static String PasteImportStatusDialog_ImportPasteDialogTitle;
+
+	public static String PasteImportStatusDialog_PasteConfigurationMessage;
 
 	public static String PasteInPapyrusTableCommandProvider_0;
 
@@ -224,6 +308,15 @@ public class Messages extends NLS {
 	public static String PasteInTableHandler_PasteCreation;
 
 	public static String PasteInTableHandler_ThePasteCommandCantBeExecuted;
+	public static String PasteSeparator_Comma;
+
+	public static String PasteSeparator_Other;
+
+	public static String PasteSeparator_Semicolon;
+
+	public static String PasteSeparator_Space;
+
+	public static String PasteSeparator_Tabulation;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

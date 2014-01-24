@@ -34,10 +34,13 @@ public enum PasteModeEnumeration {
 	 */
 	PASTE_EOBJECT_ROW_OR_COLUMN,
 	/**
-	 * paste is not possible
+	 * configuration exist but the configuration is not valid
 	 */
-	CANT_PASTE;
+	CANT_PASTE,
 
-
+	/**
+	 * the table have any configuration for paste
+	 */
+	PASTE_NO_CONFIGURATION;
 
 }

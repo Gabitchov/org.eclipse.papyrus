@@ -15,9 +15,9 @@ package org.eclipse.papyrus.infra.nattable.handler;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.nattable.manager.PasteInTableManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.utils.PasteModeEnumeration;
+import org.eclipse.papyrus.infra.nattable.manager.PasteAxisInNattableManager;
+import org.eclipse.papyrus.infra.nattable.utils.CSVPasteHelper;
+import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
 
 /**
  * Paste Handler
@@ -28,35 +28,11 @@ import org.eclipse.papyrus.infra.nattable.utils.PasteModeEnumeration;
 public class PasteInTableHandler extends AbstractTableHandler {
 
 	/**
-	 * the paste manager
-	 */
-	private PasteInTableManager pasteManager;
-
-	/**
 	 * this field is used to determine if we want open a dialog to prevent the user that the command creation and the command execution can take a
 	 * long time
 	 */
 	private boolean useProgressMonitorDialog = true;
 
-
-	/**
-	 * the paste mode
-	 */
-	private PasteModeEnumeration pasteMode;
-
-	/**
-	 * the current table manager
-	 */
-	private INattableModelManager manager;
-
-	/**
-	 * 
-	 * Constructor.
-	 * 
-	 */
-	public PasteInTableHandler() {
-		this.pasteManager = new PasteInTableManager();
-	}
 
 	/**
 	 * 
@@ -68,10 +44,11 @@ public class PasteInTableHandler extends AbstractTableHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		this.pasteManager.paste(getCurrentNattableModelManager(), pasteMode, useProgressMonitorDialog);
+		CSVPasteHelper pasteHelper = new CSVPasteHelper();
+		PasteAxisInNattableManager pasteManager = new PasteAxisInNattableManager(getCurrentNattableModelManager(), pasteHelper, useProgressMonitorDialog, TableClipboardUtils.getClipboardContentsAsString());
+		pasteManager.doPaste();
 		return null;
 	}
-
 
 	/**
 	 * @Override
@@ -80,21 +57,7 @@ public class PasteInTableHandler extends AbstractTableHandler {
 	 * @param evaluationContext
 	 */
 	public void setEnabled(Object evaluationContext) {
-		pasteMode = null;
-		this.manager = getCurrentNattableModelManager();
-		boolean isEnabled = false;
-		if(manager != null) {
-			pasteMode = this.pasteManager.getPasteMode(evaluationContext, manager);
-			switch(pasteMode) {
-			case CANT_PASTE:
-				isEnabled = false;
-				break;
-			default:
-				isEnabled = true;
-			}
-
-		}
-		setBaseEnabled(isEnabled);
+		setBaseEnabled(getCurrentNattableModelManager() != null);
 	}
 
 

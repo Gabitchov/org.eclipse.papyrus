@@ -33,16 +33,22 @@ public class TableClipboardUtils {
 	/**
 	 * row separator in the clipboard contents
 	 */
+	@Deprecated
+	//use the value defined in PasteHelpers
 	public static final String AXIS_SEPARATOR = "\n"; //$NON-NLS-1$
 
 	/**
 	 * column separator in the clipboard contents
 	 */
+	@Deprecated
+	//use the value defined into PasteHelper
 	public static final String CELL_SEPARATOR = "\t"; //$NON-NLS-1$
 
 	/**
 	 * the separator used for multivalue
 	 */
+	@Deprecated
+	//use the value defined into PasteHelper
 	public static final String MULTI_VALUE_SEPARATOR = ","; //$NON-NLS-1$
 
 	private TableClipboardUtils() {
@@ -55,6 +61,8 @@ public class TableClipboardUtils {
 	 *        a table represented by a String
 	 * @return the rows for this table
 	 */
+	@Deprecated
+	//use PasteHelper
 	public static final String[] getRows(final String fullContents) {
 		final String[] rows = fullContents.split(AXIS_SEPARATOR);
 		return rows;
@@ -65,6 +73,8 @@ public class TableClipboardUtils {
 	 * @return
 	 *         the rows as string extractzed from the clipboad
 	 */
+	@Deprecated
+	//use PasteHelper
 	public static final String[] getRowsFromClipboard() {
 		final String clipboardContent = getClipboardContents();
 		if(clipboardContent != null && !clipboardContent.isEmpty()) {
@@ -78,6 +88,8 @@ public class TableClipboardUtils {
 	 * @return
 	 *         the columns as string extractzed from the clipboad
 	 */
+	@Deprecated
+	//use PasteHelper
 	public static final String[] getColumnsFromClipboard() {
 		final String clipboardContent = getClipboardContents();
 		if(clipboardContent != null && !clipboardContent.isEmpty()) {
@@ -123,10 +135,21 @@ public class TableClipboardUtils {
 
 	/**
 	 * 
+	 * @return
+	 *         the contents of the clipboard
+	 */
+	public static final String getClipboardContentsAsString() {
+		return getClipboardContents();
+	}
+
+	/**
+	 * 
 	 * @param row
 	 *        a row represented by a String
 	 * @return the cells for this row
 	 */
+	@Deprecated
+	//Use PasteHelpers#getCellsAsStringFromAxis
 	public static final String[] getCells(final String row) {
 		return row.split(CELL_SEPARATOR);
 	}
