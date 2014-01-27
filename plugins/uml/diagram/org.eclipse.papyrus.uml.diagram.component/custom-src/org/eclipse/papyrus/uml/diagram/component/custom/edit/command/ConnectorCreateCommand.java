@@ -125,26 +125,20 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.uml.diagram.comp
 	 */
 	@Override
 	public boolean canExecute() {
-		System.err.println("source"+source+ " target " +target);
 		if((source == null) && (target == null)) {
-			System.err.println("1");
 			return false;
 		}
 		if((source != null) && !(source instanceof ConnectableElement)) {
-			System.err.println("2");
 			return false;
 		}
 		if((target != null) && !(target instanceof ConnectableElement)) {
-			System.err.println("3");
 			return false;
 		}
 		if(source == null) {
-			System.err.println("4");
 			return true; // link creation is in progress; source is not defined yet
 		}
 
 		if((target != null) && (getContainer() == null)) {
-			System.err.println("5");
 			return false;
 		}
 		
@@ -254,7 +248,6 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.uml.diagram.comp
 		StructuredClassifier deducedContainer = null;
 
 		if((containerProposedBySource != null) && (containerProposedByTarget != null)) {
-			System.err.println("Container "+containerProposedBySource.getName()+ ""+ containerProposedBySource.getName());
 			if(containerProposedBySource == containerProposedByTarget) {
 				deducedContainer = containerProposedBySource;
 			}
