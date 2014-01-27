@@ -3,8 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.layers.integrationtests
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: integrationtests.jar,
- eclipse-43-R-modeling-kepler/eclipse/plugins/org.eclipse.gmf.runtime.notation_1.7.0.201306101425.jar
 Export-Package: org.eclipse.papyrus.layers.integrationtests
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.papyrus.layers.runtime;bundle-version="0.10.0",
