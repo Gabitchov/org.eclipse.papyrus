@@ -348,6 +348,21 @@ public class DepUtils {
 	}
 
 	/**
+	 * This method returns the instances contained within a composite instance
+	 * specification for an assembly. Unlike @see getContainedInstances, this method only
+	 * returns contained instances that are not shared.
+	 */
+	public static EList<InstanceSpecification> getContainedNonSharedInstances(InstanceSpecification is) {
+		EList<InstanceSpecification> contained = new BasicEList<InstanceSpecification>();
+		for(Slot slot : is.getSlots()) {
+			InstanceSpecification instance = getInstance(slot);
+			if((instance != null) && !DepUtils.isShared(slot)) {
+				contained.add(instance);
+			}
+		}
+		return contained;
+	}
+	/**
 	 * return all slots that reference an instance specification
 	 * 
 	 * @param is
