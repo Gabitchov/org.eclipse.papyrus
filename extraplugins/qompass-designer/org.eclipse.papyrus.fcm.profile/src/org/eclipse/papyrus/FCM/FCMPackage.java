@@ -1544,6 +1544,43 @@ public interface FCMPackage extends EPackage {
 	int CONNECTOR_CONFIGURATION_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.impl.BindTemplateImpl <em>Bind Template</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.FCM.impl.BindTemplateImpl
+	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getBindTemplate()
+	 * @generated
+	 */
+	int BIND_TEMPLATE = 37;
+
+	/**
+	 * The feature id for the '<em><b>Actual</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_TEMPLATE__ACTUAL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Base Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_TEMPLATE__BASE_PROPERTY = 1;
+
+	/**
+	 * The number of structural features of the '<em>Bind Template</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIND_TEMPLATE_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.ContainerRuleKind <em>Container Rule Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1551,7 +1588,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getContainerRuleKind()
 	 * @generated
 	 */
-	int CONTAINER_RULE_KIND = 37;
+	int CONTAINER_RULE_KIND = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.FCM.InterceptionKind <em>Interception Kind</em>}' enum.
@@ -1561,7 +1598,7 @@ public interface FCMPackage extends EPackage {
 	 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getInterceptionKind()
 	 * @generated
 	 */
-	int INTERCEPTION_KIND = 38;
+	int INTERCEPTION_KIND = 39;
 
 
 	/**
@@ -2793,6 +2830,38 @@ public interface FCMPackage extends EPackage {
 	EReference getConnectorConfiguration_Connector();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.FCM.BindTemplate <em>Bind Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bind Template</em>'.
+	 * @see org.eclipse.papyrus.FCM.BindTemplate
+	 * @generated
+	 */
+	EClass getBindTemplate();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.FCM.BindTemplate#getActual <em>Actual</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Actual</em>'.
+	 * @see org.eclipse.papyrus.FCM.BindTemplate#getActual()
+	 * @see #getBindTemplate()
+	 * @generated
+	 */
+	EReference getBindTemplate_Actual();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.FCM.BindTemplate#getBase_Property <em>Base Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Property</em>'.
+	 * @see org.eclipse.papyrus.FCM.BindTemplate#getBase_Property()
+	 * @see #getBindTemplate()
+	 * @generated
+	 */
+	EReference getBindTemplate_Base_Property();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.FCM.ContainerRuleKind <em>Container Rule Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3827,6 +3896,32 @@ public interface FCMPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONNECTOR_CONFIGURATION__CONNECTOR = eINSTANCE.getConnectorConfiguration_Connector();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.impl.BindTemplateImpl <em>Bind Template</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.FCM.impl.BindTemplateImpl
+		 * @see org.eclipse.papyrus.FCM.impl.FCMPackageImpl#getBindTemplate()
+		 * @generated
+		 */
+		EClass BIND_TEMPLATE = eINSTANCE.getBindTemplate();
+
+		/**
+		 * The meta object literal for the '<em><b>Actual</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BIND_TEMPLATE__ACTUAL = eINSTANCE.getBindTemplate_Actual();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BIND_TEMPLATE__BASE_PROPERTY = eINSTANCE.getBindTemplate_Base_Property();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.FCM.ContainerRuleKind <em>Container Rule Kind</em>}' enum.

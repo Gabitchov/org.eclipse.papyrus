@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Profile xmi:id="_5mvT0MtjEd2H_o0jIC6qDQ" name="FCM" metaclassReference="_NYUA4MtkEd2H_o0jIC6qDQ _pb8DsMtkEd2H_o0jIC6qDQ _WPBJkMtpEd2H_o0jIC6qDQ _WSSgAMtpEd2H_o0jIC6qDQ _4Sf2AMtpEd2H_o0jIC6qDQ _IDbl4MtvEd2H_o0jIC6qDQ _ofc4YMuHEd2H_o0jIC6qDQ _asQCAC5SEd6q9cO948d5Fw _5OunYGV9Ed6b6erIXzmEEA _nKCJAGu2Ed647PfocwT3eg _wo2GgMewEd6zpahAtGCOkA _9HS28MnvEd6fKfvcq7rbxA _Y3dP0DdMEd-Qn7_dAqT11Q _Zc-ksJODEd-5qPBhYeIVtw _wTDjYKvTEd-i17GN-GaZ6g _kK724LTaEd-jOpA9YHRXqw _03w64NXnEd-CUqOXH3INsw _eAlkcCm_EeKgOdm6HirHfA">
+  <uml:Profile xmi:id="_5mvT0MtjEd2H_o0jIC6qDQ" name="FCM" metaclassReference="_NYUA4MtkEd2H_o0jIC6qDQ _pb8DsMtkEd2H_o0jIC6qDQ _WPBJkMtpEd2H_o0jIC6qDQ _WSSgAMtpEd2H_o0jIC6qDQ _4Sf2AMtpEd2H_o0jIC6qDQ _IDbl4MtvEd2H_o0jIC6qDQ _ofc4YMuHEd2H_o0jIC6qDQ _asQCAC5SEd6q9cO948d5Fw _5OunYGV9Ed6b6erIXzmEEA _nKCJAGu2Ed647PfocwT3eg _wo2GgMewEd6zpahAtGCOkA _9HS28MnvEd6fKfvcq7rbxA _Y3dP0DdMEd-Qn7_dAqT11Q _Zc-ksJODEd-5qPBhYeIVtw _wTDjYKvTEd-i17GN-GaZ6g _kK724LTaEd-jOpA9YHRXqw _03w64NXnEd-CUqOXH3INsw _eAlkcCm_EeKgOdm6HirHfA _4r98wIR_EeO2oJGF2cvpFw">
     <ownedComment xmi:type="uml:Comment" xmi:id="_D0js0O69Ed2rSKyRUaSRjw">
       <body>The associations between PortKind and Operation simply denote the fact that we want to target something that encapsulates the definition of interface mapping rules (i.e. the rules that determine the interfaces that are provided/required on a port &#xD;
 of a particular PortKind). Further experiments are still needed to confirm that the Operation metaclass is the right metaclass to encapsulate this definition.</body>
@@ -64,6 +64,13 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
     <ownedComment xmi:type="uml:Comment" xmi:id="_MyfoAHJqEeOMF7YEvnQt5g" annotatedElement="_8IkbcHI0EeOZxcUd14vDog">
       <body>A binding helper is responsible for creating sub-elements. For instance, if the formal parameter of a template is an interface, it might be required to instantiate an operation for each operation of the interface.</body>
     </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_a96PEIInEeOCe7O91ElfCA" annotatedElement="_-ZqycAAhEd-0dMgailnZgA">
+      <body>Condition whether an interceptor should be used within a container.
+- &quot;Some&quot; = set of ports defined in interception rule
+- &quot;AllOut/AllIn&quot; = ports with required/provided ports only
+- &quot;Matching&quot; = kind of interceptor and component port need to match
+</body>
+    </ownedComment>
     <elementImport xmi:type="uml:ElementImport" xmi:id="_NYUA4MtkEd2H_o0jIC6qDQ" alias="Package">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
     </elementImport>
@@ -117,6 +124,9 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
     </elementImport>
     <elementImport xmi:type="uml:ElementImport" xmi:id="_eAlkcCm_EeKgOdm6HirHfA" alias="Feature">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Feature"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="_4r98wIR_EeO2oJGF2cvpFw" alias="Type">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Type"/>
     </elementImport>
     <packageImport xmi:type="uml:PackageImport" xmi:id="_5mvT0ctjEd2H_o0jIC6qDQ">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -300,7 +310,7 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
     <packagedElement xmi:type="uml:Extension" xmi:id="_eamcsFLpEd6rYflXebIz1g" name="Extension_DeploymentPlan" memberEnd="_ecAK4FLpEd6rYflXebIz1g _ecD1QFLpEd6rYflXebIz1g">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_ecAK4FLpEd6rYflXebIz1g" name="extension_DeploymentPlan" type="_5XyRUFLoEd6rYflXebIz1g" aggregation="composite" association="_eamcsFLpEd6rYflXebIz1g"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Extension" xmi:id="_hC4tkFLpEd6rYflXebIz1g" name="Extension_Operation" memberEnd="_hEf3IFLpEd6rYflXebIz1g _hEi6cFLpEd6rYflXebIz1g">
+    <packagedElement xmi:type="uml:Extension" xmi:id="_hC4tkFLpEd6rYflXebIz1g" name="E_Template_Element" memberEnd="_hEf3IFLpEd6rYflXebIz1g _hEi6cFLpEd6rYflXebIz1g">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_hEf3IFLpEd6rYflXebIz1g" name="extension_Operation" type="_BOnDoFLpEd6rYflXebIz1g" aggregation="composite" association="_hC4tkFLpEd6rYflXebIz1g"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_6B80EGV9Ed6b6erIXzmEEA" name="DerivedElement">
@@ -353,6 +363,7 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_ABWh8AAiEd-0dMgailnZgA" name="InterceptAll"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_uah8gJDtEd-I9dVdNhZAGQ" name="InterceptAllOut"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_w6U_wJDtEd-I9dVdNhZAGQ" name="InterceptAllIn"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_VtMjYIInEeOCe7O91ElfCA" name="InterceptMatching"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_s6giAAAjEd-0dMgailnZgA" name="E_ContainerRule_Class0" memberEnd="_s9YP0AAjEd-0dMgailnZgA _s9dIUAAjEd-0dMgailnZgA">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_s9YP0AAjEd-0dMgailnZgA" name="extension_ContainerRule" type="_5SI38AAhEd-0dMgailnZgA" aggregation="composite" association="_s6giAAAjEd-0dMgailnZgA"/>
@@ -708,6 +719,19 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_SdnDcHI4EeOCrdvV8oxOKA" name="E_BindingHelper_Class1" memberEnd="_SdnDcXI4EeOCrdvV8oxOKA _SdmcYHI4EeOCrdvV8oxOKA">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_SdnDcXI4EeOCrdvV8oxOKA" name="extension_BindingHelper" type="_8IkbcHI0EeOZxcUd14vDog" aggregation="composite" association="_SdnDcHI4EeOCrdvV8oxOKA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_q5Z-4IRKEeO2oJGF2cvpFw" name="BindTemplate">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_veM_wIRKEeO2oJGF2cvpFw" name="actual">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Type"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HgMmEISAEeO2oJGF2cvpFw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HgMmEYSAEeO2oJGF2cvpFw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_KKRNYISFEeOY0rziOe6V0Q" name="base_Property" association="_KKt5UISFEeOY0rziOe6V0Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_KKt5UISFEeOY0rziOe6V0Q" name="E_BindTemplate_Property1" memberEnd="_KKt5UYSFEeOY0rziOe6V0Q _KKRNYISFEeOY0rziOe6V0Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_KKt5UYSFEeOY0rziOe6V0Q" name="extension_BindTemplate" type="_q5Z-4IRKEeO2oJGF2cvpFw" aggregation="composite" association="_KKt5UISFEeOY0rziOe6V0Q"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_aTo0UC27Ed6q9cO948d5Fw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aa7vIC27Ed6q9cO948d5Fw" source="http://www.eclipse.org/uml2/2.0.0/UML">
