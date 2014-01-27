@@ -57,6 +57,9 @@ public class InvariantContainerConfigurationContainerDescriptor implements IInva
 		return new IElementMatcher() {
 
 			public boolean matches(EObject eObject) {
+				if(eObject==null) {
+					return false;
+				}
 				
 				IElementType[] types = ElementTypeRegistry.getInstance().getAllTypesMatching(eObject, sharedContext);
 				if(types == null || types.length == 0) {
