@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.provider.ElementTypes;
 
 public class ControlFlowPreferencePage extends InteractionOverviewDiagramLinkPreferencePage {
@@ -58,7 +58,7 @@ public class ControlFlowPreferencePage extends InteractionOverviewDiagramLinkPre
 		// End of user code
 
 		for(final String labelName : labelDefaultVisibilityMap.keySet()) {
-			final String showLabelKey = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, labelName, PreferenceConstantHelper.LABEL_VISIBILITY);
+			final String showLabelKey = PreferencesConstantsHelper.getCompartmentElementConstant(prefKey, labelName, PreferencesConstantsHelper.LABEL_VISIBILITY);
 			store.setDefault(showLabelKey, labelDefaultVisibilityMap.get(labelName));
 		}
 	}

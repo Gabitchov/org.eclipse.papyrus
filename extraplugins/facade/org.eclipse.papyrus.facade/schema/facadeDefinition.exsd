@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.papyrus.facade" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.papyrus.facade" id="facadeDefinition" name="facadeDefinition"/>
+      </appInfo>
+      <documentation>
+         Extension point used to define available facade.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="facadeDefinition"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="facadeDefinition">
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="profileURI"/>
+         </sequence>
+         <attribute name="id" type="string" use="default" value="0">
+            <annotation>
+               <documentation>
+                  The non-negative priority of the scope provider; the default is 0 (zero).  Providers are invoked by the search framework in priority order, from highest to lowest.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="fileExtension" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="profileURI">
+      <complexType>
+         <attribute name="uri" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         1.0.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;extension point=&quot;org.eclipse.papyrus.facade.facadeDefinition&quot;&gt;
+	&lt;facadeDefinition fileExtension=&quot;umlrtdsl&quot; id=&quot;umlrtdsl&quot;&gt;
+         &lt;profileURI uri=&quot;pathmap://UMLRT_PROFILES/uml-rt.profile.uml&quot;&gt;&lt;/profileURI&gt;
+	&lt;/facadeDefinition&gt;
+&lt;/extension&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiinfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         /*****************************************************************************
+ * Copyright (c) 2013 CEA LIST and others.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+      </documentation>
+   </annotation>
+
+</schema>

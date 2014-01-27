@@ -47,7 +47,8 @@ public class FilterStateMachines implements CopyListener {
 					Behavior effect = transition.getEffect();
 					if(effect != null) {
 						if(tmClass != null) {
-							String newName = sm.getName() + "_" + transition.getName() + "_" + effect.getName();
+							String newName = sm.getName() + "_" + transition.getName()	//$NON-NLS-1$
+									+ "_" + effect.getName(); //$NON-NLS-1$
 							moveBehavior(newName, tmClass, effect);
 						}
 					}

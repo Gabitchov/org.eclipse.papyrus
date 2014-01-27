@@ -15,10 +15,12 @@ package org.eclipse.papyrus.uml.diagram.pkg.preferences;
 
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.uml.diagram.pkg.Activator;
+import org.eclipse.papyrus.uml.diagram.pkg.provider.ElementTypes;
 
 public class PackageDiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	public PackageDiagramGeneralPreferencePage() {
 		setPreferenceStore(Activator.getInstance().getPreferenceStore());
+		setPreferenceKey(ElementTypes.DIAGRAM_ID);
 	}
 }

@@ -40,7 +40,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentItemComponentEditPolicy;
@@ -148,8 +148,8 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "ConsiderIgnoreFragment";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		return result;
 	}
@@ -974,15 +974,15 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferencesConstantsHelper.getElementConstant("ConsiderIgnoreFragment", PreferencesConstantsHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferencesConstantsHelper.getElementConstant("ConsiderIgnoreFragment", PreferencesConstantsHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferencesConstantsHelper.getElementConstant("ConsiderIgnoreFragment", PreferencesConstantsHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("ConsiderIgnoreFragment", PreferenceConstantHelper.COLOR_GRADIENT);
+			String prefGradient = PreferencesConstantsHelper.getElementConstant("ConsiderIgnoreFragment", PreferencesConstantsHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());

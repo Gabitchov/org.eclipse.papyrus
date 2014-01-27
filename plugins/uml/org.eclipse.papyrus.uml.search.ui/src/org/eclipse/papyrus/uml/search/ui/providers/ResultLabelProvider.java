@@ -42,7 +42,6 @@ public class ResultLabelProvider extends LabelProvider {
 		if(element instanceof AbstractResultEntry) {
 			return labelProviderService.getLabelProvider().getText(((AbstractResultEntry)element).elementToDisplay());
 		}
-
 		return ""; //$NON-NLS-1$
 	}
 

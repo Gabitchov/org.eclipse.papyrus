@@ -836,15 +836,24 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		private ResourceSetModificationListener myResourceSetListener;
 
 		/**
-		 * @generated
+		 * @generated not
 		 */
 		public ResourceSetInfo(IDiagramDocument document, IEditorInput editorInput) {
 			super(document);
 			myDocument = document;
 			myEditorInput = editorInput;
 			startResourceListening();
-			myResourceSetListener = new ResourceSetModificationListener(this);
-			getResourceSet().eAdapters().add(myResourceSetListener);
+			for (Adapter a : getResourceSet().eAdapters()){
+    		    if (a instanceof ResourceSetModificationListener){
+    		        myResourceSetListener = (ResourceSetModificationListener) a ;
+    		        break;
+    		    }
+    		}
+    		if (myResourceSetListener == null){
+    		    myResourceSetListener = new ResourceSetModificationListener();
+    		    getResourceSet().eAdapters().add(myResourceSetListener);
+    		}
+    		myResourceSetListener.addResourceSet(this);
 		}
 
 		/**
@@ -887,14 +896,17 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		 */
 		public void dispose() {
 			stopResourceListening();
-			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for(Iterator it = getResourceSet().getResources().iterator(); it.hasNext();) {
-				Resource resource = (Resource)it.next();
+			myResourceSetListener.removeResourceSet(this);
+			if(myResourceSetListener.isEmpty()){
+			    getResourceSet().eAdapters().remove(myResourceSetListener);
+			}
+//			for(Iterator it = getResourceSet().getResources().iterator(); it.hasNext();) {
+//				Resource resource = (Resource)it.next();
 				// Do not unload the resource because the DocumentProvider can be disposed while its
 				// Diagram node is
 				// kept for future re-openeing.
 				// resource.unload();
-			}
+//			}
 		}
 
 		/**
@@ -1054,29 +1066,41 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 	}
 
 	/**
-	 * @generated
+	 * @generated not
 	 */
 	private class ResourceSetModificationListener extends EContentAdapter {
 
 		/**
-		 * @generated
+		 * @generated 
 		 */
 		private NotificationFilter myModifiedFilter;
 
 		/**
-		 * @generated
+		 * @generated not
 		 */
-		private ResourceSetInfo myInfo;
-
+		private List<ResourceSetInfo> myInfos;
+		
 		/**
-		 * @generated
+		 * @generated not
 		 */
-		public ResourceSetModificationListener(ResourceSetInfo info) {
-			myInfo = info;
+		public ResourceSetModificationListener() {
+			myInfos = new ArrayList<GmfMultiDiagramDocumentProvider.ResourceSetInfo>();
 			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(
 					NotificationFilter.createEventTypeFilter(Notification.UNSET)).and(
 					NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
 		}
+		
+		public void addResourceSet(ResourceSetInfo info) {
+            myInfos.add(info);
+        }
+        
+        public boolean removeResourceSet(ResourceSetInfo info){
+            return myInfos.remove(info);
+        }
+        
+        public boolean isEmpty(){
+            return myInfos.isEmpty();
+        }
 
 		/**
 		 * @generated
@@ -1090,27 +1114,28 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 					Resource resource = (Resource)notification.getNotifier();
 					if(resource.isLoaded()) {
 						boolean modified = false;
-						for(Iterator it = myInfo.getResourceSet().getResources().iterator(); it.hasNext() && !modified;) {
+						for(Iterator it = resource.getResourceSet().getResources().iterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource)it.next();
 							if(nextResource.isLoaded()) {
 								modified = nextResource.isModified();
 							}
 						}
-						boolean dirtyStateChanged = false;
-						synchronized(myInfo) {
-							if(modified != myInfo.fCanBeSaved) {
-								myInfo.fCanBeSaved = modified;
-								dirtyStateChanged = true;
+						for(ResourceSetInfo myInfo : myInfos){
+							boolean dirtyStateChanged = false;
+							synchronized(myInfo) {
+								if(modified != myInfo.fCanBeSaved) {
+									myInfo.fCanBeSaved = modified;
+									dirtyStateChanged = true;
+								}
+								if(!resource.isModified()) {
+									myInfo.setSynchronized(resource);
+								}
 							}
-							if(!resource.isModified()) {
-								myInfo.setSynchronized(resource);
-							}
-						}
-						if(dirtyStateChanged) {
-							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
-
-							if(!modified) {
-								myInfo.setModificationStamp(computeModificationStamp(myInfo));
+							if(dirtyStateChanged) {
+								fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
+								if(!modified) {
+									myInfo.setModificationStamp(computeModificationStamp(myInfo));
+								}
 							}
 						}
 					}

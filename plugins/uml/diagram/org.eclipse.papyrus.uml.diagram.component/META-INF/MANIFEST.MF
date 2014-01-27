@@ -64,8 +64,5 @@ Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.component.part.UMLDi
- agramEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.component;singlet
- on:=true
-
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.component; singleton:=true

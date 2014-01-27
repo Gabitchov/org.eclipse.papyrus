@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.facade/src" modelPluginID="org.eclipse.papyrus.facade"
+    modelName="Facade" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>facade.ecore</foreignModel>
+  <genPackages prefix="Facade" basePackage="org.eclipse.papyrus" resource="XML" disposableProviderFactory="true"
+      ecorePackage="facade.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="facade.ecore#//ExtensionDefinitionKind">
+      <genEnumLiterals ecoreEnumLiteral="facade.ecore#//ExtensionDefinitionKind/Tag"/>
+      <genEnumLiterals ecoreEnumLiteral="facade.ecore#//ExtensionDefinitionKind/Metaclass"/>
+      <genEnumLiterals ecoreEnumLiteral="facade.ecore#//ExtensionDefinitionKind/Fusion"/>
+    </genEnums>
+    <genClasses ecoreClass="facade.ecore#//Facade">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference facade.ecore#//Facade/facadeConstraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference facade.ecore#//Facade/extensionDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facade.ecore#//Facade/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facade.ecore#//Facade/nsPrefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facade.ecore#//Facade/nsURI"/>
+    </genClasses>
+    <genClasses ecoreClass="facade.ecore#//ExtensionDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference facade.ecore#//ExtensionDefinition/extension"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference facade.ecore#//ExtensionDefinition/baseMetaclasses"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference facade.ecore#//ExtensionDefinition/facade"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference facade.ecore#//ExtensionDefinition/stereotype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facade.ecore#//ExtensionDefinition/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="facade.ecore#//BaseMetaclass">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference facade.ecore#//BaseMetaclass/incompatibleStereotypes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference facade.ecore#//BaseMetaclass/base"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference facade.ecore#//BaseMetaclass/extensionDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference facade.ecore#//BaseMetaclass/compatibleStereotypes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facade.ecore#//BaseMetaclass/possible"/>
+    </genClasses>
+    <genClasses ecoreClass="facade.ecore#//Combination">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference facade.ecore#//Combination/members"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="facade.ecore#//FacadeConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference facade.ecore#//FacadeConstraint/constrainedElement"/>
+    </genClasses>
+    <genClasses ecoreClass="facade.ecore#//FilterConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facade.ecore#//FilterConstraint/isInclusion"/>
+    </genClasses>
+    <genClasses ecoreClass="facade.ecore#//AbstractConstraint"/>
+    <genClasses ecoreClass="facade.ecore#//AliasConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facade.ecore#//AliasConstraint/aliasName"/>
+    </genClasses>
+    <genClasses ecoreClass="facade.ecore#//MultiplicityConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facade.ecore#//MultiplicityConstraint/lower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute facade.ecore#//MultiplicityConstraint/upper"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

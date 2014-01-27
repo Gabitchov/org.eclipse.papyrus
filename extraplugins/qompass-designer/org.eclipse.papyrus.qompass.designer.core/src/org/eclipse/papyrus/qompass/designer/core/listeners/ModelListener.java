@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.Port;
 public class ModelListener implements IPapyrusListener {
 
 	public void notifyChanged(Notification notification) {
-		Log.log(Status.INFO, Log.TRAFO_SYNC, "ModelListener.notifyChanged: " + notification.getFeature());
+		Log.log(Status.INFO, Log.TRAFO_SYNC, String.format("ModelListener.notifyChanged: %s", notification.getFeature()));
 		Object notifier = notification.getNotifier();
 		if(notifier instanceof NamedElement) {
 			String name = ((NamedElement)notifier).getName();

@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.search.ui.ISearchPageContainer;
@@ -111,7 +112,7 @@ public class StereotypeCollector implements IStereotypeCollector {
 		}
 
 		for(URI uri : umlResources) {
-			ResourceSet resourceSet = new ResourceSetImpl();
+			ModelSet resourceSet = new ModelSet();
 			Resource resource = resourceSet.getResource(uri, true);
 
 			TreeIterator<EObject> UMLResourceContentIterator = resource.getAllContents();

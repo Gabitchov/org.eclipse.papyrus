@@ -84,4 +84,72 @@
             class="org.eclipse.papyrus.views.properties.storage.workspace.WorkspaceContextStorageProvider">
       </provider>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+         <menuContribution
+    allPopups="false"
+    locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+	<command
+       commandId="org.eclipse.papyrus.views.properties.deploy"
+       icon="icons/configuration.gif"
+       style="push">
+	    <visibleWhen
+	          checkEnabled="false">
+	       <with
+	             variable="selection">
+	          <iterate
+	                ifEmpty="false"
+	                operator="and">
+	             <adapt
+	                   type="org.eclipse.core.resources.IFile">
+	                <or>
+	                   <test
+	                         property="org.eclipse.core.resources.extension"
+	                         value="ctx">
+	                   </test>
+	                </or>
+	             </adapt>
+	          </iterate>
+	       </with>
+	    </visibleWhen>
+	</command>
+ <command
+       commandId="org.eclipse.papyrus.views.properties.undeploy"
+       icon="icons/configuration.gif"
+       style="push">
+    <visibleWhen
+          checkEnabled="false">
+       <with
+             variable="selection">
+          <iterate
+                ifEmpty="false"
+                operator="and">
+             <adapt
+                   type="org.eclipse.core.resources.IFile">
+                <or>
+                   <test
+                         property="org.eclipse.core.resources.extension"
+                         value="ctx">
+                   </test>
+                </or>
+             </adapt>
+          </iterate>
+       </with>
+    </visibleWhen>
+ </command>
+</menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.views.properties.handler.DeployCustomizationHandler"
+            id="org.eclipse.papyrus.views.properties.deploy"
+            name="Deploy properties view configuration">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.views.properties.handler.UndeployCustomizationHandler"
+            id="org.eclipse.papyrus.views.properties.undeploy"
+            name="Disable properties view configuration">
+      </command>
+   </extension>
 </plugin>

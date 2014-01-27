@@ -12,5 +12,5 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.qompass.designer.doc.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.doc;singleto
  n:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

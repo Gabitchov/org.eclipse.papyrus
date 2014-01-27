@@ -19,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -31,7 +32,7 @@ import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.RuleApplication;
 import org.eclipse.papyrus.FCM.Singleton;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferenceConstants;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.AggregationKind;
@@ -41,6 +42,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
@@ -49,6 +51,8 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class Utils {
+
+	public static final String QUOTE = "\""; //$NON-NLS-1$
 
 	/**
 	 * Retrieve an element from a list of named elements via its name
@@ -275,7 +279,7 @@ public class Utils {
 		if(root == null) {
 			return null;
 		}
-		if(!remainingPath.contains("::")) {
+		if(!remainingPath.contains(Namespace.SEPARATOR)) {
 			for(NamedElement candidate : root.getMembers()) {
 				String name = candidate.getName();
 				if((name != null) && name.equals(remainingPath)) {
@@ -285,7 +289,7 @@ public class Utils {
 				}
 			}
 		} else {
-			String segment = remainingPath.split("::")[0];
+			String segment = remainingPath.split(Namespace.SEPARATOR)[0];
 			String remainder = remainingPath.substring(segment.length() + 2);
 			for(Element element : root.getMembers()) {
 				if(element instanceof Package) {
@@ -366,11 +370,11 @@ public class Utils {
 	 * 
 	 * @return the top level package of the model currently loaded into an editor.
 	 */
-	public static Package getUserModel() {
-		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
+	public static Package getUserModel(ExecutionEvent event) {
+		ServiceUtilsForHandlers serviceUtils = ServiceUtilsForHandlers.getInstance();
 		try {
 			// IPath fn = serviceUtils.getModelSet().getFilenameWithoutExtension();
-			EList<Resource> resources = serviceUtils.getModelSet().getResources();
+			EList<Resource> resources = serviceUtils.getModelSet(event).getResources();
 			if(resources.size() >= 3) {
 				// check first three resources (di, notation, uml)
 				for(int i = 0; i < 3; i++) {
@@ -492,6 +496,21 @@ public class Utils {
 					contRuleList.add(rule);
 				}
 			}
+		}
+	}
+
+	/**
+	 * Put quotes around a string, unless string already starts with a quote.
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String quoteString(String str) {
+		if (str.startsWith(QUOTE)) {
+			return str;
+		}
+		else {
+			return QUOTE + str + QUOTE;
 		}
 	}
 }

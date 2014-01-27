@@ -230,47 +230,53 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 			if(nodeType == Node.TEXT_NODE) {
 				generateTextFromTextNode(node, parentFlow);
 			} else {
-				switch(HTMLTags.valueOf(nodeName)) {
-				case body: // main tag for the comment body
-					// create a block for the body
-					generateBlocksFromBodyNode(node, parentFlow);
-					break;
-				case h3:
-					generateBlocksFromH3Node(node, parentFlow);
-					break;
-				case h4: // sub section heading
-					generateBlocksFromH4Node(node, parentFlow);
-					break;
-				case h5: // sub sub section heading
-					generateBlocksFromH5Node(node, parentFlow);
-					break;
-				case strong: // bold character
-					generateBlocksFromStrongNode(node, parentFlow);
-					break;
-				case em: // italic
-					generateBlocksFromItalicNode(node, parentFlow);
-					break;
-				case u: // underline
-					generateBlocksFromUnderlineNode(node, parentFlow);
-					break;
-				case sub: // subscript
-					break;
-				case sup: // superscript
-					break;
-				case blockquote: // indent left or right
-					break;
-				case table: // table
-					break;
-				case p: // paragraph
-					generateBlocksFromParagraphNode(node, parentFlow);
-					break;
-				case br:
-					generateBlocksFromBRNode(node, parentFlow);
-					break;
-				case font:
-					generateBlocksForFontNode(node, parentFlow);
-				default:
-					break;
+				try {
+					switch(HTMLTags.valueOf(nodeName)) {
+					case body: // main tag for the comment body
+						// create a block for the body
+						generateBlocksFromBodyNode(node, parentFlow);
+						break;
+					case h3:
+						generateBlocksFromH3Node(node, parentFlow);
+						break;
+					case h4: // sub section heading
+						generateBlocksFromH4Node(node, parentFlow);
+						break;
+					case h5: // sub sub section heading
+						generateBlocksFromH5Node(node, parentFlow);
+						break;
+					case strong: // bold character
+					case b:
+						generateBlocksFromStrongNode(node, parentFlow);
+						break;
+					case em: // italic
+						generateBlocksFromItalicNode(node, parentFlow);
+						break;
+					case u: // underline
+						generateBlocksFromUnderlineNode(node, parentFlow);
+						break;
+					case sub: // subscript
+						break;
+					case sup: // superscript
+						break;
+					case blockquote: // indent left or right
+						break;
+					case table: // table
+						break;
+					case p: // paragraph
+						generateBlocksFromParagraphNode(node, parentFlow);
+						break;
+					case br:
+						generateBlocksFromBRNode(node, parentFlow);
+						break;
+					case font:
+						generateBlocksForFontNode(node, parentFlow);
+						break;
+					default:
+						break;
+					}
+				} catch (IllegalArgumentException ex) {
+					//Ignored. Unsupported HTML Tag.
 				}
 			}
 		}
@@ -600,6 +606,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		h4(""), // sub section heading
 		h5(""), // sub sub section heading
 		strong(""), // bold character
+		b(""), // bold character
 		em(""), // italic
 		u(""), // underline
 		sub(""), // subscript

@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2013 CEA LIST
+ * 
+ * All rights reserved. This program and the accompanying materials are
+ * made available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *    CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.C_Cpp.impl;
 
@@ -217,7 +227,7 @@ public class ExternalImpl extends EObjectImpl implements External {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(')');
 		return result.toString();

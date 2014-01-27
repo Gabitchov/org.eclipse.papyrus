@@ -14,6 +14,7 @@ import org.eclipse.papyrus.FCM.ImplementationGroup;
 import org.eclipse.papyrus.FCM.ImplementationProperties;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.FCM.Target;
+import org.eclipse.papyrus.qompass.designer.core.ElementFilter;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.common.util.UML2Util;
@@ -108,7 +109,7 @@ public class DepUtils {
 	 */
 	public static InstanceSpecification getNamedSubInstance(InstanceSpecification owningInstance, String name) {
 		Element cdp = owningInstance.getOwner();
-		String candidateName = owningInstance.getName() + "." + name;
+		String candidateName = owningInstance.getName() + "." + name; //$NON-NLS-1$
 		if(cdp instanceof Package) {
 			for(PackageableElement instance : ((Package)cdp).getPackagedElements()) {
 				if(instance instanceof InstanceSpecification) {
@@ -306,9 +307,7 @@ public class DepUtils {
 	 * @return the associated slot or null, if it does not exist
 	 */
 	public static Slot getSlot(InstanceSpecification is, Property property) {
-		Iterator<Slot> slots = is.getSlots().iterator();
-		while(slots.hasNext()) {
-			Slot slot = slots.next();
+		for (Slot slot : is.getSlots()) {
 			if(slot.getDefiningFeature() == property) {
 				return slot;
 			}
@@ -370,8 +369,8 @@ public class DepUtils {
 	}
 
 	/**
-	 * Return an instance specification that refers to the composite in which the
-	 * passed instance is contained
+	 * Return a slot for a given instance specification. The slot is the first one in a list of slots
+	 * whose value points to the passed instance.
 	 * 
 	 * @param is
 	 *        an instance that is contained within an composite (i.e. that
@@ -380,7 +379,6 @@ public class DepUtils {
 	 */
 	public static Slot getParentSlot(InstanceSpecification is) {
 		for(Slot slot : getReferencingSlots(is)) {
-			// no trigger is referencing the event any more, delete call event
 			if(slot.getDefiningFeature() instanceof Property) {
 				if(((Property)slot.getDefiningFeature()).getAggregation() == AggregationKind.COMPOSITE_LITERAL) {
 					return slot;
@@ -445,19 +443,51 @@ public class DepUtils {
 	 * Determine which programming language should be generated for a classifier. The
 	 * stereotype CodeGenOptions (which could be on any owning package) is evaluated.
 	 *
-	 * @param cl a classifier
+	 * @param pkg a classifier
 	 * @return the programming language
 	 */
-	public static String getLanguageFromClassifier(Classifier cl) {
-		CodeGenOptions codeGenOpt = UMLUtil.getStereotypeApplication(cl, CodeGenOptions.class);
+	public static String getLanguageFromPackage(Package pkg) {
+		CodeGenOptions codeGenOpt = UMLUtil.getStereotypeApplication(pkg, CodeGenOptions.class);
 		if ((codeGenOpt != null) && (codeGenOpt.getProgLanguage() != null)) {
 			return codeGenOpt.getProgLanguage().getBase_Class().getName();
 		}
-		else if (cl.getOwner() instanceof Classifier) {
-			return getLanguageFromClassifier((Classifier) cl.getOwner());
+		else if (pkg.getOwner() instanceof Package) {
+			return getLanguageFromPackage((Package) pkg.getOwner());
 		}
 		else {
 			return null;
 		}
+	}
+	
+	/**
+	 * Get all instances within a package that comply with a filter criterion. Recurse into sub-packages.
+	 * @param pkg Starting package for search
+	 * @param instanceList list of instances
+	 * @param filter filter criterion.
+	 */
+	public static void getAllInstances(Package pkg, EList<InstanceSpecification> instanceList, ElementFilter filter) {
+		for(PackageableElement el : pkg.getPackagedElements()) {
+			if(el instanceof Package) {
+				getAllInstances((Package)el, instanceList, filter);
+			}
+			else if(el instanceof InstanceSpecification) {
+				InstanceSpecification instance = (InstanceSpecification)el;
+				if (filter.acceptElement(instance)) { 
+					instanceList.add(instance);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Return the first value for a slot.
+	 * @param slot the slot for which the first value should be returned.
+	 * @return
+	 */
+	public static ValueSpecification firstValue(Slot slot) {
+		if (slot.getValues().size() > 0) {
+			return slot.getValues().get(0);
+		}
+		return null;
 	}
 }

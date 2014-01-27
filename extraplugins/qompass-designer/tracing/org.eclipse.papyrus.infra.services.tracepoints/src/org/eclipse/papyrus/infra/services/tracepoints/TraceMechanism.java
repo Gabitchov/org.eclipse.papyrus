@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.services.tracepoints.preferences.TPPreferenceCo
 
 public class TraceMechanism {
 
-	public static final String ITRACE_MECHANISM_ID = Activator.PLUGIN_ID + ".traceMechanism";
+	public static final String ITRACE_MECHANISM_ID = Activator.PLUGIN_ID + ".traceMechanism"; //$NON-NLS-1$
 
 	public static EList<ITraceMechanism> getTraceMechanisms()
 	{
@@ -41,7 +41,7 @@ public class TraceMechanism {
 		for(IConfigurationElement configElement : configElements) {
 			try {
 				// TODO: cache returned instance (avoid creating a new instance each time => more efficient, no need for static attributes)
-				final Object obj = configElement.createExecutableExtension("class");
+				final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
 				if(obj instanceof ITraceMechanism) {
 					mechanisms.add((ITraceMechanism)obj);
 				}
@@ -62,8 +62,8 @@ public class TraceMechanism {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		if(store != null) {
 			if(feature == TraceFeature.Class) {
-				return TraceActions.getStringPrefix(TraceFeature.Port) + store.getInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_PORT) + "," +
-					TraceActions.getStringPrefix(TraceFeature.State) + store.getInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM) + "," +
+				return TraceActions.getStringPrefix(TraceFeature.Port) + store.getInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_PORT) + "," + //$NON-NLS-1$
+					TraceActions.getStringPrefix(TraceFeature.State) + store.getInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM) + "," + //$NON-NLS-1$
 					TraceActions.getStringPrefix(TraceFeature.Operation) + store.getInt(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
 			}
 			else if(feature == TraceFeature.State) {
@@ -73,7 +73,7 @@ public class TraceMechanism {
 				return store.getString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
 			}
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**

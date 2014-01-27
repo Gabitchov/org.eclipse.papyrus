@@ -1,0 +1,26 @@
+<!-- ===================================================================== -->
+<!-- Custom targets.                                                       -->
+<!-- Set customBuildCallbacks = build.acceleo in your build.properties.    -->
+<!-- ===================================================================== -->
+<project name="Build Acceleo Module" default="noDefault">    
+    <!-- ================================================================= -->
+    <!-- Default target                                                    -->
+    <!-- ================================================================= -->
+    <target name="noDefault">
+        <echo message="This file must be called with explicit targets" />
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- This will be called automatically after the compilation of each   -->
+    <!-- Bundle... in dependency order.                                    -->
+    <!-- ================================================================= -->
+    <target name="post.compile.@dot">
+        <acceleoCompiler 
+            sourceFolder="${target.folder}"
+            outputFolder="${target.folder}"
+            dependencies="${target.folder}/../../org.eclipse.emf.eef.codegen.ecore;${target.folder}/../../org.eclipse.ui.ide;${target.folder}/../../org.eclipse.papyrus.facade;${target.folder}/../../org.eclipse.uml2.uml;${target.folder}/../../org.eclipse.uml2.codegen.ecore;${target.folder}/../../org.eclipse.papyrus.facade.utils;"
+            binaryResource="false"
+            packagesToRegister="">
+        </acceleoCompiler>
+    </target>    
+</project>

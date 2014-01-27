@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.rcp.feature"
+      label="Papyrus RCP Feature"
+      version="1.0.0.qualifier"
+      provider-name="Eclipse Modeling Project">
+
+   <description url="http://www.eclipse.org/papyrus">
+      This package contains Papyrus and a collection of Eclipse Modeling
+Project components, including EMF, GMF, MDT XSD/OCL/UML2, M2M,
+M2T, and EMFT elements. It includes a complete SDK, developer
+tools and source code. Note that the Modeling package includes
+some incubating components, as indicated by feature numbers less
+than 1.0.0 on the feature list.
+   </description>
+
+   <copyright>
+      Copyright (c) 2013 CEA LIST.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License
+v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %licence
+   </license>
+
+   <url>
+      <discovery label="Luna" url="http://download.eclipse.org/releases/luna/"/>
+      <discovery label="Eclipse Platform 4.4" url="http://download.eclipse.org/eclipse/updates/4.4"/>
+   </url>
+
+   <requires>
+      <import feature="org.eclipse.amalgam.discovery"/>
+      <import feature="org.eclipse.cvs"/>
+      <import feature="org.eclipse.egit"/>
+      <import feature="org.eclipse.egit.import"/>
+      <import feature="org.eclipse.emf.cdo.epp"/>
+      <import feature="org.eclipse.emf.compare.ide.ui.source"/>
+      <import feature="org.eclipse.emf.compare.source"/>
+      <import feature="org.eclipse.emf.ecoretools.design"/>
+      <import feature="org.eclipse.emf.eef.codegen.ecore-feature"/>
+      <import feature="org.eclipse.emf.query.sdk"/>
+      <import feature="org.eclipse.emf.sdk"/>
+      <import feature="org.eclipse.emf.transaction.sdk"/>
+      <import feature="org.eclipse.emf.validation.sdk"/>
+      <import feature="org.eclipse.epp.package.common.feature"/>
+      <import feature="org.eclipse.equinox.p2.user.ui"/>
+      <import feature="org.eclipse.gef.sdk"/>
+      <import feature="org.eclipse.gmf.runtime.sdk"/>
+      <import feature="org.eclipse.help"/>
+      <import feature="org.eclipse.jdt"/>
+      <import feature="org.eclipse.mylyn.bugzilla_feature"/>
+      <import feature="org.eclipse.mylyn.context_feature"/>
+      <import feature="org.eclipse.mylyn.ide_feature"/>
+      <import feature="org.eclipse.mylyn.java_feature"/>
+      <import feature="org.eclipse.mylyn.pde_feature"/>
+      <import feature="org.eclipse.mylyn.wikitext_feature"/>
+      <import feature="org.eclipse.mylyn_feature"/>
+      <import feature="org.eclipse.ocl.all.sdk"/>
+      <import feature="org.eclipse.emf.cdo.dawn.sdk"/>
+      <import feature="org.eclipse.papyrus.sdk.feature"/>
+      <import feature="org.eclipse.papyrus.extra.sources.feature"/>
+      <import feature="org.eclipse.pde"/>
+      <import feature="org.eclipse.rcp"/>
+      <import feature="org.eclipse.sdk"/>
+      <import feature="org.eclipse.uml2.sdk"/>
+      <import feature="org.eclipse.xsd.sdk"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.papyrus.rcp"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>

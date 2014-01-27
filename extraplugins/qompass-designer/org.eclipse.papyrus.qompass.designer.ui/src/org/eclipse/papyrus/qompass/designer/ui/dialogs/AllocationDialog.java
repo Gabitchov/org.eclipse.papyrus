@@ -17,12 +17,14 @@ package org.eclipse.papyrus.qompass.designer.ui.dialogs;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
 import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
+import org.eclipse.papyrus.qompass.designer.core.ElementFilter;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.commands.AddMarteAndFcmProfile;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
@@ -49,27 +51,13 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * Select a connector type and implementation (group)
- * TODO: show information about the used connector [usage, implem properties, ...]
- * similar help for ports?
+ * Allocate elements in a deployment plan to a node or thread
  * 
- * @author ansgar
- * 
- */
-
-/*
- * ListSelectionDialog lsd = new ListSelectionDialog(window.getShell(), list, new ArrayContentProvider(), new LabelProvider(),
- * "ListSelectionDialog Message");
- * lsd.setInitialSelections(list.toArray());
- * lsd.setTitle("Select # of Nobel Prize Nominations :");
- * lsd.open();
  */
 public class AllocationDialog extends SelectionStatusDialog {
 
 	private DeploymentPlan m_cdp;
 
-	// protected EList<Package> visitedPackages;
-	// protected FilteredList fRules;
 	private Tree fTree;
 
 	private Label fLabel;
@@ -84,10 +72,34 @@ public class AllocationDialog extends SelectionStatusDialog {
 		super(parent);
 		// m_cdp = cdp;
 		m_cdp = UMLUtil.getStereotypeApplication(cdp, DeploymentPlan.class);
-		visitedPackages = new BasicEList<Package>();
 		nodeOrThreadList = new BasicEList<InstanceSpecification>();
 		nodeOrThreadList.add(null); // dummy entry for no allocation
-		getAllNodesOrThreads(cdp.getModel(), nodeOrThreadList);
+		DepUtils.getAllInstances(cdp.getModel(), nodeOrThreadList, new ElementFilter() {
+			
+			public boolean acceptElement(Element element) {
+				if (element instanceof InstanceSpecification) {
+					InstanceSpecification instance = (InstanceSpecification) element;
+					if (instance.getName() == null) {
+						// donn't allocate to root element (detectable via the empty name)
+						return false;
+					}
+					Classifier cl = DepUtils.getClassifier(instance);
+					if(cl instanceof Class) {
+						if(StereotypeUtil.isApplied(cl, SwSchedulableResource.class)) {
+							// threads are valid allocation targets. Therefore, threads are always added to
+							// list, even if within a deployment plan.
+							return true;
+						}
+						if (StereotypeUtil.isApplied(instance.getNearestPackage(), DeploymentPlan.class)) {
+							// instance is part of a deployment plan => don't add to list.
+							return false;
+						}
+						return true;
+					}
+				}
+				return false;
+			}
+		});
 	}
 
 	/**
@@ -173,7 +185,7 @@ public class AllocationDialog extends SelectionStatusDialog {
 			InstanceSpecification is = (InstanceSpecification)data;
 
 			String name = is.getName();
-			int index = name.lastIndexOf(".");
+			int index = name.lastIndexOf("."); //$NON-NLS-1$
 			if(index != -1) {
 				name = name.substring(index + 1);
 			}
@@ -181,26 +193,26 @@ public class AllocationDialog extends SelectionStatusDialog {
 			Classifier cl = DepUtils.getClassifier(is);
 			String nodeName;
 			if(explicitNodeOrThread == null) {
-				nodeName = "-";
+				nodeName = "-"; //$NON-NLS-1$
 			} else {
 				nodeName = getAllocName(explicitNodeOrThread);
 			}
 			if(cl instanceof Class) {
 				if(BootLoaderGen.hasUnconnectedStartRoutine(null, (Class)cl, null)) {
-					nodeName += " (main)";
+					nodeName += " (main)"; //$NON-NLS-1$
 				}
 			}
 			EList<InstanceSpecification> implicitNodes = AllocUtils.getAllNodesOrThreadsParent(is);
 			implicitNodes.addAll(AllocUtils.getAllNodesOrThreadsParent(is));
-			String list = "";
+			String list = ""; //$NON-NLS-1$
 			for(InstanceSpecification node : implicitNodes) {
-				if(list.equals("")) {
+				if(list.equals("")) { //$NON-NLS-1$
 					list = getAllocName(node);
 				} else {
-					list += ", " + getAllocName(node);
+					list += ", " + getAllocName(node); //$NON-NLS-1$
 				}
 			}
-			ti.setText(new String[]{ name, nodeName, "[" + list + "]" });
+			ti.setText(new String[]{ name, nodeName, "[" + list + "]" });  //$NON-NLS-1$//$NON-NLS-2$
 		}
 	}
 
@@ -284,8 +296,8 @@ public class AllocationDialog extends SelectionStatusDialog {
 				Shell shell = new Shell();
 				if(MessageDialog.openQuestion(shell, "Error",
 					"Stereotype application failed. The profile MARTE::Allocation is probably not applied. Try to apply it?")) {
-					AbstractEMFOperation applyProfile = new AddMarteAndFcmProfile(Utils.getTop(is), AddMarteAndFcmProfile.APPLY_ALLOC, null);
-					CommandSupport.exec(null, applyProfile);
+					AbstractEMFOperation applyProfile = new AddMarteAndFcmProfile(Utils.getTop(is), AddMarteAndFcmProfile.APPLY_ALLOC, TransactionUtil.getEditingDomain(is));
+					CommandSupport.exec(applyProfile);
 					AllocUtils.allocate(is, newNode);
 				}
 			}
@@ -293,28 +305,4 @@ public class AllocationDialog extends SelectionStatusDialog {
 			AllocUtils.updateAllocation(is, oldNode, newNode);
 		}
 	}
-
-	void getAllNodesOrThreads(Package pkg, EList<InstanceSpecification> nodeList) {
-		for(Element el : pkg.getMembers()) {
-			if(el instanceof Package) {
-				if(!visitedPackages.contains(el)) {
-					visitedPackages.add((Package)el);
-					getAllNodesOrThreads((Package)el, nodeList);
-				}
-			} else if(el instanceof InstanceSpecification) {
-				Classifier cl = DepUtils.getClassifier((InstanceSpecification)el);
-				if(cl != null) {
-					if((cl instanceof Class) || (StereotypeUtil.isApplied(cl, SwSchedulableResource.class))) {
-						// check that instances are not part of a deployment plan
-						//  [TODO:] check that owner of instance is a platform definition
-						if(!StereotypeUtil.isApplied(el.getOwner(), DeploymentPlan.class)) {
-							nodeList.add((InstanceSpecification)el);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private EList<Package> visitedPackages;
 }

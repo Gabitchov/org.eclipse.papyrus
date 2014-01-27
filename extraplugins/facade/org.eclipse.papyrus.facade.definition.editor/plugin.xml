@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Facade Definition Editor"
+            extensions="facade"
+            icon="icons/facade.png"
+            contributorClass="org.eclipse.papyrus.facade.presentation.FacadeActionBarContributor"
+            class="org.eclipse.papyrus.facadeSpecificEditor.FacadeSpecificEditor"
+            id="FacadeDefinitionEditor">
+      </editor>
+   </extension>
+
+</plugin>

@@ -18,7 +18,7 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../org.eclipse.papyrus.fcm.profile;${target.folder}/../../org.eclipse.papyrus.infra.core.sasheditor;${target.folder}/../../org.eclipse.papyrus.infra.core.sasheditor.di;${target.folder}/../../org.eclipse.papyrus.qompass.designer.core;${target.folder}/../../org.eclipse.papyrus.qompass.designer.vsl;${target.folder}/../../org.eclipse.papyrus.cpp.profile;${target.folder}/../../org.eclipse.papyrus.acceleo;${target.folder}/../../org.eclipse.papyrus.uml.tools.utils;${target.folder}/../../org.eclipse.papyrus.infra.widgets.toolbox;"
+            dependencies="${target.folder}/../../org.eclipse.papyrus.fcm.profile;${target.folder}/../../org.eclipse.papyrus.infra.core.sasheditor;${target.folder}/../../org.eclipse.papyrus.infra.core.sasheditor.di;${target.folder}/../../org.eclipse.papyrus.qompass.designer.core;${target.folder}/../../org.eclipse.papyrus.qompass.designer.vsl;${target.folder}/../../org.eclipse.papyrus.cpp.profile;${target.folder}/../../org.eclipse.papyrus.acceleo;${target.folder}/../../org.eclipse.papyrus.infra.widgets.toolbox;"
             binaryResource="false"
             packagesToRegister="">
         </acceleoCompiler>

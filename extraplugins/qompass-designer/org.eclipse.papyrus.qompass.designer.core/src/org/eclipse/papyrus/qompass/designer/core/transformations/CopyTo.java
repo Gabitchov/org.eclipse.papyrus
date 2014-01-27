@@ -7,7 +7,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * This class enables the copy from a source to a given target element.
  * It assumes that a copy has already been created, but will just not copy it...
- * Unlike the @see Copy class, the element might be copied to a different placed
+ * Unlike the @see Copy class, the element might be copied to a different place
  */
 public class CopyTo {
 	/**
@@ -17,6 +17,7 @@ public class CopyTo {
 	 * @param targetContainer The container into which it the source should be copied
 	 * @return the copied object
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T extends Element> T copyTo(T source, Element targetContainer) {
 		Copier copier = new Copier();
 		EObject sourceContainer = source.eContainer();

@@ -11,12 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.editor.integration.tests.tests;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -25,10 +22,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
@@ -38,7 +33,6 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.editor.integration.tests.Activator;
 import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
@@ -49,14 +43,11 @@ import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.uml.diagram.timing.custom.UmlTimingDiagramForMultiEditor;
-import org.eclipse.papyrus.uml.table.defaultt.editor.DefaultNattableEditor;
-import org.eclipse.papyrus.uml.table.defaultt.handlers.CreateNattableEditorCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
@@ -333,38 +324,9 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 		final EObject tableContext = UmlUtils.getUmlModel(modelSet).getResource().getContents().get(0);
 
-		//FIXME: The create table command is not exposed. We need to use and override the handler to manipulate it programmatically
-		//and avoid opening a user dialog and relying on the current selection
-		ICommand createAndOpenTableCommand = new AbstractTransactionalCommand(editingDomain, "Create table", null) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				CreateNattableEditorCommand createTableHandler = new CreateNattableEditorCommand() {
-
-					@Override
-					protected EObject getTableContext() {
-						return tableContext;
-					}
-				};
-				try {
-					createTableHandler.doExecute(registry, "TableName", "TableDescription");
-				} catch (Exception ex) {
-					throw new ExecutionException(ex.getMessage(), ex);
-				}
-				return CommandResult.newOKCommandResult();
-			}
-		};
-
-		testPageCreation(createAndOpenTableCommand, DefaultNattableEditor.class);
+		
 	}
 
-	@Test
-	public void testTableDeletion() throws Exception {
-		initModel("tableDeletion", "simple_table_model", getBundle());
-		ModelSet modelSet = editor.getServicesRegistry().getService(ModelSet.class);
-		final PapyrusTableInstance table = (PapyrusTableInstance)SashModelUtils.getSashModel(modelSet).getResource().getContents().get(1);
-		testPageDeletion(table, DefaultNattableEditor.class);
-	}
 
 	private void testPageCreation(ICommand creationCommand, Class<?> expectedEditorClass) throws Exception {
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);

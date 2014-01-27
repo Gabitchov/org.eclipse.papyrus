@@ -15,8 +15,8 @@ package org.eclipse.papyrus.infra.gmfdiag.preferences.ui;
 
 import org.eclipse.gmf.runtime.diagram.ui.properties.internal.l10n.DiagramUIPropertiesImages;
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.jface.preference.ColorFieldEditor;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -59,7 +59,7 @@ public class NodeColorGroup extends LinkColorGroup {
 		super.createContent(parent);
 
 		Composite fillColorEditorCompo = getEncapsulatedCompo(getToolbar());
-		fillColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_FILL), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FILL_COLOR), fillColorEditorCompo);
+		fillColorEditor = new ColorFieldEditor(getPreferenceConstant(PreferencesConstantsHelper.COLOR_FILL), DiagramUIPropertiesImages.get(DiagramUIPropertiesImages.IMG_FILL_COLOR), fillColorEditorCompo);
 		fillColorEditor.setPage(dialogPage);
 
 		addFieldEditor(fillColorEditor);

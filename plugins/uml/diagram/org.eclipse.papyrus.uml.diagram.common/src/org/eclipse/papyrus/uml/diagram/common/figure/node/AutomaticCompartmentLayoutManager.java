@@ -1,6 +1,6 @@
 /****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *  
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *		Patrick Tessier (CEA LIST), Thibault Landre (Atos Origin) - Initial API and implementation
- *	    Vincent Lorenzo (CEA LIST), change layout(IFigure container)
+ *		Vincent Lorenzo (CEA LIST), change layout(IFigure container)
+ *		Laurent Wouters (CEA LIST), refactoring, cleanup, added layout of labels on top of shapes
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
@@ -22,34 +23,48 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
 
 /**
- * this is the layout manager in charge to place element in compartment element.
+ * This is the layout manager in charge to place element in compartment element.
  * A modification of the code has been done in order to manage none visible
  * compartment. if a compartment becomes invisible, its size and its height are
  * equal to 1.
- * 
+ *
  */
-
 public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 
 	protected static final int MINIMUM_COMPARTMENT_HEIGHT = 15;
 
-	// list of compartments
-	protected ArrayList<IFigure> compartmentList = new ArrayList<IFigure>();
+	/**
+	 * list of visible compartment children
+	 */
+	protected ArrayList<IFigure> visibleCompartments = new ArrayList<IFigure>();
 
-	// list of none compartments ex wrapping label etc...
-	protected ArrayList<IFigure> notCompartmentList = new ArrayList<IFigure>();
+	/**
+	 * list of visible non-compartment children (e.g. labels)
+	 */
+	protected ArrayList<IFigure> visibleOthers = new ArrayList<IFigure>();
 
-	// background figure
-	//protected IFigure backgroundFigure;
+	/**
+	 * list of the invisible children
+	 */
+	protected ArrayList<IFigure> invisibles = new ArrayList<IFigure>();
 
+	/**
+	 * true if the bounds of the labels are forced by an inner figure
+	 */
+	protected boolean forcedLabelBounds = false;
+
+	/**
+	 * true if extra distance between compartment should be added
+	 */
 	protected boolean addExtraHeight = true;
 
 	/**
-	 * set the distance between compartments
-	 * 
+	 * Sets whether extra distance between compartment should be added
+	 *
 	 * @param addExtraHeight
 	 */
 	public void setAddExtraHeight(boolean addExtraHeight) {
@@ -57,248 +72,348 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	}
 
 	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
-		collectInformationOnChildren(container);
+		collectInformation(container);
 		int minimumWith = 0;
 		int minimumHeight = 0;
 		if(container instanceof CompartmentFigure) {
+			CompartmentFigure cf = (CompartmentFigure)container;
+			WrappingLabel wl = cf.getNameLabel();
 			// display name
-			if(((CompartmentFigure)container).getNameLabel() != null&& container.getChildren().contains(((CompartmentFigure)container).getNameLabel())) {
-				if(((CompartmentFigure)container).getNameLabel().getPreferredSize().width > minimumWith) {
-					minimumWith = ((CompartmentFigure)container).getNameLabel().getPreferredSize().width;
+			if(wl != null && container.getChildren().contains(wl)) {
+				if(wl.getPreferredSize().width > minimumWith) {
+					minimumWith = wl.getPreferredSize().width;
 				}
-				
 			}
 		}
-		if(compartmentList.size() != 0) {
-			for(int i = 0; i < container.getChildren().size(); i++) {
-				IFigure child = (IFigure)container.getChildren().get(i);
+		if(!visibleCompartments.isEmpty()) {
+			for(Object o : container.getChildren()) {
+				IFigure child = (IFigure)o;
 				minimumHeight += child.getPreferredSize().height;
 				minimumWith = Math.max(minimumWith, child.getPreferredSize().width);
 			}
 		} else {
-			for(int i = 0; i < notCompartmentList.size(); i++) {
-				minimumHeight += notCompartmentList.get(i).getPreferredSize().height;
+			for(IFigure child : visibleOthers) {
+				minimumHeight += child.getPreferredSize().height;
 			}
 		}
-		if(addExtraHeight)
+		if(addExtraHeight) {
 			minimumHeight += 7;
+		}
 		return new Dimension(minimumWith, minimumHeight);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Dimension getMinimumSize(IFigure container, int wHint, int hHint) {
 		return new Dimension(20, 20);
 	}
 
 	/**
-	 * layout by putting label in the center of figure
-	 * 
-	 * @param container
-	 */
-	protected void layoutCenterForLabel(IFigure container) {
-		int labelheight = 0;
-		for(int i = 0; i < notCompartmentList.size(); i++) {
-			labelheight += notCompartmentList.get(i).getPreferredSize().height;
-		}
-
-		for(int i = 0; i < container.getChildren().size(); i++) {
-			if(notCompartmentList.contains((container.getChildren().get(i)))) {
-				Rectangle bound = new Rectangle(((IFigure)container.getChildren().get(i)).getBounds());
-				bound.setSize(getPreferedSize(((IFigure)container.getChildren().get(i))));
-				if(i > 0) {
-					bound.y = ((IFigure)container.getChildren().get(i - 1)).getBounds().getBottomLeft().y + 1;
-					bound.x = container.getBounds().x + 3;
-					bound.width = container.getBounds().width;
-				} else {
-					bound.x = container.getBounds().x + 3;
-					bound.y = container.getBounds().y + ((container.getBounds().height - labelheight) / 2);
-					bound.width = container.getBounds().width;
-
-				}
-				((IFigure)container.getChildren().get(i)).setBounds(bound);
-			} else {
-				Rectangle bound = new Rectangle(((IFigure)container.getChildren().get(i)).getBounds());
-				bound.y = container.getBounds().getBottomLeft().y + 1;
-				bound.x = container.getBounds().x + 3;
-				((IFigure)container.getChildren().get(i)).setBounds(bound);
-			}
-		}
-
-	}
-
-	/**
-	 * 
 	 * {@inheritDoc}
 	 */
 	public void layout(IFigure container) {
-		collectInformationOnChildren(container);
-
-		//		container.remove(backgroundFigure);
-		//		container.add(backgroundFigure, 0);
-
-		// this list contains the visible compartments (that is to say :
-		// notCompartmentList + compartmentsList
-		List<IFigure> visibleCompartments = new ArrayList<IFigure>();
-
-		visibleCompartments.addAll(notCompartmentList);
-		visibleCompartments.addAll(compartmentList);
-
-		// choose the good layout by taking in account if it exist GMF
-		// compartment
-		if(compartmentList.size() != 0) {
-			// visit all compartment
-			for(int i = 0; i < container.getChildren().size(); i++) {
-				IFigure currentCompartment = (IFigure)container.getChildren().get(i);
-				// this is a visible compartment
-				if(visibleCompartments.contains(currentCompartment)) {
-
-					Rectangle bound = new Rectangle(currentCompartment.getBounds());
-					currentCompartment.invalidate();
-					Dimension pref = currentCompartment.getPreferredSize();
-					currentCompartment.invalidate();
-					Dimension prefConstraint = currentCompartment.getPreferredSize(container.getBounds().width - 40, -1);
-					if(pref.width < prefConstraint.width) {
-						bound.setSize(pref);
-					} else {
-						bound.setSize(prefConstraint);
-					}
-					//bound.setSize(getPreferedSize(currentCompartment));
-					if(visibleCompartments.indexOf(currentCompartment) > 0) {
-						bound.y = (visibleCompartments.get(visibleCompartments.indexOf(currentCompartment) - 1)).getBounds().getBottomLeft().y + 1;
-						bound.x = container.getBounds().x + 3;
-						bound.width = container.getBounds().width;
-					} else {
-						bound.x = container.getBounds().x + 3;
-						bound.y = container.getBounds().y + 3;
-						bound.width = container.getBounds().width;
-					}
-					currentCompartment.setBounds(bound);
-				} else {
-					// this is a none visible compartment
-					Rectangle bound = new Rectangle(currentCompartment.getBounds());
-					bound.setSize(1, 1);
-					currentCompartment.setBounds(bound);
-				}
-			}
-			optimizeCompartmentSize(container);
-		} else {
-			layoutCenterForLabel(container);
-		}
-
-		//		if(backgroundFigure!=null) {
-		//			Rectangle bound = new Rectangle(((IFigure)container).getBounds());
-		//			bound.y = container.getBounds().y + 1;
-		//			bound.x = container.getBounds().x + 3;
-		//			backgroundFigure.setBounds(bound);	
-		//		}
-		//		
-	}
-
-	/**
-	 * Optimize the size of each compartment depending on the size of the
-	 * compartments container, and the size of each compartment. If a
-	 * compartment is empty, or not expanded, then a default size is applied to
-	 * this compartment
-	 * 
-	 * @param compartmentsDimension
-	 *        an hashmap containing each compartment dimension.
-	 */
-	protected void optimizeCompartmentSize(IFigure container) {
-		int compartmentsHeight = 0;
-		int notCompartmentsHeight = 0;
-		for(int i = 0; i < notCompartmentList.size(); i++) {
-			notCompartmentsHeight += notCompartmentList.get(i).getBounds().height;
-		}
-
-		for(int i = 0; i < compartmentList.size(); i++) {
-			compartmentsHeight += compartmentList.get(i).getBounds().height;
-			
-		}
-		int remainingspace = container.getBounds().height - notCompartmentsHeight;
-		//because of the place of the label we have to remove  3
-		remainingspace=remainingspace-3;
-		//because we move compartment of 1 pixel the space is decrease of 1
-		for(int i = 0; i < compartmentList.size(); i++) {
-			remainingspace=remainingspace-1;
-		}
-		
-
-		// ratio between the height of all compartments and the size of the
-		// compartments container.
-		double ratio = new Integer(compartmentsHeight).doubleValue() / new Integer(remainingspace).doubleValue();
-
-		for(int i = 0; i < compartmentList.size(); i++) {
-			Rectangle bound = new Rectangle((compartmentList.get(i)).getBounds());
-			int value = (int)((double)bound.height / ratio);
-			bound.height = value;
-			bound.x = container.getBounds().x;
-			if(i > 0) {
-				bound.y = (compartmentList.get(i - 1)).getBounds().getBottomLeft().y + 1;
-
-			}
-			(compartmentList.get(i)).setBounds(bound);
-
-		}
-
-	}
-
-	/**
-	 * use to know what kind of element we have in order to apply the good
-	 * policy for the disposition
-	 * 
-	 * @param container
-	 */
-	public void collectInformationOnChildren(IFigure container) {
-		compartmentList = new ArrayList<IFigure>();
-		notCompartmentList = new ArrayList<IFigure>();
-		for(int i = 0; i < container.getChildren().size(); i++) {
-			if(isAGMFContainer(((IFigure)container.getChildren().get(i)))) {
-				compartmentList.add(((IFigure)container.getChildren().get(i)));
-			} else if((container.getChildren().get(i)) instanceof Label || (container.getChildren().get(i)) instanceof WrappingLabel || ((container.getChildren().get(i)) instanceof StereotypePropertiesCompartment)) {
-				notCompartmentList.add(((IFigure)container.getChildren().get(i)));
+		collectInformation(container);
+		// gets the bounds of this container
+		Rectangle bounds = container.getBounds();
+		// do the layout based on the policies
+		if(!visibleCompartments.isEmpty()) {
+			if(forcedLabelBounds) {
+				layoutForcedLabel(container);
 			} else {
-				if((container.getChildren().get(i)) instanceof ScalableCompartmentFigure) {
-					compartmentList.add((IFigure)container.getChildren().get(i));
-				}
-
+				layoutDefault(container);
 			}
+		} else {
+			// only non-compartment elements are visible
+			// center them within this container
+			layoutOthers(bounds);
+		}
+		// layout the invisible elements
+		layoutInvisibles(bounds.x + 3, bounds.getBottomLeft().y + 1);
+	}
+
+	/**
+	 * Layouts the invisible elements at the given location
+	 *
+	 * @param x
+	 *        location's x coordinate
+	 * @param y
+	 *        location's y coordinate
+	 */
+	protected void layoutInvisibles(int x, int y) {
+		for(IFigure child : invisibles) {
+			Rectangle bound = new Rectangle(child.getBounds());
+			bound.x = x;
+			bound.y = y;
+			child.setBounds(bound);
 		}
 	}
 
 	/**
-	 * obtain a prefered size
-	 * 
-	 * @param figure
-	 *        that can contain a GMF compartment figure
-	 * @return a the size
+	 * Layout the other elements within the given container bounds
+	 *
+	 * @param container
+	 *        The container's bound
 	 */
-	public Dimension getPreferedSize(IFigure figure) {
+	protected void layoutOthers(Rectangle container) {
+		int totalHeight = 0;
+		for(IFigure child : visibleOthers) {
+			totalHeight += child.getPreferredSize().height;
+		}
+
+		IFigure previous = null;
+		for(IFigure child : visibleOthers) {
+			Rectangle bound = new Rectangle();
+			bound.setSize(getPreferedSize(child));
+			if(previous != null) {
+				bound.y = previous.getBounds().getBottomLeft().y + 1;
+				bound.x = container.x + 3;
+				bound.width = container.width;
+			} else {
+				bound.x = container.x + 3;
+				bound.y = container.y + ((container.height - totalHeight) / 2);
+				bound.width = container.width;
+			}
+			child.setBounds(bound);
+			previous = child;
+		}
+	}
+
+	/**
+	 * Gets the preferred size of the given figure
+	 *
+	 * @param figure
+	 *        A figure that contains a GMF compartment
+	 * @return The figure's preferred size
+	 */
+	private Dimension getPreferedSize(IFigure figure) {
 		Dimension dim = figure.getPreferredSize();
-		if(figure.getChildren().size() > 0) {
+		if(!figure.getChildren().isEmpty()) {
 			Object compartment = figure.getChildren().get(0);
 			if(compartment instanceof ResizableCompartmentFigure) {
 				dim.height = ((ResizableCompartmentFigure)compartment).getPreferredSize().height + 10;
-				if(dim.height == 0) {
+				if(dim.height < MINIMUM_COMPARTMENT_HEIGHT) {
 					dim.height = MINIMUM_COMPARTMENT_HEIGHT;
 				}
-
 			}
 		}
 		return dim;
 	}
 
 	/**
-	 * tests is the figure contains a GMF compartment
-	 * 
-	 * @param figure
-	 * @return true if this is the case
+	 * Default layout behavior with compartments
+	 *
+	 * @param container
+	 *        The container to layout
 	 */
-	public boolean isAGMFContainer(IFigure figure) {
+	protected void layoutDefault(IFigure container) {
+		// this list contains the visible compartments (that is to say :
+		// notCompartmentList + compartmentsList
+		List<IFigure> visibles = new ArrayList<IFigure>();
+		visibles.addAll(visibleOthers);
+		visibles.addAll(visibleCompartments);
+
+		List<Rectangle> bounds = buildInitialsBounds(container, visibles);
+		double notCompartmentsHeight = getTotalHeight(bounds, 0, visibleOthers.size());
+		double compartmentsHeight = getTotalHeight(bounds, visibleOthers.size(), visibleCompartments.size());
+		double remainingspace = container.getBounds().height - notCompartmentsHeight;
+		// because of the place of the label we have to remove 3
+		remainingspace -= 3;
+		// because we move compartment of 1 pixel the space is decrease of 1 per compartment
+		remainingspace -= visibleCompartments.size();
+		// adjustment ratio for the height of the compartments
+		double ratio = compartmentsHeight / remainingspace;
+
+		for(int i = 0; i != bounds.size(); i++) {
+			Rectangle bound = bounds.get(i);
+			if(i < visibleOthers.size()) {
+				fillBoundsForOther(container, bound, (i == 0) ? null : bounds.get(i - 1));
+			} else {
+				fillBoundsForCompartment(container, bound, (i == 0) ? null : bounds.get(i - 1), ratio);
+			}
+			visibles.get(i).setBounds(bound);
+		}
+	}
+
+	/**
+	 * Fills the given bound data as a compartment child
+	 *
+	 * @param container
+	 *        The container to layout
+	 * @param bound
+	 *        The bound to fill
+	 * @param previous
+	 *        The previously filled bound
+	 * @param ratio
+	 *        The ratio to be applied on the height of the compartment
+	 */
+	private void fillBoundsForCompartment(IFigure container, Rectangle bound, Rectangle previous, double ratio) {
+		fillBoundsForOther(container, bound, previous);
+		bound.height = (int)(bound.height / ratio);
+		if(previous == null) {
+			bound.y = container.getBounds().y;
+		}
+	}
+
+	/**
+	 * Fills the given bound data as a non-compartment child
+	 *
+	 * @param container
+	 *        The container to layout
+	 * @param bound
+	 *        The bound to fill
+	 * @param previous
+	 *        The previously filled bound
+	 */
+	private void fillBoundsForOther(IFigure container, Rectangle bound, Rectangle previous) {
+		bound.x = container.getBounds().x + 1;
+		bound.width = container.getBounds().width;
+		if(previous == null) {
+			bound.y = container.getBounds().y + 3;
+		} else {
+			bound.y = previous.getBottomLeft().y + 1;
+		}
+	}
+
+	/**
+	 * Computes the total height of the given list of bounds
+	 *
+	 * @param bounds
+	 *        A list of bounds
+	 * @param startIndex
+	 *        The starting index of the bounds to take into account
+	 * @param count
+	 *        The number of bounds to take into account
+	 * @return The total height of the slice of bounds data
+	 */
+	private double getTotalHeight(List<Rectangle> bounds, int startIndex, int count) {
+		double result = 0.0;
+		for(int i = startIndex; i != startIndex + count; i++) {
+			result += bounds.get(i).preciseHeight();
+		}
+		return result;
+	}
+
+	/**
+	 * Builds the initial bounds data for all the given children
+	 *
+	 * @param container
+	 *        The container to layout
+	 * @param visibles
+	 *        The list of the visible children
+	 * @return A list of the bounds of the given children in the same order
+	 */
+	private List<Rectangle> buildInitialsBounds(IFigure container, List<IFigure> visibles) {
+		List<Rectangle> result = new ArrayList<Rectangle>(visibles.size());
+		for(IFigure child : visibles) {
+			result.add(buildInitialsBounds(container, child));
+		}
+		return result;
+	}
+
+	/**
+	 * Builds the initial bounds data for the given container and child
+	 *
+	 * @param container
+	 *        The container to layout
+	 * @param child
+	 *        The child for which bounds shall be built
+	 * @return The initial child's bounds
+	 */
+	private Rectangle buildInitialsBounds(IFigure container, IFigure child) {
+		Rectangle bounds = new Rectangle(child.getBounds());
+		child.invalidate();
+		Dimension pref = child.getPreferredSize();
+		child.invalidate();
+		Dimension prefConstraint = child.getPreferredSize(container.getBounds().width - 40, -1);
+		if(pref.width < prefConstraint.width) {
+			bounds.setSize(pref);
+		} else {
+			bounds.setSize(prefConstraint);
+		}
+		return bounds;
+	}
+
+	/**
+	 * Layout all the compartment by their default and the label at the forced position
+	 *
+	 * @param container
+	 *        The container to layout
+	 */
+	protected void layoutForcedLabel(IFigure container) {
+		// first, fixes the order of the children
+		// remove the labels
+		container.getChildren().removeAll(visibleOthers);
+		// add them at the end
+		container.getChildren().addAll(visibleOthers);
+
+		List<Rectangle> bounds = buildInitialsBounds(container, visibleCompartments);
+		double compartmentsHeight = getTotalHeight(bounds, 0, visibleCompartments.size());
+		double remainingspace = container.getBounds().height;
+		// because we move compartment of 1 pixel the space is decrease of 1 per compartment
+		remainingspace -= visibleCompartments.size();
+		// adjustment ratio for the height of the compartments
+		double ratio = compartmentsHeight / remainingspace;
+
+		IFigure shapeCompartment = null;
+		for(int i = 0; i != visibleCompartments.size(); i++) {
+			Rectangle bound = bounds.get(i);
+			fillBoundsForCompartment(container, bound, (i == 0) ? null : bounds.get(i - 1), ratio);
+			IFigure compartment = visibleCompartments.get(i);
+			compartment.setBounds(bound);
+			if(compartment instanceof ScalableCompartmentFigure) {
+				shapeCompartment = compartment;
+			}
+		}
+
+		Rectangle otherBounds = container.getBounds();
+		if(shapeCompartment != null) {
+			otherBounds = ((SVGNodePlateFigure)container.getParent()).getLabelBounds(shapeCompartment.getBounds());
+		}
+		layoutOthers(otherBounds);
+	}
+
+	/**
+	 * Collects information on the container to layout
+	 *
+	 * @param container
+	 *        The container to layout
+	 */
+	protected void collectInformation(IFigure container) {
+		forcedLabelBounds = false;
+		if(container.getParent() instanceof SVGNodePlateFigure) {
+			forcedLabelBounds = ((SVGNodePlateFigure)container.getParent()).hasLabelBounds();
+		}
+		visibleCompartments.clear();
+		visibleOthers.clear();
+		invisibles.clear();
+		for(Object o : container.getChildren()) {
+			IFigure child = (IFigure)o;
+			if(isGMFContainer(child)) {
+				visibleCompartments.add(child);
+			} else if(child instanceof Label || child instanceof WrappingLabel || child instanceof StereotypePropertiesCompartment) {
+				visibleOthers.add(child);
+			} else if(child instanceof ScalableCompartmentFigure) {
+				visibleCompartments.add(child);
+			} else {
+				invisibles.add(child);
+			}
+		}
+	}
+
+	/**
+	 * Tests whether the figure contains a GMF compartment
+	 *
+	 * @param figure
+	 *        The figure to test
+	 * @return <code>true</code> if the figure contains a GMF compartment
+	 */
+	private boolean isGMFContainer(IFigure figure) {
 		if(figure instanceof StereotypePropertiesCompartment) {
 			return false;
 		}
@@ -309,5 +424,4 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		}
 		return false;
 	}
-
 }

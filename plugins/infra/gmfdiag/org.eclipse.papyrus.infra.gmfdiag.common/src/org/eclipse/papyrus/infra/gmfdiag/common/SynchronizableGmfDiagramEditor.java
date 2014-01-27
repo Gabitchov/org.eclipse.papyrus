@@ -21,15 +21,27 @@ import java.util.List;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.internal.properties.WorkspaceViewerProperties;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.CommandIds;
+import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
+import org.eclipse.swt.graphics.RGB;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
 
 /**
  * 
@@ -37,6 +49,8 @@ import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
  * 
  */
 
+@SuppressWarnings("restriction")
+//suppress the warning for WorkspaceViewerProperties
 public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implements IRevealSemanticElement, NavigationTarget {
 
 	public SynchronizableGmfDiagramEditor(boolean hasFlyoutPalette) {
@@ -113,8 +127,11 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		return false;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public Object getAdapter(Class type) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class type) {
 		if(type == DiagramEditPart.class) {
 			return getDiagramEditPart();
 		}
@@ -149,4 +166,77 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		DiagramEditDomain diagEditDomain = (DiagramEditDomain)getDiagramEditDomain();
 		diagEditDomain.setActionManager(createActionManager());
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setFocus() {
+		super.setFocus();
+		updateToggleActionState();
+	}
+
+
+	/**
+	 * this command update the status of the toggle actions
+	 */
+	protected void updateToggleActionState() {
+		final ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getService(ICommandService.class);
+		if(commandService != null) {
+			final IPreferenceStore wsPreferenceStore = ((DiagramGraphicalViewer)getDiagramGraphicalViewer()).getWorkspaceViewerPreferenceStore();
+			org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.VIEW_GRID_COMMAND);
+			EclipseCommandUtils.updateToggleCommandState(command, wsPreferenceStore.getBoolean(WorkspaceViewerProperties.VIEWGRID));
+
+			command = commandService.getCommand(CommandIds.VIEW_RULER_COMMAND);
+			EclipseCommandUtils.updateToggleCommandState(command, wsPreferenceStore.getBoolean(WorkspaceViewerProperties.VIEWRULERS));
+
+			command = commandService.getCommand(CommandIds.VIEW_PAGE_BREAK_COMMAND);
+			EclipseCommandUtils.updateToggleCommandState(command, wsPreferenceStore.getBoolean(WorkspaceViewerProperties.VIEWPAGEBREAKS));
+
+			command = commandService.getCommand(CommandIds.SNAP_TO_GRID_COMMAND);
+			EclipseCommandUtils.updateToggleCommandState(command, wsPreferenceStore.getBoolean(WorkspaceViewerProperties.SNAPTOGRID));
+
+		} else {
+			throw new RuntimeException(String.format("The Eclipse service {0} has not been found", ICommandService.class)); //$NON-NLS-1$
+		}
+	}
+
+
+	@Override
+	protected void addDefaultPreferences() {
+		super.addDefaultPreferences();
+		final PreferencesHint preferencesHint = getPreferencesHint();
+		final IPreferenceStore globalPreferenceStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		final String diagramType = getDiagram().getType();
+		//get the preferences
+		final boolean viewGrid = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.VIEW_GRID));
+		final boolean viewRuler = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.VIEW_RULER));
+		final int rulerUnit = globalPreferenceStore.getInt(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.RULER_UNITS));
+		final boolean snapToGrid = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.SNAP_TO_GRID));
+		final boolean snapToGeometry = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.SNAP_TO_GEOMETRY));
+		final RGB rgb = PreferenceConverter.getColor(globalPreferenceStore, PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_LINE_COLOR));
+		final int gridLineColor = FigureUtilities.RGBToInteger(rgb);
+		final double gridSpacing = globalPreferenceStore.getDouble(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_SPACING));
+		final boolean gridOrder = globalPreferenceStore.getBoolean(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_ORDER));
+		final int gridLineStyle = globalPreferenceStore.getInt(PreferencesConstantsHelper.getDiagramConstant(diagramType, PreferencesConstantsHelper.GRID_LINE_STYLE));
+
+		//set the preferences
+		final IPreferenceStore localStore = getWorkspaceViewerPreferenceStore();
+		localStore.setValue(PreferencesConstantsHelper.VIEW_GRID_CONSTANT, viewGrid);
+		localStore.setValue(PreferencesConstantsHelper.VIEW_RULERS_CONSTANT, viewRuler);
+		localStore.setValue(PreferencesConstantsHelper.RULER_UNITS_CONSTANT, rulerUnit);
+		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT, snapToGrid);
+		localStore.setValue(PreferencesConstantsHelper.SNAP_TO_GEOMETRY_CONSTANT, snapToGeometry);
+		localStore.setValue(PreferencesConstantsHelper.GRID_LINE_COLOR_CONSTANT, gridLineColor);
+		localStore.setValue(PreferencesConstantsHelper.GRID_SPACING_CONSTANT, gridSpacing);
+		
+		//to force refresh
+		localStore.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, !gridOrder);
+		localStore.setValue(PreferencesConstantsHelper.GRID_ORDER_CONSTANT, gridOrder);
+		
+		localStore.setValue(PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT, gridLineStyle);
+
+	}
+
+
 }

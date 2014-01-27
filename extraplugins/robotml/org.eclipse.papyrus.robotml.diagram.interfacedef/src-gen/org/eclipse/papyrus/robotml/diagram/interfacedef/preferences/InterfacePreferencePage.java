@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.robotml.diagram.interfacedef.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.robotml.diagram.interfacedef.edit.part.InterfaceDefEditPart;
 
 public class InterfacePreferencePage extends InterfaceDefNodePreferencePage {
@@ -30,11 +30,11 @@ public class InterfacePreferencePage extends InterfaceDefNodePreferencePage {
 	}
 
 	public static void initDefaults(IPreferenceStore store) {
-		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 100);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 100);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.WIDTH), 100);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.HEIGHT), 100);
 		// set the true value for the compartment visibility
 		for(String name : compartments) {
-			String preferenceName = PreferenceConstantHelper.getCompartmentElementConstant(prefKey, name, PreferenceConstantHelper.COMPARTMENT_VISIBILITY);
+			String preferenceName = PreferencesConstantsHelper.getCompartmentElementConstant(prefKey, name, PreferencesConstantsHelper.COMPARTMENT_VISIBILITY);
 			store.setDefault(preferenceName, true);
 		}
 	}

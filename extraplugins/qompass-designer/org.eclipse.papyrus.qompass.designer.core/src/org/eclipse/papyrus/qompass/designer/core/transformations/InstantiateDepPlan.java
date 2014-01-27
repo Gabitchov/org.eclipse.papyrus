@@ -31,6 +31,7 @@ import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
 import org.eclipse.papyrus.qompass.designer.core.ProjectManagement;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -40,7 +41,9 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.Deploy;
+import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
+import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.extensions.LanguageSupport;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerateCode;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerationOptions;
@@ -58,6 +61,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -110,12 +114,13 @@ public class InstantiateDepPlan {
 		boolean generateCACOnly = (genOptions & GenerationOptions.CAC_ONLY) != 0;
 
 		AcceleoDriver.clearErrors();
-		Package cdp;
+		Package smCDP;
 		Configuration configuration = null;
 		if(cdpOrConfig instanceof Package) {
-			cdp = (Package)cdpOrConfig;
-			MainModelTrafo.setConfiguration(null);
-		} else if(StereotypeUtil.isApplied(cdpOrConfig, Configuration.class)) {
+			smCDP = (Package)cdpOrConfig;
+			RuleManagement.setConfiguration(null);
+		}
+		else if(StereotypeUtil.isApplied(cdpOrConfig, Configuration.class)) {
 			configuration = UMLUtil.getStereotypeApplication(cdpOrConfig, Configuration.class);
 			DeploymentPlan fcmCDP = configuration.getDeploymentPlan();
 			if(fcmCDP == null) {
@@ -124,20 +129,21 @@ public class InstantiateDepPlan {
 
 					public void run() {
 						Shell shell = new Shell();
-						MessageDialog.openError(shell, "Cannot generate model", "The stereotype attribute <deploymentPlan> of configuration <" + config.getName() + "> is not initialized");
+						MessageDialog.openError(shell, Messages.InstantiateDepPlan_CannotGenModel,
+								String.format(Messages.InstantiateDepPlan_DepPlanStereotypeNotInitialized, config.getName()));
 					}
 				});
 				return;
 			}
-			cdp = fcmCDP.getBase_Package();
-			MainModelTrafo.setConfiguration(configuration);
+			smCDP = fcmCDP.getBase_Package();
+			RuleManagement.setConfiguration(configuration);
 		} else {
 			return;
 		}
 
 		try {
 			EnumService.init();
-			InstanceSpecification rootIS = DepUtils.getMainInstance(cdp);
+			InstanceSpecification rootIS = DepUtils.getMainInstance(smCDP);
 			// Package copyCDP = dt.getCopyCDT (selectedCDP);
 
 			EList<InstanceSpecification> nodes = AllocUtils.getAllNodes(rootIS);
@@ -151,13 +157,13 @@ public class InstantiateDepPlan {
 			if(generateCode) {
 				steps += nodes.size();
 			}
-			monitor.beginTask("Generating deployment model ...", steps);
+			monitor.beginTask(Messages.InstantiateDepPlan_InfoGeneratingModel, steps);
 			if(monitor.isCanceled()) {
 				return;
 			}
 
 			// 1a: create a new model (and applies same profiles / imports)
-			Model existingModel = cdp.getModel();
+			Model existingModel = smCDP.getModel();
 			TransformationContext.sourceRoot = existingModel;
 			tmpMM = createTargetModel(existingModel, monitor, existingModel.getName(), true);
 			tmpModel = tmpMM.getModel();
@@ -182,20 +188,26 @@ public class InstantiateDepPlan {
 			Copy.copyID(existingModel, tmpModel);
 
 			// 1b: reify the connectors "into" the new model
-			monitor.subTask("expanding connectors and containers");
+			monitor.subTask(Messages.InstantiateDepPlan_InfoExpandingConnectors);
 
 			// obtain reference to CDP in target model
 			// 
 			tmpCopy.createShallowContainer(rootIS);
-			Package tmCDP = (Package)tmpCopy.get(cdp);
+			Package tmCDP = (Package)tmpCopy.get(smCDP);
 
 			ContainerTrafo.init();
-			InstanceSpecification newRootIS = MainModelTrafo.mainModelTrafo(tmpCopy, tmCDP, rootIS, null);
+			InstanceConfigurator.onNodeModel = false;
+			MainModelTrafo mainModelTrafo = new MainModelTrafo(tmpCopy, tmCDP);
+			InstanceSpecification newRootIS = mainModelTrafo.transformInstance(rootIS, null);
+			DeploymentPlan newCDP = StereotypeUtil.applyApp(tmCDP, DeploymentPlan.class);
+			newCDP.setMainInstance(newRootIS);
 			monitor.worked(1);
 
 			// 1c: late bindings
 			// LateEval.bindLateOperations();
 			// 3: distribute to nodes
+
+			ApplyInstanceConfigurators.applyInstanceConfigurators(newRootIS);
 
 			FlattenInteractionComponents.getInstance().flattenAssembly(newRootIS, null);
 			
@@ -213,21 +225,22 @@ public class InstantiateDepPlan {
 
 				nodes = AllocUtils.getAllNodes(newRootIS);
 				if(nodes.size() == 0) {
-					throw new TransformationException("None of the instances in the deployment plan is allocated to a node. Verify the node allocation.");
+					throw new TransformationException(Messages.InstantiateDepPlan_InfoNoneAllocated);
 				}
 				int nodeIndex = 0;
 				Classifier cl = DepUtils.getClassifier(rootIS);
-				String targetLanguage = DepUtils.getLanguageFromClassifier(cl);
+				String targetLanguage = DepUtils.getLanguageFromPackage(cl.getNearestPackage());
 				if (targetLanguage == null) {
-					targetLanguage = "C++";
+					targetLanguage = "C++"; //$NON-NLS-1$
 				}
-				
+	
+				InstanceConfigurator.onNodeModel = true;
 				for(InstanceSpecification node : nodes) {
-					String modelName = existingModel.getName() + "_" + node.getName();
+					String modelName = existingModel.getName() + "_" + node.getName(); //$NON-NLS-1$
 					if(configuration != null) {
-						modelName += "_" + configuration.getBase_Class().getName();
+						modelName += "_" + configuration.getBase_Class().getName(); //$NON-NLS-1$
 					} else {
-						modelName += "_" + cdp.getName();
+						modelName += "_" + smCDP.getName(); //$NON-NLS-1$
 					}
 					ModelManagement genMM = createTargetModel(existingModel, monitor, MapUtil.rootModelName, false);
 					Model genModel = genMM.getModel();
@@ -246,7 +259,7 @@ public class InstantiateDepPlan {
 					targetCopy.preCopyListeners.add(FilterRuleApplication.getInstance());
 					targetCopy.postCopyListeners.add(InstantiateCppIncludeWOB.getInstance());
 
-					monitor.setTaskName("deploying for node " + node.getName());
+					monitor.setTaskName(String.format(Messages.InstantiateDepPlan_InfoDeployingForNode, node.getName()));
 					ILangSupport langSupport = LanguageSupport.getLangSupport(targetLanguage);
 					langSupport.resetConfigurationData();
 
@@ -262,7 +275,7 @@ public class InstantiateDepPlan {
 					//     Due to the copying of imports, the top-level package has changed which implies that new
 					//     derived interfaces are put into a different package and the derivedInterfaces package in
 					//     the original root becomes obsolete. Delete this obsolete package, if existing.
-					NamedElement derivedInterfaces = Utils.getQualifiedElement(genModel, "root::derivedInterfaces");
+					NamedElement derivedInterfaces = Utils.getQualifiedElement(genModel, "root::derivedInterfaces"); //$NON-NLS-1$
 					if(derivedInterfaces instanceof Package) {
 						derivedInterfaces.destroy();
 					}
@@ -290,6 +303,10 @@ public class InstantiateDepPlan {
 					}
 					monitor.worked(1);
 
+					PackageableElement depPlanFolder = genModel.getPackagedElement(DeployConstants.depPlanFolderHw);
+					if (depPlanFolder != null) {
+						depPlanFolder.destroy();
+					}
 					IProject genProject = ProjectManagement.getNamedProject(modelName);
 					if((genProject == null) || !genProject.exists()) {
 						genProject = langSupport.createProject(modelName, node);
@@ -301,6 +318,7 @@ public class InstantiateDepPlan {
 						}
 					}
 
+					
 					if(generateCode) {
 						GenerateCode codeGen = new GenerateCode(genProject, langSupport, genMM, monitor);
 						codeGen.generate(node, targetLanguage, (genOptions & GenerationOptions.ONLY_CHANGED) != 0);
@@ -317,7 +335,7 @@ public class InstantiateDepPlan {
 
 				public void run() {
 					Shell shell = new Shell();
-					MessageDialog.openError(shell, "A transformation exception occurred", teFinal.getMessage());   //$NON-NLS-1$
+					MessageDialog.openError(shell, Messages.InstantiateDepPlan_TransformationException, teFinal.getMessage());
 				}
 			});
 			Log.log(Status.ERROR, Log.DEPLOYMENT, "", teFinal);   //$NON-NLS-1$
@@ -329,8 +347,8 @@ public class InstantiateDepPlan {
 				public void run() {
 					Shell shell = new Shell();
 					String msg = eFinal.toString() + "\n\n" +   //$NON-NLS-1$
-						"Consult error log or console for details";   //$NON-NLS-1$
-					MessageDialog.openError(shell, "An error occurred during transformation", msg);  //$NON-NLS-1$
+						Messages.InstantiateDepPlan_ConsultConsole; 
+					MessageDialog.openError(shell, Messages.InstantiateDepPlan_ErrorsDuringTransformation, msg);
 				}
 			});
 			Log.log(Status.ERROR, Log.DEPLOYMENT, "", e);  //$NON-NLS-1$
@@ -342,8 +360,8 @@ public class InstantiateDepPlan {
 			Display.getDefault().syncExec(new Runnable() {
 				public void run() {
 					Shell shell = new Shell();
-					MessageDialog.openInformation(shell, "Acceleo errors occured", //$NON-NLS-1$
-						"Acceleo errors occured during code generation. Please check the error log");  //$NON-NLS-1$
+					MessageDialog.openInformation(shell, Messages.InstantiateDepPlan_AcceleoErrors,
+						Messages.InstantiateDepPlan_AcceleoErrorsCheckLog);
 				}
 			});
 		}
@@ -367,7 +385,7 @@ public class InstantiateDepPlan {
 			// copy profile application
 			for(Profile profile : existingModel.getAppliedProfiles()) {
 				// reload profile in resource of new model
-				monitor.subTask("apply profile " + profile.getQualifiedName());
+				monitor.subTask(Messages.InstantiateDepPlan_InfoApplyProfile + profile.getQualifiedName());
 
 				if(profile.eResource() == null) {
 					String profileName = profile.getQualifiedName();
@@ -375,12 +393,12 @@ public class InstantiateDepPlan {
 						if(profile instanceof MinimalEObjectImpl.Container) {
 							URI uri = ((MinimalEObjectImpl.Container)profile).eProxyURI();
 							if(uri != null) {
-								throw new TransformationException("Check input model: the applied profile with URI \"" + uri + "\" has no name and is not contained in a resource");
+								throw new TransformationException(String.format(Messages.InstantiateDepPlan_CheckInputModelProfileNoRes, uri));
 							}
 						}
-						throw new TransformationException("Check input model: one of the applied profiles has no name and is not contained in a resource");
+						throw new TransformationException(Messages.InstantiateDepPlan_CheckInputModelProfileNoResNoName);
 					}
-					throw new TransformationException("Check input model: profile \"" + profileName + "\" is not contained in a resource");
+					throw new TransformationException(String.format(Messages.InstantiateDepPlan_CheckInputModelProfile3, profileName));
 				}
 
 				Resource profileResource = null;
@@ -410,7 +428,7 @@ public class InstantiateDepPlan {
 				newModel.applyProfile(newProfile);
 			}
 		} catch (IllegalArgumentException e) {
-			throw new TransformationException("An Illegal argument exception occured during the copy of profile applications. This may indicate that the original model contains an invalid profile application\n\n" + e.toString());
+			throw new TransformationException(Messages.InstantiateDepPlan_IllegalArgumentDuringCopy + e.toString());
 		}
 
 		// copy imports (and load resources associated - TODO: might not be necessary)
@@ -421,24 +439,24 @@ public class InstantiateDepPlan {
 		if(copyImports) {
 			for(Package importedPackage : existingModel.getImportedPackages()) {
 				if(importedPackage == null) {
-					throw new TransformationException("An imported package is null. Verify the imported packages");
+					throw new TransformationException(Messages.InstantiateDepPlan_CheckInputImportPkg);
 				}
 				if(importedPackage.eResource() == null) {
-					String errorMsg = "An imported package has no eResource. Verify imported packages";
+					String errorMsg = Messages.InstantiateDepPlan_CheckInputImportPkgNoRes;
 					if(importedPackage instanceof MinimalEObjectImpl.Container) {
 						URI uri = ((MinimalEObjectImpl.Container)importedPackage).eProxyURI();
 						if(uri != null) {
-							errorMsg += " - URI: " + uri.devicePath();
+							errorMsg += " - URI: " + uri.devicePath(); //$NON-NLS-1$
 						}
 					}
 					throw new TransformationException(errorMsg);
 				}
 				newModel.createPackageImport(importedPackage);
-				monitor.subTask("import package " + importedPackage.getName());
+				monitor.subTask(String.format(Messages.InstantiateDepPlan_InfoImportPackage, importedPackage.getName()));
 
 				try {
 					importedPackage.eResource().load(null);
-					newModel.getMember("dummy"); // force loading of model
+					newModel.getMember("dummy"); // force loading of model //$NON-NLS-1$
 				} catch (IOException e) {
 					throw new TransformationException(e.getMessage());
 				}

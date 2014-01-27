@@ -31,9 +31,6 @@ public class ParticipantTypeContentProvider implements ITreeContentProvider {
 
 
 
-	private EPackage ePackage = null;
-
-
 	private HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>> participantsList = new HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>>();
 
 
@@ -59,11 +56,7 @@ public class ParticipantTypeContentProvider implements ITreeContentProvider {
 			return ((HashMap)inputElement).keySet().toArray();
 		}
 
-		//		for(Object obj : (Collection<Object>)inputElement) {
-		//			result.add(obj);
-		//		}
-
-
+		
 		return result.toArray();
 	}
 
@@ -75,40 +68,6 @@ public class ParticipantTypeContentProvider implements ITreeContentProvider {
 		}
 		return null;
 
-		//		List<ParticipantTypeAttribute> result = new ArrayList<ParticipantTypeAttribute>();
-		//		if(parentElement instanceof ParticipantTypeElement) {
-		//
-		//			if(((ParticipantTypeElement)parentElement).getElement() instanceof EClass) {
-		//				//			result.addAll(((EClass)parentElement).getEAllAttributes());
-		//				for(EObject eAttribute : ((EClass)((ParticipantTypeElement)parentElement).getElement()).getEAllAttributes()) {
-		//					ParticipantTypeAttribute attribute = new ParticipantTypeAttribute(eAttribute, ((ParticipantTypeElement)parentElement));
-		//
-		//					result.add(attribute);
-		//
-		//				}
-		//
-		//
-		//			} else if(((ParticipantTypeElement)parentElement).getElement() instanceof Stereotype) {
-		//
-		//						for(Property property : ((Stereotype)((ParticipantTypeElement)parentElement).getElement()).getAllAttributes()) {
-		//							if(!property.getName().startsWith("base_")) {
-		//								if(property.getType() instanceof Element) {
-		//		
-		//									if(UMLUtil.isBoolean(property.getType()) || UMLUtil.isString(property.getType()) || UMLUtil.isInteger(property.getType()) || UMLUtil.isReal(property.getType()) || UMLUtil.isUnlimitedNatural(property.getType()) || property.getType() instanceof Enumeration) {
-		//										//						result.add(property);
-		//										ParticipantTypeAttribute attribute = new ParticipantTypeAttribute(property, (ParticipantTypeElement)parentElement);
-		//		
-		//										result.add(attribute);
-		//		
-		//		
-		//									}
-		//								}
-		//							}
-		//				}
-		//			}
-		//		}
-		//		
-		//		return result.toArray();
 	}
 
 	public Object getParent(Object element) {

@@ -26,8 +26,10 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.InteractionComponent;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
@@ -103,8 +105,8 @@ public class ConnectorReification {
 				return port;
 			}
 		}
-		throw new RuntimeException("Connector reification: cannot find a matching port on reified connector " + connectorType.getName() +
-			" for port " + otherPort.getQualifiedName() + ". This should not happen and indicates an internal tool chain error.");
+		throw new RuntimeException(String.format(Messages.ConnectorReification_CannotFindMatchingPort,
+				connectorType.getName(), otherPort.getQualifiedName()));
 	}
 
 	/**
@@ -130,7 +132,7 @@ public class ConnectorReification {
 		if(!(smConnectorPart.getType() instanceof Class)) {
 			// can not happen since caller checks whether type is stereotyped as ConnectorComp
 			// which extends class
-			Log.log(Status.ERROR, Log.TRAFO_CONNECTOR, "template type is not a class");
+			Log.log(Status.ERROR, Log.TRAFO_CONNECTOR, Messages.ConnectorReification_TemplateTypeNotClass);
 			return null;
 		}
 		// choose an implementation
@@ -182,7 +184,8 @@ public class ConnectorReification {
 	 *        connector element within the source model
 	 * @param tmIS
 	 *        target model instance specification of the composite in which the reified connector
-	 *        (the part typed with the instantiated interaction component) should be created
+	 *        (the part typed with the instantiated interaction component) should be created.
+	 *        The instance is only used to find a suitable implementation.
 	 * @param args
 	 *        addtion args for the Acceleo transformation
 	 * @return the created part within tmComponent
@@ -223,26 +226,24 @@ public class ConnectorReification {
 
 		if(connectorImplem == null) {
 			throw new TransformationException(
-				"could not bind the connector implementation template \""
-					+ connectorImplemTemplate.getName() + "\"");
+				String.format(Messages.ConnectorReification_CouldNotBind, connectorImplemTemplate.getName()));
 		}
 
 		Property tmConnectorPart = tmComponent.createOwnedAttribute(name,
 			connectorImplemTemplate);
 		// copy id, but prefix it with "p" (for part)
-		Copy.copyID(smConnector, tmConnectorPart, "p");
+		Copy.copyID(smConnector, tmConnectorPart, "p"); //$NON-NLS-1$
 		tmConnectorPart.setIsComposite(true);
 
-		Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "ConnectorReification," +
-			"add part with connector implementation template <"
-			+ connectorImplemTemplate.getName() + "> and implementation <"
-			+ connectorImplem.getName() + ">");
+		Log.log(Status.INFO, Log.TRAFO_CONNECTOR,
+			String.format(Messages.ConnectorReification_InfoAddConnectorPart,
+				connectorImplemTemplate.getName(), connectorImplem.getName()));
 
 		// now create (simple) connections towards the new part
 		int i = 0;
 		for(ConnectorEnd smEnd : smConnector.getEnds()) {
-			Connector tmConnector = tmComponent.createOwnedConnector("c "
-				+ name + " " + String.valueOf(i));
+			Connector tmConnector = tmComponent.createOwnedConnector("c " //$NON-NLS-1$
+				+ name + " " + String.valueOf(i)); //$NON-NLS-1$
 			Copy.copyID(smConnector, tmConnector);
 			i++;
 			// the new connector connects the existing end with an end of the
@@ -268,7 +269,7 @@ public class ConnectorReification {
 			}
 			else {
 				throw new TransformationException(
-					"Connector reification requires the use of ports (otherwise, the ports of the reified connector can not be assigned unambiguously");
+					Messages.ConnectorReification_RequiresUseOfPorts);
 			}
 		}
 
@@ -387,15 +388,13 @@ public class ConnectorReification {
 					if(!(otherPart.getType() instanceof EncapsulatedClassifier))
 						continue;
 
-					for(Port otherPort : PortUtils
-						.getAllPorts((EncapsulatedClassifier)otherPart
-							.getType())) {
-						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "ConnectorReification: otherPort type: " +
-							otherPort.getType().getQualifiedName());
-						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "ConnectorReification:      port type: " +
-							port.getType().getQualifiedName());
+					for(Port otherPort : PortUtils.getAllPorts((EncapsulatedClassifier)otherPart.getType())) {
+						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, String.format(
+							Messages.ConnectorReification_InfoPortTypes,
+							otherPort.getType().getQualifiedName(),
+							port.getType().getQualifiedName()));
 						if(otherPort.getType() == port.getType()) {
-							Connector newConnector = composite.createOwnedConnector("connector - container of "
+							Connector newConnector = composite.createOwnedConnector("connector - container of " //$NON-NLS-1$
 								+ otherPart.getName());
 							ConnectorEnd end1 = newConnector.createEnd();
 							ConnectorEnd end2 = newConnector.createEnd();
@@ -412,16 +411,11 @@ public class ConnectorReification {
 				}
 				if(!connected) {
 					if(port.getType() == null) {
-						System.err
-							.println("Error: connector port \""
-								+ port.getName()
-								+ "\" does not have a type. It is (therefore) not connected");
+						Activator.log.debug(
+							String.format(Messages.ConnectorReification_CouldNotConnectPort, port.getName()));
 					} else {
-						System.err
-							.println("Error: could not connect connector port: "
-								+ port.getName()
-								+ " of type "
-								+ port.getType().getName());
+						Activator.log.debug(
+							String.format(Messages.ConnectorReification_CouldNotConnectPortOfType, port.getName(), port.getType().getName()));
 					}
 				}
 			}
@@ -470,13 +464,12 @@ public class ConnectorReification {
 			// find instance that is associated with other part.
 			for(Slot slot : compositeIS.getSlots()) {
 				if(slot.getDefiningFeature() == otherPart) {
-					InstanceSpecification containedInstance = DepUtils
-						.getInstance(slot);
+					InstanceSpecification containedInstance = DepUtils.getInstance(slot);
 					// TODO: too complicated, if the non-connector is a composite as well, it must be clearly allocated
 					EList<InstanceSpecification> nodes = AllocUtils.getAllNodesForPort(
 						containedInstance, otherPort);
-					AllocUtils.propagateNodesViaPort(DepUtils
-						.getInstance(partSlot), myPort, nodes);
+					AllocUtils.propagateNodesViaPort(
+							DepUtils.getInstance(partSlot), myPort, nodes);
 					break;
 				}
 			}

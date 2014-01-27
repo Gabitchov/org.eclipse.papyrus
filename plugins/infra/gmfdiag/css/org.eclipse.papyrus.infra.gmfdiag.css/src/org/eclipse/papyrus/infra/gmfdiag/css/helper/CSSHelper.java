@@ -44,6 +44,9 @@ public class CSSHelper {
 	 * @see #installCSSSupport(ResourceSet)
 	 */
 	public static boolean isCSSSupported(ResourceSet resourceSet) {
+		if(resourceSet == null) {
+			return false;
+		}
 		return resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().get(NotationModel.NOTATION_FILE_EXTENSION) instanceof CSSNotationResourceFactory;
 	}
 }

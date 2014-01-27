@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.eclipse.papyrus.uml.diagram.component.edit.policies;
 
 import java.util.ArrayList;

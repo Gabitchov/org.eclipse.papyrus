@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements">
+  <uml:Model xmi:id="_a0QCwFOCEeOE6bh9v5dYKg" name="PapyrusNewChild">
+    <packagedElement xmi:type="uml:Package" xmi:id="_IqDb0FOFEeOuspyO4PzXCg" name="Requirements">
+      <packagedElement xmi:type="uml:Class" xmi:id="_6Pfk0FOGEeOuspyO4PzXCg" name="AddNewChild"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_FQleQFOIEeOuspyO4PzXCg" name="HideElement"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_cj5MsFOIEeOuspyO4PzXCg" name="newChildFromProfile"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_1sxP4FgNEeOKQOyOw2l5lw" name="newChildMenuDisplay"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Dm5BYFgOEeOKQOyOw2l5lw" name="RoleAndElementCreation"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_JXz5sFOFEeOuspyO4PzXCg" clientDependency="_T6P9sFOFEeOuspyO4PzXCg" name="UseCases">
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_T6P9sFOFEeOuspyO4PzXCg" name="Abstraction1" client="_JXz5sFOFEeOuspyO4PzXCg" supplier="_IqDb0FOFEeOuspyO4PzXCg"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_uxF88FOIEeOuspyO4PzXCg" name="AddNewChild" useCase="_-bickFOIEeOuspyO4PzXCg _EPnUAFOJEeOuspyO4PzXCg _WZ_ZwFOJEeOuspyO4PzXCg _uSMlAFOJEeOuspyO4PzXCg _cXBM8FW6EeOhVe6k7yzS3A">
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_-bickFOIEeOuspyO4PzXCg" name="UseCreateMenu" subject="_uxF88FOIEeOuspyO4PzXCg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_EPnUAFOJEeOuspyO4PzXCg" clientDependency="_MEYgMFgQEeOKQOyOw2l5lw _NJtwkFgQEeOKQOyOw2l5lw _PEmv8FgQEeOKQOyOw2l5lw _RAhqEFgQEeOKQOyOw2l5lw" name="Create or modify ElementCreationModel" subject="_uxF88FOIEeOuspyO4PzXCg">
+          <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_lYRLAVW6EeOhVe6k7yzS3A" name="point"/>
+          <include xmi:type="uml:Include" xmi:id="_aEB2oFW6EeOhVe6k7yzS3A" addition="_uSMlAFOJEeOuspyO4PzXCg"/>
+        </ownedUseCase>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_WZ_ZwFOJEeOuspyO4PzXCg" clientDependency="_OCZsEFgQEeOKQOyOw2l5lw" name="Generate &quot;ElementCreationModel&quot; from a profile" subject="_uxF88FOIEeOuspyO4PzXCg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_uSMlAFOJEeOuspyO4PzXCg" clientDependency="_VQC-gFgQEeOKQOyOw2l5lw" name="Hide, change order or add submenus" subject="_uxF88FOIEeOuspyO4PzXCg"/>
+        <ownedUseCase xmi:type="uml:UseCase" xmi:id="_cXBM8FW6EeOhVe6k7yzS3A" name="Create or modify ElementCreationModel at runtime thanks to a GUI" subject="_uxF88FOIEeOuspyO4PzXCg">
+          <extend xmi:type="uml:Extend" xmi:id="_lX9pAFW6EeOhVe6k7yzS3A" extendedCase="_EPnUAFOJEeOuspyO4PzXCg" extensionLocation="_lYRLAVW6EeOhVe6k7yzS3A"/>
+        </ownedUseCase>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_zYtoUFOIEeOuspyO4PzXCg" name="ModelDesigner"/>
+      <packagedElement xmi:type="uml:Actor" xmi:id="_3P0cwFOIEeOuspyO4PzXCg" name="PapyrusCustomizer"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_DTg4IFOJEeOuspyO4PzXCg" name="A_modeldesigner_usecreatemenu" memberEnd="_DTg4IVOJEeOuspyO4PzXCg _DTg4JFOJEeOuspyO4PzXCg">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_DTg4IVOJEeOuspyO4PzXCg" name="modeldesigner" type="_zYtoUFOIEeOuspyO4PzXCg" association="_DTg4IFOJEeOuspyO4PzXCg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DTg4IlOJEeOuspyO4PzXCg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DTg4I1OJEeOuspyO4PzXCg" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_DTg4JFOJEeOuspyO4PzXCg" name="usecreatemenu" type="_-bickFOIEeOuspyO4PzXCg" association="_DTg4IFOJEeOuspyO4PzXCg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DTg4JVOJEeOuspyO4PzXCg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DTg4JlOJEeOuspyO4PzXCg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_PBVKIFOJEeOuspyO4PzXCg" name="A_papyruscustomizer_create or modify elementcreationmodel" memberEnd="_PBVKIVOJEeOuspyO4PzXCg _PBVKJFOJEeOuspyO4PzXCg">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_PBVKIVOJEeOuspyO4PzXCg" name="papyruscustomizer" type="_3P0cwFOIEeOuspyO4PzXCg" association="_PBVKIFOJEeOuspyO4PzXCg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PBVKIlOJEeOuspyO4PzXCg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PBVKI1OJEeOuspyO4PzXCg" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_PBVKJFOJEeOuspyO4PzXCg" name="create or modify elementcreationmodel" type="_EPnUAFOJEeOuspyO4PzXCg" association="_PBVKIFOJEeOuspyO4PzXCg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PBVKJVOJEeOuspyO4PzXCg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PBVKJlOJEeOuspyO4PzXCg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_gmg4IFOJEeOuspyO4PzXCg" name="A_modeldesigner_generate element creation model" memberEnd="_gmg4IVOJEeOuspyO4PzXCg _gmg4JFOJEeOuspyO4PzXCg">
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gmg4IVOJEeOuspyO4PzXCg" name="modeldesigner" type="_zYtoUFOIEeOuspyO4PzXCg" association="_gmg4IFOJEeOuspyO4PzXCg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gmg4IlOJEeOuspyO4PzXCg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gmg4I1OJEeOuspyO4PzXCg" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gmg4JFOJEeOuspyO4PzXCg" name="generate element creation model" type="_WZ_ZwFOJEeOuspyO4PzXCg" association="_gmg4IFOJEeOuspyO4PzXCg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gmg4JVOJEeOuspyO4PzXCg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gmg4JlOJEeOuspyO4PzXCg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_kkQk4FgPEeOKQOyOw2l5lw" name="DataType"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_MEYgMFgQEeOKQOyOw2l5lw" name="Refine1" client="_EPnUAFOJEeOuspyO4PzXCg" supplier="_6Pfk0FOGEeOuspyO4PzXCg"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_NJtwkFgQEeOKQOyOw2l5lw" name="Refine2" client="_EPnUAFOJEeOuspyO4PzXCg" supplier="_FQleQFOIEeOuspyO4PzXCg"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_OCZsEFgQEeOKQOyOw2l5lw" name="Refine3" client="_WZ_ZwFOJEeOuspyO4PzXCg" supplier="_cj5MsFOIEeOuspyO4PzXCg"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_PEmv8FgQEeOKQOyOw2l5lw" name="Refine4" client="_EPnUAFOJEeOuspyO4PzXCg" supplier="_Dm5BYFgOEeOKQOyOw2l5lw"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_RAhqEFgQEeOKQOyOw2l5lw" name="Refine5" client="_EPnUAFOJEeOuspyO4PzXCg" supplier="_1sxP4FgNEeOKQOyOw2l5lw"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_VQC-gFgQEeOKQOyOw2l5lw" name="Refine6" client="_uSMlAFOJEeOuspyO4PzXCg" supplier="_FQleQFOIEeOuspyO4PzXCg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_JnbDAFOFEeOuspyO4PzXCg" clientDependency="_UqVW0FOFEeOuspyO4PzXCg" name="Design">
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_UqVW0FOFEeOuspyO4PzXCg" name="Abstraction1" client="_JnbDAFOFEeOuspyO4PzXCg" supplier="_JXz5sFOFEeOuspyO4PzXCg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Nc3DgFOFEeOuspyO4PzXCg" clientDependency="_VkwXsFOFEeOuspyO4PzXCg" name="Tests">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_VkwXsFOFEeOuspyO4PzXCg" name="Dependency1" client="_Nc3DgFOFEeOuspyO4PzXCg" supplier="_JXz5sFOFEeOuspyO4PzXCg"/>
+      <packagedElement xmi:type="uml:Package" xmi:id="_fMeMwFXeEeOW-JPqZK_EZg" name="Test AboutCreateModifyElementCreationModel">
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_HTgzkFXeEeOW-JPqZK_EZg" clientDependency="_VqMlQFXeEeOW-JPqZK_EZg" name="Create a model without nothing"/>
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_KdZ8sFXeEeOW-JPqZK_EZg" clientDependency="_VIIaAFXeEeOW-JPqZK_EZg" name="createa model with only a root"/>
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_M6gRQFXeEeOW-JPqZK_EZg" clientDependency="_TYirsFXeEeOW-JPqZK_EZg" name="create a model with elementType as String"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_TYirsFXeEeOW-JPqZK_EZg" name="Usage4" client="_M6gRQFXeEeOW-JPqZK_EZg" supplier="_EPnUAFOJEeOuspyO4PzXCg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_VIIaAFXeEeOW-JPqZK_EZg" name="Usage5" client="_KdZ8sFXeEeOW-JPqZK_EZg" supplier="_EPnUAFOJEeOuspyO4PzXCg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_VqMlQFXeEeOW-JPqZK_EZg" name="Usage6" client="_HTgzkFXeEeOW-JPqZK_EZg" supplier="_EPnUAFOJEeOuspyO4PzXCg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_lII58FXeEeOW-JPqZK_EZg" name="TestUseCreateMenu">
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_rxKR0FXdEeOW-JPqZK_EZg" clientDependency="_xpiacFXdEeOW-JPqZK_EZg" name="Use a menu from a model without ElementType model"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_xpiacFXdEeOW-JPqZK_EZg" name="Usage1" client="_rxKR0FXdEeOW-JPqZK_EZg" supplier="_-bickFOIEeOuspyO4PzXCg"/>
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_1vrJYFXdEeOW-JPqZK_EZg" clientDependency="_-0Vn0FXdEeOW-JPqZK_EZg" name="Use a menu with elementType model"/>
+        <packagedElement xmi:type="uml:UseCase" xmi:id="_4nRBkFXdEeOW-JPqZK_EZg" clientDependency="_9Yi_QFXdEeOW-JPqZK_EZg" name="Use a menu with stereotyped element"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_9Yi_QFXdEeOW-JPqZK_EZg" name="Usage2" client="_4nRBkFXdEeOW-JPqZK_EZg" supplier="_-bickFOIEeOuspyO4PzXCg"/>
+        <packagedElement xmi:type="uml:Usage" xmi:id="_-0Vn0FXdEeOW-JPqZK_EZg" name="Usage3" client="_1vrJYFXdEeOW-JPqZK_EZg" supplier="_-bickFOIEeOuspyO4PzXCg"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_d8uIMFOFEeOuspyO4PzXCg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_d9I-8FOFEeOuspyO4PzXCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_e5iVwFOFEeOuspyO4PzXCg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_e53s8FOFEeOuspyO4PzXCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_6Pfk0VOGEeOuspyO4PzXCg" text="Papyrus shall add in the menu new child for new customized elements by using extended type" id="newChild001" base_Class="_6Pfk0FOGEeOuspyO4PzXCg"/>
+  <Requirements:Requirement xmi:id="_FQleQVOIEeOuspyO4PzXCg" text="Papyrus shall not display all UML or SysML element creation" id="newChild002" base_Class="_FQleQFOIEeOuspyO4PzXCg"/>
+  <Requirements:Requirement xmi:id="_cj5MsVOIEeOuspyO4PzXCg" text="Papyrus shall add the creation of new element from a subset of profile" id="newChild003" base_Class="_cj5MsFOIEeOuspyO4PzXCg"/>
+  <Requirements:Requirement xmi:id="_1s7A4FgNEeOKQOyOw2l5lw" text="Papyrus shall be able to associated icons to folder or creation menu" id="newChild004" base_Class="_1sxP4FgNEeOKQOyOw2l5lw"/>
+  <Requirements:Requirement xmi:id="_Dm5BYVgOEeOKQOyOw2l5lw" text="When an element can created from several  roles for a container, Papyrus shall let the possibility to choose the role or to let to the possibility to be created from all role." id="newChild005" base_Class="_Dm5BYFgOEeOKQOyOw2l5lw"/>
+  <l2:Refine xmi:id="_ME1MIFgQEeOKQOyOw2l5lw" base_Abstraction="_MEYgMFgQEeOKQOyOw2l5lw"/>
+  <l2:Refine xmi:id="_NKArgFgQEeOKQOyOw2l5lw" base_Abstraction="_NJtwkFgQEeOKQOyOw2l5lw"/>
+  <l2:Refine xmi:id="_OCi2AFgQEeOKQOyOw2l5lw" base_Abstraction="_OCZsEFgQEeOKQOyOw2l5lw"/>
+  <l2:Refine xmi:id="_PEv54lgQEeOKQOyOw2l5lw" base_Abstraction="_PEmv8FgQEeOKQOyOw2l5lw"/>
+  <l2:Refine xmi:id="_RA1MEFgQEeOKQOyOw2l5lw" base_Abstraction="_RAhqEFgQEeOKQOyOw2l5lw"/>
+  <l2:Refine xmi:id="_VQMIcVgQEeOKQOyOw2l5lw" base_Abstraction="_VQC-gFgQEeOKQOyOw2l5lw"/>
+</xmi:XMI>

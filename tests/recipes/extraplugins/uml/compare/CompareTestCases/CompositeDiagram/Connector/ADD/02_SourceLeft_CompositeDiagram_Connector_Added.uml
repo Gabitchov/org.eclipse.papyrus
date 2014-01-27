@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_H3ap8HegEeOvq8ZFMULkbQ" name="model">
+  <packagedElement xmi:type="uml:Class" xmi:id="_I9zDMHegEeOvq8ZFMULkbQ" name="A">
+    <ownedAttribute xmi:type="uml:Port" xmi:id="_KKI6gHegEeOvq8ZFMULkbQ" name="p" aggregation="composite"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_MAR8wHegEeOvq8ZFMULkbQ" name="q"/>
+    <ownedConnector xmi:type="uml:Connector" xmi:id="_OGBhQHegEeOvq8ZFMULkbQ" name="Connector1">
+      <end xmi:type="uml:ConnectorEnd" xmi:id="_OGKrMHegEeOvq8ZFMULkbQ" role="_KKI6gHegEeOvq8ZFMULkbQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OGKrMXegEeOvq8ZFMULkbQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OGKrMnegEeOvq8ZFMULkbQ" value="1"/>
+      </end>
+      <end xmi:type="uml:ConnectorEnd" xmi:id="_OGKrM3egEeOvq8ZFMULkbQ" role="_MAR8wHegEeOvq8ZFMULkbQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OGKrNHegEeOvq8ZFMULkbQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OGKrNXegEeOvq8ZFMULkbQ" value="1"/>
+      </end>
+    </ownedConnector>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iyHV0HegEeOvq8ZFMULkbQ" name="B"/>
+</uml:Model>

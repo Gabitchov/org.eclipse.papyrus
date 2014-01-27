@@ -11,26 +11,19 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
-import org.eclipse.uml2.uml.StateMachine;
 
 public class CustomRegionPreDeleteCommand extends DeleteCommand {
 
 	public CustomRegionPreDeleteCommand(TransactionalEditingDomain editingDomain, View view) {
 		super(editingDomain, view);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
-	 * Prevents the removal of the last region displayed in the state machine or composite state
+	 * Was: Prevents the removal of the last region displayed in the state machine or composite state
+	 * Restriction has been removed, see bug 424449 - [State machine diagram] state machine cannot be deleted
 	 */
 	@Override
 	public boolean canExecute() {
-		View compartment = (View)getView().eContainer();
-		if(compartment.getElement() instanceof StateMachine) {
-			if(compartment.getChildren().size() != 1)
-				return true;
-			return false;
-		}
 		return true;
 	}
 

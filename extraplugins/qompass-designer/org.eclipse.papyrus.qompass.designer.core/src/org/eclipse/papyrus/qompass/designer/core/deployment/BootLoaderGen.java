@@ -26,6 +26,7 @@ import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.FCM.InitPrecedence;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
@@ -59,13 +60,15 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class BootLoaderGen {
 
-	final public static String initOpName = "init"; //$NON-NLS-1$
+	final public static String NODE_INFO = "NodeInfo"; //$NON-NLS-1$
+
+	final public static String INIT_OP_NAME = "init"; //$NON-NLS-1$
 	
 	final public static String NL = "\n"; //$NON-NLS-1$
 	
 	final public static String EOL = ";\n"; //$NON-NLS-1$
 	
-	final public static String bootloaderName = "BootLoader"; //$NON-NLS-1$
+	final public static String BOOTLOADER_NAME = "BootLoader"; //$NON-NLS-1$
 	
 	/**
 	 * Create a new boot-loader in a specific package
@@ -80,12 +83,23 @@ public class BootLoaderGen {
 		// place in root (getModel()) to avoid the problem that the declaration of the bootLoader
 		// instance is within a namespace (a static attribute on the model level would not solve the
 		// problem as it must be accessed by function main).
-		m_bootLoader = copy.target.createOwnedClass(bootloaderName, false);
+		
+		Class nodeInfo = copy.target.createOwnedClass(NODE_INFO, false);
+		String headerStr =
+				"const int nodeIndex = " + nodeIndex + ";" + NL +  //$NON-NLS-1$//$NON-NLS-2$
+				"const int numberOfNodes = " + numberOfNodes + ";" + NL; //$NON-NLS-1$ //$NON-NLS-2$
+		Include cppIncludeNodeInfo = StereotypeUtil.applyApp(nodeInfo, Include.class);
+		cppIncludeNodeInfo.setHeader(headerStr);
+		
+		// bootLoader.createOwnedAttribute (mainInstance.getName (), composite);
+
+		m_bootLoader = copy.target.createOwnedClass(BOOTLOADER_NAME, false);
 		outputSizeof = false;
 		m_copy = copy;
 		Class template = (Class)Utils.getQualifiedElement(copy.source, bootloaderQNAME);
 		if(template == null) {
-			throw new TransformationException("Cannot retrieve bootLoader template (should be in " + bootloaderQNAME + ")");
+			throw new TransformationException(String.format(
+					Messages.BootLoaderGen_CannotRetrieveTemplate, bootloaderQNAME));
 		}
 		// TODO: currently, only stereotypes are copied from template
 		StUtils.copyStereotypes(template, m_bootLoader);
@@ -108,25 +122,20 @@ public class BootLoaderGen {
 		 * }
 		 */
 		Include cppInclude = StereotypeUtil.applyApp(m_bootLoader, Include.class);
-		Object existingBody = cppInclude.getBody();
-		String existingBodyStr = ""; //$NON-NLS-1$
-		if(existingBody instanceof String) {
-			existingBodyStr = (String)existingBody + NL;
+		if (cppInclude == null) {
+			throw new TransformationException("Cannot apply cppInclude stereotype. Make sure that C/C++ profile is applied to your model");
 		}
+		String existingBody = cppInclude.getBody();
 		String bodyStr =
-			"#include <unistd.h> // for sleep\n" + //$NON-NLS-1$
-			"\n" + //$NON-NLS-1$
-			"int nodeIndex = " + nodeIndex + ";" + NL +  //$NON-NLS-1$//$NON-NLS-2$
-			"int numberOfNodes = " + numberOfNodes + ";" + NL; //$NON-NLS-1$ //$NON-NLS-2$
+			"#include <unistd.h> // for sleep\n"; //$NON-NLS-1$
 		
 		if(outputSizeof) {
 			bodyStr +=
 				"#include <iostream>" + NL + //$NON-NLS-1$
 				"using namespace std;" + NL; //$NON-NLS-1$
 		}
-
-		cppInclude.setBody(existingBodyStr + bodyStr);
-
+		cppInclude.setBody(existingBody + bodyStr);
+		
 		// bootLoader.createOwnedAttribute (mainInstance.getName (), composite);
 
 		m_initCode = ""; //$NON-NLS-1$
@@ -138,6 +147,7 @@ public class BootLoaderGen {
 		if(outputSizeof) {
 			m_initCode += "cout << \"sizeof bootloader: \" << sizeof (bootloader) << endl;" + EOL; //$NON-NLS-1$
 		}
+		// indexMap = new HashMap<String, Integer>();
 	}
 
 	/**
@@ -182,13 +192,16 @@ public class BootLoaderGen {
 			return instance.getName(); // instance has no path via slots, it is a top level instance
 		}
 	}
-
+	
 	public Property addInstance(Stack<Slot> slotPath, InstanceSpecification instance, Class implementation, InstanceSpecification node)
 		throws TransformationException
 	{
+		// TODO: comments not clear. seems unnecessary complex. Problem in general is that access to
+		// shared instances needs to be configured.
+		// It should always be possible to configure this instance via a path w/o sharing.
 		String accessName = getPath(slotPath, instance, true);
 		String varName = getPath(slotPath, instance, false);
-
+		
 		Property implemPart = null;
 
 		// containing instance not null (=> neither main instance nor singleton)
@@ -246,8 +259,9 @@ public class BootLoaderGen {
 				// TODO: Need path that uses the right dereference operator ("->" or ".")
 				m_initCodeRun = varName + "." + get_start + "()->run()" + EOL;  //$NON-NLS-1$ //$NON-NLS-2$
 			} else {
-				throw new TransformationException("There must be at most one blocking \"run\" operation per node. " +
-					"refuse to add \"run\" call for component instance \"" + varName + "\". Existing invocations: " + m_initCodeRun);
+				throw new TransformationException(String.format(
+						Messages.BootLoaderGen_AtLeastOneBlockingCall,
+								varName, m_initCodeRun));
 			}
 		}
 		if(hasUnconnectedLifeCycle(m_copy, implementation, containerSlot)) {
@@ -353,13 +367,14 @@ public class BootLoaderGen {
 
 	public void instanceConfig(Stack<Slot> slotPath, InstanceSpecification instance) throws TransformationException {
 		Slot slot = slotPath.peek();
-		String varName = getPath(slotPath, instance, false);
+		// String varName = getPath(slotPath, instance, false);
 		StructuralFeature sf = slot.getDefiningFeature();
 		if(sf == null) {
-			throw new TransformationException("A slot for instance " + varName + //$NON-NLS-1$
-				" has no defining feature"); //$NON-NLS-1$
+			throw new TransformationException(String.format(
+					"A slot for instance %s has no defining feature", instance.getName())); //$NON-NLS-1$
 		}
 
+		String varName = instance.getName() + "." + sf.getName(); //$NON-NLS-1$
 		for(ValueSpecification value : slot.getValues()) {
 
 			// only set value, if not null
@@ -377,9 +392,9 @@ public class BootLoaderGen {
 
 	public void addInit() {
 		// TODO: use template
-		Operation init = m_bootLoader.createOwnedOperation(initOpName, null, null);
+		Operation init = m_bootLoader.createOwnedOperation(INIT_OP_NAME, null, null);
 		OpaqueBehavior initBehavior = (OpaqueBehavior)
-			m_bootLoader.createOwnedBehavior(initOpName, UMLPackage.eINSTANCE.getOpaqueBehavior());
+			m_bootLoader.createOwnedBehavior(INIT_OP_NAME, UMLPackage.eINSTANCE.getOpaqueBehavior());
 		init.getMethods().add(initBehavior);
 
 
@@ -448,8 +463,8 @@ public class BootLoaderGen {
 			code += "// initial user start\n" + m_initCodeRun; //$NON-NLS-1$
 		} else {
 			// this change broke client-server example!
-			code += "// sleep forever\n";
-			code += "for (;;) { sleep(100); }\n";
+			code += "// sleep forever\n"; //$NON-NLS-1$
+			code += "for (;;) { sleep(100); }\n"; //$NON-NLS-1$
 			// throw new TransformationRTException("no component implements the initial start. Assure that one component inherits from the CStart component");
 		}
 		if(activationKeys.length > 0) {
@@ -509,4 +524,9 @@ public class BootLoaderGen {
 	 * copy variable (instances still point to non-copied classes)
 	 */
 	private Copy m_copy;
+	
+	/**
+	 * Store a map with index values to manage configuration of arrays
+	 */
+	// protected Map<String, Integer> indexMap;
 }

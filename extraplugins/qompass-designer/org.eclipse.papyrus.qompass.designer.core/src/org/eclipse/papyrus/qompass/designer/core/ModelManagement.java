@@ -48,7 +48,7 @@ public class ModelManagement {
 	public ModelManagement() {
 		getResourceSet();
 		model = UMLFactory.eINSTANCE.createModel();
-		resource = resourceSet.createResource(URI.createURI("temp.uml"));
+		resource = resourceSet.createResource(URI.createURI("temp.uml")); //$NON-NLS-1$
 		resource.getContents().add(model);
 	}
 
@@ -124,7 +124,7 @@ public class ModelManagement {
 	public String getPath(IProject project, String subFolder, String filename) {
 		IFile file;
 		if(filename == null) {
-			filename = model.getName() + ".uml";
+			filename = model.getName() + ".uml"; //$NON-NLS-1$
 		}
 		if(subFolder != null) {
 			IFolder ifolder = project.getFolder(subFolder);

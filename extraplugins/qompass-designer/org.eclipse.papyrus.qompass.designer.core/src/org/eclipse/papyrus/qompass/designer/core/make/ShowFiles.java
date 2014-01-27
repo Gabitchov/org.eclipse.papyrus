@@ -56,7 +56,7 @@ public class ShowFiles {
 				getFilesRec(fileList, folderList, file.toString());
 				folderList.add(file.toString());
 			} else {
-				if(file.toString().endsWith(".cpp")) {
+				if(file.toString().endsWith(".cpp")) { //$NON-NLS-1$
 					// found a C++ file
 					fileList.add(file.toString());
 				}
@@ -71,10 +71,10 @@ public class ShowFiles {
 	public ArrayList<String> findNodesDir(ArrayList<String> folderList) {
 		ArrayList<String> allNodes = new ArrayList<String>();
 		for(String dir : folderList) {
-			String tmp = dir.replaceFirst(m_rootPath, "");
+			String tmp = dir.replaceFirst(m_rootPath, ""); //$NON-NLS-1$
 			// all the nodes are at the level (ACCORD_ROOT + 1)
-			tmp = tmp.trim().replaceFirst("/", "");
-			if(!tmp.contains("/")) {
+			tmp = tmp.trim().replaceFirst(File.pathSeparator, ""); //$NON-NLS-1$
+			if(!tmp.contains(File.pathSeparator)) {
 				allNodes.add(tmp.trim());
 			}
 		}
@@ -94,7 +94,7 @@ public class ShowFiles {
 				// path is related to given node 
 				int index = filePath.indexOf(nodeName);
 				String tmp = filePath.substring(index);
-				index = tmp.indexOf("/");
+				index = tmp.indexOf(File.pathSeparator);
 				tmp = tmp.substring(index + 1);
 				sourceFilesPath.add(tmp.trim());
 			}

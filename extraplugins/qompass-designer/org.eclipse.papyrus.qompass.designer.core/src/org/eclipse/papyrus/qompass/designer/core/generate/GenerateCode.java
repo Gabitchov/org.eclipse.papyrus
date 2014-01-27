@@ -19,6 +19,7 @@ import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.compare.util.ModelUtils;
 */
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
 import org.eclipse.papyrus.qompass.designer.core.extensions.ILangSupport;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -40,7 +41,7 @@ public class GenerateCode {
 	public void generate(InstanceSpecification node, String targetLanguage, boolean differential)
 		throws TransformationException, InterruptedException
 	{
-		String path = genMM.getPath(genProject, "model", null);
+		String path = genMM.getPath(genProject, "model", null); //$NON-NLS-1$
 		Package genModel = genMM.getModel();
 		EObject oldGenModel = null;
 		if(differential) {
@@ -109,12 +110,17 @@ public class GenerateCode {
 			*/
 		}
 		else {
-			monitor.setTaskName("generating " + targetLanguage + " code for node " + node.getName());
+			if (node == null) {
+				monitor.setTaskName(String.format(Messages.GenerateCode_GeneratingCode, targetLanguage));
+			}
+			else {
+				monitor.setTaskName(String.format(Messages.GenerateCode_GeneratingCodeForNode, targetLanguage, node.getName()));
+			}
 			IFolder folder = genProject.getFolder(genModel.getName());
 			try {
 				folder.delete(true, null);
 			} catch (CoreException e) {
-				throw new TransformationException("Could not delete old code: " + e.getMessage());
+				throw new TransformationException(String.format(Messages.GenerateCode_CouldNotDeleteOldCode, e.getMessage()));
 			}
 			langSupport.generateCode(monitor, genModel);
 		}

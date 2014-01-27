@@ -14,10 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.common.figure.edge;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.swt.graphics.Color;
 
 /**
  * This is a custom figure to represents a default edge. This code was used in
@@ -43,7 +41,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 */
 	public DashedEdgeFigure() {
 		super();
-		setStyle();
+		setupDefaultStyle();
 	}
 
 	/**
@@ -62,7 +60,7 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	public DashedEdgeFigure(Boolean arrow) {
 		super();
 		this.arrow = arrow;
-		setStyle();
+		setupDefaultStyle();
 		createContents();
 	}
 
@@ -74,7 +72,6 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	 */
 	public void setArrow(Boolean arrow) {
 		this.arrow = arrow;
-		setStyle();
 	}
 
 	/**
@@ -91,11 +88,21 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 	}
 
 	/**
+	 * Resets the style of this figure to its default implementation
+	 */
+	@Override
+	public void resetStyle() {
+		setupDefaultStyle();
+	}
+
+	/**
 	 * Sets initial Style for the figure. It does not give any special Color for
 	 * Background and Foreground. This is the style used for classic arrows:
 	 * ------>
+	 * This method should not be overridden as it defines the default style for the arrow.
+	 * Instead, custom styles should be defined by overriding the resetStyle method.
 	 */
-	protected void setStyle() {
+	protected final void setupDefaultStyle() {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
 		dec.setLineWidth(1);
@@ -111,54 +118,5 @@ public class DashedEdgeFigure extends UMLEdgeFigure {
 			dashes[i] = 5;
 		}
 		setLineDash(dashes);
-
 	}
-
-	/**
-	 * Sets initial style for this figure. This is the style used for full
-	 * arrows: ------|>
-	 * 
-	 * @param lineWidth
-	 *        the width of the link
-	 */
-	// @unused
-	protected void setStyle(int lineWidth) {
-		setStyle();
-		// set link appearence
-		setLineWidth(lineWidth);
-	}
-
-	/**
-	 * Sets initial style for this figure. This is the style used for full
-	 * arrows: ------|>
-	 * 
-	 * @param lineWidth
-	 *        the width of the link
-	 * @param foregroundColor
-	 *        the foreground color of the link
-	 * @param backgroundColor
-	 *        the background color of the link
-	 */
-	// @unused
-	protected void setStyle(Color backgroundColor, Color foregroundColor, int lineWidth) {
-		// set the target arrow style
-		PolygonDecoration dec = new PolygonDecoration();
-		dec.setScale(15, 5);
-		dec.setBackgroundColor(backgroundColor);
-		dec.setLineWidth(1);
-		if(arrow) {
-			setTargetDecoration(dec);
-		}
-		// set link appearence
-		setLineWidth(lineWidth);
-		setLineStyle(Graphics.LINE_CUSTOM); // line drawing style
-		setForegroundColor(foregroundColor);
-
-		// set dashes
-		for(int i = 0; i < 10; i++) {
-			dashes[i] = 5;
-		}
-		setLineDash(dashes);
-	}
-
 }

@@ -61,7 +61,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
@@ -784,8 +784,8 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 		int y = ((Integer)getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		String prefElementId = ViewUtil.resolveSemanticElement(view).eClass().getName();
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(view, prefElementId, PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(view, prefElementId, PreferenceConstantHelper.HEIGHT);
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(view, prefElementId, PreferencesConstantsHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(view, prefElementId, PreferencesConstantsHelper.HEIGHT);
 		if(width <= 0) {
 			width = store.getInt(preferenceConstantWitdh);
 		}

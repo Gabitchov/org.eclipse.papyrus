@@ -41,6 +41,15 @@ public interface FCMFactory extends EFactory {
 	Template createTemplate();
 
 	/**
+	 * Returns a new object of class '<em>Binding Helper</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Binding Helper</em>'.
+	 * @generated
+	 */
+	BindingHelper createBindingHelper();
+
+	/**
 	 * Returns a new object of class '<em>Configuration Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -345,15 +354,6 @@ public interface FCMFactory extends EFactory {
 	 * @generated
 	 */
 	ConnectorConfiguration createConnectorConfiguration();
-
-	/**
-	 * Returns a new object of class '<em>Extended Signature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Extended Signature</em>'.
-	 * @generated
-	 */
-	ExtendedSignature createExtendedSignature();
 
 	/**
 	 * Returns the package supported by this factory.

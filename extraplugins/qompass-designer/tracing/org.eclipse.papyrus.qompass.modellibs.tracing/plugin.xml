@@ -12,7 +12,7 @@
 	<extension
       point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
       <library
-            iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+            iconpath="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif"
             name="Qompass model library: tracing"
             path="pathmap://QML_TRACE/tracing.uml"
             provider="CEA LIST">
@@ -41,7 +41,7 @@
 			category="org.eclipse.ui.Examples/org.eclipse.papyrus.qompass.designer.examples"
 			class="org.eclipse.papyrus.qompass.modellibs.tracing.ClientServerTraceTestModelWizard"
 			finalPerspective="org.eclipse.papyrus.infra.core.perspective"
-			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.core/icons/Qompass-16x16.gif"
+			icon="platform:/plugin/org.eclipse.papyrus.qompass.designer.ui/icons/Qompass-16x16.gif"
 			id="org.eclipse.papyrus.qompass.modellibs.tracing.newb.ClientServerTraceTest"
 			name="Qompass client/server example with tracing">
 			<selection class="org.eclipse.core.resources.IResource"/>

@@ -206,7 +206,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		EObject tab = section.eContainer();
 		Context context = (Context)tab.eContainer();
 		if(context.eResource() == null) {
-			context = ConfigurationManager.instance.getContext(context.getName());
+			context = ConfigurationManager.getInstance().getContext(context.getName());
 			Activator.log.warn("No resource for Context : " + context + " ; refreshing the model"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 

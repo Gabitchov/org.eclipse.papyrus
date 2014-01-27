@@ -12,21 +12,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.externalresource.tests.standardstrategy;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.ExternalResourceProfileUtils;
 import org.eclipse.papyrus.uml.profile.externalresource.tests.AbstractChangeStrategyTests;
+import org.junit.Test;
 
 /**
  * Test class for load/unload
  */
 public class StandardStrategyTests extends AbstractChangeStrategyTests {
-
-	
-	public static final List<String> FILE_NAMES = Arrays.asList(DI_FILE, UML_FILE, NOTATION_FILE,  
-		/* Class3.di */ CLASS3_MODEL_DI_FILE,  CLASS3_MODEL_NOTATION_FILE,  CLASS3_MODEL_UML_FILE, 
-		/* Package1_Class1.di */PACKAGE1_MODEL_DI_FILE, PACKAGE1_MODEL_NOTATION_FILE, PACKAGE1_MODEL_UML_FILE); 
 	
 	/**
 	 * {@inheritDoc}
@@ -41,7 +37,7 @@ public class StandardStrategyTests extends AbstractChangeStrategyTests {
 	 */
 	@Override
 	protected List<String> getModelFileNames() {
-		return FILE_NAMES;
+		return STANDARD_STRATEGY_FILE_NAMES;
 	}
 
 	/**
@@ -60,4 +56,13 @@ public class StandardStrategyTests extends AbstractChangeStrategyTests {
 		return  URI.createPlatformResourceURI(getTestProjectName() + "/" + CLASS3_MODEL_UML_FILE, true);
 	}
 	
+	
+	@Test
+	public void testFindStereotypeApplicationsByDefinition() {
+		
+		
+		// ExternalResourceProfileUtils.findStereotypeApplicationsByDefinition(profileApplication, oldStrategy)
+		
+		
+	}
 }

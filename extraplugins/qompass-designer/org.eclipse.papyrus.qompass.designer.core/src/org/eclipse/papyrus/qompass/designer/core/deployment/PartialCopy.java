@@ -55,15 +55,15 @@ public class PartialCopy implements InstanceDeployer {
 		// does nothing for the moment
 	}
 
-	public Classifier deployInstance(InstanceSpecification is, Stack<Slot> slotPath) throws TransformationException {
+	public InstanceSpecification deployInstance(InstanceSpecification is, Stack<Slot> slotPath) throws TransformationException {
 		Classifier classifier = DepUtils.getClassifier(is);
 
 		// only make a partial copy of the system class (slotPath size 0) for the moment.
 		if(!(classifier instanceof Class) || slotPath.size() > 0) {
-			return copy.getCopy(classifier);
+			return copy.getCopy(is);
 		}
 		if (AllocUtils.getNodes(is).contains(node)) {
-			return copy.getCopy(classifier);
+			return copy.getCopy(is);
 		}
 		
 		Class smCl = (Class)classifier;
@@ -75,7 +75,8 @@ public class PartialCopy implements InstanceDeployer {
 		// since we copied some of its attributes, the copy class created a shallow copy of the class itself
 		Class tmCl = (Class) copy.get(smCl);
 		
-		return tmCl;
+		InstanceSpecification tmIS = (InstanceSpecification) copy.get(is);
+		return tmIS;
 	}
 
 	/**
@@ -95,10 +96,11 @@ public class PartialCopy implements InstanceDeployer {
 		// Log.log(Status.INFO, Log.DEPLOYMENT, "smCl:" + smCl.getQualifiedName ());
 		// Log.log(Status.INFO, Log.DEPLOYMENT, "tmCl:" + tmCl.getQualifiedName ());
 		
-		String partName = smPart.getName();
+		// String partName = smPart.getName();
 		InstanceSpecification instanceOrThread = DepUtils.getInstance(slot);
-		if (AllocUtils.getNodes(instanceOrThread).contains(node)) {
-			copy.copy(smPart);
+		// instance may be null, if slot refers to a basic type, e.g. a string
+		if ((instanceOrThread == null) || AllocUtils.getNodes(instanceOrThread).contains(node)) {
+			copy.copy(slot);
 			
 			// add connectors when possible, i.e. connectors that target the newly added part
 			for(Connector smConnector : smCl.getOwnedConnectors()) {

@@ -298,7 +298,7 @@ public class CppGenUtils {
 
 	private static boolean visibilityStale = false;
 	private static VisibilityKind currVisibility = null;
-	private static final Pattern EmptySectionRegex = Pattern.compile("^\\s*$");
+	private static final Pattern EmptySectionRegex = Pattern.compile("^\\s*$"); //$NON-NLS-1$
 
 	/**
 	 * Update the current visibility to the specified value without writing this value to
@@ -322,7 +322,7 @@ public class CppGenUtils {
 		// Filter out empty sections.
 		Matcher m = EmptySectionRegex.matcher(content);
 		if (content.isEmpty() || m.matches()) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 
 		// Don't write duplicate visibility modifiers.
@@ -331,6 +331,6 @@ public class CppGenUtils {
 		}
 
 		visibilityStale = false;
-		return currVisibility.toString() + ":\n" + content;
+		return currVisibility.toString() + ":\n" + content; //$NON-NLS-1$
 	}
 }

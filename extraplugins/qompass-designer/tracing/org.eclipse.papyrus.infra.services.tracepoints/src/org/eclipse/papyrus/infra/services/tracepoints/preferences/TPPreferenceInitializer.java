@@ -33,7 +33,7 @@ public class TPPreferenceInitializer extends AbstractPreferenceInitializer {
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		EList<ITraceMechanism> mechanisms = TraceMechanism.getTraceMechanisms();
-		String mechanismID = "";
+		String mechanismID = ""; //$NON-NLS-1$
 		if(mechanisms.size() > 0) {
 			ITraceMechanism mechanism = mechanisms.get(0);
 			// TODO: function need to support null object

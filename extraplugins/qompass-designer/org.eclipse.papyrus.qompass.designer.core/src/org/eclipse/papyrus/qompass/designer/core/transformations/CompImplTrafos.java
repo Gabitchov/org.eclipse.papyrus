@@ -23,10 +23,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
@@ -160,10 +161,11 @@ public class CompImplTrafos {
 					}
 					if (implementsIntf || true) {
 						body = "return this;";	 //$NON-NLS-1$
-					} else {
-						throw new RuntimeException("Interface <" + providedIntf.getName() + "> provided by port <" + //$NON-NLS-1$ //$NON-NLS-2$
-							portInfo.getPort().getName() + "> of class <" + implementation.getName() +  //$NON-NLS-1$
-							"> is not implemented by the component itself nor does the port delegate to a part");  //$NON-NLS-1$
+					}
+					else {
+						throw new RuntimeException(String.format(
+							Messages.CompImplTrafos_IntfNotImplemented,
+							providedIntf.getName(), portInfo.getPort().getName(), implementation.getName()));
 					}
 				}
 				// todo: defined by template
@@ -228,8 +230,9 @@ public class CompImplTrafos {
 						op.createOwnedParameter("index", (Type)eLong); //$NON-NLS-1$
 					}
 					else {
-						throw new RuntimeException("Can not find type " + CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE +
-								". Thus, unable to create suitable connect operation in component to OO transformation");
+						throw new RuntimeException(String.format(
+							Messages.CompImplTrafos_CannotFindType,
+							CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE));
 					}
 				}
 				Parameter refParam = op.createOwnedParameter("ref", requiredIntf); //$NON-NLS-1$
@@ -299,7 +302,7 @@ public class CompImplTrafos {
 					// no delegation
 					String name = PrefixConstants.attributePrefix + portInfo.getName();
 					body = "return " + name + ";"; //$NON-NLS-1$ //$NON-NLS-2$
-					behavior.getLanguages().add(progLang); //$NON-NLS-1$
+					behavior.getLanguages().add(progLang);
 					behavior.getBodies().add(body);
 				}
 			}
@@ -332,7 +335,7 @@ public class CompImplTrafos {
 					Port port = (Port) end1.getRole();
 					EList<PortInfo> subPorts = PortUtils.flattenExtendedPort(port);
 					for (PortInfo subPort : subPorts) {
-						cmd += "  // realization of connection for sub-port " + subPort.getPort().getName() + "\n";
+						cmd += "  // realization of connection for sub-port " + subPort.getPort().getName() + "\n";  //$NON-NLS-1$//$NON-NLS-2$
 						cmd += connectPorts(indexMap, connector, end1, end2, subPort.getPort());
 						cmd += connectPorts(indexMap, connector, end2, end1, subPort.getPort());
 					}

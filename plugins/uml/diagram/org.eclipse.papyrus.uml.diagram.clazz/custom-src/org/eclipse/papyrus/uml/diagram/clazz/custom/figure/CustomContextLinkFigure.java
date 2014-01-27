@@ -41,7 +41,11 @@ public class CustomContextLinkFigure extends DashedEdgeFigure {
 		add(conveyedLabel, 0);
 	}
 
-	protected void setStyle() {
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure#resetStyle()
+	 */
+	@Override
+	public void resetStyle() {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
 		dec.setLineWidth(1);

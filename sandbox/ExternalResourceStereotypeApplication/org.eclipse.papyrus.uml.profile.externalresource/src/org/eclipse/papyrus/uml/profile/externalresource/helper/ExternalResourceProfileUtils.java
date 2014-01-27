@@ -13,9 +13,11 @@
 package org.eclipse.papyrus.uml.profile.externalresource.helper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -44,17 +46,48 @@ public class ExternalResourceProfileUtils {
 	public static IStatus updateStereotypeApplicationsLocation(ProfileApplication profileApplication, IStereotypeApplicationLocationStrategy oldStrategy, IStereotypeApplicationLocationStrategy newStrategy) {
 		// 1. retrieve all stereotype applications concerned by the given profile application
 		// 2. move the stereotype application in their new containment list
+		Map<EClass, List<EObject>> allStereotypeApplications  = findStereotypeApplicationsByDefinition(profileApplication, oldStrategy);
+		
+		// now have a map of all definitions of stereotypes contained in the profile applied, now they should be moved according to the new strategy
+		for(Entry<EClass, List<EObject>> entry : allStereotypeApplications.entrySet()) {
+			EClass definition = entry.getKey();
+			for(EObject stereotypeApplication : entry.getValue()) {
+				// move the EObject in the new containment list
+				Element baseElement = UMLUtil.getBaseElement(stereotypeApplication);
+				List<EObject> containmentList = newStrategy.getContainmentList(baseElement, definition); 
+				if(!containmentList.contains(stereotypeApplication)) { // move the stereotype application only if it was not already there (to avoid useless moves) 
+					containmentList.add(stereotypeApplication); // move stereotype at the right place
+				};
+			}
+		}
+		
+		// update Eannotation that stores the new strategy
+		PapyrusStereotypeApplicationHelper.setCurrentLocationStrategy(profileApplication, newStrategy);
+		
+		return Status.OK_STATUS;
+	}
+	
+	/**
+	 * @param profileApplication
+	 * @return
+	 */
+	public static Map<EClass, List<EObject>> findStereotypeApplicationsByDefinition(ProfileApplication profileApplication, IStereotypeApplicationLocationStrategy oldStrategy) throws RuntimeException{
+		Map<EClass, List<EObject>> allStereotypeApplications = new HashMap<EClass, List<EObject>>();
+		
 		Resource modelResource = profileApplication.eResource();
 		if(modelResource == null) {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Impossible to find model resource");
+			Activator.log.error("Profile Application is not in a resource. "+profileApplication, null);
+			return Collections.emptyMap();
 		}
 		ModelSet modelSet = null;
 		if(!(modelResource.getResourceSet() instanceof ModelSet)) {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Trying to modify the stereotype application outside a Papyrus Model Set");
+			Activator.log.error("Trying to modify the stereotype application outside a Papyrus Model Set", null);
+			return Collections.emptyMap();
+			
 		} else {
 			modelSet = (ModelSet)modelResource.getResourceSet();
 		}
-		Map<EClass, List<EObject>> allStereotypeApplications = new HashMap<EClass, List<EObject>>();
+		
 		// For all resources, retrieve the containment list that should hold the stereotype application for the given profile, for all UML elements at the root of the resource (should test for all elements, but would be really slow)
 		// for all elements in the containment list that corresponds to the profile application, store in a new list
 		List<EClassifier> classifiers = profileApplication.getAppliedDefinition().getEClassifiers();
@@ -82,25 +115,9 @@ public class ExternalResourceProfileUtils {
 				allStereotypeApplications.put(definition, stereotypeApplications);
 			}
 		}
-		
-		// now have a map of all definitions of stereotypes contained in the profile applied, now they should be moved according to the new strategy
-		for(EClass definition : allStereotypeApplications.keySet()) {
-			for(EObject stereotypeApplication : allStereotypeApplications.get(definition)) {
-				// move the EObject in the new containment list
-				Element baseElement = UMLUtil.getBaseElement(stereotypeApplication);
-				List<EObject> containmentList =newStrategy.getContainmentList(baseElement, definition); 
-				if(!containmentList.contains(stereotypeApplication)) { // move the stereotype application only if it was not already there (to avoid useless moves) 
-					containmentList.add(stereotypeApplication); // move stereotype at the right place
-				};
-			}
-		}
-		
-		// update Eannotation that stores the new strategy
-		PapyrusStereotypeApplicationHelper.setCurrentLocationStrategy(profileApplication, newStrategy);
-		
-		return Status.OK_STATUS;
+		return allStereotypeApplications;
 	}
-	
+
 	public static ICommand createUpdateStereotypeApplicationsLocationCommand( ProfileApplication profileApplication, IStereotypeApplicationLocationStrategy oldStrategy, IStereotypeApplicationLocationStrategy newStrategy) {
 		if(profileApplication ==null) {
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;

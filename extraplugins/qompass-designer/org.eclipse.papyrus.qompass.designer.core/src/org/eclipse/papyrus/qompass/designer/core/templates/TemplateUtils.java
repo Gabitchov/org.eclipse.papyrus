@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.qompass.designer.core.CreationUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Classifier;
@@ -123,10 +124,9 @@ public class TemplateUtils {
 		TemplateSignature signature = getSignature(template);
 		if(signature == null) {
 			// not a template, retain original name
-			Log.log(Status.INFO, Log.TEMPLATE_BINDING,
-				"no template signature found" + (template instanceof NamedElement ?
-					" for " + ((NamedElement)template).getName() :
-					""));
+			Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+				Messages.TemplateUtils_NoTemplateSignature, (template instanceof NamedElement ?
+					((NamedElement)template).getName() : "undef"))); //$NON-NLS-1$
 			return null;
 		}
 
@@ -157,9 +157,8 @@ public class TemplateUtils {
 			// class does not exist yet, needs to be created.
 			boundPackage = ((Package)owner).createNestedPackage(name);
 
-			Log.log(Status.INFO, Log.TEMPLATE_BINDING,
-				"create bound package (fixed binding): " + name
-					+ " within " + owner.getName());
+			Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+				Messages.TemplateUtils_InfoCreateBoundPackage, name, owner.getName()));
 		}
 
 		TemplateBinding binding = boundPackage.getTemplateBinding(signature);
@@ -239,25 +238,23 @@ public class TemplateUtils {
 	 *         parameter, or null if the 2nd parameter does not correspond to a
 	 *         formal parameter of the binding.
 	 */
-	public static Classifier getActualFromBinding(
-		TemplateBinding binding, Type formal) {
+	public static Classifier getActualFromBinding(TemplateBinding binding, Type formal) {
 		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 			ParameterableElement pe = substitution.getFormal().getParameteredElement();
 			if(pe == formal) {
-				Log.log(Status.INFO, Log.TEMPLATE_INSTANTIATION,
-					"TemplateInstantiation.getActualFromBinding: substitution formal = " + pe);
+				Log.log(Status.INFO, Log.TEMPLATE_INSTANTIATION, String.format(
+					Messages.TemplateUtils_InfoGetActualFrom, pe));
 				return (Classifier)substitution.getActual();
 			}
 		}
 		return null;
 	}
 
-	public static Classifier getActualFromBinding(
-		TemplateBinding binding, String formalName) {
+	public static Classifier getActualFromBinding(TemplateBinding binding, String formalName) {
 		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 			ParameterableElement pe = substitution.getFormal().getParameteredElement();
-			Log.log(Status.INFO, Log.TEMPLATE_INSTANTIATION,
-				"TemplateInstantiation.getActualFromBinding: substitution formal = " + pe);
+			Log.log(Status.INFO, Log.TEMPLATE_INSTANTIATION, String.format(
+					Messages.TemplateUtils_InfoGetActualFrom, pe));
 			if((pe instanceof NamedElement)
 				&& ((NamedElement)pe).getName().equals(formalName)) {
 				return (Classifier)substitution.getActual();
@@ -266,6 +263,22 @@ public class TemplateUtils {
 		return null;
 	}
 
+	/**
+	 * Get the first actual from the binding.
+	 * 
+	 * @param binding the template binding
+	 * @return the first actual.
+	 */
+	public static Classifier getFirstActualFromBinding(TemplateBinding binding) {
+		for(TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
+			ParameterableElement pe = substitution.getFormal().getParameteredElement();
+			Log.log(Status.INFO, Log.TEMPLATE_INSTANTIATION, String.format(
+					Messages.TemplateUtils_InfoGetActualFrom, pe));
+			return (Classifier)substitution.getActual();
+		}
+		return null;
+	}
+	
 	/**
 	 * Return a sequence of namespaces for a given element, starting from the "bottom"
 	 * one, i.e. the one in which the element is contained. It will end before the

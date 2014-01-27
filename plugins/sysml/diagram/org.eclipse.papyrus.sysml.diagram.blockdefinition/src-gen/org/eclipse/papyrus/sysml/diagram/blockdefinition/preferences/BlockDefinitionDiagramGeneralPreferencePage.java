@@ -15,10 +15,12 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 
 public class BlockDefinitionDiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	public BlockDefinitionDiagramGeneralPreferencePage() {
 		setPreferenceStore(Activator.getInstance().getPreferenceStore());
+		setPreferenceKey(ElementTypes.DIAGRAM_ID);
 	}
 }

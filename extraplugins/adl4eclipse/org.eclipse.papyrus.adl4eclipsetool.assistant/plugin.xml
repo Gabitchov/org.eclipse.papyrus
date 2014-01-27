@@ -85,7 +85,7 @@
            point="org.eclipse.ui.importWizards">
         <category
               id="org.eclipse.papyrus.editor.category"
-              name="papyrus">
+              name="Papyrus">
         </category>
         <wizard
               category="org.eclipse.papyrus.editor.category"
@@ -93,6 +93,13 @@
               icon="img/adl.png"
               id="org.eclipse.papyrus.adl4eclipsetool.assistant.wizard1"
               name="Simple Plugins architecture snapshot">
+        </wizard>
+        <wizard
+              category="org.eclipse.papyrus.editor.category"
+              class="org.eclipse.papyrus.adl4eclipsetool.assistant.AdvancePluginImport"
+              icon="img/adl.png"
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.wizard1"
+              name="Advanced Plugins architecture snapshot">
         </wizard>
         <wizard
               category="org.eclipse.papyrus.editor.category"

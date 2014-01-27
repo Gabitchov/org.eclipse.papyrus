@@ -56,21 +56,21 @@ The CSS syntax is a list of rules, which associates selectors and properties.<br
 
 Eclipse implements the 2.1 version of the CSS syntax. The available selectors are:<br> 
 
-*<pre>*</pre>:matches all elements<br> 
-*ElementType: Matches the elements of type “ElementType”<br> 
-*.myStyle: Matches the elements on which the style “myStyle” is applied<br> 
-*#myID: Matches the element with the CSS ID “myID”. The CSS ID must be unique among a diagram. To avoid confusing the users, and because this selector doesn’t make much sense on diagrams, this selector has been disabled in Papyrus.<br> 
-*[property=value]: Matches the elements which have a property “property” with the value “value”. It can also match the properties of Stereotypes<br>
-*[appliedStereotypes~="MyStereotype"]: Matches the elements on which the Stereotype "MyStereotype" is applied. You can use either the Stereotype's name or qualified name (MyProfile::MyPackage::MyStereotype). Note: always use the "~=" operator (Which means "contains"), because elements can have more than one applied stereotype.
+*'''*''': Matches all elements<br> 
+*'''ElementType''': Matches the elements of type “ElementType”<br> 
+*'''.myStyle''': Matches the elements on which the style “myStyle” is applied<br> 
+*'''#myID''': Matches the element with the CSS ID “myID”. The CSS ID must be unique among a diagram. To avoid confusing the users, and because this selector doesn’t make much sense on diagrams, this selector has been disabled in Papyrus.<br> 
+*'''[property=value]''': Matches the elements which have a property “property” with the value “value”. It can also match the properties of Stereotypes<br>
+*'''[appliedStereotypes~="MyStereotype"]''': Matches the elements on which the Stereotype "MyStereotype" is applied. You can use either the Stereotype's name or qualified name (MyProfile::MyPackage::MyStereotype). Note: always use the "~=" operator (Which means "contains"), because elements can have more than one applied stereotype.
 
 The pseudo-selectors are currently not used in Papyrus.<br> 
 
 These selectors can be combined using one of the following combinators:<br> 
 
-*Selector1 Selector2: Descendant selector. Matches the elements which match Selector2 and are contained in an element matching Selector1<br> 
-*Selector1 &gt; Selector2: Child selector. Matches the elements which match Selector2 and are directly contained in an element matching Selector2<br> 
-*Selector1 + Selector2: Sibling selector. Matches the elements which match Selector2 and are immediately preceded by a Sibling element which match Selector1.<br> 
-*Selector1, Selector2: Alternative selector. Matches elements matching either Selector1 or Selector2<br>
+*'''Selector1 Selector2''': Descendant selector. Matches the elements which match Selector2 and are contained in an element matching Selector1<br> 
+*'''Selector1 &gt; Selector2''': Child selector. Matches the elements which match Selector2 and are directly contained in an element matching Selector2<br> 
+*'''Selector1 + Selector2''': Sibling selector. Matches the elements which match Selector2 and are immediately preceded by a Sibling element which match Selector1.<br> 
+*'''Selector1, Selector2''': Alternative selector. Matches elements matching either Selector1 or Selector2<br>
 
 A rule also contains a list of properties, in the form property:value; 
 
@@ -111,6 +111,13 @@ Meaning: The properties directly contained in a Class, which is drawn on a Class
 
 Meaning: The elements with the "Block" stereotype must be displayed in bold.
 
+<source lang="css">[appliedStereotypes~=Block][isEncapsulated=true]{
+	fontColor:red;
+}</source>
+
+Meaning: The elements with the "Block" stereotype, and the stereotype property "isEncapsulated" set to true, must be displayed in red.
+
+
 == With the Papyrus tooling  ==
 
 Papyrus also provides a tool to generate a CSS Rule from an element displayed in the diagram. You need to create a stylesheet before you can edit it with the Create style tool, and it is recommended (Although not required) to associate this style sheet with your current diagram. 
@@ -134,7 +141,61 @@ In the conditions tab, there are three groups of options:<br>
 *You can add restrictions on the current value(s) of the element (e.g. the style will be applied to concrete classes). Only primitive type and enumerated attributes are supported here. 
 *The style name is used to apply a style manually.<br>
 
-The properties tab contains all the graphical properties that can be applied to the selected object. It is used to choose the graphical properties to apply on the objects matching the conditions.<br> 
+The properties tab contains all the graphical properties that can be applied to the selected object. It is used to choose the graphical properties to apply on the objects matching the conditions.<br>
+
+= Supported properties =
+
+== Selector properties ==
+
+Selector properties are semantic element properties. They can be used with one of the following syntaxes:
+
+'''[isAbstract=true]'''
+
+'''Class[isAbstract=true]'''
+
+The supported semantic element properties are:
+
+* Strings: '''[name=MyName]''', '''[name="My name"]''' (Quotes are required for complex Strings)<br/>
+* Integers: '''[size="12"]''' (Quotes are required) <br/>
+* Booleans: '''[isAbstract=true]''' (Quotes are optional)<br/>
+* Enumerations: '''[visibility=visible]''' (Quotes are optional)<br />
+* References to named elements (UML NamedElement or Ecore ENamedElement): '''[type=String]'''<br/>
+
+Some selectors can also be used to represent some specific parts of an element. For example, it is possible to hide a specific compartment:
+
+<source lang="css">Class > Compartment[kind="attribute"] {
+	visible:false;
+}
+
+Class > Compartment[kind="symbol"] {
+	visible:true;
+}
+
+Compartment[kind="structure"]{
+	collapsed:true;
+}
+</source>
+
+== Style properties ==
+
+Style properties are graphical properties supported by the display. Note that some graphical elements may not support some specific properties (Either because they shouldn't support them, or because they are not yet implemented). For example, a UML::Class will not support the ''italic'' property, because in UML, ''italic'' means ''abstract''.
+
+The CSS Supports all GMF Notation properties, as well as a few Papyrus-specific properties. This chapter will only list all the Papyrus-specific properties.
+
+The simplest way to discover new style properties is to use the Appearance tab of the Properties view in Papyrus. When hovering one of the appearance properties, the tooltip indicates the name of the corresponding CSS property
+
+[[Image:Papyrus CSS tooltip.png|CSS Property in tooltip]]<br> 
+
+The following custom properties are supported:
+
+displayBorder: true | false<br/>
+displayName: true | false<br/>
+maintainSymbolRatio: true | false<br/>
+<br/>
+elementIcon: true | false<br/>
+shadow: true | false<br/>
+<br/>
+qualifiedNameDepth: full | none | [int]<br/>
 
 = Manipulating styles  =
 
@@ -172,19 +233,15 @@ There are currently a few identified limitations to the Stylesheet framework, as
 
 == Selectors  ==
 
-Currently, it is not possible to handle complex selectors in the Papyrus stylesheets.<br> 
+Currently, some complex selectors are not supported in the Papyrus stylesheets.<br> 
 
 === Selector inheritance  ===
 
-It is not possible to apply a style to all descendant of a given Metaclass. For example, a Behavior will not inherit styles from a Class, although a Behavior actually is a Class.<br> 
+It is not possible to apply a style to all descendant of a given Metaclass. For example, a Behavior will not inherit styles from a Class, although a Behavior actually is a Class.<br>  
 
-=== Profile/Stereotype support  ===
+=== Labels ===
 
-It is not possible to restrict a selector to an applied stereotype. There is currently no way to specify that a style should only apply to classes on which the ''SysML::Blocks::Block'' stereotype is applied.<br> 
-
-=== Labels and compartments  ===
-
-It is currently not possible to customize labels from the Stylesheets (e.g. show/hide type for all properties). It is not possible to show/hide or collapse compartments either (e.g. hide the nested classifier compartment in a Class).<br> 
+It is currently not possible to customize labels from the Stylesheets (e.g. show/hide type for all properties). 
 
 === Events support  ===
 
@@ -194,7 +251,7 @@ Selectors based on user events are not yet implemented. For example, the CSS spe
 
 === Model stylesheets  ===
 
-Currently, stylesheets can only be applied to a Diagram. It is not yet possible to apply a stylesheet on a Model.<br> 
+Currently, stylesheets can only be applied to a Diagram. It is not yet possible to apply a stylesheet on a Model or a Project.<br> 
 
 === Workspace stylesheets  ===
 
@@ -206,4 +263,3 @@ The following bugs have been identified:<br>
 
 *[https://bugs.eclipse.org/bugs/show_bug.cgi?id=372322 Bug 372322]: [Diagram - Refresh] The refresh action is not correctly binded to F5<br> 
 *[https://bugs.eclipse.org/bugs/show_bug.cgi?id=386574 Bug 386574]: [CSS - Refresh] Only the active diagram is refresh when the stylesheets change<br> 
-*[https://bugs.eclipse.org/bugs/show_bug.cgi?id=390534 Bug 390534]: [CSS - Appearance] Undoing graphical changes results in unexpected behavior

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ElementCreationMenuModel:Folder
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ElementCreationMenuModel="http://ElementCreationMenuModel"
+    xsi:schemaLocation="http://ElementCreationMenuModel ../../../org.eclipse.papyrus.infra.newchild/resource/elementCreationMenuModel.ecore"
+    label="MixedTest">
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="Package"
+      elementTypeIdRef="org.eclipse.papyrus.uml.Package"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="Class"
+      elementTypeIdRef="org.eclipse.papyrus.uml.Class"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="MyClass"
+      elementTypeIdRef="org.eclipse.papyrus.uml.Class"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="Block"
+      elementTypeIdRef="org.eclipse.papyrus.sysml.Block"/>
+</ElementCreationMenuModel:Folder>

@@ -69,6 +69,12 @@ public abstract class AbstractViewHandler extends AbstractParametricHandler {/* 
 		return ((DiagramGraphicalViewer)getDiagramGraphicalViewer()).getWorkspaceViewerPreferenceStore().getBoolean(id);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.menu.actions.handlers.AbstractParametricHandler#setEnabled(java.lang.Object)
+	 * 
+	 * @param evaluationContext
+	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
 		setBaseEnabled(getDiagramGraphicalViewer() != null);

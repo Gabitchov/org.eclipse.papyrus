@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.ui.dialogs;
 
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
 import org.eclipse.papyrus.qompass.designer.core.Description;
+import org.eclipse.papyrus.qompass.designer.core.ElementFilter;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
@@ -60,7 +62,6 @@ import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.Type;
@@ -73,8 +74,6 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * TODO: extend rule application to instances (problematic, since rules
  * transformation is done on type level)
- * 
- * @author ansgar
  */
 public class ConfigureInstanceDialog extends SelectionStatusDialog {
 
@@ -90,7 +89,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 
 	protected Property m_currentAttribute;
 
-	protected final String valueLabelPrefix = "Value:";
+	protected final String valueLabelPrefix = "Value:"; //$NON-NLS-1$
 
 	protected Label fValueLabel;
 
@@ -112,33 +111,33 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		super(parent);
 	}
 
-	public boolean init(Class component) {
+	public boolean init(Class component, ExecutionEvent from) {
 		// visitedPackages = new BasicEList<Package> ();
 		DepPlanSync.syncAllDepPlans(component);
 		m_component = component;
 		m_instance = null;
 		m_feature = null;
-		m_model = Utils.getUserModel();
+		m_model = Utils.getUserModel(from);
 		if(m_model == null) {
 			return false;
 		}
 		return checkAndGetInstances();
 	}
 
-	public boolean init(InstanceSpecification instance) {
+	public boolean init(InstanceSpecification instance, ExecutionEvent from) {
 		// visitedPackages = new BasicEList<Package> ();
 		DepPlanSync.syncDepPlan(instance.getNearestPackage());
 		m_component = DepUtils.getImplementation(instance);
 		m_instance = instance;
 		m_feature = null;
-		m_model = Utils.getUserModel();
+		m_model = Utils.getUserModel(from);
 		return checkAndGetInstances();
 	}
 
-	public boolean init(Feature feature) {
+	public boolean init(Feature feature, ExecutionEvent from) {
 		// visitedPackages = new BasicEList<Package> ();
 		m_feature = feature;
-		m_model = Utils.getUserModel();
+		m_model = Utils.getUserModel(from);
 		m_instance = null;
 		if(feature instanceof Connector) {
 			org.eclipse.papyrus.FCM.Connector fcmConn = UMLUtil.getStereotypeApplication(feature,
@@ -157,9 +156,51 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		return false;
 	}
 
-
 	/**
-	 * retrieve the instance list. Returns false, if no deploymentplan could be found.
+	 * A filter class that selects instances associated with the selected feature or component
+	 */
+	class InstanceFilter implements ElementFilter {
+				
+		private String featureCandidateName;
+		
+		public boolean acceptElement(Element element) {
+			if(element instanceof InstanceSpecification) {
+				InstanceSpecification instance = (InstanceSpecification)element;
+				if(m_feature instanceof Property) {
+					EList<Slot> slots = DepUtils.getReferencingSlots(instance);
+					for (Slot slot : slots) {
+						if(slot.getDefiningFeature() == m_feature) {
+							return true;
+						}
+					}
+				}
+				else if(m_feature instanceof Connector) {
+					// Connector instances cannot be found via a slot. Since a connector is not a structural feature,
+					// it cannot be referenced via the "definingFeature" property of a slot. Therefore, the deployment
+					// plan creation (@see DepCreation.createDepPlan) simply omits slots, but still creates instances
+					// for the interaction components referenced by an FCM connector.
+					// TODO: the following code relies on specific order of instances and might not always work.
+					Element owner = m_feature.getOwner();
+					if(DepUtils.getImplementation(instance) == owner) {
+						// instance is for owner of feature: examine name
+						featureCandidateName = instance.getName() + "." + m_feature.getName(); //$NON-NLS-1$
+					}
+					else if(featureCandidateName != null) {
+						if(featureCandidateName.equals(instance.getName())) {
+							return true;
+						}
+					}
+				} else if(DepUtils.getImplementation(instance) == m_component) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	
+	
+	/**
+	 * retrieve the instance list. Returns false, if no deployment plan could be found.
 	 * 
 	 * @return
 	 */
@@ -167,7 +208,9 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		visitedPackages = new BasicEList<Package>();
 		m_instanceList = new BasicEList<InstanceSpecification>();
 
-		getInstances(m_instanceList);
+		ElementFilter filter = new InstanceFilter();
+		DepUtils.getAllInstances(m_model, m_instanceList, filter);		
+		
 		if(m_instanceList.size() == 0) {
 			Shell shell = new Shell();
 			if(DepPlanUtils.getAllDepPlans(m_model).size() == 0) {
@@ -179,13 +222,11 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 				"The list of available instances is empty. Synchronize deployment plans?")) {
 				DepPlanSync.syncAllDepPlans(m_model);
 				visitedPackages = new BasicEList<Package>();
-				getInstances(m_instanceList);
+				DepUtils.getAllInstances(m_model, m_instanceList, filter);
+				
 				if(m_instanceList.size() == 0) {
 					MessageDialog.openInformation(shell, "Instance configuration",
-						"There are still no instances available\n" +
-							"Check whether you created already a deployment plan for your system." +
-							"Check as well, if the parts in your a composite use \"composite\" as aggregation kind\n." +
-							"(Results of deployment plan synchronizations will be unrolled)");
+						"There are still no instances available\n. Check whether you created already a deployment plan for your system. Check as well, if the parts in your a composite use \"composite\" as aggregation kind. (Results of deployment plan synchronizations will be unrolled)");
 					return false;
 				}
 			}
@@ -231,7 +272,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		// --------------- instance selection -------------------
 		//
 		Group instanceSelGroup = new Group(instanceSelection, SWT.BORDER);
-		instanceSelGroup.setText(" associated instance specifications ");
+		instanceSelGroup.setText(addSpaces("associated instance specifications"));
 		// ruleGroup.setLayout(new RowLayout (SWT.VERTICAL));
 		instanceSelGroup.setLayout(new GridLayout(1, false));
 		instanceSelGroup.setLayoutData(groupGridData);
@@ -304,7 +345,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		GridData groupGridData = DialogUtils.createFillGridData();
 
 		Group instanceConfigurationGroup = new Group(parent, SWT.BORDER);
-		instanceConfigurationGroup.setText(" Configuration ");
+		instanceConfigurationGroup.setText(addSpaces("Configuration"));
 		instanceConfigurationGroup.setLayout(new RowLayout(SWT.VERTICAL));
 		instanceConfigurationGroup.setLayout(new GridLayout(1, false));
 		instanceConfigurationGroup.setLayoutData(groupGridData);
@@ -438,7 +479,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 				}
 			}
 		}
-		fValue.setText("");
+		fValue.setText(""); //$NON-NLS-1$
 	}
 
 	private void setEnabled(boolean enabled) {
@@ -447,8 +488,8 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		fValueLabel.setEnabled(enabled);
 		fValue.setEnabled(enabled);
 		if(!enabled) {
-			fValue.setText("");
-			fDescription.setText("");
+			fValue.setText(""); //$NON-NLS-1$
+			fDescription.setText(""); //$NON-NLS-1$
 			fValueLabel.setText(valueLabelPrefix);
 		}
 	}
@@ -456,52 +497,9 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 	private String getValueLabel(Property attribute) {
 		String label = valueLabelPrefix;
 		if(attribute.getDefault() != null) {
-			return label + " (Default = " + attribute.getDefault() + ")";
+			return label + " " + String.format("(default = %s)", attribute.getDefault()); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return label;
-	}
-
-	// TODO(?): need a generic utility function for getting all elements obeying a
-	// certain criteria from a model
-	void getInstances(EList<InstanceSpecification> instanceList) {
-		Package deploymentPlans = Utils.getRoot(m_model, DepPlanUtils.depPlanFolder);
-		String featureCandidateName = null;
-		if(deploymentPlans == null) {
-			return;
-		}
-		for(PackageableElement deploymentPlan : deploymentPlans
-			.getPackagedElements()) {
-			if(deploymentPlan instanceof Package) {
-				for(PackageableElement instance : ((Package)deploymentPlan).getPackagedElements()) {
-					if(instance instanceof InstanceSpecification) {
-						InstanceSpecification candidate = (InstanceSpecification)instance;
-						if(m_feature instanceof Property) {
-							for(Slot slot : candidate.getSlots()) {
-								if(slot.getDefiningFeature() == m_feature) {
-									instanceList
-										.add(DepUtils.getInstance(slot));
-								}
-							}
-						} else if(m_feature instanceof Connector) {
-							// Connector cannot be found directly, since there is no slot in containing composite (defining
-							// feature is a structural-feature, not a feature): find via name.
-							Element owner = m_feature.getOwner();
-							if(DepUtils.getImplementation(candidate) == owner) {
-								// instance is for owner of feature: examine name
-								featureCandidateName = candidate.getName() + "." + m_feature.getName();
-							}
-							else if(featureCandidateName != null) {
-								if(featureCandidateName.equals(candidate.getName())) {
-									instanceList.add(candidate);
-								}
-							}
-						} else if(DepUtils.getImplementation(candidate) == m_component) {
-							instanceList.add(candidate);
-						}
-					}
-				}
-			}
-		}
 	}
 
 	private EList<Property> getConfigAttributes(Classifier component) {
@@ -526,4 +524,13 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		return list;
 	}
 
+	/**
+	 * Add a space before and after
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public static String addSpaces(String text) {
+		return " " + text + " "; //$NON-NLS-1$ //$NON-NLS-2$	
+	}
 }

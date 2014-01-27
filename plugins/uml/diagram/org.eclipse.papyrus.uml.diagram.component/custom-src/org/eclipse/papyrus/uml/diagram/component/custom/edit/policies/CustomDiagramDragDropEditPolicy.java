@@ -46,6 +46,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.OldCommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ComponentLinkMappingHelper;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ConnectorHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.MultiDependencyHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.locators.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.component.custom.log.Log;
@@ -55,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartPCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyNodeEditPart;
@@ -77,6 +79,7 @@ import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
@@ -132,6 +135,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		droppableElementsVisualId.add(CommentEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(ConstraintEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(PortEditPart.VISUAL_ID);
+		
+		droppableElementsVisualId.add(ConnectorEditPart.VISUAL_ID);
 
 		return droppableElementsVisualId;
 	}
@@ -200,6 +205,8 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 			return dropAsNormalBinaryLink(dropRequest, semanticElement, linkVISUALID);
 		case UsageEditPart.VISUAL_ID:
 			return dropAsNormalBinaryLink(dropRequest, semanticElement, linkVISUALID);
+		case ConnectorEditPart.VISUAL_ID:
+			return dropConnector(dropRequest, semanticElement, linkVISUALID);
 
 
 		default:
@@ -240,6 +247,28 @@ public class CustomDiagramDragDropEditPolicy extends OldCommonDiagramDragDropEdi
 		}
 	}
 
+	/**
+	 * Returns the drop command for Connector links.
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the element to drop
+	 * @param linkVISUALID
+	 *        the visual identifier of the EditPart of the dropped element
+	 * @return the drop command
+	 */
+	protected Command dropConnector(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+		Collection<?> connectorEnds = ComponentLinkMappingHelper.getInstance().getSource(semanticLink);
+
+		if((connectorEnds != null) && (connectorEnds.size() == 2)) {
+
+			ConnectorHelper helper = new ConnectorHelper(getEditingDomain());
+			return new ICommandProxy(helper.dropConnector((Connector)semanticLink, linkVISUALID, getViewer(), getHost(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView()));
+		} else {
+			return UnexecutableCommand.INSTANCE;
+		}
+	}
 	/**
 	 * call the mechanism to drop a binary link without specific type
 	 * 

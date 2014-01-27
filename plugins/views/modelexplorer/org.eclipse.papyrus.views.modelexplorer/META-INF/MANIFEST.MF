@@ -40,18 +40,18 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
- com.google.guava;bundle-version="[10.0.0,12.0.0)",
+ com.google.guava;bundle-version="11.0.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.services.semantic;bundle-version="1.0.0",
  org.eclipse.emf.ecore,
  org.eclipse.papyrus.infra.services.navigation;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.tools;bundle-version="1.0.0",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.0"
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier

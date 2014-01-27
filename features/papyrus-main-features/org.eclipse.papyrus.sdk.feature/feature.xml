@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.sdk.feature" label="Papyrus UML (Incubation)" plugin="org.eclipse.papyrus.infra.core" provider-name="Eclipse Modeling Project" version="1.0.0.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.sdk.feature"
+      label="Papyrus UML (Incubation)"
+      version="1.0.0.qualifier"
+      provider-name="Eclipse Modeling Project"
+      plugin="org.eclipse.papyrus.infra.core">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012, 2013 CEA LIST
@@ -13,74 +19,147 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <includes id="org.eclipse.papyrus.customization.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.customization.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.editor.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.editor.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.infra.core.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.core.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.infra.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.infra.gmfdiag.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.gmfdiag.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.infra.queries.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.queries.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.infra.services.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.services.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.infra.table.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.widget.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.infra.widget.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.sysml.diagram.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.sysml.diagram.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.sysml.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.sysml.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.sysml.table.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.modelexplorer.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.properties.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.modelexplorer.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.tools.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.properties.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.views.modelexplorer.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.table.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.views.properties.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.tools.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.diagram.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.views.modelexplorer.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.sysml.properties.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.views.properties.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.emf.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.diagram.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.sysml.modelexplorer.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.sysml.properties.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.textedit.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.infra.emf.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.alf.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.sysml.modelexplorer.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.xwt.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.textedit.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.discovery.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.alf.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.views.validation.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.xwt.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.doc.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.infra.discovery.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.views.search.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.views.validation.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.search.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.doc.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.xtext.integration.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.views.search.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.nattable.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.search.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.sysml.nattable.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.xtext.integration.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.nattable.feature"
+         version="0.0.0"/>
 
-  <includes id="org.eclipse.papyrus.infra.nattable.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.infra.gmfdiag.css.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.sysml.nattable.feature" version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.uml.diagram.css.feature"
+         version="0.0.0"/>
 
-   <includes id="org.eclipse.papyrus.uml.nattable.feature" version="0.0.0"/>
+   <plugin
+         id="com.google.guava"
+         download-size="0"
+         install-size="0"
+         version="11.0.2.v201303041551"
+         unpack="false"/>
 
 </feature>

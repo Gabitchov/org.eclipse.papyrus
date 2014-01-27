@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="com.cea.profiles.fcm" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.fcm.profile" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="com.cea.profiles.fcm" id="fcmPortMappingRule" name="Port Mapping Rule"/>
+         <meta.schema plugin="org.eclipse.papyrus.fcm.profile" id="fcmPortMappingRule" name="Port Mapping Rule"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         A port mapping rule, i.e. a rule that maps port kinds to a provider and/or required interface
       </documentation>
    </annotation>
 
@@ -17,6 +17,9 @@
          </appInfo>
       </annotation>
       <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="client"/>
+         </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -29,16 +32,6 @@
                <documentation>
                   
                </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="name" type="string">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appInfo>
-                  <meta.attribute translatable="true"/>
-               </appInfo>
             </annotation>
          </attribute>
       </complexType>

@@ -68,7 +68,7 @@ abstract public class AbstractTracepointCommand extends AbstractTransactionalCom
 
 	protected void updateResourceAndURI() {
 		resource = selectedElement.eResource();
-		uri = resource.getURI() + "#" + resource.getURIFragment(selectedElement);
+		uri = resource.getURI() + "#" + resource.getURIFragment(selectedElement); //$NON-NLS-1$
 		iresource = WorkspaceSynchronizer.getFile(selectedElement.eResource());
 	}
 
@@ -77,7 +77,7 @@ abstract public class AbstractTracepointCommand extends AbstractTransactionalCom
 		if(iresource != null) {
 			try {
 				for(IMarker marker : iresource.findMarkers(type, false, IResource.DEPTH_INFINITE)) {
-					String markerURI = marker.getAttribute(MarkerConstants.uri, "");
+					String markerURI = marker.getAttribute(MarkerConstants.uri, ""); //$NON-NLS-1$
 					if((markerURI != null) && markerURI.equals(uri)) {
 						return marker;
 					}
@@ -124,7 +124,7 @@ abstract public class AbstractTracepointCommand extends AbstractTransactionalCom
 						id = store.getDefaultString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
 					}
 					else if(selectedElement instanceof Port) {
-						id = store.getDefaultString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_OP);
+						id = store.getDefaultString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_PORT);
 					}
 					else if(selectedElement instanceof State) {
 						id = store.getDefaultString(TPPreferenceConstants.P_TRACE_IMPLEMENTATION_SM);

@@ -31,6 +31,7 @@ import org.eclipse.papyrus.FCM.InstanceConfigurator;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.FCM.impl.InstanceConfiguratorImpl#getBase_Class <em>Base Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.InstanceConfiguratorImpl#isOnNodeModel <em>On Node Model</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,6 +47,25 @@ public class InstanceConfiguratorImpl extends EObjectImpl implements InstanceCon
 	 * @ordered
 	 */
 	protected org.eclipse.uml2.uml.Class base_Class;
+
+	/**
+	 * The default value of the '{@link #isOnNodeModel() <em>On Node Model</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOnNodeModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ON_NODE_MODEL_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isOnNodeModel() <em>On Node Model</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOnNodeModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean onNodeModel = ON_NODE_MODEL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,12 +129,35 @@ public class InstanceConfiguratorImpl extends EObjectImpl implements InstanceCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isOnNodeModel() {
+		return onNodeModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOnNodeModel(boolean newOnNodeModel) {
+		boolean oldOnNodeModel = onNodeModel;
+		onNodeModel = newOnNodeModel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.INSTANCE_CONFIGURATOR__ON_NODE_MODEL, oldOnNodeModel, onNodeModel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case FCMPackage.INSTANCE_CONFIGURATOR__BASE_CLASS:
 				if (resolve) return getBase_Class();
 				return basicGetBase_Class();
+			case FCMPackage.INSTANCE_CONFIGURATOR__ON_NODE_MODEL:
+				return isOnNodeModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -129,6 +172,9 @@ public class InstanceConfiguratorImpl extends EObjectImpl implements InstanceCon
 		switch (featureID) {
 			case FCMPackage.INSTANCE_CONFIGURATOR__BASE_CLASS:
 				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+				return;
+			case FCMPackage.INSTANCE_CONFIGURATOR__ON_NODE_MODEL:
+				setOnNodeModel((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -145,6 +191,9 @@ public class InstanceConfiguratorImpl extends EObjectImpl implements InstanceCon
 			case FCMPackage.INSTANCE_CONFIGURATOR__BASE_CLASS:
 				setBase_Class((org.eclipse.uml2.uml.Class)null);
 				return;
+			case FCMPackage.INSTANCE_CONFIGURATOR__ON_NODE_MODEL:
+				setOnNodeModel(ON_NODE_MODEL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -159,8 +208,26 @@ public class InstanceConfiguratorImpl extends EObjectImpl implements InstanceCon
 		switch (featureID) {
 			case FCMPackage.INSTANCE_CONFIGURATOR__BASE_CLASS:
 				return base_Class != null;
+			case FCMPackage.INSTANCE_CONFIGURATOR__ON_NODE_MODEL:
+				return onNodeModel != ON_NODE_MODEL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (onNodeModel: "); //$NON-NLS-1$
+		result.append(onNodeModel);
+		result.append(')');
+		return result.toString();
 	}
 
 } //InstanceConfiguratorImpl

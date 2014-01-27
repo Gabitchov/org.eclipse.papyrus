@@ -59,6 +59,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DefaultNamedElementEditPart;
@@ -77,6 +78,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
@@ -490,6 +492,14 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
+		case PropertyPartEditPartCN.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getProperty_3079ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
 		case UsageEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
@@ -558,6 +568,14 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getDependency_4017ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ConnectorEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getConnector_4019ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;

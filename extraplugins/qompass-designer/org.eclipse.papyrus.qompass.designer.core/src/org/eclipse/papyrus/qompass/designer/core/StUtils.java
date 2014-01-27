@@ -18,11 +18,11 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -44,17 +44,8 @@ public class StUtils {
 	 * @return
 	 */
 	public static void copyStereotypes(Copy copy, Element source, Element destination) {
-		final String derivedElement = DerivedElement.class.getName().replace(".", "::");
 		for(Stereotype stereotype : source.getAppliedStereotypes()) {
-			String stereoName = stereotype.getQualifiedName();
-			// if(!stereoName.equals(derivedElement)) {
-				// Hack: do not copy derived element stereotype. Problem: when templates are instantiated,
-				//   some operations are derived from interface operations which in turn are derived from the
-				//   formal template parameter (e.g. FIFO). Since interface derived from ports are put into a
-				//   top-level directory "derived elements", they may be outside the package template and do not
-				//   get replaced.
-				copyAttributes(copy, stereotype.getQualifiedName(), source, destination);
-			// }
+			copyAttributes(copy, stereotype.getQualifiedName(), source, destination);
 		}
 	}
 
@@ -94,7 +85,7 @@ public class StUtils {
 
 			if(attrName.length() >= 5) {
 				// do not copy base_ stereotypes (base_class, base_package and base_PackageImport)
-				if(attrName.startsWith("base_")) {
+				if(attrName.startsWith(Extension.METACLASS_ROLE_PREFIX)) {
 					continue;
 				}
 			}
@@ -131,7 +122,7 @@ public class StUtils {
 				}
 				// TODO: remove hack: the template port references directly an element of a package template
 				//   the package template should not be copied, but instantiated as done in class TemplatePort
-				else if (!stereotypeName.endsWith("TemplatePort")) { // (copy.withinTemplate((EObject) value)) {
+				else if (!stereotypeName.endsWith("TemplatePort")) { //$NON-NLS-1$
 					// value is likely a stereotype application. If copy does a package-template instantiation, it would
 					// check whether the passed element is within the package template. This would fail if we pass
 					// a stereotype application. (could also do check within copy??)

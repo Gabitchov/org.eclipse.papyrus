@@ -30,12 +30,12 @@ public class ReplaceAction extends Action {
 	 * Creates the replace action to be
 	 * 
 	 * @param shell
-	 *        the parent shell
+	 *            the parent shell
 	 * @param resultPage
-	 *        .getInput()
-	 *        the file search page to
+	 *            .getInput()
+	 *            the file search page to
 	 * @param selection
-	 *        the selected entries or <code>null</code> to replace all
+	 *            the selected entries or <code>null</code> to replace all
 	 */
 	public ReplaceAction(Shell shell, PapyrusSearchResultPage resultPage, Object[] selection) {
 		fShell = shell;

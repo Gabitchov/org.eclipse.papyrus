@@ -607,7 +607,8 @@ public class GenUtils {
 	/**
 	 * Return the relative path of ne2 as seen from ne1
 	 * (might not always be useful, if includes are always done from a common root)
-	 *
+	 * TODO: incomplete, currently unused
+	 * 
 	 * @param ne1 a named element
 	 * @param ne2 a named element
 	 * @return
@@ -615,15 +616,15 @@ public class GenUtils {
 	public static String getRelativePath(NamedElement ne1, NamedElement ne2) {
 		// get common prefix
 		EList<Namespace> ne1namespaces = ne1.allNamespaces();
-		String path = "";
+		String path = ""; //$NON-NLS-1$
 		for (Namespace ns : ne2.allNamespaces()) {
 			if (ne1namespaces.contains(ns)) {
 				// ns is a common prefix
 				return ne2.getName();
 			}
-			path += "../";
+			path += "../"; //$NON-NLS-1$
 		}
-		return null;
+		return path;
 	}
 	
 	/**

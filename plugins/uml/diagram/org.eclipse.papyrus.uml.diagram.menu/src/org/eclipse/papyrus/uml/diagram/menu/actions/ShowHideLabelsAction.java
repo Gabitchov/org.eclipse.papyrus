@@ -37,8 +37,12 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.diagram.common.commands.ShowHideLabelsRequest;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
@@ -67,6 +71,7 @@ public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 	public static final String HIDE_PARAMETER = "hide"; //$NON-NLS-1$
 
 	public static final String SHOW_PARAMETER = "show"; //$NON-NLS-1$
+	public ILabelProvider labelProvider;
 
 
 	/**
@@ -80,6 +85,16 @@ public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 	 */
 	public ShowHideLabelsAction(String parameter, List<IGraphicalEditPart> selectedEditPart) {
 		super(parameter, selectedEditPart);
+		
+		LabelProviderService labelProviderService;
+		try {
+			labelProviderService = (LabelProviderService)ServiceUtilsForEditPart.getInstance().getServiceRegistry(getDiagramEditPart()).getService(LabelProviderService.class);
+			labelProvider=labelProviderService.getLabelProvider(getDiagramEditPart());
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+		
+
 	}
 
 	/**
@@ -255,7 +270,8 @@ public class ShowHideLabelsAction extends AbstractGraphicalParametricAction {
 			CompoundCommand cmd = new CompoundCommand("Manage Conection Labels "); //$NON-NLS-1$
 
 			DiagramEditPart diagramEP = DiagramEditPartsUtil.getDiagramEditPart(editparts.get(0));
-			ShowHideLabelSelectionDialog selectionDialog = new ShowHideLabelSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), new UMLLabelProvider(), new ContentProvider(diagramEP));
+			
+			ShowHideLabelSelectionDialog selectionDialog = new ShowHideLabelSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), labelProvider, new ContentProvider(diagramEP));
 			selectionDialog.setTitle(this.title);
 			selectionDialog.setMessage(this.message);
 			selectionDialog.setContainerMode(true);

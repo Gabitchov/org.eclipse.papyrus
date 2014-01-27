@@ -46,19 +46,21 @@ public abstract class AbstractContainerTrafo {
 	 */
 	protected static Map<Class, AbstractContainerTrafo> containers;
 
-	/**
-	 * Only configure the instances, i.e. avoid re-creating elements of the container, but create
-	 * the UML instance specifications
-	 */
-	public void configureOnly() {
-		configureOnly = true;
-	}
-
-	protected boolean configureOnly;
-
 	public abstract void createContainer(Class smComponent, Class tmComponent) throws TransformationException;
 
-	public abstract void createContainerInstance(Class tmComponent, InstanceSpecification tmIS, ContainerContext context);
+	/**
+	 * Create an instance of the container (UML instance specification)
+	 * 
+	 * @param tmComponent
+	 *        the component within the target model for which we want to create an instance
+	 * 
+	 * @param tmIS
+	 *        the existing instance specification for the component before container expansion.
+	 * @param context
+	 *        Additional information about the container that is used by instance configurators
+	 */
+	public abstract InstanceSpecification createContainerInstance(Class tmComponent, InstanceSpecification tmIS)
+		throws TransformationException;
 
 	/**
 	 * apply a container rule, i.e. add either a container extension or an
@@ -70,42 +72,30 @@ public abstract class AbstractContainerTrafo {
 	 *        the application component in the source model
 	 * @param tmComponent
 	 *        the application component in the target model
-	 * @param tmIS
-	 *        the instance specification for the application component in the target model
 	 * @throws TransformationException
 	 */
-	public abstract void applyRule(ContainerRule smContainerRule, Class smComponent, Class tmComponent, InstanceSpecification tmIS)
+	public abstract void applyRule(ContainerRule smContainerRule, Class smComponent, Class tmComponent)
 		throws TransformationException;
-
-	/**
-	 * Move a slot from the executor instance specification to an instance
-	 * specification of an extension/interceptor This is required, since the
-	 * users cannot configure containers directly. The modification is done in
-	 * the target model, i.e. the user model is not affected.
-	 * 
-	 * Default implementation is empty
-	 */
-	public void moveSlots() {
-	}
 
 	/**
 	 * The instance specification of the created container
 	 */
-	protected InstanceSpecification containerIS;
+	// protected InstanceSpecification containerIS;
 
 	/**
-	 * Store source and target model
+	 * Copy class from source to target model
 	 */
 	protected Copy copy;
 
 
 	/**
-	 * @return the instance specification of the created container
+	 * Is called after a set of rule applications.
+	 * Does nothing by default
 	 */
-	public InstanceSpecification getContainerIS() {
-		return containerIS;
+	public void finalize() {
 	}
 
+	
 	/**
 	 * The created container implementation (prefixed with sm, since part of
 	 * source model)
@@ -119,12 +109,12 @@ public abstract class AbstractContainerTrafo {
 	protected Class tmClass;
 
 	/**
+	 * deployment plan within source model
+	 */
+	protected Package smCDP;
+	
+	/**
 	 * deployment plan within target model
 	 */
 	protected Package tmCDP;
-
-	/**
-	 * Additional information about the container that is used by instance configurators
-	 */
-	protected ContainerContext context;
 }

@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.CreationUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -83,8 +84,8 @@ public class ConnectorBinding {
 		// the template provides the formal parameter at one of its ports. Now examine
 		// with whom this port is connected, i.e. examine all connectorEnds
 		// The type of the connected port determines the binding.
-		Log.log(Status.INFO, Log.TEMPLATE_BINDING, "  getActual: " + (isProvided ? "provided" : "required") +
-			" port type matches, port = " + port.getName());
+		Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+				"", port.getName())); //$NON-NLS-1$
 
 		for(ConnectorEnd connEnd : connector.getEnds()) {
 			// the connector end targets a port of a part or the composite (in case of delegation)
@@ -102,14 +103,16 @@ public class ConnectorBinding {
 				} else {
 					otherInterface = PortUtils.getProvided(otherPort);
 				}
-				Log.log(Status.INFO, Log.TEMPLATE_BINDING, "connects port, otherInterface = " + otherInterface);
+				Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(Messages.ConnectorBinding_ConnectorsPort, otherInterface));
 				if(otherInterface != null) {
 					if(actual == null) {
 						actual = otherInterface;
-						Log.log(Status.INFO, Log.TEMPLATE_BINDING, "actual return interface: " + actual.getQualifiedName());
+						Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+							Messages.ConnectorBinding_InfoActualReturnIntfIs, actual.getQualifiedName()));
 					} else if(actual != otherInterface) {
-						throw new TransformationException("cannot find a consistent binding for port " + port.getName() +
-							" of connector " + connector.getName() + ". Formal already bound to type \"" + actual.getName() + "\"");
+						throw new TransformationException(String.format(
+							Messages.ConnectorBinding_CannotFindConsistentBinding,
+							port.getName(), connector.getName(), connector.getNamespace().getName(), actual.getName()));
 					}
 				}
 			}
@@ -122,8 +125,8 @@ public class ConnectorBinding {
 		// the template provides the formal parameter at one of its ports. Now examine
 		// with whom this port is connected, i.e. examine all connectors of the
 		// composite. The type of the connected port determines the binding.
-		Log.log(Status.INFO, Log.TEMPLATE_BINDING, "  getActual: " + (isProvided ? "provided" : "required") +
-			" port type matches, port = " + port.getName());
+		Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+				Messages.ConnectorBinding_InfoMatchOtherEnd, port.getName()));
 
 		for(Connector connector : partConnector.getClass_().getOwnedConnectors()) {
 			if(ConnectorUtils.connectsPart(connector, partConnector)) {
@@ -143,14 +146,16 @@ public class ConnectorBinding {
 					} else {
 						otherInterface = PortUtils.getProvided(otherPort);
 					}
-					Log.log(Status.INFO, Log.TEMPLATE_BINDING, "connects port, otherInterface = " + otherInterface);
+					Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(Messages.ConnectorBinding_InfoConnectsPort, otherInterface));
 					if(otherInterface != null) {
 						if(actual == null) {
 							actual = otherInterface;
-							Log.log(Status.INFO, Log.TEMPLATE_BINDING, "actual return interface: " + actual.getQualifiedName());
+							Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+								Messages.ConnectorBinding_InfoActualReturnIntfIs, actual.getQualifiedName()));
 						} else if(actual != otherInterface) {
-							throw new TransformationException("cannot find a consistent binding for port " + port.getName() +
-								" of connector " + connector.getName() + ". Formal already bound to type \"" + actual.getName() + "\"");
+							throw new TransformationException(String.format(
+									Messages.ConnectorBinding_CannotFindConsistentBinding,
+								port.getName(), connector.getName(), connector.getNamespace().getName(), actual.getName()));
 						}
 					}
 				}
@@ -216,7 +221,8 @@ public class ConnectorBinding {
 				// the template provides the formal parameter at one of its ports. Now examine
 				// with whom this port is connected, i.e. examine all ends of the
 				// connector. The type of the connected port determines the binding.
-				Log.log(Status.INFO, Log.TEMPLATE_BINDING, "  getActual: provided port type matches, port = " + port.getName());
+				Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+						Messages.ConnectorBinding_InfoProvidedPortTypeMatches, port.getName()));
 				boolean found = false;
 
 				if(partOrConnector instanceof Property) {
@@ -253,18 +259,20 @@ public class ConnectorBinding {
 	}
 
 	protected static String createErrorMsg(Port port, Feature partOrConnector) {
-		String errorMsg = "Cannot find a binding for port " + port.getName() + " of connector '" + partOrConnector.getName() + "'";
+		String errorMsg = String.format(
+				Messages.ConnectorBinding_CannotFindBindingForPort,
+				port.getName(), partOrConnector.getName()); 
 		for(Classifier cl : partOrConnector.getFeaturingClassifiers()) {
-			errorMsg += " of class '" + cl.getName() + "'";
+			errorMsg += " of class '" + cl.getName() + "'"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		errorMsg += ". ";
+		errorMsg += ". "; //$NON-NLS-1$
 		return errorMsg;
 	}
 
 	private static Type matchViaEnd(ConnectorEnd connEnd, Port port, Feature partOrConnector, Type actual) throws
 		TransformationException {
 		String errorMsg = createErrorMsg(port, partOrConnector);
-		Log.log(Status.INFO, Log.TEMPLATE_BINDING, "port: " + port);
+		Log.log(Status.INFO, Log.TEMPLATE_BINDING, "port: " + port); //$NON-NLS-1$
 		// Log.log(Status.INFO, Log.TEMPLATE_BINDING, "role1: " + connector.getEnds().get(0).getRole());
 		// Log.log(Status.INFO, Log.TEMPLATE_BINDING, "role2: " + connector.getEnds().get(1).getRole());
 
@@ -272,8 +280,9 @@ public class ConnectorBinding {
 		if(connElem instanceof Port) {
 			Port otherPort = (Port)connElem;
 
-			Log.log(Status.INFO, Log.TEMPLATE_BINDING, "  getActual, connector port <" + port.getName() + "> is connected via <" +
-				partOrConnector.getName() + ">");
+			Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+					Messages.ConnectorBinding_InfoConnPortConnectedVia,
+					port.getName(), partOrConnector.getName()));
 			Type otherType = otherPort.getType();
 
 
@@ -296,11 +305,13 @@ public class ConnectorBinding {
 			if(otherType != null) {
 				if(actual == null) {
 					actual = otherType;
-					Log.log(Status.INFO, Log.TEMPLATE_BINDING, "actual return interface: " + actual.getQualifiedName());
+					Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+							Messages.ConnectorBinding_InfoActualReturnIntfIs, actual.getQualifiedName()));
 				} else if(actual != otherType) {
-					throw new TransformationException(errorMsg + ". Formal already bound to type " + actual.getName() + ".");
-				}
-			}
+					throw new TransformationException(errorMsg + " " + String.format( //$NON-NLS-1$
+							Messages.ConnectorBinding_FormalAlreadyBound, actual.getName()));
+					}
+			}		
 		}
 		return actual;
 	}
@@ -331,7 +342,8 @@ public class ConnectorBinding {
 		if(signature == null) {
 			// not a template. This is not an exception, caller need to handle "null" a return
 			// value indicating that no template instantiation needs to be done.
-			Log.log(Status.INFO, Log.TEMPLATE_BINDING, "ConnectorBinding: no template signature found for " + template.getName()); //$NON-NLS-1$
+			Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+					Messages.ConnectorBinding_NoTemplateSignature, template.getName()));
 			return null;
 		}
 
@@ -372,10 +384,10 @@ public class ConnectorBinding {
 				// binding within the Qompass context.
 				if(formal instanceof NamedElement) {
 					NamedElement formalNE = (NamedElement)formal;
-					if((formal instanceof Class) && (formalNE.getName().equals("T"))) {
+					if((formal instanceof Class) && (formalNE.getName().equals("T"))) { //$NON-NLS-1$
 						actual = composite;
 					}
-					if((formal instanceof Port) && (formalNE.getName().equals("P"))) {
+					if((formal instanceof Port) && (formalNE.getName().equals("P"))) { //$NON-NLS-1$
 						// port (but not available?)
 						actual = TransformationContext.port;
 					}
@@ -383,13 +395,11 @@ public class ConnectorBinding {
 			}
 			if(actual instanceof NamedElement) {
 				actuals.add(actual);
-				name = name + "_" + ((NamedElement)actual).getName();
+				name = name + "_" + ((NamedElement)actual).getName(); //$NON-NLS-1$
 			} else {
-				String reason = "error: can not find a binding for formal parameter " +
-					((NamedElement)formal).getName() + " in the context of ";
-				reason += "composite " + composite.getName() +
-					", connector " + connector.getName() +
-					" and (connector) template " + template.getName();
+				String reason = String.format(
+					Messages.ConnectorBinding_CannotFindBinding,
+					((NamedElement)formal).getName(), composite.getName(), connector.getName(), template.getName());
 				throw new TransformationException(reason);
 			}
 		}
@@ -408,8 +418,8 @@ public class ConnectorBinding {
 			// class does not exist yet, needs to be created.
 			boundPackage = ((Package)owner).createNestedPackage(name);
 
-			Log.log(Status.INFO, Log.TEMPLATE_BINDING, "create bound package: " + name +
-				" within " + owner.getName());
+			Log.log(Status.INFO, Log.TEMPLATE_BINDING, String.format(
+				Messages.ConnectorBinding_InfoCreateBoundPackage, name, owner.getName()));
 		}
 
 		TemplateBinding binding = boundPackage.getTemplateBinding(signature);

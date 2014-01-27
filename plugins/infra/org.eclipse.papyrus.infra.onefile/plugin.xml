@@ -12,6 +12,12 @@
          <adapter
                type="org.eclipse.ui.ide.IContributorResourceAdapter2">
          </adapter>
+         <adapter
+               type="org.eclipse.core.resources.IFile">
+         </adapter>
+         <adapter
+               type="org.eclipse.core.resources.IResource">
+         </adapter>
       </factory>
       <factory
             adaptableType="org.eclipse.papyrus.infra.onefile.model.ISubResourceFile"

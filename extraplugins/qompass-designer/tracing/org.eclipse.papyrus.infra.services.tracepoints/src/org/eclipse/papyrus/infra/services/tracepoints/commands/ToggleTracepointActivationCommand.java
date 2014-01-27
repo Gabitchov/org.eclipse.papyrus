@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 public class ToggleTracepointActivationCommand extends AbstractTracepointCommand {
 
 	public ToggleTracepointActivationCommand(EObject selectedElement) {
-		super("Toggle tracepoint activation", TransactionUtil.getEditingDomain(selectedElement), selectedElement);
+		super("Toggle tracepoint activation", TransactionUtil.getEditingDomain(selectedElement), selectedElement); //$NON-NLS-1$
 	}
 
 	/**

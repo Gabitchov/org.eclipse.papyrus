@@ -21,8 +21,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -36,12 +37,11 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
+import org.eclipse.uml2.uml.StructuralFeature;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 public class DepPlanUtils {
-
-	public static final String depPlanFolder = "deployment";
 
 	/**
 	 * Return the package in which deployment plans are stored. Caveat: needs to be executed within a
@@ -53,7 +53,7 @@ public class DepPlanUtils {
 	 * @return package in which deployment plans are stored
 	 */
 	public static Package getDepPlanRoot(Element element) {
-		return Utils.getRoot(element, depPlanFolder);
+		return Utils.getRoot(element, DeployConstants.depPlanFolder);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class DepPlanUtils {
 	 */
 	public static EList<Package> getAllDepPlans(Element element) {
 		Package root = Utils.getTop(element);
-		Package depPlanRoot = root.getNestedPackage(depPlanFolder);
+		Package depPlanRoot = root.getNestedPackage(DeployConstants.depPlanFolder);
 		EList<Package> depPlanList = new BasicEList<Package>();
 		if(depPlanRoot != null) {
 			for(Package pkg : depPlanRoot.getNestedPackages()) {
@@ -159,7 +159,7 @@ public class DepPlanUtils {
 		// choose implementation automatically: get the first one that implements the passed type
 		// (problem: further tree expansion might depend on chosen implementation)
 		// get reference to component model, then search all classes contained in it.
-		Package compModel = Utils.getRoot(componentType, "ComponentModel");
+		Package compModel = Utils.getRoot(componentType, DeployConstants.COMPONENT_MODEL);
 		Iterator<Element> elements = compModel.allOwnedElements().iterator();
 		while(elements.hasNext()) {
 			Element element = elements.next();
@@ -185,7 +185,7 @@ public class DepPlanUtils {
 		InstanceSpecification is = (InstanceSpecification)
 			cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
 
-		if(name == "mainInstance") {
+		if(name == DeployConstants.MAIN_INSTANCE) {
 			setMainInstance(cdp, is);
 		}
 
@@ -219,25 +219,49 @@ public class DepPlanUtils {
 				continue;
 			}
 			InstanceSpecification partIS =
-				createDepPlan(cdp, (Classifier)part.getType(), name + "." + part.getName());
+				createDepPlan(cdp, (Classifier)part.getType(), name + DeployConstants.SEP_CHAR + part.getName());
 
 			createSlot(cdp, is, partIS, part);
 		}
 		return is;
 	}
 
+	/**
+	 * Configure an attribute of an instance specification
+	 * @param instance the instance specification
+	 * @param property An ENamedElement denoting the name of an attribute of a classifier that
+	 * 		is in the classifier list of the instance specification
+	 * @param value the string value. An enumeration can be configured via the name of the literal
+	 */
 	public static void configureProperty(InstanceSpecification instance, ENamedElement property, String value) {
 		configureProperty(instance, property.getName(), value);
 	}
 
+	/**
+	 * Configure an attribute of an instance specification
+	 * @param instance the instance specification
+	 * @param propertyName the name of an attribute of a classifier that is in the classifier list
+	 * 		of the instance specification
+	 * @param value the string value. An enumeration can be configured via the name of the literal
+	 */
 	public static void configureProperty(InstanceSpecification instance, String propertyName, String value) {
 		Classifier extension = DepUtils.getClassifier(instance);
 		Property attribute = (Property)Utils.getNamedElementFromList(extension.getAllAttributes(), propertyName);
 		if(attribute == null) {
-			throw new RuntimeException("cannot find attribute " + propertyName + " in classifier " + extension.getName());
+			throw new RuntimeException(String.format(Messages.DepPlanUtils_CannotFindAttribute, propertyName, extension.getName()));
 		}
+		configureProperty(instance, attribute, value);
+	}
+	
+	/**
+	 * Configure an attribute of an instance specification
+	 * @param instance the instance specification
+	 * @param attribute an attribute of a classifier that is in the classifier list of the instance specification
+	 * @param value the string value. An enumeration can be configured via the name of the literal
+	 */
+	public static void configureProperty(InstanceSpecification instance, Property attribute, String value) {
 		if(attribute.getType() instanceof Enumeration) {
-			configureEnumProperty(instance, propertyName, value);
+			configureEnumProperty(instance, attribute, value);
 		}
 		else {
 			// create a slot for a string value
@@ -247,46 +271,69 @@ public class DepPlanUtils {
 			}
 			else {
 				// indicates that operation has been called although types do not match
-				throw new RuntimeException("configuration of property " + propertyName + " failed: type is not a string");
+				throw new RuntimeException(String.format(Messages.DepPlanUtils_ConfigOfPropertyFailed, attribute.getName()));
 			}
 		}
-
 	}
 
+	/**
+	 * Configure an attribute of an instance specification
+	 * @param instance the instance specification
+	 * @param property An ENamedElement denoting the name of an attribute of a classifier that
+	 * 		is in the classifier list of the instance specification
+	 * @param value the integer value.
+	 */
 	public static void configureProperty(InstanceSpecification instance, ENamedElement property, int value) {
 		configureProperty(instance, property.getName(), value);
 	}
 
+	/**
+	 * Configure an attribute of an instance specification
+	 * @param instance the instance specification
+	 * @param propertyName the name of an attribute of a classifier that is in the classifier list
+	 * 		of the instance specification
+	 * @param value the integer value.
+	 */
 	public static void configureProperty(InstanceSpecification instance, String propertyName, int value) {
 		Classifier extension = DepUtils.getClassifier(instance);
 		Property attribute = (Property)Utils.getNamedElementFromList(extension.getAllAttributes(), propertyName);
 		if(attribute == null) {
-			throw new RuntimeException("cannot find attribute " + propertyName + " in classifier " + extension.getName());
+			throw new RuntimeException(String.format(Messages.DepPlanUtils_CannotFindAttribute, propertyName, extension.getName()));
 		}
+		configureProperty(instance, attribute, value);
+	}
+	
+	/**
+	 * Configure an attribute of an instance specification
+	 * @param instance the instance specification
+	 * @param attribute an attribute of a classifier that is in the classifier list of the instance specification
+	 * @param value the integer value.
+	 */
+	public static void configureProperty(InstanceSpecification instance, Property attribute, int value) {
 		Slot slotIntVal = instance.createSlot();
 		slotIntVal.setDefiningFeature(attribute);
 		LiteralInteger intValue = (LiteralInteger)
-			slotIntVal.createValue("value for " + attribute.getName(), attribute.getType(), UMLPackage.eINSTANCE.getLiteralInteger());
+			slotIntVal.createValue("value for " + attribute.getName(), attribute.getType(), UMLPackage.eINSTANCE.getLiteralInteger()); //$NON-NLS-1$
 		intValue.setValue(value);
-
 	}
 
 	/**
-	 * Convenience function: allow that an ecore named element is passed instead of a property name. This is useful if the
-	 * parameter that should be configured stems from a static profile [TODO: should not be in the general class support, but
-	 * in the instance configurators for RT-Describe)
+	 * Convenience function: allow that an ECore named element is passed instead of a property name. This is useful if the
+	 * parameter that should be configured stems from a static profile
 	 * 
 	 * @param instance
-	 * @param extension
+	 *        The instance of which an attribute should be configured.
 	 * @param property
+	 *        The name of the property (denoted by an ENamedElement) that should be configured
 	 * @param value
+	 *        its value in form of an element of an ECore enumerator value
 	 */
 	public static void configureProperty(InstanceSpecification instance, ENamedElement property, Enumerator value) {
 		configureProperty(instance, property.getName(), value);
 	}
 
 	/**
-	 * configure a property for an enumeration. Enumerations are a bit difficult to handle, since the enumeration literal itself
+	 * Configure a property for an enumeration. Enumerations are a bit difficult to handle, since the enumeration literal itself
 	 * must be created first in form of an instance specification
 	 * 
 	 * @param instance
@@ -294,19 +341,34 @@ public class DepPlanUtils {
 	 * @param propertyName
 	 *        The name of the property that should be configured
 	 * @param value
-	 *        its value in form of an element of a static profile [TODO: not general enough?]
+	 *        its value in form of an element of an ECore enumerator value
 	 */
 	public static void configureProperty(InstanceSpecification instance, String propertyName, Enumerator value) {
 		configureProperty(instance, propertyName, value.getName());
 	}
 
+	/**
+	 * Configure a property for an enumeration. Enumerations are a bit difficult to handle, since the enumeration literal itself
+	 * must be created first in form of an instance specification.
+	 *
+	 * @param instance
+	 *        The instance of which an attribute should be configured.
+	 * @param propertyName
+	 *        The name of the property that should be configured
+	 * @param value
+	 *        its value in form of an String. The function does nothing, if no literal corresponds to the passed
+	 *        String
+	 */
 	public static void configureEnumProperty(InstanceSpecification instance, String propertyName, String literalName) {
 		Classifier extension = DepUtils.getClassifier(instance);
 		Property attribute = (Property)Utils.getNamedElementFromList(extension.getAllAttributes(), propertyName);
 		if(attribute == null) {
-			throw new RuntimeException("cannot find attribute " + propertyName + " in classifier " + extension.getName());
+			throw new RuntimeException(String.format(Messages.DepPlanUtils_CannotFindAttribute, propertyName, extension.getName()));
 		}
-
+		configureEnumProperty(instance, attribute, literalName);
+	}
+		
+	public static void configureEnumProperty(InstanceSpecification instance, Property attribute, String literalName) {	
 		if(attribute.getType() instanceof Enumeration) {
 			Enumeration enumeration = (Enumeration)attribute.getType();
 			for(EnumerationLiteral enumLiteral : enumeration.getOwnedLiterals()) {
@@ -314,10 +376,28 @@ public class DepPlanUtils {
 					Slot slotEnumVal = instance.createSlot();
 					slotEnumVal.setDefiningFeature(attribute);
 					InstanceValue enumLitValue = (InstanceValue)
-						slotEnumVal.createValue("value for " + attribute.getName(), attribute.getType(), UMLPackage.eINSTANCE.getInstanceValue());
+						slotEnumVal.createValue("value for " + attribute.getName(), attribute.getType(), UMLPackage.eINSTANCE.getInstanceValue()); //$NON-NLS-1$
 					enumLitValue.setInstance(enumLiteral);
 					break;
 				}
+			}
+		}
+	}
+	
+	/**
+	 * Update the names of instances within a deployment plan to correspond to changes
+	 * in the hierarchy. In particular, flattening of interaction components requires this update.
+	 * 
+	 * @param composite
+	 *        System composite
+	 */
+	public static void updateInstanceNames(InstanceSpecification instance, String name) {
+		instance.setName(name);
+		for (Slot slot : instance.getSlots()) {
+			InstanceSpecification subInstance = DepUtils.getInstance(slot);
+			StructuralFeature sf = slot.getDefiningFeature();
+			if((subInstance != null) && !DepUtils.isShared(slot)) {
+				updateInstanceNames(subInstance, name + DeployConstants.SEP_CHAR + sf.getName());
 			}
 		}
 	}

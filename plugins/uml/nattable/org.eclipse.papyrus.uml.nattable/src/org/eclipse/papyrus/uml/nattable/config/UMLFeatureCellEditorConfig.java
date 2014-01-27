@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.convert.DefaultDisplayConverter;
+import org.eclipse.nebula.widgets.nattable.data.convert.DefaultDoubleDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.convert.DisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
@@ -410,6 +411,9 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 		int editorKind = getFeatureIdentifier(table, axisElement);
 		IDisplayConverter converter = null;
 		switch(editorKind) {
+		case SINGLE_REAL:
+			converter = new DefaultDoubleDisplayConverter();
+			break;
 		case SINGLE_UML_REFERENCE:
 			converter = new DisplayConverter() {
 

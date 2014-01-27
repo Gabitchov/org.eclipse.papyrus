@@ -31,10 +31,8 @@ import org.eclipse.uml2.uml.Element;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.FCM.Template#getTemplateParams <em>Template Params</em>}</li>
  *   <li>{@link org.eclipse.papyrus.FCM.Template#getBase_Element <em>Base Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.FCM.Template#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipse.papyrus.FCM.Template#getActualChoice <em>Actual Choice</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.Template#getHelper <em>Helper</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,22 +41,6 @@ import org.eclipse.uml2.uml.Element;
  * @generated
  */
 public interface Template extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Template Params</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.uml2.uml.Classifier}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Template Params</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Template Params</em>' reference list.
-	 * @see org.eclipse.papyrus.FCM.FCMPackage#getTemplate_TemplateParams()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	EList<Classifier> getTemplateParams();
-
 	/**
 	 * Returns the value of the '<em><b>Base Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -86,61 +68,29 @@ public interface Template extends EObject {
 	void setBase_Element(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.papyrus.FCM.TemplateKind}.
+	 * Returns the value of the '<em><b>Helper</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Kind</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Helper</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Kind</em>' attribute.
-	 * @see org.eclipse.papyrus.FCM.TemplateKind
-	 * @see #setKind(TemplateKind)
-	 * @see org.eclipse.papyrus.FCM.FCMPackage#getTemplate_Kind()
-	 * @model unique="false" required="true" ordered="false"
+	 * @return the value of the '<em>Helper</em>' reference.
+	 * @see #setHelper(BindingHelper)
+	 * @see org.eclipse.papyrus.FCM.FCMPackage#getTemplate_Helper()
+	 * @model ordered="false"
 	 * @generated
 	 */
-	TemplateKind getKind();
+	BindingHelper getHelper();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Template#getKind <em>Kind</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Template#getHelper <em>Helper</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Kind</em>' attribute.
-	 * @see org.eclipse.papyrus.FCM.TemplateKind
-	 * @see #getKind()
+	 * @param value the new value of the '<em>Helper</em>' reference.
+	 * @see #getHelper()
 	 * @generated
 	 */
-	void setKind(TemplateKind value);
-
-	/**
-	 * Returns the value of the '<em><b>Actual Choice</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.papyrus.FCM.ActualChoice}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Actual Choice</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actual Choice</em>' attribute.
-	 * @see org.eclipse.papyrus.FCM.ActualChoice
-	 * @see #setActualChoice(ActualChoice)
-	 * @see org.eclipse.papyrus.FCM.FCMPackage#getTemplate_ActualChoice()
-	 * @model unique="false" ordered="false"
-	 * @generated
-	 */
-	ActualChoice getActualChoice();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Template#getActualChoice <em>Actual Choice</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Actual Choice</em>' attribute.
-	 * @see org.eclipse.papyrus.FCM.ActualChoice
-	 * @see #getActualChoice()
-	 * @generated
-	 */
-	void setActualChoice(ActualChoice value);
+	void setHelper(BindingHelper value);
 
 } // Template

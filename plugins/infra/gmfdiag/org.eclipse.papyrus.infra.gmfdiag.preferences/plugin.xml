@@ -16,12 +16,6 @@
       </page>
       <page
             category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
-            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusRulersAndGridPreferencePage"
-            id="org.eclipse.papyrus.infra.gmfdiag.preferences.rulersandgrid"
-            name="Rulers And Grid">
-      </page>
-      <page
-            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusPrintingPreferencePage"
             id="org.eclipse.papyrus.infra.gmfdiag.preferences.printing"
             name="Printing">
@@ -50,17 +44,6 @@
             class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.PapyrusAllDiagramsPreferencePage"
             id="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusAllDiagramsPreferencePage"
             name="Diagrams">
-         <enabledWhen>
-            <adapt
-                  type="org.eclipse.core.resources.IProject">
-            </adapt>
-         </enabledWhen>
-      </page>
-      <page
-            category="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.generalcategory"
-            class="org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.PapyrusRulersAndGridPreferencePage"
-            id="org.eclipse.papyrus.infra.gmfdiag.preferences.properties.rulersandgrid"
-            name="Rulers And Grid">
          <enabledWhen>
             <adapt
                   type="org.eclipse.core.resources.IProject">

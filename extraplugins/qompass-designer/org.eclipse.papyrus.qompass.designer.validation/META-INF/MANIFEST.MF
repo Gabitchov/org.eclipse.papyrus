@@ -16,5 +16,5 @@ Bundle-Activator: org.eclipse.papyrus.qompass.designer.validation.Acti
  vator
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.validation;s
  ingleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

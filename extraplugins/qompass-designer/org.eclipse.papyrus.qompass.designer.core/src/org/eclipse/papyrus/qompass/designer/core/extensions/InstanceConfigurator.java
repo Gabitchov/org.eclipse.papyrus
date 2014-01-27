@@ -19,7 +19,6 @@ import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.UseInstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.Activator;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerContext;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Property;
@@ -31,54 +30,65 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class InstanceConfigurator {
 
-	public static final String IINSTANCE_CONFIG_ID = Activator.PLUGIN_ID + ".instanceConfig";
+	public static final String IINSTANCE_CONFIG_ID = Activator.PLUGIN_ID + ".instanceConfig"; //$NON-NLS-1$
 
+	public static boolean onNodeModel = false;
+	
 	/**
-	 * Configure an instance
+	 * Configure an instance. The configurator is selected by means of a stereotype on the classifier of
+	 * the passed instance. 
 	 * 
 	 * @see org.eclipse.papyrus.qompass.designer.core.extensions.IInstanceConfigurator
 	 * @param instance
 	 *        the specification of instance that should be configured
-	 * @param executorIS
-	 *        the instance specification of the executor (within a container)
 	 * @param componentPart
 	 *        the part representing the instance (before container expansion)
 	 * @param port
 	 *        a port within the context of container
 	 */
-	public static void configureInstance(InstanceSpecification instance, Property componentPart, ContainerContext containerContext) {
+	public static void configureInstance(InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstance) {
 		Classifier component = DepUtils.getClassifier(instance);
 		UseInstanceConfigurator useInstanceConfigurator = UMLUtil.getStereotypeApplication(component, UseInstanceConfigurator.class);
-		configureInstance(useInstanceConfigurator, instance, componentPart, containerContext);
+		configureInstance(useInstanceConfigurator, instance, componentPart, parentInstance);
 	}
 
 	/**
-	 * Configure an instance
+	 * Configure an instance. The configurator is selected by means of a stereotype on the passed container rule.
 	 * 
 	 * @see org.eclipse.papyrus.qompass.designer.core.extensions.IInstanceConfigurator
+	 * @param rule
+	 * 		  the applied container rule
 	 * @param instance
 	 *        the specification of instance that should be configured
-	 * @param executorIS
-	 *        the instance specification of the executor (within a container)
 	 * @param componentPart
 	 *        the part representing the instance (before container expansion)
 	 * @param port
 	 *        a port within the context of container
 	 */
-	public static void configureInstance(ContainerRule rule, InstanceSpecification instance, Property componentPart, ContainerContext containerContext) {
+	public static void configureInstance(ContainerRule rule, InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstance) {
 		UseInstanceConfigurator useInstanceConfigurator = UMLUtil.getStereotypeApplication(rule.getBase_Class(), UseInstanceConfigurator.class);
-		configureInstance(useInstanceConfigurator, instance, componentPart, containerContext);
+		configureInstance(useInstanceConfigurator, instance, componentPart, parentInstance);
 	}
 
-	public static void configureInstance(UseInstanceConfigurator useInstanceConfigurator, InstanceSpecification instance, Property componentPart, ContainerContext containerContext) {
+	/**
+	 * Configure an instance with a given configurator
+	 * 
+	 * @param useInstanceConfigurator
+	 * @param instance
+	 * @param componentPart
+	 * @param containerContext
+	 */
+	public static void configureInstance(UseInstanceConfigurator useInstanceConfigurator, InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstance) {
 		if(useInstanceConfigurator != null) {
 			org.eclipse.papyrus.FCM.InstanceConfigurator instanceConfigurator = useInstanceConfigurator.getConfigurator();
-			if(instanceConfigurator != null) {
-				String id = instanceConfigurator.getBase_Class().getName();
-				IInstanceConfigurator iConfigurator = getInstanceConfigurator(id);
-				if(iConfigurator != null) {
-					iConfigurator.configureInstance(instance, componentPart, containerContext);
+			if (instanceConfigurator.isOnNodeModel() == onNodeModel) {
+				if(instanceConfigurator != null) {
+					String id = instanceConfigurator.getBase_Class().getName();
+					IInstanceConfigurator iConfigurator = getInstanceConfigurator(id);
+					if(iConfigurator != null) {
+						iConfigurator.configureInstance(instance, componentPart, parentInstance);
 
+					}
 				}
 			}
 		}
@@ -89,10 +99,10 @@ public class InstanceConfigurator {
 		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(IINSTANCE_CONFIG_ID);
 		for(IConfigurationElement configElement : configElements) {
 			try {
-				final String iConfiguratorIDext = configElement.getAttribute("configuratorID");
+				final String iConfiguratorIDext = configElement.getAttribute("configuratorID"); //$NON-NLS-1$
 				if(iConfiguratorIDext.equals(iConfiguratorID)) {
 					// TODO: cache returned instance (avoid creating a new instance each time => more efficient, no need for static attributes)
-					final Object obj = configElement.createExecutableExtension("class");
+					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
 					if(obj instanceof IInstanceConfigurator) {
 						return (IInstanceConfigurator)obj;
 					}

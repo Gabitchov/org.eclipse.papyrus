@@ -28,6 +28,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.search.ui.Activator;
@@ -49,7 +50,9 @@ import org.eclipse.search.ui.text.MatchFilter;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 
 import com.google.common.base.Objects;
 import com.swtdesigner.ResourceManager;
@@ -167,22 +170,20 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 			if(match instanceof AbstractResultEntry) {
 				if(((AbstractResultEntry)match).getSource() != null) {
 					if(match instanceof AttributeMatch) {
-
+						Object attribute = ((AttributeMatch)match).getMetaAttribute();
 						String value = null;
 						EObject target = (EObject)((AbstractResultEntry)match).getSource();
-						if(((AttributeMatch)match).getMetaAttribute() instanceof EAttribute) {
+						if(attribute instanceof EAttribute) {
 
-							EAttribute attribute = (EAttribute)((AttributeMatch)match).getMetaAttribute();
-							value = String.valueOf(target.eGet(attribute));
-						} else if(((AttributeMatch)match).getMetaAttribute() instanceof Property) {
+							value = String.valueOf(target.eGet((EStructuralFeature)attribute));
+						} else if(attribute instanceof Property) {
 
-							Property attribute = (Property)((AttributeMatch)match).getMetaAttribute();
-							value = (String)((Element)((AbstractResultEntry)match).getSource()).getValue(((AttributeMatch)match).getStereotype(), attribute.getName());
+							value = getStringValueOfProperty((Element)((AbstractResultEntry)match).getSource(), ((AttributeMatch)match).getStereotype(), ((Property)attribute));
 
 
 						}
 						if(value != null && !this.getQuery().isRegularExpression()) {
-							if(value.length() >= match.getOffset() + match.getLength()) {
+							if(value.length() >= match.getLength() - match.getOffset()) {
 								int end = match.getOffset() + match.getLength();
 								value = value.substring(match.getOffset(), end);
 								if(this.searchQuery.isCaseSensitive()) {
@@ -226,7 +227,7 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 				}
 			}
 		}
-		// Now get Viewers
+		// Now get Viewer
 		for(Match match : matchList) {
 			if(match instanceof ViewerMatch) {
 				Object source = ((ViewerMatch)match).getSemanticElement();
@@ -238,7 +239,8 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 		}
 
 		return (Match[])matchToKeep.toArray(new Match[matchToKeep.size()]);
-
+		//		return ((PapyrusQuery)searchQuery).getfResults().toArray(new Match[matchToKeep.size()]);
+		//
 	}
 
 	public Match[] computeContainedMatches(AbstractTextSearchResult result, IEditorPart editor) {
@@ -274,6 +276,16 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 		return count;
 	}
 
+	private String getStringValueOfProperty(Element element, Stereotype stereotype, Property property) {
+		Object value = element.getValue(stereotype, property.getName());
+		if(value instanceof String) {
+			return (String)value;
+		} else if(value instanceof EnumerationLiteral) {
+			return ((EnumerationLiteral)value).getName();
+		} else {
+			return String.valueOf(value);
+		}
+	}
 
 
 }

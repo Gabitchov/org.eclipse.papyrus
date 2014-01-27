@@ -83,10 +83,10 @@ public class ShapeDecorator extends AbstractDecorator implements NotificationLis
 	protected static final int IMAGE_HEIGHT = 36; // 32
 
 	/** name of the boolean style to manage visibility of the figure */
-	public static final String SHAPE_DECORATOR_VISIBILITY = "shape_visibility";
+	public static final String SHAPE_DECORATOR_VISIBILITY = "shapeVisibility";
 
 	/** name of the boolean style to manage direction of the decoration in the figure */
-	public static final String SHAPE_DECORATOR_DIRECTION = "shape_direction";
+	public static final String SHAPE_DECORATOR_DIRECTION = "shapeDirection";
 
 	/** listener on the custom style for visibility */
 	protected CustomBooleanStyleObservableValue visibilityObservable;

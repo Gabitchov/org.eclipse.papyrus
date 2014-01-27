@@ -51,7 +51,7 @@ public class WorkspaceQueryProvider implements IPapyrusQueryProvider {
 
 	public AbstractPapyrusQuery createAdvancedSearchQuery(QueryInfo queryInfo) {
 		Collection<ScopeEntry> scopeEntries = createScopeEntries(queryInfo.getScope());
-		return new PapyrusAdvancedQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, queryInfo.getParticipantTypes().toArray());
+		return new PapyrusAdvancedQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, queryInfo.getParticipantTypes().toArray(),queryInfo.isSearchForAllSter());
 	}
 
 

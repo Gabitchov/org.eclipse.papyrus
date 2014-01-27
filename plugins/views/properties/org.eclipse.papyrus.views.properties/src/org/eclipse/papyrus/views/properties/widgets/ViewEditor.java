@@ -116,7 +116,7 @@ public class ViewEditor extends AbstractPropertyEditor {
 	private View resolveView() {
 		String contextName = viewPath.substring(0, viewPath.indexOf(":")); //$NON-NLS-1$
 		String viewName = viewPath.substring(viewPath.indexOf(":") + 1); //$NON-NLS-1$
-		Context context = ConfigurationManager.instance.getContext(contextName);
+		Context context = ConfigurationManager.getInstance().getContext(contextName);
 		for(View view : context.getViews()) {
 			if(view.getName().equals(viewName)) {
 				return view;

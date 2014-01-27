@@ -126,7 +126,7 @@ public class Zone {
 	 */
 	public static int getAllowedResizeDirections(String s) {
 		if(s == null)
-			throw new IllegalArgumentException();
+			return PositionConstants.NONE;
 		// this involves bit-wise operations
 		// we start with none directions allowed
 		// then add others
@@ -529,7 +529,7 @@ public class Zone {
 	 */
 	public static String getZone(View view) {
 		if(view.getEAnnotation(ANNOTATION_KEY) == null)
-			throw new IllegalArgumentException();
+			return null;
 		if(!view.getEAnnotation(ANNOTATION_KEY).getDetails().containsKey(ZONE_KEY))
 			throw new IllegalArgumentException();
 		return view.getEAnnotation(ANNOTATION_KEY).getDetails().get(ZONE_KEY);
@@ -687,7 +687,7 @@ public class Zone {
 	 */
 	public static boolean isBottom(String s) {
 		if(s == null)
-			throw new IllegalArgumentException();
+			return false;
 		return s.endsWith(Zone.BOTTOM);
 	}
 
@@ -701,21 +701,8 @@ public class Zone {
 	 */
 	public static boolean isLeft(String s) {
 		if(s == null)
-			throw new IllegalArgumentException();
+			return false;
 		return s.endsWith(Zone.LEFT);
-	}
-
-	/**
-	 * Checks whether the leaf location encoded is NONE.
-	 * 
-	 * @param s
-	 *        a string
-	 * @return boolean true or false
-	 */
-	public static boolean isNone(String s) {
-		if(s == null)
-			throw new IllegalArgumentException();
-		return s.equals(Zone.NONE);
 	}
 
 	/**
@@ -727,7 +714,7 @@ public class Zone {
 	 */
 	public static boolean isRegion(View view) {
 		if(view == null)
-			throw new IllegalArgumentException();
+			return false;
 		return (UMLVisualIDRegistry.getVisualID(view.getType()) == RegionEditPart.VISUAL_ID);
 	}
 
@@ -741,7 +728,7 @@ public class Zone {
 	 */
 	public static boolean isRight(String s) {
 		if(s == null)
-			throw new IllegalArgumentException();
+			return false;
 		return s.endsWith(Zone.RIGHT);
 	}
 
@@ -767,7 +754,7 @@ public class Zone {
 	 */
 	public static boolean isTop(String s) {
 		if(s == null)
-			throw new IllegalArgumentException();
+			return false;
 		return s.endsWith(Zone.TOP);
 	}
 
@@ -783,7 +770,10 @@ public class Zone {
 		// get the region zone
 		String zone = getZone(region);
 		// get its counterpart
-		String cZone = getZoneCounterpart(zone);
+		if (zone == null) {
+			return;
+		}
+ 		String cZone = getZoneCounterpart(zone);
 
 		List<View> list = new ArrayList<View>();
 		// get the stateMachine compartment

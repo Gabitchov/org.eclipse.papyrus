@@ -33,6 +33,7 @@ import org.eclipse.uml2.uml.Package;
 	 */
 	public CompleteArchitectureSnapshotDesigner(Package rootPackage, ArrayList<Object>bundleInitialList) {
 		super(rootPackage, bundleInitialList);
+		dependencyLevelMax=30;
 	}
 	@Override
 	protected void initModel() {

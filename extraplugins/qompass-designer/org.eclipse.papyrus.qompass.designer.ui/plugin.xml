@@ -73,6 +73,13 @@
             id="org.eclipse.papyrus.qompass.designer.ui.menuActions.AllocateCmd"
             name="dummy">
       </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.qompass.designer.ui.handlers.TrafoAndCodegenHandler"
+            description="dummy"
+            id="org.eclipse.papyrus.qompass.designer.ui.menuActions.TrafoAndCodegenCmd"
+            name="dummy">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -184,7 +191,6 @@
                icon="icons/selContainer.gif"
                id="org.eclipse.papyrus.qompass.designer.ui.menuActions.ConfigurePortsMenu"
                label="Qompass: Configure ports"
-               mode="FORCE_TEXT"
                style="push">
             <visibleWhen
                   checkEnabled="true">
@@ -196,7 +202,6 @@
                id="org.eclipse.papyrus.qompass.designer.ui.menuActions.AddProfileAndModelLibsMenu"
                label="Qompass: Add profiles and model libraries"
                mnemonic="P"
-               mode="FORCE_TEXT"
                style="push">
             <visibleWhen
                   checkEnabled="true">
@@ -208,7 +213,16 @@
                id="org.eclipse.papyrus.qompass.designer.ui.menuActions.AllocateMenu"
                label="Qompass: Allocate to node"
                mnemonic="A"
-               mode="FORCE_TEXT"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.qompass.designer.ui.menuActions.TrafoAndCodegenCmd"
+               icon="icons/deploy.gif"
+               id="org.eclipse.papyrus.qompass.designer.ui.menuActions.TrafoAndCodegenCmd"
+               label="Qompass: Execute transformation and generate code (w/o deployment)"
                style="push">
             <visibleWhen
                   checkEnabled="true">

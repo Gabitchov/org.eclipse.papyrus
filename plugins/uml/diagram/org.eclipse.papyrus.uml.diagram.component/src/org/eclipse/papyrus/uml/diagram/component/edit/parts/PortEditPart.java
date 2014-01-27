@@ -48,8 +48,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -207,8 +207,8 @@ public class PortEditPart extends AbstractBorderEditPart {
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "Port";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -357,6 +357,9 @@ public class PortEditPart extends AbstractBorderEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Usage_4001);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Usage_4001);
+		}
 		if(targetEditPart instanceof RectangleInterfaceEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4006);
 		}
@@ -414,6 +417,9 @@ public class PortEditPart extends AbstractBorderEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Substitution_4012);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Substitution_4012);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
@@ -462,6 +468,9 @@ public class PortEditPart extends AbstractBorderEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Manifestation_4014);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4014);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
@@ -510,6 +519,9 @@ public class PortEditPart extends AbstractBorderEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.ComponentRealization_4007);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.ComponentRealization_4007);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
@@ -558,6 +570,9 @@ public class PortEditPart extends AbstractBorderEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Abstraction_4013);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4013);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
@@ -606,6 +621,9 @@ public class PortEditPart extends AbstractBorderEditPart {
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
 		if(targetEditPart instanceof DependencyNodeEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
@@ -652,6 +670,9 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		if(targetEditPart instanceof InterfaceEditPartPCN) {
+			types.add(UMLElementTypes.Dependency_4017);
+		}
+		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
 		return types;
@@ -679,6 +700,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4006) {
 			types.add(UMLElementTypes.Interface_3205);
 			types.add(UMLElementTypes.Interface_3078);
@@ -700,6 +722,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4014) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -717,6 +740,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.ComponentRealization_4007) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -734,6 +758,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4013) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -751,6 +776,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -768,6 +794,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -785,6 +812,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		}
 		return types;
 	}
@@ -828,6 +856,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Substitution_4012) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -845,6 +874,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4014) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -862,6 +892,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.ComponentRealization_4007) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -879,6 +910,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4013) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -896,6 +928,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4015) {
 			types.add(UMLElementTypes.Comment_3201);
 			types.add(UMLElementTypes.Comment_3074);
@@ -919,6 +952,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		} else if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Dependency_3203);
 			types.add(UMLElementTypes.Component_2002);
@@ -936,6 +970,7 @@ public class PortEditPart extends AbstractBorderEditPart {
 			types.add(UMLElementTypes.Component_3071);
 			types.add(UMLElementTypes.Constraint_3075);
 			types.add(UMLElementTypes.Interface_3072);
+			types.add(UMLElementTypes.Property_3079);
 		}
 		return types;
 	}
@@ -950,15 +985,15 @@ public class PortEditPart extends AbstractBorderEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Port", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferencesConstantsHelper.getElementConstant("Port", PreferencesConstantsHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Port", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferencesConstantsHelper.getElementConstant("Port", PreferencesConstantsHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Port", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferencesConstantsHelper.getElementConstant("Port", PreferencesConstantsHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("Port", PreferenceConstantHelper.COLOR_GRADIENT);
+			String prefGradient = PreferencesConstantsHelper.getElementConstant("Port", PreferencesConstantsHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());

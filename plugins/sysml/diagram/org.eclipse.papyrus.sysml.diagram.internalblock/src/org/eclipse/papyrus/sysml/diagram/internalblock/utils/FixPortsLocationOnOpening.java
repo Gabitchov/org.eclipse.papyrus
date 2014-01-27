@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
@@ -71,8 +71,8 @@ public class FixPortsLocationOnOpening {
 				if((parentWidth == -1) && (parentHeight == -1)) {
 					// warning the size may not be set in notation (default size), in such a case get default size from preferences.
 					String parentPrefKey = ElementTypes.DIAGRAM_ID + "_" + parentView.getType();
-					parentWidth = Activator.getInstance().getPreferenceStore().getInt(PreferenceConstantHelper.getElementConstant(parentPrefKey, PreferenceConstantHelper.WIDTH));
-					parentHeight = Activator.getInstance().getPreferenceStore().getInt(PreferenceConstantHelper.getElementConstant(parentPrefKey, PreferenceConstantHelper.HEIGHT));
+					parentWidth = Activator.getInstance().getPreferenceStore().getInt(PreferencesConstantsHelper.getElementConstant(parentPrefKey, PreferencesConstantsHelper.WIDTH));
+					parentHeight = Activator.getInstance().getPreferenceStore().getInt(PreferencesConstantsHelper.getElementConstant(parentPrefKey, PreferencesConstantsHelper.HEIGHT));
 				}
 				final Rectangle parentBounds = new Rectangle(parentViewBounds.getX(), parentViewBounds.getY(), parentWidth, parentHeight);
 

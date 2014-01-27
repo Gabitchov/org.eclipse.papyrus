@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2013 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -115,13 +115,13 @@ import com.google.common.collect.Lists;
  * Papyrus Model Explorer associated to one {@link IMultiDiagramEditor}.
  * This ModelExplorer is linked to one single {@link IMultiDiagramEditor}. It doesn't change its
  * source when the current Editor change. To allow to explore different Model, use a {@link ModelExplorerPageBookView}.
- * 
+ *
  */
 public class ModelExplorerView extends CommonNavigator implements IRevealSemanticElement, IEditingDomainProvider, IPageLifeCycleEventsListener {
 
 	/**
 	 * The context of the LabelProviderService used by this view
-	 * 
+	 *
 	 * @see {@link LabelProviderService}
 	 */
 	public static final String LABEL_PROVIDER_SERVICE_CONTEXT = "org.eclipse.papyrus.views.modelexplorer.labelProvider.context";
@@ -169,9 +169,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		/**
 		 * This method is called when the editor input is changed from the ISaveAndDirtyService.
-		 * 
+		 *
 		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
-		 * 
+		 *
 		 * @param fileEditorInput
 		 */
 		public void editorInputChanged(FileEditorInput fileEditorInput) {
@@ -181,9 +181,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		/**
 		 * The isDirty flag has changed, reflect its new value
-		 * 
+		 *
 		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
-		 * 
+		 *
 		 */
 		public void isDirtyChanged() {
 			firePropertyChange(IEditorPart.PROP_DIRTY);
@@ -194,9 +194,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	private final List<IPropertySheetPage> propertySheetPages = new LinkedList<IPropertySheetPage>();
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param part
 	 *        The part associated to this ModelExplorer
 	 */
@@ -225,7 +225,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Handle a selection change in the editor.
-	 * 
+	 *
 	 * @param part
 	 * @param selection
 	 */
@@ -256,7 +256,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * look for the path the list of element (comes from the content provider) to go the eObject
-	 * 
+	 *
 	 * @param eobject
 	 *        that we look for.
 	 * @param objects
@@ -381,7 +381,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		// The EMF Facet MeasureItem Listener is incompatible with the NavigatorDecoratingLabelProvider. Remove it.
 		// Symptoms: ModelElementItems with an EMF Facet Overlay have a small selection size
-		// Removal also fixes bug 400012: no scrollbar although tree is larger than visible area  
+		// Removal also fixes bug 400012: no scrollbar although tree is larger than visible area
 		Collection<Listener> listenersToRemove = new LinkedList<Listener>();
 		for(Listener listener : tree.getListeners(SWT.MeasureItem)) {
 			if(listener.getClass().getName().contains("org.eclipse.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) {
@@ -488,15 +488,15 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			//Ignore
 		}
 	}
-	
+
 	@Override
 	protected CommonViewer createCommonViewer(Composite aParent) {
 		CommonViewer viewer = super.createCommonViewer(aParent);
-		ViewerColumn column = (ViewerColumn) viewer.getTree().getData(Policy.JFACE + ".columnViewer");
+		ViewerColumn column = (ViewerColumn)viewer.getTree().getData(Policy.JFACE + ".columnViewer");
 		column.setEditingSupport(new DirectEditorEditingSupport(viewer));
 		return viewer;
 	}
-	
+
 
 	TreeItem currentItem;
 
@@ -591,9 +591,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Return the control used to render this View
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.IPageBookNestableViewPart#getControl()
-	 * 
+	 *
 	 * @return the main control of the navigator viewer
 	 */
 	public Control getControl() {
@@ -643,7 +643,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Run in a UI thread to avoid non UI thread exception.
-	 * 
+	 *
 	 * @param event
 	 */
 	private void handleResourceSetChanged(ResourceSetChangeEvent event) {
@@ -805,7 +805,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Return true if the component is already disposed.
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isDisposed() {
@@ -815,7 +815,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Retrieves the {@link IPropertySheetPage} that his Model Explorer uses.
-	 * 
+	 *
 	 * @return
 	 */
 	private IPropertySheetPage getPropertySheetPage() {
@@ -869,7 +869,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @return the EditingDomain used by the properties view
 	 */
 	public EditingDomain getEditingDomain() {
@@ -892,7 +892,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Expands the given CommonViewer to reveal the given elements
-	 * 
+	 *
 	 * @param elementList
 	 *        The elements to reveal
 	 * @param commonViewer
@@ -922,7 +922,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					tmp = tmp.eContainer();
 				}
 
-				Iterable<EObject> reverseParents = Iterables.reverse(parents);
+				Iterable<EObject> reverseParents = Lists.reverse(parents);
 
 				// reveal the resource if necessary
 				Resource r = null;
@@ -945,11 +945,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				 * in the good order. This is a lot faster than going through the whole tree
 				 * using getChildren of the ContentProvider since our Viewer uses a Hashtable
 				 * to keep track of the revealed elements.
-				 * 
+				 *
 				 * However we need to use a dedicated MatchingItem to do the matching,
 				 * and a specific comparer in our viewer so than the equals of MatchingItem is
 				 * used in priority.
-				 * 
+				 *
 				 * Please refer to MatchingItem for more infos.
 				 */
 				EObject previousParent = null;
@@ -986,7 +986,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Selects the given ISelection in the given CommonViwer
-	 * 
+	 *
 	 * @param structuredSelection
 	 *        The ISelection to select
 	 * @param commonViewer
@@ -1003,7 +1003,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Selects and, if possible, reveals the given ISelection in the given CommonViwer
-	 * 
+	 *
 	 * @param selection
 	 *        The ISelection to select
 	 * @param viewer

@@ -39,17 +39,7 @@ public class ModelElementMatch extends ModelMatch {
 
 	@Override
 	public boolean equals(Object obj) {
-		//		if(obj instanceof ModelElementMatch) {
-		//			if(super.equals(obj)) {
-		//
-		//				return true;
-		//
-		//			}
-		//			return false;
-		//
-		//		} else {
-		//			return false;
-		//		}
+
 		return super.equals(obj);
 	}
 

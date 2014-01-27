@@ -53,8 +53,8 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionEditPart;
@@ -77,6 +77,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentNameEditPar
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentRealizationNameEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConstraintEditPartPCN;
@@ -125,6 +128,8 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotyp
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartEditPartCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.PropertyPartNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
@@ -262,6 +267,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case PropertyForInterfaceEditPart.VISUAL_ID:
 				case OperationForInterfaceEditPart.VISUAL_ID:
 				case ReceptionInInterfaceEditPart.VISUAL_ID:
+				case PropertyPartEditPartCN.VISUAL_ID:
 				case ComponentEditPartCN.VISUAL_ID:
 				case ComponentEditPartPCN.VISUAL_ID:
 				case CommentEditPartPCN.VISUAL_ID:
@@ -276,7 +282,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return DependencyNodeEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || ModelEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || RectangleInterfaceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || PortEditPart.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || RectangleInterfaceEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || ComponentEditPartPCN.VISUAL_ID == visualID || CommentEditPartPCN.VISUAL_ID == visualID || ConstraintEditPartPCN.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID || OperationForInterfaceEditPart.VISUAL_ID == visualID || ReceptionInInterfaceEditPart.VISUAL_ID == visualID || InterfaceEditPartPCN.VISUAL_ID == visualID;
+		return DependencyNodeEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || ModelEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || RectangleInterfaceEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || PortEditPart.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || RectangleInterfaceEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || ComponentEditPartPCN.VISUAL_ID == visualID || CommentEditPartPCN.VISUAL_ID == visualID || ConstraintEditPartPCN.VISUAL_ID == visualID || PropertyForInterfaceEditPart.VISUAL_ID == visualID || OperationForInterfaceEditPart.VISUAL_ID == visualID || ReceptionInInterfaceEditPart.VISUAL_ID == visualID || InterfaceEditPartPCN.VISUAL_ID == visualID || PropertyPartEditPartCN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -377,6 +383,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createReception_6(domainElement, containerView, index, persisted, preferencesHint);
 		case InterfaceEditPartPCN.VISUAL_ID:
 			return createInterface_3072(domainElement, containerView, index, persisted, preferencesHint);
+		case PropertyPartEditPartCN.VISUAL_ID:
+			return createProperty_3079(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -415,6 +423,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createDependency_4017(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		case InterfacePortLinkEditPart.VISUAL_ID:
 			return createLink_4018(containerView, index, persisted, preferencesHint);
+		case ConnectorEditPart.VISUAL_ID:
+			return createConnector_4019(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -756,6 +766,24 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location0 = (Location)label0.getLayoutConstraint();
 		location0.setX(0);
 		location0.setY(5);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createProperty_3079(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(PropertyPartEditPartCN.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
+		Node label5268 = createLabel(node, UMLVisualIDRegistry.getType(PropertyPartNameEditPartCN.VISUAL_ID));
 		return node;
 	}
 
@@ -1256,6 +1284,44 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Edge createConnector_4019(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Connector edge = NotationFactory.eINSTANCE.createConnector();
+		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(2);
+		points.add(new RelativeBendpoint());
+		points.add(new RelativeBendpoint());
+		bendpoints.setPoints(points);
+		edge.setBendpoints(bendpoints);
+		ViewUtil.insertChildView(containerView, edge, index, persisted);
+		edge.setType(UMLVisualIDRegistry.getType(ConnectorEditPart.VISUAL_ID));
+		edge.setElement(domainElement);
+		// initializePreferences
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(edge, prefStore, "Connector");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Connector");
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Connector");
+		Node label6024 = createLabel(edge, UMLVisualIDRegistry.getType(ConnectorAppliedStereotypeEditPart.VISUAL_ID));
+		label6024.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6024 = (Location)label6024.getLayoutConstraint();
+		location6024.setX(0);
+		location6024.setY(60);
+		Node label6025 = createLabel(edge, UMLVisualIDRegistry.getType(ConnectorNameEditPart.VISUAL_ID));
+		label6025.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6025 = (Location)label6025.getLayoutConstraint();
+		location6025.setX(0);
+		location6025.setY(-20);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Connector");
+		return edge;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected void stampShortcut(View containerView, Node target) {
 		if(!ComponentDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
@@ -1333,8 +1399,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fontConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.FONT);
-		String fontColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FONT);
+		String fontConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.FONT);
+		String fontColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FONT);
 		FontStyle viewFontStyle = (FontStyle)view.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if(viewFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
@@ -1351,7 +1417,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	private void initForegroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String lineColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_LINE);
+		String lineColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_LINE);
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(store, lineColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLineStyle_LineColor(), FigureUtilities.RGBToInteger(lineRGB));
 	}
@@ -1360,9 +1426,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	private void initBackgroundFromPrefs(View view, final IPreferenceStore store, String elementName) {
-		String fillColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FILL);
-		String gradientColorConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT);
-		String gradientPolicyConstant = PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY);
+		String fillColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FILL);
+		String gradientColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_GRADIENT);
+		String gradientPolicyConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.GRADIENT_POLICY);
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
 		FillStyle fillStyle = (FillStyle)view.getStyle(NotationPackage.Literals.FILL_STYLE);

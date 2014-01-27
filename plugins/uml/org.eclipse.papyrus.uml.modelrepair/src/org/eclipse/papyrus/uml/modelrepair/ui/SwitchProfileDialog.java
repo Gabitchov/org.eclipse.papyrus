@@ -23,11 +23,12 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -46,8 +47,10 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
 import org.eclipse.papyrus.infra.emf.resource.Replacement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -223,7 +226,11 @@ public class SwitchProfileDialog extends SelectionDialog {
 	}
 
 	protected void updateControls() {
-
+		String newTitle = "Switch profile location";
+		if(!profilesToEdit.isEmpty()) {
+			newTitle += " *";
+		}
+		getShell().setText(newTitle);
 		getButton(APPLY_ID).setEnabled(!profilesToEdit.isEmpty());
 
 		boolean enableBrowse = !viewer.getSelection().isEmpty();
@@ -271,6 +278,45 @@ public class SwitchProfileDialog extends SelectionDialog {
 				}
 			}
 		});
+
+		Map<String, Object> saveOptions = new HashMap<String, Object>();
+		final Map<Object, Object> targetMap = new HashMap<Object, Object>();
+		for(Map.Entry<Resource, Resource> resourceMap : profilesToEdit.entrySet()) {
+			targetMap.put(resourceMap.getKey().getURI(), resourceMap.getValue().getURI());
+		}
+
+		saveOptions.put(XMLResource.OPTION_URI_HANDLER, new PlatformSchemeAware() {
+
+			@Override
+			public URI deresolve(URI uri) {
+				URI resourceURI = uri.trimFragment();
+
+				if(targetMap.containsKey(resourceURI)) {
+					Object target = targetMap.get(resourceURI);
+					if(target instanceof URI) {
+						URI targetURI = (URI)target;
+						if(uri.fragment() != null) {
+							targetURI = targetURI.appendFragment(uri.fragment());
+						}
+						return targetURI;
+					}
+				}
+
+				return super.deresolve(uri);
+			}
+		});
+
+		IReadOnlyHandler handler = ReadOnlyManager.getReadOnlyHandler(editingDomain);
+		for(Resource resource : modelSet.getResources()) {
+			if(handler.anyReadOnly(new URI[]{ resource.getURI() }).get()) {
+				continue;
+			}
+			try {
+				resource.save(saveOptions);
+			} catch (IOException ex) {
+				Activator.log.error(ex);
+			}
+		}
 
 		profilesToEdit.clear();
 		updateControls();
@@ -323,11 +369,7 @@ public class SwitchProfileDialog extends SelectionDialog {
 	protected void okPressed() {
 		applyPressed();
 
-		try {
-			modelSet.save(new NullProgressMonitor());
-		} catch (IOException ex) {
-			Activator.log.error(ex);
-		}
+
 		super.okPressed();
 	}
 
@@ -488,6 +530,7 @@ public class SwitchProfileDialog extends SelectionDialog {
 		if(getSelectedResource() != targetResource) {
 			profilesToEdit.put(getSelectedResource(), targetResource);
 			updateControls();
+			applyPressed(); //Immediatly apply to avoid confusion
 		} else {
 			MessageDialog.openWarning(getShell(), "Nothing changed", "Nothing to change");
 		}

@@ -15,9 +15,12 @@ package org.eclipse.papyrus.uml.profile.externalresource.tests;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -25,17 +28,14 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.emf.workspace.EMFCommandOperation;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -49,15 +49,13 @@ import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceInitializerService;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.uml.profile.externalresource.helper.ExternalResourceProfileUtils;
 import org.eclipse.papyrus.uml.profile.externalresource.helper.OneResourceOnlyStrategy;
-import org.eclipse.papyrus.uml.profile.externalresource.helper.PapyrusStereotypeApplicationHelper;
-import org.eclipse.papyrus.uml.profile.externalresource.helper.StrategyRegistry;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.ResourcePerProfileStrategy;
+import org.eclipse.papyrus.uml.profile.externalresource.helper.StandardApplicationLocationStrategy;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
@@ -68,9 +66,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.Package;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -159,7 +157,27 @@ public abstract class AbstractExternalResourcesTest {
 	public static final String ONE_RESOURCE_FOR_ALL_PROFILES_FOLDER = "OneResourceForAllProfiles";
 
 	public static final String ONE_RESOURCE_PER_PROFILE_FOLDER = "OneResourcePerProfile";
-
+	
+	public static final List<String> STANDARD_STRATEGY_FILE_NAMES = Arrays.asList(DI_FILE, UML_FILE, NOTATION_FILE,  
+		/* Class3.di */ CLASS3_MODEL_DI_FILE,  CLASS3_MODEL_NOTATION_FILE,  CLASS3_MODEL_UML_FILE, 
+		/* Package1_Class1.di */PACKAGE1_MODEL_DI_FILE, PACKAGE1_MODEL_NOTATION_FILE, PACKAGE1_MODEL_UML_FILE); 
+	
+	public static final List<String> ONE_RESOURCE_PER_PROFILE_FILE_NAMES = Arrays.asList(DI_FILE, NOTATION_FILE, UML_FILE, EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE, 
+		/* PACKAGE1*/ PACKAGE1_MODEL_DI_FILE, PACKAGE1_MODEL_NOTATION_FILE, PACKAGE1_MODEL_UML_FILE, PACKAGE1_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE,
+		/* CLASS3*/ CLASS3_MODEL_DI_FILE, CLASS3_MODEL_NOTATION_FILE, CLASS3_MODEL_UML_FILE, CLASS3_EXTERNAL_RESOURCES_TEST_PROFILE_EXTENSION_FILE
+	);
+	
+	public static final List<String> ONE_RESOURCE_FOR_ALL_PROFILES_FILE_NAMES = Arrays.asList(DI_FILE, NOTATION_FILE, UML_FILE, ALL_PROFILES_FILE, 
+		/* PACKAGE1*/ PACKAGE1_MODEL_DI_FILE, PACKAGE1_MODEL_NOTATION_FILE, PACKAGE1_MODEL_UML_FILE, PACKAGE1_ALL_PROFILES_FILE,
+		/* CLASS3*/ CLASS3_MODEL_DI_FILE, CLASS3_MODEL_NOTATION_FILE, CLASS3_MODEL_UML_FILE, CLASS3_ALL_PROFILES_FILE
+	);
+	
+	public static final Map<String, List<String>> STRATEGY_FILE_NAMES_MAPPING = new HashMap<String, List<String>>(); {
+		STRATEGY_FILE_NAMES_MAPPING.put(OneResourceOnlyStrategy.ID, ONE_RESOURCE_FOR_ALL_PROFILES_FILE_NAMES);
+		STRATEGY_FILE_NAMES_MAPPING.put(ResourcePerProfileStrategy.ID, ONE_RESOURCE_PER_PROFILE_FILE_NAMES);
+		STRATEGY_FILE_NAMES_MAPPING.put(StandardApplicationLocationStrategy.ID, STANDARD_STRATEGY_FILE_NAMES);
+	}
+	
 	@Before
 	public void initializeRegistry() {
 		ResourcesPlugin.getWorkspace().getDescription().setAutoBuilding(false);

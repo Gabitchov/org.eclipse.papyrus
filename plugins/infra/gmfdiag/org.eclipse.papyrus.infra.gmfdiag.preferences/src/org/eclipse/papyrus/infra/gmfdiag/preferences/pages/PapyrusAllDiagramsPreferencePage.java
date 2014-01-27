@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Smoothness;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.PapyrusPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.BackgroundColor;
@@ -26,16 +27,18 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DimensionGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.FontGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.NodeColorGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.RulersAndGridGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorBackgroundColor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorConnectionGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorDecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorDimensionGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorFontGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorNodeColorGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor.EditorRulersAndGridGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 
 /**
@@ -70,6 +73,9 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 
 		DimensionGroup dimensionGroup = new EditorDimensionGroup(contentGroup, getTitle(), this);
 		addAbstractGroup(dimensionGroup);
+
+		RulersAndGridGroup viewGroupComposite = new EditorRulersAndGridGroup(parent, getTitle(), this);
+		addAbstractGroup(viewGroupComposite);
 	}
 
 
@@ -84,34 +90,42 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 	 * @param store
 	 *        the preference store
 	 */
-	public static void initDefaults(IPreferenceStore store) {
+	public static void initDefaults(final IPreferenceStore store) {
+		Display.getDefault().syncExec(new Runnable() { //to be in the thread ui
 
-		//Nodes
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
+			public void run() {
 
-		// Set the default for the gradient
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.GRADIENT_POLICY), false);
-		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+				//Nodes
+				PreferenceConverter.setDefault(store, PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
+				PreferenceConverter.setDefault(store, PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
-		// Links
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.SMOOTHNESS), Smoothness.NONE);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.JUMPLINK_STATUS), JumpLinkStatus.NONE);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.JUMPLINK_TYPE), JumpLinkStatus.NONE);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.JUMPLINK_REVERSE), false);
+				// Set the default for the gradient
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.GRADIENT_POLICY), false);
+				GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
 
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.ROUTING_STYLE), Routing.MANUAL);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.ROUTING_POLICY_OBSTRUCTION), false);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.ROUTING_POLICY_DISTANCE), false);
+				// Links
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SMOOTHNESS), Smoothness.NONE);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.JUMPLINK_STATUS), JumpLinkStatus.NONE);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.JUMPLINK_TYPE), JumpLinkStatus.NONE);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.JUMPLINK_REVERSE), false);
 
-		//decoration
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.SHADOW), false);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.ELEMENTICON), false);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.QUALIFIEDNAME), false);
-		//dimension
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.WIDTH), 100);
-		store.setDefault(PreferenceConstantHelper.getPapyrusEditorConstant(PreferenceConstantHelper.HEIGHT), 100);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.ROUTING_STYLE), Routing.MANUAL);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.ROUTING_POLICY_OBSTRUCTION), false);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.ROUTING_POLICY_DISTANCE), false);
+
+				//decoration
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.SHADOW), false);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.ELEMENTICON), false);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.QUALIFIEDNAME), false);
+				//dimension
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.WIDTH), 100);
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.HEIGHT), 100);
+
+				//Rulers and grid group
+				RulersAndGridGroup.initDefaults(store);
+			}
+		});
 
 	}
 
@@ -120,7 +134,7 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 	 */
 	public void storeAllPreferences() {
 		super.storeAllPreferences();
-		((PapyrusPreferenceStore)getPreferenceStore()).deleteAllSubPreference(PreferenceConstantHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX);
+		((PapyrusPreferenceStore)getPreferenceStore()).deleteAllSubPreference(PreferencesConstantsHelper.PAPYRUS_EDITOR_PREFERENCE_PREFIX);
 
 	}
 }

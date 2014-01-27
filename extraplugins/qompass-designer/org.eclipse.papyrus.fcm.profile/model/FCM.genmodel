@@ -7,21 +7,6 @@
   <foreignModel>FCM.ecore</foreignModel>
   <genPackages prefix="FCM" basePackage="org.eclipse.papyrus" resource="XML" disposableProviderFactory="true"
       ecorePackage="FCM.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="FCM.ecore#//TemplateKind">
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/PassFormal"/>
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/LoopOperations"/>
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/LoopProperty"/>
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/Accumulate"/>
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/LoopLiterals"/>
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/LateEvaluation"/>
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/LoopPorts"/>
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//TemplateKind/PassClassifier"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="FCM.ecore#//ActualChoice">
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//ActualChoice/PassActual"/>
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//ActualChoice/InterfaceOfPPort"/>
-      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//ActualChoice/InterfaceOfRport"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="FCM.ecore#//ContainerRuleKind">
       <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//ContainerRuleKind/ComponentRule"/>
       <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//ContainerRuleKind/LightWeightOORule"/>
@@ -33,10 +18,11 @@
       <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//InterceptionKind/InterceptAllIn"/>
     </genEnums>
     <genClasses ecoreClass="FCM.ecore#//Template">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Template/templateParams"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Template/base_Element"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//Template/kind"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//Template/actualChoice"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Template/helper"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//BindingHelper">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//BindingHelper/base_Class"/>
     </genClasses>
     <genClasses ecoreClass="FCM.ecore#//ConfigurationProperty">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ConfigurationProperty/base_Property"/>
@@ -83,6 +69,7 @@
     </genClasses>
     <genClasses ecoreClass="FCM.ecore#//InstanceConfigurator">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//InstanceConfigurator/base_Class"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FCM.ecore#//InstanceConfigurator/onNodeModel"/>
     </genClasses>
     <genClasses ecoreClass="FCM.ecore#//RuleApplication">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//RuleApplication/base_Class"/>
@@ -180,10 +167,6 @@
     <genClasses ecoreClass="FCM.ecore#//ConnectorConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ConnectorConfiguration/base_Slot"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ConnectorConfiguration/connector"/>
-    </genClasses>
-    <genClasses ecoreClass="FCM.ecore#//ExtendedSignature">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ExtendedSignature/base_TemplateSignature"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ExtendedSignature/baseSignature"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -19,6 +19,9 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
@@ -29,9 +32,11 @@ import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.FollowSVGSymbolEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusResizableShapeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
+import org.eclipse.papyrus.infra.gmfdiag.common.snap.PapyrusDragEditPartsTrackerEx;
 import org.eclipse.swt.graphics.Color;
 import org.w3c.dom.svg.SVGDocument;
 
@@ -282,5 +287,30 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 		} else {
 			return super.getContentPane();
 		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getDragTracker(org.eclipse.gef.Request)
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@Override
+	public DragTracker getDragTracker(final Request request) {
+		return new PapyrusDragEditPartsTrackerEx(this, true, false, false);
+	}
+	
+	/**
+	 * TODO : remove this override when the bug will be fixed
+	 * See Bug 424943 ResizableEditPolicy#getResizeCommand duplicates request ignoring some request values
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#getPrimaryDragEditPolicy()
+	 * 
+	 * @return
+	 */
+	public EditPolicy getPrimaryDragEditPolicy() {
+		EditPolicy policy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		return policy != null ? policy : new PapyrusResizableShapeEditPolicy();
 	}
 }
