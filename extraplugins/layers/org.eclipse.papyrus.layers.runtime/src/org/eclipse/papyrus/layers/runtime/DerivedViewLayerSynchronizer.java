@@ -165,8 +165,8 @@ public class DerivedViewLayerSynchronizer {
 		// TODO implements this:
 		// with a visitor ?
 		// with getAllContents ?
-		EcoreUtil.getObjectsByType(layersStack.e, type)
-		getLayersStack().
+//		EcoreUtil.getObjectsByType(layersStack.e, type)
+//		getLayersStack().
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -178,22 +178,22 @@ public class DerivedViewLayerSynchronizer {
 	 */
 	private void registerDerivedLayer(RegExpLayer layer) {
 		
-		if(layer.isAnyDomainChangedEventDependant() ) {
-			if( layer.domainChangedEventLevel == 1) {
-				domainChangedLevel1Notifier.addListener(layer);
-			} else {
-				// All level
-				domainChangedAllLevelNotifier.addListener(layer);
-			}
-		}
-		if(layer.isAnyDiagramChangedEventDependant() ) {
-			if( layer.diagramChangedEventLevel == 1) {
-				diagramChangedLevel1Notifier.addListener(layer);
-			} else {
-				// All level
-				diagramChangedAllLevelNotifier.addListener(layer);
-			}
-		}
+//		if(layer.isAnyDomainChangedEventDependant() ) {
+//			if( layer.domainChangedEventLevel == 1) {
+//				domainChangedLevel1Notifier.addListener(layer);
+//			} else {
+//				// All level
+//				domainChangedAllLevelNotifier.addListener(layer);
+//			}
+//		}
+//		if(layer.isAnyDiagramChangedEventDependant() ) {
+//			if( layer.diagramChangedEventLevel == 1) {
+//				diagramChangedLevel1Notifier.addListener(layer);
+//			} else {
+//				// All level
+//				diagramChangedAllLevelNotifier.addListener(layer);
+//			}
+//		}
 		
 	}
 

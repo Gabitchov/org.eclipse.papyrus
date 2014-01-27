@@ -103,7 +103,7 @@ public abstract class AbstractDerivedViewLayerNotifier {
 	 */
 	public void fireEvent( ) {
 		for( RegExpLayer listener : listeners) {
-			listener.evaluateExpr();
+//			listener.evaluateExpr();
 		}
 	}
 	

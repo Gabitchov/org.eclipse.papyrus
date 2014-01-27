@@ -19,10 +19,6 @@ import java.io.IOException;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -50,13 +46,13 @@ import org.eclipse.ui.part.FileEditorInput;
  */
 public class ProgramaticPapyrusEditor {
 
-	protected static final String DEFAULT_PROJECT_NAME = "org.eclipse.org.infra.core.defaultproject.integration";
+	protected static final String DEFAULT_PROJECT_NAME = "org.eclipse.papyrus.integrationtests.editor";
 	protected static final String DEFAULT_MODEL_NAME = "papyrusModelForIntegration";
 	
     /**
 	 * Name of the project that will contains Model
 	 */
-	protected String projectName = DEFAULT_PROJECT_NAME;
+//	protected String projectName = DEFAULT_PROJECT_NAME;
 	
 	/**
 	 * Name of the model to create.
@@ -67,7 +63,7 @@ public class ProgramaticPapyrusEditor {
 //	protected ModelSet modelSet;
 
 	/** The file. */
-	protected IFile file;
+//	protected IFile file;
 
 	/** The page. */
 	protected IWorkbenchPage page;
@@ -76,10 +72,16 @@ public class ProgramaticPapyrusEditor {
 	protected IMultiDiagramEditor papyrusEditor;
 
 	/** The project. */
-	protected IProject project;
+//	protected IProject project;
+	
+	/**
+	 * An object representing an EclipseProject.
+	 */
+	protected EclipseProject eclipseProject;
+
 
 	/** The root. */
-	protected IWorkspaceRoot root;
+//	protected IWorkspaceRoot root;
 	
 	
 	/**
@@ -89,10 +91,35 @@ public class ProgramaticPapyrusEditor {
 	 * @param modelName
 	 * @throws EditorCreationException If the creation fails.
 	 */
-	public ProgramaticPapyrusEditor(String projectName, String modelName) throws EditorCreationException {
-		this.projectName = projectName;
+	public ProgramaticPapyrusEditor(String projectName, String modelName) throws ExecutionException {
 		this.modelName = modelName;
 		
+		// Create an Eclipse project
+		eclipseProject = new EclipseProject(projectName);
+		// Create a suitable EclipseProject
+		initResources(false);
+
+		// Create editor
+		createEditor();
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param projectName
+	 * @param modelName
+	 * @throws EditorCreationException If the creation fails.
+	 */
+	public ProgramaticPapyrusEditor(EclipseProject eclipseProject, String modelName) throws ExecutionException {
+		this.modelName = modelName;
+		
+		if( eclipseProject == null ) {
+			throw new ExecutionException("The argument 'EclipseProject' should be initialized.");
+		}
+		this.eclipseProject = eclipseProject;
+		// Create a suitable EclipseProject
+		initResources(false);
+
 		// Create editor
 		createEditor();
 	}
@@ -104,9 +131,44 @@ public class ProgramaticPapyrusEditor {
 	 * @throws EditorCreationException If the creation fails.
 	 *
 	 */
-	public ProgramaticPapyrusEditor() throws EditorCreationException {
+	public ProgramaticPapyrusEditor() throws ExecutionException {
+		
+		// Create an Eclipse project
+		eclipseProject = new EclipseProject(DEFAULT_PROJECT_NAME);
+		// Create a suitable EclipseProject
+		initResources(true);
+
 		// Create editor
 		createEditor();
+	}
+
+
+	/**
+	 * Init the resources.
+	 * The {@link #eclipseProject} should be initialized.
+	 * 
+	 * @throws ExecutionException
+	 * @throws CoreException
+	 * @throws IOException
+	 */
+	private void initResources(boolean deleteFileIfExists) throws ExecutionException {
+		try {
+			// Ensure path to specified resource
+			eclipseProject.createFolders(modelName);
+			
+			// delete existing files, and then create a new model
+			IFile file = eclipseProject.getProject().getFile(modelName + ".di");
+			if(deleteFileIfExists && file.exists()) {
+				file.delete(true, new NullProgressMonitor());
+			}
+
+			if(!file.exists()) {
+				// Create the model
+				createModel(file);
+			}
+		} catch (Exception e) {
+			throw new ExecutionException("Can't init Project and Resources" , e	);
+		} 
 	}
 
 
@@ -141,29 +203,29 @@ public class ProgramaticPapyrusEditor {
 	 * @throws EditorCreationException 
 	 */
 	protected IMultiDiagramEditor createEditor() throws EditorCreationException {
-		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		root = workspace.getRoot();
-		project = root.getProject(projectName);
-		file = project.getFile(modelName + ".di");
+//		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+//		root = workspace.getRoot();
+//		project = root.getProject(projectName);
+		IFile file = eclipseProject.getProject().getFile(modelName + ".di");
 
 			try {
-				//at this point, no resources have been created
-				if(!project.exists()) {
-					project.create(null);
-				}
-				if(!project.isOpen()) {
-					project.open(null);
-				}
-
-				if(file.exists()) {
-					file.delete(true, new NullProgressMonitor());
-				}
-
-				if(!file.exists()) {
-					// Create the model
-					createModel(file);
-				}
-				
+//				//at this point, no resources have been created
+//				if(!project.exists()) {
+//					project.create(null);
+//				}
+//				if(!project.isOpen()) {
+//					project.open(null);
+//				}
+//
+//				if(file.exists()) {
+//					file.delete(true, new NullProgressMonitor());
+//				}
+//
+//				if(!file.exists()) {
+//					// Create the model
+//					createModel(file);
+//				}
+//				
 				// Create the editor
 				page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				IEditorDescriptor desc = PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(file.getName());
@@ -174,8 +236,8 @@ public class ProgramaticPapyrusEditor {
 				throw new EditorCreationException("Can't create editor", e);
 			} catch (CoreException e) {
 				throw new EditorCreationException("Can't create editor", e);
-			} catch (IOException e) {
-				throw new EditorCreationException("Can't create editor", e);
+//			} catch (IOException e) {
+//				throw new EditorCreationException("Can't create editor", e);
 			}
 
 	}
@@ -197,7 +259,7 @@ public class ProgramaticPapyrusEditor {
 //		papyrusEditor.dispose();
 		page.closeAllEditors(true);
 		try {
-			project.delete(true, new NullProgressMonitor());
+			eclipseProject.getProject().delete(true, new NullProgressMonitor());
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

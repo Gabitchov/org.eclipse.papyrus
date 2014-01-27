@@ -216,6 +216,12 @@
                </parameter>
             </command>
             <command
+                  commandId="org.eclipse.papyrus.layers.ui.commands.createtoplayeroperator"
+                  label="Create Top Layers"
+                  style="push"
+                  tooltip="Create a new Top Layers Operator">
+            </command>
+            <command
                   commandId="org.eclipse.papyrus.layers.ui.commands.createLayerOperator"
                   label="Create Minimum Stacked Layers"
                   style="push"

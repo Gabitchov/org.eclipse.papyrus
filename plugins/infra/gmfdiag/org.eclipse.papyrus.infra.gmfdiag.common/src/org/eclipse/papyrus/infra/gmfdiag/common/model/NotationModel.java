@@ -3,9 +3,12 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
+import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
 import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 
 /**
  * @author dumoulin
@@ -64,5 +67,34 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 	 */
 	public void addDiagram(Diagram newDiagram) {
 		getResource().getContents().add(newDiagram);
+	}
+
+	/**
+	 * Get a diagram by its name.
+	 * 
+	 * @param diagramName Name of the diagram. This is the name set by the user.
+	 * @return
+	 * @throws NotFoundException 
+	 * @throws BadArgumentExcetion 
+	 */
+	public Diagram getDiagram(String diagramName) throws NotFoundException, BadArgumentExcetion {
+		
+		if( diagramName == null || diagramName.length() == 0) {
+			throw new BadArgumentExcetion("Diagram name should not be null and size should be >0.");
+		}
+		
+		for( EObject element : getResource().getContents()) {
+			if( element instanceof Diagram) {
+				Diagram diagram = (Diagram)element;
+				
+				if( diagramName.equals(diagram.getName())) {
+					// Found
+					return diagram;
+							
+				}
+			}
+		}
+		// not found
+		throw new NotFoundException("No Diagram named '" + diagramName + "' can be found in Model.");
 	}
 }
