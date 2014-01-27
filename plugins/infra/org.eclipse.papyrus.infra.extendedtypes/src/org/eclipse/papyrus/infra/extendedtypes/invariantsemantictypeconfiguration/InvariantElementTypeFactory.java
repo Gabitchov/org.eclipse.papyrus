@@ -67,8 +67,11 @@ public class InvariantElementTypeFactory extends AbstractConfigurableElementType
 		if(superMatcher !=null)  {
 			// create a composed matcher to have the matcher described by the model configuration element type and the one for the specific invariants
 			IElementMatcher invariantMatcher = RuleConfigurationFactoryRegistry.getInstance().createMatcher(configuration.getInvariantRuleConfiguration());
-			ComposedElementMatcher composedMatcher = new ComposedElementMatcher(Arrays.asList(superMatcher, invariantMatcher));
-			return composedMatcher;
+			if(invariantMatcher!=null) {
+				ComposedElementMatcher composedMatcher = new ComposedElementMatcher(Arrays.asList(superMatcher, invariantMatcher));
+				return composedMatcher;	
+			}
+			return superMatcher;
 		}
 		// no configured matcher. Return the invariant one
 		return RuleConfigurationFactoryRegistry.getInstance().createMatcher(configuration.getInvariantRuleConfiguration());

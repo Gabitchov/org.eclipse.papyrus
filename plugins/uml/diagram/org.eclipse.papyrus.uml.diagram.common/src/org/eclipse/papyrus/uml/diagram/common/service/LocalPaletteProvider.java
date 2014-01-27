@@ -117,7 +117,7 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 			// sub-classes could return null
 			if(inputStream == null) {
 				contributions = new EmptyNodeList();
-				throw new IOException("Impossible to load file: " + path);
+				Activator.log.debug("Impossible to load file: " + path);
 			} else {
 				Document document = documentBuilder.parse(inputStream);
 				contributions = document.getChildNodes();
