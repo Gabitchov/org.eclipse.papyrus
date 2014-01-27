@@ -12,7 +12,7 @@ Export-Package: org.eclipse.papyrus.layers.stackmodel.layers.provider,
  org.eclipse.papyrus.layers.stackmodel.layers.provider.custom,
  org.eclipse.papyrus.layers.configmodel.layersconfig.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.layers.stackmodel;visibility:=reexport,
+ org.eclipse.papyrus.layers.stackmodel;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,

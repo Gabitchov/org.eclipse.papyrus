@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.layers_feature"
       label="Layers_feature"
-      version="0.8.0.qualifier">
+      version="1.0.0.qualifier">
 
    <description url="http://www.example.com/description">
       Papyrus Layers
