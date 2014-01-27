@@ -125,6 +125,7 @@ out->writeEvent (event);
         <ownedOperation xmi:type="uml:Operation" xmi:id="_3GbAwCWSEeGB3KV6qwTHBw" name="activate" method="_p_0sUCaiEeGRo-gX9igNzw"/>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_3G6I8CWSEeGB3KV6qwTHBw" name="deactivate"/>
         <ownedOperation xmi:type="uml:Operation" xmi:id="_b5mYgCaiEeGRo-gX9igNzw" name="processEvents" method="_rglykOupEeCTfOY57pgE3w"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_MYPEcHk6EeOph7IIHUnNoA" name="configuration_complete"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_S99VcO3GEeCHv5BGhoZ8CA" name="stateMachine_executor" memberEnd="_S99Vce3GEeCHv5BGhoZ8CA _S9FLsO3GEeCHv5BGhoZ8CA">
         <ownedEnd xmi:type="uml:Property" xmi:id="_S99Vce3GEeCHv5BGhoZ8CA" name="stateMachine" type="_ens7QOUTEd-P08Bciq_LqQ" association="_S99VcO3GEeCHv5BGhoZ8CA">
@@ -158,7 +159,21 @@ out->writeEvent (event);
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_ZXYggHg_EeOejZqJpKQeww" name="outAnimSvc" type="_L-I7kF8wEeGerN33d-RdRg" aggregation="composite"/>
         <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_bmInQF_4EeGbQoflzrdx0g" name="derived realization of IAnimation" client="_xELAwF81EeGbQoflzrdx0g" supplier="_L-I7kF8wEeGerN33d-RdRg" contract="_L-I7kF8wEeGerN33d-RdRg"/>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_bmbiMF_4EeGbQoflzrdx0g" name="enterState">
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_r5ewgHnxEeOfttgBwSq-Ig" name="leaveState" specification="_bmo9kF_4EeGbQoflzrdx0g">
+          <language>C/C++</language>
+          <body>if (outAnimSvc != 0) {
+	outAnimSvc->leaveState(stateEnum, eInstance);
+}
+</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_tczkcHnxEeOfttgBwSq-Ig" name="enterState" specification="_bmbiMF_4EeGbQoflzrdx0g">
+          <language>C/C++</language>
+          <body>if (outAnimSvc != 0) {
+	outAnimSvc->enterState(stateEnum, eInstance);
+}
+</body>
+        </ownedBehavior>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_bmbiMF_4EeGbQoflzrdx0g" name="enterState" method="_tczkcHnxEeOfttgBwSq-Ig">
           <ownedParameter xmi:type="uml:Parameter" xmi:id="_OJXykGEpEeGzd_21sXyuog" name="stateEnum">
             <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OJZAsGEpEeGzd_21sXyuog" value="1"/>
@@ -170,8 +185,8 @@ out->writeEvent (event);
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OJbc8GEpEeGzd_21sXyuog" value="1"/>
           </ownedParameter>
         </ownedOperation>
-        <ownedOperation xmi:type="uml:Operation" xmi:id="_bmo9kF_4EeGbQoflzrdx0g" name="leaveState">
-          <ownedParameter xmi:type="uml:Parameter" xmi:id="_OKJOoGEpEeGzd_21sXyuog" name="eState">
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_bmo9kF_4EeGbQoflzrdx0g" name="leaveState" method="_r5ewgHnxEeOfttgBwSq-Ig">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_OKJOoGEpEeGzd_21sXyuog" name="stateEnum">
             <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
             <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OKKcwGEpEeGzd_21sXyuog" value="1"/>
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OKLD0GEpEeGzd_21sXyuog" value="1"/>
@@ -216,20 +231,45 @@ out->writeEvent (event);
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_QH7R8GGDEeO2F4QRMDSOXg" name="AnimServiceConfigurator"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_B0gFAHg_EeOejZqJpKQeww" name="RemoteAnimService">
+      <packagedElement xmi:type="uml:Class" xmi:id="_B0gFAHg_EeOejZqJpKQeww" clientDependency="_hQFyMHk8EeOh_8tymvdOOg" name="RemoteAnimService">
         <ownedAttribute xmi:type="uml:Port" xmi:id="_MLu-kHg_EeOejZqJpKQeww" name="animSvc" type="_L-I7kF8wEeGerN33d-RdRg" aggregation="composite"/>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_hQFyMHk8EeOh_8tymvdOOg" name="derived realization of IAnimation" client="_B0gFAHg_EeOejZqJpKQeww" supplier="_L-I7kF8wEeGerN33d-RdRg" contract="_L-I7kF8wEeGerN33d-RdRg"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_hQJckHk8EeOh_8tymvdOOg" name="enterState">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_hQLRwHk8EeOh_8tymvdOOg" name="stateEnum">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hQL40Hk8EeOh_8tymvdOOg" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hQMf4Hk8EeOh_8tymvdOOg" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_hQMf4Xk8EeOh_8tymvdOOg" name="eInstance">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hQNG8Hk8EeOh_8tymvdOOg" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hQNG8Xk8EeOh_8tymvdOOg" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_hQSmgHk8EeOh_8tymvdOOg" name="leaveState">
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_hQTNkHk8EeOh_8tymvdOOg" name="eState">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://QML_CORE/corba.uml#_9XvcQB6REd6ITtm_FH3jRw"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hQTNkXk8EeOh_8tymvdOOg" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hQT0oHk8EeOh_8tymvdOOg" value="1"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:Parameter" xmi:id="_hQT0oXk8EeOh_8tymvdOOg" name="eInstance">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hQUbsHk8EeOh_8tymvdOOg" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hQUbsXk8EeOh_8tymvdOOg" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_DEJCwF81EeGbQoflzrdx0g" name="rules">
       <packagedElement xmi:type="uml:Class" xmi:id="_18qdsO67EeCZ9MjsZTV1zw" name="StateMachineWCallEvents">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_LyxAEPTXEeCn1-FCrfecFg" name="callEventInterceptor" visibility="public" type="_u-qioOUTEd-P08Bciq_LqQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_LyxAEPTXEeCn1-FCrfecFg" name="callEventInterceptor" visibility="public" type="_u-qioOUTEd-P08Bciq_LqQ" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MGWDYPTXEeCn1-FCrfecFg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MGfNUPTXEeCn1-FCrfecFg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_MGz9cPTXEeCn1-FCrfecFg">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_jXX54PTXEeCn1-FCrfecFg" name="eventPool" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_jXX54PTXEeCn1-FCrfecFg" name="eventPool" visibility="public" aggregation="composite">
           <type xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_JRmo0PNAEeCovO8AYZymZQ"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_l6kPYPTXEeCn1-FCrfecFg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_l6k2cPTXEeCn1-FCrfecFg" value="1"/>
@@ -237,14 +277,14 @@ out->writeEvent (event);
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_mv6jAPTXEeCn1-FCrfecFg" name="stateMachine" visibility="public" type="_ens7QOUTEd-P08Bciq_LqQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_mv6jAPTXEeCn1-FCrfecFg" name="stateMachine" visibility="public" type="_ens7QOUTEd-P08Bciq_LqQ" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ocG_EPTXEeCn1-FCrfecFg" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ocHmIPTXEeCn1-FCrfecFg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_ocI0QPTXEeCn1-FCrfecFg">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_vcPiUCWdEeGX6PuSE-DJlQ" name="thread" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_vcPiUCWdEeGX6PuSE-DJlQ" name="thread" visibility="public" aggregation="composite">
           <type xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_SiY_AP-EEd6628OhKk_dpg"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yS4YQCWdEeGX6PuSE-DJlQ" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yS4_UCWdEeGX6PuSE-DJlQ" value="1"/>
@@ -289,14 +329,14 @@ out->writeEvent (event);
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_b1zNUOusEeCTfOY57pgE3w" name="StateMachine"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_IeWosF81EeGbQoflzrdx0g" name="StateMachineWCallEventsAndAnim">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_IeWosV81EeGbQoflzrdx0g" name="callEventInterceptor" visibility="public" type="_u-qioOUTEd-P08Bciq_LqQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IeWosV81EeGbQoflzrdx0g" name="callEventInterceptor" visibility="public" type="_u-qioOUTEd-P08Bciq_LqQ" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IeWos181EeGbQoflzrdx0g" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IeWosl81EeGbQoflzrdx0g" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_IeWotF81EeGbQoflzrdx0g">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_IeWotV81EeGbQoflzrdx0g" name="eventPool" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IeWotV81EeGbQoflzrdx0g" name="eventPool" visibility="public" aggregation="composite">
           <type xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_JRmo0PNAEeCovO8AYZymZQ"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IeWot181EeGbQoflzrdx0g" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IeWotl81EeGbQoflzrdx0g" value="1"/>
@@ -304,14 +344,14 @@ out->writeEvent (event);
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_IeXPwV81EeGbQoflzrdx0g" name="stateMachine" visibility="public" type="_ens7QOUTEd-P08Bciq_LqQ">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IeXPwV81EeGbQoflzrdx0g" name="stateMachine" visibility="public" type="_ens7QOUTEd-P08Bciq_LqQ" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IeXPw181EeGbQoflzrdx0g" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IeXPwl81EeGbQoflzrdx0g" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_IeXPxF81EeGbQoflzrdx0g">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_IeXPxV81EeGbQoflzrdx0g" name="thread" visibility="public">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_IeXPxV81EeGbQoflzrdx0g" name="thread" visibility="public" aggregation="composite">
           <type xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_SiY_AP-EEd6628OhKk_dpg"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IeXPx181EeGbQoflzrdx0g" value="1"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IeXPxl81EeGbQoflzrdx0g" value="1"/>
@@ -409,7 +449,9 @@ out->writeEvent (event);
   <FCM:DerivedElement xmi:id="_3G7-ICWSEeGB3KV6qwTHBw" base_Element="_3G6I8CWSEeGB3KV6qwTHBw">
     <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_W7YrADz6Ed-v9PxuTj6Elw"/>
   </FCM:DerivedElement>
-  <FCM:Template xmi:id="_nngKECaiEeGRo-gX9igNzw" base_Element="_b5mYgCaiEeGRo-gX9igNzw"/>
+  <FCM:Template xmi:id="_nngKECaiEeGRo-gX9igNzw" base_Element="_b5mYgCaiEeGRo-gX9igNzw">
+    <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_7qhTUHkgEeOCpqruXGWNPw"/>
+  </FCM:Template>
   <FCM:Port xmi:id="_JZGWgF8xEeGerN33d-RdRg" base_Port="_xUE3QF8wEeGerN33d-RdRg">
     <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_9Fif4FRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
@@ -418,9 +460,6 @@ out->writeEvent (event);
   <FCM:Port xmi:id="_5cn5cF81EeGbQoflzrdx0g" base_Port="_z94Y0F81EeGbQoflzrdx0g">
     <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_wySlkFRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
-  <FCM:Connector xmi:id="_RfomgF82EeGbQoflzrdx0g" base_Connector="_G9Gb4F82EeGbQoflzrdx0g">
-    <ic xmi:type="FCM:InteractionComponent" href="pathmap://QML_DISTRIBUTION/distribution.uml#_X9h_kNEBEd6acefdxFk2Lw"/>
-  </FCM:Connector>
   <FCM:Singleton xmi:id="_uqa34F_1EeGbQoflzrdx0g" base_Class="_xELAwF81EeGbQoflzrdx0g"/>
   <FCM:DerivedElement xmi:id="_bmnIYF_4EeGbQoflzrdx0g" base_Element="_bmbiMF_4EeGbQoflzrdx0g" source="_N3m-oF8wEeGerN33d-RdRg"/>
   <FCM:DerivedElement xmi:id="_bmyukF_4EeGbQoflzrdx0g" base_Element="_bmo9kF_4EeGbQoflzrdx0g" source="_ZgY_oF8wEeGerN33d-RdRg"/>
@@ -434,4 +473,9 @@ out->writeEvent (event);
     <kind xmi:type="FCM:PortKind" href="pathmap://QML_CORE/core.uml#_wySlkFRxEd6GqrP6fkWBoQ"/>
   </FCM:Port>
   <FCM:UseInstanceConfigurator xmi:id="_4HKnkHg_EeOejZqJpKQeww" base_Class="_B0gFAHg_EeOejZqJpKQeww" configurator="_SdiecGGDEeO2F4QRMDSOXg"/>
+  <FCM:DerivedElement xmi:id="_MYSHwHk6EeOph7IIHUnNoA" base_Element="_MYPEcHk6EeOph7IIHUnNoA">
+    <source xmi:type="uml:Operation" href="pathmap://QML_CORE/sysinterfaces.uml#_ns4qsClUEeO4bs_nkcnKOg"/>
+  </FCM:DerivedElement>
+  <FCM:DerivedElement xmi:id="_hQPjMHk8EeOh_8tymvdOOg" base_Element="_hQJckHk8EeOh_8tymvdOOg" source="_N3m-oF8wEeGerN33d-RdRg"/>
+  <FCM:DerivedElement xmi:id="_hQW38Hk8EeOh_8tymvdOOg" base_Element="_hQSmgHk8EeOh_8tymvdOOg" source="_ZgY_oF8wEeGerN33d-RdRg"/>
 </xmi:XMI>

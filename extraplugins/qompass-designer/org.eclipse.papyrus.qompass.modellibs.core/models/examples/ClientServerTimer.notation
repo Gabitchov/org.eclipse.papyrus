@@ -331,6 +331,9 @@
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_62o-4GSuEd-dQdK1-7wIFg" source="ShadowFigure">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_62o-4WSuEd-dQdK1-7wIFg" key="ShadowFigure_Value" value="false"/>
       </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_4WS4wHk8EeOh_8tymvdOOg" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_4WS4wXk8EeOh_8tymvdOOg" key="fillColor" value="true"/>
+      </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_sGa2IF37Ed-UvNEDwY5GNg" type="5156"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_sGa2IV37Ed-UvNEDwY5GNg" type="7073">
         <children xmi:type="notation:Shape" xmi:id="_uegu4F37Ed-UvNEDwY5GNg" type="3070" lineColor="0">
@@ -368,7 +371,7 @@
               </eAnnotations>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_TLJ7gwcCEeGnrLqQ0OQeAg" x="20" y="1"/>
             </children>
-            <children xmi:type="notation:DecorationNode" xmi:id="_TLKikAcCEeGnrLqQ0OQeAg" type="6029">
+            <children xmi:type="notation:DecorationNode" xmi:id="_TLKikAcCEeGnrLqQ0OQeAg" visible="false" type="6029">
               <layoutConstraint xmi:type="notation:Location" xmi:id="_TLKikQcCEeGnrLqQ0OQeAg" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="pathmap://QML_CORE/core.uml#_OfiosJsrEd61Eo3nmu3JhQ"/>
@@ -426,7 +429,7 @@
               </eAnnotations>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_1luBFzrdEeGgAdAmWw4pyQ" x="-75" y="-18"/>
             </children>
-            <children xmi:type="notation:DecorationNode" xmi:id="_1luBGDrdEeGgAdAmWw4pyQ" type="6029">
+            <children xmi:type="notation:DecorationNode" xmi:id="_1luBGDrdEeGgAdAmWw4pyQ" visible="false" type="6029">
               <layoutConstraint xmi:type="notation:Location" xmi:id="_1luBGTrdEeGgAdAmWw4pyQ" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="ClientServerTimer.uml#_DtWn4DLcEd2qeKRLMdIx_A"/>
@@ -474,7 +477,7 @@
               </eAnnotations>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_3RXqkzrdEeGgAdAmWw4pyQ" x="25" y="3"/>
             </children>
-            <children xmi:type="notation:DecorationNode" xmi:id="_3RXqlDrdEeGgAdAmWw4pyQ" type="6029">
+            <children xmi:type="notation:DecorationNode" xmi:id="_3RXqlDrdEeGgAdAmWw4pyQ" visible="false" type="6029">
               <layoutConstraint xmi:type="notation:Location" xmi:id="_3RXqlTrdEeGgAdAmWw4pyQ" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="ClientServerTimer.uml#_4KiE8DLbEd2qeKRLMdIx_A"/>
@@ -581,7 +584,7 @@
               </eAnnotations>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_OEdn8SkDEeGDDbdzqSb4UA" x="-71" y="27"/>
             </children>
-            <children xmi:type="notation:DecorationNode" xmi:id="_OEdn8ikDEeGDDbdzqSb4UA" type="6029">
+            <children xmi:type="notation:DecorationNode" xmi:id="_OEdn8ikDEeGDDbdzqSb4UA" visible="false" type="6029">
               <layoutConstraint xmi:type="notation:Location" xmi:id="_OEdn8ykDEeGDDbdzqSb4UA" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="pathmap://QML_CORE/core.uml#_3NSGwCkAEeGDDbdzqSb4UA"/>
@@ -775,6 +778,9 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bfgXQKDjEd-rLNbSWf1QuA" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bfgXQaDjEd-rLNbSWf1QuA" key="PropStereoDisplay" value=""/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bfgXQqDjEd-rLNbSWf1QuA" key="StereotypePropertyLocation" value="Compartment"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_v0z_4Hk8EeOh_8tymvdOOg" source="PapyrusCSSForceValue">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_v00m8Hk8EeOh_8tymvdOOg" key="fillColor" value="true"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_QU4R4qDjEd-rLNbSWf1QuA" type="5029"/>
       <children xmi:type="notation:BasicCompartment" xmi:id="_QU4R46DjEd-rLNbSWf1QuA" visible="false" type="7017">

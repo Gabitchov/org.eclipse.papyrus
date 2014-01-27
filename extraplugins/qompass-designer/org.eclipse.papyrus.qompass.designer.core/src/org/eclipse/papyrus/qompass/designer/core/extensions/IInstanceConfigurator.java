@@ -32,5 +32,5 @@ public interface IInstanceConfigurator {
 	 *        additional information, if the element that should be configured is part of a container, e.g. an interceptor
 	 *        or an extension within the container.
 	 */
-	public void configureInstance(InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstnace);
+	public void configureInstance(InstanceSpecification instance, Property componentPart, InstanceSpecification parentInstance);
 }
