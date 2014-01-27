@@ -14,6 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.RobotML.PhysicalObject#getEvelovesIn <em>Eveloves In</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.PhysicalObject#getHasSurface <em>Has Surface</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.PhysicalObject#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.PhysicalObject#getMass <em>Mass</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,5 +65,57 @@ public interface PhysicalObject extends org.eclipse.papyrus.RobotML.System {
 	 * @generated
 	 */
 	void setHasSurface(Surface value);
+
+	/**
+	 * Returns the value of the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Height</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Height</em>' attribute.
+	 * @see #setHeight(float)
+	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getPhysicalObject_Height()
+	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
+	 * @generated
+	 */
+	float getHeight();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.PhysicalObject#getHeight <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Height</em>' attribute.
+	 * @see #getHeight()
+	 * @generated
+	 */
+	void setHeight(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mass</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mass</em>' attribute.
+	 * @see #setMass(float)
+	 * @see org.eclipse.papyrus.RobotML.RobotMLPackage#getPhysicalObject_Mass()
+	 * @model dataType="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Float32" required="true" ordered="false"
+	 * @generated
+	 */
+	float getMass();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.RobotML.PhysicalObject#getMass <em>Mass</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mass</em>' attribute.
+	 * @see #getMass()
+	 * @generated
+	 */
+	void setMass(float value);
 
 } // PhysicalObject

@@ -13,5 +13,5 @@ package org.eclipse.papyrus.RobotML;
  * @model
  * @generated
  */
-public interface Hardware extends org.eclipse.papyrus.RobotML.System {
+public interface Hardware extends PhysicalObject, org.eclipse.papyrus.RobotML.System {
 } // Hardware

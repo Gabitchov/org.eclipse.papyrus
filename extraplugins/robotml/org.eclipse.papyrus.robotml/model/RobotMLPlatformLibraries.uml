@@ -117,7 +117,7 @@
           </packagedElement>
           <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_m1OqkKvKEeCFvbtLV_zCHw" name="Int64"/>
           <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_7jS1EKvKEeCFvbtLV_zCHw" name="UInt64"/>
-          <packagedElement xmi:type="uml:DataType" xmi:id="_DAJBIKvLEeCFvbtLV_zCHw" name="UIint16MultiArray">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_DAJBIKvLEeCFvbtLV_zCHw" name="UInt16MultiArray">
             <ownedAttribute xmi:id="_DAJBIavLEeCFvbtLV_zCHw" name="layout" type="_W7PR4KuwEeCWFJzWkfhPHg"/>
             <ownedAttribute xmi:id="_DAJBIqvLEeCFvbtLV_zCHw" name="data" type="_LmROoKlIEeCDX-R4upxIpg">
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DAJBJKvLEeCFvbtLV_zCHw"/>

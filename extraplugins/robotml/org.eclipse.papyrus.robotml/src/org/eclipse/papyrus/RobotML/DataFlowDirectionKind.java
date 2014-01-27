@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 
-// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * A representation of the literals of the enumeration '<em><b>Data Flow Direction Kind</b></em>',
@@ -119,9 +118,6 @@ public enum DataFlowDirectionKind implements Enumerator {
 	 * Returns the '<em><b>Data Flow Direction Kind</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param literal the literal
-	 * @return the data flow direction kind
 	 * @generated
 	 */
 	public static DataFlowDirectionKind get(String literal) {
@@ -138,9 +134,6 @@ public enum DataFlowDirectionKind implements Enumerator {
 	 * Returns the '<em><b>Data Flow Direction Kind</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param name the name
-	 * @return the by name
 	 * @generated
 	 */
 	public static DataFlowDirectionKind getByName(String name) {
@@ -157,9 +150,6 @@ public enum DataFlowDirectionKind implements Enumerator {
 	 * Returns the '<em><b>Data Flow Direction Kind</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value the value
-	 * @return the data flow direction kind
 	 * @generated
 	 */
 	public static DataFlowDirectionKind get(int value) {
@@ -171,23 +161,31 @@ public enum DataFlowDirectionKind implements Enumerator {
 		return null;
 	}
 
-	/** <!-- begin-user-doc --> <!-- end-user-doc -->. @generated */
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private final int value;
 
-	/** <!-- begin-user-doc --> <!-- end-user-doc -->. @generated */
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private final String name;
 
-	/** <!-- begin-user-doc --> <!-- end-user-doc -->. @generated */
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private final String literal;
 
 	/**
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value the value
-	 * @param name the name
-	 * @param literal the literal
 	 * @generated
 	 */
 	private DataFlowDirectionKind(int value, String name, String literal) {
@@ -198,9 +196,7 @@ public enum DataFlowDirectionKind implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the value
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public int getValue() {
@@ -209,9 +205,7 @@ public enum DataFlowDirectionKind implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the name
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getName() {
@@ -220,9 +214,7 @@ public enum DataFlowDirectionKind implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the literal
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -233,8 +225,6 @@ public enum DataFlowDirectionKind implements Enumerator {
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @return the string
 	 * @generated
 	 */
 	@Override
