@@ -23,8 +23,7 @@ import org.eclipse.papyrus.layers.stackmodel.layers.LayersFactory;
  * @author cedric dumoulin
  * 
  */
-public class CreateLayerHandler extends 
-AbstractCreateLayerExpressionHandler implements IHandler {
+public class CreateLayerHandler extends AbstractCreateLayerExpressionHandler implements IHandler {
 
 
 	/**

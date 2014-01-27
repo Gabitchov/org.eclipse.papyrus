@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerExpression;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayerOperator;
+import org.eclipse.papyrus.layers.stackmodel.layers.LayersContainer;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStack;
 import org.eclipse.papyrus.layers.stackmodel.layers.LayersStackApplication;
 
@@ -75,14 +76,18 @@ public abstract class AbstractCreateLayerExpressionHandler extends AbstractLayer
 	
 		// insert layer in selected object
 		Object selection = selections.get(0);
-		if(selection instanceof LayersStack) {
-			LayersStack stack = (LayersStack)selection;
-			stack.setLayers(layer);
+		if(selection instanceof LayersContainer) {
+			LayersContainer stack = (LayersContainer)selection;
+			stack.addLayer(layer);
 		}
-		else {
-			LayerOperator operator = (LayerOperator)selection;
-			operator.getLayers().add(layer);
-		}
+//		if(selection instanceof LayersStack) {
+//			LayersStack stack = (LayersStack)selection;
+//			stack.setLayers(layer);
+//		}
+//		else {
+//			LayerOperator operator = (LayerOperator)selection;
+//			operator.getLayers().add(layer);
+//		}
 		
 	}
 

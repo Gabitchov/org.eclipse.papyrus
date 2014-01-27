@@ -89,7 +89,9 @@ public abstract class LayerOperatorImpl extends LayerExpressionImpl implements L
 	 * @generated NOT
 	 */
 	public void addLayer(LayerExpression layer) {
-		getLayers().add(layer);
+//		getLayers().add(layer);
+		// Add layer on top of the stack.
+		getLayers().add(0, layer);
 	}
 
 	/**
