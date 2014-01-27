@@ -16,12 +16,14 @@ package org.eclipse.papyrus.qompass.designer.core.transformations.filters;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
@@ -76,6 +78,11 @@ public class FilterStateMachines implements CopyListener {
 			return;
 		}
 		Operation operation = tmClass.createOwnedOperation(newName, null, null);
+		for (Parameter parameter : effect.getOwnedParameters()) {
+			Parameter newParameter = EcoreUtil.copy(parameter);
+			operation.getOwnedParameters().add(newParameter);
+			StUtils.copyStereotypes(parameter, newParameter);
+		}
 		copiedEffect.setSpecification(operation);
 		copiedEffect.setName(newName);
 		tmClass.getOwnedBehaviors().add(copiedEffect);

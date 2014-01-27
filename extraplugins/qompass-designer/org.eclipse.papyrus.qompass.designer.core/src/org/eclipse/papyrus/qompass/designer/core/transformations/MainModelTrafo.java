@@ -182,8 +182,19 @@ public class MainModelTrafo {
 		}
 
 		String instName = smIS.getName();
+		// first check, if instance specification exists already. This may be the case for explicitly modeled singleton instances.
 		InstanceSpecification tmIS = (InstanceSpecification)
-			tmCDP.createPackagedElement(instName, UMLPackage.eINSTANCE.getInstanceSpecification());
+			tmCDP.getPackagedElement(instName);
+		if (tmIS == null) {
+			tmIS = (InstanceSpecification)
+					tmCDP.createPackagedElement(instName, UMLPackage.eINSTANCE.getInstanceSpecification());
+		}
+		if (smDF == null) {
+			// no defining feature => must be main instance
+			// => apply deployment plan stereotype and set main instance
+			DeploymentPlan newCDP = StereotypeUtil.applyApp(tmCDP, DeploymentPlan.class);
+			newCDP.setMainInstance(tmIS);
+		}
 
 		Class tmComponent = copy.getCopy(smComponent);
 		if(tmComponent == null) {
@@ -238,7 +249,13 @@ public class MainModelTrafo {
 		// copy node allocation
 		for(InstanceSpecification smNode : AllocUtils.getNodes(smIS)) {
 			InstanceSpecification tmNode = copy.getCopy(smNode);
-			AllocUtils.allocate(tmIS, tmNode);
+			if (containerIS != null) {
+				// allocate container instead of executor.
+				AllocUtils.allocate(containerIS, tmNode);
+			}
+			else {
+				AllocUtils.allocate(tmIS, tmNode);		
+			}
 
 			if(!nodeHandled.containsKey(tmNode)) {
 				// check if node (on an instance level) has already been treated. This is required, since many

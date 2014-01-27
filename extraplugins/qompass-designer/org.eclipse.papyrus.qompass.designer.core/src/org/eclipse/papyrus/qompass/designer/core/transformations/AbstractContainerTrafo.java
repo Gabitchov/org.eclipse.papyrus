@@ -95,13 +95,6 @@ public abstract class AbstractContainerTrafo {
 	public void finalize() {
 	}
 
-	
-	/**
-	 * The created container implementation (prefixed with sm, since part of
-	 * source model)
-	 */
-	protected Class smClass;
-
 	/**
 	 * The created container implementation (prefixed with tm, since part of
 	 * target model)

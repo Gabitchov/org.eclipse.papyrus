@@ -75,6 +75,8 @@ public class Messages extends NLS {
 	public static String ContainerTrafo_CannotFindDelegationConn;
 	public static String ContainerTrafo_InterceptionRuleButNoInterceptor;
 	
+	public static String InstanceConfigurator_InvalidPluginExtension;
+
 	public static String InstantiateDepPlan_AcceleoErrors;
 	public static String InstantiateDepPlan_AcceleoErrorsCheckLog;
 	public static String InstantiateDepPlan_CannotGenModel;

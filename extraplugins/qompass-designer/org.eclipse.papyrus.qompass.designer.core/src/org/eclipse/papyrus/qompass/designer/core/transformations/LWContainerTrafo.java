@@ -109,7 +109,6 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		//		=> clarify, how container handles super-classes, i.e. if it inherits ports as well (from a container of the abstract component) or not (not trivial at all!)
 		// TODO: don't copy derived operations
 
-		this.smClass = smClass;
 		this.tmClass = tmClass;
 		// create a copy of all operations
 		operations = new BasicEList<Operation>(smClass.getAllOperations());

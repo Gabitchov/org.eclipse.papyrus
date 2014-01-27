@@ -199,17 +199,19 @@ public class InstantiateDepPlan {
 			InstanceConfigurator.onNodeModel = false;
 			MainModelTrafo mainModelTrafo = new MainModelTrafo(tmpCopy, tmCDP);
 			InstanceSpecification newRootIS = mainModelTrafo.transformInstance(rootIS, null);
-			DeploymentPlan newCDP = StereotypeUtil.applyApp(tmCDP, DeploymentPlan.class);
-			newCDP.setMainInstance(newRootIS);
 			monitor.worked(1);
 
 			// 1c: late bindings
 			// LateEval.bindLateOperations();
 			// 3: distribute to nodes
 
+			// UpdateDerivedInterfaces.updateIntfs(newRootIS);
+			
 			ApplyInstanceConfigurators.applyInstanceConfigurators(newRootIS);
 
 			FlattenInteractionComponents.getInstance().flattenAssembly(newRootIS, null);
+	
+			PropagateAllocationToSharedInstances.propagateAllocation(newRootIS);
 			
 			String tmpPath = tmpMM.getPath(project, TEMP_MODEL_FOLDER, tmpModel.getName() + TEMP_MODEL_POSTFIX);
 			tmpMM.saveModel(tmpPath);
@@ -263,7 +265,9 @@ public class InstantiateDepPlan {
 					ILangSupport langSupport = LanguageSupport.getLangSupport(targetLanguage);
 					langSupport.resetConfigurationData();
 
-					Deploy deploy = Deploy.distributeToNode(targetCopy, langSupport, node, nodeIndex, nodes.size(), newRootIS);
+					Deploy deploy = new Deploy(targetCopy, langSupport, node, nodeIndex, nodes.size());
+					InstanceSpecification nodeRootIS = deploy.distributeToNode(newRootIS);
+					UpdateDerivedInterfaces.updateIntfs(nodeRootIS);
 
 					if(monitor.isCanceled()) {
 						return;
@@ -275,11 +279,14 @@ public class InstantiateDepPlan {
 					//     Due to the copying of imports, the top-level package has changed which implies that new
 					//     derived interfaces are put into a different package and the derivedInterfaces package in
 					//     the original root becomes obsolete. Delete this obsolete package, if existing.
-					NamedElement derivedInterfaces = Utils.getQualifiedElement(genModel, "root::derivedInterfaces"); //$NON-NLS-1$
-					if(derivedInterfaces instanceof Package) {
-						derivedInterfaces.destroy();
+					for (PackageableElement pe : genModel.getPackagedElements()) {
+						if (pe instanceof Package) {
+							NamedElement derivedInterfaces = ((Package) pe).getPackagedElement("derivedInterfaces"); //$NON-NLS-1$
+							if(derivedInterfaces instanceof Package) {
+								derivedInterfaces.destroy();
+							}
+						}
 					}
-
 					// 2c: add get_p/connect_q operations
 					// caveat: may modify imported classes
 					CompImplTrafos.bootloader = deploy.getBootloader();
