@@ -420,7 +420,9 @@ public class MainModelTrafo {
 					// copy slots from the source deployment plan that are related to connector configuration
 					InstanceSpecification smConnectorIS = DepUtils.getNamedSubInstance(smIS, smConnector.getName());
 					if(smConnectorIS != null) {
-						copy.put(smConnectorIS, tmReifiedConnectorIS);
+						// use putPair instead of put only - see bug 426748, avoid that classifier attribute points
+						// to two classifiers (bound and unbound)
+						copy.putPair(smConnectorIS, tmReifiedConnectorIS);
 						for(Slot smSlot : smConnectorIS.getSlots()) {
 							copy.getCopy(smSlot);
 						}
