@@ -16,10 +16,10 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.sysml.diagram.requirement.test,
  org.eclipse.papyrus.sysml.diagram.requirement.test.canonical,
  org.eclipse.papyrus.sysml.diagram.requirement.test.load
-Bundle-Vendor: %providerName
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
-Bundle-Name: %pluginName
+Bundle-Name: SysML Requirements Diagram Tests (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.requirement.test.A
  ctivator

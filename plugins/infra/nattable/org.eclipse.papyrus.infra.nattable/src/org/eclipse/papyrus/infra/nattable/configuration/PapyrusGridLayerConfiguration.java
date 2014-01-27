@@ -47,8 +47,18 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 
 	/**
 	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerConfiguration#addEditingUIConfig()
+	 * 
+	 */
+	@Override
+	protected void addEditingUIConfig() {
+		addConfiguration(new PapyrusDefaultEditBindings());
+	}
+
+	/**
+	 * 
 	 * @see org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerConfiguration#addExcelExportUIBindings()
-	 *
+	 * 
 	 */
 	@Override
 	protected void addExcelExportUIBindings() {
