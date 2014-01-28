@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.cdt.core;bundle-version="5.5.0",
  org.eclipse.papyrus.acceleo.ui;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0",
- org.eclipse.papyrus.acceleo.ui;bundle-version="1.0.0"
+ org.eclipse.papyrus.acceleo.ui;bundle-version="1.0.0",
+ org.eclipse.core.resources
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
