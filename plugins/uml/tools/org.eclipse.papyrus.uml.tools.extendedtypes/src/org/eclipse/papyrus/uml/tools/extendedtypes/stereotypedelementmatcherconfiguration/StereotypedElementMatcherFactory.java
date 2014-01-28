@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration;
 
 import org.eclipse.papyrus.infra.extendedtypes.IConfigurableElementMatcherFactory;
-import org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherConfiguration;
 
 
 /**

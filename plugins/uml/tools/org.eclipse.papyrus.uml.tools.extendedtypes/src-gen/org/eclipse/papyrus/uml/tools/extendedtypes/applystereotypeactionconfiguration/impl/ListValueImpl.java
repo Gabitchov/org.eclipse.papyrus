@@ -5,11 +5,8 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigu
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureValue;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ListValue;

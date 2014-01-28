@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfigura
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantCreationElementValidator;
-import org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfiguration;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;

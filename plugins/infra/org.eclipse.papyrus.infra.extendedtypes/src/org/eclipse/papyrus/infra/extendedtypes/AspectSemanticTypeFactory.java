@@ -43,8 +43,8 @@ public class AspectSemanticTypeFactory extends AbstractConfigurableElementTypeFa
 			IEditHelperAdvice advice = AspectConfigurationFactoryRegistry.getInstance().createEditHelperAdvice(actionConfiguration);
 			if(advice!=null) {
 				actionAdvices.add(advice);
-			} else {
-				Activator.log.error("Impossible to create an advice for :" + actionConfiguration, null);
+//			} else {
+//				Activator.log.error("Impossible to create an advice for :" + actionConfiguration, null);
 			}
 		}
 		if(actionAdvices!=null && actionAdvices.size() > 0) {
@@ -64,8 +64,8 @@ public class AspectSemanticTypeFactory extends AbstractConfigurableElementTypeFa
 			IContainerDescriptor containerDescriptor = AspectConfigurationFactoryRegistry.getInstance().createContainerDescriptor(actionConfiguration);
 			if(containerDescriptor!=null) {
 				containerDescriptors.add(containerDescriptor);
-			} else {
-				Activator.log.error("Impossible to create an advice for :" + actionConfiguration, null);
+//			} else {
+//				Activator.log.error("Impossible to create a container descriptor for :" + actionConfiguration, null);
 			}
 		}
 		if(containerDescriptors!=null && containerDescriptors.size() > 0) {
@@ -85,8 +85,8 @@ public class AspectSemanticTypeFactory extends AbstractConfigurableElementTypeFa
 			ICreationElementValidator validator = AspectConfigurationFactoryRegistry.getInstance().createCreationElementValidator(actionConfiguration);
 			if(validator!=null) {
 				actionValidators.add(validator);
-			} else {
-				Activator.log.error("Impossible to create an advice for :" + actionConfiguration, null);
+//			} else {
+//				Activator.log.error("Impossible to create a creation element validator for :" + actionConfiguration, null);
 			}
 		}
 		if(actionValidators!=null && actionValidators.size() > 0) {

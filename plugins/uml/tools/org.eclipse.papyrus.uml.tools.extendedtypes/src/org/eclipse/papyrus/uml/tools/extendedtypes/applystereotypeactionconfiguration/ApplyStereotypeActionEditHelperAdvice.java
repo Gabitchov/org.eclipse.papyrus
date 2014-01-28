@@ -12,8 +12,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration;
 
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -26,14 +24,18 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.extendedtypes.IActionEditHelperAdvice;
 import org.eclipse.papyrus.infra.extendedtypes.emf.Activator;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Feature;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -49,6 +51,14 @@ public class ApplyStereotypeActionEditHelperAdvice extends AbstractEditHelperAdv
 	 */
 	public void init(ApplyStereotypeActionConfiguration configuration) {
 		this.configuration = configuration;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean approveRequest(IEditCommandRequest request) {
+		return super.approveRequest(request);
 	}
 
 	/**
@@ -90,7 +100,7 @@ public class ApplyStereotypeActionEditHelperAdvice extends AbstractEditHelperAdv
 			Stereotype stereotype = ((Element)elementToConfigure).getApplicableStereotype(stereotypeToApply.getStereotypeQualifiedName());
 			
 			if(stereotype !=null) {
-				ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand(editingDomain, (Element)elementToConfigure, stereotype);
+				ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand(editingDomain, (Element)elementToConfigure, stereotype, stereotypeToApply.isUpdateName());
 				if(resultCommand == null) {
 					resultCommand = applyStereotypeCommand;
 				} else {
@@ -110,6 +120,7 @@ public class ApplyStereotypeActionEditHelperAdvice extends AbstractEditHelperAdv
 					}
 				}
 			}
+			
 		}
 	
 		if(resultCommand != null) {
@@ -141,12 +152,12 @@ public class ApplyStereotypeActionEditHelperAdvice extends AbstractEditHelperAdv
 		}
 		
 		// retrieve structural feature for the element to configure
-		EStructuralFeature feature = (EStructuralFeature)stereotype.getFeature(name, true, EcorePackage.eINSTANCE.getEStructuralFeature());
-		if(feature == null) {
+		TypedElement typedElement = (TypedElement)stereotype.getMember(name, true, UMLPackage.eINSTANCE.getTypedElement());
+		if(typedElement == null) {
 			Activator.log.error("Impossible to find feature " + name + " for eobject " + elementToConfigure, null);
 			return null;
 		}
-		Object value = getStereotypeValue(elementToConfigure, stereotype, feature, featureValue);
+		Object value = getStereotypeValue(elementToConfigure, stereotype, typedElement.getType(), featureValue);
 		
 		return new SetStereotypeValueCommand(configureRequest.getEditingDomain(), elementToConfigure, stereotype, name, value);
 		
@@ -160,8 +171,8 @@ public class ApplyStereotypeActionEditHelperAdvice extends AbstractEditHelperAdv
 	 * @param featureValue
 	 * @return
 	 */
-	protected Object getStereotypeValue(Element elementToConfigure, Stereotype stereotype, EStructuralFeature feature, FeatureValue featureValue) {
-		return StereotypeFeatureValueUtils.getValue(elementToConfigure, stereotype, feature, featureValue);
+	protected Object getStereotypeValue(Element elementToConfigure, Stereotype stereotype, Type type, FeatureValue featureValue) {
+		return StereotypeFeatureValueUtils.getValue(elementToConfigure, stereotype, type, featureValue);
 	}
 
 
@@ -170,14 +181,20 @@ public class ApplyStereotypeActionEditHelperAdvice extends AbstractEditHelperAdv
 		private Stereotype stereotype;
 		
 		private Element element;
+
+		private boolean rename;
 		
 		/**
 		 * @param domain editing domain to modify the element
 		 * @param element the element on which stereotype is applied. Must not be <code>null</code>
 		 * @param stereotype the stereotype to modify 
+		 * @param rename 
 		 */
-		public ApplyStereotypeCommand(TransactionalEditingDomain domain, Element element, Stereotype stereotype) {
+		public ApplyStereotypeCommand(TransactionalEditingDomain domain, Element element, Stereotype stereotype, boolean rename) {
 			super(domain, "Apply Stereotype "+stereotype.getLabel(), getWorkspaceFiles(element));
+			this.element = element;
+			this.stereotype = stereotype;
+			this.rename = rename;
 		}
 
 		/**
@@ -187,13 +204,18 @@ public class ApplyStereotypeActionEditHelperAdvice extends AbstractEditHelperAdv
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			try {
 				Object stereotypeApplication = element.applyStereotype(stereotype);
+				if(rename && element instanceof NamedElement) {
+					if(((NamedElement)element).getNamespace()!=null) {
+						String newName = NamedElementUtil.getDefaultNameWithIncrement(stereotype.getName(), element, ((NamedElement)element).getNamespace().getMembers());
+						((NamedElement)element).setName(newName);
+					}
+				}
 				return CommandResult.newOKCommandResult(stereotypeApplication);
 			} catch (Throwable t) {
 				Activator.log.error(t);
 				return CommandResult.newErrorCommandResult(t.getMessage());
 			}
 		}
-		
 	}
 	
 	

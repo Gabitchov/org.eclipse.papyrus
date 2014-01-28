@@ -14,12 +14,10 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfigura
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.InvariantRuleConfiguration;
-
-import org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.*;
+import org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfigurationPackage;
 
 /**
  * <!-- begin-user-doc -->

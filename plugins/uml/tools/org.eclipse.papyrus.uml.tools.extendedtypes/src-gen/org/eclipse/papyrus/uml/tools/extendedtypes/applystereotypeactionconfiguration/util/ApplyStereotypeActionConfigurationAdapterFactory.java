@@ -4,16 +4,20 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigu
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement;
 import org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration;
-
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.*;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ConstantValue;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.DynamicValue;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureToSet;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureValue;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ListValue;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.QueryExecutionValue;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
 
 /**
  * <!-- begin-user-doc -->
