@@ -65,7 +65,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurableElementMatcher"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantElementMatcher"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -75,7 +75,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurableContainerDescriptor"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantContainerDescriptor"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -85,7 +85,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurableEditHelperAdvice"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantEditHelperAdvice"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -95,7 +95,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurationModelCreation"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantConfigurationModelCreation"/>
                </appInfo>
             </annotation>
          </attribute>

@@ -13,22 +13,9 @@
 package org.eclipse.papyrus.infra.extendedtypes.provider;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.AspectSemanticFactory;
-import org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.AspectSemanticPackage;
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.InvariantSemanticTypeConfigurationFactory;
 
 /**
@@ -58,11 +45,6 @@ public class CustomExtendedElementTypeSetItemProvider extends
 
 		// TODO try to implement this using the extension points => this should
 		// be added automatically by each extension
-		newChildDescriptors.add(createChildParameter(
-				ExtendedtypesPackage.eINSTANCE
-						.getExtendedElementTypeSet_ElementType(),
-				AspectSemanticFactory.eINSTANCE
-						.createAspectSemanticTypeConfiguration()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExtendedtypesPackage.eINSTANCE

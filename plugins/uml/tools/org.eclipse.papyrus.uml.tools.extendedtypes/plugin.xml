@@ -11,15 +11,6 @@
 <plugin>
 
 
-   <extension
-         point="org.eclipse.papyrus.infra.extendedtypes.elementMatcherConfiguration">
-      <configuration
-            configurationClass="org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherConfiguration"
-            configurationModelCreation="org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherModelCreation"
-            factoryClass="org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherFactory"
-            name="StereotypedElementMatcher">
-      </configuration>
-   </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated StereotypedElementMatcherConfiguration -->
       <package
@@ -48,14 +39,29 @@
             type="invariantstereotypeconfiguration"
             class="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.util.InvariantStereotypeConfigurationResourceFactoryImpl"/>
    </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ApplyStereotypeActionConfiguration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/uml/applystereotypeaction/1.0"
+            class="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage"
+            genModel="model/ApplyStereotypeActionConfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated ApplyStereotypeActionConfiguration -->
+      <parser
+            type="applystereotypeactionconfiguration"
+            class="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.util.ApplyStereotypeActionConfigurationResourceFactoryImpl"/>
+   </extension>
+   
+   
+   <!-- CUSTOM EXTENSIONS -->
    <extension
-         point="org.eclipse.papyrus.infra.extendedtypes.invariantRule">
-      <invariantRule
-            configurationClass="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfiguration"
-            configurationModelCreation="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfigurationModelCreation"
-            creationElementValidator="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeCreationElementValidator"
-            editHelperAdvice="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeEditHelperAdvice"
-            elementMatcher="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeElementMatcher">
-      </invariantRule>
+         point="org.eclipse.papyrus.infra.extendedtypes.aspectActionConfiguration">
+      <aspectAction
+            configurationClass="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration"
+            configurationModelCreation="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationModelCreation"
+            editHelperAdvice="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionEditHelperAdvice">
+      </aspectAction>
    </extension>
 </plugin>

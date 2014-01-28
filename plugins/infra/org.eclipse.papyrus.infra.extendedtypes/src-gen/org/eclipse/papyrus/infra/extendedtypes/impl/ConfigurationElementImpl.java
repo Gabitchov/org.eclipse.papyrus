@@ -26,7 +26,9 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Configuration Element</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Configuration Element</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -43,7 +45,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getName()
 	 * @generated
@@ -53,7 +56,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getName()
 	 * @generated
@@ -63,7 +67,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getDescription()
 	 * @generated
@@ -73,7 +78,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getDescription()
 	 * @generated
@@ -83,7 +89,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getIdentifier()
 	 * @generated
@@ -93,7 +100,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 
 	/**
 	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getIdentifier()
 	 * @generated
@@ -103,7 +111,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 
 	/**
 	 * The cached value of the '{@link #getIconEntry() <em>Icon Entry</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getIconEntry()
 	 * @generated
@@ -112,7 +121,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	protected IconEntry iconEntry;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -121,7 +131,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -131,7 +142,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -140,7 +152,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -152,7 +165,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -161,7 +175,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -173,7 +188,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -182,7 +198,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -194,7 +211,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -203,7 +221,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -221,7 +240,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -240,7 +260,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -254,7 +275,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -274,7 +296,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -298,7 +321,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -322,7 +346,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -342,7 +367,8 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -360,4 +386,4 @@ public abstract class ConfigurationElementImpl extends EObjectImpl implements Co
 		result.append(')');
 		return result.toString();
 	}
-} // ConfigurationElementImpl
+} //ConfigurationElementImpl

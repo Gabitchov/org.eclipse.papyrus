@@ -186,6 +186,7 @@ public class ExtendedTypesRegistryTests implements ITestConstants {
 	 * Test method for {@link org.eclipse.papyrus.infra.extendedtypes.tests.ExtendedTypesRegistry#createResourceSet()}.
 	 */
 	@Test
+	@Ignore
 	public final void testGetTypeRegisteredInplugin() {
 		// check standard class
 		IElementType classType = ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.Class");

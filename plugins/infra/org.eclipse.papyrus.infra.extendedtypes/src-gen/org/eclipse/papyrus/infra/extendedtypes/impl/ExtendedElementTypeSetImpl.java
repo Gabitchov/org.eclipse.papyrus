@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -31,7 +32,9 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeSet;
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Extended Element Type Set</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Extended Element Type Set</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -46,7 +49,8 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 
 	/**
 	 * The cached value of the '{@link #getElementType() <em>Element Type</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getElementType()
 	 * @generated
@@ -77,7 +81,8 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 	protected boolean extensible = EXTENSIBLE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -86,7 +91,8 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -96,7 +102,8 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -131,7 +138,8 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -145,7 +153,8 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -161,7 +170,8 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -181,7 +191,8 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -199,7 +210,8 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -230,4 +242,4 @@ public class ExtendedElementTypeSetImpl extends ConfigurationElementImpl impleme
 		result.append(')');
 		return result.toString();
 	}
-} // ExtendedElementTypeSetImpl
+} //ExtendedElementTypeSetImpl

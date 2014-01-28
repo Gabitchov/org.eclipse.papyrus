@@ -1,13 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 
-<!--
- <copyright>
- </copyright>
-
- $Id$
--->
-
 <plugin>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SetValuesActionConfiguration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/emf/setvaluesaction/1.0"
+            class="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfigurationPackage"
+            genModel="model/SetValuesActionConfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated SetValuesActionConfiguration -->
+      <parser
+            type="setvaluesactionconfiguration"
+            class="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.util.SetValuesActionConfigurationResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated SetValuesActionConfiguration -->
+      <factory
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/emf/setvaluesaction/1.0"
+            class="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.provider.SetValuesActionConfigurationItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.aspectActionConfiguration">
+      <aspectAction
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfiguration"
+            configurationModelCreation="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfigurationModelCreation"
+            editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionEditHelperAdvice">
+      </aspectAction>
+   </extension>
 </plugin>

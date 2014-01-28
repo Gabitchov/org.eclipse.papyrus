@@ -20,7 +20,9 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.MatcherConfiguration;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Matcher Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Matcher Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * </p>
  * 
@@ -29,7 +31,8 @@ import org.eclipse.papyrus.infra.extendedtypes.MatcherConfiguration;
 public abstract class MatcherConfigurationImpl extends EObjectImpl implements MatcherConfiguration {
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -38,7 +41,8 @@ public abstract class MatcherConfigurationImpl extends EObjectImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -46,4 +50,4 @@ public abstract class MatcherConfigurationImpl extends EObjectImpl implements Ma
 	protected EClass eStaticClass() {
 		return ExtendedtypesPackage.eINSTANCE.getMatcherConfiguration();
 	}
-} // MatcherConfigurationImpl
+} //MatcherConfigurationImpl

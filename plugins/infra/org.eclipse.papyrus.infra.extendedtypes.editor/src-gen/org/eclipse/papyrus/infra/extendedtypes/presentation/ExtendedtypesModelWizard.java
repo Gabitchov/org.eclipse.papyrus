@@ -94,8 +94,8 @@ import org.eclipse.ui.PartInitException;
 
 /**
  * This is a simple wizard for creating a new model file.
- * <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -103,16 +103,17 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * The supported extensions for created files.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(ExtendedTypesEditorPlugin.INSTANCE.getString("_UI_ExtendedtypesEditorFilenameExtensions").split("\\s*,\\s*"))); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
-	 * A formatted list of supported file extensions, suitable for display. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * A formatted list of supported file extensions, suitable for display.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -137,8 +138,9 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 	protected ExtendedtypesFactory extendedtypesFactory = extendedtypesPackage.getExtendedtypesFactory();
 
 	/**
-	 * This is the file creation page. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This is the file creation page.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -146,8 +148,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * This is the initial object creation page.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -155,7 +157,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -172,7 +175,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Caches the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -180,8 +184,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * This just records the information.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -194,7 +198,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Returns the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -216,7 +221,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Create a new model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -228,8 +234,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Do the work after everything is specified.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -305,8 +311,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * This is the one page of the wizard.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -314,7 +320,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 		/**
 		 * Pass in the selection.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -323,8 +330,9 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * The framework calls this to see if the file is correct. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
+		 * The framework calls this to see if the file is correct.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -343,7 +351,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -353,27 +362,32 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * This is the page where the type of object to create is selected. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This is the page where the type of object to create is selected.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public class ExtendedtypesModelWizardInitialObjectCreationPage extends WizardPage {
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		protected Combo initialObjectField;
 
 		/**
-		 * @generated <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * @generated
+		 *            <!-- begin-user-doc -->
+		 *            <!-- end-user-doc -->
 		 */
 		protected List<String> encodings;
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -381,7 +395,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 		/**
 		 * Pass in the selection.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -390,7 +405,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -452,7 +468,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -464,7 +481,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 		};
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -473,7 +491,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -492,7 +511,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -507,7 +527,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -517,8 +538,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 		/**
 		 * Returns the label for the specified type name.
-		 * <!-- begin-user-doc
-		 * --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -532,7 +553,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 		}
 
 		/**
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -549,8 +571,9 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * The framework calls this to create the contents of the wizard. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The framework calls this to create the contents of the wizard.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -602,7 +625,8 @@ public class ExtendedtypesModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * Get the file from the page.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

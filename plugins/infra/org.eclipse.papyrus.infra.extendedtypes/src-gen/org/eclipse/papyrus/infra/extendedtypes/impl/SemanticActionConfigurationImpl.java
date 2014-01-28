@@ -18,7 +18,9 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Semantic Action Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Semantic Action Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * </p>
  * 
@@ -27,7 +29,8 @@ import org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration;
 public abstract class SemanticActionConfigurationImpl extends ActionConfigurationImpl implements SemanticActionConfiguration {
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -36,7 +39,8 @@ public abstract class SemanticActionConfigurationImpl extends ActionConfiguratio
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -44,4 +48,4 @@ public abstract class SemanticActionConfigurationImpl extends ActionConfiguratio
 	protected EClass eStaticClass() {
 		return ExtendedtypesPackage.eINSTANCE.getSemanticActionConfiguration();
 	}
-} // SemanticActionConfigurationImpl
+} //SemanticActionConfigurationImpl

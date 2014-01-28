@@ -14,21 +14,7 @@
    <extension-point id="extendedTypeConfiguration" name="extended type configuration" schema="schema/extendedTypeConfiguration.exsd"/>
    <extension-point id="invariantRule" name="Invariant Rule Extension Point" schema="schema/invariantRule.exsd"/>
    <extension-point id="elementMatcherConfiguration" name="Element Macher Configuration" schema="schema/elementMatcherConfiguration.exsd"/>
-   
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated AspectSemantic -->
-      <package
-            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantic/aspect/1.0"
-            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.AspectSemanticPackage"
-            genModel="model/AspectSemantic.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated AspectSemantic -->
-      <parser
-            type="aspectsemantic"
-            class="org.eclipse.papyrus.infra.extendedtypes.aspectsemantic.util.AspectSemanticResourceFactoryImpl"/>
-   </extension>
+   <extension-point id="aspectActionConfiguration" name="Aspect Action Configuration" schema="schema/aspectActionConfiguration.exsd"/>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated InvariantSemanticTypeConfiguration -->
       <package
@@ -57,6 +43,21 @@
             type="extendedtypes"
             class="org.eclipse.papyrus.infra.extendedtypes.util.ExtendedtypesResourceFactoryImpl"/>
    </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated InvariantContainerConfiguration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0"
+            class="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.InvariantContainerConfigurationPackage"
+            genModel="model/InvariantContainerConfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated InvariantContainerConfiguration -->
+      <parser
+            type="invariantcontainerconfiguration"
+            class="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.util.InvariantContainerConfigurationResourceFactoryImpl"/>
+   </extension>
+   
    <extension
          point="org.eclipse.papyrus.infra.extendedtypes.extendedTypeConfiguration">
       <configuration
@@ -122,20 +123,6 @@
                ref="org.eclipse.papyrus.uml.advice.ExtendedTypesOwnerAdvice">
          </advice>
       </binding>
-   </extension>
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated InvariantContainerConfiguration -->
-      <package
-            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0"
-            class="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.InvariantContainerConfigurationPackage"
-            genModel="model/InvariantContainerConfiguration.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated InvariantContainerConfiguration -->
-      <parser
-            type="invariantcontainerconfiguration"
-            class="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.util.InvariantContainerConfigurationResourceFactoryImpl"/>
    </extension>
    
    
@@ -207,4 +194,14 @@
             name="Disable Extended Types Set configuration">
       </command>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.extendedTypeConfiguration">
+      <configuration
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration"
+            description="configuration for semantic element types that have aspect actions for creation"
+            factoryClass="org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeFactory"
+            name="Aspect Semantic Type Configuration">
+      </configuration>
+   </extension>
+  
 </plugin>

@@ -15,7 +15,9 @@ package org.eclipse.papyrus.infra.extendedtypes;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Matcher Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Matcher Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * 
  * 
  * @see org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage#getMatcherConfiguration()

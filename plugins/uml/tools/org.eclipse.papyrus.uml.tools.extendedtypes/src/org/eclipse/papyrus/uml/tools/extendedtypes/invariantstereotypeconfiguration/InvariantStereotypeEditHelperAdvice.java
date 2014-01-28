@@ -14,13 +14,13 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfigura
 
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurableEditHelperAdvice;
+import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantEditHelperAdvice;
 
 
 /**
  * EditHelperAdvice for Stereotype application invariant
  */
-public class InvariantStereotypeEditHelperAdvice extends AbstractEditHelperAdvice implements IConfigurableEditHelperAdvice<InvariantStereotypeConfiguration> {
+public class InvariantStereotypeEditHelperAdvice extends AbstractEditHelperAdvice implements IInvariantEditHelperAdvice<InvariantStereotypeConfiguration> {
 
 	private String stereotypeQualifiedName;
 

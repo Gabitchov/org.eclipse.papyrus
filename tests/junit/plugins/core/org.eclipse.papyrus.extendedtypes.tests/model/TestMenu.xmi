@@ -9,4 +9,11 @@
       label="specific Component"
       icon=""
       elementTypeIdRef="org.eclipse.papyrus.infra.extendedtypes.tests.specificcomponent"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="Abstract Class"
+      icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+      elementTypeIdRef="org.eclipse.papyrus.infra.extendedtypes.tests.aspectabstractclass"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="Standard Class"
+      elementTypeIdRef="org.eclipse.papyrus.uml.Class"/>
 </ElementCreationMenuModel:Folder>

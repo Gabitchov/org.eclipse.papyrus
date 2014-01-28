@@ -24,7 +24,8 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 /**
  * This class contains helper methods to serialize and deserialize XML documents
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
  * 
  * @generated
  */
@@ -44,8 +45,8 @@ public class ExtendedtypesXMLProcessor extends XMLProcessor {
 
 	/**
 	 * Register for "*" and "xml" file extensions the ExtendedtypesResourceFactoryImpl factory.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -58,4 +59,4 @@ public class ExtendedtypesXMLProcessor extends XMLProcessor {
 		}
 		return registrations;
 	}
-} // ExtendedtypesXMLProcessor
+} //ExtendedtypesXMLProcessor

@@ -26,11 +26,9 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.facet.infra.query.edit.provider.QueryItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.util.InvariantContainerConfigurationAdapterFactory;
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.provider.CustomInvariantSemanticTypeConfigurationItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.extendedtypes.provider.CustomExtendedtypesItemProviderAdapterFactory;
-import org.eclipse.papyrus.infra.queries.core.configuration.provider.ConfigurationItemProviderAdapterFactory;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -51,11 +49,9 @@ public class CustomExtendedtypesEditor extends ExtendedtypesEditor {
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new CustomExtendedtypesItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new ConfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new CustomInvariantSemanticTypeConfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new InvariantContainerConfigurationAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new QueryItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new UMLItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 

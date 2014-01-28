@@ -141,6 +141,15 @@ public interface InvariantSemanticTypeConfigurationPackage extends EPackage {
 	int INVARIANT_SEMANTIC_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID = ExtendedtypesPackage.SEMANTIC_TYPE_CONFIGURATION__SPECIALIZED_TYPES_ID;
 
 	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVARIANT_SEMANTIC_TYPE_CONFIGURATION__MATCHER_CONFIGURATION = ExtendedtypesPackage.SEMANTIC_TYPE_CONFIGURATION__MATCHER_CONFIGURATION;
+
+	/**
 	 * The feature id for the '<em><b>Invariant Rule Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

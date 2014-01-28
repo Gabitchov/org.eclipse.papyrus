@@ -18,7 +18,9 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.SemanticTypeConfiguration;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Semantic Type Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Semantic Type Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * </p>
  * 
@@ -27,7 +29,8 @@ import org.eclipse.papyrus.infra.extendedtypes.SemanticTypeConfiguration;
 public abstract class SemanticTypeConfigurationImpl extends ElementTypeConfigurationImpl implements SemanticTypeConfiguration {
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -36,7 +39,8 @@ public abstract class SemanticTypeConfigurationImpl extends ElementTypeConfigura
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -44,4 +48,4 @@ public abstract class SemanticTypeConfigurationImpl extends ElementTypeConfigura
 	protected EClass eStaticClass() {
 		return ExtendedtypesPackage.eINSTANCE.getSemanticTypeConfiguration();
 	}
-} // SemanticTypeConfigurationImpl
+} //SemanticTypeConfigurationImpl

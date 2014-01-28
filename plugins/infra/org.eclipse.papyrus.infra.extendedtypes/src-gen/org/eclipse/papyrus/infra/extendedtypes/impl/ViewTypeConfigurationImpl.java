@@ -22,7 +22,9 @@ import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.ViewTypeConfiguration;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>View Type Configuration</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>View Type Configuration</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -58,7 +60,8 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 	protected String specializedDiagramTypeID = SPECIALIZED_DIAGRAM_TYPE_ID_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -67,7 +70,8 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -77,7 +81,8 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -86,7 +91,8 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -98,7 +104,8 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -112,7 +119,8 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -127,7 +135,8 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -142,7 +151,8 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -156,7 +166,8 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -170,4 +181,4 @@ public abstract class ViewTypeConfigurationImpl extends ElementTypeConfiguration
 		result.append(')');
 		return result.toString();
 	}
-} // ViewTypeConfigurationImpl
+} //ViewTypeConfigurationImpl

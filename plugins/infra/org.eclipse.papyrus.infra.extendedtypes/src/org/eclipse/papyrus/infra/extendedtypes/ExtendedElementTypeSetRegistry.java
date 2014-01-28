@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
-import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.extendedtypes.preferences.ExtendedTypesPreferences;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;

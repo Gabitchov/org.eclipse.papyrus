@@ -18,15 +18,9 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
-import org.eclipse.emf.facet.infra.query.edit.provider.QueryEditPlugin;
-
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.provider.InvariantSemanticTypeConfigurationEditPlugin;
 
 import org.eclipse.papyrus.infra.extendedtypes.provider.ExtendedTypesEditPlugin;
-
-import org.eclipse.papyrus.infra.queries.core.configuration.provider.ConfigurationEditPlugin;
-
-import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**
  * This is the central singleton for the InvariantStereotypeConfiguration edit plugin.
@@ -59,7 +53,7 @@ public final class InvariantStereotypeConfigurationEditPlugin extends EMFPlugin 
 	 * @generated
 	 */
 	public InvariantStereotypeConfigurationEditPlugin() {
-		super(new ResourceLocator[]{ ConfigurationEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, ExtendedTypesEditPlugin.INSTANCE, InvariantSemanticTypeConfigurationEditPlugin.INSTANCE, QueryEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
+		super(new ResourceLocator[]{ EcoreEditPlugin.INSTANCE, ExtendedTypesEditPlugin.INSTANCE, InvariantSemanticTypeConfigurationEditPlugin.INSTANCE, });
 	}
 
 	/**

@@ -1,23 +1,32 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.extendedtypes.emf
+Export-Package: org.eclipse.papyrus.infra.extendedtypes.emf,
+ org.eclipse.papyrus.infra.extendedtypes.emf.converter,
+ org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration,
+ org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.impl,
+ org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.provider,
+ org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.util
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
- org.eclipse.emf.ecore;bundle-version="2.7.0";visibility:=reexport,
- org.eclipse.emf.ecore.xmi;bundle-version="2.6.0";visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.10.1",
+ org.eclipse.emf.ecore;bundle-version="2.7.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.6.0",
  org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.1",
- org.eclipse.emf.facet.infra.query;bundle-version="0.1.0",
- org.eclipse.uml2.uml;bundle-version="3.2.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.uml2.uml,
+ org.eclipse.uml2.types,
+ org.eclipse.emf.edit,
+ org.eclipse.emf.ecore.edit,
+ org.eclipse.papyrus.infra.extendedtypes.edit,
+ org.eclipse.uml2.uml.edit,
+ org.eclipse.papyrus.infra.core.log,
  org.eclipse.ui;bundle-version="3.7.0",
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.queries.core;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0"
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
+ org.eclipse.core.databinding;bundle-version="1.4.1"
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.1.qualifier
 Bundle-ManifestVersion: 2

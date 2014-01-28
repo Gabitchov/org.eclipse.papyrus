@@ -19,9 +19,9 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 
-public class AndRuleEditHelperAdvice extends AbstractEditHelperAdvice implements IConfigurableEditHelperAdvice<AndRule> {
+public class AndRuleEditHelperAdvice extends AbstractEditHelperAdvice implements IInvariantEditHelperAdvice<AndRule> {
 
-	protected List<IConfigurableEditHelperAdvice<InvariantRuleConfiguration>> composedEditHelperAdvices;
+	protected List<IInvariantEditHelperAdvice<InvariantRuleConfiguration>> composedEditHelperAdvices;
 
 	public AndRuleEditHelperAdvice() {
 	}
@@ -31,9 +31,9 @@ public class AndRuleEditHelperAdvice extends AbstractEditHelperAdvice implements
 	 */
 	public void init(AndRule ruleConfiguration) {
 		// configuration should be a AndRule as declared in the extension point
-		composedEditHelperAdvices = new ArrayList<IConfigurableEditHelperAdvice<InvariantRuleConfiguration>>();
+		composedEditHelperAdvices = new ArrayList<IInvariantEditHelperAdvice<InvariantRuleConfiguration>>();
 		for(InvariantRuleConfiguration composedRule : ruleConfiguration.getComposedRules()) {
-			IConfigurableEditHelperAdvice<InvariantRuleConfiguration> editHelperAdvice = RuleConfigurationFactoryRegistry.getInstance().createEditHelperAdvice(composedRule);
+			IInvariantEditHelperAdvice<InvariantRuleConfiguration> editHelperAdvice = RuleConfigurationFactoryRegistry.getInstance().createEditHelperAdvice(composedRule);
 			if(editHelperAdvice != null) {
 				composedEditHelperAdvices.add(editHelperAdvice);
 			}

@@ -27,13 +27,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.extendedtypes.Activator;
-import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IConfigurableEditHelperAdvice;
+import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantEditHelperAdvice;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 
 /**
  * Edit Helper advice configured by the {@link InvariantHierarchyConfiguration}
  */
-public class InvariantContainerEditHelperAdvice extends AbstractEditHelperAdvice implements IConfigurableEditHelperAdvice<InvariantContainerConfiguration> {
+public class InvariantContainerEditHelperAdvice extends AbstractEditHelperAdvice implements IInvariantEditHelperAdvice<InvariantContainerConfiguration> {
 
 	protected List<HierarchyPermission> permissions;
 

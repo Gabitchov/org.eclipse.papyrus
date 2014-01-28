@@ -15,7 +15,9 @@ package org.eclipse.papyrus.infra.extendedtypes;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Icon Entry</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Icon Entry</b></em>'.
+ * <!-- end-user-doc -->
  * 
  * <p>
  * The following features are supported:
@@ -32,8 +34,8 @@ import org.eclipse.emf.ecore.EObject;
 public interface IconEntry extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Icon Path</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Icon Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Icon Path</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -48,9 +50,9 @@ public interface IconEntry extends EObject {
 	String getIconPath();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.infra.extendedtypes.IconEntry#getIconPath
-	 * <em>Icon Path</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.extendedtypes.IconEntry#getIconPath <em>Icon Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Icon Path</em>' attribute.
@@ -60,8 +62,8 @@ public interface IconEntry extends EObject {
 	void setIconPath(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Bundle Id</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Bundle Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Bundle Id</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
@@ -76,9 +78,9 @@ public interface IconEntry extends EObject {
 	String getBundleId();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.infra.extendedtypes.IconEntry#getBundleId
-	 * <em>Bundle Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.extendedtypes.IconEntry#getBundleId <em>Bundle Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Bundle Id</em>' attribute.
