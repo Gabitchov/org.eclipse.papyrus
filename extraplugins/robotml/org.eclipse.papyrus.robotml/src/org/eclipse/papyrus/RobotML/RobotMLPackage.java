@@ -232,6 +232,117 @@ public interface RobotMLPackage extends EPackage {
 	int STATE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.JointImpl <em>Joint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.JointImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getJoint()
+	 * @generated
+	 */
+	int JOINT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Base Connector</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOINT__BASE_CONNECTOR = 0;
+
+	/**
+	 * The number of structural features of the '<em>Joint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOINT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Joint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOINT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.ActuatedJointImpl <em>Actuated Joint</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.ActuatedJointImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getActuatedJoint()
+	 * @generated
+	 */
+	int ACTUATED_JOINT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Base Connector</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATED_JOINT__BASE_CONNECTOR = JOINT__BASE_CONNECTOR;
+
+	/**
+	 * The number of structural features of the '<em>Actuated Joint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATED_JOINT_FEATURE_COUNT = JOINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Actuated Joint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATED_JOINT_OPERATION_COUNT = JOINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.CompleteBondingImpl <em>Complete Bonding</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.CompleteBondingImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getCompleteBonding()
+	 * @generated
+	 */
+	int COMPLETE_BONDING = 5;
+
+	/**
+	 * The feature id for the '<em><b>Base Connector</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_BONDING__BASE_CONNECTOR = JOINT__BASE_CONNECTOR;
+
+	/**
+	 * The number of structural features of the '<em>Complete Bonding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_BONDING_FEATURE_COUNT = JOINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Complete Bonding</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_BONDING_OPERATION_COUNT = JOINT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SystemImpl <em>System</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -239,7 +350,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSystem()
 	 * @generated
 	 */
-	int SYSTEM = 4;
+	int SYSTEM = 7;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -303,7 +414,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPhysicalObject()
 	 * @generated
 	 */
-	int PHYSICAL_OBJECT = 6;
+	int PHYSICAL_OBJECT = 9;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -360,13 +471,31 @@ public interface RobotMLPackage extends EPackage {
 	int PHYSICAL_OBJECT__HAS_SURFACE = SYSTEM_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_OBJECT__HEIGHT = SYSTEM_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_OBJECT__MASS = SYSTEM_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Physical Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PHYSICAL_OBJECT_FEATURE_COUNT = SYSTEM_FEATURE_COUNT + 2;
+	int PHYSICAL_OBJECT_FEATURE_COUNT = SYSTEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Physical Object</em>' class.
@@ -385,7 +514,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getAgent()
 	 * @generated
 	 */
-	int AGENT = 5;
+	int AGENT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -442,6 +571,24 @@ public interface RobotMLPackage extends EPackage {
 	int AGENT__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AGENT__HEIGHT = PHYSICAL_OBJECT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AGENT__MASS = PHYSICAL_OBJECT__MASS;
+
+	/**
 	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -476,7 +623,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRobot()
 	 * @generated
 	 */
-	int ROBOT = 3;
+	int ROBOT = 6;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -533,6 +680,24 @@ public interface RobotMLPackage extends EPackage {
 	int ROBOT__HAS_SURFACE = AGENT__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOT__HEIGHT = AGENT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOT__MASS = AGENT__MASS;
+
+	/**
 	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -542,40 +707,13 @@ public interface RobotMLPackage extends EPackage {
 	int ROBOT__MOVES_OVER = AGENT__MOVES_OVER;
 
 	/**
-	 * The feature id for the '<em><b>Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__KIND = AGENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Mass</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__MASS = AGENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROBOT__WIDTH = AGENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Ugv Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROBOT__UGV_KIND = AGENT_FEATURE_COUNT + 3;
+	int ROBOT__WIDTH = AGENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Robot</em>' class.
@@ -584,7 +722,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROBOT_FEATURE_COUNT = AGENT_FEATURE_COUNT + 4;
+	int ROBOT_FEATURE_COUNT = AGENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Robot</em>' class.
@@ -603,7 +741,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getEnvironment()
 	 * @generated
 	 */
-	int ENVIRONMENT = 7;
+	int ENVIRONMENT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -667,7 +805,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSurface()
 	 * @generated
 	 */
-	int SURFACE = 8;
+	int SURFACE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -724,6 +862,24 @@ public interface RobotMLPackage extends EPackage {
 	int SURFACE__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SURFACE__HEIGHT = PHYSICAL_OBJECT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SURFACE__MASS = PHYSICAL_OBJECT__MASS;
+
+	/**
 	 * The number of structural features of the '<em>Surface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -749,7 +905,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPort()
 	 * @generated
 	 */
-	int PORT = 10;
+	int PORT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Base Port</b></em>' reference.
@@ -795,7 +951,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getDataFlowPort()
 	 * @generated
 	 */
-	int DATA_FLOW_PORT = 9;
+	int DATA_FLOW_PORT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Base Port</b></em>' reference.
@@ -859,7 +1015,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getServicePort()
 	 * @generated
 	 */
-	int SERVICE_PORT = 11;
+	int SERVICE_PORT = 14;
 
 	/**
 	 * The feature id for the '<em><b>Base Port</b></em>' reference.
@@ -914,7 +1070,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRoboticSystem()
 	 * @generated
 	 */
-	int ROBOTIC_SYSTEM = 13;
+	int ROBOTIC_SYSTEM = 16;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -996,7 +1152,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getActuatorSystem()
 	 * @generated
 	 */
-	int ACTUATOR_SYSTEM = 12;
+	int ACTUATOR_SYSTEM = 15;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1071,6 +1227,70 @@ public interface RobotMLPackage extends EPackage {
 	int ACTUATOR_SYSTEM_OPERATION_COUNT = ROBOTIC_SYSTEM_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.CyberPhysicalSystemImpl <em>Cyber Physical System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.CyberPhysicalSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getCyberPhysicalSystem()
+	 * @generated
+	 */
+	int CYBER_PHYSICAL_SYSTEM = 17;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CYBER_PHYSICAL_SYSTEM__BASE_CLASS = SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CYBER_PHYSICAL_SYSTEM__NATIVE = SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CYBER_PHYSICAL_SYSTEM__LIBRARY_PATH = SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CYBER_PHYSICAL_SYSTEM__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Cyber Physical System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CYBER_PHYSICAL_SYSTEM_FEATURE_COUNT = SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Cyber Physical System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CYBER_PHYSICAL_SYSTEM_OPERATION_COUNT = SYSTEM_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SensorSystemImpl <em>Sensor System</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1078,7 +1298,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSensorSystem()
 	 * @generated
 	 */
-	int SENSOR_SYSTEM = 14;
+	int SENSOR_SYSTEM = 18;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1178,7 +1398,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getHardware()
 	 * @generated
 	 */
-	int HARDWARE = 15;
+	int HARDWARE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1187,7 +1407,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE__BASE_CLASS = SYSTEM__BASE_CLASS;
+	int HARDWARE__BASE_CLASS = PHYSICAL_OBJECT__BASE_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Native</b></em>' attribute.
@@ -1196,7 +1416,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE__NATIVE = SYSTEM__NATIVE;
+	int HARDWARE__NATIVE = PHYSICAL_OBJECT__NATIVE;
 
 	/**
 	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
@@ -1205,7 +1425,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE__LIBRARY_PATH = SYSTEM__LIBRARY_PATH;
+	int HARDWARE__LIBRARY_PATH = PHYSICAL_OBJECT__LIBRARY_PATH;
 
 	/**
 	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
@@ -1214,7 +1434,43 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE__LIBRARY_COMPONENT_NAME = SYSTEM__LIBRARY_COMPONENT_NAME;
+	int HARDWARE__LIBRARY_COMPONENT_NAME = PHYSICAL_OBJECT__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__EVELOVES_IN = PHYSICAL_OBJECT__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__HEIGHT = PHYSICAL_OBJECT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__MASS = PHYSICAL_OBJECT__MASS;
 
 	/**
 	 * The number of structural features of the '<em>Hardware</em>' class.
@@ -1223,7 +1479,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE_FEATURE_COUNT = SYSTEM_FEATURE_COUNT + 0;
+	int HARDWARE_FEATURE_COUNT = PHYSICAL_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Hardware</em>' class.
@@ -1232,7 +1488,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HARDWARE_OPERATION_COUNT = SYSTEM_OPERATION_COUNT + 0;
+	int HARDWARE_OPERATION_COUNT = PHYSICAL_OBJECT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SoftwareImpl <em>Software</em>}' class.
@@ -1242,7 +1498,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSoftware()
 	 * @generated
 	 */
-	int SOFTWARE = 16;
+	int SOFTWARE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1344,125 +1600,6 @@ public interface RobotMLPackage extends EPackage {
 	int SOFTWARE_OPERATION_COUNT = SYSTEM_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.DataTypeImpl <em>Data Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.RobotML.impl.DataTypeImpl
-	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getDataType()
-	 * @generated
-	 */
-	int DATA_TYPE = 18;
-
-	/**
-	 * The feature id for the '<em><b>Base Data Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__BASE_DATA_TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__NATIVE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__LIBRARY_PATH = 2;
-
-	/**
-	 * The number of structural features of the '<em>Data Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE_FEATURE_COUNT = 3;
-
-	/**
-	 * The number of operations of the '<em>Data Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.PrimitiveDataImpl <em>Primitive Data</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.RobotML.impl.PrimitiveDataImpl
-	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPrimitiveData()
-	 * @generated
-	 */
-	int PRIMITIVE_DATA = 17;
-
-	/**
-	 * The feature id for the '<em><b>Base Data Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_DATA__BASE_DATA_TYPE = DATA_TYPE__BASE_DATA_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_DATA__NATIVE = DATA_TYPE__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_DATA__LIBRARY_PATH = DATA_TYPE__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Base Primitive Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE = DATA_TYPE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Primitive Data</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_DATA_FEATURE_COUNT = DATA_TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Primitive Data</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_DATA_OPERATION_COUNT = DATA_TYPE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.EngineSystemImpl <em>Engine System</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1470,7 +1607,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getEngineSystem()
 	 * @generated
 	 */
-	int ENGINE_SYSTEM = 19;
+	int ENGINE_SYSTEM = 21;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1599,14 +1736,14 @@ public interface RobotMLPackage extends EPackage {
 	int ENGINE_SYSTEM_OPERATION_COUNT = ACTUATOR_SYSTEM_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.WheelSystemImpl <em>Wheel System</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.LocomotionSystemImpl <em>Locomotion System</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.RobotML.impl.WheelSystemImpl
-	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.impl.LocomotionSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLocomotionSystem()
 	 * @generated
 	 */
-	int WHEEL_SYSTEM = 20;
+	int LOCOMOTION_SYSTEM = 23;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1615,7 +1752,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__BASE_CLASS = ACTUATOR_SYSTEM__BASE_CLASS;
+	int LOCOMOTION_SYSTEM__BASE_CLASS = ACTUATOR_SYSTEM__BASE_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Native</b></em>' attribute.
@@ -1624,7 +1761,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__NATIVE = ACTUATOR_SYSTEM__NATIVE;
+	int LOCOMOTION_SYSTEM__NATIVE = ACTUATOR_SYSTEM__NATIVE;
 
 	/**
 	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
@@ -1633,7 +1770,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__LIBRARY_PATH = ACTUATOR_SYSTEM__LIBRARY_PATH;
+	int LOCOMOTION_SYSTEM__LIBRARY_PATH = ACTUATOR_SYSTEM__LIBRARY_PATH;
 
 	/**
 	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
@@ -1642,7 +1779,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__LIBRARY_COMPONENT_NAME = ACTUATOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+	int LOCOMOTION_SYSTEM__LIBRARY_COMPONENT_NAME = ACTUATOR_SYSTEM__LIBRARY_COMPONENT_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
@@ -1651,7 +1788,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__LOCAL_POSITION = ACTUATOR_SYSTEM__LOCAL_POSITION;
+	int LOCOMOTION_SYSTEM__LOCAL_POSITION = ACTUATOR_SYSTEM__LOCAL_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Local Orientation</b></em>' containment reference.
@@ -1660,7 +1797,89 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__LOCAL_ORIENTATION = ACTUATOR_SYSTEM__LOCAL_ORIENTATION;
+	int LOCOMOTION_SYSTEM__LOCAL_ORIENTATION = ACTUATOR_SYSTEM__LOCAL_ORIENTATION;
+
+	/**
+	 * The number of structural features of the '<em>Locomotion System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_SYSTEM_FEATURE_COUNT = ACTUATOR_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Locomotion System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_SYSTEM_OPERATION_COUNT = ACTUATOR_SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SteeredWheelSystemImpl <em>Steered Wheel System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.SteeredWheelSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSteeredWheelSystem()
+	 * @generated
+	 */
+	int STEERED_WHEEL_SYSTEM = 22;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_SYSTEM__BASE_CLASS = LOCOMOTION_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_SYSTEM__NATIVE = LOCOMOTION_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_SYSTEM__LIBRARY_PATH = LOCOMOTION_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_SYSTEM__LIBRARY_COMPONENT_NAME = LOCOMOTION_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_SYSTEM__LOCAL_POSITION = LOCOMOTION_SYSTEM__LOCAL_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Local Orientation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_SYSTEM__LOCAL_ORIENTATION = LOCOMOTION_SYSTEM__LOCAL_ORIENTATION;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Radius</b></em>' attribute.
@@ -1669,7 +1888,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_RADIUS = ACTUATOR_SYSTEM_FEATURE_COUNT + 0;
+	int STEERED_WHEEL_SYSTEM__WHEEL_RADIUS = LOCOMOTION_SYSTEM_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Width</b></em>' attribute.
@@ -1678,7 +1897,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_WIDTH = ACTUATOR_SYSTEM_FEATURE_COUNT + 1;
+	int STEERED_WHEEL_SYSTEM__WHEEL_WIDTH = LOCOMOTION_SYSTEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Suspension Rest Length</b></em>' attribute.
@@ -1687,7 +1906,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__SUSPENSION_REST_LENGTH = ACTUATOR_SYSTEM_FEATURE_COUNT + 2;
+	int STEERED_WHEEL_SYSTEM__SUSPENSION_REST_LENGTH = LOCOMOTION_SYSTEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Connection Height</b></em>' attribute.
@@ -1696,7 +1915,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_CONNECTION_HEIGHT = ACTUATOR_SYSTEM_FEATURE_COUNT + 3;
+	int STEERED_WHEEL_SYSTEM__WHEEL_CONNECTION_HEIGHT = LOCOMOTION_SYSTEM_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Type Of Wheel</b></em>' attribute.
@@ -1705,7 +1924,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__TYPE_OF_WHEEL = ACTUATOR_SYSTEM_FEATURE_COUNT + 4;
+	int STEERED_WHEEL_SYSTEM__TYPE_OF_WHEEL = LOCOMOTION_SYSTEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Velocity PI Dkp</b></em>' attribute.
@@ -1714,7 +1933,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKP = ACTUATOR_SYSTEM_FEATURE_COUNT + 5;
+	int STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKP = LOCOMOTION_SYSTEM_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Velocity PI Dki</b></em>' attribute.
@@ -1723,7 +1942,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKI = ACTUATOR_SYSTEM_FEATURE_COUNT + 6;
+	int STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKI = LOCOMOTION_SYSTEM_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Velocity PI Dkd</b></em>' attribute.
@@ -1732,7 +1951,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKD = ACTUATOR_SYSTEM_FEATURE_COUNT + 7;
+	int STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKD = LOCOMOTION_SYSTEM_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Steering PI Dkp</b></em>' attribute.
@@ -1741,7 +1960,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_STEERING_PI_DKP = ACTUATOR_SYSTEM_FEATURE_COUNT + 8;
+	int STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKP = LOCOMOTION_SYSTEM_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Steering PI Dkd</b></em>' attribute.
@@ -1750,7 +1969,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_STEERING_PI_DKD = ACTUATOR_SYSTEM_FEATURE_COUNT + 9;
+	int STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKD = LOCOMOTION_SYSTEM_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Friction</b></em>' attribute.
@@ -1759,7 +1978,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_FRICTION = ACTUATOR_SYSTEM_FEATURE_COUNT + 10;
+	int STEERED_WHEEL_SYSTEM__WHEEL_FRICTION = LOCOMOTION_SYSTEM_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Suspension Stiffness</b></em>' attribute.
@@ -1768,7 +1987,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__SUSPENSION_STIFFNESS = ACTUATOR_SYSTEM_FEATURE_COUNT + 11;
+	int STEERED_WHEEL_SYSTEM__SUSPENSION_STIFFNESS = LOCOMOTION_SYSTEM_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Suspension Damping</b></em>' attribute.
@@ -1777,7 +1996,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__SUSPENSION_DAMPING = ACTUATOR_SYSTEM_FEATURE_COUNT + 12;
+	int STEERED_WHEEL_SYSTEM__SUSPENSION_DAMPING = LOCOMOTION_SYSTEM_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Suspension Compression</b></em>' attribute.
@@ -1786,7 +2005,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__SUSPENSION_COMPRESSION = ACTUATOR_SYSTEM_FEATURE_COUNT + 13;
+	int STEERED_WHEEL_SYSTEM__SUSPENSION_COMPRESSION = LOCOMOTION_SYSTEM_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Velocity PI Dmax Sum</b></em>' attribute.
@@ -1795,7 +2014,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_SUM = ACTUATOR_SYSTEM_FEATURE_COUNT + 14;
+	int STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_SUM = LOCOMOTION_SYSTEM_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Wheel Velocity PI Dmax Val</b></em>' attribute.
@@ -1804,25 +2023,25 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_VAL = ACTUATOR_SYSTEM_FEATURE_COUNT + 15;
+	int STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_VAL = LOCOMOTION_SYSTEM_FEATURE_COUNT + 15;
 
 	/**
-	 * The number of structural features of the '<em>Wheel System</em>' class.
+	 * The number of structural features of the '<em>Steered Wheel System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM_FEATURE_COUNT = ACTUATOR_SYSTEM_FEATURE_COUNT + 16;
+	int STEERED_WHEEL_SYSTEM_FEATURE_COUNT = LOCOMOTION_SYSTEM_FEATURE_COUNT + 16;
 
 	/**
-	 * The number of operations of the '<em>Wheel System</em>' class.
+	 * The number of operations of the '<em>Steered Wheel System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WHEEL_SYSTEM_OPERATION_COUNT = ACTUATOR_SYSTEM_OPERATION_COUNT + 0;
+	int STEERED_WHEEL_SYSTEM_OPERATION_COUNT = LOCOMOTION_SYSTEM_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.ImageSensorSystemImpl <em>Image Sensor System</em>}' class.
@@ -1832,7 +2051,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getImageSensorSystem()
 	 * @generated
 	 */
-	int IMAGE_SENSOR_SYSTEM = 21;
+	int IMAGE_SENSOR_SYSTEM = 24;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1932,7 +2151,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getCameraSystem()
 	 * @generated
 	 */
-	int CAMERA_SYSTEM = 22;
+	int CAMERA_SYSTEM = 25;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2113,7 +2332,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getObjectDetectionSensorSystem()
 	 * @generated
 	 */
-	int OBJECT_DETECTION_SENSOR_SYSTEM = 23;
+	int OBJECT_DETECTION_SENSOR_SYSTEM = 26;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2213,7 +2432,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getObjectTrackingSensorSystem()
 	 * @generated
 	 */
-	int OBJECT_TRACKING_SENSOR_SYSTEM = 24;
+	int OBJECT_TRACKING_SENSOR_SYSTEM = 27;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2313,7 +2532,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLidarSystem()
 	 * @generated
 	 */
-	int LIDAR_SYSTEM = 25;
+	int LIDAR_SYSTEM = 28;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2521,7 +2740,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLocalizationSensorSystem()
 	 * @generated
 	 */
-	int LOCALIZATION_SENSOR_SYSTEM = 26;
+	int LOCALIZATION_SENSOR_SYSTEM = 29;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2621,7 +2840,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getGPSSystem()
 	 * @generated
 	 */
-	int GPS_SYSTEM = 27;
+	int GPS_SYSTEM = 30;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2723,133 +2942,6 @@ public interface RobotMLPackage extends EPackage {
 	int GPS_SYSTEM_OPERATION_COUNT = LOCALIZATION_SENSOR_SYSTEM_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SimulatedSystemImpl <em>Simulated System</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.RobotML.impl.SimulatedSystemImpl
-	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSimulatedSystem()
-	 * @generated
-	 */
-	int SIMULATED_SYSTEM = 28;
-
-	/**
-	 * The feature id for the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__BASE_CLASS = SOFTWARE__BASE_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Native</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__NATIVE = SOFTWARE__NATIVE;
-
-	/**
-	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__LIBRARY_PATH = SOFTWARE__LIBRARY_PATH;
-
-	/**
-	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__LIBRARY_COMPONENT_NAME = SOFTWARE__LIBRARY_COMPONENT_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Periodic</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__IS_PERIODIC = SOFTWARE__IS_PERIODIC;
-
-	/**
-	 * The feature id for the '<em><b>Period</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__PERIOD = SOFTWARE__PERIOD;
-
-	/**
-	 * The feature id for the '<em><b>Priority</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__PRIORITY = SOFTWARE__PRIORITY;
-
-	/**
-	 * The feature id for the '<em><b>Deadline</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__DEADLINE = SOFTWARE__DEADLINE;
-
-	/**
-	 * The feature id for the '<em><b>Wcet</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__WCET = SOFTWARE__WCET;
-
-	/**
-	 * The feature id for the '<em><b>Base Property</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__BASE_PROPERTY = SOFTWARE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Mesh</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM__MESH = SOFTWARE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Simulated System</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM_FEATURE_COUNT = SOFTWARE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Simulated System</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATED_SYSTEM_OPERATION_COUNT = SOFTWARE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.AlgorithmLibraryImpl <em>Algorithm Library</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2857,7 +2949,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getAlgorithmLibrary()
 	 * @generated
 	 */
-	int ALGORITHM_LIBRARY = 29;
+	int ALGORITHM_LIBRARY = 31;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -2903,7 +2995,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSensorDriver()
 	 * @generated
 	 */
-	int SENSOR_DRIVER = 30;
+	int SENSOR_DRIVER = 32;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3012,7 +3104,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getBuilding()
 	 * @generated
 	 */
-	int BUILDING = 31;
+	int BUILDING = 33;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3069,6 +3161,24 @@ public interface RobotMLPackage extends EPackage {
 	int BUILDING__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILDING__HEIGHT = PHYSICAL_OBJECT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILDING__MASS = PHYSICAL_OBJECT__MASS;
+
+	/**
 	 * The number of structural features of the '<em>Building</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3094,7 +3204,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPlanet()
 	 * @generated
 	 */
-	int PLANET = 32;
+	int PLANET = 34;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3151,6 +3261,24 @@ public interface RobotMLPackage extends EPackage {
 	int PLANET__HAS_SURFACE = PHYSICAL_OBJECT__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLANET__HEIGHT = PHYSICAL_OBJECT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLANET__MASS = PHYSICAL_OBJECT__MASS;
+
+	/**
 	 * The number of structural features of the '<em>Planet</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3176,7 +3304,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getGround()
 	 * @generated
 	 */
-	int GROUND = 34;
+	int GROUND = 36;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3233,6 +3361,24 @@ public interface RobotMLPackage extends EPackage {
 	int GROUND__HAS_SURFACE = SURFACE__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUND__HEIGHT = SURFACE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUND__MASS = SURFACE__MASS;
+
+	/**
 	 * The number of structural features of the '<em>Ground</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3258,7 +3404,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLandSurface()
 	 * @generated
 	 */
-	int LAND_SURFACE = 33;
+	int LAND_SURFACE = 35;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3315,6 +3461,24 @@ public interface RobotMLPackage extends EPackage {
 	int LAND_SURFACE__HAS_SURFACE = GROUND__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAND_SURFACE__HEIGHT = GROUND__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LAND_SURFACE__MASS = GROUND__MASS;
+
+	/**
 	 * The number of structural features of the '<em>Land Surface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3340,7 +3504,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getFloor()
 	 * @generated
 	 */
-	int FLOOR = 35;
+	int FLOOR = 37;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3397,6 +3561,24 @@ public interface RobotMLPackage extends EPackage {
 	int FLOOR__HAS_SURFACE = GROUND__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOOR__HEIGHT = GROUND__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOOR__MASS = GROUND__MASS;
+
+	/**
 	 * The number of structural features of the '<em>Floor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3422,7 +3604,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getWaterSurface()
 	 * @generated
 	 */
-	int WATER_SURFACE = 36;
+	int WATER_SURFACE = 38;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3479,6 +3661,24 @@ public interface RobotMLPackage extends EPackage {
 	int WATER_SURFACE__HAS_SURFACE = SURFACE__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WATER_SURFACE__HEIGHT = SURFACE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WATER_SURFACE__MASS = SURFACE__MASS;
+
+	/**
 	 * The number of structural features of the '<em>Water Surface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3504,7 +3704,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getHuman()
 	 * @generated
 	 */
-	int HUMAN = 37;
+	int HUMAN = 39;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3561,6 +3761,24 @@ public interface RobotMLPackage extends EPackage {
 	int HUMAN__HAS_SURFACE = AGENT__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HUMAN__HEIGHT = AGENT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HUMAN__MASS = AGENT__MASS;
+
+	/**
 	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3595,7 +3813,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPedestrian()
 	 * @generated
 	 */
-	int PEDESTRIAN = 38;
+	int PEDESTRIAN = 40;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3652,6 +3870,24 @@ public interface RobotMLPackage extends EPackage {
 	int PEDESTRIAN__HAS_SURFACE = HUMAN__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PEDESTRIAN__HEIGHT = HUMAN__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PEDESTRIAN__MASS = HUMAN__MASS;
+
+	/**
 	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3686,7 +3922,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getStairs()
 	 * @generated
 	 */
-	int STAIRS = 39;
+	int STAIRS = 41;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3743,6 +3979,24 @@ public interface RobotMLPackage extends EPackage {
 	int STAIRS__HAS_SURFACE = GROUND__HAS_SURFACE;
 
 	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAIRS__HEIGHT = GROUND__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STAIRS__MASS = GROUND__MASS;
+
+	/**
 	 * The number of structural features of the '<em>Stairs</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3768,7 +4022,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPlatform()
 	 * @generated
 	 */
-	int PLATFORM = 40;
+	int PLATFORM = 42;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3850,7 +4104,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getExternalLibrary()
 	 * @generated
 	 */
-	int EXTERNAL_LIBRARY = 41;
+	int EXTERNAL_LIBRARY = 43;
 
 	/**
 	 * The feature id for the '<em><b>Lib Path</b></em>' attribute.
@@ -3905,7 +4159,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRoboticMiddleware()
 	 * @generated
 	 */
-	int ROBOTIC_MIDDLEWARE = 42;
+	int ROBOTIC_MIDDLEWARE = 44;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -3996,7 +4250,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRoboticSimulator()
 	 * @generated
 	 */
-	int ROBOTIC_SIMULATOR = 43;
+	int ROBOTIC_SIMULATOR = 45;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -4078,7 +4332,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getCycabTK()
 	 * @generated
 	 */
-	int CYCAB_TK = 44;
+	int CYCAB_TK = 46;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -4187,7 +4441,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getBlenderMorse()
 	 * @generated
 	 */
-	int BLENDER_MORSE = 45;
+	int BLENDER_MORSE = 47;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -4305,7 +4559,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getOnPort()
 	 * @generated
 	 */
-	int ON_PORT = 46;
+	int ON_PORT = 48;
 
 	/**
 	 * The feature id for the '<em><b>Port</b></em>' reference.
@@ -4351,7 +4605,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getAllocate()
 	 * @generated
 	 */
-	int ALLOCATE = 47;
+	int ALLOCATE = 49;
 
 	/**
 	 * The feature id for the '<em><b>Base Abstraction</b></em>' reference.
@@ -4388,7 +4642,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getInertialMeasurementUnitSystem()
 	 * @generated
 	 */
-	int INERTIAL_MEASUREMENT_UNIT_SYSTEM = 48;
+	int INERTIAL_MEASUREMENT_UNIT_SYSTEM = 50;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -4488,7 +4742,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getInertialNavigationSystem()
 	 * @generated
 	 */
-	int INERTIAL_NAVIGATION_SYSTEM = 49;
+	int INERTIAL_NAVIGATION_SYSTEM = 51;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -4597,7 +4851,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getOdometrySystem()
 	 * @generated
 	 */
-	int ODOMETRY_SYSTEM = 50;
+	int ODOMETRY_SYSTEM = 52;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -4697,7 +4951,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getInfraRedProximetrySystem()
 	 * @generated
 	 */
-	int INFRA_RED_PROXIMETRY_SYSTEM = 51;
+	int INFRA_RED_PROXIMETRY_SYSTEM = 53;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -4797,7 +5051,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getDeploymentPlan()
 	 * @generated
 	 */
-	int DEPLOYMENT_PLAN = 52;
+	int DEPLOYMENT_PLAN = 54;
 
 	/**
 	 * The feature id for the '<em><b>Base Package</b></em>' reference.
@@ -4843,7 +5097,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getGyroscope()
 	 * @generated
 	 */
-	int GYROSCOPE = 53;
+	int GYROSCOPE = 55;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -4943,7 +5197,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getOnProperty()
 	 * @generated
 	 */
-	int ON_PROPERTY = 54;
+	int ON_PROPERTY = 56;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -4982,24 +5236,2025 @@ public interface RobotMLPackage extends EPackage {
 	int ON_PROPERTY_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.RobotKind <em>Robot Kind</em>}' enum.
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SupportingStructureImpl <em>Supporting Structure</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.RobotML.RobotKind
-	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRobotKind()
+	 * @see org.eclipse.papyrus.RobotML.impl.SupportingStructureImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSupportingStructure()
 	 * @generated
 	 */
-	int ROBOT_KIND = 55;
+	int SUPPORTING_STRUCTURE = 58;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.UGVKind <em>UGV Kind</em>}' enum.
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.papyrus.RobotML.UGVKind
-	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getUGVKind()
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE__BASE_CLASS = HARDWARE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE__NATIVE = HARDWARE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE__LIBRARY_PATH = HARDWARE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE__HEIGHT = HARDWARE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE__MASS = HARDWARE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Supporting Structure</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE_FEATURE_COUNT = HARDWARE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Supporting Structure</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPPORTING_STRUCTURE_OPERATION_COUNT = HARDWARE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.ChassisImpl <em>Chassis</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.ChassisImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getChassis()
 	 * @generated
 	 */
-	int UGV_KIND = 56;
+	int CHASSIS = 57;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS__BASE_CLASS = SUPPORTING_STRUCTURE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS__NATIVE = SUPPORTING_STRUCTURE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS__LIBRARY_PATH = SUPPORTING_STRUCTURE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS__LIBRARY_COMPONENT_NAME = SUPPORTING_STRUCTURE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS__EVELOVES_IN = SUPPORTING_STRUCTURE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS__HAS_SURFACE = SUPPORTING_STRUCTURE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS__HEIGHT = SUPPORTING_STRUCTURE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS__MASS = SUPPORTING_STRUCTURE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Chassis</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS_FEATURE_COUNT = SUPPORTING_STRUCTURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Chassis</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHASSIS_OPERATION_COUNT = SUPPORTING_STRUCTURE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.MechanicalLinkageImpl <em>Mechanical Linkage</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.MechanicalLinkageImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getMechanicalLinkage()
+	 * @generated
+	 */
+	int MECHANICAL_LINKAGE = 59;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE__BASE_CLASS = HARDWARE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE__NATIVE = HARDWARE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE__LIBRARY_PATH = HARDWARE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE__HEIGHT = HARDWARE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE__MASS = HARDWARE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Mechanical Linkage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE_FEATURE_COUNT = HARDWARE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Mechanical Linkage</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MECHANICAL_LINKAGE_OPERATION_COUNT = HARDWARE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.ActuatorHardwareImpl <em>Actuator Hardware</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.ActuatorHardwareImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getActuatorHardware()
+	 * @generated
+	 */
+	int ACTUATOR_HARDWARE = 62;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE__BASE_CLASS = HARDWARE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE__NATIVE = HARDWARE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE__LIBRARY_PATH = HARDWARE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE__HEIGHT = HARDWARE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE__MASS = HARDWARE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Actuator Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE_FEATURE_COUNT = HARDWARE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Actuator Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATOR_HARDWARE_OPERATION_COUNT = HARDWARE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.LocomotionHardwareImpl <em>Locomotion Hardware</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.LocomotionHardwareImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLocomotionHardware()
+	 * @generated
+	 */
+	int LOCOMOTION_HARDWARE = 61;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE__BASE_CLASS = ACTUATOR_HARDWARE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE__NATIVE = ACTUATOR_HARDWARE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE__LIBRARY_PATH = ACTUATOR_HARDWARE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE__LIBRARY_COMPONENT_NAME = ACTUATOR_HARDWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE__EVELOVES_IN = ACTUATOR_HARDWARE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE__HAS_SURFACE = ACTUATOR_HARDWARE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE__HEIGHT = ACTUATOR_HARDWARE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE__MASS = ACTUATOR_HARDWARE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Locomotion Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE_FEATURE_COUNT = ACTUATOR_HARDWARE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Locomotion Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCOMOTION_HARDWARE_OPERATION_COUNT = ACTUATOR_HARDWARE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.LegImpl <em>Leg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.LegImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLeg()
+	 * @generated
+	 */
+	int LEG = 60;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG__BASE_CLASS = LOCOMOTION_HARDWARE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG__NATIVE = LOCOMOTION_HARDWARE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG__LIBRARY_PATH = LOCOMOTION_HARDWARE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG__LIBRARY_COMPONENT_NAME = LOCOMOTION_HARDWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG__EVELOVES_IN = LOCOMOTION_HARDWARE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG__HAS_SURFACE = LOCOMOTION_HARDWARE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG__HEIGHT = LOCOMOTION_HARDWARE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG__MASS = LOCOMOTION_HARDWARE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Leg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_FEATURE_COUNT = LOCOMOTION_HARDWARE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Leg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_OPERATION_COUNT = LOCOMOTION_HARDWARE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.MobileRobotImpl <em>Mobile Robot</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.MobileRobotImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getMobileRobot()
+	 * @generated
+	 */
+	int MOBILE_ROBOT = 63;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__BASE_CLASS = ROBOT__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__NATIVE = ROBOT__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__LIBRARY_PATH = ROBOT__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__LIBRARY_COMPONENT_NAME = ROBOT__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__EVELOVES_IN = ROBOT__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__HAS_SURFACE = ROBOT__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__HEIGHT = ROBOT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__MASS = ROBOT__MASS;
+
+	/**
+	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__MOVES_OVER = ROBOT__MOVES_OVER;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__WIDTH = ROBOT__WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT__KIND = ROBOT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Mobile Robot</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT_FEATURE_COUNT = ROBOT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Mobile Robot</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOBILE_ROBOT_OPERATION_COUNT = ROBOT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.ManipulatorImpl <em>Manipulator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.ManipulatorImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getManipulator()
+	 * @generated
+	 */
+	int MANIPULATOR = 64;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__BASE_CLASS = ROBOT__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__NATIVE = ROBOT__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__LIBRARY_PATH = ROBOT__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__LIBRARY_COMPONENT_NAME = ROBOT__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__EVELOVES_IN = ROBOT__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__HAS_SURFACE = ROBOT__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__HEIGHT = ROBOT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__MASS = ROBOT__MASS;
+
+	/**
+	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__MOVES_OVER = ROBOT__MOVES_OVER;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR__WIDTH = ROBOT__WIDTH;
+
+	/**
+	 * The number of structural features of the '<em>Manipulator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR_FEATURE_COUNT = ROBOT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Manipulator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MANIPULATOR_OPERATION_COUNT = ROBOT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.PilotedSystemImpl <em>Piloted System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.PilotedSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPilotedSystem()
+	 * @generated
+	 */
+	int PILOTED_SYSTEM = 65;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__BASE_CLASS = ROBOT__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__NATIVE = ROBOT__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__LIBRARY_PATH = ROBOT__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__LIBRARY_COMPONENT_NAME = ROBOT__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__EVELOVES_IN = ROBOT__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__HAS_SURFACE = ROBOT__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__HEIGHT = ROBOT__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__MASS = ROBOT__MASS;
+
+	/**
+	 * The feature id for the '<em><b>Moves Over</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__MOVES_OVER = ROBOT__MOVES_OVER;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM__WIDTH = ROBOT__WIDTH;
+
+	/**
+	 * The number of structural features of the '<em>Piloted System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM_FEATURE_COUNT = ROBOT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Piloted System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PILOTED_SYSTEM_OPERATION_COUNT = ROBOT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.PowerHardwareImpl <em>Power Hardware</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.PowerHardwareImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPowerHardware()
+	 * @generated
+	 */
+	int POWER_HARDWARE = 66;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE__BASE_CLASS = HARDWARE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE__NATIVE = HARDWARE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE__LIBRARY_PATH = HARDWARE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE__HEIGHT = HARDWARE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE__MASS = HARDWARE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Power Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE_FEATURE_COUNT = HARDWARE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Power Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POWER_HARDWARE_OPERATION_COUNT = HARDWARE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SensorHardwareImpl <em>Sensor Hardware</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.SensorHardwareImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSensorHardware()
+	 * @generated
+	 */
+	int SENSOR_HARDWARE = 67;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE__BASE_CLASS = HARDWARE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE__NATIVE = HARDWARE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE__LIBRARY_PATH = HARDWARE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE__LIBRARY_COMPONENT_NAME = HARDWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE__EVELOVES_IN = HARDWARE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE__HAS_SURFACE = HARDWARE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE__HEIGHT = HARDWARE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE__MASS = HARDWARE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Sensor Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE_FEATURE_COUNT = HARDWARE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Sensor Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_HARDWARE_OPERATION_COUNT = HARDWARE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.GraspingHardwareImpl <em>Grasping Hardware</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.GraspingHardwareImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getGraspingHardware()
+	 * @generated
+	 */
+	int GRASPING_HARDWARE = 68;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE__BASE_CLASS = ACTUATOR_HARDWARE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE__NATIVE = ACTUATOR_HARDWARE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE__LIBRARY_PATH = ACTUATOR_HARDWARE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE__LIBRARY_COMPONENT_NAME = ACTUATOR_HARDWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE__EVELOVES_IN = ACTUATOR_HARDWARE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE__HAS_SURFACE = ACTUATOR_HARDWARE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE__HEIGHT = ACTUATOR_HARDWARE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE__MASS = ACTUATOR_HARDWARE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Grasping Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE_FEATURE_COUNT = ACTUATOR_HARDWARE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Grasping Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_HARDWARE_OPERATION_COUNT = ACTUATOR_HARDWARE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.SteeredWheelHardwareImpl <em>Steered Wheel Hardware</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.SteeredWheelHardwareImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSteeredWheelHardware()
+	 * @generated
+	 */
+	int STEERED_WHEEL_HARDWARE = 69;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE__BASE_CLASS = LOCOMOTION_HARDWARE__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE__NATIVE = LOCOMOTION_HARDWARE__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE__LIBRARY_PATH = LOCOMOTION_HARDWARE__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE__LIBRARY_COMPONENT_NAME = LOCOMOTION_HARDWARE__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Eveloves In</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE__EVELOVES_IN = LOCOMOTION_HARDWARE__EVELOVES_IN;
+
+	/**
+	 * The feature id for the '<em><b>Has Surface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE__HAS_SURFACE = LOCOMOTION_HARDWARE__HAS_SURFACE;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE__HEIGHT = LOCOMOTION_HARDWARE__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Mass</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE__MASS = LOCOMOTION_HARDWARE__MASS;
+
+	/**
+	 * The number of structural features of the '<em>Steered Wheel Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE_FEATURE_COUNT = LOCOMOTION_HARDWARE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Steered Wheel Hardware</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEERED_WHEEL_HARDWARE_OPERATION_COUNT = LOCOMOTION_HARDWARE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.ArmImpl <em>Arm</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.ArmImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getArm()
+	 * @generated
+	 */
+	int ARM = 70;
+
+	/**
+	 * The number of structural features of the '<em>Arm</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARM_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Arm</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARM_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.LegSystemImpl <em>Leg System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.LegSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLegSystem()
+	 * @generated
+	 */
+	int LEG_SYSTEM = 71;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_SYSTEM__BASE_CLASS = LOCOMOTION_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_SYSTEM__NATIVE = LOCOMOTION_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_SYSTEM__LIBRARY_PATH = LOCOMOTION_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_SYSTEM__LIBRARY_COMPONENT_NAME = LOCOMOTION_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_SYSTEM__LOCAL_POSITION = LOCOMOTION_SYSTEM__LOCAL_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Local Orientation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_SYSTEM__LOCAL_ORIENTATION = LOCOMOTION_SYSTEM__LOCAL_ORIENTATION;
+
+	/**
+	 * The number of structural features of the '<em>Leg System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_SYSTEM_FEATURE_COUNT = LOCOMOTION_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Leg System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEG_SYSTEM_OPERATION_COUNT = LOCOMOTION_SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.GraspingSystemImpl <em>Grasping System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.GraspingSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getGraspingSystem()
+	 * @generated
+	 */
+	int GRASPING_SYSTEM = 72;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_SYSTEM__BASE_CLASS = ACTUATOR_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_SYSTEM__NATIVE = ACTUATOR_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_SYSTEM__LIBRARY_PATH = ACTUATOR_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_SYSTEM__LIBRARY_COMPONENT_NAME = ACTUATOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_SYSTEM__LOCAL_POSITION = ACTUATOR_SYSTEM__LOCAL_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Local Orientation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_SYSTEM__LOCAL_ORIENTATION = ACTUATOR_SYSTEM__LOCAL_ORIENTATION;
+
+	/**
+	 * The number of structural features of the '<em>Grasping System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_SYSTEM_FEATURE_COUNT = ACTUATOR_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Grasping System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRASPING_SYSTEM_OPERATION_COUNT = ACTUATOR_SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.WeaponSystemImpl <em>Weapon System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.WeaponSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getWeaponSystem()
+	 * @generated
+	 */
+	int WEAPON_SYSTEM = 73;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAPON_SYSTEM__BASE_CLASS = ACTUATOR_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAPON_SYSTEM__NATIVE = ACTUATOR_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAPON_SYSTEM__LIBRARY_PATH = ACTUATOR_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAPON_SYSTEM__LIBRARY_COMPONENT_NAME = ACTUATOR_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Local Position</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAPON_SYSTEM__LOCAL_POSITION = ACTUATOR_SYSTEM__LOCAL_POSITION;
+
+	/**
+	 * The feature id for the '<em><b>Local Orientation</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAPON_SYSTEM__LOCAL_ORIENTATION = ACTUATOR_SYSTEM__LOCAL_ORIENTATION;
+
+	/**
+	 * The number of structural features of the '<em>Weapon System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAPON_SYSTEM_FEATURE_COUNT = ACTUATOR_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Weapon System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WEAPON_SYSTEM_OPERATION_COUNT = ACTUATOR_SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.ManMachineInterfaceSystemImpl <em>Man Machine Interface System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.ManMachineInterfaceSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getManMachineInterfaceSystem()
+	 * @generated
+	 */
+	int MAN_MACHINE_INTERFACE_SYSTEM = 74;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAN_MACHINE_INTERFACE_SYSTEM__BASE_CLASS = CYBER_PHYSICAL_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAN_MACHINE_INTERFACE_SYSTEM__NATIVE = CYBER_PHYSICAL_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAN_MACHINE_INTERFACE_SYSTEM__LIBRARY_PATH = CYBER_PHYSICAL_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAN_MACHINE_INTERFACE_SYSTEM__LIBRARY_COMPONENT_NAME = CYBER_PHYSICAL_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Man Machine Interface System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAN_MACHINE_INTERFACE_SYSTEM_FEATURE_COUNT = CYBER_PHYSICAL_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Man Machine Interface System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAN_MACHINE_INTERFACE_SYSTEM_OPERATION_COUNT = CYBER_PHYSICAL_SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.ClosedLoopControlSystemImpl <em>Closed Loop Control System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.ClosedLoopControlSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getClosedLoopControlSystem()
+	 * @generated
+	 */
+	int CLOSED_LOOP_CONTROL_SYSTEM = 75;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOSED_LOOP_CONTROL_SYSTEM__BASE_CLASS = CYBER_PHYSICAL_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOSED_LOOP_CONTROL_SYSTEM__NATIVE = CYBER_PHYSICAL_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOSED_LOOP_CONTROL_SYSTEM__LIBRARY_PATH = CYBER_PHYSICAL_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOSED_LOOP_CONTROL_SYSTEM__LIBRARY_COMPONENT_NAME = CYBER_PHYSICAL_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Closed Loop Control System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOSED_LOOP_CONTROL_SYSTEM_FEATURE_COUNT = CYBER_PHYSICAL_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Closed Loop Control System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOSED_LOOP_CONTROL_SYSTEM_OPERATION_COUNT = CYBER_PHYSICAL_SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.OpenLoopControlSystemImpl <em>Open Loop Control System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.OpenLoopControlSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getOpenLoopControlSystem()
+	 * @generated
+	 */
+	int OPEN_LOOP_CONTROL_SYSTEM = 76;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPEN_LOOP_CONTROL_SYSTEM__BASE_CLASS = CYBER_PHYSICAL_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPEN_LOOP_CONTROL_SYSTEM__NATIVE = CYBER_PHYSICAL_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPEN_LOOP_CONTROL_SYSTEM__LIBRARY_PATH = CYBER_PHYSICAL_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPEN_LOOP_CONTROL_SYSTEM__LIBRARY_COMPONENT_NAME = CYBER_PHYSICAL_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Open Loop Control System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPEN_LOOP_CONTROL_SYSTEM_FEATURE_COUNT = CYBER_PHYSICAL_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Open Loop Control System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPEN_LOOP_CONTROL_SYSTEM_OPERATION_COUNT = CYBER_PHYSICAL_SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.RoboticHeadImpl <em>Robotic Head</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.RoboticHeadImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRoboticHead()
+	 * @generated
+	 */
+	int ROBOTIC_HEAD = 77;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_HEAD__BASE_CLASS = MAN_MACHINE_INTERFACE_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_HEAD__NATIVE = MAN_MACHINE_INTERFACE_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_HEAD__LIBRARY_PATH = MAN_MACHINE_INTERFACE_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_HEAD__LIBRARY_COMPONENT_NAME = MAN_MACHINE_INTERFACE_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Robotic Head</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_HEAD_FEATURE_COUNT = MAN_MACHINE_INTERFACE_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Robotic Head</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROBOTIC_HEAD_OPERATION_COUNT = MAN_MACHINE_INTERFACE_SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.NavigationCommandSystemImpl <em>Navigation Command System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.NavigationCommandSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getNavigationCommandSystem()
+	 * @generated
+	 */
+	int NAVIGATION_COMMAND_SYSTEM = 78;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_COMMAND_SYSTEM__BASE_CLASS = MAN_MACHINE_INTERFACE_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_COMMAND_SYSTEM__NATIVE = MAN_MACHINE_INTERFACE_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_COMMAND_SYSTEM__LIBRARY_PATH = MAN_MACHINE_INTERFACE_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_COMMAND_SYSTEM__LIBRARY_COMPONENT_NAME = MAN_MACHINE_INTERFACE_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Navigation Command System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_COMMAND_SYSTEM_FEATURE_COUNT = MAN_MACHINE_INTERFACE_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Navigation Command System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAVIGATION_COMMAND_SYSTEM_OPERATION_COUNT = MAN_MACHINE_INTERFACE_SYSTEM_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.impl.JoysticNavigationSystemImpl <em>Joystic Navigation System</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.impl.JoysticNavigationSystemImpl
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getJoysticNavigationSystem()
+	 * @generated
+	 */
+	int JOYSTIC_NAVIGATION_SYSTEM = 79;
+
+	/**
+	 * The feature id for the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOYSTIC_NAVIGATION_SYSTEM__BASE_CLASS = NAVIGATION_COMMAND_SYSTEM__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Native</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOYSTIC_NAVIGATION_SYSTEM__NATIVE = NAVIGATION_COMMAND_SYSTEM__NATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Library Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOYSTIC_NAVIGATION_SYSTEM__LIBRARY_PATH = NAVIGATION_COMMAND_SYSTEM__LIBRARY_PATH;
+
+	/**
+	 * The feature id for the '<em><b>Library Component Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOYSTIC_NAVIGATION_SYSTEM__LIBRARY_COMPONENT_NAME = NAVIGATION_COMMAND_SYSTEM__LIBRARY_COMPONENT_NAME;
+
+	/**
+	 * The number of structural features of the '<em>Joystic Navigation System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOYSTIC_NAVIGATION_SYSTEM_FEATURE_COUNT = NAVIGATION_COMMAND_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Joystic Navigation System</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOYSTIC_NAVIGATION_SYSTEM_OPERATION_COUNT = NAVIGATION_COMMAND_SYSTEM_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.SynchronizationKind <em>Synchronization Kind</em>}' enum.
@@ -5009,7 +7264,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSynchronizationKind()
 	 * @generated
 	 */
-	int SYNCHRONIZATION_KIND = 57;
+	int SYNCHRONIZATION_KIND = 80;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.DataFlowDirectionKind <em>Data Flow Direction Kind</em>}' enum.
@@ -5019,7 +7274,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getDataFlowDirectionKind()
 	 * @generated
 	 */
-	int DATA_FLOW_DIRECTION_KIND = 58;
+	int DATA_FLOW_DIRECTION_KIND = 81;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.ServiceFlowKind <em>Service Flow Kind</em>}' enum.
@@ -5029,7 +7284,17 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getServiceFlowKind()
 	 * @generated
 	 */
-	int SERVICE_FLOW_KIND = 59;
+	int SERVICE_FLOW_KIND = 82;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.UGVKind <em>UGV Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.UGVKind
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getUGVKind()
+	 * @generated
+	 */
+	int UGV_KIND = 83;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.RoboticMiddlewareKind <em>Robotic Middleware Kind</em>}' enum.
@@ -5039,7 +7304,7 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRoboticMiddlewareKind()
 	 * @generated
 	 */
-	int ROBOTIC_MIDDLEWARE_KIND = 60;
+	int ROBOTIC_MIDDLEWARE_KIND = 84;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.Shade <em>Shade</em>}' enum.
@@ -5049,7 +7314,17 @@ public interface RobotMLPackage extends EPackage {
 	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getShade()
 	 * @generated
 	 */
-	int SHADE = 61;
+	int SHADE = 85;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.RobotML.MobileRobotKind <em>Mobile Robot Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.RobotML.MobileRobotKind
+	 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getMobileRobotKind()
+	 * @generated
+	 */
+	int MOBILE_ROBOT_KIND = 86;
 
 
 	/**
@@ -5193,6 +7468,47 @@ public interface RobotMLPackage extends EPackage {
 	EReference getState_Behavior();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.ActuatedJoint <em>Actuated Joint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Actuated Joint</em>'.
+	 * @see org.eclipse.papyrus.RobotML.ActuatedJoint
+	 * @generated
+	 */
+	EClass getActuatedJoint();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Joint <em>Joint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Joint</em>'.
+	 * @see org.eclipse.papyrus.RobotML.Joint
+	 * @generated
+	 */
+	EClass getJoint();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.RobotML.Joint#getBase_Connector <em>Base Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Connector</em>'.
+	 * @see org.eclipse.papyrus.RobotML.Joint#getBase_Connector()
+	 * @see #getJoint()
+	 * @generated
+	 */
+	EReference getJoint_Base_Connector();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.CompleteBonding <em>Complete Bonding</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Complete Bonding</em>'.
+	 * @see org.eclipse.papyrus.RobotML.CompleteBonding
+	 * @generated
+	 */
+	EClass getCompleteBonding();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Robot <em>Robot</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5201,28 +7517,6 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRobot();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.Robot#getKind <em>Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Kind</em>'.
-	 * @see org.eclipse.papyrus.RobotML.Robot#getKind()
-	 * @see #getRobot()
-	 * @generated
-	 */
-	EAttribute getRobot_Kind();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.Robot#getMass <em>Mass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mass</em>'.
-	 * @see org.eclipse.papyrus.RobotML.Robot#getMass()
-	 * @see #getRobot()
-	 * @generated
-	 */
-	EAttribute getRobot_Mass();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.Robot#getWidth <em>Width</em>}'.
@@ -5234,17 +7528,6 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRobot_Width();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.Robot#getUgvKind <em>Ugv Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Ugv Kind</em>'.
-	 * @see org.eclipse.papyrus.RobotML.Robot#getUgvKind()
-	 * @see #getRobot()
-	 * @generated
-	 */
-	EAttribute getRobot_UgvKind();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.System <em>System</em>}'.
@@ -5352,6 +7635,28 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPhysicalObject_HasSurface();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.PhysicalObject#getHeight <em>Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see org.eclipse.papyrus.RobotML.PhysicalObject#getHeight()
+	 * @see #getPhysicalObject()
+	 * @generated
+	 */
+	EAttribute getPhysicalObject_Height();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.PhysicalObject#getMass <em>Mass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mass</em>'.
+	 * @see org.eclipse.papyrus.RobotML.PhysicalObject#getMass()
+	 * @see #getPhysicalObject()
+	 * @generated
+	 */
+	EAttribute getPhysicalObject_Mass();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Environment <em>Environment</em>}'.
@@ -5501,6 +7806,16 @@ public interface RobotMLPackage extends EPackage {
 	EReference getRoboticSystem_LocalOrientation();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.CyberPhysicalSystem <em>Cyber Physical System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Cyber Physical System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.CyberPhysicalSystem
+	 * @generated
+	 */
+	EClass getCyberPhysicalSystem();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.SensorSystem <em>Sensor System</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5608,70 +7923,6 @@ public interface RobotMLPackage extends EPackage {
 	EAttribute getSoftware_Wcet();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.PrimitiveData <em>Primitive Data</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Primitive Data</em>'.
-	 * @see org.eclipse.papyrus.RobotML.PrimitiveData
-	 * @generated
-	 */
-	EClass getPrimitiveData();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.RobotML.PrimitiveData#getBase_PrimitiveType <em>Base Primitive Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Primitive Type</em>'.
-	 * @see org.eclipse.papyrus.RobotML.PrimitiveData#getBase_PrimitiveType()
-	 * @see #getPrimitiveData()
-	 * @generated
-	 */
-	EReference getPrimitiveData_Base_PrimitiveType();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.DataType <em>Data Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Data Type</em>'.
-	 * @see org.eclipse.papyrus.RobotML.DataType
-	 * @generated
-	 */
-	EClass getDataType();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.RobotML.DataType#getBase_DataType <em>Base Data Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Data Type</em>'.
-	 * @see org.eclipse.papyrus.RobotML.DataType#getBase_DataType()
-	 * @see #getDataType()
-	 * @generated
-	 */
-	EReference getDataType_Base_DataType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.DataType#isNative <em>Native</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Native</em>'.
-	 * @see org.eclipse.papyrus.RobotML.DataType#isNative()
-	 * @see #getDataType()
-	 * @generated
-	 */
-	EAttribute getDataType_Native();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.DataType#getLibraryPath <em>Library Path</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Library Path</em>'.
-	 * @see org.eclipse.papyrus.RobotML.DataType#getLibraryPath()
-	 * @see #getDataType()
-	 * @generated
-	 */
-	EAttribute getDataType_LibraryPath();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.EngineSystem <em>Engine System</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5748,190 +7999,200 @@ public interface RobotMLPackage extends EPackage {
 	EAttribute getEngineSystem_Gear_ration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.WheelSystem <em>Wheel System</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem <em>Steered Wheel System</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Wheel System</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem
+	 * @return the meta object for class '<em>Steered Wheel System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem
 	 * @generated
 	 */
-	EClass getWheelSystem();
+	EClass getSteeredWheelSystem();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelRadius <em>Wheel Radius</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelRadius <em>Wheel Radius</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Radius</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelRadius()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelRadius()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelRadius();
+	EAttribute getSteeredWheelSystem_WheelRadius();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelWidth <em>Wheel Width</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelWidth <em>Wheel Width</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Width</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelWidth()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelWidth()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelWidth();
+	EAttribute getSteeredWheelSystem_WheelWidth();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getSuspensionRestLength <em>Suspension Rest Length</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getSuspensionRestLength <em>Suspension Rest Length</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Suspension Rest Length</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getSuspensionRestLength()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getSuspensionRestLength()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_SuspensionRestLength();
+	EAttribute getSteeredWheelSystem_SuspensionRestLength();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelConnectionHeight <em>Wheel Connection Height</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelConnectionHeight <em>Wheel Connection Height</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Connection Height</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelConnectionHeight()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelConnectionHeight()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelConnectionHeight();
+	EAttribute getSteeredWheelSystem_WheelConnectionHeight();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getTypeOfWheel <em>Type Of Wheel</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getTypeOfWheel <em>Type Of Wheel</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type Of Wheel</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getTypeOfWheel()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getTypeOfWheel()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_TypeOfWheel();
+	EAttribute getSteeredWheelSystem_TypeOfWheel();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDkp <em>Wheel Velocity PI Dkp</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDkp <em>Wheel Velocity PI Dkp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Velocity PI Dkp</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDkp()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDkp()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelVelocityPIDkp();
+	EAttribute getSteeredWheelSystem_WheelVelocityPIDkp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDki <em>Wheel Velocity PI Dki</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDki <em>Wheel Velocity PI Dki</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Velocity PI Dki</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDki()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDki()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelVelocityPIDki();
+	EAttribute getSteeredWheelSystem_WheelVelocityPIDki();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDkd <em>Wheel Velocity PI Dkd</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDkd <em>Wheel Velocity PI Dkd</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Velocity PI Dkd</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDkd()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDkd()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelVelocityPIDkd();
+	EAttribute getSteeredWheelSystem_WheelVelocityPIDkd();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelSteeringPIDkp <em>Wheel Steering PI Dkp</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelSteeringPIDkp <em>Wheel Steering PI Dkp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Steering PI Dkp</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelSteeringPIDkp()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelSteeringPIDkp()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelSteeringPIDkp();
+	EAttribute getSteeredWheelSystem_WheelSteeringPIDkp();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelSteeringPIDkd <em>Wheel Steering PI Dkd</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelSteeringPIDkd <em>Wheel Steering PI Dkd</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Steering PI Dkd</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelSteeringPIDkd()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelSteeringPIDkd()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelSteeringPIDkd();
+	EAttribute getSteeredWheelSystem_WheelSteeringPIDkd();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelFriction <em>Wheel Friction</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelFriction <em>Wheel Friction</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Friction</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelFriction()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelFriction()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelFriction();
+	EAttribute getSteeredWheelSystem_WheelFriction();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getSuspensionStiffness <em>Suspension Stiffness</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getSuspensionStiffness <em>Suspension Stiffness</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Suspension Stiffness</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getSuspensionStiffness()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getSuspensionStiffness()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_SuspensionStiffness();
+	EAttribute getSteeredWheelSystem_SuspensionStiffness();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getSuspensionDamping <em>Suspension Damping</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getSuspensionDamping <em>Suspension Damping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Suspension Damping</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getSuspensionDamping()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getSuspensionDamping()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_SuspensionDamping();
+	EAttribute getSteeredWheelSystem_SuspensionDamping();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getSuspensionCompression <em>Suspension Compression</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getSuspensionCompression <em>Suspension Compression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Suspension Compression</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getSuspensionCompression()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getSuspensionCompression()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_SuspensionCompression();
+	EAttribute getSteeredWheelSystem_SuspensionCompression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDmaxSum <em>Wheel Velocity PI Dmax Sum</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDmaxSum <em>Wheel Velocity PI Dmax Sum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Velocity PI Dmax Sum</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDmaxSum()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDmaxSum()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelVelocityPIDmaxSum();
+	EAttribute getSteeredWheelSystem_WheelVelocityPIDmaxSum();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDmaxVal <em>Wheel Velocity PI Dmax Val</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDmaxVal <em>Wheel Velocity PI Dmax Val</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Wheel Velocity PI Dmax Val</em>'.
-	 * @see org.eclipse.papyrus.RobotML.WheelSystem#getWheelVelocityPIDmaxVal()
-	 * @see #getWheelSystem()
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelSystem#getWheelVelocityPIDmaxVal()
+	 * @see #getSteeredWheelSystem()
 	 * @generated
 	 */
-	EAttribute getWheelSystem_WheelVelocityPIDmaxVal();
+	EAttribute getSteeredWheelSystem_WheelVelocityPIDmaxVal();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.LocomotionSystem <em>Locomotion System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Locomotion System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.LocomotionSystem
+	 * @generated
+	 */
+	EClass getLocomotionSystem();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.ImageSensorSystem <em>Image Sensor System</em>}'.
@@ -6244,38 +8505,6 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGPSSystem_OriginPosition();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.SimulatedSystem <em>Simulated System</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Simulated System</em>'.
-	 * @see org.eclipse.papyrus.RobotML.SimulatedSystem
-	 * @generated
-	 */
-	EClass getSimulatedSystem();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.RobotML.SimulatedSystem#getBase_Property <em>Base Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Property</em>'.
-	 * @see org.eclipse.papyrus.RobotML.SimulatedSystem#getBase_Property()
-	 * @see #getSimulatedSystem()
-	 * @generated
-	 */
-	EReference getSimulatedSystem_Base_Property();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.RobotML.SimulatedSystem#getMesh <em>Mesh</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Mesh</em>'.
-	 * @see org.eclipse.papyrus.RobotML.SimulatedSystem#getMesh()
-	 * @see #getSimulatedSystem()
-	 * @generated
-	 */
-	EAttribute getSimulatedSystem_Mesh();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.AlgorithmLibrary <em>Algorithm Library</em>}'.
@@ -6780,24 +9009,245 @@ public interface RobotMLPackage extends EPackage {
 	EReference getOnProperty_Base_Parameter();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.RobotML.RobotKind <em>Robot Kind</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Chassis <em>Chassis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Robot Kind</em>'.
-	 * @see org.eclipse.papyrus.RobotML.RobotKind
+	 * @return the meta object for class '<em>Chassis</em>'.
+	 * @see org.eclipse.papyrus.RobotML.Chassis
 	 * @generated
 	 */
-	EEnum getRobotKind();
+	EClass getChassis();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.RobotML.UGVKind <em>UGV Kind</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.SupportingStructure <em>Supporting Structure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>UGV Kind</em>'.
-	 * @see org.eclipse.papyrus.RobotML.UGVKind
+	 * @return the meta object for class '<em>Supporting Structure</em>'.
+	 * @see org.eclipse.papyrus.RobotML.SupportingStructure
 	 * @generated
 	 */
-	EEnum getUGVKind();
+	EClass getSupportingStructure();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.MechanicalLinkage <em>Mechanical Linkage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mechanical Linkage</em>'.
+	 * @see org.eclipse.papyrus.RobotML.MechanicalLinkage
+	 * @generated
+	 */
+	EClass getMechanicalLinkage();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Leg <em>Leg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Leg</em>'.
+	 * @see org.eclipse.papyrus.RobotML.Leg
+	 * @generated
+	 */
+	EClass getLeg();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.LocomotionHardware <em>Locomotion Hardware</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Locomotion Hardware</em>'.
+	 * @see org.eclipse.papyrus.RobotML.LocomotionHardware
+	 * @generated
+	 */
+	EClass getLocomotionHardware();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.ActuatorHardware <em>Actuator Hardware</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Actuator Hardware</em>'.
+	 * @see org.eclipse.papyrus.RobotML.ActuatorHardware
+	 * @generated
+	 */
+	EClass getActuatorHardware();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.MobileRobot <em>Mobile Robot</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mobile Robot</em>'.
+	 * @see org.eclipse.papyrus.RobotML.MobileRobot
+	 * @generated
+	 */
+	EClass getMobileRobot();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.RobotML.MobileRobot#getKind <em>Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Kind</em>'.
+	 * @see org.eclipse.papyrus.RobotML.MobileRobot#getKind()
+	 * @see #getMobileRobot()
+	 * @generated
+	 */
+	EAttribute getMobileRobot_Kind();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Manipulator <em>Manipulator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Manipulator</em>'.
+	 * @see org.eclipse.papyrus.RobotML.Manipulator
+	 * @generated
+	 */
+	EClass getManipulator();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.PilotedSystem <em>Piloted System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Piloted System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.PilotedSystem
+	 * @generated
+	 */
+	EClass getPilotedSystem();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.PowerHardware <em>Power Hardware</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Power Hardware</em>'.
+	 * @see org.eclipse.papyrus.RobotML.PowerHardware
+	 * @generated
+	 */
+	EClass getPowerHardware();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.SensorHardware <em>Sensor Hardware</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sensor Hardware</em>'.
+	 * @see org.eclipse.papyrus.RobotML.SensorHardware
+	 * @generated
+	 */
+	EClass getSensorHardware();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.GraspingHardware <em>Grasping Hardware</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Grasping Hardware</em>'.
+	 * @see org.eclipse.papyrus.RobotML.GraspingHardware
+	 * @generated
+	 */
+	EClass getGraspingHardware();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.SteeredWheelHardware <em>Steered Wheel Hardware</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Steered Wheel Hardware</em>'.
+	 * @see org.eclipse.papyrus.RobotML.SteeredWheelHardware
+	 * @generated
+	 */
+	EClass getSteeredWheelHardware();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.Arm <em>Arm</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Arm</em>'.
+	 * @see org.eclipse.papyrus.RobotML.Arm
+	 * @generated
+	 */
+	EClass getArm();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.LegSystem <em>Leg System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Leg System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.LegSystem
+	 * @generated
+	 */
+	EClass getLegSystem();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.GraspingSystem <em>Grasping System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Grasping System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.GraspingSystem
+	 * @generated
+	 */
+	EClass getGraspingSystem();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.WeaponSystem <em>Weapon System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Weapon System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.WeaponSystem
+	 * @generated
+	 */
+	EClass getWeaponSystem();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.ManMachineInterfaceSystem <em>Man Machine Interface System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Man Machine Interface System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.ManMachineInterfaceSystem
+	 * @generated
+	 */
+	EClass getManMachineInterfaceSystem();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.ClosedLoopControlSystem <em>Closed Loop Control System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Closed Loop Control System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.ClosedLoopControlSystem
+	 * @generated
+	 */
+	EClass getClosedLoopControlSystem();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.OpenLoopControlSystem <em>Open Loop Control System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Open Loop Control System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.OpenLoopControlSystem
+	 * @generated
+	 */
+	EClass getOpenLoopControlSystem();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.RoboticHead <em>Robotic Head</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Robotic Head</em>'.
+	 * @see org.eclipse.papyrus.RobotML.RoboticHead
+	 * @generated
+	 */
+	EClass getRoboticHead();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.NavigationCommandSystem <em>Navigation Command System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Navigation Command System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.NavigationCommandSystem
+	 * @generated
+	 */
+	EClass getNavigationCommandSystem();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.RobotML.JoysticNavigationSystem <em>Joystic Navigation System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Joystic Navigation System</em>'.
+	 * @see org.eclipse.papyrus.RobotML.JoysticNavigationSystem
+	 * @generated
+	 */
+	EClass getJoysticNavigationSystem();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.RobotML.SynchronizationKind <em>Synchronization Kind</em>}'.
@@ -6830,6 +9280,16 @@ public interface RobotMLPackage extends EPackage {
 	EEnum getServiceFlowKind();
 
 	/**
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.RobotML.UGVKind <em>UGV Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>UGV Kind</em>'.
+	 * @see org.eclipse.papyrus.RobotML.UGVKind
+	 * @generated
+	 */
+	EEnum getUGVKind();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.RobotML.RoboticMiddlewareKind <em>Robotic Middleware Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6848,6 +9308,16 @@ public interface RobotMLPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getShade();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.RobotML.MobileRobotKind <em>Mobile Robot Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Mobile Robot Kind</em>'.
+	 * @see org.eclipse.papyrus.RobotML.MobileRobotKind
+	 * @generated
+	 */
+	EEnum getMobileRobotKind();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -6983,6 +9453,44 @@ public interface RobotMLPackage extends EPackage {
 		EReference STATE__BEHAVIOR = eINSTANCE.getState_Behavior();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.ActuatedJointImpl <em>Actuated Joint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.ActuatedJointImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getActuatedJoint()
+		 * @generated
+		 */
+		EClass ACTUATED_JOINT = eINSTANCE.getActuatedJoint();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.JointImpl <em>Joint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.JointImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getJoint()
+		 * @generated
+		 */
+		EClass JOINT = eINSTANCE.getJoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Connector</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JOINT__BASE_CONNECTOR = eINSTANCE.getJoint_Base_Connector();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.CompleteBondingImpl <em>Complete Bonding</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.CompleteBondingImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getCompleteBonding()
+		 * @generated
+		 */
+		EClass COMPLETE_BONDING = eINSTANCE.getCompleteBonding();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.RobotImpl <em>Robot</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6993,36 +9501,12 @@ public interface RobotMLPackage extends EPackage {
 		EClass ROBOT = eINSTANCE.getRobot();
 
 		/**
-		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ROBOT__KIND = eINSTANCE.getRobot_Kind();
-
-		/**
-		 * The meta object literal for the '<em><b>Mass</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ROBOT__MASS = eINSTANCE.getRobot_Mass();
-
-		/**
 		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute ROBOT__WIDTH = eINSTANCE.getRobot_Width();
-
-		/**
-		 * The meta object literal for the '<em><b>Ugv Kind</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ROBOT__UGV_KIND = eINSTANCE.getRobot_UgvKind();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.SystemImpl <em>System</em>}' class.
@@ -7109,6 +9593,22 @@ public interface RobotMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PHYSICAL_OBJECT__HAS_SURFACE = eINSTANCE.getPhysicalObject_HasSurface();
+
+		/**
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHYSICAL_OBJECT__HEIGHT = eINSTANCE.getPhysicalObject_Height();
+
+		/**
+		 * The meta object literal for the '<em><b>Mass</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHYSICAL_OBJECT__MASS = eINSTANCE.getPhysicalObject_Mass();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.EnvironmentImpl <em>Environment</em>}' class.
@@ -7237,6 +9737,16 @@ public interface RobotMLPackage extends EPackage {
 		EReference ROBOTIC_SYSTEM__LOCAL_ORIENTATION = eINSTANCE.getRoboticSystem_LocalOrientation();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.CyberPhysicalSystemImpl <em>Cyber Physical System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.CyberPhysicalSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getCyberPhysicalSystem()
+		 * @generated
+		 */
+		EClass CYBER_PHYSICAL_SYSTEM = eINSTANCE.getCyberPhysicalSystem();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.SensorSystemImpl <em>Sensor System</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7323,58 +9833,6 @@ public interface RobotMLPackage extends EPackage {
 		EAttribute SOFTWARE__WCET = eINSTANCE.getSoftware_Wcet();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.PrimitiveDataImpl <em>Primitive Data</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.RobotML.impl.PrimitiveDataImpl
-		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPrimitiveData()
-		 * @generated
-		 */
-		EClass PRIMITIVE_DATA = eINSTANCE.getPrimitiveData();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Primitive Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PRIMITIVE_DATA__BASE_PRIMITIVE_TYPE = eINSTANCE.getPrimitiveData_Base_PrimitiveType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.DataTypeImpl <em>Data Type</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.RobotML.impl.DataTypeImpl
-		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getDataType()
-		 * @generated
-		 */
-		EClass DATA_TYPE = eINSTANCE.getDataType();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Data Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_TYPE__BASE_DATA_TYPE = eINSTANCE.getDataType_Base_DataType();
-
-		/**
-		 * The meta object literal for the '<em><b>Native</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DATA_TYPE__NATIVE = eINSTANCE.getDataType_Native();
-
-		/**
-		 * The meta object literal for the '<em><b>Library Path</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DATA_TYPE__LIBRARY_PATH = eINSTANCE.getDataType_LibraryPath();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.EngineSystemImpl <em>Engine System</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7433,14 +9891,14 @@ public interface RobotMLPackage extends EPackage {
 		EAttribute ENGINE_SYSTEM__GEAR_RATION = eINSTANCE.getEngineSystem_Gear_ration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.WheelSystemImpl <em>Wheel System</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.SteeredWheelSystemImpl <em>Steered Wheel System</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.RobotML.impl.WheelSystemImpl
-		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getWheelSystem()
+		 * @see org.eclipse.papyrus.RobotML.impl.SteeredWheelSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSteeredWheelSystem()
 		 * @generated
 		 */
-		EClass WHEEL_SYSTEM = eINSTANCE.getWheelSystem();
+		EClass STEERED_WHEEL_SYSTEM = eINSTANCE.getSteeredWheelSystem();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Radius</b></em>' attribute feature.
@@ -7448,7 +9906,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_RADIUS = eINSTANCE.getWheelSystem_WheelRadius();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_RADIUS = eINSTANCE.getSteeredWheelSystem_WheelRadius();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Width</b></em>' attribute feature.
@@ -7456,7 +9914,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_WIDTH = eINSTANCE.getWheelSystem_WheelWidth();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_WIDTH = eINSTANCE.getSteeredWheelSystem_WheelWidth();
 
 		/**
 		 * The meta object literal for the '<em><b>Suspension Rest Length</b></em>' attribute feature.
@@ -7464,7 +9922,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__SUSPENSION_REST_LENGTH = eINSTANCE.getWheelSystem_SuspensionRestLength();
+		EAttribute STEERED_WHEEL_SYSTEM__SUSPENSION_REST_LENGTH = eINSTANCE.getSteeredWheelSystem_SuspensionRestLength();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Connection Height</b></em>' attribute feature.
@@ -7472,7 +9930,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_CONNECTION_HEIGHT = eINSTANCE.getWheelSystem_WheelConnectionHeight();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_CONNECTION_HEIGHT = eINSTANCE.getSteeredWheelSystem_WheelConnectionHeight();
 
 		/**
 		 * The meta object literal for the '<em><b>Type Of Wheel</b></em>' attribute feature.
@@ -7480,7 +9938,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__TYPE_OF_WHEEL = eINSTANCE.getWheelSystem_TypeOfWheel();
+		EAttribute STEERED_WHEEL_SYSTEM__TYPE_OF_WHEEL = eINSTANCE.getSteeredWheelSystem_TypeOfWheel();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Velocity PI Dkp</b></em>' attribute feature.
@@ -7488,7 +9946,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKP = eINSTANCE.getWheelSystem_WheelVelocityPIDkp();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKP = eINSTANCE.getSteeredWheelSystem_WheelVelocityPIDkp();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Velocity PI Dki</b></em>' attribute feature.
@@ -7496,7 +9954,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKI = eINSTANCE.getWheelSystem_WheelVelocityPIDki();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKI = eINSTANCE.getSteeredWheelSystem_WheelVelocityPIDki();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Velocity PI Dkd</b></em>' attribute feature.
@@ -7504,7 +9962,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKD = eINSTANCE.getWheelSystem_WheelVelocityPIDkd();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DKD = eINSTANCE.getSteeredWheelSystem_WheelVelocityPIDkd();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Steering PI Dkp</b></em>' attribute feature.
@@ -7512,7 +9970,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_STEERING_PI_DKP = eINSTANCE.getWheelSystem_WheelSteeringPIDkp();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKP = eINSTANCE.getSteeredWheelSystem_WheelSteeringPIDkp();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Steering PI Dkd</b></em>' attribute feature.
@@ -7520,7 +9978,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_STEERING_PI_DKD = eINSTANCE.getWheelSystem_WheelSteeringPIDkd();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_STEERING_PI_DKD = eINSTANCE.getSteeredWheelSystem_WheelSteeringPIDkd();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Friction</b></em>' attribute feature.
@@ -7528,7 +9986,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_FRICTION = eINSTANCE.getWheelSystem_WheelFriction();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_FRICTION = eINSTANCE.getSteeredWheelSystem_WheelFriction();
 
 		/**
 		 * The meta object literal for the '<em><b>Suspension Stiffness</b></em>' attribute feature.
@@ -7536,7 +9994,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__SUSPENSION_STIFFNESS = eINSTANCE.getWheelSystem_SuspensionStiffness();
+		EAttribute STEERED_WHEEL_SYSTEM__SUSPENSION_STIFFNESS = eINSTANCE.getSteeredWheelSystem_SuspensionStiffness();
 
 		/**
 		 * The meta object literal for the '<em><b>Suspension Damping</b></em>' attribute feature.
@@ -7544,7 +10002,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__SUSPENSION_DAMPING = eINSTANCE.getWheelSystem_SuspensionDamping();
+		EAttribute STEERED_WHEEL_SYSTEM__SUSPENSION_DAMPING = eINSTANCE.getSteeredWheelSystem_SuspensionDamping();
 
 		/**
 		 * The meta object literal for the '<em><b>Suspension Compression</b></em>' attribute feature.
@@ -7552,7 +10010,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__SUSPENSION_COMPRESSION = eINSTANCE.getWheelSystem_SuspensionCompression();
+		EAttribute STEERED_WHEEL_SYSTEM__SUSPENSION_COMPRESSION = eINSTANCE.getSteeredWheelSystem_SuspensionCompression();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Velocity PI Dmax Sum</b></em>' attribute feature.
@@ -7560,7 +10018,7 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_SUM = eINSTANCE.getWheelSystem_WheelVelocityPIDmaxSum();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_SUM = eINSTANCE.getSteeredWheelSystem_WheelVelocityPIDmaxSum();
 
 		/**
 		 * The meta object literal for the '<em><b>Wheel Velocity PI Dmax Val</b></em>' attribute feature.
@@ -7568,7 +10026,17 @@ public interface RobotMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_VAL = eINSTANCE.getWheelSystem_WheelVelocityPIDmaxVal();
+		EAttribute STEERED_WHEEL_SYSTEM__WHEEL_VELOCITY_PI_DMAX_VAL = eINSTANCE.getSteeredWheelSystem_WheelVelocityPIDmaxVal();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.LocomotionSystemImpl <em>Locomotion System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.LocomotionSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLocomotionSystem()
+		 * @generated
+		 */
+		EClass LOCOMOTION_SYSTEM = eINSTANCE.getLocomotionSystem();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.ImageSensorSystemImpl <em>Image Sensor System</em>}' class.
@@ -7815,32 +10283,6 @@ public interface RobotMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GPS_SYSTEM__ORIGIN_POSITION = eINSTANCE.getGPSSystem_OriginPosition();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.SimulatedSystemImpl <em>Simulated System</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.RobotML.impl.SimulatedSystemImpl
-		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSimulatedSystem()
-		 * @generated
-		 */
-		EClass SIMULATED_SYSTEM = eINSTANCE.getSimulatedSystem();
-
-		/**
-		 * The meta object literal for the '<em><b>Base Property</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SIMULATED_SYSTEM__BASE_PROPERTY = eINSTANCE.getSimulatedSystem_Base_Property();
-
-		/**
-		 * The meta object literal for the '<em><b>Mesh</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIMULATED_SYSTEM__MESH = eINSTANCE.getSimulatedSystem_Mesh();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.AlgorithmLibraryImpl <em>Algorithm Library</em>}' class.
@@ -8279,24 +10721,242 @@ public interface RobotMLPackage extends EPackage {
 		EReference ON_PROPERTY__BASE_PARAMETER = eINSTANCE.getOnProperty_Base_Parameter();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.RobotKind <em>Robot Kind</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.ChassisImpl <em>Chassis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.RobotML.RobotKind
-		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRobotKind()
+		 * @see org.eclipse.papyrus.RobotML.impl.ChassisImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getChassis()
 		 * @generated
 		 */
-		EEnum ROBOT_KIND = eINSTANCE.getRobotKind();
+		EClass CHASSIS = eINSTANCE.getChassis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.UGVKind <em>UGV Kind</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.SupportingStructureImpl <em>Supporting Structure</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.papyrus.RobotML.UGVKind
-		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getUGVKind()
+		 * @see org.eclipse.papyrus.RobotML.impl.SupportingStructureImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSupportingStructure()
 		 * @generated
 		 */
-		EEnum UGV_KIND = eINSTANCE.getUGVKind();
+		EClass SUPPORTING_STRUCTURE = eINSTANCE.getSupportingStructure();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.MechanicalLinkageImpl <em>Mechanical Linkage</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.MechanicalLinkageImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getMechanicalLinkage()
+		 * @generated
+		 */
+		EClass MECHANICAL_LINKAGE = eINSTANCE.getMechanicalLinkage();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.LegImpl <em>Leg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.LegImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLeg()
+		 * @generated
+		 */
+		EClass LEG = eINSTANCE.getLeg();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.LocomotionHardwareImpl <em>Locomotion Hardware</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.LocomotionHardwareImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLocomotionHardware()
+		 * @generated
+		 */
+		EClass LOCOMOTION_HARDWARE = eINSTANCE.getLocomotionHardware();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.ActuatorHardwareImpl <em>Actuator Hardware</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.ActuatorHardwareImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getActuatorHardware()
+		 * @generated
+		 */
+		EClass ACTUATOR_HARDWARE = eINSTANCE.getActuatorHardware();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.MobileRobotImpl <em>Mobile Robot</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.MobileRobotImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getMobileRobot()
+		 * @generated
+		 */
+		EClass MOBILE_ROBOT = eINSTANCE.getMobileRobot();
+
+		/**
+		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MOBILE_ROBOT__KIND = eINSTANCE.getMobileRobot_Kind();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.ManipulatorImpl <em>Manipulator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.ManipulatorImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getManipulator()
+		 * @generated
+		 */
+		EClass MANIPULATOR = eINSTANCE.getManipulator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.PilotedSystemImpl <em>Piloted System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.PilotedSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPilotedSystem()
+		 * @generated
+		 */
+		EClass PILOTED_SYSTEM = eINSTANCE.getPilotedSystem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.PowerHardwareImpl <em>Power Hardware</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.PowerHardwareImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getPowerHardware()
+		 * @generated
+		 */
+		EClass POWER_HARDWARE = eINSTANCE.getPowerHardware();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.SensorHardwareImpl <em>Sensor Hardware</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.SensorHardwareImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSensorHardware()
+		 * @generated
+		 */
+		EClass SENSOR_HARDWARE = eINSTANCE.getSensorHardware();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.GraspingHardwareImpl <em>Grasping Hardware</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.GraspingHardwareImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getGraspingHardware()
+		 * @generated
+		 */
+		EClass GRASPING_HARDWARE = eINSTANCE.getGraspingHardware();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.SteeredWheelHardwareImpl <em>Steered Wheel Hardware</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.SteeredWheelHardwareImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getSteeredWheelHardware()
+		 * @generated
+		 */
+		EClass STEERED_WHEEL_HARDWARE = eINSTANCE.getSteeredWheelHardware();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.ArmImpl <em>Arm</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.ArmImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getArm()
+		 * @generated
+		 */
+		EClass ARM = eINSTANCE.getArm();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.LegSystemImpl <em>Leg System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.LegSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getLegSystem()
+		 * @generated
+		 */
+		EClass LEG_SYSTEM = eINSTANCE.getLegSystem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.GraspingSystemImpl <em>Grasping System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.GraspingSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getGraspingSystem()
+		 * @generated
+		 */
+		EClass GRASPING_SYSTEM = eINSTANCE.getGraspingSystem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.WeaponSystemImpl <em>Weapon System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.WeaponSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getWeaponSystem()
+		 * @generated
+		 */
+		EClass WEAPON_SYSTEM = eINSTANCE.getWeaponSystem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.ManMachineInterfaceSystemImpl <em>Man Machine Interface System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.ManMachineInterfaceSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getManMachineInterfaceSystem()
+		 * @generated
+		 */
+		EClass MAN_MACHINE_INTERFACE_SYSTEM = eINSTANCE.getManMachineInterfaceSystem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.ClosedLoopControlSystemImpl <em>Closed Loop Control System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.ClosedLoopControlSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getClosedLoopControlSystem()
+		 * @generated
+		 */
+		EClass CLOSED_LOOP_CONTROL_SYSTEM = eINSTANCE.getClosedLoopControlSystem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.OpenLoopControlSystemImpl <em>Open Loop Control System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.OpenLoopControlSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getOpenLoopControlSystem()
+		 * @generated
+		 */
+		EClass OPEN_LOOP_CONTROL_SYSTEM = eINSTANCE.getOpenLoopControlSystem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.RoboticHeadImpl <em>Robotic Head</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.RoboticHeadImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getRoboticHead()
+		 * @generated
+		 */
+		EClass ROBOTIC_HEAD = eINSTANCE.getRoboticHead();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.NavigationCommandSystemImpl <em>Navigation Command System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.NavigationCommandSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getNavigationCommandSystem()
+		 * @generated
+		 */
+		EClass NAVIGATION_COMMAND_SYSTEM = eINSTANCE.getNavigationCommandSystem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.impl.JoysticNavigationSystemImpl <em>Joystic Navigation System</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.impl.JoysticNavigationSystemImpl
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getJoysticNavigationSystem()
+		 * @generated
+		 */
+		EClass JOYSTIC_NAVIGATION_SYSTEM = eINSTANCE.getJoysticNavigationSystem();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.SynchronizationKind <em>Synchronization Kind</em>}' enum.
@@ -8329,6 +10989,16 @@ public interface RobotMLPackage extends EPackage {
 		EEnum SERVICE_FLOW_KIND = eINSTANCE.getServiceFlowKind();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.UGVKind <em>UGV Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.UGVKind
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getUGVKind()
+		 * @generated
+		 */
+		EEnum UGV_KIND = eINSTANCE.getUGVKind();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.RoboticMiddlewareKind <em>Robotic Middleware Kind</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -8347,6 +11017,16 @@ public interface RobotMLPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum SHADE = eINSTANCE.getShade();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.RobotML.MobileRobotKind <em>Mobile Robot Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.RobotML.MobileRobotKind
+		 * @see org.eclipse.papyrus.RobotML.impl.RobotMLPackageImpl#getMobileRobotKind()
+		 * @generated
+		 */
+		EEnum MOBILE_ROBOT_KIND = eINSTANCE.getMobileRobotKind();
 
 	}
 

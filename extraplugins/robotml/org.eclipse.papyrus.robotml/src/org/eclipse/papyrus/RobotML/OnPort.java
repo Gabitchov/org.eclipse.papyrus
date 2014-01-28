@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Parameter;
 
-// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>On Port</b></em>'.

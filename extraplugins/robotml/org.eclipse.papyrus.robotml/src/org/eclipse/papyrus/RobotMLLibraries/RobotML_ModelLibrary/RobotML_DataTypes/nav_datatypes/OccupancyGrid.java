@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Header;
 
-// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Occupancy Grid</b></em>'.

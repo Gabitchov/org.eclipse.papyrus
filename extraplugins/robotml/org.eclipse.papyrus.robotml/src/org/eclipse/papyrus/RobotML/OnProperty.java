@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
 
-// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>On Property</b></em>'.

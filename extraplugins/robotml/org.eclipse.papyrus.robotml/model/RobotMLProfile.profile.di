@@ -47,15 +47,48 @@
     <availablePage>
       <emfPageIdentifier href="RobotMLProfile.profile.notation#_tFd6AGwvEeGmceXllYzFRQ"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_fDJ8QBkjEeOoKKOJPFGdCw"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_uC1fQBkxEeOoKKOJPFGdCw"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_f6k2MBlUEeOoKKOJPFGdCw"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_oNjjoCmoEeONwLk-9ZLqDA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="RobotMLProfile.profile.notation#_IezhEE3SEeONodE93WJoVw"/>
+    </availablePage>
   </pageList>
   <sashModel xmi:id="_3Q-VBPcEEd-J06U5HM_o-Q" currentSelection="_3Q-VBvcEEd-J06U5HM_o-Q">
     <windows xmi:id="_3Q-VBfcEEd-J06U5HM_o-Q">
       <children xsi:type="di:TabFolder" xmi:id="_3Q-VBvcEEd-J06U5HM_o-Q">
         <children>
-          <emfPageIdentifier href="RobotMLProfile.profile.notation#_r4USgGAyEeCUQf3vpAG6JA"/>
+          <emfPageIdentifier href="RobotMLProfile.profile.notation#_3Q-VAPcEEd-J06U5HM_o-Q"/>
         </children>
         <children>
           <emfPageIdentifier href="RobotMLProfile.profile.notation#_WFrusAB6EeGXJOJtWKn8jQ"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="RobotMLProfile.profile.notation#_W_06cEaREeG1RvxKgcDZmw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="RobotMLProfile.profile.notation#_f6k2MBlUEeOoKKOJPFGdCw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="RobotMLProfile.profile.notation#_oNjjoCmoEeONwLk-9ZLqDA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="RobotMLProfile.profile.notation#_IezhEE3SEeONodE93WJoVw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="RobotMLProfile.profile.notation#_uC1fQBkxEeOoKKOJPFGdCw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="RobotMLProfile.profile.notation#_YOV8EEXNEeGe3M3N_846rw"/>
         </children>
         <children>
           <emfPageIdentifier href="RobotMLProfile.profile.notation#_30caQBtTEeGZBqQLK2tPRA"/>
@@ -65,15 +98,6 @@
         </children>
         <children>
           <emfPageIdentifier href="RobotMLProfile.profile.notation#_tFd6AGwvEeGmceXllYzFRQ"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="RobotMLProfile.profile.notation#_YOV8EEXNEeGe3M3N_846rw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="RobotMLProfile.profile.notation#_W_06cEaREeG1RvxKgcDZmw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="RobotMLProfile.profile.notation#_3Q-VAPcEEd-J06U5HM_o-Q"/>
         </children>
       </children>
     </windows>

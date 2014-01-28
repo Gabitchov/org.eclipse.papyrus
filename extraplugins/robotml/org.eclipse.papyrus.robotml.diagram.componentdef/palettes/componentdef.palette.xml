@@ -116,46 +116,41 @@
 			</drawer>
 			<drawer
 			iconpath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-			id="org.eclipse.papyrus.robotml.diagram.componentdef.ROBOTML_Componentdef__Actuators"
-			name="Actuators">
-			<aspectTool description="Create a new ActuatorSystem"
-				id="componentdef.tool.actuator" name="Actuator"
+			id="org.eclipse.papyrus.robotml.diagram.componentdef.ROBOTML_Componentdef__Humanoid"
+			name="Humanoid Components">
+			<aspectTool description="Create a new LegSystem"
+				id="componentdef.tool.leg" name="Leg"
 				refToolId="composite.tool.class"
 				iconpath="platform:/plugin/org.eclipse.papyrus.robotml/icons/16x16/13_action.png">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="RobotML::ActuatorSystem"></stereotype>
+						<stereotype stereotypeName="RobotML::LegSystem"></stereotype>
+					</stereotypesToApply>
+				</postAction>
+				<postAction
+					id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider"
+					displayKind="IconStereotype" displayPlace="Compartment"></postAction>
+			</aspectTool>	
+			<aspectTool description="Create a new RoboticHead"
+				id="componentdef.tool.head" name="Head"
+				refToolId="composite.tool.class"
+				iconpath="platform:/plugin/org.eclipse.papyrus.robotml/icons/16x16/13_action.png">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="RobotML::RoboticHead"></stereotype>
 					</stereotypesToApply>
 				</postAction>
 				<postAction
 					id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider"
 					displayKind="IconStereotype" displayPlace="Compartment"></postAction>
 			</aspectTool>
-			
-			<aspectTool description="Create a new WheelSystem"
-				id="componentdef.tool.WheelSystem" name="WheelSystem"
+		<aspectTool description="Create a new GraspingSystem"
+				id="componentdef.tool.head" name="Grasping System"
 				refToolId="composite.tool.class"
-				iconpath="platform:/plugin/org.eclipse.papyrus.robotml/icons/16x16/15_wheel_system.png">
+				iconpath="platform:/plugin/org.eclipse.papyrus.robotml/icons/16x16/13_action.png">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="RobotML::WheelSystem"></stereotype>
-					</stereotypesToApply>
-				</postAction>
-				<postAction
-					id="org.eclipse.papyrus.postaction.changeStereotypeDisplayProvider"
-					displayKind="IconStereotype" displayPlace="Compartment"></postAction>
-			</aspectTool>
-			<aspectTool description="Create a new EngineSystem"
-				id="componentdef.tool.EngineSystem" name="EngineSystem"
-				refToolId="composite.tool.class"
-				iconpath="platform:/plugin/org.eclipse.papyrus.robotml/icons/16x16/14_engine_system.png">
-				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
-					<stereotypesToApply>
-						<stereotype stereotypeName="RobotML::EngineSystem">
-						<property propertyName="RobotML::EngineSystem::maxEngineForce">
-						<value>1.5</value>
-						</property>
-						</stereotype>
+						<stereotype stereotypeName="RobotML::GraspingSystem"></stereotype>
 					</stereotypesToApply>
 				</postAction>
 				<postAction
