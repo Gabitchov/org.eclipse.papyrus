@@ -803,7 +803,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 		// explore referencing actions
 		Set<InvocationAction> callingActions = new HashSet<InvocationAction>();
 		if(element instanceof Behavior || element instanceof Operation) {
-			Collection<Setting> references = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(element);
+			Collection<Setting> references = CacheAdapter.getInstance().getNonNavigableInverseReferences(element);
 			for(Setting ref : references) {
 				EObject action = ref.getEObject();
 				// parameter's owner is action's called Operation
@@ -815,7 +815,7 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 				}
 			}
 		} else if(element instanceof Signal) {
-			Collection<Setting> references = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(element);
+			Collection<Setting> references = CacheAdapter.getInstance().getNonNavigableInverseReferences(element);
 			for(Setting ref : references) {
 				EObject action = ref.getEObject();
 				// parameter's owner is action's sent Signal
