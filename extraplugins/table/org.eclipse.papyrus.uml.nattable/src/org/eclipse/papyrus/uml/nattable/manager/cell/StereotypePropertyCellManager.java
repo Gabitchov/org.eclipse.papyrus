@@ -141,9 +141,15 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, null);
 		final Element el = (Element)umlObjects.get(0);
 		final String id = (String)umlObjects.get(1);
+		final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
 		switch(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id).size()) {
+		case 0:
+			// to apply required stereotype before edition
+			// see bug 426709: [Table 2][Stereotype] Papyrus Table must allows to edit stereotype properties even if the required stereotypes is not yet applied
+			//  https://bugs.eclipse.org/bugs/show_bug.cgi?id=426709
+			final int nbApplicablesSte = UMLTableUtils.getApplicableStereotypesWithThisProperty(el, id).size();
+			return nbApplicablesSte == 1 && !prop.isDerived() && !prop.isReadOnly();
 		case 1:
-			final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
 			return !prop.isDerived() && !prop.isReadOnly();
 		default:
 			return false;
