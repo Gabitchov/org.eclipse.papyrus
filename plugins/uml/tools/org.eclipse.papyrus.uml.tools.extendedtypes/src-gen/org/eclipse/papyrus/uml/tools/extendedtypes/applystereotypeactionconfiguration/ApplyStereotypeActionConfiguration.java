@@ -3,7 +3,6 @@
 package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration;
 
 /**

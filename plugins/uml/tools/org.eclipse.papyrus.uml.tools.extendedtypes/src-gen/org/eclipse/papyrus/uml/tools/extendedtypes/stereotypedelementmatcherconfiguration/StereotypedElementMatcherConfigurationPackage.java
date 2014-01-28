@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatchercon
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 /**

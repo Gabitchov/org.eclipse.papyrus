@@ -13,8 +13,6 @@
 package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration;
 
 import org.eclipse.papyrus.infra.extendedtypes.IActionConfigurationModelCreation;
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationFactory;
 
 
 /**

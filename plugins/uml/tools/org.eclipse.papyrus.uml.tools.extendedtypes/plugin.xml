@@ -61,7 +61,26 @@
       <aspectAction
             configurationClass="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration"
             configurationModelCreation="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationModelCreation"
+            creationElementValidator="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionCreationElementValidator"
             editHelperAdvice="org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionEditHelperAdvice">
       </aspectAction>
+   </extension>
+      <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.invariantRule">
+      <invariantRule
+            configurationClass="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfiguration"
+            configurationModelCreation="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfigurationModelCreation"
+            editHelperAdvice="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeEditHelperAdvice"
+            elementMatcher="org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeElementMatcher">
+      </invariantRule>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.elementMatcherConfiguration">
+      <configuration
+            configurationClass="org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherConfiguration"
+            configurationModelCreation="org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherModelCreation"
+            factoryClass="org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherFactory"
+            name="StereotypedElementMatcher">
+      </configuration>
    </extension>
 </plugin>

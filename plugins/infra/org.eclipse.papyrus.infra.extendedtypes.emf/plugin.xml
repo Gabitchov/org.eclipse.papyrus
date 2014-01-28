@@ -35,6 +35,7 @@
       <aspectAction
             configurationClass="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfiguration"
             configurationModelCreation="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfigurationModelCreation"
+            creationElementValidator="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionCreationElementValidator"
             editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionEditHelperAdvice">
       </aspectAction>
    </extension>

@@ -14,12 +14,10 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatchercon
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.eclipse.papyrus.infra.extendedtypes.MatcherConfiguration;
-
-import org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.*;
+import org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherConfigurationPackage;
 
 /**
  * <!-- begin-user-doc -->

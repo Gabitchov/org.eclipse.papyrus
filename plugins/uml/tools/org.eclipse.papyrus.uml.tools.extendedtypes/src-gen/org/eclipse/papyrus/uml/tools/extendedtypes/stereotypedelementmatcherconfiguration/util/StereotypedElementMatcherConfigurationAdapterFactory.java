@@ -14,14 +14,11 @@ package org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatchercon
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.infra.extendedtypes.MatcherConfiguration;
-
-import org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.*;
+import org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherConfiguration;
+import org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.StereotypedElementMatcherConfigurationPackage;
 
 /**
  * <!-- begin-user-doc -->
