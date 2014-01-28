@@ -241,7 +241,7 @@ public class CheckedOperationHistory implements IOperationHistory {
 	}
 
 	public IStatus redoOperation(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		return redoOperation(operation, monitor, info);
+		return history.redoOperation(operation, monitor, info);
 	}
 
 	public void operationChanged(IUndoableOperation operation) {
