@@ -3,7 +3,6 @@ Export-Package: org.eclipse.papyrus.infra.extendedtypes.emf,
  org.eclipse.papyrus.infra.extendedtypes.emf.converter,
  org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration,
  org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.impl,
- org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.provider,
  org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.util
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
@@ -23,7 +22,6 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
  org.eclipse.papyrus.infra.core.log,
  org.eclipse.ui;bundle-version="3.7.0",
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.queries.core;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.core.databinding;bundle-version="1.4.1"

@@ -4,11 +4,15 @@ package org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.FeatureValue;
 import org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.ListValue;
@@ -29,7 +33,7 @@ import org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.
  */
 public class ListValueImpl extends FeatureValueImpl implements ListValue {
 	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' reference list.
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValues()
@@ -64,9 +68,23 @@ public class ListValueImpl extends FeatureValueImpl implements ListValue {
 	 */
 	public EList<FeatureValue> getValues() {
 		if (values == null) {
-			values = new EObjectResolvingEList<FeatureValue>(FeatureValue.class, this, SetValuesActionConfigurationPackage.LIST_VALUE__VALUES);
+			values = new EObjectContainmentEList<FeatureValue>(FeatureValue.class, this, SetValuesActionConfigurationPackage.LIST_VALUE__VALUES);
 		}
 		return values;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SetValuesActionConfigurationPackage.LIST_VALUE__VALUES:
+				return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

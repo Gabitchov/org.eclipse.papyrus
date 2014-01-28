@@ -45,7 +45,7 @@
         <requiredProfiles>ExtendedTypesTestsProfile</requiredProfiles>
         <featuresToSet featureName="stringFeature">
           <value xsi:type="applystereotypeactionconfiguration:ConstantValue">
-            <valueInstance xsi:type="uml:LiteralString" value="MySingleValue"/>
+            <valueInstance xsi:type="uml:LiteralString" value="MyStringValue"/>
           </value>
         </featuresToSet>
         <featuresToSet featureName="value">
@@ -63,6 +63,19 @@
             <valueInstance xsi:type="uml:InstanceValue">
               <instance href="ExtendedTypesTestsProfile.profile.uml#_KuG7kIf5EeOi95YnkGlwiQ"/>
             </valueInstance>
+          </value>
+        </featuresToSet>
+        <featuresToSet featureName="multiStrings">
+          <value xsi:type="applystereotypeactionconfiguration:ListValue">
+            <values xsi:type="applystereotypeactionconfiguration:ConstantValue">
+              <valueInstance xsi:type="uml:LiteralString" value="MyFirstValue"/>
+            </values>
+            <values xsi:type="applystereotypeactionconfiguration:ConstantValue">
+              <valueInstance xsi:type="uml:LiteralString" value="MySecondValue"/>
+            </values>
+            <values xsi:type="applystereotypeactionconfiguration:ConstantValue">
+              <valueInstance xsi:type="uml:LiteralString" value="MyThirdValue"/>
+            </values>
           </value>
         </featuresToSet>
       </stereotypesToApply>

@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration;
 
@@ -6,6 +16,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 
 /**
@@ -251,7 +262,7 @@ public interface ApplyStereotypeActionConfigurationPackage extends EPackage {
 	int LIST_VALUE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Values</b></em>' reference list.
+	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -474,10 +485,10 @@ public interface ApplyStereotypeActionConfigurationPackage extends EPackage {
 	EClass getListValue();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ListValue#getValues <em>Values</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ListValue#getValues <em>Values</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Values</em>'.
+	 * @return the meta object for the containment reference list '<em>Values</em>'.
 	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ListValue#getValues()
 	 * @see #getListValue()
 	 * @generated
@@ -662,7 +673,7 @@ public interface ApplyStereotypeActionConfigurationPackage extends EPackage {
 		EClass LIST_VALUE = eINSTANCE.getListValue();
 
 		/**
-		 * The meta object literal for the '<em><b>Values</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

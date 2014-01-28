@@ -244,7 +244,7 @@ public interface SetValuesActionConfigurationPackage extends EPackage {
 	int LIST_VALUE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Values</b></em>' reference list.
+	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -397,10 +397,10 @@ public interface SetValuesActionConfigurationPackage extends EPackage {
 	EClass getListValue();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.ListValue#getValues <em>Values</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.ListValue#getValues <em>Values</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Values</em>'.
+	 * @return the meta object for the containment reference list '<em>Values</em>'.
 	 * @see org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.ListValue#getValues()
 	 * @see #getListValue()
 	 * @generated
@@ -540,7 +540,7 @@ public interface SetValuesActionConfigurationPackage extends EPackage {
 		EClass LIST_VALUE = eINSTANCE.getListValue();
 
 		/**
-		 * The meta object literal for the '<em><b>Values</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

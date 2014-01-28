@@ -26,7 +26,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="FeatureValue" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ListValue" eSuperTypes="#//FeatureValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
-        eType="#//FeatureValue"/>
+        eType="#//FeatureValue" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstantValue" eSuperTypes="#//FeatureValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueInstance" eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecification"

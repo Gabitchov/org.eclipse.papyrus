@@ -60,7 +60,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_ojH0CIdrEeOi95YnkGlwiQ"/>
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_oi-DAYdrEeOi95YnkGlwiQ" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="12560536" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="platform:/resource/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.ecore#//SemanticActionConfiguration"/>
+    <element xmi:type="ecore:EClass" href="platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.ecore#//SemanticActionConfiguration"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oi-DAodrEeOi95YnkGlwiQ" x="170" y="115"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_zF9goIdrEeOi95YnkGlwiQ" type="1001">
