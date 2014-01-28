@@ -12,9 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -28,7 +26,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.extendedtypes.IActionEditHelperAdvice;
 import org.eclipse.papyrus.infra.extendedtypes.emf.Activator;
-import org.eclipse.papyrus.infra.services.edit.internal.ElementEditService;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 

@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.extendedtypes.emf,
+ org.eclipse.papyrus.infra.extendedtypes.emf.converter,
  org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration,
  org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.impl,
  org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.provider,

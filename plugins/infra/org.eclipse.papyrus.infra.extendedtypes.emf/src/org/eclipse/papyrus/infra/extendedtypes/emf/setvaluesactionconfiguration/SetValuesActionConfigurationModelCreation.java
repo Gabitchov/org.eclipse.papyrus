@@ -1,6 +1,3 @@
-package org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.IActionConfigurationModelCreation;
-
 
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
@@ -14,6 +11,10 @@ import org.eclipse.papyrus.infra.extendedtypes.IActionConfigurationModelCreation
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
+package org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration;
+
+import org.eclipse.papyrus.infra.extendedtypes.IActionConfigurationModelCreation;
+
 /**
  * {@link IActionConfigurationModelCreation} for {@link SetValuesActionConfiguration}
  */

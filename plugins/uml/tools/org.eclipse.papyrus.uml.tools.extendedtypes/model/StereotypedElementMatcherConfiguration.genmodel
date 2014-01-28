@@ -6,7 +6,7 @@
     modelPluginID="org.eclipse.papyrus.uml.tools.extendedtypes" modelName="StereotypedElementMatcherConfiguration"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes ../../org.eclipse.emf.facet.infra.query/model/query.genmodel#//query ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes"
     operationReflection="true" importOrganizing="true">
   <foreignModel>StereotypedElementMatcherConfiguration.ecore</foreignModel>
   <genPackages prefix="StereotypedElementMatcherConfiguration" basePackage="org.eclipse.papyrus.uml.tools.extendedtypes"
