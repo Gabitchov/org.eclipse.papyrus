@@ -99,7 +99,7 @@ public interface ICellManager {
 	 *        the new value to set to the intersection of these 2 objects
 	 * @param tableManager
 	 * @return
-	 *         the command to set the value
+	 *         the command to set the value or <code>null</code>
 	 */
 	public Command getSetValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager);
 
