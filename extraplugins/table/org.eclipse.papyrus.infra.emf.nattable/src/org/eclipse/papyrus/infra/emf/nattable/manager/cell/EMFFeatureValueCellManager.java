@@ -22,13 +22,11 @@ import java.util.Map;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -41,8 +39,6 @@ import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
-import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
-import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.paste.IValueSetter;
 import org.eclipse.papyrus.infra.nattable.paste.ReferenceValueSetter;
@@ -183,6 +179,17 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	 *         the command to set the value
 	 */
 	protected Command getSetValueCommand(final TransactionalEditingDomain domain, final EObject elementToEdit, final EStructuralFeature featureToEdit, final Object newValue) {
+		//426731: [Table 2] Opening then closing cells editors without modifiyng values execute a command in the stack
+		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=426731
+		//1. we verify that the new valu eis not the same thjan the current value
+		final Object currentValue = elementToEdit.eGet(featureToEdit);
+		if(newValue == null && currentValue == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		if(newValue != null && newValue.equals(currentValue)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		//2. if not we do the job
 		final AbstractEditCommandRequest request = new SetRequest(domain, elementToEdit, featureToEdit, newValue);
 		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToEdit);
 		final ICommand cmd = provider.getEditCommand(request);
@@ -229,9 +236,9 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 		}
 		return new GMFtoEMFCommandWrapper(returnedCommand);
 	}
-	
-	
-	protected final ICommand getOpenConfirmChangeContainmentDialogCommand(final TransactionalEditingDomain domain, final ICommand defaultCommand, final boolean isMany){
+
+
+	protected final ICommand getOpenConfirmChangeContainmentDialogCommand(final TransactionalEditingDomain domain, final ICommand defaultCommand, final boolean isMany) {
 		final String messageDialog;
 		if(isMany) {
 			messageDialog = "Your are setting a value in a containment feature. This action will change the owner of the dropped element(s).\nContinue?";
