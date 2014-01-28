@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,15 +25,15 @@ import org.eclipse.xtext.resource.XtextResourceSet;
 
 /**
  * A helper for XText stylesheets
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class XtextStylesheetHelper {
 
 	/**
 	 * Loads and returns a Resource containing an XText Stylesheet
-	 * 
+	 *
 	 * @param stylesheet
 	 *        The object representing the Stylesheet's path or contents
 	 * @param resourceSet
@@ -47,7 +47,7 @@ public class XtextStylesheetHelper {
 	 */
 	public static Resource loadStylesheet(StyleSheet stylesheet, ResourceSet resourceSet, View contextView, Shell parentShell) {
 		if(stylesheet instanceof StyleSheetReference) {
-			return loadStylesheet(stylesheet, resourceSet, contextView, parentShell);
+			return loadStylesheet((StyleSheetReference)stylesheet, resourceSet, contextView, parentShell);
 		} else if(stylesheet instanceof EmbeddedStyleSheet) {
 			//TODO: Edit EmbeddedStyleSheets with XText
 			throw new UnsupportedOperationException();
@@ -57,7 +57,7 @@ public class XtextStylesheetHelper {
 
 	/**
 	 * Loads and returns a Resource containing an XText Stylesheet
-	 * 
+	 *
 	 * @param stylesheet
 	 *        The object representing the Stylesheet's path
 	 * @param resourceSet

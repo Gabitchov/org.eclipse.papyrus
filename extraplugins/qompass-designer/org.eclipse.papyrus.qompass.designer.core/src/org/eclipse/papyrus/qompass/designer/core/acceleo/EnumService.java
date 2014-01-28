@@ -73,9 +73,11 @@ public class EnumService {
 	}
 
 	/**
-	 * Create a literal within an enumeration. Both, the literal and the enumeration may be an Acceleo template startiung with [
-	 * 
-	 * @param dummy
+	 * Create a literal within an enumeration. Both, the literal and the enumeration may be an
+	 * Acceleo template. If the name of the enumeration starts with "L", it is considered as a
+	 * local enumeration, i.e. a nested classifier within the classifier (it has to be a class)
+	 * from the transformation context.
+	 *
 	 * @param enumName
 	 *        the name of an enumeration
 	 * @param literal
@@ -83,23 +85,6 @@ public class EnumService {
 	 * @return
 	 */
 	public static String literal(String enumName, String literal) {
-		// Acceleo does not expand parameters, so we do it here
-		/*
-		 * if(enumName.contains("[") && enumName.contains("/]")) {
-		 * try {
-		 * enumName = AcceleoDriver.bind(enumName, dummy);
-		 * } catch (TransformationException e) {
-		 * return e.toString();
-		 * }
-		 * }
-		 * if(literal.contains("[") && enumName.contains("/]")) {
-		 * try {
-		 * literal = AcceleoDriver.bind(literal, dummy);
-		 * } catch (TransformationException e) {
-		 * return e.toString();
-		 * }
-		 * }
-		 */
 		Enumeration enumeration = enumHash.get(enumName);
 		if(enumPkg == null) {
 			return literal;
@@ -121,9 +106,21 @@ public class EnumService {
 		// declare a dependency to the enumeration from the current classifier 
 		checkAndCreateDependency(TransformationContext.classifier, enumeration);
 
-		return literal;
+		if (enumName.startsWith("L")) { //$NON-NLS-1$
+			return literal;
+		}
+		else {
+			return GLOBALENUMS + "::" + literal; //$NON-NLS-1$
+		}
 	}
 
+	/**
+	 * Create a dependency between the passed classifier, target pair. The objective
+	 * of this function is that code generators do the necessary to assure that the
+	 * target is known within the classifier (e.g. include directives)
+	 * @param classifier a classifier
+	 * @param target a target, on which the classifier or its code depends.
+	 */
 	public static void checkAndCreateDependency(Classifier classifier, NamedElement target) {
 		boolean found = false;
 		for(Dependency dep : classifier.getClientDependencies()) {
@@ -132,7 +129,8 @@ public class EnumService {
 			}
 		}
 		if(!found) {
-			classifier.createDependency(target);
+			Dependency dep = classifier.createDependency(target);
+			dep.setName(String.format("from %s to %s", classifier.getName(), target.getName())); //$NON-NLS-1$
 		}
 	}
 

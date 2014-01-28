@@ -66,8 +66,8 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 	public void notifyChanged(Notification n) {
 		Object notifier = n.getNotifier();
 
-		if (notifier instanceof Resource) {
-			Resource r = (Resource)notifier;
+		if(notifier instanceof Resource.Internal) {
+			Resource.Internal r = (Resource.Internal)notifier;
 
 			if (n.getEventType() == Notification.SET && n.getFeatureID(Resource.class) == Resource.RESOURCE__URI) {
 				r.setModified(true);
@@ -98,13 +98,21 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 					break;
 				}
 
-				if (!objects.isEmpty()) {
-					r.setModified(true);
-				}
+				if(!r.isLoading()) {
+					if(!objects.isEmpty()) {
+						r.setModified(true);
+					}
 
-				for (Object o : objects) {
-					if (o instanceof EObject) {
-						setReferencingResourcesAsModified((EObject)o);
+					for(Object o : objects) {
+						if(o instanceof EObject) {
+							TreeIterator<Object> properContents = EcoreUtil.getAllProperContents((EObject)o, false);
+							while(properContents.hasNext()) {
+								Object obj = properContents.next();
+								if(obj instanceof EObject) {
+									setReferencingResourcesAsModified((EObject)obj);
+								}
+							}
+						}
 					}
 				}
 			}
@@ -118,8 +126,8 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 		for (Setting setting : references) {
 			EStructuralFeature f = setting.getEStructuralFeature();
 			if(setting.getEObject() != null && !f.isDerived() && !f.isTransient()) {
-				Resource refResource = setting.getEObject().eResource();
-				if(refResource != null) {
+				Resource.Internal refResource = (org.eclipse.emf.ecore.resource.Resource.Internal)setting.getEObject().eResource();
+				if(refResource != null && !refResource.isLoading()) {
 					refResource.setModified(true);
 				}
 			}

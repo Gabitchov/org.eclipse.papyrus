@@ -31,7 +31,6 @@ import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.ConnectorBinding;
@@ -153,21 +152,8 @@ public class ConnectorReification {
 		}
 		Property tmConnectorPart = copy.getCopy(smConnectorPart);
 		tmConnectorPart.setType(connectorImplem);
-		// now retarget connectors towards this part
-
-		for(Connector connector : tmComponent.getOwnedConnectors()) {
-			if(ConnectorUtils.connectsPart(connector, tmConnectorPart)) {
-				// the connector end targets a port of a part or the composite (in case of delegation)
-				ConnectorEnd connEnd = ConnectorUtils.connEndForPart(connector, tmConnectorPart);
-				// redirect role, if pointing to port
-				if(connEnd.getRole() instanceof Port) {
-					Port connectedTemplatePort = (Port)connEnd.getRole();
-					Port connectedBoundPort = (Port)Utils.getNamedElementFromList(
-						PortUtils.getAllPorts(connectorImplem), connectedTemplatePort.getName());
-					connEnd.setRole(connectedBoundPort);
-				}
-			}
-		}
+		// now re-target connectors towards this part
+		TemplateUtils.retargetConnectors(tmComponent, tmConnectorPart);
 		return tmConnectorPart;
 	}
 
@@ -465,9 +451,7 @@ public class ConnectorReification {
 			for(Slot slot : compositeIS.getSlots()) {
 				if(slot.getDefiningFeature() == otherPart) {
 					InstanceSpecification containedInstance = DepUtils.getInstance(slot);
-					// TODO: too complicated, if the non-connector is a composite as well, it must be clearly allocated
-					EList<InstanceSpecification> nodes = AllocUtils.getAllNodesForPort(
-						containedInstance, otherPort);
+					EList<InstanceSpecification> nodes = AllocUtils.getAllNodesForPort(containedInstance, otherPort);
 					AllocUtils.propagateNodesViaPort(
 							DepUtils.getInstance(partSlot), myPort, nodes);
 					break;

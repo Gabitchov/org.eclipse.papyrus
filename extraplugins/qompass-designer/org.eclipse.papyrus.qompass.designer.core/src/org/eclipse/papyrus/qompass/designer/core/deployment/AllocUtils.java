@@ -58,8 +58,13 @@ public class AllocUtils {
 	 */
 	public static EList<InstanceSpecification> getAllNodes(InstanceSpecification instance) {
 		EList<InstanceSpecification> nodeList = getNodes(instance);
-		for(InstanceSpecification containedInstance : DepUtils.getContainedInstances(instance)) {
-			nodeList.addAll(getAllNodes(containedInstance));
+		for(Slot slot : instance.getSlots()) {
+			if (!DepUtils.isShared(slot)) {
+				InstanceSpecification containedInstance = DepUtils.getInstance(slot);
+				if (containedInstance != null) {
+					nodeList.addAll(getAllNodes(containedInstance));
+				}
+			}
 		}
 		return nodeList;
 	}

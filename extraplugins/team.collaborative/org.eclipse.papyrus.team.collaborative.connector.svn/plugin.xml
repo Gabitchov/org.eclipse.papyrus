@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.team.collaborative.collaborative">
+      <ParticipantFactory
+            id="org.eclipse.papyrus.team.collaborative.connector.svn"
+            impl="org.eclipse.papyrus.team.collaborative.connector.svn.SVNCollabFactory"
+            priority="10">
+      </ParticipantFactory>
+   </extension>
+
+
+</plugin>

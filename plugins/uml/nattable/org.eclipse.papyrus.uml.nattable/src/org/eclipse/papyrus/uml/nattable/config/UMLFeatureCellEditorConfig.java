@@ -15,12 +15,12 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.ComboBoxCellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.editor.TextCellEditor;
+import org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
@@ -35,6 +35,8 @@ import org.eclipse.papyrus.uml.nattable.editor.MultiReferenceCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiStringCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiUnlimitedNaturalCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.SingleReferenceValueCellEditor;
+import org.eclipse.papyrus.uml.nattable.editor.StereotypeApplierCellEditorWrapper;
+import org.eclipse.papyrus.uml.nattable.editor.StereotypeApplierDialogCellEditorWrapper;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.nattable.validator.RealDataValidator;
 import org.eclipse.papyrus.uml.nattable.validator.UnlimitedNaturalDataValidator;
@@ -133,7 +135,6 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			//			conf.setAction(action);
 			//			conf.setTooltipText("Open a dialog to select the value");
 			//			editor = new ComboBoxWithButtonCellEditor(dataProvider, conf);
-			INattableModelManager manager = (INattableModelManager)elementProvider;
 			editor = new SingleReferenceValueCellEditor(axisElement, elementProvider);
 			break;
 		case SINGLE_UML_ENUMERATION:
@@ -166,6 +167,14 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 		default:
 			editor = super.getICellEditor(table, axisElement, elementProvider);
 			break;
+		}
+		// to apply required stereotype before edition
+		// see bug 426709: [Table 2][Stereotype] Papyrus Table must allows to edit stereotype properties even if the required stereotypes is not yet applied
+		//		  https://bugs.eclipse.org/bugs/show_bug.cgi?id=426709
+		if(editor instanceof AbstractDialogCellEditor) {
+			editor = new StereotypeApplierDialogCellEditorWrapper((AbstractDialogCellEditor)editor, axisElement, elementProvider);
+		} else if(editor instanceof ICellEditor) {
+			editor = new StereotypeApplierCellEditorWrapper(editor, axisElement, elementProvider);
 		}
 		return editor;
 	}

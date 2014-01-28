@@ -129,7 +129,7 @@ public class WarningAndCreateParameterDialog extends MessageDialog {
 		completeText.append(START_FORM);
 		StringBuffer impactText = new StringBuffer();
 		// explore referencing elements
-		Collection<Setting> references = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(parameterOwner);
+		Collection<Setting> references = CacheAdapter.getInstance().getNonNavigableInverseReferences(parameterOwner);
 		HashSet<EObject> impactedElements = new HashSet<EObject>();
 		for(Setting ref : references) {
 			EObject referencing = ref.getEObject();

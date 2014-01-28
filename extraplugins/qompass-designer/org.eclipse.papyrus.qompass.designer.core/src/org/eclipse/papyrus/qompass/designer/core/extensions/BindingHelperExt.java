@@ -20,6 +20,7 @@ import org.eclipse.papyrus.FCM.BindingHelper;
 import org.eclipse.papyrus.FCM.util.IBindingHelper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.CopyListener;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.TemplateBinding;
 
@@ -73,6 +74,7 @@ public class BindingHelperExt {
 				exception.printStackTrace();
 			}
 		}
-		return null;
+		throw new TransformationRTException(
+				String.format("Cannot find binding helper <%s>", helperName));
 	}
 }

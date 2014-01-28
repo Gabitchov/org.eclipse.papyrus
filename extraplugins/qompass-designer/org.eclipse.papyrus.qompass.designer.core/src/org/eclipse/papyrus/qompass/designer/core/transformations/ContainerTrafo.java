@@ -21,10 +21,15 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.FCM.BindTemplate;
 import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.ContainerRuleKind;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.FCM.InterceptionKind;
 import org.eclipse.papyrus.FCM.InterceptionRule;
+import org.eclipse.papyrus.FCM.Singleton;
+import org.eclipse.papyrus.FCM.util.FCMUtil;
+import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
@@ -33,7 +38,6 @@ import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
-import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
@@ -46,11 +50,11 @@ import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.TemplateBinding;
+import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -98,16 +102,30 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 	 */
 	@Override
 	public void createContainer(Class smComponent, Class tmComponent) throws TransformationException {
-		Package tmPkgOwner = tmComponent.getNearestPackage();
-		// create a container with the suitable postfix
+		Package tmPkgOwner;
+		if (tmComponent.eResource() == tmCDP.eResource()) {
+			// tmComponent is in same model as tmContainer
+			tmPkgOwner = tmComponent.getNearestPackage();
+		}
+		else {
+			// tmComponent is not a member of the target model. This is the case, if tmComponent is
+			// in an imported model that has not been copied during the transformation towards an intermediate
+			// model.
+			tmPkgOwner = MapUtil.getAndCreate(Utils.getTop(tmCDP), tmComponent.allNamespaces(), true);
+		}
+		// create a container with the suitable postfix	
 		tmContainerImpl = tmPkgOwner.createOwnedClass(tmComponent.getName() + containerPostfix, false);
+		
+		// Apply singleton to container, if original class is a singleton
+		boolean isSingleton = StereotypeUtil.isApplied(smComponent, Singleton.class);
+		if (isSingleton) {
+			StereotypeUtil.apply(tmContainerImpl, Singleton.class);
+		}
 		Copy.copyID(tmComponent, tmContainerImpl, containerPostfix);
 
 		// add part and slot corresponding to component;
 		executorPart = tmContainerImpl.createOwnedAttribute(executorPartName, tmComponent);
 		Copy.copyID(tmComponent, executorPart, "e"); //$NON-NLS-1$
-
-		this.smClass = smComponent;
 
 		executorPart.setIsComposite(true);
 
@@ -118,7 +136,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		for(Port port : PortUtils.getAllPorts(tmComponent)) {
 			// copy port
 			if (port.getVisibility() == VisibilityKind.PUBLIC_LITERAL) { 
-				Port newPort = EcoreUtil.copy(port); // don't use E3CM copy, since this is not a copy from source to target model
+				Port newPort = EcoreUtil.copy(port); // don't use Qompass copy, since this is not a copy from source to target model
 				tmContainerImpl.getOwnedAttributes().add(newPort);
 				StUtils.copyStereotypes(port, newPort);
 
@@ -190,26 +208,17 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		// containers.put(tmComponent, this);
 		EList<Slot> connectorSlots = new BasicEList<Slot>();
 		
+		executorIS = tmIS;
 		// now create instances for the contained elements
 		for(Property extensionPart : tmContainerImpl.getAttributes()) {
 			Type tmContainerExtImpl = extensionPart.getType();
 			if(tmContainerExtImpl instanceof Class) {
-				if (DepUtils.getSlot(executorIS, extensionPart) == null) {
+				if (DepUtils.getSlot(containerIS, extensionPart) == null) {
 					// no slot for part exists => assume that the part has been added by the container and create an instance specification for it.
-					String isName;
 					InstanceSpecification containerExtIS = null;
-					if(Utils.isSingleton((Class)tmContainerExtImpl)) {
-						// is a singleton - exactly one instance exists
-						// use a common instance prefix for singletons
-						isName = DeployConstants.singletonPrefix + extensionPart.getName();
-						PackageableElement pe = tmCDP.getPackagedElement(isName);
-						if (pe instanceof InstanceSpecification) {
-							containerExtIS = (InstanceSpecification) pe;
-						}
-					}
-					else {
-						isName = containerIS.getName() + "." + extensionPart.getName(); //$NON-NLS-1$
-					}
+					
+					String isName = containerIS.getName() + "." + extensionPart.getName(); //$NON-NLS-1$
+			
 					// create sub-instance and slot for extensions
 					if (containerExtIS == null) {
 						containerExtIS = DepCreation.createDepPlan(tmCDP, (Class)tmContainerExtImpl, isName, false);
@@ -304,23 +313,21 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				// DepUtils.chooseImplementation((Class) type,
 				// new BasicEList<InstanceSpecification>(), false);
 
-				if(StereotypeUtil.isApplied(extOrInterceptor, InteractionComponent.class)) {
+				if(StereotypeUtil.isApplied(part, InterceptionRule.class)) {
+					if(StereotypeUtil.isApplied(extOrInterceptor, InteractionComponent.class)) {
 
-					InterceptionRule interceptionRule = UMLUtil.getStereotypeApplication(part, InterceptionRule.class);
-					InterceptionKind interceptionKind = InterceptionKind.INTERCEPT_ALL; // default: intercept all ports
-					EList<Feature> interceptFeatures = null;
-					if(interceptionRule != null) {
-						interceptionKind = interceptionRule.getInterceptionKind();
-						interceptFeatures = interceptionRule.getInterceptionSet();
-					}
-					EList<Property> interceptorParts =
+						InterceptionRule interceptionRule = UMLUtil.getStereotypeApplication(part, InterceptionRule.class);
+						InterceptionKind interceptionKind = interceptionRule.getInterceptionKind();
+						EList<Feature> interceptFeatures = interceptionRule.getInterceptionSet();
+						EList<Property> interceptorParts =
 						expandInterceptorExtension(interceptionKind, interceptFeatures, extOrInterceptor, tmComponent);
-					interceptorPartsMap.put(part, interceptorParts);
-				}
-				else if(StereotypeUtil.isApplied(part, InterceptionRule.class)) {
-					throw new TransformationException(String.format(
-						Messages.ContainerTrafo_InterceptionRuleButNoInterceptor,
-						part.getName(), smContainerRule.getBase_Class().getName()));
+						interceptorPartsMap.put(part, interceptorParts);
+					}
+					else {
+						throw new TransformationException(String.format(
+							Messages.ContainerTrafo_InterceptionRuleButNoInterceptor,
+							part.getName(), smContainerRule.getBase_Class().getName()));
+					}
 				}
 				else {
 					Property extensionPart =
@@ -333,7 +340,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			}
 		}
 		createConnectorForAssociations();
-		// tell copy that tmcontainerImpl is associated with the smContainerRule
+
+		// tell copier that tmcontainerImpl is associated with the smContainerRule
 		// register a package template (although it is not a template) to assure that the connectors
 		// get copied, although they are in a different resource (only the connectors are copied, not
 		// the types of the referenced parts).
@@ -375,6 +383,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			}
 		}
 		copy.setPackageTemplate(null, null);
+		
+		TemplateUtils.retargetConnectors(tmContainerImpl);
 	}
 
 	/**
@@ -392,15 +402,62 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		if(signature == null) {
 			// no template signature, just copy the container extension into the target model
 			tmContainerExtImpl = copy.getCopy(smContainerExtImpl);
-		} else {
-			// template signature found, instantiate container extension via the
-			// template binding mechanism
-			TemplateBinding binding = TemplateUtils.fixedBinding(copy.target, smContainerExtImpl, tmComponent);
+		}
+		else {
+			// template signature found, instantiate container extension via template binding mechanism
+			Classifier actual;
+			if (StereotypeUtil.isApplied(smExtensionPart, BindTemplate.class)) {
+				BindTemplate bt = UMLUtil.getStereotypeApplication(smExtensionPart, BindTemplate.class);
+				// use explicit binding from stereotype
+				actual = (Classifier) bt.getActual().get(0);
+			}
+			else {
+				// use executor component as actual
+				actual = tmComponent;
+			}
+			// template signature and instantiate container extension via the
+			// template binding mechanism, use executor component as actual
+			TemplateBinding binding = TemplateUtils.fixedBinding(copy.target, smContainerExtImpl, actual);
 			Object[] args = new Object[]{};
 			TemplateInstantiation ti = new TemplateInstantiation(copy, binding, args);
 			tmContainerExtImpl = (Class)ti.bindNamedElement(smContainerExtImpl);
 		}
 
+		// --------------------------------------------------
+		// a container extension could be subject to container rules as well, i.e. need
+		// to handle recursive rule application.
+		EList<ContainerRule> rules = FCMUtil.getAllContainerRules(smContainerExtImpl);
+
+		// get container trafo instance, if already existing
+		AbstractContainerTrafo containerTrafo = ContainerTrafo.get(tmContainerExtImpl);
+
+		if(containerTrafo == null) {
+			// no container exists, check rules and create eventually
+			for(ContainerRule rule : rules) {
+				if(RuleManagement.isRuleActive(rule)) {
+					// at least one active rule => create container (or get previously instantiated))
+					if(containerTrafo == null) {
+						if(rule.getKind() == ContainerRuleKind.LIGHT_WEIGHT_OO_RULE) {
+							throw new TransformationException("Recursive lightweight container rules currently not supported");
+						}
+						else {
+							containerTrafo = new ContainerTrafo(copy, tmCDP, null);
+						}
+						containerTrafo.createContainer(smContainerExtImpl, tmContainerExtImpl);
+					}
+					else {
+						// configure only??
+					}
+					containerTrafo.applyRule(rule, smContainerExtImpl, tmContainerExtImpl);
+				}
+			}
+			if (containerTrafo != null) {
+				containerTrafo.finalize();
+				tmContainerExtImpl = ((ContainerTrafo) containerTrafo).getContainer();
+			}
+		}
+		// --------------------------------------------------
+		
 		// add part associated with the extension to the container
 		extensionPart = tmContainerImpl.createOwnedAttribute(name, tmContainerExtImpl);
 
@@ -408,6 +465,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		extensionPart.setAggregation(smExtensionPart.getAggregation());
 		Copy.copyMultElemModifiers(smExtensionPart, extensionPart);
 		Copy.copyFeatureModifiers(smExtensionPart, extensionPart);
+	
 		return extensionPart;
 	}
 
@@ -436,13 +494,27 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			if(extKind == InterceptionKind.INTERCEPT_ALL_IN) {
 				// IN-PORT = provided port
 				match = (PortUtils.getProvided(port) != null);
-			} else if(extKind == InterceptionKind.INTERCEPT_ALL_OUT) {
+			}
+			else if(extKind == InterceptionKind.INTERCEPT_ALL_OUT) {
 				// IN-PORT = provided port
 				match = (PortUtils.getRequired(port) != null);
-			} else if(extKind == InterceptionKind.INTERCEPT_SOME) {
+			}
+			else if(extKind == InterceptionKind.INTERCEPT_SOME) {
 				// comparison based on name, since in different models
 				match = (Utils.getNamedElementFromList(featureList, port.getName()) != null);
 			}
+			else if(extKind == InterceptionKind.INTERCEPT_MATCHING) {
+				EList<Port> interceptorPorts = PortUtils.getAllPorts(smContainerConnImpl);
+				match = false;
+				// get first port from interception connector that is typed with a template parameter
+				for (Port interceptorPort : interceptorPorts) {
+					if (interceptorPort.getType().getOwner() instanceof TemplateParameter) {
+						match = (PortUtils.getKind(port) == PortUtils.getKind(interceptorPort));
+						break;
+					}
+				}
+			}		
+			
 			// else INTERCEPT_ALL_PORT => match remains true
 			if(!match) {
 				// port does not match criterion, continue with next port
@@ -465,7 +537,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				throw new TransformationException(Messages.ContainerTrafo_CannotFindDelegationConn);
 			}
 
-			interceptionConnector.setName(interceptorName + port.getName() + counter);
+			interceptionConnector.setName(interceptionName);
 			org.eclipse.papyrus.FCM.Connector fcmConn = StereotypeUtil.applyApp(interceptionConnector, org.eclipse.papyrus.FCM.Connector.class);
 			InteractionComponent fcmConnType = UMLUtil.getStereotypeApplication(smContainerConnImpl, InteractionComponent.class);
 			fcmConn.setIc(fcmConnType);
@@ -529,11 +601,12 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 
 	/**
 	 * Create an connector for parts that have an association. The rationale
-	 * behind this is
+	 * behind this is support connections between the state machine in the container
+	 * and the executor.
 	 * 
 	 */
 	public void createConnectorForAssociations() {
-		// TODO: keep list of added parts, only recheck those!
+		// TODO: keep list of added parts, only re-check those!
 
 		for(Property part : Utils.getParts(tmContainerImpl)) {
 			if(part.getType() == null) {
@@ -595,7 +668,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 					for (Port svcPort : containerSvc.getOwnedPorts()) {
 						if (PortUtils.matches(executorPort, svcPort, true)) {
 							// create connector
-							Connector c = tmContainerImpl.createOwnedConnector("auto"); //$NON-NLS-1$
+							Connector c = tmContainerImpl.createOwnedConnector(
+								String.format("auto from %s to %s", executorPart.getName(), svcPart.getName())); //$NON-NLS-1$
 							ConnectorEnd ce1 = c.createEnd();
 							ConnectorEnd ce2 = c.createEnd();
 							ce1.setPartWithPort(executorPart);
