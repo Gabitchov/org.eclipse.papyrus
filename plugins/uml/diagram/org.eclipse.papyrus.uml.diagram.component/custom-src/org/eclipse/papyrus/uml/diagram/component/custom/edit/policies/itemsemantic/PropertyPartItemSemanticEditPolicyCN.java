@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.component.edit.commands.ConnectorCreateCommand;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.ConnectorCreateCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
@@ -87,6 +87,8 @@ public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.um
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Connector_4019 == req.getElementType()) {
+			req.setParameter(org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_SOURCE_GRAPHICAL, getHost());
+
 			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);
@@ -103,6 +105,8 @@ public class PropertyPartItemSemanticEditPolicyCN extends org.eclipse.papyrus.um
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if(UMLElementTypes.Connector_4019 == req.getElementType()) {
+			req.setParameter(org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.GraphicalNodeEditPolicy.CONNECTOR_CREATE_REQUEST_TARGET_GRAPHICAL, getHost());
+
 			return getGEFWrapper(new ConnectorCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);

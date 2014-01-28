@@ -21,6 +21,7 @@ import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -184,8 +185,47 @@ public class DepCreation {
 		}
 		visitedClassifiers.push(typeOrImplem);
 
-		InstanceSpecification is = (InstanceSpecification)
-			cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
+		InstanceSpecification is;
+		// treat singleton
+		if(Utils.isSingleton((Class)typeOrImplem)) {
+			// is a singleton - exactly one instance exists
+			InstanceSpecification mainInstance = DepUtils.getMainInstance(cdp);
+
+			// use canonical name for singleton instance - lower case for type-name
+			String partName = DeployConstants.singletonPrefix + typeOrImplem.getName().toLowerCase();
+			name = mainInstance.getName() + DeployConstants.SEP_CHAR + partName;
+			PackageableElement pe = cdp.getPackagedElement(name);
+
+			if(pe == null) {
+				// instance specification for singleton does not exist yet => create
+								
+				Classifier system = DepUtils.getClassifier(mainInstance);
+				Property singletonAttr = system.getAttribute(partName, typeOrImplem);
+				if((singletonAttr == null) && system instanceof Class) {
+					singletonAttr = ((Class) system).createOwnedAttribute(partName, typeOrImplem);
+					singletonAttr.setAggregation(AggregationKind.COMPOSITE_LITERAL);
+				}
+				
+				is = (InstanceSpecification)
+						cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
+				// create slot within main instance
+				createSlot(mainInstance, is, singletonAttr);
+			}
+			else if (pe instanceof InstanceSpecification) {
+				// exists already, return it without recursing into its sub-specifications
+				return (InstanceSpecification) pe;
+			}
+			else {
+				// unlikely case that a packaged element with the name
+				// <singletonISname> exists already, but is not an instance specification
+				throw new TransformationException(String.format(
+					"singleton instantiation: element with name %s exists already in deployment plan, but is not an instance specification", name));
+			}
+		}
+		else {
+			 is = (InstanceSpecification)
+					cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
+		}
 
 		if(name.equals(DeployConstants.MAIN_INSTANCE)) {
 			DepUtils.setMainInstance(cdp, is);
@@ -255,7 +295,7 @@ public class DepCreation {
 				if(((type instanceof Class) && Utils.isComponent((Class)type)) || type instanceof Node) {
 					Class cl = (Class)type;
 
-					// hack: ad-hoc replication support. Better solution via design patterns
+					// TODO: ad-hoc replication support. Better solution via design patterns
 					int upper = attribute.getUpper();
 					String infix = ""; //$NON-NLS-1$
 
@@ -267,8 +307,10 @@ public class DepCreation {
 						}
 						InstanceSpecification partIS = createDepPlan(cdp, cl,
 							partName, createSlotsForConfigValues, visitedClassifiers);
-
-						createSlot(is, partIS, attribute);
+						// may not create slot for singleton, since automatically done
+						if(!Utils.isSingleton((Class)type)) {
+							createSlot(is, partIS, attribute);
+						}
 					}
 				}
 				else if(StereotypeUtil.isApplied(attribute, ConfigurationProperty.class)
@@ -287,34 +329,10 @@ public class DepCreation {
 					Messages.DepCreation_InfoCreateDepPlan, type.getQualifiedName()));
 				if(Utils.isSingleton((Class)type)) {
 					// is a singleton - exactly one instance exists
-					// use a common instance prefix for singletons
-					InstanceSpecification mainInstance = DepUtils.getMainInstance(cdp);
-					String partName = mainInstance.getName() + DeployConstants.SEP_CHAR + DeployConstants.singletonPrefix + attribute.getName();
-					PackageableElement pe = cdp.getPackagedElement(partName);
-
-					if(pe instanceof InstanceSpecification) {
-						// instance specification for singleton exists already
-						Slot slot = createSlot(is, (InstanceSpecification)pe,
-							attribute);
-						slot.setDefiningFeature(attribute);
-					} else if(type instanceof Class) {
-						// instance specification for singleton does not exist
-						// => create
-						// [case that a non-instance specification with the name
-						// <partName> exists already
-						// is not handled]
-						
-						Classifier system = DepUtils.getClassifier(mainInstance);
-						Property singletonAttr = null;
-						if (system instanceof Class) {
-							singletonAttr = ((Class) system).createOwnedAttribute(DeployConstants.singletonPrefix + attribute.getName(), type);
-						}
-						
-						InstanceSpecification singletonIS = createDepPlan(cdp,
-							(Class)type, partName, createSlotsForConfigValues, visitedClassifiers);
-						createSlot(is, singletonIS, attribute);
-						createSlot(mainInstance, singletonIS, singletonAttr);
-					}
+					// recursive call - pass empty name, since name for singletons is re-calculated.
+					InstanceSpecification singletonIS = createDepPlan(cdp,
+						(Class)type, "", createSlotsForConfigValues, visitedClassifiers); //$NON-NLS-1$
+					createSlot(is, singletonIS, attribute);
 				}
 			} else if(type == null) {
 				throw new TransformationException(String.format(Messages.DepCreation_TypeInAttributeUndefined,

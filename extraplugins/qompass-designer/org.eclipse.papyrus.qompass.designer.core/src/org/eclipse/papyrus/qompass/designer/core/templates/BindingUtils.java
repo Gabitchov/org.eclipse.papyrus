@@ -37,7 +37,14 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class BindingUtils {
 	
-	public static Operation instantiateOperation(Copy copy, Element actual, Operation operation, Class boundClass) {
+	/**
+	 * Bind an operation by copying the signature from the actual.
+	 * @param copy the copier
+	 * @param actual the actual. If an operation, its signature is copied to the template
+	 * @param operation The operation template
+	 * @return
+	 */
+	public static Operation instantiateOperation(Copy copy, Element actual, Operation operation) {
 		try {
 			Operation newOperation = copy.getCopy(operation);
 			if(actual instanceof Operation) {

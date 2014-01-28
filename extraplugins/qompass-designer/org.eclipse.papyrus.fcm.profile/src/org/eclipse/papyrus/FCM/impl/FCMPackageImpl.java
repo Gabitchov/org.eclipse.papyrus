@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.FCM.Assembly;
 import org.eclipse.papyrus.FCM.AutoIndex;
 import org.eclipse.papyrus.FCM.AutoIndexPerNode;
+import org.eclipse.papyrus.FCM.BindTemplate;
 import org.eclipse.papyrus.FCM.BindingHelper;
 import org.eclipse.papyrus.FCM.CodeGenOptions;
 import org.eclipse.papyrus.FCM.CompImplTemplate;
@@ -327,6 +328,13 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * @generated
 	 */
 	private EClass connectorConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass bindTemplateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1446,6 +1454,33 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBindTemplate() {
+		return bindTemplateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBindTemplate_Actual() {
+		return (EReference)bindTemplateEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBindTemplate_Base_Property() {
+		return (EReference)bindTemplateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getContainerRuleKind() {
 		return containerRuleKindEEnum;
 	}
@@ -1638,6 +1673,10 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		connectorConfigurationEClass = createEClass(CONNECTOR_CONFIGURATION);
 		createEReference(connectorConfigurationEClass, CONNECTOR_CONFIGURATION__BASE_SLOT);
 		createEReference(connectorConfigurationEClass, CONNECTOR_CONFIGURATION__CONNECTOR);
+
+		bindTemplateEClass = createEClass(BIND_TEMPLATE);
+		createEReference(bindTemplateEClass, BIND_TEMPLATE__ACTUAL);
+		createEReference(bindTemplateEClass, BIND_TEMPLATE__BASE_PROPERTY);
 
 		// Create enums
 		containerRuleKindEEnum = createEEnum(CONTAINER_RULE_KIND);
@@ -1834,6 +1873,10 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		initEReference(getConnectorConfiguration_Base_Slot(), theUMLPackage.getSlot(), null, "base_Slot", null, 1, 1, ConnectorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConnectorConfiguration_Connector(), this.getConnector(), null, "connector", null, 1, 1, ConnectorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(bindTemplateEClass, BindTemplate.class, "BindTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getBindTemplate_Actual(), theUMLPackage.getType(), null, "actual", null, 0, -1, BindTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getBindTemplate_Base_Property(), theUMLPackage.getProperty(), null, "base_Property", null, 1, 1, BindTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
 		// Initialize enums and add enum literals
 		initEEnum(containerRuleKindEEnum, ContainerRuleKind.class, "ContainerRuleKind"); //$NON-NLS-1$
 		addEEnumLiteral(containerRuleKindEEnum, ContainerRuleKind.COMPONENT_RULE);
@@ -1844,6 +1887,7 @@ public class FCMPackageImpl extends EPackageImpl implements FCMPackage {
 		addEEnumLiteral(interceptionKindEEnum, InterceptionKind.INTERCEPT_ALL);
 		addEEnumLiteral(interceptionKindEEnum, InterceptionKind.INTERCEPT_ALL_OUT);
 		addEEnumLiteral(interceptionKindEEnum, InterceptionKind.INTERCEPT_ALL_IN);
+		addEEnumLiteral(interceptionKindEEnum, InterceptionKind.INTERCEPT_MATCHING);
 
 		// Create resource
 		createResource(eNS_URI);

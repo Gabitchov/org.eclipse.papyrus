@@ -220,7 +220,7 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	private Set<ActivityParameterNode> getActivityParameterNodesFromParameter(Parameter parameter) {
 		Set<ActivityParameterNode> references = new HashSet<ActivityParameterNode>();
 		if(parameter != null) {
-			Collection<Setting> inverseReferences = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(parameter);
+			Collection<Setting> inverseReferences = CacheAdapter.getInstance().getNonNavigableInverseReferences(parameter);
 			for(Setting ref : inverseReferences) {
 				if(UMLPackage.eINSTANCE.getActivityParameterNode_Parameter().equals(ref.getEStructuralFeature()) && ref.getEObject().eContainer() != null) {
 					references.add((ActivityParameterNode)ref.getEObject());

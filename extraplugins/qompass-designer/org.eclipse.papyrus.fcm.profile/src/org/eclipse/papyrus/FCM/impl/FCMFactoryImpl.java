@@ -103,6 +103,7 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 			case FCMPackage.AUTO_INDEX_PER_NODE: return createAutoIndexPerNode();
 			case FCMPackage.INIT_PRECEDENCE: return createInitPrecedence();
 			case FCMPackage.CONNECTOR_CONFIGURATION: return createConnectorConfiguration();
+			case FCMPackage.BIND_TEMPLATE: return createBindTemplate();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -500,6 +501,16 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	public ConnectorConfiguration createConnectorConfiguration() {
 		ConnectorConfigurationImpl connectorConfiguration = new ConnectorConfigurationImpl();
 		return connectorConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BindTemplate createBindTemplate() {
+		BindTemplateImpl bindTemplate = new BindTemplateImpl();
+		return bindTemplate;
 	}
 
 	/**

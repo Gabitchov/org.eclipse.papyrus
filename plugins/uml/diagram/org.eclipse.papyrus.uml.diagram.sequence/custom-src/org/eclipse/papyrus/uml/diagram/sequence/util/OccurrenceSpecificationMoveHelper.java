@@ -171,7 +171,7 @@ public class OccurrenceSpecificationMoveHelper {
 		}
 		// reconnect general ordering from the event
 		for(GeneralOrdering go : movedOccurrenceSpecification.getToAfters()) {
-			Collection<Setting> settings = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(go);
+			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(go);
 			for(Setting ref : settings) {
 				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
 					View view = (View)ref.getEObject();
@@ -189,7 +189,7 @@ public class OccurrenceSpecificationMoveHelper {
 		}
 		// reconnect general ordering to the event
 		for(GeneralOrdering go : movedOccurrenceSpecification.getToBefores()) {
-			Collection<Setting> settings = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(go);
+			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(go);
 			for(Setting ref : settings) {
 				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
 					View view = (View)ref.getEObject();
@@ -234,7 +234,7 @@ public class OccurrenceSpecificationMoveHelper {
 			// reconnect message from the event
 			Message message = ((MessageOccurrenceSpecification)movedOccurrenceSpecification).getMessage();
 			if(message != null && movedOccurrenceSpecification.equals(message.getSendEvent())) {
-				Collection<Setting> settings = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(message);
+				Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(message);
 				for(Setting ref : settings) {
 					if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
 						View view = (View)ref.getEObject();
@@ -255,7 +255,7 @@ public class OccurrenceSpecificationMoveHelper {
 			}
 			// reconnect message to the event
 			if(message != null && movedOccurrenceSpecification.equals(message.getReceiveEvent())) {
-				Collection<Setting> settings = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(message);
+				Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(message);
 				for(Setting ref : settings) {
 					if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
 						View view = (View)ref.getEObject();

@@ -98,8 +98,9 @@ public abstract class AbstractCellManager implements ICellManager {
 	@Override
 	public void setValue(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final Object newValue, final INattableModelManager tableManager) {
 		final Command cmd = getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
-		assert cmd != null;
-		domain.getCommandStack().execute(cmd);
+		if(cmd != null) {
+			domain.getCommandStack().execute(cmd);
+		}
 	}
 
 	/**

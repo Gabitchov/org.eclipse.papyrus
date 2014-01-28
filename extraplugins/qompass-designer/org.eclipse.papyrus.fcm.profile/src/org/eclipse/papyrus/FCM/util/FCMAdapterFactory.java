@@ -226,6 +226,10 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 				return createConnectorConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseBindTemplate(BindTemplate object) {
+				return createBindTemplateAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -760,6 +764,20 @@ public class FCMAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConnectorConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.FCM.BindTemplate <em>Bind Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.FCM.BindTemplate
+	 * @generated
+	 */
+	public Adapter createBindTemplateAdapter() {
 		return null;
 	}
 

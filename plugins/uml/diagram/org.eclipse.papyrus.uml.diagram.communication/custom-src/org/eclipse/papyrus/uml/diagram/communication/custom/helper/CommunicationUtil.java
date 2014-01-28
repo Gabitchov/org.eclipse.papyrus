@@ -203,7 +203,7 @@ public class CommunicationUtil {
 			if(message == null) {
 				return null;
 			}
-			Collection<Setting> settings = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(message);
+			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(message);
 			for(Setting ref : settings) {
 				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
 					View view = (View)ref.getEObject();
@@ -229,7 +229,7 @@ public class CommunicationUtil {
 			if(execution == null) {
 				return null;
 			}
-			Collection<Setting> settings = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(execution);
+			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(execution);
 			for(Setting ref : settings) {
 				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
 					View view = (View)ref.getEObject();

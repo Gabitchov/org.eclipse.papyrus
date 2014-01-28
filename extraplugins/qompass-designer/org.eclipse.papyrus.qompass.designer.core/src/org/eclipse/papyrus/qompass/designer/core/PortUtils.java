@@ -247,10 +247,10 @@ public class PortUtils {
 	 */
 	public static boolean matches(Port portA, Port portB, boolean isAssembly) {
 		if(isAssembly) {
-			return (sameKinds(portA, portB) && (portA.isConjugated() != portB.isConjugated()));
+			return ((portA.getType() == portB.getType()) && sameKinds(portA, portB) && (portA.isConjugated() != portB.isConjugated()));
 		} else {
 			// delegation
-			return (sameKinds(portA, portB) && (portA.isConjugated() == portB.isConjugated()));
+			return ((portA.getType() == portB.getType()) && sameKinds(portA, portB) && (portA.isConjugated() == portB.isConjugated()));
 		}
 	}
 
