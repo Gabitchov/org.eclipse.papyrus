@@ -37,6 +37,10 @@
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KU5Y0lT0EeKvFeqt5Q_lqw" key="PropStereoDisplay" value=""/>
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_KU5Y01T0EeKvFeqt5Q_lqw" key="StereotypePropertyLocation" value="Compartment"/>
           </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_4k6AsHk1EeOph7IIHUnNoA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_4k7O0Hk1EeOph7IIHUnNoA" key="fillColor" value="true"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_4urnwHk1EeOph7IIHUnNoA" key="gradient" value="true"/>
+          </eAnnotations>
           <children xmi:type="notation:DecorationNode" xmi:id="_8rHJYFTzEeKvFeqt5Q_lqw" type="5126">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CBQusFT0EeKvFeqt5Q_lqw" source="CustomAppearance_Annotation">
               <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CGsoUFT0EeKvFeqt5Q_lqw" key="CustomAppearance_MaskValue" value="28"/>
@@ -76,7 +80,7 @@
         <children xmi:type="notation:DecorationNode" xmi:id="_6UflIVWUEeKdxoQIVxFNNg" type="5125">
           <layoutConstraint xmi:type="notation:Location" xmi:id="_6UflIlWUEeKdxoQIVxFNNg" x="25" y="3"/>
         </children>
-        <children xmi:type="notation:DecorationNode" xmi:id="_6UflI1WUEeKdxoQIVxFNNg" type="6029">
+        <children xmi:type="notation:DecorationNode" xmi:id="_6UflI1WUEeKdxoQIVxFNNg" visible="false" type="6029">
           <layoutConstraint xmi:type="notation:Location" xmi:id="_6UflJFWUEeKdxoQIVxFNNg" x="25" y="-10"/>
         </children>
         <element xmi:type="uml:Port" href="pathmap://QML_CORE/core.uml#_OfiosJsrEd61Eo3nmu3JhQ"/>
@@ -162,7 +166,7 @@
         <children xmi:type="notation:DecorationNode" xmi:id="_wd891lWUEeKdxoQIVxFNNg" type="5125">
           <layoutConstraint xmi:type="notation:Location" xmi:id="_wd9k4FWUEeKdxoQIVxFNNg" x="25" y="3"/>
         </children>
-        <children xmi:type="notation:DecorationNode" xmi:id="_wd9k4VWUEeKdxoQIVxFNNg" type="6029">
+        <children xmi:type="notation:DecorationNode" xmi:id="_wd9k4VWUEeKdxoQIVxFNNg" visible="false" type="6029">
           <layoutConstraint xmi:type="notation:Location" xmi:id="_wd9k4lWUEeKdxoQIVxFNNg" x="25" y="-10"/>
         </children>
         <element xmi:type="uml:Port" href="pathmap://QML_CORE/core.uml#_OfiosJsrEd61Eo3nmu3JhQ"/>
@@ -226,6 +230,10 @@
           </eAnnotations>
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XsTi5NHtEd-A1oPfP47IaQ" source="QualifiedName">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XsTi5dHtEd-A1oPfP47IaQ" key="QualifiedNameDepth" value="1000"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6iThgHk1EeOph7IIHUnNoA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6iUvoHk1EeOph7IIHUnNoA" key="fillColor" value="true"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6o-xQHk1EeOph7IIHUnNoA" key="gradient" value="true"/>
           </eAnnotations>
           <children xmi:type="notation:DecorationNode" xmi:id="_XsTi5tHtEd-A1oPfP47IaQ" type="5126">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yonwwFTzEeKvFeqt5Q_lqw" source="CustomAppearance_Annotation">
@@ -298,6 +306,10 @@
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZQkTYVWjEeKOivupHOJ8Ew" source="QualifiedName">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ZQkTYlWjEeKOivupHOJ8Ew" key="QualifiedNameDepth" value="1000"/>
           </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8slAsHk1EeOph7IIHUnNoA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8slnwHk1EeOph7IIHUnNoA" key="fillColor" value="true"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8-kvoHk1EeOph7IIHUnNoA" key="gradient" value="true"/>
+          </eAnnotations>
           <children xmi:type="notation:DecorationNode" xmi:id="_ZQkTY1WjEeKOivupHOJ8Ew" type="5040"/>
           <children xmi:type="notation:BasicCompartment" xmi:id="_ZQkTZFWjEeKOivupHOJ8Ew" type="7035">
             <children xmi:type="notation:Shape" xmi:id="_ET2zcFWkEeKOivupHOJ8Ew" type="3030" fontName="Sans Serif" lineColor="0">
@@ -322,6 +334,10 @@
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Z7UglFWjEeKOivupHOJ8Ew" source="QualifiedName">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Z7UglVWjEeKOivupHOJ8Ew" key="QualifiedNameDepth" value="1000"/>
           </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8smO0nk1EeOph7IIHUnNoA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8smO03k1EeOph7IIHUnNoA" key="fillColor" value="true"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8-nL4Hk1EeOph7IIHUnNoA" key="gradient" value="true"/>
+          </eAnnotations>
           <children xmi:type="notation:DecorationNode" xmi:id="_Z7UgllWjEeKOivupHOJ8Ew" type="5040"/>
           <children xmi:type="notation:BasicCompartment" xmi:id="_Z7Ugl1WjEeKOivupHOJ8Ew" type="7035">
             <children xmi:type="notation:Shape" xmi:id="_6VXKAFWjEeKOivupHOJ8Ew" type="3030" fontName="Sans Serif" lineColor="0">
@@ -345,6 +361,10 @@
           </eAnnotations>
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_85kzNFWjEeKOivupHOJ8Ew" source="QualifiedName">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_85kzNVWjEeKOivupHOJ8Ew" key="QualifiedNameDepth" value="1000"/>
+          </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8smO0Hk1EeOph7IIHUnNoA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8smO0Xk1EeOph7IIHUnNoA" key="fillColor" value="true"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8-l9wHk1EeOph7IIHUnNoA" key="gradient" value="true"/>
           </eAnnotations>
           <children xmi:type="notation:DecorationNode" xmi:id="_85kzNlWjEeKOivupHOJ8Ew" type="5040"/>
           <children xmi:type="notation:BasicCompartment" xmi:id="_85kzN1WjEeKOivupHOJ8Ew" visible="false" type="7035">
@@ -454,6 +474,10 @@
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_4HMOdDefEeGPyrZ5I3hMlA" source="QualifiedName">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_4HMOdTefEeGPyrZ5I3hMlA" key="QualifiedNameDepth" value="1000"/>
           </eAnnotations>
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__C2UgHk1EeOph7IIHUnNoA" source="PapyrusCSSForceValue">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__C2UgXk1EeOph7IIHUnNoA" key="fillColor" value="true"/>
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__Oj1QHk1EeOph7IIHUnNoA" key="gradient" value="true"/>
+          </eAnnotations>
           <children xmi:type="notation:DecorationNode" xmi:id="_4HMOdjefEeGPyrZ5I3hMlA" type="5126">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ENwn8FWjEeKOivupHOJ8Ew" source="CustomAppearance_Annotation">
               <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EUBoAFWjEeKOivupHOJ8Ew" key="CustomAppearance_MaskValue" value="28"/>
@@ -464,7 +488,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4HMOeTefEeGPyrZ5I3hMlA"/>
           </children>
           <element xmi:type="uml:Property" href="HelloWorld.uml#_4HAoQDefEeGPyrZ5I3hMlA"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4HLnYTefEeGPyrZ5I3hMlA" x="61" y="22" width="162"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4HLnYTefEeGPyrZ5I3hMlA" x="49" y="22" width="190"/>
         </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_1w2pODefEeGPyrZ5I3hMlA"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1w2pOTefEeGPyrZ5I3hMlA"/>

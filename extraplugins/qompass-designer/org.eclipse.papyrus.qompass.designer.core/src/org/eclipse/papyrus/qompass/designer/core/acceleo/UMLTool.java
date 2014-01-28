@@ -25,6 +25,7 @@ import org.eclipse.papyrus.C_Cpp.External;
 import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Typedef;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
@@ -259,14 +260,15 @@ public class UMLTool {
 	 * The operation is useful in the context of state-machines: when a transition is triggered by
 	 * the call of an operation of the class, we'd like to know which interceptor (for which interface)
 	 * belongs to it (since the operations are enumerated within each interface).
-	 * TOOD: move operation into state-chart java code
+	 * TODO: move operation into state-chart java code
+	 * TODO: would not work for ROOM ports typed with a collaboration
 	 * 
 	 * @param operation
 	 * @return the interface which the operation belongs
 	 */
 	public static Interface implementsInterface(Operation operation) {
 		Element owner = operation.getOwner();
-		if(owner instanceof Class) {
+		if(owner instanceof BehavioredClassifier) {
 			String name = operation.getName();
 			EList<Type> types = new BasicEList<Type>();
 			for(Parameter parameter : operation.getOwnedParameters()) {
@@ -275,7 +277,7 @@ public class UMLTool {
 			// loop over implemented realizations. Do not rely on FCM derivedElement information
 			// as it might be missing on some models (it would point from an operation of the class
 			// to the associated operation of the interface)
-			for(InterfaceRealization ir : ((Class)owner).getInterfaceRealizations()) {
+			for(InterfaceRealization ir : ((BehavioredClassifier)owner).getInterfaceRealizations()) {
 				// check for types to allow for overloading
 				Operation candidate = ir.getContract().getOwnedOperation(name, null, types);
 				if(candidate != null) {

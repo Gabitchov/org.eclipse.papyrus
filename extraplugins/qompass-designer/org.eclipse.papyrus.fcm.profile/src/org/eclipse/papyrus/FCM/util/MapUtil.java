@@ -68,7 +68,7 @@ public class MapUtil
 				// Hack: assure that no new derived interface folder is created in "root" model
 				//   that eC3M creates for deployment
 				if(element instanceof Package) {
-					return (Package)element;
+					// return (Package)element;
 				}
 			}
 			element = owner;
@@ -295,28 +295,37 @@ public class MapUtil
 		// the port (which must be an FCM model, since the port carries the FCM stereotype)
 		Package baseModelOfPort = getTop(port.getBase_Port());
 		Package derivedInterfaces = getAndCreate(baseModelOfPort, "derivedInterfaces", createOnDemand); //$NON-NLS-1$
-		if (derivedInterfaces == null) {
-			return null;
-		}
-		Package owner = getAndCreate(derivedInterfaces, type.allNamespaces(), createOnDemand);
-		Interface intf = null;
+		if (derivedInterfaces != null) {
+			Package owner = getAndCreate(derivedInterfaces, type.allNamespaces(), createOnDemand);
+			Interface intf = null;
 
-		PackageableElement pe = owner.getPackagedElement(interfaceName);
-		if(pe instanceof Interface) {
-			// interface already exists
-			return (Interface)pe;
-		}
-		else if(createOnDemand) {
-			// System.out.println ("Derived port types: create new interface " + interfaceName + " in package " + owner.getQualifiedName ());
-			intf = owner.createOwnedInterface(interfaceName);
-
-			// System.out.println ("Derived port types: Apply derived stereotype annotation to interface: " + intf.getQualifiedName());
-			DerivedElement de = applyDE(intf);
-			if(de != null) {
-				// de may be null, if FCM is not properly applied
-				de.setSource(type);
+			PackageableElement pe = owner.getPackagedElement(interfaceName);
+			if(pe instanceof Interface) {
+				// interface already exists
+				return (Interface)pe;
 			}
-			return intf;
+			else if(createOnDemand) {
+				// System.out.println ("Derived port types: create new interface " + interfaceName + " in package " + owner.getQualifiedName ());
+				intf = owner.createOwnedInterface(interfaceName);
+
+				// System.out.println ("Derived port types: Apply derived stereotype annotation to interface: " + intf.getQualifiedName());
+				DerivedElement de = applyDE(intf);
+				if(de != null) {
+					// de may be null, if FCM is not properly applied
+					de.setSource(type);
+				}
+				return intf;
+			}
+		}
+		// instead of returning null, return a dummy interface that indicates the user that an element needs updating.
+		
+		PackageableElement portKinds = baseModelOfPort.getImportedMember("PortKinds"); //$NON-NLS-1$
+		if (portKinds instanceof Package) {
+			PackageableElement pe = ((Package) portKinds).getPackagedElement("Please update derived elements"); //$NON-NLS-1$
+			if(pe instanceof Interface) {
+				// dummy interface exists
+				return (Interface)pe;
+			}
 		}
 		return null;
 	}

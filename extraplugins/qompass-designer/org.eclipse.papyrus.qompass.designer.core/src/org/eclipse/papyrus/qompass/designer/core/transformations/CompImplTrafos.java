@@ -253,7 +253,10 @@ public class CompImplTrafos {
 					body = part.getName();
 					ConnectableElement role = ce.getRole();
 					if(role instanceof Port) {
-						body += refOp(part) + opName;
+						// in case of a delegation, use name of target port which might be different
+						String targetOpName = PrefixConstants.connectQ_Prefix + role.getName();
+						body += refOp(part) + targetOpName;
+						// TODO: no check that multiplicity of both port matches
 						if((portInfo.getUpper() > 1) || (portInfo.getUpper() == -1)) {
 							body += "(index, ref);"; //$NON-NLS-1$
 						} else {
@@ -502,8 +505,8 @@ public class CompImplTrafos {
 	 * @return
 	 */
 	public static boolean instantiateViaBootloader(Class implementation) {
-		return Utils.isCompType(implementation) ||
-			implementation.isAbstract() || Utils.isSingleton(implementation) ||
+		return
+			implementation.isAbstract() ||
 			Utils.isAssembly(implementation);
 	}
 
@@ -539,7 +542,7 @@ public class CompImplTrafos {
 	 * @return
 	 */
 	protected static String refOp(Property part) {
-		return instantiateViaBootloader(part) ?
+		return ((part.getAggregation() == AggregationKind.SHARED_LITERAL) || StereotypeUtil.isApplied(part, Ptr.class)) ?
 			"->" : "."; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 }

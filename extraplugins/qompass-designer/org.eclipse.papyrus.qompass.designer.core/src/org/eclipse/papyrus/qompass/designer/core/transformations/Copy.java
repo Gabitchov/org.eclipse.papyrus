@@ -308,8 +308,20 @@ public class Copy extends Copier {
 
 	private Stack<Namespace> boundPackages;
 
+	/**
+	 * Remove an element and its children from the map to enable subsequent copies, in particular if the
+	 * same element (e.g. an operation) is bound multiple times within a template instantiation.
+	 * TODO: there must be a better way to do this. 
+	 * @param element
+	 */
 	public void removeForCopy(EObject element) {
 		templateMap.remove(element);
+		if(element instanceof Element) {
+			// also remove applied stereotypes
+			for (EObject stereoApplication : ((Element) element).getStereotypeApplications()) {
+				removeForCopy(stereoApplication);
+			}
+		}
 		EClass eClass = element.eClass();
 		for(int i = 0, size = eClass.getFeatureCount(); i < size; ++i)
 		{

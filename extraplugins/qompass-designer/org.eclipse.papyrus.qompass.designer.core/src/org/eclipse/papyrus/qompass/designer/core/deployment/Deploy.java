@@ -48,29 +48,45 @@ public class Deploy {
 	 * @param instance
 	 * @throws TransformationException
 	 */
-	public static Deploy distributeToNode(Copy copy, ILangSupport langSupport, InstanceSpecification node,
-		int nodeIndex, int numberOfNodes, InstanceSpecification instance)
+	public Deploy(Copy copy, ILangSupport langSupport, InstanceSpecification node,
+			int nodeIndex, int numberOfNodes)
 		throws TransformationException
 	{
-		Deploy deploy = new Deploy();
-		deploy.bootLoaderGen = new BootLoaderGen(copy, nodeIndex, numberOfNodes);
-		deploy.node = node;
+		bootLoaderGen = new BootLoaderGen(copy, nodeIndex, numberOfNodes);
+		this.node = node;
 
 		// change to flat copy eventually later (not yet working)
-		deploy.depInstance = new PartialCopy();
+		depInstance = new PartialCopy();
 		
-		deploy.depInstance.init(copy, deploy.bootLoaderGen, node);
+		depInstance.init(copy, bootLoaderGen, node);
 
 		// set a copy listener in order to assure that indirectly added classes
 		// are taken into account as well
+		this.copy = copy;
 		copy.preCopyListeners.add(new GatherConfigData(langSupport));
-		// TODO: not nice at all (make non-static?)
-		Stack<Slot> slotPath = new Stack<Slot>();
-		deploy.distributeToNode(false, slotPath, instance);
+	}
 
-		deploy.bootLoaderGen.addCreateConnections();
-		deploy.bootLoaderGen.addInit();
-		return deploy;
+	
+	/**
+	 * distribute an instance, its contained sub-instances and the referenced
+	 * classifiers to a certain node
+	 * 
+	 * @param copy
+	 * @param node
+	 * @param nodeIndex
+	 * @param numberOfNodes
+	 * @param instance
+	 * @throws TransformationException
+	 */
+	public InstanceSpecification distributeToNode(InstanceSpecification instance)
+		throws TransformationException
+	{
+		Stack<Slot> slotPath = new Stack<Slot>();
+		InstanceSpecification newRootIS = distributeToNode(false, slotPath, instance);
+
+		bootLoaderGen.addCreateConnections();
+		bootLoaderGen.addInit();
+		return newRootIS;
 	}
 
 	/**
@@ -106,26 +122,34 @@ public class Deploy {
 			InstanceSpecification containedInstance = DepUtils.getInstance(slot);
 
 			if(containedInstance != null) {
-				StructuralFeature sf = slot.getDefiningFeature();
-				boolean viaAllocAll = allocAll;
-				if (allocAll && (sf instanceof Property)) {
-					// only take allocation of parent instance into account, if composition
-					// However, problematic, since code gets copied anyway.
-					// viaAllocAll = (((Property) sf).getAggregation() == AggregationKind.COMPOSITE_LITERAL);
-				}
-				if(viaAllocAll || AllocUtils.getAllNodes(containedInstance).contains(node)) {
-					// if(!containedInstance.getName().startsWith(singletonPrefix)) {
-					slotPath.push(slot);
-					if (sf instanceof Property) {
-						// place configurator before recursive call. Otherwise
-						// values put here would be ignored.
-						// TODO: instances are not copied to node model. Thus, the instances here are the same as in the
-						// configuration on the intermediate model.
-						// TODO: MIX of bootloaderGeneration and splitting.
-						InstanceConfigurator.configureInstance(containedInstance, (Property) sf, tmInstance);
+				if (!DepUtils.isShared(slot)) {
+					StructuralFeature sf = slot.getDefiningFeature();
+					boolean viaAllocAll = allocAll;
+					if (allocAll && (sf instanceof Property)) {
+						// only take allocation of parent instance into account, if composition
+						// However, problematic, since code gets copied anyway.
+						// viaAllocAll = (((Property) sf).getAggregation() == AggregationKind.COMPOSITE_LITERAL);
 					}
-					InstanceSpecification tmSubInstance = distributeToNode(allocAll, slotPath, containedInstance);
-					slotPath.pop();
+					if(viaAllocAll || AllocUtils.getAllNodes(containedInstance).contains(node)) {
+						slotPath.push(slot);
+						if (sf instanceof Property) {
+							// place configurator before recursive call. Otherwise
+							// values put here would be ignored.
+							// TODO: instances are not copied to node model. Thus, the instances here are the same as in the
+							// configuration on the intermediate model.
+							// TODO: MIX of bootloaderGeneration and splitting.
+							InstanceConfigurator.configureInstance(containedInstance, (Property) sf, tmInstance);
+						}
+						// distribute subInstance
+						distributeToNode(allocAll, slotPath, containedInstance);
+						slotPath.pop();
+					}
+				}
+				else if(allocAll || AllocUtils.getAllNodes(containedInstance).contains(node)) {
+					slotPath.push(slot);
+					// bootLoaderGen.instanceConfig(slotPath, instance);
+					bootLoaderGen.addInstance(slotPath, containedInstance, null, node);
+					slotPath.pop();			
 				}
 			} else {
 				// slot contains configuration of primitive attribute (no
@@ -156,4 +180,6 @@ public class Deploy {
 	protected InstanceSpecification node;
 
 	protected InstanceDeployer depInstance;
+	
+	protected Copy copy;
 }

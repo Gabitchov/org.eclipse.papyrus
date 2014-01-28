@@ -16,6 +16,7 @@
       <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//InterceptionKind/InterceptAll"/>
       <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//InterceptionKind/InterceptAllOut"/>
       <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//InterceptionKind/InterceptAllIn"/>
+      <genEnumLiterals ecoreEnumLiteral="FCM.ecore#//InterceptionKind/InterceptMatching"/>
     </genEnums>
     <genClasses ecoreClass="FCM.ecore#//Template">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//Template/base_Element"/>
@@ -167,6 +168,10 @@
     <genClasses ecoreClass="FCM.ecore#//ConnectorConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ConnectorConfiguration/base_Slot"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//ConnectorConfiguration/connector"/>
+    </genClasses>
+    <genClasses ecoreClass="FCM.ecore#//BindTemplate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//BindTemplate/actual"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FCM.ecore#//BindTemplate/base_Property"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

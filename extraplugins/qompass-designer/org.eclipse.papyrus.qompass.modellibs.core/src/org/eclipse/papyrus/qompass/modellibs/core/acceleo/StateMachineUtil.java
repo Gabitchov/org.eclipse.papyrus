@@ -16,9 +16,11 @@ package org.eclipse.papyrus.qompass.modellibs.core.acceleo;
 
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
+import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.Type;
 
 
@@ -30,31 +32,44 @@ public class StateMachineUtil {
 	 * This is required by the state machine template which needs to access operation IDs
 	 * provided by the call interceptor.
 	 * 
-	 * TODO: seems not very clean: why hardcoded operationIDs? precondition: package with suitable
-	 * postfix must have been created
-	 * 
-	 * @param actual
+	 * @param actual The actual for template binding
 	 * @return
 	 */
 	public static Package boundPackageRef(Type actual) {
-		String suffix = "_" + actual.getName();
 		for(Package nestedPkg : Utils.getTop(actual).getNestedPackages()) {
-			if(nestedPkg.getName().endsWith(suffix)) {
-				return nestedPkg;
+			if(nestedPkg.getTemplateBindings().size() > 0) {
+				TemplateBinding binding = nestedPkg.getTemplateBindings().get(0);
+				if (actual == TemplateUtils.getFirstActualFromBinding(binding)) {
+					return nestedPkg;
+				}
 			}
 		}
 		return null;
 	}
-
+	
 	/**
 	 * Declares a dependency from the current classifier which is produced by template instantiation
-	 * to the element "OperationIDs, if found within the passed package.
-	 * 
+	 * to the element (enum) "OperationIDs", if found within the passed package.
+	 * Called by Acceleo script "acceptableEvents.mtl".
 	 * @param pkg
 	 * @return
 	 */
 	public static void declareDependencyToOperationIDs(Package pkg) {
-		PackageableElement type = pkg.getPackagedElement("OperationIDs");
+		PackageableElement type = pkg.getPackagedElement("OperationIDs"); //$NON-NLS-1$
+		if(type instanceof Type) {
+			UMLTool.declareDependency(TransformationContext.classifier, (Type)type);
+		}
+	}
+	
+	/**
+	 * Declares a dependency from the current classifier which is produced by template instantiation
+	 * to the element (enum) "SignalIDs", if found within the passed package.
+	 * Called by Acceleo script "acceptableEvents.mtl".
+	 * @param pkg the package in which an enumeration is looked up
+	 * @return
+	 */
+	public static void declareDependencyToSignalIDs(Package pkg) {
+		PackageableElement type = pkg.getPackagedElement("SignalIDs"); //$NON-NLS-1$
 		if(type instanceof Type) {
 			UMLTool.declareDependency(TransformationContext.classifier, (Type)type);
 		}

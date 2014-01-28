@@ -141,6 +141,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.uml.diagram.comp
 		if((target != null) && (getContainer() == null)) {
 			return false;
 		}
+		
 		// return
 		// UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateConnector_4013(getContainer(),
 		// _getSource(),
@@ -243,7 +244,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.uml.diagram.comp
 
 		StructuredClassifier containerProposedBySource = proposedContainer(sourceGraphicalEditPart);
 		StructuredClassifier containerProposedByTarget = proposedContainer(targetGraphicalEditPart);
-
+		
 		StructuredClassifier deducedContainer = null;
 
 		if((containerProposedBySource != null) && (containerProposedByTarget != null)) {

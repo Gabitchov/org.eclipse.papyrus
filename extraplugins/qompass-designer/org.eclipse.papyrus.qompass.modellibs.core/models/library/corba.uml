@@ -48,7 +48,7 @@
       <eAnnotations xmi:id="_DtQEwzLdEd2_U4efLnjQIw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2#/"/>
       </eAnnotations>
-      <appliedProfile href="pathmap://UML_PROFILES/StandardL2.profile.uml#_0"/>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
     </profileApplication>
     <profileApplication xmi:id="_JV5UgB6LEd6Nj_33Eb_pxw">
       <eAnnotations xmi:id="_JWB3YB6LEd6Nj_33Eb_pxw" source="http://www.eclipse.org/uml2/2.0.0/UML">

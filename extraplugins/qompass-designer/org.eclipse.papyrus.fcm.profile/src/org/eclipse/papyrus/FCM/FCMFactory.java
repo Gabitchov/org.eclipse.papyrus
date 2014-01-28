@@ -356,6 +356,15 @@ public interface FCMFactory extends EFactory {
 	ConnectorConfiguration createConnectorConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Bind Template</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bind Template</em>'.
+	 * @generated
+	 */
+	BindTemplate createBindTemplate();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
