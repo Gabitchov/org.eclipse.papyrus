@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,16 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.OperationLabelHelper;
-import org.eclipse.papyrus.uml.diagram.profile.custom.preferences.IPapyrusOperationPreferencesConstant;
-import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -67,25 +61,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				getDiagramEventBroker().addNotificationListener(parameter.getType(), this);
 			}
 		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public int getCurrentDisplayValue() {
-		EAnnotation customeDisplayAnnotation = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		int displayValue = getDefaultDisplayValue();
-		if(customeDisplayAnnotation != null) {
-			displayValue = Integer.parseInt(customeDisplayAnnotation.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
-		} else {
-			// no specific information => look in preferences
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IPapyrusOperationPreferencesConstant.OPERATION_LABEL_DISPLAY_PREFERENCE);
-			if(displayValueTemp != 0) {
-				displayValue = displayValueTemp;
-			}
-		}
-		return displayValue;
 	}
 
 	/**
@@ -132,7 +107,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Returns the {@link Operation} managed by this edit part.
-	 * 
+	 *
 	 * @return the {@link Operation} managed by this edit part.
 	 */
 	@Override
@@ -177,7 +152,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Checks if the given object is one of the parameter type of the operation
-	 * 
+	 *
 	 * @param object
 	 *        the object to test
 	 * @return <code>true</code> if the object corresponds to the type of a parameter of the
@@ -198,7 +173,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Checks if the given object is one of the parameter of the operation
-	 * 
+	 *
 	 * @param object
 	 *        the object to test
 	 * @return <code>true</code> if the object is a parameter of the operation
@@ -213,7 +188,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that a parameter of the operation has changed.
-	 * 
+	 *
 	 * @param parameter
 	 *        the {@link Parameter} that has changed
 	 * @param notification
@@ -292,7 +267,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that a parameter of the operation has changed.
-	 * 
+	 *
 	 * @param parameter
 	 *        the {@link Parameter} that has changed
 	 * @param notification
@@ -314,7 +289,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the property has changed.
-	 * 
+	 *
 	 * @param operation
 	 *        the operation that has changed
 	 * @param notification

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
@@ -15,7 +16,7 @@ import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Type;
 
-public class LifelineLabelHelper extends StereotypedElementLabelHelper {
+public class LifelineLabelHelper extends StereotypedElementLabelHelper implements ILabelMaskProvider {
 
 	/**
 	 * singelton instance
@@ -24,7 +25,7 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the singleton instance of this class
-	 * 
+	 *
 	 * @return the singleton instance.
 	 */
 	public static LifelineLabelHelper getInstance() {
@@ -50,7 +51,7 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the mask name given the value of the mask
-	 * 
+	 *
 	 * @return the mask name or <code>null</code> if no masks has been found
 	 */
 	public String getMaskLabel(int value) {
@@ -59,7 +60,7 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the collection of mask names
-	 * 
+	 *
 	 * @return the collection of mask names
 	 */
 	public Collection<String> getMaskLabels() {
@@ -68,16 +69,17 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the map of masks used to display
-	 * 
+	 *
 	 * @return the map of masks used to display
 	 */
+	@Override
 	public Map<Integer, String> getMasks() {
 		return masks;
 	}
 
 	/**
 	 * Returns the collection of mask values
-	 * 
+	 *
 	 * @return the collection of mask values
 	 */
 	public Set<Integer> getMaskValues() {
@@ -169,5 +171,10 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 		} else {
 			sb.append(defaultValue);
 		}
+	}
+
+	@Override
+	public int getDefaultValue() {
+		return CustomLifelinePreferencePage.DEFAULT_LABEL_DISPLAY;
 	}
 }

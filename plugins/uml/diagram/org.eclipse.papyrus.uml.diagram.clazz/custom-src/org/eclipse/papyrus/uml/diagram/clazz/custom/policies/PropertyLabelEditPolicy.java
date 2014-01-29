@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,14 +18,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.IPapyrusPropertyPreferencesConstant;
-import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
@@ -70,25 +64,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getCurrentDisplayValue() {
-		EAnnotation propertyDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		int displayValue = getDefaultDisplayValue();
-		if(propertyDisplay != null) {
-			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
-		} else {
-			// no specific information => look in preferences
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
-			if(displayValueTemp != 0) {
-				displayValue = displayValueTemp;
-			}
-		}
-		return displayValue;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	public int getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_PROPERTY;
 	}
@@ -96,6 +72,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getMaskLabel(int value) {
 		return PropertyLabelHelper.getInstance().getMaskLabel(value);
 	}
@@ -103,6 +80,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Collection<String> getMaskLabels() {
 		return PropertyLabelHelper.getInstance().getMaskLabels();
 	}
@@ -110,6 +88,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Map<Integer, String> getMasks() {
 		return PropertyLabelHelper.getInstance().getMasks();
 	}
@@ -117,10 +96,12 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Collection<Integer> getMaskValues() {
 		return PropertyLabelHelper.getInstance().getMaskValues();
 	}
 
+	@Override
 	public String getPreferencePageID() {
 		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage";
 	}
@@ -173,7 +154,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the property has changed.
-	 * 
+	 *
 	 * @param property
 	 *        the property that has changed
 	 * @param notification
@@ -252,7 +233,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the type of the property has changed.
-	 * 
+	 *
 	 * @param type
 	 *        the type of the property that has changed
 	 * @param notification

@@ -18,7 +18,7 @@ import java.util.Iterator;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndPropertyLabelHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * Helper for labels displaying {@link Property}
  */
-public class AssociationEndSourceLabelHelper extends PropertyLabelHelper {
+public class AssociationEndSourceLabelHelper extends AssociationEndPropertyLabelHelper {
 
 	private static AssociationEndSourceLabelHelper labelHelper;
 

@@ -21,4 +21,6 @@ public interface AppearanceStyleProvider {
 	public int getQualifiedNameDepth(EModelElement modelElement);
 
 	public boolean showShadow(EModelElement modelElement);
+
+	public int getLabelDisplay(EModelElement modelElement);
 }

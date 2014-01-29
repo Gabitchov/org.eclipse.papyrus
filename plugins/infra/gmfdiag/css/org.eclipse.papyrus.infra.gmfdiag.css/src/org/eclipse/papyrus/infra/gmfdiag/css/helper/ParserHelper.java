@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,10 +33,32 @@ public class ParserHelper {
 	 * @param engine
 	 *        The engine used to parse the values
 	 * @param value
-	 *        The raw value to parse
+	 *        The raw CSSValue to parse
 	 * @return
 	 *         An Array containing each parsed value
 	 */
+	public static String[] parseValues(CSSEngine engine, CSSValue cssValue) {
+		if(cssValue instanceof CSSValueList) {
+			CSSValueList list = (CSSValueList)cssValue;
+			return toArray(list);
+		}
+
+		return new String[]{ cssValue.getCssText() };
+	}
+
+	/**
+	 * Parses a list of CSS Values, and returns them as an Array of Strings
+	 * Used for multivalued CSS values (Space-separated)
+	 * 
+	 * @param engine
+	 *        The engine used to parse the values
+	 * @param value
+	 *        The raw value to parse
+	 * @return
+	 *         An Array containing each parsed value
+	 * @deprecated Does not properly support quoted strings (e.g. firstValue "second value")
+	 */
+	@Deprecated
 	public static String[] parseValues(CSSEngine engine, String value) {
 		CSSValue cssValue;
 		try {

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndPropertyLabelHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * Helper for labels displaying {@link Property}
  */
-public class AssociationEndSourceLabelHelper extends PropertyLabelHelper {
+public class AssociationEndSourceLabelHelper extends AssociationEndPropertyLabelHelper {
 
 	private static AssociationEndSourceLabelHelper labelHelper;
 
@@ -41,6 +41,7 @@ public class AssociationEndSourceLabelHelper extends PropertyLabelHelper {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Property getUMLElement(GraphicalEditPart editPart) {
 		if((View)editPart.getModel() != null && ((View)editPart.getModel()).eContainer() != null) {
 			if(((Edge)((View)editPart.getModel()).eContainer()).getSource() == null) {
@@ -53,7 +54,7 @@ public class AssociationEndSourceLabelHelper extends PropertyLabelHelper {
 				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement()).getMemberEnds().iterator();
 				//find the first
 				while(propertiesIterator.hasNext() && propertyToDisplay == null) {
-					Property currentProperty = (Property)propertiesIterator.next();
+					Property currentProperty = propertiesIterator.next();
 					if(EcoreUtil.equals(currentProperty.getType(), source)) {
 						propertyToDisplay = currentProperty;
 					}
@@ -70,7 +71,7 @@ public class AssociationEndSourceLabelHelper extends PropertyLabelHelper {
 				Iterator<Property> propertiesIterator = ((Association)((View)editPart.getModel()).getElement()).getMemberEnds().iterator();
 				//find the last
 				while(propertiesIterator.hasNext()) {
-					Property currentProperty = (Property)propertiesIterator.next();
+					Property currentProperty = propertiesIterator.next();
 					if(!EcoreUtil.equals(currentProperty.getType(), target)) {
 						propertyToDisplay = currentProperty;
 					}

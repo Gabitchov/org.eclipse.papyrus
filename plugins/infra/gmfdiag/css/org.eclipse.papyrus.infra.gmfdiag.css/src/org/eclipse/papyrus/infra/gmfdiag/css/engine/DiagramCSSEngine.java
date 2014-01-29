@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSDOMSemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
@@ -28,9 +28,9 @@ import org.w3c.dom.Element;
 
 /**
  * A CSS Engine associated to a Diagram.
- * 
+ *
  * This Engine is a child of a ModelCSSEngine.
- * 
+ *
  * @author Camille Letavernier
  */
 @SuppressWarnings("restriction")
@@ -40,9 +40,9 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * Builds a DiagramCSSEngine for a given CSSDiagram
-	 * 
+	 *
 	 * @param parent
 	 *        The diagram's parent CSSEngine. Its stylesheets will be inherited
 	 * @param diagram
@@ -86,7 +86,7 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Returns the GMF Notation EObject
 	 */
 	@Override
@@ -117,11 +117,11 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 		}
 
 		EObject notationElement = getNativeWidget(node);
-		View canonicalNotationElement = SemanticElementHelper.findPrimaryView(notationElement);
+		View canonicalNotationElement = CSSDOMSemanticElementHelper.findPrimaryView(notationElement);
 
 		//A View and a Compartment associated to the same Semantic Element
 		//must have the same XML Element. They share the same children.
-		//This is required to map the Semantic model (Used by the CSS selectors) 
+		//This is required to map the Semantic model (Used by the CSS selectors)
 		//to the Notation model (Used by the CSS properties)
 		return super.getElement(canonicalNotationElement);
 	}

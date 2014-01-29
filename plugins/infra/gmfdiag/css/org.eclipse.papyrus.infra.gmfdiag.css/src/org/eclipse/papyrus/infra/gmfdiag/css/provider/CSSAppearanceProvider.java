@@ -47,4 +47,13 @@ public class CSSAppearanceProvider extends AnnotationStyleProvider {
 		return super.showShadow(modelElement);
 	}
 
+	@Override
+	public int getLabelDisplay(EModelElement modelElement){
+		if(modelElement instanceof CustomStyle) {
+			return ((CustomStyle)modelElement).getLabelDisplay();
+		}
+		return super.getLabelDisplay(modelElement);
+	}
+
+	
 }

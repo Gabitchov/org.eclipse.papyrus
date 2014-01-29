@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,25 +10,19 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
- *   
+ *
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.IPapyrusInstancePreferencesConstant;
-import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.InstanceSpecificationLabelHelper;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.papyrus.uml.tools.utils.InstanceSpecificationUtil;
@@ -41,17 +35,12 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
-	protected final Map<Integer, String> masks = new HashMap<Integer, String>(7);
-
 	public InstanceSpecificationNameLabelEditPolicy() {
 		super();
-		masks.put(ICustomAppearence.DISP_NAME, "Name");
-		masks.put(ICustomAppearence.DISP_TYPE, "Type");
 	}
 
 	@Override
 	protected void addAdditionalListeners() {
-		// TODO Auto-generated method stub
 		super.addAdditionalListeners();
 		Iterator<Classifier> iterator = getUMLElement().getClassifiers().iterator();
 		while(iterator.hasNext()) {
@@ -62,7 +51,6 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 
 	@Override
 	public void deactivate() {
-		// TODO Auto-generated method stub
 		if(getUMLElement() != null) {
 			Iterator<Classifier> iterator = getUMLElement().getClassifiers().iterator();
 			while(iterator.hasNext()) {
@@ -75,12 +63,13 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskLabel(int)
-	 * 
+	 *
 	 * @param value
 	 * @return
 	 */
+	@Override
 	public String getMaskLabel(int value) {
-		return masks.get(value);
+		return InstanceSpecificationLabelHelper.getInstance().getMaskLabel(value);
 	}
 
 	@Override
@@ -94,57 +83,40 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskLabels()
-	 * 
+	 *
 	 * @return
 	 */
+	@Override
 	public Collection<String> getMaskLabels() {
-		return masks.values();
+		return InstanceSpecificationLabelHelper.getInstance().getMaskLabels();
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskValues()
-	 * 
+	 *
 	 * @return
 	 */
+	@Override
 	public Collection<Integer> getMaskValues() {
-		return masks.keySet();
+		return InstanceSpecificationLabelHelper.getInstance().getMaskValues();
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMasks()
-	 * 
+	 *
 	 * @return
 	 */
+	@Override
 	public Map<Integer, String> getMasks() {
-		return masks;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getCurrentDisplayValue()
-	 * 
-	 * @return
-	 */
-	public int getCurrentDisplayValue() {
-		EAnnotation instanceDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		int displayValue = getDefaultDisplayValue();
-		if(instanceDisplay != null) {
-			displayValue = Integer.parseInt(instanceDisplay.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
-		} else {
-			// no specific information => look in preferences
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IPapyrusInstancePreferencesConstant.INSTANCESPECIFICATION_LABEL_DISPLAY_PREFERENCE);
-			if(displayValueTemp != 0) {
-				displayValue = displayValueTemp;
-			}
-		}
-		return displayValue;
+		return InstanceSpecificationLabelHelper.getInstance().getMasks();
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getDefaultDisplayValue()
-	 * 
+	 *
 	 * @return
 	 */
+	@Override
 	public int getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_INSTANCESPECIFICATION;
 	}
@@ -158,7 +130,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
-		InstanceSpecification instance = getUMLElement();
+
 		if(notification.getEventType() == Notification.ADD) {
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier())) {
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
@@ -187,16 +159,17 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getPreferencePageID()
-	 * 
+	 *
 	 * @return
 	 */
+	@Override
 	public String getPreferencePageID() {
 		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage";
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy#refreshDisplay()
-	 * 
+	 *
 	 */
 	@Override
 	public void refreshDisplay() {

@@ -180,4 +180,37 @@
             name="Low"></Priority>
    </shapeProvider>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+   <mapping
+         humanReadableType="Name"
+         type="6002">
+   </mapping>
+   <mapping
+         humanReadableType="Source role"
+         type="6003">
+   </mapping>
+   <mapping
+         humanReadableType="Target role"
+         type="6005">
+   </mapping>
+   <mapping
+         humanReadableType="Source multiplicity"
+         type="6033">
+   </mapping>
+   <mapping
+         humanReadableType="Target multiplicity"
+         type="6034">
+   </mapping>
+</extension>
+<extension
+      point="org.eclipse.core.runtime.adapters">
+   <factory
+         adaptableType="org.eclipse.gmf.runtime.notation.View"
+         class="org.eclipse.papyrus.infra.gmfdiag.common.providers.ViewLabelMaskManagerAdapterFactory">
+      <adapter
+            type="org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider">
+      </adapter>
+   </factory>
+</extension>
 </plugin>

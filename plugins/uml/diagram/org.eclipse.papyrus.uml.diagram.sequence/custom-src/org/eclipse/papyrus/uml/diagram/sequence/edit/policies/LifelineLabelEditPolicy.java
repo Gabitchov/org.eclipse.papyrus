@@ -5,15 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
@@ -137,22 +134,6 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				LifelineLabelHelper.getInstance().refreshEditPartDisplay((GraphicalEditPart)p);
 			}
 		}
-	}
-
-	public int getCurrentDisplayValue() {
-		EAnnotation customeDisplayAnnotation = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		int displayValue = getDefaultDisplayValue();
-		if(customeDisplayAnnotation != null && customeDisplayAnnotation.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE) != null) {
-			displayValue = Integer.parseInt(customeDisplayAnnotation.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
-		} else {
-			// no specific information => look in preferences
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(CustomLifelinePreferencePage.LABEL_DISPLAY_PREFERENCE);
-			if(displayValueTemp != 0) {
-				displayValue = displayValueTemp;
-			}
-		}
-		return displayValue;
 	}
 
 	public int getDefaultDisplayValue() {

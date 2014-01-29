@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Remi SCHNEKENBURGER (CEA LIST) Remi.schnekenburger@cea.fr - Initial API and implementation
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
@@ -65,7 +65,7 @@ public interface ICustomAppearence {
 
 	/**
 	 * Style constant for parameters display in labels.
-	 * 
+	 *
 	 * @deprecated
 	 * @see #DISP_PARAMETER_TYPE
 	 */
@@ -75,7 +75,7 @@ public interface ICustomAppearence {
 
 	/**
 	 * Style constant for return parameters display in labels.
-	 * 
+	 *
 	 * @deprecated
 	 * @see #DISP_RT_TYPE
 	 */
@@ -115,7 +115,7 @@ public interface ICustomAppearence {
 
 	/** Style constant for return parameter multiplicity display in labels */
 	public final int DISP_RT_MULTIPLICITY = 1 << 18;
-	
+
 	/** Style constant for conjugated labels */
 	public final int DISP_CONJUGATED = 1 << 19;
 
@@ -152,7 +152,7 @@ public interface ICustomAppearence {
 	/**
 	 * default uml Port ins composite diagrams.
 	 */
-	public final static int DEFAULT_UML_PORT = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY|DISP_CONJUGATED;
+	public final static int DEFAULT_UML_PORT = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY | DISP_CONJUGATED;
 
 	/**
 	 * default uml OpaqueAction in activity diagrams.
@@ -163,7 +163,6 @@ public interface ICustomAppearence {
 	/**
 	 * default uml Parameter in composite diagrams.
 	 */
-	// @unused
 	public final static int DEFAULT_UML_PARAMETER = DISP_PARAMETER_DIRECTION | DISP_PARAMETER_NAME | DISP_PARAMETER_TYPE;
 
 	/**

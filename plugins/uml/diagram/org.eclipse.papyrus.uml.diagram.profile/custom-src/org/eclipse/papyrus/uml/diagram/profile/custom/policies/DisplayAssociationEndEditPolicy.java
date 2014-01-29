@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,17 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
-import org.eclipse.papyrus.uml.diagram.profile.custom.preferences.IPapyrusPropertyPreferencesConstant;
-import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -68,25 +62,6 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		}
 		getDiagramEventBroker().addNotificationListener(getUMLElement().getUpperValue(), this);
 		getDiagramEventBroker().addNotificationListener(getUMLElement().getLowerValue(), this);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public int getCurrentDisplayValue() {
-		EAnnotation propertyDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		int displayValue = getDefaultDisplayValue();
-		if(propertyDisplay != null) {
-			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
-		} else {
-			// no specific information => look in preferences
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IPapyrusPropertyPreferencesConstant.PROPERTY_LABEL_DISPLAY_PREFERENCE);
-			if(displayValueTemp != 0) {
-				displayValue = displayValueTemp;
-			}
-		}
-		return displayValue;
 	}
 
 	/**
@@ -186,7 +161,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * notifies that the the property has changed.
-	 * 
+	 *
 	 * @param property
 	 *        the property that has changed
 	 * @param notification
@@ -269,7 +244,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * notifies that the type of the property has changed.
-	 * 
+	 *
 	 * @param type
 	 *        the type of the property that has changed
 	 * @param notification

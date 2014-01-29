@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,11 +19,13 @@ import org.eclipse.gmf.runtime.notation.Compartment;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.ConnectorStyle;
 import org.eclipse.gmf.runtime.notation.DataTypeStyle;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.DescriptionStyle;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.DiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.DiagramStyle;
 import org.eclipse.gmf.runtime.notation.DrawerStyle;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.FilteringStyle;
 import org.eclipse.gmf.runtime.notation.FontStyle;
@@ -56,10 +58,12 @@ import org.eclipse.papyrus.infra.gmfdiag.css.CSSCompartmentImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSConnectorImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSConnectorStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSDataTypeStyleImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.CSSDecorationNodeImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSDescriptionStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSDiagramLinkStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSDiagramStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSDrawerStyleImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.CSSEdgeImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSFillStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSFilteringStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSFontStyleImpl;
@@ -85,6 +89,23 @@ import org.eclipse.papyrus.infra.gmfdiag.css.CSSTextStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSTitleStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
 
+/**
+ * This factory overrides the GMF NotationFactory for implementing the Notation model
+ *
+ * It provides a CSS-Aware implementation of the Notation model.
+ *
+ * As the only way to use a custom Metamodel Factory is to replace the singleton instance, this factory may introduce
+ * noise for all GMF-based components. However, the CSS implementation of the Notation Metamodel is built in such a way
+ * that it doesn't introduce any behavioral change for non-CSS diagrams.
+ *
+ * The CSS Support must be explicitly installed on the ResourceSet in order to activate the CSS-Aware capabilities of
+ * this implementation.
+ *
+ * @see {@link org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper#installCSSSupport(org.eclipse.emf.ecore.resource.ResourceSet)}
+ *
+ * @author Camille Letavernier
+ * 
+ */
 public class CSSNotationFactory extends NotationFactoryImpl {
 
 	public static CSSNotationFactory eINSTANCE = new CSSNotationFactory();
@@ -267,6 +288,16 @@ public class CSSNotationFactory extends NotationFactoryImpl {
 	@Override
 	public RoundedCornersStyle createRoundedCornersStyle() {
 		return new CSSRoundedCornersStyleImpl();
+	}
+
+	@Override
+	public DecorationNode createDecorationNode() {
+		return new CSSDecorationNodeImpl();
+	}
+
+	@Override
+	public Edge createEdge() {
+		return new CSSEdgeImpl();
 	}
 
 }

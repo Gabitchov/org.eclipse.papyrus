@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,18 +9,12 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.css.helper;
+package org.eclipse.papyrus.uml.diagram.common.helper;
 
 
-/**
- * A Helper for retrieving Views and Semantic elements from a
- * compatible object.
- * 
- * @author Camille Letavernier
- * 
- * @deprecated moved to org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper
- */
-@Deprecated
-public class SemanticElementHelper extends org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper {
-	//Deprecated
+
+public abstract class AssociationEndPropertyLabelHelper extends PropertyLabelHelper {
+
+	//CSS are not yet supported for association ends
+
 }

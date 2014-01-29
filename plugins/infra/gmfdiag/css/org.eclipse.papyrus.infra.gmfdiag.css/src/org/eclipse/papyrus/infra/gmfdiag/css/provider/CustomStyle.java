@@ -24,4 +24,7 @@ public interface CustomStyle {
 	public int getQualifiedNameDepth();
 
 	public boolean showShadow();
+	
+	public int getLabelDisplay();
+	
 }
