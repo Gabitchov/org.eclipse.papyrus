@@ -22,7 +22,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
@@ -63,14 +62,6 @@ import org.w3c.dom.NodeList;
 public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener, StatefulView {
 
 	public static final String CSS_VALUES_SEPARATOR = " "; //$NON-NLS-1$
-
-	/**
-	 * The map of Papyrus Diagram ids to human-readable and consistent diagram IDs
-	 * The later can be used as valid CSS Selectors
-	 */
-	//TODO : Use an extension point for this map, or find another way to map Diagram ID to CSS Element name
-	@Deprecated
-	public static final Map<String, String> diagramNameMappings = NotationTypesMap.instance.getComputerToHumanTypeMapping();
 
 	/**
 	 * The Semantic Model Element associated to the current styled element
@@ -225,7 +216,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	private void computePseudoInstances() {
 		if(CSSDOMSemanticElementHelper.isFloatingLabel(notationElement)) {
-			String humanType = NotationTypesMap.instance.getHumanReadableType(notationElement.getType());
+			String humanType = NotationTypesMap.instance.getHumanReadableType(notationElement);
 			if(humanType == null) {
 				humanType = notationElement.getType();
 			}
@@ -345,8 +336,10 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 			if(getSemanticElement() instanceof Diagram) {
 				Diagram diagram = (Diagram)getSemanticElement();
 				String type = diagram.getType();
-				if(diagramNameMappings.containsKey(type)) {
-					localName = diagramNameMappings.get(type);
+
+				String humanType = NotationTypesMap.instance.getHumanReadableType(diagram);
+				if(humanType != null) {
+					localName = humanType;
 				} else {
 					localName = type;
 				}
@@ -391,7 +384,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 			if("kind".equals(attr)) {
 
 				BasicCompartment compartment = (BasicCompartment)notationElement;
-				String humanType = NotationTypesMap.instance.getHumanReadableType(compartment.getType());
+				String humanType = NotationTypesMap.instance.getHumanReadableType(compartment);
 				if(humanType == null) {
 					return compartment.getType();
 				}

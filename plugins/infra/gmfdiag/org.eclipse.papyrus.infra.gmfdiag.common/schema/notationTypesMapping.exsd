@@ -24,7 +24,10 @@ This can be used, e.g., in the following cases:
       </annotation>
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
-            <element ref="mapping" minOccurs="1" maxOccurs="unbounded"/>
+            <choice>
+               <element ref="diagramMappings"/>
+               <element ref="mapping"/>
+            </choice>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -76,6 +79,29 @@ Example:
 
 attribute
 Class Diagram (Will be converted to ClassDiagram in CSS Stylesheets)
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="diagramMappings">
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="mapping"/>
+         </sequence>
+         <attribute name="diagramID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The Diagram ID (Type) to which the mappings apply
+
+Example:
+
+PapyrusUMLClassDiagram
+ 3008 -&gt; Class
+ 2008 -&gt; Class
+PapyrusUMLCompositeDiagram
+ ...
                </documentation>
             </annotation>
          </attribute>

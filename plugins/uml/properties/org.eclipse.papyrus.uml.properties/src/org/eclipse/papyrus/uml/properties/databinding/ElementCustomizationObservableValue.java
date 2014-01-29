@@ -90,7 +90,7 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 	protected Object doGetValue() {
 		switch(property) {
 		case LABEL_CUSTOMIZATION:
-			return AppearanceHelper.getLabelDisplay(notationElement);
+			return getEditPolicy().getCurrentDisplayValue();
 		case ELEMENT_ICON:
 			return AppearanceHelper.showElementIcon(notationElement);
 		case SHADOW:

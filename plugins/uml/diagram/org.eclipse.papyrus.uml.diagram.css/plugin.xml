@@ -9,63 +9,11 @@
       </factory>
    </extension>
    <extension
-       point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-    <mapping
-          humanReadableType="Composite Diagram"
-          type="CompositeStructure">
-    </mapping>
-    <mapping
-          humanReadableType="Package Diagram"
-          type="Package">
-    </mapping>
-    <mapping
-          humanReadableType="Activity Diagram"
-          type="PapyrusUMLActivityDiagram">
-    </mapping>
-    <mapping
-          humanReadableType="Class Diagram"
-          type="PapyrusUMLClassDiagram">
-    </mapping>
-    <mapping
-          humanReadableType="Communication Diagram"
-          type="PapyrusUMLCommunicationDiagram">
-    </mapping>
-    <mapping
-          humanReadableType="Component Diagram"
-          type="PapyrusUMLComponentDiagram">
-    </mapping>
-    <mapping
-          humanReadableType="Deployment Diagram"
-          type="PapyrusUMLDeploymentDiagram">
-    </mapping>
-    <mapping
-          humanReadableType="Profile Diagram"
-          type="PapyrusUMLProfileDiagram">
-    </mapping>
-    <mapping
-          humanReadableType="Sequence Diagram"
-          type="PapyrusUMLSequenceDiagram">
-    </mapping>
-    <mapping
-          humanReadableType="State Machine Diagram"
-          type="PapyrusUMLStateMachineDiagram">
-    </mapping>
-    <mapping
-          humanReadableType="Use Case Diagram"
-          type="UseCase">
-    </mapping>
-    <mapping
-          humanReadableType="Timing Diagram"
-          type="PapyrusUMLTimingDiagram">
-    </mapping>
-    <mapping
-          humanReadableType="Interaction Overview Diagram"
-          type="PapyrusUMLInteractionOverviewDiagram">
-    </mapping>
- </extension>
-   <extension
          point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-      <mapping
+      
+      <diagramMappings
+            diagramID="PapyrusUMLClassDiagram">
+         <mapping
             humanReadableType="attribute"
             type="7017">
       </mapping>
@@ -77,5 +25,99 @@
             humanReadableType="nestedClassifier"
             type="7019">
       </mapping>
+      <mapping
+            humanReadableType="Class Diagram"
+            type="PapyrusUMLClassDiagram">
+      </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="CompositeStructure">
+         <mapping
+               humanReadableType="Composite Diagram"
+               type="CompositeStructure">
+         </mapping>
+         <mapping
+               humanReadableType="structure"
+               type="7077">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="Package">
+         <mapping
+               humanReadableType="Package Diagram"
+               type="Package">
+         </mapping>
+         
+      </diagramMappings>
+      <diagramMappings
+            diagramID="PapyrusUMLActivityDiagram">
+         <mapping
+               humanReadableType="Activity Diagram"
+               type="PapyrusUMLActivityDiagram">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="PapyrusUMLCommunicationDiagram">
+         <mapping
+               humanReadableType="Communication Diagram"
+               type="PapyrusUMLCommunicationDiagram">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="PapyrusUMLComponentDiagram">
+         <mapping
+               humanReadableType="Component Diagram"
+               type="PapyrusUMLComponentDiagram">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="PapyrusUMLDeploymentDiagram">
+         <mapping
+               humanReadableType="Deployment Diagram"
+               type="PapyrusUMLDeploymentDiagram">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="PapyrusUMLProfileDiagram">
+         <mapping
+               humanReadableType="Profile Diagram"
+               type="PapyrusUMLProfileDiagram">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="PapyrusUMLSequenceDiagram">
+         <mapping
+               humanReadableType="Sequence Diagram"
+               type="PapyrusUMLSequenceDiagram">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="PapyrusUMLStateMachineDiagram">
+         <mapping
+               humanReadableType="State Machine Diagram"
+               type="PapyrusUMLStateMachineDiagram">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="UseCase">
+         <mapping
+               humanReadableType="Use Case Diagram"
+               type="UseCase">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="PapyrusUMLTimingDiagram">
+         <mapping
+               humanReadableType="Timing Diagram"
+               type="PapyrusUMLTimingDiagram">
+         </mapping>
+      </diagramMappings>
+      <diagramMappings
+            diagramID="PapyrusUMLInteractionOverviewDiagram">
+         <mapping
+               humanReadableType="Interaction Overview Diagram"
+               type="PapyrusUMLInteractionOverviewDiagram">
+         </mapping>
+      </diagramMappings>
    </extension>
 </plugin>

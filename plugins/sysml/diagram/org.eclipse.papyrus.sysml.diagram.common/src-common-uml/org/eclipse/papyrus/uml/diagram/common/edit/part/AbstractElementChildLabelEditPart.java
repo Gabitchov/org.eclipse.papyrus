@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *		Arthur Daussy - arthur.daussy@atos.net - 395920: [Block Diagram Definition] All element contained by a block should be able to be linked to constraint or comment
  *
@@ -300,10 +300,11 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	}
 
 	public ParserOptions getParserOptions() {
-
 		if(getNotationView() == null || getNotationView().getDiagram() == null) {
 			return ParserOptions.NONE;
 		}
+
+		//		int displayOptions = AppearanceHelper.getLabelDisplay(getNotationView());
 
 		EAnnotation display = getNotationView().getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
 		if(display == null) {
@@ -695,9 +696,10 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getModelSourceConnections()
-	 * 
+	 *
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelSourceConnections()
 	 */
+	@Override
 	protected List getModelSourceConnections() {
 		return ViewUtil.getSourceConnectionsConnectingVisibleViews((View)getModel());
 	}
@@ -705,9 +707,10 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getModelTargetConnections()
-	 * 
+	 *
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelTargetConnections()
 	 */
+	@Override
 	protected List getModelTargetConnections() {
 		return ViewUtil.getTargetConnectionsConnectingVisibleViews((View)getModel());
 	}
@@ -716,7 +719,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor()
-	 * 
+	 *
 	 * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
 	 */
 	public ConnectionAnchor getSourceConnectionAnchor(org.eclipse.gef.ConnectionEditPart connEditPart) {
@@ -727,10 +730,11 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 
 				public void run() {
 					Anchor a = ((Edge)connection.getModel()).getSourceAnchor();
-					if(a instanceof IdentityAnchor)
+					if(a instanceof IdentityAnchor) {
 						setResult(((IdentityAnchor)a).getId());
-					else
+					} else {
 						setResult(""); //$NON-NLS-1$
+					}
 				}
 			});
 		} catch (InterruptedException e) {
@@ -743,7 +747,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getAnchorableFigure()
-	 * 
+	 *
 	 * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
 	 */
 	protected IAnchorableFigure getAnchorableFigure() {
@@ -751,14 +755,14 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		if(myFigure instanceof IAnchorableFigure) {
 			return (IAnchorableFigure)myFigure;
 		}
-		throw new RuntimeException("The figure of this element should be an IAnchorable Figure");////$NON-NLS-0$
+		throw new RuntimeException("The figure of this element should be an IAnchorable Figure");//
 	}
 
 
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor()
-	 * 
+	 *
 	 * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
 	 */
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
@@ -778,7 +782,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getTargetConnectionAnchor()
-	 * 
+	 *
 	 * @see org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
 	 */
 	public ConnectionAnchor getTargetConnectionAnchor(org.eclipse.gef.ConnectionEditPart connEditPart) {
@@ -790,10 +794,11 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 
 				public void run() {
 					Anchor a = ((Edge)connection.getModel()).getTargetAnchor();
-					if(a instanceof IdentityAnchor)
+					if(a instanceof IdentityAnchor) {
 						setResult(((IdentityAnchor)a).getId());
-					else
+					} else {
 						setResult(""); //$NON-NLS-1$
+					}
 				}
 			});
 		} catch (InterruptedException e) {
@@ -810,7 +815,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getTargetConnectionAnchor()
-	 * 
+	 *
 	 * @see org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.Request)
 	 */
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
@@ -830,7 +835,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#mapConnectionAnchorToTerminal()
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart#mapConnectionAnchorToTerminal(org.eclipse.draw2d.ConnectionAnchor)
 	 */
 	final public String mapConnectionAnchorToTerminal(ConnectionAnchor c) {
@@ -840,7 +845,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#mapTerminalToConnectionAnchor()
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart#mapTerminalToConnectionAnchor(java.lang.String)
 	 */
 	final public ConnectionAnchor mapTerminalToConnectionAnchor(String terminal) {
@@ -850,7 +855,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.INotableEditPart#canAttachNote()
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#canAttachNote()
 	 */

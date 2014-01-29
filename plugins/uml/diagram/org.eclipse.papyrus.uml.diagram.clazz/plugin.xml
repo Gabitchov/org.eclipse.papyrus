@@ -3051,6 +3051,13 @@
             type="org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider">
       </adapter>
    </factory>
+   <factory
+         adaptableType="org.eclipse.gmf.runtime.notation.View"
+         class="org.eclipse.papyrus.uml.diagram.clazz.custom.providers.AssociationLabelMaskProviderAdapterFactory">
+      <adapter
+            type="org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider">
+      </adapter>
+   </factory>
 </extension>
 
 </plugin>

@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.LineTypeStyle;
 import org.eclipse.gmf.runtime.notation.ListCompartment;
 import org.eclipse.gmf.runtime.notation.MultiDiagramLinkStyle;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.PageStyle;
 import org.eclipse.gmf.runtime.notation.PropertiesSetStyle;
 import org.eclipse.gmf.runtime.notation.RoundedCornersStyle;
@@ -76,6 +77,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.CSSLineTypeStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSListCompartmentImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSMultiDiagramLinkStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSNamedStyleImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.CSSNodeImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSPageStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSPropertiesSetStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.CSSRoundedCornersStyleImpl;
@@ -298,6 +300,11 @@ public class CSSNotationFactory extends NotationFactoryImpl {
 	@Override
 	public Edge createEdge() {
 		return new CSSEdgeImpl();
+	}
+
+	@Override
+	public Node createNode() {
+		return new CSSNodeImpl();
 	}
 
 }

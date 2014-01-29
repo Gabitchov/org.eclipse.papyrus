@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -117,7 +117,7 @@ public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements I
 
 	/**
 	 * Get the host label edit part (has to implement {@link ITextAwareEditPart}).
-	 * 
+	 *
 	 * @return the host label edit part.
 	 */
 	private ITextAwareEditPart getHostLabelEditPart() {

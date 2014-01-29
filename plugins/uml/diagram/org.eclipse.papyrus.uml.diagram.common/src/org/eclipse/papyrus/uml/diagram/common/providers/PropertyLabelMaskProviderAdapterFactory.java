@@ -32,6 +32,17 @@ public class PropertyLabelMaskProviderAdapterFactory implements IAdapterFactory 
 			if(adaptableObject instanceof Port) {
 				return PortLabelHelper.getInstance();
 			} else if(adaptableObject instanceof Property) {
+				Property property = (Property)adaptableObject;
+				if(property.getAssociation() != null) {
+					//					Association association = property.getAssociation();
+					//					int index = association.getMemberEnds().indexOf(property);
+					//					if (index == 0){
+					//						return AssociationEndSourceLabelHelper.getInstance();
+					//					} else {
+					//						return AssociationEndTargetLabelHelper.getInstance();
+					//					}
+				}
+
 				return PropertyLabelHelper.getInstance();
 			}
 		}

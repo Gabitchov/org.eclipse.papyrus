@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,16 +18,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.types.NotationTypesMap;
 import org.eclipse.papyrus.infra.gmfdiag.css.dom.GMFElementAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
-import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * DOM Element Adapter for UML Elements
@@ -51,10 +48,19 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 	static {
 		//SysML
-		diagramNameMappings.put("BlockDefinition", "BlockDiagram");
-		diagramNameMappings.put("InternalBlock", "InternalBlockDiagram");
-		diagramNameMappings.put("PapyrusSysMLRequirement", "RequirementDiagram");
-		diagramNameMappings.put("Parametric", "ParametricDiagram");
+		mapDiagram("BlockDefinition", "BlockDiagram");
+		mapDiagram("InternalBlock", "InternalBlockDiagram");
+		mapDiagram("PapyrusSysMLRequirement", "RequirementDiagram");
+		mapDiagram("Parametric", "ParametricDiagram");
+	}
+
+	/**
+	 * @Deprecated Use the notationTypesMapping extension point
+	 *             FIXME Use the notationTypesMapping extension point
+	 */
+	@Deprecated
+	private static void mapDiagram(String diagramID, String cssID) {
+		NotationTypesMap.instance.getComputerToHumanTypeMapping(diagramID).put(diagramID, cssID);
 	}
 
 	public GMFUMLElementAdapter(View view, ExtendedCSSEngine engine) {
@@ -83,7 +89,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					appliedStereotypes.add(stereotype.getName());
 					appliedStereotypes.add(stereotype.getQualifiedName());
 				}
-				
+
 				if(!appliedStereotypes.isEmpty()) {
 					return ListHelper.deepToString(appliedStereotypes, CSS_VALUES_SEPARATOR);
 				}
