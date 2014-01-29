@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit.provider;
+package org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider;
 
 
 import java.util.Collection;
@@ -12,7 +8,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -21,19 +21,21 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationFactory;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
-import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ToolConfigurationItemProvider
-	extends LeafConfigurationItemProvider
+public class ConfigurationItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -46,7 +48,7 @@ public class ToolConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ToolConfigurationItemProvider(AdapterFactory adapterFactory) {
+	public ConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -61,48 +63,71 @@ public class ToolConfigurationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPreValidationQueryPropertyDescriptor(object);
-			addKindPropertyDescriptor(object);
+			addIdPropertyDescriptor(object);
+			addLabelPropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Pre Validation Query feature.
+	 * This adds a property descriptor for the Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPreValidationQueryPropertyDescriptor(Object object) {
+	protected void addIdPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ToolConfiguration_preValidationQuery_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ToolConfiguration_preValidationQuery_feature", "_UI_ToolConfiguration_type"),
-				 PaletteconfigurationPackage.Literals.TOOL_CONFIGURATION__PRE_VALIDATION_QUERY,
+				 getString("_UI_Configuration_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Configuration_id_feature", "_UI_Configuration_type"),
+				 PaletteconfigurationPackage.Literals.CONFIGURATION__ID,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Kind feature.
+	 * This adds a property descriptor for the Label feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addKindPropertyDescriptor(Object object) {
+	protected void addLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ToolConfiguration_kind_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ToolConfiguration_kind_feature", "_UI_ToolConfiguration_type"),
-				 PaletteconfigurationPackage.Literals.TOOL_CONFIGURATION__KIND,
+				 getString("_UI_Configuration_label_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Configuration_label_feature", "_UI_Configuration_type"),
+				 PaletteconfigurationPackage.Literals.CONFIGURATION__LABEL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Configuration_description_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Configuration_description_feature", "_UI_Configuration_type"),
+				 PaletteconfigurationPackage.Literals.CONFIGURATION__DESCRIPTION,
 				 true,
 				 false,
 				 false,
@@ -123,7 +148,7 @@ public class ToolConfigurationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PaletteconfigurationPackage.Literals.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS);
+			childrenFeatures.add(PaletteconfigurationPackage.Literals.CONFIGURATION__ICON);
 		}
 		return childrenFeatures;
 	}
@@ -142,17 +167,6 @@ public class ToolConfigurationItemProvider
 	}
 
 	/**
-	 * This returns ToolConfiguration.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ToolConfiguration"));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,11 +174,12 @@ public class ToolConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ToolConfiguration)object).getId();
+		String label = ((Configuration)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ToolConfiguration_type") :
-			getString("_UI_ToolConfiguration_type") + " " + label;
+			getString("_UI_Configuration_type") :
+			getString("_UI_Configuration_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -177,11 +192,13 @@ public class ToolConfigurationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ToolConfiguration.class)) {
-			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
+		switch (notification.getFeatureID(Configuration.class)) {
+			case PaletteconfigurationPackage.CONFIGURATION__ID:
+			case PaletteconfigurationPackage.CONFIGURATION__LABEL:
+			case PaletteconfigurationPackage.CONFIGURATION__DESCRIPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
+			case PaletteconfigurationPackage.CONFIGURATION__ICON:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -201,8 +218,19 @@ public class ToolConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PaletteconfigurationPackage.Literals.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS,
-				 PaletteconfigurationFactory.eINSTANCE.createElementDescriptor()));
+				(PaletteconfigurationPackage.Literals.CONFIGURATION__ICON,
+				 PaletteconfigurationFactory.eINSTANCE.createIconDescriptor()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return PaletteConfigurationEditPlugin.INSTANCE;
 	}
 
 }

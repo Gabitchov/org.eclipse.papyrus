@@ -1,17 +1,12 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit.provider;
+package org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.emf.facet.infra.query.edit.provider.QueryEditPlugin;
-import org.eclipse.papyrus.infra.queries.core.configuration.provider.ConfigurationEditPlugin;
-import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**
  * This is the central singleton for the PaletteConfiguration edit plugin.
@@ -45,10 +40,7 @@ public final class PaletteConfigurationEditPlugin extends EMFPlugin {
 	public PaletteConfigurationEditPlugin() {
 		super
 		  (new ResourceLocator [] {
-		     ConfigurationEditPlugin.INSTANCE,
 		     EcoreEditPlugin.INSTANCE,
-		     QueryEditPlugin.INSTANCE,
-		     UMLEditPlugin.INSTANCE,
 		   });
 	}
 

@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit.provider;
+package org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider;
 
 
 import java.util.Collection;
@@ -12,26 +8,31 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationFactory;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
-import org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class StackConfigurationItemProvider
-	extends ChildConfigurationItemProvider
+public class ToolConfigurationItemProvider
+	extends LeafConfigurationItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -44,7 +45,7 @@ public class StackConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StackConfigurationItemProvider(AdapterFactory adapterFactory) {
+	public ToolConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,8 +60,31 @@ public class StackConfigurationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addKindPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Kind feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addKindPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ToolConfiguration_kind_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ToolConfiguration_kind_feature", "_UI_ToolConfiguration_type"),
+				 PaletteconfigurationPackage.Literals.TOOL_CONFIGURATION__KIND,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -75,7 +99,7 @@ public class StackConfigurationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PaletteconfigurationPackage.Literals.STACK_CONFIGURATION__OWNED_CONFIGURATIONS);
+			childrenFeatures.add(PaletteconfigurationPackage.Literals.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS);
 		}
 		return childrenFeatures;
 	}
@@ -94,14 +118,14 @@ public class StackConfigurationItemProvider
 	}
 
 	/**
-	 * This returns StackConfiguration.gif.
+	 * This returns ToolConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/StackConfiguration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ToolConfiguration"));
 	}
 
 	/**
@@ -112,11 +136,12 @@ public class StackConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((StackConfiguration)object).getId();
+		String label = ((ToolConfiguration)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_StackConfiguration_type") :
-			getString("_UI_StackConfiguration_type") + " " + label;
+			getString("_UI_ToolConfiguration_type") :
+			getString("_UI_ToolConfiguration_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -129,8 +154,11 @@ public class StackConfigurationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StackConfiguration.class)) {
-			case PaletteconfigurationPackage.STACK_CONFIGURATION__OWNED_CONFIGURATIONS:
+		switch (notification.getFeatureID(ToolConfiguration.class)) {
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -150,13 +178,8 @@ public class StackConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PaletteconfigurationPackage.Literals.STACK_CONFIGURATION__OWNED_CONFIGURATIONS,
-				 PaletteconfigurationFactory.eINSTANCE.createToolConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(PaletteconfigurationPackage.Literals.STACK_CONFIGURATION__OWNED_CONFIGURATIONS,
-				 PaletteconfigurationFactory.eINSTANCE.createSeparatorConfiguration()));
+				(PaletteconfigurationPackage.Literals.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS,
+				 PaletteconfigurationFactory.eINSTANCE.createElementDescriptor()));
 	}
 
 }

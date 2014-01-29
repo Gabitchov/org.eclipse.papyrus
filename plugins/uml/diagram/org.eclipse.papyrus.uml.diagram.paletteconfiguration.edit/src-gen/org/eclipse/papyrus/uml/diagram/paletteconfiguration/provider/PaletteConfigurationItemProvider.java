@@ -1,10 +1,6 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
-package org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit.provider;
+package org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider;
 
 
 import java.util.Collection;
@@ -12,7 +8,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -20,17 +18,18 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration;
+
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationFactory;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DrawerConfigurationItemProvider
+public class PaletteConfigurationItemProvider
 	extends ConfigurationItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -44,7 +43,7 @@ public class DrawerConfigurationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DrawerConfigurationItemProvider(AdapterFactory adapterFactory) {
+	public PaletteConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -75,7 +74,7 @@ public class DrawerConfigurationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS);
+			childrenFeatures.add(PaletteconfigurationPackage.Literals.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -94,14 +93,14 @@ public class DrawerConfigurationItemProvider
 	}
 
 	/**
-	 * This returns DrawerConfiguration.gif.
+	 * This returns PaletteConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DrawerConfiguration"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PaletteConfiguration"));
 	}
 
 	/**
@@ -112,11 +111,12 @@ public class DrawerConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DrawerConfiguration)object).getId();
+		String label = ((PaletteConfiguration)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_DrawerConfiguration_type") :
-			getString("_UI_DrawerConfiguration_type") + " " + label;
+			getString("_UI_PaletteConfiguration_type") :
+			getString("_UI_PaletteConfiguration_type") + " " + label;
 	}
+	
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -129,8 +129,8 @@ public class DrawerConfigurationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DrawerConfiguration.class)) {
-			case PaletteconfigurationPackage.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS:
+		switch (notification.getFeatureID(PaletteConfiguration.class)) {
+			case PaletteconfigurationPackage.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -150,18 +150,8 @@ public class DrawerConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
-				 PaletteconfigurationFactory.eINSTANCE.createToolConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
-				 PaletteconfigurationFactory.eINSTANCE.createStackConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(PaletteconfigurationPackage.Literals.DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS,
-				 PaletteconfigurationFactory.eINSTANCE.createSeparatorConfiguration()));
+				(PaletteconfigurationPackage.Literals.PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS,
+				 PaletteconfigurationFactory.eINSTANCE.createDrawerConfiguration()));
 	}
 
 }
