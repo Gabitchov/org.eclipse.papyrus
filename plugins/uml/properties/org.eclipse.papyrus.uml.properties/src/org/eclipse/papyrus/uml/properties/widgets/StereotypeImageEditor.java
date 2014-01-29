@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -45,15 +45,15 @@ import org.eclipse.uml2.uml.Image;
 /**
  * A widget to edit a stereotype image. The image is serialized in order to be
  * embedded in the UML xmi model.
- * 
+ *
  * An expression can be attached to each image, which will be interpreted at runtime
  * to determine which image should be displayed.
- * 
+ *
  * Based on the org.eclipse.papyrus.views.properties.tabbed.profile.imagesection package
  * in the org.eclipse.papyrus.views.properties.tabbed.profile plug-in
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class StereotypeImageEditor extends AbstractPropertyEditor implements SelectionListener {
 
@@ -138,28 +138,34 @@ public class StereotypeImageEditor extends AbstractPropertyEditor implements Sel
 			TransactionalEditingDomain domain;
 			try {
 				domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(image);
+
+				AbstractTransactionalCommand operation = new AbstractTransactionalCommand(domain, "Set Image content", null) {
+
+					/**
+					 * {@inheritDoc}
+					 */
+					@Override
+					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+						try {
+							ImageUtil.setContent((Image)getElement(), imgFile);
+							((Image)getElement()).setFormat(PAPYRUS_FORMAT);
+						} catch (Exception ex) {
+							return CommandResult.newErrorCommandResult(ex);
+						}
+						return CommandResult.newOKCommandResult();
+					}
+				};
+				domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(operation));
 			} catch (ServiceException ex) {
 				Activator.log.error(ex);
-				return;
+
+				//FIXME: Workaround for Bug 402525. The icon is not yet attached to the editing domain. Modify it directly.
+				ImageUtil.setContent((Image)getElement(), imgFile);
+				((Image)getElement()).setFormat(PAPYRUS_FORMAT);
+				//////
+
+				//return;
 			}
-
-			AbstractTransactionalCommand operation = new AbstractTransactionalCommand(domain, "Set Image content", null) {
-
-				/**
-				 * {@inheritDoc}
-				 */
-				@Override
-				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-					try {
-						ImageUtil.setContent((Image)getElement(), imgFile);
-						((Image)getElement()).setFormat(PAPYRUS_FORMAT);
-					} catch (Exception ex) {
-						return CommandResult.newErrorCommandResult(ex);
-					}
-					return CommandResult.newOKCommandResult();
-				}
-			};
-			domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(operation));
 
 			refresh();
 		}
