@@ -50,6 +50,11 @@
 			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201312170329</url>
 		</repository>
 		<repository>
+			<id>uml-5.0</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.0milestone</url>
+		</repository>
+		<repository>
 			<id>eclipse-update</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/eclipse/updates/4.4</url>
