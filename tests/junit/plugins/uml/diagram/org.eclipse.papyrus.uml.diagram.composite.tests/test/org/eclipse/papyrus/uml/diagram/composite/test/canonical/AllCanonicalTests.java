@@ -21,7 +21,6 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 //test links
-TestCompositeDiagramLink.class
-})
+TestCompositeDiagramSimpleLink.class, TestCompositeDiagramLinkOwnedBySource.class, TestCompositeDiagramElementWithSameParentLink.class, TestCompositeDiagramElementWithDifferentParentLink.class })
 public class AllCanonicalTests {
 }
