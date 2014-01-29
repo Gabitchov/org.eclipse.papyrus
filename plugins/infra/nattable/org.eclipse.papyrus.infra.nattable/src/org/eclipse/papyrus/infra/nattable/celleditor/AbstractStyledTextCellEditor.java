@@ -29,8 +29,10 @@ import org.eclipse.nebula.widgets.nattable.style.IStyle;
 import org.eclipse.nebula.widgets.nattable.widget.EditModeEnum;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.custom.VerifyKeyListener;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -240,6 +242,17 @@ public abstract class AbstractStyledTextCellEditor extends AbstractCellEditor {
 		//create the Text control based on the specified style
 		final StyledText textControl = createStyledText(parent, style);
 
+		//to avoid widget is disposed exception during the closing of the cell editor
+		textControl.addVerifyKeyListener(new VerifyKeyListener() {
+			
+			@Override
+			public void verifyKey(VerifyEvent event) {
+				if(textControl.isDisposed()){
+					event.doit = false;
+				}
+			}
+		});
+		
 		//set style information configured in the associated cell style
 		textControl.setBackground(this.cellStyle.getAttributeValue(CellStyleAttributes.BACKGROUND_COLOR));
 		textControl.setForeground(this.cellStyle.getAttributeValue(CellStyleAttributes.FOREGROUND_COLOR));
