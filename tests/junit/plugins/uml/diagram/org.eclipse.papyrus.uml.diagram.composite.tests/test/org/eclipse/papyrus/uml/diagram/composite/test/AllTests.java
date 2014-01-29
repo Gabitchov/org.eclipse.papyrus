@@ -26,7 +26,6 @@ import org.junit.runners.Suite.SuiteClasses;
 // canonical
 AllCanonicalTests.class,
 // load
-//LoadTests.class
 })
 public class AllTests {
 }
