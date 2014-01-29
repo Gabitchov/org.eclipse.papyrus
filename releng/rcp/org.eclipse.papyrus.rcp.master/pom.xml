@@ -54,11 +54,6 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/eclipse/updates/4.4</url>
 		</repository>
-		<!-- <repository> -->
-		<!-- <id>subversive 0.7</id> -->
-		<!-- <layout>p2</layout> -->
-		<!-- <url>http://download.eclipse.org/technology/subversive/0.7/update-site/</url> -->
-		<!-- </repository> -->
 	</repositories>
 	<build>
 		<plugins>
@@ -100,11 +95,6 @@
 							<ws>win32</ws>
 							<arch>x86</arch>
 						</environment>
-						<!-- <environment>
-							<os>macosx</os>
-							<ws>cocoa</ws>
-							<arch>x86_64</arch>
-						</environment> -->
 					</environments>
 				</configuration>
 			</plugin>
@@ -122,15 +112,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-compiler-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					<compilerArgument>-err:-forbidden</compilerArgument>
-					<compilerArgument>-warn:+forbidden</compilerArgument>
-				</configuration>
-			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
