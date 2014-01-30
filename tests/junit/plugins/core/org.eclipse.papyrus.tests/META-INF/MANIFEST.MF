@@ -41,7 +41,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.nattable.views.editor.tests;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.nattable.model.editor.tests;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.diagram.sequence.tests;bundle-version="1.0.0",
- org.eclipse.papyrus.uml.diagram.interactionoverview.tests;bundle-version="1.0.0"
+ org.eclipse.papyrus.uml.diagram.interactionoverview.tests;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.gmfdiag.css.tests;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
