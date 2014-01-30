@@ -52,7 +52,7 @@
 		<repository>
 			<id>uml-5.0</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.0milestone</url>
+			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.0milestones</url>
 		</repository>
 		<repository>
 			<id>eclipse-update</id>
