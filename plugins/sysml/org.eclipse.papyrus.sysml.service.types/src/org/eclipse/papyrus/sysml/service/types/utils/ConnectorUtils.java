@@ -387,4 +387,45 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 		return null;
 	}
 	
+	/**
+	 * Test if the relationship creation is allowed.
+	 * 
+	 * @param source
+	 *        the relationship source can be null
+	 * @param target
+	 *        the relationship target can be null
+	 * @param sourceView
+	 *        the relationship graphical source can be null
+	 * @param targetView
+	 *        the relationship graphical target can be null
+	 * @return true if the creation is allowed
+	 */
+	public static boolean canCreate(EObject source, EObject target, View sourceView, View targetView) {
+
+		if((source != null) && !(source instanceof ConnectableElement)) {
+			return false;
+		}
+
+		if((target != null) && !(target instanceof ConnectableElement)) {
+			return false;
+		}
+
+		if((sourceView != null) && (targetView != null)) {
+			// Allow to create a self connector on a view
+//			if(sourceView == targetView) {
+//				return false;
+//			}
+
+			// Cannot create a connector from a view representing a Part to its own Port (or the opposite)
+			if((sourceView.getChildren().contains(targetView)) || (targetView.getChildren().contains(sourceView))) {
+				return false;
+			}
+
+			// Cannot connect a Part to one of its (possibly indirect) containment, must connect to one of its Port.
+			if(new ConnectorUtils().getStructureContainers(sourceView).contains(targetView) || new ConnectorUtils().getStructureContainers(targetView).contains(sourceView)) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

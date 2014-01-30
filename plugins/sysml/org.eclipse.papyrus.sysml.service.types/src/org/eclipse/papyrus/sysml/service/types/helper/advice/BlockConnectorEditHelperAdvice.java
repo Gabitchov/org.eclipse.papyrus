@@ -15,6 +15,7 @@ package org.eclipse.papyrus.sysml.service.types.helper.advice;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -45,7 +46,9 @@ public class BlockConnectorEditHelperAdvice extends AbstractEditHelperAdvice {
 	
 	@Override
 	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
-			
+		
+		EObject source = request.getSource();
+		EObject target = request.getTarget();
 		View sourceView = RequestParameterUtils.getSourceView(request);
 		View targetView = RequestParameterUtils.getTargetView(request);
 
@@ -61,7 +64,10 @@ public class BlockConnectorEditHelperAdvice extends AbstractEditHelperAdvice {
 				if(utils.isCrossingEncapsulation(sourceView, targetView) 
 					|| utils.isCrossingEncapsulation(targetView, sourceView)) {
 					return UnexecutableCommand.INSTANCE;
-				}				
+				}
+				if (ConnectorUtils.canCreate(source, target, sourceView, targetView)) {
+					request.setParameter( org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants.UML_STRICT, false);
+				}
 			}
 		}
 		
