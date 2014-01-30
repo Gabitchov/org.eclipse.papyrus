@@ -1,0 +1,39 @@
+* {
+	showTitle: false;
+}
+
+/* Check showTitle, to avoid priority conflicts with more specific rules */
+.showTitleForAllCompartments Compartment {
+	showTitle: true;
+}
+
+Interface > Compartment[kind=attribute],
+Interface > Compartment[kind=nestedClassifier] {
+	visible:false;
+}
+
+Interface[ownedAttribute] > Compartment[kind=attribute]{
+	visible:true;
+}
+
+Compartment[kind=nestedClassifier] {
+	visible: false;
+}
+
+
+/* Collapse the Attribute compartment if the Class contains a P1 attribute (Displayed) */
+Class[ownedAttribute~="P1"] > Compartment[kind=attribute]{
+	collapsed: true;
+}
+
+Enumeration > Compartment {
+	collapsed: true;
+}
+
+Enumeration > Compartment[kind=EnUmerAtionLiteRal]{ /* Case insensitive */
+	collapsed: false;
+}
+
+Compartment {
+	showTitle: true;
+}

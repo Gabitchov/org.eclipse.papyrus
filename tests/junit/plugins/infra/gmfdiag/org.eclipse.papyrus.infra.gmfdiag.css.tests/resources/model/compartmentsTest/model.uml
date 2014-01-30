@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_4DWgNImVEeOGN4dVepS-Uw" name="CSSTests">
+  <ownedComment xmi:type="uml:Comment" xmi:id="__TiJAImVEeOGN4dVepS-Uw">
+    <body>Test model for CSS in Luna >= M5 (Compartments, Labels)</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_9S_YIImWEeOGN4dVepS-Uw" annotatedElement="_CzvgYImWEeOGN4dVepS-Uw">
+    <body>Expected: Attribute collapsed, Nested classifier hidden</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_D1WR4ImXEeOGN4dVepS-Uw" annotatedElement="_61R_kImWEeOGN4dVepS-Uw">
+    <body>Expected: Compartments hidden</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_TnYnQImXEeOGN4dVepS-Uw" annotatedElement="_DpvUQImWEeOGN4dVepS-Uw">
+    <body>Expected: Collapsed = false</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_anMSAImXEeOGN4dVepS-Uw" annotatedElement="_az5twImWEeOGN4dVepS-Uw">
+    <body>Expected: Attribute and Operation visible</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_Tfr8cImaEeOGN4dVepS-Uw" annotatedElement="_DZrfAImWEeOGN4dVepS-Uw">
+    <body>Expected: Compartment Attribute and Operation visible</body>
+  </ownedComment>
+  <ownedComment xmi:type="uml:Comment" xmi:id="_TlMukImaEeOGN4dVepS-Uw" annotatedElement="_1epSEImWEeOGN4dVepS-Uw">
+    <body>Expected: Only operation compartment is visible</body>
+  </ownedComment>
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_4DWgNYmVEeOGN4dVepS-Uw">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="_CzvgYImWEeOGN4dVepS-Uw" name="Class1">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_U81zwImWEeOGN4dVepS-Uw" name="P1"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VDYgoImWEeOGN4dVepS-Uw" name="P2"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_VJCcsImWEeOGN4dVepS-Uw" name="P3"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_DZrfAImWEeOGN4dVepS-Uw" name="Interface1">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_V6u_YImWEeOGN4dVepS-Uw" name="Attribute1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_DpvUQImWEeOGN4dVepS-Uw" name="Enumeration1">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_EAgOcImWEeOGN4dVepS-Uw" name="EnumerationLiteral1"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_ENAZYImWEeOGN4dVepS-Uw" name="EnumerationLiteral2"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_az5twImWEeOGN4dVepS-Uw" name="Class2">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_cSOF4ImWEeOGN4dVepS-Uw" name="P"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_1epSEImWEeOGN4dVepS-Uw" name="Interface2"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_61R_kImWEeOGN4dVepS-Uw" name="Class3"/>
+</uml:Model>

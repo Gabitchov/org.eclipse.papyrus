@@ -77,7 +77,10 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 			}
 		} else {
 			URI uri = URI.createURI(styleSheet.getPath());
-			uri = uri.resolve(diagram.eResource().getURI());
+			if(uri.isRelative()) {
+				uri = uri.resolve(diagram.eResource().getURI());
+			}
+
 			path = uri.toString();
 		}
 		URL url = new URL(path);
