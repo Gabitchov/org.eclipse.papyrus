@@ -33,7 +33,7 @@ import org.junit.BeforeClass;
 /**
  * JUnit tests for link creation test (via palette tools).
  */
-public class AbstractConnectorCreationAndTestDelegatePrepareTest extends AbstractTest {
+public abstract class AbstractConnectorCreationAndTestDelegatePrepareTest extends AbstractTest {
 
 	public static String toolID;
 	
@@ -44,7 +44,7 @@ public class AbstractConnectorCreationAndTestDelegatePrepareTest extends Abstrac
 	public static View actorPart1_BlockSourceView, actorPart2_BlockTargetView;
 	public static View actorPart1_p1_SourceView, actorPart2_p1TargetView, actorPart1_p2TargetView, actorPart1_p1_p1SourceView, actorPart2_p1_p1TargetView, actorPart1_p2_p1TargetView, actorPart1_p1_p2TargetView;
 	public static View portOnBlockSourceView, portOnBlockTargetView;
-	public static View port1_Part1SourceView, port1_Part2TargetView;
+	public static View port1_Part1SourceView, port2_Part1TargetView, port1_Part2TargetView, port2_Part2TargetView;
 	public static View port1OnNestedPart1_Part1SourceView, port2OnNestedPart2_Part1TargetView, port1OnNestedPart1_Part2TargetView;
 	public static View flowportOnBlockSourceView, flowportOnBlockTargetView;
 	public static View flowport1_Part1SourceView, flowport1_Part2TargetView;
@@ -106,7 +106,13 @@ public class AbstractConnectorCreationAndTestDelegatePrepareTest extends Abstrac
 		portOnBlockSourceView = createGraphicalNode(UMLElementTypes.PORT, UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, blockView);
 		portOnBlockTargetView = createGraphicalNode(UMLElementTypes.PORT, UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, blockView);
 		port1_Part1SourceView = createGraphicalNode(UMLElementTypes.PORT, (EObject)p1View.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, p1View);
+		port2_Part1TargetView = createGraphicalNode(UMLElementTypes.PORT, (EObject)p1View.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, p1View);	
 		port1_Part2TargetView = createGraphicalNode(UMLElementTypes.PORT, (EObject)p2View.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, p2View);
+		
+		// BMA temp
+		port2_Part2TargetView = createGraphicalNode(UMLElementTypes.PORT, (EObject)p2View.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, p2View);
+		
+		// ?? kesako ? 
 		port1OnNestedPart1_Part1SourceView = createGraphicalNode(UMLElementTypes.PORT, (EObject)p1_p1View.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, p1_p1View);
 		port2OnNestedPart2_Part1TargetView = createGraphicalNode(UMLElementTypes.PORT, (EObject)p2_p1View.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, p2_p1View);
 		port1OnNestedPart1_Part2TargetView = createGraphicalNode(UMLElementTypes.PORT, (EObject)p1_p2View.getElement().eGet(UMLPackage.eINSTANCE.getTypedElement_Type()), UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID, p1_p2View);
@@ -139,5 +145,6 @@ public class AbstractConnectorCreationAndTestDelegatePrepareTest extends Abstrac
 		valueTargetView = createGraphicalNode(SysMLElementTypes.VALUE_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, blockStructureView);
 		nestedValueSourceView = createGraphicalNode(SysMLElementTypes.VALUE_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, p1StructureView);
 		nestedValueTargetView = createGraphicalNode(SysMLElementTypes.VALUE_PROPERTY, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID, p1StructureView);
+		
 	}
 }

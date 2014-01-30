@@ -48,11 +48,11 @@ public class TestLinkCreationConnectorFromFlowPortOnBlock extends AbstractLinkCr
 		isCreationAllowed.put(actorPartTargetView, true);
 		isCreationAllowed.put(nestedActorPartTargetView, true);
 
-		isCreationAllowed.put(portOnBlockTargetView, false);
+		isCreationAllowed.put(portOnBlockTargetView, true);
 		isCreationAllowed.put(portOnPartTargetView, true);
 		isCreationAllowed.put(portOnNestedPartTargetView, true);
 
-		isCreationAllowed.put(flowportOnBlockTargetView, false);
+		isCreationAllowed.put(flowportOnBlockTargetView, true);
 		isCreationAllowed.put(flowportOnPartTargetView, true);
 		isCreationAllowed.put(flowportOnNestedPartTargetView, true);
 
