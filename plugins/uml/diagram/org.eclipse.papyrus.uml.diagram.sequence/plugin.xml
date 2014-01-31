@@ -782,9 +782,6 @@
          defaultHandler="org.eclipse.papyrus.uml.diagram.sequence.part.LoadResourceAction"/>
    </extension>
 
-   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
-   </extension>
 
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="true"?>
@@ -2055,24 +2052,6 @@
          </dynamic>
       </menuContribution>
    </extension>
-<extension
-      point="org.eclipse.core.runtime.adapters">
-      <factory
-         adaptableType="org.eclipse.uml2.uml.Message"
-         class="org.eclipse.papyrus.uml.diagram.sequence.providers.MessageLabelMaskProviderAdapterFactory">
-      <adapter
-            type="org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider">
-      </adapter>
-   </factory>
-   <factory
-         adaptableType="org.eclipse.uml2.uml.Lifeline"
-         class="org.eclipse.papyrus.uml.diagram.sequence.providers.LifelineLabelMaskProviderAdapterFactory">
-      <adapter
-            type="org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider">
-      </adapter>
-   </factory>
-   
-</extension> 
    
 
 

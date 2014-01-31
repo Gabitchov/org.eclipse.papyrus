@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
@@ -26,7 +25,7 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-public class MessageLabelHelper extends StereotypedElementLabelHelper implements ILabelMaskProvider {
+public class MessageLabelHelper extends StereotypedElementLabelHelper {
 
 	/**
 	 * singelton instance
@@ -48,7 +47,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper implements
 		masks.put(ICustomAppearence.DISP_PARAMETER_DEFAULT, "Parameters Default Value");
 		masks.put(ICustomAppearence.DISP_DERIVE, "Parameters Value");
 		masks.put(ICustomAppearence.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
-		masks.put(ICustomAppearence.DISP_MOFIFIERS, "Modifiers");
+		masks.put(ICustomAppearence.DISP_MODIFIERS, "Modifiers");
 	}
 
 	/**
