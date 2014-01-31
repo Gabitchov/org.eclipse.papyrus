@@ -8,9 +8,10 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
+ *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
+ *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.profile.custom.policies;
+package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +20,6 @@ import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.OperationLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Operation;
@@ -51,11 +51,9 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(operation == null) {
 			return;
 		}
-
 		// adds a listener to the element itself, and to linked elements, like Type
 		for(Parameter parameter : operation.getOwnedParameters()) {
 			getDiagramEventBroker().addNotificationListener(parameter, this);
-
 			// should also add this element as a listener of parameter type
 			if(parameter.getType() != null) {
 				getDiagramEventBroker().addNotificationListener(parameter.getType(), this);
@@ -66,53 +64,36 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getDefaultDisplayValue() {
+	@Override
+	public Collection<String> getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_OPERATION;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getMaskLabel(int value) {
-		return OperationLabelHelper.getInstance().getMaskLabel(value);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<String> getMaskLabels() {
-		return OperationLabelHelper.getInstance().getMaskLabels();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Map<Integer, String> getMasks() {
+	@Override
+	public Map<String, String> getMasks() {
 		return OperationLabelHelper.getInstance().getMasks();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<Integer> getMaskValues() {
-		return OperationLabelHelper.getInstance().getMaskValues();
+	@Override
+	public String getPreferencePageID() {
+		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.OperationPreferencePage";
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.uml.diagram.profile.custom.preferences.OperationPreferencePage"; //$NON-NLS-1$
-	}
-
-	/**
-	 * Returns the {@link Operation} managed by this edit part.
-	 *
-	 * @return the {@link Operation} managed by this edit part.
-	 */
 	@Override
 	public Operation getUMLElement() {
-		return (Operation)super.getUMLElement();
+		if(hostSemanticElement instanceof Operation) {
+			return (Operation)hostSemanticElement;
+		}
+		return null;
 	}
 
 	/**
@@ -128,11 +109,9 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
 		Operation operation = getUMLElement();
-
 		if(object == null) {
 			return;
 		}
-
 		if(object.equals(operation)) {
 			notifyOperationChanged(operation, notification);
 		} else if(isParameter(object)) {
@@ -140,11 +119,9 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		} else if(isParameterType(object)) {
 			notifyParameterTypeChanged(notification);
 		}
-
 		if(isMaskManagedAnnotation(object)) {
 			refreshDisplay();
 		}
-
 		if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}
@@ -162,7 +139,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(!(object instanceof Type)) {
 			return false;
 		}
-
 		for(Parameter parameter : getUMLElement().getOwnedParameters()) {
 			if(object.equals(parameter.getType())) {
 				return true;
@@ -182,7 +158,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(!(object instanceof Parameter)) {
 			return false;
 		}
-
 		return getUMLElement().getOwnedParameters().contains(object);
 	}
 
@@ -208,7 +183,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 			break;
 		case UMLPackage.PARAMETER__TYPE:
-
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
@@ -252,12 +226,9 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 				}
 				refreshDisplay();
-
 			default:
 				break;
-
 			}
-
 			break;
 		default:
 			// does nothing in other cases
@@ -308,7 +279,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 			break;
 		case UMLPackage.OPERATION__OWNED_PARAMETER:
-
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
@@ -352,12 +322,9 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 				}
 				refreshDisplay();
-
 			default:
 				break;
-
 			}
-
 			break;
 		default:
 			// does nothing in other cases
@@ -385,16 +352,12 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if(operation == null) {
 			return;
 		}
-
 		for(Parameter parameter : operation.getOwnedParameters()) {
 			getDiagramEventBroker().removeNotificationListener(parameter, this);
-
 			// remove parameter type listener
 			if(parameter.getType() != null) {
 				getDiagramEventBroker().removeNotificationListener(parameter.getType(), this);
 			}
-
 		}
 	}
-
 }

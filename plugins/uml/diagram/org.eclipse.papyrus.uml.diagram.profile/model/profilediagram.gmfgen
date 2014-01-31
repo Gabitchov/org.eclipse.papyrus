@@ -47,7 +47,7 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.AppliedStereotypeOperationDisplayEditPolicy"/>
-        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.OperationLabelEditPolicy"/>
+        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.OperationLabelEditPolicy"/>
         <modelFacet>
           <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
           <containmentMetaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedOperation"/>
@@ -90,7 +90,7 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
-        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.PropertyLabelEditPolicy"/>
+        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedAttribute"/>
@@ -113,7 +113,7 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
-        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.PropertyLabelEditPolicy"/>
+        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
@@ -136,7 +136,7 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.AppliedStereotypeOperationDisplayEditPolicy"/>
-        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.OperationLabelEditPolicy"/>
+        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.OperationLabelEditPolicy"/>
         <modelFacet>
           <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
           <containmentMetaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>

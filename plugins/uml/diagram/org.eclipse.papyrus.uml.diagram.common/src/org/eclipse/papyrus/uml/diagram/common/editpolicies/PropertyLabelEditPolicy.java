@@ -11,7 +11,7 @@
  *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
+package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,7 +21,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Property;
