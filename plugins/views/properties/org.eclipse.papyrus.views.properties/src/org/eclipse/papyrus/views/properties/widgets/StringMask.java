@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.views.properties.widgets;
 
 import org.eclipse.papyrus.views.properties.providers.XWTCompliantMaskProvider;
+import org.eclipse.papyrus.views.properties.providers.XWTCompliantMaskProviderListener;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -21,8 +22,13 @@ import org.eclipse.swt.widgets.Composite;
  *
  * @author Camille Letavernier
  */
-@Deprecated
-public class IntegerMask extends InvalidWidget {
+public class StringMask extends AbstractPropertyEditor implements XWTCompliantMaskProviderListener {
+
+	private org.eclipse.papyrus.infra.widgets.editors.StringMask editor;
+
+	private XWTCompliantMaskProvider maskProvider;
+
+	private boolean maskProviderReady = false;
 
 	/**
 	 *
@@ -32,8 +38,29 @@ public class IntegerMask extends InvalidWidget {
 	 *        The composite in which this widget will be created
 	 * @param style
 	 */
-	public IntegerMask(Composite parent, int style) {
-		super(parent, style);
+	public StringMask(Composite parent, int style) {
+		editor = createStringMask(parent, style);
+		setEditor(editor);
+	}
+
+	/**
+	 * Creates the integer mask.
+	 *
+	 * @param parent
+	 *        The composite in which the widget will be displayed
+	 * @param style
+	 *        The style for the widget
+	 * @return the integer mask.
+	 */
+	protected org.eclipse.papyrus.infra.widgets.editors.StringMask createStringMask(Composite parent, int style) {
+		return new org.eclipse.papyrus.infra.widgets.editors.StringMask(parent, style);
+	}
+
+	@Override
+	protected void checkInput() {
+		if(maskProvider != null && maskProviderReady) {
+			super.checkInput();
+		}
 	}
 
 	/**
@@ -41,7 +68,7 @@ public class IntegerMask extends InvalidWidget {
 	 *
 	 */
 	public int getNumColumns() {
-		return 0;
+		return editor.getNumColumns();
 	}
 
 	/**
@@ -51,7 +78,7 @@ public class IntegerMask extends InvalidWidget {
 	 * @param numColumns
 	 */
 	public void setNumColumns(int numColumns) {
-		//
+		editor.setNumColumns(numColumns);
 	}
 
 	/**
@@ -60,7 +87,14 @@ public class IntegerMask extends InvalidWidget {
 	 * @param provider
 	 */
 	public void setMaskProvider(XWTCompliantMaskProvider provider) {
-		//
+		if(this.maskProvider != null) {
+			maskProvider.removeMaskProviderListener(this);
+		}
+
+		maskProviderReady = false;
+		this.maskProvider = provider;
+		provider.addMaskProviderListener(this);
+		checkInput();
 	}
 
 	/**
@@ -68,6 +102,13 @@ public class IntegerMask extends InvalidWidget {
 	 * @return the MaskProvider associated to this editor
 	 */
 	public XWTCompliantMaskProvider getMaskProvider() {
-		return null;
+		return maskProvider;
+	}
+
+	public void notifyReady(XWTCompliantMaskProvider provider) {
+		this.maskProviderReady = true;
+		editor.setMasks(maskProvider.getMasks());
+		provider.removeMaskProviderListener(this);
+		checkInput();
 	}
 }

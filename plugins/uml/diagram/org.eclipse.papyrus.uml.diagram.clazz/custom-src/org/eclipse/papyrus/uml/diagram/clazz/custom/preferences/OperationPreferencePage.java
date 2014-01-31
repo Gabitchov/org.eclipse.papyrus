@@ -139,7 +139,7 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		data.left = new FormAttachment(displName, 85);
 		data.top = new FormAttachment(0, 0);
 		displParamDirection.setLayoutData(data);
-		displModifiers = createCheckButton(group, "Modifiers", ICustomAppearence.DISP_MOFIFIERS);
+		displModifiers = createCheckButton(group, "Modifiers", ICustomAppearence.DISP_MODIFIERS);
 		data = new FormData();
 		data.left = new FormAttachment(0, 0);
 		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
@@ -233,7 +233,7 @@ public class OperationPreferencePage extends AbstractPapyrusElementPreferencePag
 		displName.setSelection((operationValue & ICustomAppearence.DISP_NAME) == ICustomAppearence.DISP_NAME);
 		displParamDirection.setSelection((operationValue & ICustomAppearence.DISP_PARAMETER_DIRECTION) == ICustomAppearence.DISP_PARAMETER_DIRECTION);
 		displParameterType.setSelection((operationValue & ICustomAppearence.DISP_PARAMETER_TYPE) == ICustomAppearence.DISP_PARAMETER_TYPE);
-		displModifiers.setSelection((operationValue & ICustomAppearence.DISP_MOFIFIERS) == ICustomAppearence.DISP_MOFIFIERS);
+		displModifiers.setSelection((operationValue & ICustomAppearence.DISP_MODIFIERS) == ICustomAppearence.DISP_MODIFIERS);
 	}
 
 	/**

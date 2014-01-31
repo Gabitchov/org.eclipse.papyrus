@@ -58,6 +58,7 @@ public class CSSNodeImpl extends NodeImpl implements CSSView, CustomStyle {
 		return isCSSVisible();
 	}
 
+	@Override
 	public boolean isCSSVisible() {
 		boolean value = super.isVisible();
 
@@ -117,6 +118,7 @@ public class CSSNodeImpl extends NodeImpl implements CSSView, CustomStyle {
 		return getCSSNamedStyle(eClass, name);
 	}
 
+	@Override
 	public NamedStyle getCSSNamedStyle(EClass eClass, String name) {
 		NamedStyle userStyle = super.getNamedStyle(eClass, name);
 		if(userStyle != null) {
@@ -130,20 +132,19 @@ public class CSSNodeImpl extends NodeImpl implements CSSView, CustomStyle {
 	//	Implements the custom styles //
 	///////////////////////////////////
 
+	@Override
 	public boolean showElementIcon() {
 		return getCustomStyle().showElementIcon();
 	}
 
+	@Override
 	public int getQualifiedNameDepth() {
 		return getCustomStyle().getQualifiedNameDepth();
 	}
 
+	@Override
 	public boolean showShadow() {
 		return getCustomStyle().showShadow();
-	}
-
-	public int getLabelDisplay() {
-		return getCustomStyle().getLabelDisplay();
 	}
 
 }

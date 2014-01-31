@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,9 +17,9 @@ import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 /**
  * An appearance provider based on CSS. It reuses the AnnotationStyleProvider:
  * if a property is changed manually, a standard annotation will be used.
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class CSSAppearanceProvider extends AnnotationStyleProvider {
 
@@ -47,13 +47,4 @@ public class CSSAppearanceProvider extends AnnotationStyleProvider {
 		return super.showShadow(modelElement);
 	}
 
-	@Override
-	public int getLabelDisplay(EModelElement modelElement){
-		if(modelElement instanceof CustomStyle) {
-			return ((CustomStyle)modelElement).getLabelDisplay();
-		}
-		return super.getLabelDisplay(modelElement);
-	}
-
-	
 }

@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -40,6 +40,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.TopGraphicEditPart;
@@ -72,7 +73,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LabelDirectEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextNonResizableEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextSelectionEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.locator.TextCellEditorLocator;
-import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
@@ -122,12 +123,12 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Compartment-like isSelectable implementation.
-	 * 
+	 *
 	 * By default, the edit parts get selectable only if
 	 * the compartment's top level container matches the top level
 	 * container of the editpart that currently has the keyboard focus
 	 * i.e: you need to select the shape first before selecting a this label.
-	 * 
+	 *
 	 * @see CompartmentEditPart#isSelectable()
 	 */
 	@Override
@@ -138,7 +139,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 				TopGraphicEditPart focusTopEP = ((IGraphicalEditPart)focusPart).getTopGraphicEditPart();
 				TopGraphicEditPart myTopEP = getTopGraphicEditPart();
 				if(myTopEP == focusTopEP) {
-					// check if the selection contains only editparts belonging to 
+					// check if the selection contains only editparts belonging to
 					// the same top level editpart
 					Iterator<?> selection = getViewer().getSelectedEditParts().iterator();
 					while(selection.hasNext()) {
@@ -247,7 +248,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for(View view : views) {
-			if(NameLabelIconHelper.showLabelIcon(view)) {
+			if(AppearanceHelper.showElementIcon(view)) {
 				return org.eclipse.papyrus.sysml.diagram.common.Activator.getInstance().getLabelProvider().getImage(parserElement);
 			}
 		}
@@ -562,7 +563,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 * 
+	 *
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 */
 	public int getDirectEditionType() {
@@ -580,7 +581,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Checks if an extended editor is present.
-	 * 
+	 *
 	 * @return <code>true</code> if an extended editor is present.
 	 */
 	protected boolean checkExtendedEditor() {
@@ -592,7 +593,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Checks if a default direct edition is available
-	 * 
+	 *
 	 * @return <code>true</code> if a default direct edition is available
 	 */
 	protected boolean checkDefaultEdition() {
@@ -627,7 +628,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
+	 *
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
 	 */

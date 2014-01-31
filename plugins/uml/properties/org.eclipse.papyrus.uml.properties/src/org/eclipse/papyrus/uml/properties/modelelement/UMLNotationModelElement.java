@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,14 +13,17 @@ package org.eclipse.papyrus.uml.properties.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.databinding.ElementCustomizationObservableValue;
 import org.eclipse.papyrus.uml.properties.databinding.ElementCustomizationObservableValue.Property;
+import org.eclipse.papyrus.uml.properties.databinding.MaskValueObservableList;
 import org.eclipse.papyrus.uml.properties.messages.Messages;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
@@ -79,7 +82,8 @@ public class UMLNotationModelElement extends AbstractModelElement {
 	@Override
 	public IObservable doGetObservable(String propertyPath) {
 		if(propertyPath.equals(LabelCustomization)) {
-			return new ElementCustomizationObservableValue(sourceElement, Property.LABEL_CUSTOMIZATION);
+			EditingDomain editingDomain = EMFHelper.resolveEditingDomain(sourceElement);
+			return new MaskValueObservableList(sourceElement, editingDomain);
 		} else if(propertyPath.equals(StereotypeDisplay)) {
 			//TODO : check if we need an observable in this case. For now, the Widget is responsible for updating the element
 			//@see StereotypeDisplay

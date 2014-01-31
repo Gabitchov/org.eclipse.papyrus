@@ -7,12 +7,13 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -39,8 +41,9 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+		Collection<String> maskValues = getMaskValues(element);
 
-		if(flags == 0) {
+		if(maskValues.isEmpty()) {
 			return MaskedLabel;
 		}
 
@@ -52,7 +55,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 			Property property = (Property)eObject;
 
 			// manage visibility
-			if((flags & ILabelPreferenceConstants.DISP_VISIBILITY) == ILabelPreferenceConstants.DISP_VISIBILITY) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_VISIBILITY)) {
 				String visibility;
 				switch(property.getVisibility().getValue()) {
 				case VisibilityKind.PACKAGE:
@@ -75,24 +78,24 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 			}
 
 			// manage derived modifier
-			if(((flags & ILabelPreferenceConstants.DISP_DERIVE) == ILabelPreferenceConstants.DISP_DERIVE) && (property.isDerived())) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_DERIVE) && property.isDerived()) {
 				result = String.format(DERIVED_FORMAT, result);
 			}
 
 			// manage name
-			if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) && (property.isSetName())) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_NAME) && property.isSetName()) {
 				String name = property.getName();
 
 				// If property is owned by Association (non navigable) only show the name when explicitly asked.
 
-				if(((flags & ILabelPreferenceConstants.DISP_NON_NAVIGABLE_ROLE) == ILabelPreferenceConstants.DISP_NON_NAVIGABLE_ROLE) || !((property.getOwningAssociation() != null) && (property.getOwningAssociation().getOwnedEnds().contains(property)))) {
+				if(maskValues.contains(ILabelPreferenceConstants.DISP_NON_NAVIGABLE_ROLE) || !((property.getOwningAssociation() != null) && (property.getOwningAssociation().getOwnedEnds().contains(property)))) {
 
 					result = String.format(NAME_FORMAT, result, name);
 				}
 			}
 
 			// manage type
-			if(((flags & ILabelPreferenceConstants.DISP_TYPE) == ILabelPreferenceConstants.DISP_TYPE)) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_TYPE)) {
 				String type = "<Undefined>";
 				if(property.getType() != null) {
 					type = property.getType().getName();
@@ -100,19 +103,19 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 
 				// If type is undefined only show "<Undefined>" when explicitly asked.
 
-				if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
+				if(maskValues.contains(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
 
 					result = String.format(TYPE_FORMAT, result, type);
 				}
 			}
 
 			// manage multiplicity
-			if(((flags & ILabelPreferenceConstants.DISP_MULTIPLICITY) == ILabelPreferenceConstants.DISP_MULTIPLICITY)) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_MULTIPLICITY)) {
 
 				// If multiplicity is [1] (SysML default), only show when explicitly asked.
 				String lower = (property.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(property.getLowerValue()) : "1";
 				String upper = (property.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(property.getUpperValue()) : "1";
-				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || !("1".equals(lower) && "1".equals(upper))) {
+				if(maskValues.contains(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || !("1".equals(lower) && "1".equals(upper))) {
 
 					if(lower.equals(upper)) {
 						result = String.format(MULTIPLICITY_FORMAT_ALT, result, lower, upper);
@@ -123,7 +126,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 			}
 
 			// manage default value
-			if(((flags & ILabelPreferenceConstants.DISP_DEFAULTVALUE) == ILabelPreferenceConstants.DISP_DEFAULTVALUE) && ((property.getDefaultValue() != null))) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_DEFAULT_VALUE) && property.getDefaultValue() != null) {
 				ValueSpecification valueSpecification = property.getDefaultValue();
 				if((valueSpecification instanceof InstanceValue && property.getType().equals(valueSpecification.getType())) || !(valueSpecification instanceof InstanceValue)) {
 					result = String.format(DEFAULT_VALUE_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
@@ -131,7 +134,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 			}
 
 			// manage modifier
-			if((flags & ILabelPreferenceConstants.DISP_MODIFIERS) == ILabelPreferenceConstants.DISP_MODIFIERS) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_MODIFIERS)) {
 				StringBuffer sb = new StringBuffer();
 				if(property.isReadOnly()) {
 					sb.append(sb.length() == 0 ? "readOnly" : ", readOnly");
@@ -163,7 +166,7 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Map<Integer, String> getMasks() {
+	public Map<String, String> getMasks() {
 		return Collections.emptyMap();
 	}
 }

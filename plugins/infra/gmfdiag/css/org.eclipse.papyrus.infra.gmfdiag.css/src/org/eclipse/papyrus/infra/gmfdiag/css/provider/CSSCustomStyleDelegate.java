@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,14 +17,13 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusC
 import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 import org.eclipse.papyrus.infra.emf.appearance.style.AppearanceStyleProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.helper.LabelDisplayHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.StringHelper;
 import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSValue;
 
 /**
  * Standard implementation of Papyrus Custom Style, CSS-based
- * 
+ *
  * @author Camille Letavernier
  */
 //FIXME: Use constants for the CSS Properties elementIcon, qualifiedNameDepth and shadow
@@ -49,7 +48,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param view
 	 *        The GMF view on which the custom style is applied
 	 * @param engine
@@ -117,22 +116,5 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 		}
 		return (Boolean)engine.convert(cssValue, Boolean.class, null);
 	}
-
-	public int getLabelDisplay() {
-		EAnnotation labelAnnotation = view.getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		if(labelAnnotation != null) {
-			if(labelAnnotation.getDetails().containsKey(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE)) {
-				return provider.getLabelDisplay(view);
-			}
-		}
-
-		CSSValue cssValue = engine.retrievePropertyValue(element, "label");
-		if(cssValue == null) {
-			return AnnotationStyleProvider.getDefaultMaskValue(view);
-		}
-		String[] maskValue = LabelDisplayHelper.convertLabelDisplay(engine, cssValue);
-		return AnnotationStyleProvider.convertMaskToInteger(maskValue, view);
-	}
-
 
 }

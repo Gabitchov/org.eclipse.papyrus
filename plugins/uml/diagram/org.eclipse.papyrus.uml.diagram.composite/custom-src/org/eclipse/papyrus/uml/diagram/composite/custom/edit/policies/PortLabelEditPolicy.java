@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.helper.PortLabelHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.PropertyPreferencePage;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Property;
@@ -16,44 +15,28 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 
 public class PortLabelEditPolicy extends PropertyLabelEditPolicy {
+
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getDefaultDisplayValue() {
+	@Override
+	public Collection<String> getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_PORT;
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getMaskLabel(int value) {
-		return PortLabelHelper.getInstance().getMaskLabel(value);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<String> getMaskLabels() {
-		return PortLabelHelper.getInstance().getMaskLabels();
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	public Map<Integer, String> getMasks() {
+	@Override
+	public Map<String, String> getMasks() {
 		return PortLabelHelper.getInstance().getMasks();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<Integer> getMaskValues() {
-		return PortLabelHelper.getInstance().getMaskValues();
-	}
-
+	@Override
 	public String getPreferencePageID() {
 		return PropertyPreferencePage.ID;
 	}
-	
+
 	/**
 	 * notifies that the the property has changed.
 	 * 
@@ -62,6 +45,7 @@ public class PortLabelEditPolicy extends PropertyLabelEditPolicy {
 	 * @param notification
 	 *        the notification send when the element has been changed
 	 */
+	@Override
 	protected void notifyPropertyChanged(Property property, Notification notification) {
 		switch(notification.getFeatureID(Property.class)) {
 		case UMLPackage.PROPERTY__NAME:
@@ -137,6 +121,7 @@ public class PortLabelEditPolicy extends PropertyLabelEditPolicy {
 			break;
 		}
 	}
+
 	/**
 	 * Refreshes the display of the edit part
 	 */

@@ -69,6 +69,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 	//////////////////////////////////////////
 
 
+	@Override
 	public int getCSSFontColor() {
 		int value = super.getFontColor();
 
@@ -79,6 +80,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public java.lang.String getCSSFontName() {
 		java.lang.String value = super.getFontName();
 
@@ -89,6 +91,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public int getCSSFontHeight() {
 		int value = super.getFontHeight();
 
@@ -99,6 +102,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public boolean isCSSBold() {
 		boolean value = super.isBold();
 
@@ -109,6 +113,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public boolean isCSSItalic() {
 		boolean value = super.isItalic();
 
@@ -119,6 +124,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public boolean isCSSUnderline() {
 		boolean value = super.isUnderline();
 
@@ -129,6 +135,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public boolean isCSSStrikeThrough() {
 		boolean value = super.isStrikeThrough();
 
@@ -139,6 +146,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public boolean isCSSVisible() {
 		boolean value = super.isVisible();
 
@@ -149,6 +157,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public java.lang.String getCSSDescription() {
 		java.lang.String value = super.getDescription();
 
@@ -159,6 +168,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public int getCSSFillColor() {
 		int value = super.getFillColor();
 
@@ -169,6 +179,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public int getCSSTransparency() {
 		int value = super.getTransparency();
 
@@ -179,6 +190,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient() {
 		org.eclipse.gmf.runtime.notation.datatype.GradientData value = super.getGradient();
 
@@ -189,6 +201,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public int getCSSLineColor() {
 		int value = super.getLineColor();
 
@@ -199,6 +212,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public int getCSSLineWidth() {
 		int value = super.getLineWidth();
 
@@ -209,6 +223,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		}
 	}
 
+	@Override
 	public int getCSSRoundedBendpointsRadius() {
 		int value = super.getRoundedBendpointsRadius();
 
@@ -468,20 +483,19 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 	//	Implements the custom styles //
 	///////////////////////////////////
 
+	@Override
 	public boolean showElementIcon() {
 		return getCustomStyle().showElementIcon();
 	}
 
+	@Override
 	public int getQualifiedNameDepth() {
 		return getCustomStyle().getQualifiedNameDepth();
 	}
 
+	@Override
 	public boolean showShadow() {
 		return getCustomStyle().showShadow();
-	}
-
-	public int getLabelDisplay() {
-		return getCustomStyle().getLabelDisplay();
 	}
 
 	//////////////////////////////////
@@ -493,6 +507,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		return getCSSNamedStyle(eClass, name);
 	}
 
+	@Override
 	public NamedStyle getCSSNamedStyle(EClass eClass, String name) {
 		NamedStyle userStyle = super.getNamedStyle(eClass, name);
 		if(userStyle != null) {

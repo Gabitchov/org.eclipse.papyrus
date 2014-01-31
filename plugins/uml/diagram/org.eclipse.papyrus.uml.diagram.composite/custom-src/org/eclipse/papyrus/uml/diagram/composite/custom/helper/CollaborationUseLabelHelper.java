@@ -16,11 +16,9 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.helper;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.papyrus.infra.emf.appearance.style.ILabelMaskProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.CollaborationUseUtil;
@@ -30,7 +28,7 @@ import org.eclipse.uml2.uml.CollaborationUse;
 /**
  * Helper for labels displaying {@link CollaborationUse} in Composite Diagram
  */
-public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper implements ILabelMaskProvider {
+public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 
 	/** Single instance */
 	private static CollaborationUseLabelHelper labelHelper;
@@ -44,11 +42,11 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper i
 	}
 
 	/** Map for masks */
-	protected final Map<Integer, String> masks = new HashMap<Integer, String>(7);
+	protected final Map<String, String> masks = new HashMap<String, String>();
 
 	/**
 	 * Returns the mask name given the value of the mask
-	 * 
+	 *
 	 * @return the mask name or <code>null</code> if no masks has been found
 	 */
 	public String getMaskLabel(int value) {
@@ -57,7 +55,7 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper i
 
 	/**
 	 * Returns the collection of mask names
-	 * 
+	 *
 	 * @return the collection of mask names
 	 */
 	public Collection<String> getMaskLabels() {
@@ -66,21 +64,11 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper i
 
 	/**
 	 * Returns the map of masks used to display a {@link Property}
-	 * 
+	 *
 	 * @return the {@link Map} of masks used to display a {@link Property}
 	 */
-	@Override
-	public Map<Integer, String> getMasks() {
+	public Map<String, String> getMasks() {
 		return masks;
-	}
-
-	/**
-	 * Returns the collection of mask values
-	 * 
-	 * @return the collection of mask values
-	 */
-	public Set<Integer> getMaskValues() {
-		return masks.keySet();
 	}
 
 	/** Disable constructor (private) */
@@ -98,7 +86,7 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper i
 	 */
 	@Override
 	protected String elementLabel(GraphicalEditPart editPart) {
-		int displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
+		Collection<String> displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
 
 		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if(policy != null) {
@@ -121,11 +109,6 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper i
 			return (CollaborationUse)element;
 		}
 		return null;
-	}
-
-	@Override
-	public int getDefaultValue() {
-		return ICustomAppearence.DEFAULT_UML_PROPERTY;
 	}
 
 }

@@ -7,13 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +67,9 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
-		if(flags == 0) {
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
 			return MaskedLabel;
 		}
 
@@ -78,7 +81,7 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 			Property property = (Property)eObject;
 
 			// manage visibility
-			if((flags & ILabelPreferenceConstants.DISP_VISIBILITY) == ILabelPreferenceConstants.DISP_VISIBILITY) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_VISIBILITY)) {
 				String visibility;
 				switch(property.getVisibility().getValue()) {
 				case VisibilityKind.PACKAGE:
@@ -101,37 +104,37 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 			}
 
 			// manage derived modifier
-			if(((flags & ILabelPreferenceConstants.DISP_DERIVE) == ILabelPreferenceConstants.DISP_DERIVE) && (property.isDerived())) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_DERIVE) && (property.isDerived())) {
 				result = String.format(DERIVED_FORMAT, result);
 			}
 
 			// manage name
-			if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) && (property.isSetName())) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_NAME) && (property.isSetName())) {
 				String name = property.getName();
 				result = String.format(NAME_FORMAT, result, name);
 			}
 
 			// manage type
-			if(((flags & ILabelPreferenceConstants.DISP_TYPE) == ILabelPreferenceConstants.DISP_TYPE)) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_TYPE)) {
 				String type = "<Undefined>";
 				if(property.getType() != null) {
 					type = property.getType().getName();
 				}
 
 				// If type is undefined only show "<Undefined>" when explicitly asked.
-				if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
+				if(maskValues.contains(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
 					result = String.format(TYPE_FORMAT, result, type);
 				}
 			}
 
 			// manage multiplicity
-			if(((flags & ILabelPreferenceConstants.DISP_MULTIPLICITY) == ILabelPreferenceConstants.DISP_MULTIPLICITY)) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_MULTIPLICITY)) {
 
 				// If multiplicity is [1] (SysML default), only show when explicitly asked.
 				// TODO : add a case for default with multiplicity not set.
 				String lower = (property.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(property.getLowerValue()) : "1";
 				String upper = (property.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(property.getUpperValue()) : "1";
-				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || !("1".equals(lower) && "1".equals(upper))) {
+				if(maskValues.contains(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || !("1".equals(lower) && "1".equals(upper))) {
 
 					if(lower.equals(upper)) {
 						result = String.format(MULTIPLICITY_FORMAT_ALT, result, lower, upper);
@@ -142,7 +145,7 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 			}
 
 			// manage default value
-			if(((flags & ILabelPreferenceConstants.DISP_DEFAULTVALUE) == ILabelPreferenceConstants.DISP_DEFAULTVALUE) && ((property.getDefaultValue() != null))) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_DEFAULT_VALUE) && property.getDefaultValue() != null) {
 				ValueSpecification valueSpecification = property.getDefaultValue();
 				if((valueSpecification instanceof InstanceValue && property.getType().equals(valueSpecification.getType())) || !(valueSpecification instanceof InstanceValue)) {
 					result = String.format(DEFAULT_VALUE_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
@@ -150,7 +153,7 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 			}
 
 			// manage modifier
-			if((flags & ILabelPreferenceConstants.DISP_MODIFIERS) == ILabelPreferenceConstants.DISP_MODIFIERS) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_MODIFIERS)) {
 				StringBuffer sb = new StringBuffer();
 				if(property.isReadOnly()) {
 					sb.append(sb.length() == 0 ? "readOnly" : ", readOnly");
@@ -187,7 +190,7 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 		if(event instanceof Notification) {
 			Object feature = ((Notification)event).getFeature();
 
-			if(feature instanceof EStructuralFeature) { // UMLPackage.eINSTANCE.getLiteralString_Value().equals(feature) || 
+			if(feature instanceof EStructuralFeature) { // UMLPackage.eINSTANCE.getLiteralString_Value().equals(feature) ||
 				return UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getInstanceValue_Instance().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(feature) || UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(feature) || UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly().equals(feature) || UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature) || UMLPackage.eINSTANCE.getProperty_IsDerived().equals(feature) || UMLPackage.eINSTANCE.getProperty_IsDerivedUnion().equals(feature) || UMLPackage.eINSTANCE.getProperty_RedefinedProperty().equals(feature) || super.isAffectingEvent(event, flags);
 			}
 		}
@@ -226,8 +229,8 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Map<Integer, String> getMasks() {
-		Map<Integer, String> masks = new HashMap<Integer, String>(9);
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>();
 		masks.put(ILabelPreferenceConstants.DISP_VISIBILITY, "Visibility");
 		masks.put(ILabelPreferenceConstants.DISP_DERIVE, "Is Derived");
 		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
@@ -235,7 +238,7 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 		masks.put(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE, "Show <Undefined> type");
 		masks.put(ILabelPreferenceConstants.DISP_MULTIPLICITY, "Multiplicity");
 		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY, "Show default multiplicity");
-		masks.put(ILabelPreferenceConstants.DISP_DEFAULTVALUE, "Default Value");
+		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_VALUE, "Default Value");
 		masks.put(ILabelPreferenceConstants.DISP_MODIFIERS, "Modifiers");
 		return masks;
 	}

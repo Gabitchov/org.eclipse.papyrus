@@ -5,11 +5,11 @@
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
-	<ppe:IntegerMask input="{Binding}"
+	<ppe:StringMask input="{Binding}"
 		property="UMLNotation:Property:labelCustomization">
-		<ppe:IntegerMask.maskProvider>
+		<ppe:StringMask.maskProvider>
 			<uml:LabelCustomizationMaskProvider
 				input="{Binding}" property="UMLNotation:Property:labelCustomization"></uml:LabelCustomizationMaskProvider>
-		</ppe:IntegerMask.maskProvider>
-	</ppe:IntegerMask>
+		</ppe:StringMask.maskProvider>
+	</ppe:StringMask>
 </Composite>

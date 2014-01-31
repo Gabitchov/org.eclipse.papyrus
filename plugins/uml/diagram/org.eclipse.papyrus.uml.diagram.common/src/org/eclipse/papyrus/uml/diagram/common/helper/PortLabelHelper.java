@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
 
+import java.util.Collection;
+
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
@@ -38,11 +40,11 @@ public class PortLabelHelper extends PropertyLabelHelper {
 	}
 
 	@Override
-	protected String parseString(GraphicalEditPart editPart, int displayValue) {
+	protected String parseString(GraphicalEditPart editPart, Collection<String> maskValues) {
 		Port port = getUMLElement(editPart);
 
 		if(port != null) {
-			return PortUtil.getCustomLabel(port, displayValue);
+			return PortUtil.getCustomLabel(port, maskValues);
 		}
 
 		return "";
@@ -62,8 +64,4 @@ public class PortLabelHelper extends PropertyLabelHelper {
 		return null;
 	}
 
-	@Override
-	public int getDefaultValue() {
-		return super.getDefaultValue() | ICustomAppearence.DISP_CONJUGATED;
-	}
 }

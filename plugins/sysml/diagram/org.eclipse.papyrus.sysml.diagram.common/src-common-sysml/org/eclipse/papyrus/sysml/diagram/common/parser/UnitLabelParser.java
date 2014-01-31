@@ -7,13 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,12 +45,15 @@ public class UnitLabelParser extends NamedElementLabelParser {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		
-		if (flags == 0) {
+
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
 			return MaskedLabel;
 		}
-		
+
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -60,13 +64,13 @@ public class UnitLabelParser extends NamedElementLabelParser {
 			Unit unit = UMLUtil.getStereotypeApplication(iSpec, Unit.class);
 
 			// manage name
-			if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) && (iSpec.isSetName())) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_NAME)) && (iSpec.isSetName())) {
 				String name = iSpec.getName();
 				result = String.format(NAME_FORMAT, name);
 			}
 
 			// manage dimension
-			if(((flags & ILabelPreferenceConstants.DISP_DIMENSION) == ILabelPreferenceConstants.DISP_DIMENSION)) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_DIMENSION))) {
 				String dimensionName = "<Undefined>";
 				if((unit != null) && (unit.getDimension() != null)) {
 					Dimension dim = unit.getDimension();
@@ -85,6 +89,7 @@ public class UnitLabelParser extends NamedElementLabelParser {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
 
 		if(event instanceof Notification) {
@@ -96,10 +101,11 @@ public class UnitLabelParser extends NamedElementLabelParser {
 
 		return false;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
 		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
 
@@ -115,10 +121,11 @@ public class UnitLabelParser extends NamedElementLabelParser {
 		}
 		return semanticElementsBeingParsed;
 	}
-	
 
-	public Map<Integer, String> getMasks() {
-		Map<Integer, String> masks = new HashMap<Integer, String>(2);
+
+	@Override
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>();
 		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
 		masks.put(ILabelPreferenceConstants.DISP_DIMENSION, "Dimension");
 		return masks;

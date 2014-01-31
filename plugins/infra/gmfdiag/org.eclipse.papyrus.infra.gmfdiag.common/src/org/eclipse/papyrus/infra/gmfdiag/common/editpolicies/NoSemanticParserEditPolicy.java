@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,39 +24,15 @@ import org.eclipse.gef.editpolicies.AbstractEditPolicy;
 public class NoSemanticParserEditPolicy extends AbstractEditPolicy implements IMaskManagedLabelEditPolicy {
 
 	@Override
-	public String getMaskLabel(int value) {
+	public Map<String, String> getMasks() {
 		//Nothing
 		return null;
 	}
 
 	@Override
-	public Collection<String> getMaskLabels() {
+	public Collection<String> getCurrentDisplayValue() {
 		//Nothing
 		return null;
-	}
-
-	@Override
-	public Collection<Integer> getMaskValues() {
-		//Nothing
-		return null;
-	}
-
-	@Override
-	public Map<Integer, String> getMasks() {
-		//Nothing
-		return null;
-	}
-
-	@Override
-	public int getCurrentDisplayValue() {
-		//Nothing
-		return 0;
-	}
-
-	@Override
-	public int getDefaultDisplayValue() {
-		//Nothing
-		return 0;
 	}
 
 	@Override
@@ -65,7 +41,7 @@ public class NoSemanticParserEditPolicy extends AbstractEditPolicy implements IM
 	}
 
 	@Override
-	public void updateDisplayValue(int newValue) {
+	public void updateDisplayValue(Collection<String> newValue) {
 		//Nothing
 	}
 

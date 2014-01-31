@@ -162,13 +162,13 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
 		displMutliplicity.setLayoutData(data);
 
-		displDfltValue = createCheckButton(group, "Default Value", ICustomAppearence.DISP_DFLT_VALUE);
+		displDfltValue = createCheckButton(group, "Default Value", ICustomAppearence.DISP_DEFAULT_VALUE);
 		data = new FormData();
 		data.left = new FormAttachment(displVisibility, 85);
 		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
 		displDfltValue.setLayoutData(data);
 
-		displModifiers = createCheckButton(group, "Modifiers", ICustomAppearence.DISP_MOFIFIERS);
+		displModifiers = createCheckButton(group, "Modifiers", ICustomAppearence.DISP_MODIFIERS);
 		data = new FormData();
 		data.left = new FormAttachment(displDerive, 85);
 		data.top = new FormAttachment(displVisibility, ITabbedPropertyConstants.HSPACE);
@@ -232,8 +232,8 @@ public class PropertyPreferencePage extends AbstractPapyrusElementPreferencePage
 		displName.setSelection((propertyValue & ICustomAppearence.DISP_NAME) == ICustomAppearence.DISP_NAME);
 		displType.setSelection((propertyValue & ICustomAppearence.DISP_TYPE) == ICustomAppearence.DISP_TYPE);
 		displMutliplicity.setSelection((propertyValue & ICustomAppearence.DISP_MULTIPLICITY) == ICustomAppearence.DISP_MULTIPLICITY);
-		displDfltValue.setSelection((propertyValue & ICustomAppearence.DISP_DFLT_VALUE) == ICustomAppearence.DISP_DFLT_VALUE);
-		displModifiers.setSelection((propertyValue & ICustomAppearence.DISP_MOFIFIERS) == ICustomAppearence.DISP_MOFIFIERS);
+		displDfltValue.setSelection((propertyValue & ICustomAppearence.DISP_DEFAULT_VALUE) == ICustomAppearence.DISP_DEFAULT_VALUE);
+		displModifiers.setSelection((propertyValue & ICustomAppearence.DISP_MODIFIERS) == ICustomAppearence.DISP_MODIFIERS);
 	}
 
 	/**

@@ -66,7 +66,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getDefaultDisplayValue() {
+	public Collection<String> getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_OPERATION;
 	}
 
@@ -74,32 +74,8 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getMaskLabel(int value) {
-		return OperationLabelHelper.getInstance().getMaskLabel(value);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Collection<String> getMaskLabels() {
-		return OperationLabelHelper.getInstance().getMaskLabels();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Map<Integer, String> getMasks() {
+	public Map<String, String> getMasks() {
 		return OperationLabelHelper.getInstance().getMasks();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Collection<Integer> getMaskValues() {
-		return OperationLabelHelper.getInstance().getMaskValues();
 	}
 
 	/**

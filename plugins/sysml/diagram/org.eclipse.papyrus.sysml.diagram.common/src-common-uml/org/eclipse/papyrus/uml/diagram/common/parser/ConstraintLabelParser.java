@@ -7,13 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,11 +52,13 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getEditString(IAdaptable element, int flags) {
-		
-		if (flags == 0) {
+
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
 			return MaskedLabel;
 		}
-		
+
 		String editString = "";
 
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
@@ -63,13 +66,13 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 			Constraint semElement = (Constraint)eObject;
 
 			// edit name
-			if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME)) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_NAME))) {
 				if(semElement.isSetName()) {
 					editString = semElement.getName();
 				}
 
 				// (try to) edit constraint specification
-			} else if(((flags & ILabelPreferenceConstants.DISP_SPECIFICATION) == ILabelPreferenceConstants.DISP_SPECIFICATION)) {
+			} else if((maskValues.contains(ILabelPreferenceConstants.DISP_SPECIFICATION))) {
 				if(semElement.getSpecification() != null) {
 					editString = ValueSpecificationUtil.getSpecificationValue(semElement.getSpecification());
 					if(editString == null) {
@@ -86,6 +89,12 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
+			return MaskedLabel;
+		}
+
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -94,13 +103,13 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 			Constraint semElement = (Constraint)eObject;
 
 			// manage name
-			if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) && (semElement.isSetName())) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_NAME)) && (semElement.isSetName())) {
 				String name = semElement.getName();
 				result = String.format(NAME_FORMAT, name);
 			}
 
 			// manage specification
-			if(((flags & ILabelPreferenceConstants.DISP_SPECIFICATION) == ILabelPreferenceConstants.DISP_SPECIFICATION)) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_SPECIFICATION))) {
 				String spec = "<Undefined>";
 				if(semElement.getSpecification() != null) {
 					spec = ValueSpecificationUtil.getSpecificationValue(semElement.getSpecification());
@@ -120,6 +129,8 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 
+		Collection<String> maskValues = getMaskValues(element);
+
 		ICommand command = UnexecutableCommand.INSTANCE;
 		SetRequest updateRequest = null;
 
@@ -129,12 +140,12 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 		}
 
 		// prepare set name request
-		if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME)) {
+		if((maskValues.contains(ILabelPreferenceConstants.DISP_NAME))) {
 			updateRequest = new SetRequest(constraint, UMLPackage.eINSTANCE.getNamedElement_Name(), newString);
 			updateRequest.setLabel("Update Constraint Label");
 
 			// prepare set specification request
-		} else if(((flags & ILabelPreferenceConstants.DISP_SPECIFICATION) == ILabelPreferenceConstants.DISP_SPECIFICATION)) {
+		} else if((maskValues.contains(ILabelPreferenceConstants.DISP_SPECIFICATION))) {
 			ValueSpecification spec = constraint.getSpecification();
 			if(spec == null) {
 				return UnexecutableCommand.INSTANCE;
@@ -193,13 +204,13 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 		}
 		return semanticElementsBeingParsed;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Map<Integer, String> getMasks() {
-		Map<Integer, String> masks = new HashMap<Integer, String>(2);
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>(2);
 		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
 		masks.put(ILabelPreferenceConstants.DISP_SPECIFICATION, "Specification");
 		return masks;

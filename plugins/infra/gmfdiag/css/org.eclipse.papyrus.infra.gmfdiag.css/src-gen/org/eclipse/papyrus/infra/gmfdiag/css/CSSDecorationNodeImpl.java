@@ -53,6 +53,7 @@ public class CSSDecorationNodeImpl extends DecorationNodeImpl implements CustomS
 		return isCSSVisible();
 	}
 
+	@Override
 	public boolean isCSSVisible() {
 		boolean value = super.isVisible();
 
@@ -93,20 +94,19 @@ public class CSSDecorationNodeImpl extends DecorationNodeImpl implements CustomS
 	//	Implements the custom styles //
 	///////////////////////////////////
 
+	@Override
 	public boolean showElementIcon() {
 		return getCustomStyle().showElementIcon();
 	}
 
+	@Override
 	public int getQualifiedNameDepth() {
 		return getCustomStyle().getQualifiedNameDepth();
 	}
 
+	@Override
 	public boolean showShadow() {
 		return getCustomStyle().showShadow();
-	}
-
-	public int getLabelDisplay() {
-		return getCustomStyle().getLabelDisplay();
 	}
 
 	//////////////////////////////////
@@ -118,6 +118,7 @@ public class CSSDecorationNodeImpl extends DecorationNodeImpl implements CustomS
 		return getCSSNamedStyle(eClass, name);
 	}
 
+	@Override
 	public NamedStyle getCSSNamedStyle(EClass eClass, String name) {
 		NamedStyle userStyle = super.getNamedStyle(eClass, name);
 		if(userStyle != null) {

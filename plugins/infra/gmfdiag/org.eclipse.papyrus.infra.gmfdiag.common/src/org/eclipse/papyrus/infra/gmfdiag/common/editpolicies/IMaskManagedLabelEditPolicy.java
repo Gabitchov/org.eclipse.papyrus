@@ -25,51 +25,18 @@ public interface IMaskManagedLabelEditPolicy {
 	public String MASK_MANAGED_LABEL_EDIT_POLICY = "MaskManagedLabelPolicy";
 
 	/**
-	 * Retrieve the mask name for the given mask value.
-	 * 
-	 * @param value
-	 *        the value of the given mask
-	 * @return the mask name
-	 */
-	// @unused
-	public String getMaskLabel(int value);
-
-	/**
-	 * Returns the {@link Collection} of mask names
-	 * 
-	 * @return the {@link Collection} of mask names
-	 */
-	// @unused
-	public Collection<String> getMaskLabels();
-
-	/**
-	 * Returns the {@link Collection} of mask values
-	 * 
-	 * @return the {@link Collection} of mask values
-	 */
-	// @unused
-	public Collection<Integer> getMaskValues();
-
-	/**
-	 * Returns the {@link Map} of masks
+	 * Returns the {@link Map} of masks. The key is the mask ID, the value is the mask Label
 	 * 
 	 * @return the {@link Map} of masks
 	 */
-	public Map<Integer, String> getMasks();
+	public Map<String, String> getMasks();
 
 	/**
 	 * Retrieve the current display Value for the current host edit part.
 	 * 
 	 * @return the current display Value for the current host edit part.
 	 */
-	public int getCurrentDisplayValue();
-
-	/**
-	 * Retrieve the default display Value for the current host edit part.
-	 * 
-	 * @return the default display Value for the current host edit part.
-	 */
-	public int getDefaultDisplayValue();
+	public Collection<String> getCurrentDisplayValue();
 
 	/**
 	 * Refreshes the display of the edit part
@@ -79,7 +46,7 @@ public interface IMaskManagedLabelEditPolicy {
 	/**
 	 * Sets the new Value for the element that manages the mask value
 	 */
-	public void updateDisplayValue(int newValue);
+	public void updateDisplayValue(Collection<String> newValue);
 
 	/**
 	 * Sets the default display value for the edit part

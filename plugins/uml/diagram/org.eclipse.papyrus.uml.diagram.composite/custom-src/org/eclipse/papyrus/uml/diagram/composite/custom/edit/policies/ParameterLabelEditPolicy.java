@@ -54,38 +54,20 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getDefaultDisplayValue() {
+	@Override
+	public Collection<String> getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_PARAMETER;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getMaskLabel(int value) {
-		return ParameterLabelHelper.getInstance().getMaskLabel(value);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<String> getMaskLabels() {
-		return ParameterLabelHelper.getInstance().getMaskLabels();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Map<Integer, String> getMasks() {
+	@Override
+	public Map<String, String> getMasks() {
 		return ParameterLabelHelper.getInstance().getMasks();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<Integer> getMaskValues() {
-		return ParameterLabelHelper.getInstance().getMaskValues();
-	}
-
+	@Override
 	public String getPreferencePageID() {
 		return ParameterPreferencePage.ID;
 	}
@@ -134,7 +116,7 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the parameter has changed.
-	 *
+	 * 
 	 * @param parameter
 	 *        the parameter that has changed
 	 * @param notification
@@ -217,7 +199,7 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the type of the parameter has changed.
-	 *
+	 * 
 	 * @param type
 	 *        the type of the parameter that has changed
 	 * @param notification

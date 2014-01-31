@@ -7,13 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -38,7 +39,14 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
+			return MaskedLabel;
+		}
 
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
@@ -49,7 +57,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 			Requirement requirement = UMLUtil.getStereotypeApplication(clazz, Requirement.class);
 
 			// manage name
-			if((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_NAME)) {
 				String name = clazz.getName();
 				result = String.format(NAME_FORMAT, name);
 			}
@@ -58,7 +66,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 			if(requirement != null) {
 
 				// manage id
-				if((flags & ILabelPreferenceConstants.DISP_ID) == ILabelPreferenceConstants.DISP_ID) {
+				if(maskValues.contains(ILabelPreferenceConstants.DISP_ID)) {
 					String id = requirement.getId();
 					result = String.format(ID_FORMAT, result, id);
 				}
@@ -71,6 +79,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
 		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
 

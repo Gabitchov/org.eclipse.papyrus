@@ -62,7 +62,8 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getDefaultDisplayValue() {
+	@Override
+	public Collection<String> getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_PROPERTY;
 	}
 
@@ -83,17 +84,12 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	/**
 	 * {@inheritDoc}
 	 */
-	public Map<Integer, String> getMasks() {
+	@Override
+	public Map<String, String> getMasks() {
 		return CollaborationUseLabelHelper.getInstance().getMasks();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<Integer> getMaskValues() {
-		return CollaborationUseLabelHelper.getInstance().getMaskValues();
-	}
-
+	@Override
 	public String getPreferencePageID() {
 		return CollaborationUsePreferencePage.ID;
 	}

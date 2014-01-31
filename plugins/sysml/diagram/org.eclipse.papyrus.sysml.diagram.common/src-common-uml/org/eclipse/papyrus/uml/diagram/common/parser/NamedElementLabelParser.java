@@ -7,13 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -28,9 +29,11 @@ import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.MaskLabelHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.uml2.uml.NamedElement;
@@ -141,7 +144,16 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 	/**
 	 * {@inheritDoc}
 	 */
-	public Map<Integer, String> getMasks() {
+	public Map<String, String> getMasks() {
 		return Collections.emptyMap();
+	}
+
+	protected Collection<String> getMaskValues(IAdaptable element) {
+		View view = (View)element.getAdapter(View.class);
+		if(view == null) {
+			return Collections.emptySet();
+		}
+
+		return MaskLabelHelper.getMaskValues(view);
 	}
 }

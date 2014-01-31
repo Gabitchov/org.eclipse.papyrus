@@ -7,12 +7,13 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.parser;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +54,9 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
-		if(flags == 0) {
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
 			return MaskedLabel;
 		}
 
@@ -67,9 +70,8 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			FlowPort flowPort = UMLUtil.getStereotypeApplication(property, FlowPort.class);
 			if(flowPort != null) {
 
-				int directionFlag = flags & ILabelPreferenceConstants.DISP_DIRECTION;
 				// manage direction only if the FlowPort is type and type is not a FlowSpecification
-				if((flags & ILabelPreferenceConstants.DISP_DIRECTION) == ILabelPreferenceConstants.DISP_DIRECTION) {
+				if(maskValues.contains(ILabelPreferenceConstants.DISP_DIRECTION)) {
 					String direction;
 					switch(flowPort.getDirection().getValue()) {
 					case FlowDirection.IN_VALUE:
@@ -94,7 +96,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			}
 
 			// manage visibility
-			if((flags & ILabelPreferenceConstants.DISP_VISIBILITY) == ILabelPreferenceConstants.DISP_VISIBILITY) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_VISIBILITY)) {
 				String visibility;
 				switch(property.getVisibility().getValue()) {
 				case VisibilityKind.PACKAGE:
@@ -117,18 +119,18 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			}
 
 			// manage derived modifier
-			if(((flags & ILabelPreferenceConstants.DISP_DERIVE) == ILabelPreferenceConstants.DISP_DERIVE) && (property.isDerived())) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_DERIVE)) && (property.isDerived())) {
 				result = String.format(DERIVED_FORMAT, result);
 			}
 
 			// manage name
-			if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) && (property.isSetName())) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_NAME)) && (property.isSetName())) {
 				String name = property.getName();
 				result = String.format(NAME_FORMAT, result, name);
 			}
 
 			// manage type and conjugated property
-			if(((flags & ILabelPreferenceConstants.DISP_TYPE) == ILabelPreferenceConstants.DISP_TYPE)) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_TYPE))) {
 
 				String type = "<Undefined>";
 				if(property.getType() != null) {
@@ -136,7 +138,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 				}
 
 				// If type is undefined only show "<Undefined>" when explicitly asked.
-				if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
+				if((maskValues.contains(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE)) || (!"<Undefined>".equals(type))) {
 					if((flowPort != null) && (flowPort.isConjugated())) {
 						type = String.format(CONJUGATED_FORMAT, type);
 					}
@@ -145,13 +147,13 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			}
 
 			// manage multiplicity
-			if(((flags & ILabelPreferenceConstants.DISP_MULTIPLICITY) == ILabelPreferenceConstants.DISP_MULTIPLICITY)) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_MULTIPLICITY))) {
 
 				// If multiplicity is [1] (SysML default), only show when explicitly asked.
 				// TODO : add a case for default with multiplicity not set.
 				String lower = (property.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(property.getLowerValue()) : "1";
 				String upper = (property.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(property.getUpperValue()) : "1";
-				if(((flags & ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) == ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || !("1".equals(lower) && "1".equals(upper))) {
+				if((maskValues.contains(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY)) || !("1".equals(lower) && "1".equals(upper))) {
 
 					if(lower.equals(upper)) {
 						result = String.format(MULTIPLICITY_FORMAT_ALT, result, lower, upper);
@@ -162,7 +164,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			}
 
 			// manage default value
-			if(((flags & ILabelPreferenceConstants.DISP_DEFAULTVALUE) == ILabelPreferenceConstants.DISP_DEFAULTVALUE) && ((property.getDefaultValue() != null))) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_DEFAULT_VALUE)) && ((property.getDefaultValue() != null))) {
 				ValueSpecification valueSpecification = property.getDefaultValue();
 				if(valueSpecification instanceof InstanceValue && property.getType().equals(valueSpecification.getType())) {
 					result = String.format(DEFAULT_VALUE_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
@@ -170,7 +172,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 			}
 
 			// manage modifier
-			if((flags & ILabelPreferenceConstants.DISP_MODIFIERS) == ILabelPreferenceConstants.DISP_MODIFIERS) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_MODIFIERS)) {
 				StringBuffer sb = new StringBuffer();
 				if(property.isReadOnly()) {
 					sb.append(sb.length() == 0 ? "readOnly" : ", readOnly");
@@ -234,8 +236,8 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 	}
 
 	@Override
-	public Map<Integer, String> getMasks() {
-		Map<Integer, String> masks = new HashMap<Integer, String>(10);
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>();
 		masks.put(ILabelPreferenceConstants.DISP_DIRECTION, "Direction");
 		masks.put(ILabelPreferenceConstants.DISP_VISIBILITY, "Visibility");
 		masks.put(ILabelPreferenceConstants.DISP_DERIVE, "Is Derived");
@@ -244,7 +246,7 @@ public class FlowPortLabelParser extends PropertyLabelParser {
 		masks.put(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE, "Show <Undefined> type");
 		masks.put(ILabelPreferenceConstants.DISP_MULTIPLICITY, "Multiplicity");
 		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY, "Show default multiplicity");
-		masks.put(ILabelPreferenceConstants.DISP_DEFAULTVALUE, "Default Value");
+		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_VALUE, "Default Value");
 		masks.put(ILabelPreferenceConstants.DISP_MODIFIERS, "Modifiers");
 		return masks;
 	}

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,9 +9,11 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
+
+import java.util.Collection;
 
 import org.eclipse.uml2.uml.Parameter;
 
@@ -23,11 +25,11 @@ public class ParameterUtil {
 	/**
 	 * Returns the modifier of the property, separated by a comma, as as single line if <code>multiline</code> is <code>false</code> or as a multiline
 	 * string if <code>multiline</code> is <code>false</code>.
-	 * 
+	 *
 	 * @param multiLine
 	 *        boolean that indicates if the string should have several lines when set to <code>true</code> or only one line when set to
 	 *        <code>false</code>.
-	 * 
+	 *
 	 * @return a string giving all modifiers for the property
 	 */
 	public static String getModifiersAsString(Parameter parameter, boolean multiLine) {
@@ -59,7 +61,7 @@ public class ParameterUtil {
 
 	/**
 	 * Update the modifiers string
-	 * 
+	 *
 	 * @param buffer
 	 *        the existing bufferString to append
 	 * @param needsComma
@@ -81,7 +83,7 @@ public class ParameterUtil {
 
 	/**
 	 * return the full label of the Parameter.
-	 * 
+	 *
 	 * @return the string corresponding to the label of the parameter
 	 */
 	public static String getLabel(Parameter parameter) {
@@ -127,33 +129,33 @@ public class ParameterUtil {
 
 	/**
 	 * return the custom label of the property, given UML2 specification and a custom style.
-	 * 
+	 *
 	 * @param style
 	 *        the integer representing the style of the label
-	 * 
+	 *
 	 * @return the string corresponding to the label of the property
 	 */
-	public static String getCustomLabel(Parameter parameter, int style) {
+	public static String getCustomLabel(Parameter parameter, Collection<String> maskValues) {
 		StringBuffer buffer = new StringBuffer();
 		// visibility
 		buffer.append(" ");
-		if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+		if(maskValues.contains(ICustomAppearence.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(parameter));
 		}
 
 		// direction property
-		if((style & ICustomAppearence.DISP_PARAMETER_DIRECTION) != 0) {
+		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_DIRECTION) || maskValues.contains(ICustomAppearence.DISP_DIRECTION)) {
 			buffer.append(" ");
 			buffer.append(parameter.getDirection().getLiteral());
 		}
 
 		// name
-		if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
+		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_NAME) || maskValues.contains(ICustomAppearence.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(parameter.getName());
 		}
 
-		if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
+		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_TYPE) || maskValues.contains(ICustomAppearence.DISP_TYPE)) {
 			// type
 			if(parameter.getType() != null) {
 				buffer.append(": " + parameter.getType().getName());
@@ -162,13 +164,13 @@ public class ParameterUtil {
 			}
 		}
 
-		if((style & ICustomAppearence.DISP_PARAMETER_MULTIPLICITY) != 0) {
+		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_MULTIPLICITY) || maskValues.contains(ICustomAppearence.DISP_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
 			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(parameter);
 			buffer.append(multiplicity);
 		}
 
-		if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
+		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_DEFAULT) || maskValues.contains(ICustomAppearence.DISP_DEFAULT_VALUE)) {
 			// default value
 			if(parameter.getDefault() != null) {
 				buffer.append(" = ");
@@ -176,8 +178,8 @@ public class ParameterUtil {
 			}
 		}
 
-		if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
-			boolean multiLine = ((style & ICustomAppearence.DISP_MULTI_LINE) != 0);
+		if(maskValues.contains(ICustomAppearence.DISP_MODIFIERS)) {
+			boolean multiLine = (maskValues.contains(ICustomAppearence.DISP_MULTI_LINE));
 			// property modifiers
 			String modifiers = ParameterUtil.getModifiersAsString(parameter, multiLine);
 			if(!modifiers.equals("")) {
@@ -192,7 +194,7 @@ public class ParameterUtil {
 
 	/**
 	 * Returns the default value as a String
-	 * 
+	 *
 	 * @param equalSign
 	 *        boolean set to <code>true</code> if the label must have the <code>=</code> sign
 	 *        before the default value
@@ -208,18 +210,5 @@ public class ParameterUtil {
 			defaultString += parameter.getDefault();
 		}
 		return "";
-	}
-
-	/**
-	 * Returns <code>true</code> if the given style has the given mask
-	 * 
-	 * @param style
-	 *        the style to check
-	 * @param mask
-	 *        the mask to check
-	 * @return <code>true</code> if the style has the bit mask
-	 */
-	static boolean hasStyle(int style, int mask) {
-		return ((style & mask) != 0);
 	}
 }

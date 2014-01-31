@@ -57,38 +57,20 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getDefaultDisplayValue() {
+	@Override
+	public Collection<String> getDefaultDisplayValue() {
 		return ICustomAppearence.DEFAULT_UML_PROPERTY;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getMaskLabel(int value) {
-		return PropertyLabelHelper.getInstance().getMaskLabel(value);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<String> getMaskLabels() {
-		return PropertyLabelHelper.getInstance().getMaskLabels();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Map<Integer, String> getMasks() {
+	@Override
+	public Map<String, String> getMasks() {
 		return PropertyLabelHelper.getInstance().getMasks();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<Integer> getMaskValues() {
-		return PropertyLabelHelper.getInstance().getMaskValues();
-	}
-
+	@Override
 	public String getPreferencePageID() {
 		return PropertyPreferencePage.ID;
 	}
@@ -143,7 +125,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the property has changed.
-	 *
+	 * 
 	 * @param property
 	 *        the property that has changed
 	 * @param notification
@@ -226,7 +208,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the type of the property has changed.
-	 *
+	 * 
 	 * @param type
 	 *        the type of the property that has changed
 	 * @param notification

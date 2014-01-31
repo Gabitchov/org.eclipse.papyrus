@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -67,40 +68,16 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getDefaultDisplayValue() {
-		return ICustomAppearence.DISP_VISIBILITY | ICustomAppearence.DISP_DERIVE | ICustomAppearence.DISP_NAME;
+	protected Collection<String> getDefaultDisplayValue() {
+		return Arrays.asList(ICustomAppearence.DISP_VISIBILITY, ICustomAppearence.DISP_DERIVE, ICustomAppearence.DISP_NAME);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getMaskLabel(int value) {
-		return propertyLabelHelper.getMaskLabel(value);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Collection<String> getMaskLabels() {
-		return propertyLabelHelper.getMaskLabels();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Map<Integer, String> getMasks() {
+	public Map<String, String> getMasks() {
 		return propertyLabelHelper.getMasks();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Collection<Integer> getMaskValues() {
-		return propertyLabelHelper.getMaskValues();
 	}
 
 	@Override
@@ -163,7 +140,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * notifies that the the property has changed.
-	 *
+	 * 
 	 * @param property
 	 *        the property that has changed
 	 * @param notification
@@ -242,7 +219,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * notifies that the type of the property has changed.
-	 *
+	 * 
 	 * @param type
 	 *        the type of the property that has changed
 	 * @param notification

@@ -16,24 +16,20 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.emf.appearance.commands.AddMaskManagedLabelDisplayCommand;
 import org.eclipse.papyrus.infra.emf.appearance.commands.SetNameLabelIconCommand;
 import org.eclipse.papyrus.infra.emf.appearance.commands.SetQualifiedNameDepthCommand;
 import org.eclipse.papyrus.infra.emf.appearance.commands.SetShadowFigureCommand;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.tools.databinding.AbstractUMLAggregatedObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.CommandBasedObservableValue;
-import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * An IObservableValue for custom Papyrus properties.
  * This enables to edit a few preferences-based values.
- *
+ * 
  * @author Camille Letavernier
  */
 public class ElementCustomizationObservableValue extends AbstractUMLAggregatedObservableValue implements CommandBasedObservableValue, AggregatedObservable {
@@ -46,12 +42,10 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 
 	private View notationElement;
 
-	private Element semanticElement;
-
 	/**
-	 *
+	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param sourceElement
 	 *        The selected EditPart
 	 * @param property
@@ -61,7 +55,6 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 		super(EMFHelper.resolveEditingDomain(sourceElement));
 		this.sourceElement = sourceElement;
 		this.property = property;
-		semanticElement = UMLUtil.resolveUMLElement(sourceElement);
 		notationElement = (View)sourceElement.getModel();
 		if(domain instanceof TransactionalEditingDomain) {
 			transactionalDomain = (TransactionalEditingDomain)domain;
@@ -72,7 +65,6 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 	//Some listeners need to be added
 	public Object getValueType() {
 		switch(property) {
-		case LABEL_CUSTOMIZATION:
 		case QUALIFIED_NAME:
 			return Integer.class;
 		case ELEMENT_ICON:
@@ -89,8 +81,6 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 	@Override
 	protected Object doGetValue() {
 		switch(property) {
-		case LABEL_CUSTOMIZATION:
-			return getEditPolicy().getCurrentDisplayValue();
 		case ELEMENT_ICON:
 			return AppearanceHelper.showElementIcon(notationElement);
 		case SHADOW:
@@ -100,14 +90,6 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 		}
 
 		return null;
-	}
-
-	/**
-	 *
-	 * @return the {@link IMaskManagedLabelEditPolicy#MASK_MANAGED_LABEL_EDIT_POLICY} edit policy
-	 */
-	protected IMaskManagedLabelEditPolicy getEditPolicy() {
-		return (IMaskManagedLabelEditPolicy)sourceElement.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 	}
 
 	/**
@@ -145,13 +127,6 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 				Activator.log.warn(value + " is not a valid value for QualifiedNameDepth ; need an Integer"); //$NON-NLS-1$
 			}
 			break;
-		case LABEL_CUSTOMIZATION:
-			if(value instanceof Integer) {
-				return new AddMaskManagedLabelDisplayCommand(transactionalDomain, notationElement, (Integer)value);
-			} else {
-				Activator.log.warn(value + " is not a valid value for LabelCustomization ; need an Integer"); //$NON-NLS-1$
-			}
-			break;
 		}
 
 		return UnexecutableCommand.INSTANCE;
@@ -159,15 +134,11 @@ public class ElementCustomizationObservableValue extends AbstractUMLAggregatedOb
 
 	/**
 	 * The list of valid properties for {@link ElementCustomizationObservableValue}
-	 *
+	 * 
 	 * @author Camille Letavernier
-	 *
+	 * 
 	 */
 	public enum Property {
-		/**
-		 * A UML Property or Operation label customization
-		 */
-		LABEL_CUSTOMIZATION,
 
 		/**
 		 * Whether and how the element icon should be displayed
