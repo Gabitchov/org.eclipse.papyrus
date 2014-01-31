@@ -20,4 +20,6 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.8.qualifier
+Bundle-Version: 0.10.1.qualifier
+Export-Package: org.eclipse.papyrus.uml.diagram.composite.test,
+ org.eclipse.papyrus.uml.diagram.composite.test.canonical
