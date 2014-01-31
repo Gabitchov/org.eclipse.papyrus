@@ -9,10 +9,12 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
+ *  Nizar GUEDIDI (CEA LIST) - Update getUMLElement()
+ *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.profile.custom.policies;
+package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Element;
@@ -30,7 +31,7 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * It is used to display the label of an association branch
+ * I is used to display the label of an association branch
  */
 public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPolicy {
 
@@ -54,11 +55,9 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public void addAdditionalListeners() {
-
 		// adds a listener to the element itself, and to linked elements, like Type
 		if(getUMLElement().getType() != null) {
 			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
-
 		}
 		getDiagramEventBroker().addNotificationListener(getUMLElement().getUpperValue(), this);
 		getDiagramEventBroker().addNotificationListener(getUMLElement().getLowerValue(), this);
@@ -67,40 +66,22 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_ROLE;
+	@Override
+	protected Collection<String> getDefaultDisplayValue() {
+		return Arrays.asList(ICustomAppearence.DISP_VISIBILITY, ICustomAppearence.DISP_DERIVE, ICustomAppearence.DISP_NAME);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getMaskLabel(int value) {
-		return propertyLabelHelper.getMaskLabel(value);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<String> getMaskLabels() {
-		return propertyLabelHelper.getMaskLabels();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Map<Integer, String> getMasks() {
+	@Override
+	public Map<String, String> getMasks() {
 		return propertyLabelHelper.getMasks();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<Integer> getMaskValues() {
-		return propertyLabelHelper.getMaskValues();
-	}
-
+	@Override
 	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage"; //$NON-NLS-1$
+		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage";
 	}
 
 	/**
@@ -108,7 +89,11 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public Property getUMLElement() {
-		return (Property)super.getUMLElement();
+		EObject element = super.getUMLElement();
+		if(element instanceof Property) {
+			return (Property)element;
+		}
+		return null;
 	}
 
 	/**
@@ -127,41 +112,34 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		if(property == null) {
 			return;
 		}
-
 		//in order to find the role to display we need to now target of the edge, so it is important to have a notification about the change of the target
-		if((NotationPackage.eINSTANCE.getEdge_Target().equals(notification.getFeature()) || NotationPackage.eINSTANCE.getEdge_Source().equals(notification.getFeature()))) {
+		if((notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) || (notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Source()))) {
 			refreshDisplay();
 		}
-
 		if(object == null) {
 			return;
 		}
-		if(UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(notification.getFeature())) {
+		if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralInteger_Value())) {
 			refreshDisplay();
-		} else if(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value().equals(notification.getFeature())) {
+		} else if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value())) {
 			refreshDisplay();
 		}
-
-
 		if(object.equals(property)) {
 			notifyPropertyChanged(property, notification);
 		} else if(object.equals(property.getType())) {
 			notifyPropertyTypeChanged(property.getType(), notification);
 		}
-
 		if(isMaskManagedAnnotation(object)) {
 			refreshDisplay();
 		}
-
 		if(isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
 		}
-
 	}
 
 	/**
 	 * notifies that the the property has changed.
-	 *
+	 * 
 	 * @param property
 	 *        the property that has changed
 	 * @param notification
@@ -185,7 +163,6 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 			refreshDisplay();
 			break;
 		case UMLPackage.PROPERTY__TYPE:
-
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
@@ -229,12 +206,9 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
 				}
 				refreshDisplay();
-
 			default:
 				break;
-
 			}
-
 			break;
 		default:
 			// does nothing in other cases
@@ -244,7 +218,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * notifies that the type of the property has changed.
-	 *
+	 * 
 	 * @param type
 	 *        the type of the property that has changed
 	 * @param notification
@@ -280,7 +254,6 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 			getDiagramEventBroker().removeNotificationListener(getUMLElement().getType(), this);
 		}
 	}
-
 	//	/**
 	//	 * {@inheritDoc}
 	//	 */

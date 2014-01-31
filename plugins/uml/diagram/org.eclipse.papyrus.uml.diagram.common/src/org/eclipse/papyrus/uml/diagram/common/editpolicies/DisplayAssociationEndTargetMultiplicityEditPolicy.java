@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
+package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -20,17 +20,17 @@ import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 
 /**
  * this class enables to refresh the multiplicity label of the association end (target)
- *
+ * 
  */
-public class DisplayAssociationBranchEndMultiplicityEditPolicy extends DisplayAssociationBranchEndEditPolicy {
+public class DisplayAssociationEndTargetMultiplicityEditPolicy extends DisplayAssociationEndTargetEditPolicy {
 
 	/**
-	 *
-	 * @see org.eclipse.papyrus.uml.diagram.clazz.custom.policies.DisplayAssociationEndEditPolicy#getDefaultDisplayValue()
-	 *
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndEditPolicy#getDefaultDisplayValue()
+	 * 
 	 */
 	@Override
-	protected Collection<String> getDefaultDisplayValue() {
+	public Collection<String> getDefaultDisplayValue() {
 		return Collections.singleton(ICustomAppearence.DISP_MULTIPLICITY);
 	}
 }

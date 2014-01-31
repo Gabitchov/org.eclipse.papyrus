@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,15 +11,16 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
+package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationBranchEndLabelHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndSourceLabelHelper;
 
 /**
- * Mask Managed label edit policy for association ends (target role)
+ * Mask Managed label edit policy for association ends (source role)
  */
-public class DisplayAssociationBranchEndEditPolicy extends DisplayAssociationEndEditPolicy {
+public class DisplayAssociationEndSourceEditPolicy extends DisplayAssociationEndEditPolicy {
 
+	@Override
 	public void addAdditionalListeners() {
 		super.addAdditionalListeners();
 		// adds a listener to the element itself, and to linked elements, like Type
@@ -29,10 +30,10 @@ public class DisplayAssociationBranchEndEditPolicy extends DisplayAssociationEnd
 	}
 
 	/**
-	 * Instantiates a new display association end target edit policy.
+	 * Instantiates a new display association end source edit policy.
 	 */
-	public DisplayAssociationBranchEndEditPolicy() {
+	public DisplayAssociationEndSourceEditPolicy() {
 		super();
-		propertyLabelHelper = AssociationBranchEndLabelHelper.getInstance();
+		propertyLabelHelper = AssociationEndSourceLabelHelper.getInstance();
 	}
 }

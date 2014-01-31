@@ -839,7 +839,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getRoleTargetLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndTargetEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="srcRole{0}" editorPattern="srcRole{0}" editPattern="srcRole{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -849,7 +849,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getRoleSourceLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="-20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndSourceEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndSourceEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="targMul{0}" editorPattern="targMul{0}" editPattern="targMul{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -859,7 +859,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getMultiplicitySourceLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndSourceMultiplicityEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndSourceMultiplicityEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="srcMul{0}" editorPattern="srcMul{0}" editPattern="srcMul{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -869,7 +869,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getMultiplicityTargetLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="-20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="srcMul{0}" editorPattern="srcMul{0}" editPattern="srcMul{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -906,7 +906,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getRoleSourceLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="-20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndTargetEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.4" viewPattern="srcRole{0}" editorPattern="srcRole{0}" editPattern="srcRole{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -916,7 +916,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getMultiplicitySourceLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="srcRole{0}" editorPattern="srcRole{0}" editPattern="srcRole{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
