@@ -121,7 +121,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * 
 	 * {@inheritDoc}
 	 */
-	public void addPage(int index, IPageModel newModel) {
+	public void addPage(IPageModel newModel, int index) {
 		currentTabFolder.doAddItem(index, newModel);
 		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));
 	}
@@ -130,7 +130,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * 
 	 * {@inheritDoc}
 	 */
-	public void addPage(ITabFolderModel toFolderModel, int index, IPageModel newModel) {
+	public void addPage(ITabFolderModel toFolderModel, IPageModel newModel, int index) {
 		TabFolderModel srcFolder = (TabFolderModel)toFolderModel;
 		srcFolder.doAddItem(index, newModel);
 		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));

@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.TypedElement;
@@ -72,14 +73,17 @@ public class PortDropHelper extends ElementHelper {
 		// The drop object is supposed to be a Port (or FlowPort)
 		if((object != null) && (object instanceof Port)) {
 
+			Port port = (Port) object;
 			// The dropTarget has to be a TypedElement with a non-null Type
 			if((dropTarget != null) && (dropTarget instanceof TypedElement) && (((TypedElement)dropTarget).getType() != null)) {
 
 				Type targetType = ((TypedElement)dropTarget).getType();
 				// The dropped object is owned by the target type 
-				if(((Port)object).eContainer() == targetType) {
-					isValid = true;
-				}
+				
+				 if (targetType instanceof Classifier){
+					 Classifier classifier = (Classifier) targetType;
+					 isValid =  classifier.getAllAttributes().contains(port);
+				 }
 			}
 		}
 

@@ -26,7 +26,7 @@ import org.junit.Test;
 /**
  * JUnit abstract tests for Link creation test (via palette tools).
  */
-public class AbstractLinkCreationFromElementTest extends AbstractLinkPrepareTest {
+public abstract class AbstractLinkCreationFromElementTest extends AbstractLinkPrepareTest {
 
 	public static String toolID;
 
