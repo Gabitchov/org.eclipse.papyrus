@@ -8,7 +8,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.helper.PortLabelHelper;
-import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.PropertyPreferencePage;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -32,14 +31,9 @@ public class PortLabelEditPolicy extends PropertyLabelEditPolicy {
 		return PortLabelHelper.getInstance().getMasks();
 	}
 
-	@Override
-	public String getPreferencePageID() {
-		return PropertyPreferencePage.ID;
-	}
-
 	/**
 	 * notifies that the the property has changed.
-	 * 
+	 *
 	 * @param property
 	 *        the property that has changed
 	 * @param notification

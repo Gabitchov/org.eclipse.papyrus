@@ -26,14 +26,14 @@ public interface IMaskManagedLabelEditPolicy {
 
 	/**
 	 * Returns the {@link Map} of masks. The key is the mask ID, the value is the mask Label
-	 * 
+	 *
 	 * @return the {@link Map} of masks
 	 */
 	public Map<String, String> getMasks();
 
 	/**
 	 * Retrieve the current display Value for the current host edit part.
-	 * 
+	 *
 	 * @return the current display Value for the current host edit part.
 	 */
 	public Collection<String> getCurrentDisplayValue();
@@ -53,10 +53,4 @@ public interface IMaskManagedLabelEditPolicy {
 	 */
 	public void setDefaultDisplayValue();
 
-	/**
-	 * returns the preference page ID
-	 * 
-	 * @return
-	 */
-	public String getPreferencePageID();
 }

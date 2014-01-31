@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.helper.CollaborationUseLabelHelper;
-import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.CollaborationUsePreferencePage;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
@@ -89,11 +88,6 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 		return CollaborationUseLabelHelper.getInstance().getMasks();
 	}
 
-	@Override
-	public String getPreferencePageID() {
-		return CollaborationUsePreferencePage.ID;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -138,7 +132,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * notifies that the CollaborationUse has changed.
-	 *
+	 * 
 	 * @param collaborationUse
 	 *        the CollaborationUse that has changed
 	 * @param notification
@@ -210,7 +204,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * notifies that the type of the CollaborationUse has changed.
-	 *
+	 * 
 	 * @param type
 	 *        the type of the CollaborationUse that has changed
 	 * @param notification

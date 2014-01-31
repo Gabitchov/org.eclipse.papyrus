@@ -67,7 +67,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskLabel(int)
-	 * 
+	 *
 	 * @param value
 	 * @return
 	 */
@@ -86,7 +86,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMasks()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -136,18 +136,8 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getPreferencePageID()
-	 * 
-	 * @return
-	 */
-	@Override
-	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage";
-	}
-
-	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy#refreshDisplay()
-	 * 
+	 *
 	 */
 	@Override
 	public void refreshDisplay() {

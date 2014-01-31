@@ -81,14 +81,6 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.OperationPreferencePage";
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public Operation getUMLElement() {
 		if(hostSemanticElement instanceof Operation) {
 			return (Operation)hostSemanticElement;
@@ -129,7 +121,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Checks if the given object is one of the parameter type of the operation
-	 *
+	 * 
 	 * @param object
 	 *        the object to test
 	 * @return <code>true</code> if the object corresponds to the type of a parameter of the
@@ -149,7 +141,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Checks if the given object is one of the parameter of the operation
-	 *
+	 * 
 	 * @param object
 	 *        the object to test
 	 * @return <code>true</code> if the object is a parameter of the operation
@@ -163,7 +155,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that a parameter of the operation has changed.
-	 *
+	 * 
 	 * @param parameter
 	 *        the {@link Parameter} that has changed
 	 * @param notification
@@ -238,7 +230,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that a parameter of the operation has changed.
-	 *
+	 * 
 	 * @param parameter
 	 *        the {@link Parameter} that has changed
 	 * @param notification
@@ -260,7 +252,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the property has changed.
-	 *
+	 * 
 	 * @param operation
 	 *        the operation that has changed
 	 * @param notification

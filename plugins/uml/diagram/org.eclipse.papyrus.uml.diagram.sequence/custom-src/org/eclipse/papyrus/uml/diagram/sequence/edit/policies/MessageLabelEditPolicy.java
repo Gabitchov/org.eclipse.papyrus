@@ -12,7 +12,6 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.MessageLabelHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomMessagePreferencePage;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
@@ -46,6 +45,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		}
 	}
 
+	@Override
 	public int getDefaultDisplayValue() {
 		return CustomMessagePreferencePage.DEFAULT_LABEL_DISPLAY;
 	}
@@ -58,16 +58,13 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		return MessageLabelHelper.getInstance().getMaskLabels();
 	}
 
+	@Override
 	public Map<Integer, String> getMasks() {
 		return MessageLabelHelper.getInstance().getMasks();
 	}
 
 	public Collection<Integer> getMaskValues() {
 		return MessageLabelHelper.getInstance().getMaskValues();
-	}
-
-	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.uml.diagram.sequence.preferences.MessagePreferencePage";
 	}
 
 	@Override
@@ -228,6 +225,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	class DefaultValueListener implements NotificationListener {
 
+		@Override
 		public void notifyChanged(Notification notification) {
 			refreshDisplay();
 		}

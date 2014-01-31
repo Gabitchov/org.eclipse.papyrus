@@ -79,11 +79,6 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		return propertyLabelHelper.getMasks();
 	}
 
-	@Override
-	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage";
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -139,7 +134,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * notifies that the the property has changed.
-	 * 
+	 *
 	 * @param property
 	 *        the property that has changed
 	 * @param notification
@@ -218,7 +213,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 
 	/**
 	 * notifies that the type of the property has changed.
-	 * 
+	 *
 	 * @param type
 	 *        the type of the property that has changed
 	 * @param notification

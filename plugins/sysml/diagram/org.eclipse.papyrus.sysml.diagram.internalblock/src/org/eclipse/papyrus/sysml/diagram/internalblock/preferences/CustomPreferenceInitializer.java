@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
  */
 public class CustomPreferenceInitializer extends InternalBlockDiagramPreferenceInitializer {
 
+	@Override
 	protected IPreferenceStore getPreferenceStore() {
 		return Activator.getInstance().getPreferenceStore();
 	}
@@ -35,10 +36,7 @@ public class CustomPreferenceInitializer extends InternalBlockDiagramPreferenceI
 
 		IPreferenceStore store = getPreferenceStore();
 
-		PortAsBorderItemPreferencePage.initDefaults(store);
-		FlowPortAsBorderItemPreferencePage.initDefaults(store);
 		BlockPropertyCompositePreferencePage.initDefaults(store);
-		CustomConnectorPreferencePage.initDefaults(store);
 
 		// Initialize default positions for labels.
 		initDefaultPosition(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID, UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID, 0, -10);
@@ -58,7 +56,7 @@ public class CustomPreferenceInitializer extends InternalBlockDiagramPreferenceI
 
 	/**
 	 * Initialize default position of a link label in preferences.
-	 * 
+	 *
 	 * @param parentGraphicalType
 	 *        the graphical type of the view owning the label
 	 * @param graphicalType

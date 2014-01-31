@@ -7,21 +7,20 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DEFAULTVALUE;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DERIVE;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_MODIFIERS;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_MULTIPLICITY;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_NAME;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_TYPE;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_UNDEFINED_TYPE;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_VISIBILITY;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_DERIVE;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_MODIFIERS;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_MULTIPLICITY;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_NAME;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_TYPE;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_VISIBILITY;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
@@ -52,15 +51,12 @@ public class ConstraintPropertyPreferencePage extends BlockDefinitionDiagramNode
 
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
-		// Start of user code custom default initializations
-		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_TYPE | DISP_UNDEFINED_TYPE);
-		// End of user code
 	}
 
 	/** buttons to select the display mask of the label */
 	protected Button bttnVisibility, bttnDerive, bttnName, bttnType, bttnUndefined_Type, bttnMultiplicity, bttnDefault_Multiplicity, bttnDefaultValue, bttnModifiers;
 
-	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTPROPERTY_AS_LABEL_ID; //$NON-NLS-1$	
+	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTPROPERTY_AS_LABEL_ID; //$NON-NLS-1$
 
 	private String labelDisplayPreferenceKey = LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE);
 
@@ -69,7 +65,7 @@ public class ConstraintPropertyPreferencePage extends BlockDefinitionDiagramNode
 
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent of the button
 	 * @param label
@@ -87,7 +83,7 @@ public class ConstraintPropertyPreferencePage extends BlockDefinitionDiagramNode
 
 	/**
 	 * Creates the group and check boxes to choose the kind of display
-	 * 
+	 *
 	 * @param parent
 	 *        the parent composite that holds the group
 	 */
@@ -214,6 +210,7 @@ public class ConstraintPropertyPreferencePage extends BlockDefinitionDiagramNode
 	/**
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
+	@Override
 	protected void storePreferences() {
 		super.storePreferences();
 		IPreferenceStore store = getPreferenceStore();
@@ -234,7 +231,7 @@ public class ConstraintPropertyPreferencePage extends BlockDefinitionDiagramNode
 
 		/**
 		 * Default Constructor.
-		 * 
+		 *
 		 * @param style
 		 */
 		public AppearenceSelectionListener(int style) {

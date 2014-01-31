@@ -26,8 +26,7 @@ public class BlockPropertyCompositePreferencePage extends AbstractPreferencePage
 
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
-		CustomBlockPropertyCompositePreferencePage.initDefaults(store);
-		/*CustomNestedBlockPropertyCompositePreferencePage.initDefaults(store);*/
+		/* CustomNestedBlockPropertyCompositePreferencePage.initDefaults(store); */
 	}
 
 	@Override

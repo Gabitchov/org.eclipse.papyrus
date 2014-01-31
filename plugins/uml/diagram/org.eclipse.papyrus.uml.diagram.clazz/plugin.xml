@@ -2138,29 +2138,6 @@
 		
 
 </extension>
-
-
-
-<!-- added by Remi Schnekenburger-->
-<extension point="org.eclipse.ui.preferencePages">
-	<?gmfgen generated="false"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage"
-            name="Property" />
- <page
-       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
-       class="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.OperationPreferencePage"
-       id="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.OperationPreferencePage"
-       name="Operation">
- </page>
- <page
-       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
-       class="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage"
-       id="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage"
-       name="InstanceSpecification">
- </page>	
-</extension>
 <extension
       point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
    <ParserProvider

@@ -76,11 +76,6 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		return PropertyLabelHelper.getInstance().getMasks();
 	}
 
-	@Override
-	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage";
-	}
-
 	/**
 	 * {@inheritedDoc}
 	 */
@@ -129,7 +124,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the property has changed.
-	 * 
+	 *
 	 * @param property
 	 *        the property that has changed
 	 * @param notification
@@ -208,7 +203,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the type of the property has changed.
-	 * 
+	 *
 	 * @param type
 	 *        the type of the property that has changed
 	 * @param notification

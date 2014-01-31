@@ -13,7 +13,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomMessagePreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperationUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SignalUtil;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
@@ -52,7 +51,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the singleton instance of this class
-	 *
+	 * 
 	 * @return the singleton instance.
 	 */
 	public static MessageLabelHelper getInstance() {

@@ -50,9 +50,4 @@ public class NoSemanticParserEditPolicy extends AbstractEditPolicy implements IM
 		//Nothing
 	}
 
-	@Override
-	public String getPreferencePageID() {
-		//Nothing
-		return null;
-	}
 }

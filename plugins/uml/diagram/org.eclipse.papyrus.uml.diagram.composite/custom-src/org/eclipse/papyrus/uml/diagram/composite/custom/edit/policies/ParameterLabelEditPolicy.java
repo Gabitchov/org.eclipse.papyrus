@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.helper.ParameterLabelHelper;
-import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.ParameterPreferencePage;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Type;
@@ -65,11 +64,6 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	@Override
 	public Map<String, String> getMasks() {
 		return ParameterLabelHelper.getInstance().getMasks();
-	}
-
-	@Override
-	public String getPreferencePageID() {
-		return ParameterPreferencePage.ID;
 	}
 
 	/**
@@ -116,7 +110,7 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the parameter has changed.
-	 * 
+	 *
 	 * @param parameter
 	 *        the parameter that has changed
 	 * @param notification
@@ -199,7 +193,7 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the type of the parameter has changed.
-	 * 
+	 *
 	 * @param type
 	 *        the type of the parameter that has changed
 	 * @param notification
