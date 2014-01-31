@@ -499,7 +499,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 
 			@Override
 			protected Object getJavaObject(final TransferData data) {
-				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+				return LocalSelectionTransfer.getTransfer().getSelection();
 			}
 
 			@Override
