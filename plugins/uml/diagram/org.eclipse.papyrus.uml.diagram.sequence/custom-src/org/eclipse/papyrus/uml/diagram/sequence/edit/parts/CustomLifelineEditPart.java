@@ -89,7 +89,9 @@ import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart.StateInvariantLocator;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AbstractHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
@@ -424,6 +426,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new LifelineMessageCreateHelper.ComponentEditPolicyEx());
 		// custom label, fix bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=383722
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new LifelineLabelEditPolicy());
+		installEditPolicy(AbstractHeadImpactLayoutEditPolicy.HEAD_IMPACT_LAYOUT_POLICY, new LifelineHeadImpactLayoutEditPolicy());
 	}
 
 	protected LayoutEditPolicy createLayoutEditPolicy() {

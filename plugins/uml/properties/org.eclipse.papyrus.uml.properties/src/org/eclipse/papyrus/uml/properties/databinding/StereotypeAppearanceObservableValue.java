@@ -21,7 +21,12 @@ import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConsta
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.TEXT_AND_ICON;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.VERTICAL;
 
+import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
+import org.eclipse.core.internal.databinding.Util;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -62,6 +67,16 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 	protected TransactionalEditingDomain domain;
 
 	/**
+	 * Try to synchronize annotation value from model.
+	 */
+	private Adapter diagramElementListener;
+
+	/**
+	 * Cached set value, and fire an event if this value changed.
+	 */
+	private String cachedValue;
+
+	/**
 	 * 
 	 * Constructor.
 	 * 
@@ -80,6 +95,34 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 		this.diagramElement = diagramElement;
 		this.element = element;
 		this.domain = (TransactionalEditingDomain)domain;
+		if(diagramElement != null) {
+			diagramElement.eAdapters().add(getDiagramElementListener());
+		}
+	}
+
+	/**
+	 * Create a listener for DiagramElement.
+	 */
+	private Adapter getDiagramElementListener() {
+		if(diagramElementListener == null) {
+			diagramElementListener = new AdapterImpl() {
+
+				@Override
+				public void notifyChanged(Notification msg) {
+					if(!msg.isTouch()) {
+						handleStereotypeChanged(msg);
+					}
+				}
+			};
+		}
+		return diagramElementListener;
+	}
+
+	/**
+	 * Synchronize value from model. So that, the binded UI would be updated.
+	 */
+	protected void handleStereotypeChanged(Notification msg) {
+		setValue(doGetValue());
 	}
 
 	public Object getValueType() {
@@ -150,18 +193,34 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 		}
 	}
 
+	@SuppressWarnings("restriction")
 	@Override
 	protected void doSetValue(Object value) {
 		if(value instanceof String) {
+			String oldValue = cachedValue;
 			String stringValue = (String)value;
-
-			if(propertyPath.equals(STEREOTYPE_DISPLAY)) { //Edition of the stereotypeDisplay property
-				setStereotypeDisplayValue(stringValue);
-			} else if(propertyPath.equals(TEXT_ALIGNMENT)) { //Edition of the textAlignment property
-				setTextAlignmentValue(stringValue);
-			} else if(propertyPath.equals(DISPLAY_PLACE)) { //Edition of the displayPlace property
-				setDisplayPlaceValue(stringValue);
+			if(diagramElement != null) {
+				diagramElement.eAdapters().remove(diagramElementListener);
 			}
+			String currentValue = doGetValue();
+			//Update model with if the real value changed.
+			if(!Util.equals(currentValue, stringValue)) {
+				if(propertyPath.equals(STEREOTYPE_DISPLAY)) { //Edition of the stereotypeDisplay property
+					setStereotypeDisplayValue(stringValue);
+				} else if(propertyPath.equals(TEXT_ALIGNMENT)) { //Edition of the textAlignment property
+					setTextAlignmentValue(stringValue);
+				} else if(propertyPath.equals(DISPLAY_PLACE)) { //Edition of the displayPlace property
+					setDisplayPlaceValue(stringValue);
+				}
+			}
+			//Send an event if value changed. We should use the cached value since it was binded with others, and the real value can be changed externally(such as UNDO/REDO).
+			if(!Util.equals(oldValue, stringValue) && hasListeners()) {
+				fireValueChange(Diffs.createValueDiff(oldValue, stringValue));
+			}
+			if(diagramElement != null) {
+				diagramElement.eAdapters().add(getDiagramElementListener());
+			}
+			cachedValue = stringValue;
 		} else {
 			Activator.log.warn("The value " + value + " is invalid for property " + propertyPath); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -211,4 +270,16 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 		domain.getCommandStack().execute(command);
 	}
 
+	/**
+	 * @see org.eclipse.core.databinding.observable.AbstractObservable#dispose()
+	 * 
+	 */
+
+	@Override
+	public synchronized void dispose() {
+		if(diagramElement != null && diagramElementListener != null) {
+			diagramElement.eAdapters().remove(diagramElementListener);
+		}
+		super.dispose();
+	}
 }

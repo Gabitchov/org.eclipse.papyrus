@@ -47,6 +47,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorLabelProvi
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -410,7 +411,12 @@ public class TooltipUtil {
 				descBuf.append("\n");
 			} else if(semanticElement instanceof InteractionOperand) {
 				descBuf.append("parent:name: ");
-				CombinedFragment parent = (CombinedFragment)((InteractionOperand)semanticElement).eContainer();
+				InteractionOperand interactionOperand = (InteractionOperand)semanticElement;
+				Element owner = interactionOperand.getOwner();
+				while(owner != null && !(owner instanceof CombinedFragment)) {
+					owner = owner.getOwner();
+				}
+				CombinedFragment parent = (CombinedFragment)owner;
 				if(parent != null) {
 					descBuf.append(parent.getLabel());
 				}

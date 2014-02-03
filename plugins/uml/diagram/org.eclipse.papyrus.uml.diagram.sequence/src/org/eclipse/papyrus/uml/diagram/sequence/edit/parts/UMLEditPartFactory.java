@@ -76,6 +76,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new StateInvariantEditPart(view);
 			case StateInvariantNameEditPart.VISUAL_ID:
 				return new StateInvariantNameEditPart(view);
+			case StateInvariantLabelEditPart.VISUAL_ID:
+				return new StateInvariantLabelEditPart(view);
 			case CombinedFragment2EditPart.VISUAL_ID:
 				return new CombinedFragment2EditPart(view);
 			case TimeConstraintEditPart.VISUAL_ID:

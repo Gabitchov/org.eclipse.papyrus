@@ -15,10 +15,13 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentEditPart;
 
 /**
  * Ordering fragments after creation.
@@ -44,5 +47,19 @@ public class InteractionFragmentsCreationEditPolicy extends PapyrusCreationEditP
 			}
 		}
 		return command;
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#getReparentViewCommand(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	 * 
+	 * @param gep
+	 * @return
+	 */
+	@Override
+	protected ICommand getReparentViewCommand(IGraphicalEditPart gep) {
+		if(gep instanceof AppliedStereotypesCommentEditPart) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.getReparentViewCommand(gep);
 	}
 }

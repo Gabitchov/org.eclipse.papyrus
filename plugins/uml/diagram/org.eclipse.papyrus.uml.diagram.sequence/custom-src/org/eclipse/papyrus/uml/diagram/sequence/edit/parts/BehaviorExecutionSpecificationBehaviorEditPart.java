@@ -101,7 +101,7 @@ public class BehaviorExecutionSpecificationBehaviorEditPart extends
 				if (obj instanceof OpaqueBehavior) {
 					OpaqueBehavior opaque = (OpaqueBehavior) obj;
 					if (opaque.isSetLanguages()) {
-						StringBuffer buf = new StringBuffer(printString);
+						StringBuffer buf = new StringBuffer();
 						buf.append("{");
 						EList<String> languages = opaque.getLanguages();
 						EList<String> bodies = opaque.getBodies();

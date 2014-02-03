@@ -111,8 +111,11 @@ public class CustomMessage2CreateCommand extends Message2CreateCommand {
 		}
 		if(message != null) {
 			//Do reset message end to target ExecutionSpecification. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975
-			if(getTarget() instanceof ExecutionSpecification) {
-				OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification)getTarget(), message.getReceiveEvent());
+			if(getTarget() instanceof ExecutionOccurrenceSpecification) {
+				ExecutionSpecification execution = ((ExecutionOccurrenceSpecification)getTarget()).getExecution();
+				if(execution != null) {
+					OccurrenceSpecificationHelper.resetExecutionStart(execution, message.getReceiveEvent());
+				}
 			}
 			if(getSource() instanceof ExecutionOccurrenceSpecification) {
 				ExecutionSpecification execution = ((ExecutionOccurrenceSpecification)getSource()).getExecution();

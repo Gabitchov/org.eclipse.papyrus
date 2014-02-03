@@ -76,6 +76,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentLinkEditPart;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
@@ -422,6 +423,13 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		// prevent duplicate link
 		if(request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
 			return UnexecutableCommand.INSTANCE;
+		}
+		//Avoid to reconnect AppliedStereotypesCommentLink to another EditPart.
+		ConnectionEditPart connection = request.getConnectionEditPart();
+		if (connection instanceof AppliedStereotypesCommentLinkEditPart) {
+			if (connection.getSource() != getConnectableEditPart()) {
+				return UnexecutableCommand.INSTANCE;
+			}
 		}
 		Command command = super.getReconnectSourceCommand(request);
 		////Ordering message occurrence specifications after message reconnected,  See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233

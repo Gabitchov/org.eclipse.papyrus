@@ -220,7 +220,7 @@
             <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009,4010,4011,4012,8500"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5003,5004,5007,5002,5008,5009,5013,5010,5014,5011,5015,5005,5012,5006,5018,5019,5016,5017"/>
+            <method name="getType()" value="5001,5003,5004,5007,5002,5008,5023,5009,5013,5010,5014,5011,5015,5005,5012,5006,5018,5019,5016,5017"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7004"/>
@@ -1517,6 +1517,12 @@
          class="org.eclipse.papyrus.uml.diagram.sequence.providers.CustomNamespaceEditPolicyProvider">
       <Priority
             name="Lowest">
+      </Priority>
+   </editpolicyProvider>
+   <editpolicyProvider
+         class="org.eclipse.papyrus.uml.diagram.sequence.providers.PostEditPolicyProvider">
+      <Priority
+            name="Highest">
       </Priority>
    </editpolicyProvider>
 </extension>

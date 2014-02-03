@@ -37,7 +37,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GatesHolderGraphicalNodeEditPolicy;
@@ -55,9 +58,11 @@ import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
+ * Add implementing IPapyrusEditPart to displaying Stereotypes.
+ * 
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomInteractionUseEditPart extends InteractionUseEditPart {
+public class CustomInteractionUseEditPart extends InteractionUseEditPart implements IPapyrusEditPart {
 
 	/**
 	 * Title for dialog of no actual gate's manual creation
@@ -140,6 +145,8 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart {
 		//Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GatesHolderGraphicalNodeEditPolicy());
 		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
+		//install a editpolicy to display stereotypes
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 	}
 
 	/**
