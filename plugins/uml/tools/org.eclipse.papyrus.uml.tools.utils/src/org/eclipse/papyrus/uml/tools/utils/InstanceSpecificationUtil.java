@@ -20,42 +20,47 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**
  * util class to display name of instancespecification
- *
+ * 
  */
 public class InstanceSpecificationUtil {
 
 	/**
 	 * return the custom label of the operation, given UML2 specification and a custom style.
-	 *
+	 * 
 	 * @param style
 	 *        the integer representing the style of the label
-	 *
+	 * 
 	 * @return the string corresponding to the label of the operation
 	 */
 	public static String getCustomLabel(InstanceSpecification instance, Collection<String> maskValues) {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(" "); // adds " " first for correct display considerations
 
 		// name
-		if(maskValues.contains(ICustomAppearence.DISP_NAME)) {
+		if(maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(NamedElementUtil.getName(instance));
 		}
 
 		// classifier
-		if(maskValues.contains(ICustomAppearence.DISP_TYPE)) {
+		if(maskValues.contains(ICustomAppearance.DISP_TYPE)) {
 			if(!getTypesAsString(instance).equals("")) {
 				buffer.append(": ");
 				buffer.append(getTypesAsString(instance));
 			}
 		}
 
+		//Workaround: empty label leads to invalid layout.
+		//FIXME: Fix the layout instead
+		if(buffer.length() == 0) {
+			buffer.append(" "); //Add a whitespace to avoid layout issues
+		}
+		//
 
 		return buffer.toString();
 	}
 
 	/**
 	 * Returns the list of classifier for an instance specification as a string
-	 *
+	 * 
 	 * @return a string containing all classifier separated by commas
 	 */
 	private static String getTypesAsString(InstanceSpecification instance) {

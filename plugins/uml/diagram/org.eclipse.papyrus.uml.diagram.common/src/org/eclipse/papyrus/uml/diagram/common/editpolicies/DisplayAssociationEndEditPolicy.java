@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -68,7 +68,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	protected Collection<String> getDefaultDisplayValue() {
-		return Arrays.asList(ICustomAppearence.DISP_VISIBILITY, ICustomAppearence.DISP_DERIVE, ICustomAppearence.DISP_NAME);
+		return Arrays.asList(ICustomAppearance.DISP_VISIBILITY, ICustomAppearance.DISP_DERIVE, ICustomAppearance.DISP_NAME);
 	}
 
 	/**

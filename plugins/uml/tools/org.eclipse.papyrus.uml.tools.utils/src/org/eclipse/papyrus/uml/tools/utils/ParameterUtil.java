@@ -139,23 +139,23 @@ public class ParameterUtil {
 		StringBuffer buffer = new StringBuffer();
 		// visibility
 		buffer.append(" ");
-		if(maskValues.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(maskValues.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(parameter));
 		}
 
 		// direction property
-		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_DIRECTION) || maskValues.contains(ICustomAppearence.DISP_DIRECTION)) {
+		if(maskValues.contains(ICustomAppearance.DISP_PARAMETER_DIRECTION) || maskValues.contains(ICustomAppearance.DISP_DIRECTION)) {
 			buffer.append(" ");
 			buffer.append(parameter.getDirection().getLiteral());
 		}
 
 		// name
-		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_NAME) || maskValues.contains(ICustomAppearence.DISP_NAME)) {
+		if(maskValues.contains(ICustomAppearance.DISP_PARAMETER_NAME) || maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(parameter.getName());
 		}
 
-		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_TYPE) || maskValues.contains(ICustomAppearence.DISP_TYPE)) {
+		if(maskValues.contains(ICustomAppearance.DISP_PARAMETER_TYPE) || maskValues.contains(ICustomAppearance.DISP_TYPE)) {
 			// type
 			if(parameter.getType() != null) {
 				buffer.append(": " + parameter.getType().getName());
@@ -164,13 +164,13 @@ public class ParameterUtil {
 			}
 		}
 
-		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_MULTIPLICITY) || maskValues.contains(ICustomAppearence.DISP_MULTIPLICITY)) {
+		if(maskValues.contains(ICustomAppearance.DISP_PARAMETER_MULTIPLICITY) || maskValues.contains(ICustomAppearance.DISP_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
 			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(parameter);
 			buffer.append(multiplicity);
 		}
 
-		if(maskValues.contains(ICustomAppearence.DISP_PARAMETER_DEFAULT) || maskValues.contains(ICustomAppearence.DISP_DEFAULT_VALUE)) {
+		if(maskValues.contains(ICustomAppearance.DISP_PARAMETER_DEFAULT) || maskValues.contains(ICustomAppearance.DISP_DEFAULT_VALUE)) {
 			// default value
 			if(parameter.getDefault() != null) {
 				buffer.append(" = ");
@@ -178,8 +178,8 @@ public class ParameterUtil {
 			}
 		}
 
-		if(maskValues.contains(ICustomAppearence.DISP_MODIFIERS)) {
-			boolean multiLine = (maskValues.contains(ICustomAppearence.DISP_MULTI_LINE));
+		if(maskValues.contains(ICustomAppearance.DISP_MODIFIERS)) {
+			boolean multiLine = (maskValues.contains(ICustomAppearance.DISP_MULTI_LINE));
 			// property modifiers
 			String modifiers = ParameterUtil.getModifiersAsString(parameter, multiLine);
 			if(!modifiers.equals("")) {

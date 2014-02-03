@@ -22,7 +22,7 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.CollaborationUseUtil;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.CollaborationUse;
 
 /**
@@ -76,9 +76,9 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 		super();
 		// initialize the map
 		masks.clear();
-		masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
-		masks.put(ICustomAppearence.DISP_NAME, "Name");
-		masks.put(ICustomAppearence.DISP_TYPE, "Type");
+		masks.put(ICustomAppearance.DISP_VISIBILITY, "Visibility");
+		masks.put(ICustomAppearance.DISP_NAME, "Name");
+		masks.put(ICustomAppearance.DISP_TYPE, "Type");
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class CollaborationUseLabelHelper extends StereotypedElementLabelHelper {
 	 */
 	@Override
 	protected String elementLabel(GraphicalEditPart editPart) {
-		Collection<String> displayValue = ICustomAppearence.DEFAULT_UML_PROPERTY;
+		Collection<String> displayValue = ICustomAppearance.DEFAULT_UML_PROPERTY;
 
 		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if(policy != null) {

@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ParameterUtil;
@@ -25,17 +25,17 @@ public class OperationUtil {
 		StringBuffer buffer = new StringBuffer();
 		// visibility
 		buffer.append(" ");
-		if(displayValue.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(displayValue.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(parameter));
 		}
 		// direction property
-		if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_DIRECTION)) {
+		if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_DIRECTION)) {
 			buffer.append(" ");
 			buffer.append(parameter.getDirection().getLiteral());
 		}
 		boolean showEqualMark = false;
 		// name
-		if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_NAME)) {
+		if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_NAME)) {
 			buffer.append(" ");
 			String name = StringHelper.trimToEmpty(parameter.getName());
 			if(name.trim().length() > 0) {
@@ -43,7 +43,7 @@ public class OperationUtil {
 			}
 			buffer.append(name);
 		}
-		if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_TYPE)) {
+		if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_TYPE)) {
 			// type
 			if(parameter.getType() != null) {
 				buffer.append(": " + StringHelper.trimToEmpty(parameter.getType().getName()));
@@ -52,12 +52,12 @@ public class OperationUtil {
 			}
 			showEqualMark = true;
 		}
-		if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_MULTIPLICITY)) {
+		if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
 			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(parameter);
 			buffer.append(multiplicity);
 		}
-		if(displayValue.contains(ICustomAppearence.DISP_DERIVE)) {
+		if(displayValue.contains(ICustomAppearance.DISP_DERIVE)) {
 			String value = getValue(e, paramIndex, parameter);
 			if(value != null) {
 				if(showEqualMark) {
@@ -65,7 +65,7 @@ public class OperationUtil {
 				}
 				buffer.append(value);
 			}
-		} else if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_DEFAULT)) {
+		} else if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_DEFAULT)) {
 			// default value
 			if(parameter.getDefault() != null) {
 				if(showEqualMark) {
@@ -74,8 +74,8 @@ public class OperationUtil {
 				buffer.append(parameter.getDefault());
 			}
 		}
-		if(displayValue.contains(ICustomAppearence.DISP_MODIFIERS)) {
-			boolean multiLine = displayValue.contains(ICustomAppearence.DISP_MULTI_LINE);
+		if(displayValue.contains(ICustomAppearance.DISP_MODIFIERS)) {
+			boolean multiLine = displayValue.contains(ICustomAppearance.DISP_MULTI_LINE);
 			// property modifiers
 			String modifiers = ParameterUtil.getModifiersAsString(parameter, multiLine);
 			if(!modifiers.equals("")) {
@@ -103,11 +103,11 @@ public class OperationUtil {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(" "); // adds " " first for correct display considerations
 		// visibility
-		if(displayValue.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(displayValue.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(operation));
 		}
 		// name
-		if(displayValue.contains(ICustomAppearence.DISP_NAME)) {
+		if(displayValue.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(StringHelper.trimToEmpty(operation.getName()));
 		}
@@ -117,11 +117,11 @@ public class OperationUtil {
 		buffer.append(getParametersAsString(message, operation, displayValue));
 		buffer.append(")");
 		// return type
-		if(displayValue.contains(ICustomAppearence.DISP_RT_TYPE)) {
+		if(displayValue.contains(ICustomAppearance.DISP_RT_TYPE) || displayValue.contains(ICustomAppearance.DISP_TYPE)) {
 			buffer.append(getReturnTypeAsString(operation, displayValue));
 		}
 		// modifiers
-		if(displayValue.contains(ICustomAppearence.DISP_MODIFIERS)) {
+		if(displayValue.contains(ICustomAppearance.DISP_MODIFIERS)) {
 			String modifiers = getModifiersAsString(operation);
 			if(!modifiers.equals("")) {
 				buffer.append("{");
@@ -134,7 +134,7 @@ public class OperationUtil {
 
 	/**
 	 * Returns operation modifiers as string, separated with comma.
-	 *
+	 * 
 	 * @return a string containing the modifiers
 	 */
 	private static String getModifiersAsString(Operation operation) {
@@ -193,14 +193,14 @@ public class OperationUtil {
 
 	/**
 	 * Returns return parameter label as a string, string parametrized with a style mask.
-	 *
+	 * 
 	 * @param style
 	 *        the mask that indicates which element to display
 	 * @return a string containing the return parameter type
 	 */
 	private static String getReturnTypeAsString(Operation operation, Collection<String> displayValue) {
-		boolean displayType = displayValue.contains(ICustomAppearence.DISP_RT_TYPE);
-		boolean displayMultiplicity = displayValue.contains(ICustomAppearence.DISP_RT_MULTIPLICITY);
+		boolean displayType = displayValue.contains(ICustomAppearance.DISP_RT_TYPE) || displayValue.contains(ICustomAppearance.DISP_TYPE);
+		boolean displayMultiplicity = displayValue.contains(ICustomAppearance.DISP_RT_MULTIPLICITY) || displayValue.contains(ICustomAppearance.DISP_MULTIPLICITY);
 		StringBuffer label = new StringBuffer("");
 		// Retrieve the return parameter (assume to be unique if defined)
 		Parameter returnParameter = getReturnParameter(operation);
@@ -223,7 +223,7 @@ public class OperationUtil {
 
 	/**
 	 * Gives the return parameter for this operation, or <code>null</code> if none exists.
-	 *
+	 * 
 	 * @return the return parameter of the operation or <code>null</code>
 	 */
 	private static Parameter getReturnParameter(Operation operation) {
@@ -241,9 +241,9 @@ public class OperationUtil {
 
 	/**
 	 * Returns operation parameters as a string, the label is customized using a bit mask
-	 *
+	 * 
 	 * @param e
-	 *
+	 * 
 	 * @return a string containing all parameters separated by commas
 	 */
 	private static String getParametersAsString(Message e, Operation operation, Collection<String> displayValue) {

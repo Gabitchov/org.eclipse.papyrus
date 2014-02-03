@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.OperationUtil;
 import org.eclipse.papyrus.uml.tools.utils.SignalUtil;
 import org.eclipse.uml2.uml.Element;
@@ -59,14 +59,14 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 			if(signature instanceof Operation) {
 				Operation operation = (Operation)signature;
 				if(MessageSort.REPLY_LITERAL.equals(message.getMessageSort())) {
-					result = OperationUtil.getCustomLabel(operation, Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_RT_TYPE));
+					result = OperationUtil.getCustomLabel(operation, Arrays.asList(ICustomAppearance.DISP_NAME, ICustomAppearance.DISP_RT_TYPE));
 				} else if(MessageSort.SYNCH_CALL_LITERAL.equals(message.getMessageSort())) {
-					result = OperationUtil.getCustomLabel(operation, Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_PARAMETER_NAME, ICustomAppearence.DISP_PARAMETER_TYPE));
+					result = OperationUtil.getCustomLabel(operation, Arrays.asList(ICustomAppearance.DISP_NAME, ICustomAppearance.DISP_PARAMETER_NAME, ICustomAppearance.DISP_PARAMETER_TYPE));
 				} else {
-					result = OperationUtil.getCustomLabel(operation, Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_PARAMETER_NAME, ICustomAppearence.DISP_PARAMETER_TYPE, ICustomAppearence.DISP_RT_TYPE));
+					result = OperationUtil.getCustomLabel(operation, Arrays.asList(ICustomAppearance.DISP_NAME, ICustomAppearance.DISP_PARAMETER_NAME, ICustomAppearance.DISP_PARAMETER_TYPE, ICustomAppearance.DISP_RT_TYPE));
 				}
 			} else if(signature instanceof Signal) {
-				result = SignalUtil.getCustomLabel((Signal)signature, Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_TYPE));
+				result = SignalUtil.getCustomLabel((Signal)signature, Arrays.asList(ICustomAppearance.DISP_NAME, ICustomAppearance.DISP_TYPE));
 			} else if(signature != null) {
 				result = signature.getName();
 			}

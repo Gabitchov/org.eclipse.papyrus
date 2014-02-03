@@ -21,7 +21,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.helper.OperationLabelHelper;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Type;
@@ -66,7 +66,7 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 */
 	@Override
 	public Collection<String> getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_OPERATION;
+		return ICustomAppearance.DEFAULT_UML_OPERATION;
 	}
 
 	/**

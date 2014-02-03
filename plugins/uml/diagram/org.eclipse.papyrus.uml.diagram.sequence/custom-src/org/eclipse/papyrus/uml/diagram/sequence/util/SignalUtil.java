@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
@@ -21,18 +21,18 @@ public class SignalUtil {
 		StringBuffer buffer = new StringBuffer();
 		// visibility
 		buffer.append(" ");
-		if(displayValue.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(displayValue.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(property));
 		}
 		// derived property
-		if(displayValue.contains(ICustomAppearence.DISP_DERIVE)) {
+		if(displayValue.contains(ICustomAppearance.DISP_DERIVE)) {
 			if(property.isDerived()) {
 				buffer.append("/");
 			}
 		}
 		boolean showEqualMark = false;
 		// name
-		if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_NAME)) {
+		if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_NAME)) {
 			buffer.append(" ");
 			String name = StringHelper.trimToEmpty(property.getName());
 			if(name.trim().length() > 0) {
@@ -40,7 +40,7 @@ public class SignalUtil {
 			}
 			buffer.append(name);
 		}
-		if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_TYPE)) {
+		if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_TYPE)) {
 			// type
 			if(property.getType() != null) {
 				buffer.append(": " + StringHelper.trimToEmpty(property.getType().getName()));
@@ -49,12 +49,12 @@ public class SignalUtil {
 			}
 			showEqualMark = true;
 		}
-		if(displayValue.contains(ICustomAppearence.DISP_MULTIPLICITY)) {
+		if(displayValue.contains(ICustomAppearance.DISP_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
 			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 			buffer.append(multiplicity);
 		}
-		if(displayValue.contains(ICustomAppearence.DISP_DERIVE)) {
+		if(displayValue.contains(ICustomAppearance.DISP_DERIVE)) {
 			String value = getValue(e, property);
 			if(value != null) {
 				if(showEqualMark) {
@@ -62,7 +62,7 @@ public class SignalUtil {
 				}
 				buffer.append(value);
 			}
-		} else if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_DEFAULT)) {
+		} else if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_DEFAULT)) {
 			// default value
 			if(property.getDefault() != null) {
 				if(showEqualMark) {
@@ -71,8 +71,8 @@ public class SignalUtil {
 				buffer.append(property.getDefault());
 			}
 		}
-		if(displayValue.contains(ICustomAppearence.DISP_MODIFIERS)) {
-			boolean multiLine = displayValue.contains(ICustomAppearence.DISP_MULTI_LINE);
+		if(displayValue.contains(ICustomAppearance.DISP_MODIFIERS)) {
+			boolean multiLine = displayValue.contains(ICustomAppearance.DISP_MULTI_LINE);
 			// property modifiers
 			String modifiers = PropertyUtil.getModifiersAsString(property, multiLine);
 			if(!modifiers.equals("")) {
@@ -115,11 +115,11 @@ public class SignalUtil {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(" "); // adds " " first for correct display considerations
 		// visibility
-		if(displayValue.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(displayValue.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(signal));
 		}
 		// name
-		if(displayValue.contains(ICustomAppearence.DISP_NAME)) {
+		if(displayValue.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(StringHelper.trimToEmpty(signal.getName()));
 		}

@@ -34,24 +34,24 @@ public class PortUtil extends PropertyUtil {
 		// visibility
 
 		buffer.append(" ");
-		if(maskValues.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(maskValues.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(property));
 		}
 
 		// derived property
-		if(maskValues.contains(ICustomAppearence.DISP_DERIVE)) {
+		if(maskValues.contains(ICustomAppearance.DISP_DERIVE)) {
 			if(property.isDerived()) {
 				buffer.append("/");
 			}
 		}
 		// name
-		if(maskValues.contains(ICustomAppearence.DISP_NAME)) {
+		if(maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(property.getName());
 		}
 
-		if(maskValues.contains(ICustomAppearence.DISP_TYPE)) {
-			if(maskValues.contains(ICustomAppearence.DISP_CONJUGATED)) {
+		if(maskValues.contains(ICustomAppearance.DISP_TYPE)) {
+			if(maskValues.contains(ICustomAppearance.DISP_CONJUGATED)) {
 				if(((Port)property).isConjugated()) {
 					buffer.append(": ~");
 				} else {
@@ -68,13 +68,13 @@ public class PortUtil extends PropertyUtil {
 			}
 		}
 
-		if(maskValues.contains(ICustomAppearence.DISP_MULTIPLICITY)) {
+		if(maskValues.contains(ICustomAppearance.DISP_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
 			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 			buffer.append(multiplicity);
 		}
 
-		if(maskValues.contains(ICustomAppearence.DISP_DEFAULT_VALUE)) {
+		if(maskValues.contains(ICustomAppearance.DISP_DEFAULT_VALUE)) {
 			// default value
 			if(property.getDefault() != null) {
 				buffer.append(" = ");
@@ -82,8 +82,8 @@ public class PortUtil extends PropertyUtil {
 			}
 		}
 
-		if(maskValues.contains(ICustomAppearence.DISP_MODIFIERS)) {
-			boolean multiLine = maskValues.contains(ICustomAppearence.DISP_MULTI_LINE);
+		if(maskValues.contains(ICustomAppearance.DISP_MODIFIERS)) {
+			boolean multiLine = maskValues.contains(ICustomAppearance.DISP_MULTI_LINE);
 			// property modifiers
 			String modifiers = PropertyUtil.getModifiersAsString(property, multiLine);
 			if(!modifiers.equals("")) {

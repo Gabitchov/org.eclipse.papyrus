@@ -14,8 +14,11 @@
 package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
+import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -39,12 +42,12 @@ public class OperationUtil {
 		buffer.append(" "); // adds " " first for correct display considerations
 
 		// visibility
-		if(maskValues.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(maskValues.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(operation));
 		}
 
 		// name
-		if(maskValues.contains(ICustomAppearence.DISP_NAME)) {
+		if(maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(operation.getName());
 		}
@@ -56,12 +59,12 @@ public class OperationUtil {
 		buffer.append(")");
 
 		// return type
-		if(maskValues.contains(ICustomAppearence.DISP_RT_TYPE)) {
+		if(maskValues.contains(ICustomAppearance.DISP_RT_TYPE) || maskValues.contains(ICustomAppearance.DISP_TYPE)) {
 			buffer.append(OperationUtil.getReturnTypeAsString(operation, maskValues));
 		}
 
 		// modifiers
-		if(maskValues.contains(ICustomAppearence.DISP_MODIFIERS)) {
+		if(maskValues.contains(ICustomAppearance.DISP_MODIFIERS)) {
 			String modifiers = OperationUtil.getModifiersAsString(operation);
 			if(!modifiers.equals("")) {
 				buffer.append("{");
@@ -80,8 +83,8 @@ public class OperationUtil {
 	 * @return a string containing the return parameter type
 	 */
 	private static String getReturnTypeAsString(Operation operation, Collection<String> maskValues) {
-		boolean displayType = maskValues.contains(ICustomAppearence.DISP_RT_TYPE);
-		boolean displayMultiplicity = maskValues.contains(ICustomAppearence.DISP_RT_MULTIPLICITY);
+		boolean displayType = maskValues.contains(ICustomAppearance.DISP_RT_TYPE) || maskValues.contains(ICustomAppearance.DISP_TYPE);
+		boolean displayMultiplicity = maskValues.contains(ICustomAppearance.DISP_RT_MULTIPLICITY) || maskValues.contains(ICustomAppearance.DISP_MULTIPLICITY);
 		StringBuffer label = new StringBuffer("");
 
 		// Retrieve the return parameter (assume to be unique if defined)
@@ -120,10 +123,8 @@ public class OperationUtil {
 			// Do not include return parameters
 			if(!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
 
-
-
 				// get the label for this parameter
-				String parameterString = ParameterUtil.getCustomLabel(parameter, maskValues);
+				String parameterString = ParameterUtil.getCustomLabel(parameter, extractParameterMaskValues(maskValues));
 				if(!parameterString.trim().equals("")) {
 					if(!firstParameter) {
 						paramString.append(", ");
@@ -134,6 +135,19 @@ public class OperationUtil {
 			}
 		}
 		return paramString.toString();
+	}
+
+	private static Collection<String> extractParameterMaskValues(Collection<String> operationMaskValues) {
+		Set<String> result = new HashSet<String>();
+
+		for(String maskValue : operationMaskValues) {
+			if(maskValue.startsWith(ICustomAppearance.PARAMETERS_PREFIX)) {
+				String newValue = StringHelper.firstToLower(maskValue.replace(ICustomAppearance.PARAMETERS_PREFIX, ""));
+				result.add(newValue);
+			}
+		}
+
+		return result;
 	}
 
 	/**

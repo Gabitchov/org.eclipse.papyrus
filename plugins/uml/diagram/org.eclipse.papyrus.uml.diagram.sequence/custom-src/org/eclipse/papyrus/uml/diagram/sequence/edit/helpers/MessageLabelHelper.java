@@ -15,7 +15,7 @@ import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperationUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SignalUtil;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.TypedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Message;
@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 public class MessageLabelHelper extends StereotypedElementLabelHelper {
 
-	public static final Collection<String> DEFAULT_LABEL_DISPLAY = Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_PARAMETER_NAME, ICustomAppearence.DISP_PARAMETER_TYPE, ICustomAppearence.DISP_RT_TYPE);
+	public static final Collection<String> DEFAULT_LABEL_DISPLAY = Arrays.asList(ICustomAppearance.DISP_NAME, ICustomAppearance.DISP_PARAMETER_NAME, ICustomAppearance.DISP_PARAMETER_TYPE, ICustomAppearance.DISP_RT_TYPE);
 
 	/**
 	 * singelton instance
@@ -38,17 +38,17 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 
 	protected MessageLabelHelper() {
 		// initialize the map
-		masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
-		masks.put(ICustomAppearence.DISP_NAME, "Name");
-		masks.put(ICustomAppearence.DISP_PARAMETER_NAME, "Parameters Name");
-		masks.put(ICustomAppearence.DISP_PARAMETER_DIRECTION, "Parameters Direction");
-		masks.put(ICustomAppearence.DISP_PARAMETER_TYPE, "Parameters Type");
-		masks.put(ICustomAppearence.DISP_RT_TYPE, "Return Type");
-		masks.put(ICustomAppearence.DISP_PARAMETER_MULTIPLICITY, "Parameters Multiplicity");
-		masks.put(ICustomAppearence.DISP_PARAMETER_DEFAULT, "Parameters Default Value");
-		masks.put(ICustomAppearence.DISP_DERIVE, "Parameters Value");
-		masks.put(ICustomAppearence.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
-		masks.put(ICustomAppearence.DISP_MODIFIERS, "Modifiers");
+		masks.put(ICustomAppearance.DISP_VISIBILITY, "Visibility");
+		masks.put(ICustomAppearance.DISP_NAME, "Name");
+		masks.put(ICustomAppearance.DISP_PARAMETER_NAME, "Parameters Name");
+		masks.put(ICustomAppearance.DISP_PARAMETER_DIRECTION, "Parameters Direction");
+		masks.put(ICustomAppearance.DISP_PARAMETER_TYPE, "Parameters Type");
+		masks.put(ICustomAppearance.DISP_RT_TYPE, "Return Type");
+		masks.put(ICustomAppearance.DISP_PARAMETER_MULTIPLICITY, "Parameters Multiplicity");
+		masks.put(ICustomAppearance.DISP_PARAMETER_DEFAULT, "Parameters Default Value");
+		masks.put(ICustomAppearance.DISP_DERIVE, "Parameters Value");
+		masks.put(ICustomAppearance.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
+		masks.put(ICustomAppearance.DISP_MODIFIERS, "Modifiers");
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 		buffer.append(message.getName());
 		// parameters : '(' parameter-list ')'
 		EList<ValueSpecification> arguments = message.getArguments();
-		if(arguments.size() > 0 && (displayValue.contains(ICustomAppearence.DISP_PARAMETER_NAME) || displayValue.contains(ICustomAppearence.DISP_DERIVE))) {
+		if(arguments.size() > 0 && (displayValue.contains(ICustomAppearance.DISP_PARAMETER_NAME) || displayValue.contains(ICustomAppearance.DISP_DERIVE))) {
 			buffer.append("(");
 			for(int i = 0; i < arguments.size(); i++) {
 				if(i > 0) {
@@ -111,7 +111,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 				}
 				ValueSpecification arg = arguments.get(i);
 				//type
-				if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_TYPE)) {
+				if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_TYPE)) {
 					String type = TypedElementUtil.getTypeAsString(arg);
 					if(type != null) {
 						buffer.append(type);
@@ -119,7 +119,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 				}
 				boolean showEqualMark = false;
 				// name
-				if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_NAME)) {
+				if(displayValue.contains(ICustomAppearance.DISP_PARAMETER_NAME)) {
 					buffer.append(" ");
 					String name = StringHelper.trimToEmpty(arg.getName());
 					buffer.append(name);
@@ -128,7 +128,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 					}
 				}
 				// value
-				if(displayValue.contains(ICustomAppearence.DISP_DERIVE)) {
+				if(displayValue.contains(ICustomAppearance.DISP_DERIVE)) {
 					String value = ValueSpecificationUtil.getSpecificationValue(arg);
 					if(value != null) {
 						if(showEqualMark) {

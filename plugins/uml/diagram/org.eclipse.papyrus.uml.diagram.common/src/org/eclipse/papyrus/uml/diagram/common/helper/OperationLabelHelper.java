@@ -20,7 +20,7 @@ import java.util.Map;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.OperationUtil;
 import org.eclipse.uml2.uml.Operation;
 
@@ -54,16 +54,16 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	 */
 	protected OperationLabelHelper() {
 		// initialize the map
-		masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
-		masks.put(ICustomAppearence.DISP_NAME, "Name");
-		masks.put(ICustomAppearence.DISP_PARAMETER_NAME, "Parameters Name");
-		masks.put(ICustomAppearence.DISP_PARAMETER_DIRECTION, "Parameters Direction");
-		masks.put(ICustomAppearence.DISP_PARAMETER_TYPE, "Parameters Type");
-		masks.put(ICustomAppearence.DISP_RT_TYPE, "Return Type");
-		masks.put(ICustomAppearence.DISP_PARAMETER_MULTIPLICITY, "Parameters Multiplicity");
-		masks.put(ICustomAppearence.DISP_PARAMETER_DEFAULT, "Parameters Default Value");
-		masks.put(ICustomAppearence.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
-		masks.put(ICustomAppearence.DISP_MODIFIERS, "Modifiers");
+		masks.put(ICustomAppearance.DISP_VISIBILITY, "Visibility");
+		masks.put(ICustomAppearance.DISP_NAME, "Name");
+		masks.put(ICustomAppearance.DISP_PARAMETER_NAME, "Parameters Name");
+		masks.put(ICustomAppearance.DISP_PARAMETER_DIRECTION, "Parameters Direction");
+		masks.put(ICustomAppearance.DISP_PARAMETER_TYPE, "Parameters Type");
+		masks.put(ICustomAppearance.DISP_RT_TYPE, "Return Type");
+		masks.put(ICustomAppearance.DISP_PARAMETER_MULTIPLICITY, "Parameters Multiplicity");
+		masks.put(ICustomAppearance.DISP_PARAMETER_DEFAULT, "Parameters Default Value");
+		masks.put(ICustomAppearance.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
+		masks.put(ICustomAppearance.DISP_MODIFIERS, "Modifiers");
 
 	}
 
@@ -80,7 +80,7 @@ public class OperationLabelHelper extends StereotypedElementLabelHelper {
 	 */
 	@Override
 	protected String elementLabel(GraphicalEditPart editPart) {
-		Collection<String> displayValue = ICustomAppearence.DEFAULT_UML_OPERATION;
+		Collection<String> displayValue = ICustomAppearance.DEFAULT_UML_OPERATION;
 
 		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if(policy != null) {

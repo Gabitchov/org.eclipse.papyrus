@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.InstanceSpecificationUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -39,8 +39,8 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 
 	public InstanceSpecificationNameLabelEditPolicy() {
 		super();
-		masks.put(ICustomAppearence.DISP_NAME, "Name");
-		masks.put(ICustomAppearence.DISP_TYPE, "Type");
+		masks.put(ICustomAppearance.DISP_NAME, "Name");
+		masks.put(ICustomAppearance.DISP_TYPE, "Type");
 	}
 
 	@Override
@@ -65,16 +65,6 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 		super.deactivate();
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy#getMaskLabel(int)
-	 *
-	 * @param value
-	 * @return
-	 */
-	public String getMaskLabel(int value) {
-		return masks.get(value);
-	}
-
 	@Override
 	public InstanceSpecification getUMLElement() {
 		EObject element = super.getUMLElement();
@@ -96,7 +86,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 
 	@Override
 	protected Collection<String> getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_INSTANCESPECIFICATION;
+		return ICustomAppearance.DEFAULT_UML_INSTANCESPECIFICATION;
 	}
 
 	@Override
@@ -108,7 +98,7 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
 		Object object = notification.getNotifier();
-		InstanceSpecification instance = getUMLElement();
+
 		if(notification.getEventType() == Notification.ADD) {
 			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier())) {
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);

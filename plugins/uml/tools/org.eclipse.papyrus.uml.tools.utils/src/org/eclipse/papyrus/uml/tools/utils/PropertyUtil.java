@@ -221,23 +221,23 @@ public class PropertyUtil {
 		// visibility
 
 		buffer.append(" ");
-		if(style.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(style.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(property));
 		}
 
 		// derived property
-		if(style.contains(ICustomAppearence.DISP_DERIVE)) {
+		if(style.contains(ICustomAppearance.DISP_DERIVE)) {
 			if(property.isDerived()) {
 				buffer.append("/");
 			}
 		}
 		// name
-		if(style.contains(ICustomAppearence.DISP_NAME)) {
+		if(style.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(property.getName());
 		}
 
-		if(style.contains(ICustomAppearence.DISP_TYPE)) {
+		if(style.contains(ICustomAppearance.DISP_TYPE)) {
 			// type
 			if(property.getType() != null) {
 				buffer.append(": " + property.getType().getName());
@@ -246,13 +246,13 @@ public class PropertyUtil {
 			}
 		}
 
-		if(style.contains(ICustomAppearence.DISP_MULTIPLICITY)) {
+		if(style.contains(ICustomAppearance.DISP_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
 			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 			buffer.append(multiplicity);
 		}
 
-		if(style.contains(ICustomAppearence.DISP_DEFAULT_VALUE)) {
+		if(style.contains(ICustomAppearance.DISP_DEFAULT_VALUE)) {
 			// default value
 			if(property.getDefault() != null) {
 				buffer.append(" = ");
@@ -260,8 +260,8 @@ public class PropertyUtil {
 			}
 		}
 
-		if(style.contains(ICustomAppearence.DISP_MODIFIERS)) {
-			boolean multiLine = style.contains(ICustomAppearence.DISP_MULTI_LINE);
+		if(style.contains(ICustomAppearance.DISP_MODIFIERS)) {
+			boolean multiLine = style.contains(ICustomAppearance.DISP_MULTI_LINE);
 			// property modifiers
 			String modifiers = PropertyUtil.getModifiersAsString(property, multiLine);
 			if(!modifiers.equals("")) {

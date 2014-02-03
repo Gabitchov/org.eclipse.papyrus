@@ -63,17 +63,17 @@ public class CollaborationUseUtil {
 		// visibility
 
 		buffer.append(" ");
-		if(maskValues.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(maskValues.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(collaborationUse));
 		}
 
 		// name
-		if(maskValues.contains(ICustomAppearence.DISP_NAME)) {
+		if(maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(collaborationUse.getName());
 		}
 
-		if(maskValues.contains(ICustomAppearence.DISP_TYPE)) {
+		if(maskValues.contains(ICustomAppearance.DISP_TYPE)) {
 			// type
 			if(collaborationUse.getType() != null) {
 				buffer.append(": " + collaborationUse.getType().getName());

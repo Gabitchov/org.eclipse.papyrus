@@ -15,12 +15,12 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_UNDEFINED_TYPE;
-import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_DERIVE;
-import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_MODIFIERS;
-import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_MULTIPLICITY;
-import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_NAME;
-import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_TYPE;
-import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearence.DISP_VISIBILITY;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearance.DISP_DERIVE;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearance.DISP_MODIFIERS;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearance.DISP_MULTIPLICITY;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearance.DISP_NAME;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearance.DISP_TYPE;
+import static org.eclipse.papyrus.uml.tools.utils.ICustomAppearance.DISP_VISIBILITY;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;

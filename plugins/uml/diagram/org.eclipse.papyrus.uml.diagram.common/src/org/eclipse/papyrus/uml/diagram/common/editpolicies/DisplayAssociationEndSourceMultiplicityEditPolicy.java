@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 
 /**
  * this class enables to refresh the multiplicity label of the association end (source)
@@ -31,6 +31,6 @@ public class DisplayAssociationEndSourceMultiplicityEditPolicy extends DisplayAs
 	 */
 	@Override
 	public Collection<String> getDefaultDisplayValue() {
-		return Collections.singleton(ICustomAppearence.DISP_MULTIPLICITY);
+		return Collections.singleton(ICustomAppearance.DISP_MULTIPLICITY);
 	}
 }

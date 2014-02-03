@@ -17,7 +17,7 @@ import java.util.Collection;
 
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.PortUtil;
 import org.eclipse.uml2.uml.Port;
 
@@ -36,7 +36,7 @@ public class PortLabelHelper extends PropertyLabelHelper {
 
 	protected PortLabelHelper() {
 		super();
-		masks.put(ICustomAppearence.DISP_CONJUGATED, "Conjugated");
+		masks.put(ICustomAppearance.DISP_CONJUGATED, "Conjugated");
 	}
 
 	@Override

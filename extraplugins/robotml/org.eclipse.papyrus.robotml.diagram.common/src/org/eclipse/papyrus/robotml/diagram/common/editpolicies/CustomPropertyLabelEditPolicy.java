@@ -17,13 +17,13 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 
 
 public class CustomPropertyLabelEditPolicy extends PropertyLabelEditPolicy {
 
 
-	public final static Collection<String> DEFAULT_ROBOTML_PROPERTY = Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_TYPE);
+	public final static Collection<String> DEFAULT_ROBOTML_PROPERTY = Arrays.asList(ICustomAppearance.DISP_NAME, ICustomAppearance.DISP_TYPE);
 
 	@Override
 	public Collection<String> getDefaultDisplayValue() {

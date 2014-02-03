@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.helper.CollaborationUseLabelHelper;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -63,7 +63,7 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public Collection<String> getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_PROPERTY;
+		return ICustomAppearance.DEFAULT_UML_PROPERTY;
 	}
 
 	/**

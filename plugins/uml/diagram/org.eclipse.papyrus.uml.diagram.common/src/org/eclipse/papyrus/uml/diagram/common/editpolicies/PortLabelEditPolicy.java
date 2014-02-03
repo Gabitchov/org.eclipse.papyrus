@@ -8,7 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.helper.PortLabelHelper;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -20,7 +20,7 @@ public class PortLabelEditPolicy extends PropertyLabelEditPolicy {
 	 */
 	@Override
 	public Collection<String> getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_PORT;
+		return ICustomAppearance.DEFAULT_UML_PORT;
 	}
 
 	/**

@@ -21,7 +21,7 @@ import java.util.Map;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.uml2.uml.Property;
 
@@ -45,13 +45,13 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 
 	protected PropertyLabelHelper() {
 		// initialize the map
-		masks.put(ICustomAppearence.DISP_VISIBILITY, "Visibility");
-		masks.put(ICustomAppearence.DISP_DERIVE, "Is Derived");
-		masks.put(ICustomAppearence.DISP_NAME, "Name");
-		masks.put(ICustomAppearence.DISP_TYPE, "Type");
-		masks.put(ICustomAppearence.DISP_MULTIPLICITY, "Multiplicity");
-		masks.put(ICustomAppearence.DISP_DEFAULT_VALUE, "Default Value");
-		masks.put(ICustomAppearence.DISP_MODIFIERS, "Modifiers");
+		masks.put(ICustomAppearance.DISP_VISIBILITY, "Visibility");
+		masks.put(ICustomAppearance.DISP_DERIVE, "Is Derived");
+		masks.put(ICustomAppearance.DISP_NAME, "Name");
+		masks.put(ICustomAppearance.DISP_TYPE, "Type");
+		masks.put(ICustomAppearance.DISP_MULTIPLICITY, "Multiplicity");
+		masks.put(ICustomAppearance.DISP_DEFAULT_VALUE, "Default Value");
+		masks.put(ICustomAppearance.DISP_MODIFIERS, "Modifiers");
 	}
 
 	/**

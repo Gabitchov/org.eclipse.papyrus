@@ -20,7 +20,7 @@ import java.util.Collection;
  * Interface that manages display constants for custom labels (ex: operations label in a class
  * diagram).
  */
-public interface ICustomAppearence {
+public interface ICustomAppearance {
 
 	/**
 	 * key for the appearance property of graph nodes.
@@ -69,26 +69,29 @@ public interface ICustomAppearence {
 	/** Style constant for carriage return in labels */
 	public final static String DISP_MULTI_LINE = "multiline";
 
+	/** Prefix used to distinguish parameter-specific values (e.g. name vs parametersName, for an Operation) */
+	public final static String PARAMETERS_PREFIX = "parameters";
+
 	/** Style constant for operation#parameter direction display in labels */
-	public final String DISP_PARAMETER_DIRECTION = "parametersDirection";
+	public final String DISP_PARAMETER_DIRECTION = PARAMETERS_PREFIX + "Direction";
 
 	/** Style constant for direction display in labels */
 	public final String DISP_DIRECTION = "direction";
 
 	/** Style constant for operation#parameter name display in labels */
-	public final String DISP_PARAMETER_NAME = "parametersName";
+	public final String DISP_PARAMETER_NAME = PARAMETERS_PREFIX + "Name";
 
 	/** Style constant for operation#parameter type display in labels */
-	public final String DISP_PARAMETER_TYPE = "parametersType";
+	public final String DISP_PARAMETER_TYPE = PARAMETERS_PREFIX + "Type";
 
 	/** Style constant for operation#parameter multiplicity display in labels */
-	public final String DISP_PARAMETER_MULTIPLICITY = "parametersMultiplicity";
+	public final String DISP_PARAMETER_MULTIPLICITY = PARAMETERS_PREFIX + "Multiplicity";
 
 	/** Style constant for operation#parameter default value display in labels */
-	public final String DISP_PARAMETER_DEFAULT = "parametersDefault";
+	public final String DISP_PARAMETER_DEFAULT = PARAMETERS_PREFIX + "Default";
 
 	/** Style constant for operation#parameter modifiers display in labels */
-	public final String DISP_PARAMETER_MODIFIERS = "parametersModifiers";
+	public final String DISP_PARAMETER_MODIFIERS = PARAMETERS_PREFIX + "Modifiers";
 
 	/** Style constant for return type display in labels */
 	public final String DISP_RT_TYPE = "returnType";

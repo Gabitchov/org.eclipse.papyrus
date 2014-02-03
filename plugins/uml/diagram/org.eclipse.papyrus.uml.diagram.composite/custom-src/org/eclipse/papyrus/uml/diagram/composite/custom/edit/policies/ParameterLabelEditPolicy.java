@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.helper.ParameterLabelHelper;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -55,7 +55,7 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 */
 	@Override
 	public Collection<String> getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_PARAMETER;
+		return ICustomAppearance.DEFAULT_UML_PARAMETER;
 	}
 
 	/**

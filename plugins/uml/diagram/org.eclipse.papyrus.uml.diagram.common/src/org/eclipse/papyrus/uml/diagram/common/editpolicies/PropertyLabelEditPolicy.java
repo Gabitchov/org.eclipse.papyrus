@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.helper.PropertyLabelHelper;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -65,7 +65,7 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 */
 	@Override
 	public Collection<String> getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_PROPERTY;
+		return ICustomAppearance.DEFAULT_UML_PROPERTY;
 	}
 
 	/**

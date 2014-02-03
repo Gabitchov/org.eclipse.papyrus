@@ -13,12 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.preferences;
 
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 
 /**
  * Label constants for label mask preferences.
  */
-public interface ILabelPreferenceConstants extends ICustomAppearence {
+public interface ILabelPreferenceConstants extends ICustomAppearance {
 
 	/** preference id for display labels */
 	public String LABEL_DISPLAY_PREFERENCE = "label.display"; //$NON-NLS-1$

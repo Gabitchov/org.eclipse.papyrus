@@ -36,12 +36,12 @@ public class SignalUtil {
 		buffer.append(" "); // adds " " first for correct display considerations
 
 		// visibility
-		if(maskValues.contains(ICustomAppearence.DISP_VISIBILITY)) {
+		if(maskValues.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(signal));
 		}
 
 		// name
-		if(maskValues.contains(ICustomAppearence.DISP_NAME)) {
+		if(maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(signal.getName());
 		}
