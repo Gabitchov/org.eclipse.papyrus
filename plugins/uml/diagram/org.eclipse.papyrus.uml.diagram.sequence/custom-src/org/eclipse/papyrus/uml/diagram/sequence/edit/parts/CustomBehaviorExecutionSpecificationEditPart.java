@@ -33,6 +33,7 @@ import org.eclipse.gef.EditPartListener;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
@@ -311,12 +312,28 @@ public class CustomBehaviorExecutionSpecificationEditPart extends BehaviorExecut
 				helper.listenObject(behavior);
 			}
 		}
-		if(getParent() != null) {
-			getParent().addEditPartListener(selfRemovingListener = new EditPartListener.Stub() {
+		addSelfRemovingListener(getParent());
+	}
+
+	private void addSelfRemovingListener(EditPart editPart) {
+		if(editPart == null || editPart instanceof RootEditPart) {
+			return;
+		}
+		if(selfRemovingListener == null) {
+			selfRemovingListener = new EditPartListener.Stub() {
 
 				@Override
 				public void removingChild(EditPart child, int index) {
-					if(child == CustomBehaviorExecutionSpecificationEditPart.this) {
+					boolean removeBehavior = false;
+					EditPart editPart = CustomBehaviorExecutionSpecificationEditPart.this;
+					while(editPart != null && !(editPart instanceof RootEditPart)) {
+						if(editPart == child) {
+							removeBehavior = true;
+							break;
+						}
+						editPart = editPart.getParent();
+					}
+					if(removeBehavior) {
 						List children = new ArrayList(getChildren());
 						for(Object object : children) {
 							if(object instanceof BehaviorExecutionSpecificationBehaviorEditPart) {
@@ -326,16 +343,29 @@ public class CustomBehaviorExecutionSpecificationEditPart extends BehaviorExecut
 						}
 					}
 				}
-			});
+			};
+		}
+		if(editPart != null) {
+			editPart.removeEditPartListener(selfRemovingListener);
+			editPart.addEditPartListener(selfRemovingListener);
+			addSelfRemovingListener(editPart.getParent());
+		}
+	}
+
+	private void removeSelfRemovingListener(EditPart editPart) {
+		if(editPart == null || editPart instanceof RootEditPart || selfRemovingListener == null) {
+			return;
+		}
+		if(editPart != null) {
+			editPart.removeEditPartListener(selfRemovingListener);
+			removeSelfRemovingListener(editPart.getParent());
 		}
 	}
 
 	@Override
 	public void deactivate() {
 		helper.unlistenAll();
-		if(getParent() != null) {
-			getParent().removeEditPartListener(selfRemovingListener);
-		}
+		removeSelfRemovingListener(getParent());
 		super.deactivate();
 	}
 

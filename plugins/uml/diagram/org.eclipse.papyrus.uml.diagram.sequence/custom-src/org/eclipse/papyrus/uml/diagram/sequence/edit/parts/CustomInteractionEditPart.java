@@ -52,16 +52,22 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.InteractionRectangleFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AbstractHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentsCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.StereotypeInteractionFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -73,9 +79,11 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
+ * Add implementing IPapyrusEditPart to displaying Stereotypes.
+ * 
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomInteractionEditPart extends InteractionEditPart {
+public class CustomInteractionEditPart extends InteractionEditPart implements IPapyrusEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
@@ -150,6 +158,9 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 				return command;
 			}
 		});
+		//install a editpolicy to display stereotypes
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AbstractHeadImpactLayoutEditPolicy.HEAD_IMPACT_LAYOUT_POLICY, new InteractionHeadImpactLayoutEditPolicy());
 	}
 
 	/**
@@ -157,7 +168,7 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 	 */
 	@Override
 	protected IFigure createNodeShape() {
-		return primaryShape = new InteractionRectangleFigure() {
+		return primaryShape = new StereotypeInteractionFigure() {
 
 			@Override
 			public Dimension getMinimumSize(int wHint, int hHint) {
@@ -181,6 +192,7 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 				}
 				return bounds.getSize();
 			}
+
 		};
 	}
 
@@ -535,4 +547,6 @@ public class CustomInteractionEditPart extends InteractionEditPart {
 		};
 		return result;
 	}
+
+
 }

@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7;
 
 import java.util.List;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -27,6 +28,7 @@ import org.eclipse.gef.requests.CreationFactory;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -143,7 +145,12 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 	protected String getGateName(GateEditPart gateEditPart) {
 		IGraphicalEditPart label = gateEditPart.getChildBySemanticHint(GateNameEditPart.GATE_NAME_TYPE);
 		if(label != null) {
-			return ((WrappingLabel)label.getFigure()).getText();
+			IFigure figure = label.getFigure();
+			if(figure instanceof WrappingLabel) {
+				return ((WrappingLabel)figure).getText();
+			} else if(figure instanceof ILabelFigure) {
+				return ((ILabelFigure)figure).getText();
+			}
 		}
 		return null;
 	}

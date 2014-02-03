@@ -425,6 +425,9 @@ public class GateEditPart extends AbstractBorderEditPart implements IBorderItemE
 		}
 
 		protected ConnectionAnchor createAnchor(PrecisionPoint p) {
+			if(p == null) {
+				return createDefaultAnchor();
+			}
 			return new SlidableAnchor(this, p) {
 
 				public Point getLocation(Point reference) {

@@ -51,18 +51,26 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
-public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEditPart {
+/**
+ * Add implementing IPapyrusEditPart to displaying Stereotypes.
+ * 
+ * @author Jin Liu (jin.liu@soyatec.com)
+ */
+public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEditPart implements IPapyrusEditPart {
 
 	public static final String EXECUTION_FIX_ANCHOR_POSITION = "Execution Fix Anchor Position";
 
@@ -206,6 +214,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends ShapeNodeEd
 				HighlightUtil.unhighlight();
 			}
 		});
+		//install a editpolicy to display stereotypes
+		installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 	}
 
 	@Override

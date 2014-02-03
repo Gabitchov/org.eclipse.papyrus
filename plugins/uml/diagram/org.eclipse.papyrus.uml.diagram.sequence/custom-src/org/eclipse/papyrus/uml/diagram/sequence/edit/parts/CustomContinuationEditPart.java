@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomContinuationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.ContinuationLocator;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -28,7 +29,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomContinuationEditPart extends ContinuationEditPart {
+public class CustomContinuationEditPart extends ContinuationEditPart implements IPapyrusEditPart {
 
 	/**
 	 * Constructor.
