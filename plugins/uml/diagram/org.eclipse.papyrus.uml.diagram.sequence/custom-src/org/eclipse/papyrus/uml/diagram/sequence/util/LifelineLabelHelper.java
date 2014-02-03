@@ -9,7 +9,6 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypedElementLabelHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomLifelinePreferencePage;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Lifeline;
@@ -34,7 +33,7 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the singleton instance of this class
-	 * 
+	 *
 	 * @return the singleton instance.
 	 */
 	public static LifelineLabelHelper getInstance() {
@@ -60,7 +59,7 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the map of masks used to display
-	 * 
+	 *
 	 * @return the map of masks used to display
 	 */
 	public Map<String, String> getMasks() {
@@ -96,8 +95,8 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 	private String getCustomLabel(Lifeline lifeline, Collection<String> displayValue) {
 		StringBuilder sb = new StringBuilder();
 		appendName(lifeline, displayValue, sb);
-		boolean displayType = displayValue.contains(CustomLifelinePreferencePage.SHOW_REPRESENT_TYPE);
-		if(lifeline.getRepresents() == null || displayValue.contains(CustomLifelinePreferencePage.SHOW_LIFELINE_NAME)) {
+		boolean displayType = displayValue.contains(SHOW_REPRESENT_TYPE);
+		if(lifeline.getRepresents() == null || displayValue.contains(LifelineLabelHelper.SHOW_LIFELINE_NAME)) {
 			displayType = false;
 		}
 		if(displayType) {
@@ -110,16 +109,16 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 	protected void appendName(Lifeline lifeline, Collection<String> displayValue, StringBuilder sb) {
 		ConnectableElement element = lifeline.getRepresents();
 		String lifelineName = lifeline.getName();
-		if(element == null || displayValue.contains(CustomLifelinePreferencePage.SHOW_LIFELINE_NAME)) {
+		if(element == null || displayValue.contains(SHOW_LIFELINE_NAME)) {
 			appendString(sb, lifelineName, UNAMED);
 			return;
 		} else {
 			// represents is not null
-			if(displayValue.contains(CustomLifelinePreferencePage.SHOW_REPRESENT_NAME)) {
+			if(displayValue.contains(SHOW_REPRESENT_NAME)) {
 				appendString(sb, element.getName(), UNAMED);
 			}
 			//  if neither <1> or <2> are checked, show lifeline name (or <unnamed> when the lifeline has no name)
-			else if(!displayValue.contains(CustomLifelinePreferencePage.SHOW_REPRESENT_TYPE)) {
+			else if(!displayValue.contains(SHOW_REPRESENT_TYPE)) {
 				appendString(sb, lifelineName, UNAMED);
 			}
 		}
@@ -131,9 +130,9 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 			return;
 		}
 		Type type = element.getType();
-		if(displayValue.contains(CustomLifelinePreferencePage.SHOW_REPRESENT_TYPE)) {
+		if(displayValue.contains(SHOW_REPRESENT_TYPE)) {
 			if(type == null) {
-				if(displayValue.contains(CustomLifelinePreferencePage.SHOW_UNDEFINED_TYPE)) {
+				if(displayValue.contains(SHOW_UNDEFINED_TYPE)) {
 					sb.append(":").append(UNDEFINED);
 				}
 			} else {

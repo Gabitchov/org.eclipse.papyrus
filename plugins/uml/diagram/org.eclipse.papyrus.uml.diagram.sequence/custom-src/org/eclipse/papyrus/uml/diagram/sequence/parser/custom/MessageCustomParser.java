@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 Atos Origin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.parser.custom;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -58,14 +59,14 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 			if(signature instanceof Operation) {
 				Operation operation = (Operation)signature;
 				if(MessageSort.REPLY_LITERAL.equals(message.getMessageSort())) {
-					result = OperationUtil.getCustomLabel(operation, ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_RT_TYPE);
+					result = OperationUtil.getCustomLabel(operation, Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_RT_TYPE));
 				} else if(MessageSort.SYNCH_CALL_LITERAL.equals(message.getMessageSort())) {
-					result = OperationUtil.getCustomLabel(operation, ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_PARAMETER_NAME | ICustomAppearence.DISP_PARAMETER_TYPE);
+					result = OperationUtil.getCustomLabel(operation, Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_PARAMETER_NAME, ICustomAppearence.DISP_PARAMETER_TYPE));
 				} else {
-					result = OperationUtil.getCustomLabel(operation, ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_PARAMETER_NAME | ICustomAppearence.DISP_PARAMETER_TYPE | ICustomAppearence.DISP_RT_TYPE);
+					result = OperationUtil.getCustomLabel(operation, Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_PARAMETER_NAME, ICustomAppearence.DISP_PARAMETER_TYPE, ICustomAppearence.DISP_RT_TYPE));
 				}
 			} else if(signature instanceof Signal) {
-				result = SignalUtil.getCustomLabel((Signal)signature, ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_TYPE);
+				result = SignalUtil.getCustomLabel((Signal)signature, Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_TYPE));
 			} else if(signature != null) {
 				result = signature.getName();
 			}
@@ -77,11 +78,13 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 		return result;
 	}
 
+	@Override
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		return true;
 	}
 
-	public List getSemanticElementsBeingParsed(EObject element) {
+	@Override
+	public List<Element> getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
 		if(element instanceof Message) {
 			Message message = (Message)element;

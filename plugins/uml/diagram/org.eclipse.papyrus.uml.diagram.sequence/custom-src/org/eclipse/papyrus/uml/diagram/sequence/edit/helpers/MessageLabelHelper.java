@@ -1,9 +1,9 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -26,13 +26,15 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 public class MessageLabelHelper extends StereotypedElementLabelHelper {
 
+	public static final Collection<String> DEFAULT_LABEL_DISPLAY = Arrays.asList(ICustomAppearence.DISP_NAME, ICustomAppearence.DISP_PARAMETER_NAME, ICustomAppearence.DISP_PARAMETER_TYPE, ICustomAppearence.DISP_RT_TYPE);
+
 	/**
 	 * singelton instance
 	 */
 	private static MessageLabelHelper labelHelper;
 
 	/** Map for masks */
-	protected final Map<Integer, String> masks = new HashMap<Integer, String>(11);
+	protected final Map<String, String> masks = new HashMap<String, String>();
 
 	protected MessageLabelHelper() {
 		// initialize the map
@@ -51,7 +53,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the singleton instance of this class
-	 * 
+	 *
 	 * @return the singleton instance.
 	 */
 	public static MessageLabelHelper getInstance() {
@@ -75,7 +77,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 		if(editPart instanceof LabelEditPart) {
 			editPart = (GraphicalEditPart)editPart.getParent();
 		}
-		int displayValue = CustomMessagePreferencePage.DEFAULT_LABEL_DISPLAY;
+		Collection<String> displayValue = DEFAULT_LABEL_DISPLAY;
 		IMaskManagedLabelEditPolicy policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
 		if(policy != null) {
 			displayValue = policy.getCurrentDisplayValue();
@@ -96,12 +98,12 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 		return getMessageLabel(e, displayValue);
 	}
 
-	private String getMessageLabel(Message e, int style) {
+	private String getMessageLabel(Message message, Collection<String> displayValue) {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(e.getName());
+		buffer.append(message.getName());
 		// parameters : '(' parameter-list ')'
-		EList<ValueSpecification> arguments = e.getArguments();
-		if(arguments.size() > 0 && (style & ICustomAppearence.DISP_PARAMETER_NAME) != 0 || (style & ICustomAppearence.DISP_DERIVE) != 0) {
+		EList<ValueSpecification> arguments = message.getArguments();
+		if(arguments.size() > 0 && (displayValue.contains(ICustomAppearence.DISP_PARAMETER_NAME) || displayValue.contains(ICustomAppearence.DISP_DERIVE))) {
 			buffer.append("(");
 			for(int i = 0; i < arguments.size(); i++) {
 				if(i > 0) {
@@ -109,7 +111,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 				}
 				ValueSpecification arg = arguments.get(i);
 				//type
-				if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
+				if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_TYPE)) {
 					String type = TypedElementUtil.getTypeAsString(arg);
 					if(type != null) {
 						buffer.append(type);
@@ -117,7 +119,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 				}
 				boolean showEqualMark = false;
 				// name
-				if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
+				if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_NAME)) {
 					buffer.append(" ");
 					String name = StringHelper.trimToEmpty(arg.getName());
 					buffer.append(name);
@@ -126,7 +128,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 					}
 				}
 				// value
-				if((style & ICustomAppearence.DISP_DERIVE) != 0) {
+				if(displayValue.contains(ICustomAppearence.DISP_DERIVE)) {
 					String value = ValueSpecificationUtil.getSpecificationValue(arg);
 					if(value != null) {
 						if(showEqualMark) {
@@ -141,25 +143,11 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 		return buffer.toString();
 	}
 
-	public String getMaskLabel(int value) {
-		return masks.get(value);
-	}
-
-	public Collection<String> getMaskLabels() {
-		return masks.values();
-	}
-
-	@Override
-	public Map<Integer, String> getMasks() {
+	public Map<String, String> getMasks() {
 		return masks;
 	}
 
-	public Set<Integer> getMaskValues() {
-		return masks.keySet();
-	}
-
-	@Override
-	public int getDefaultValue() {
-		return CustomMessagePreferencePage.DEFAULT_LABEL_DISPLAY;
+	public Collection<String> getDefaultValue() {
+		return DEFAULT_LABEL_DISPLAY;
 	}
 }

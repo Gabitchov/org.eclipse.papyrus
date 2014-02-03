@@ -22,7 +22,7 @@ public class CustomDiagramPreferenceInitializer extends DiagramPreferenceInitial
 
 	/**
 	 * Add the diagram preference page to the initialization
-	 *
+	 * 
 	 * @Override (update at each gmf change) diagram preference page
 	 */
 	@Override
@@ -55,7 +55,6 @@ public class CustomDiagramPreferenceInitializer extends DiagramPreferenceInitial
 		//Custom preference pages.
 		CustomCombinedFragmentPreferencePage.initDefaults(store);
 		CustomConsiderIgnoreFragmentPreferencePage.initDefaults(store);
-		CustomLifelinePreferencePage.initDefaults(store);
 		CustomDestructionOccurrenceSpecificationPreferencePage.initDefaults(store);
 		CustomInteractionOperandPreferencePage.initDefaults(store);
 	}

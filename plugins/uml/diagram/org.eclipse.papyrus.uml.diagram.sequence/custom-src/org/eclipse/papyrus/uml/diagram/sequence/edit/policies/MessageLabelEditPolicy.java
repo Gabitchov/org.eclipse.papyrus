@@ -46,25 +46,13 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	@Override
-	public int getDefaultDisplayValue() {
-		return CustomMessagePreferencePage.DEFAULT_LABEL_DISPLAY;
-	}
-
-	public String getMaskLabel(int value) {
-		return MessageLabelHelper.getInstance().getMaskLabel(value);
-	}
-
-	public Collection<String> getMaskLabels() {
-		return MessageLabelHelper.getInstance().getMaskLabels();
+	public Collection<String> getDefaultDisplayValue() {
+		return MessageLabelHelper.getInstance().getDefaultValue();
 	}
 
 	@Override
-	public Map<Integer, String> getMasks() {
+	public Map<String, String> getMasks() {
 		return MessageLabelHelper.getInstance().getMasks();
-	}
-
-	public Collection<Integer> getMaskValues() {
-		return MessageLabelHelper.getInstance().getMaskValues();
 	}
 
 	@Override
@@ -261,7 +249,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that a parameter of the operation has changed.
-	 *
+	 * 
 	 * @param parameter
 	 *        the {@link Parameter} that has changed
 	 * @param notification
@@ -348,7 +336,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that a parameter of the operation has changed.
-	 *
+	 * 
 	 * @param parameter
 	 *        the {@link Parameter} that has changed
 	 * @param notification
@@ -370,7 +358,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the property has changed.
-	 *
+	 * 
 	 * @param operation
 	 *        the operation that has changed
 	 * @param notification
@@ -414,7 +402,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Checks if the given object is one of the parameter type of the operation
-	 *
+	 * 
 	 * @param object
 	 *        the object to test
 	 * @param operation
@@ -435,7 +423,7 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * Checks if the given object is one of the parameter of the operation
-	 *
+	 * 
 	 * @param object
 	 *        the object to test
 	 * @param operation

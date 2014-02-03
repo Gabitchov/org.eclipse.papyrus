@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
@@ -15,22 +17,22 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 public class SignalUtil {
 
-	private static String getCustomPropertyLabel(Message e, Property property, int style) {
+	private static String getCustomPropertyLabel(Message e, Property property, Collection<String> displayValue) {
 		StringBuffer buffer = new StringBuffer();
 		// visibility
 		buffer.append(" ");
-		if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+		if(displayValue.contains(ICustomAppearence.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(property));
 		}
 		// derived property
-		if((style & ICustomAppearence.DISP_DERIVE) != 0) {
+		if(displayValue.contains(ICustomAppearence.DISP_DERIVE)) {
 			if(property.isDerived()) {
 				buffer.append("/");
 			}
 		}
 		boolean showEqualMark = false;
 		// name
-		if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
+		if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_NAME)) {
 			buffer.append(" ");
 			String name = StringHelper.trimToEmpty(property.getName());
 			if(name.trim().length() > 0) {
@@ -38,7 +40,7 @@ public class SignalUtil {
 			}
 			buffer.append(name);
 		}
-		if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
+		if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_TYPE)) {
 			// type
 			if(property.getType() != null) {
 				buffer.append(": " + StringHelper.trimToEmpty(property.getType().getName()));
@@ -47,12 +49,12 @@ public class SignalUtil {
 			}
 			showEqualMark = true;
 		}
-		if((style & ICustomAppearence.DISP_MULTIPLICITY) != 0) {
+		if(displayValue.contains(ICustomAppearence.DISP_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
 			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 			buffer.append(multiplicity);
 		}
-		if((style & ICustomAppearence.DISP_DERIVE) != 0) {
+		if(displayValue.contains(ICustomAppearence.DISP_DERIVE)) {
 			String value = getValue(e, property);
 			if(value != null) {
 				if(showEqualMark) {
@@ -60,7 +62,7 @@ public class SignalUtil {
 				}
 				buffer.append(value);
 			}
-		} else if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
+		} else if(displayValue.contains(ICustomAppearence.DISP_PARAMETER_DEFAULT)) {
 			// default value
 			if(property.getDefault() != null) {
 				if(showEqualMark) {
@@ -69,8 +71,8 @@ public class SignalUtil {
 				buffer.append(property.getDefault());
 			}
 		}
-		if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
-			boolean multiLine = ((style & ICustomAppearence.DISP_MULTI_LINE) != 0);
+		if(displayValue.contains(ICustomAppearence.DISP_MODIFIERS)) {
+			boolean multiLine = displayValue.contains(ICustomAppearence.DISP_MULTI_LINE);
 			// property modifiers
 			String modifiers = PropertyUtil.getModifiersAsString(property, multiLine);
 			if(!modifiers.equals("")) {
@@ -102,29 +104,29 @@ public class SignalUtil {
 	/**
 	 * return the custom label of the signal, given UML2 specification and a custom style.
 	 *
-	 * @param e
+	 * @param message
 	 *
 	 * @param style
 	 *        the integer representing the style of the label
 	 *
 	 * @return the string corresponding to the label of the signal
 	 */
-	public static String getCustomLabel(Message e, Signal signal, int style) {
+	public static String getCustomLabel(Message message, Signal signal, Collection<String> displayValue) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(" "); // adds " " first for correct display considerations
 		// visibility
-		if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+		if(displayValue.contains(ICustomAppearence.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(signal));
 		}
 		// name
-		if((style & ICustomAppearence.DISP_NAME) != 0) {
+		if(displayValue.contains(ICustomAppearence.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(StringHelper.trimToEmpty(signal.getName()));
 		}
 		//
 		// parameters : '(' parameter-list ')'
 		buffer.append("(");
-		buffer.append(getPropertiesAsString(e, signal, style));
+		buffer.append(getPropertiesAsString(message, signal, displayValue));
 		buffer.append(")");
 		return buffer.toString();
 	}
@@ -134,12 +136,12 @@ public class SignalUtil {
 	 *
 	 * @return a string containing all properties separated by commas
 	 */
-	private static String getPropertiesAsString(Message e, Signal signal, int style) {
+	private static String getPropertiesAsString(Message e, Signal signal, Collection<String> displayValue) {
 		StringBuffer propertiesString = new StringBuffer();
 		boolean firstProperty = true;
 		for(Property property : signal.getOwnedAttributes()) {
 			// get the label for this property
-			String propertyString = getCustomPropertyLabel(e, property, style).trim();
+			String propertyString = getCustomPropertyLabel(e, property, displayValue).trim();
 			if(!propertyString.equals("")) {
 				if(!firstProperty) {
 					propertiesString.append(", ");
