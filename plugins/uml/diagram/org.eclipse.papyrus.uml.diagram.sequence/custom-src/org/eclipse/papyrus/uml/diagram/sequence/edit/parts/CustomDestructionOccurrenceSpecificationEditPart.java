@@ -20,12 +20,17 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDestructionOccurrenceSpecificationItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
 
 /**
+ * Add implementing interface IPapyrusEditPart to displaying Stereotypes.
+ * 
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomDestructionOccurrenceSpecificationEditPart extends DestructionOccurrenceSpecificationEditPart {
+public class CustomDestructionOccurrenceSpecificationEditPart extends DestructionOccurrenceSpecificationEditPart implements IPapyrusEditPart {
 
 	/**
 	 * Constructor.
@@ -43,6 +48,8 @@ public class CustomDestructionOccurrenceSpecificationEditPart extends Destructio
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDestructionOccurrenceSpecificationItemSemanticEditPolicy());
+		//install a editpolicy to display stereotypes
+		installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 	}
 
 	@Override

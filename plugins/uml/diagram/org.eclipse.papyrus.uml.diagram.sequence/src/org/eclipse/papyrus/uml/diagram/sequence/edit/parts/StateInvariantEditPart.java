@@ -42,8 +42,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
@@ -139,6 +139,10 @@ public class StateInvariantEditPart extends AbstractBorderItemEditPart {
 			((StateInvariantNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureContinuationNameLabel());
 			return true;
 		}
+		if(childEditPart instanceof StateInvariantLabelEditPart) {
+			((StateInvariantLabelEditPart)childEditPart).setLabel(getPrimaryShape().getInvariantFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -147,6 +151,9 @@ public class StateInvariantEditPart extends AbstractBorderItemEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof StateInvariantNameEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof StateInvariantLabelEditPart) {
 			return true;
 		}
 		return false;
@@ -1048,6 +1055,11 @@ public class StateInvariantEditPart extends AbstractBorderItemEditPart {
 		 */
 		public CenteredWrappedLabel getFigureContinuationNameLabel() {
 			return fFigureContinuationNameLabel;
+		}
+
+		/** generated */
+		public IFigure getInvariantFigure() {
+			return this;
 		}
 	}
 

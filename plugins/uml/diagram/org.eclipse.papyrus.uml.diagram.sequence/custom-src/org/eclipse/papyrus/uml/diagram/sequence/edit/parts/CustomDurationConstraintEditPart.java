@@ -61,12 +61,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LinesBorder;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper.FixedAnchorEx;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomDurationConstraintItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -74,14 +76,17 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
 /**
+ * Add implementing IPapyrusEditPart to displaying Stereotypes.
+ * 
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomDurationConstraintEditPart extends DurationConstraintEditPart {
+public class CustomDurationConstraintEditPart extends DurationConstraintEditPart implements IPapyrusEditPart {
 
 	private static final String ARROW = "Arrow";
 
@@ -107,6 +112,8 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDurationConstraintItemSemanticEditPolicy());
+		//install a editpolicy to display stereotypes, there's a bug on super class.
+		installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 	}
 
 	/**

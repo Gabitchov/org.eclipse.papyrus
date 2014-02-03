@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
@@ -21,12 +20,12 @@ import java.util.TreeMap;
 import org.eclipse.gmf.runtime.common.ui.preferences.CheckBoxFieldEditor;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.BackgroundColor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.LabelGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.NodeColorGroup;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.swt.SWT;
@@ -46,17 +45,12 @@ public class CustomCombinedFragmentPreferencePage extends CombinedFragmentPrefer
 
 	public static final String compartments[] = { Messages.CombinedFragmentCombinedFragmentCompartmentEditPart_title };
 
-	/** the list owning the compartment names for the Node */
-	protected List<String> compartmentsList;
-
 	/**
 	 * Constructor.
 	 * 
 	 */
 	public CustomCombinedFragmentPreferencePage() {
 		super();
-		compartmentsList = new ArrayList<String>();
-		initializeCompartmentsList();
 	}
 
 	/**
