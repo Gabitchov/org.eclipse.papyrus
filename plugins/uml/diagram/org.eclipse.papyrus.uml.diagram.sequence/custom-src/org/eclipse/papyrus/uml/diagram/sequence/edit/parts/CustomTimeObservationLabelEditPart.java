@@ -42,15 +42,21 @@ import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
 import org.eclipse.swt.graphics.Image;
 
 /**
+ * Add implementing IPapyrusEditPart to support displaying Stereotype as a Comment, because the label is always selected when a TimeObservation is
+ * selected.
+ * 
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomTimeObservationLabelEditPart extends TimeObservationLabelEditPart implements INodeEditPart {
+public class CustomTimeObservationLabelEditPart extends TimeObservationLabelEditPart implements INodeEditPart, IPapyrusEditPart {
 
 	/**
 	 * Constructor.
@@ -68,6 +74,8 @@ public class CustomTimeObservationLabelEditPart extends TimeObservationLabelEdit
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new CustomConnectionHandleEditPolicy());
+		//install a editpolicy to display stereotypes
+		installEditPolicy(AppliedStereotypeCommentCreationEditPolicy.APPLIED_STEREOTYPE_COMMENT, new AppliedStereotypeCommentCreationEditPolicyEx());
 	}
 
 	/**
@@ -270,5 +278,9 @@ public class CustomTimeObservationLabelEditPart extends TimeObservationLabelEdit
 		if(locator != null) {
 			locator.relocate(getFigure());
 		}
+	}
+
+	public IFigure getPrimaryShape() {
+		return getFigure();
 	}
 }

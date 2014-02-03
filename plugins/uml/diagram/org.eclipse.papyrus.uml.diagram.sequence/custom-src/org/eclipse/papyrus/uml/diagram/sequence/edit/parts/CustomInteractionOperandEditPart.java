@@ -76,11 +76,15 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart.GuardFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandAppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionOperandItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.ContinuationLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.TextCellEditorLocator;
@@ -109,7 +113,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart {
+public class CustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart, IPapyrusEditPart {
 
 	/**
 	 * Notfier for listen and unlistend model element.
@@ -175,6 +179,8 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInteractionOperandItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new GuardConditionDirectEditPolicy());
 		removeEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
+		// display stereotype
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new InteractionOperandAppliedStereotypeLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -391,6 +397,7 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		}
 		if(InteractionOperandModelElementFactory.isGuardVisibilityChanged(notification)) {
 			refreshChildren();
+			refreshGuard();
 		}
 	}
 
@@ -445,7 +452,8 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 	}
 
 	/**
-	 * //Show or Hide Guard: https://bugs.eclipse.org/bugs/show_bug.cgi?id=402966
+	 * //Show or Hide Guard:
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=402966
 	 */
 	public boolean isGuardVisible() {
 		return InteractionOperandModelElementFactory.isGuardVisible(getPrimaryView());
@@ -462,7 +470,12 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 	public WrappingLabel getInteractionConstraintLabel() {
 		IGraphicalEditPart child = getChildBySemanticHint(InteractionOperandGuardEditPart.GUARD_TYPE);
 		if(child instanceof InteractionOperandGuardEditPart) {
-			return (WrappingLabel)((InteractionOperandGuardEditPart)child).getFigure();
+			IFigure figure = ((InteractionOperandGuardEditPart)child).getFigure();
+			if(figure instanceof WrappingLabel) {
+				return ((WrappingLabel)figure);
+			} else if(figure instanceof GuardFigure) {
+				return ((GuardFigure)figure).getPrimaryLabel();
+			}
 		}
 		return getPrimaryShape().getInteractionConstraintLabel();
 	}
@@ -472,6 +485,23 @@ public class CustomInteractionOperandEditPart extends InteractionOperandEditPart
 		super.refreshVisuals();
 		refreshLabelIcon();
 		refreshTransparency();
+		refreshGuard();
+	}
+
+	/**
+	 * refresh guard label.
+	 */
+	protected void refreshGuard() {
+		IGraphicalEditPart guard = getChildBySemanticHint(InteractionOperandGuardEditPart.GUARD_TYPE);
+		if(!(guard instanceof InteractionOperandGuardEditPart)) {
+			return;
+		}
+		((InteractionOperandGuardEditPart)guard).refreshLabel();
+		// Refresh Stereotypes.
+		EditPolicy editPolicy = getEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY);
+		if(editPolicy instanceof AppliedStereotypeLabelDisplayEditPolicy) {
+			((AppliedStereotypeLabelDisplayEditPolicy)editPolicy).refreshDisplay();
+		}
 	}
 
 	@Override

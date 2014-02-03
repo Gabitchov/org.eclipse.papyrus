@@ -47,6 +47,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStart
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.papyrus.uml.diagram.sequence.util.TooltipHook;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -375,9 +376,31 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 
 		private EditPart source;
 
+		private TooltipHook tooltipHook = null;
+
 		public AspectUnspecifiedTypeConnectionToolEx(List<IElementType> elementTypes) {
 			super(elementTypes);
 			setDisabledCursor(Cursors.NO);
+		}
+
+		@Override
+		public void setViewer(EditPartViewer viewer) {
+			super.setViewer(viewer);
+			if(tooltipHook == null || !tooltipHook.isHooked(viewer)) {
+				if(tooltipHook != null) {
+					tooltipHook.dispose();
+				}
+				tooltipHook = new TooltipHook(viewer);
+			}
+		}
+
+		@Override
+		public void deactivate() {
+			super.deactivate();
+			if(tooltipHook != null) {
+				tooltipHook.dispose();
+				tooltipHook = null;
+			}
 		}
 
 		@Override

@@ -20,8 +20,11 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
@@ -44,6 +47,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -72,6 +76,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -93,8 +98,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ElementIconUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionOperandModelElementFactory;
@@ -148,7 +155,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
+		//		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, createPrimaryDragEditPolicy());
 		//Do NOT allow delete guard, it also disable the Delete menu.
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new SemanticEditPolicy() {
@@ -381,9 +388,15 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	protected DirectEditManager getManager() {
 		if(manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+			WrappingLabel primaryLabel = getPrimaryFigure().getPrimaryLabel();
+			CellEditorLocator locator = new TextCellEditorLocator(primaryLabel);
+			setManager(new MultilineLabelDirectEditManager(this, TextCellEditorEx.class, locator));
 		}
 		return manager;
+	}
+
+	public GuardFigure getPrimaryFigure() {
+		return (GuardFigure)getFigure();
 	}
 
 	protected void setManager(DirectEditManager manager) {
@@ -488,14 +501,14 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	@Override
 	public void refreshBounds() {
-		//		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-		//		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-		//		Dimension size = new Dimension(width, height);
+		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		Dimension size = new Dimension(width, height);
 		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		IFigure figure = getFigure();
-		Dimension size = figure.getPreferredSize(-1, -1);
+		//		IFigure figure = getFigure();
+		//		Dimension size = figure.getPreferredSize(-1, -1);
 		((GraphicalEditPart)getParent()).setLayoutConstraint(this, figure, new Rectangle(loc, size));
 	}
 
@@ -674,7 +687,8 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 	}
 
 	protected IFigure createFigure() {
-		WrappingLabel label = new WrappingLabel();
+		GuardFigure label = new GuardFigure();
+		//		WrappingLabel label = new WrappingLabel();
 		defaultText = getLabelTextHelper(label);
 		return label;
 	}
@@ -683,7 +697,14 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		if(interactionOperand == null) {
 			return "";
 		}
-		CombinedFragment enclosingCF = (CombinedFragment)interactionOperand.getOwner();
+		Element owner = interactionOperand.getOwner();
+		while(owner != null && !(owner instanceof CombinedFragment)) {
+			owner = owner.getOwner();
+		}
+		CombinedFragment enclosingCF = (CombinedFragment)owner;
+		if (enclosingCF == null){
+			return "";
+		}
 		InteractionOperatorKind cfOperator = enclosingCF.getInteractionOperator();
 		InteractionConstraint guard = interactionOperand.getGuard();
 		String specValue = null;
@@ -878,5 +899,141 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 			}
 			return defaultInt;
 		}
+	}
+
+	public class GuardFigure extends Figure implements ILabelFigure, IPapyrusNodeUMLElementFigure {
+
+		private WrappingLabel primaryLabel;
+
+		private Label stereotypeLabel;
+
+		private WrappingLabel stereotypePropertiesInBraceContent;
+
+		/**
+		 * Constructor.
+		 * 
+		 */
+		public GuardFigure() {
+			ToolbarLayout layout = new ToolbarLayout(false);
+			layout.setStretchMinorAxis(true);
+			setLayoutManager(layout);
+			primaryLabel = new WrappingLabel();
+			primaryLabel.setTextWrap(true);
+			primaryLabel.setAlignment(PositionConstants.CENTER);
+			this.add(primaryLabel);
+		}
+
+		public WrappingLabel getPrimaryLabel() {
+			return primaryLabel;
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String,
+		 *      org.eclipse.swt.graphics.Image)
+		 * 
+		 * @param stereotypes
+		 * @param image
+		 */
+
+		public void setStereotypeDisplay(String stereotypes, Image image) {
+			if((stereotypes == null || stereotypes.trim().equals("")) && image == null) {
+				if(stereotypeLabel != null) {
+					remove(stereotypeLabel);
+				}
+				stereotypeLabel = null;
+			} else {
+				if(stereotypeLabel == null) {
+					stereotypeLabel = new Label();
+					add(stereotypeLabel, 0);
+				}
+				stereotypeLabel.setText(stereotypes);
+				stereotypeLabel.setIcon(image);
+			}
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInBrace(java.lang.String)
+		 * 
+		 * @param stereotypeProperties
+		 */
+
+		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
+			if(stereotypeProperties == null || stereotypeProperties.trim().equals("")) {
+				if(stereotypePropertiesInBraceContent != null) {
+					remove(stereotypePropertiesInBraceContent);
+				}
+				stereotypePropertiesInBraceContent = null;
+			} else {
+				if(stereotypePropertiesInBraceContent == null) {
+					stereotypePropertiesInBraceContent = new WrappingLabel();
+					stereotypePropertiesInBraceContent.setOpaque(false);
+					int index = getChildren().indexOf(stereotypeLabel);
+					this.add(stereotypePropertiesInBraceContent, index + 1);
+				}
+				stereotypePropertiesInBraceContent.setText("{" + stereotypeProperties + "}");
+			}
+
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInCompartment(java.lang.String)
+		 * 
+		 * @param stereotypeProperties
+		 */
+
+		public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
+
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#getStereotypesLabel()
+		 * 
+		 * @return
+		 */
+
+		public Label getStereotypesLabel() {
+			return stereotypeLabel;
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setText(java.lang.String)
+		 * 
+		 * @param text
+		 */
+
+		public void setText(String text) {
+			primaryLabel.setText(text);
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getText()
+		 * 
+		 * @return
+		 */
+
+		public String getText() {
+			return primaryLabel.getText();
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setIcon(org.eclipse.swt.graphics.Image)
+		 * 
+		 * @param icon
+		 */
+
+		public void setIcon(Image icon) {
+			primaryLabel.setIcon(icon);
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getIcon()
+		 * 
+		 * @return
+		 */
+
+		public Image getIcon() {
+			return primaryLabel.getIcon();
+		}
+
 	}
 }
