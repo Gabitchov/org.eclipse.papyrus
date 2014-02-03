@@ -7,13 +7,12 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_NAME;
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_SPECIFICATION;
 
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -24,12 +23,8 @@ import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 
 public class ConstraintPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
 
@@ -52,7 +47,7 @@ public class ConstraintPreferencePage extends BlockDefinitionDiagramNodePreferen
 	/** buttons to select the display mask of the label */
 	protected Button bttnName, bttnSpecification;
 
-	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.SHAPE_UML_CONSTRAINT_AS_LABEL_ID; //$NON-NLS-1$	
+	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.SHAPE_UML_CONSTRAINT_AS_LABEL_ID; //$NON-NLS-1$
 
 	private String labelDisplayPreferenceKey = LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE);
 
@@ -85,23 +80,23 @@ public class ConstraintPreferencePage extends BlockDefinitionDiagramNodePreferen
 	 */
 	protected void createLabelPreferencesButtons(Composite parent) {
 		// create group that host the buttons
-		Group group = new Group(parent, SWT.SHADOW_NONE);
-		group.setText("Label Display");
-		group.setLayout(new FormLayout());
-
-		FormData data;
-
-		bttnName = createCheckButton(group, "Name", DISP_NAME);
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.top = new FormAttachment(0, 0);
-		bttnName.setLayoutData(data);
-
-		bttnSpecification = createCheckButton(group, "Specification", DISP_SPECIFICATION);
-		data = new FormData();
-		data.left = new FormAttachment(bttnName, 85);
-		data.top = new FormAttachment(0, 0);
-		bttnSpecification.setLayoutData(data);
+		//		Group group = new Group(parent, SWT.SHADOW_NONE);
+		//		group.setText("Label Display");
+		//		group.setLayout(new FormLayout());
+		//
+		//		FormData data;
+		//
+		//		bttnName = createCheckButton(group, "Name", DISP_NAME);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(0, 0);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnName.setLayoutData(data);
+		//
+		//		bttnSpecification = createCheckButton(group, "Specification", DISP_SPECIFICATION);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnName, 85);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnSpecification.setLayoutData(data);
 
 	}
 
@@ -149,14 +144,15 @@ public class ConstraintPreferencePage extends BlockDefinitionDiagramNodePreferen
 	 */
 	protected void refreshButtons() {
 
-		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
-		bttnSpecification.setSelection((propertyValue & DISP_SPECIFICATION) == DISP_SPECIFICATION);
+		//		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
+		//		bttnSpecification.setSelection((propertyValue & DISP_SPECIFICATION) == DISP_SPECIFICATION);
 
 	}
 
 	/**
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
+	@Override
 	protected void storePreferences() {
 		super.storePreferences();
 		IPreferenceStore store = getPreferenceStore();

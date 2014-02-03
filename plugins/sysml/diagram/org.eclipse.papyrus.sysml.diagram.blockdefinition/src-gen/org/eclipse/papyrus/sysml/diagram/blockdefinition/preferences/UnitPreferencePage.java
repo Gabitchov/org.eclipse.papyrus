@@ -7,14 +7,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
-
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DIMENSION;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_NAME;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
@@ -25,12 +22,8 @@ import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 
 public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
 
@@ -50,7 +43,7 @@ public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.WIDTH), 100);
 		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.HEIGHT), 60);
 
-		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_DIMENSION);
+		//		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_DIMENSION);
 		// End of user code
 
 	}
@@ -59,7 +52,7 @@ public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 	/** buttons to select the display mask of the label */
 	protected Button bttnName, bttnDimension;
 
-	public static String prefLabelKey = prefKey + "-" + SysMLGraphicalTypes.LABEL_SYSML_UNIT_NAME_ID; //$NON-NLS-1$	
+	public static String prefLabelKey = prefKey + "-" + SysMLGraphicalTypes.LABEL_SYSML_UNIT_NAME_ID; //$NON-NLS-1$
 
 	private String labelDisplayPreferenceKey = LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE);
 
@@ -68,7 +61,7 @@ public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent of the button
 	 * @param label
@@ -86,29 +79,29 @@ public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 
 	/**
 	 * Creates the group and check boxes to choose the kind of display
-	 * 
+	 *
 	 * @param parent
 	 *        the parent composite that holds the group
 	 */
 	protected void createLabelPreferencesButtons(Composite parent) {
 		// create group that host the buttons
-		Group group = new Group(parent, SWT.SHADOW_NONE);
-		group.setText("Label Display");
-		group.setLayout(new FormLayout());
-
-		FormData data;
-
-		bttnName = createCheckButton(group, "Name", DISP_NAME);
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.top = new FormAttachment(0, 0);
-		bttnName.setLayoutData(data);
-
-		bttnDimension = createCheckButton(group, "Dimension", DISP_DIMENSION);
-		data = new FormData();
-		data.left = new FormAttachment(bttnName, 85);
-		data.top = new FormAttachment(0, 0);
-		bttnDimension.setLayoutData(data);
+		//		Group group = new Group(parent, SWT.SHADOW_NONE);
+		//		group.setText("Label Display");
+		//		group.setLayout(new FormLayout());
+		//
+		//		FormData data;
+		//
+		//		bttnName = createCheckButton(group, "Name", DISP_NAME);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(0, 0);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnName.setLayoutData(data);
+		//
+		//		bttnDimension = createCheckButton(group, "Dimension", DISP_DIMENSION);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnName, 85);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnDimension.setLayoutData(data);
 
 	}
 
@@ -156,14 +149,15 @@ public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 	 */
 	protected void refreshButtons() {
 
-		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
-		bttnDimension.setSelection((propertyValue & DISP_DIMENSION) == DISP_DIMENSION);
+		//		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
+		//		bttnDimension.setSelection((propertyValue & DISP_DIMENSION) == DISP_DIMENSION);
 
 	}
 
 	/**
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
+	@Override
 	protected void storePreferences() {
 		super.storePreferences();
 		IPreferenceStore store = getPreferenceStore();
@@ -184,7 +178,7 @@ public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 
 		/**
 		 * Default Constructor.
-		 * 
+		 *
 		 * @param style
 		 */
 		public AppearenceSelectionListener(int style) {

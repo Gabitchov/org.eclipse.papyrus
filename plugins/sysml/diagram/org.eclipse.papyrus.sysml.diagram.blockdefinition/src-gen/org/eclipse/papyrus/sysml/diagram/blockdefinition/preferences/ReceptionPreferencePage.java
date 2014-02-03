@@ -7,14 +7,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
-
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_NAME;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_SIGNAL;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
@@ -24,12 +21,8 @@ import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 
 public class ReceptionPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
 
@@ -45,14 +38,14 @@ public class ReceptionPreferencePage extends BlockDefinitionDiagramNodePreferenc
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
-		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_SIGNAL);
+		//		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_SIGNAL);
 		// End of user code
 	}
 
 	/** buttons to select the display mask of the label */
 	protected Button bttnName, bttnSignal;
 
-	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.SHAPE_UML_RECEPTION_AS_LABEL_ID; //$NON-NLS-1$	
+	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.SHAPE_UML_RECEPTION_AS_LABEL_ID; //$NON-NLS-1$
 
 	private String labelDisplayPreferenceKey = LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE);
 
@@ -61,7 +54,7 @@ public class ReceptionPreferencePage extends BlockDefinitionDiagramNodePreferenc
 
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent of the button
 	 * @param label
@@ -79,29 +72,29 @@ public class ReceptionPreferencePage extends BlockDefinitionDiagramNodePreferenc
 
 	/**
 	 * Creates the group and check boxes to choose the kind of display
-	 * 
+	 *
 	 * @param parent
 	 *        the parent composite that holds the group
 	 */
 	protected void createLabelPreferencesButtons(Composite parent) {
 		// create group that host the buttons
-		Group group = new Group(parent, SWT.SHADOW_NONE);
-		group.setText("Label Display");
-		group.setLayout(new FormLayout());
-
-		FormData data;
-
-		bttnName = createCheckButton(group, "Name", DISP_NAME);
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.top = new FormAttachment(0, 0);
-		bttnName.setLayoutData(data);
-
-		bttnSignal = createCheckButton(group, "Signal", DISP_SIGNAL);
-		data = new FormData();
-		data.left = new FormAttachment(bttnName, 85);
-		data.top = new FormAttachment(0, 0);
-		bttnSignal.setLayoutData(data);
+		//		Group group = new Group(parent, SWT.SHADOW_NONE);
+		//		group.setText("Label Display");
+		//		group.setLayout(new FormLayout());
+		//
+		//		FormData data;
+		//
+		//		bttnName = createCheckButton(group, "Name", DISP_NAME);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(0, 0);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnName.setLayoutData(data);
+		//
+		//		bttnSignal = createCheckButton(group, "Signal", DISP_SIGNAL);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnName, 85);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnSignal.setLayoutData(data);
 
 	}
 
@@ -149,14 +142,15 @@ public class ReceptionPreferencePage extends BlockDefinitionDiagramNodePreferenc
 	 */
 	protected void refreshButtons() {
 
-		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
-		bttnSignal.setSelection((propertyValue & DISP_SIGNAL) == DISP_SIGNAL);
+		//		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
+		//		bttnSignal.setSelection((propertyValue & DISP_SIGNAL) == DISP_SIGNAL);
 
 	}
 
 	/**
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
+	@Override
 	protected void storePreferences() {
 		super.storePreferences();
 		IPreferenceStore store = getPreferenceStore();
@@ -177,7 +171,7 @@ public class ReceptionPreferencePage extends BlockDefinitionDiagramNodePreferenc
 
 		/**
 		 * Default Constructor.
-		 * 
+		 *
 		 * @param style
 		 */
 		public AppearenceSelectionListener(int style) {

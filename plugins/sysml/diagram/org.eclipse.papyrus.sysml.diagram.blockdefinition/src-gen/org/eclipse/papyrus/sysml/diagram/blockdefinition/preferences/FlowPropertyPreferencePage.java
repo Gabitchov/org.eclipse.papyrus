@@ -7,22 +7,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
-
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DEFAULTVALUE;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DERIVE;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_DIRECTION;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_MODIFIERS;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_MULTIPLICITY;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_NAME;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_TYPE;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_UNDEFINED_TYPE;
-import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_VISIBILITY;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
@@ -32,13 +21,8 @@ import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.ui.views.properties.tabbed.ITabbedPropertyConstants;
 
 public class FlowPropertyPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
 
@@ -54,14 +38,14 @@ public class FlowPropertyPreferencePage extends BlockDefinitionDiagramNodePrefer
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
-		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_DIRECTION | DISP_NAME | DISP_TYPE | DISP_UNDEFINED_TYPE);
+		//		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_DIRECTION | DISP_NAME | DISP_TYPE | DISP_UNDEFINED_TYPE);
 		// End of user code
 	}
 
 	/** buttons to select the display mask of the label */
 	protected Button bttnDirection, bttnVisibility, bttnDerive, bttnName, bttnType, bttnUndefined_Type, bttnMultiplicity, bttnDefault_Multiplicity, bttnDefaultValue, bttnModifiers;
 
-	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_FLOWPROPERTY_AS_LABEL_ID; //$NON-NLS-1$	
+	public static String prefLabelKey = ElementTypes.DIAGRAM_ID + "_" + SysMLGraphicalTypes.SHAPE_SYSML_FLOWPROPERTY_AS_LABEL_ID; //$NON-NLS-1$
 
 	private String labelDisplayPreferenceKey = LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE);
 
@@ -70,7 +54,7 @@ public class FlowPropertyPreferencePage extends BlockDefinitionDiagramNodePrefer
 
 	/**
 	 * Creates a button with the {@link SWT#CHECK} style.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent of the button
 	 * @param label
@@ -88,77 +72,77 @@ public class FlowPropertyPreferencePage extends BlockDefinitionDiagramNodePrefer
 
 	/**
 	 * Creates the group and check boxes to choose the kind of display
-	 * 
+	 *
 	 * @param parent
 	 *        the parent composite that holds the group
 	 */
 	protected void createLabelPreferencesButtons(Composite parent) {
 		// create group that host the buttons
-		Group group = new Group(parent, SWT.SHADOW_NONE);
-		group.setText("Label Display");
-		group.setLayout(new FormLayout());
-
-		FormData data;
-
-		bttnDirection = createCheckButton(group, "Direction", DISP_DIRECTION);
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.top = new FormAttachment(0, 0);
-		bttnDirection.setLayoutData(data);
-
-		bttnVisibility = createCheckButton(group, "Visibility", DISP_VISIBILITY);
-		data = new FormData();
-		data.left = new FormAttachment(bttnDirection, 85);
-		data.top = new FormAttachment(0, 0);
-		bttnVisibility.setLayoutData(data);
-
-		bttnDerive = createCheckButton(group, "Derive", DISP_DERIVE);
-		data = new FormData();
-		data.left = new FormAttachment(bttnVisibility, 85);
-		data.top = new FormAttachment(0, 0);
-		bttnDerive.setLayoutData(data);
-
-		bttnName = createCheckButton(group, "Name", DISP_NAME);
-		data = new FormData();
-		data.left = new FormAttachment(bttnDerive, 85);
-		data.top = new FormAttachment(0, 0);
-		bttnName.setLayoutData(data);
-
-		bttnType = createCheckButton(group, "Type", DISP_TYPE);
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
-		bttnType.setLayoutData(data);
-
-		bttnUndefined_Type = createCheckButton(group, "Undefined_Type", DISP_UNDEFINED_TYPE);
-		data = new FormData();
-		data.left = new FormAttachment(bttnDirection, 85);
-		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
-		bttnUndefined_Type.setLayoutData(data);
-
-		bttnMultiplicity = createCheckButton(group, "Multiplicity", DISP_MULTIPLICITY);
-		data = new FormData();
-		data.left = new FormAttachment(bttnVisibility, 85);
-		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
-		bttnMultiplicity.setLayoutData(data);
-
-		bttnDefault_Multiplicity = createCheckButton(group, "Default_Multiplicity", DISP_DEFAULT_MULTIPLICITY);
-		data = new FormData();
-		data.left = new FormAttachment(bttnDerive, 85);
-		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
-		bttnDefault_Multiplicity.setLayoutData(data);
-
-		bttnDefaultValue = createCheckButton(group, "DefaultValue", DISP_DEFAULTVALUE);
-		data = new FormData();
-		data.left = new FormAttachment(0, 0);
-		data.top = new FormAttachment(bttnType, ITabbedPropertyConstants.HSPACE);
-		bttnDefaultValue.setLayoutData(data);
-
-		bttnModifiers = createCheckButton(group, "Modifiers", DISP_MODIFIERS);
-		data = new FormData();
-		data.left = new FormAttachment(bttnDirection, 85);
-		data.top = new FormAttachment(bttnType, ITabbedPropertyConstants.HSPACE);
-		bttnModifiers.setLayoutData(data);
+		//		Group group = new Group(parent, SWT.SHADOW_NONE);
+		//		group.setText("Label Display");
+		//		group.setLayout(new FormLayout());
+		//
+		//		FormData data;
+		//
+		//		bttnDirection = createCheckButton(group, "Direction", DISP_DIRECTION);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(0, 0);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnDirection.setLayoutData(data);
+		//
+		//		bttnVisibility = createCheckButton(group, "Visibility", DISP_VISIBILITY);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnDirection, 85);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnVisibility.setLayoutData(data);
+		//
+		//		bttnDerive = createCheckButton(group, "Derive", DISP_DERIVE);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnVisibility, 85);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnDerive.setLayoutData(data);
+		//
+		//		bttnName = createCheckButton(group, "Name", DISP_NAME);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnDerive, 85);
+		//		data.top = new FormAttachment(0, 0);
+		//		bttnName.setLayoutData(data);
+		//
+		//		bttnType = createCheckButton(group, "Type", DISP_TYPE);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(0, 0);
+		//		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		//		bttnType.setLayoutData(data);
+		//
+		//		bttnUndefined_Type = createCheckButton(group, "Undefined_Type", DISP_UNDEFINED_TYPE);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnDirection, 85);
+		//		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		//		bttnUndefined_Type.setLayoutData(data);
+		//
+		//		bttnMultiplicity = createCheckButton(group, "Multiplicity", DISP_MULTIPLICITY);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnVisibility, 85);
+		//		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		//		bttnMultiplicity.setLayoutData(data);
+		//
+		//		bttnDefault_Multiplicity = createCheckButton(group, "Default_Multiplicity", DISP_DEFAULT_MULTIPLICITY);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnDerive, 85);
+		//		data.top = new FormAttachment(bttnDirection, ITabbedPropertyConstants.HSPACE);
+		//		bttnDefault_Multiplicity.setLayoutData(data);
+		//
+		//		bttnDefaultValue = createCheckButton(group, "DefaultValue", DISP_DEFAULTVALUE);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(0, 0);
+		//		data.top = new FormAttachment(bttnType, ITabbedPropertyConstants.HSPACE);
+		//		bttnDefaultValue.setLayoutData(data);
+		//
+		//		bttnModifiers = createCheckButton(group, "Modifiers", DISP_MODIFIERS);
+		//		data = new FormData();
+		//		data.left = new FormAttachment(bttnDirection, 85);
+		//		data.top = new FormAttachment(bttnType, ITabbedPropertyConstants.HSPACE);
+		//		bttnModifiers.setLayoutData(data);
 
 	}
 
@@ -206,22 +190,23 @@ public class FlowPropertyPreferencePage extends BlockDefinitionDiagramNodePrefer
 	 */
 	protected void refreshButtons() {
 
-		bttnDirection.setSelection((propertyValue & DISP_DIRECTION) == DISP_DIRECTION);
-		bttnVisibility.setSelection((propertyValue & DISP_VISIBILITY) == DISP_VISIBILITY);
-		bttnDerive.setSelection((propertyValue & DISP_DERIVE) == DISP_DERIVE);
-		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
-		bttnType.setSelection((propertyValue & DISP_TYPE) == DISP_TYPE);
-		bttnUndefined_Type.setSelection((propertyValue & DISP_UNDEFINED_TYPE) == DISP_UNDEFINED_TYPE);
-		bttnMultiplicity.setSelection((propertyValue & DISP_MULTIPLICITY) == DISP_MULTIPLICITY);
-		bttnDefault_Multiplicity.setSelection((propertyValue & DISP_DEFAULT_MULTIPLICITY) == DISP_DEFAULT_MULTIPLICITY);
-		bttnDefaultValue.setSelection((propertyValue & DISP_DEFAULTVALUE) == DISP_DEFAULTVALUE);
-		bttnModifiers.setSelection((propertyValue & DISP_MODIFIERS) == DISP_MODIFIERS);
+		//		bttnDirection.setSelection((propertyValue & DISP_DIRECTION) == DISP_DIRECTION);
+		//		bttnVisibility.setSelection((propertyValue & DISP_VISIBILITY) == DISP_VISIBILITY);
+		//		bttnDerive.setSelection((propertyValue & DISP_DERIVE) == DISP_DERIVE);
+		//		bttnName.setSelection((propertyValue & DISP_NAME) == DISP_NAME);
+		//		bttnType.setSelection((propertyValue & DISP_TYPE) == DISP_TYPE);
+		//		bttnUndefined_Type.setSelection((propertyValue & DISP_UNDEFINED_TYPE) == DISP_UNDEFINED_TYPE);
+		//		bttnMultiplicity.setSelection((propertyValue & DISP_MULTIPLICITY) == DISP_MULTIPLICITY);
+		//		bttnDefault_Multiplicity.setSelection((propertyValue & DISP_DEFAULT_MULTIPLICITY) == DISP_DEFAULT_MULTIPLICITY);
+		//		bttnDefaultValue.setSelection((propertyValue & DISP_DEFAULTVALUE) == DISP_DEFAULTVALUE);
+		//		bttnModifiers.setSelection((propertyValue & DISP_MODIFIERS) == DISP_MODIFIERS);
 
 	}
 
 	/**
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
+	@Override
 	protected void storePreferences() {
 		super.storePreferences();
 		IPreferenceStore store = getPreferenceStore();
@@ -242,7 +227,7 @@ public class FlowPropertyPreferencePage extends BlockDefinitionDiagramNodePrefer
 
 		/**
 		 * Default Constructor.
-		 * 
+		 *
 		 * @param style
 		 */
 		public AppearenceSelectionListener(int style) {
