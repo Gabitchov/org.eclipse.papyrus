@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
+package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import java.util.Collection;
 import java.util.List;

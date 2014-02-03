@@ -6,16 +6,10 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomLifelinePreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineLabelHelper;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Lifeline;
@@ -24,21 +18,10 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
-	private IPropertyChangeListener preferenceListener;
-
 	@Override
 	public void addAdditionalListeners() {
 		super.addAdditionalListeners();
-		if(preferenceListener == null) {
-			preferenceListener = new IPropertyChangeListener() {
 
-				public void propertyChange(PropertyChangeEvent event) {
-					handlePreferenceChange(event);
-				}
-			};
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			store.addPropertyChangeListener(this.preferenceListener);
-		}
 		Lifeline lifeline = getUMLElement();
 		// check host semantic element is not null
 		if(lifeline == null) {
@@ -52,17 +35,6 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			if(ce.getType() != null) {
 				getDiagramEventBroker().addNotificationListener(ce.getType(), this);
 			}
-		}
-	}
-
-	protected void handlePreferenceChange(PropertyChangeEvent event) {
-		EditPart part = getHost();
-		if(part == null || part.getParent() == null) {
-			return;
-		}
-		String key = event.getProperty();
-		if(key.equals(CustomLifelinePreferencePage.LABEL_DISPLAY_PREFERENCE)) {
-			refreshDisplay();
 		}
 	}
 
@@ -136,40 +108,17 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		}
 	}
 
-	public int getDefaultDisplayValue() {
-		return CustomLifelinePreferencePage.DEFAULT_LABEL_DISPLAY;
-	}
-
-	public String getMaskLabel(int value) {
-		return LifelineLabelHelper.getInstance().getMaskLabel(value);
+	@Override
+	public Collection<String> getDefaultDisplayValue() {
+		return LifelineLabelHelper.DEFAULT_LABEL_DISPLAY;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<String> getMaskLabels() {
-		return LifelineLabelHelper.getInstance().getMaskLabels();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Map<Integer, String> getMasks() {
+	@Override
+	public Map<String, String> getMasks() {
 		return LifelineLabelHelper.getInstance().getMasks();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<Integer> getMaskValues() {
-		return LifelineLabelHelper.getInstance().getMaskValues();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getPreferencePageID() {
-		return "org.eclipse.papyrus.uml.diagram.sequence.preferences.LifelinePreferencePage";
 	}
 
 	/**

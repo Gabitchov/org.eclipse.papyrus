@@ -22,7 +22,6 @@ import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gef.GraphicalEditPart;
@@ -36,6 +35,7 @@ import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -50,17 +50,13 @@ public abstract class StereotypedElementLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public Element getUMLElement(GraphicalEditPart editPart) {
-		EObject element = ((View)editPart.getModel()).getElement();
-		if(element instanceof Element) {
-			return (Element)element;
-		}
-		return null;
+		return UMLUtil.resolveUMLElement(editPart);
 	}
 
 	/**
 	 * Parses the string containing the complete definition of properties to be
 	 * displayed, and generates a map.
-	 *
+	 * 
 	 * @param editPart
 	 *        the edit part for which the label is edited
 	 * @param stereotypesToDisplay
@@ -89,7 +85,7 @@ public abstract class StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the image to be displayed for the applied stereotypes.
-	 *
+	 * 
 	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
 	 */
 	public Collection<Image> stereotypeIconsToDisplay(GraphicalEditPart editPart) {
@@ -114,7 +110,7 @@ public abstract class StereotypedElementLabelHelper {
 	/**
 	 * Returns a String that displays stereotypes (using their simple name or
 	 * their qualified name) and their properties
-	 *
+	 * 
 	 * @param editPart
 	 *        the edit part for which the label is edited
 	 * @param separator
@@ -201,7 +197,7 @@ public abstract class StereotypedElementLabelHelper {
 
 	/**
 	 * get the list of stereotype to display from the eannotation
-	 *
+	 * 
 	 * @return the list of stereotypes to display
 	 */
 	public String stereotypesToDisplay(GraphicalEditPart editPart) {
@@ -245,7 +241,7 @@ public abstract class StereotypedElementLabelHelper {
 
 	/**
 	 * Computes the string that displays the stereotypes for the current element
-	 *
+	 * 
 	 * @param separator
 	 *        the separator used to split the string representing the
 	 *        stereotypes.
@@ -320,7 +316,7 @@ public abstract class StereotypedElementLabelHelper {
 
 	/**
 	 * Refreshes the label of the figure associated to the specified edit part
-	 *
+	 * 
 	 * @param editPart
 	 *        the edit part managing the refreshed figure
 	 */
@@ -371,7 +367,7 @@ public abstract class StereotypedElementLabelHelper {
 
 	/**
 	 * Computes the label corresponding to the semantic element
-	 *
+	 * 
 	 * @param editPart
 	 *        the graphical part managing the semantic element
 	 * @return the string corresponding to the display of the semantic element
@@ -380,7 +376,7 @@ public abstract class StereotypedElementLabelHelper {
 
 	/**
 	 * Returns the image for the element
-	 *
+	 * 
 	 * @param editPart
 	 *        the edit part that displays the element
 	 * @return the image
