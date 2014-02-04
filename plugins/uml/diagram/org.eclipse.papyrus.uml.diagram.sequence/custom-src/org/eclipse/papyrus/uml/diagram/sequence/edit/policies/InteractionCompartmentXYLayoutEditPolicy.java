@@ -80,10 +80,12 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineHeadUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentEditPart;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -650,6 +652,11 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	@Override
 	public Command getAddCommand(Request request) {
 		if(request instanceof ChangeBoundsRequest) {
+			//Only allow to move-in AppliedStereotypeCommentEditPart.
+			List editParts = ((ChangeBoundsRequest)request).getEditParts();
+			if(editParts.size() == 1 && editParts.get(0) instanceof AppliedStereotypesCommentEditPart) {
+				return super.getAddCommand(request);
+			}
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getAddCommand(request);
@@ -668,6 +675,9 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			ChangeBoundsRequest cbr = (ChangeBoundsRequest)request;
 			int resizeDirection = cbr.getResizeDirection();
 			CompoundCommand compoundCmd = new CompoundCommand("Resize of Interaction Compartment Elements");
+			if(cbr.getEditParts() == null) {
+				return super.getCommand(request);
+			}
 			for(EditPart ep : (List<EditPart>)cbr.getEditParts()) {
 				if(ep instanceof LifelineEditPart && isVerticalMove(cbr)) {
 					// Lifeline EditPart
@@ -732,7 +742,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		int translate = request.getViewDescriptors().indexOf(viewDescriptor) * 10;
 		Rectangle target = bounds.getCopy().translate(translate, translate);
 		if(((IHintedType)UMLElementTypes.Lifeline_3001).getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
-			target.setY(SequenceUtil.LIFELINE_VERTICAL_OFFSET);
+			target.setY(LifelineHeadUtil.computeLifelineVerticalPosition(getHost()));
 		}
 		return target;
 	}

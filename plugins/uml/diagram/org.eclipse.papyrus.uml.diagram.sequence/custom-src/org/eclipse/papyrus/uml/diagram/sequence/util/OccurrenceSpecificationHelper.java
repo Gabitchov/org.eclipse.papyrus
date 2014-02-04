@@ -102,7 +102,7 @@ public class OccurrenceSpecificationHelper {
 			execution.setFinish(newEnd);
 		}
 		if(canBeRemoved(oldEnd, newEnd, isStart)) {
-			EcoreUtil.delete(oldEnd);
+			EcoreUtil.remove(oldEnd);
 		}
 		return true;
 	}
@@ -128,7 +128,6 @@ public class OccurrenceSpecificationHelper {
 			} else if(!isStart && UMLPackage.eINSTANCE.getExecutionSpecification_Finish() == feature) {
 				continue;
 			}
-			System.out.println();
 		}
 		return true;
 	}

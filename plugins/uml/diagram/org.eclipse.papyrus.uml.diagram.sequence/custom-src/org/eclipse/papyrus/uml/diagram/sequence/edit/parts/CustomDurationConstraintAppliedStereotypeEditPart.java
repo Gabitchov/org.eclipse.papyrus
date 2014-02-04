@@ -14,14 +14,13 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeExternalNodeLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.AppliedStereotypeLabelFigure;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -44,21 +43,27 @@ public class CustomDurationConstraintAppliedStereotypeEditPart extends DurationC
 		return getFigure();
 	}
 
+	protected void refreshLabel() {
+		//We do NOT want to update label with the Parser.
+		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
+		}
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
+		}
+	}
+
 	@Override
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		View view = getNotationView();
-		View parentView = null;
-		EObject parent = view.eContainer();
-		if(parent instanceof View) {
-			parentView = (View)parent;
-		}
-		String stereotypespresentationLocation = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(parentView);
-		if(UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION.equals(stereotypespresentationLocation)) {
-			EditPolicy editPolicy = getEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY);
-			if(editPolicy instanceof AbstractAppliedStereotypeDisplayEditPolicy) {
-				((AbstractAppliedStereotypeDisplayEditPolicy)editPolicy).refreshDisplay();
-			}
-		}
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		removeEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY);
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeExternalNodeLabelEditPolicy());
+	}
+
+	@Override
+	protected IFigure createFigurePrim() {
+		return new AppliedStereotypeLabelFigure();
 	}
 }

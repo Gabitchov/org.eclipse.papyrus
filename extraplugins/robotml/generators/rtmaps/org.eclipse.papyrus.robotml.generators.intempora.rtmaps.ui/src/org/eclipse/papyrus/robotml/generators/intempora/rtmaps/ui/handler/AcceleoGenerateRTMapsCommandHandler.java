@@ -38,7 +38,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 public class AcceleoGenerateRTMapsCommandHandler extends AbstractHandler {
 
 	/** The rtmaps folder. */
-	private final String rtmapsFolder = "/rtmaps-generated-files";
+	private final String rtmapsFolder = "rtmaps-generated-files";
 
 	//	/**
 	//	 * @see org.eclipse.papyrus.modelexplorer.handler.AbstractCommandHandler#getCommand()
@@ -77,8 +77,8 @@ public class AcceleoGenerateRTMapsCommandHandler extends AbstractHandler {
 			}
 
 			URI resourceURI = selectedElement.eResource().getURI();
-			int lastSegment = resourceURI.segmentCount() - 1;
-			URI targetFolderURI = resourceURI.trimSegments(lastSegment).appendSegment(rtmapsFolder);
+			
+			URI targetFolderURI = resourceURI.trimSegments(1).appendSegment(rtmapsFolder);
 
 			try {
 				TransactionalEditingDomain editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(selectedElement);

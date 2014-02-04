@@ -29,9 +29,9 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 
 public class LifelineResizeHelper {
 
@@ -51,7 +51,7 @@ public class LifelineResizeHelper {
 		Rectangle childrenRect = null;
 		List<ShapeNodeEditPart> childShapeNodeEditPart = LifelineEditPartUtil.getChildShapeNodeEditPart(lp);
 		for(ShapeNodeEditPart child : childShapeNodeEditPart) {
-			if(!(child instanceof AbstractExecutionSpecificationEditPart)) {
+			if(!(child.resolveSemanticElement() instanceof ExecutionSpecification)) {
 				continue;
 			}
 			Rectangle rect = SequenceUtil.getAbsoluteBounds(child);

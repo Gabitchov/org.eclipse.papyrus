@@ -17,15 +17,21 @@ import java.util.List;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.FixAnchorHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 
 /**
  * 
@@ -33,6 +39,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
  * 
  */
 public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy {
+
+	private FixAnchorHelper helper = null;
 
 	/**
 	 * Returns the <code>Command</code> to resize a group of children.
@@ -43,14 +51,15 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 	 */
 	protected Command getChangeConstraintCommand(ChangeBoundsRequest request) {
 		final CompoundCommand resize = new CompoundCommand("Resize Command");//$NON-NLS-1$
-		GraphicalEditPart child;
+		IGraphicalEditPart child;
 		final List<?> children = request.getEditParts();
-		final Point move = request.getMoveDelta();
 		final int direction = request.getResizeDirection();
-		boolean forceLocation = request.isConstrainedResize() && (direction == PositionConstants.WEST || direction == PositionConstants.NORTH || direction == PositionConstants.NORTH_WEST);
+		boolean isConstrainedResize = request.isConstrainedResize();
+		boolean forceLocation = isConstrainedResize && (direction == PositionConstants.WEST || direction == PositionConstants.NORTH || direction == PositionConstants.NORTH_WEST);
 		for(int i = 0; i < children.size(); i++) {
-			child = (GraphicalEditPart)children.get(i);
+			child = (IGraphicalEditPart)children.get(i);
 			resize.add(createChangeConstraintCommand(request, child, translateToModelConstraint(getConstraintFor(request, child))));
+			final Point move = request.getMoveDelta();
 			if(forceLocation) {
 				for(Object object : child.getChildren()) {
 					if(object instanceof CompartmentEditPart) {
@@ -72,7 +81,25 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 					}
 				}
 			}
+			//we add the command to fix the anchor
+			if(isConstrainedResize && child instanceof INodeEditPart) {
+				if(helper == null) {
+					TransactionalEditingDomain domain = null;
+					try {
+						domain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(child);
+					} catch (ServiceException e) {
+						Activator.log.error(e);
+					}
+					this.helper = new FixAnchorHelper(domain);
+				}
+				final Command fixAnchorCommand = this.helper.getFixIdentityAnchorCommand((INodeEditPart)child, request.getMoveDelta(), request.getSizeDelta(), request.getResizeDirection());
+				if(fixAnchorCommand != null) {
+					resize.add(fixAnchorCommand);
+				}
+			}
 		}
 		return resize.unwrap();
 	}
+
+
 }
