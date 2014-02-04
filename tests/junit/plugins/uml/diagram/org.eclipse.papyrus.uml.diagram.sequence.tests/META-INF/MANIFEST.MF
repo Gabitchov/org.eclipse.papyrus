@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.9.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.appearance;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.uml.diagram.sequence.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy

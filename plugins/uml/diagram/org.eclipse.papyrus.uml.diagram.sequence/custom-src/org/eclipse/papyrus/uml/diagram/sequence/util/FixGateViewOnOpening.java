@@ -40,7 +40,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -185,8 +185,8 @@ public class FixGateViewOnOpening {
 		EObject element = ViewUtil.resolveSemanticElement(shape);
 		String prefElementId = element.eClass().getName();
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(shape, prefElementId, PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(shape, prefElementId, PreferenceConstantHelper.HEIGHT);
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(shape, prefElementId, PreferencesConstantsHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(shape, prefElementId, PreferencesConstantsHelper.HEIGHT);
 		return new Dimension(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 	}
 

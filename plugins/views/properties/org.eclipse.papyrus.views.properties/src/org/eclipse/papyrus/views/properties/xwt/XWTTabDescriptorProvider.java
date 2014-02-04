@@ -100,7 +100,7 @@ public class XWTTabDescriptorProvider implements ITabDescriptorProvider {
 			this.previousSelection = selection;
 			this.previousPart = part;
 
-			ViewConstraintEngine constraintEngine = ConfigurationManager.instance.constraintEngine;
+			ViewConstraintEngine constraintEngine = ConfigurationManager.getInstance().getConstraintEngine();
 
 			List<ITabDescriptor> descriptors = new LinkedList<ITabDescriptor>();
 

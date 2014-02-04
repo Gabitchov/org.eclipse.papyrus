@@ -102,7 +102,7 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 * 
 	 * {@inheritDoc}
 	 */
-	public void addPage(int index, IPageModel newModel) {
+	public void addPage(IPageModel newModel, int index) {
 		currentTabFolder.addItem(index, newModel);
 	}
 
@@ -110,7 +110,7 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 * Do nothing because this implementation doesn't allows folders. {@inheritDoc}
 	 */
 	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
-		// TODO Auto-generated method stub
+
 	}
 
 	/**

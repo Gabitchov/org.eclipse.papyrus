@@ -61,7 +61,7 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 		editorsByCategory.clear();
 		namespaces.clear();
 
-		namespaces.addAll(ConfigurationManager.instance.getBaseNamespaces());
+		namespaces.addAll(ConfigurationManager.getInstance().getBaseNamespaces());
 
 		sortEditors(editors);
 
@@ -80,8 +80,8 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 	}
 
 	protected CompositeWidget layoutCategorizedEditors(Category category, List<PropertyEditor> editors) {
-		CompositeWidgetType compositeType = ConfigurationManager.instance.getDefaultCompositeType();
-		LayoutType propertiesLayoutType = ConfigurationManager.instance.getDefaultLayoutType();
+		CompositeWidgetType compositeType = ConfigurationManager.getInstance().getDefaultCompositeType();
+		LayoutType propertiesLayoutType = ConfigurationManager.getInstance().getDefaultLayoutType();
 
 		CompositeWidget container = UiFactory.eINSTANCE.createCompositeWidget();
 		container.setWidgetType(compositeType);
@@ -130,9 +130,9 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 	}
 
 	protected CompositeWidget createSectionRoot() {
-		CompositeWidgetType compositeType = ConfigurationManager.instance.getDefaultCompositeType();
+		CompositeWidgetType compositeType = ConfigurationManager.getInstance().getDefaultCompositeType();
 		namespaces.add(compositeType.getNamespace());
-		LayoutType propertiesLayoutType = ConfigurationManager.instance.getDefaultLayoutType();
+		LayoutType propertiesLayoutType = ConfigurationManager.getInstance().getDefaultLayoutType();
 		namespaces.add(propertiesLayoutType.getNamespace());
 
 		CompositeWidget sectionRoot = UiFactory.eINSTANCE.createCompositeWidget();

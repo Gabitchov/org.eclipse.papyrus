@@ -30,25 +30,25 @@ public class CSSShapeStyleImpl extends ShapeStyleImpl implements CSSShapeStyle {
 
 	protected CSSShapeStyle getShapeStyle() {
 		if(shapeStyle == null) {
-			shapeStyle = new  CSSShapeStyleDelegate(this, getEngine());
+			shapeStyle = new CSSShapeStyleDelegate(this, getEngine());
 		}
 		return shapeStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,140 +61,140 @@ public class CSSShapeStyleImpl extends ShapeStyleImpl implements CSSShapeStyle {
 	//////////////////////////////////////////
 
 
-	public int getCSSFontColor(){
+	public int getCSSFontColor() {
 		int value = super.getFontColor();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontColor(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontColor(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSFontColor();
 		}
 	}
 
-	public java.lang.String getCSSFontName(){
+	public java.lang.String getCSSFontName() {
 		java.lang.String value = super.getFontName();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontName(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontName(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSFontName();
 		}
 	}
 
-	public int getCSSFontHeight(){
+	public int getCSSFontHeight() {
 		int value = super.getFontHeight();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontHeight(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontHeight(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSFontHeight();
 		}
 	}
 
-	public boolean isCSSBold(){
+	public boolean isCSSBold() {
 		boolean value = super.isBold();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Bold(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Bold(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().isCSSBold();
 		}
 	}
 
-	public boolean isCSSItalic(){
+	public boolean isCSSItalic() {
 		boolean value = super.isItalic();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Italic(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Italic(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().isCSSItalic();
 		}
 	}
 
-	public boolean isCSSUnderline(){
+	public boolean isCSSUnderline() {
 		boolean value = super.isUnderline();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Underline(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Underline(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().isCSSUnderline();
 		}
 	}
 
-	public boolean isCSSStrikeThrough(){
+	public boolean isCSSStrikeThrough() {
 		boolean value = super.isStrikeThrough();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_StrikeThrough(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_StrikeThrough(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().isCSSStrikeThrough();
 		}
 	}
 
-	public java.lang.String getCSSDescription(){
+	public java.lang.String getCSSDescription() {
 		java.lang.String value = super.getDescription();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getDescriptionStyle_Description(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getDescriptionStyle_Description(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSDescription();
 		}
 	}
 
-	public int getCSSFillColor(){
+	public int getCSSFillColor() {
 		int value = super.getFillColor();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_FillColor(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_FillColor(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSFillColor();
 		}
 	}
 
-	public int getCSSTransparency(){
+	public int getCSSTransparency() {
 		int value = super.getTransparency();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_Transparency(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_Transparency(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSTransparency();
 		}
 	}
 
-	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient(){
+	public org.eclipse.gmf.runtime.notation.datatype.GradientData getCSSGradient() {
 		org.eclipse.gmf.runtime.notation.datatype.GradientData value = super.getGradient();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_Gradient(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFillStyle_Gradient(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSGradient();
 		}
 	}
 
-	public int getCSSLineColor(){
+	public int getCSSLineColor() {
 		int value = super.getLineColor();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineStyle_LineColor(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineStyle_LineColor(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSLineColor();
 		}
 	}
 
-	public int getCSSLineWidth(){
+	public int getCSSLineWidth() {
 		int value = super.getLineWidth();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineStyle_LineWidth(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getLineStyle_LineWidth(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSLineWidth();
 		}
 	}
 
-	public int getCSSRoundedBendpointsRadius(){
+	public int getCSSRoundedBendpointsRadius() {
 		int value = super.getRoundedBendpointsRadius();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius(), value)) {
 			return value;
 		} else {
 			return getShapeStyle().getCSSRoundedBendpointsRadius();
@@ -203,85 +203,85 @@ public class CSSShapeStyleImpl extends ShapeStyleImpl implements CSSShapeStyle {
 
 
 	@Override
-	public int getFontColor(){
+	public int getFontColor() {
 		//return super.getFontColor();
 		return getCSSFontColor();
 	}
 
 	@Override
-	public java.lang.String getFontName(){
+	public java.lang.String getFontName() {
 		//return super.getFontName();
 		return getCSSFontName();
 	}
 
 	@Override
-	public int getFontHeight(){
+	public int getFontHeight() {
 		//return super.getFontHeight();
 		return getCSSFontHeight();
 	}
 
 	@Override
-	public boolean isBold(){
+	public boolean isBold() {
 		//return super.isBold();
 		return isCSSBold();
 	}
 
 	@Override
-	public boolean isItalic(){
+	public boolean isItalic() {
 		//return super.isItalic();
 		return isCSSItalic();
 	}
 
 	@Override
-	public boolean isUnderline(){
+	public boolean isUnderline() {
 		//return super.isUnderline();
 		return isCSSUnderline();
 	}
 
 	@Override
-	public boolean isStrikeThrough(){
+	public boolean isStrikeThrough() {
 		//return super.isStrikeThrough();
 		return isCSSStrikeThrough();
 	}
 
 	@Override
-	public java.lang.String getDescription(){
+	public java.lang.String getDescription() {
 		//return super.getDescription();
 		return getCSSDescription();
 	}
 
 	@Override
-	public int getFillColor(){
+	public int getFillColor() {
 		//return super.getFillColor();
 		return getCSSFillColor();
 	}
 
 	@Override
-	public int getTransparency(){
+	public int getTransparency() {
 		//return super.getTransparency();
 		return getCSSTransparency();
 	}
 
 	@Override
-	public org.eclipse.gmf.runtime.notation.datatype.GradientData getGradient(){
+	public org.eclipse.gmf.runtime.notation.datatype.GradientData getGradient() {
 		//return super.getGradient();
 		return getCSSGradient();
 	}
 
 	@Override
-	public int getLineColor(){
+	public int getLineColor() {
 		//return super.getLineColor();
 		return getCSSLineColor();
 	}
 
 	@Override
-	public int getLineWidth(){
+	public int getLineWidth() {
 		//return super.getLineWidth();
 		return getCSSLineWidth();
 	}
 
 	@Override
-	public int getRoundedBendpointsRadius(){
+	public int getRoundedBendpointsRadius() {
 		//return super.getRoundedBendpointsRadius();
 		return getCSSRoundedBendpointsRadius();
 	}
@@ -293,113 +293,113 @@ public class CSSShapeStyleImpl extends ShapeStyleImpl implements CSSShapeStyle {
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setFontColor(int value){
+	public void setFontColor(int value) {
 		super.setFontColor(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_FontColor();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setFontName(java.lang.String value){
+	public void setFontName(java.lang.String value) {
 		super.setFontName(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_FontName();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setFontHeight(int value){
+	public void setFontHeight(int value) {
 		super.setFontHeight(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_FontHeight();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setBold(boolean value){
+	public void setBold(boolean value) {
 		super.setBold(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_Bold();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setItalic(boolean value){
+	public void setItalic(boolean value) {
 		super.setItalic(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_Italic();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setUnderline(boolean value){
+	public void setUnderline(boolean value) {
 		super.setUnderline(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_Underline();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setStrikeThrough(boolean value){
+	public void setStrikeThrough(boolean value) {
 		super.setStrikeThrough(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_StrikeThrough();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setDescription(java.lang.String value){
+	public void setDescription(java.lang.String value) {
 		super.setDescription(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getDescriptionStyle_Description();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setFillColor(int value){
+	public void setFillColor(int value) {
 		super.setFillColor(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFillStyle_FillColor();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setTransparency(int value){
+	public void setTransparency(int value) {
 		super.setTransparency(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFillStyle_Transparency();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setGradient(org.eclipse.gmf.runtime.notation.datatype.GradientData value){
+	public void setGradient(org.eclipse.gmf.runtime.notation.datatype.GradientData value) {
 		super.setGradient(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFillStyle_Gradient();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setLineColor(int value){
+	public void setLineColor(int value) {
 		super.setLineColor(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getLineStyle_LineColor();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setLineWidth(int value){
+	public void setLineWidth(int value) {
 		super.setLineWidth(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getLineStyle_LineWidth();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setRoundedBendpointsRadius(int value){
+	public void setRoundedBendpointsRadius(int value) {
 		super.setRoundedBendpointsRadius(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -412,7 +412,7 @@ public class CSSShapeStyleImpl extends ShapeStyleImpl implements CSSShapeStyle {
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

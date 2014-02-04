@@ -20,13 +20,17 @@ import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.provider.CSSCustomStyleDelegate;
 import org.eclipse.papyrus.infra.gmfdiag.css.provider.CustomStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSShapeStyle;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSShapeStyleDelegate;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 
-public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyle {
+public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyle, CSSView {
 
 	protected ExtendedCSSEngine engine;
 
 	private CSSShapeStyle shapeStyle;
+
+	private CSSView cssView;
 
 	private CustomStyle customStyle;
 
@@ -44,13 +48,19 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		return customStyle;
 	}
 
+	protected CSSView getCSSView() {
+		if(cssView == null) {
+			cssView = new CSSViewDelegate(this, getEngine());
+		}
+		return cssView;
+	}
+
 	protected ExtendedCSSEngine getEngine() {
 		if(engine == null) {
 			engine = ((CSSDiagramImpl)getDiagram()).getEngine();
 		}
 		return engine;
 	}
-
 
 	//////////////////////////////////////////
 	//	Forwards accesses to CSS properties	//
@@ -124,6 +134,16 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 			return value;
 		} else {
 			return getShapeStyle().isCSSStrikeThrough();
+		}
+	}
+
+	public boolean isCSSVisible() {
+		boolean value = super.isVisible();
+
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getView_Visible(), value)) {
+			return value;
+		} else {
+			return getCSSView().isCSSVisible();
 		}
 	}
 
@@ -282,7 +302,11 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 		return getCSSRoundedBendpointsRadius();
 	}
 
-
+	@Override
+	public boolean isVisible() {
+		//return super.isVisible();
+		return isCSSVisible();
+	}
 
 	////////////////////////////////////////////////
 	//	Implements a setter for each CSS property //
@@ -432,7 +456,7 @@ public class CSSShapeImpl extends ShapeImpl implements CSSShapeStyle, CustomStyl
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		if(feature != null) {
 			ForceValueHelper.unsetValue(this, feature);
 		}

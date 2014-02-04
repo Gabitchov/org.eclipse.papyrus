@@ -19,6 +19,14 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.tools.messages.messages"; //$NON-NLS-1$
 
+	public static String AbstractPreferenceKeyDialog_Level;
+
+	public static String AbstractPreferenceKeyDialog_Localization;
+
+	public static String AbstractPreferenceKeyDialog_Pref_Kind;
+
+	public static String AbstractPreferenceKeyDialog_WouldYouLikeOverloadPreferences;
+
 	public static String AbstractStringValueConverter_NoXReprensentedByYHaveBeenFound;
 
 	public static String AbstractStringValueConverter_SomeStringsAreNotValidToCreateY;

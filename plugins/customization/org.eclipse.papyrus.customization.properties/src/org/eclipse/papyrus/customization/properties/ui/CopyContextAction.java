@@ -69,9 +69,9 @@ public class CopyContextAction {
 						result[0] = delegate.copy(source, targetName, monitor);
 
 						if(result[0] != null) {
-							ConfigurationManager.instance.addContext(result[0], activate);
+							ConfigurationManager.getInstance().addContext(result[0], activate);
 							if(activate) {
-								ConfigurationManager.instance.disableContext(source, true);
+								ConfigurationManager.getInstance().disableContext(source, true);
 							}
 						}
 					} catch (CoreException ex) {

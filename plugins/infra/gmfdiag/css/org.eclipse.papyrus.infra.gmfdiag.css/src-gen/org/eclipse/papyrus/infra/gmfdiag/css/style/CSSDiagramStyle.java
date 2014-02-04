@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.style;
 
 
-public interface CSSDiagramStyle extends CSSPageStyle, CSSGuideStyle, CSSDescriptionStyle{
+public interface CSSDiagramStyle extends CSSPageStyle, CSSGuideStyle, CSSDescriptionStyle {
 
 
 }

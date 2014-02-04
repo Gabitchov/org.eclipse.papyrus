@@ -47,6 +47,8 @@ public class TestCreationAndTestDelegateFromFlowPortOnPart extends AbstractConne
 		isCreationAllowed.put(actorPart2_p1TargetView, true);
 
 		isCreationAllowed.put(portOnBlockTargetView, true);
+		isCreationAllowed.put(port1_Part1SourceView, true);
+		isCreationAllowed.put(port2_Part1TargetView, true);		
 		isCreationAllowed.put(port1_Part2TargetView, true);
 		isCreationAllowed.put(port2OnNestedPart2_Part1TargetView, true);
 
@@ -77,7 +79,8 @@ public class TestCreationAndTestDelegateFromFlowPortOnPart extends AbstractConne
 		for (View view : isCreationAllowed.keySet()) {
 			expectedSourcePartWithPort.put(view, part1);
 		}
-		
+		expectedSourcePartWithPort.remove(port1_Part1SourceView);
+		expectedSourcePartWithPort.remove(port2_Part1TargetView);
 		expectedSourcePartWithPort.remove(port2OnNestedPart2_Part1TargetView);
 		expectedSourcePartWithPort.remove(flowport1_NestedPart2_Part1TargetView);
 		expectedSourcePartWithPort.remove(actorPart2_p1TargetView);

@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.infra.extendedtypes/src-gen"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 CEA LIST.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA; CEA LIST - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.infra.extendedtypes/src-gen" creationSubmenus="true"
     editDirectory="/org.eclipse.papyrus.infra.extendedtypes.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.extendedtypes.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.extendedtypes" modelName="ExtendedTypes"
-    testsDirectory="/org.eclipse.papyrus.infra.extendedtypes.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//types">
+    nonNLSMarkers="true" codeFormatting="true" commentFormatting="true" testsDirectory="/org.eclipse.papyrus.infra.extendedtypes.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    language="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    importOrganizing="true">
   <foreignModel>ExtendedTypes.ecore</foreignModel>
   <genPackages prefix="Extendedtypes" basePackage="org.eclipse.papyrus.infra" resource="XML"
-      disposableProviderFactory="true" ecorePackage="ExtendedTypes.ecore#/">
+      disposableProviderFactory="true" literalsInterface="false" contentTypeIdentifier=""
+      ecorePackage="ExtendedTypes.ecore#/">
     <genClasses ecoreClass="ExtendedTypes.ecore#//ExtendedElementTypeSet">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ExtendedElementTypeSet/elementType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ExtendedElementTypeSet/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ExtendedElementTypeSet/extensible"/>
     </genClasses>
-    <genClasses ecoreClass="ExtendedTypes.ecore#//ExtendedElementTypeConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/id"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/iconEntry"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/hint"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/kindName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/specializedTypesID"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/preValidation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/preAction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/postAction"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ExtendedElementTypeConfiguration/specializedDiagramTypeID"/>
+    <genClasses ecoreClass="ExtendedTypes.ecore#//ElementTypeConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ElementTypeConfiguration/hint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ElementTypeConfiguration/kindName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ElementTypeConfiguration/specializedTypesID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ElementTypeConfiguration/matcherConfiguration"/>
     </genClasses>
     <genClasses ecoreClass="ExtendedTypes.ecore#//IconEntry">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//IconEntry/iconPath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//IconEntry/bundleId"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ActionConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ActionConfiguration/label"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ActionConfiguration/id"/>
+    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ConfigurationElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ConfigurationElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ConfigurationElement/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ConfigurationElement/identifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//ConfigurationElement/iconEntry"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//PreActionConfiguration"/>
-    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//PostActionConfiguration"/>
+    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//MatcherConfiguration"/>
+    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ActionConfiguration"/>
+    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ViewActionConfiguration"/>
+    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//SemanticActionConfiguration"/>
+    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//SemanticTypeConfiguration"/>
+    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ViewTypeConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExtendedTypes.ecore#//ViewTypeConfiguration/specializedDiagramTypeID"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ExtendedTypes.ecore#//ElementTypeAdviceConfiguration"/>
+    <genClasses ecoreClass="ExtendedTypes.ecore#//AspectSemanticTypeConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectSemanticTypeConfiguration/actionConfiguration"/>
+    </genClasses>
+    <genClasses ecoreClass="ExtendedTypes.ecore#//AspectViewTypeConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExtendedTypes.ecore#//AspectViewTypeConfiguration/actionConfiguration"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

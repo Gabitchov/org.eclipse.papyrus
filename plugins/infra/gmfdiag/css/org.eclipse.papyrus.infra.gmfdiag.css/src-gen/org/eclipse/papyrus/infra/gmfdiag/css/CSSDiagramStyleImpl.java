@@ -196,7 +196,7 @@ public class CSSDiagramStyleImpl extends DiagramStyleImpl implements CSSDiagramS
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

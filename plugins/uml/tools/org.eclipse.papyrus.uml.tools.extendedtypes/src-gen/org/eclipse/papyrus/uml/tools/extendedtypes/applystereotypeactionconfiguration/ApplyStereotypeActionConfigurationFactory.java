@@ -1,8 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration;
 
@@ -42,6 +48,42 @@ public interface ApplyStereotypeActionConfigurationFactory extends EFactory {
 	 * @generated
 	 */
 	StereotypeToApply createStereotypeToApply();
+
+	/**
+	 * Returns a new object of class '<em>Feature To Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature To Set</em>'.
+	 * @generated
+	 */
+	FeatureToSet createFeatureToSet();
+
+	/**
+	 * Returns a new object of class '<em>List Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>List Value</em>'.
+	 * @generated
+	 */
+	ListValue createListValue();
+
+	/**
+	 * Returns a new object of class '<em>Constant Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constant Value</em>'.
+	 * @generated
+	 */
+	ConstantValue createConstantValue();
+
+	/**
+	 * Returns a new object of class '<em>Query Execution Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Query Execution Value</em>'.
+	 * @generated
+	 */
+	QueryExecutionValue createQueryExecutionValue();
 
 	/**
 	 * Returns the package supported by this factory.

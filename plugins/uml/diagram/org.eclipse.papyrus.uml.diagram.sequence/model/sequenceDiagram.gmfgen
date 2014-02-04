@@ -577,7 +577,7 @@
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="ContinuationFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ContinuationFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel fFigureContinuationNameLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ContinuationFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(50)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureContinuationNameLabel = new org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fFigureContinuationNameLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel getFigureContinuationNameLabel() {&#xA;&#x9;&#x9;return fFigureContinuationNameLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            classBody="/*** @generated */ public class ContinuationFigure extends org.eclipse.draw2d.RoundedRectangle { /*** @generated */ private org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel fFigureContinuationNameLabel; /*** @generated */ public ContinuationFigure() { org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.uml.diagram.common.draw2d.CenterLayout(); this.setLayoutManager(layoutThis); this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(50))); createContents(); } /**  * @generated  */ private void createContents() {  fFigureContinuationNameLabel = new org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel();  this.add(fFigureContinuationNameLabel);  } /**  * @generated  */ public org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel getFigureContinuationNameLabel() {  return fFigureContinuationNameLabel; }  /**generated*/ public IFigure getInvariantFigure(){return this;}}"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateInvariant"/>
@@ -613,6 +613,21 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+        </labels>
+        <labels
+            visualID="5023"
+            editPartClassName="StateInvariantLabelEditPart"
+            itemSemanticEditPolicyClassName="StateInvariantILabelItemSemanticEditPolicy"
+            notationViewFactoryClassName="StateInvariantLabelViewFactory"
+            elementIcon="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getInvariantFigure"
+              figureQualifiedClassName="org.eclipse.draw2d.IFigure"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.9"/>
         </labels>
       </childNodes>
       <childNodes
@@ -7472,11 +7487,8 @@
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.14/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.14/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser"/>
-      <implementations
-          xsi:type="gmfgen:CustomParser"
-          qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

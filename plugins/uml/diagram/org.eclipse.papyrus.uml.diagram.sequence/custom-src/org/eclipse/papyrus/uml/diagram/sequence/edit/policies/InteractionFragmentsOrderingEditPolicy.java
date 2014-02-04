@@ -47,7 +47,7 @@ public class InteractionFragmentsOrderingEditPolicy extends GraphicalEditPolicy 
 	@Override
 	public boolean understandsRequest(Request req) {
 		Object type = req.getType();
-		if(REQ_MOVE.equals(type) || REQ_RESIZE.equals(req)) {
+		if(REQ_MOVE.equals(type) || REQ_RESIZE.equals(type)) {//Correct mistake(also fix bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417375)
 			return true;
 		} else if(getHost() instanceof AbstractMessageEditPart) {
 			return REQ_RECONNECT_SOURCE.equals(type) || REQ_RECONNECT_TARGET.equals(type) || REQ_CREATE_BENDPOINT.equals(type) || REQ_MOVE_BENDPOINT.equals(type);

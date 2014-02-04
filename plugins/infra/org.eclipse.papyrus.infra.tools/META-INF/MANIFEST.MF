@@ -11,6 +11,8 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.infra.tools.comparator,
  org.eclipse.papyrus.infra.tools.converter,
  org.eclipse.papyrus.infra.tools.databinding,
+ org.eclipse.papyrus.infra.tools.preferences,
+ org.eclipse.papyrus.infra.tools.preferences.ui.dialog,
  org.eclipse.papyrus.infra.tools.util
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy

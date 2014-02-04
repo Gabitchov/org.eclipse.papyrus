@@ -34,25 +34,25 @@ public class CSSRoutingStyleImpl extends RoutingStyleImpl implements CSSRoutingS
 
 	protected CSSRoutingStyle getRoutingStyle() {
 		if(routingStyle == null) {
-			routingStyle = new  CSSRoutingStyleDelegate(this, getEngine());
+			routingStyle = new CSSRoutingStyleDelegate(this, getEngine());
 		}
 		return routingStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -65,80 +65,80 @@ public class CSSRoutingStyleImpl extends RoutingStyleImpl implements CSSRoutingS
 	//////////////////////////////////////////
 
 
-	public int getCSSRoundedBendpointsRadius(){
+	public int getCSSRoundedBendpointsRadius() {
 		int value = super.getRoundedBendpointsRadius();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius(), value)) {
 			return value;
 		} else {
 			return getRoutingStyle().getCSSRoundedBendpointsRadius();
 		}
 	}
 
-	public Routing getCSSRouting(){
+	public Routing getCSSRouting() {
 		Routing value = super.getRouting();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_Routing(), value)) {
 			return value;
 		} else {
 			return getRoutingStyle().getCSSRouting();
 		}
 	}
 
-	public Smoothness getCSSSmoothness(){
+	public Smoothness getCSSSmoothness() {
 		Smoothness value = super.getSmoothness();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_Smoothness(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_Smoothness(), value)) {
 			return value;
 		} else {
 			return getRoutingStyle().getCSSSmoothness();
 		}
 	}
 
-	public boolean isCSSAvoidObstructions(){
+	public boolean isCSSAvoidObstructions() {
 		boolean value = super.isAvoidObstructions();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions(), value)) {
 			return value;
 		} else {
 			return getRoutingStyle().isCSSAvoidObstructions();
 		}
 	}
 
-	public boolean isCSSClosestDistance(){
+	public boolean isCSSClosestDistance() {
 		boolean value = super.isClosestDistance();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance(), value)) {
 			return value;
 		} else {
 			return getRoutingStyle().isCSSClosestDistance();
 		}
 	}
 
-	public JumpLinkStatus getCSSJumpLinkStatus(){
+	public JumpLinkStatus getCSSJumpLinkStatus() {
 		JumpLinkStatus value = super.getJumpLinkStatus();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus(), value)) {
 			return value;
 		} else {
 			return getRoutingStyle().getCSSJumpLinkStatus();
 		}
 	}
 
-	public JumpLinkType getCSSJumpLinkType(){
+	public JumpLinkType getCSSJumpLinkType() {
 		JumpLinkType value = super.getJumpLinkType();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType(), value)) {
 			return value;
 		} else {
 			return getRoutingStyle().getCSSJumpLinkType();
 		}
 	}
 
-	public boolean isCSSJumpLinksReverse(){
+	public boolean isCSSJumpLinksReverse() {
 		boolean value = super.isJumpLinksReverse();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse(), value)) {
 			return value;
 		} else {
 			return getRoutingStyle().isCSSJumpLinksReverse();
@@ -147,49 +147,49 @@ public class CSSRoutingStyleImpl extends RoutingStyleImpl implements CSSRoutingS
 
 
 	@Override
-	public int getRoundedBendpointsRadius(){
+	public int getRoundedBendpointsRadius() {
 		//return super.getRoundedBendpointsRadius();
 		return getCSSRoundedBendpointsRadius();
 	}
 
 	@Override
-	public Routing getRouting(){
+	public Routing getRouting() {
 		//return super.getRouting();
 		return getCSSRouting();
 	}
 
 	@Override
-	public Smoothness getSmoothness(){
+	public Smoothness getSmoothness() {
 		//return super.getSmoothness();
 		return getCSSSmoothness();
 	}
 
 	@Override
-	public boolean isAvoidObstructions(){
+	public boolean isAvoidObstructions() {
 		//return super.isAvoidObstructions();
 		return isCSSAvoidObstructions();
 	}
 
 	@Override
-	public boolean isClosestDistance(){
+	public boolean isClosestDistance() {
 		//return super.isClosestDistance();
 		return isCSSClosestDistance();
 	}
 
 	@Override
-	public JumpLinkStatus getJumpLinkStatus(){
+	public JumpLinkStatus getJumpLinkStatus() {
 		//return super.getJumpLinkStatus();
 		return getCSSJumpLinkStatus();
 	}
 
 	@Override
-	public JumpLinkType getJumpLinkType(){
+	public JumpLinkType getJumpLinkType() {
 		//return super.getJumpLinkType();
 		return getCSSJumpLinkType();
 	}
 
 	@Override
-	public boolean isJumpLinksReverse(){
+	public boolean isJumpLinksReverse() {
 		//return super.isJumpLinksReverse();
 		return isCSSJumpLinksReverse();
 	}
@@ -201,65 +201,65 @@ public class CSSRoutingStyleImpl extends RoutingStyleImpl implements CSSRoutingS
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setRoundedBendpointsRadius(int value){
+	public void setRoundedBendpointsRadius(int value) {
 		super.setRoundedBendpointsRadius(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoundedCornersStyle_RoundedBendpointsRadius();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setRouting(Routing value){
+	public void setRouting(Routing value) {
 		super.setRouting(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_Routing();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setSmoothness(Smoothness value){
+	public void setSmoothness(Smoothness value) {
 		super.setSmoothness(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_Smoothness();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setAvoidObstructions(boolean value){
+	public void setAvoidObstructions(boolean value) {
 		super.setAvoidObstructions(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_AvoidObstructions();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setClosestDistance(boolean value){
+	public void setClosestDistance(boolean value) {
 		super.setClosestDistance(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_ClosestDistance();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setJumpLinkStatus(JumpLinkStatus value){
+	public void setJumpLinkStatus(JumpLinkStatus value) {
 		super.setJumpLinkStatus(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkStatus();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setJumpLinkType(JumpLinkType value){
+	public void setJumpLinkType(JumpLinkType value) {
 		super.setJumpLinkType(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinkType();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setJumpLinksReverse(boolean value){
+	public void setJumpLinksReverse(boolean value) {
 		super.setJumpLinksReverse(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getRoutingStyle_JumpLinksReverse();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -272,7 +272,7 @@ public class CSSRoutingStyleImpl extends RoutingStyleImpl implements CSSRoutingS
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

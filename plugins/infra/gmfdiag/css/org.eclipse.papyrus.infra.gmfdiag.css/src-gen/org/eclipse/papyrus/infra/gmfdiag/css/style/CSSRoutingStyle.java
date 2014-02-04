@@ -16,7 +16,7 @@ import org.eclipse.gmf.runtime.notation.JumpLinkType;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Smoothness;
 
-public interface CSSRoutingStyle extends CSSRoundedCornersStyle{
+public interface CSSRoutingStyle extends CSSRoundedCornersStyle {
 
 	public Routing getCSSRouting();
 

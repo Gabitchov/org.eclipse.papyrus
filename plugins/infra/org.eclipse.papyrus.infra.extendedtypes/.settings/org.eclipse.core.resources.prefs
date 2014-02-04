@@ -1,4 +1,7 @@
-#Thu Mar 24 15:06:10 CET 2011
 eclipse.preferences.version=1
 encoding//model/ExtendedTypes.ecore=UTF-8
 encoding//model/ExtendedTypes.ecorediag=UTF-8
+encoding//model/InvariantContainerConfiguration.ecore=UTF-8
+encoding//model/InvariantContainerConfiguration.ecorediag=UTF-8
+encoding//model/InvariantSemanticTypeConfiguration.ecore=UTF-8
+encoding//model/InvariantSemanticTypeConfiguration.ecorediag=UTF-8

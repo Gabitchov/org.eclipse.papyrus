@@ -13,6 +13,10 @@
           allPopups="true"
           locationURI="popup:org.eclipse.ui.popup.any">
        <command
+             commandId="org.eclipse.papyrus.infra.nattable.import.command"
+             style="push">
+       </command>
+       <command
              commandId="org.eclipse.papyrus.infra.nattable.invert.axis"
              style="toggle">
           <visibleWhen>
@@ -628,9 +632,9 @@
    </category>
    <command
          categoryId="org.eclipse.papyrus.editor.category"
-         description="Export Table to XLS"
+         description="Export Table to XLS Command"
          id="org.eclipse.papyrus.infra.nattable.exporttoXLScommand"
-         name="Export Table to XLS Command">
+         name="Export to XLS">
    </command>
 
    <command
@@ -1051,6 +1055,36 @@
             commandId="org.eclipse.papyrus.infra.nattable.autoresize.rows"
             icon="icons/auto_resize_row.png">
       </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ImportTableHandler"
+            description="Import a file into a table"
+            id="org.eclipse.papyrus.infra.nattable.import.command"
+            name="Import from file">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.import.command"
+            icon="icons/import_wiz_16x16-papyrusColor.gif">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <wizard
+            category="org.eclipse.papyrus.infra.core.importcategory"
+            class="org.eclipse.papyrus.infra.nattable.wizard.pages.ImportTableWizard"
+            icon="icons/import_wiz_16x16-papyrusColor.gif"
+            id="org.eclipse.papyrus.infra.nattable.import.category"
+            name="Import In Open Table">
+         <description>
+            This wizard allows to import a table.
+         </description>
+      </wizard>
    </extension>
 </plugin>
 

@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.configuration;
 
 import org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerConfiguration;
 import org.eclipse.nebula.widgets.nattable.layer.CompositeLayer;
+import org.eclipse.papyrus.infra.nattable.export.PapyrusExportBindings;
 
 /**
  * We change the edit configuration
@@ -42,5 +43,25 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 	@Override
 	protected void addEditingHandlerConfig() {
 		addConfiguration(new EditConfiguration());
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerConfiguration#addEditingUIConfig()
+	 * 
+	 */
+	@Override
+	protected void addEditingUIConfig() {
+		addConfiguration(new PapyrusDefaultEditBindings());
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerConfiguration#addExcelExportUIBindings()
+	 * 
+	 */
+	@Override
+	protected void addExcelExportUIBindings() {
+		addConfiguration(new PapyrusExportBindings());
 	}
 }

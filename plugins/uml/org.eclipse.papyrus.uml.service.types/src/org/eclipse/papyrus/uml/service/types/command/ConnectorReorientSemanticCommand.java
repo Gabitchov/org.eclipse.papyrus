@@ -101,6 +101,7 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 	 */
 	protected void initFields() {
 		this.newPartWithPort = (Property)getRequest().getParameter(ConnectorUtils.PART_WITH_PORT);
+		this.oppositePartWithPort = (Property)getRequest().getParameter(ConnectorUtils.OPPOSITE_PART_WITH_PORT);
 	}
 
 	/**
@@ -146,9 +147,12 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 
 		if(newRole != null && oppositeRole != null) {
 			//the 2 roles must be not be equals
-			if(newRole == oppositeRole) {
+			/*
+			if(newRole == oppositeRole) { // ALG: This is wrong for a connector connecting the same port of two different parts!
 				return false;
 			}
+			*/
+
 
 
 			//UML Standart, p.181 : [3] The ConnectableElements attached as roles to each ConnectorEnd owned by a Connector must be roles

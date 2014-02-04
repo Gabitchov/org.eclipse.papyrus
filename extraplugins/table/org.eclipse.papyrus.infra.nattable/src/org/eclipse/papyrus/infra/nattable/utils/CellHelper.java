@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2014 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *		
+ *		 Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import java.util.Collections;
@@ -39,14 +52,20 @@ public class CellHelper {
 	}
 
 	/**
-	 * Create the string problems if required
+	 * Create the string problems if required.
 	 * 
 	 * @param tableManager
+	 *        the table manager
 	 * @param columnElement
+	 *        the column element
 	 * @param rowElement
+	 *        the row element
 	 * @param pastedText
+	 *        the pasted text
 	 * @param valueContainer
+	 *        the value container
 	 * @param sharedMap
+	 *        the shared map
 	 */
 	public static final void createStringResolutionProblem(final INattableModelManager tableManager, final Object columnElement, final Object rowElement, final String pastedText, final ConvertedValueContainer<?> valueContainer, final Map<?, ?> sharedMap) {
 		final IStatus status = valueContainer.getStatus();

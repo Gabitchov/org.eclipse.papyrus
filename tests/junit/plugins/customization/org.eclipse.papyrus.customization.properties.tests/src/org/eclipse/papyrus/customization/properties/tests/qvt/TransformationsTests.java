@@ -121,7 +121,7 @@ public class TransformationsTests {
 					EPackage ecorePackage = (EPackage)loadEMFModel(packageURI);
 					ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(ecorePackage));
 
-					PropertiesRoot root = ConfigurationManager.instance.getPropertiesRoot();
+					PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
 					ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
 
 					LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
@@ -172,7 +172,7 @@ public class TransformationsTests {
 					}
 					ModelExtent inUml = new BasicModelExtent(Collections.singletonList(umlContext));
 
-					PropertiesRoot root = ConfigurationManager.instance.getPropertiesRoot();
+					PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
 					ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
 
 					LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();

@@ -99,7 +99,7 @@ public class WorkspaceContextCopyAction implements IContextCopyAction {
 			IStatus copyResult = copyAll(sourceContext, new File(targetDirectory, targetName + ".ctx"), sub.newChild(1, SubMonitor.SUPPRESS_NONE)); //$NON-NLS-1$
 
 			if(copyResult.isOK()) {
-				result = ConfigurationManager.instance.getContext(targetModelUri);
+				result = ConfigurationManager.getInstance().getContext(targetModelUri);
 
 				result.setName(targetName);
 				result.setPrototype(source);

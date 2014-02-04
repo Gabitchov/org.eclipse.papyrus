@@ -11,8 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusConnectionEndEditPolicy;
 
 
 /**
@@ -22,6 +24,17 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 
 	public ConnectionEditPart(View view) {
 		super(view);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart#createDefaultEditPolicies()
+	 * 
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new PapyrusConnectionEndEditPolicy());
 	}
 
 }

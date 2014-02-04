@@ -30,25 +30,25 @@ public class CSSDescriptionStyleImpl extends DescriptionStyleImpl implements CSS
 
 	protected CSSDescriptionStyle getDescriptionStyle() {
 		if(descriptionStyle == null) {
-			descriptionStyle = new  CSSDescriptionStyleDelegate(this, getEngine());
+			descriptionStyle = new CSSDescriptionStyleDelegate(this, getEngine());
 		}
 		return descriptionStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,10 +61,10 @@ public class CSSDescriptionStyleImpl extends DescriptionStyleImpl implements CSS
 	//////////////////////////////////////////
 
 
-	public java.lang.String getCSSDescription(){
+	public java.lang.String getCSSDescription() {
 		java.lang.String value = super.getDescription();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getDescriptionStyle_Description(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getDescriptionStyle_Description(), value)) {
 			return value;
 		} else {
 			return getDescriptionStyle().getCSSDescription();
@@ -73,7 +73,7 @@ public class CSSDescriptionStyleImpl extends DescriptionStyleImpl implements CSS
 
 
 	@Override
-	public java.lang.String getDescription(){
+	public java.lang.String getDescription() {
 		//return super.getDescription();
 		return getCSSDescription();
 	}
@@ -85,9 +85,9 @@ public class CSSDescriptionStyleImpl extends DescriptionStyleImpl implements CSS
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setDescription(java.lang.String value){
+	public void setDescription(java.lang.String value) {
 		super.setDescription(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getDescriptionStyle_Description();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -100,7 +100,7 @@ public class CSSDescriptionStyleImpl extends DescriptionStyleImpl implements CSS
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

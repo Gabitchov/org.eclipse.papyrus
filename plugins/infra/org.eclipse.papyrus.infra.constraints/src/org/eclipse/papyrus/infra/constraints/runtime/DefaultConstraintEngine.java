@@ -37,14 +37,14 @@ public abstract class DefaultConstraintEngine<E extends DisplayUnit> implements 
 
 	public abstract void refresh();
 
-	public void addConstraint(ConstraintDescriptor descriptor) {
+	public synchronized void addConstraint(ConstraintDescriptor descriptor) {
 		Constraint constraint = ConstraintFactory.getInstance().createFromModel(descriptor);
 		if(constraint != null) {
 			constraints.add(constraint);
 		}
 	}
 
-	public Set<E> getDisplayUnits(final ISelection forSelection) {
+	public synchronized Set<E> getDisplayUnits(final ISelection forSelection) {
 		Set<E> result = new HashSet<E>();
 
 		IStructuredSelection selection;

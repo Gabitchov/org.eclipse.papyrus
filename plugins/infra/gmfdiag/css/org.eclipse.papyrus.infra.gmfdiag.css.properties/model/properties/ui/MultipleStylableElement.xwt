@@ -8,5 +8,5 @@
 	<Composite.layout>
 		<GridLayout numColumns="1"></GridLayout>
 	</Composite.layout>
-	<css:ResetStyleWidget></css:ResetStyleWidget>
+	<css:ResetStyleWidget input="{Binding}"></css:ResetStyleWidget>
 </Composite>

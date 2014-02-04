@@ -34,6 +34,7 @@ import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ExceptionHandler;
 import org.eclipse.uml2.uml.ExecutableNode;
 import org.eclipse.uml2.uml.ObjectNode;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * Edit helper class for binary {@link ExceptionHandler}
@@ -46,6 +47,7 @@ public class ExceptionHandlerEditHelper extends ElementEditHelper {
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return new ExceptionHandlerReorientCommand(req);
+	
 	}
 
 	/**

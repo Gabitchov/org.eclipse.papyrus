@@ -1,40 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 
-<!--
- <copyright>
- </copyright>
-
- $Id$
--->
-
 <plugin>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SetValuesActionConfiguration -->
       <package
-            uri="http://www.eclipse.org/papyrus/diagram/types/modifysemanticvaluesactionconfiguration/0.8"
-            class="org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration.ModifySemanticValuesActionConfigurationPackage"
-            genModel="model/ModifySemanticValuesActionConfiguration.genmodel"/>
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/emf/setvaluesaction/1.0"
+            class="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfigurationPackage"
+            genModel="model/SetValuesActionConfiguration.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated SetValuesActionConfiguration -->
       <parser
-            type="modifysemanticvaluesactionconfiguration"
-            class="org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration.util.ModifySemanticValuesActionConfigurationResourceFactoryImpl"/>
+            type="setvaluesactionconfiguration"
+            class="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.util.SetValuesActionConfigurationResourceFactoryImpl"/>
    </extension>
 
-	<extension
-         point="org.eclipse.papyrus.infra.extendedtypes.extendedElementTypeActionProvider">
-      <extendedElementTypeActionProvider
-            class="org.eclipse.papyrus.infra.extendedtypes.emf.providers.ModifySemanticValuesActionProvider"
-            configurationClass="org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration.ModifySemanticValuesActionConfiguration"
-            description="Post action to set semantic values on created element"
-            icon="icons/Values.gif"
-            id="org.eclipse.papyrus.infra.extendedtypes.emf.modifysemanticvaluesactionconfiguration"
-            name="Extended Element Type Modify Semantic Values Post Action">
-         <Priority
-               name="Lowest">
-         </Priority>
-      </extendedElementTypeActionProvider>
+
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.aspectActionConfiguration">
+      <aspectAction
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfiguration"
+            configurationModelCreation="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfigurationModelCreation"
+            creationElementValidator="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionCreationElementValidator"
+            editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionEditHelperAdvice">
+      </aspectAction>
    </extension>
 </plugin>

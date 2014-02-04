@@ -321,7 +321,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 	private void refreshContext() {
 		Context context = getContext();
 		if(context != null) {
-			ConfigurationManager.instance.refresh(context);
+			ConfigurationManager.getInstance().refresh(context);
 		}
 	}
 

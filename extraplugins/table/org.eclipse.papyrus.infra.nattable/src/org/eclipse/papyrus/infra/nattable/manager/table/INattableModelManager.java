@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.manager.table;
 import java.util.Collection;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.jface.preference.PreferenceStore;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
@@ -179,4 +180,17 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	 */
 	public IAxisManager getRowAxisManager();
 
+	/**
+	 * 
+	 * @return
+	 *         the local preference store for the table instance or <code>null</code>
+	 */
+	public PreferenceStore getTablePreferenceStore();
+
+	/**
+	 * 
+	 * @param store
+	 *        the table preference store
+	 */
+	public void setWorkspacePreferenceStore(final PreferenceStore store);
 }

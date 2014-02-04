@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.tests;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.BugTests;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.BugTests2;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.BugTest_m7;
+import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.pro20130916.AllTests_20130916;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.AllCanonicalTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -25,6 +26,6 @@ import org.junit.runners.Suite.SuiteClasses;
  * All tests together.
  */
 @RunWith(Suite.class)
-@SuiteClasses({ AllCanonicalTests.class, BugTests.class, BugTests2.class, BugTest_m7.class })
+@SuiteClasses({ AllCanonicalTests.class, BugTests.class, BugTests2.class, BugTest_m7.class, AllTests_20130916.class })
 public class AllTests {
 }

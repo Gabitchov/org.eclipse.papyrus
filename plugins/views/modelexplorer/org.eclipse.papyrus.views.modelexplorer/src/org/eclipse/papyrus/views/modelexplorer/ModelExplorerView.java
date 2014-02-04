@@ -910,7 +910,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					tmp = tmp.eContainer();
 				}
 
-				Iterable<EObject> reverseParents = Iterables.reverse(parents);
+				Iterable<EObject> reverseParents = Lists.reverse(parents);
 
 				// reveal the resource if necessary
 				Resource r = null;

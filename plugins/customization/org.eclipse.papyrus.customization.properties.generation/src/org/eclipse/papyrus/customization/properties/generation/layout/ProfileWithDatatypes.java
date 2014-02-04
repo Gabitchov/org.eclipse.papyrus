@@ -60,7 +60,7 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 	@Override
 	protected CompositeWidget layoutCategorizedEditors(Category category, List<PropertyEditor> editors) {
 		if(((TypeCategory)category).isDatatype) {
-			CompositeWidgetType compositeType = ConfigurationManager.instance.getDefaultCompositeType();
+			CompositeWidgetType compositeType = ConfigurationManager.getInstance().getDefaultCompositeType();
 
 			CompositeWidget container = UiFactory.eINSTANCE.createCompositeWidget();
 			container.setWidgetType(compositeType);
@@ -148,7 +148,7 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 	}
 
 	protected Layout createLayout(Integer columns) {
-		LayoutType propertiesLayoutType = ConfigurationManager.instance.getDefaultLayoutType();
+		LayoutType propertiesLayoutType = ConfigurationManager.getInstance().getDefaultLayoutType();
 
 		Layout layout = UiFactory.eINSTANCE.createLayout();
 		ValueAttribute numColumns = UiFactory.eINSTANCE.createValueAttribute();
@@ -162,7 +162,7 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 	}
 
 	protected CompositeWidgetType getGroupComposite() {
-		for(Environment environment : ConfigurationManager.instance.getPropertiesRoot().getEnvironments()) {
+		for(Environment environment : ConfigurationManager.getInstance().getPropertiesRoot().getEnvironments()) {
 			for(CompositeWidgetType widgetType : environment.getCompositeWidgetTypes()) {
 				if(widgetType.getNamespace() == null && widgetType.getWidgetClass().equals("Group")) {
 					return widgetType;
@@ -171,11 +171,11 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 		}
 
 		Activator.log.warn("Cannot find the Group composite type");
-		return ConfigurationManager.instance.getDefaultCompositeType();
+		return ConfigurationManager.getInstance().getDefaultCompositeType();
 	}
 
 	protected PropertyEditorType getViewEditor() {
-		for(Environment environment : ConfigurationManager.instance.getPropertiesRoot().getEnvironments()) {
+		for(Environment environment : ConfigurationManager.getInstance().getPropertiesRoot().getEnvironments()) {
 			for(PropertyEditorType widgetType : environment.getPropertyEditorTypes()) {
 				if(widgetType.getNamespace() != null && "ppe".equals(widgetType.getNamespace().getName()) && widgetType.getWidgetClass().equals("ViewEditor")) {
 					return widgetType;
@@ -184,7 +184,7 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 		}
 
 		Activator.log.warn("Cannot find the Group composite type");
-		return ConfigurationManager.instance.getDefaultEditorType(Type.STRING, false);
+		return ConfigurationManager.getInstance().getDefaultEditorType(Type.STRING, false);
 	}
 
 	@Override

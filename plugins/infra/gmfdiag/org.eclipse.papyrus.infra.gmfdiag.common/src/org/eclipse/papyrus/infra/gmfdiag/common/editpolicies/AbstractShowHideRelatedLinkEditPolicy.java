@@ -53,10 +53,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.notation.BasicCompartment;
-import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
@@ -67,20 +64,18 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.ShowHideRelatedLinkRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.Domain2Notation;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.uml2.uml.Connector;
 
 
 /**
- * 
- * The editPolicy used to show/hide links
- * 
+ * The editPolicy used to show/hide links.
  */
 //Inspired from EcoreTools source code
 public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEditPolicy implements IDiagramInformationProviderEditPolicy {
 
-	/**
-	 * the key for this edit policy
-	 */
+	/** the key for this edit policy. */
 	public static final String SHOW_HIDE_RELATED_LINK_ROLE = "ShowHideRelatedLinkEditPolicy"; //$NON-NLS-1$
 
 	/**
@@ -94,12 +89,13 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 		setHost(host);
 	}
 
+	
 	/**
-	 * 
+	 * Gets the command.
+	 *
+	 * @param req the req
+	 * @return the command
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#getCommand(org.eclipse.gef.Request)
-	 * 
-	 * @param req
-	 * @return
 	 */
 	@Override
 	public Command getCommand(final Request req) {
@@ -108,8 +104,10 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 
 			//0. Obtain the required informations
 			//--the map between semantic eobjects and existing views
-			final Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
+			// final Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
 
+			final Domain2Notation domain2NotationMap = new Domain2Notation();
+			
 			//-- the map between selected EditPart and the semantic existing links
 			final Map<EditPart, Set<EObject>> availableLinks = new HashMap<EditPart, Set<EObject>>();
 
@@ -127,7 +125,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 			getHost().refresh();
 
 			//2. we associate each view to a semantic element
-			mapModel((View)getHost().getAdapter(View.class), domain2NotationMap);
+			domain2NotationMap.mapModel((View)getHost().getAdapter(View.class));
 
 			//3.we collect the link descriptors
 			for(final EditPart currentEp : request.getSelectedEditParts()) {
@@ -141,16 +139,19 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 					while(iter.hasNext()) {
 						final UpdaterLinkDescriptor current = iter.next();
 						final EObject link = current.getModelElement();
-						final View dest = domain2NotationMap.get(current.getDestination());
-						final View source = domain2NotationMap.get(current.getSource());
+						EObject destination = current.getDestination();
+						final View dest = domain2NotationMap.getFirstView(destination);
+						EObject source2 = current.getSource();
+						final View source = domain2NotationMap.getFirstView(source2);
 
-						//we add only links for which source and target are already on the diagram
+						//we add only links for which at least one source and one target are already on the diagram
 						if(dest != null && source != null) {
 							modelLinks.add(link);
 						}
 
 						//we build the list of the visible links
-						View linkView = domain2NotationMap.get(link);
+						
+						View linkView = domain2NotationMap.getFirstView(link);
 						if(linkView != null && linkView.isVisible()) {
 							visibleLinks.add(link);
 						}
@@ -181,7 +182,6 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 				for(final Collection<EObject> currentColl : availableLinks.values()) {
 					allLinks.addAll(currentColl);
 				}
-				allLinks.removeAll(visibleLinks);
 				return new ICommandProxy(getShowHideRelatedLinkCommand(getEditingDomain(), allLinks, Collections.emptyList(), domain2NotationMap, linksDescriptors));
 			default:
 				break;
@@ -191,34 +191,35 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	}
 
 	/**
-	 * Collects all related links for view
-	 * 
-	 * @param view
-	 * @param domain2NotationMap
-	 * 
+	 * Collects all related links for view.
+	 *
+	 * @param view the view
+	 * @param domain2NotationMap the domain2 notation map
 	 * @return linkdescriptors
 	 */
-	protected Collection<? extends UpdaterLinkDescriptor> collectPartRelatedLinks(final View view, final Map<EObject, View> domain2NotationMap) {
+	protected Collection<? extends UpdaterLinkDescriptor> collectPartRelatedLinks(final View view, final Domain2Notation domain2NotationMap) {
 		Collection<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		DiagramUpdater diagramUpdater = getDiagramUpdater();
+		
 		// We must prevent duplicate descriptors
-		List<?> outgoingDescriptors = diagramUpdater.getOutgoingLinks(view);
+		List<? extends UpdaterLinkDescriptor> outgoingDescriptors = diagramUpdater.getOutgoingLinks(view);
 		cleanAdd(result, view, outgoingDescriptors, domain2NotationMap);
 
-		List<?> incomingDescriptors = diagramUpdater.getIncomingLinks(view);
+		List<? extends UpdaterLinkDescriptor> incomingDescriptors = diagramUpdater.getIncomingLinks(view);
 		cleanAdd(result, view, incomingDescriptors, domain2NotationMap);
 
 		if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-			domain2NotationMap.put(view.getElement(), view);
+			domain2NotationMap.putView(view);
 		}
 
 		return removeInvalidLinkDescriptor(result);
 	}
 
 	/**
-	 * 
-	 * @return
-	 *         the current diagram; hosting this edit policy
+	 * Gets the current diagram.
+	 *
+	 * @return the current diagram
+	 * the current diagram; hosting this edit policy
 	 */
 	protected Diagram getCurrentDiagram() {
 		return (Diagram)getHost().getAdapter(Diagram.class);
@@ -226,12 +227,12 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 
 
 	/**
-	 * 
-	 * @param descriptors
-	 *        the link descriptor
-	 * @return
-	 *         the collection of link descriptors without some invalid descriptor (we get this case when the link doesn't have source AND target, but
-	 *         only ends
+	 * Removes the invalid link descriptor.
+	 *
+	 * @param descriptors the link descriptor
+	 * @return the collection
+	 * the collection of link descriptors without some invalid descriptor (we get this case when the link doesn't have source AND target, but
+	 * only ends
 	 */
 	protected Collection<UpdaterLinkDescriptor> removeInvalidLinkDescriptor(final Collection<UpdaterLinkDescriptor> descriptors) {
 		final Collection<UpdaterLinkDescriptor> toRemove = new ArrayList<UpdaterLinkDescriptor>();
@@ -252,33 +253,33 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	}
 
 	/**
-	 * 
-	 * @param result
-	 *        the result of the call to this method
-	 * @param view
-	 *        the current view
-	 * @param descriptors
-	 *        links descriptors for links related to this view
-	 * @param domain2NotationMap
-	 *        the map between model element and views
+	 * Clean add.
+	 *
+	 * @param result the result of the call to this method
+	 * @param view the current view
+	 * @param descriptors links descriptors for links related to this view
+	 * @param domain2NotationMap the map between model element and views
 	 */
-	protected void cleanAdd(Collection<UpdaterLinkDescriptor> result, View view, List<?> descriptors, Map<EObject, View> domain2NotationMap) {
-		for(Object object : descriptors) {
-			if(false == object instanceof UpdaterLinkDescriptor) {
-				continue;
-			}
-			UpdaterLinkDescriptor descriptor = (UpdaterLinkDescriptor)object;
-			if(cleanContains(result, descriptor)) {
+	protected void cleanAdd(Collection<UpdaterLinkDescriptor> result, View view, List<? extends UpdaterLinkDescriptor> descriptors, final Domain2Notation domain2NotationMap) {
+		for(UpdaterLinkDescriptor updaterLinkDescriptor : descriptors) {
+			if(cleanContains(result, updaterLinkDescriptor)) {
 				continue;
 			}
 			// check owner
-			if(!isOwner(view, descriptor)) {
+			if(!isOwner(view, updaterLinkDescriptor)) {
 				continue;
 			}
-			result.add(descriptor);
+			result.add(updaterLinkDescriptor);			
 		}
 	}
 
+	/**
+	 * Checks if is owner.
+	 *
+	 * @param view the view
+	 * @param descriptor the descriptor
+	 * @return true, if is owner
+	 */
 	private boolean isOwner(View view, UpdaterLinkDescriptor descriptor) {
 		EObject source = descriptor.getSource();
 		EObject dest = descriptor.getDestination();
@@ -301,23 +302,20 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	 * @return true if already exist
 	 */
 	private boolean cleanContains(Collection<? extends UpdaterLinkDescriptor> collection, UpdaterLinkDescriptor umlLinkDescriptor) {
-		for(Object object : collection) {
-			if(object instanceof UpdaterLinkDescriptor) {
-				UpdaterLinkDescriptor descriptor = (UpdaterLinkDescriptor)object;
-				if(descriptor.getModelElement() == umlLinkDescriptor.getModelElement() && descriptor.getSource() == umlLinkDescriptor.getSource() && descriptor.getDestination() == umlLinkDescriptor.getDestination() && descriptor.getVisualID() == umlLinkDescriptor.getVisualID()) {
-					return true;
-				}
-			}
+		for(UpdaterLinkDescriptor descriptor : collection) {
+			if(descriptor.getModelElement() == umlLinkDescriptor.getModelElement() && descriptor.getSource() == umlLinkDescriptor.getSource() && descriptor.getDestination() == umlLinkDescriptor.getDestination() && descriptor.getVisualID() == umlLinkDescriptor.getVisualID()) {
+				return true;
+			}			
 		}
 		return false;
 	}
 
 	/**
-	 * 
+	 * Understands request.
+	 *
+	 * @param request the request
+	 * @return true, if successful
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#understandsRequest(org.eclipse.gef.Request)
-	 * 
-	 * @param request
-	 * @return
 	 */
 	@Override
 	public boolean understandsRequest(final Request request) {
@@ -325,24 +323,23 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	}
 
 	/**
-	 * 
-	 * @param selectedEditParts
-	 *        the selected edit parts
-	 * @param availableLinks
-	 *        a map with the selected edit parts and their available links
-	 * @param domain2NotationMap
-	 *        a map between existing views and semantic elements
-	 * @param linksDescriptors
-	 *        the link descriptors
-	 * @return
-	 *         the command to open a dialog and Show/Hide the related links
+	 * Gets the show hide related link command with dialog.
+	 *
+	 * @param selectedEditParts the selected edit parts
+	 * @param availableLinks a map with the selected edit parts and their available links
+	 * @param visibleLinks the visible links
+	 * @param domain2NotationMap a map between existing views and semantic elements
+	 * @param linksDescriptors the link descriptors
+	 * @return the show hide related link command with dialog
+	 * the command to open a dialog and Show/Hide the related links
 	 */
-	protected abstract Command getShowHideRelatedLinkCommandWithDialog(final Collection<EditPart> selectedEditParts, final Map<EditPart, Set<EObject>> availableLinks, final Set<EObject> visibleLinks, final Map<EObject, View> domain2NotationMap, Collection<UpdaterLinkDescriptor> linksDescriptors);
+	protected abstract Command getShowHideRelatedLinkCommandWithDialog(final Collection<EditPart> selectedEditParts, final Map<EditPart, Set<EObject>> availableLinks, final Set<EObject> visibleLinks, final Domain2Notation domain2NotationMap, Collection<UpdaterLinkDescriptor> linksDescriptors);
 
 	/**
-	 * 
-	 * @return
-	 *         the editing domain to use
+	 * Gets the editing domain.
+	 *
+	 * @return the editing domain
+	 * the editing domain to use
 	 */
 	protected final TransactionalEditingDomain getEditingDomain() {
 		try {
@@ -354,21 +351,17 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	}
 
 	/**
-	 * 
-	 * @param domain
-	 *        the editing domain to use
-	 * @param previousCommand
-	 *        the previous command
-	 * @param initialSelection
-	 *        the initial selection
-	 * @param domain2NotationMap
-	 *        the map referencing the eobject to their existing view
-	 * @param linkDescriptor
-	 *        the link descriptors
-	 * @return
-	 *         the command to show/hide links according to the previous command result
+	 * Gets the compute command result command.
+	 *
+	 * @param domain the editing domain to use
+	 * @param previousCommand the previous command
+	 * @param initialSelection the initial selection
+	 * @param domain2NotationMap the map referencing the eobject to their existing view
+	 * @param linkDescriptor the link descriptors
+	 * @return the compute command result command
+	 * the command to show/hide links according to the previous command result
 	 */
-	protected ICommand getComputeCommandResultCommand(final TransactionalEditingDomain domain, final ICommand previousCommand, final Set<EObject> initialSelection, final Map<EObject, View> domain2NotationMap, final Collection<UpdaterLinkDescriptor> linkDescriptor) {
+	protected ICommand getComputeCommandResultCommand(final TransactionalEditingDomain domain, final ICommand previousCommand, final Set<EObject> initialSelection, final Domain2Notation domain2NotationMap, final Collection<UpdaterLinkDescriptor> linkDescriptor) {
 		final ICommand computeCommand = new AbstractTransactionalCommand(domain, "Compute Result", null) {//$NON-NLS-1$
 
 			/**
@@ -408,21 +401,17 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	}
 
 	/**
-	 * 
-	 * @param domain
-	 *        the editing domain
-	 * @param toShow
-	 *        the list of the link to show
-	 * @param toHide
-	 *        the list of the link to hide
-	 * @param domain2NotationMap
-	 *        a map linking the eobject to their view
-	 * @param linkDescriptors
-	 *        the link descriptor
-	 * @return
-	 *         the command to show/hide the links, according to the args of this method
+	 * Gets the show hide related link command.
+	 *
+	 * @param domain the editing domain
+	 * @param toShow the list of the link to show
+	 * @param toHide the list of the link to hide
+	 * @param domain2NotationMap a map linking the eobject to their view
+	 * @param linkDescriptors the link descriptor
+	 * @return the show hide related link command
+	 * the command to show/hide the links, according to the args of this method
 	 */
-	protected final ICommand getShowHideRelatedLinkCommand(final TransactionalEditingDomain domain, final Collection<?> toShow, final Collection<?> toHide, final Map<EObject, View> domain2NotationMap, final Collection<? extends UpdaterLinkDescriptor> linkDescriptors) {
+	protected final ICommand getShowHideRelatedLinkCommand(final TransactionalEditingDomain domain, final Collection<?> toShow, final Collection<?> toHide, final Domain2Notation domain2NotationMap, final Collection<? extends UpdaterLinkDescriptor> linkDescriptors) {
 		final CompositeCommand compositeCommand = new CompositeCommand("Show/Hide Related Link");//$NON-NLS-1$
 		for(final Object current : toShow) {
 			if(current instanceof EObject) {
@@ -445,22 +434,19 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 
 
 	/**
-	 * 
-	 * @param domain
-	 *        the editing domain
-	 * @param linkToHide
-	 *        the link to hide
-	 * @param domain2NotationMap
-	 *        the map between eobjects and views
-	 * @param linkDescriptors
-	 *        the link descriptors
-	 * @return
-	 *         the command to hide the wanted link
+	 * Gets the hide link command.
+	 *
+	 * @param domain the editing domain
+	 * @param linkToHide the link to hide
+	 * @param domain2NotationMap the map between eobjects and views
+	 * @param linkDescriptors the link descriptors
+	 * @return the hide link command
+	 * the command to hide the wanted link
 	 */
-	protected ICommand getHideLinkCommand(final TransactionalEditingDomain domain, final EObject linkToHide, final Map<EObject, View> domain2NotationMap, final Collection<? extends UpdaterLinkDescriptor> linkDescriptors) {
+	protected ICommand getHideLinkCommand(final TransactionalEditingDomain domain, final EObject linkToHide, final Domain2Notation domain2NotationMap, final Collection<? extends UpdaterLinkDescriptor> linkDescriptors) {
 		final UpdaterLinkDescriptor descriptor = getLinkDescriptor(linkToHide, linkDescriptors);
 		if(descriptor != null) {
-			final View view = domain2NotationMap.get(linkToHide);
+			final View view = domain2NotationMap.getFirstView(linkToHide);
 			final EditPart editPart = DiagramEditPartsUtil.getEditPartFromView(view, getHost());
 			return new CommandProxy(editPart.getCommand(new GroupRequest(RequestConstants.REQ_DELETE)));
 		}
@@ -468,13 +454,12 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	}
 
 	/**
-	 * 
-	 * @param link
-	 *        a link
-	 * @param descriptors
-	 *        the list of the known descriptors
-	 * @return
-	 *         the link descriptor for this link or <code>null</code> if not found
+	 * Gets the link descriptor.
+	 *
+	 * @param link a link
+	 * @param descriptors the list of the known descriptors
+	 * @return the link descriptor
+	 * the link descriptor for this link or <code>null</code> if not found
 	 */
 	protected final UpdaterLinkDescriptor getLinkDescriptor(final EObject link, final Collection<? extends UpdaterLinkDescriptor> descriptors) {
 		final Iterator<? extends UpdaterLinkDescriptor> iter = descriptors.iterator();
@@ -484,57 +469,43 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 				return current;
 			}
 		}
-		return null;
+		return null;	
 	}
 
 
-
 	/**
-	 * Maps view
-	 * 
-	 * @param view
-	 * @param domain2NotationMap
+	 * Gets the link descriptors.
+	 *
+	 * @param link the link
+	 * @param descriptors the descriptors
+	 * @return the link descriptors
 	 */
-	protected void mapModel(View view, Map<EObject, View> domain2NotationMap) {
-		if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-			if((view instanceof Connector || view instanceof Shape) && !(view instanceof BasicCompartment)) {
-				EObject element = view.getElement();
-				if(element == null) {
-					final EObject source = ((Connector)view).getSource().getElement();
-					final EObject target = ((Connector)view).getTarget().getElement();
-					element = new EdgeWithNoSemanticElementRepresentationImpl(source, target, view.getType());
-				}
-				domain2NotationMap.put(element, view);
+	protected final List<UpdaterLinkDescriptor> getLinkDescriptors(final EObject link, final Collection<? extends UpdaterLinkDescriptor> descriptors) {
+		List<UpdaterLinkDescriptor> updaterLinkDescriptors = new ArrayList<UpdaterLinkDescriptor>();
+		final Iterator<? extends UpdaterLinkDescriptor> iter = descriptors.iterator();
+		while(iter.hasNext()) {
+			final UpdaterLinkDescriptor current = iter.next();
+			if(current.getModelElement() == link) {
+				updaterLinkDescriptors.add(current);
 			}
 		}
-
-		@SuppressWarnings("unchecked")//$NON-NLS-1$
-		List<View> children = view.getChildren();
-		for(View child : children) {
-			mapModel(child, domain2NotationMap);
-		}
-		@SuppressWarnings("unchecked")//$NON-NLS-1$
-		List<View> sourceEdges = view.getSourceEdges();
-		for(View edge : sourceEdges) {
-			mapModel(edge, domain2NotationMap);
-		}
+		return updaterLinkDescriptors;	
 	}
 
-
+	
 	/**
-	 * 
-	 * @param domain
-	 *        the editing domain to use for this command
-	 * @param linkToShow
-	 *        a link to show
-	 * @param domain2NotationMap
-	 * @param linkDescriptors
-	 * @return
-	 *         the command to display the link on the diagram
+	 * Gets the show link command.
+	 *
+	 * @param domain the editing domain to use for this command
+	 * @param linkToShow a link to show
+	 * @param domain2NotationMap the domain2 notation map
+	 * @param linkDescriptors the link descriptors
+	 * @return the show link command
+	 * the command to display the link on the diagram
 	 */
-	protected ICommand getShowLinkCommand(final TransactionalEditingDomain domain, final EObject linkToShow, final Map<EObject, View> domain2NotationMap, final Collection<? extends UpdaterLinkDescriptor> linkDescriptors) {
-		mapModel((View)getHost().getAdapter(View.class), domain2NotationMap);
-		final View view = domain2NotationMap.get(linkToShow);
+	protected ICommand getShowLinkCommand(final TransactionalEditingDomain domain, final EObject linkToShow, final Domain2Notation domain2NotationMap, final Collection<? extends UpdaterLinkDescriptor> linkDescriptors) {
+		domain2NotationMap.mapModel((View)getHost().getAdapter(View.class));
+		final View view = domain2NotationMap.getFirstView(linkToShow);
 		if(view != null) {
 			return new SetPropertyCommand(domain, "Restore related linksCommand show view", new EObjectAdapter(view), Properties.ID_ISVISIBLE, Boolean.TRUE);//$NON-NLS-1$
 		} else {//we need to recreate the view
@@ -547,106 +518,156 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 				descriptor = new UpdaterLinkDescriptor(descriptor.getSource(), descriptor.getDestination(), elementType, descriptor.getVisualID());
 			}
 			if(descriptor != null) {
-				EditPart sourceEditPart = getEditPart(descriptor.getSource(), domain2NotationMap);
-				EditPart targetEditPart = getEditPart(descriptor.getDestination(), domain2NotationMap);
-
-				// If the parts are still null...
-				if(sourceEditPart == null || targetEditPart == null) {
-					return null;
+				
+				Set<View> sourceViewList = domain2NotationMap.get(descriptor.getSource());
+				
+				CompositeCommand compositeCommand = new CompositeCommand("Restor All Related Links");
+				
+				for (View sourceView : sourceViewList) {
+					Set<View> targetViewList = domain2NotationMap.get(descriptor.getDestination());
+						for (View targetView : targetViewList) {
+							
+							if (canDisplayExistingLinkBetweenViews((Connector) linkToShow, sourceView, targetView)){
+								
+								EditPart sourceEditPart = getEditPartFromView(sourceView);
+								EditPart targetEditPart = getEditPartFromView(targetView);
+								// If the parts are still null...
+								if(sourceEditPart == null || targetEditPart == null) {
+									return null;
+								}
+								String semanticHint = getSemanticHint(linkToShow);
+								if(semanticHint == null) {
+									semanticHint = ((IHintedType)descriptor.getSemanticAdapter().getAdapter(IElementType.class)).getSemanticHint();
+								}
+								CreateConnectionViewRequest.ConnectionViewDescriptor viewDescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(descriptor.getSemanticAdapter(), semanticHint, ViewUtil.APPEND, false, ((GraphicalEditPart)getHost()).getDiagramPreferencesHint());
+								CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(viewDescriptor);
+								ccr.setType(RequestConstants.REQ_CONNECTION_START);
+								ccr.setSourceEditPart(sourceEditPart);
+								sourceEditPart.getCommand(ccr);
+								ccr.setTargetEditPart(targetEditPart);
+								ccr.setType(RequestConstants.REQ_CONNECTION_END);	
+								CommandProxy commandProxy = new CommandProxy(targetEditPart.getCommand(ccr));
+								compositeCommand.add(commandProxy);
+							}
+						}
+					
 				}
-				String semanticHint = getSemanticHint(linkToShow);
-				if(semanticHint == null) {
-					semanticHint = ((IHintedType)descriptor.getSemanticAdapter().getAdapter(IElementType.class)).getSemanticHint();
-				}
-				CreateConnectionViewRequest.ConnectionViewDescriptor viewDescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(descriptor.getSemanticAdapter(), semanticHint, ViewUtil.APPEND, false, ((GraphicalEditPart)getHost()).getDiagramPreferencesHint());
-				CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(viewDescriptor);
-				ccr.setType(RequestConstants.REQ_CONNECTION_START);
-				ccr.setSourceEditPart(sourceEditPart);
-				sourceEditPart.getCommand(ccr);
-				ccr.setTargetEditPart(targetEditPart);
-				ccr.setType(RequestConstants.REQ_CONNECTION_END);
-				return new CommandProxy(targetEditPart.getCommand(ccr));
+				return compositeCommand;
 			}
 		}
 		return null;
 	}
+	
+	
+	/**
+	 * Can display existing link between views.
+	 *
+	 * @param connector the connector
+	 * @param sourceView the source view
+	 * @param targetView the target view
+	 * @return true, if successful
+	 */
+	public boolean canDisplayExistingLinkBetweenViews(final Connector connector, final View sourceView, final View targetView) {
+		return true;
+	}
+
 
 	/**
-	 * 
-	 * @param eobject
-	 *        an eobject
-	 * @return
-	 *         the semantic hint to use for this eobject
+	 * Gets the semantic hint.
+	 *
+	 * @param eobject an eobject
+	 * @return the semantic hint
+	 * the semantic hint to use for this eobject
 	 */
 	protected String getSemanticHint(final EObject eobject) {
 		return null;
 	}
 
+	
 	/**
-	 * Retrieves editpart corresponding to domainModelElement
-	 * 
-	 * @param domainModelElement
-	 * @param domain2NotationMap
+	 * Retrieves editpart corresponding to model element.
+	 *
+	 * @param element the model element
+	 * @param domain2NotationMap the domain to notation map
+	 * @return the editPart
 	 */
-	protected EditPart getEditPart(final EObject domainModelElement, Map<? extends EObject, ? extends View> domain2NotationMap) {
-		View view = domain2NotationMap.get(domainModelElement);
+	protected EditPart getEditPart(final EObject element, Domain2Notation domain2NotationMap) {
+		View view = domain2NotationMap.getFirstView(element);
 		if(view != null) {
 			return (EditPart)getHost().getViewer().getEditPartRegistry().get(view);
 		}
 		return null;
 	}
+	
+	
+	/**
+	 * Gets the editpart from view.
+	 *
+	 * @param view the view
+	 * @return the editpart from theview
+	 */
+	protected EditPart getEditPartFromView(View view) {
+		if(view != null) {
+			return (EditPart)getHost().getViewer().getEditPartRegistry().get(view);
+		}
+		return null;
+	}	
+	
+	
 
 	/**
-	 * 
-	 * @return
-	 *         the label provider to use in the dialog
+	 * Gets the label provider.
+	 *
+	 * @return the label provider
+	 * the label provider to use in the dialog
 	 */
 	protected abstract ILabelProvider getLabelProvider();
 
 	/**
-	 * 
-	 * Content provider for the dialog
-	 * 
+	 * Content provider for the dialog.
 	 */
 	public static class LinkContentProvider implements ITreeContentProvider {
 
-		/**
-		 * the map between selected graphical elements and their available links
-		 */
+		/** the map between selected graphical elements and their available links. */
 		private final Map<EditPart, Set<EObject>> availableLinks;
 
 
+		/**
+		 * Instantiates a new link content provider.
+		 *
+		 * @param availableLinks the available links
+		 */
 		public LinkContentProvider(final Map<EditPart, Set<EObject>> availableLinks) {
 			this.availableLinks = availableLinks;
 		}
 
 		/**
-		 * 
+		 * Dispose.
+		 *
 		 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
-		 * 
 		 */
 		public void dispose() {
 			this.availableLinks.clear();
 		}
 
 		/**
-		 * 
+		 * Input changed.
+		 *
+		 * @param viewer the viewer
+		 * @param oldInput the old input
+		 * @param newInput the new input
 		 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
-		 * 
-		 * @param viewer
-		 * @param oldInput
-		 * @param newInput
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			//nothing to do
 		}
 
 		/**
-		 * 
+		 * Gets the elements.
+		 *
+		 * @param inputElement the input element
+		 * @return the elements
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getElements(java.lang.Object)
-		 * 
-		 * @param inputElement
-		 * @return
 		 */
 		public Object[] getElements(Object inputElement) {
 			if(inputElement instanceof Collection<?>) {
@@ -656,11 +677,11 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 		}
 
 		/**
-		 * 
+		 * Gets the children.
+		 *
+		 * @param parentElement the parent element
+		 * @return the children
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
-		 * 
-		 * @param parentElement
-		 * @return
 		 */
 		public Object[] getChildren(Object parentElement) {
 			if(this.availableLinks.containsKey(parentElement)) {
@@ -670,11 +691,11 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 		}
 
 		/**
-		 * 
+		 * Gets the parent.
+		 *
+		 * @param element the element
+		 * @return the parent
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
 		 */
 		public Object getParent(Object element) {
 			final Iterator<Entry<EditPart, Set<EObject>>> iter = this.availableLinks.entrySet().iterator();
@@ -688,11 +709,11 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 		}
 
 		/**
-		 * 
+		 * Checks for children.
+		 *
+		 * @param element the element
+		 * @return true, if successful
 		 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
-		 * 
-		 * @param element
-		 * @return
 		 */
 		public boolean hasChildren(Object element) {
 			if(this.availableLinks.containsKey(element)) {

@@ -14,11 +14,12 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 
-public class PapyrusDiagramEditPart
-		extends DiagramEditPart {
+public class PapyrusDiagramEditPart extends DiagramEditPart {
 
 	private IConflictingEditPartFilter conflictFilter = IConflictingEditPartFilter.DEFAULT;
 
@@ -28,7 +29,7 @@ public class PapyrusDiagramEditPart
 
 	@Override
 	protected void removeChild(EditPart child) {
-		if (!getConflictingEditPartFilter().isConflicting(child)) {
+		if(!getConflictingEditPartFilter().isConflicting(child)) {
 			super.removeChild(child);
 		}
 	}
@@ -38,8 +39,16 @@ public class PapyrusDiagramEditPart
 	}
 
 	public void setConflictingEditPartFilter(IConflictingEditPartFilter filter) {
-		this.conflictFilter = (filter == null)
-			? IConflictingEditPartFilter.DEFAULT
-			: filter;
+		this.conflictFilter = (filter == null) ? IConflictingEditPartFilter.DEFAULT : filter;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart#createDefaultEditPolicies()
+	 * 
+	 */
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new XYLayoutWithConstrainedResizedEditPolicy());
 	}
 }

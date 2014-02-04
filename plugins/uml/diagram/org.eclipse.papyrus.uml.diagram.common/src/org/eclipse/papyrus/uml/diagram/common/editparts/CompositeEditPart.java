@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
-import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.swt.graphics.Color;
 
@@ -52,7 +52,6 @@ public abstract class CompositeEditPart extends AbstractBorderedShapeEditPart {
 		// set the figure active when the feature of the of a class is true
 		if(resolveSemanticElement() != null) {
 			refreshShadow();
-
 		}
 	}
 
@@ -60,6 +59,7 @@ public abstract class CompositeEditPart extends AbstractBorderedShapeEditPart {
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshShadow();
+		refreshTransparency();
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public abstract class CompositeEditPart extends AbstractBorderedShapeEditPart {
 	}
 
 	protected void refreshShadow() {
-		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
+		getPrimaryShape().setShadow(AppearanceHelper.showShadow((View)getModel()));
 	}
 
 }

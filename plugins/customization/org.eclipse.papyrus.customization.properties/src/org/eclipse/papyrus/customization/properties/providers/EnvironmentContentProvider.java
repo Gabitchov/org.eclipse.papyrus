@@ -48,7 +48,7 @@ public class EnvironmentContentProvider extends SemanticEMFContentProvider imple
 		}
 
 		List<Object> allObjects = new LinkedList<Object>();
-		for(Environment environment : ConfigurationManager.instance.getPropertiesRoot().getEnvironments()) {
+		for(Environment environment : ConfigurationManager.getInstance().getPropertiesRoot().getEnvironments()) {
 			allObjects.addAll((List<?>)environment.eGet(feature));
 		}
 		return allObjects.toArray(new EObject[0]);

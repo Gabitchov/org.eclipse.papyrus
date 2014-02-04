@@ -118,3 +118,8 @@ TimingDiagram Gate {
 	lineColor: #2A52BE;
 }
 
+ParametricDiagram [appliedStereotypes~=ConstraintProperty] Property,
+ParametricDiagram [appliedStereotypes~=ConstraintProperty] {
+	elementIcon:false;
+}
+

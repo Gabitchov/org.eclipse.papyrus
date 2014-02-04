@@ -23,7 +23,6 @@ import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
-import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.EditableRule;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
@@ -61,7 +60,6 @@ import org.eclipse.papyrus.infra.nattable.dataprovider.AbstractDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.RowHeaderDataProvider;
-import org.eclipse.papyrus.infra.nattable.formatter.PapyrusExportFormatter;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
@@ -207,7 +205,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			final Menu menu = menuMgr.createContextMenu(this.natTable);
 			this.natTable.setMenu(menu);
 
-			this.selectionProvider = new TableSelectionProvider(this.bodyLayerStack.getSelectionLayer());
+			this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
 			site.registerContextMenu(menuMgr, this.selectionProvider);
 			site.setSelectionProvider(this.selectionProvider);
 		}
@@ -222,8 +220,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			//commented because seems generate several bugs with edition
 			//newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL,  GridRegion.BODY);
-			configRegistry.registerConfigAttribute(CellConfigAttributes.EXPORT_FORMATTER, new PapyrusExportFormatter());
-
 			this.natTable.setConfigRegistry(configRegistry);
 			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 			this.natTable.configure();
@@ -425,9 +421,15 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	@Override
 	public void dispose() {
-		this.bodyDataProvider.dispose();
-		this.rowHeaderDataProvider.dispose();
-		this.columnHeaderDataProvider.dispose();
+		if(this.bodyDataProvider != null) {
+			this.bodyDataProvider.dispose();
+		}
+		if(this.rowHeaderDataProvider != null) {
+			this.rowHeaderDataProvider.dispose();
+		}
+		if(this.columnHeaderDataProvider != null) {
+			this.columnHeaderDataProvider.dispose();
+		}
 		this.tableContext = null;
 	}
 

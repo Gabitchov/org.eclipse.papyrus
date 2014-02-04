@@ -756,7 +756,7 @@ public class OperandBoundsComputeHelper {
 		return groupRect;
 	}
 
-	private static Command getShiftEnclosedFragmentsCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY) {
+	public static Command getShiftEnclosedFragmentsCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY) {
 		if(editPart == null || newBounds == null || movedY == 0) {
 			return null;
 		}
@@ -808,7 +808,7 @@ public class OperandBoundsComputeHelper {
 	 */
 	public static int computeCombinedFragementHeaderHeight(CombinedFragmentEditPart combinedFragmentEditPart) {
 		int headerHeight = 0;
-		IFigure labelContainer = combinedFragmentEditPart.getPrimaryShape().getHeaderLabel().getParent();
+		IFigure labelContainer = combinedFragmentEditPart.getPrimaryShape().getHeaderContainer();
 		if(labelContainer != null) {
 			headerHeight = labelContainer.getPreferredSize().height();
 		}

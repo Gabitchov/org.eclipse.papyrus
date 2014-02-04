@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.cdo.validation.problems.edit;bundle-version="0.10.1",
  org.eclipse.papyrus.editor;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.1",
- com.google.guava;bundle-version="[11.0.0,12.0.0)"
+ com.google.guava;bundle-version="11.0.0"
 Export-Package: org.eclipse.papyrus.cdo.internal.ui;x-friends:="org.eclipse.papyrus.cdo.ui.tests,org.eclipse.papyrus.cdo.uml.ui",
  org.eclipse.papyrus.cdo.internal.ui.actions;x-friends:="org.eclipse.papyrus.cdo.ui.tests",
  org.eclipse.papyrus.cdo.internal.ui.adapters;x-friends:="org.eclipse.papyrus.cdo.ui.tests",

@@ -43,7 +43,7 @@ public class EnvironmentExtensionPoint {
 			URI uri = URI.createURI("ppe:/environment/" + e.getContributor().getName() + "/" + environmentResource); //$NON-NLS-1$ //$NON-NLS-2$
 			//URI uri = URI.createPlatformPluginURI(e.getContributor().getName() + "/" + environmentResource, true); //$NON-NLS-1$
 			try {
-				ConfigurationManager.instance.addEnvironment(uri);
+				ConfigurationManager.getInstance().addEnvironment(uri);
 				ConstraintsManager.instance.addEnvironment(uri); //We also add it to the constraints extension point, which we "extend"
 			} catch (IOException ex) {
 				Activator.log.error("The plugin " + e.getContributor() + " contributed an invalid " + "extension for " + EXTENSION_ID, ex); //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$

@@ -151,8 +151,8 @@ public class CustomTimeObservationEditPart extends TimeObservationEditPart {
 		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(TimeMarkElementFigure.TIME_MARK_LENGTH, 1);
 		//String prefElementId = "TimeObservation";
 		//IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		//String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
+		//String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
 		//DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		//FIXME: workaround for #154536
 		//result.getBounds().setSize(result.getPreferredSize());

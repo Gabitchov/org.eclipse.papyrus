@@ -237,7 +237,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 			ecorePackage = (EPackage)loadEMFModel(packageURI);
 			ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(ecorePackage));
 
-			PropertiesRoot root = ConfigurationManager.instance.getPropertiesRoot();
+			PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
 			ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
 
 			LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();

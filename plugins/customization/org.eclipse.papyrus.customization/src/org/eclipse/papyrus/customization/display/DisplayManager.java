@@ -19,7 +19,7 @@ public class DisplayManager {
 
 	private DisplayManager() {
 		//TODO : Use a local constraint engine, and remove the context declaration in plugin.xml
-		constraintEngine = ConfigurationManager.instance.constraintEngine;
+		constraintEngine = ConfigurationManager.getInstance().getConstraintEngine();
 
 		//TODO : Add support for local constraint engines in the creation factories
 		//		constraintEngine = new DefaultViewConstraintEngine();

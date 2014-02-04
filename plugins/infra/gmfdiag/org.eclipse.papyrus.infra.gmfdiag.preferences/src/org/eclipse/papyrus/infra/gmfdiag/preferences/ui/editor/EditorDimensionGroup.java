@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.infra.gmfdiag.preferences.ui.editor;
 
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DimensionGroup;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -43,6 +43,6 @@ public class EditorDimensionGroup extends DimensionGroup {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup#getPreferenceConstant(int)
 	 */
 	protected String getPreferenceConstant(int preferenceType) {
-		return PreferenceConstantHelper.getPapyrusEditorConstant(preferenceType);
+		return PreferencesConstantsHelper.getPapyrusEditorConstant(preferenceType);
 	}
 }

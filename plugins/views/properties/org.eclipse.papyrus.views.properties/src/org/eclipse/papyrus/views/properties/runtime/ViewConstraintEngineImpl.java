@@ -28,9 +28,9 @@ import org.eclipse.papyrus.views.properties.contexts.View;
 public class ViewConstraintEngineImpl extends DefaultConstraintEngine<View> implements ViewConstraintEngine {
 
 	@Override
-	public void refresh() {
+	public synchronized void refresh() {
 		constraints.clear();
-		Collection<Context> contexts = ConfigurationManager.instance.getEnabledContexts();
+		Collection<Context> contexts = ConfigurationManager.getInstance().getEnabledContexts();
 		for(Context context : contexts) {
 			addContext(context);
 		}

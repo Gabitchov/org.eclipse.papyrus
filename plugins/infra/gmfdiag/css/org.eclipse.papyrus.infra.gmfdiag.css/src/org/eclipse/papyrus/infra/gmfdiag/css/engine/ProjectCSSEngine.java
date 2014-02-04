@@ -50,26 +50,28 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 		public void resourceChanged(IResourceChangeEvent event) {
 			if(project != null) {
 				try {
-					event.getDelta().accept(new IResourceDeltaVisitor() {
+					if(event != null && event.getDelta() != null) {
+						event.getDelta().accept(new IResourceDeltaVisitor() {
 
-						public boolean visit(IResourceDelta delta) throws CoreException {
-							if(delta.getResource().equals(stylesheetPreferences)) {
-								ProjectCSSEngine.this.reset();
-								DiagramHelper.setNeedsRefresh();
-								Display.getDefault().asyncExec(new Runnable() {
+							public boolean visit(IResourceDelta delta) throws CoreException {
+								if(delta.getResource().equals(stylesheetPreferences)) {
+									ProjectCSSEngine.this.reset();
+									DiagramHelper.setNeedsRefresh();
+									Display.getDefault().asyncExec(new Runnable() {
 
-									public void run() {
-										DiagramHelper.refreshDiagrams();
-									}
-								});
+										public void run() {
+											DiagramHelper.refreshDiagrams();
+										}
+									});
 
-								return false;
+									return false;
+								}
+
+								return true;
 							}
 
-							return true;
-						}
-
-					});
+						});
+					}
 				} catch (CoreException ex) {
 					Activator.log.error(ex);
 				}

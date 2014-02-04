@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.emf.type.core,
  org.eclipse.core.expressions,
- com.google.guava
+ com.google.guava;bundle-version="11.0.0"
 Export-Package: org.eclipse.papyrus.infra.nattable.modelexplorer,
  org.eclipse.papyrus.infra.nattable.modelexplorer.handlers,
  org.eclipse.papyrus.infra.nattable.modelexplorer.messages,

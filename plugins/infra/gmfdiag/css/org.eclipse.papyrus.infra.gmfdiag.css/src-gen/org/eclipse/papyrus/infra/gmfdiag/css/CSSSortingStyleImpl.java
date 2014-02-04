@@ -31,25 +31,25 @@ public class CSSSortingStyleImpl extends SortingStyleImpl implements CSSSortingS
 
 	protected CSSSortingStyle getSortingStyle() {
 		if(sortingStyle == null) {
-			sortingStyle = new  CSSSortingStyleDelegate(this, getEngine());
+			sortingStyle = new CSSSortingStyleDelegate(this, getEngine());
 		}
 		return sortingStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -62,20 +62,20 @@ public class CSSSortingStyleImpl extends SortingStyleImpl implements CSSSortingS
 	//////////////////////////////////////////
 
 
-	public Sorting getCSSSorting(){
+	public Sorting getCSSSorting() {
 		Sorting value = super.getSorting();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getSortingStyle_Sorting(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getSortingStyle_Sorting(), value)) {
 			return value;
 		} else {
 			return getSortingStyle().getCSSSorting();
 		}
 	}
 
-	public java.util.Map getCSSSortingKeys(){
+	public java.util.Map getCSSSortingKeys() {
 		java.util.Map value = super.getSortingKeys();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getSortingStyle_SortingKeys(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getSortingStyle_SortingKeys(), value)) {
 			return value;
 		} else {
 			return getSortingStyle().getCSSSortingKeys();
@@ -84,13 +84,13 @@ public class CSSSortingStyleImpl extends SortingStyleImpl implements CSSSortingS
 
 
 	@Override
-	public Sorting getSorting(){
+	public Sorting getSorting() {
 		//return super.getSorting();
 		return getCSSSorting();
 	}
 
 	@Override
-	public java.util.Map getSortingKeys(){
+	public java.util.Map getSortingKeys() {
 		//return super.getSortingKeys();
 		return getCSSSortingKeys();
 	}
@@ -102,17 +102,17 @@ public class CSSSortingStyleImpl extends SortingStyleImpl implements CSSSortingS
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setSorting(Sorting value){
+	public void setSorting(Sorting value) {
 		super.setSorting(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getSortingStyle_Sorting();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setSortingKeys(java.util.Map value){
+	public void setSortingKeys(java.util.Map value) {
 		super.setSortingKeys(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getSortingStyle_SortingKeys();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -125,7 +125,7 @@ public class CSSSortingStyleImpl extends SortingStyleImpl implements CSSSortingS
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

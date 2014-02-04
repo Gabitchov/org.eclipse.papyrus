@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.tools.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.papyrus.infra.tools.Activator;
 
 /**
@@ -29,6 +32,12 @@ import org.eclipse.papyrus.infra.tools.Activator;
 public class ClassLoaderHelper {
 
 	/**
+	 * Usually, there are few classes with many different accesses. Using a cache, we can improve
+	 * the performances between 10 and 20 times, with really few memory consumption
+	 */
+	private static final Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
+
+	/**
 	 * Loads the class matching the given className. Exceptions are caught and sent
 	 * to the Logger.
 	 * 
@@ -39,8 +48,12 @@ public class ClassLoaderHelper {
 	 */
 	public static Class<?> loadClass(String className) {
 		try {
-			Class<?> clazz = Activator.getDefault().getBundle().loadClass(className);
-			return clazz;
+			Class<?> result = classes.get(className);
+			if(result == null) {
+				result = Activator.getDefault().getBundle().loadClass(className);
+				classes.put(className, result);
+			}
+			return result;
 		} catch (ClassNotFoundException ex) {
 			Activator.log.error(String.format("The class %s doesn't exist", className), ex); //$NON-NLS-1$ 
 		} catch (NullPointerException ex) {

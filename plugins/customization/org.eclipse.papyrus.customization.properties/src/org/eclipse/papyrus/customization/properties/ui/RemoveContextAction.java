@@ -55,7 +55,7 @@ public class RemoveContextAction {
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					try {
 						delegate.delete(sourceContext, monitor);
-						ConfigurationManager.instance.deleteContext(sourceContext);
+						ConfigurationManager.getInstance().deleteContext(sourceContext);
 					} catch (CoreException ex) {
 						Activator.log.error(ex);
 					}

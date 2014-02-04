@@ -17,7 +17,7 @@ import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPrefere
 import static org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants.DISP_NAME;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
@@ -47,8 +47,8 @@ public class UnitPreferencePage extends BlockDefinitionDiagramNodePreferencePage
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		// Start of user code custom default initializations
-		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 100);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 60);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.WIDTH), 100);
+		store.setDefault(PreferencesConstantsHelper.getElementConstant(prefKey, PreferencesConstantsHelper.HEIGHT), 60);
 
 		store.setDefault(LabelPreferenceHelper.getPreferenceConstant(prefLabelKey, ILabelPreferenceConstants.LABEL_DISPLAY_PREFERENCE), DISP_NAME | DISP_DIMENSION);
 		// End of user code

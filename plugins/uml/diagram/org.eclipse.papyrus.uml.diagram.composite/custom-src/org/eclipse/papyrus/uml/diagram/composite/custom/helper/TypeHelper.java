@@ -67,14 +67,14 @@ public class TypeHelper extends ElementHelper {
 			// Prepare a command for the Property creation and the drop in diagram
 			// 1. Prepare creation command
 			CreateElementRequest req = new CreateElementRequest(getEditingDomain(), graphicalParentObject, elementType);
-			PropertyPartFromTypeCreateCommand propertyCreateCommand = new PropertyPartFromTypeCreateCommand(req, (StructuredClassifier)graphicalParentObject, (Type)semanticElement, semanticAdapter);
+			PropertyPartFromTypeCreateCommand propertyCreateCommand = new PropertyPartFromTypeCreateCommand(req, (StructuredClassifier)graphicalParentObject, semanticElement, semanticAdapter);
 
-			if (reTarget(graphicalTarget) != null) {	// might be null, if composite compartment is not shown 
+			if(reTarget(graphicalTarget) != null) { // might be null, if composite compartment is not shown 
 				// 2. Prepare the drop command
 				ViewDescriptor descriptor = new ViewDescriptor((IAdaptable)propertyCreateCommand.getCommandResult().getReturnValue(), Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, true, graphicalTarget.getDiagramPreferencesHint());
 				CreateViewCommand viewCreateCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(reTarget(graphicalTarget).getModel())));
 				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)viewCreateCommand.getCommandResult().getReturnValue(), location);
-				
+
 				// 3. Create the compound command
 				cc.add(new ICommandProxy(propertyCreateCommand));
 				cc.add(new ICommandProxy(viewCreateCommand));
@@ -120,9 +120,12 @@ public class TypeHelper extends ElementHelper {
 	/**
 	 * Drop a nested classifier into the structure compartment (added in context of bug 402717)
 	 * 
-	 * @param graphicalTarget the edit part of the target element
-	 * @param semanticElement the element to drop
-	 * @param location its position.
+	 * @param graphicalTarget
+	 *        the edit part of the target element
+	 * @param semanticElement
+	 *        the element to drop
+	 * @param location
+	 *        its position.
 	 * @return
 	 */
 	public CompoundCommand dropTypeOnClassifier(GraphicalEditPart graphicalTarget, Type semanticElement, Point location) {
@@ -131,23 +134,24 @@ public class TypeHelper extends ElementHelper {
 		EObject semanticParentObject = graphicalTarget.resolveSemanticElement();
 		if(semanticParentObject instanceof StructuredClassifier) {
 
-			if (reTarget(graphicalTarget) != null) {	// might be null, if composite compartment is not shown
+			if(reTarget(graphicalTarget) != null) { // might be null, if composite compartment is not shown
 				View parentView = (View)reTarget(graphicalTarget).getModel();
-				IHintedType elementType = (IHintedType)UMLElementTypes.getElementType(
-					UMLVisualIDRegistry.getNodeVisualID(parentView, semanticElement));
+				IHintedType elementType = (IHintedType)UMLElementTypes.getElementType(UMLVisualIDRegistry.getNodeVisualID(parentView, semanticElement));
 
-				ViewDescriptor descriptor = new ViewDescriptor((IAdaptable)new EObjectAdapter(semanticElement), Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, false, graphicalTarget.getDiagramPreferencesHint());
-				CreateViewCommand viewCreateCommand = new CreateViewCommand(getEditingDomain(), descriptor, parentView);
-				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)viewCreateCommand.getCommandResult().getReturnValue(), location);
+				if(elementType != null) {
+					ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(semanticElement), Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, false, graphicalTarget.getDiagramPreferencesHint());
+					CreateViewCommand viewCreateCommand = new CreateViewCommand(getEditingDomain(), descriptor, parentView);
+					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)viewCreateCommand.getCommandResult().getReturnValue(), location);
 
-				cc.add(new ICommandProxy(viewCreateCommand));
-				cc.add(new ICommandProxy(setBoundsCommand));
+					cc.add(new ICommandProxy(viewCreateCommand));
+					cc.add(new ICommandProxy(setBoundsCommand));
+				}
 			}
 		}
 
 		return cc;
 	}
-	
+
 	/**
 	 * Re-target the target EditPart to the real expected target (e.g.: one of its compartment)
 	 * 

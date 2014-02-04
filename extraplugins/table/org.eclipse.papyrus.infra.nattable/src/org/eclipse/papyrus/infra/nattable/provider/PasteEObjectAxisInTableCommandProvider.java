@@ -72,7 +72,7 @@ import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
  * @author VL222926
  * 
  */
-
+//use PasteEObjectAxisInNattableCommandProvider, will be removed when the new paste api will allows to paste columns
 public class PasteEObjectAxisInTableCommandProvider {
 
 	private static final int MIN_AXIS_FOR_PROGRESS_MONITOR = 5;

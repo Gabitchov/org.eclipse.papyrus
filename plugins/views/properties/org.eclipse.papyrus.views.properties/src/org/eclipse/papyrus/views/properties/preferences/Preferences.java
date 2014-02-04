@@ -59,7 +59,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 		Label label = new Label(self, SWT.NONE);
 		label.setText(Messages.Preferences_Contexts);
 
-		final ConfigurationManager configurationManager = ConfigurationManager.instance;
+		final ConfigurationManager configurationManager = ConfigurationManager.getInstance();
 
 		contextState.init();
 
@@ -106,8 +106,8 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 	@Override
 	public void performDefaults() {
-		for(Context context : ConfigurationManager.instance.getContexts()) {
-			boolean applied = ConfigurationManager.instance.isPlugin(context);
+		for(Context context : ConfigurationManager.getInstance().getContexts()) {
+			boolean applied = ConfigurationManager.getInstance().isPlugin(context);
 			Button checkbox = checkboxes.get(context);
 			if(checkbox != null) {
 				checkbox.setSelection(applied);
@@ -120,9 +120,9 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 	private String getLabel(Context context) {
 		String qualifier;
 
-		if(ConfigurationManager.instance.isPlugin(context)) {
+		if(ConfigurationManager.getInstance().isPlugin(context)) {
 			qualifier = Messages.Preferences_Plugin;
-		} else if(ConfigurationManager.instance.isMissing(context)) {
+		} else if(ConfigurationManager.getInstance().isMissing(context)) {
 			qualifier = "missing";
 		} else {
 			qualifier = Messages.Preferences_Custom;
@@ -152,15 +152,15 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 		public boolean saveContext() {
 			for(Entry<Context, Boolean> entry : contexts.entrySet()) {
 				if(entry.getValue()) {
-					ConfigurationManager.instance.enableContext(entry.getKey(), false);
+					ConfigurationManager.getInstance().enableContext(entry.getKey(), false);
 				} else {
-					ConfigurationManager.instance.disableContext(entry.getKey(), false);
+					ConfigurationManager.getInstance().disableContext(entry.getKey(), false);
 				}
 			}
 
-			ConfigurationManager.instance.update();
+			ConfigurationManager.getInstance().update();
 
-			Collection<ConfigurationConflict> conflicts = ConfigurationManager.instance.checkConflicts();
+			Collection<ConfigurationConflict> conflicts = ConfigurationManager.getInstance().checkConflicts();
 
 			if(changeOccured && !conflicts.isEmpty()) {
 				String errorMessage = Messages.Preferences_ConflictWarning1;

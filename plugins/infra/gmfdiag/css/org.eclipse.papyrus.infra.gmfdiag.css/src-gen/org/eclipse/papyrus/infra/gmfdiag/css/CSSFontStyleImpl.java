@@ -30,25 +30,25 @@ public class CSSFontStyleImpl extends FontStyleImpl implements CSSFontStyle {
 
 	protected CSSFontStyle getFontStyle() {
 		if(fontStyle == null) {
-			fontStyle = new  CSSFontStyleDelegate(this, getEngine());
+			fontStyle = new CSSFontStyleDelegate(this, getEngine());
 		}
 		return fontStyle;
 	}
 
-	protected ExtendedCSSEngine getEngine(){
-		if (engine == null){
+	protected ExtendedCSSEngine getEngine() {
+		if(engine == null) {
 			engine = ((CSSDiagramImpl)findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
 
-	protected View findView(){
+	protected View findView() {
 		EObject parent = eContainer();
-		while (! (parent instanceof View) && parent != null){
+		while(!(parent instanceof View) && parent != null) {
 			parent = parent.eContainer();
 		}
 
-		if (parent != null){
+		if(parent != null) {
 			return (View)parent;
 		}
 
@@ -61,70 +61,70 @@ public class CSSFontStyleImpl extends FontStyleImpl implements CSSFontStyle {
 	//////////////////////////////////////////
 
 
-	public int getCSSFontColor(){
+	public int getCSSFontColor() {
 		int value = super.getFontColor();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontColor(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontColor(), value)) {
 			return value;
 		} else {
 			return getFontStyle().getCSSFontColor();
 		}
 	}
 
-	public java.lang.String getCSSFontName(){
+	public java.lang.String getCSSFontName() {
 		java.lang.String value = super.getFontName();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontName(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontName(), value)) {
 			return value;
 		} else {
 			return getFontStyle().getCSSFontName();
 		}
 	}
 
-	public int getCSSFontHeight(){
+	public int getCSSFontHeight() {
 		int value = super.getFontHeight();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontHeight(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_FontHeight(), value)) {
 			return value;
 		} else {
 			return getFontStyle().getCSSFontHeight();
 		}
 	}
 
-	public boolean isCSSBold(){
+	public boolean isCSSBold() {
 		boolean value = super.isBold();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Bold(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Bold(), value)) {
 			return value;
 		} else {
 			return getFontStyle().isCSSBold();
 		}
 	}
 
-	public boolean isCSSItalic(){
+	public boolean isCSSItalic() {
 		boolean value = super.isItalic();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Italic(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Italic(), value)) {
 			return value;
 		} else {
 			return getFontStyle().isCSSItalic();
 		}
 	}
 
-	public boolean isCSSUnderline(){
+	public boolean isCSSUnderline() {
 		boolean value = super.isUnderline();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Underline(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_Underline(), value)) {
 			return value;
 		} else {
 			return getFontStyle().isCSSUnderline();
 		}
 	}
 
-	public boolean isCSSStrikeThrough(){
+	public boolean isCSSStrikeThrough() {
 		boolean value = super.isStrikeThrough();
 
-		if (ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_StrikeThrough(), value)){
+		if(ForceValueHelper.isSet(findView(), this, NotationPackage.eINSTANCE.getFontStyle_StrikeThrough(), value)) {
 			return value;
 		} else {
 			return getFontStyle().isCSSStrikeThrough();
@@ -133,43 +133,43 @@ public class CSSFontStyleImpl extends FontStyleImpl implements CSSFontStyle {
 
 
 	@Override
-	public int getFontColor(){
+	public int getFontColor() {
 		//return super.getFontColor();
 		return getCSSFontColor();
 	}
 
 	@Override
-	public java.lang.String getFontName(){
+	public java.lang.String getFontName() {
 		//return super.getFontName();
 		return getCSSFontName();
 	}
 
 	@Override
-	public int getFontHeight(){
+	public int getFontHeight() {
 		//return super.getFontHeight();
 		return getCSSFontHeight();
 	}
 
 	@Override
-	public boolean isBold(){
+	public boolean isBold() {
 		//return super.isBold();
 		return isCSSBold();
 	}
 
 	@Override
-	public boolean isItalic(){
+	public boolean isItalic() {
 		//return super.isItalic();
 		return isCSSItalic();
 	}
 
 	@Override
-	public boolean isUnderline(){
+	public boolean isUnderline() {
 		//return super.isUnderline();
 		return isCSSUnderline();
 	}
 
 	@Override
-	public boolean isStrikeThrough(){
+	public boolean isStrikeThrough() {
 		//return super.isStrikeThrough();
 		return isCSSStrikeThrough();
 	}
@@ -181,57 +181,57 @@ public class CSSFontStyleImpl extends FontStyleImpl implements CSSFontStyle {
 	////////////////////////////////////////////////	
 
 	@Override
-	public void setFontColor(int value){
+	public void setFontColor(int value) {
 		super.setFontColor(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_FontColor();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setFontName(java.lang.String value){
+	public void setFontName(java.lang.String value) {
 		super.setFontName(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_FontName();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setFontHeight(int value){
+	public void setFontHeight(int value) {
 		super.setFontHeight(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_FontHeight();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setBold(boolean value){
+	public void setBold(boolean value) {
 		super.setBold(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_Bold();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setItalic(boolean value){
+	public void setItalic(boolean value) {
 		super.setItalic(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_Italic();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setUnderline(boolean value){
+	public void setUnderline(boolean value) {
 		super.setUnderline(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_Underline();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
 
 	@Override
-	public void setStrikeThrough(boolean value){
+	public void setStrikeThrough(boolean value) {
 		super.setStrikeThrough(value);
-	
+
 		EStructuralFeature feature = NotationPackage.eINSTANCE.getFontStyle_StrikeThrough();
 		ForceValueHelper.setValue(findView(), feature, value);
 	}
@@ -244,7 +244,7 @@ public class CSSFontStyleImpl extends FontStyleImpl implements CSSFontStyle {
 	public void eUnset(int featureId) {
 		super.eUnset(featureId);
 
-		EStructuralFeature feature = eDynamicFeature(featureId);
+		EStructuralFeature feature = eClass().getEStructuralFeature(featureId);
 		ForceValueHelper.unsetValue(findView(), feature);
 	}
 

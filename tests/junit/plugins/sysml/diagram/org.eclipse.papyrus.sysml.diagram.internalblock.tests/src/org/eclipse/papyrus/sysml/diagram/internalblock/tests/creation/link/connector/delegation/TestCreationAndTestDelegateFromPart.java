@@ -47,6 +47,8 @@ public class TestCreationAndTestDelegateFromPart extends AbstractConnectorCreati
 		isCreationAllowed.put(actorPart2_p1TargetView, true);
 
 		isCreationAllowed.put(portOnBlockTargetView, true);
+		isCreationAllowed.put(port1_Part1SourceView, true);
+		isCreationAllowed.put(port2_Part1TargetView, true);		
 		isCreationAllowed.put(port1_Part2TargetView, true);
 		isCreationAllowed.put(port2OnNestedPart2_Part1TargetView, true);
 
@@ -67,15 +69,18 @@ public class TestCreationAndTestDelegateFromPart extends AbstractConnectorCreati
 		isCreationAllowed.put(nestedValueTargetView, true);
 
 		// Initialize partWithPort for tests
-		Property part = (Property)p2View.getElement();
+		Property part1 = (Property)p1View.getElement();
+		Property part2 = (Property)p2View.getElement();
 		Property nestedpart = (Property)p2_p1View.getElement();
 
 		expectedSourcePartWithPort = new HashMap<View, ConnectableElement>();
 		expectedTargetPartWithPort = new HashMap<View, ConnectableElement>();
 
-		expectedTargetPartWithPort.put(port1_Part2TargetView, part);
+		expectedTargetPartWithPort.put(port1_Part1SourceView, part1);
+		expectedTargetPartWithPort.put(port2_Part1TargetView, part1);
+		expectedTargetPartWithPort.put(port1_Part2TargetView, part2);
 		expectedTargetPartWithPort.put(port2OnNestedPart2_Part1TargetView, nestedpart);
-		expectedTargetPartWithPort.put(flowport1_Part2TargetView, part);
+		expectedTargetPartWithPort.put(flowport1_Part2TargetView, part2);
 		expectedTargetPartWithPort.put(flowport1_NestedPart2_Part1TargetView, nestedpart);
 	}
 

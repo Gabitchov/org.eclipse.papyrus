@@ -84,11 +84,16 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.ShadowFigureHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AbstractHeadImpactLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GateCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.GatesHolderGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomCombinedFragmentItemSemanticEditPolicy;
@@ -115,9 +120,11 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
+ * Add implementing IPapyrusEditPart to displaying Stereotypes.
+ * 
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart implements ITextAwareEditPart {
+public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart implements ITextAwareEditPart, IPapyrusEditPart {
 
 	/**
 	 * Title for dialog of bloc operator modification error
@@ -166,6 +173,10 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 		//Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=389531
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new GatesHolderGraphicalNodeEditPolicy());
 		installEditPolicy("Gate Creation Edit Policy", new GateCreationEditPolicy());
+		//install a editpolicy to display stereotypes
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		//ignore impact layout when head changed.
+		installEditPolicy(AbstractHeadImpactLayoutEditPolicy.HEAD_IMPACT_LAYOUT_POLICY, new CombinedFragmentHeadImpactLayoutEditPolicy());
 	}
 
 	/**
@@ -203,8 +214,8 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "CombinedFragment";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new AnchorHelper.CombinedFragmentNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		return result;
 	}
