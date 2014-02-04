@@ -75,6 +75,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextSelectionEditPolic
 import org.eclipse.papyrus.gmf.diagram.common.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
@@ -123,12 +124,12 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Compartment-like isSelectable implementation.
-	 *
+	 * 
 	 * By default, the edit parts get selectable only if
 	 * the compartment's top level container matches the top level
 	 * container of the editpart that currently has the keyboard focus
 	 * i.e: you need to select the shape first before selecting a this label.
-	 *
+	 * 
 	 * @see CompartmentEditPart#isSelectable()
 	 */
 	@Override
@@ -260,7 +261,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 		String text = null;
 		EObject parserElement = getParserElement();
 		if(parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			text = getParser().getPrintString(new SemanticAdapter(parserElement, getNotationView()), getParserOptions().intValue());
 		}
 		if(text == null || text.length() == 0) {
 			text = defaultText;
@@ -563,7 +564,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 */
 	public int getDirectEditionType() {
@@ -581,7 +582,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 */
 	protected boolean checkExtendedEditor() {
@@ -593,7 +594,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 */
 	protected boolean checkDefaultEdition() {
@@ -628,7 +629,7 @@ public abstract class AbstractElementNodeLabelEditPart extends GraphicalEditPart
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 *
+	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
 	 */

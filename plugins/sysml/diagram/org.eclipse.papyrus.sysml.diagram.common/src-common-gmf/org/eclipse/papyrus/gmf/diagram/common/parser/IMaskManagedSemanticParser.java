@@ -13,8 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.gmf.diagram.common.parser;
 
+import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 
 /**
@@ -31,4 +33,12 @@ public interface IMaskManagedSemanticParser extends ISemanticParser {
 	 * @return the {@link Map} of masks
 	 */
 	public Map<String, String> getMasks();
+
+	/**
+	 * Gets the default mask configuration for this parser
+	 *
+	 * @return
+	 *         The default mask configuration for this parser
+	 */
+	public Collection<String> getDefaultValue(IAdaptable element);
 }

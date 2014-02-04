@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -129,5 +130,9 @@ public class UnitLabelParser extends NamedElementLabelParser {
 		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
 		masks.put(ILabelPreferenceConstants.DISP_DIMENSION, "Dimension");
 		return masks;
+	}
+
+	public Collection<String> getDefaultValue() {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_DIMENSION);
 	}
 }

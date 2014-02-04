@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -214,5 +215,9 @@ public class ConstraintLabelParser extends NamedElementLabelParser {
 		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
 		masks.put(ILabelPreferenceConstants.DISP_SPECIFICATION, "Specification");
 		return masks;
+	}
+
+	public Collection<String> getDefaultValue() {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_SPECIFICATION);
 	}
 }

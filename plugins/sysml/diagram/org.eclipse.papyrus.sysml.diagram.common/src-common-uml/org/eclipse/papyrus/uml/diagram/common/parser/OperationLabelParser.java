@@ -14,20 +14,26 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
+import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.uml.diagram.common.utils.ParameterLabelUtil;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.VisibilityKind;
 
@@ -99,8 +105,10 @@ public class OperationLabelParser extends NamedElementLabelParser {
 
 				StringBuffer params = new StringBuffer();
 				for(Parameter parameter : operation.getOwnedParameters()) {
-					String currentParamLabel = parameterParser.getPrintString(new SemanticAdapter(parameter, null), flags);
-					params.append(params.length() == 0 ? currentParamLabel : ", " + currentParamLabel);
+					if(parameter.getDirection() != ParameterDirectionKind.RETURN_LITERAL) {
+						String currentParamLabel = ParameterLabelUtil.getPrintString(parameter, extractParameterMaskValues(maskValues));
+						params.append(params.length() == 0 ? currentParamLabel : ", " + currentParamLabel);
+					}
 				}
 
 				result = String.format(NAME_FORMAT, result, name, params);
@@ -143,6 +151,19 @@ public class OperationLabelParser extends NamedElementLabelParser {
 				}
 			}
 		}
+		return result;
+	}
+
+	private static Collection<String> extractParameterMaskValues(Collection<String> operationMaskValues) {
+		Set<String> result = new HashSet<String>();
+
+		for(String maskValue : operationMaskValues) {
+			if(maskValue.startsWith(ICustomAppearance.PARAMETERS_PREFIX)) {
+				String newValue = StringHelper.firstToLower(maskValue.replace(ICustomAppearance.PARAMETERS_PREFIX, ""));
+				result.add(newValue);
+			}
+		}
+
 		return result;
 	}
 
@@ -203,5 +224,10 @@ public class OperationLabelParser extends NamedElementLabelParser {
 		masks.put(ILabelPreferenceConstants.DISP_PARAMETER_DEFAULT, "Parameter default value");
 		masks.put(ILabelPreferenceConstants.DISP_PARAMETER_MODIFIERS, "Parameter modifiers");
 		return masks;
+	}
+
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_TYPE, ILabelPreferenceConstants.DISP_PARAMETER_DIRECTION, ILabelPreferenceConstants.DISP_PARAMETER_NAME, ILabelPreferenceConstants.DISP_PARAMETER_TYPE);
 	}
 }

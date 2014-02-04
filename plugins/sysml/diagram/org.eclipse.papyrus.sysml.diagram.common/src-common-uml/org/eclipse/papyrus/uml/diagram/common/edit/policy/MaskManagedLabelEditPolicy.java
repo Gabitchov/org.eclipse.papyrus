@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.common.edit.policy;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +53,19 @@ public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements I
 	 * {@inheritDoc}
 	 */
 	public Collection<String> getCurrentDisplayValue() {
-		return MaskLabelHelper.getMaskValues(getView());
+		Collection<String> result = MaskLabelHelper.getMaskValues(getView());
+		if(result == null) {
+			IParser parser = getHostLabelEditPart().getParser();
+			if(parser instanceof IMaskManagedSemanticParser) {
+				result = ((IMaskManagedSemanticParser)parser).getDefaultValue(getHost());
+			}
+		}
+
+		if(result == null) {
+			return Collections.emptySet();
+		}
+
+		return result;
 	}
 
 	/**
@@ -72,12 +85,6 @@ public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements I
 	// @unused.
 	public void refreshDisplay() {
 		// Not implemented.
-	}
-
-	// @unused.
-	public String getPreferencePageID() {
-		// Not implemented.
-		return null;
 	}
 
 	/**

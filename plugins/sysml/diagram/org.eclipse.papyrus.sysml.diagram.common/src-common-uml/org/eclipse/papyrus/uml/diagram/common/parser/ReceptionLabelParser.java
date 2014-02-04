@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -121,7 +122,11 @@ public class ReceptionLabelParser extends NamedElementLabelParser implements IMa
 	public Map<String, String> getMasks() {
 		Map<String, String> masks = new HashMap<String, String>();
 		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
-		masks.put(ILabelPreferenceConstants.DISP_SIGNAL, "Signel");
+		masks.put(ILabelPreferenceConstants.DISP_SIGNAL, "Signal");
 		return masks;
+	}
+
+	public Collection<String> getDefaultValue() {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_SIGNAL);
 	}
 }

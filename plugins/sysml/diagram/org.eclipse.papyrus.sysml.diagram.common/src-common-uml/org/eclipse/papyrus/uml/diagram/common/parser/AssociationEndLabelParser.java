@@ -13,13 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Association;
@@ -167,6 +168,22 @@ public class AssociationEndLabelParser extends PropertyLabelParser {
 	 */
 	@Override
 	public Map<String, String> getMasks() {
-		return Collections.emptyMap();
+		return super.getMasks();
+	}
+
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
+		View view = (View)element.getAdapter(View.class);
+		if(view == null) {
+			return super.getDefaultValue(element);
+		}
+
+		if(view.getType() != null && view.getType().contains("multiplicity")) {
+			return Arrays.asList(ILabelPreferenceConstants.DISP_MULTIPLICITY, ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY);
+		} else if(view.getType() != null && view.getType().contains("role")) {
+			return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_VISIBILITY, ILabelPreferenceConstants.DISP_DERIVE);
+		}
+
+		return super.getDefaultValue(element);
 	}
 }

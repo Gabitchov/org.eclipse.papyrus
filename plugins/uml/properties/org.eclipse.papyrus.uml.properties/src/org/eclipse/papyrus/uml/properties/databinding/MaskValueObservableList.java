@@ -31,22 +31,19 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 
 /**
  * An IObservableList for the StringListValueStyle named "maskLabel" (See {@link VisualInformationPapyrusConstants#CUSTOM_MASK_LABEL}
- *
+ * 
  * It is used for configuring an {@link IMaskManagedLabelEditPolicy}
- *
+ * 
  * @author Camille Letavernier
- *
+ * 
  */
 public class MaskValueObservableList extends CustomStringStyleObservableList {
 
 	private EditPart editPart;
 
-	private EditingDomain domain;
-
 	public MaskValueObservableList(EditPart editPart, EditingDomain domain) {
 		super(getView(editPart), domain, VisualInformationPapyrusConstants.CUSTOM_MASK_LABEL);
 		this.editPart = editPart;
-		this.domain = domain;
 
 		updateWrappedList(getDefaultValues());
 	}

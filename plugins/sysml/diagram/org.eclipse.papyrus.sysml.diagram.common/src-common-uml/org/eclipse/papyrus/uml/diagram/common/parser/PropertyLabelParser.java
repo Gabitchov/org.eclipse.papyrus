@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -241,5 +242,10 @@ public class PropertyLabelParser extends NamedElementLabelParser {
 		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_VALUE, "Default Value");
 		masks.put(ILabelPreferenceConstants.DISP_MODIFIERS, "Modifiers");
 		return masks;
+	}
+
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_TYPE, ILabelPreferenceConstants.DISP_MULTIPLICITY, ILabelPreferenceConstants.DISP_UNDEFINED_TYPE);
 	}
 }

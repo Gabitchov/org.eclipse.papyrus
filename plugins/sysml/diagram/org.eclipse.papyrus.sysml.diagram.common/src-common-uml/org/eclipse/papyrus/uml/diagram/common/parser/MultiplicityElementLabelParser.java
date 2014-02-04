@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +36,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.helper.MaskLabelHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -167,9 +168,17 @@ public class MultiplicityElementLabelParser implements IMaskManagedSemanticParse
 	protected Collection<String> getMaskValues(IAdaptable element) {
 		View view = (View)element.getAdapter(View.class);
 		if(view == null) {
-			return Collections.emptySet();
+			return getDefaultValue(element);
 		}
 
-		return MaskLabelHelper.getMaskValues(view);
+		Collection<String> result = MaskLabelHelper.getMaskValues(view);
+		if(result == null) {
+			result = getDefaultValue(element);
+		}
+		return result;
+	}
+
+	public Collection<String> getDefaultValue(IAdaptable element) {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_MULTIPLICITY);
 	}
 }

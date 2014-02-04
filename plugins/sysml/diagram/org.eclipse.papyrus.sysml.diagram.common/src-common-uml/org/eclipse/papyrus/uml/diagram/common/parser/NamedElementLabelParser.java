@@ -151,9 +151,17 @@ public class NamedElementLabelParser implements IMaskManagedSemanticParser {
 	protected Collection<String> getMaskValues(IAdaptable element) {
 		View view = (View)element.getAdapter(View.class);
 		if(view == null) {
-			return Collections.emptySet();
+			return getDefaultValue(element);
 		}
 
-		return MaskLabelHelper.getMaskValues(view);
+		Collection<String> result = MaskLabelHelper.getMaskValues(view);
+		if(result == null) {
+			result = getDefaultValue(element);
+		}
+		return result;
+	}
+
+	public Collection<String> getDefaultValue(IAdaptable element) {
+		return Collections.emptySet();
 	}
 }

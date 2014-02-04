@@ -14,8 +14,11 @@
 package org.eclipse.papyrus.sysml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -94,5 +97,16 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 			}
 		}
 		return semanticElementsBeingParsed;
+	}
+
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>();
+		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
+		masks.put(ILabelPreferenceConstants.DISP_ID, "Id");
+		return masks;
+	}
+
+	public Collection<String> getDefaultValue() {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_ID);
 	}
 }

@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -59,6 +59,7 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
@@ -123,6 +124,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
@@ -151,7 +153,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 			((WrappingLabel)figure).setText("{" + text + "}");
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
-		} else {			
+		} else {
 			((Label)figure).setText(text);
 		}
 	}
@@ -195,6 +197,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("rawtypes")
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
@@ -203,6 +206,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -228,9 +232,9 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 		String text = null;
 		EObject parserElement = getParserElement();
 		if(parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			text = getParser().getPrintString(new SemanticAdapter(parserElement, getNotationView()), getParserOptions().intValue());
 		}
-		if (text == null) {
+		if(text == null) {
 			text = "";
 		}
 		return text;
@@ -372,6 +376,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 		final Request theRequest = request;
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
@@ -395,7 +400,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
@@ -444,6 +449,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -502,6 +508,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
@@ -513,6 +520,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -534,6 +542,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		if(parserElements != null) {
 			for(int i = 0; i < parserElements.size(); i++) {
@@ -547,10 +556,12 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if(accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -671,6 +682,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
@@ -679,6 +691,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
@@ -687,6 +700,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		refreshLabel();
 		Object feature = event.getFeature();
@@ -720,6 +734,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;
@@ -733,6 +748,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	public void activate() {
 		super.activate();
 		addOwnerElementListeners();
@@ -742,12 +758,13 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	 * @generated
 	 */
 	protected void addOwnerElementListeners() {
-		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
+		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel()));
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();

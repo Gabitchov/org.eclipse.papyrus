@@ -94,6 +94,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusAnchorableWra
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
+import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.edit.policy.MaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -235,7 +236,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 		String text = null;
 		EObject parserElement = getParserElement();
 		if(parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			text = getParser().getPrintString(new SemanticAdapter(parserElement, getNotationView()), getParserOptions().intValue());
 		}
 		if(text == null || text.length() == 0) {
 			text = defaultText;
