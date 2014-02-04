@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 Atos.
+ * Copyright (c) 2011, 2014 Atos, CEA, and others.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Mathieu Velten  mathieu.velten@atos.net - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -99,7 +99,8 @@ public class TransactionalEditingDomainManager {
 		//		NotifyingWorkspaceCommandStack stack = new NotifyingWorkspaceCommandStack(CheckedOperationHistory.getInstance());
 		//		stack.setResourceUndoContextPolicy(IResourceUndoContextPolicy.DEFAULT);
 
-		TransactionalEditingDomain result = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), resourceSet);
+		NestingTransactionalCommandStack stack = new NestingTransactionalCommandStack();
+		TransactionalEditingDomain result = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, resourceSet);
 
 		WorkspaceEditingDomainFactory.INSTANCE.mapResourceSet(result);
 

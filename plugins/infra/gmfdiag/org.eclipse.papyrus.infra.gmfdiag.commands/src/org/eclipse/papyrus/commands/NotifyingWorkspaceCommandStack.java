@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 Atos, CEA, and others.
+ * Copyright (c) 2011, 2014 Atos, CEA, and others.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +10,7 @@
  *  Mathieu Velten (Atos) - Initial API and implementation
  *  Arthur Daussy (Atos) - 363826: [Model Explorer] Drag and drop and undo, incorrect behavior
  *  Christian W. Damus (CEA) - 404220: Add contexts for tracking objects changed by operations (CDO)
+ *  Christian W. Damus (CEA) - bug 402525
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -181,7 +181,7 @@ implements IWorkspaceCommandStack {
 	}
 
 	// Documentation copied from the method specification
-	public final IUndoContext getDefaultUndoContext() {
+	public IUndoContext getDefaultUndoContext() {
 		return defaultContext;
 	}
 
