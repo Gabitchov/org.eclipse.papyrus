@@ -335,7 +335,7 @@ public abstract class PapyrusEdgeFigure extends PolylineConnectionEx {
 		if(diameter <= 1) {
 			this.bendpointDiameter = 0;
 		}
-		if(diameter % 2 == 1) {
+		if(diameter % 2 != 0) {
 			this.bendpointDiameter = diameter;
 		} else {
 			setBendPointDiameter(diameter + 1);
