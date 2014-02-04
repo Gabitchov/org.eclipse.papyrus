@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -17,6 +19,9 @@ import java.util.Set;
 import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.conversion.IConverter;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -363,4 +368,24 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 		dispose();
 	}
 
+	/**
+	 * Obtains the most appropriate operation executor for the object being edited.
+	 * 
+	 * @param context the object being edited
+	 * @return the executor to use to run operations (never {@code null})
+	 */
+	public IAtomicOperationExecutor getOperationExecutor(Object context) {
+		IAtomicOperationExecutor result;
+		if(context instanceof IAdaptable) {
+			result = (IAtomicOperationExecutor)((IAdaptable)context).getAdapter(IAtomicOperationExecutor.class);
+		} else {
+			result = (IAtomicOperationExecutor)Platform.getAdapterManager().getAdapter(context, IAtomicOperationExecutor.class);
+		}
+
+		if (result == null) {
+			result = IAtomicOperationExecutor.DEFAULT;
+		}
+		
+		return result;
+	}
 }

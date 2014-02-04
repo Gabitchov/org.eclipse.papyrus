@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -534,7 +536,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 			return;
 		}
 
-		Object newObject = factory.createObject(this.create);
+		Object newObject = factory.createObject(this.create, null);
 		if(newObject == null) {
 			return;
 		}

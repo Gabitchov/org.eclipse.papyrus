@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.messages;
 
@@ -31,6 +33,10 @@ public class Messages extends NLS {
 
 	/** The Multiple value editor_ add elements. */
 	public static String MultipleValueEditor_AddElements;
+
+	public static String MultipleValueEditor_addOperation;
+
+	public static String MultipleValueEditor_editOperation;
 
 	/** The Multiple value editor_ edit selected value */
 	public static String MultipleValueEditor_EditSelectedValue;
@@ -61,6 +67,8 @@ public class Messages extends NLS {
 
 	public static String ReferenceDialog_CreateANewObject;
 
+	public static String ReferenceDialog_editOperation;
+
 	public static String ReferenceDialog_EditTheCurrentValue;
 
 	/** The Reference dialog_ edit value */
@@ -68,6 +76,8 @@ public class Messages extends NLS {
 
 	/** The Reference dialog_ select value */
 	public static String ReferenceDialog_SelectValue;
+
+	public static String ReferenceDialog_setOperation;
 
 	/** The Reference dialog_ unset */
 	public static String ReferenceDialog_Unset;

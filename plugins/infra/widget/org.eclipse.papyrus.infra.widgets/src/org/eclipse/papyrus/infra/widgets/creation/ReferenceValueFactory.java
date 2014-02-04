@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.creation;
 
@@ -50,10 +52,13 @@ public interface ReferenceValueFactory {
 	 * @param widget
 	 *        The widget calling this factory. It can be used for example to retrieve
 	 *        the Display for opening a Dialog
+	 * @param context
+	 *        The object being edited, in which context the new object is to be created and which will as a result have a reference to the new object.
+	 *        If there is no context object (creation of a free-floating object) or it cannot be determined, this may be {@code null}
 	 * @return
 	 *         The newly created object, or null if no object has been created
 	 */
-	public Object createObject(Control widget);
+	public Object createObject(Control widget, Object context);
 
 	/**
 	 * The objects have been validated (For example, the user pressed "Ok")

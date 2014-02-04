@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.creation;
 
@@ -16,17 +18,23 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Callable;
 
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.emf.utils.EClassNameComparator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.Activator;
+import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.messages.Messages;
 import org.eclipse.papyrus.views.properties.providers.CreateInFeatureContentProvider;
 import org.eclipse.swt.SWT;
@@ -185,17 +193,67 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object createObject(Control widget) {
+	public final Object createObject(Control widget, Object context) {
+		Object result;
+		
+		final ResourceSet previous = NestedEditingDialogContext.getInstance().push(context);
+		
+		try {
+			result = doCreateObject(widget, context);
+		} finally {
+			NestedEditingDialogContext.getInstance().pop(previous);
+		}
+		
+		return result;
+	}
+	
+	protected Object doCreateObject(Control widget, Object context) {
 		Object instance;
+		
 		if(referenceIn.isContainment()) {
 			instance = simpleCreateObject(widget);
 		} else {
 			instance = createObjectInDifferentContainer(widget);
 		}
 
-		return super.createObject(widget, instance);
+		return createObject(widget, context, instance);
 	}
 
+	@Override
+	protected Object doEdit(final Control widget, final Object source, final Set<View> views, final String dialogTitle) {
+		Object result;
+
+		try {
+			NestedEditingDialogContext.getInstance().enter();
+			try {
+				result = getOperationExecutor(source).execute(new Callable<Object>() {
+					public Object call() throws Exception {
+						return basicDoEdit(widget, source, views, dialogTitle);
+					}
+				}, dialogTitle);
+			} finally {
+				NestedEditingDialogContext.getInstance().exit();
+			}
+		} catch (OperationCanceledException e) {
+			if(!NestedEditingDialogContext.getInstance().isNested()) {
+				// Propagate to the caller if not in a nested edit dialog
+				throw e;
+			}
+			result = null;
+		}
+
+		return result;
+	}
+	
+	protected final Object basicDoEdit(Control widget, Object source, Set<View> views, String dialogTitle) {
+		return super.doEdit(widget, source, views, dialogTitle);
+	}
+	
+	@Override
+	protected void handleEditCancelled(Control widget, Object source) {
+		throw new OperationCanceledException();
+	}
+	
 	protected EObject simpleCreateObject(Control widget) {
 		EClass eClass = chooseEClass(widget);
 		if(eClass == null) {
@@ -212,7 +270,14 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 			return null;
 		}
 
-		containerContentProvider.inputChanged(null, null, instance);
+		// Try to get the current resource set for a wide scope of places to put a new element
+		Object containerInput = NestedEditingDialogContext.getInstance().getResourceSet();
+		if (containerInput == null) {
+			// Only have the object that we've created for context
+			containerInput = instance;
+		}
+
+		containerContentProvider.inputChanged(null, null, containerInput);
 		referenceContentProvider.setType(instance.eClass());
 		CreateInDialog dialog = new CreateInDialog(widget.getShell(), instance);
 		dialog.setProviders(containerContentProvider, referenceContentProvider, containerLabelProvider, referenceLabelProvider);

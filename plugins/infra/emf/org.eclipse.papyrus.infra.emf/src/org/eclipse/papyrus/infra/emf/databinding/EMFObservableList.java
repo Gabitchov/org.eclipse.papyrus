@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.databinding;
 
@@ -17,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.ObservableList;
 import org.eclipse.emf.common.command.Command;
@@ -41,7 +44,7 @@ import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
  * @author Camille Letavernier
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
-public class EMFObservableList extends ObservableList implements ICommitListener, IChangeListener {
+public class EMFObservableList extends ObservableList implements ICommitListener, IChangeListener, IObserving {
 
 	/**
 	 * The list of commands that haven't been executed yet
@@ -106,6 +109,10 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		}
 	}
 
+	public Object getObserved() {
+		return source;
+	}
+	
 	@Override
 	public synchronized void dispose() {
 		if(concreteList instanceof IObservableList) {
