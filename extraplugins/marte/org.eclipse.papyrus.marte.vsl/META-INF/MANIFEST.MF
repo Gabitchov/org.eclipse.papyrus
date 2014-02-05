@@ -35,6 +35,6 @@ Require-Bundle: org.eclipse.xtext,
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
-Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.marte.vsl;singleton:=true
+Import-Package: org.apache.log4j
 

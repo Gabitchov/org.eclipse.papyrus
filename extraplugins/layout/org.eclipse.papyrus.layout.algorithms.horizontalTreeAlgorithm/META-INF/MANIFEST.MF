@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.layout;bundle-version="0.10.0",
+ org.eclipse.papyrus.layout;bundle-version="0.10.2",
  org.eclipse.zest.layouts
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.layout.algorithms.horizontaltree
  algorithm.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.layout.algorithms.horizontalT
  reeAlgorithm;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

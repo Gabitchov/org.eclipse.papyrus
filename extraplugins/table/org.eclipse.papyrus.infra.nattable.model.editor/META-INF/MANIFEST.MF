@@ -1,12 +1,4 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.infra.nattable.model.edit;bundle-version="0.10.1";visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.emf.edit.ui;visibility:=reexport,
- org.eclipse.ui.ide;visibility:=reexport,
- org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.infra.nattable.model.editor.customeditors,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.presentation,
@@ -17,15 +9,23 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model.editor.customeditors,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.presentation
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources;visibility:=reexport,
+ org.eclipse.papyrus.infra.nattable.model.edit;bundle-version="0.10.2";visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.emf.edit.ui;visibility:=reexport,
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.2"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.pr
  esentation.NattableEditorPlugin$Implementation
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.editor;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

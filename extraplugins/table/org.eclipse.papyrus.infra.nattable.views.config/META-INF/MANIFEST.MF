@@ -1,4 +1,23 @@
 Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.nattable;bundle-version="0.10.2",
+ org.eclipse.nebula.widgets.nattable.core,
+ org.eclipse.papyrus.infra.emf.nattable;bundle-version="0.10.2",
+ org.eclipse.emf.edit,
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.2",
+ org.eclipse.emf.transaction,
+ org.eclipse.gmf.runtime.emf.type.core,
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.2",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.10.2"
 Export-Package: org.eclipse.papyrus.infra.nattable.views.config,
  org.eclipse.papyrus.infra.nattable.views.config.celleditor,
  org.eclipse.papyrus.infra.nattable.views.config.manager.axis,
@@ -6,32 +25,13 @@ Export-Package: org.eclipse.papyrus.infra.nattable.views.config,
  org.eclipse.papyrus.infra.nattable.views.config.messages,
  org.eclipse.papyrus.infra.nattable.views.config.provider,
  org.eclipse.papyrus.infra.nattable.views.config.utils
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable;bundle-version="0.10.1",
- org.eclipse.nebula.widgets.nattable.core,
- org.eclipse.papyrus.infra.emf.nattable;bundle-version="0.10.1",
- org.eclipse.emf.edit,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.emf.transaction,
- org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.tools;bundle-version="0.10.1"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.views.config.Acti
  vator
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.views.config;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

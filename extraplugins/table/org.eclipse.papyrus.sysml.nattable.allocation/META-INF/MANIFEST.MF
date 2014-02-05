@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.sysml.nattable.allocation.config;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.nattable.common;bundle-version="0.10.1"
+ org.eclipse.papyrus.sysml.nattable.allocation.config;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.nattable;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.nattable.common;bundle-version="0.10.2"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.1.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.nattable.allocation.Activa
  tor
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.nattable.allocation;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

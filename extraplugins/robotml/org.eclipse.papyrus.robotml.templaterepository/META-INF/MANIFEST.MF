@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.1"
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.2"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %Bundle-Name
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.robotml.templaterepository.Activ
  ator
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.robotml.templaterepository;si
  ngleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
