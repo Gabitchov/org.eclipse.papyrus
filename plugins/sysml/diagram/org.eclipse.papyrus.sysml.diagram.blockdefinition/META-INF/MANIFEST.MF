@@ -1,4 +1,18 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.sysml.diagram.blockdefinition,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.command,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.dnd.helper,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.factory,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.handler,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.messages,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.part,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.provider,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.ui,
+ org.eclipse.papyrus.sysml.diagram.blockdefinition.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.sysml;bundle-version="0.10.1",
@@ -36,27 +50,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.tooling.runtime;bundle-version="3.1.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.blockdefinition.Ac
  tivator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.blockdefinition
  ;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.sysml.diagram.blockdefinition,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.command,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.dnd.helper,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.factory,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.handler,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.messages,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.part,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.provider,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.ui,
- org.eclipse.papyrus.sysml.diagram.blockdefinition.utils
 

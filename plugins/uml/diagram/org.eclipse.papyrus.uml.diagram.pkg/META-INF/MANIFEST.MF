@@ -1,4 +1,6 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.diagram.pkg,
+ org.eclipse.papyrus.uml.diagram.pkg.provider
 Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
@@ -20,15 +22,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
  org.eclipse.gmf.tooling.runtime;bundle-version="3.1.0"
-Export-Package: org.eclipse.papyrus.uml.diagram.pkg,
- org.eclipse.papyrus.uml.diagram.pkg.provider
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.pkg.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.pkg;singleton:=tr
  ue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.team.svn
 Require-Bundle: org.eclipse.papyrus.infra.onefile;bundle-version="0.10.1",
  org.eclipse.team.svn.ui;resolution:=optional,
  org.eclipse.gmf.runtime.common.core,
@@ -9,14 +10,13 @@ Require-Bundle: org.eclipse.papyrus.infra.onefile;bundle-version="0.10.1",
  org.eclipse.emf.edit,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  com.google.guava;bundle-version="10.0.1"
-Export-Package: org.eclipse.papyrus.team.svn
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.team.svn.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.team.svn;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

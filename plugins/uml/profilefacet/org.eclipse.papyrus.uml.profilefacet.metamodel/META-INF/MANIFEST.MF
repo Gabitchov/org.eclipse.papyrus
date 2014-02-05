@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet,
- org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl,
- org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.facet.infra.facet;visibility:=reexport,
  org.eclipse.emf.facet.infra.query;visibility:=reexport
+Export-Package: org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet,
+ org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.impl,
+ org.eclipse.papyrus.uml.profilefacet.metamodel.profilefacet.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profilefacet.metamodel;si
  ngleton:=true

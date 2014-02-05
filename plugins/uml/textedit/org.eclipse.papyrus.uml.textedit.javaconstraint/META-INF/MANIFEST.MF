@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.textedit.javaconstraint
 Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.1",
  org.eclipse.jface.text,
@@ -8,15 +9,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0"
-Export-Package: org.eclipse.papyrus.uml.textedit.javaconstraint
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.javaconstraint.Acti
  vator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.javaconstraint;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

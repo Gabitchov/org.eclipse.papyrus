@@ -1,6 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.commands,
- org.eclipse.papyrus.commands.wrappers
 Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.common.core,
@@ -15,13 +13,15 @@ Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1",
  org.eclipse.core.expressions;bundle-version="3.4.500",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor
+Export-Package: org.eclipse.papyrus.commands,
+ org.eclipse.papyrus.commands.wrappers
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-Activator: org.eclipse.papyrus.commands.Activator
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.commands.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.commands;single
  ton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -26,11 +26,11 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.parameter.xtext;bundle-version=
  org.eclipse.uml2.uml,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.
  internal.UmlParameterActivator
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.xtext.
  ui;singleton:=true
-Import-Package: org.apache.log4j
 

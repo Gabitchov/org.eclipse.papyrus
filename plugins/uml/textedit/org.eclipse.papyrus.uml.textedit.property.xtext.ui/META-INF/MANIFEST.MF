@@ -45,11 +45,11 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.property.xtext;bundle-version="
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.property.xtext.ui.i
  nternal.UmlPropertyActivator
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext.u
  i;singleton:=true
-Import-Package: org.apache.log4j
 

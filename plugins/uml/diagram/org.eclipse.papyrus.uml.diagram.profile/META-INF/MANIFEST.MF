@@ -81,10 +81,10 @@ Require-Bundle: org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10
  org.eclipse.gef
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-Version: 0.10.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.profile.part.UMLDiag
  ramEditorPlugin
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile;singleton
  :=true
 

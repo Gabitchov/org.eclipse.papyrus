@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.ui.contentassist,
+ org.eclipse.papyrus.infra.gmfdiag.ui.contentassist.antlr,
+ org.eclipse.papyrus.infra.gmfdiag.ui.internal,
+ org.eclipse.papyrus.infra.gmfdiag.ui.quickfix
 Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.10.1",
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
@@ -12,19 +16,15 @@ Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.10
  org.eclipse.compare,
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.e4.ui.css.core;bundle-version="0.10.0"
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.ui.contentassist,
- org.eclipse.papyrus.infra.gmfdiag.ui.contentassist.antlr,
- org.eclipse.papyrus.infra.gmfdiag.ui.internal,
- org.eclipse.papyrus.infra.gmfdiag.ui.quickfix
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: CSS Editor UI (Incubation)
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.ui.internal.CSSAct
  ivator
+Bundle-ManifestVersion: 2
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;si
  ngleton:=true
-Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

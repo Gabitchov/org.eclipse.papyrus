@@ -1,4 +1,6 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.services.resourceloading.pre
+ ferences
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface,
  org.eclipse.ui,
@@ -11,16 +13,14 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gef;bundle-version="3.8.1",
  org.eclipse.emf.ecore,
  org.eclipse.papyrus.infra.services.resourceloading;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.infra.services.resourceloading.pre
- ferences
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.services.resourceloading.p
  references.CorePlugin
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.resourceloadin
  g.preferences;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

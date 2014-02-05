@@ -19,10 +19,10 @@ Require-Bundle: org.eclipse.papyrus.infra.onefile;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.readonly.Activator
+Import-Package: com.google.common.base;version="10.0.1"
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.readonly;singleton:
  =true
-Import-Package: com.google.common.base;version="10.0.1"
 

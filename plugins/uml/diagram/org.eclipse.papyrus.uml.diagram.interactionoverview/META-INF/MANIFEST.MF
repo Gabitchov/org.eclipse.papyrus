@@ -1,4 +1,18 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.diagram.interactionoverview,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.dialogs,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policy,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.factory,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.figures,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.parser,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.part,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.preferences,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.provider,
+ org.eclipse.papyrus.uml.diagram.interactionoverview.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
@@ -39,28 +53,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.diagram.communication;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.hyperlink;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.uml.diagram.interactionoverview,
- org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices,
- org.eclipse.papyrus.uml.diagram.interactionoverview.edit.commands,
- org.eclipse.papyrus.uml.diagram.interactionoverview.edit.dialogs,
- org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part,
- org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies,
- org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policy,
- org.eclipse.papyrus.uml.diagram.interactionoverview.factory,
- org.eclipse.papyrus.uml.diagram.interactionoverview.figures,
- org.eclipse.papyrus.uml.diagram.interactionoverview.parser,
- org.eclipse.papyrus.uml.diagram.interactionoverview.part,
- org.eclipse.papyrus.uml.diagram.interactionoverview.preferences,
- org.eclipse.papyrus.uml.diagram.interactionoverview.provider,
- org.eclipse.papyrus.uml.diagram.interactionoverview.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.interactionoverview.
  Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.interactionovervi
  ew;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

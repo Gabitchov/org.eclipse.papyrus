@@ -18,9 +18,9 @@ Require-Bundle: org.eclipse.xtext.ui,
  org.eclipse.papyrus.uml.alf;bundle-version="0.10.1",
  org.apache.log4j;bundle-version="1.2.15"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.alf.ui.internal.AlfActivator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.ui;singleton:=true
 Import-Package: org.apache.log4j
+Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.ui;singleton:=true
 

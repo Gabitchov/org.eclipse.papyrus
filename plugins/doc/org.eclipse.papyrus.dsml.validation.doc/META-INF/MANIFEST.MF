@@ -5,11 +5,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.help;bundle-version="3.6.0"
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.dsml.validation.doc.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.dsml.validation.doc;singleton
  :=true
 

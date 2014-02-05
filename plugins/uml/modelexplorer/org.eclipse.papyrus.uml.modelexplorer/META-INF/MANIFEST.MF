@@ -1,15 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.modelexplorer,
- org.eclipse.papyrus.uml.modelexplorer.factory,
- org.eclipse.papyrus.uml.modelexplorer.handler,
- org.eclipse.papyrus.uml.modelexplorer.queries,
- org.eclipse.papyrus.uml.modelexplorer.util
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .,
- bin/
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.1",
@@ -36,10 +25,21 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.3.0",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.3.0",
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.3.0"
+Export-Package: org.eclipse.papyrus.uml.modelexplorer,
+ org.eclipse.papyrus.uml.modelexplorer.factory,
+ org.eclipse.papyrus.uml.modelexplorer.handler,
+ org.eclipse.papyrus.uml.modelexplorer.queries,
+ org.eclipse.papyrus.uml.modelexplorer.util
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ bin/
+Bundle-Version: 0.10.2.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer;singleton:=
  true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

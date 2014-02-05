@@ -24,12 +24,12 @@ Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
-Bundle-Version: 0.10.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.table.requirement.Activato
  r
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.table.requirement;singl
  eton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

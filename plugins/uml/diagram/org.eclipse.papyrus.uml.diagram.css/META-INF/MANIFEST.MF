@@ -1,10 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: UML-Specific CSS concepts (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.css;singleton:=true
-Bundle-Version: 0.10.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.css.Activator
-Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="0.10.1",
@@ -17,5 +11,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.tools;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: UML-Specific CSS concepts (Incubation)
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.css.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.css;singleton:=tr
+ ue
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

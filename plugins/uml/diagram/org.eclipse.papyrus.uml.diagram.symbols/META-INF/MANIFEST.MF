@@ -1,4 +1,6 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.diagram.symbols,
+ org.eclipse.papyrus.uml.diagram.symbols.provider
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime;bundle-version="3.8.0",
  org.eclipse.papyrus.uml.extensionpoints;bundle-version="0.10.1",
@@ -17,14 +19,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.appearance;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.uml.diagram.symbols,
- org.eclipse.papyrus.uml.diagram.symbols.provider
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.symbols.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.symbols;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

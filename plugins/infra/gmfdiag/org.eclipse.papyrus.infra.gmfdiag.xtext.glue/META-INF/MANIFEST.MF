@@ -1,10 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.xtext.glue,
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue.concurrency,
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist,
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part,
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue.editingdomain,
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue.partialEditing
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.common;bundle-version="2.5.0",
@@ -19,13 +13,19 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.uml2.uml;bundle-version="4.1.0",
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1"
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.xtext.glue,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.concurrency,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.editingdomain,
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue.partialEditing
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: XText GMF Glue (Incubation)
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.xtext.glue.Activat
  or
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.xtext.glue;sing
  leton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

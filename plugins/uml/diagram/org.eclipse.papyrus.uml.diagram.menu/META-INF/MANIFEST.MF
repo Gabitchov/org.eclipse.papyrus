@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.diagram.menu,
+ org.eclipse.papyrus.uml.diagram.menu.actions,
+ org.eclipse.papyrus.uml.diagram.menu.actions.handlers
 Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="0.10.1",
@@ -25,16 +28,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.pastemanager;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.tools
-Export-Package: org.eclipse.papyrus.uml.diagram.menu,
- org.eclipse.papyrus.uml.diagram.menu.actions,
- org.eclipse.papyrus.uml.diagram.menu.actions.handlers
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.menu.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.menu;singleton:=t
  rue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

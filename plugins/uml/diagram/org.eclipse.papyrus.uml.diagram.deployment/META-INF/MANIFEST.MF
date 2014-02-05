@@ -67,10 +67,10 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-Version: 0.10.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.deployment.part.UMLD
  iagramEditorPlugin
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.deployment;single
  ton:=true
 

@@ -1,21 +1,21 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptors.provider,
- org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.provider
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.serviceregistry;bundle-version="0.10.1";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.uml2.common.edit;visibility:=reexport
+Export-Package: org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptors.provider,
+ org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.provider
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.2.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.core.serviceregistry.servi
  cedescriptorswithid.provider.ServicedescriptorswithidEditPlugin$Imple
  mentation
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.serviceregistry.ed
  it;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

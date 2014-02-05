@@ -1,4 +1,10 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.services.controlmode,
+ org.eclipse.papyrus.infra.services.controlmode.commands,
+ org.eclipse.papyrus.infra.services.controlmode.handlers,
+ org.eclipse.papyrus.infra.services.controlmode.participants,
+ org.eclipse.papyrus.infra.services.controlmode.ui,
+ org.eclipse.papyrus.infra.services.controlmode.util
 Require-Bundle: org.eclipse.emf.edit.ui,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.core.expressions;bundle-version="3.4.400",
@@ -12,20 +18,14 @@ Require-Bundle: org.eclipse.emf.edit.ui,
  org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.infra.services.controlmode,
- org.eclipse.papyrus.infra.services.controlmode.commands,
- org.eclipse.papyrus.infra.services.controlmode.handlers,
- org.eclipse.papyrus.infra.services.controlmode.participants,
- org.eclipse.papyrus.infra.services.controlmode.ui,
- org.eclipse.papyrus.infra.services.controlmode.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.services.controlmode.Contr
  olModePlugin
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.controlmode;si
  ngleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

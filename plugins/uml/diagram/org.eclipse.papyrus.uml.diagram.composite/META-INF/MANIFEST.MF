@@ -71,10 +71,10 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.gmf.tooling.runtime;bundle-version="3.0.0"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-Version: 0.10.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.composite.part.UMLDi
  agramEditorPlugin
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.composite;singlet
  on:=true
 

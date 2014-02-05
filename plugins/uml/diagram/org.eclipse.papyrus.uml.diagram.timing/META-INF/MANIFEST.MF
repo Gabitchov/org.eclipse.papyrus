@@ -70,10 +70,10 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-Version: 0.10.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.part.UMLDiagr
  amEditorPlugin
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing;singleton:
  =true
 

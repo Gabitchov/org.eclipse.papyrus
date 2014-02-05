@@ -8,12 +8,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.search;bundle-version="3.8.100"
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.viewersearcher.Act
  ivator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.viewersearcher;
  singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

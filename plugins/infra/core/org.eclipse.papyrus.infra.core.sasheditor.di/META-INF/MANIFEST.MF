@@ -1,11 +1,4 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.swt;bundle-version="3.5.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1";visibility:=reexport,
- org.eclipse.ui;bundle-version="3.6.0",
- org.eclipse.core.runtime;bundle-version="3.6.0",
- org.eclipse.emf.ecore,
- org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
- org.eclipse.emf.transaction;bundle-version="1.4.0"
 Export-Package: org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider,
  org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands,
  org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils,
@@ -13,12 +6,19 @@ Export-Package: org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider,
  org.eclipse.papyrus.infra.core.sashwindows.di.exception,
  org.eclipse.papyrus.infra.core.sashwindows.di.impl,
  org.eclipse.papyrus.infra.core.sashwindows.di.util
+Require-Bundle: org.eclipse.swt;bundle-version="3.5.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.ui;bundle-version="3.6.0",
+ org.eclipse.core.runtime;bundle-version="3.6.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
+ org.eclipse.emf.transaction;bundle-version="1.4.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 0.10.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor.di;sing
  leton:=true

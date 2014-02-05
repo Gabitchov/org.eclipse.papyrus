@@ -1,4 +1,16 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.textedit.message.xtext,
+ org.eclipse.papyrus.uml.textedit.message.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.message.xtext.generator,
+ org.eclipse.papyrus.uml.textedit.message.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.message.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.message.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.message.xtext.serializer,
+ org.eclipse.papyrus.uml.textedit.message.xtext.services,
+ org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage,
+ org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl,
+ org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.util,
+ org.eclipse.papyrus.uml.textedit.message.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -16,27 +28,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1",
  org.apache.log4j;bundle-version="1.2.15"
-Export-Package: org.eclipse.papyrus.uml.textedit.message.xtext,
- org.eclipse.papyrus.uml.textedit.message.xtext.formatting,
- org.eclipse.papyrus.uml.textedit.message.xtext.generator,
- org.eclipse.papyrus.uml.textedit.message.xtext.parser.antlr,
- org.eclipse.papyrus.uml.textedit.message.xtext.parser.antlr.internal,
- org.eclipse.papyrus.uml.textedit.message.xtext.scoping,
- org.eclipse.papyrus.uml.textedit.message.xtext.serializer,
- org.eclipse.papyrus.uml.textedit.message.xtext.services,
- org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage,
- org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl,
- org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.util,
- org.eclipse.papyrus.uml.textedit.message.xtext.validation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.message.xtext;si
- ngleton:=true
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.message.xtext;si
+ ngleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

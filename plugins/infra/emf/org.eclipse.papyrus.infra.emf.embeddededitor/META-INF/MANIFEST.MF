@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.emf.embeddededitor,
+ org.eclipse.papyrus.infra.emf.embeddededitor.editor,
+ org.eclipse.papyrus.infra.emf.embeddededitor.providers
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.7.100",
@@ -19,16 +22,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.transaction;bundle-version="1.4.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.constraints;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.infra.emf.embeddededitor,
- org.eclipse.papyrus.infra.emf.embeddededitor.editor,
- org.eclipse.papyrus.infra.emf.embeddededitor.providers
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: EML Editor (Incubation)
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.embeddededitor.Activat
  or
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.embeddededitor;sing
  leton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

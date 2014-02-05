@@ -1,4 +1,8 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.services.validation,
+ org.eclipse.papyrus.infra.services.validation.commands,
+ org.eclipse.papyrus.infra.services.validation.handler,
+ org.eclipse.papyrus.infra.services.validation.preferences
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf;bundle-version="2.6.0",
@@ -17,18 +21,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.infra.facet;bundle-version="0.3.0",
  org.eclipse.papyrus.infra.services.markerlistener;bundle-version="0.10.1",
  org.eclipse.uml2.uml;bundle-version="4.1.0"
-Export-Package: org.eclipse.papyrus.infra.services.validation,
- org.eclipse.papyrus.infra.services.validation.commands,
- org.eclipse.papyrus.infra.services.validation.handler,
- org.eclipse.papyrus.infra.services.validation.preferences
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.services.validation.Activa
  tor
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.validation;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -1,14 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.diagram.paletteconfiguration,
- org.eclipse.papyrus.uml.diagram.paletteconfiguration.descriptor,
- org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl,
- org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider,
- org.eclipse.papyrus.uml.diagram.paletteconfiguration.util
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
@@ -25,11 +15,21 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.papyrus.editor;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1"
+Export-Package: org.eclipse.papyrus.uml.diagram.paletteconfiguration,
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration.descriptor,
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl,
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider,
+ org.eclipse.papyrus.uml.diagram.paletteconfiguration.util
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.2.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.paletteconfiguration
  .Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.paletteconfigurat
  ion;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

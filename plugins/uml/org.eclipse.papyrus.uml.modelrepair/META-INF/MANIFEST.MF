@@ -1,10 +1,8 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Model Repair (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.uml.modelrepair;singleton:=true
-Bundle-Version: 0.10.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.modelrepair.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Export-Package: org.eclipse.papyrus.uml.modelrepair,
+ org.eclipse.papyrus.uml.modelrepair.handler,
+ org.eclipse.papyrus.uml.modelrepair.ui,
+ org.eclipse.papyrus.uml.modelrepair.ui.providers
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
@@ -23,9 +21,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
  org.eclipse.core.databinding;bundle-version="1.4.1",
  org.eclipse.papyrus.uml.profile;bundle-version="0.10.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.modelrepair,
- org.eclipse.papyrus.uml.modelrepair.handler,
- org.eclipse.papyrus.uml.modelrepair.ui,
- org.eclipse.papyrus.uml.modelrepair.ui.providers
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: Model Repair (Incubation)
+Bundle-Activator: org.eclipse.papyrus.uml.modelrepair.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.modelrepair;singleton:=tr
+ ue
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

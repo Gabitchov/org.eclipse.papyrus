@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.expressions;bundle-version="3.4.300",
  org.eclipse.gef;bundle-version="3.8.1"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.core.sasheditor.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor;singlet

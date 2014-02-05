@@ -1,4 +1,18 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.alf,
+ org.eclipse.papyrus.uml.alf.alf,
+ org.eclipse.papyrus.uml.alf.alf.impl,
+ org.eclipse.papyrus.uml.alf.alf.util,
+ org.eclipse.papyrus.uml.alf.formatting,
+ org.eclipse.papyrus.uml.alf.generator,
+ org.eclipse.papyrus.uml.alf.parser.antlr,
+ org.eclipse.papyrus.uml.alf.parser.antlr.internal,
+ org.eclipse.papyrus.uml.alf.scoping,
+ org.eclipse.papyrus.uml.alf.serializer,
+ org.eclipse.papyrus.uml.alf.services,
+ org.eclipse.papyrus.uml.alf.syntax,
+ org.eclipse.papyrus.uml.alf.validation,
+ org.eclipse.papyrus.uml.alf.validation.typing
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -20,28 +34,14 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
  org.eclipse.jface;bundle-version="3.8.0",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.uml.alf,
- org.eclipse.papyrus.uml.alf.alf,
- org.eclipse.papyrus.uml.alf.alf.impl,
- org.eclipse.papyrus.uml.alf.alf.util,
- org.eclipse.papyrus.uml.alf.formatting,
- org.eclipse.papyrus.uml.alf.generator,
- org.eclipse.papyrus.uml.alf.parser.antlr,
- org.eclipse.papyrus.uml.alf.parser.antlr.internal,
- org.eclipse.papyrus.uml.alf.scoping,
- org.eclipse.papyrus.uml.alf.serializer,
- org.eclipse.papyrus.uml.alf.services,
- org.eclipse.papyrus.uml.alf.syntax,
- org.eclipse.papyrus.uml.alf.validation,
- org.eclipse.papyrus.uml.alf.validation.typing
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.alf;singleton:=true
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
+Bundle-SymbolicName: org.eclipse.papyrus.uml.alf;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -81,10 +81,10 @@ Require-Bundle: org.eclipse.core.expressions,
 Bundle-Vendor: %providerName
 Ant-Version: Apache Ant 1.7.0
 Eclipse-LazyStart: true
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-Version: 0.10.2.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.statemachine.part.UM
  LDiagramEditorPlugin
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.statemachine;sing
  leton:=true
 

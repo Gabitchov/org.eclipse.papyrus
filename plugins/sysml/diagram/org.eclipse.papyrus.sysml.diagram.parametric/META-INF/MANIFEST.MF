@@ -1,4 +1,20 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.sysml.diagram.parametric,
+ org.eclipse.papyrus.sysml.diagram.parametric.commands,
+ org.eclipse.papyrus.sysml.diagram.parametric.edit.part,
+ org.eclipse.papyrus.sysml.diagram.parametric.edit.policy,
+ org.eclipse.papyrus.sysml.diagram.parametric.factory,
+ org.eclipse.papyrus.sysml.diagram.parametric.figures,
+ org.eclipse.papyrus.sysml.diagram.parametric.parser,
+ org.eclipse.papyrus.sysml.diagram.parametric.part,
+ org.eclipse.papyrus.sysml.diagram.parametric.policies,
+ org.eclipse.papyrus.sysml.diagram.parametric.preferences,
+ org.eclipse.papyrus.sysml.diagram.parametric.provider,
+ org.eclipse.papyrus.sysml.diagram.parametric.utils
+Bundle-ActivationPolicy: lazy
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.sysml;bundle-version="0.10.1",
@@ -35,25 +51,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.views.properties;bundle-version="0.10.1",
  org.eclipse.core.databinding.observable;bundle-version="1.4.1",
  org.eclipse.papyrus.views.properties.model;bundle-version="0.10.1"
-Bundle-ManifestVersion: 2
-Bundle-ActivationPolicy: lazy
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric;singleton:=true
-Bundle-Version: 0.10.1.qualifier
 Bundle-Vendor: %providerName
-Bundle-Activator: org.eclipse.papyrus.sysml.diagram.parametric.Activator
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.sysml.diagram.parametric,
- org.eclipse.papyrus.sysml.diagram.parametric.commands,
- org.eclipse.papyrus.sysml.diagram.parametric.edit.part,
- org.eclipse.papyrus.sysml.diagram.parametric.edit.policy,
- org.eclipse.papyrus.sysml.diagram.parametric.factory,
- org.eclipse.papyrus.sysml.diagram.parametric.figures,
- org.eclipse.papyrus.sysml.diagram.parametric.parser,
- org.eclipse.papyrus.sysml.diagram.parametric.part,
- org.eclipse.papyrus.sysml.diagram.parametric.policies,
- org.eclipse.papyrus.sysml.diagram.parametric.preferences,
- org.eclipse.papyrus.sysml.diagram.parametric.provider,
- org.eclipse.papyrus.sysml.diagram.parametric.utils
+Bundle-Version: 0.10.2.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.sysml.diagram.parametric.Activat
+ or
 Import-Package: org.eclipse.gmf.runtime.notation
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric;sing
+ leton:=true
+

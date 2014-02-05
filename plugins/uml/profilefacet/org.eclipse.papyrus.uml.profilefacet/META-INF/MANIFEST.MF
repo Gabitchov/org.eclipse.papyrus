@@ -1,4 +1,9 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.profilefacet.queries.getter,
+ org.eclipse.papyrus.uml.profilefacet.queries.registry,
+ org.eclipse.papyrus.uml.profilefacet.queries.setter,
+ org.eclipse.papyrus.uml.profilefacet.queries.tester,
+ org.eclipse.papyrus.uml.profilefacet.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.uml2.uml,
@@ -19,17 +24,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.table.controlmode;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0"
-Export-Package: org.eclipse.papyrus.uml.profilefacet.queries.getter,
- org.eclipse.papyrus.uml.profilefacet.queries.registry,
- org.eclipse.papyrus.uml.profilefacet.queries.setter,
- org.eclipse.papyrus.uml.profilefacet.queries.tester,
- org.eclipse.papyrus.uml.profilefacet.utils
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.profilefacet.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profilefacet;singleton:=t
  rue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.table.menu,
+ org.eclipse.papyrus.infra.table.menu.handler,
+ org.eclipse.papyrus.infra.table.menu.providers
 Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.uml.table.default;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
@@ -13,16 +16,13 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.infra.table.menu,
- org.eclipse.papyrus.infra.table.menu.handler,
- org.eclipse.papyrus.infra.table.menu.providers
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.table.menu.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.table.menu;singleton:=t
  rue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

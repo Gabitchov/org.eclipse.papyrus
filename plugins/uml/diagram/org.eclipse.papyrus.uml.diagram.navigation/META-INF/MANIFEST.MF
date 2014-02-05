@@ -1,14 +1,14 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.diagram.navigation
 Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.navigation;bundle-version="0.10.1",
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
  org.eclipse.draw2d;bundle-version="3.7.1",
  org.eclipse.jface;bundle-version="3.8.0"
-Export-Package: org.eclipse.papyrus.uml.diagram.navigation
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.navigation;single
  ton:=true

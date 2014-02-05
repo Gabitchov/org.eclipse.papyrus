@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration,
+ org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl,
+ org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.facet.widgets.celleditors;visibility:=reexport,
@@ -6,15 +9,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query;visibility:=reexport,
  org.eclipse.emf.facet.widgets.nattable.tableconfiguration;visibility:=reexport,
  org.eclipse.emf.facet.infra.browser.custom;visibility:=reexport
-Export-Package: org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration,
- org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.impl,
- org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel.PapyrusTableConfiguration.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 0.10.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.table.papyrustableconfi
  guration.metamodel;singleton:=true

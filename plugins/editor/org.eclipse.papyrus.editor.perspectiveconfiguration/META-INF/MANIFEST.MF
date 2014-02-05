@@ -4,12 +4,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.editor.perspectiveconfiguration.
  Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.editor.perspectiveconfigurati
  on;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

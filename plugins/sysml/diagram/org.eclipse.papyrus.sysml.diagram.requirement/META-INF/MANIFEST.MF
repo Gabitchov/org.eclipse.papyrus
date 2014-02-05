@@ -1,4 +1,13 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.sysml.diagram.requirement,
+ org.eclipse.papyrus.sysml.diagram.requirement.edit.part,
+ org.eclipse.papyrus.sysml.diagram.requirement.edit.policy,
+ org.eclipse.papyrus.sysml.diagram.requirement.factory,
+ org.eclipse.papyrus.sysml.diagram.requirement.figure,
+ org.eclipse.papyrus.sysml.diagram.requirement.part,
+ org.eclipse.papyrus.sysml.diagram.requirement.preferences,
+ org.eclipse.papyrus.sysml.diagram.requirement.provider,
+ org.eclipse.papyrus.sysml.diagram.requirement.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
@@ -22,23 +31,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.appearance;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.emf.appearance;bundle-version="0.10.1",
  org.eclipse.gmf.tooling.runtime;bundle-version="3.1.0"
-Export-Package: org.eclipse.papyrus.sysml.diagram.requirement,
- org.eclipse.papyrus.sysml.diagram.requirement.edit.part,
- org.eclipse.papyrus.sysml.diagram.requirement.edit.policy,
- org.eclipse.papyrus.sysml.diagram.requirement.factory,
- org.eclipse.papyrus.sysml.diagram.requirement.figure,
- org.eclipse.papyrus.sysml.diagram.requirement.part,
- org.eclipse.papyrus.sysml.diagram.requirement.preferences,
- org.eclipse.papyrus.sysml.diagram.requirement.provider,
- org.eclipse.papyrus.sysml.diagram.requirement.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.requirement.Activa
  tor
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.requirement;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -25,11 +25,11 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext;
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.connectionpointrefe
  rence.xtext.ui.internal.UMLConnectionPointReferenceActivator
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointr
  eference.xtext.ui;singleton:=true
-Import-Package: org.apache.log4j
 

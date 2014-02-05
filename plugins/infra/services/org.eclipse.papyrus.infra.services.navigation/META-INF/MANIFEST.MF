@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.services.navigation,
+ org.eclipse.papyrus.infra.services.navigation.provider,
+ org.eclipse.papyrus.infra.services.navigation.service
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
  org.eclipse.jface
-Export-Package: org.eclipse.papyrus.infra.services.navigation,
- org.eclipse.papyrus.infra.services.navigation.provider,
- org.eclipse.papyrus.infra.services.navigation.service
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: Navigation Service (Incubation)
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.services.navigation.Activa
  tor
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.navigation;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

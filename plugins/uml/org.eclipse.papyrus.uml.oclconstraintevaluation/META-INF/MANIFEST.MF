@@ -7,12 +7,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ocl.examples.xtext.base;bundle-version="3.2.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.oclconstraintevaluation.Acti
  vator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.oclconstraintevaluation;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

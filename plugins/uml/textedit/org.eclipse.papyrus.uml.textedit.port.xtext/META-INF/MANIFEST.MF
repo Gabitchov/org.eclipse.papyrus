@@ -1,4 +1,16 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.textedit.port.xtext,
+ org.eclipse.papyrus.uml.textedit.port.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.port.xtext.generator,
+ org.eclipse.papyrus.uml.textedit.port.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.port.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.port.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.port.xtext.serializer,
+ org.eclipse.papyrus.uml.textedit.port.xtext.services,
+ org.eclipse.papyrus.uml.textedit.port.xtext.umlPort,
+ org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.impl,
+ org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.util,
+ org.eclipse.papyrus.uml.textedit.port.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase;resolution:=optional,
  org.eclipse.xtext.generator;resolution:=optional,
@@ -14,23 +26,11 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1",
  org.apache.log4j;bundle-version="1.2.15"
-Export-Package: org.eclipse.papyrus.uml.textedit.port.xtext,
- org.eclipse.papyrus.uml.textedit.port.xtext.formatting,
- org.eclipse.papyrus.uml.textedit.port.xtext.generator,
- org.eclipse.papyrus.uml.textedit.port.xtext.parser.antlr,
- org.eclipse.papyrus.uml.textedit.port.xtext.parser.antlr.internal,
- org.eclipse.papyrus.uml.textedit.port.xtext.scoping,
- org.eclipse.papyrus.uml.textedit.port.xtext.serializer,
- org.eclipse.papyrus.uml.textedit.port.xtext.services,
- org.eclipse.papyrus.uml.textedit.port.xtext.umlPort,
- org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.impl,
- org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.util,
- org.eclipse.papyrus.uml.textedit.port.xtext.validation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.port.xtext;singl
  eton:=true

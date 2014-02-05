@@ -6,12 +6,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.widgets.nattable.workbench;bundle-version="0.1.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.ui.perspectiveconfiguration.
  Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.ui.perspectiveconfigurati
  on;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -16,11 +16,11 @@ Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.diagramdev.modelexplorer.Activat
  or
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.diagramdev.modelexplorer;sing
  leton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

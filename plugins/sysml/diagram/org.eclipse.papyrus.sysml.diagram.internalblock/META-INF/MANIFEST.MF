@@ -1,4 +1,18 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.sysml.diagram.internalblock,
+ org.eclipse.papyrus.sysml.diagram.internalblock.compatibility,
+ org.eclipse.papyrus.sysml.diagram.internalblock.dnd.helper,
+ org.eclipse.papyrus.sysml.diagram.internalblock.edit.part,
+ org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy,
+ org.eclipse.papyrus.sysml.diagram.internalblock.factory,
+ org.eclipse.papyrus.sysml.diagram.internalblock.handler,
+ org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice,
+ org.eclipse.papyrus.sysml.diagram.internalblock.messages,
+ org.eclipse.papyrus.sysml.diagram.internalblock.part,
+ org.eclipse.papyrus.sysml.diagram.internalblock.preferences,
+ org.eclipse.papyrus.sysml.diagram.internalblock.provider,
+ org.eclipse.papyrus.sysml.diagram.internalblock.ui,
+ org.eclipse.papyrus.sysml.diagram.internalblock.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.sysml;bundle-version="0.10.1",
@@ -30,28 +44,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
  org.eclipse.gmf.tooling.runtime;bundle-version="3.1.0"
-Export-Package: org.eclipse.papyrus.sysml.diagram.internalblock,
- org.eclipse.papyrus.sysml.diagram.internalblock.compatibility,
- org.eclipse.papyrus.sysml.diagram.internalblock.dnd.helper,
- org.eclipse.papyrus.sysml.diagram.internalblock.edit.part,
- org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy,
- org.eclipse.papyrus.sysml.diagram.internalblock.factory,
- org.eclipse.papyrus.sysml.diagram.internalblock.handler,
- org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice,
- org.eclipse.papyrus.sysml.diagram.internalblock.messages,
- org.eclipse.papyrus.sysml.diagram.internalblock.part,
- org.eclipse.papyrus.sysml.diagram.internalblock.preferences,
- org.eclipse.papyrus.sysml.diagram.internalblock.provider,
- org.eclipse.papyrus.sysml.diagram.internalblock.ui,
- org.eclipse.papyrus.sysml.diagram.internalblock.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.internalblock.Acti
  vator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.internalblock;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
