@@ -155,8 +155,8 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 		if(value instanceof EStructuralFeatureAxis) {
 			feature = ((EStructuralFeatureAxis)value).getElement();
 			alias = ((EStructuralFeatureAxis)value).getAlias();
-		} else if(feature instanceof EStructuralFeature) {
-			feature = (EStructuralFeature)((ILabelProviderContextElementWrapper)element).getObject();
+		} else if(value instanceof EStructuralFeature) {
+			feature = (EStructuralFeature)value;
 		}
 
 		String returnedValue = null;
@@ -201,13 +201,16 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 		if(object instanceof EStructuralFeatureAxis) {
 			feature = ((EStructuralFeatureAxis)object).getElement();
 		} else if(object instanceof EStructuralFeature) {
-			feature = (EStructuralFeature)((ILabelProviderContextElementWrapper)element).getObject();
+			feature = (EStructuralFeature)object;
 		}
 		if(feature instanceof EAttribute) {
 			return EStructuralFeatureImageRegistry.getAttributeIcon();
 
 		} else if(feature instanceof EReference) {
 			return getEReferenceImage((EReference)feature);
+		}
+		if(feature==null){
+			return null;
 		}
 		return super.getImage(feature);
 	}

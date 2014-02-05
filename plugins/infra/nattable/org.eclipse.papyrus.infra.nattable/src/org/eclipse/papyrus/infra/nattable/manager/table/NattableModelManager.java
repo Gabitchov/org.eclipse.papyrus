@@ -396,7 +396,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			updateToggleCommandState(command, getTable().isInvertAxis());
 
 		} else {
-			throw new RuntimeException(String.format("The Eclipse service {0} has not been found", ICommandService.class)); //$NON-NLS-1$
+			throw new RuntimeException(String.format("The Eclipse service %s has not been found", ICommandService.class)); //$NON-NLS-1$
 		}
 
 	}
