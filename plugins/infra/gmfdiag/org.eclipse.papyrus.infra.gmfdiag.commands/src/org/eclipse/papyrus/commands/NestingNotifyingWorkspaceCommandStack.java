@@ -79,13 +79,17 @@ public class NestingNotifyingWorkspaceCommandStack extends NotifyingWorkspaceCom
 			childCommandStack.startNestedTransaction(command);
 		} else {
 			//Start a new nested transaction in a new nested Stack
-			childCommandStack = new NestingNotifyingWorkspaceCommandStack(true, getOperationHistory());
+			childCommandStack = createNestedCommandStack(getOperationHistory());
 			childCommandStack.setEditingDomain(getDomain());
 
 			childCommandStack.execute(command);
 		}
 	}
 
+	protected NestingNotifyingWorkspaceCommandStack createNestedCommandStack(IOperationHistory history) {
+		return new NestingNotifyingWorkspaceCommandStack(true, history);
+	}
+	
 	public void commit() {
 		if(childCommandStack != null) {
 			disposeLastCommandStack();
