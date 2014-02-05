@@ -122,7 +122,7 @@ public class ResourceUpdateService implements IService, IPartListener {
 				Runnable closeEditorRunnable = new Runnable() {
 
 					public void run() {
-						if (PlatformUI.getWorkbench() == null || PlatformUI.getWorkbench().isClosing()){
+						if (! PlatformUI.isWorkbenchRunning()){
 							return;
 						}
 						final IWorkbenchPage page = editor.getSite().getPage();
@@ -139,7 +139,7 @@ public class ResourceUpdateService implements IService, IPartListener {
 							Display.getCurrent().asyncExec(new Runnable() {
 
 								public void run() {
-									if (PlatformUI.getWorkbench() == null || PlatformUI.getWorkbench().isClosing()){
+									if (! PlatformUI.isWorkbenchRunning()){
 										return;
 									}
 									try {
