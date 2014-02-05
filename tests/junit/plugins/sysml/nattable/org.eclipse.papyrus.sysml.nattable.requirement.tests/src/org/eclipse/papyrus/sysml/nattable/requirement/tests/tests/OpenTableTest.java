@@ -52,7 +52,7 @@ public class OpenTableTest extends AbstractEditorIntegrationTest {
 		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, requirementTable)));
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+//		while(!Display.getDefault().isDisposed() && Display.getDefault().readAndDispatch());
 		tableEditor = editor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
 		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
