@@ -1,11 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.texteditor.cdt;singleton:=true
-Bundle-Version: 0.10.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.texteditor.cdt.Activator
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.editors;bundle-version="3.7.0",
@@ -33,5 +26,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.2.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.texteditor.cdt.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.texteditor.cdt;singleton:=tru
+ e
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

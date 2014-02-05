@@ -1,4 +1,15 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.qompass.designer.core,
+ org.eclipse.papyrus.qompass.designer.core.acceleo,
+ org.eclipse.papyrus.qompass.designer.core.deployment,
+ org.eclipse.papyrus.qompass.designer.core.dialogs,
+ org.eclipse.papyrus.qompass.designer.core.extensions,
+ org.eclipse.papyrus.qompass.designer.core.handlers,
+ org.eclipse.papyrus.qompass.designer.core.listeners,
+ org.eclipse.papyrus.qompass.designer.core.preferences,
+ org.eclipse.papyrus.qompass.designer.core.templates,
+ org.eclipse.papyrus.qompass.designer.core.transformations,
+ org.eclipse.papyrus.qompass.designer.core.transformations.filters
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
@@ -31,24 +42,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.acceleo;bundle-version="0.10.1",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.3.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.qompass.designer.core,
- org.eclipse.papyrus.qompass.designer.core.acceleo,
- org.eclipse.papyrus.qompass.designer.core.deployment,
- org.eclipse.papyrus.qompass.designer.core.dialogs,
- org.eclipse.papyrus.qompass.designer.core.extensions,
- org.eclipse.papyrus.qompass.designer.core.handlers,
- org.eclipse.papyrus.qompass.designer.core.listeners,
- org.eclipse.papyrus.qompass.designer.core.preferences,
- org.eclipse.papyrus.qompass.designer.core.templates,
- org.eclipse.papyrus.qompass.designer.core.transformations,
- org.eclipse.papyrus.qompass.designer.core.transformations.filters
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.qompass.designer.core.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.core;singlet
  on:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

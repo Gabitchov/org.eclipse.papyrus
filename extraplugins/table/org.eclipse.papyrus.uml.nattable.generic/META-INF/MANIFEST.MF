@@ -10,10 +10,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.nattable.generic.config;bundle-version="0.10.1"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.generic.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.generic;singleto
  n:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

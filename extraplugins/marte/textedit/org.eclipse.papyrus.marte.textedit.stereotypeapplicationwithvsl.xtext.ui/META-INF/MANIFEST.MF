@@ -23,11 +23,11 @@ Require-Bundle: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.
  org.eclipse.papyrus.marte.vsl.ui;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.marte.textedit.stereotypeapplica
  tionwithvsl.xtext.ui.internal.StereotypeApplicationWithVSLActivator
-Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeappl
  icationwithvsl.xtext.ui;singleton:=true
+Import-Package: org.apache.log4j
 

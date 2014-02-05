@@ -16,11 +16,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.expressions
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.nattable.allocation.config
  .Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.nattable.allocation.con
  fig;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

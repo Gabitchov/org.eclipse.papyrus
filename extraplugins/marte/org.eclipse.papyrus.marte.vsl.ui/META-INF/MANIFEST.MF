@@ -1,11 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.marte.vsl.ui.contentassist,
- org.eclipse.papyrus.marte.vsl.ui.contentassist.antlr
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.papyrus.marte.vsl;bundle-version="0.10.1",
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
@@ -18,10 +11,17 @@ Require-Bundle: org.eclipse.papyrus.marte.vsl;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1",
  org.apache.log4j;bundle-version="1.2.15"
+Export-Package: org.eclipse.papyrus.marte.vsl.ui.contentassist,
+ org.eclipse.papyrus.marte.vsl.ui.contentassist.antlr
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.2.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.marte.vsl.ui.internal.VSLActivat
  or
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.marte.vsl.ui;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

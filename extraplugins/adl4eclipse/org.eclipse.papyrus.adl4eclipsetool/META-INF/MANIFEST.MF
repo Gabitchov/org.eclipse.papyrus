@@ -1,10 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.adltool.command,
- org.eclipse.papyrus.adltool.designer.wizard
-Bundle-ActivationPolicy: lazy
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.transaction;bundle-version="1.4.0",
@@ -14,10 +8,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
  org.eclipse.papyrus.adl4eclipse.profile;bundle-version="0.10.1",
  org.eclipse.papyrus.osgi.profile;bundle-version="0.10.1"
+Export-Package: org.eclipse.papyrus.adltool.command,
+ org.eclipse.papyrus.adltool.designer.wizard
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.2.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.adltool.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool
 Eclipse-RegisterBuddy: 
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

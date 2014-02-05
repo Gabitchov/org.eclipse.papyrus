@@ -1,4 +1,6 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.robotml.diagram.datatypedef.provid
+ er
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
@@ -23,15 +25,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.robotml.diagram.common;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
  org.eclipse.gmf.tooling.runtime;bundle-version="3.0.0"
-Export-Package: org.eclipse.papyrus.robotml.diagram.datatypedef.provid
- er
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %Bundle-Name
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.robotml.diagram.datatypedef.Acti
  vator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.robotml.diagram.datatypedef;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

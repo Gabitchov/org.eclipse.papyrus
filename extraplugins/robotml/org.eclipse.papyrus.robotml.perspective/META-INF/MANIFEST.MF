@@ -5,11 +5,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.cheatsheets
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %Bundle-Name
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.robotml.perspective.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.robotml.perspective;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

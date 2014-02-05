@@ -15,11 +15,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.sysml.nattable.requirement.config;bundle-version="0.10.1"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.nattable.requirement.Activ
  ator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.nattable.requirement;si
  ngleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

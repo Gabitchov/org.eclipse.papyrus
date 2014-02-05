@@ -1,10 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: RobotML RTMaps Generator Module IDE Plug-in (Incubation)
-Bundle-SymbolicName: org.eclipse.papyrus.robotml.generators.intempora.rtmaps.ui;singleton:=true
-Bundle-Version: 0.10.1.qualifier
-Bundle-Activator: org.eclipse.papyrus.robotml.generators.intempora.rtmaps.ui.Activator
-Bundle-Vendor: Eclipse Modeling Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -29,6 +23,15 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.1"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Eclipse Modeling Project
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: RobotML RTMaps Generator Module IDE Plug-in (Incubation)
+Bundle-Activator: org.eclipse.papyrus.robotml.generators.intempora.rtm
+ aps.ui.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.robotml.generators.intempora.
+ rtmaps.ui;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

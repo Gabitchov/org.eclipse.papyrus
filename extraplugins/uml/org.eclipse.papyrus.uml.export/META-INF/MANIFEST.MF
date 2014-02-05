@@ -23,11 +23,11 @@ Require-Bundle: org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.export.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.export;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

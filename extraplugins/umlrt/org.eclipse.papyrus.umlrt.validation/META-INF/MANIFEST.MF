@@ -5,10 +5,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: UML RealTime Validation (Incubation)
-Bundle-Activator: org.eclipse.papyrus.umlrt.validation.Activator
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.umlrt.validation.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.umlrt.validation;singleton:=t
  rue
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

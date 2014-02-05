@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport
 Export-Package: org.eclipse.papyrus.infra.nattable.model,
  org.eclipse.papyrus.infra.nattable.model.nattable,
  org.eclipse.papyrus.infra.nattable.model.nattable.impl,
@@ -27,17 +30,15 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.util,
  org.eclipse.papyrus.infra.nattable.model.nattable.util
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
-Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleton:=true
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleto
+ n:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

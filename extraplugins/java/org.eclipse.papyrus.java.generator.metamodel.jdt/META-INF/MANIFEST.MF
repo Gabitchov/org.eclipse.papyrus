@@ -1,16 +1,16 @@
 Manifest-Version: 1.0
+Require-Bundle: org.eclipse.uml2.common;bundle-version="1.5.0",
+ org.eclipse.jdt.core;bundle-version="3.6.0"
 Export-Package: org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm,
  org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.impl,
  org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.util,
  org.eclipse.papyrus.java.generator.metamodel.jdt.jdtmm.visitor
-Require-Bundle: org.eclipse.uml2.common;bundle-version="1.5.0",
- org.eclipse.jdt.core;bundle-version="3.6.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.java.generator.metamodel.jdt;
  singleton:=true

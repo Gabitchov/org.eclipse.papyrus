@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.sysml.nattable.manager.axis
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
@@ -18,13 +19,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.tools;bundle-version="0.10.1",
  org.eclipse.papyrus.sysml
-Export-Package: org.eclipse.papyrus.sysml.nattable.manager.axis
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.nattable.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.nattable;singleton:=tru
  e
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

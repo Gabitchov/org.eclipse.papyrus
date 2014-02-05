@@ -32,9 +32,9 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.papyrus.marte.vsl;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
+Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeappl
  icationwithvsl.xtext;singleton:=true
-Import-Package: org.apache.log4j
 

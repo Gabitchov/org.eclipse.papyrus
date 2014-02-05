@@ -1,4 +1,11 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.emf.nattable,
+ org.eclipse.papyrus.infra.emf.nattable.celleditor.config,
+ org.eclipse.papyrus.infra.emf.nattable.manager.axis,
+ org.eclipse.papyrus.infra.emf.nattable.manager.cell,
+ org.eclipse.papyrus.infra.emf.nattable.provider,
+ org.eclipse.papyrus.infra.emf.nattable.registry,
+ org.eclipse.papyrus.infra.emf.nattable.validator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
@@ -15,19 +22,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.type.core,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
  org.eclipse.papyrus.infra.tools;bundle-version="0.10.1"
-Export-Package: org.eclipse.papyrus.infra.emf.nattable,
- org.eclipse.papyrus.infra.emf.nattable.celleditor.config,
- org.eclipse.papyrus.infra.emf.nattable.manager.axis,
- org.eclipse.papyrus.infra.emf.nattable.manager.cell,
- org.eclipse.papyrus.infra.emf.nattable.provider,
- org.eclipse.papyrus.infra.emf.nattable.registry,
- org.eclipse.papyrus.infra.emf.nattable.validator
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: EMF Nattable (Incubation)
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.nattable.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.nattable;singleton:
  =true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

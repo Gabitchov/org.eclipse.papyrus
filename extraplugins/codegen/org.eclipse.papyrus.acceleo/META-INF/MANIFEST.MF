@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.acceleo
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.engine;bundle-version="3.2.2",
  org.eclipse.acceleo.parser;bundle-version="3.2.2",
  org.eclipse.uml2.uml;bundle-version="4.0.2",
  org.eclipse.core.filesystem;bundle-version="1.3.200"
-Export-Package: org.eclipse.papyrus.acceleo
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
+Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.acceleo.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.acceleo
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Localization: plugin
 
