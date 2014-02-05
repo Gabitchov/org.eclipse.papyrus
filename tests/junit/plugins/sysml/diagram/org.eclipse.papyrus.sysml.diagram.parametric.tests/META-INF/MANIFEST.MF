@@ -1,11 +1,14 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric.tests
-Bundle-Version: 0.10.1.qualifier
-Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.2",
  org.junit;bundle-version="4.10.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
+Fragment-Host: org.eclipse.papyrus.sysml.diagram.parametric;bundle-ver
+ sion="0.10.1"
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Fragment-Host: org.eclipse.papyrus.sysml.diagram.parametric;bundle-version="0.10.1"
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.parametric.test
+ s
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

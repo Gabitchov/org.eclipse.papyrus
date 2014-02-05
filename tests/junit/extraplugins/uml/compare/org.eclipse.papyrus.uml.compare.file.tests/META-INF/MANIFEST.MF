@@ -1,21 +1,21 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.junit.utils;bundle-version="0.10.1",
+ org.eclipse.papyrus.junit.utils;bundle-version="0.10.2",
  org.eclipse.core.resources;bundle-version="3.8.0",
  org.eclipse.jdt.ui;bundle-version="3.8.0",
- org.eclipse.papyrus.uml.compare.file;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf.compare.common;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf.compare.ui;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.compare.file;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf.compare.common;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf.compare.ui;bundle-version="0.10.2",
  org.eclipse.compare;bundle-version="3.5.300",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.2",
  org.junit;bundle-version="4.10.0"
 Export-Package: org.eclipse.papyrus.uml.compare.file.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.compare.file.tests.Activator

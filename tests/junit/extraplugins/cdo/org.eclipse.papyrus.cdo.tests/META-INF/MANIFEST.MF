@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.cdo.core.tests;bundle-version="0.10.1",
- org.eclipse.papyrus.cdo.ui.tests;bundle-version="0.10.1",
- org.eclipse.papyrus.cdo.validation.problems.tests;bundle-version="0.10.1",
- org.eclipse.papyrus.cdo.uml.ui.tests;bundle-version="0.10.1"
+Require-Bundle: org.eclipse.papyrus.cdo.core.tests;bundle-version="0.10.2",
+ org.eclipse.papyrus.cdo.ui.tests;bundle-version="0.10.2",
+ org.eclipse.papyrus.cdo.validation.problems.tests;bundle-version="0.10.2",
+ org.eclipse.papyrus.cdo.uml.ui.tests;bundle-version="0.10.2"
 Export-Package: org.eclipse.papyrus.cdo.tests
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
