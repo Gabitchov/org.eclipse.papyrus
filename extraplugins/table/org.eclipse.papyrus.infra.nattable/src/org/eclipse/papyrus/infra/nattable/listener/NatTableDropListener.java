@@ -73,12 +73,13 @@ public class NatTableDropListener implements DropTargetListener {
 	public void dragEnter(final DropTargetEvent event) {
 		//nothing to do
 	}
-/**
- * 
- * @see org.eclipse.swt.dnd.DropTargetListener#dragLeave(org.eclipse.swt.dnd.DropTargetEvent)
- *
- * @param event
- */
+
+	/**
+	 * 
+	 * @see org.eclipse.swt.dnd.DropTargetListener#dragLeave(org.eclipse.swt.dnd.DropTargetEvent)
+	 * 
+	 * @param event
+	 */
 	public void dragLeave(final DropTargetEvent event) {
 		//nothing to do
 	}
@@ -86,7 +87,7 @@ public class NatTableDropListener implements DropTargetListener {
 	/**
 	 * 
 	 * @see org.eclipse.swt.dnd.DropTargetListener#dragOperationChanged(org.eclipse.swt.dnd.DropTargetEvent)
-	 *
+	 * 
 	 * @param event
 	 */
 	public void dragOperationChanged(final DropTargetEvent event) {
@@ -96,7 +97,7 @@ public class NatTableDropListener implements DropTargetListener {
 	/**
 	 * 
 	 * @see org.eclipse.swt.dnd.DropTargetListener#dragOver(org.eclipse.swt.dnd.DropTargetEvent)
-	 *
+	 * 
 	 * @param event
 	 */
 	public void dragOver(final DropTargetEvent event) {
@@ -106,6 +107,9 @@ public class NatTableDropListener implements DropTargetListener {
 		IStructuredSelection structuredSelection = null;
 		if(data instanceof IStructuredSelection) {
 			structuredSelection = (IStructuredSelection)data;
+		}
+		if(structuredSelection == null) {
+			return;
 		}
 		final List<Object> droppedElements = new ArrayList<Object>((Collection<?>)structuredSelection.toList());
 		this.dropKindValue = this.manager.getLocationInTheTable(new Point(event.x, event.y));
@@ -189,7 +193,7 @@ public class NatTableDropListener implements DropTargetListener {
 	/**
 	 * 
 	 * @see org.eclipse.swt.dnd.DropTargetListener#drop(org.eclipse.swt.dnd.DropTargetEvent)
-	 *
+	 * 
 	 * @param event
 	 */
 	public void drop(final DropTargetEvent event) {
@@ -198,7 +202,7 @@ public class NatTableDropListener implements DropTargetListener {
 		Object data = localTransfer.nativeToJava(event.currentDataType);
 		if(data instanceof StructuredSelection) {
 			final IStructuredSelection selection = (IStructuredSelection)data;
-			final List< Object> droppedElements = new ArrayList<Object>((Collection<?>)selection.toList());
+			final List<Object> droppedElements = new ArrayList<Object>((Collection<?>)selection.toList());
 			if(this.dropKindValue != null) {
 				switch(this.dropKindValue.getKind()) {
 				case AFTER_COLUMN_HEADER:
