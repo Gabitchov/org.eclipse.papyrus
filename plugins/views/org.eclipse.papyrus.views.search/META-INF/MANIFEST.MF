@@ -9,22 +9,22 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui;bundle-version="3.105.0",
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
  org.eclipse.emf;bundle-version="2.6.0",
  org.eclipse.core.resources;bundle-version="3.8.100",
  org.eclipse.emf.common;bundle-version="2.9.0",
  org.eclipse.emf.ecore;bundle-version="2.9.0",
  org.eclipse.search;bundle-version="3.8.100",
- org.eclipse.papyrus.infra.onefile;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.onefile;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
  org.eclipse.ui.ide,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.openelement;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.services.openelement;bundle-version="0.10.2"
 Bundle-Vendor: %vendorName
 Bundle-Version: 0.10.2.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.search.Activator
-Import-Package: org.eclipse.uml2.uml
 Bundle-SymbolicName: org.eclipse.papyrus.views.search;singleton:=true
+Import-Package: org.eclipse.uml2.uml
 

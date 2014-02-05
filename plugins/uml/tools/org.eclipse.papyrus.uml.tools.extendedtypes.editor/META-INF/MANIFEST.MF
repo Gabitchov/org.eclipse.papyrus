@@ -1,27 +1,27 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.presentation,
+ org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.uml.tools.extendedtypes.edit;visibility:=reexport,
+ org.eclipse.papyrus.uml.tools.extendedtypes.edit;bundle-version="0.10.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
- org.eclipse.papyrus.infra.queries.core.configuration.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.queries.core.configuration.edit;bundle-version="0.10.2";visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.extendedtypes.edit;visibility:=reexport,
+ org.eclipse.papyrus.infra.extendedtypes.edit;bundle-version="0.10.2";visibility:=reexport,
  org.eclipse.emf.facet.infra.query.edit;visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport
-Export-Package: org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.presentation,
- org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.presentation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.tools.extendedtypes.stereoty
  pedelementmatcherconfiguration.presentation.StereotypedElementMatcher
  ConfigurationEditorPlugin$Implementation
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.extendedtypes.edito
  r;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

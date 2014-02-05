@@ -1,16 +1,4 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.1";visibility:=reexport,
- org.eclipse.uml2.types;visibility:=reexport,
- org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.extendedtypes.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1"
 Export-Package: org.eclipse.papyrus.uml.tools.extendedtypes,
  org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration,
  org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl,
@@ -21,15 +9,27 @@ Export-Package: org.eclipse.papyrus.uml.tools.extendedtypes,
  org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration,
  org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.impl,
  org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.2";visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.2",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
+ org.eclipse.papyrus.infra.extendedtypes.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.2",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.2"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.tools.extendedtypes.Activato
  r$Implementation
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.extendedtypes;singl
  eton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

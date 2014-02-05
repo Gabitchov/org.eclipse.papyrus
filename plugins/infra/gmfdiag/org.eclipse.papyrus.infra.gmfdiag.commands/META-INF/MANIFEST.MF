@@ -1,6 +1,8 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.commands,
+ org.eclipse.papyrus.commands.wrappers
 Require-Bundle: org.eclipse.ui.workbench,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
  org.eclipse.gmf.runtime.common.core,
  org.eclipse.emf.common,
  org.eclipse.gef,
@@ -8,20 +10,18 @@ Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.emf.transaction.ui;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.2",
  org.eclipse.core.expressions;bundle-version="3.4.500",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor
-Export-Package: org.eclipse.papyrus.commands,
- org.eclipse.papyrus.commands.wrappers
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.commands.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.commands;single
  ton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

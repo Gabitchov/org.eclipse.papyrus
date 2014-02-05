@@ -1,27 +1,27 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.views.modelexplorer.widgets
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.2",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.2",
  org.eclipse.emf.facet.infra.browser;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.2",
  org.eclipse.emf.facet.infra.facet;bundle-version="0.1.0",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
  org.eclipse.gmf.runtime.emf.core;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2"
+Export-Package: org.eclipse.papyrus.views.modelexplorer.widgets
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.widgets.Acti
  vator
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer.widgets;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

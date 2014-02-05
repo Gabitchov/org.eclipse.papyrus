@@ -1,4 +1,16 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.generator,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.serializer,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.services,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.util,
+ org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -13,29 +25,17 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.uml2.uml;bundle-version="3.1.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.2",
  org.apache.log4j;bundle-version="1.2.15"
-Export-Package: org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.formatting,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.generator,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.parser.antlr.internal,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.scoping,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.serializer,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.services,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.util,
- org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.validation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Import-Package: org.apache.log4j,
- org.eclipse.xtext.xbase.lib
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.connectionpointr
  eference.xtext;singleton:=true
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

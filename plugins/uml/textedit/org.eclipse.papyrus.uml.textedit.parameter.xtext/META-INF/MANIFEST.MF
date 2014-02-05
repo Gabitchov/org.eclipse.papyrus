@@ -1,16 +1,4 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.textedit.parameter.xtext,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.formatting,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.generator,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.parser.antlr,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.parser.antlr.internal,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.scoping,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.serializer,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.services,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.impl,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.util,
- org.eclipse.papyrus.uml.textedit.parameter.xtext.validation
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -25,18 +13,30 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
- org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.2",
  org.apache.log4j;bundle-version="1.2.15"
+Export-Package: org.eclipse.papyrus.uml.textedit.parameter.xtext,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.formatting,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.generator,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.parser.antlr,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.scoping,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.serializer,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.services,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.impl,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.util,
+ org.eclipse.papyrus.uml.textedit.parameter.xtext.validation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Import-Package: org.apache.log4j,
- org.eclipse.xtext.xbase.lib
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.parameter.xtext;
  singleton:=true
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

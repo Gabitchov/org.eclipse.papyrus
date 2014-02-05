@@ -5,10 +5,10 @@ Require-Bundle: org.eclipse.ui,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.dev.java.utils.Activator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.dev.java.utils.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.dev.java.utils;singleton:=tru
  e
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

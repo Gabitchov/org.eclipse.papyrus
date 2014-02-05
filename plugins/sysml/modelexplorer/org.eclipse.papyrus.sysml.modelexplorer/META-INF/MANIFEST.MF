@@ -3,36 +3,36 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.common.core,
  org.eclipse.emf.facet.infra.query.core,
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.sysml;bundle-version="0.10.1",
+ org.eclipse.papyrus.sysml;bundle-version="0.10.2",
  org.eclipse.swt,
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
- org.eclipse.papyrus.sysml.service.types;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.service.types;bundle-version="0.10.1",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.2",
+ org.eclipse.papyrus.sysml.service.types;bundle-version="0.10.2",
+ org.eclipse.papyrus.uml.service.types;bundle-version="0.10.2",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.2",
  org.eclipse.ui.navigator;bundle-version="3.5.0",
- org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.sysml.diagram.common;bundle-version="0.10.2",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
  org.eclipse.ui.ide;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.modelexplorer;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.2",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.2",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.uml.modelexplorer;bundle-version="0.10.2"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
 Bundle-Version: 0.10.2.qualifier
-Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.sysml.modelexplorer.Activator
+Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.modelexplorer;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

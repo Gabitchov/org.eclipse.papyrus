@@ -1,22 +1,22 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.queries.core.configuration,
+ org.eclipse.papyrus.infra.queries.core.configuration.impl,
+ org.eclipse.papyrus.infra.queries.core.configuration.plugin,
+ org.eclipse.papyrus.infra.queries.core.configuration.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.facet.infra.query,
  org.eclipse.uml2.uml
-Export-Package: org.eclipse.papyrus.infra.queries.core.configuration,
- org.eclipse.papyrus.infra.queries.core.configuration.impl,
- org.eclipse.papyrus.infra.queries.core.configuration.plugin,
- org.eclipse.papyrus.infra.queries.core.configuration.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.queries.core.configuration
  .plugin.Activator$Implementation
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.queries.core.configurat
  ion;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

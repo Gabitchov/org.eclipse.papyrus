@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.gmf.figureview,
- org.eclipse.papyrus.gmf.figureview.view
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.facet.common.ui,
  org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.editor;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.editor;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="0.10.2"
+Export-Package: org.eclipse.papyrus.gmf.figureview,
+ org.eclipse.papyrus.gmf.figureview.view
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.gmf.figureview.Activator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.gmf.figureview.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.gmf.figureview;singleton:=tru
  e
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="
- 0.10.1"
+ 0.10.2"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Version: 0.10.2.qualifier
 Bundle-Name: Papyrus Theme (Incubation)

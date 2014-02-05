@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.services.resourceloading;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.tools;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.services.resourceloading;bundle-version="0.10.2",
+ org.eclipse.papyrus.uml.tools;bundle-version="0.10.2"
 Bundle-Vendor: %providerName
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.resourceloading.profile;s
  ingleton:=true

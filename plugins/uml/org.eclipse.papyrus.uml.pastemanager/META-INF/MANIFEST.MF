@@ -1,25 +1,25 @@
 Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2"
 Export-Package: org.eclipse.papyrus.uml.pastemanager,
  org.eclipse.papyrus.uml.pastemanager.command,
  org.eclipse.papyrus.uml.pastemanager.request,
  org.eclipse.papyrus.uml.pastemanager.service
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
- org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.6.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.pastemanager.Activator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.uml.pastemanager.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.pastemanager;singleton:=t
  rue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

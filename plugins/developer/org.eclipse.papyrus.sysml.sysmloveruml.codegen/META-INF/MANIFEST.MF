@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.sysml.sysmloveruml.codegen,
- org.eclipse.papyrus.sysml.sysmloveruml.codegen.core,
- org.eclipse.papyrus.sysml.sysmloveruml.codegen.utils
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.common;bundle-version="2.7.0",
  org.eclipse.jet;bundle-version="1.1.1",
  org.eclipse.emf.ecore;bundle-version="2.8.0",
  org.eclipse.emf.codegen.ecore;bundle-version="2.8.0"
+Export-Package: org.eclipse.papyrus.sysml.sysmloveruml.codegen,
+ org.eclipse.papyrus.sysml.sysmloveruml.codegen.core,
+ org.eclipse.papyrus.sysml.sysmloveruml.codegen.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.sysml.sysmloveruml.codegen.SysML
  OverUMLGeneratorPlugin$Implementation
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.sysmloveruml.codegen;si
  ngleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

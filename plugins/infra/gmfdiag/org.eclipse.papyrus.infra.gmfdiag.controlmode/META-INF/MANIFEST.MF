@@ -5,17 +5,17 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore,
  org.eclipse.gmf.runtime.common.core,
  org.eclipse.gmf.runtime.emf.commands.core,
- org.eclipse.papyrus.infra.services.controlmode;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.services.controlmode;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
 Bundle-Name: GMF-specific control mode behavior (Incubation)
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.controlmode.Activa
  tor
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.controlmode;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

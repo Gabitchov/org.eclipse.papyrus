@@ -1,34 +1,34 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
- org.eclipse.emf.ecore;bundle-version="2.7.0",
- org.eclipse.emf.ecore.xmi;bundle-version="2.6.0",
- org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.1",
- org.eclipse.uml2.uml,
- org.eclipse.uml2.types,
- org.eclipse.emf.edit,
- org.eclipse.emf.ecore.edit,
- org.eclipse.papyrus.infra.extendedtypes.edit,
- org.eclipse.uml2.uml.edit,
- org.eclipse.papyrus.infra.core.log,
- org.eclipse.ui;bundle-version="3.7.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
- org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.core.databinding;bundle-version="1.4.1"
 Export-Package: org.eclipse.papyrus.infra.extendedtypes.emf,
  org.eclipse.papyrus.infra.extendedtypes.emf.converter,
  org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration,
  org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.impl,
  org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.util
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.7.0",
+ org.eclipse.emf.ecore;bundle-version="2.7.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.6.0",
+ org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.2",
+ org.eclipse.uml2.uml,
+ org.eclipse.uml2.types,
+ org.eclipse.emf.edit,
+ org.eclipse.emf.ecore.edit,
+ org.eclipse.papyrus.infra.extendedtypes.edit;bundle-version="0.10.2",
+ org.eclipse.uml2.uml.edit,
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.ui;bundle-version="3.7.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.2",
+ org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
+ org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
+ org.eclipse.core.databinding;bundle-version="1.4.1"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 0.10.2.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.extendedtypes.emf.Activato
  r
-Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.extendedtypes.emf;singl
  eton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
