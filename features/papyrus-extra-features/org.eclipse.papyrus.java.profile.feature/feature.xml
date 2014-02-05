@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.java.profile.feature"
-      label="%featureName"
-      version="0.10.1.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.java.profile.feature" label="%featureName" provider-name="%providerName" version="0.10.2.qualifier">
 
    <description url="http://www.example.com/description">
       Profile for the Java language.
@@ -49,25 +44,10 @@ generator project &amp; help for the conception
       <import plugin="org.eclipse.ui.ide"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.papyrus.java.profile"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.java.profile" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.java.profile.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.java.profile.edit" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.java.profile.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.java.profile.editor" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>
