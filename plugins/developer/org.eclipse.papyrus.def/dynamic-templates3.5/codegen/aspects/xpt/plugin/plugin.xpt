@@ -14,6 +14,7 @@
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «IMPORT 'http://www.eclipse.org/emf/2002/Ecore'»
+«IMPORT 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension'»
 «EXTENSION xpt::diagram::Utils»
 «EXTENSION xpt::GenEditorGenerator»
 
@@ -50,6 +51,7 @@
 «EXPAND xpt::diagram::updater::extensions::extensions FOR editorGen.diagramUpdater-»
 «EXPAND impl::actions::extensions::Main FOR editorGen-»
 «EXPAND xpt::plugin::plugin::additions-»
+«EXPAND xpt::plugin::plugin::notationTypesMap FOR editorGen»
 </plugin>
 «ENDAROUND»
 
@@ -307,3 +309,39 @@
           path="«group.id.getToolPath()»">
     </predefinedEntry>
 «ENDDEFINE»
+
+«DEFINE notationTypesMap FOR gmfgen::GenEditorGenerator»
+	<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="«modelID»">
+			<mapping type="«modelID»" humanReadableType="«modelID.replaceAll('Papyrus|UML|Diagram', '')»Diagram"/>
+			«EXPAND compartmentToTypeMap FOREACH diagram.compartments»
+			«EXPAND linksToTypeMap FOREACH diagram.links»
+		</diagramMappings>
+	</extension>
+«ENDDEFINE»
+
+«DEFINE linksToTypeMap FOR gmfgen::GenLink»
+	«EXPAND linkLabelToTypeMap FOREACH labels»
+«ENDDEFINE»
+
+«DEFINE linkLabelToTypeMap FOR gmfgen::GenLinkLabel»«IF papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->exists(linkLabels->includes(self))»
+	<mapping
+		humanReadableType="«papyrusgmfgenextension::LabelVisibilityPreference.allInstances()->select(label : papyrusgmfgenextension::LabelVisibilityPreference | label.linkLabels->includes(self))->asSequence()->first().role»"
+		type="«visualID»">
+	</mapping>
+«ENDIF»«ENDDEFINE»
+
+«DEFINE compartmentToTypeMap FOR gmfgen::GenCompartment»
+	<mapping
+		humanReadableType="«title.replaceAll('Compartment', '')»"
+		type="«visualID»">
+	</mapping>
+«ENDDEFINE»
+
+
+
+
+
+
+
+
