@@ -251,6 +251,7 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 		final FullStateInvariantEditPartCN lastStateInvariant = getAndAssertLastFullStateInvariant(expectedNumberOfStateInvariants);
 		final Rectangle bounds = getAbsoluteBounds(lastStateInvariant);
 		assertTrue("position out of bounds", xPos < bounds.width);
+		flushEventLoop();
 		sendOpenSelectionRequest(lastStateInvariant, new Point(bounds.x + xPos, bounds.y));
 	}
 
