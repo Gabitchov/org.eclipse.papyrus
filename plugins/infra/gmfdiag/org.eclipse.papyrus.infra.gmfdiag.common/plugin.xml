@@ -175,37 +175,6 @@
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-   <diagramMappings
-         diagramID="PapyrusUMLClassDiagram">
-      <mapping
-         humanReadableType="Name"
-         type="6002">
-   </mapping>
-   <mapping
-         humanReadableType="Source role"
-         type="6003">
-   </mapping>
-   <mapping
-         humanReadableType="Target role"
-         type="6005">
-   </mapping>
-   <mapping
-         humanReadableType="Source multiplicity"
-         type="6033">
-   </mapping>
-   <mapping
-         humanReadableType="Target multiplicity"
-         type="6034">
-   </mapping>
-   <mapping
-         humanReadableType="role"
-         type="6035">
-   </mapping>
-   <mapping
-         humanReadableType="multiplicity"
-         type="6024">
-   </mapping>
-   </diagramMappings>
    <mapping
          humanReadableType="symbol"
          type="compartment_shape_display">

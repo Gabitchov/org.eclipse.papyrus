@@ -7,22 +7,22 @@
 	showTitle: true;
 }
 
-Interface > Compartment[kind=attribute],
-Interface > Compartment[kind=nestedClassifier] {
+Interface > Compartment[kind=Attribute],
+Interface > Compartment[kind=NestedClassifier] {
 	visible:false;
 }
 
-Interface[ownedAttribute] > Compartment[kind=attribute]{
+Interface[ownedAttribute] > Compartment[kind=Attribute]{
 	visible:true;
 }
 
-Compartment[kind=nestedClassifier] {
+Compartment[kind=NestedClassifier] {
 	visible: false;
 }
 
 
 /* Collapse the Attribute compartment if the Class contains a P1 attribute (Displayed) */
-Class[ownedAttribute~="P1"] > Compartment[kind=attribute]{
+Class[ownedAttribute~="P1"] > Compartment[kind=Attribute]{
 	collapsed: true;
 }
 
