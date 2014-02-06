@@ -183,31 +183,24 @@ public class BundlesTests {
 	 *        the file path
 	 */
 	private void fileTest(final String filepath) {
-		String message = null;
+		StringBuffer buffer = new StringBuffer();
 		int nb = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
-			URL url = current.getResource(filepath);
-			//specific behavior for the fragment!
-			if((url == null) && (current instanceof BundleFragment)) {
-				final BundleFragment fragment = (BundleFragment)current;
-				final Enumeration<URL> entries = fragment.findEntries("/", filepath, false); //$NON-NLS-1$
-				if(entries != null) {
-					if(entries.hasMoreElements()) {
-						url = entries.nextElement();
-					}
-				}
-			}
-
+			URL url = current.getEntry(filepath);
 			if(url == null) {
-				if(message == null) {
-					message = "The following bundles don't have the file about.html :"; //$NON-NLS-1$
+				if(buffer.length() == 0) {
+					buffer.append(NLS.bind("The following bundles don't have the file {0}.", filepath)); //$NON-NLS-1$
 				}
-				message += "\n "; //$NON-NLS-1$
-				message += current.getSymbolicName();
+				buffer.append("\n");//$NON-NLS-1$
+				buffer.append(current.getSymbolicName());
 				nb++;
 			}
 		}
-		Assert.assertNull(nb + " problems!", message); //$NON-NLS-1$
+		StringBuffer errorMessage = new StringBuffer();
+		errorMessage.append(nb);
+		errorMessage.append(" problems!\n"); //$NON-NLS-1$
+		errorMessage.append(buffer.toString());
+		Assert.assertTrue(errorMessage.toString(), buffer.toString().isEmpty());
 	}
 
 	/**

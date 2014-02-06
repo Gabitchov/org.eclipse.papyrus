@@ -18,9 +18,10 @@ Export-Package: org.eclipse.papyrus.uml.diagram.pkg.tests,
  org.eclipse.papyrus.uml.diagram.pkg.tests.load
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.10.2.qualifier
-Bundle-Name: Tests
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.pkg.tests.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.pkg.tests
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
 
