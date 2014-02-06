@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.databinding.conversion.IConverter;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.ValueSpecification;
 
@@ -56,6 +57,7 @@ public class ConverterRegistry {
 		converterMaps.put(int.class, new ValueSpecificationToIntegerConverter());
 		converterMaps.put(boolean.class, new ValueSpecificationToBooleanConverter());
 		converterMaps.put(Enumeration.class, new ValueSpecificationToEnumerationConverter());
+		converterMaps.put(EEnum.class, new ValueSpecificationToEENumConverter());
 	}
 
 	/**

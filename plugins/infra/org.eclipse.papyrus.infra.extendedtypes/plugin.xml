@@ -203,5 +203,14 @@
             name="Aspect Semantic Type Configuration">
       </configuration>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.extendedTypeConfiguration">
+      <configuration
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration"
+            description="configuration for view-only element types that have potential aspect actions for creation"
+            factoryClass="org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeFactory"
+            name="Aspect View Type Configuration">
+      </configuration>
+   </extension>
   
 </plugin>

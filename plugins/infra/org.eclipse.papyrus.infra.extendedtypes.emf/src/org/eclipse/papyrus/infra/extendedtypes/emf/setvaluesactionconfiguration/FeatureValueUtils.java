@@ -15,12 +15,20 @@ package org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.extendedtypes.Activator;
 import org.eclipse.papyrus.infra.extendedtypes.emf.converter.ConverterNotfoundException;
 import org.eclipse.papyrus.infra.extendedtypes.emf.converter.ConverterRegistry;
 import org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.util.SetValuesActionConfigurationSwitch;
+import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.InstanceValue;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 
@@ -55,6 +63,30 @@ public class FeatureValueUtils {
 				}
 
 				try {
+					EClassifier type = feature.getEType();
+					if(type instanceof EEnum) {
+						String value = ((InstanceValue)valueSpecification).getInstance().getName();
+						return ((EEnum)type).getEEnumLiteral(value).getInstance();
+						// return ConverterRegistry.getSingleton().convert(EEnum.class, valueSpecification);
+					} else if(type instanceof EDataType) {
+						final EDataType pType = (EDataType)type;
+						final String name = pType.getName();
+						if("Boolean".equals(name)) {
+							return ConverterRegistry.getSingleton().convert(boolean.class, valueSpecification);
+						} else if("Integer".equals(name)) {
+							return ConverterRegistry.getSingleton().convert(int.class, valueSpecification);
+						} else if("Real".equals(name)) {
+							return ConverterRegistry.getSingleton().convert(double.class, valueSpecification);
+						} else if("String".equals(name)) {
+							return ConverterRegistry.getSingleton().convert(String.class, valueSpecification);
+						} else if("UnlimitedNatural".equals(name)) {
+							return ConverterRegistry.getSingleton().convert(int.class, valueSpecification);
+						} else { //custom PrimitiveType
+							return ConverterRegistry.getSingleton().convert(String.class, valueSpecification);
+						}
+					} else if(type instanceof DataType) {//FIXME manage the data type
+						return ConverterRegistry.getSingleton().convert(String.class, valueSpecification);
+					} 
 					return ConverterRegistry.getSingleton().convert(feature.getEType().getInstanceClass(), valueSpecification);
 				} catch (ConverterNotfoundException e) {
 					Activator.log.error("Impossible to convert "+valueSpecification+ " to fit feature type :"+feature, e);
