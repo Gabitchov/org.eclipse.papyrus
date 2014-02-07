@@ -2354,6 +2354,347 @@
 			
 	</extension>
 
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="CompositeStructure">
+			<mapping type="CompositeStructure" humanReadableType="CompositeStructureDiagram"/>
+			
+	<mapping
+		humanReadableType="properties"
+		type="7033">
+	</mapping>
 
+	<mapping
+		humanReadableType="operations"
+		type="7034">
+	</mapping>
+
+	<mapping
+		humanReadableType="properties"
+		type="7036">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7037">
+	</mapping>
+
+	<mapping
+		humanReadableType="literals"
+		type="7048">
+	</mapping>
+
+	<mapping
+		humanReadableType="literals"
+		type="7049">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7050">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7051">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7052">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7053">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7054">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7055">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7056">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7057">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7058">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7059">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7060">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7061">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7063">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7064">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7065">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7066">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7067">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7068">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7069">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7070">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7071">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7072">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7073">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7075">
+	</mapping>
+
+	<mapping
+		humanReadableType="structure"
+		type="7077">
+	</mapping>
+
+			
+	
+
+	
+
+	
+
+	
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6001">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6015">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6002">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6016">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6003">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6017">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6004">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6018">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6005">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6019">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6006">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6020">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6007">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6021">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6008">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6022">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6027">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6028">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6009">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6023">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="6025">
+	</mapping>
+
+	<mapping
+		humanReadableType="Name"
+		type="6050">
+	</mapping>
+
+	<mapping
+		humanReadableType="SourceMultiplicity"
+		type="6051">
+	</mapping>
+
+	<mapping
+		humanReadableType="TargetMultiplicity"
+		type="6052">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="6024">
+	</mapping>
+
+
+	
+
+	
+
+	
+	<mapping
+		humanReadableType="Tag"
+		type="6030">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="ConveyedElements"
+		type="6031">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6032">
+	</mapping>
+
+
+		</diagramMappings>
+	</extension>
 
 </plugin>

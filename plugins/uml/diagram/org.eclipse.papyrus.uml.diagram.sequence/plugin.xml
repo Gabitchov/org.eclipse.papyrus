@@ -2059,7 +2059,21 @@
       </menuContribution>
    </extension>
    
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="PapyrusUMLSequenceDiagram">
+			<mapping type="PapyrusUMLSequenceDiagram" humanReadableType="SequenceDiagram"/>
+			
+	<mapping
+		humanReadableType="Interaction"
+		type="7001">
+	</mapping>
 
+	<mapping
+		humanReadableType="CombinedFragment"
+		type="7004">
+	</mapping>
+		</diagramMappings>
+	</extension>
 
 
    <!-- optionally, specify keybindings -->

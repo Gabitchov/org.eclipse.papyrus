@@ -842,7 +842,16 @@
          <context decoratorTargets="PRIMARY_VIEW"/>
       </decoratorProvider>
    </extension>
-
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+	<diagramMappings diagramID="PapyrusUMLCommunicationDiagram">
+		<mapping type="PapyrusUMLCommunicationDiagram" humanReadableType="CommunicationDiagram"/>
+			
+		<mapping
+			humanReadableType="Interaction"
+			type="7001">
+		</mapping>
+	</diagramMappings>
+</extension>
 
 
 

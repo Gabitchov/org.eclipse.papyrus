@@ -1558,4 +1558,155 @@
       </context>
    </editpartProvider>
 </extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="PapyrusUMLComponentDiagram">
+			<mapping type="PapyrusUMLComponentDiagram" humanReadableType="ComponentDiagram"/>
+			
+	<mapping
+		humanReadableType="Composite"
+		type="7001">
+	</mapping>
+
+	<mapping
+		humanReadableType="ModelElement"
+		type="7006">
+	</mapping>
+
+	<mapping
+		humanReadableType="PackageableElement"
+		type="7002">
+	</mapping>
+
+	<mapping
+		humanReadableType="ModelElement"
+		type="7007">
+	</mapping>
+
+	<mapping
+		humanReadableType="PackageableElement"
+		type="7005">
+	</mapping>
+
+	<mapping
+		humanReadableType="CompositeCN"
+		type="7003">
+	</mapping>
+
+	<mapping
+		humanReadableType="CompositePCN"
+		type="7004">
+	</mapping>
+
+	<mapping
+		humanReadableType="Attribute"
+		type="7008">
+	</mapping>
+
+	<mapping
+		humanReadableType="Operation"
+		type="7009">
+	</mapping>
+
+	<mapping
+		humanReadableType="Attribute"
+		type="7010">
+	</mapping>
+
+	<mapping
+		humanReadableType="Operation"
+		type="7011">
+	</mapping>
+
+			
+	
+
+	
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="2">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6006">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6020">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6008">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6022">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="3">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="4">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6007">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6021">
+	</mapping>
+
+
+	
+
+	
+
+	
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6009">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6023">
+	</mapping>
+
+
+	
+
+	
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6025">
+	</mapping>
+
+
+	</diagramMappings>
+</extension>
+
 </plugin>
