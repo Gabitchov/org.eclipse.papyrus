@@ -24,7 +24,4 @@ Bundle-Activator: org.eclipse.papyrus.extensionpoints.editors.Activato
  r
 Bundle-SymbolicName: org.eclipse.papyrus.extensionpoints.editors;singl
  eton:=true
-Import-Package: org.eclipse.xtext.parser,
- org.eclipse.xtext.resource,
- org.eclipse.xtext.util
 
