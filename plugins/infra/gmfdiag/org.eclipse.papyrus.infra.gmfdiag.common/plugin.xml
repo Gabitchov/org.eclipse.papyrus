@@ -176,7 +176,7 @@
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
    <mapping
-         humanReadableType="Symbol"
+         humanReadableType="symbol"
          type="compartment_shape_display">
    </mapping>
 </extension>

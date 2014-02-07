@@ -53,11 +53,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
 public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPart {
 
 	/** Title of this compartment */
-	public final static String COMPARTMENT_NAME = "SymbolCompartment"; // $NON-NLS-1$
+	public final static String COMPARTMENT_NAME = "symbol"; // $NON-NLS-1$
 
 	/**
 	 * Creates a new ShapeDisplayCompartmentEditPart
-	 * 
+	 *
 	 * @param model
 	 *        The resizable compartment view
 	 */
@@ -106,7 +106,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	/**
 	 * this method is used to set the ratio of the figure.
 	 * pay attention if the ratio is true, the only figure is displayed
-	 * 
+	 *
 	 * @param maintainRatio
 	 */
 	protected void maintainRatio(boolean maintainRatio) {
@@ -154,7 +154,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	 * To be sure everything is clean, it removes all the current displayed shapes and then redraw all of the demanded shapes. This could be probably
 	 * improved in case of performance issues.
 	 * </P>
-	 * 
+	 *
 	 * @param contentPane
 	 *        the figure where to add the new shapes
 	 */
@@ -242,7 +242,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	public class OneShapeLayoutManager extends AbstractLayout {
 
 		/**
-		 * 
+		 *
 		 * {@inheritDoc}
 		 */
 		@Override
@@ -255,7 +255,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 		}
 
 		/**
-		 * 
+		 *
 		 * {@inheritDoc}
 		 */
 		@Override
@@ -343,7 +343,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 
 		/**
 		 * Gets the diagram event broker from the editing domain.
-		 * 
+		 *
 		 * @return the diagram event broker
 		 */
 		protected DiagramEventBroker getDiagramEventBroker() {
@@ -356,7 +356,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 
 		/**
 		 * Returns the view controlled by the host edit part
-		 * 
+		 *
 		 * @return the view controlled by the host edit part
 		 */
 		protected View getView() {
@@ -377,7 +377,7 @@ public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPar
 	}
 
 	/**
-	 * 
+	 *
 	 * @param currentView
 	 * @return the current Style that reperesent the boder
 	 */

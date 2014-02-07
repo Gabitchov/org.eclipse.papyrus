@@ -6889,7 +6889,7 @@
           itemSemanticEditPolicyClassName="ClassAttributeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ClassAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.0"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@childNodes.33">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6912,7 +6912,7 @@
           itemSemanticEditPolicyClassName="ClassOperationCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ClassOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.19 /0/@diagram/@childNodes.9"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@childNodes.33">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6935,7 +6935,7 @@
           itemSemanticEditPolicyClassName="ClassNestedClassifierCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ClassNestedClassifierCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.50"
-          title="NestedClassifierCompartment"
+          title="nested classifiers"
           node="/0/@diagram/@childNodes.33">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6962,7 +6962,7 @@
           itemSemanticEditPolicyClassName="ComponentAttributeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ComponentAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.1"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@childNodes.26">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6985,7 +6985,7 @@
           itemSemanticEditPolicyClassName="ComponentOperationCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ComponentOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.10 /0/@diagram/@childNodes.19"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@childNodes.26">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7008,7 +7008,7 @@
           itemSemanticEditPolicyClassName="ComponentNestedClassifierCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ComponentNestedClassifierCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.51"
-          title="NestedClassifierCompartment"
+          title="nested classifiers"
           node="/0/@diagram/@childNodes.26">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7035,7 +7035,7 @@
           itemSemanticEditPolicyClassName="SignalAttributeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="SignalAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.2"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@childNodes.27">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7058,7 +7058,7 @@
           itemSemanticEditPolicyClassName="InterfaceAttributeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="InterfaceAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.3"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@childNodes.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7081,7 +7081,7 @@
           itemSemanticEditPolicyClassName="InterfaceOperationCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="InterfaceOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.11 /0/@diagram/@childNodes.20"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@childNodes.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7104,7 +7104,7 @@
           itemSemanticEditPolicyClassName="InterfaceNestedClassifierCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="InterfaceNestedClassifierCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.52"
-          title="NestedClassifierCompartment"
+          title="nested classifiers"
           node="/0/@diagram/@childNodes.28">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7131,7 +7131,7 @@
           itemSemanticEditPolicyClassName="PrimitiveTypeAttributeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="PrimitiveTypeAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@childNodes.34">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7154,7 +7154,7 @@
           itemSemanticEditPolicyClassName="PrimitiveTypeOperationCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="PrimitiveTypeOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.12"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@childNodes.34">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7177,7 +7177,7 @@
           itemSemanticEditPolicyClassName="DataTypeAttributeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.5"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@childNodes.35">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7200,7 +7200,7 @@
           itemSemanticEditPolicyClassName="DataTypeOperationCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.13"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@childNodes.35">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7223,7 +7223,7 @@
           itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.32"
-          title="PackageableElementCompartment"
+          title="packaged elements"
           canCollapse="false"
           node="/0/@diagram/@childNodes.29"
           listLayout="false">
@@ -7256,7 +7256,7 @@
           itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.32"
-          title="PackageableElementCompartment"
+          title="packaged elements"
           canCollapse="false"
           node="/0/@diagram/@childNodes.31"
           listLayout="false">
@@ -7312,7 +7312,7 @@
           itemSemanticEditPolicyClassName="InstanceSpecificationSlotCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="InstanceSpecificationSlotCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.21"
-          title="SlotCompartment"
+          title="slots"
           node="/0/@diagram/@childNodes.25">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7335,7 +7335,7 @@
           itemSemanticEditPolicyClassName="ClassAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ClassAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.0"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@topLevelNodes.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7358,7 +7358,7 @@
           itemSemanticEditPolicyClassName="ClassOperationCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ClassOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.19 /0/@diagram/@childNodes.9"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@topLevelNodes.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7381,7 +7381,7 @@
           itemSemanticEditPolicyClassName="ClassNestedClassifierCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ClassNestedClassifierCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.50"
-          title="NestedClassifierCompartment"
+          title="nested classifiers"
           node="/0/@diagram/@topLevelNodes.11">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7412,7 +7412,7 @@
           itemSemanticEditPolicyClassName="ComponentAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ComponentAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.1"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@topLevelNodes.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7435,7 +7435,7 @@
           itemSemanticEditPolicyClassName="ComponentOperationCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ComponentOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.10 /0/@diagram/@childNodes.19"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@topLevelNodes.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7458,7 +7458,7 @@
           itemSemanticEditPolicyClassName="ComponentNestedClassifierCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ComponentNestedClassifierCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.51"
-          title="NestedClassifierCompartment"
+          title="nested classifiers"
           node="/0/@diagram/@topLevelNodes.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7489,7 +7489,7 @@
           itemSemanticEditPolicyClassName="InterfaceAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="InterfaceAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@topLevelNodes.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7512,7 +7512,7 @@
           itemSemanticEditPolicyClassName="InterfaceOperationCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="InterfaceOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.11 /0/@diagram/@childNodes.20"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@topLevelNodes.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7535,7 +7535,7 @@
           itemSemanticEditPolicyClassName="InterfaceNestedClassifierCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="InterfaceNestedClassifierCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.52"
-          title="NestedClassifierCompartment"
+          title="nested classifiers"
           node="/0/@diagram/@topLevelNodes.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7566,7 +7566,7 @@
           itemSemanticEditPolicyClassName="PrimitiveTypeAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="PrimitiveTypeAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.4"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@topLevelNodes.12">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7589,7 +7589,7 @@
           itemSemanticEditPolicyClassName="PrimitiveTypeOperationCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="PrimitiveTypeOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.12"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@topLevelNodes.12">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7612,7 +7612,7 @@
           itemSemanticEditPolicyClassName="DataTypeAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.5"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@topLevelNodes.13">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7635,7 +7635,7 @@
           itemSemanticEditPolicyClassName="DataTypeOperationCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.13"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@topLevelNodes.13">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7658,7 +7658,7 @@
           itemSemanticEditPolicyClassName="AssociationClassAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="AssociationClassAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.1"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@topLevelNodes.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7681,7 +7681,7 @@
           itemSemanticEditPolicyClassName="InstanceSpecificationSlotCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="InstanceSpecificationSlotCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.21"
-          title="SlotCompartment"
+          title="slots"
           node="/0/@diagram/@topLevelNodes.3">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7704,7 +7704,7 @@
           itemSemanticEditPolicyClassName="SignalAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="SignalAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.2"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@topLevelNodes.5">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7727,7 +7727,7 @@
           itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicyTN"
           canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicyTN"
           childNodes="/0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.32"
-          title="PackageableElementCompartment"
+          title="packaged elements"
           canCollapse="false"
           node="/0/@diagram/@topLevelNodes.7"
           listLayout="false">
@@ -7760,7 +7760,7 @@
           itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.32"
-          title="PackageableElementCompartment"
+          title="packaged elements"
           canCollapse="false"
           node="/0/@diagram/@topLevelNodes.9"
           listLayout="false">
@@ -7816,7 +7816,7 @@
           itemSemanticEditPolicyClassName="AssociationClassOperationCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="AssociationClassOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.10"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@topLevelNodes.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7839,7 +7839,7 @@
           itemSemanticEditPolicyClassName="AssociationClassNestedClassifierCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="AssociationClassNestedClassifierCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.7"
-          title="NestedClassifierCompartment"
+          title="nested classifiers"
           node="/0/@diagram/@topLevelNodes.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>

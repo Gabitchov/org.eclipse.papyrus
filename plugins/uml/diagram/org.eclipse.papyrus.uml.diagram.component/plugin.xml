@@ -1563,57 +1563,57 @@
 			<mapping type="PapyrusUMLComponentDiagram" humanReadableType="ComponentDiagram"/>
 			
 	<mapping
-		humanReadableType="Composite"
+		humanReadableType="packaged elements"
 		type="7001">
 	</mapping>
 
 	<mapping
-		humanReadableType="ModelElement"
+		humanReadableType="packaged elements"
 		type="7006">
 	</mapping>
 
 	<mapping
-		humanReadableType="PackageableElement"
+		humanReadableType="packaged elements"
 		type="7002">
 	</mapping>
 
 	<mapping
-		humanReadableType="ModelElement"
+		humanReadableType="packaged elements"
 		type="7007">
 	</mapping>
 
 	<mapping
-		humanReadableType="PackageableElement"
+		humanReadableType="packaged elements"
 		type="7005">
 	</mapping>
 
 	<mapping
-		humanReadableType="CompositeCN"
+		humanReadableType="packaged elements"
 		type="7003">
 	</mapping>
 
 	<mapping
-		humanReadableType="CompositePCN"
+		humanReadableType="packaged elements"
 		type="7004">
 	</mapping>
 
 	<mapping
-		humanReadableType="Attribute"
+		humanReadableType="attributes"
 		type="7008">
 	</mapping>
 
 	<mapping
-		humanReadableType="Operation"
+		humanReadableType="operations"
 		type="7009">
 	</mapping>
 
 	<mapping
-		humanReadableType="Attribute"
+		humanReadableType="attributes"
 		type="7010">
 	</mapping>
 
 	<mapping
-		humanReadableType="Operation"
+		humanReadableType="operations"
 		type="7011">
 	</mapping>
 

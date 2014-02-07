@@ -1541,82 +1541,82 @@
 			<mapping type="PapyrusUMLProfileDiagram" humanReadableType="ProfileDiagram"/>
 			
 	<mapping
-		humanReadableType="PackageableElement"
+		humanReadableType="packaged elements"
 		type="1005">
 	</mapping>
 
 	<mapping
-		humanReadableType="PackageableElement"
+		humanReadableType="packaged elements"
 		type="11">
 	</mapping>
 
 	<mapping
-		humanReadableType="ProfilePackageableElement"
+		humanReadableType="packaged elements"
 		type="1042">
 	</mapping>
 
 	<mapping
-		humanReadableType="ProfilePackageableElement"
+		humanReadableType="packaged elements"
 		type="1051">
 	</mapping>
 
 	<mapping
-		humanReadableType="Attribute"
+		humanReadableType="attributes"
 		type="1071">
 	</mapping>
 
 	<mapping
-		humanReadableType="Attribute"
+		humanReadableType="attributes"
 		type="1052">
 	</mapping>
 
 	<mapping
-		humanReadableType="Operation"
+		humanReadableType="operations"
 		type="1019">
 	</mapping>
 
 	<mapping
-		humanReadableType="Operation"
+		humanReadableType="operations"
 		type="1053">
 	</mapping>
 
 	<mapping
-		humanReadableType="ModelElement"
+		humanReadableType="packaged elements"
 		type="1057">
 	</mapping>
 
 	<mapping
-		humanReadableType="ModelElement"
+		humanReadableType="packaged elements"
 		type="1058">
 	</mapping>
 
 	<mapping
-		humanReadableType="EnumerationEnumerationLiteral"
+		humanReadableType="literals"
 		type="1062">
 	</mapping>
 
 	<mapping
-		humanReadableType="EnumerationEnumerationLiteral"
+		humanReadableType="literals"
 		type="1063">
 	</mapping>
 
 	<mapping
-		humanReadableType="DataTypeAttribute"
+		humanReadableType="attributes"
 		type="1067">
 	</mapping>
 
 	<mapping
-		humanReadableType="DataTypeAttribute"
+		humanReadableType="attributes"
 		type="1069">
 	</mapping>
 
 	<mapping
-		humanReadableType="DataTypeOperation"
+		humanReadableType="operations"
 		type="1068">
 	</mapping>
 
 	<mapping
-		humanReadableType="DataTypeOperation"
+		humanReadableType="operations"
 		type="1070">
 	</mapping>
 

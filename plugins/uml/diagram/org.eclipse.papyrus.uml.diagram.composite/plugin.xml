@@ -2359,7 +2359,7 @@
 			<mapping type="CompositeStructure" humanReadableType="CompositeStructureDiagram"/>
 			
 	<mapping
-		humanReadableType="properties"
+		humanReadableType="attributes"
 		type="7033">
 	</mapping>
 
@@ -2369,7 +2369,7 @@
 	</mapping>
 
 	<mapping
-		humanReadableType="properties"
+		humanReadableType="attributes"
 		type="7036">
 	</mapping>
 
@@ -2389,127 +2389,127 @@
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7050">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7051">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7052">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7053">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7054">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7055">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7056">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7057">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7058">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7059">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7060">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7061">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7063">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7064">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7065">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7066">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7067">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7068">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7069">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7070">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7071">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7072">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7073">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7075">
 	</mapping>
 
 	<mapping
-		humanReadableType="structure"
+		humanReadableType="internal structure"
 		type="7077">
 	</mapping>
 
