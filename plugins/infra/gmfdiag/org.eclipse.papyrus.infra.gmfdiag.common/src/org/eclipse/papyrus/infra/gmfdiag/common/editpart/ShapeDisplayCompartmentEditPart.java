@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -53,7 +53,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
 public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPart {
 
 	/** Title of this compartment */
-	public final static String COMPARTMENT_NAME = "shape"; // $NON-NLS-1$
+	public final static String COMPARTMENT_NAME = "SymbolCompartment"; // $NON-NLS-1$
 
 	/**
 	 * Creates a new ShapeDisplayCompartmentEditPart

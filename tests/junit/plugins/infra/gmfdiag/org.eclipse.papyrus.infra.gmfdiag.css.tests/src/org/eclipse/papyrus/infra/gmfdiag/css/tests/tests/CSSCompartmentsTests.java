@@ -20,7 +20,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -43,9 +45,9 @@ import org.junit.Test;
 /**
  * Test case for Compartment-related styles and properties
  * See resources/model/compartmentsTest/model.di for details
- * 
- * @author Camille Letavernier
  *
+ * @author Camille Letavernier
+ * 
  */
 public class CSSCompartmentsTests {
 
@@ -147,15 +149,17 @@ public class CSSCompartmentsTests {
 		//Check all compartments
 		for(View childNode : (List<View>)class3.getChildren()) {
 			if(childNode instanceof BasicCompartment) {
-				Assert.assertFalse("All compartments from Class3 should be hidden", childNode.isVisible());
+				Assert.assertFalse("All compartments from Class3 should be hidden. " + childNode.getType() + " is visible", childNode.isVisible());
 			}
 		}
 
 		//We need an editingDomain for the ResetStyle operation
-		new TransactionalEditingDomainImpl(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), diagram.eResource().getResourceSet());
+		TransactionalEditingDomain domain = new TransactionalEditingDomainImpl(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), diagram.eResource().getResourceSet());
+		diagram.eResource().getResourceSet().eAdapters().add(new AdapterFactoryEditingDomain.EditingDomainProvider(domain));
 
 		//Test resetStyle
 		ResetStyleHelper.resetStyle(Collections.singleton(class3));
+
 		//Check only some specific compartments. Some style rules still hide the nestedClassifier compartment. The visibility of e.g. the ShapeCompartment is undetermined.
 		BasicCompartment attributesCompartment = findCompartment(class3, CLASS_ATTRIBUTE_COMPARTMENT_TYPE);
 		BasicCompartment operationsCompartment = findCompartment(class3, CLASS_OPERATION_COMPARTMENT_TYPE);
