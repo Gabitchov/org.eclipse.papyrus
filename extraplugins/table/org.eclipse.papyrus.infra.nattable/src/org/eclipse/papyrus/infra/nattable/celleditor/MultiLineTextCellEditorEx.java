@@ -70,7 +70,35 @@ public class MultiLineTextCellEditorEx extends MultiLineTextCellEditor {
 		if(this.initialValueForFilteringKeyPress) {
 			service.setKeyFilterEnabled(false);
 		}
-		return super.createEditorControl(parent);
+		 final Text text = super.createEditorControl(parent);
+         
+         //this listener allows us to initialize the text widget wit the best size in order to display the full lines of the text
+         text.addControlListener(new ControlListener() {
+
+                @Override
+                public void controlResized(ControlEvent e) {
+                       final Rectangle bounds = text.getBounds();
+                       final int nbLines = text.getLineCount();
+                       text.removeControlListener(this);
+                       if(nbLines > 1) {
+                              text.setBounds(bounds.x, bounds.y, bounds.width, getBestHeight(text));
+                       }
+                       text.removeControlListener(this);
+
+                }
+
+                /**
+                * 
+                 * @see org.eclipse.swt.events.ControlListener#controlMoved(org.eclipse.swt.events.ControlEvent)
+                * 
+                 * @param e
+                */
+                @Override
+                public void controlMoved(ControlEvent e) {
+                       // nothing to do 
+                }
+         });
+         return text;
 	}
 
 	/**
@@ -100,8 +128,22 @@ public class MultiLineTextCellEditorEx extends MultiLineTextCellEditor {
 	protected void keyPressed(Composite parent, Text text, KeyEvent event) {
 		if(event.stateMask == SWT.ALT && (event.keyCode == SWT.CR || event.keyCode == SWT.KEYPAD_CR)) {
 			text.insert(text.getLineDelimiter());
+			 //we resize the text widget in order to display all lines
+            final Rectangle bounds = text.getBounds();
+            text.setBounds(bounds.x, bounds.y, bounds.width, getBestHeight(text));
 		} else {
 			super.keyPressed(parent, text, event);
 		}
 	}
+	
+    /**
+    * 
+     * @param text
+    * the text widget
+    * @return
+    * the best height for the text widget according to the number of new line in the text + the height ot a line
+    */
+    protected final int getBestHeight(final Text text){
+          return (text.getLineCount()+1)* text.getLineHeight();
+    }
 }
