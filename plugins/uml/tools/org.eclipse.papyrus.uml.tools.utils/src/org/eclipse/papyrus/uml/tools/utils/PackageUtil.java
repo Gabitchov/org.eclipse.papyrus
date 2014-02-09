@@ -24,15 +24,19 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -62,7 +66,7 @@ public class PackageUtil {
 	 */
 	public static boolean applyProfile(org.eclipse.uml2.uml.Package package_, org.eclipse.uml2.uml.Profile profileToApply, boolean withSubProfiles) {
 
-		// Returns true if the model was modified
+		// Returnsï¿½true if the model was modified
 		boolean isChanged = false;
 
 		// if profile is not defined abort treatment
@@ -580,10 +584,39 @@ public class PackageUtil {
 		 * {@inheritDoc}
 		 */
 		public int compare(Type o1, Type o2) {
-			final String o1Name = ((o1.getName() != null) ? o1.getName() : "");
-			final String o2Name = ((o2.getName() != null) ? o2.getName() : "");
+			final String o1Name = ((o1.getName() != null) ? o1.getName() : ""); //$NON-NLS-1$
+			final String o2Name = ((o2.getName() != null) ? o2.getName() : ""); //$NON-NLS-1$
 			return o1Name.compareTo(o2Name);
 		}
-
+	}
+	
+	/**
+	 * Return the top element of the model that is currently edited. This function is based on the
+	 * assumption that the user model is the first resource that is loaded into the model set.
+	 * Use this function instead of Utils.getTop (or getModel) if you want to avoid navigating to the
+	 * root of an imported model.
+	 * 
+	 * @return the top level package of the model currently loaded into an editor.
+	 */
+	public static Package getUserModel(ExecutionEvent event) {
+		ServiceUtilsForHandlers serviceUtils = ServiceUtilsForHandlers.getInstance();
+		try {
+			// IPath fn = serviceUtils.getModelSet().getFilenameWithoutExtension();
+			EList<Resource> resources = serviceUtils.getModelSet(event).getResources();
+			if(resources.size() >= 3) {
+				// check first three resources (di, notation, uml)
+				for(int i = 0; i < 3; i++) {
+					Resource userResource = resources.get(i);
+					if(userResource.getContents().size() > 0) {
+						EObject topEObj = userResource.getContents().get(0);
+						if((topEObj instanceof Package) && (!(topEObj instanceof Profile))) {
+							return (Package)topEObj;
+						}
+					}
+				}
+			}
+		} catch (ServiceException e) {
+		}
+		return null;
 	}
 }

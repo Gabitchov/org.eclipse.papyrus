@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.qompass.designer.core.CommandSupport;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.OperationUtils;
@@ -31,6 +30,7 @@ import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.UpdateUtils;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Class;
@@ -249,7 +249,7 @@ public class CompImplSync {
 			if (implementation.getOwnedOperation(opName, null, null) != null) {
 				continue;
 			}
-			ConnectorEnd connEnd = ConnectorUtils.getDelegation(implementation, portInfo.getPort());
+			ConnectorEnd connEnd = ConnectorUtil.getDelegation(implementation, portInfo.getPort());
 			// check that there is no delegation to a part which in turn has to implement the operations.
 			if((providedIntf != null) && (connEnd == null)) {
 				if(providedIntfs.contains(providedIntf)) {

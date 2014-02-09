@@ -38,6 +38,7 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -117,7 +118,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		m_component = component;
 		m_instance = null;
 		m_feature = null;
-		m_model = Utils.getUserModel(from);
+		m_model = PackageUtil.getUserModel(from);
 		if(m_model == null) {
 			return false;
 		}
@@ -130,14 +131,14 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		m_component = DepUtils.getImplementation(instance);
 		m_instance = instance;
 		m_feature = null;
-		m_model = Utils.getUserModel(from);
+		m_model = PackageUtil.getUserModel(from);
 		return checkAndGetInstances();
 	}
 
 	public boolean init(Feature feature, ExecutionEvent from) {
 		// visitedPackages = new BasicEList<Package> ();
 		m_feature = feature;
-		m_model = Utils.getUserModel(from);
+		m_model = PackageUtil.getUserModel(from);
 		m_instance = null;
 		if(feature instanceof Connector) {
 			org.eclipse.papyrus.FCM.Connector fcmConn = UMLUtil.getStereotypeApplication(feature,

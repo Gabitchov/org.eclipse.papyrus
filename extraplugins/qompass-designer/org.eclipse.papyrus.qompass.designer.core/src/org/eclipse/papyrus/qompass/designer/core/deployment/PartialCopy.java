@@ -16,9 +16,9 @@ package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import java.util.Stack;
 
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -72,9 +72,7 @@ public class PartialCopy implements InstanceDeployer {
 		for (Slot slot : is.getSlots()) {
 			copyPart(smCl, slot);
 		}
-		// since we copied some of its attributes, the copy class created a shallow copy of the class itself
-		Class tmCl = (Class) copy.get(smCl);
-		
+		// since we copied some of its attributes, the copy class created a shallow copy of the class itself		
 		InstanceSpecification tmIS = (InstanceSpecification) copy.get(is);
 		return tmIS;
 	}
@@ -106,8 +104,8 @@ public class PartialCopy implements InstanceDeployer {
 			for(Connector smConnector : smCl.getOwnedConnectors()) {
 				// check whether the newly added property enables the addition of connectors
 				// that connect this port.
-				if(ConnectorUtils.connectsPart(smConnector, smPart)) {
-					ConnectorEnd otherEnd = ConnectorUtils.connEndNotPart(smConnector, smPart);
+				if(ConnectorUtil.connectsPart(smConnector, smPart)) {
+					ConnectorEnd otherEnd = ConnectorUtil.connEndNotPart(smConnector, smPart);
 					// check whether the part references by the other end (i.e. that not connected with the part)
 					// TODO: take connections without port into account
 					Property otherPart = otherEnd.getPartWithPort();

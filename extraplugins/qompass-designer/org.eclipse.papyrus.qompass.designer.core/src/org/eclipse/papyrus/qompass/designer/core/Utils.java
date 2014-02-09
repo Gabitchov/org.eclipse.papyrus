@@ -19,20 +19,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 
-import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.FCM.Assembly;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.RuleApplication;
 import org.eclipse.papyrus.FCM.Singleton;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferenceConstants;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.AggregationKind;
@@ -46,7 +42,6 @@ import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -361,36 +356,6 @@ public class Utils {
 			}
 		}
 		return list;
-	}
-
-	/**
-	 * Return the top element of the model that is currently edited. This function is based on the
-	 * assumption that the user model is the first resource that is loaded into the model set.
-	 * Use this function instead of Utils.getTop (or getModel) if you want to avoid navigating to the
-	 * root of an imported model.
-	 * 
-	 * @return the top level package of the model currently loaded into an editor.
-	 */
-	public static Package getUserModel(ExecutionEvent event) {
-		ServiceUtilsForHandlers serviceUtils = ServiceUtilsForHandlers.getInstance();
-		try {
-			// IPath fn = serviceUtils.getModelSet().getFilenameWithoutExtension();
-			EList<Resource> resources = serviceUtils.getModelSet(event).getResources();
-			if(resources.size() >= 3) {
-				// check first three resources (di, notation, uml)
-				for(int i = 0; i < 3; i++) {
-					Resource userResource = resources.get(i);
-					if(userResource.getContents().size() > 0) {
-						EObject topEObj = userResource.getContents().get(0);
-						if((topEObj instanceof Package) && (!(topEObj instanceof Profile))) {
-							return (Package)topEObj;
-						}
-					}
-				}
-			}
-		} catch (ServiceException e) {
-		}
-		return null;
 	}
 
 	/**

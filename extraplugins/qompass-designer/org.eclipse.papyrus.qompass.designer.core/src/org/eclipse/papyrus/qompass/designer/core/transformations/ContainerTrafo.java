@@ -30,7 +30,6 @@ import org.eclipse.papyrus.FCM.InterceptionRule;
 import org.eclipse.papyrus.FCM.Singleton;
 import org.eclipse.papyrus.FCM.util.FCMUtil;
 import org.eclipse.papyrus.FCM.util.MapUtil;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
@@ -40,6 +39,7 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
@@ -352,7 +352,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 		for(Connector connector : smContainerRule.getBase_Class().getOwnedConnectors()) {
 			Property ruleInterceptorPart = null;
 			for(Property part : interceptorPartsMap.keySet()) {
-				if(ConnectorUtils.connectsPart(connector, part)) {
+				if(ConnectorUtil.connectsPart(connector, part)) {
 					// this connector is a connection between an interceptor (and another part which may not
 					// be an interceptor => TODO: validation rule yet to write
 					// we need to copy this connector multiple times, once for each associated interceptor part
@@ -438,7 +438,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 					// at least one active rule => create container (or get previously instantiated))
 					if(containerTrafo == null) {
 						if(rule.getKind() == ContainerRuleKind.LIGHT_WEIGHT_OO_RULE) {
-							throw new TransformationException("Recursive lightweight container rules currently not supported");
+							throw new TransformationException(Messages.ContainerTrafo_RecursiveLWnotSupported);
 						}
 						else {
 							containerTrafo = new ContainerTrafo(copy, tmCDP, null);
@@ -526,7 +526,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			Connector interceptionConnector = null;
 			// get delegation connector
 			for(Connector connector : tmContainerImpl.getOwnedConnectors()) {
-				if(ConnectorUtils.connectsPort(connector, port)) {
+				if(ConnectorUtil.connectsPort(connector, port)) {
 					interceptionConnector = connector;
 					break;
 				}
@@ -628,7 +628,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 								// found an association between two parts of the
 								// container => create connection,
 								// unless already existing.
-								if(!ConnectorUtils.existsConnector(tmContainerImpl, part, checkPart)) {
+								if(!ConnectorUtil.existsConnector(tmContainerImpl, part, checkPart)) {
 									Connector conn = tmContainerImpl.createOwnedConnector(part.getName() + "_" + checkPart.getName()); //$NON-NLS-1$
 									conn.setType(association);
 									conn.createEnd().setRole(part);
