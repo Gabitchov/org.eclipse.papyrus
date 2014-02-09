@@ -80,7 +80,7 @@ public class DirectEditorEditingSupport extends EditingSupport {
 					+ semanticClassName;
 			String languagePreferred = store.getString(key);
 
-			if (languagePreferred != null && !languagePreferred.equals("")) {
+			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
 				IDirectEditorConfiguration configuration = DirectEditorsUtil
 						.findEditorConfiguration(languagePreferred,
 								semanticClassName);

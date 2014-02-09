@@ -16,7 +16,7 @@ package org.eclipse.papyrus.views.modelexplorer;
 import org.eclipse.jface.viewers.ColumnViewerEditor;
 import org.eclipse.jface.viewers.ColumnViewerEditorActivationEvent;
 import org.eclipse.jface.viewers.ColumnViewerEditorActivationStrategy;
-import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
+import org.eclipse.jface.viewers.FocusCellHighlighter;
 import org.eclipse.jface.viewers.IElementComparer;
 import org.eclipse.jface.viewers.TreeViewerEditor;
 import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
@@ -93,21 +93,28 @@ public class CustomCommonViewer extends CommonViewer {
 	}
 
 	/**
-	 * Overridden to disable cell editor activation by single click, it can be activated via keystroke instead.
+	 * Overridden to disable cell editor activation by single click, it can be activated by double click instead.
 	 */
 	@Override
 	protected ColumnViewerEditor createViewerEditor() {
+		// instantiate abstract focus cell high-lighter as dummy object for focus manager. The sub class
+		// FocusCellOwnerDrawHighlighter would break multi-selections in Papyrus, see bug 419591.
+		// (but we need to create a high-lighter, since the focus cell manager does not accept null pointer. The
+		// TreeViewerEditor could work without focusCellManager, but would ignore keyboard events in this case.) 
+		FocusCellHighlighter fch = new FocusCellHighlighter(this) {
+		};
 		TreeViewerFocusCellManager focusCellManager = new TreeViewerFocusCellManager(
-				this, new FocusCellOwnerDrawHighlighter(this));
-		TreeViewerEditor.create(this,focusCellManager, new ColumnViewerEditorActivationStrategy(this){
-			
+			this, fch);
+		
+		TreeViewerEditor.create(this, focusCellManager, new ColumnViewerEditorActivationStrategy(this){
 			@Override
 			protected boolean isEditorActivationEvent(
 					ColumnViewerEditorActivationEvent event) {
-				//TODO: Change keyCode to SWT.F2 when rename handler is adopted
-				return event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED && event.keyCode == SWT.F3;
+				// activation will in particular with F3 or shift-F2 (standard F2 is already captured)
+				return event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED &&
+						(event.keyCode == SWT.F2 || event.keyCode == SWT.F3);
 			}
-		},ColumnViewerEditor.KEYBOARD_ACTIVATION);
+		}, ColumnViewerEditor.KEYBOARD_ACTIVATION);
 		ColumnViewerEditor editor = this.getColumnViewerEditor();
 		return editor;
 	}
