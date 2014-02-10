@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
+import org.eclipse.papyrus.infra.nattable.celleditor.AbstractCancelableDialogCellEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
@@ -45,7 +45,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * @author Vincent Lorenzo
  * 
  */
-public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCellEditor {
+public abstract class AbstractUMLMultiValueCellEditor extends AbstractCancelableDialogCellEditor {
 
 	private Collection<Object> returnedValue;
 
@@ -73,14 +73,8 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 		this.axisElement = axisElement;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor#open()
-	 * 
-	 * @return
-	 */
 	@Override
-	public int open() {
+	protected int doOpen() {
 		return ((MultipleValueSelectorDialog)this.dialog).open();
 	}
 
