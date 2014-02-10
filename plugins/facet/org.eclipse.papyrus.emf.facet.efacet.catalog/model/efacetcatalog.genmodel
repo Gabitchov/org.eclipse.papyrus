@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=" Copyright (c) 2011 Mia-Software.&#xD;&#xA; &#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA; &#xD;&#xA; Contributors:&#xD;&#xA;&#x9;Gregoire Dupe (Mia-Software) - Design&#xD;&#xA;&#x9;Nicolas Guyomar (Mia-Software) - Implementation&#xD;&#xA; "
+    modelDirectory="/org.eclipse.emf.facet.efacet.catalog/src" editDirectory="/org.eclipse.emf.facet.efacet.catalog.edit/src"
+    editorDirectory="/org.eclipse.emf.facet.efacet.catalog.editor/src" modelPluginID="org.eclipse.emf.facet.efacet.catalog"
+    modelName="Efacetcatalog" nonNLSMarkers="true" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.emf.facet.efacet.catalog.edit"
+    editorPluginID="org.eclipse.emf.facet.efacet.catalog.editor" runtimeVersion="2.6"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.facet.util.emf.catalog/model/catalog.genmodel#//catalog platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.efacet/model/efacet.genmodel#//efacet">
+  <foreignModel>efacetcatalog.ecore</foreignModel>
+  <genPackages prefix="Efacetcatalog" basePackage="org.eclipse.emf.facet.efacet.catalog"
+      disposableProviderFactory="true" ecorePackage="efacetcatalog.ecore#/">
+    <genClasses ecoreClass="efacetcatalog.ecore#//QuerySetCatalog">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacetcatalog.ecore#//QuerySetCatalog/installedQuerySets"/>
+    </genClasses>
+    <genClasses ecoreClass="efacetcatalog.ecore#//FacetSetCatalog">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efacetcatalog.ecore#//FacetSetCatalog/installedFacetSets"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,25 @@
+/*******************************************************************************
+ * Copyright (c) 2011 Mia-Software.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Nicolas Guyomar (Mia-Software) - Bug 339723 - Add x-friend on EMF Facet internal package
+ *   Nicolas Guyomar (Mia-Software) - Bug 340681 - Facet column implementation
+ *   Gregoire Dupe (Mia-Software) - Bug 342451 - To be able to edit derived facet attributes and derived facet references in a table
+ *******************************************************************************/
+ org.eclipse.emf.facet.infra.facet
+	x-friends:="org.eclipse.emf.facet.widgets.nattable" for EMF Facet internal use
+	x-friends:="org.eclipse.emf.facet.widgets.nattable.tableconfiguration" for EMF Facet internal use
+	x-friends:="org.eclipse.emf.facet.widgets.nattable.tests" for EMF Facet internal use
+	x-friends:="org.eclipse.emf.facet.widgets.celleditors" use the Facet to get the values of facetStructuralFeatures
+
+org.eclipse.emf.facet.infra.facet.util
+	x-friends:="org.eclipse.emf.facet.infra.facet.edit" for EMF Facet internal use
+ 
+ 
+org.eclipse.emf.facet.infra.facet.validation
+	x-friends:="org.eclipse.emf.facet.infra.facet.core" for EMF Facet internal use

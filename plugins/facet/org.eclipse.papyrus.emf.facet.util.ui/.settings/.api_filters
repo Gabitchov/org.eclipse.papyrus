@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.emf.facet.util.ui" version="2">
+    <resource path="src/org/eclipse/emf/facet/util/ui/internal/exported/dialog/IQuestionDialogFactory.java" type="org.eclipse.emf.facet.util.ui.internal.exported.dialog.IQuestionDialogFactory">
+        <filter comment="This is an internal API." id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.emf.facet.util.ui.internal.exported.dialog.IQuestionDialogFactory"/>
+                <message_argument value="createQuestionDialog(Shell, String, String, IDialogCallback&lt;Boolean&gt;)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

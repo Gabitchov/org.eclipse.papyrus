@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+Copyright (c) 2009 Mia-Software.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+    Gregoire DUPE (Mia-Software) - initial API and implementation
+    Nicolas BROS (Mia-Software)
+    Nicolas Guyomar (Mia-Software) - Bug 339880 - To be able to edit derived facet attributes and derived facet references
+-->
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation"
+            class="org.eclipse.emf.facet.infra.facet.FacetPackage"
+            genModel="model/facet.genmodel"/>
+   </extension>
+      <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.eclipse.emf.facet.infra.facet.validation"
+            mandatory="false"
+            name="%category.name"/>
+      <constraintProvider
+            mode="Batch">
+         <package namespaceUri="http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation"/>
+         <constraints categories="org.eclipse.emf.facet.infra.facet.validation">
+            <constraint
+                  lang="Java"
+                  class="org.eclipse.emf.facet.infra.facet.validation.NonEmptyName"
+                  severity="ERROR"
+                  mode="Batch"
+                  name="%constraint.name"
+                  id="org.eclipse.emf.facet.infra.facet.validation.nonemptyname"
+                  statusCode="1">
+               <description>
+                  %constraint.description
+               </description>
+               <message>
+                  %constraint.message
+               </message>
+               <target class="FacetSet"/>
+               <target class="Facet"/>
+               <target class="FacetReference"/>
+               <target
+                     class="FacetAttribute">
+               </target>
+            </constraint>
+            <constraint
+                  lang="Java"
+                  class="org.eclipse.emf.facet.infra.facet.validation.FacetSetRoot"
+                  severity="ERROR"
+                  mode="Batch"
+                  name="%constraint.name.0"
+                  id="org.eclipse.emf.facet.infra.facet.validation.ModelfacetSetRoot"
+                  statusCode="1">
+               <description>
+                  %constraint.description.0
+               </description>
+               <message>
+                  %constraint.message.0
+               </message>
+               <target class="Facet"/>
+               <target
+                     class="FacetSet">
+               </target>
+            </constraint>
+            <constraint
+                  lang="Java"
+                  class="org.eclipse.emf.facet.infra.facet.validation.FacetSetName"
+                  severity="ERROR"
+                  mode="Batch"
+                  name="%constraint.name.1"
+                  id="org.eclipse.emf.facet.infra.facet.validation.FacetSetName"
+                  statusCode="1">
+               <description>
+                  %constraint.description.1
+               </description>
+               <message>
+                  %constraint.message.1
+               </message>
+               <target class="FacetSet"/>
+            </constraint>
+            <constraint
+                  lang="Java"
+                  class="org.eclipse.emf.facet.infra.facet.validation.ExtendedClassValidation"
+                  severity="ERROR"
+                  mode="Batch"
+                  name="%constraint.name.2"
+                  id="org.eclipse.emf.facet.infra.facet.validation.ExtendedClassValidation"
+                  statusCode="1">
+               <description>
+                  %constraint.description.2 
+               </description>
+               <message>
+                  %constraint.message.2
+               </message>
+               <target class="Facet"/>
+            </constraint> 
+            <constraint
+                  lang="Java"
+                  class="org.eclipse.emf.facet.infra.facet.validation.UniqueName"
+                  severity="ERROR"
+                  mode="Batch"
+                  name="%constraint.name.3"
+                  id="org.eclipse.emf.facet.infra.facet.validation.UniqueName"
+                  statusCode="1">
+               <description>
+                  %constraint.description.3
+               </description>
+               <message>
+                   %constraint.message.3
+               </message>
+               <target class="FacetSet"/>
+            </constraint>
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.FacetInQueryScope"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.4"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  %constraint.message.4
+               </message>
+               <description>
+                  %constraint.description.4
+               </description>
+               <target
+                     class="Facet">
+               </target>
+<![CDATA[
+if self.conditionQuery = null then true else self.conditionQuery.scope->exists(scopeClass|self.eSuperTypes->exists(f|scopeClass.isSuperTypeOf(f))) endif
+]]>
+            </constraint>   
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.BooleanFacetQuery"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.5"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  %constraint.message.5
+               </message>
+               <description>
+                  %constraint.description.5 
+               </description>
+               <target
+                     class="Facet">
+               </target>
+<![CDATA[
+if self.conditionQuery.oclIsUndefined() then
+ true 
+else
+ (self.conditionQuery.returnType.instanceClassName = 'java.lang.Boolean') or (self.conditionQuery.returnType.instanceClassName = 'boolean')
+endif 
+]]>
+            </constraint> 
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.OnlyFacetStructuralFeature"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.6"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  %constraint.message.6
+               </message>
+               <description>
+                  %constraint.description.6 
+               </description>
+               <target
+                     class="Facet">
+               </target>
+<![CDATA[
+self.eStructuralFeatures->forAll(e|e.oclIsKindOf(facet::FacetStructuralFeature) or e.oclIsKindOf(facet::Shortcut) ) 
+]]>
+            </constraint> 
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.QueryReturnsDataType"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.7"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  %constraint.message.7
+               </message>
+               <description>
+                  %constraint.description.7
+               </description>
+               <target
+                     class="FacetAttribute">
+               </target>
+<![CDATA[
+self.valueQuery.returnType.oclIsKindOf(ecore::EDataType)
+]]>
+            </constraint> 
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.QueryReturnsEClass"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.8"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  %constraint.message.8
+               </message>
+               <description>
+                  %constraint.description.8
+               </description>
+               <target
+                     class="FacetReference">
+               </target>
+<![CDATA[
+self.valueQuery.returnType.oclIsKindOf(ecore::EClass)
+]]>
+            </constraint> 
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.FacetIsAbstract"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.9"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  %constraint.message.9
+               </message>
+               <description>
+                  %constraint.description.9
+               </description>
+               <target
+                     class="Facet">
+               </target>
+<![CDATA[
+self.abstract
+]]>
+            </constraint> 
+			<constraint
+                  id="org.eclipse.emf.facet.infra.facet.ExtendedPackage"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.10"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  %constraint.message.10
+               </message>
+               <description>
+                  %constraint.description.10
+               </description>
+               <target
+                     class="FacetSet">
+               </target>
+<![CDATA[
+self.extendedPackage <> self
+]]>
+            </constraint>
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.AttributeQueryType"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.11"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.11
+               </message>
+               <description>
+                  %constraint.description.11
+               </description>
+               <target
+                     class="FacetAttribute">
+               </target>
+<![CDATA[
+(self.eType = self.valueQuery.returnType)
+]]>
+            </constraint> 
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.ReferenceQueryType"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.12"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.12
+               </message>
+               <description>
+                  %constraint.description.12
+               </description>
+               <target
+                     class="FacetReference">
+               </target>
+<![CDATA[
+self.eType = self.valueQuery.returnType
+]]>
+            </constraint>
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.AttributeMultiplicity"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.13"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.13
+               </message>
+               <description>
+                  %constraint.description.13
+               </description>
+               <target
+                     class="FacetAttribute">
+               </target>
+<![CDATA[
+(self.upperBound = self.valueQuery.upperBound) and (self.lowerBound = self.valueQuery.lowerBound)
+]]>
+            </constraint> 
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.ReferenceMultiplicity"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.14"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.14
+               </message>
+               <description>
+                  %constraint.description.14
+               </description>
+               <target
+                     class="FacetReference">
+               </target>
+<![CDATA[
+(self.upperBound = self.valueQuery.upperBound) and (self.lowerBound = self.valueQuery.lowerBound)
+]]>
+            </constraint>
+            
+
+            
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.refVolatile"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.17"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.17
+               </message>
+               <description>
+                  %constraint.description.17
+               </description>
+               <target
+                     class="FacetReference">
+               </target>
+<![CDATA[
+self.volatile
+]]>
+            </constraint>           
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.refUnsettable"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.18"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.18
+               </message>
+               <description>
+                  %constraint.description.18
+               </description>
+               <target
+                     class="FacetReference">
+               </target>
+<![CDATA[
+self.unsettable
+]]>
+            </constraint>             
+             <constraint
+                  id="org.eclipse.emf.facet.infra.facet.refNotContainment"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.19"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.19
+               </message>
+               <description>
+                  %constraint.description.19
+               </description>
+               <target
+                     class="FacetReference">
+               </target>
+<![CDATA[
+self.containment=false
+]]>
+            </constraint>           
+            
+
+            
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.attrVolatile"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.22"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.22
+               </message>
+               <description>
+                  %constraint.description.22
+               </description>
+               <target
+                     class="FacetAttribute">
+               </target>
+<![CDATA[
+self.volatile
+]]>
+            </constraint>           
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.attrUnsettable"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.23"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.23
+               </message>
+               <description>
+                  %constraint.description.23
+               </description>
+               <target
+                     class="FacetAttribute">
+               </target>
+<![CDATA[
+self.unsettable
+]]>
+            </constraint> 
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.FacetESuperTypes"
+                  lang="OCL"
+                  mode="Batch"
+                  name="%constraint.name.24"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                 %constraint.message.24
+               </message>
+               <description>
+                  %constraint.description.24
+               </description>
+               <target
+                     class="Facet">
+               </target>
+<![CDATA[
+self.eSuperTypes->size() > 0
+]]>
+            </constraint>
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.FacetSetNsURI"
+                  lang="OCL"
+                  mode="Batch"
+                  name="FacetSet must have a nsURI"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  FacetSets must have a NsURI
+               </message>
+               <description>
+<![CDATA[
+self.nsURI->notEmpty() and self.nsURI <> ''
+]]>               
+               </description>
+               <target
+                     class="FacetSet">
+               </target>
+<![CDATA[
+self.nsURI->notEmpty() and self.nsURI <> ''
+]]>               
+            </constraint>
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.FacetSetNsPrefix"
+                  lang="OCL"
+                  mode="Batch"
+                  name="FacetSet must have a NsPrefix"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  FacetSets must have a NsPrefix
+               </message>
+               <description>
+<![CDATA[
+self.nsPrefix->notEmpty() and self.nsPrefix <> ''
+]]>               
+               </description>
+               <target
+                     class="FacetSet">
+               </target>
+<![CDATA[
+self.nsPrefix->notEmpty() and self.nsPrefix <> ''
+]]>               
+            </constraint>
+            <constraint
+                  id="org.eclipse.emf.facet.infra.facet.FacetSetExtendedPackages"
+                  lang="OCL"
+                  mode="Batch"
+                  name="FacetSet must define extended packages"
+                  severity="ERROR"
+                  statusCode="1">
+               <message>
+                  FacetSets must define extended packages
+               </message>
+               <description>
+<![CDATA[
+self.extendedPackage->notEmpty()
+]]>               
+               </description>
+               <target
+                     class="FacetSet">
+               </target>
+<![CDATA[
+self.extendedPackage->notEmpty()
+]]>               
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            default="false"
+            id="org.eclipse.emf.facet.infra.facet.clientcontext">
+         <enablement></enablement>
+      </clientContext>
+      <binding
+            context="org.eclipse.emf.facet.infra.facet.clientcontext"
+            category="org.eclipse.emf.facet.infra.facet.validation"/>
+   </extension> 
+   
+   <!-- so that model editors know they can open it -->
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            base-type="org.eclipse.emf.ecore.xmi"
+            file-extensions="facetSet"
+            id="org.eclipse.emf.facet.infra.facet.contenttype"
+            name="%content-type.name"
+            priority="normal">
+      </content-type>
+   </extension>
+
+</plugin>
