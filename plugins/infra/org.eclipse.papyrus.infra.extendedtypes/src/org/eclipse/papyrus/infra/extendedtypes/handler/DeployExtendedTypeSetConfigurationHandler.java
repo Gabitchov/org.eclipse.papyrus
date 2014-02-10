@@ -126,11 +126,8 @@ public class DeployExtendedTypeSetConfigurationHandler extends AbstractHandler i
 				ExtendedTypesPreferences.registerWorkspaceDefinition(fileName, selectedFile.getFullPath().toString());
 
 				monitor.subTask("Reset Element Types Registry");
-				ElementTypeSetUtils.resetRegistry();
+				ExtendedElementTypeSetRegistry.getInstance().loadExtendedElementTypeSet(fileName);
 				monitor.worked(1);
-				
-				// relaunch papyrus service
-				ExtendedElementTypeSetRegistry.getInstance().reset();
 				
 				result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, "The extended types configuration has been successfully deployed and activated"));
 			}

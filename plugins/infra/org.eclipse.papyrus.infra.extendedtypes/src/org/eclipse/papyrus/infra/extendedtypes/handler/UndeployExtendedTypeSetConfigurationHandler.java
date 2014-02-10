@@ -125,11 +125,10 @@ public class UndeployExtendedTypeSetConfigurationHandler extends AbstractHandler
 				ExtendedTypesPreferences.unregisterWorkspaceDefinition(fileName);
 
 				monitor.subTask("Reset Element Types Registry");
-				ElementTypeSetUtils.resetRegistry();
+				ExtendedElementTypeSetRegistry.getInstance().unload(fileName);
 				monitor.worked(1);
 				
 				// relaunch papyrus service
-				ExtendedElementTypeSetRegistry.getInstance().reset();
 				
 				result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, "The extended types configuration has been successfully undeployed"));
 			}

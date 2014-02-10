@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.extendedtypes;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
@@ -36,6 +37,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.IEditHelperAdviceDescriptor;
+import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.SpecializationTypeDescriptor;
+import org.eclipse.gmf.runtime.emf.type.core.internal.impl.SpecializationTypeRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.extendedtypes.preferences.ExtendedTypesPreferences;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
@@ -52,8 +56,8 @@ public class ExtendedElementTypeSetRegistry {
 	/** private singleton instance */
 	private static ExtendedElementTypeSetRegistry registry;
 
-	/** list of retrieved extended type sets */
-	protected List<ExtendedElementTypeSet> extendedTypeSets = null;
+	/** Map of retrieved extended type sets, key is their identifier */
+	protected Map<String, ExtendedElementTypeSet> extendedTypeSets = null;
 
 	/** unique resource set to load all extended types models */
 	protected ResourceSet extendedTypesResourceSet = null;
@@ -90,7 +94,53 @@ public class ExtendedElementTypeSetRegistry {
 		// 2. creates the list only when registry is acceded for the first time, (or on reload?)
 		extendedTypeSets = loadExtendedTypeSets();
 	}
+	
+	/**
+	 * Dispose this registry, i.e. remove all contribution on the element type registry
+	 */
+	public void dispose() {
+		if(extendedTypeSets == null){
+			return;
+		}
+		for(Entry<String, ExtendedElementTypeSet> entry: extendedTypeSets.entrySet()) {
+			unload(entry.getKey());
+		}
+		extendedTypesResourceSet = null;
+		extendedTypeSets = null;
+		configurationTypeToElementTypeFactory = new HashMap<String, IExtendedElementTypeFactory<ElementTypeConfiguration>>();
+		// 1. creates the resource set
+		extendedTypesResourceSet = null;
+	}
 
+	
+	/**
+	 * Loads a given extended type set from a given identifier
+	 */
+	public void loadExtendedElementTypeSet(String identifier) {
+		if(extendedTypeSets==null) {
+			return;
+		}
+		
+		// retrieve the path from the identifier
+		String path = ExtendedTypesPreferences.getLocalExtendedTypesDefinitions().get(identifier);
+		if(path==null) {
+			return;
+		}
+		
+		URI localURI = URI.createPlatformResourceURI(path, true);
+		Resource resource = extendedTypesResourceSet.createResource(localURI);
+		try {
+			resource.load(null);
+			EObject content = resource.getContents().get(0);
+			if(content instanceof ExtendedElementTypeSet) {
+				extendedTypeSets.put(identifier, (ExtendedElementTypeSet)content);
+				loadExtendedElementTypeSet((ExtendedElementTypeSet)content);
+			}
+		} catch (IOException e) {
+			Activator.log.error(e);
+		}
+	}
+	
 	/**
 	 * Loads the specified extended element type set.
 	 * This does not take care to unload a similar set (a set with the same id) before loading. This should be handled before calling this method.
@@ -138,10 +188,110 @@ public class ExtendedElementTypeSetRegistry {
 				ElementTypeRegistry.getInstance().register(type);
 				context.bindId(type.getId());
 			}
-			// TODO handle errors here: no factory, impossible to create element type from configuration, impossible to register, etc.
 		}
 	}
-
+	
+	/**
+	 * Unloads a given {@link ExtendedElementTypeSet}
+	 * @param elementTypeSet the element type set to unload
+	 */
+	public void unload(String identifier) {
+		if(extendedTypeSets==null) {
+			return;
+		}
+		ExtendedElementTypeSet elementTypeSet = extendedTypeSets.get(identifier);
+		if(elementTypeSet==null) {
+			return;
+		}
+		
+		// retrieve the specializationTypeRegistry to remove all contribution from the given element type set
+		Field declaredField = null;
+		try {
+			declaredField = ElementTypeRegistry.class.getDeclaredField("specializationTypeRegistry");
+		} catch (SecurityException e1) {
+			Activator.log.error(e1);
+			return;
+		} catch (NoSuchFieldException e1) {
+			Activator.log.error(e1);
+			return;
+		}
+		if(declaredField==null) {
+			Activator.log.error("impossible to find specializationTypeRegistry", null);
+			return;
+		}
+		declaredField.setAccessible(true);
+		SpecializationTypeRegistry registry = null;
+		try {
+			registry = (SpecializationTypeRegistry)declaredField.get(ElementTypeRegistry.getInstance());
+		} catch (IllegalArgumentException e) {
+			Activator.log.error(e);
+		} catch (IllegalAccessException e) {
+			Activator.log.error(e);
+		}
+		
+		if(registry == null) {
+			return;
+		}
+		
+		for(ElementTypeConfiguration configuration : elementTypeSet.getElementType()) {
+			if(configuration!=null && configuration.getIdentifier()!=null) {
+				String configIdentifier = configuration.getIdentifier();
+				// retrieve descriptor
+				SpecializationTypeDescriptor descriptor = registry.getSpecializationTypeDescriptor(configIdentifier);
+				if(descriptor!=null) {
+					// remove also advice bindings specific to this descriptor
+					IEditHelperAdviceDescriptor adviceDescriptor = descriptor.getEditHelperAdviceDescriptor();
+					String targetId = adviceDescriptor.getTypeId();
+					removeAdviceFromBindings(registry, targetId, adviceDescriptor);
+					
+					registry.removeSpecializationType(descriptor);
+					
+				}
+			}
+		}
+		
+		elementTypeSet.eResource().unload();
+		if(extendedTypesResourceSet!=null) {
+			extendedTypesResourceSet.getResources().remove(elementTypeSet.eResource());
+		}
+	}
+	
+	protected void removeAdviceFromBindings(SpecializationTypeRegistry registry, String adviceDescriptorId, IEditHelperAdviceDescriptor adviceDescriptor) {
+		// retrieve the specializationTypeRegistry to remove all contribution from the given element type set
+		Map<?, ?> adviceBindings = null;
+		Field adviceBindingsField = null;
+		try {
+			adviceBindingsField = SpecializationTypeRegistry.class.getDeclaredField("adviceBindings");
+		} catch (SecurityException e1) {
+			Activator.log.error(e1);
+			return;
+		} catch (NoSuchFieldException e1) {
+			Activator.log.error(e1);
+			return;
+		}
+		if(adviceBindingsField==null) {
+			Activator.log.error("impossible to find adviceBindings", null);
+			return;
+		}
+		adviceBindingsField.setAccessible(true);
+		try {
+			adviceBindings = (Map<?,?>)adviceBindingsField.get(registry);
+		} catch (IllegalArgumentException e) {
+			Activator.log.error(e);
+		} catch (IllegalAccessException e) {
+			Activator.log.error(e);
+		}
+		if(adviceBindings!=null) {
+			Set<?> bindings = (Set<?>)adviceBindings.get(adviceDescriptorId);
+			if(bindings!=null) {
+				bindings.remove(adviceDescriptor);
+			}
+		}
+	}
+	
+	
+	
+	
 	/**
 	 * check this configuration type has not already caused issues du
 	 * 
@@ -178,22 +328,22 @@ public class ExtendedElementTypeSetRegistry {
 	/**
 	 * Retrieves and loads extended type sets registered in the platform. It should also load configuration sets from the workspace.
 	 */
-	protected List<ExtendedElementTypeSet> loadExtendedTypeSets() {
-		List<ExtendedElementTypeSet> extendedElementTypeSets = new ArrayList<ExtendedElementTypeSet>();
+	protected Map<String, ExtendedElementTypeSet> loadExtendedTypeSets() {
+		Map<String, ExtendedElementTypeSet> extendedElementTypeSets = new HashMap<String, ExtendedElementTypeSet>();
 		// 1. retrieve from the workspace
 		Map<String, ExtendedElementTypeSet> localSets = loadExtendedTypeSetsFromWorkspace();
 		if(localSets != null && !localSets.isEmpty()) {
-			extendedElementTypeSets.addAll(localSets.values());
+			extendedElementTypeSets.putAll(localSets);
 		}
 		
 		// 2. retrieve from the platform. If already in workspace (id), do not load the platform ones
 		Map<String, ExtendedElementTypeSet> registeredSets = loadExtendedTypeSetsFromPlatform(localSets.keySet());
 		if(registeredSets != null && !registeredSets.isEmpty()) {
-			extendedElementTypeSets.addAll(registeredSets.values());
+			extendedElementTypeSets.putAll(registeredSets);
 		}
 		// load each extended element type set
-		for(ExtendedElementTypeSet extendedElementTypeSet : extendedElementTypeSets) {
-			loadExtendedElementTypeSet(extendedElementTypeSet);
+		for(Entry<String, ExtendedElementTypeSet> entry : extendedElementTypeSets.entrySet()) {
+			loadExtendedElementTypeSet(entry.getValue());
 		}
 		return extendedElementTypeSets;
 	}
@@ -468,10 +618,9 @@ public class ExtendedElementTypeSetRegistry {
 	}
 
 	/**
-	 * 
+	 * @return the extendedTypeSets
 	 */
-	public void reset() {
-		init();
-		
+	public Map<String, ExtendedElementTypeSet> getExtendedTypeSets() {
+		return extendedTypeSets;
 	}
 }
