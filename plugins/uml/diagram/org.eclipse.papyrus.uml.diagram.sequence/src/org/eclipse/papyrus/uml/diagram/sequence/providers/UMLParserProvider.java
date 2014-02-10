@@ -58,6 +58,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
@@ -128,6 +129,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			stateInvariantName_5008Parser = parser;
 		}
 		return stateInvariantName_5008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser stateInvariantLabel_5023Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStateInvariantLabel_5023Parser() {
+		if(stateInvariantLabel_5023Parser == null) {
+			stateInvariantLabel_5023Parser = new ConstraintParser();
+		}
+		return stateInvariantLabel_5023Parser;
 	}
 
 	/**
@@ -636,6 +652,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getLifelineName_5002Parser();
 		case StateInvariantNameEditPart.VISUAL_ID:
 			return getStateInvariantName_5008Parser();
+		case StateInvariantLabelEditPart.VISUAL_ID:
+			return getStateInvariantLabel_5023Parser();
 		case TimeConstraintLabelEditPart.VISUAL_ID:
 			return getTimeConstraintLabel_5009Parser();
 		case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:

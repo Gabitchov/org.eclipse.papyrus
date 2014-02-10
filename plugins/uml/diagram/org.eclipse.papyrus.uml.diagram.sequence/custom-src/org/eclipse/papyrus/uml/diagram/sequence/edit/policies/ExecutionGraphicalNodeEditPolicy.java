@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.util.FragmentsOrdererHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
@@ -93,7 +94,10 @@ public class ExecutionGraphicalNodeEditPolicy extends ElementCreationWithMessage
 				command = command.chain(new ICommandProxy(new ResetExecutionEndCommand(((IGraphicalEditPart)target).getEditingDomain(), execution, false)));
 			}
 		}
-		return command;
+		//ordering fragments.
+		//fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417374
+		Command orderingFragmentsCommand = FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request);
+		return command.chain(orderingFragmentsCommand);
 	}
 
 	private boolean relationshipSourceHasChanged(ReconnectRequest request) {

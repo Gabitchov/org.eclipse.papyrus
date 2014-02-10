@@ -16,19 +16,19 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml,
  org.eclipse.ui;bundle-version="3.7.0",
  org.eclipse.emf.edit.ui;bundle-version="2.7.0",
- org.eclipse.papyrus.infra.constraints;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.tools;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.constraints;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.queries.core.configuration;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.2",
  org.eclipse.gmf.runtime.common.core;bundle-version="1.4.1",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.newchild.Activator

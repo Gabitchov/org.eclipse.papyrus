@@ -37,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Lifeline;
@@ -206,12 +207,15 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		label.translateToAbsolute(b);
 		req.setLocation(b.getCenter());
 		req.getExtendedData().put(SequenceRequestConstant.DIRECT_EDIT_AFTER_CREATION, true);
-		messageEditPart.performRequest(req);
+//		messageEditPart.performRequest(req);
 
 		waitForComplete();
 
 		//Deactive the Popup Editor.
-		messageEditPart.getViewer().getControl().setFocus();
+		Control control = messageEditPart.getViewer().getControl();
+		control.setFocus();
+		Control focusControl = control.getDisplay().getFocusControl();
+		
 		waitForComplete();
 	}
 

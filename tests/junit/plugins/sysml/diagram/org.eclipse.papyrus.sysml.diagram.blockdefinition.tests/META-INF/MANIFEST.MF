@@ -3,7 +3,7 @@ Require-Bundle: org.junit;bundle-version="4.10.0"
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.sysml.diagram.blockdefinition;bundl
  e-version="0.10.0"
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

@@ -1,22 +1,22 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.domaincontextcodegen.presentation
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.domaincontextcodegen.edit;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.domaincontextcodegen.edit;bundle-version="0.10.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.domaincontextcodegen.presentatio
  n.DomainContextEditorPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.domaincontextcodegen.editor;s
  ingleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

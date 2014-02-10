@@ -6,16 +6,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.editors,
  org.eclipse.xtext.builder,
  org.antlr.runtime,
- org.eclipse.papyrus.uml.textedit.port.xtext;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.textedit.port.xtext;bundle-version="0.10.2",
  org.eclipse.emf.transaction,
  org.eclipse.gmf.runtime.common.core,
  org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.2",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.2",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.2",
  org.apache.log4j;bundle-version="1.2.15"
 Export-Package: org.eclipse.papyrus.uml.textedit.port.xtext.ui,
  org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist,
@@ -28,7 +28,7 @@ Export-Package: org.eclipse.papyrus.uml.textedit.port.xtext.ui,
  org.eclipse.papyrus.uml.textedit.port.xtext.ui.quickfix
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

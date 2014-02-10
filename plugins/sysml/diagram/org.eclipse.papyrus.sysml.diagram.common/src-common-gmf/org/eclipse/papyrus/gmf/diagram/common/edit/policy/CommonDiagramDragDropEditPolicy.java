@@ -62,6 +62,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 
 /**
@@ -190,12 +191,16 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 			// Drop restriction:
 			// - no restriction when dropped on diagram
-			// - require containment when dropped on any other EObject
-			if((dropTargetView instanceof Diagram) || (dropTargetElement.eContents().contains(droppedObject))) {
+			// - require containment when dropped on any other EObject		
+			 if((dropTargetView instanceof Diagram) || dropTargetElement.eContents().contains(droppedObject)) {
 				return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
-			}
+			 }
 
-			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+			 // Allow drop for inherited elements
+			 if (dropTargetElement instanceof Classifier && ((Classifier) dropTargetElement).getAllAttributes().contains(droppedObject) ) {
+				return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
+			 }		
+			 return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 		}
 
 		// The dropped element is a edge

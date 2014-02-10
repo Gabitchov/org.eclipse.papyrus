@@ -24,7 +24,7 @@ import org.junit.Test;
 /**
  * JUnit abstract tests for Link creation test (via palette tools).
  */
-public class AbstractConnectorCreationAndTestDelegateFromElementTest extends AbstractConnectorCreationAndTestDelegatePrepareTest {
+public abstract class AbstractConnectorCreationAndTestDelegateFromElementTest extends AbstractConnectorCreationAndTestDelegatePrepareTest {
 
 	public static String toolID;
 
@@ -34,6 +34,8 @@ public class AbstractConnectorCreationAndTestDelegateFromElementTest extends Abs
 
 	public static Map<View, ConnectableElement> expectedTargetPartWithPort;
 
+	// FIXME : wrong name in all methods => replace Source by Target
+	// BMA : ne passe pas là
 	@Test
 	public void createLinkWithSourceBlock() throws Exception {
 		View targetView = blockTargetView;
@@ -56,14 +58,28 @@ public class AbstractConnectorCreationAndTestDelegateFromElementTest extends Abs
 	public void createLinkWithSourcePortOnBlock() throws Exception {
 		View targetView = portOnBlockTargetView;
 		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
-	}
+	}	
+	
+	// BMA : ne passe pas là
+	@Test
+	public void createLinkWithTargetPort2OnPart1() throws Exception {
+		View targetView = port2_Part1TargetView;
+		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
+	}	
 
+	// BMA : ne passe pas là
+	@Test
+	public void createLinkWithTargetPort1OnPart1() throws Exception {
+		View targetView = port1_Part1SourceView;
+		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
+	}		
+	
 	@Test
 	public void createLinkWithSourcePortOnPart() throws Exception {
 		View targetView = port1_Part2TargetView;
 		createEdgeConnectorAndTestDelegateFromPalette(toolID, sourceView, targetView, isCreationAllowed.get(targetView), expectedSourcePartWithPort.get(targetView), expectedTargetPartWithPort.get(targetView));
 	}
-
+	
 	@Test
 	public void createLinkWithSourcePortOnNestedPart() throws Exception {
 		View targetView = port2OnNestedPart2_Part1TargetView;

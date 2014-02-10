@@ -9,22 +9,24 @@ Export-Package: org.eclipse.papyrus.infra.nattable.model.editor.customeditors,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.presentation,
  org.eclipse.papyrus.infra.nattable.model.nattable.presentation
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.infra.nattable.model.edit;visibility:=reexport;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.nattable.model.edit;bundle-version="0.10.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="0.10.2"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.presentation.NattableEditorPlugin$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.editor;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.nattable.model.nattable.pr
+ esentation.NattableEditorPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model.editor;s
+ ingleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

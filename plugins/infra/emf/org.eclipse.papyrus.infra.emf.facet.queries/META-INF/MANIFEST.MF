@@ -11,7 +11,7 @@ Export-Package: org.eclipse.papyrus.infra.emf.facet.queries,
  org.eclipse.papyrus.infra.emf.facet.queries.parametricquery.util
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.facet.queries.Activato

@@ -4,9 +4,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.m2m.qvt.oml;bundle-version="3.1.0",
  org.eclipse.gmt.modisco.xml;bundle-version="0.9.0",
  org.eclipse.gmt.modisco.xml.discoverer;bundle-version="0.9.0",
- org.eclipse.papyrus.views.properties;bundle-version="0.10.1",
- org.eclipse.papyrus.views.properties.model;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.views.properties;bundle-version="0.10.2",
+ org.eclipse.papyrus.views.properties.model;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
  org.eclipse.wst.xml.core;bundle-version="1.1.600",
  org.eclipse.core.resources;bundle-version="3.7.100",
  org.eclipse.m2m.qvt.oml.project;bundle-version="3.1.0"
@@ -14,7 +14,7 @@ Export-Package: org.eclipse.papyrus.customization.properties.model.xwt
  .resource
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.customization.properties.model.x

@@ -1,13 +1,8 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.table.papyrustableconfigurat
  ion.metamodel.PapyrusTableConfiguration.provider
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.table.papyrustableconfiguration.metamodel;bundle-version="0.10.2";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.facet.widgets.celleditors;visibility:=reexport,
  org.eclipse.emf.facet.widgets.celleditors.edit;visibility:=reexport,
@@ -22,11 +17,16 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.browser.custom;visibility:=reexport,
  org.eclipse.emf.facet.infra.browser.custom.edit;visibility:=reexport
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.table.papyrustableconfigur
  ation.metamodel.PapyrusTableConfiguration.provider.Papyrustableconfig
  urationEditPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.infra.table.papyrustableconfi
  guration.metamodel.edit;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

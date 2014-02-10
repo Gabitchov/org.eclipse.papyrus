@@ -5,7 +5,7 @@ Require-Bundle: org.eclipse.equinox.app,
  org.eclipse.ui.intro,
  org.eclipse.pde.ui;bundle-version="3.6.100"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

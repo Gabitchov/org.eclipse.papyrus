@@ -14,14 +14,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositeforview;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.profile.Activator;
@@ -29,6 +32,10 @@ import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.tree.DisplayedProfileElementLabelProvider;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypeTreeObject;
+import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
+import org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.DecoratedTreeComposite;
+import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
+import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener.StereotypeCustomNotification;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -128,6 +135,8 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 */
 	protected ISelection selection;
 
+	private Adapter elementListener;
+
 	/**
 	 * The Constructor.
 	 * 
@@ -200,7 +209,32 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		// treeViewer.setLabelProvider(new ProfileElementWithDisplayLabelProvider());
 
 		refresh();
+		//Update buttons
+		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				refreshButtons();
+			}
+		});
 		return this;
+	}
+
+	/**
+	 * Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417372
+	 * Update buttons status when items have been selected from the tree.
+	 * If no stereotype selected in Appearance, disable the buttons to apply.
+	 */
+	private void refreshButtons() {
+		if(tree == null || tree.isDisposed()) {
+			return;
+		}
+		boolean enabled = getDiagramElement() != null && !treeViewer.getSelection().isEmpty();
+		if(displayButton != null && !displayButton.isDisposed()) {
+			displayButton.setEnabled(enabled);
+		}
+		if(displayButtonQN != null && !displayButtonQN.isDisposed()) {
+			displayButtonQN.setEnabled(enabled);
+		}
 	}
 
 	/**
@@ -313,7 +347,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	public TransactionalEditingDomain getDomain() {
 		try {
 			return ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(element);
-		} catch (Exception ex){
+		} catch (Exception ex) {
 			Activator.log.error(ex);
 			return null;
 		}
@@ -356,13 +390,14 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		}
 		super.refresh();
 		if((diagramElement == null) && (!displayButton.isDisposed())) {
-			displayButton.setEnabled(false);
+			//			displayButton.setEnabled(false);
 			displayButton.setToolTipText("Stereotypes can only be displayed for elements with graphical representation. " + "Currently edited element is a non graphical element. " + "(example: an element selected in the outline is not a graphical element)");
-		} else {
+		} else if(!displayButton.isDisposed()) {
 			// button should be enabled only if a stereotype is selected, but it requires a listener on the tree selection
-			displayButton.setEnabled(true);
+			//			displayButton.setEnabled(true);
 			displayButton.setToolTipText("Display selected stereotype for the currently selected element in the diagram");
 		}
+		refreshButtons();
 	}
 
 	/**
@@ -400,6 +435,55 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	public void setDiagramElement(EModelElement diagramElement) {
 		this.diagramElement = diagramElement;
 		((ProfileElementWithDisplayContentProvider)treeViewer.getContentProvider()).setDiagramElement(diagramElement);
+	}
+
+	/**
+	 * Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417372
+	 * Add a listener for stereotypes changing.
+	 * 
+	 * @see org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.AppearanceDecoratedTreeComposite#setElement(org.eclipse.uml2.uml.Element)
+	 * 
+	 * @param element
+	 */
+	@Override
+	public void setElement(Element element) {
+		if(getElement() != null && elementListener != null) {
+			getElement().eAdapters().remove(elementListener);
+		}
+		super.setElement(element);
+		if(element != null) {
+			if(elementListener == null) {
+				elementListener = new AdapterImpl() {
+
+					@Override
+					public void notifyChanged(final Notification msg) {
+						handleNotifyChanged(msg);
+					}
+				};
+			}
+			element.eAdapters().add(elementListener);
+		}
+	}
+
+	/**
+	 * Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417372
+	 * Refresh if Stereotypes have been changed.
+	 * 
+	 * Stereotypes list is empty in the Appearance after the application of Stereotype in Profile.
+	 */
+	protected void handleNotifyChanged(Notification msg) {
+		final int eventType = msg.getEventType();
+		if(msg instanceof StereotypeCustomNotification && (eventType == PapyrusStereotypeListener.APPLIED_STEREOTYPE || eventType == PapyrusStereotypeListener.UNAPPLIED_STEREOTYPE)) {
+			Display.getCurrent().asyncExec(new Runnable() {
+
+				public void run() {
+					if(tree != null && !tree.isDisposed() && treeViewer != null && getElement() != null) {
+						treeViewer.setInput(new StereotypedElementTreeObject(getElement()));
+					}
+					refresh();
+				}
+			});
+		}
 	}
 
 	/**

@@ -2,11 +2,6 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.discovery.ui,
  org.eclipse.papyrus.infra.discovery.ui.viewer,
  org.eclipse.papyrus.infra.discovery.ui.wizards
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.equinox.p2.core,
@@ -22,12 +17,17 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui,
  org.eclipse.ui.forms,
- org.eclipse.papyrus.infra.discovery;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.discovery;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.discovery.ui.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.discovery.ui;singleton:
  =true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

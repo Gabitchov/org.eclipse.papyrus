@@ -6,7 +6,7 @@ Export-Package: org.eclipse.papyrus.uml.standard,
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-ClassPath: .
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

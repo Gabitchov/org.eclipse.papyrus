@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.design.profile.feature"
-      label="Profile for software architecture design"
-      version="0.9.0.qualifier"
-      provider-name="%providerName">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.design.profile.feature" label="Profile for software architecture design" provider-name="%providerName" version="0.10.2.qualifier">
 
    <description url="http://www.example.com/description">
       This feature provide utility to design software applications.
@@ -32,35 +27,20 @@
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.uml2.uml" version="3.2.0" match="greaterOrEqual"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.uml2.uml" version="3.2.0"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.uml2.common.edit"/>
-      <import plugin="org.eclipse.ocl.uml.edit" version="3.1.0" match="greaterOrEqual"/>
+      <import match="greaterOrEqual" plugin="org.eclipse.ocl.uml.edit" version="3.1.0"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.papyrus.design.profile.architecture"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.design.profile.architecture" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.design.profile.architecture.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.design.profile.architecture.edit" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.design.profile.architecture.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.design.profile.architecture.editor" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

@@ -17,12 +17,13 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.InteractionRectangleFigure;
 
 /**
  * The figure of the InteractionUse
+ * 
+ * Change super type to support displaying stereotypes, modified by [Jin Liu(jin.liu@soyatec.com)]
  */
-public class InteractionUseRectangleFigure extends InteractionRectangleFigure {
+public class InteractionUseRectangleFigure extends StereotypeInteractionFigure {
 
 	/** A centered label */
 	protected WrappingLabel centerLabel;

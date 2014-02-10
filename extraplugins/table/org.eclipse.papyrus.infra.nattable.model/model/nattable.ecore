@@ -12,11 +12,12 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//nattableconfiguration/TableNamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="currentRowAxisInHistory currentColumnAxisInHistory"/>
+      <details key="constraints" value="currentRowAxisInHistory currentColumnAxisInHistory currentAxisProvidersTypes"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="currentRowAxisInHistory" value="rowAxisProvidersHistory->includes(currentRowAxisProvider)"/>
       <details key="currentColumnAxisInHistory" value="columnAxisProvidersHistory->includes(currentColumnAxisProvider)"/>
+      <details key="currentAxisProvidersTypes" value="not (currentRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and currentColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This object represents the table. It is used to save the interesting informations of the graphical table.&#xD;&#xA;&#xD;&#xA;The currentAxisProviders can be : Master/Master, Master/Slave, Slave/Master and never Slave/Slave."/>
@@ -96,6 +97,12 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Abstract Element used in this metamodel for named element which have a description."/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="nonEmptyName"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="nonEmptyName" value="not (name.oclIsUndefined() or name = '')"/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The description of the named element."/>
@@ -110,11 +117,14 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TableConfiguration" eSuperTypes="#//nattableconfiguration/TableNamedElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-        <details key="constraints" value="defaultRowAxisProviderExistsInCollection defaultColumnAxisProviderExistsInCollection"/>
+        <details key="constraints" value="defaultRowAxisProviderExistsInCollection defaultColumnAxisProviderExistsInCollection defaultAxisProvidersTypes typeNonNullNonEmpty iconPath"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="defaultRowAxisProviderExistsInCollection" value="rowAxisProviders->includes(defaultRowAxisProvider)"/>
         <details key="defaultColumnAxisProviderExistsInCollection" value="columnAxisProviders->includes(defaultColumnAxisProvider)"/>
+        <details key="typeNonNullNonEmpty" value="not (type.oclIsUndefined() or type = '')"/>
+        <details key="iconPath" value="not (iconPath.oclIsUndefined() or iconPath = '')"/>
+        <details key="defaultAxisProvidersTypes" value="not (defaultRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and defaultColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This object is used to configure a table. To create a new type of table, you must create &#xD;&#xA;a new file *.nattableConfiguration and register it using the extension point org.eclipse.papyrus.infra.nattable.configuration&#xD;&#xA;&#xD;&#xA;the defaultAxisProviders can be : Master/Master, Master/Slave, Slave/Master and never Slave/Slave."/>
@@ -125,7 +135,8 @@
           <details key="documentation" value="The type of the table. This value is used to be able to open/close easily the table editor in Papyrus. &#xD;&#xA;Moreover it allows to distinghuish easily the table."/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="iconPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="iconPath" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="The path of the icon to use for the table which references this TableConfiguration."/>
         </eAnnotations>
@@ -370,6 +381,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="AxisManagerRepresentation">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This class is used to represents in the model the java Axis Manager."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="nonEmptyAxisManager"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="nonEmptyAxisManager" value="not (axisManagerId.oclIsUndefined() or axisManagerId = '')"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="axisManagerId" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">

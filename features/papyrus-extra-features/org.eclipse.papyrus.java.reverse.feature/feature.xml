@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.java.reverse.feature" label="%featureName" provider-name="%providerName" version="0.10.1.qualifier">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.java.reverse.feature" label="%featureName" provider-name="%providerName" version="0.10.2.qualifier">
 
    <description url="">
       Experimental Java Reverse Tool for Papyrus.

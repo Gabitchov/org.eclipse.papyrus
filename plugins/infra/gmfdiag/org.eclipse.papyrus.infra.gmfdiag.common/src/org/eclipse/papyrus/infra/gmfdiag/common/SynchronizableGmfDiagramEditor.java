@@ -193,7 +193,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 			EclipseCommandUtils.updateToggleCommandState(command, wsPreferenceStore.getBoolean(PreferencesConstantsHelper.SNAP_TO_GRID_CONSTANT));
 
 		} else {
-			throw new RuntimeException(String.format("The Eclipse service {0} has not been found", ICommandService.class)); //$NON-NLS-1$
+			throw new RuntimeException(String.format("The Eclipse service %s has not been found", ICommandService.class)); //$NON-NLS-1$
 		}
 	}
 

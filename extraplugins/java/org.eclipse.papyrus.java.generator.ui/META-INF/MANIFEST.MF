@@ -5,14 +5,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml,
  org.eclipse.ui.ide,
  org.eclipse.core.resources;bundle-version="3.6.0",
- org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="0.10.1",
+ org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="0.10.2",
  org.eclipse.jdt.core,
  org.eclipse.jdt.ui,
- org.eclipse.papyrus.java.generator.jdtsynchronizer;bundle-version="0.10.1"
+ org.eclipse.papyrus.java.generator.jdtsynchronizer;bundle-version="0.10.2"
 Export-Package: org.eclipse.papyrus.java.generator.ui
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

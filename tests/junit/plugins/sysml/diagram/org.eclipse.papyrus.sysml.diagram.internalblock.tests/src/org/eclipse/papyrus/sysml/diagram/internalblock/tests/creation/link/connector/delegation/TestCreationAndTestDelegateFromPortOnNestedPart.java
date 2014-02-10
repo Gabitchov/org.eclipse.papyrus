@@ -47,6 +47,8 @@ public class TestCreationAndTestDelegateFromPortOnNestedPart extends AbstractCon
 		isCreationAllowed.put(actorPart2_p1TargetView, true);
 
 		isCreationAllowed.put(portOnBlockTargetView, true);
+		isCreationAllowed.put(port1_Part1SourceView, true);
+		isCreationAllowed.put(port2_Part1TargetView, true);		
 		isCreationAllowed.put(port1_Part2TargetView, true);
 		isCreationAllowed.put(port2OnNestedPart2_Part1TargetView, true);
 

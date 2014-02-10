@@ -1,22 +1,22 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.constraints.environment.presentation,
  org.eclipse.papyrus.infra.constraints.presentation
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.papyrus.infra.constraints.edit;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.constraints.edit;bundle-version="0.10.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.constraints.presentation.C
  onstraintsEditorPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.infra.constraints.editor;sing
  leton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

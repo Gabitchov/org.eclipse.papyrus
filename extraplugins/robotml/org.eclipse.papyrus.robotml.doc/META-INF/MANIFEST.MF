@@ -3,7 +3,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

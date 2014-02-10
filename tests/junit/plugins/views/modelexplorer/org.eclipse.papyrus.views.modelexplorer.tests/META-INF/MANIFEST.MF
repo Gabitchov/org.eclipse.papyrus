@@ -8,18 +8,18 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.emf.facet.infra.browser.uicore,
  org.eclipse.gmf.runtime.notation,
- org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="0.10.2",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1",
- org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.2",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.2",
  org.junit;bundle-version="4.10.0"
 Export-Package: org.eclipse.papyrus.views.modelexplorer.tests
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

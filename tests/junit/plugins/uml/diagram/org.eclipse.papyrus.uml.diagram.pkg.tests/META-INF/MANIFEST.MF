@@ -1,26 +1,27 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
- org.eclipse.papyrus.editor;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.editor;bundle-version="0.10.2",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.2",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.1",
- org.eclipse.papyrus.diagram.tests;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="0.10.2",
+ org.eclipse.papyrus.diagram.tests;bundle-version="0.10.2",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="0.10.2",
  org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.uml.diagram.pkg;bundle-version="0.10.1"
+ org.eclipse.papyrus.uml.diagram.pkg;bundle-version="0.10.2"
 Export-Package: org.eclipse.papyrus.uml.diagram.pkg.tests,
  org.eclipse.papyrus.uml.diagram.pkg.tests.canonical,
  org.eclipse.papyrus.uml.diagram.pkg.tests.load
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
-Bundle-Name: Tests
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.pkg.tests.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.pkg.tests
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
 

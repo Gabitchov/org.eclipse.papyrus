@@ -1,4 +1,5 @@
 /*****************************************************************************
+
  * Copyright (c) 2011-2012 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
@@ -117,26 +118,49 @@ public class ConnectorEditHelper extends ElementEditHelper {
 
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
+		if(noSourceOrTarget && !noSourceAndTarget) {
+			
+			if (!(source instanceof ConnectableElement)){
+				return UnexecutableCommand.INSTANCE;
+			} 
+			// The request isn't complete yet. Return the identity command so
+			// that the create relationship gesture is enabled.
+			return IdentityCommand.INSTANCE;			
 
-		if(!noSourceAndTarget && !canCreate(source, target, RequestParameterUtils.getSourceView(req), RequestParameterUtils.getTargetView(req))) {
+		}
+		
+		if (source != null && target != null){			
+			// Propose a semantic container for the new Connector.
+			StructuredClassifier proposedContainer = deduceContainer(req);
+			if(proposedContainer == null) {
+				return UnexecutableCommand.INSTANCE;
+			}
+			
+			EObject container = req.getContainer();
+			if (container != proposedContainer){
+				req.setContainer(proposedContainer);
+				return new CreateRelationshipCommand(req);
+			}
+			
+		}
+	
+		boolean umlStrict = true;		
+		if (!req.getParameters().isEmpty()){
+				Object umlStrictParameter = req.getParameter(org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants.UML_STRICT);
+				if (umlStrictParameter instanceof Boolean){
+					umlStrict = (Boolean) umlStrictParameter;		
+				}
+			}
+
+		boolean canCreate = true;
+		
+		if (umlStrict){
+			canCreate = canCreate(source, target, RequestParameterUtils.getSourceView(req), RequestParameterUtils.getTargetView(req));
+		}
+		if(!noSourceAndTarget && !canCreate) {
 			// Abort creation.
 			return UnexecutableCommand.INSTANCE;
 		}
-
-		if(noSourceOrTarget && !noSourceAndTarget) {
-			// The request isn't complete yet. Return the identity command so
-			// that the create relationship gesture is enabled.
-			return IdentityCommand.INSTANCE;
-		}
-
-		// Propose a semantic container for the new Connector.
-		StructuredClassifier proposedContainer = deduceContainer(req);
-		if(proposedContainer == null) {
-			return UnexecutableCommand.INSTANCE;
-		}
-
-		req.setContainer(proposedContainer);
-
 		return new CreateRelationshipCommand(req);
 	}
 

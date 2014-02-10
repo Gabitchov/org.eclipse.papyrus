@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.cdo.core;bundle-version="0.10.1",
- org.eclipse.papyrus.cdo.ui;bundle-version="0.10.1",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.papyrus.cdo.core;bundle-version="0.10.2",
+ org.eclipse.papyrus.cdo.ui;bundle-version="0.10.2",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="0.10.2",
  com.google.guava;bundle-version="11.0.0"
 Export-Package: org.eclipse.papyrus.cdo.uml.diagram.internal.ui;x-internal:=true,
  org.eclipse.papyrus.cdo.uml.diagram.internal.ui.handlers;x-internal:=true,
@@ -12,7 +12,7 @@ Export-Package: org.eclipse.papyrus.cdo.uml.diagram.internal.ui;x-internal:=true
  org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards;x-internal:=true
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

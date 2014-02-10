@@ -1,19 +1,23 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.core.serviceregistry.service
  descriptorswithid.presentation
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.eclipse.papyrus.infra.core.serviceregistry.edit;bundle-version="0.10.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.core.serviceregistry.edit;bundle-version="0.10.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui,
  org.eclipse.ui.ide
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 0.10.2.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.core.serviceregistry.servicedescriptorswithid.presentation.ServicedescriptorswithidEditorPlugin$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.infra.core.serviceregistry.editor;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.core.serviceregistry.servi
+ cedescriptorswithid.presentation.ServicedescriptorswithidEditorPlugin
+ $Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.core.serviceregistry.ed
+ itor;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

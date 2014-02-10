@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature
-      id="org.eclipse.papyrus.extra.uml.diagram.css.feature"
-      label="Papyrus UML CSS Feature (Incubation)"
-      version="0.10.1.qualifier"
-      provider-name="Eclipse Modeling Project">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.extra.uml.diagram.css.feature" label="Papyrus UML CSS Feature (Incubation)" provider-name="Eclipse Modeling Project" version="0.10.2.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2013 CEA LIST
@@ -22,11 +17,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.papyrus.extra.infra.gmfdiag.css.feature" version="0.10.1.qualifier"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.papyrus.uml.diagram.css"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.css" install-size="0" unpack="false" version="0.0.0"/>
 
 </feature>

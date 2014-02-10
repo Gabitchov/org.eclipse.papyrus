@@ -43,6 +43,7 @@ import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
 /**
@@ -121,6 +122,9 @@ public class ResourceUpdateService implements IService, IPartListener {
 				Runnable closeEditorRunnable = new Runnable() {
 
 					public void run() {
+						if (! PlatformUI.isWorkbenchRunning()){
+							return;
+						}
 						final IWorkbenchPage page = editor.getSite().getPage();
 						final IEditorInput currentInput = editor.getEditorInput();
 
@@ -135,6 +139,9 @@ public class ResourceUpdateService implements IService, IPartListener {
 							Display.getCurrent().asyncExec(new Runnable() {
 
 								public void run() {
+									if (! PlatformUI.isWorkbenchRunning()){
+										return;
+									}
 									try {
 										IDE.openEditor(page, currentInput, editorId);
 									} catch (PartInitException ex) {

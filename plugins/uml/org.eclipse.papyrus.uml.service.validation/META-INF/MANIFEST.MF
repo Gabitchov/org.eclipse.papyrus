@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.services.validation;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.services.validation;bundle-version="0.10.2",
  org.eclipse.emf;bundle-version="2.6.0",
  org.eclipse.uml2.uml;bundle-version="4.1.0",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="0.10.2",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0"
 Export-Package: org.eclipse.papyrus.uml.service.validation.handler
 Bundle-Vendor: %pluginProvider
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

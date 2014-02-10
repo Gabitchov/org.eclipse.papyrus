@@ -19,12 +19,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.facet.infra.query;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.query.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.tools;bundle-version="0.10.1";visibility:=reexport,
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.tools;bundle-version="0.10.2";visibility:=reexport,
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.2"
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.constraints.Activator

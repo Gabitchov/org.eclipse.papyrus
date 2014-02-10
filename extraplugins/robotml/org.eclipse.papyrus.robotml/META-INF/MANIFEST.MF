@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.1",
+Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.2",
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
@@ -35,7 +35,7 @@ Export-Package: org.eclipse.papyrus.RobotML,
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

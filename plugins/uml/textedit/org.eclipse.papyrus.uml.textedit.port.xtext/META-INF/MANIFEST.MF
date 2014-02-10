@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="0.10.2",
  org.apache.log4j;bundle-version="1.2.15"
 Export-Package: org.eclipse.papyrus.uml.textedit.port.xtext,
  org.eclipse.papyrus.uml.textedit.port.xtext.formatting,
@@ -28,7 +28,7 @@ Export-Package: org.eclipse.papyrus.uml.textedit.port.xtext,
  org.eclipse.papyrus.uml.textedit.port.xtext.validation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

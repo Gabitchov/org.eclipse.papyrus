@@ -7,24 +7,24 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit;bundle-version="2.7.0",
  org.eclipse.emf.ecore.editor;bundle-version="2.7.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.200",
- org.eclipse.papyrus.views.properties;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
+ org.eclipse.papyrus.views.properties;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.2",
  org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.emf.newchild;bundle-version="0.10.1",
- org.eclipse.papyrus.views.properties.model;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.emf.newchild;bundle-version="0.10.2",
+ org.eclipse.papyrus.views.properties.model;bundle-version="0.10.2",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.constraints;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.constraints;bundle-version="0.10.2"
 Export-Package: org.eclipse.papyrus.infra.emf.embeddededitor,
  org.eclipse.papyrus.infra.emf.embeddededitor.editor,
  org.eclipse.papyrus.infra.emf.embeddededitor.providers
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: EML Editor (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.embeddededitor.Activat

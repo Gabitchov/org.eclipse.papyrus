@@ -1,23 +1,23 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
  org.eclipse.gmf.runtime.notation;bundle-version="1.5.0",
- org.eclipse.papyrus.infra.widgets;bundle-version="0.10.1",
- org.eclipse.papyrus.views.properties;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.widgets;bundle-version="0.10.2",
+ org.eclipse.papyrus.views.properties;bundle-version="0.10.2",
  org.eclipse.core.databinding;bundle-version="1.4.1",
  org.eclipse.emf.ecore;bundle-version="2.9.0",
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="0.10.2",
  org.eclipse.e4.ui.css.core;bundle-version="0.10.2",
- org.eclipse.papyrus.infra.gmfdiag.css.configuration;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.10.1",
+ org.eclipse.papyrus.infra.gmfdiag.css.configuration;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.css.xtext;bundle-version="0.10.2",
  org.eclipse.gmf.runtime.draw2d.ui;bundle-version="1.7.0",
  org.eclipse.draw2d;bundle-version="3.9.0"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: CSS Debug view (Incubation)
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.debug.Activato

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.extra.qompass.designer.basic.feature" label="%featureName" provider-name="%providerName" version="0.10.1.qualifier">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.extra.qompass.designer.basic.feature" label="%featureName" provider-name="%providerName" version="0.10.2.qualifier">
 
    <description>
       The Qompass tool suite is a component based design methodology

@@ -26,10 +26,15 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomGeneralOrderingItemSemanticEditPolicy;
 import org.eclipse.swt.SWT;
@@ -39,7 +44,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class CustomGeneralOrderingEditPart extends GeneralOrderingEditPart {
+public class CustomGeneralOrderingEditPart extends GeneralOrderingEditPart implements IPapyrusEditPart {
 
 	/**
 	 * Constructor.
@@ -81,6 +86,50 @@ public class CustomGeneralOrderingEditPart extends GeneralOrderingEditPart {
 	@Override
 	protected void setLineWidth(int width) {
 		getPrimaryShape().setLineWidth(width);
+	}
+
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		EditPart ep = super.getTargetEditPart(request);
+		if(ep != null && ep instanceof org.eclipse.gef.ConnectionEditPart) {
+			if(request instanceof ReconnectRequest) {
+				ReconnectRequest rRequest = (ReconnectRequest)request;
+
+				// If source anchor is moved, the connection's source edit part
+				// should not be taken into account for a cyclic dependency
+				// check so as to avoid false checks. Same goes for the target
+				// anchor. See bugzilla# 417373 -- we do not want to target a
+				// connection that is already connected to us so that we do not
+				// introduce a cyclic connection                
+				if(isCyclicConnectionRequest((org.eclipse.gef.ConnectionEditPart)ep, rRequest.getConnectionEditPart())) {
+					return null;
+				}
+			}
+		}
+
+		return ep;
+	}
+
+	/**
+	 * Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=417373
+	 * 
+	 * The ends of GeneralOrderingEditPart are MessageEndEditParts which parent are Message*EditParts, once we move the ends of the messages, we
+	 * should IGNORE to move current GeneralOrdering, otherwise cyclic dependency occur.
+	 * 
+	 */
+	private boolean isCyclicConnectionRequest(ConnectionEditPart currentConn, ConnectionEditPart reqConn) {
+		if(currentConn == null || reqConn == null) {
+			return false;
+		}
+		EditPart source = currentConn.getSource();
+		EditPart target = currentConn.getTarget();
+		if(reqConn == source || reqConn == target) {
+			return true;
+		}
+		if(reqConn == source.getParent() || reqConn == target.getParent()) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

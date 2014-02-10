@@ -7,10 +7,10 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.jface.text,
  org.eclipse.core.resources,
  org.eclipse.epf.richtext,
- org.eclipse.papyrus.views.documentation;bundle-version="0.10.1";visibility:=reexport
+ org.eclipse.papyrus.views.documentation;bundle-version="0.10.2";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

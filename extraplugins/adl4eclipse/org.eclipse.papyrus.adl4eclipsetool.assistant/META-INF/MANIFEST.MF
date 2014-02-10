@@ -5,14 +5,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore,
  org.eclipse.emf.transaction,
  org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.editor;bundle-version="0.10.1",
- org.eclipse.papyrus.infra.core;bundle-version="0.10.1",
+ org.eclipse.papyrus.editor;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.emf;bundle-version="0.10.1",
- org.eclipse.papyrus.adl4eclipsetool;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.emf;bundle-version="0.10.2",
+ org.eclipse.papyrus.adl4eclipsetool;bundle-version="0.10.2"
 Export-Package: org.eclipse.papyrus.adltool.assistant
 Bundle-Vendor: %providerName
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

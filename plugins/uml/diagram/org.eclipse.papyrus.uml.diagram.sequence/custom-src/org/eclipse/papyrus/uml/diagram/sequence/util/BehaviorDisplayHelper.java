@@ -19,7 +19,6 @@ import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -37,7 +36,6 @@ import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.AnnotationModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)

@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui;bundle-version="3.8.0",
  org.eclipse.core.runtime;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.discovery.ui;bundle-version="0.10.1"
+ org.eclipse.papyrus.infra.discovery.ui;bundle-version="0.10.2"
 Export-Package: org.eclipse.papyrus.infra.discovery.ui.menu,
  org.eclipse.papyrus.infra.discovery.ui.menu.handler
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.10.1.qualifier
+Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
