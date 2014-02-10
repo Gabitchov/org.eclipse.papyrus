@@ -111,7 +111,7 @@ public class CustomCommonViewer extends CommonViewer {
 			protected boolean isEditorActivationEvent(
 					ColumnViewerEditorActivationEvent event) {
 				// activation will uses F2 (also used by rename-popup, but not taken into account by the latter
-				// for model elements for which an xtext editor exists)
+				// for model elements for which a direct-editor exists)
 				return event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED &&
 						event.keyCode == SWT.F2;
 			}
