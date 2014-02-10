@@ -26,7 +26,9 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.6.1",
  org.eclipse.m2m.qvt.oml.project;bundle-version="3.1.0",
  org.eclipse.papyrus.customization.properties;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="1.0.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0"
+ org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.2.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.4.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,

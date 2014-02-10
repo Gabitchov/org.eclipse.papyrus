@@ -1,0 +1,5 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: Doc
+Bundle-SymbolicName: org.eclipse.emf.facet.custom.metamodel.editor.doc;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.help

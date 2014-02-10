@@ -16,6 +16,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.papyrus.customization.properties.Activator;
@@ -28,9 +30,9 @@ import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
  * 
  * @author Camille Letavernier
  */
-public class ContextContentProvider extends CustomizableModelContentProvider {
+public class ContextContentProvider extends CustomizedTreeContentProvider {
 
-	private CustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
+	private ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
 
 	/**
 	 * Constructor.
@@ -42,7 +44,7 @@ public class ContextContentProvider extends CustomizableModelContentProvider {
 	/**
 	 * @return the CustomizationManager used by this Content provider
 	 */
-	public CustomizationManager getCustomizationManager() {
+	public ICustomizationManager getCustomizationManager() {
 		return customizationManager;
 	}
 

@@ -15,6 +15,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.emf.facet.custom.ui.internal.CustomizedLabelProvider;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.browser.uicore.internal.AppearanceConfiguration;
@@ -29,9 +31,9 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author Camille Letavernier
  */
-public class ContextLabelProvider extends CustomizableModelLabelProvider {
+public class ContextLabelProvider extends CustomizedLabelProvider {
 
-	private CustomizationManager customizationManager;
+	private ICustomizationManager customizationManager;
 
 	/**
 	 * Constructor.

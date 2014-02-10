@@ -28,6 +28,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.facet.custom.core.ICustomizationCatalogManager;
+import org.eclipse.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
+import org.eclipse.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialog;
+import org.eclipse.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialogFactory;
 import org.eclipse.emf.facet.infra.browser.Messages;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.TypeView;
@@ -35,6 +42,8 @@ import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.emf.facet.infra.facet.Facet;
 import org.eclipse.emf.facet.infra.facet.FacetSet;
 import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
+import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
+import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -48,6 +57,7 @@ import org.eclipse.papyrus.infra.services.semantic.service.SemanticService;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.dialog.PapyrusLoadBrowserCustomizationDialog;
+import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IViewPart;
@@ -83,54 +93,69 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		if(Activator.getDefault().getCustomizationManager() != null) {
-			CustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
-			final List<MetamodelView> registeredCustomizations = customizationManager.getRegisteredCustomizations();
+			ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
+			final List<Customization> registeredCustomizations = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(new ResourceSetImpl()).getRegisteredCustomizations();
 
 			PapyrusLoadBrowserCustomizationDialog loadCustomizationsDialog;
+			
 
-			Shell shell = HandlerUtil.getActiveShell(event);
+		Shell shell = HandlerUtil.getActiveShell(event);
+		IDialogCallbackWithPreCommit<List<Customization>, Boolean, Dialog> dialogCallBack= new IDialogCallbackWithPreCommit<List<Customization>, Boolean, Dialog>() {
 
-			try {
-				ServicesRegistry registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
-				loadCustomizationsDialog = new PapyrusLoadBrowserCustomizationDialog(shell, registeredCustomizations, getMetamodels(registry));
-			} catch (ServiceException ex) {
-				Activator.log.error(ex);
-				loadCustomizationsDialog = new PapyrusLoadBrowserCustomizationDialog(shell, registeredCustomizations, Collections.<EPackage> emptyList());
+			public void committed(List<Customization> result, Boolean precommitResult) {
+				// TODO Auto-generated method stub
+				
 			}
 
-			if(Window.OK == loadCustomizationsDialog.open()) {
-				try {
-
-					customizationManager.clearCustomizations();
-					List<MetamodelView> selectedCustomizations = loadCustomizationsDialog.getSelectedCustomizations();
-					//before loading, clean all facet to prevent to let not interesting facets.
-					customizationManager.clearFacets();
-
-
-					// Always load facets corresponding to customizations
-					loadFacetsForCustomizations(selectedCustomizations, customizationManager);
-
-
-					for(MetamodelView metamodelView : selectedCustomizations) {
-						customizationManager.registerCustomization(metamodelView);
-					}
-					customizationManager.loadCustomizations();
-					if(getCommonNavigator() != null) {
-						Tree tree = getCommonNavigator().getCommonViewer().getTree();
-						customizationManager.installCustomPainter(tree);
-					}
-
-					//Save the current state of the customizations
-					org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
-				} catch (final Exception e) {
-					Activator.log.error(e);
-				}
+			public Dialog openPrecommitDialog(List<Customization> result, IDialogCallback<Boolean> precommitCallback) {
+				// TODO Auto-generated method stub
+				return null;
 			}
-			// load customizations defined as default through the customization
-			// extension
-			if(getCommonNavigator() != null) {
-				getCommonNavigator().getCommonViewer().refresh();
-			}
+		};
+		ILoadCustomizationsDialog dialog=ILoadCustomizationsDialogFactory.DEFAULT.createLoadCustomizationDialog(shell, registeredCustomizations, Collections.<Customization> emptyList(), dialogCallBack);
+//
+//			try {
+//				ServicesRegistry registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
+//				loadCustomizationsDialog = new PapyrusLoadBrowserCustomizationDialog(shell, registeredCustomizations, getMetamodels(registry));
+//			} catch (ServiceException ex) {
+//				Activator.log.error(ex);
+//				loadCustomizationsDialog = new PapyrusLoadBrowserCustomizationDialog(shell, registeredCustomizations, Collections.<EPackage> emptyList());
+//			}
+//
+			if(Window.OK == dialog.open()) {
+				customizationManager.getManagedCustomizations().addAll(	dialog.getSelectedCustomizations());
+//				try {
+//
+//					customizationManager.clearCustomizations();
+//					List<MetamodelView> selectedCustomizations = loadCustomizationsDialog.getSelectedCustomizations();
+//					//before loading, clean all facet to prevent to let not interesting facets.
+//					customizationManager.clearFacets();
+//
+//
+//					// Always load facets corresponding to customizations
+//					loadFacetsForCustomizations(selectedCustomizations, customizationManager);
+//
+//
+//					for(MetamodelView metamodelView : selectedCustomizations) {
+//						customizationManager.registerCustomization(metamodelView);
+//					}
+//					customizationManager.loadCustomizations();
+//					if(getCommonNavigator() != null) {
+//						Tree tree = getCommonNavigator().getCommonViewer().getTree();
+//						customizationManager.installCustomPainter(tree);
+//					}
+//
+//					//Save the current state of the customizations
+//					org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
+//				} catch (final Exception e) {
+//					Activator.log.error(e);
+//				}
+//			}
+//			// load customizations defined as default through the customization
+//			// extension
+//			if(getCommonNavigator() != null) {
+//				getCommonNavigator().getCommonViewer().refresh();
+		}
 		}
 		return null;
 	}

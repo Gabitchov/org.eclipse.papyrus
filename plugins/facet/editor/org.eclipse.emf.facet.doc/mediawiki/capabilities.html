@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>capabilities</title>
+	</head>
+	<body>
+		<h2 id="Definition">Definition</h2>
+		<p>EMF Facet currently defines an 
+			<b>Activity</b> (aka 
+			<b>Capability</b> in the UI) that allows enabling or disabling all of EMF Facet UI contributions:
+		</p>
+		<pre>  &lt;extension point="org.eclipse.ui.activities"&gt;
+     &lt;activity
+           description="%activity.description"
+           id="org.eclipse.emf.facet.capabilities.activity"
+           name="%activity.name"&gt;
+     &lt;/activity&gt;
+     &lt;category
+           description="%category.description"
+           id="org.eclipse.emf.facet.capabilities.category"
+           name="%category.name"&gt;
+     &lt;/category&gt;
+     &lt;categoryActivityBinding
+           activityId="org.eclipse.emf.facet.capabilities.activity"
+           categoryId="org.eclipse.emf.facet.capabilities.category"&gt;
+     &lt;/categoryActivityBinding&gt;
+     &lt;activityPatternBinding
+           activityId="org.eclipse.emf.facet.capabilities.activity"
+           isEqualityPattern="false"
+           pattern="org\.eclipse\.emf\.facet\..*/.*"&gt;
+     &lt;/activityPatternBinding&gt;
+     &lt;defaultEnablement id="org.eclipse.emf.facet.capabilities.activity"/&gt;
+  &lt;/extension&gt;
+</pre>
+		<p>(in plug-in 
+			<a href="https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/org.eclipse.emf.facet.capabilities">https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/org.eclipse.emf.facet.capabilities</a>)
+		</p>
+		<p>Product maintainers can use this definition as a starting point for customizing their product.</p>
+		<h2 id="Selective_Capabilities">Selective Capabilities</h2>
+		<p>Capabilities can be as selective as you want. For example, you can choose to disable certain EMF Facet views. For example, this disables the "new project" wizard:</p>
+		<pre>  &lt;activityPatternBinding
+        activityId="com.example.myActivity"
+        isEqualityPattern="true"
+        pattern="org.eclipse.emf.facet.infra.common.ui/org.eclipse.emf.facet.NewProjectWizard"&gt;
+  &lt;/activityPatternBinding&gt;
+</pre>
+		<p><font size="-2">
+			Copyright &#169; 2012 Mia-Software.
+			All rights reserved. This program and the accompanying materials
+			are made available under the terms of the Eclipse Public License v1.0
+			which accompanies this distribution, and is available at
+
+			<a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.
+</font>
+		</p>
+	</body>
+</html>

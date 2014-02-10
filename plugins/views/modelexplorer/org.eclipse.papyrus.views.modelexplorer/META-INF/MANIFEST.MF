@@ -28,7 +28,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.facet.infra.browser.custom.ui;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
- org.eclipse.emf.facet.infra.facet;bundle-version="0.1.0",
+ org.eclipse.papyrus.emf.facet.infra.facet;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.facet.core;bundle-version="0.1.0",
  org.eclipse.emf.facet.infra.query.ui;bundle-version="0.1.0",
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.0.0",
@@ -51,7 +51,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.services.navigation;bundle-version="1.0.0",
  org.eclipse.papyrus.infra.tools;bundle-version="1.0.0",
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0",
+ org.eclipse.papyrus.emf.facet.custom.metamodel,
+ org.eclipse.papyrus.emf.facet.util.ui;bundle-version="0.4.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier
@@ -62,4 +65,5 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.eclipse.emf.facet.custom.core
 

@@ -1,0 +1,5 @@
+org.eclipse.emf.facet.custom.ui/debug=false
+org.eclipse.emf.facet.custom.ui/debug/TreeElementAdapter=false
+org.eclipse.emf.facet.custom.ui/debug/CustomizedTreeContentProvider=false
+org.eclipse.emf.facet.custom.ui/debug/CustomizedLabelProvider/font=false
+org.eclipse.emf.facet.custom.ui/debug/CustomizedLabelProvider/color=false

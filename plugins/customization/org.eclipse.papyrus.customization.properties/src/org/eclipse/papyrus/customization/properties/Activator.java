@@ -16,6 +16,9 @@ import java.util.List;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.emf.facet.custom.core.ICustomizationManagerFactory;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
@@ -51,7 +54,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static LogHelper log;
 
-	private CustomizationManager fCustomizationManager;
+	private ICustomizationManager fCustomizationManager;
 
 	@Override
 	public void start(final BundleContext context) throws Exception {
@@ -79,38 +82,38 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @return the customization manager in charge to adapt element in modisco
 	 */
-	public CustomizationManager getCustomizationManager() {
+	public ICustomizationManager getCustomizationManager() {
 		if(this.fCustomizationManager == null) {
-			this.fCustomizationManager = new CustomizationManager();
+			this.fCustomizationManager = ICustomizationManagerFactory.DEFAULT.getOrCreateICustomizationManager(new ResourceSetImpl());
 			init(this.fCustomizationManager);
 		}
 		return this.fCustomizationManager;
 	}
 
-	private void init(final CustomizationManager customizationManager) {
-		customizationManager.setShowContainer(false);
-		customizationManager.setShowDerivedLinks(true);
-		customizationManager.setShowEmptyLinks(true);
-
-		try {
-			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-			for(MetamodelView metamodelView : registryDefaultCustomizations) {
-				//FIXME: One of the default uiCustom files in Papyrus has a side effect to call resolveAll on the resource set. While this is generally not a problem in Papyrus,
-				//it becomes critical with the properties view customization, as the resource set contains hundreds of proxies to xwt files (Which are really expensive to load)
-				//It seems that this uiCustom query cannot be easily fixed, so we disable it in this context.
-				//The query which tries to (indirectly) resolve all: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.IsDiagramContainer
-				//Used by: PapyrusNotationFacet.querySet -> PapyrusNotationFacet.uiCustom
-				if("PapyrusNotationFacet".equals(metamodelView.getName())) {
-					continue; //Disable this specific uiCustom
-				}
-
-				customizationManager.registerCustomization(metamodelView);
-			}
-
-			customizationManager.loadCustomizations();
-		} catch (Throwable e) {
-			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
-		}
+	private void init(final ICustomizationManager customizationManager) {
+//		customizationManager.setShowContainer(false);
+//		customizationManager.setShowDerivedLinks(true);
+//		customizationManager.setShowEmptyLinks(true);
+//
+//		try {
+//			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
+//			for(MetamodelView metamodelView : registryDefaultCustomizations) {
+//				//FIXME: One of the default uiCustom files in Papyrus has a side effect to call resolveAll on the resource set. While this is generally not a problem in Papyrus,
+//				//it becomes critical with the properties view customization, as the resource set contains hundreds of proxies to xwt files (Which are really expensive to load)
+//				//It seems that this uiCustom query cannot be easily fixed, so we disable it in this context.
+//				//The query which tries to (indirectly) resolve all: org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.IsDiagramContainer
+//				//Used by: PapyrusNotationFacet.querySet -> PapyrusNotationFacet.uiCustom
+//				if("PapyrusNotationFacet".equals(metamodelView.getName())) {
+//					continue; //Disable this specific uiCustom
+//				}
+//
+//				customizationManager.registerCustomization(metamodelView);
+//			}
+//
+//			customizationManager.loadCustomizations();
+//		} catch (Throwable e) {
+//			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
+//		}
 	}
 
 	/**

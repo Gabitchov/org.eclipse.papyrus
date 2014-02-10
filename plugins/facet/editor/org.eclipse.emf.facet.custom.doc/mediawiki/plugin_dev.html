@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>plugin_dev</title>
+	</head>
+	<body>
+		<h2 id="Customization_selection_dialog">Customization selection dialog</h2>
+		<p>EMF Facet provides a customization selection dialog:</p>
+		<p>
+			<img border="0" src="../img/LoadCustomizationsDialog.png"/>
+		</p>
+		<p>To open this dialog to let the user select customizations, use <code>ILoadCustomizationsDialogFactory#createLoadCustomizationDialog</code> from the plug-in 
+			<b>org.eclipse.emf.facet.custom.ui</b>. For example:
+		</p>
+		<pre>
+ILoadCustomizationsDialogListener callback = new ILoadCustomizationsDialogListener() {
+  public void okPressed(List&lt;Customization&gt; selection) {
+    // do something with the selection
+  }
+};
+ILoadCustomizationsDialog dialog = ILoadCustomizationsDialogFactory.DEFAULT.createLoadCustomizationDialog(
+    getShell(), availableCustomizations, initiallySelectedCustomizations, callback);
+dialog.open();
+</pre>
+		<p><font size="-2">
+			Copyright &#169; 2012 Mia-Software.
+			All rights reserved. This program and the accompanying materials
+			are made available under the terms of the Eclipse Public License v1.0
+			which accompanies this distribution, and is available at
+
+			<a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.
+			Contributors: Nicolas Bros (Mia-Software)
+</font>
+		</p>
+	</body>
+</html>

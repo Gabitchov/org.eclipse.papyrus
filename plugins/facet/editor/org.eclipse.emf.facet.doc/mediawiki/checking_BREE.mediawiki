@@ -1,0 +1,19 @@
+One of the requirements for the simultaneous release is "All plug-ins must correctly list their Bundle Required Execution Environment (BREE)".
+
+To satisfy this requirement, we check conformance thusly:
+* Checkout all EMF Facet plug-ins in the workspace
+* In the '''Problems''' view, open the view menu and select '''Configure Contents...''', and create a new configuration with:
+** Scope = on any element
+** Severity = Error, Warning, Info
+** Text contains = "execution environment"
+** Types: check all
+* Rebuild the whole workspace, and check that the '''Problems''' view is empty
+* Search the workspace in plain text for "JavaSE" in files named "Manifest.MF" : the search should return no results
+
+<font size="-2">
+Copyright (c) 2012 Mia-Software.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html.
+</font>

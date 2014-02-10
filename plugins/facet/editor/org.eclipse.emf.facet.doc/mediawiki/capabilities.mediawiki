@@ -1,0 +1,44 @@
+== Definition ==
+EMF Facet currently defines an '''Activity''' (aka '''Capability''' in the UI) that allows enabling or disabling all of EMF Facet UI contributions:
+   <extension point="org.eclipse.ui.activities">
+      <activity
+            description="%activity.description"
+            id="org.eclipse.emf.facet.capabilities.activity"
+            name="%activity.name">
+      </activity>
+      <category
+            description="%category.description"
+            id="org.eclipse.emf.facet.capabilities.category"
+            name="%category.name">
+      </category>
+      <categoryActivityBinding
+            activityId="org.eclipse.emf.facet.capabilities.activity"
+            categoryId="org.eclipse.emf.facet.capabilities.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.emf.facet.capabilities.activity"
+            isEqualityPattern="false"
+            pattern="org\.eclipse\.emf\.facet\..*/.*">
+      </activityPatternBinding>
+      <defaultEnablement id="org.eclipse.emf.facet.capabilities.activity"/>
+   </extension>
+
+(in plug-in https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/org.eclipse.emf.facet.capabilities)
+
+Product maintainers can use this definition as a starting point for customizing their product.
+
+== Selective Capabilities ==
+Capabilities can be as selective as you want. For example, you can choose to disable certain EMF Facet views. For example, this disables the "new project" wizard:
+   <activityPatternBinding
+         activityId="com.example.myActivity"
+         isEqualityPattern="true"
+         pattern="org.eclipse.emf.facet.infra.common.ui/org.eclipse.emf.facet.NewProjectWizard">
+   </activityPatternBinding>
+
+<font size="-2">
+Copyright (c) 2012 Mia-Software.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html.
+</font>

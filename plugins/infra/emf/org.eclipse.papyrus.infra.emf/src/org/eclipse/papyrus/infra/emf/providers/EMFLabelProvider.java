@@ -18,8 +18,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
+import org.eclipse.emf.facet.custom.ui.internal.CustomizedLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -36,7 +35,7 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author Camille Letavernier
  */
-public class EMFLabelProvider extends CustomizableModelLabelProvider implements IDetailLabelProvider, IQualifierLabelProvider {
+public class EMFLabelProvider extends CustomizedLabelProvider implements IDetailLabelProvider, IQualifierLabelProvider {
 
 	protected ILabelProvider baseEMFLabelProvider;
 
@@ -57,9 +56,9 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 			return ""; //$NON-NLS-1$
 		}
 
-		if(element instanceof ITreeElement) {
-			return super.getText(element);
-		}
+		//if(element instanceof ITreeElement) {
+		//	return super.getText(element);
+		//}
 
 		EObject eObject = EMFHelper.getEObject(element);
 		if(eObject != null) {
@@ -105,9 +104,9 @@ public class EMFLabelProvider extends CustomizableModelLabelProvider implements 
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if(element instanceof ITreeElement) {
-			return super.getImage(element);
-		}
+		//if(element instanceof ITreeElement) {
+		//	return super.getImage(element);
+		//}
 
 		EObject eObject = EMFHelper.getEObject(element);
 		if(eObject != null) {

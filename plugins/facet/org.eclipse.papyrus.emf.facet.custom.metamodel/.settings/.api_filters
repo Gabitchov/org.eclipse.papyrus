@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.emf.facet.custom.metamodel" version="2">
+    <resource path="src/org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/CustomPackage.java" type="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage">
+        <filter comment="This an allowed (by modeling PMC) API break. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376576" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage"/>
+                <message_argument value="ECLASS_CUSTOMIZATION__EXTENDED_FACETS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="This an allowed (by modeling PMC) API break. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376576" id="403767336">
+            <message_arguments>
+                <message_argument value="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage"/>
+                <message_argument value="FACET_CUSTOMIZATION__EXTENDED_FACETS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="This an allowed (by modeling PMC) API break. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376576" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage"/>
+                <message_argument value="ECLASS_CUSTOMIZATION__EXTENDED_FACET"/>
+            </message_arguments>
+        </filter>
+        <filter comment="This an allowed (by modeling PMC) API break. cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=376576" id="405864542">
+            <message_arguments>
+                <message_argument value="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage"/>
+                <message_argument value="FACET_CUSTOMIZATION__EXTENDED_FACET"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

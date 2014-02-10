@@ -1,0 +1,27 @@
+== Customization selection dialog ==
+
+EMF Facet provides a customization selection dialog:
+
+[[Image:../img/LoadCustomizationsDialog.png]]
+
+To open this dialog to let the user select customizations, use <code>ILoadCustomizationsDialogFactory#createLoadCustomizationDialog</code> from the plug-in '''org.eclipse.emf.facet.custom.ui'''. For example:
+
+<pre>
+ILoadCustomizationsDialogListener callback = new ILoadCustomizationsDialogListener() {
+  public void okPressed(List<Customization> selection) {
+    // do something with the selection
+  }
+};
+ILoadCustomizationsDialog dialog = ILoadCustomizationsDialogFactory.DEFAULT.createLoadCustomizationDialog(
+    getShell(), availableCustomizations, initiallySelectedCustomizations, callback);
+dialog.open();
+</pre>
+
+<font size="-2">
+Copyright (c) 2012 Mia-Software.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html.
+Contributors: Nicolas Bros (Mia-Software)
+</font>

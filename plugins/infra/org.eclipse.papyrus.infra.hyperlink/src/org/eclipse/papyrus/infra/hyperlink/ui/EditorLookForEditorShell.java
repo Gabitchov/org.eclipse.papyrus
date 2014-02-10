@@ -231,7 +231,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		treeViewer.setLabelProvider(labelProvider);
 		//		treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
 		//		treeViewer.setContentProvider(new SemanticEMFContentProvider(amodel)); //This content provider will only display the selected element, instead of the root element
-		treeViewer.setContentProvider(new MoDiscoContentProvider()); //FIXME: Use a standard, non-deprecated content provider.
+		//treeViewer.setContentProvider(new MoDiscoContentProvider()); //FIXME: Use a standard, non-deprecated content provider.
 		//treeViewer.setInput(model.eResource());
 		treeViewer.setInput(registry);
 

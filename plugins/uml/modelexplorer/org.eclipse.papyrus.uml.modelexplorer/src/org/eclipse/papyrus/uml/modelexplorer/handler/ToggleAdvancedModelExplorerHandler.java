@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
@@ -57,53 +58,53 @@ public class ToggleAdvancedModelExplorerHandler extends AbstractHandler {
 		//State state = event.getCommand().getState("org.eclipse.papyrus.uml.modelexplorer.customization.advanced.state");
 
 
-		CustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
-		if(customizationManager != null) {
-			if(event.getTrigger() instanceof Event) {
-				if(((Event)event.getTrigger()).widget instanceof ToolItem) {
-					ToolItem item = (ToolItem)((Event)event.getTrigger()).widget;
-
-					MetamodelView simpleUMLCustomization = CustomizationsCatalog.getInstance().getCustomization(SIMPLE_UML_CUSTOMIZATION);
-					if(simpleUMLCustomization != null) {
-						if(item.getSelection()) {
-
-							//Advanced view
-							List<MetamodelView> registeredCustomizations = new LinkedList<MetamodelView>(customizationManager.getRegisteredCustomizations());
-							if(registeredCustomizations.remove(simpleUMLCustomization)) {
-								customizationManager.clearCustomizations();
-								for(MetamodelView customization : registeredCustomizations) {
-									customizationManager.registerCustomization(customization);
-								}
-							} else {
-								//No change
-								return null;
-							}
-
-						} else {
-							//Simple view
-							if(customizationManager.getRegisteredCustomizations().contains(simpleUMLCustomization)) {
-								return null; //No change
-							}
-
-							customizationManager.registerCustomization(simpleUMLCustomization);
-						}
-
-						customizationManager.loadCustomizations();
-						//Save the current state of the customizations
-						org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
-					}
-				}
-
-			}
-		}
-
-		IWorkbenchPart activePart = HandlerUtil.getActivePart(event);
-		if(activePart instanceof ModelExplorerPageBookView) {
-			IViewPart page = ((ModelExplorerPageBookView)activePart).getActiveView();
-			if(page instanceof CommonNavigator) {
-				((CommonNavigator)page).getCommonViewer().refresh();
-			}
-		}
+		ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
+//		if(customizationManager != null) {
+//			if(event.getTrigger() instanceof Event) {
+//				if(((Event)event.getTrigger()).widget instanceof ToolItem) {
+//					ToolItem item = (ToolItem)((Event)event.getTrigger()).widget;
+//
+//					MetamodelView simpleUMLCustomization = CustomizationsCatalog.getInstance().getCustomization(SIMPLE_UML_CUSTOMIZATION);
+//					if(simpleUMLCustomization != null) {
+//						if(item.getSelection()) {
+//
+//							//Advanced view
+//							List<MetamodelView> registeredCustomizations = new LinkedList<MetamodelView>(customizationManager.getRegisteredCustomizations());
+//							if(registeredCustomizations.remove(simpleUMLCustomization)) {
+//								customizationManager.clearCustomizations();
+//								for(MetamodelView customization : registeredCustomizations) {
+//									customizationManager.registerCustomization(customization);
+//								}
+//							} else {
+//								//No change
+//								return null;
+//							}
+//
+//						} else {
+//							//Simple view
+//							if(customizationManager.getRegisteredCustomizations().contains(simpleUMLCustomization)) {
+//								return null; //No change
+//							}
+//
+//							customizationManager.registerCustomization(simpleUMLCustomization);
+//						}
+//
+//						customizationManager.loadCustomizations();
+//						//Save the current state of the customizations
+//						org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
+//					}
+//				}
+//
+//			}
+//		}
+//
+//		IWorkbenchPart activePart = HandlerUtil.getActivePart(event);
+//		if(activePart instanceof ModelExplorerPageBookView) {
+//			IViewPart page = ((ModelExplorerPageBookView)activePart).getActiveView();
+//			if(page instanceof CommonNavigator) {
+//				((CommonNavigator)page).getCommonViewer().refresh();
+//			}
+//		}
 
 		return null;
 	}

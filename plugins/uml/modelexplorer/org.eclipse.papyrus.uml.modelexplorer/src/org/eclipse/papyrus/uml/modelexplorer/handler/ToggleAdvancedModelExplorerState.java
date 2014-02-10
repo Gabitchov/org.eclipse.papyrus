@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.modelexplorer.handler;
 
 import org.eclipse.core.commands.State;
+import org.eclipse.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
 import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
@@ -39,13 +40,13 @@ public class ToggleAdvancedModelExplorerState extends State {
 			return true;
 		}
 
-		CustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
+		ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
 		if(customizationManager == null) {
 			//Should not happen, this is a singleton
 			return false;
 		}
-
-		return !customizationManager.getRegisteredCustomizations().contains(simpleUMLCustomization);
+		return false;
+		//return !customizationManager.getRegisteredCustomizations().contains(simpleUMLCustomization);
 	}
 
 }
