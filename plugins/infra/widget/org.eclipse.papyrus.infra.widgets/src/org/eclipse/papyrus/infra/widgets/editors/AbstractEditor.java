@@ -388,4 +388,11 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 		
 		return result;
 	}
+	
+	/**
+	 * Queries the model element that I edit.
+	 * 
+	 * @return the contextual model element
+	 */
+	protected abstract Object getContextElement();
 }

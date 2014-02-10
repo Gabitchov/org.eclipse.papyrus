@@ -18,9 +18,9 @@ import java.util.Collection;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
-import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -403,9 +403,10 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * Handle add Action
 	 */
 	protected void addAction() {
+		final Object context = getContextElement();
+		
 		if(directCreation) {
 			if(referenceFactory != null && referenceFactory.canCreateObject()) {
-				final Object context = (modelProperty instanceof IObserving) ? ((IObserving)modelProperty).getObserved() : null;
 				getOperationExecutor(context).execute(new Runnable() {
 
 					@Override
@@ -416,39 +417,47 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 							commit();
 						}
 					}
-				}, NLS.bind(Messages.MultipleValueEditor_editOperation, labelText));
+				}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
 			}
 
 			return;
 		}
 
-		String dialogLabel = label == null ? null : label.getText();
-		MultipleValueSelectorDialog dialog = createMultipleValueSelectorDialog(getParent(), selector, ordered, unique, dialogLabel);
-		dialog.setLabelProvider((ILabelProvider)treeViewer.getLabelProvider());
-		dialog.setFactory(referenceFactory);
-		dialog.setUpperBound(upperBound);
+		getOperationExecutor(context).execute(new Runnable() {
 
-		if(modelProperty != null) {
-			dialog.setInitialSelections(modelProperty.toArray());
-		} else {
-			dialog.setInitialSelections(new Object[0]);
-		}
+			@Override
+			public void run() {
+				String dialogLabel = label == null ? null : label.getText();
+				MultipleValueSelectorDialog dialog = createMultipleValueSelectorDialog(getParent(), selector, ordered, unique, dialogLabel);
+				dialog.setLabelProvider((ILabelProvider)treeViewer.getLabelProvider());
+				dialog.setFactory(referenceFactory);
+				dialog.setUpperBound(upperBound);
+				dialog.setContextElement(context);
 
-		int returnCode = dialog.open();
-		if(returnCode == Window.CANCEL) {
-			return;
-		}
+				if(modelProperty != null) {
+					dialog.setInitialSelections(modelProperty.toArray());
+				} else {
+					dialog.setInitialSelections(new Object[0]);
+				}
 
-		modelProperty.clear();
+				int returnCode = dialog.open();
+				if(returnCode == Window.CANCEL) {
+					// Roll back whatever has been done, so far
+					throw new OperationCanceledException();
+				}
 
-		Object[] result = dialog.getResult();
-		if(result == null) {
-			return;
-		}
+				modelProperty.clear();
 
-		modelProperty.addAll(Arrays.asList(result));
+				Object[] result = dialog.getResult();
+				if(result == null) {
+					return;
+				}
 
-		commit();
+				modelProperty.addAll(Arrays.asList(result));
+
+				commit();
+			}
+		}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
 	}
 
 	@Override

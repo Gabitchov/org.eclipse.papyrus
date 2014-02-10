@@ -17,7 +17,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -217,7 +216,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 */
 	protected void createAction() {
 		if(valueFactory != null && valueFactory.canCreateObject()) {
-			final Object context = (modelProperty instanceof IObserving) ? ((IObserving)modelProperty).getObserved() : null;
+			final Object context = getContextElement();
 			getOperationExecutor(context).execute(new Runnable() {
 				
 				@Override

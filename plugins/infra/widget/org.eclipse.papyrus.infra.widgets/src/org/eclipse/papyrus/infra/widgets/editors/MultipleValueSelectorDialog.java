@@ -21,6 +21,7 @@ import java.util.LinkedList;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -49,10 +50,15 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
  * Object Chooser. Defines a standard popup for selecting
- * multiple values.
+ * multiple values.  If this dialog is used to select or create model
+ * elements to be added to or removed from some element that is being
+ * edited, then it is important to
+ * {@linkplain #setContextElement(Object) set that contextual element}
+ * in this dialog.
  * 
  * @author Camille Letavernier
  * 
+ * @see #setContextElement(Object)
  */
 public class MultipleValueSelectorDialog extends SelectionDialog implements ISelectionChangedListener, IDoubleClickListener, IElementSelectionListener, SelectionListener {
 
@@ -152,6 +158,11 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	 * The factory for creating new elements
 	 */
 	protected ReferenceValueFactory factory;
+	
+	/**
+	 * The model element being edited (if any), to which elements are to be added or removed.
+	 */
+	protected Object contextElement;
 
 	/**
 	 * The list of newly created objects
@@ -536,7 +547,15 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 			return;
 		}
 
-		Object newObject = factory.createObject(this.create, null);
+		Object newObject;
+
+		try {
+			newObject = factory.createObject(this.create, contextElement);
+		} catch (OperationCanceledException e) {
+			// The user cancelled and we rolled back pending model changes
+			newObject = null;
+		}
+
 		if(newObject == null) {
 			return;
 		}
@@ -705,6 +724,25 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 		this.upperBound = upperBound;
 	}
 
+	/**
+	 * Sets the optional context of the element that is being edited, in which others will be added and removed.
+	 * 
+	 * @param contextElement
+	 *        the model element that is being edited
+	 */
+	public void setContextElement(Object contextElement) {
+		this.contextElement = contextElement;
+	}
+	
+	/**
+	 * Queries the optional context of the element that is being edited, in which others will be added and removed.
+	 * 
+	 * @return the model element that is being edited
+	 */
+	public Object getContextElement() {
+		return contextElement;
+	}
+	
 	@Override
 	public boolean close() {
 		selector.removeElementSelectionListener(this);
