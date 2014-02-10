@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * This handler allows to rename {@link NamedElement}
@@ -88,7 +89,7 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -97,9 +98,18 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 		if(enabled) {
 			List<EObject> selectedElements = getSelectedElements();
 			EObject selection = selectedElements.get(0);
-			enabled = !EMFHelper.isReadOnly(selection);
+			enabled = !EMFHelper.isReadOnly(selection) && !isHandledByXText(selection);
 		}
 		return enabled;
 	}
 
+	/**
+	 * Check whether the editing of an element is handled by an xtext editor. In this case, we do
+	 * not want to open the rename pop-up.
+	 * @param element an element that should be edited.
+	 * @return true, if handled by xtext
+	 */
+	protected boolean isHandledByXText(EObject element) {
+		return (element instanceof Property);
+	}
 }

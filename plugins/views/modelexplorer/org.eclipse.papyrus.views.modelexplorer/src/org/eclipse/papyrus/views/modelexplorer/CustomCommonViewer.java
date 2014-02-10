@@ -110,9 +110,10 @@ public class CustomCommonViewer extends CommonViewer {
 			@Override
 			protected boolean isEditorActivationEvent(
 					ColumnViewerEditorActivationEvent event) {
-				// activation will in particular with F3 or shift-F2 (standard F2 is already captured)
+				// activation will uses F2 (also used by rename-popup, but not taken into account by the latter
+				// for model elements for which an xtext editor exists)
 				return event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED &&
-						(event.keyCode == SWT.F2 || event.keyCode == SWT.F3);
+						event.keyCode == SWT.F2;
 			}
 		}, ColumnViewerEditor.KEYBOARD_ACTIVATION);
 		ColumnViewerEditor editor = this.getColumnViewerEditor();
