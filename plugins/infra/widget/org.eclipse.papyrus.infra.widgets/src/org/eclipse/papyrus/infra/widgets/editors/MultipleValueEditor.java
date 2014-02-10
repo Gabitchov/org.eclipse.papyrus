@@ -442,6 +442,9 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 				int returnCode = dialog.open();
 				if(returnCode == Window.CANCEL) {
+					// Clear out the element selector in case we open this dialog again
+					selector.clearTemporaryElements();
+					
 					// Roll back whatever has been done, so far
 					throw new OperationCanceledException();
 				}
