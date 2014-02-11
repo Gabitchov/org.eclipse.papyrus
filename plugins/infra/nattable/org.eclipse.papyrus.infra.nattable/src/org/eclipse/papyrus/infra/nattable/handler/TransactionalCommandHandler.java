@@ -59,9 +59,11 @@ public abstract class TransactionalCommandHandler<T extends ILayerCommand> imple
 
 				@Override
 				protected void doExecute() {
-					result[0] = doCommand(command);
+					ExecutionStatusKind status = doCommand(command);
 
-					if(!result[0]) {
+					result[0] = status.isOK();
+
+					if(status.isRollback()) {
 						// Refresh the visual presentation of the layer because stereotype applications
 						// may have updated some cells
 						Display.getCurrent().asyncExec(new Runnable() {
@@ -82,5 +84,35 @@ public abstract class TransactionalCommandHandler<T extends ILayerCommand> imple
 		return result[0];
 	}
 
-	protected abstract boolean doCommand(T command);
+	protected abstract ExecutionStatusKind doCommand(T command);
+
+	//
+	// Nested types
+	//
+
+	protected enum ExecutionStatusKind {
+		/** Command failed and should be rolled back so that it will not appear on the stack. */
+		FAIL_ROLLBACK(false, true),
+		/** Command succeeded and should appear on the stack. */
+		OK_COMPLETE(true, false),
+		/** Command succeeded but should be rolled back so that it will not appear on the stack. */
+		OK_ROLLBACK(true, true);
+
+		private final boolean ok;
+
+		private final boolean rollback;
+
+		private ExecutionStatusKind(boolean ok, boolean rollback) {
+			this.ok = ok;
+			this.rollback = rollback;
+		}
+
+		public boolean isOK() {
+			return ok;
+		}
+
+		public boolean isRollback() {
+			return rollback;
+		}
+	}
 }

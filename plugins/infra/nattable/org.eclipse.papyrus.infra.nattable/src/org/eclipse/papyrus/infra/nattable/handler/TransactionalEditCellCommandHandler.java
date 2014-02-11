@@ -59,7 +59,7 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 		return EditCellCommand.class;
 	}
 
-	protected boolean doCommand(EditCellCommand command) {
+	protected ExecutionStatusKind doCommand(EditCellCommand command) {
 		ILayerCell cell = command.getCell();
 		Composite parent = command.getParent();
 		IConfigRegistry configRegistry = command.getConfigRegistry();
@@ -70,12 +70,12 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 			return editCell(cell, parent, cell.getDataValue(), configRegistry);
 		}
 
-		return false;
+		return ExecutionStatusKind.FAIL_ROLLBACK;
 	}
 
 	// From Nebula EditController (with minor tweaks)
-	protected boolean editCell(ILayerCell cell, Composite parent, Object initialCanonicalValue, IConfigRegistry configRegistry) {
-		boolean result = false;
+	protected ExecutionStatusKind editCell(ILayerCell cell, Composite parent, Object initialCanonicalValue, IConfigRegistry configRegistry) {
+		ExecutionStatusKind result = ExecutionStatusKind.FAIL_ROLLBACK;
 
 		try {
 			Rectangle cellBounds = cell.getBounds();
@@ -102,7 +102,9 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 
 					cellEditor.addEditorControlListeners();
 					ActiveCellEditorRegistry.registerActiveCellEditor(cellEditor);
-					result = true;
+					
+					// Command succeeded but should not appear on the undo stack because we haven't completed an edit (only activated the cell editor)
+					result = ExecutionStatusKind.OK_ROLLBACK;
 				}
 			} else {
 				// The dialog case
@@ -112,7 +114,7 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 			}
 		} catch (OperationCanceledException e) {
 			// OK.  The user cancelled a dialog or some such
-			result = false;
+			result = ExecutionStatusKind.FAIL_ROLLBACK;
 		} catch (Exception e) {
 			Activator.log.error("Uncaught exception in table cell editor activation.", e); //$NON-NLS-1$
 		}
@@ -121,25 +123,26 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 	}
 
 	// From Nebula EditController (with minor tweaks)
-	protected boolean editCells(List<ILayerCell> cells, Composite parent, Object initialCanonicalValue, IConfigRegistry configRegistry) {
+	protected ExecutionStatusKind editCells(List<ILayerCell> cells, Composite parent, Object initialCanonicalValue, IConfigRegistry configRegistry) {
 		if((cells == null) || (cells.isEmpty())) {
-			return false;
+			return ExecutionStatusKind.FAIL_ROLLBACK;
 		}
 
 		ICellEditor cellEditor = (ICellEditor)configRegistry.getConfigAttribute(EditConfigAttributes.CELL_EDITOR, "EDIT", ((ILayerCell)cells.get(0)).getConfigLabels().getLabels());
 
 		if((cells.size() != 1) && ((cells.size() <= 1) || !(supportMultiEdit(cells, cellEditor, configRegistry)))) {
-			return false;
+			return ExecutionStatusKind.FAIL_ROLLBACK;
 		}
 
-		boolean result = false;
+		ExecutionStatusKind result = ExecutionStatusKind.FAIL_ROLLBACK;
 
 		ICellEditDialog dialog = CellEditDialogFactory.createCellEditDialog((parent != null) ? parent.getShell() : null, initialCanonicalValue, (ILayerCell)cells.get(0), cellEditor, configRegistry);
 
 		int returnValue = dialog.open();
 
 		if(returnValue == Window.OK) {
-			result = true;
+			// The edit was completed and should appear on the undo stack
+			result = ExecutionStatusKind.OK_COMPLETE;
 
 			for(ILayerCell selectedCell : cells) {
 				Object editorValue = dialog.getCommittedValue();

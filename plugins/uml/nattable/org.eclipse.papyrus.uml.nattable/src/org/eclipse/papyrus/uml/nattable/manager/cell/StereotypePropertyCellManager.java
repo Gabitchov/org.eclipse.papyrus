@@ -1,7 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012, 2014 CEA LIST and others.
  *
- *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,8 +32,6 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
@@ -198,30 +195,28 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
 		final List<Stereotype> stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id);
 		if(prop != null) {
-			if(stereotypes.isEmpty()) {
-				// combine application of the stereotype with modifying the value
-				return new RecordingCommand(domain) {
-
+			if (stereotypes.isEmpty()) {
+				// Must first apply the stereotype
+				return new RecordingCommand(domain, "Set Value") {
+					
 					@Override
 					protected void doExecute() {
-						applyRequiredStereotype(el, id);
-
-						// Recurse back into this method
-						Command setValue = getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
-
-						if(setValue == null || !setValue.canExecute()) {
-							// Cancel what we have done so far
+						if (!applyRequiredStereotype(domain, el, id)) {
 							throw new OperationCanceledException();
+						} else {
+							// Now recursively execute the set-string-value command
+							Command command = getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
+							if (command == null || !command.canExecute()) {
+								throw new OperationCanceledException();
+							} else {
+								domain.getCommandStack().execute(command);
+							}
 						}
-
-						// Set our label according to what we are actually trying to accomplish
-						setLabel(setValue.getLabel());
-
-						// Nested command execution
-						domain.getCommandStack().execute(setValue);
 					}
 				};
-			} else if(stereotypes.size() == 1) {
+			}
+			
+			if(stereotypes.size() == 1) {
 				final EObject stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
 				final EStructuralFeature steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
 				return getSetValueCommand(domain, stereotypeApplication, steApFeature, newValue);
@@ -230,32 +225,6 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * 
-	 * @param el
-	 *        an element of the model
-	 * @param propertyId
-	 *        the id of the edited property
-	 * @return <code>true</code> if a stereotype has been applied
-	 */
-	private static final boolean applyRequiredStereotype(final Element el, final String propertyId) {
-		if(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, propertyId).size() == 0) {
-			final List<Stereotype> stereotypesList = UMLTableUtils.getApplicableStereotypesWithThisProperty(el, propertyId);
-			if(stereotypesList.size() == 1) {
-				TransactionalEditingDomain domain = null;
-				try {
-					domain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(el);
-					final ApplyStereotypeCommand applyCommand = new ApplyStereotypeCommand(el, stereotypesList.get(0), domain);
-					domain.getCommandStack().execute(applyCommand);
-					return true;
-				} catch (ServiceException e) {
-					Activator.log.error("EditingDomain not found", e); //$NON-NLS-1$
-				}
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -281,6 +250,27 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		EObject stereotypeApplication = null;
 		EStructuralFeature steApFeature = null;
 		if(prop != null) {
+			if (stereotypes.isEmpty()) {
+				// Must first apply the stereotype
+				return new RecordingCommand(domain, "Set Value") {
+					
+					@Override
+					protected void doExecute() {
+						if (!applyRequiredStereotype(domain, el, id)) {
+							throw new OperationCanceledException();
+						} else {
+							// Now recursively execute the set-string-value command
+							Command command = getSetStringValueCommand(domain, columnElement, rowElement, newValue, valueSolver, tableManager);
+							if (command == null || !command.canExecute()) {
+								throw new OperationCanceledException();
+							} else {
+								domain.getCommandStack().execute(command);
+							}
+						}
+					}
+				};
+			}
+			
 			if(stereotypes.size() == 1) {
 				stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
 				switch(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id).size()) {
@@ -423,5 +413,25 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 		createStringResolutionProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
 
+	}
+
+	/**
+	 * 
+	 * @param el
+	 *        an element of the model
+	 * @param propertyId
+	 *        the id of the edited property
+	 * @return <code>true</code> if a stereotype has been applied
+	 */
+	private static boolean applyRequiredStereotype(TransactionalEditingDomain domain, final Element el, final String propertyId) {
+		if(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, propertyId).size() == 0) {
+			final List<Stereotype> stereotypesList = UMLTableUtils.getApplicableStereotypesWithThisProperty(el, propertyId);
+			if(stereotypesList.size() == 1) {
+				final ApplyStereotypeCommand applyCommand = new ApplyStereotypeCommand(el, stereotypesList.get(0), domain);
+				domain.getCommandStack().execute(applyCommand);
+				return true;
+			}
+		}
+		return false;
 	}
 }
