@@ -20,7 +20,7 @@ import org.eclipse.nebula.widgets.nattable.edit.command.EditCellCommand;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusGridLayerConfiguration;
-import org.eclipse.papyrus.infra.nattable.handler.TransactionalCommandHandler;
+import org.eclipse.papyrus.infra.nattable.handler.TransactionalEditCellCommandHandler;
 
 /**
  * This grid layer ovverride the default edition behavior
@@ -84,13 +84,13 @@ public class PapyrusGridLayer extends GridLayer {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void registerCommandHandler(ILayerCommandHandler<?> commandHandler) {
-		if (commandHandler.getCommandClass() == EditCellCommand.class) {
-			commandHandler = new TransactionalCommandHandler<EditCellCommand>((ILayerCommandHandler<EditCellCommand>)commandHandler, domain);
+		// Override the default edit handler
+		if(commandHandler.getCommandClass() == EditCellCommand.class) {
+			commandHandler = new TransactionalEditCellCommandHandler(domain);
 		}
-		
+
 		super.registerCommandHandler(commandHandler);
 	}
 

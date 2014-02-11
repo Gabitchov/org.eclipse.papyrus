@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,6 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 402525
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.editor;
@@ -21,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
-import org.eclipse.papyrus.infra.nattable.celleditor.AbstractCancelableDialogCellEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
@@ -42,7 +41,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * This dialog is used to edit the single reference
  * 
  */
-public class SingleReferenceValueCellEditor extends AbstractCancelableDialogCellEditor {
+public class SingleReferenceValueCellEditor extends AbstractDialogCellEditor {
 
 	/**
 	 * the selected value
@@ -74,8 +73,14 @@ public class SingleReferenceValueCellEditor extends AbstractCancelableDialogCell
 	}
 
 
+	/**
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.edit.gui.AbstractDialogCellEditor#open()
+	 * 
+	 * @return
+	 */
 	@Override
-	protected int doOpen() {
+	public int open() {
 		return ((TreeSelectorDialog)this.dialog).open();
 	}
 
