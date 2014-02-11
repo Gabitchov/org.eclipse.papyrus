@@ -108,8 +108,9 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 
 		// send the open request (corresponding to a double-click)
 		sendOpenSelectionRequest(stateInvariantEditPart, new Point(x, y));
-
+		flushEventLoop();
 		checkCreatedStateInvariants();
+		flushEventLoop();
 		checkCreatedOccurrenceSpecification();
 
 		// test undo
@@ -253,6 +254,7 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 
 	protected void checkCreatedStateInvariants() {
 		// check the StateInvariants
+		flushEventLoop();
 		final List<FullStateInvariantEditPartCN> stateInvariantEditParts = findStateInvariantsInDefaultFullLifeline();
 		assertEquals("There must be two StateInvariants after creating an OccurrenceSpecification", 2, stateInvariantEditParts.size());
 		checkStateInvariant(stateInvariantEditParts.get(0));
@@ -260,6 +262,7 @@ public class TestTimingDiagramFullOccurrenceSpecification extends AbstractTiming
 	}
 
 	private void checkCreatedOccurrenceSpecification() {
+		flushEventLoop();
 		final List<OccurrenceSpecificationEditPartCN> occurrenceSpecificationEditParts = findOccurrenceSpecificationsInDefaultFullLifeline();
 		assertEquals("There must be one OccurrenceSpecification", 1, occurrenceSpecificationEditParts.size());
 		final OccurrenceSpecificationEditPartCN occurrenceSpecificationEditPart = occurrenceSpecificationEditParts.get(0);

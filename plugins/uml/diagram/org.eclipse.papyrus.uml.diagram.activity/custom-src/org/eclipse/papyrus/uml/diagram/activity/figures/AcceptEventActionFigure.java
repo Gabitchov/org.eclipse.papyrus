@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -127,7 +127,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 
 	/**
 	 * Sets the stereotypes for this figure.
-	 * 
+	 *
 	 * @param stereotypes
 	 *        the string representing the stereotypes to be displayed
 	 * @param image
@@ -135,6 +135,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String,
 	 *      org.eclipse.swt.graphics.Image)
 	 */
+	@Override
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		if(!isTemplateForAcceptTimeEventActionUsed()) {
 			stereotypeHelper.setStereotypeDisplay(stereotypes, image);
@@ -150,10 +151,11 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 
 	/**
 	 * Sets the stereotypes properties for this figure.
-	 * 
+	 *
 	 * @param stereotypeProperties
 	 *        the string representing the stereotype properties to be displayed
 	 */
+	@Override
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
 		if(!isTemplateForAcceptTimeEventActionUsed()) {
 			stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
@@ -168,10 +170,11 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 
 	/**
 	 * displays the new string corresponding to the list of stereotypes.
-	 * 
+	 *
 	 * @param stereotypeProperties
 	 *        the string to be displayed.
 	 */
+	@Override
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
 		if(!isTemplateForAcceptTimeEventActionUsed()) {
 			stereotypeHelper.setStereotypePropertiesInCompartment(stereotypeProperties);
@@ -183,11 +186,12 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 
 	/**
 	 * Gets the stereotype label.
-	 * 
+	 *
 	 * @return the stereotype label
 	 * @unused
 	 * @deprecated
 	 */
+	@Override
 	@Deprecated
 	public Label getStereotypesLabel() {
 		return null;//fActionStereotypeLabel;
@@ -206,7 +210,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 	/**
 	 * Set whether the figure must use the classic concave pentagon template for AcceptEventAction or the hourglass template for
 	 * AcceptTimeEventAction
-	 * 
+	 *
 	 * @param useAcceptTimeEventActionTemplate
 	 *        true if the hourglass template must be used, false for default template
 	 */
@@ -228,7 +232,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 	/**
 	 * Ask whether the figure uses the classic concave pentagon template for AcceptEventAction or the hourglass template for
 	 * AcceptTimeEventAction
-	 * 
+	 *
 	 * @return true if the hourglass template is used, false for default template
 	 */
 	public boolean isTemplateForAcceptTimeEventActionUsed() {
@@ -261,6 +265,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 		Rectangle bounds = getBounds();
 		graphics.pushState();
 		graphics.translate(bounds.x, bounds.y);
+		graphics.setLineWidth(Math.max(1, getLineWidth()));
 		graphics.drawPolygon(scalePointList());
 		graphics.popState();
 	}
@@ -287,7 +292,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 	private Rectangle getTemplateBounds() {
 		if(myTemplateBounds == null) {
 			myTemplateBounds = myTemplate.getBounds().getCopy().union(0, 0);
-			//just safety -- we are going to use this as divider 
+			//just safety -- we are going to use this as divider
 			if(myTemplateBounds.width < 1) {
 				myTemplateBounds.width = 1;
 			}
@@ -298,7 +303,7 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 		// switch between the two templates : create the second template bounds
 		if(myTemplateTimeBounds == null) {
 			myTemplateTimeBounds = myTemplateTime.getBounds().getCopy().union(0, 0);
-			//just safety -- we are going to use this as divider 
+			//just safety -- we are going to use this as divider
 			if(myTemplateTimeBounds.width < 1) {
 				myTemplateTimeBounds.width = 1;
 			}
@@ -348,29 +353,36 @@ public class AcceptEventActionFigure extends ScalablePolygonShape implements IPa
 		return fAcceptEventActionLabel;
 	}
 
+	@Override
 	public Color getBorderColor() {
 		return null;
 	}
 
+	@Override
 	public boolean isShadow() {
 		return false;
 	}
 
+	@Override
 	public void setBorderColor(Color borderColor) {
 
 	}
 
+	@Override
 	public void setShadow(boolean shadow) {
 
 	}
 
+	@Override
 	public void setTransparency(int transparency) {
 
 	}
 
+	@Override
 	public void setGradientData(int gradientColor1, int gradientColor2, int gradientStyle) {
 	}
 
+	@Override
 	public void setIsUsingGradient(boolean b) {
 
 	}

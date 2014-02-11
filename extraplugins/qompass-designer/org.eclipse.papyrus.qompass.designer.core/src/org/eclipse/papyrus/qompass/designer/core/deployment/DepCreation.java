@@ -219,7 +219,7 @@ public class DepCreation {
 				// unlikely case that a packaged element with the name
 				// <singletonISname> exists already, but is not an instance specification
 				throw new TransformationException(String.format(
-					"singleton instantiation: element with name %s exists already in deployment plan, but is not an instance specification", name));
+					Messages.DepCreation_SingletonExistsAlready, name));
 			}
 		}
 		else {

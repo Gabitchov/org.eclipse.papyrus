@@ -27,6 +27,7 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.views.modelexplorer.DirectEditorEditingSupport;
 import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.NamedElement;
@@ -88,7 +89,7 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -97,9 +98,18 @@ public class RenameNamedElementHandler extends AbstractCommandHandler {
 		if(enabled) {
 			List<EObject> selectedElements = getSelectedElements();
 			EObject selection = selectedElements.get(0);
-			enabled = !EMFHelper.isReadOnly(selection);
+			enabled = !EMFHelper.isReadOnly(selection) && !isHandledByDirectEditor(selection);
 		}
 		return enabled;
 	}
 
+	/**
+	 * Check whether the editing of an element is handled by a direct editor. In this case, we do
+	 * not want to open the rename pop-up.
+	 * @param element an element that should be edited.
+	 * @return true, if handled by a direct editor
+	 */
+	protected boolean isHandledByDirectEditor(EObject element) {
+		return DirectEditorEditingSupport.getConfiguration(element) != null;
+	}
 }

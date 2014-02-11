@@ -3,9 +3,9 @@ package org.eclipse.papyrus.qompass.designer.core.transformations;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -46,7 +46,7 @@ public class AllocTransfo {
 					// TODO: currently, no support for setting up the priority of the main thread.
 					//       we need to get a cleaner solution for the main thread. 
 					// destroy eventual connector and associated thread => thread as component with unconnected start thread
-					Connector conn = ConnectorUtils.getConnector(composite, attribute, thread);
+					Connector conn = ConnectorUtil.getConnector(composite, attribute, thread);
 					// Connector targetConn = copy.getCopy(conn);
 					// Property targetThread = copy.getCopy(thread);
 					if (conn != null) {
@@ -62,7 +62,7 @@ public class AllocTransfo {
 					thread.destroy();	
 				}
 				// check, if there is already a connector between the attribute and the thread
-				else if (!ConnectorUtils.existsConnector(composite, attribute, thread)) {
+				else if (!ConnectorUtil.existsConnector(composite, attribute, thread)) {
 					// no connector => create;
 					Class component =  (Class) type;
 					Connector c = composite.createOwnedConnector("alloc to " + thread.getName()); //$NON-NLS-1$

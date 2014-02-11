@@ -12,9 +12,8 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.qompass.designer.core;
+package org.eclipse.papyrus.uml.tools.utils;
 
-import org.eclipse.core.runtime.Status;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -22,7 +21,7 @@ import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 
-public class ConnectorUtils {
+public class ConnectorUtil {
 
 	/**
 	 * Returns true, is a port of a composite has an internal delegation to
@@ -59,9 +58,7 @@ public class ConnectorUtils {
 	}
 
 	/**
-	 * check if a connector connects the port that is passed
-	 * as parameter
-	 * TODO: why is that name based???
+	 * check if a connector connects the port that is passed as parameter
 	 */
 	public static boolean connectsPort(Connector connection, Port port) {
 		// check roles of end points
@@ -69,17 +66,6 @@ public class ConnectorUtils {
 		for(ConnectorEnd end : connection.getEnds()) {
 			if(end.getRole() == port) {
 				return true;
-			}
-			if(end.getRole() != null) {
-				if(end.getRole() == port) {
-					Log.log(Status.ERROR, Log.TRAFO_CONNECTOR,
-						"ConnectorUtls.connectsPort: qualified names match, but not the ID - should not happen"); //$NON-NLS-1$
-					return true;
-				}
-			} else {
-				Log.log(Status.ERROR, Log.TRAFO_CONNECTOR,
-					"ConnectorUtils.connectsPort: the role of one of the endpoints of connection " + connection.getName() + //$NON-NLS-1$
-						" is null - should not happen"); //$NON-NLS-1$
 			}
 		}
 		return false;
@@ -174,7 +160,7 @@ public class ConnectorUtils {
 	 */
 	public static Connector getConnector(Class composite, Property partA, Property partB) {
 		for (Connector connector : composite.getOwnedConnectors()) {
-			if (ConnectorUtils.connectsPart(connector, partA) && ConnectorUtils.connectsPart(connector, partB)) {
+			if (ConnectorUtil.connectsPart(connector, partA) && ConnectorUtil.connectsPart(connector, partB)) {
 				return connector;
 			}
 		}

@@ -20,9 +20,9 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.InteractionComponent;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -140,10 +140,10 @@ public class FlattenInteractionComponents {
 				boolean foundConnector = false;
 				// now redirect connectors: find whether a port delegates to the fragment
 				for(Connector connector : composite.getOwnedConnectors()) {
-					if(ConnectorUtils.connectsPart(connector, fragmentPart)) {
+					if(ConnectorUtil.connectsPart(connector, fragmentPart)) {
 						foundConnector = true;
 						// internal connector for the part, check whether delegation
-						ConnectorEnd ce = ConnectorUtils.connEndNotPart(connector, fragmentPart);
+						ConnectorEnd ce = ConnectorUtil.connEndNotPart(connector, fragmentPart);
 						if((ce != null) && (ce.getPartWithPort() == null)) {
 							// delegation connector, need to re-targed connections to external port
 							Port port = (Port)ce.getRole();
@@ -203,8 +203,8 @@ public class FlattenInteractionComponents {
 	 */
 	public void retargetConnections(Class containingComposite, Port port, Property part, Property subPart) {
 		for(Connector connector : containingComposite.getOwnedConnectors()) {
-			if(ConnectorUtils.connectsPart(connector, part) && ConnectorUtils.connectsPort(connector, port)) {
-				ConnectorEnd ce = ConnectorUtils.connEndForPart(connector, part);
+			if(ConnectorUtil.connectsPart(connector, part) && ConnectorUtil.connectsPort(connector, port)) {
+				ConnectorEnd ce = ConnectorUtil.connEndForPart(connector, part);
 				if(ce != null) {
 					// TODO: only with with connections targeting a port of a part, not with
 					// those targeting directly a part

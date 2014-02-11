@@ -22,11 +22,11 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.FCM.PortKind;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortInfo;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
@@ -124,7 +124,7 @@ public class CompImplTrafos {
 						UMLPackage.eINSTANCE.getOpaqueBehavior());
 				op.getMethods().add(behavior);
 
-				ConnectorEnd ce = ConnectorUtils.getDelegation(implementation, portInfo.getModelPort());
+				ConnectorEnd ce = ConnectorUtil.getDelegation(implementation, portInfo.getModelPort());
 				// if there is an delegation to an inner property, delegate to it
 				// Make distinction between delegation to component (with a port) or
 				// "normal" class (without).
@@ -159,7 +159,7 @@ public class CompImplTrafos {
 						Interface providedIntfInCopy = (Interface) copy.get(providedIntf);
 						implementsIntf = implementation.getInterfaceRealization(null, providedIntfInCopy) != null;
 					}
-					if (implementsIntf || true) {
+					if (implementsIntf) {
 						body = "return this;";	 //$NON-NLS-1$
 					}
 					else {
@@ -243,7 +243,7 @@ public class CompImplTrafos {
 						UMLPackage.eINSTANCE.getOpaqueBehavior());
 				op.getMethods().add(behavior);
 
-				ConnectorEnd ce = ConnectorUtils.getDelegation(implementation, portInfo.getModelPort());
+				ConnectorEnd ce = ConnectorUtil.getDelegation(implementation, portInfo.getModelPort());
 				// if there is an delegation to an inner property, delegate to it
 				// Make distinction between delegation to component (with a port) or
 				// "normal" class (without).
@@ -325,7 +325,7 @@ public class CompImplTrafos {
 		Map<ConnectorEnd, Integer> indexMap = new HashMap<ConnectorEnd, Integer>();
 
 		for(Connector connector : implementation.getOwnedConnectors()) {
-			if(ConnectorUtils.isAssembly(connector)) {
+			if(ConnectorUtil.isAssembly(connector)) {
 				// Boolean associationBased = false;
 				if (connector.getEnds().size() != 2) {
 					throw new TransformationException("Connector <" + connector.getName() + "> does not have two ends. This is currently not supported"); //$NON-NLS-1$ //$NON-NLS-2$

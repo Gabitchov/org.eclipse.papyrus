@@ -18,49 +18,54 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.osgi.internal.framework.EquinoxBundle;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
+/**
+ * suppress restriction for org.eclipse.pde.internal.core.feature.Feature;
+ * 
+ * @author VL222926
+ *
+ */
+@SuppressWarnings("restriction")
 public class BundlesTests {
 
-	//Transform the version number to the regex format
-	//Adds .* (Valid version numbers are e.g. 0.10.1.qualifier)
+	// Transform the version number to the regex format
+	// Adds .* (Valid version numbers are e.g. 0.10.1.qualifier)
 	private static final String REGEX_VERSION_NUMBER = BundleTestsUtils.PAPYRUS_VERSION.replaceAll("\\.", "\\\\.") + "\\..*"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	private static final String REGEX_INCUBATION = ".*\\(Incubation\\)"; //$NON-NLS-1$
 
-	private static final String BATIK_VERSION = "[1.6.0,1.7.0)";
+	private static final String BATIK_VERSION = "[1.6.0,1.7.0)"; //$NON-NLS-1$
 
-	private static final String NATTABLE_VERSION = "1.0.0";
+	private static final String NATTABLE_VERSION = "1.0.0"; //$NON-NLS-1$
 
-	private static final String PAPYRUS_VERSION = "1.0.0";
+	private static final String PAPYRUS_VERSION = "1.0.0"; //$NON-NLS-1$
 
 	@Test
 	public void featureVersionNumberTest() {
-		String message = null;
+		StringBuffer message = new StringBuffer("Wrong version number for the features:"); //$NON-NLS-1$
 		int nbProblem = 0;
 		final List<Feature> features = BundleTestsUtils.getPapyrusFeature();
 		for(final Feature feature : features) {
 			String version = feature.getVersion();
 			if(!version.matches(REGEX_VERSION_NUMBER)) {
-				if(message == null) {
-					message = "Wrong version number for the features:";
-				}
-				message += "\n" + feature.getId();
+				message.append("\n"); //$NON-NLS-1$
+				message.append(feature.getId());
 				nbProblem++;
 			}
 		}
-		Assert.assertNull(nbProblem + "problems!\n" + message, message);
+		StringBuffer errorMessage = new StringBuffer();
+		errorMessage.append(nbProblem);
+		errorMessage.append("problems!\n");//$NON-NLS-1$
+		errorMessage.append(message.toString());
+		Assert.assertTrue(errorMessage.toString(), nbProblem == 0);
 	}
 
 	/**
@@ -116,7 +121,7 @@ public class BundlesTests {
 	 */
 	@Test
 	public void reexportDependencies() {
-		String message = null;
+		StringBuffer message = new StringBuffer();
 		int nb = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			final String value = current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
@@ -124,28 +129,30 @@ public class BundlesTests {
 				continue;
 			}
 			final String[] bundles = value.split(","); //$NON-NLS-1$
-			String localMessage = null;
+			StringBuffer localMessage = new StringBuffer();
 			for(final String bundle : bundles) {
 				if(bundle.contains("visibility:=reexport")) { //$NON-NLS-1$
 					nb++;
-					if(localMessage == null) {
-						localMessage = NLS.bind("{0} re-exports:", current.getSymbolicName()); //$NON-NLS-1$
+					if(localMessage.length() == 0) {
+						localMessage.append(NLS.bind("{0} re-exports:", current.getSymbolicName())); //$NON-NLS-1$
 					}
 					if(bundle.contains(";")) { //$NON-NLS-1$
-						localMessage += NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";"))); //$NON-NLS-1$ //$NON-NLS-2$
+						localMessage.append(NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";")))); //$NON-NLS-1$ //$NON-NLS-2$
 					} else {
-						localMessage += NLS.bind("\n  - {0}", bundle); //$NON-NLS-1$ 
+						localMessage.append(NLS.bind("\n  - {0}", bundle)); //$NON-NLS-1$ 
 					}
 				}
 			}
-			if(localMessage != null) {
-				if(message == null) {
-					message = ""; //$NON-NLS-1$
-				}
-				message += localMessage + "\n"; //$NON-NLS-1$
+			if(localMessage.length() != 0) {
+				message.append(localMessage);
+				message.append("\n");//$NON-NLS-1$ 
 			}
 		}
-		Assert.assertNull(nb + " problems!", message); //$NON-NLS-1$
+		StringBuffer errorMessage = new StringBuffer();
+		errorMessage.append(nb);
+		errorMessage.append(" problems!");//$NON-NLS-1$ 
+		errorMessage.append(message);
+		Assert.assertTrue(errorMessage.toString(), nb == 0);
 	}
 
 	/**
@@ -158,14 +165,15 @@ public class BundlesTests {
 	 * @param mustBeNull
 	 *        indicates that the value for the property must be <code>null</code>
 	 * @param onlyOnJavaProject
-	 *        boolean indicating if the tests should only be done on JavaProject
+	 *        boolean indicating if the tests should only be done on
+	 *        JavaProject
 	 */
 	private void testManifestProperty(final String property, final String regex, final boolean mustBeNull, final boolean onlyOnJavaProject) {
 		String message = null;
 		int nb = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			if(onlyOnJavaProject && !BundleTestsUtils.isJavaProject(current)) {
-				continue; //useful for oep.infra.gmfdiag.css.theme for example
+				continue; // useful for oep.infra.gmfdiag.css.theme for example
 			}
 			final String value = current.getHeaders().get(property);
 			boolean result = false;
@@ -193,38 +201,29 @@ public class BundlesTests {
 	 *        the file path
 	 */
 	private void fileTest(final String filepath) {
-		String message = null;
+		StringBuffer buffer = new StringBuffer();
 		int nb = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
-			URL url = current.getResource(filepath);
-			// specific behavior for the fragment!
-
-			//never provides the url, so commented...
-			//			if((url == null) && current instanceof EquinoxBundle) {// Platform.isFragment(current))
-			//																	// {
-			//				final EquinoxBundle equinoxBundle = (EquinoxBundle)current;
-			//				final Enumeration<URL> entries = equinoxBundle.findEntries("/", filepath, true);
-			//				if(entries != null) {
-			//					if(entries.hasMoreElements()) {
-			//						url = entries.nextElement();
-			//					}
-			//				}
-			//			}
-
+			URL url = current.getEntry(filepath);
 			if(url == null) {
-				if(message == null) {
-					message = NLS.bind("The following bundles don't have the file {0}.", filepath); //$NON-NLS-1$
+				if(buffer.length() == 0) {
+					buffer.append(NLS.bind("The following bundles don't have the file {0}.", filepath)); //$NON-NLS-1$
 				}
-				message += "\n "; //$NON-NLS-1$
-				message += current.getSymbolicName();
+				buffer.append("\n");//$NON-NLS-1$
+				buffer.append(current.getSymbolicName());
 				nb++;
 			}
 		}
-		Assert.assertNull(nb + " problems!", message); //$NON-NLS-1$
+		StringBuffer errorMessage = new StringBuffer();
+		errorMessage.append(nb);
+		errorMessage.append(" problems!\n"); //$NON-NLS-1$
+		errorMessage.append(buffer.toString());
+		Assert.assertTrue(errorMessage.toString(), buffer.toString().isEmpty());
 	}
 
 	/**
-	 * We want that all Papyrus dependencies in the Papyrus plugin will be define
+	 * We want that all Papyrus dependencies in the Papyrus plugin will be
+	 * define
 	 */
 	@Test
 	public void papyrusDependencyVersionTest() {
@@ -245,16 +244,17 @@ public class BundlesTests {
 	}
 
 	@Test
-	@Ignore
 	public void guavaDependencyVersionText() {
-		testPapyrusDependencies2("com.google.guava", "[10.0.0,12.0.0)");//$NON-NLS-1$
+		testPapyrusDependencies2("com.google.guava", "11.0.0");//$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public final static String REGEX_PACKAGE_WORD = "\\w(?:\\w|\\d)*";//match a package name
+	public final static String REGEX_PACKAGE_WORD = "\\w(?:\\w|\\d)*";// match a //$NON-NLS-1$
+																		// package
+																		// name
 
-	public static final String REGEX_PLUGIN = "(?:\\." + REGEX_PACKAGE_WORD + ")*";//match plugin name
+	public static final String REGEX_PLUGIN = "(?:\\." + REGEX_PACKAGE_WORD + ")*";// match plugin name //$NON-NLS-1$ //$NON-NLS-2$
 
-	public static final String REGEX_DEPENDENCY = "(?:;bundle-version=\"([^\"]*)\")?";
+	public static final String REGEX_DEPENDENCY = "(?:;bundle-version=\"([^\"]*)\")?"; //$NON-NLS-1$
 
 	public static class Version {
 
@@ -270,13 +270,13 @@ public class BundlesTests {
 			this.minIncluding = true;
 			this.maxIncluding = true;
 			if(versionAsString != null) {
-				this.minIncluding = !versionAsString.startsWith("(");
-				this.maxIncluding = !versionAsString.endsWith(")");
-				final Pattern versionNumber = Pattern.compile("\\d+(\\.\\d+)*");
+				this.minIncluding = !versionAsString.startsWith("("); //$NON-NLS-1$
+				this.maxIncluding = !versionAsString.endsWith(")"); //$NON-NLS-1$
+				final Pattern versionNumber = Pattern.compile("\\d+(\\.\\d+)*"); //$NON-NLS-1$
 				final Matcher matcher = versionNumber.matcher(versionAsString);
 				while(matcher.find()) {
 					final String grp = matcher.group();
-					final String[] versions = grp.split("\\.");
+					final String[] versions = grp.split("\\."); //$NON-NLS-1$
 					int[] vers = new int[versions.length];
 					for(int i = 0; i < versions.length; i++) {
 						vers[i] = Integer.parseInt(versions[i]);
@@ -296,8 +296,8 @@ public class BundlesTests {
 			}
 		}
 
-		public boolean inInlucedIn(final Version version) {
-			//verifying intersaction between versions!
+		public boolean inIncludedIn(final Version version) {
+			// verifying intersaction between versions!
 			if(compare(this.max, version.min) < 0) {
 				return false;
 			}
@@ -311,7 +311,7 @@ public class BundlesTests {
 				return false;
 			}
 
-			//verifying inclusion
+			// verifying inclusion
 			if(compare(this.min, version.min) < 0) {
 				return false;
 			}
@@ -330,13 +330,11 @@ public class BundlesTests {
 			return true;
 		}
 
-
 		/**
 		 * 
 		 * @param first
 		 * @param second
-		 * @return
-		 *         <ul>
+		 * @return <ul>
 		 *         <li>0 when they are equal</li>
 		 *         <li>1 if first is greater than second</li>
 		 *         <li>-1 if first is smaller than second</li>
@@ -360,7 +358,6 @@ public class BundlesTests {
 		}
 	}
 
-
 	/**
 	 * 
 	 * @param partialDependencyName
@@ -377,7 +374,7 @@ public class BundlesTests {
 			if(value == null) {
 				continue;
 			}
-			Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + REGEX_DEPENDENCY);
+			Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + REGEX_DEPENDENCY); //$NON-NLS-1$ //$NON-NLS-2$
 			Matcher matcher = pattern.matcher(value);
 			final StringBuilder localBuilder = new StringBuilder();
 			while(matcher.find()) {
@@ -394,7 +391,7 @@ public class BundlesTests {
 					nb++;
 				} else {
 					Version version = new Version(versionString);
-					if(!version.inInlucedIn(wanted)) {
+					if(!version.inIncludedIn(wanted)) {
 						if(localBuilder.length() == 0) {
 							localBuilder.append(NLS.bind("{0} incorrect required bundle-version:\n", current.getSymbolicName())); //$NON-NLS-1$
 						}
@@ -409,11 +406,10 @@ public class BundlesTests {
 			}
 		}
 		if(builder.length() != 0) {
-			builder.insert(0, NLS.bind("{0} problems. We want this version : {1} for the plugin {2}\n", new String[]{ Integer.toString(nb), wantedVersion, partialDependencyName }));
+			builder.insert(0, NLS.bind("{0} problems. We want this version : {1} for the plugin {2}\n", new String[]{ Integer.toString(nb), wantedVersion, partialDependencyName })); //$NON-NLS-1$
 		}
 		Assert.assertTrue(builder.toString(), builder.length() == 0);
 	}
-
 
 	/**
 	 * This test verify that the plugin contains pdoc file
@@ -440,8 +436,8 @@ public class BundlesTests {
 	 */
 	@Test
 	public void pluginIDTest() {
-		String errorMessage = ""; //$NON-NLS-1$.
-		String warningMessage = "";//$NON-NLS-1$ 
+		StringBuffer errorMessage = new StringBuffer();
+		StringBuffer warningMessage = new StringBuffer();
 		final Collection<String> possibleIds = new ArrayList<String>();
 		possibleIds.add("ID");//$NON-NLS-1$ 
 		possibleIds.add("PLUGIN_ID");//$NON-NLS-1$ 
@@ -449,7 +445,7 @@ public class BundlesTests {
 		int nbWarning = 0;
 		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			if(!BundleTestsUtils.isJavaProject(current)) {
-				continue; //useful for oep.infra.gmfdiag.css.theme for example
+				continue; // useful for oep.infra.gmfdiag.css.theme for example
 			}
 			final String activator = current.getHeaders().get("Bundle-Activator"); //$NON-NLS-1$
 			if(activator != null) {
@@ -467,24 +463,27 @@ public class BundlesTests {
 						final String plugin_id = (String)plugin_id_field.get(activatorClass);
 						if(!plugin_id.equals(current.getSymbolicName())) {
 							nbError++;
-							errorMessage += NLS.bind("The field PLUGIN_ID of the plugin {0} is not equals to the plugin name.\n", current.getSymbolicName()); //$NON-NLS-1$
+							errorMessage.append(NLS.bind("The field PLUGIN_ID of the plugin {0} is not equals to the plugin name.\n", current.getSymbolicName())); //$NON-NLS-1$
 						}
 					} else {
-						//Never happens. An exception is thrown.
+						// Never happens. An exception is thrown.
 						nbWarning++;
-						warningMessage += NLS.bind("The activator of {0} has no field named PLUGIN_ID.\n", current.getSymbolicName()); //$NON-NLS-1$
+						warningMessage.append(NLS.bind("The activator of {0} has no field named PLUGIN_ID.\n", current.getSymbolicName())); //$NON-NLS-1$
 					}
 				} catch (final Exception e) {
-					errorMessage += NLS.bind("Exception occured with the plugin {0} \n {1} \n", new Object[]{ current.getSymbolicName(), e }); //$NON-NLS-1$
+					errorMessage.append(NLS.bind("Exception occured with the plugin {0} \n {1} \n", new Object[]{ current.getSymbolicName(), e })); //$NON-NLS-1$
 				}
 			}
 
 		}
-		Assert.assertTrue(nbError + " problems! " + errorMessage, nbError == 0); //$NON-NLS-1$
+		StringBuffer finalErrorMessage = new StringBuffer();
+		finalErrorMessage.append(nbError);
+		finalErrorMessage.append(" problems! ");//$NON-NLS-1$
+		finalErrorMessage.append(errorMessage);
+		Assert.assertTrue(finalErrorMessage.toString(), nbError == 0); //$NON-NLS-1$
 
-		//Do not fail on warnings
+		// Do not fail on warnings
 		//Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$ 
 	}
-
 
 }
