@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 
@@ -29,7 +29,7 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusNodePref
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "SlotCompartment" };
+	public static final String compartments[] = { "slots" };
 
 	/**
 	 * @generated
@@ -89,7 +89,7 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusNodePref
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("SlotCompartment", Boolean.TRUE);
+		map.put("slots", Boolean.TRUE);
 		return map;
 	}
 
@@ -98,7 +98,7 @@ public class InstanceSpecificationPreferencePage extends AbstractPapyrusNodePref
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("SlotCompartment", Boolean.FALSE);
+		map.put("slots", Boolean.FALSE);
 		return map;
 	}
 

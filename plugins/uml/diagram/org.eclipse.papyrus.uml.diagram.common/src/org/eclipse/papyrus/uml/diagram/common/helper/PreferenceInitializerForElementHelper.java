@@ -43,9 +43,9 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.emf.appearance.style.AnnotationStyleProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.ThemeInitializerManager;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
@@ -246,6 +246,10 @@ public class PreferenceInitializerForElementHelper {
 	 *        the name to the element
 	 */
 	public static void initCompartmentsStatusFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		if(!ThemeInitializerManager.instance.usePreferenceInitializer(view)) {
+			return;
+		}
+
 		EList<?> children = view.getPersistedChildren();
 		if(children != null) {
 			for(Object object : children) {
@@ -294,6 +298,10 @@ public class PreferenceInitializerForElementHelper {
 	 *        the name to the element
 	 */
 	public static void initLabelVisibilityFromPrefs(View view, final IPreferenceStore store, String elementName) {
+		if(!ThemeInitializerManager.instance.usePreferenceInitializer(view)) {
+			return;
+		}
+
 		EList<?> children = view.getPersistedChildren();
 		if(children != null) {
 			for(Object object : children) {
