@@ -17,10 +17,13 @@ package org.eclipse.papyrus.uml.service.types.utils;
  * <pre>
  * IDs of request parameters.
  * </pre>
- * @deprecated
  * @use org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants instead
  */
-@Deprecated
 public interface RequestParameterConstants extends org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants {
 
+	/**
+	 * Parameter used to override som UML Constraint (for sysml)
+	 * 
+	 */
+	public static final String UML_STRICT = "UML_STRICT"; //$NON-NLS-1$
 }

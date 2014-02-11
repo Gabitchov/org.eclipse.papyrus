@@ -70,7 +70,6 @@ public class AllocationDialog extends SelectionStatusDialog {
 
 	public AllocationDialog(Shell parent, Package cdp) {
 		super(parent);
-		// m_cdp = cdp;
 		m_cdp = UMLUtil.getStereotypeApplication(cdp, DeploymentPlan.class);
 		nodeOrThreadList = new BasicEList<InstanceSpecification>();
 		nodeOrThreadList.add(null); // dummy entry for no allocation
@@ -173,7 +172,7 @@ public class AllocationDialog extends SelectionStatusDialog {
 		setTextFromData(item);
 
 		// create children
-		for(InstanceSpecification subIS : DepUtils.getContainedInstances(is)) {
+		for(InstanceSpecification subIS : DepUtils.getContainedNonSharedInstances(is)) {
 			fillTree(tree, item, subIS);
 		}
 	}

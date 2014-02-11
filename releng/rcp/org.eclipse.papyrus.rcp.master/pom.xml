@@ -37,28 +37,13 @@
 		<repository>
 			<id>cdo-dawn</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/emf/cdo/drops/R20130918-0029</url>
-		</repository>
-		<repository>
-			<id>xpand-1.4.1</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201308130726</url>
-		</repository>
-		<repository>
-			<id>xpand-2.0.0</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201312170329</url>
+			<url>http://download.eclipse.org/modeling/emf/cdo/drops/S20140129-1205</url>
 		</repository>
 		<repository>
 			<id>eclipse-update</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/eclipse/updates/4.4</url>
 		</repository>
-		<!-- <repository> -->
-		<!-- <id>subversive 0.7</id> -->
-		<!-- <layout>p2</layout> -->
-		<!-- <url>http://download.eclipse.org/technology/subversive/0.7/update-site/</url> -->
-		<!-- </repository> -->
 	</repositories>
 	<build>
 		<plugins>
@@ -100,11 +85,6 @@
 							<ws>win32</ws>
 							<arch>x86</arch>
 						</environment>
-						<!-- <environment>
-							<os>macosx</os>
-							<ws>cocoa</ws>
-							<arch>x86_64</arch>
-						</environment> -->
 					</environments>
 				</configuration>
 			</plugin>
@@ -122,15 +102,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-compiler-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					<compilerArgument>-err:-forbidden</compilerArgument>
-					<compilerArgument>-warn:+forbidden</compilerArgument>
-				</configuration>
-			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>

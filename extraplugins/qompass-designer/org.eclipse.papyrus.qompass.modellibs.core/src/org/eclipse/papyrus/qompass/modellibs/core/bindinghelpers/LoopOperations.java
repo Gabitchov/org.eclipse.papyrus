@@ -12,7 +12,6 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.qompass.modellibs.core.Activator;
 import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EnumerationLiteral;
@@ -26,14 +25,12 @@ public class LoopOperations implements IBindingHelper, CopyListener {
 
 	private TemplateBinding binding;
 	
-	@Override
 	public EObject copyEObject(Copy copy, EObject sourceEObj) {
 		
 		if(sourceEObj instanceof Operation) {
 			Operation operation = (Operation)sourceEObj;
 
 			Classifier actual = TemplateUtils.getFirstActualFromBinding(binding);
-			Class boundClass = copy.getCopy(operation.getClass_());
 			
 			if(!(actual instanceof Interface)) {
 				return sourceEObj;
@@ -46,7 +43,7 @@ public class LoopOperations implements IBindingHelper, CopyListener {
 					copy.removeForCopy(removalElement); // enable subsequent instantiations
 				}
 				removalList.clear();
-				last = BindingUtils.instantiateOperation(copy, intfOperation, operation, boundClass);
+				last = BindingUtils.instantiateOperation(copy, intfOperation, operation);
 				removalList.add(operation);
 				for(Behavior method : operation.getMethods()) {
 					if(method instanceof OpaqueBehavior) {
@@ -81,29 +78,29 @@ public class LoopOperations implements IBindingHelper, CopyListener {
 			*/
 		}
 		else if(sourceEObj instanceof EnumerationLiteral) {
-				EnumerationLiteral literal = (EnumerationLiteral)sourceEObj;
-				Classifier actual = TemplateUtils.getFirstActualFromBinding(binding);
-				// Type passedActual = getPassedActual(template, actual, boundClass);
-				Type passedActual = actual;
-				if(!(passedActual instanceof Interface)) {
-					return sourceEObj;
-				}
-				Interface passedActualIntf = (Interface)passedActual;
-				EnumerationLiteral newLiteral = null;
-				for(Operation intfOperation : passedActualIntf.getAllOperations()) {
-					copy.removeForCopy(literal);
-					newLiteral = copy.getCopy(literal);
-					try {
-						String newName = AcceleoDriverWrapper.evaluate(literal.getName(), intfOperation, null);
-						newLiteral.setName(newName);
-					}
-					catch (TransformationException e) {
-						Activator.log.error(e);
-						newLiteral.setName("none"); //$NON-NLS-1$
-					}
-				}
-				return newLiteral;
+			EnumerationLiteral literal = (EnumerationLiteral)sourceEObj;
+			Classifier actual = TemplateUtils.getFirstActualFromBinding(binding);
+			// Type passedActual = getPassedActual(template, actual, boundClass);
+			Type passedActual = actual;
+			if(!(passedActual instanceof Interface)) {
+				return sourceEObj;
 			}
+			Interface passedActualIntf = (Interface)passedActual;
+			EnumerationLiteral newLiteral = null;
+			for(Operation intfOperation : passedActualIntf.getAllOperations()) {
+				copy.removeForCopy(literal);
+				newLiteral = copy.getCopy(literal);
+				try {
+					String newName = AcceleoDriverWrapper.evaluate(literal.getName(), intfOperation, null);
+					newLiteral.setName(newName);
+				}
+				catch (TransformationException e) {
+					Activator.log.error(e);
+					newLiteral.setName("none"); //$NON-NLS-1$
+				}
+			}
+			return newLiteral;
+		}
 		return null;
 	}
 

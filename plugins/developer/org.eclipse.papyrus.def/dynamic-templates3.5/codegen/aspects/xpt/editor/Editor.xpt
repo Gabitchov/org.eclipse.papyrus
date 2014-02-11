@@ -448,7 +448,7 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 
 					@Override
 					protected Object getJavaObject(org.eclipse.swt.dnd.TransferData data) {
-						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+						return LocalSelectionTransfer.getTransfer().getSelection();
 					}
 
 					@Override

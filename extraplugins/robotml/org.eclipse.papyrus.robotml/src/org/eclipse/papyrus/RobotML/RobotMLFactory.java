@@ -49,6 +49,33 @@ public interface RobotMLFactory extends EFactory {
 	State createState();
 
 	/**
+	 * Returns a new object of class '<em>Actuated Joint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Actuated Joint</em>'.
+	 * @generated
+	 */
+	ActuatedJoint createActuatedJoint();
+
+	/**
+	 * Returns a new object of class '<em>Joint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Joint</em>'.
+	 * @generated
+	 */
+	Joint createJoint();
+
+	/**
+	 * Returns a new object of class '<em>Complete Bonding</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Complete Bonding</em>'.
+	 * @generated
+	 */
+	CompleteBonding createCompleteBonding();
+
+	/**
 	 * Returns a new object of class '<em>Robot</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,6 +166,15 @@ public interface RobotMLFactory extends EFactory {
 	RoboticSystem createRoboticSystem();
 
 	/**
+	 * Returns a new object of class '<em>Cyber Physical System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Cyber Physical System</em>'.
+	 * @generated
+	 */
+	CyberPhysicalSystem createCyberPhysicalSystem();
+
+	/**
 	 * Returns a new object of class '<em>Sensor System</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,24 +202,6 @@ public interface RobotMLFactory extends EFactory {
 	Software createSoftware();
 
 	/**
-	 * Returns a new object of class '<em>Primitive Data</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Primitive Data</em>'.
-	 * @generated
-	 */
-	PrimitiveData createPrimitiveData();
-
-	/**
-	 * Returns a new object of class '<em>Data Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Type</em>'.
-	 * @generated
-	 */
-	DataType createDataType();
-
-	/**
 	 * Returns a new object of class '<em>Engine System</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,13 +211,22 @@ public interface RobotMLFactory extends EFactory {
 	EngineSystem createEngineSystem();
 
 	/**
-	 * Returns a new object of class '<em>Wheel System</em>'.
+	 * Returns a new object of class '<em>Steered Wheel System</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Wheel System</em>'.
+	 * @return a new object of class '<em>Steered Wheel System</em>'.
 	 * @generated
 	 */
-	WheelSystem createWheelSystem();
+	SteeredWheelSystem createSteeredWheelSystem();
+
+	/**
+	 * Returns a new object of class '<em>Locomotion System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Locomotion System</em>'.
+	 * @generated
+	 */
+	LocomotionSystem createLocomotionSystem();
 
 	/**
 	 * Returns a new object of class '<em>Image Sensor System</em>'.
@@ -263,15 +290,6 @@ public interface RobotMLFactory extends EFactory {
 	 * @generated
 	 */
 	GPSSystem createGPSSystem();
-
-	/**
-	 * Returns a new object of class '<em>Simulated System</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simulated System</em>'.
-	 * @generated
-	 */
-	SimulatedSystem createSimulatedSystem();
 
 	/**
 	 * Returns a new object of class '<em>Algorithm Library</em>'.
@@ -497,6 +515,213 @@ public interface RobotMLFactory extends EFactory {
 	 * @generated
 	 */
 	OnProperty createOnProperty();
+
+	/**
+	 * Returns a new object of class '<em>Chassis</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Chassis</em>'.
+	 * @generated
+	 */
+	Chassis createChassis();
+
+	/**
+	 * Returns a new object of class '<em>Supporting Structure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Supporting Structure</em>'.
+	 * @generated
+	 */
+	SupportingStructure createSupportingStructure();
+
+	/**
+	 * Returns a new object of class '<em>Mechanical Linkage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mechanical Linkage</em>'.
+	 * @generated
+	 */
+	MechanicalLinkage createMechanicalLinkage();
+
+	/**
+	 * Returns a new object of class '<em>Leg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Leg</em>'.
+	 * @generated
+	 */
+	Leg createLeg();
+
+	/**
+	 * Returns a new object of class '<em>Locomotion Hardware</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Locomotion Hardware</em>'.
+	 * @generated
+	 */
+	LocomotionHardware createLocomotionHardware();
+
+	/**
+	 * Returns a new object of class '<em>Actuator Hardware</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Actuator Hardware</em>'.
+	 * @generated
+	 */
+	ActuatorHardware createActuatorHardware();
+
+	/**
+	 * Returns a new object of class '<em>Mobile Robot</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mobile Robot</em>'.
+	 * @generated
+	 */
+	MobileRobot createMobileRobot();
+
+	/**
+	 * Returns a new object of class '<em>Manipulator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Manipulator</em>'.
+	 * @generated
+	 */
+	Manipulator createManipulator();
+
+	/**
+	 * Returns a new object of class '<em>Piloted System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Piloted System</em>'.
+	 * @generated
+	 */
+	PilotedSystem createPilotedSystem();
+
+	/**
+	 * Returns a new object of class '<em>Power Hardware</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Power Hardware</em>'.
+	 * @generated
+	 */
+	PowerHardware createPowerHardware();
+
+	/**
+	 * Returns a new object of class '<em>Sensor Hardware</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sensor Hardware</em>'.
+	 * @generated
+	 */
+	SensorHardware createSensorHardware();
+
+	/**
+	 * Returns a new object of class '<em>Grasping Hardware</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Grasping Hardware</em>'.
+	 * @generated
+	 */
+	GraspingHardware createGraspingHardware();
+
+	/**
+	 * Returns a new object of class '<em>Steered Wheel Hardware</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Steered Wheel Hardware</em>'.
+	 * @generated
+	 */
+	SteeredWheelHardware createSteeredWheelHardware();
+
+	/**
+	 * Returns a new object of class '<em>Arm</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Arm</em>'.
+	 * @generated
+	 */
+	Arm createArm();
+
+	/**
+	 * Returns a new object of class '<em>Leg System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Leg System</em>'.
+	 * @generated
+	 */
+	LegSystem createLegSystem();
+
+	/**
+	 * Returns a new object of class '<em>Grasping System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Grasping System</em>'.
+	 * @generated
+	 */
+	GraspingSystem createGraspingSystem();
+
+	/**
+	 * Returns a new object of class '<em>Weapon System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Weapon System</em>'.
+	 * @generated
+	 */
+	WeaponSystem createWeaponSystem();
+
+	/**
+	 * Returns a new object of class '<em>Man Machine Interface System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Man Machine Interface System</em>'.
+	 * @generated
+	 */
+	ManMachineInterfaceSystem createManMachineInterfaceSystem();
+
+	/**
+	 * Returns a new object of class '<em>Closed Loop Control System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Closed Loop Control System</em>'.
+	 * @generated
+	 */
+	ClosedLoopControlSystem createClosedLoopControlSystem();
+
+	/**
+	 * Returns a new object of class '<em>Open Loop Control System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Open Loop Control System</em>'.
+	 * @generated
+	 */
+	OpenLoopControlSystem createOpenLoopControlSystem();
+
+	/**
+	 * Returns a new object of class '<em>Robotic Head</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Robotic Head</em>'.
+	 * @generated
+	 */
+	RoboticHead createRoboticHead();
+
+	/**
+	 * Returns a new object of class '<em>Navigation Command System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Navigation Command System</em>'.
+	 * @generated
+	 */
+	NavigationCommandSystem createNavigationCommandSystem();
+
+	/**
+	 * Returns a new object of class '<em>Joystic Navigation System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Joystic Navigation System</em>'.
+	 * @generated
+	 */
+	JoysticNavigationSystem createJoysticNavigationSystem();
 
 	/**
 	 * Returns the package supported by this factory.

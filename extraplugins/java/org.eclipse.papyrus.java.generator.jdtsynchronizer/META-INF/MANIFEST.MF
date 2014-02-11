@@ -7,7 +7,8 @@ Require-Bundle: org.eclipse.uml2.uml,
  org.eclipse.papyrus.java.generator.transfo.umltojdt;bundle-version="1.0.0",
  org.eclipse.jdt.core,
  org.eclipse.jface.text,
- org.eclipse.jdt.launching
+ org.eclipse.jdt.launching,
+ org.eclipse.core.resources
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier

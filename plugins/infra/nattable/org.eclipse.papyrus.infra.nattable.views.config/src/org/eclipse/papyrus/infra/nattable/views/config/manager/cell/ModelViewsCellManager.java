@@ -36,6 +36,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 /**
  * The Cell manager for the ModelViews table
+ * TODO : should inherits from emf.nattable
  * 
  * @author Vincent Lorenzo
  * 
@@ -160,9 +161,13 @@ public class ModelViewsCellManager extends AbstractCellManager {
 		final String featureName = ((String)objects.get(1)).replace(Utils.NATTABLE_EDITOR_PAGE_ID, ""); //$NON-NLS-1$
 		if(Utils.VIEW_NAME.equals(featureName)) {
 			final EStructuralFeature feature = editor.eClass().getEStructuralFeature(Utils.VIEW_NAME);
-			final AbstractEditCommandRequest request = new SetRequest((TransactionalEditingDomain)domain, editor, feature, newValue);
-			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(editor);
-			return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+			if(!newValue.equals(editor.eClass().eGet(feature))) {
+				//				426731: [Table 2] Opening then closing cells editors without modifiyng values execute a command in the stack
+				//				https://bugs.eclipse.org/bugs/show_bug.cgi?id=426731
+				final AbstractEditCommandRequest request = new SetRequest((TransactionalEditingDomain)domain, editor, feature, newValue);
+				final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(editor);
+				return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+			}
 		}
 		return null;
 	}
@@ -218,12 +223,10 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	 */
 	protected Object getEditorName(final Object editor) {
 		if(editor instanceof EObject) {
-			if(editor instanceof EObject) {
-				final EObject eobject = (EObject)editor;
-				EStructuralFeature feature = eobject.eClass().getEStructuralFeature(Utils.VIEW_NAME);
-				if(feature != null) {
-					return eobject.eGet(feature);
-				}
+			final EObject eobject = (EObject)editor;
+			EStructuralFeature feature = eobject.eClass().getEStructuralFeature(Utils.VIEW_NAME);
+			if(feature != null) {
+				return eobject.eGet(feature);
 			}
 		}
 		return NOT_AVALAIBLE;

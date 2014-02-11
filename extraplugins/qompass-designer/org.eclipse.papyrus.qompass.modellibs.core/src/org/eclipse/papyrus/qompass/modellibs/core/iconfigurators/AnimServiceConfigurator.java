@@ -17,7 +17,6 @@ package org.eclipse.papyrus.qompass.modellibs.core.iconfigurators;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.IInstanceConfigurator;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
@@ -55,13 +54,15 @@ public class AnimServiceConfigurator implements IInstanceConfigurator {
 		EList<InstanceSpecification> nodes = AllocUtils.getAllNodesOrThreadsParent(parentInstance);
 		if (nodes.size() > 0) {
 			InstanceSpecification node = nodes.get(0);
+			// problem: instance specification is within intermediate model, thus incomplete.
+			// option: explicitly pre-create singletons (and allocate these?)
 			NamedElement animService = node.getNearestPackage().getMember(eclipseAnimService);
 			if (animService instanceof InstanceSpecification) {
 				AllocUtils.allocate(instance, (InstanceSpecification)animService);
 				return;
 			}
 		}
-		throw new TransformationRTException(String.format("Cannot find node <%s> in platform definition", eclipseAnimService)); 
+		// throw new TransformationRTException(String.format("Cannot find node <%s> in platform definition", eclipseAnimService)); 
 	}
 
 }

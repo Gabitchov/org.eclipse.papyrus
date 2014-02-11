@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.FCM.DerivedElement;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
@@ -53,7 +53,7 @@ public class ConnectorCallMultiplicity extends AbstractModelConstraint
 					if (port.getRequireds ().size () > 0) {
 						int connections = 0;
 						for (Connector connector : owner.getOwnedConnectors ()) {
-							if (ConnectorUtils.connectsPort (connector, port)) {
+							if (ConnectorUtil.connectsPort (connector, port)) {
 								connections ++;
 								break;
 							}
@@ -69,8 +69,9 @@ public class ConnectorCallMultiplicity extends AbstractModelConstraint
 			}
 		}
 		if (portsStr.length () > 0) {
-			return ctx.createFailureStatus ("The port(s) '" + portsStr + "' with a required interface of part '" + part.getName () +
-					"' have more connections than their multiplicty within composite '" + owner.getQualifiedName () + "'");
+			return ctx.createFailureStatus (String.format(
+					"The port(s) %s with a required interface of part %s have more connections than their multiplicty within composite %s",
+					portsStr, part.getName(), owner.getQualifiedName()));
 
 		}
 		else {

@@ -186,11 +186,4 @@ public abstract class AbstractNatTableXTextCellEditor extends AbstractPapyrusSty
 		return new XTextEditorResultWrapper(typedString, parseCommand);
 	}
 
-	@Override
-	public void close() {
-		//TODO requred?
-//		jfaceCellEditor.deactivate();
-//		jfaceCellEditor.dispose();
-	}
-
 }

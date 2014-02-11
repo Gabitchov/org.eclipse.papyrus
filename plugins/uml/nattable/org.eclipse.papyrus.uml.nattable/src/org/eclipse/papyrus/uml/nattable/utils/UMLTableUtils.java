@@ -143,6 +143,33 @@ public class UMLTableUtils {
 	 *        the UML::Element on which we are looking for applied Stereotype with the property identified by its id
 	 * @param id
 	 *        the id used to identify the property of the stereotype
+	 * 
+	 * @return
+	 *         the list of UML::Stereotype which have the property identified by this id and which are applied on the Element or <code>null</code> if
+	 *         we can't resolve it (the required profile is not applied)
+	 */
+	public static final List<Stereotype> getApplicableStereotypesWithThisProperty(final Element element, final String id) {
+		assert id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX);
+		final List<Stereotype> stereotypes = new ArrayList<Stereotype>();
+		if(element.eResource() != null) {
+			final Object prop = getRealStereotypeProperty(element, id);
+			if(prop instanceof Property) {
+				for(final Stereotype current : element.getApplicableStereotypes()) {
+					if(current.getAllAttributes().contains(prop)) {
+						stereotypes.add(current);
+					}
+				}
+			}
+		}
+		return stereotypes;
+	}
+
+	/**
+	 * 
+	 * @param element
+	 *        the UML::Element on which we are looking for applied Stereotype with the property identified by its id
+	 * @param id
+	 *        the id used to identify the property of the stereotype
 	 * @param sharedMap
 	 *        a map owning interesting information, like {@link StereotypeApplicationStructure} which can be used to find stereotype, stereotype
 	 *        application and so on

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" xmlns:uicustom="http://www.eclipse.org/EmfFacet/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/collab">
+  <types metaclassName="CollabFacet.CollabElement">
+    <customizedFeatures customizedFeature="facetOverlayIcon">
+      <valueCases>
+        <value xsi:type="uicustom:StaticFeatureValue" value="/org.eclipse.papyrus.team.collaborative.integration.papyrus.svn/icons/PartialLock_16x16.png:TopRight"/>
+        <condition xsi:type="query:JavaModelQuery" href="CollabQueries.querySet#IsPartialyLocked"/>
+      </valueCases>
+    </customizedFeatures>
+  </types>
+</uicustom:MetamodelView>

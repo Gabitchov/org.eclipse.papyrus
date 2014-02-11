@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.nav_datatypes.*;
 
-// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
@@ -20,13 +19,10 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
  * @generated
  */
 public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_datatypesFactory {
-	
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @return the nav_datatypes factory
 	 * @generated
 	 */
 	public static Nav_datatypesFactory init() {
@@ -54,10 +50,7 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param eClass the e class
-	 * @return the e object
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -75,9 +68,7 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the path
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Path createPath() {
@@ -87,9 +78,7 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the odometry
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Odometry createOdometry() {
@@ -99,9 +88,7 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the map meta data
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MapMetaData createMapMetaData() {
@@ -111,9 +98,7 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the occupancy grid
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OccupancyGrid createOccupancyGrid() {
@@ -123,9 +108,7 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the grid cells
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GridCells createGridCells() {
@@ -135,9 +118,7 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the nav_datatypes package
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Nav_datatypesPackage getNav_datatypesPackage() {
@@ -146,9 +127,7 @@ public class Nav_datatypesFactoryImpl extends EFactoryImpl implements Nav_dataty
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the package
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */

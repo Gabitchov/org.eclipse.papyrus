@@ -23,6 +23,13 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Interception Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * Condition whether an interceptor should be used within a container.
+ * - "Some" = set of ports defined in interception rule
+ * - "AllOut/AllIn" = ports with required/provided ports only
+ * - "Matching" = kind of interceptor and component port need to match
+ * 
+ * <!-- end-model-doc -->
  * @see org.eclipse.papyrus.FCM.FCMPackage#getInterceptionKind()
  * @model
  * @generated
@@ -66,7 +73,15 @@ public enum InterceptionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERCEPT_ALL_IN(3, "InterceptAllIn", "InterceptAllIn"); //$NON-NLS-1$ //$NON-NLS-2$
+	INTERCEPT_ALL_IN(3, "InterceptAllIn", "InterceptAllIn"), /**
+	 * The '<em><b>Intercept Matching</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #INTERCEPT_MATCHING_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	INTERCEPT_MATCHING(4, "InterceptMatching", "InterceptMatching"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Intercept Some</b></em>' literal value.
@@ -129,6 +144,21 @@ public enum InterceptionKind implements Enumerator {
 	public static final int INTERCEPT_ALL_IN_VALUE = 3;
 
 	/**
+	 * The '<em><b>Intercept Matching</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Intercept Matching</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #INTERCEPT_MATCHING
+	 * @model name="InterceptMatching"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int INTERCEPT_MATCHING_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Interception Kind</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,6 +170,7 @@ public enum InterceptionKind implements Enumerator {
 			INTERCEPT_ALL,
 			INTERCEPT_ALL_OUT,
 			INTERCEPT_ALL_IN,
+			INTERCEPT_MATCHING,
 		};
 
 	/**
@@ -194,6 +225,7 @@ public enum InterceptionKind implements Enumerator {
 			case INTERCEPT_ALL_VALUE: return INTERCEPT_ALL;
 			case INTERCEPT_ALL_OUT_VALUE: return INTERCEPT_ALL_OUT;
 			case INTERCEPT_ALL_IN_VALUE: return INTERCEPT_ALL_IN;
+			case INTERCEPT_MATCHING_VALUE: return INTERCEPT_MATCHING;
 		}
 		return null;
 	}

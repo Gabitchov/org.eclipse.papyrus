@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.FCM.InitPrecedence;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
@@ -34,6 +33,7 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.CompImplTrafos;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
@@ -123,7 +123,7 @@ public class BootLoaderGen {
 		 */
 		Include cppInclude = StereotypeUtil.applyApp(m_bootLoader, Include.class);
 		if (cppInclude == null) {
-			throw new TransformationException("Cannot apply cppInclude stereotype. Make sure that C/C++ profile is applied to your model");
+			throw new TransformationException(Messages.BootLoaderGen_CannotApplyCppInclude);
 		}
 		String existingBody = cppInclude.getBody();
 		String bodyStr =
@@ -278,7 +278,7 @@ public class BootLoaderGen {
 		// check, if implementation contains a composite if (implementation.getOwnedOperation ("createConnections", null, null) != null) {
 		boolean bCreateConn = false;
 		for(Connector connector : implementation.getOwnedConnectors()) {
-			if(ConnectorUtils.isAssembly(connector)) {
+			if(ConnectorUtil.isAssembly(connector)) {
 				bCreateConn = true;
 				break;
 			}
@@ -355,7 +355,7 @@ public class BootLoaderGen {
 				Class composite = part.getClass_();
 				for(Connector connector : composite.getOwnedConnectors()) {
 					// must assure same connector end connects part & port
-					ConnectorEnd end = ConnectorUtils.connEndForPart(connector, part);
+					ConnectorEnd end = ConnectorUtil.connEndForPart(connector, part);
 					if((end != null) && (end.getRole() == port)) {
 						return true;
 					}

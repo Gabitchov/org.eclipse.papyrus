@@ -29,6 +29,8 @@ import org.eclipse.papyrus.RobotML.Surface;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.PhysicalObjectImpl#getEvelovesIn <em>Eveloves In</em>}</li>
  *   <li>{@link org.eclipse.papyrus.RobotML.impl.PhysicalObjectImpl#getHasSurface <em>Has Surface</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.PhysicalObjectImpl#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.RobotML.impl.PhysicalObjectImpl#getMass <em>Mass</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,6 +56,46 @@ public class PhysicalObjectImpl extends SystemImpl implements PhysicalObject {
 	 * @ordered
 	 */
 	protected Surface hasSurface;
+
+	/**
+	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final float HEIGHT_EDEFAULT = 0.0F;
+
+	/**
+	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHeight()
+	 * @generated
+	 * @ordered
+	 */
+	protected float height = HEIGHT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMass() <em>Mass</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMass()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final float MASS_EDEFAULT = 0.0F;
+
+	/**
+	 * The cached value of the '{@link #getMass() <em>Mass</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMass()
+	 * @generated
+	 * @ordered
+	 */
+	protected float mass = MASS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,6 +171,48 @@ public class PhysicalObjectImpl extends SystemImpl implements PhysicalObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public float getHeight() {
+		return height;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHeight(float newHeight) {
+		float oldHeight = height;
+		height = newHeight;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.PHYSICAL_OBJECT__HEIGHT, oldHeight, height));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public float getMass() {
+		return mass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMass(float newMass) {
+		float oldMass = mass;
+		mass = newMass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RobotMLPackage.PHYSICAL_OBJECT__MASS, oldMass, mass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -137,6 +221,10 @@ public class PhysicalObjectImpl extends SystemImpl implements PhysicalObject {
 			case RobotMLPackage.PHYSICAL_OBJECT__HAS_SURFACE:
 				if (resolve) return getHasSurface();
 				return basicGetHasSurface();
+			case RobotMLPackage.PHYSICAL_OBJECT__HEIGHT:
+				return getHeight();
+			case RobotMLPackage.PHYSICAL_OBJECT__MASS:
+				return getMass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,6 +245,12 @@ public class PhysicalObjectImpl extends SystemImpl implements PhysicalObject {
 			case RobotMLPackage.PHYSICAL_OBJECT__HAS_SURFACE:
 				setHasSurface((Surface)newValue);
 				return;
+			case RobotMLPackage.PHYSICAL_OBJECT__HEIGHT:
+				setHeight((Float)newValue);
+				return;
+			case RobotMLPackage.PHYSICAL_OBJECT__MASS:
+				setMass((Float)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -175,6 +269,12 @@ public class PhysicalObjectImpl extends SystemImpl implements PhysicalObject {
 			case RobotMLPackage.PHYSICAL_OBJECT__HAS_SURFACE:
 				setHasSurface((Surface)null);
 				return;
+			case RobotMLPackage.PHYSICAL_OBJECT__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
+				return;
+			case RobotMLPackage.PHYSICAL_OBJECT__MASS:
+				setMass(MASS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -191,8 +291,30 @@ public class PhysicalObjectImpl extends SystemImpl implements PhysicalObject {
 				return evelovesIn != null && !evelovesIn.isEmpty();
 			case RobotMLPackage.PHYSICAL_OBJECT__HAS_SURFACE:
 				return hasSurface != null;
+			case RobotMLPackage.PHYSICAL_OBJECT__HEIGHT:
+				return height != HEIGHT_EDEFAULT;
+			case RobotMLPackage.PHYSICAL_OBJECT__MASS:
+				return mass != MASS_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (height: ");
+		result.append(height);
+		result.append(", mass: ");
+		result.append(mass);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PhysicalObjectImpl

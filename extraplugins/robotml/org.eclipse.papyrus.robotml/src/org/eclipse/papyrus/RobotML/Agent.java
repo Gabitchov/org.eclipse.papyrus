@@ -4,7 +4,6 @@ package org.eclipse.papyrus.RobotML;
 
 import org.eclipse.emf.common.util.EList;
 
-// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Agent</b></em>'.

@@ -61,7 +61,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.mylyn_feature"/>
       <import feature="org.eclipse.ocl.all.sdk"/>
       <import feature="org.eclipse.emf.cdo.dawn.sdk"/>
-      <import feature="org.eclipse.papyrus.sdk.feature"/>
+      <import feature="org.eclipse.papyrus.sdk.sources.feature"/>
       <import feature="org.eclipse.papyrus.extra.sources.feature"/>
       <import feature="org.eclipse.pde"/>
       <import feature="org.eclipse.rcp"/>

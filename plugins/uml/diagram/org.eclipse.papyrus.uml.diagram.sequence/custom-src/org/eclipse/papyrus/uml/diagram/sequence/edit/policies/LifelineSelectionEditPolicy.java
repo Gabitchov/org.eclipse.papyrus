@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.Cursors;
+import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
@@ -44,11 +46,18 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 		// resizable in at least one direction
 		List<Handle> list = new ArrayList<Handle>();
 		// createMoveHandle(list);
-		Locator locator = new MoveHandleLocator(primaryShape.getFigureLifelineNameContainerFigure());
-		MoveHandle moveHandle = new MoveHandle((GraphicalEditPart)getHost(), locator);
+		final RectangleFigure figure = primaryShape.getFigureLifelineNameContainerFigure();
+		final Locator locator = new MoveHandleLocator(figure);
+		final MoveHandle moveHandle = new MoveHandle((GraphicalEditPart)getHost(), locator);
+		figure.addFigureListener(new FigureListener() {
+
+			public void figureMoved(IFigure source) {
+				locator.relocate(moveHandle);
+			}
+		});
 		moveHandle.setCursor(Cursors.SIZEALL);
 		list.add(moveHandle);
-		createResizeHandle(list, PositionConstants.NORTH);
+//		createResizeHandle(list, PositionConstants.NORTH);
 		final IFigure fig = primaryShape.getFigureLifelineNameContainerFigure();
 		createResizeHandle(host, list, fig, PositionConstants.WEST);
 		createResizeHandle(host, list, fig, PositionConstants.EAST);
@@ -57,11 +66,19 @@ public class LifelineSelectionEditPolicy extends ResizableEditPolicyEx {
 	}
 
 	private void createResizeHandle(LifelineEditPart host, List<Handle> list, IFigure fig, int location) {
-		Locator locator = new RelativeHandleLocator(fig, location);
+		final Locator locator = new RelativeHandleLocator(fig, location);
 		Cursor cursor = Cursors.getDirectionalCursor(location, fig.isMirrored());
-		ResizeHandle westResizer = new ResizeHandle((GraphicalEditPart)host, locator, cursor);
+		final ResizeHandle westResizer = new ResizeHandle((GraphicalEditPart)host, locator, cursor);
 		ResizeTracker resizeTracker = new ResizeTracker(host, location);
 		westResizer.setDragTracker(resizeTracker);
+		
+		final RectangleFigure figure = host.getPrimaryShape().getFigureLifelineNameContainerFigure();
+		figure.addFigureListener(new FigureListener() {
+
+			public void figureMoved(IFigure source) {
+				locator.relocate(westResizer);
+			}
+		});
 		list.add(westResizer);
 	}
 

@@ -8,6 +8,10 @@ package org.eclipse.papyrus.RobotML;
  * A representation of the model object '<em><b>Engine System</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This is the motorization system focused in the engine of a robotic vehicle.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>

@@ -212,33 +212,4 @@
       </DirectEditor>
    </extension>
   
-  
-   <extension
-         point="org.eclipse.emf.validation.constraintProviders">
-      <category
-            name="Test" id="org.eclipse.emf.validation.pde.example.general.ui.library"/>
-      <constraintProvider cache="true">
-         <package namespaceUri="http://www.eclipse.org/uml2/4.0.0/UML"/>
-         <constraints categories="test">
-            <constraint
-                  lang="Java"
-                  class="org.eclipse.papyrus.uml.textedit.property.xtext.ui.validation.TestConstraint"
-                  severity="ERROR"
-                  mode="Batch"
-                  name="TEST"
-                  
-                  id="org.eclipse.emf.validation.pde.example.general.ui.NameNotEmpty"
-                  statusCode="1">
-                  <message>
-                  BLA
-                  </message>
-               <target class="Property"/>
-                <target class="Model"/>
-                <target class="Namespace"/>
-            </constraint>
-         </constraints>
-      </constraintProvider>
-   </extension>
-  
-
 </plugin>

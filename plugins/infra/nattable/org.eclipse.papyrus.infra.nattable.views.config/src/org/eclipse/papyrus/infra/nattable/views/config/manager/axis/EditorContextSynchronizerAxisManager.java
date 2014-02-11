@@ -229,7 +229,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 		case Notification.REMOVE:
 			Object oldValue = notification.getOldValue();
 			if(oldValue instanceof PageRef) {
-				newValue = ((PageRef)oldValue).getPageIdentifier();
+				oldValue = ((PageRef)oldValue).getPageIdentifier();
 			}
 			if(this.managedObject.contains(oldValue)) {
 				toRemove.add(oldValue);
@@ -239,9 +239,9 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 			Collection<?> oldValues = (Collection<?>)notification.getOldValue();
 			for(Object current : oldValues) {
 				if(current instanceof PageRef) {
-					newValue = ((PageRef)current).getPageIdentifier();
+					current = ((PageRef)current).getPageIdentifier();
 				}
-				if(this.managedObject.contains(oldValues)) {
+				if(this.managedObject.contains(current)) {
 					toRemove.add(current);
 				}
 			}

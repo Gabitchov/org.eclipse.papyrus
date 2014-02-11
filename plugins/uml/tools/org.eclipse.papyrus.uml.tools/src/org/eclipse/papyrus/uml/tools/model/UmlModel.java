@@ -118,7 +118,7 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 	@Override
 	public void unload() {
 		if(resource != null) {
-			CacheAdapter.INSTANCE.clear(resource);
+			CacheAdapter.getInstance().clear(resource);
 		}
 		super.unload();
 	}

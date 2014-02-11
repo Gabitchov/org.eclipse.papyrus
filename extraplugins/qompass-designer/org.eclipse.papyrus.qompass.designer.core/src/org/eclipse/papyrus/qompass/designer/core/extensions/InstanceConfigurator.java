@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.UseInstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.Activator;
+import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -100,6 +101,10 @@ public class InstanceConfigurator {
 		for(IConfigurationElement configElement : configElements) {
 			try {
 				final String iConfiguratorIDext = configElement.getAttribute("configuratorID"); //$NON-NLS-1$
+				if(iConfiguratorIDext == null) {
+					throw new RuntimeException(String.format(
+							Messages.InstanceConfigurator_InvalidPluginExtension, iConfiguratorID));
+				}
 				if(iConfiguratorIDext.equals(iConfiguratorID)) {
 					// TODO: cache returned instance (avoid creating a new instance each time => more efficient, no need for static attributes)
 					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$

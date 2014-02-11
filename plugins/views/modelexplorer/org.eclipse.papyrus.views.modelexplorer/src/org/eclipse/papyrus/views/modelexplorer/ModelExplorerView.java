@@ -74,7 +74,6 @@ import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
-import org.eclipse.papyrus.views.modelexplorer.xtext.DirectEditorEditingSupport;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;

@@ -7,11 +7,15 @@ public class Messages extends NLS {
 	
 	public static String BootLoaderGen_AtLeastOneBlockingCall;
 
+	public static String BootLoaderGen_CannotApplyCppInclude;
+
 	public static String BootLoaderGen_CannotRetrieveTemplate;
 
 	public static String CommandSupport_NoEditingDomain;
 	public static String CommandSupport_ErrorDuringCmdExec;
 	public static String ConfigUtils_RuleWithoutBaseClass;
+	public static String DepCreation_SingletonExistsAlready;
+
 	public static String DepCreation_CannotFindImplementation;
 
 	public static String DepCreation_CircularReference;
@@ -74,7 +78,11 @@ public class Messages extends NLS {
 	public static String ContainerTrafo_CannotApplyRule;
 	public static String ContainerTrafo_CannotFindDelegationConn;
 	public static String ContainerTrafo_InterceptionRuleButNoInterceptor;
+
+	public static String ContainerTrafo_RecursiveLWnotSupported;
 	
+	public static String InstanceConfigurator_InvalidPluginExtension;
+
 	public static String InstantiateDepPlan_AcceleoErrors;
 	public static String InstantiateDepPlan_AcceleoErrorsCheckLog;
 	public static String InstantiateDepPlan_CannotGenModel;

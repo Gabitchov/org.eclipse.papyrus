@@ -6,7 +6,14 @@
 		'boundPackageRef(org.eclipse.uml2.uml.Type)',
 		Sequence{actual}) /]
 
+[comment called by acceptableEvents.mtl/]
 [query public declareDependencyToOperationIDs(pkg : Package) : OclVoid =
 	invoke('org.eclipse.papyrus.qompass.modellibs.core.acceleo.StateMachineUtil',
 		'declareDependencyToOperationIDs(org.eclipse.uml2.uml.Package)',
+		Sequence{pkg}) /]
+
+[comment called by acceptableEvents.mtl/]
+[query public declareDependencyToSignalIDs(pkg : Package) : OclVoid =
+	invoke('org.eclipse.papyrus.qompass.modellibs.core.acceleo.StateMachineUtil',
+		'declareDependencyToSignalIDs(org.eclipse.uml2.uml.Package)',
 		Sequence{pkg}) /]

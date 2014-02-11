@@ -27,16 +27,15 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.infra.core.Activator;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.ConnectorBinding;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -153,21 +152,8 @@ public class ConnectorReification {
 		}
 		Property tmConnectorPart = copy.getCopy(smConnectorPart);
 		tmConnectorPart.setType(connectorImplem);
-		// now retarget connectors towards this part
-
-		for(Connector connector : tmComponent.getOwnedConnectors()) {
-			if(ConnectorUtils.connectsPart(connector, tmConnectorPart)) {
-				// the connector end targets a port of a part or the composite (in case of delegation)
-				ConnectorEnd connEnd = ConnectorUtils.connEndForPart(connector, tmConnectorPart);
-				// redirect role, if pointing to port
-				if(connEnd.getRole() instanceof Port) {
-					Port connectedTemplatePort = (Port)connEnd.getRole();
-					Port connectedBoundPort = (Port)Utils.getNamedElementFromList(
-						PortUtils.getAllPorts(connectorImplem), connectedTemplatePort.getName());
-					connEnd.setRole(connectedBoundPort);
-				}
-			}
-		}
+		// now re-target connectors towards this part
+		TemplateUtils.retargetConnectors(tmComponent, tmConnectorPart);
 		return tmConnectorPart;
 	}
 
@@ -356,7 +342,7 @@ public class ConnectorReification {
 		// reified connector
 		EList<Connector> connSubset = new BasicEList<Connector>();
 		for(Connector connector : composite.getOwnedConnectors()) {
-			if(ConnectorUtils.connectsPart(connector, reifiedConnector)) {
+			if(ConnectorUtil.connectsPart(connector, reifiedConnector)) {
 				connSubset.add(connector);
 			}
 		}
@@ -368,7 +354,7 @@ public class ConnectorReification {
 			// check whether a port of the reified connector is not yet
 			// connected.
 			for(Connector connector : connSubset) {
-				if(ConnectorUtils.connectsPort(connector, port)) {
+				if(ConnectorUtil.connectsPort(connector, port)) {
 					connected = true;
 				}
 			}
@@ -379,7 +365,7 @@ public class ConnectorReification {
 				// the port is connected, i.e. we do not want to connect the port to
 				// potentially set of ports (todo: restriction always useful?)
 				for(Connector connector : connSubset) {
-					ConnectorEnd connEnd = ConnectorUtils.connEndNotPart(
+					ConnectorEnd connEnd = ConnectorUtil.connEndNotPart(
 						connector, reifiedConnector);
 					Property otherPart = connEnd.getPartWithPort();
 					// this is a part which is connected with the reified
@@ -448,12 +434,12 @@ public class ConnectorReification {
 
 		// loop over connectors of composite that originate from passed part.
 		for(Connector connector : composite.getOwnedConnectors()) {
-			ConnectorEnd myEnd = ConnectorUtils.connEndForPart(connector, part);
+			ConnectorEnd myEnd = ConnectorUtil.connEndForPart(connector, part);
 			if(myEnd == null) {
 				// the connector does not connect this part
 				continue;
 			}
-			ConnectorEnd otherEnd = ConnectorUtils.connEndNotPart(connector,
+			ConnectorEnd otherEnd = ConnectorUtil.connEndNotPart(connector,
 				part);
 
 			Property otherPart = otherEnd.getPartWithPort();
@@ -465,9 +451,7 @@ public class ConnectorReification {
 			for(Slot slot : compositeIS.getSlots()) {
 				if(slot.getDefiningFeature() == otherPart) {
 					InstanceSpecification containedInstance = DepUtils.getInstance(slot);
-					// TODO: too complicated, if the non-connector is a composite as well, it must be clearly allocated
-					EList<InstanceSpecification> nodes = AllocUtils.getAllNodesForPort(
-						containedInstance, otherPort);
+					EList<InstanceSpecification> nodes = AllocUtils.getAllNodesForPort(containedInstance, otherPort);
 					AllocUtils.propagateNodesViaPort(
 							DepUtils.getInstance(partSlot), myPort, nodes);
 					break;

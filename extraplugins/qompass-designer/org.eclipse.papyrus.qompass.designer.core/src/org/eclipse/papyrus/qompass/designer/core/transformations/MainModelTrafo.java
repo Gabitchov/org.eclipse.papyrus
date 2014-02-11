@@ -182,8 +182,19 @@ public class MainModelTrafo {
 		}
 
 		String instName = smIS.getName();
+		// first check, if instance specification exists already. This may be the case for explicitly modeled singleton instances.
 		InstanceSpecification tmIS = (InstanceSpecification)
-			tmCDP.createPackagedElement(instName, UMLPackage.eINSTANCE.getInstanceSpecification());
+			tmCDP.getPackagedElement(instName);
+		if (tmIS == null) {
+			tmIS = (InstanceSpecification)
+					tmCDP.createPackagedElement(instName, UMLPackage.eINSTANCE.getInstanceSpecification());
+		}
+		if (smDF == null) {
+			// no defining feature => must be main instance
+			// => apply deployment plan stereotype and set main instance
+			DeploymentPlan newCDP = StereotypeUtil.applyApp(tmCDP, DeploymentPlan.class);
+			newCDP.setMainInstance(tmIS);
+		}
 
 		Class tmComponent = copy.getCopy(smComponent);
 		if(tmComponent == null) {
@@ -238,7 +249,13 @@ public class MainModelTrafo {
 		// copy node allocation
 		for(InstanceSpecification smNode : AllocUtils.getNodes(smIS)) {
 			InstanceSpecification tmNode = copy.getCopy(smNode);
-			AllocUtils.allocate(tmIS, tmNode);
+			if (containerIS != null) {
+				// allocate container instead of executor.
+				AllocUtils.allocate(containerIS, tmNode);
+			}
+			else {
+				AllocUtils.allocate(tmIS, tmNode);		
+			}
 
 			if(!nodeHandled.containsKey(tmNode)) {
 				// check if node (on an instance level) has already been treated. This is required, since many
@@ -263,7 +280,6 @@ public class MainModelTrafo {
 						//	   executor itself does not make much sense, additional operation "createHwContainer"
 
 						// obtain property related to node instance
-						Slot smNodeSlot = DepUtils.getParentSlot(smNode);
 						Package smCDP = smIS.getNearestPackage();
 						DeploymentPlan smFCM_CDP = UMLUtil.getStereotypeApplication(smCDP, DeploymentPlan.class);
 
@@ -403,7 +419,9 @@ public class MainModelTrafo {
 					// copy slots from the source deployment plan that are related to connector configuration
 					InstanceSpecification smConnectorIS = DepUtils.getNamedSubInstance(smIS, smConnector.getName());
 					if(smConnectorIS != null) {
-						copy.put(smConnectorIS, tmReifiedConnectorIS);
+						// use putPair instead of put only - see bug 426748, avoid that classifier attribute points
+						// to two classifiers (bound and unbound)
+						copy.putPair(smConnectorIS, tmReifiedConnectorIS);
 						for(Slot smSlot : smConnectorIS.getSlots()) {
 							copy.getCopy(smSlot);
 						}

@@ -130,7 +130,15 @@
 		</wizard>
 	</extension>
 	<extension id="LoopOperations" point="org.eclipse.papyrus.fcm.profile.fcmBindingHelper">
-		<client class="org.eclipse.papyrus.qompass.modellibs.core.bindinghelpers.LoopOperations" bindingHelperName="LoopOperations">
+		<client
+			bindingHelperName="LoopOperations"
+			class="org.eclipse.papyrus.qompass.modellibs.core.bindinghelpers.LoopOperations">
+		</client>
+	</extension>
+	<extension id="BindOperation" point="org.eclipse.papyrus.fcm.profile.fcmBindingHelper">
+		<client
+			bindingHelperName="BindOperation"
+			class="org.eclipse.papyrus.qompass.modellibs.core.bindinghelpers.BindOperation">
 		</client>
 	</extension>
 	<extension point="org.eclipse.help.toc">

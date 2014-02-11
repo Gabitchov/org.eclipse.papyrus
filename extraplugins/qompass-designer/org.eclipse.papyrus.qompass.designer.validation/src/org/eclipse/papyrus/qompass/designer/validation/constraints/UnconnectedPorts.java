@@ -31,7 +31,7 @@ package org.eclipse.papyrus.qompass.designer.validation.constraints;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Port;
@@ -69,7 +69,7 @@ abstract public class UnconnectedPorts extends AbstractModelConstraint
 						((fcmPort.getProvidedInterface() != null) && !required)) {{
 							boolean found = false;
 							for (Connector connector : owner.getOwnedConnectors ()) {
-								if (ConnectorUtils.connectsPort (connector, port)) {
+								if (ConnectorUtil.connectsPort (connector, port)) {
 									found = true;
 									break;
 								}

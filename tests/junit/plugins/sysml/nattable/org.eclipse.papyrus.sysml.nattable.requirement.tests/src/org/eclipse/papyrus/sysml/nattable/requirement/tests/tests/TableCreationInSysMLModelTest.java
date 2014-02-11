@@ -270,7 +270,8 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertTrue(creationCommand.canExecute());
 
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
-		NamedElement requirement = TableCreationInSysMLModelTest.requirement1.getMember("Requirement1"); //$NON-NLS-1$
+		final NamedElement createdElement = (NamedElement)request.getNewElement(); 
+		NamedElement requirement = TableCreationInSysMLModelTest.requirement1.getMember(createdElement.getName()); //$NON-NLS-1$
 		Assert.assertNotNull(requirement);
 		nestedRequirement3 = (Class)requirement;
 
@@ -293,7 +294,7 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertTrue(destroyCommand.canExecute());
 
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyCommand));
-		requirement = TableCreationInSysMLModelTest.requirement1.getMember("Requirement1"); //$NON-NLS-1$
+		requirement = TableCreationInSysMLModelTest.requirement1.getMember(createdElement.getName()); //$NON-NLS-1$
 		Assert.assertNull(requirement);
 		nestedRequirement3 = (Class)requirement;
 

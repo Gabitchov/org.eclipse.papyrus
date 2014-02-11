@@ -19,13 +19,13 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.CreationUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -129,9 +129,9 @@ public class ConnectorBinding {
 				Messages.ConnectorBinding_InfoMatchOtherEnd, port.getName()));
 
 		for(Connector connector : partConnector.getClass_().getOwnedConnectors()) {
-			if(ConnectorUtils.connectsPart(connector, partConnector)) {
+			if(ConnectorUtil.connectsPart(connector, partConnector)) {
 				// the connector end targets a port of a part or the composite (in case of delegation)
-				ConnectorEnd connEnd = ConnectorUtils.connEndNotPart(connector, partConnector);
+				ConnectorEnd connEnd = ConnectorUtil.connEndNotPart(connector, partConnector);
 				ConnectableElement connElem = connEnd.getRole();
 				if(connElem instanceof Port) {
 					Port otherPort = (Port)connElem;
@@ -229,9 +229,9 @@ public class ConnectorBinding {
 					Property partConnector = (Property)partOrConnector;
 					// iterate over the connectors of the composite containing the part
 					for(Connector connector : partConnector.getClass_().getOwnedConnectors()) {
-						if(ConnectorUtils.connectsPart(connector, partConnector)) {
+						if(ConnectorUtil.connectsPart(connector, partConnector)) {
 							// the connector end targets a port of a part or the composite (in case of delegation)
-							ConnectorEnd connEnd = ConnectorUtils.connEndNotPart(connector, partConnector);
+							ConnectorEnd connEnd = ConnectorUtil.connEndNotPart(connector, partConnector);
 							actual = matchViaEnd(connEnd, port, partOrConnector, actual);
 							if(actual != null) {
 								found = true;

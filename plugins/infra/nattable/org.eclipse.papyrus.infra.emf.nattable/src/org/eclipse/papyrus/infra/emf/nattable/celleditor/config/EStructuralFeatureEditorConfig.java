@@ -32,13 +32,13 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.CheckBoxCellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ComboBoxCellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
-import org.eclipse.nebula.widgets.nattable.edit.editor.MultiLineTextCellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.TextCellEditor;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ComboBoxPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.nattable.celleditor.MultiLineTextCellEditorEx;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.AbstractCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -98,7 +98,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 		ICellEditor editor = null;
 		switch(editorKind) {
 		case SINGLE_STRING:
-			editor = new MultiLineTextCellEditor(true);
+			editor = new MultiLineTextCellEditorEx(true);
 			break;
 		case SINGLE_INTEGER:
 			editor = new TextCellEditor();

@@ -22,15 +22,25 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.qompass.designer.core.CreationUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
+import org.eclipse.papyrus.qompass.designer.core.PortUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageMerge;
 import org.eclipse.uml2.uml.ParameterableElement;
+import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TemplateParameterSubstitution;
@@ -319,5 +329,63 @@ public class TemplateUtils {
 			ns = (Namespace)ns.getOwner();
 		}
 		return null;
+	}
+	
+	/**
+	 * Re-target connectors after a part has changed its type from template to an instantiation
+	 * of this template. In this case, the roles of the connector ends still reference the port
+	 * of the template instead of the bound  template binding.
+	 * The new roles are assigned based on an equal name, assuming that template instantiation
+	 * does not change the name of the ports.
+	 * 
+	 * @param composite a composite containing connectors
+	 * @param part a part within the composite whose type has changed.
+	 */
+	public static void retargetConnectors(StructuredClassifier composite, Property part) {
+		Type partType = part.getType();
+		if (partType instanceof EncapsulatedClassifier) {
+			EncapsulatedClassifier partTypeEC = (EncapsulatedClassifier) partType;
+			for(Connector connector : composite.getOwnedConnectors()) {
+				if(ConnectorUtil.connectsPart(connector, part)) {
+					// the connector end targets a port of a part or the composite (in case of delegation)
+					ConnectorEnd connEnd = ConnectorUtil.connEndForPart(connector, part);
+					// redirect role, if pointing to port
+					if(connEnd.getRole() instanceof Port) {
+						Port connectedTemplatePort = (Port)connEnd.getRole();
+						Port connectedBoundPort = (Port)Utils.getNamedElementFromList(
+							PortUtils.getAllPorts(partTypeEC), connectedTemplatePort.getName());
+						connEnd.setRole(connectedBoundPort);
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Re-target connectors after an unknown number of parts have changed their type from template
+	 * to an instantiation of this template. In this case, the roles of the connector ends still
+	 * reference the port of the template instead of the bound  template binding.
+	 * The new roles are assigned based on an equal name, assuming that template instantiation
+	 * does not change the name of the ports.
+	 * 
+	 * @param composite a composite containing connectors
+	 */
+	public static void retargetConnectors(StructuredClassifier composite) {
+		for(Connector connector : composite.getOwnedConnectors()) {
+			// the connector end targets a port of a part or the composite (in case of delegation)
+			for (ConnectorEnd connEnd : connector.getEnds()) {
+				Property part = connEnd.getPartWithPort();
+				if ((part != null) && (part.getType() instanceof EncapsulatedClassifier)) {
+					EncapsulatedClassifier partTypeEC = (EncapsulatedClassifier) part.getType();
+					ConnectableElement role = connEnd.getRole();
+					EList<Port> ports = PortUtils.getAllPorts(partTypeEC);
+					if ((role instanceof Port) && !ports.contains(role)) {
+						// role is not in list of ports
+						Port connectedBoundPort = (Port)Utils.getNamedElementFromList(ports, role.getName());
+						connEnd.setRole(connectedBoundPort);
+					}
+				}
+			}
+		}
 	}
 }

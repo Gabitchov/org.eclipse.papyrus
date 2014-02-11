@@ -8,7 +8,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -3094,14 +3093,13 @@ public interface Sensor_datatypesPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 * <li>each class,</li>
-	 * <li>each feature of each class,</li>
-	 * <li>each operation of each class,</li>
-	 * <li>each enum,</li>
-	 * <li>and each data type</li>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each operation of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
 	 * </ul>
-	 * <!-- end-user-doc -->.
-	 *
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	interface Literals {

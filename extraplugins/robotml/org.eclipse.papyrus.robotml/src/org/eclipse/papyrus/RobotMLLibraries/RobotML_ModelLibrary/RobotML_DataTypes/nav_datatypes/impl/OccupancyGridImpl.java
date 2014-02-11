@@ -23,7 +23,6 @@ import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTyp
 
 import org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Header;
 
-// TODO: Auto-generated Javadoc
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Occupancy Grid</b></em>'.
@@ -72,8 +71,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected OccupancyGridImpl() {
@@ -82,9 +80,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the e class
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -94,9 +90,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the header
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Header getHeader() {
@@ -105,11 +99,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param newHeader the new header
-	 * @param msgs the msgs
-	 * @return the notification chain
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetHeader(Header newHeader, NotificationChain msgs) {
@@ -124,9 +114,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param newHeader the new header
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setHeader(Header newHeader) {
@@ -145,9 +133,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the info
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MapMetaData getInfo() {
@@ -156,11 +142,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param newInfo the new info
-	 * @param msgs the msgs
-	 * @return the notification chain
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetInfo(MapMetaData newInfo, NotificationChain msgs) {
@@ -175,9 +157,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param newInfo the new info
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setInfo(MapMetaData newInfo) {
@@ -196,9 +176,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the data
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Character> getData() {
@@ -210,12 +188,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param otherEnd the other end
-	 * @param featureID the feature id
-	 * @param msgs the msgs
-	 * @return the notification chain
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -231,12 +204,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param featureID the feature id
-	 * @param resolve the resolve
-	 * @param coreType the core type
-	 * @return the object
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -254,10 +222,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param featureID the feature id
-	 * @param newValue the new value
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -280,9 +245,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param featureID the feature id
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -303,10 +266,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @param featureID the feature id
-	 * @return true, if successful
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -324,9 +284,7 @@ public class OccupancyGridImpl extends MinimalEObjectImpl.Container implements O
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->.
-	 *
-	 * @return the string
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -85,6 +85,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 			return new CustomTimeConstraintEditPart(view);
 		case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
 			return new CustomTimeConstraintAppliedStereotypeEditPart(view);
+		case TimeConstraintLabelEditPart.VISUAL_ID:
+			return new CustomTimeConstraintLabelEditPart(view);
 		case TimeObservationEditPart.VISUAL_ID:
 			return new CustomTimeObservationEditPart(view);
 		case TimeObservationLabelEditPart.VISUAL_ID:
@@ -155,6 +157,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 			return new ExecutionSpecificationEndEditPart(view);
 		case MessageEndEditPart.VISUAL_ID:
 			return new MessageEndEditPart(view);
+		case StateInvariantLabelEditPart.VISUAL_ID:
+			return new CustomStateInvariantLabelEditPart(view);
 		}
 		return null;
 	}

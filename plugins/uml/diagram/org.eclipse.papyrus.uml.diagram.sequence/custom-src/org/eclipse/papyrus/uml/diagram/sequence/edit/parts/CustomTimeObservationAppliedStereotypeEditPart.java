@@ -14,8 +14,15 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeExternalNodeLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.AppliedStereotypeLabelFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -42,5 +49,34 @@ public class CustomTimeObservationAppliedStereotypeEditPart extends TimeObservat
 	@Override
 	protected Image getLabelIcon() {
 		return null;
+	}
+
+	protected void refreshLabel() {
+		//We do NOT want to update label with the Parser.
+		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
+		}
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
+		}
+	}
+
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		removeEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY);
+		View stereotypeChangedView = null;
+		View view = getPrimaryView();
+		if(view != null) {
+			stereotypeChangedView = ViewUtil.getChildBySemanticHint(view, UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
+		}
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeExternalNodeLabelEditPolicy(stereotypeChangedView));
+	}
+
+	@Override
+	protected IFigure createFigurePrim() {
+		return new AppliedStereotypeLabelFigure();
 	}
 }

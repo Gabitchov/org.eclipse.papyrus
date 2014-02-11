@@ -264,6 +264,7 @@ public abstract class AbstractPapyrusTestCase {
 				}
 			}
 		});
+		flushEventLoop();
 	}
 
 	protected static void maximize() {
@@ -291,7 +292,7 @@ public abstract class AbstractPapyrusTestCase {
 		assertTrue("The editor must be a " + PapyrusMultiDiagramEditor.class.getSimpleName() + " (Actual type: " + editorPart.getClass().getSimpleName() + ")", editorPart instanceof PapyrusMultiDiagramEditor);
 		// maximize the editor
 		final IWorkbenchPartReference reference = this.page.getReference(editorPart);
-		editorPart.getSite().getPage().toggleZoom(reference);
+//		editorPart.getSite().getPage().toggleZoom(reference);
 		this.papyrusEditor = ((PapyrusMultiDiagramEditor)editorPart);
 		Assert.assertNotNull(papyrusEditor);
 	}
@@ -627,10 +628,12 @@ public abstract class AbstractPapyrusTestCase {
 		// set first name
 		final String name1 = "test name 1 " + System.currentTimeMillis();
 		setNameWithDirectEditRequest(editPart, name1);
+		flushEventLoop();
 		assertEquals("The element should have the first name", name1, nameProvider.getName(element));
 		// set second name
 		final String name2 = "test name 2 " + System.currentTimeMillis();
 		setNameWithDirectEditRequest(editPart, name2);
+		flushEventLoop();
 		assertEquals("The element should have the second name", name2, nameProvider.getName(element));
 		// test undo
 		undo();

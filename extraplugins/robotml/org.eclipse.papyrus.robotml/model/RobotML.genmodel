@@ -8,18 +8,6 @@
   <foreignModel>RobotML.ecore</foreignModel>
   <genPackages prefix="RobotML" basePackage="org.eclipse.papyrus" resource="XML" disposableProviderFactory="true"
       ecorePackage="RobotML.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//RobotKind">
-      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/UUV"/>
-      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/UGVcar"/>
-      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/UGVdifferential"/>
-      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/UAV"/>
-      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/USV"/>
-      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RobotKind/piloted"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//UGVKind">
-      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//UGVKind/differential"/>
-      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//UGVKind/car"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//SynchronizationKind">
       <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//SynchronizationKind/SYNCH"/>
       <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//SynchronizationKind/ASYNCH"/>
@@ -34,6 +22,10 @@
       <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//ServiceFlowKind/provided"/>
       <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//ServiceFlowKind/required"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//UGVKind">
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//UGVKind/differential"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//UGVKind/car"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//RoboticMiddlewareKind">
       <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RoboticMiddlewareKind/RTMaps"/>
       <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//RoboticMiddlewareKind/AROCAM"/>
@@ -46,6 +38,15 @@
       <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//Shade/BOUNDBOX"/>
       <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//Shade/SOLID"/>
       <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//Shade/TEXTURED"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RobotML.ecore#//MobileRobotKind">
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//MobileRobotKind/AirVehicle"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//MobileRobotKind/HybridVehicle"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//MobileRobotKind/SurfaceVehicle"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//MobileRobotKind/UnderwaterVehicle"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//MobileRobotKind/CarLikeVehicle"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//MobileRobotKind/DifferentialVehicle"/>
+      <genEnumLiterals ecoreEnumLiteral="RobotML.ecore#//MobileRobotKind/LeggedVehicle"/>
     </genEnums>
     <genClasses ecoreClass="RobotML.ecore#//Transition">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Transition/base_Transition"/>
@@ -63,11 +64,13 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/base_State"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//State/behavior"/>
     </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//ActuatedJoint"/>
+    <genClasses ecoreClass="RobotML.ecore#//Joint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//Joint/base_Connector"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//CompleteBonding"/>
     <genClasses ecoreClass="RobotML.ecore#//Robot">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Robot/kind"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Robot/mass"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Robot/width"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Robot/ugvKind"/>
     </genClasses>
     <genClasses ecoreClass="RobotML.ecore#//System">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//System/base_Class"/>
@@ -81,6 +84,8 @@
     <genClasses ecoreClass="RobotML.ecore#//PhysicalObject">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//PhysicalObject/evelovesIn"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//PhysicalObject/hasSurface"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//PhysicalObject/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//PhysicalObject/mass"/>
     </genClasses>
     <genClasses ecoreClass="RobotML.ecore#//Environment"/>
     <genClasses ecoreClass="RobotML.ecore#//Surface"/>
@@ -100,6 +105,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotML.ecore#//RoboticSystem/localPosition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotML.ecore#//RoboticSystem/localOrientation"/>
     </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//CyberPhysicalSystem"/>
     <genClasses ecoreClass="RobotML.ecore#//SensorSystem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SensorSystem/frequency"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SensorSystem/identifier"/>
@@ -112,14 +118,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Software/deadline"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//Software/wcet"/>
     </genClasses>
-    <genClasses ecoreClass="RobotML.ecore#//PrimitiveData">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//PrimitiveData/base_PrimitiveType"/>
-    </genClasses>
-    <genClasses ecoreClass="RobotML.ecore#//DataType">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//DataType/base_DataType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//DataType/native"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//DataType/libraryPath"/>
-    </genClasses>
     <genClasses ecoreClass="RobotML.ecore#//EngineSystem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/vehicleTraction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/maxEngineForce"/>
@@ -128,24 +126,25 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/maxAllowedVelocity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//EngineSystem/gear_ration"/>
     </genClasses>
-    <genClasses ecoreClass="RobotML.ecore#//WheelSystem">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelRadius"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelWidth"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/suspensionRestLength"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelConnectionHeight"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/typeOfWheel"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDkp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDki"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDkd"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelSteeringPIDkp"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelSteeringPIDkd"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelFriction"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/suspensionStiffness"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/suspensionDamping"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/suspensionCompression"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDmaxSum"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//WheelSystem/wheelVelocityPIDmaxVal"/>
+    <genClasses ecoreClass="RobotML.ecore#//SteeredWheelSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelRadius"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelWidth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/suspensionRestLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelConnectionHeight"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/typeOfWheel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelVelocityPIDkp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelVelocityPIDki"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelVelocityPIDkd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelSteeringPIDkp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelSteeringPIDkd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelFriction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/suspensionStiffness"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/suspensionDamping"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/suspensionCompression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelVelocityPIDmaxSum"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SteeredWheelSystem/wheelVelocityPIDmaxVal"/>
     </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//LocomotionSystem"/>
     <genClasses ecoreClass="RobotML.ecore#//ImageSensorSystem"/>
     <genClasses ecoreClass="RobotML.ecore#//CameraSystem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//CameraSystem/width"/>
@@ -177,10 +176,6 @@
     <genClasses ecoreClass="RobotML.ecore#//LocalizationSensorSystem"/>
     <genClasses ecoreClass="RobotML.ecore#//GPSSystem">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RobotML.ecore#//GPSSystem/originPosition"/>
-    </genClasses>
-    <genClasses ecoreClass="RobotML.ecore#//SimulatedSystem">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//SimulatedSystem/base_Property"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//SimulatedSystem/mesh"/>
     </genClasses>
     <genClasses ecoreClass="RobotML.ecore#//AlgorithmLibrary">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//AlgorithmLibrary/base_Class"/>
@@ -240,6 +235,31 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//OnProperty/property"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RobotML.ecore#//OnProperty/base_Parameter"/>
     </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//Chassis"/>
+    <genClasses ecoreClass="RobotML.ecore#//SupportingStructure"/>
+    <genClasses ecoreClass="RobotML.ecore#//MechanicalLinkage"/>
+    <genClasses ecoreClass="RobotML.ecore#//Leg"/>
+    <genClasses ecoreClass="RobotML.ecore#//LocomotionHardware"/>
+    <genClasses ecoreClass="RobotML.ecore#//ActuatorHardware"/>
+    <genClasses ecoreClass="RobotML.ecore#//MobileRobot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RobotML.ecore#//MobileRobot/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="RobotML.ecore#//Manipulator"/>
+    <genClasses ecoreClass="RobotML.ecore#//PilotedSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//PowerHardware"/>
+    <genClasses ecoreClass="RobotML.ecore#//SensorHardware"/>
+    <genClasses ecoreClass="RobotML.ecore#//GraspingHardware"/>
+    <genClasses ecoreClass="RobotML.ecore#//SteeredWheelHardware"/>
+    <genClasses ecoreClass="RobotML.ecore#//Arm"/>
+    <genClasses ecoreClass="RobotML.ecore#//LegSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//GraspingSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//WeaponSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//ManMachineInterfaceSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//ClosedLoopControlSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//OpenLoopControlSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//RoboticHead"/>
+    <genClasses ecoreClass="RobotML.ecore#//NavigationCommandSystem"/>
+    <genClasses ecoreClass="RobotML.ecore#//JoysticNavigationSystem"/>
   </genPackages>
   <genPackages prefix="RobotMLLibraries" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
       ecorePackage="RobotMLLibraries.ecore#/">

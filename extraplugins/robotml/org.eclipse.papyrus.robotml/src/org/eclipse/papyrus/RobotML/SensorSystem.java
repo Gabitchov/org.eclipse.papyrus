@@ -20,7 +20,7 @@ package org.eclipse.papyrus.RobotML;
  * @model
  * @generated
  */
-public interface SensorSystem extends RoboticSystem {
+public interface SensorSystem extends RoboticSystem, CyberPhysicalSystem {
 	/**
 	 * Returns the value of the '<em><b>Frequency</b></em>' attribute.
 	 * <!-- begin-user-doc -->
