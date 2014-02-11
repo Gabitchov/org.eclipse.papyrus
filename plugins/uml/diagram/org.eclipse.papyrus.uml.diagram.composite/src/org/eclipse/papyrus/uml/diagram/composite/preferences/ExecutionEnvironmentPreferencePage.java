@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 
@@ -17,7 +17,7 @@ public class ExecutionEnvironmentPreferencePage extends AbstractPapyrusNodePrefe
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "structure" };
+	public static final String compartments[] = { "internal structure" };
 
 	/**
 	 * @generated
@@ -77,7 +77,7 @@ public class ExecutionEnvironmentPreferencePage extends AbstractPapyrusNodePrefe
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("structure", Boolean.TRUE);
+		map.put("internal structure", Boolean.TRUE);
 		return map;
 	}
 
@@ -86,7 +86,7 @@ public class ExecutionEnvironmentPreferencePage extends AbstractPapyrusNodePrefe
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("structure", Boolean.TRUE);
+		map.put("internal structure", Boolean.TRUE);
 		return map;
 	}
 
