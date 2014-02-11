@@ -30,7 +30,7 @@ public class ModelPreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "ModelElementCompartment" };
+	public static final String compartments[] = { "packaged elements" };
 
 	/**
 	 * @generated
@@ -90,7 +90,7 @@ public class ModelPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("ModelElementCompartment", Boolean.TRUE);
+		map.put("packaged elements", Boolean.TRUE);
 		return map;
 	}
 
@@ -99,7 +99,7 @@ public class ModelPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("ModelElementCompartment", Boolean.FALSE);
+		map.put("packaged elements", Boolean.FALSE);
 		return map;
 	}
 

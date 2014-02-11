@@ -30,7 +30,7 @@ public class EnumerationPreferencePage extends AbstractPapyrusNodePreferencePage
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "EnumerationEnumerationLiteral" };
+	public static final String compartments[] = { "literals" };
 
 	/**
 	 * @generated
@@ -90,7 +90,7 @@ public class EnumerationPreferencePage extends AbstractPapyrusNodePreferencePage
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("EnumerationEnumerationLiteral", Boolean.TRUE);
+		map.put("literals", Boolean.TRUE);
 		return map;
 	}
 
@@ -99,7 +99,7 @@ public class EnumerationPreferencePage extends AbstractPapyrusNodePreferencePage
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("EnumerationEnumerationLiteral", Boolean.FALSE);
+		map.put("literals", Boolean.FALSE);
 		return map;
 	}
 

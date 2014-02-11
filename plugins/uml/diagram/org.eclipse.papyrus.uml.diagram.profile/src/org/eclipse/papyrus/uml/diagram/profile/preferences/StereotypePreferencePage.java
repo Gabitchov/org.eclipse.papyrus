@@ -30,7 +30,7 @@ public class StereotypePreferencePage extends AbstractPapyrusNodePreferencePage 
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "AttributeCompartment", "OperationCompartment" };
+	public static final String compartments[] = { "attributes", "operations" };
 
 	/**
 	 * @generated
@@ -90,8 +90,8 @@ public class StereotypePreferencePage extends AbstractPapyrusNodePreferencePage 
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("AttributeCompartment", Boolean.TRUE);
-		map.put("OperationCompartment", Boolean.FALSE);
+		map.put("attributes", Boolean.TRUE);
+		map.put("operations", Boolean.FALSE);
 		return map;
 	}
 
@@ -100,8 +100,8 @@ public class StereotypePreferencePage extends AbstractPapyrusNodePreferencePage 
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("AttributeCompartment", Boolean.FALSE);
-		map.put("OperationCompartment", Boolean.FALSE);
+		map.put("attributes", Boolean.FALSE);
+		map.put("operations", Boolean.FALSE);
 		return map;
 	}
 

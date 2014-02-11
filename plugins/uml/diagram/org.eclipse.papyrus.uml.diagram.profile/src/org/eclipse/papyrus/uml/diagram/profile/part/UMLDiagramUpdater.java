@@ -127,37 +127,37 @@ public class UMLDiagramUpdater {
 		case PackageEditPartCN.VISUAL_ID:
 			return getPackage_1012SemanticChildren(view);
 		case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
-			return getPackagePackageableElementCompartment_1005SemanticChildren(view);
+			return getPackagePackagedelements_1005SemanticChildren(view);
 		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
-			return getPackagePackageableElementCompartment_11SemanticChildren(view);
+			return getPackagePackagedelements_11SemanticChildren(view);
 		case ProfilePackageableElementCompartmentEditPartTN.VISUAL_ID:
-			return getProfileProfilePackageableElementCompartment_1042SemanticChildren(view);
+			return getProfilePackagedelements_1042SemanticChildren(view);
 		case ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID:
-			return getProfileProfilePackageableElementCompartment_1051SemanticChildren(view);
+			return getProfilePackagedelements_1051SemanticChildren(view);
 		case StereotypeAttributeCompartmentEditPart.VISUAL_ID:
-			return getStereotypeAttributeCompartment_1071SemanticChildren(view);
+			return getStereotypeAttributes_1071SemanticChildren(view);
 		case StereotypeAttributeCompartmentEditPartCN.VISUAL_ID:
-			return getStereotypeAttributeCompartment_1052SemanticChildren(view);
+			return getStereotypeAttributes_1052SemanticChildren(view);
 		case StereotypeOperationCompartmentEditPart.VISUAL_ID:
-			return getStereotypeOperationCompartment_1019SemanticChildren(view);
+			return getStereotypeOperations_1019SemanticChildren(view);
 		case StereotypeOperationCompartmentEditPartCN.VISUAL_ID:
-			return getStereotypeOperationCompartment_1053SemanticChildren(view);
+			return getStereotypeOperations_1053SemanticChildren(view);
 		case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
-			return getModelModelElementCompartment_1057SemanticChildren(view);
+			return getModelPackagedelements_1057SemanticChildren(view);
 		case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
-			return getModelModelElementCompartment_1058SemanticChildren(view);
+			return getModelPackagedelements_1058SemanticChildren(view);
 		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
-			return getEnumerationEnumerationEnumerationLiteral_1062SemanticChildren(view);
+			return getEnumerationLiterals_1062SemanticChildren(view);
 		case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
-			return getEnumerationEnumerationEnumerationLiteral_1063SemanticChildren(view);
+			return getEnumerationLiterals_1063SemanticChildren(view);
 		case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
-			return getDataTypeDataTypeAttributeCompartment_1067SemanticChildren(view);
+			return getDataTypeAttributes_1067SemanticChildren(view);
 		case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
-			return getDataTypeDataTypeAttributeCompartment_1069SemanticChildren(view);
+			return getDataTypeAttributes_1069SemanticChildren(view);
 		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
-			return getDataTypeDataTypeOperationCompartment_1068SemanticChildren(view);
+			return getDataTypeOperations_1068SemanticChildren(view);
 		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
-			return getDataTypeDataTypeOperationCompartment_1070SemanticChildren(view);
+			return getDataTypeOperations_1070SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -268,7 +268,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getPackagePackageableElementCompartment_1005SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getPackagePackagedelements_1005SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -324,7 +324,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getPackagePackageableElementCompartment_11SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getPackagePackagedelements_11SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -380,7 +380,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getProfileProfilePackageableElementCompartment_1042SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getProfilePackagedelements_1042SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -448,7 +448,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getProfileProfilePackageableElementCompartment_1051SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getProfilePackagedelements_1051SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -516,7 +516,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getStereotypeAttributeCompartment_1071SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getStereotypeAttributes_1071SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -540,7 +540,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getStereotypeAttributeCompartment_1052SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getStereotypeAttributes_1052SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -564,7 +564,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getStereotypeOperationCompartment_1019SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getStereotypeOperations_1019SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -588,7 +588,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getStereotypeOperationCompartment_1053SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getStereotypeOperations_1053SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -612,7 +612,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getModelModelElementCompartment_1057SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getModelPackagedelements_1057SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -668,7 +668,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getModelModelElementCompartment_1058SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getModelPackagedelements_1058SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -724,7 +724,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getEnumerationEnumerationEnumerationLiteral_1062SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getEnumerationLiterals_1062SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -748,7 +748,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getEnumerationEnumerationEnumerationLiteral_1063SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getEnumerationLiterals_1063SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -772,7 +772,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getDataTypeDataTypeAttributeCompartment_1067SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getDataTypeAttributes_1067SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -796,7 +796,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getDataTypeDataTypeAttributeCompartment_1069SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getDataTypeAttributes_1069SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -820,7 +820,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getDataTypeDataTypeOperationCompartment_1068SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getDataTypeOperations_1068SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -844,7 +844,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getDataTypeDataTypeOperationCompartment_1070SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getDataTypeOperations_1070SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
