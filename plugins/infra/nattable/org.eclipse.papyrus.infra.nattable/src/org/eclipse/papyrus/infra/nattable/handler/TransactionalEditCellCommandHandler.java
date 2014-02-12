@@ -24,7 +24,6 @@ import org.eclipse.nebula.widgets.nattable.config.IEditableRule;
 import org.eclipse.nebula.widgets.nattable.edit.ActiveCellEditorRegistry;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.EditTypeEnum;
-import org.eclipse.nebula.widgets.nattable.edit.ICellEditHandler;
 import org.eclipse.nebula.widgets.nattable.edit.InlineEditHandler;
 import org.eclipse.nebula.widgets.nattable.edit.command.EditCellCommand;
 import org.eclipse.nebula.widgets.nattable.edit.command.UpdateDataCommand;
@@ -33,6 +32,7 @@ import org.eclipse.nebula.widgets.nattable.edit.gui.CellEditDialogFactory;
 import org.eclipse.nebula.widgets.nattable.edit.gui.ICellEditDialog;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
+import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.widget.EditModeEnum;
 import org.eclipse.papyrus.infra.nattable.Activator;
@@ -90,7 +90,7 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 
 			// Try to open an in-line editor before falling back to a dialog
 			if(cellEditor.openInline(configRegistry, configLabels)) {
-				ICellEditHandler editHandler = new InlineEditHandler(layer, columnPosition, rowPosition);
+				MyInlineEditHandler editHandler = new MyInlineEditHandler(layer, columnPosition, rowPosition);
 
 				Rectangle editorBounds = layer.getLayerPainter().adjustCellBounds(columnPosition, rowPosition, new Rectangle(cellBounds.x, cellBounds.y, cellBounds.width, cellBounds.height));
 
@@ -102,10 +102,11 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 
 					cellEditor.addEditorControlListeners();
 					ActiveCellEditorRegistry.registerActiveCellEditor(cellEditor);
-					
-					// Command succeeded but should not appear on the undo stack because we haven't completed an edit (only activated the cell editor)
-					result = ExecutionStatusKind.OK_ROLLBACK;
 				}
+
+				// Command succeeded but should not appear on the undo stack because we haven't completed an edit (only activated the cell editor),
+				// unless the cell editor is like the CheckBoxCellEditor that commits upon activation
+				result = editHandler.isCommitted() ? ExecutionStatusKind.OK_COMPLETE : ExecutionStatusKind.OK_ROLLBACK;
 			} else {
 				// The dialog case
 				List<ILayerCell> cells = new ArrayList<ILayerCell>(1);
@@ -128,7 +129,7 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 			return ExecutionStatusKind.FAIL_ROLLBACK;
 		}
 
-		ICellEditor cellEditor = (ICellEditor)configRegistry.getConfigAttribute(EditConfigAttributes.CELL_EDITOR, "EDIT", ((ILayerCell)cells.get(0)).getConfigLabels().getLabels());
+		ICellEditor cellEditor = (ICellEditor)configRegistry.getConfigAttribute(EditConfigAttributes.CELL_EDITOR, DisplayMode.EDIT, ((ILayerCell)cells.get(0)).getConfigLabels().getLabels());
 
 		if((cells.size() != 1) && ((cells.size() <= 1) || !(supportMultiEdit(cells, cellEditor, configRegistry)))) {
 			return ExecutionStatusKind.FAIL_ROLLBACK;
@@ -166,5 +167,31 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 			}
 		}
 		return true;
+	}
+	
+	//
+	// Nested types
+	//
+	
+	private static class MyInlineEditHandler extends InlineEditHandler {
+
+		private boolean committed;
+
+		MyInlineEditHandler(ILayer layer, int columnPosition, int rowPosition) {
+			super(layer, columnPosition, rowPosition);
+		}
+
+		@Override
+		public boolean commit(Object canonicalValue, MoveDirectionEnum direction) {
+			boolean result = super.commit(canonicalValue, direction);
+			
+			committed = result || committed;
+			
+			return result;
+		}
+
+		boolean isCommitted() {
+			return committed;
+		}
 	}
 }
