@@ -8,7 +8,10 @@
       <packagedElement xmi:type="uml:Component" xmi:id="_Y-QksGe-EeOeZsTtUeHY9w" name="Component2"/>
       <packagedElement xmi:type="uml:Component" xmi:id="_M9hEwGfAEeOeZsTtUeHY9w" name="Component1"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="_dHWqAP1VEd-WkaQf4YgINA" name="PackageWithAllElements"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_dHWqAP1VEd-WkaQf4YgINA" name="PackageWithAllElements">
+      <packagedElement xmi:type="uml:Class" xmi:id="_FbcBIJO3EeOs4_QQK50yyQ" name="Class" isAbstract="true"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Lw35MJO3EeOs4_QQK50yyQ" name="StereotypeWithFeaturesToSetClass1"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_Caa0gGczEeO-Gf1_f5pJdw" name="OtherPackageWithComponents">
       <packagedElement xmi:type="uml:Component" xmi:id="_8PG7EGctEeOYUqC_A3tTEw" name="Component"/>
       <packagedElement xmi:type="uml:Component" xmi:id="_TCAGQGc9EeOeFPMFS4Wv8Q" name="Component1"/>
@@ -106,4 +109,8 @@
   <ExtendedTypesTestsProfile_1:Module xmi:id="_cjKe8HkOEeOwQstt3pSj0Q" kind="Electrical"/>
   <ExtendedTypesTestsProfile_1:Partition xmi:id="_gW-u0HkOEeOwQstt3pSj0Q"/>
   <ExtendedTypesTestsProfile_1:Partition xmi:id="_hAeXwHkOEeOwQstt3pSj0Q"/>
+  <ExtendedTypesTestsProfile:StereotypeWithFeaturesToSet xmi:id="_FccGsJO3EeOs4_QQK50yyQ" base_Element="_FbcBIJO3EeOs4_QQK50yyQ" stringFeature="MyOtherValue" value="18" boolean="true" enumeration="Enum2"/>
+  <ExtendedTypesTestsProfile:StereotypeWithFeaturesToSet xmi:id="_LxXBYJO3EeOs4_QQK50yyQ" base_Element="_Lw35MJO3EeOs4_QQK50yyQ" stringFeature="Test Demo" value="3" enumeration="Enum2">
+    <multiStrings>demo</multiStrings>
+  </ExtendedTypesTestsProfile:StereotypeWithFeaturesToSet>
 </xmi:XMI>

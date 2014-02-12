@@ -150,22 +150,13 @@ public interface SetValuesActionConfigurationPackage extends EPackage {
 	int FEATURE_TO_SET__VALUE = 1;
 
 	/**
-	 * The feature id for the '<em><b>At Runtime</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_TO_SET__AT_RUNTIME = 2;
-
-	/**
 	 * The number of structural features of the '<em>Feature To Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_TO_SET_FEATURE_COUNT = 3;
+	int FEATURE_TO_SET_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.impl.FeatureValueImpl <em>Feature Value</em>}' class.
@@ -335,17 +326,6 @@ public interface SetValuesActionConfigurationPackage extends EPackage {
 	EReference getFeatureToSet_Value();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.FeatureToSet#isAtRuntime <em>At Runtime</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>At Runtime</em>'.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.FeatureToSet#isAtRuntime()
-	 * @see #getFeatureToSet()
-	 * @generated
-	 */
-	EAttribute getFeatureToSet_AtRuntime();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.FeatureValue <em>Feature Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -482,14 +462,6 @@ public interface SetValuesActionConfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FEATURE_TO_SET__VALUE = eINSTANCE.getFeatureToSet_Value();
-
-		/**
-		 * The meta object literal for the '<em><b>At Runtime</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FEATURE_TO_SET__AT_RUNTIME = eINSTANCE.getFeatureToSet_AtRuntime();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.impl.FeatureValueImpl <em>Feature Value</em>}' class.

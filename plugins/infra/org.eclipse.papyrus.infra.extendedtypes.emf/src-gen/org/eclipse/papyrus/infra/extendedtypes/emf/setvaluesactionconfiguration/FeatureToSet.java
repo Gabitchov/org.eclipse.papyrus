@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.FeatureToSet#getFeatureName <em>Feature Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.FeatureToSet#getValue <em>Value</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.FeatureToSet#isAtRuntime <em>At Runtime</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,31 +73,5 @@ public interface FeatureToSet extends EObject {
 	 * @generated
 	 */
 	void setValue(FeatureValue value);
-
-	/**
-	 * Returns the value of the '<em><b>At Runtime</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>At Runtime</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>At Runtime</em>' attribute.
-	 * @see #setAtRuntime(boolean)
-	 * @see org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfigurationPackage#getFeatureToSet_AtRuntime()
-	 * @model
-	 * @generated
-	 */
-	boolean isAtRuntime();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.FeatureToSet#isAtRuntime <em>At Runtime</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>At Runtime</em>' attribute.
-	 * @see #isAtRuntime()
-	 * @generated
-	 */
-	void setAtRuntime(boolean value);
 
 } // FeatureToSet

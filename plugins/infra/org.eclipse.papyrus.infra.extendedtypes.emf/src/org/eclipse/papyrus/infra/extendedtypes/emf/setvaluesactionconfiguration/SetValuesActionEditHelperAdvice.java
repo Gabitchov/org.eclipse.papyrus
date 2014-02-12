@@ -12,41 +12,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.resources.GMFHelper;
-import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.extendedtypes.IActionEditHelperAdvice;
 import org.eclipse.papyrus.infra.extendedtypes.emf.Activator;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.views.properties.contexts.View;
-import org.eclipse.papyrus.views.properties.creation.EditionDialog;
-import org.eclipse.papyrus.views.properties.creation.PropertyEditorFactory;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.runtime.ViewConstraintEngine;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 
 /**
  * advice for the {@link SetValuesActionConfiguration}
@@ -56,7 +37,7 @@ public class SetValuesActionEditHelperAdvice extends AbstractEditHelperAdvice im
 	/** list of the features to set */
 	//protected Map<String, FeatureValue> featuresToValues = null; 
 	/** list of runtime defined features */
-	protected Map<String, FeatureValue> featuresToRuntimeDefinitions = null;
+	//protected Map<String, FeatureValue> featuresToRuntimeDefinitions = null;
 
 	/** list of static defined features */
 	protected Map<String, FeatureValue> featuresToStaticDefinitions = null;
@@ -65,17 +46,13 @@ public class SetValuesActionEditHelperAdvice extends AbstractEditHelperAdvice im
 	 * {@inheritDoc}
 	 */
 	public void init(SetValuesActionConfiguration configuration) {
-		featuresToRuntimeDefinitions = new HashMap<String, FeatureValue>();
+		//featuresToRuntimeDefinitions = new HashMap<String, FeatureValue>();
 		featuresToStaticDefinitions = new HashMap<String, FeatureValue>();
 		if(configuration == null) {
 			return;
 		}
 		for(FeatureToSet featureToSet : configuration.getFeaturesToSet()) {
-			if(featureToSet.isAtRuntime()) {
-				featuresToRuntimeDefinitions.put(featureToSet.getFeatureName(), featureToSet.getValue());
-			} else {
-				featuresToStaticDefinitions.put(featureToSet.getFeatureName(), featureToSet.getValue());	
-			}
+			featuresToStaticDefinitions.put(featureToSet.getFeatureName(), featureToSet.getValue());	
 		}
 	}
 
@@ -147,16 +124,16 @@ public class SetValuesActionEditHelperAdvice extends AbstractEditHelperAdvice im
 			}
 		}
 		
-		if(!featuresToRuntimeDefinitions.isEmpty()) {
-			ICommand command = getDynamicSetFeatureValueCommand(elementToConfigure, featuresToRuntimeDefinitions, service, request);
-			if(command !=null) {
-				if(resultCommand == null) {
-					resultCommand = command; 
-				} else {
-					resultCommand = resultCommand.compose(command);
-				}
-			}
-		}
+//		if(!featuresToRuntimeDefinitions.isEmpty()) {
+//			ICommand command = getDynamicSetFeatureValueCommand(elementToConfigure, featuresToRuntimeDefinitions, service, request);
+//			if(command !=null) {
+//				if(resultCommand == null) {
+//					resultCommand = command; 
+//				} else {
+//					resultCommand = resultCommand.compose(command);
+//				}
+//			}
+//		}
 		
 		
 		if(resultCommand!=null) {
@@ -167,23 +144,6 @@ public class SetValuesActionEditHelperAdvice extends AbstractEditHelperAdvice im
 		return super.getAfterConfigureCommand(request);
 	}
 
-	/**
-	 * @param elementToConfigure
-	 * @param featuresToRuntimeDefinitions2
-	 * @param service
-	 * @param request
-	 * @return
-	 */
-	protected ICommand getDynamicSetFeatureValueCommand(final EObject elementToConfigure, Map<String, FeatureValue> featuresToRuntimeDefinitions, IElementEditService service, ConfigureRequest request) {
-		return new AbstractTransactionalCommand(request.getEditingDomain(), "Editing "+EMFCoreUtil.getName(elementToConfigure), Collections.singletonList(WorkspaceSynchronizer.getFile((elementToConfigure.eResource())))) {
-			
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				new PropertyEditorFactory().edit(Display.getCurrent().getFocusControl(), elementToConfigure);
-				return CommandResult.newOKCommandResult();
-			}
-		};
-	}
 
 	/**
 	 * @param elementToConfigure

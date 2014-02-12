@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extendedtypes:ExtendedElementTypeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:applystereotypeactionconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/uml/applystereotypeaction/1.0" xmlns:extendedtypes="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0" xmlns:invariantcontainerconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0" xmlns:invariantsemantictypeconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0" xmlns:invariantstereotypeconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/stereotype/1.0" xmlns:setvaluesactionconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/emf/setvaluesaction/1.0" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" name="Tests extended types" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.tests">
+<extendedtypes:ExtendedElementTypeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:applystereotypeactionconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/uml/applystereotypeaction/1.0" xmlns:extendedtypes="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0" xmlns:invariantcontainerconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0" xmlns:invariantsemantictypeconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0" xmlns:invariantstereotypeconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/stereotype/1.0" xmlns:runtimevalueseditionactionconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/emf/runtimevalueseditionaction/1.0" xmlns:setvaluesactionconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/emf/setvaluesaction/1.0" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" name="Tests extended types" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.tests">
   <elementType xsi:type="invariantsemantictypeconfiguration:InvariantSemanticTypeConfiguration" name="Component in specific package only" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.specificcomponent">
     <iconEntry iconPath="icons/full/obj16/add_obj.gif" bundleId="org.eclipse.ui"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
@@ -109,6 +109,14 @@
           </value>
         </featuresToSet>
       </stereotypesToApply>
+    </actionConfiguration>
+  </elementType>
+  <elementType xsi:type="extendedtypes:AspectSemanticTypeConfiguration" name="Package With Stereotype And Renamed - View" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.classSimpleStereotypeRenameWithView">
+    <specializedTypesID>org.eclipse.papyrus.infra.extendedtypes.tests.classSimpleStereotypeRename</specializedTypesID>
+    <actionConfiguration xsi:type="runtimevalueseditionactionconfiguration:RuntimeValuesEditionActionConfiguration">
+      <viewsToDisplay>
+        <view href="ExtendedTypesTestsProfile.ctx#//@views.0"/>
+      </viewsToDisplay>
     </actionConfiguration>
   </elementType>
 </extendedtypes:ExtendedElementTypeSet>

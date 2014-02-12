@@ -15,7 +15,6 @@
     <genClasses ecoreClass="SetValuesActionConfiguration.ecore#//FeatureToSet">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetValuesActionConfiguration.ecore#//FeatureToSet/featureName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetValuesActionConfiguration.ecore#//FeatureToSet/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetValuesActionConfiguration.ecore#//FeatureToSet/atRuntime"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SetValuesActionConfiguration.ecore#//FeatureValue"/>
     <genClasses ecoreClass="SetValuesActionConfiguration.ecore#//DynamicValue"/>

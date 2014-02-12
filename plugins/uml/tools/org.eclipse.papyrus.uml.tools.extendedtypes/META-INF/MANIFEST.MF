@@ -12,7 +12,7 @@ Export-Package: org.eclipse.papyrus.uml.tools.extendedtypes,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.2";visibility:=reexport,
+ org.eclipse.papyrus.infra.extendedtypes;visibility:=reexport;bundle-version="0.10.2",
  org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
@@ -28,9 +28,7 @@ Bundle-Version: 0.10.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.tools.extendedtypes.Activato
- r$Implementation
-Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.extendedtypes;singl
- eton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.tools.extendedtypes.Activator$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.extendedtypes;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

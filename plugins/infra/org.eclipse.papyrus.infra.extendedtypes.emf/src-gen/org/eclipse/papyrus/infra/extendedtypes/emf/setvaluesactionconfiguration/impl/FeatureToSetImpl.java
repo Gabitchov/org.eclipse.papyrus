@@ -24,7 +24,6 @@ import org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.impl.FeatureToSetImpl#getFeatureName <em>Feature Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.impl.FeatureToSetImpl#getValue <em>Value</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.impl.FeatureToSetImpl#isAtRuntime <em>At Runtime</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,26 +59,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 	 * @ordered
 	 */
 	protected FeatureValue value;
-
-	/**
-	 * The default value of the '{@link #isAtRuntime() <em>At Runtime</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAtRuntime()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean AT_RUNTIME_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isAtRuntime() <em>At Runtime</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAtRuntime()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean atRuntime = AT_RUNTIME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -169,27 +148,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAtRuntime() {
-		return atRuntime;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAtRuntime(boolean newAtRuntime) {
-		boolean oldAtRuntime = atRuntime;
-		atRuntime = newAtRuntime;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SetValuesActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME, oldAtRuntime, atRuntime));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -211,8 +169,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 				return getFeatureName();
 			case SetValuesActionConfigurationPackage.FEATURE_TO_SET__VALUE:
 				return getValue();
-			case SetValuesActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME:
-				return isAtRuntime();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -230,9 +186,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 				return;
 			case SetValuesActionConfigurationPackage.FEATURE_TO_SET__VALUE:
 				setValue((FeatureValue)newValue);
-				return;
-			case SetValuesActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME:
-				setAtRuntime((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -252,9 +205,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 			case SetValuesActionConfigurationPackage.FEATURE_TO_SET__VALUE:
 				setValue((FeatureValue)null);
 				return;
-			case SetValuesActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME:
-				setAtRuntime(AT_RUNTIME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -271,8 +221,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
 			case SetValuesActionConfigurationPackage.FEATURE_TO_SET__VALUE:
 				return value != null;
-			case SetValuesActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME:
-				return atRuntime != AT_RUNTIME_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -289,8 +237,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (featureName: ");
 		result.append(featureName);
-		result.append(", atRuntime: ");
-		result.append(atRuntime);
 		result.append(')');
 		return result.toString();
 	}

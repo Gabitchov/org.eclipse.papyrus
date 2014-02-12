@@ -249,17 +249,8 @@ public class ApplyStereotypeActionConfigurationPackageImpl extends EPackageImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFeatureToSet_AtRuntime() {
-		return (EAttribute)featureToSetEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getFeatureToSet_Value() {
-		return (EReference)featureToSetEClass.getEStructuralFeatures().get(2);
+		return (EReference)featureToSetEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -364,7 +355,6 @@ public class ApplyStereotypeActionConfigurationPackageImpl extends EPackageImpl 
 
 		featureToSetEClass = createEClass(FEATURE_TO_SET);
 		createEAttribute(featureToSetEClass, FEATURE_TO_SET__FEATURE_NAME);
-		createEAttribute(featureToSetEClass, FEATURE_TO_SET__AT_RUNTIME);
 		createEReference(featureToSetEClass, FEATURE_TO_SET__VALUE);
 
 		featureValueEClass = createEClass(FEATURE_VALUE);
@@ -431,7 +421,6 @@ public class ApplyStereotypeActionConfigurationPackageImpl extends EPackageImpl 
 
 		initEClass(featureToSetEClass, FeatureToSet.class, "FeatureToSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeatureToSet_FeatureName(), ecorePackage.getEString(), "featureName", null, 1, 1, FeatureToSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFeatureToSet_AtRuntime(), theEcorePackage.getEBoolean(), "atRuntime", null, 0, 1, FeatureToSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFeatureToSet_Value(), this.getFeatureValue(), null, "value", null, 1, 1, FeatureToSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureValueEClass, FeatureValue.class, "FeatureValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

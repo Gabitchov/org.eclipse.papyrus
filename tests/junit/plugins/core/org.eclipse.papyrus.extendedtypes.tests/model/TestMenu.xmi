@@ -27,4 +27,7 @@
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="Class - abstract - simple stereotype - set Values"
       elementTypeIdRef="org.eclipse.papyrus.infra.extendedtypes.tests.abstractclassSimpleStereotype"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="Class - abstract - simple stereotype - set Values - view"
+      elementTypeIdRef="org.eclipse.papyrus.infra.extendedtypes.tests.classSimpleStereotypeRenameWithView"/>
 </ElementCreationMenuModel:Folder>

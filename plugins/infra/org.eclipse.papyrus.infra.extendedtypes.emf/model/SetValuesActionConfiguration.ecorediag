@@ -23,10 +23,6 @@
         <element xmi:type="ecore:EAttribute" href="SetValuesActionConfiguration.ecore#//FeatureToSet/featureName"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_rSjOgVVnEeCZTbk4eXVjvg"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_lo-IgIK0EeOjkMhtoir5vQ" type="2001">
-        <element xmi:type="ecore:EAttribute" href="SetValuesActionConfiguration.ecore#//FeatureToSet/atRuntime"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_lo-IgYK0EeOjkMhtoir5vQ"/>
-      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_m7ThclVnEeCZTbk4eXVjvg"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_m7Thc1VnEeCZTbk4eXVjvg"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_m7ThdFVnEeCZTbk4eXVjvg"/>

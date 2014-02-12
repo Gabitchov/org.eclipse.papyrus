@@ -206,22 +206,13 @@ public interface ApplyStereotypeActionConfigurationPackage extends EPackage {
 	int FEATURE_TO_SET__FEATURE_NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>At Runtime</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_TO_SET__AT_RUNTIME = 1;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_TO_SET__VALUE = 2;
+	int FEATURE_TO_SET__VALUE = 1;
 
 	/**
 	 * The number of structural features of the '<em>Feature To Set</em>' class.
@@ -230,7 +221,7 @@ public interface ApplyStereotypeActionConfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_TO_SET_FEATURE_COUNT = 3;
+	int FEATURE_TO_SET_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl.FeatureValueImpl <em>Feature Value</em>}' class.
@@ -443,17 +434,6 @@ public interface ApplyStereotypeActionConfigurationPackage extends EPackage {
 	EAttribute getFeatureToSet_FeatureName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureToSet#isAtRuntime <em>At Runtime</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>At Runtime</em>'.
-	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureToSet#isAtRuntime()
-	 * @see #getFeatureToSet()
-	 * @generated
-	 */
-	EAttribute getFeatureToSet_AtRuntime();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureToSet#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -635,14 +615,6 @@ public interface ApplyStereotypeActionConfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FEATURE_TO_SET__FEATURE_NAME = eINSTANCE.getFeatureToSet_FeatureName();
-
-		/**
-		 * The meta object literal for the '<em><b>At Runtime</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FEATURE_TO_SET__AT_RUNTIME = eINSTANCE.getFeatureToSet_AtRuntime();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.

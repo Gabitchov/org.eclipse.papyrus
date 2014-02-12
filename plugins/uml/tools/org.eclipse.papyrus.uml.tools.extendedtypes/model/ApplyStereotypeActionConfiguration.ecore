@@ -19,7 +19,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="FeatureToSet">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="atRuntime" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//FeatureValue"
         containment="true"/>
   </eClassifiers>

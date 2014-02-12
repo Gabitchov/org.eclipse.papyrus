@@ -11,7 +11,6 @@
         eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//FeatureValue"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="atRuntime" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureValue" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="DynamicValue" abstract="true" eSuperTypes="#//FeatureValue"/>

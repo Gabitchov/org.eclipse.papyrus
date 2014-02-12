@@ -19,6 +19,21 @@
    </extension>
 
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RuntimeValuesEditionActionConfiguration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/emf/runtimevalueseditionaction/1.0"
+            class="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionConfigurationPackage"
+            genModel="model/RuntimeValuesEditionActionConfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated RuntimeValuesEditionActionConfiguration -->
+      <parser
+            type="runtimevalueseditionactionconfiguration"
+            class="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.util.RuntimeValuesEditionActionConfigurationResourceFactoryImpl"/>
+   </extension>
+
    <extension
          point="org.eclipse.papyrus.infra.extendedtypes.aspectActionConfiguration">
       <aspectAction
@@ -26,6 +41,16 @@
             configurationModelCreation="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfigurationModelCreation"
             creationElementValidator="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionCreationElementValidator"
             editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionEditHelperAdvice">
+      </aspectAction>
+   </extension>
+   
+    <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.aspectActionConfiguration">
+      <aspectAction
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionConfiguration"
+            configurationModelCreation="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionConfigurationModelCreation"
+            creationElementValidator="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionCreationElementValidator"
+            editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionEditHelperAdvice">
       </aspectAction>
    </extension>
 </plugin>

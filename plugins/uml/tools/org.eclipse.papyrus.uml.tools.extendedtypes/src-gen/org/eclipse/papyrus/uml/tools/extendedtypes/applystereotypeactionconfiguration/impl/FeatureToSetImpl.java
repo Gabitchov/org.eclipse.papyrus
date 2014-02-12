@@ -33,7 +33,6 @@ import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigur
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl.FeatureToSetImpl#getFeatureName <em>Feature Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl.FeatureToSetImpl#isAtRuntime <em>At Runtime</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl.FeatureToSetImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -60,26 +59,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 	 * @ordered
 	 */
 	protected String featureName = FEATURE_NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isAtRuntime() <em>At Runtime</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAtRuntime()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean AT_RUNTIME_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isAtRuntime() <em>At Runtime</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAtRuntime()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean atRuntime = AT_RUNTIME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -129,27 +108,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 		featureName = newFeatureName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__FEATURE_NAME, oldFeatureName, featureName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isAtRuntime() {
-		return atRuntime;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAtRuntime(boolean newAtRuntime) {
-		boolean oldAtRuntime = atRuntime;
-		atRuntime = newAtRuntime;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME, oldAtRuntime, atRuntime));
 	}
 
 	/**
@@ -219,8 +177,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 		switch (featureID) {
 			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__FEATURE_NAME:
 				return getFeatureName();
-			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME:
-				return isAtRuntime();
 			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__VALUE:
 				return getValue();
 		}
@@ -237,9 +193,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 		switch (featureID) {
 			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__FEATURE_NAME:
 				setFeatureName((String)newValue);
-				return;
-			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME:
-				setAtRuntime((Boolean)newValue);
 				return;
 			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__VALUE:
 				setValue((FeatureValue)newValue);
@@ -259,9 +212,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__FEATURE_NAME:
 				setFeatureName(FEATURE_NAME_EDEFAULT);
 				return;
-			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME:
-				setAtRuntime(AT_RUNTIME_EDEFAULT);
-				return;
 			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__VALUE:
 				setValue((FeatureValue)null);
 				return;
@@ -279,8 +229,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 		switch (featureID) {
 			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__FEATURE_NAME:
 				return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
-			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__AT_RUNTIME:
-				return atRuntime != AT_RUNTIME_EDEFAULT;
 			case ApplyStereotypeActionConfigurationPackage.FEATURE_TO_SET__VALUE:
 				return value != null;
 		}
@@ -299,8 +247,6 @@ public class FeatureToSetImpl extends EObjectImpl implements FeatureToSet {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (featureName: ");
 		result.append(featureName);
-		result.append(", atRuntime: ");
-		result.append(atRuntime);
 		result.append(')');
 		return result.toString();
 	}

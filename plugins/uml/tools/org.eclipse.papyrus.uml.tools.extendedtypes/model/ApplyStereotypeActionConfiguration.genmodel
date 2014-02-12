@@ -21,7 +21,6 @@
     </genClasses>
     <genClasses ecoreClass="ApplyStereotypeActionConfiguration.ecore#//FeatureToSet">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeActionConfiguration.ecore#//FeatureToSet/featureName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeActionConfiguration.ecore#//FeatureToSet/atRuntime"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ApplyStereotypeActionConfiguration.ecore#//FeatureToSet/value"/>
     </genClasses>
     <genClasses image="false" ecoreClass="ApplyStereotypeActionConfiguration.ecore#//FeatureValue"/>
