@@ -85,14 +85,12 @@ public class AssociationNoneEditHelperAdvice extends AssociationEditHelperAdvice
 	 * @throws ExecutionException 
 	 */	
 	protected Property createTargetProperty(Property targetProperty, Classifier propertyContainer, Type propertyType, Association association, TransactionalEditingDomain editingDomain, IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		addSourceInModel(targetProperty, propertyContainer, propertyType, association);
 		setPropertyType(targetProperty, propertyType, editingDomain, progressMonitor, info);
 		setPropertyName(targetProperty);
 		return targetProperty;
 	}
 	
 	protected Property createSourceProperty(Property sourceProperty, Classifier propertyContainer, Type propertyType, Association association, TransactionalEditingDomain editingDomain, IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		addTargetInModel(sourceProperty, propertyContainer, propertyType, association);
 		setPropertyType(sourceProperty, propertyType, editingDomain, progressMonitor, info);
 		setPropertyName(sourceProperty);
 		return sourceProperty;
@@ -216,6 +214,8 @@ public class AssociationNoneEditHelperAdvice extends AssociationEditHelperAdvice
 					association.getMemberEnds().add(sourceProperty);
 
 					// Create source and target ends
+					addSourceInModel(targetProperty, sourceType, targetType, association);
+					addTargetInModel(sourceProperty, targetType, sourceType, association);
 					createTargetProperty(targetProperty, sourceType, targetType, association, request.getEditingDomain(), progressMonitor, info);
 					configureSourceProperty(targetProperty);
 					createSourceProperty(sourceProperty, targetType, sourceType, association, request.getEditingDomain(), progressMonitor, info);

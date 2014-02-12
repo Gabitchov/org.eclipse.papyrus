@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -44,11 +45,13 @@ import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.service.types.Activator;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
@@ -78,23 +81,22 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected ICommand getBeforeSetCommand(SetRequest request) {
-  		ICommand gmfCommand = super.getBeforeSetCommand(request);
+		ICommand gmfCommand = super.getBeforeSetCommand(request);
 
 		EObject elementToEdit = request.getElementToEdit();
-		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && 
-				(request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() instanceof Type)) {
+		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (request.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (request.getValue() instanceof Type)) {
 
 			Property propertyToEdit = (Property)elementToEdit;
 
 			// SysML specification : all property typed by a ConstraintBlock must have a ContraintProperty stereotype applied
-			if (request.getValue() instanceof org.eclipse.uml2.uml.Class) {
+			if(request.getValue() instanceof org.eclipse.uml2.uml.Class) {
 				ICommand stereotypeApplicationCommand = getConstraintPropertyStereotypeApplicationCommand(propertyToEdit, (org.eclipse.uml2.uml.Class)request.getValue(), request);
 				gmfCommand = CompositeCommand.compose(gmfCommand, stereotypeApplicationCommand);
 			}
 
 			// Exclude ConstraintParameter (simple property without ConstraintProperty stereotype owned by a ConstraintBlock) 
-			if (propertyToEdit.eContainer() instanceof org.eclipse.uml2.uml.Class && UMLUtil.getStereotypeApplication((Element)propertyToEdit.eContainer(), ConstraintBlock.class) != null) {
-				if (UMLUtil.getStereotypeApplication(propertyToEdit, ConstraintProperty.class) == null) {
+			if(propertyToEdit.eContainer() instanceof org.eclipse.uml2.uml.Class && UMLUtil.getStereotypeApplication((Element)propertyToEdit.eContainer(), ConstraintBlock.class) != null) {
+				if(UMLUtil.getStereotypeApplication(propertyToEdit, ConstraintProperty.class) == null) {
 					return gmfCommand;
 				}
 			}
@@ -103,19 +105,16 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 
 			// The edited property has to be related to a SysML association
 			if((relatedAssociation == null) || !(ElementUtil.hasNature(relatedAssociation, SysMLElementTypes.SYSML_NATURE))) {
-				
+
 				// If no association exist and the new type is a Block 
 				// (not a ConstraintBlock => a property typed by a ConstraintBlock is a ConstraintProperty, not a Part neither a Reference),
 				// add the association
-				if ((relatedAssociation == null) 
-					&& ((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue())
-					&& !((ISpecializationType) SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type) request.getValue())
-					&& ((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches(propertyToEdit.eContainer())) {
-					
+				if((relatedAssociation == null) && ((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches((Type)request.getValue()) && !((ISpecializationType)SysMLElementTypes.CONSTRAINT_BLOCK).getMatcher().matches((Type)request.getValue()) && ((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(propertyToEdit.eContainer())) {
+
 					ICommand addAssociationCommand = getCreatePartAssociationCommand((org.eclipse.uml2.uml.Class)propertyToEdit.eContainer(), propertyToEdit, (org.eclipse.uml2.uml.Class)request.getValue());
 					gmfCommand = CompositeCommand.compose(gmfCommand, addAssociationCommand);
 				}
-				
+
 				return gmfCommand;
 			}
 
@@ -135,10 +134,10 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 			// If the new type is not a block, destroy related association
 			// This must be done only if the setting of the property type is not part of an association re-orient (hence after the previous code-block),
 			// otherwise there is no legitimate reason to destroy the existing association while re-orienting it.
- 			if (!((ISpecializationType) SysMLElementTypes.BLOCK).getMatcher().matches((Type) request.getValue()) && propertyToEdit.getType() != null) {
+			if(!((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches((Type)request.getValue()) && propertyToEdit.getType() != null) {
 				ICommand destroyCommand = getDestroyPartAssociationCommand(relatedAssociation, propertyToEdit);
 				gmfCommand = CompositeCommand.compose(gmfCommand, destroyCommand);
-				
+
 				return gmfCommand;
 			}
 
@@ -154,6 +153,73 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 	}
 
 	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)
+	 * 
+	 * @param setRequest
+	 * @return
+	 */
+	@Override
+	protected ICommand getAfterSetCommand(SetRequest setRequest) {
+		ICommand afterSetCommand = super.getAfterSetCommand(setRequest);
+		EObject elementToEdit = setRequest.getElementToEdit();
+		if((elementToEdit instanceof Property) && !(elementToEdit instanceof Port) && (setRequest.getFeature() == UMLPackage.eINSTANCE.getTypedElement_Type()) && (setRequest.getValue() instanceof Type)) {
+			afterSetCommand = getDestroyAssociatedNestedConnectorCommand((Property)elementToEdit, afterSetCommand);
+		}
+		return afterSetCommand;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterDestroyDependentsCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest)
+	 * 
+	 * @param destroyDependentsRequest
+	 * @return
+	 */
+	@Override
+	protected ICommand getAfterDestroyDependentsCommand(DestroyDependentsRequest destroyDependentsRequest) {
+		ICommand afterDestroyDependentsCommand = super.getAfterDestroyDependentsCommand(destroyDependentsRequest);
+		EObject elementToDestroy = destroyDependentsRequest.getElementToDestroy();
+		if(elementToDestroy instanceof Property) {
+			afterDestroyDependentsCommand = getDestroyAssociatedNestedConnectorCommand((Property)elementToDestroy, afterDestroyDependentsCommand);
+		}
+		return afterDestroyDependentsCommand;
+	}
+
+	/**
+	 * Create a destroy command for all connectors that have this property in their <NestedConnectorEnd> property path.
+	 * 
+	 * @param property
+	 *        the part to be destroyed
+	 * @param command
+	 * @return
+	 */
+	private ICommand getDestroyAssociatedNestedConnectorCommand(Property property, ICommand command) {
+		List<Connector> instancesFilteredByType = org.eclipse.papyrus.uml.tools.utils.ElementUtil.getInstancesFilteredByType(property.getModel(), Connector.class, null);
+		List<Connector> connectorToDestroy = ConnectorUtils.filterConnectorByPropertyInNestedConnectorEnd(instancesFilteredByType, (Property)property);
+		for(Connector connector : connectorToDestroy) {
+			ICommand destroyConnectorCommand = getDestroyConnectorCommand(connector);
+			command = CompositeCommand.compose(command, destroyConnectorCommand);
+		}
+		return command;
+	}
+
+	/**
+	 * Create a connector destroy command.
+	 * 
+	 * @param connector
+	 * @return the connector destroy command
+	 */
+	private ICommand getDestroyConnectorCommand(Connector connector) {
+		DestroyElementRequest request = new DestroyElementRequest(connector, false);
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(connector.eContainer());
+		if(provider == null) {
+			return null;
+		}
+		return provider.getEditCommand(request);
+	}
+	
+	/**
 	 * Create a re-factoring command related to a Property move.
 	 * 
 	 * @param setProperty
@@ -168,16 +234,16 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		Association relatedAssociation = setProperty.getAssociation(); // Should not be null, test before calling method.
 
-		if (associationToRefactor.getMemberEnds().size() >= 2) {
+		if(associationToRefactor.getMemberEnds().size() >= 2) {
 			// Re-orient the related association (do not use edit service to avoid infinite loop here)
 			int direction = ReorientRelationshipRequest.REORIENT_TARGET;
 			if(setProperty == associationToRefactor.getMemberEnds().get(1)) {
 				direction = ReorientRelationshipRequest.REORIENT_SOURCE;
 			}
-	
+
 			ReorientRelationshipRequest reorientRequest = new ReorientRelationshipRequest(relatedAssociation, (Type)request.getValue(), setProperty.eContainer(), direction);
 			reorientRequest.addParameters(request.getParameters());
-	
+
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(relatedAssociation);
 			if(provider != null) {
 				return provider.getEditCommand(reorientRequest);
@@ -186,36 +252,36 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		return null;
 	}
-	
+
 	/**
 	 * Create a part association creation command.
 	 * 
 	 * @return the part association creation command
 	 */
 	private ICommand getCreatePartAssociationCommand(final org.eclipse.uml2.uml.Class sourceBlock, final Property sourceProperty, final org.eclipse.uml2.uml.Class targetBlock) {
-		
+
 		return new AbstractCommand("Create part association") {
-			
+
 			@Override
 			protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				// TODO Auto-generated method stub
 				return null;
 			}
-			
+
 			@Override
 			protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				// TODO Auto-generated method stub
 				return null;
 			}
-			
+
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
- 				Association association = UMLFactory.eINSTANCE.createAssociation();
-				
+				Association association = UMLFactory.eINSTANCE.createAssociation();
+
 				// Add the association in the model
-				org.eclipse.uml2.uml.Package container = (org.eclipse.uml2.uml.Package)EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{sourceBlock, targetBlock}), UMLPackage.eINSTANCE.getPackage());
+				org.eclipse.uml2.uml.Package container = (org.eclipse.uml2.uml.Package)EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{ sourceBlock, targetBlock }), UMLPackage.eINSTANCE.getPackage());
 				container.getPackagedElements().add(association);
-				
+
 				// Use existing Property as source...
 				association.getMemberEnds().add(sourceProperty);
 				// ... and create the opposite (unnamed) Property
@@ -226,35 +292,35 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 				// Initialize the element name based on the created IElementType
 				String initializedName = NamedElementHelper.getDefaultNameWithIncrementFromBase(UMLPackage.eINSTANCE.getAssociation().getName(), association.eContainer().eContents());
 				association.setName(initializedName);
-				
+
 				// Add SysML Nature on the new Association
 				ElementUtil.addNature(association, SysMLElementTypes.SYSML_NATURE);
-				
-				return CommandResult.newOKCommandResult(association) ;
+
+				return CommandResult.newOKCommandResult(association);
 			}
 		};
 
 	}
-	
+
 	/**
 	 * Apply/remove the ConstraintProperty stereotype application
 	 * 
 	 * @return the ConstraintProperty stereotype application command
 	 */
 	private ICommand getConstraintPropertyStereotypeApplicationCommand(final Property sourceProperty, final org.eclipse.uml2.uml.Class targetBlock, final SetRequest request) {
-		
+
 		return new AbstractTransactionalCommand(request.getEditingDomain(), "Apply/Remove ConstraintProperty Stereotype", null) {
-				
+
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				// SysML specification : all property typed by a ConstraintBlock must have a ContraintProperty stereotype applied
 				ConstraintProperty constraintPropertyApplication = UMLUtil.getStereotypeApplication(sourceProperty, ConstraintProperty.class);
-				if (UMLUtil.getStereotypeApplication(targetBlock, ConstraintBlock.class) != null) {
-					if (constraintPropertyApplication == null) {
+				if(UMLUtil.getStereotypeApplication(targetBlock, ConstraintBlock.class) != null) {
+					if(constraintPropertyApplication == null) {
 						StereotypeApplicationHelper.INSTANCE.applyStereotype(sourceProperty, ConstraintsPackage.eINSTANCE.getConstraintProperty());
 						// Remove representations
 						Set<View> memberViewsToDestroy = CrossReferencerUtil.getCrossReferencingViews(sourceProperty, null);
-						if (memberViewsToDestroy.size() != 0) {
+						if(memberViewsToDestroy.size() != 0) {
 							final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 							final String DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY = "displayMessageForTypingActionPreferenceKey";
 							boolean contains = store.contains(DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY);
@@ -265,29 +331,23 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 							final String hideValue = store.getString(DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY);
 							if(!hideValue.equals(MessageDialogWithToggle.ALWAYS)) {
 								int size = memberViewsToDestroy.size();
-								MessageDialogWithToggle.openInformation(Display.getDefault().getActiveShell(), 
-										"Change Type Action", 
-										"WARNING! Typing a Property by a ConstraintBlock make this property become a ConstraintProperty. ConstraintProperty have a specific representation. "
-										+ "\nSo all representations of this property will be removed from the model  (" + size + " occurence" + ((size > 1) ? "s" : "") + ")."
-										, "Don't show this dialog the next time", 
-										false, store, DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY);
+								MessageDialogWithToggle.openInformation(Display.getDefault().getActiveShell(), "Change Type Action", "WARNING! Typing a Property by a ConstraintBlock make this property become a ConstraintProperty. ConstraintProperty have a specific representation. " + "\nSo all representations of this property will be removed from the model  (" + size + " occurence" + ((size > 1) ? "s" : "") + ").", "Don't show this dialog the next time", false, store, DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY);
 							}
-							
+
 						}
-						for (View view : memberViewsToDestroy) {
+						for(View view : memberViewsToDestroy) {
 							final DestroyElementRequest destroyRequest = new DestroyElementRequest(request.getEditingDomain(), view, false);
 							final IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(view);
 							ICommand editCommand = commandProvider.getEditCommand(destroyRequest);
 							editCommand.execute(progressMonitor, info);
 						}
 					}
-				}
-				else {
-					if (constraintPropertyApplication != null) {
+				} else {
+					if(constraintPropertyApplication != null) {
 						StereotypeApplicationHelper.INSTANCE.removeFromContainmentList(sourceProperty, constraintPropertyApplication);
 					}
 				}
-				return CommandResult.newOKCommandResult(sourceProperty) ;
+				return CommandResult.newOKCommandResult(sourceProperty);
 			}
 		};
 	}
@@ -299,17 +359,17 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 	 */
 	@SuppressWarnings("unchecked")
 	private ICommand getDestroyPartAssociationCommand(Association partAssociation, Property propertyToEdit) {
-				
+
 		DestroyElementRequest request = new DestroyElementRequest(partAssociation, false);
-		List<EObject> dependentsToKeep = Arrays.asList(new EObject[] { propertyToEdit });
+		List<EObject> dependentsToKeep = Arrays.asList(new EObject[]{ propertyToEdit });
 		request.getParameters().put(RequestParameterConstants.DEPENDENTS_TO_KEEP, dependentsToKeep);
-		
+
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(partAssociation.eContainer());
 		if(provider == null) {
 			return null;
 		}
 		ICommand destroyCommand = provider.getEditCommand(request);
-		
+
 		return destroyCommand;
 	}
 }
