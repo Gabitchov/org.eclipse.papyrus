@@ -22,9 +22,9 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.papyrus.FCM.Fragment;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
 import org.eclipse.papyrus.MARTE.MARTE_Foundations.Alloc.Allocate;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
@@ -242,12 +242,12 @@ public class AllocUtils {
 
 				for(Connector connection : compositeCL.getOwnedConnectors()) {
 					// is one connector end targeted at the containedProperty ?
-					ConnectorEnd end = ConnectorUtils.connEndForPart(connection, containedProperty);
+					ConnectorEnd end = ConnectorUtil.connEndForPart(connection, containedProperty);
 					if(end == null)
 						continue;
 
 					// does the connector at the same connect the composite's port?
-					if(ConnectorUtils.connectsPort(connection, port)) {
+					if(ConnectorUtil.connectsPort(connection, port)) {
 						Port containedPort = (Port)end.getRole();
 						nodeList.addAll(getAllNodesForPort(DepUtils.getInstance(slot), containedPort));
 					}
@@ -315,11 +315,11 @@ public class AllocUtils {
 					*/
 				}
 				for(Connector connection : compositeCL.getOwnedConnectors()) {
-					if(ConnectorUtils.connectsPort(connection, port)) {
+					if(ConnectorUtil.connectsPort(connection, port)) {
 						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "connector: " + connection.getName()); //$NON-NLS-1$
 						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "end1: " + connection.getEnds().get(0).getPartWithPort()); //$NON-NLS-1$
 						Log.log(Status.INFO, Log.TRAFO_CONNECTOR, "end2: " + connection.getEnds().get(1).getPartWithPort()); //$NON-NLS-1$
-						ConnectorEnd end = ConnectorUtils.connEndForPart(connection, containedProperty);
+						ConnectorEnd end = ConnectorUtil.connEndForPart(connection, containedProperty);
 						// other connector end targeted at containedProperty?
 						if(end != null) {
 							Port containedPort = (Port)end.getRole();

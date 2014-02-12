@@ -55,7 +55,8 @@ public class InitialEntryPoints extends AbstractModelConstraint {
 						}
 						msg += entryPoint;
 					}
-					return ctx.createFailureStatus("The deployment plan '" + pkg.getName() + "' contains more than one start entry point: " + msg); //$NON-NLS-1$
+					return ctx.createFailureStatus(String.format(
+						"The deployment plan '%s' contains more than one start entry point: %s", pkg.getName(), msg)); //$NON-NLS-1$
 				}
 			}
 		}

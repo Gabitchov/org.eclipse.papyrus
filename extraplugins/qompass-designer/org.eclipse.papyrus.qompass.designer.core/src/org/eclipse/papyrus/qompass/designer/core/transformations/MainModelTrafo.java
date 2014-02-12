@@ -280,7 +280,6 @@ public class MainModelTrafo {
 						//	   executor itself does not make much sense, additional operation "createHwContainer"
 
 						// obtain property related to node instance
-						Slot smNodeSlot = DepUtils.getParentSlot(smNode);
 						Package smCDP = smIS.getNearestPackage();
 						DeploymentPlan smFCM_CDP = UMLUtil.getStereotypeApplication(smCDP, DeploymentPlan.class);
 

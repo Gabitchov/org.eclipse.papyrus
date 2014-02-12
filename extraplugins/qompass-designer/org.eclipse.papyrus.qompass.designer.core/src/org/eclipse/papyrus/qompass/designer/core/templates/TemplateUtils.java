@@ -19,7 +19,6 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
 import org.eclipse.papyrus.qompass.designer.core.CreationUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
@@ -27,6 +26,7 @@ import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.Copy;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -346,9 +346,9 @@ public class TemplateUtils {
 		if (partType instanceof EncapsulatedClassifier) {
 			EncapsulatedClassifier partTypeEC = (EncapsulatedClassifier) partType;
 			for(Connector connector : composite.getOwnedConnectors()) {
-				if(ConnectorUtils.connectsPart(connector, part)) {
+				if(ConnectorUtil.connectsPart(connector, part)) {
 					// the connector end targets a port of a part or the composite (in case of delegation)
-					ConnectorEnd connEnd = ConnectorUtils.connEndForPart(connector, part);
+					ConnectorEnd connEnd = ConnectorUtil.connEndForPart(connector, part);
 					// redirect role, if pointing to port
 					if(connEnd.getRole() instanceof Port) {
 						Port connectedTemplatePort = (Port)connEnd.getRole();
