@@ -17,6 +17,10 @@
    <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
       <labelProvider
+            priority="110"
+            provider="org.eclipse.papyrus.infra.emf.providers.ResourceFilteredLabelProvider">
+      </labelProvider>
+      <labelProvider
             priority="100"
             provider="org.eclipse.papyrus.infra.emf.providers.EMFFilteredLabelProvider">
       </labelProvider>
