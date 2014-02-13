@@ -27,6 +27,10 @@
             file="guides/developpers/layersDevs-toc.xml"
             primary="false">
       </toc>
+      <toc
+            file="guides/index-toc.xml"
+            primary="false">
+      </toc>
    </extension>
 
 </plugin>
