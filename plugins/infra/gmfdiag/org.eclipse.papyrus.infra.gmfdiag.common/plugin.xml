@@ -7,6 +7,7 @@
    <extension-point id="shapeProvider" name="ShapeProvider" schema="schema/shapeProvider.exsd"/>
    <extension-point id="notationTypesMapping" name="notationTypesMapping" schema="schema/notationTypesMapping.exsd"/>
    <extension-point id="svgPostProcessors" name="svgPostProcessors" schema="schema/svgPostProcessors.exsd"/>
+   <extension-point id="pasteCommandProvider" name="pasteCommandProvider" schema="schema/pasteCommandProvider.exsd"/>
 
 <extension
       point="org.eclipse.papyrus.infra.core.papyrusDiagram">

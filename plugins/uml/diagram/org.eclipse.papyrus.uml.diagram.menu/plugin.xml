@@ -4343,7 +4343,7 @@
                allPopups="false"
                locationURI="popup:org.eclipse.papyrus.infra.gmfdiag.menu.editmenu?after=edit_actions_separator">
             <command
-                  commandId="org.eclipse.papyrus.uml.diagram.menu.pastewithmodel"
+                  commandId="org.eclipse.papyrus.infra.gmfdiag.menu.pastewithmodel"
                   style="push">
             </command>
             <command
@@ -4355,7 +4355,7 @@
       <extension
             point="org.eclipse.ui.commandImages">
          <image
-               commandId="org.eclipse.papyrus.uml.diagram.menu.pastewithmodel"
+               commandId="org.eclipse.papyrus.infra.gmfdiag.menu.pastewithmodel"
                icon="icons/paste_edit.gif">
          </image>
       </extension>
@@ -4364,7 +4364,7 @@
          <command
                categoryId="org.eclipse.papyrus.editor.category"
                defaultHandler="org.eclipse.papyrus.uml.diagram.menu.handlers.PasteWithModelHandler"
-               id="org.eclipse.papyrus.uml.diagram.menu.pastewithmodel"
+               id="org.eclipse.papyrus.infra.gmfdiag.menu.pastewithmodel"
                name="Paste With Model">
          </command>
          <command
@@ -4377,9 +4377,9 @@
       <extension
             point="org.eclipse.ui.bindings">
          <key
-               commandId="org.eclipse.papyrus.uml.diagram.menu.pastewithmodel"
+               commandId="org.eclipse.papyrus.infra.gmfdiag.menu.pastewithmodel"
                schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-               sequence="M1+M2+V">
+               sequence="M1+V">
          </key>
       </extension>        
 <!--                                                            -->

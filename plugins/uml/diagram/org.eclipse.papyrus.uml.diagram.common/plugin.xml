@@ -212,10 +212,10 @@
    </aspectToolProvider>
 </extension>
 <extension
-      point="org.eclipse.papyrus.uml.pastemanager.pasteCommandProvider">
+      point="org.eclipse.papyrus.infra.gmfdiag.common.pasteCommandProvider">
    <PasteCommandProvider
          priority="Lowest"
-         realization="org.eclipse.papyrus.uml.pastemanager.service.DefaultPasteCommandProvider">
+         realization="org.eclipse.papyrus.uml.diagram.common.providers.DefaultPasteCommandProvider">
    </PasteCommandProvider>
 </extension>
 <extension
