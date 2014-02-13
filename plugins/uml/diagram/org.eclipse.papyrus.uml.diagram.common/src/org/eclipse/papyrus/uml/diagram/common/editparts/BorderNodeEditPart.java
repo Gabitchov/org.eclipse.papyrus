@@ -200,6 +200,6 @@ public abstract class BorderNodeEditPart extends BorderedBorderItemEditPart impl
 	 */
 	@Override
 	public DragTracker getDragTracker(final Request request) {
-		return new PapyrusDragBorderNodeEditPartTrackerEx(this, false, true, true);
+		return new PapyrusDragBorderNodeEditPartTrackerEx(this);
 	}
 }
