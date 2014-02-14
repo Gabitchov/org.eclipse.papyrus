@@ -171,6 +171,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	@Override
 	public void dispose() {
+		super.dispose();
 		for(final IAxisManager current : this.subManagers) {
 			current.dispose();
 		}
