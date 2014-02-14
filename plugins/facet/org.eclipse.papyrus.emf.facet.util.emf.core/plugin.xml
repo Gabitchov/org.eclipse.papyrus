@@ -27,7 +27,7 @@
       </initializer>
    </extension>
    <extension
-         point="org.eclipse.emf.facet.util.emf.core.serialization">
+         point="org.eclipse.papyrus.emf.facet.util.emf.core.serialization">
       <serializer
             class="org.eclipse.emf.facet.util.emf.core.internal.serialization.serializers.StringSerializer">
       </serializer>

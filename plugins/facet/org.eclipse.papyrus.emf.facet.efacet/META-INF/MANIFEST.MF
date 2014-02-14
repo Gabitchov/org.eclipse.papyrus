@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %Bundle-Vendor
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.emf.facet.efacet.plugin.Activator
+Bundle-Name: %Bundle-Name
+Export-Package: org.eclipse.emf.facet.efacet,
+ org.eclipse.emf.facet.efacet.impl;x-friends:="org.eclipse.emf.facet.query.java",
+ org.eclipse.emf.facet.efacet.util;x-friends:="org.eclipse.emf.facet.query.java.edit"

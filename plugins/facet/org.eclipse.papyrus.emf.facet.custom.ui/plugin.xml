@@ -29,7 +29,7 @@ Contributors:
       </view>
    </extension>
    <extension
-         point="org.eclipse.emf.facet.efacet.core.queryImplementationRegistration">
+         point="org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration">
       <queryImplementationRegistration
             class="org.eclipse.emf.facet.custom.ui.internal.query.URIImageQueryImplementationFactory">
       </queryImplementationRegistration>

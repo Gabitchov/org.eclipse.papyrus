@@ -30,7 +30,7 @@
       <catalog class="org.eclipse.emf.facet.efacet.core.internal.catalog.EFacetCatalogManager2"/>
    </extension>
    
-   <extension point="org.eclipse.emf.facet.efacet.core.queryImplementationRegistration">
+   <extension point="org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration">
       <queryImplementationRegistration class="org.eclipse.emf.facet.efacet.core.internal.query.NavigationQueryImplementationFactory"/>
       <queryImplementationRegistration class="org.eclipse.emf.facet.efacet.core.internal.query.IsOneOfQueryImplementationFactory"/>
       <queryImplementationRegistration class="org.eclipse.emf.facet.efacet.core.internal.query.StringLiteralQueryImplementationFactory"/>

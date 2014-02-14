@@ -3,12 +3,13 @@
 
 <plugin>
 
+   <!-- TODO: EMF-FACET update queries and custom
    <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resource/UMLPapyrusDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
    </extension>
    <extension point="org.eclipse.emf.facet.infra.query.registration">
       <modelqueryset file="resource/PapyrusBrowserQuery.querySet"/>
-   </extension>
+   </extension-->
    <extension point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             activeByDefault="true"

@@ -1,12 +1,6 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.pde;bundle-version="3.6.0",
  org.eclipse.pde.ui;bundle-version="3.6.0",
- org.eclipse.emf.facet.infra.browser;bundle-version="0.1.0",
- org.eclipse.emf.facet.infra.browser.custom;bundle-version="0.1.0",
- org.eclipse.emf.facet.infra.browser.uicore;bundle-version="0.1.0",
- org.eclipse.emf.facet.infra.facet.core;bundle-version="0.1.0",
- org.eclipse.emf.facet.infra.browser.custom.core;bundle-version="0.1.0",
- org.eclipse.emf.facet.infra.common.core;bundle-version="0.1.0",
  org.eclipse.papyrus.uml.diagram.paletteconfiguration;bundle-version="1.0.0",
  org.eclipse.core.runtime;bundle-version="3.8.0",
  org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.0",
@@ -16,7 +10,9 @@ Require-Bundle: org.eclipse.pde;bundle-version="3.6.0",
  org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.0.0",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.0.0"
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.4.0"
 Export-Package: org.eclipse.papyrus.customization.palette,
  org.eclipse.papyrus.customization.palette.dialog,
  org.eclipse.papyrus.customization.palette.proxies

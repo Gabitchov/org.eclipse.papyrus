@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 
 <plugin>
+   <!-- TODO: EMF-FACET
    <extension point="org.eclipse.emf.facet.infra.query.registration">
       <modelqueryset file="resources/PapyrusNotationFacet.querySet">
       </modelqueryset>
@@ -23,6 +24,7 @@
             file="resources/PapyrusNotationFacet.facetSet">
       </facetset>
    </extension>
+   -->
    <extension
          point="org.eclipse.ui.handlers">
       <handler

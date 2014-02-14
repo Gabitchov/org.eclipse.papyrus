@@ -10,5 +10,5 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- org.eclipse.emf.facet.efacet;bundle-version="0.1.0",
- org.eclipse.emf.facet.efacet.metamodel;bundle-version="0.2.0"
+ org.eclipse.papyrus.emf.facet.efacet;bundle-version="0.1.0",
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="0.2.0"

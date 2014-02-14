@@ -8,11 +8,11 @@ Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.2.0",
  org.eclipse.papyrus.emf.facet.util.emf.catalog;bundle-version="0.1.0";visibility:=reexport,
- org.eclipse.emf.facet.common.core;bundle-version="0.1.0",
+ org.eclipse.papyrus.emf.facet.common.core;bundle-version="0.1.0",
  org.eclipse.papyrus.emf.facet.util.core;bundle-version="0.1.0",
  org.eclipse.core.resources;bundle-version="3.6.0",
  org.eclipse.emf.edit;bundle-version="2.6.0",
- org.eclipse.emf.facet.util.pde.core;bundle-version="0.4.0"
+ org.eclipse.papyrus.emf.facet.util.pde.core;bundle-version="0.4.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.emf.facet.util.emf.core,

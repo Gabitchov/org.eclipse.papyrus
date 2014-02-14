@@ -44,6 +44,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
+import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
@@ -244,7 +245,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		// SemanticEMFContentProvider(amodel)); //This content provider will
 		// only display the selected element, instead of the root element
 		// FIXME:  Use a standard, non-deprecated content
-		treeViewer.setContentProvider(new MoDiscoContentProvider() {
+		treeViewer.setContentProvider(new SemanticEMFContentProvider() {
 
 			@Override
 			public boolean hasChildren(Object element) {

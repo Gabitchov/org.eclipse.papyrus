@@ -47,12 +47,13 @@
          </context>
       </extension>
 
+   <!-- TODO EMF-FACET
    <extension
          point="org.eclipse.emf.facet.infra.query.registration">
       <modelqueryset
             file="Model/UML/uml.querySet">
       </modelqueryset>
-   </extension>
+   </extension-->
    <extension
          point="org.eclipse.papyrus.views.properties.labelprovider">
       <labelProvider

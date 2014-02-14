@@ -32,11 +32,15 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelContentProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+import org.eclipse.emf.facet.custom.core.ICustomizationCatalogManager;
+import org.eclipse.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
+import org.eclipse.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.emf.facet.custom.core.ICustomizationManagerFactory;
+import org.eclipse.emf.facet.custom.core.internal.CustomizationCatalogManager;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogFactory;
+import org.eclipse.emf.facet.custom.ui.internal.CustomizedLabelProvider;
+import org.eclipse.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
@@ -243,7 +247,8 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	private Resource resourceToEdit;
 
 	/** customization manager for the content provider */
-	private CustomizationManager manager = new CustomizationManager();
+	//TODO: EMFFACET: pb of ResourceSET
+	private ICustomizationManager manager =  ICustomizationManagerFactory.DEFAULT.getOrCreateICustomizationManager(new ResourceSetImpl());
 
 
 	/**
@@ -1676,7 +1681,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	 * @see org.eclipse.gef.ui.palette.customize.PaletteLabelProvider </P>
 	 * 
 	 */
-	public class ExtendedPaletteLabelProvider extends CustomizableModelLabelProvider {
+	public class ExtendedPaletteLabelProvider extends CustomizedLabelProvider{
 
 		/**
 		 * Constructor.
@@ -1725,18 +1730,20 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 	/**
 	 * Content Provider for the palette preview
 	 */
-	public class ExtendedPaletteContentProvider extends CustomizableModelContentProvider {
+	public class ExtendedPaletteContentProvider extends CustomizedTreeContentProvider {
 
 		/**
 		 * Constructor.
 		 */
 		public ExtendedPaletteContentProvider() {
 			super(manager);
-			MetamodelView paletteCustomization = CustomizationsCatalog.getInstance().getCustomization("PaletteConfiguration");
-			if(paletteCustomization != null) {
-				manager.setShowTypeOfLinks(false);
-				manager.registerCustomization(paletteCustomization);
-				manager.loadCustomizations();
+			//TODO: EMFFACET refactor this code
+			CustomizationCatalogManager catalogManager=(CustomizationCatalogManager)ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(new ResourceSetImpl());
+			List<Customization> paletteCustomizations =catalogManager.getCustomizationsByName("PaletteConfiguration");
+			if(paletteCustomizations.size()>0) {
+//				manager.setShowTypeOfLinks(false);
+//				manager.registerCustomization(paletteCustomization);
+//				manager.loadCustomizations();
 			}
 		}
 

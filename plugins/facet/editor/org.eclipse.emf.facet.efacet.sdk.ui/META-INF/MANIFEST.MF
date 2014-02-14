@@ -1,18 +1,14 @@
 Manifest-Version: 1.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Built-By: hudsonbuild
-Bundle-SymbolicName: org.eclipse.emf.facet.efacet.sdk.ui;singleton:=tr
- ue
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet.sdk.ui;singleton:=true
 Bundle-Activator: org.eclipse.emf.facet.efacet.sdk.ui.internal.Activat
  or
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.emf.facet.util.emf.core;bundle-version="0.2.0",
- org.eclipse.emf.facet.efacet.editor;bundle-version="0.2.0",
  org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.2.0",
  org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.2.0",
- org.eclipse.emf.facet.widgets.celleditors.ecore;bundle-version="0.2.0",
- org.eclipse.emf.facet.widgets.celleditors;bundle-version="0.2.0",
  org.eclipse.papyrus.emf.facet.util.ui;bundle-version="0.3.0",
  org.eclipse.papyrus.emf.facet.util.core;bundle-version="0.2.0",
  org.eclipse.core.expressions;bundle-version="3.4.200",

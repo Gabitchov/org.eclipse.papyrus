@@ -23,7 +23,7 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: 
- org.eclipse.emf.facet.util.emf.ui.internal.dialogs;x-friends:="org.eclipse.emf.facet.widgets.celleditors",
+ org.eclipse.emf.facet.util.emf.ui.internal.dialogs;x-friends:="org.eclipse.papyrus.emf.facet.widgets.celleditors",
  org.eclipse.emf.facet.util.emf.ui.internal.exported,
  org.eclipse.emf.facet.util.emf.ui.internal.exported.util.composite,
  org.eclipse.emf.facet.util.emf.ui.internal.exported.util.widget.component.metaclass,

@@ -4,7 +4,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Name: %Bundle-Name
 Built-By: hudsonbuild
-Bundle-SymbolicName: org.eclipse.emf.facet.custom.doc;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.doc;singleton:=true
 Require-Bundle: org.eclipse.core.runtime
 Archiver-Version: Plexus Archiver
 Created-By: Apache Maven

@@ -196,7 +196,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getText();
+			return ((WrappingLabel)figure).isTextWrapOn().getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
 		} else {

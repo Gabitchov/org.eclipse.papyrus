@@ -1,19 +1,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.model.queries;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
-import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
-import org.eclipse.uml2.uml.Element;
-
-public class GetStyleSheets implements
+//TODO: EMF-FACET update query
+public class GetStyleSheets {/**implements
 		IJavaModelQuery<Element, Collection<StyleSheet>> {
 
 	public Collection<StyleSheet> evaluate(Element context,
@@ -40,6 +28,6 @@ public class GetStyleSheets implements
 			}
 		}
 		return result;
-	}
+	}**/
 
 }

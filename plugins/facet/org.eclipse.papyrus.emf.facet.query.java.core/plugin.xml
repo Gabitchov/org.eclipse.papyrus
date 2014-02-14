@@ -20,7 +20,7 @@
       </queryEvaluatorRegistration>
    </extension>
    
-   <extension point="org.eclipse.emf.facet.efacet.core.queryImplementationRegistration">
+   <extension point="org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration">
       <queryImplementationRegistration class="org.eclipse.emf.facet.query.java.core.internal.evaluator.JavaQueryImplementationFactory"/>
    </extension>
 </plugin>

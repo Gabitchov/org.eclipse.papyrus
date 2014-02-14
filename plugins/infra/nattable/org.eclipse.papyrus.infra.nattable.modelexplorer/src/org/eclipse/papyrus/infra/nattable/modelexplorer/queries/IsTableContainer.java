@@ -15,19 +15,15 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
-import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
-
-public class IsTableContainer extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Boolean> {
-
+//TODO: EMF-FACET update query
+public class IsTableContainer {/*extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Boolean> {
+*/
 	/**
 	 * Return true if the element is a Diagram Container
 	 */
-	@Override
+	/*@Override
 	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
 		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
 		if(roots == null) {
@@ -42,5 +38,5 @@ public class IsTableContainer extends AbstractEditorContainerQuery implements IJ
 			}
 		}
 		return false;
-	}
+	}*/
 }

@@ -372,7 +372,8 @@
    <propertyTester class="org.eclipse.papyrus.views.modelexplorer.provider.PropertyTester" id="org.eclipse.papyrus.views.modelexplorer.tester.view" namespace="org.eclipse.papyrus.views.modelexplorer.tester.view" properties="isModelExplorer" type="org.eclipse.ui.IWorkbenchPart">
    </propertyTester>
 </extension>
-
+<!-- 
+TODO: PAPYRUS EMF-FACET update uiCustom Here
    <extension point="org.eclipse.emf.facet.infra.query.registration">
       <modelqueryset file="resources/PapyrusEcoreBrowserQuery.querySet"/>
    </extension>
@@ -394,6 +395,7 @@
             file="resources/PapyrusPages.uiCustom"
             loadByDefault="true"/>
    </extension>
+   -->
    <extension
          point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
       <target

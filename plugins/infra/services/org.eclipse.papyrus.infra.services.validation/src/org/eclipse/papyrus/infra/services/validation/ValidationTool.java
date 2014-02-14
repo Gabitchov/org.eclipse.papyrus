@@ -26,7 +26,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 import org.eclipse.papyrus.infra.services.markerlistener.providers.IMarkerProvider;
@@ -89,13 +88,14 @@ public class ValidationTool {
 		// element has no eObject. try parent
 		if(getEObject() == null) {
 			// TODO: is it possible to access the children in another way (without internal access?)
-			if(element instanceof LinkItem) {
+			//TODO: EMF-FACET update link-item
+			/**if(element instanceof LinkItem) {
 				List<?> items = ((LinkItem)element).getChildrenElements();
 				if(items.size() > 0 && items.get(0) instanceof EObject) {
 					// element = items[0];
 					setEObject((EObject)items.get(0));
 				}
-			}
+			}**/
 		}
 	}
 
