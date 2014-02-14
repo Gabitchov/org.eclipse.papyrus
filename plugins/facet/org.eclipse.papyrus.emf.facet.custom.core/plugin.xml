@@ -28,13 +28,13 @@ Contributors:
       </catalog>
    </extension>
    
-    <extension point="org.eclipse.emf.facet.efacet.core.derivedTypedElementImplementationRegistration">
+    <extension point="org.eclipse.papyrus.emf.facet.efacet.core.derivedTypedElementImplementationRegistration">
       <derivedTypedElementImplementationRegistration
             class="org.eclipse.emf.facet.custom.core.internal.query.ETypedElementSwitchQueryImplementationFactory">
       </derivedTypedElementImplementationRegistration>
 	</extension>
 
-   <extension point="org.eclipse.emf.facet.efacet.core.queryImplementationRegistration">
+   <extension point="org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration">
       <queryImplementationRegistration class="org.eclipse.emf.facet.custom.core.internal.query.SwitchQueryImplementationFactory"/>
    </extension>
 </plugin>

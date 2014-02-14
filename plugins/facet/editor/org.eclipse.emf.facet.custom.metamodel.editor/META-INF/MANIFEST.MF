@@ -20,7 +20,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.emf.facet.custom.sdk.ui,
  org.eclipse.papyrus.emf.facet.custom.ui,
  org.eclipse.papyrus.emf.facet.query.java.core,
- org.eclipse.papyrus.emf.facet.query.java.metamodel
+ org.eclipse.papyrus.emf.facet.query.java.metamodel,
+ org.eclipse.papyrus.emf.facet.query.ocl.metamodel
 Bundle-Version: 0.4.0.201308190853
 Bundle-ClassPath: .
 Build-Jdk: 1.6.0_27

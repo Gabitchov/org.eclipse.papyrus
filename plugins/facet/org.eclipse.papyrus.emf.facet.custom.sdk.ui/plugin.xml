@@ -13,10 +13,10 @@
        Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
 -->
 <plugin>
-   <extension point="org.eclipse.emf.facet.widgets.celleditors.celleditors">
+   <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.celleditors">
       <cellEditorsModel path="org.eclipse.emf.facet.custom.sdk.ui.modelcelleditors"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.widgets.celleditors.compositeEditorFactories">
+   <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.compositeEditorFactories">
       <compositeEditorFactory class="org.eclipse.emf.facet.custom.sdk.ui.internal.widgets.celleditors.composite.ImageCompositeFactory"/>
    </extension>
    <extension

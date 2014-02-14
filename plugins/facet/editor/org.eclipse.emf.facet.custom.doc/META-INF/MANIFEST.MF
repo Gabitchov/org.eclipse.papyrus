@@ -96,4 +96,5 @@ SHA1-Digest: jBVSn/vyk1D+ENgZXtuTq70lQlM=
 
 Name: img/bottomMiddleOverlay.png
 SHA1-Digest: KW+VnZzQw+o1q1QXrXgXNv+78fc=
+Bundle-Activator: activator
 
