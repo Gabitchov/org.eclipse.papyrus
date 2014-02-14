@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
+ *		
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -26,7 +26,8 @@ public class BlockPropertyCompositePreferencePage extends AbstractPreferencePage
 
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
-		/* CustomNestedBlockPropertyCompositePreferencePage.initDefaults(store); */
+		CustomBlockPropertyCompositePreferencePage.initDefaults(store);
+		/*CustomNestedBlockPropertyCompositePreferencePage.initDefaults(store);*/
 	}
 
 	@Override

@@ -35,7 +35,9 @@ public class CustomPreferenceInitializer extends ParametricDiagramPreferenceInit
 
 		IPreferenceStore store = getPreferenceStore();
 
+		ConstraintParameterAsBorderItemPreferencePage.initDefaults(store);
 		BlockPropertyCompositePreferencePage.initDefaults(store);
+		CustomConstraintPropertyCompositePreferencePage.initDefaults(store);
 
 		// Initialize default positions for labels.
 		initDefaultPosition(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID, UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID, 0, -10);

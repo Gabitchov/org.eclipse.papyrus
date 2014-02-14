@@ -26,8 +26,7 @@ public class FlowPortPreferencePage extends AbstractPreferencePage {
 
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
-		//		FlowPortAsBorderItemPreferencePage.initDefaults(store);
-		//		FlowPortAsCompartmentItemPreferencePage.initDefaults(store);
+		FlowPortAsBorderItemPreferencePage.initDefaults(store);
 	}
 
 	@Override

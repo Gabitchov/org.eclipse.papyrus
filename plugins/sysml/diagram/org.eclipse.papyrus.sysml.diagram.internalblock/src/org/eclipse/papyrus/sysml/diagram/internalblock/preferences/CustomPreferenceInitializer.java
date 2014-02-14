@@ -36,6 +36,8 @@ public class CustomPreferenceInitializer extends InternalBlockDiagramPreferenceI
 
 		IPreferenceStore store = getPreferenceStore();
 
+		PortAsBorderItemPreferencePage.initDefaults(store);
+		FlowPortAsBorderItemPreferencePage.initDefaults(store);
 		BlockPropertyCompositePreferencePage.initDefaults(store);
 
 		// Initialize default positions for labels.

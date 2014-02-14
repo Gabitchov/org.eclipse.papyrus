@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -30,31 +30,21 @@ public class BlockDefinitionDiagramPreferenceInitializer extends AbstractPrefere
 		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ModelPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InstanceSpecificationPreferencePage.initDefaults(store);
-		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage.initDefaults(store);
 		org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CommentPreferencePage.initDefaults(store);
 		ActorPreferencePage.initDefaults(store);
 		BlockPreferencePage.initDefaults(store);
-		ConstraintPreferencePage.initDefaults(store);
 		ConstraintBlockPreferencePage.initDefaults(store);
-		ConstraintPropertyPreferencePage.initDefaults(store);
 		DataTypePreferencePage.initDefaults(store);
 		DimensionPreferencePage.initDefaults(store);
 		EnumerationPreferencePage.initDefaults(store);
 		EnumerationLiteralPreferencePage.initDefaults(store);
 		FlowPortPreferencePage.initDefaults(store);
-		FlowPropertyPreferencePage.initDefaults(store);
 		FlowSpecificationPreferencePage.initDefaults(store);
 		InterfacePreferencePage.initDefaults(store);
-		OperationPreferencePage.initDefaults(store);
-		PartPreferencePage.initDefaults(store);
 		PortPreferencePage.initDefaults(store);
 		PrimitiveTypePreferencePage.initDefaults(store);
-		PropertyPreferencePage.initDefaults(store);
-		ReceptionPreferencePage.initDefaults(store);
-		ReferencePreferencePage.initDefaults(store);
 		SignalPreferencePage.initDefaults(store);
 		UnitPreferencePage.initDefaults(store);
-		ValuePreferencePage.initDefaults(store);
 		ValueTypePreferencePage.initDefaults(store);
 		AssociationPreferencePage.initDefaults(store);
 		DependencyPreferencePage.initDefaults(store);

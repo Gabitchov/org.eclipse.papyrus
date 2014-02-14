@@ -22,6 +22,10 @@ InternalBlockDiagram Compartment{
 	showTitle: true;
 }
 
+Compartment[kind=structure]{
+	showTitle: false;
+}
+
 Package > Compartment[kind=packagedelements],
 Model > Compartment[kind=packagedelements]{
 	visible: true;
@@ -62,13 +66,8 @@ InternalBlockDiagram Property > Compartment[kind=structure]{
 	visible: true;
 }
 
-ParametricDiagram Property > Compartment[kind=structure]{
-	visible: true;
-}
-
+ParametricDiagram Property > Compartment[kind=structure],
 ParametricDiagram [appliedStereotypes~="Block"] > Compartment[kind=structure]{
 	visible: true;
-	showTitle: false;
 }
-
 
