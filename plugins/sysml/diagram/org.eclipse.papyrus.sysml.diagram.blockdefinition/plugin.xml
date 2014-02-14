@@ -1231,7 +1231,7 @@
 	</page>
 		
 	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CustomAssociationPreferencePage"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
 		name="Association">
 	</page>

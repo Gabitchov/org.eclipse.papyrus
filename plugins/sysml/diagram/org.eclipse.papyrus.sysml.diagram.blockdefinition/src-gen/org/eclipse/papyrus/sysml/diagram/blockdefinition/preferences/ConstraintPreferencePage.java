@@ -13,30 +13,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
-import org.eclipse.gmf.runtime.common.ui.preferences.AbstractPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.swt.widgets.Composite;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
+import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
-public class FlowPortPreferencePage extends AbstractPreferencePage {
+public class ConstraintPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
+
+	/** Constant key to access preferences */
+	public static String prefKey = ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.SHAPE_UML_CONSTRAINT_AS_LABEL_ID; //$NON-NLS-1$
 
 	/** Constructor */
-	public FlowPortPreferencePage() {
+	public ConstraintPreferencePage() {
 		super();
+		setPreferenceKey(ElementTypes.DIAGRAM_ID + "_" + UMLGraphicalTypes.SHAPE_UML_CONSTRAINT_AS_LABEL_ID); //$NON-NLS-1$
 	}
 
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
-		FlowPortAsBorderItemPreferencePage.initDefaults(store);
-		FlowPortAsCompartmentItemPreferencePage.initDefaults(store);
+		// Start of user code custom default initializations
+		// End of user code
 	}
 
-	@Override
-	protected void addFields(Composite parent) {
-
-	}
-
-	@Override
-	protected void initHelp() {
-
-	}
 }

@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
+ *		
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -27,6 +27,7 @@ public class PortPreferencePage extends AbstractPreferencePage {
 	/** Default preferences initializer */
 	public static void initDefaults(IPreferenceStore store) {
 		PortAsBorderItemPreferencePage.initDefaults(store);
+		PortAsCompartmentItemPreferencePage.initDefaults(store);
 	}
 
 	@Override
