@@ -474,5 +474,11 @@
 
 <!-- // End of user code 
   -->
-
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+	<diagramMappings diagramID="Package">
+		<mapping type="Package" humanReadableType="PackageDiagram"/>
+        <!-- Compartments -->
+		<!-- Link labels -->
+    </diagramMappings>
+</extension>
 </plugin>

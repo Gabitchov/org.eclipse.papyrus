@@ -897,5 +897,12 @@
     <!-- Insert custom extensions here. -->
 
     <!-- // End of user code -->
-
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+   <diagramMappings diagramID="PapyrusUMLInteractionOverviewDiagram">
+          <mapping type="PapyrusUMLInteractionOverviewDiagram" humanReadableType="InteractionOverviewDiagram"/>
+          <!-- Compartments -->
+   
+          <!-- Link labels -->
+   </diagramMappings>
+</extension>
 </plugin>

@@ -1,0 +1,74 @@
+/*****************************************************************************
+ * Copyright (c) 2014 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
+ *****************************************************************************/
+
+/**
+*	Configures the default visibility for SysML compartments
+*/
+
+BlockDefinitionDiagram Compartment,
+ParametricDiagram Compartment,
+RequirementDiagram Compartment,
+InternalBlockDiagram Compartment{
+	visible: false;
+	showTitle: true;
+}
+
+Package > Compartment[kind=packagedelements],
+Model > Compartment[kind=packagedelements]{
+	visible: true;
+	showTitle: false;
+}
+
+[appliedStereotypes~="Block"] > Compartment[kind=properties],
+[appliedStereotypes~="Block"] > Compartment[kind=operations],
+[appliedStereotypes~="Block"] > Compartment[kind=constraints]{
+	visible: true;
+}
+
+[appliedStereotypes~="ConstraintBlock"] > Compartment[kind=parameters],
+[appliedStereotypes~="ConstraintBlock"] > Compartment[kind=constraints]{
+	visible: true;
+}
+
+BlockDefinitionDiagram DataType > Compartment[kind=properties],
+BlockDefinitionDiagram Enumeration > Compartment[kind=literals],
+BlockDefinitionDiagram InstanceSpecification > Compartment[kind=slots],
+BlockDefinitionDiagram Interface > Compartment[kind=properties],
+BlockDefinitionDiagram Interface > Compartment[kind=operations]{
+	visible: true;
+}
+
+
+[appliedStereotypes~="FlowSpecification"] > Compartment[kind=flowproperties]{
+	visible: true;
+}
+
+[appliedStereotypes~="ValueType"] > Compartment[kind=properties],
+[appliedStereotypes~="ValueType"] > Compartment[kind=operations]{
+	visible: true;
+}
+
+InternalBlockDiagram [appliedStereotypes~="Block"] > Compartment[kind=structure],
+InternalBlockDiagram Property > Compartment[kind=structure]{
+	visible: true;
+}
+
+ParametricDiagram Property > Compartment[kind=structure]{
+	visible: true;
+}
+
+ParametricDiagram [appliedStereotypes~="Block"] > Compartment[kind=structure]{
+	visible: true;
+	showTitle: false;
+}
+
+

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SysML Css (Incubation)
+Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.css;singleton:=true
+Bundle-Version: 0.10.2.qualifier
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="0.10.2",
+ org.eclipse.papyrus.infra.gmfdiag.css.theme;bundle-version="0.10.2";resolution:=optional

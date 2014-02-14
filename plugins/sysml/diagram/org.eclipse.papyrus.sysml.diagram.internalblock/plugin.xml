@@ -560,5 +560,62 @@
 
 <!-- // End of user code 
   -->
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+   <diagramMappings diagramID="InternalBlock">
+      <mapping type="InternalBlock" humanReadableType="InternalBlockDiagram"/>
+      <!-- Compartments -->
+      <mapping
+             humanReadableType="structure"
+             type="compartment_sysml_structure">
+      </mapping>
+      
+      <mapping
+             humanReadableType="structure"
+             type="compartment_sysml_blockproperty_structure">
+      </mapping>
+   
+                      <!-- Link labels -->
 
+      <mapping
+             humanReadableType="Label"
+             type="affixedlabel_sysml_flowport_label">
+      </mapping>
+      
+      <mapping
+             humanReadableType="Name"
+             type="affixedlabel_uml_appliedstereotype">
+      </mapping>
+      
+      <mapping
+             humanReadableType="Label"
+             type="affixedlabel_uml_port_label">
+      </mapping>
+   
+      <mapping
+             humanReadableType="Stereotype"
+             type="linklabel_uml_appliedstereotype">
+      </mapping>
+      
+      <mapping
+             humanReadableType="Name"
+             type="linklabel_uml_connector_label">
+      </mapping>
+      
+      <mapping
+             humanReadableType="SourceMultiplicity"
+             type="linklabel_uml_connector_source_multiplicity">
+      </mapping>
+      
+      <mapping
+             humanReadableType="TargetMultiplicity"
+             type="linklabel_uml_connector_target_multiplicity">
+      </mapping>
+      
+      <mapping
+             humanReadableType="Name"
+             type="linklabel_uml_namedelement_name">
+      </mapping>
+   
+          </diagramMappings>
+   </extension>
 </plugin>

@@ -14,6 +14,11 @@
                stylesheetPath="theme/papyrus_theme.css">
          </stylesheet>
       </themeContribution>
+      <themeDefinition
+            icon="icons/papyrus.png"
+            id="org.eclipse.papyrus.css.blacknwhite_theme"
+            label="Black &amp; White">
+      </themeDefinition>
    </extension>
 
 </plugin>
