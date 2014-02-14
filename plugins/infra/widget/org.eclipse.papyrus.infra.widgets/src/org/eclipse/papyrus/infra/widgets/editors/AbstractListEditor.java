@@ -147,6 +147,8 @@ public abstract class AbstractListEditor extends AbstractEditor {
 	}
 	
 	protected Object getContextElement() {
+		// Our observables for features of EMF objects are expected to implement IObserving because
+		// the observe the value of the object's feature
 		return (modelProperty instanceof IObserving) ? ((IObserving)modelProperty).getObserved() : null;
 	}
 }

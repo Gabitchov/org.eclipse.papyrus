@@ -17,6 +17,7 @@ import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.swt.widgets.Composite;
 
@@ -177,6 +178,8 @@ public abstract class AbstractValueEditor extends AbstractEditor {
 	
 	@Override
 	protected Object getContextElement() {
-		return (modelProperty != null) ? modelProperty.getValue() : getValue();
+		// Our observables for features of EMF objects are expected to implement IObserving because
+		// the observe the value of the object's feature
+		return (modelProperty instanceof IObserving) ? ((IObserving)modelProperty).getObserved() : null;
 	}
 }
