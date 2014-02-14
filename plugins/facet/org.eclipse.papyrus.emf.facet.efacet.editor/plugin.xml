@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+  Copyright (c) 2011 Mia-Software.
+  
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+  
+  Contributors:
+ 	Gregoire Dupe (Mia-Software) - Design
+ 	Nicolas Guyomar (Mia-Software) - Implementation
+  
+-->
+
+<plugin>
+
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.emf.facet.efacet.presentation.EFacetEditorID"
+            name="%_UI_EFacetEditor_label"
+            icon="icons/full/obj16/EFacetModelFile.gif"
+            extensions="efacet"
+            class="org.eclipse.emf.facet.efacet.presentation.EFacetEditor"
+            contributorClass="org.eclipse.emf.facet.efacet.presentation.EFacetActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

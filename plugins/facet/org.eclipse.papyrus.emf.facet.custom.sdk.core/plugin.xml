@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+          id="org.eclipse.emf.facet.custom.sdk.core.validation"
+          point="org.eclipse.emf.validation.constraintProviders">
+       <category
+             id="org.eclipse.emf.facet.custom.sdk.core.validation.category"
+             name="%modelValidation.category">
+       </category>
+       <constraintProvider mode="Batch">
+          <package namespaceUri="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom"/>
+          <package namespaceUri="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"/>
+          <constraints categories="org.eclipse.emf.facet.custom.sdk.core.validation.category">
+             <constraint
+                   class="org.eclipse.emf.facet.custom.sdk.core.internal.validation.AvoidEClassOverlayConstraint"
+                   id="org.eclipse.emf.facet.custom.sdk.core.constraint.avoidEClassOverlay"
+                   isEnabledByDefault="true"
+                   lang="Java"
+                   mode="Batch"
+                   name="%avoidEClassOverlay.constraint.name"
+                   severity="WARNING"
+                   statusCode="1">
+                <message>
+                   %avoidEClassOverlay.constraint.message
+                </message>
+                <description>
+                   %avoidEClassOverlay.constraint.description
+                </description>
+             </constraint>
+          </constraints>
+       </constraintProvider>
+    </extension>
+
+    <extension point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            default="false"
+            id="org.eclipse.emf.facet.custom.sdk.core.validation.context">
+         <selector class="org.eclipse.emf.facet.custom.sdk.core.internal.validation.ValidationDelegateClientSelector"/>
+      </clientContext>
+      <binding
+            context="org.eclipse.emf.facet.custom.sdk.core.validation.context"
+            category="org.eclipse.emf.facet.custom.sdk.core.validation.category"/>
+   </extension> 
+   
+   <extension point="org.eclipse.papyrus.emf.facet.common.sdk.core.builderRegistration">
+      <builder class="org.eclipse.emf.facet.custom.sdk.core.internal.validation.CustomizationValidationBuilder"/>
+   </extension>
+</plugin>
