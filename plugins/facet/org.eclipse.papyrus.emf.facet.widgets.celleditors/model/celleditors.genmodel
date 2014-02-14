@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2010 CEA LIST.&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;   Nicolas Bros (Mia-Software) - initial API and implementation"
+    modelDirectory="/org.eclipse.emf.facet.widgets.celleditors/src" editDirectory="/org.eclipse.emf.facet.widgets.celleditors.edit/src"
+    editorDirectory="/org.eclipse.emf.facet.widgets.celleditors.editor/src" modelPluginID="org.eclipse.emf.facet.widgets.celleditors"
+    modelName="Celleditors" modelPluginClass="org.eclipse.emf.facet.widgets.celleditors.CelleditorsPlugin"
+    editPluginClass="org.eclipse.emf.facet.widgets.celleditors.edit.CelleditorsEditPlugin"
+    editorPluginClass="org.eclipse.emf.facet.widgets.celleditors.editor.CelleditorsEditorPlugin"
+    testSuiteClass="org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.tests.CelleditorsAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    editPluginID="org.eclipse.emf.facet.widgets.celleditors.edit" classNamePattern="">
+  <foreignModel>celleditors.ecore</foreignModel>
+  <genPackages prefix="ModelCellEditor" basePackage="org.eclipse.emf.facet.widgets.celleditors"
+      disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions="modelcelleditors"
+      ecorePackage="celleditors.ecore#/">
+    <genClasses ecoreClass="celleditors.ecore#//ModelCellEditorDeclarations">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference celleditors.ecore#//ModelCellEditorDeclarations/modelCellEditors"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="celleditors.ecore#//AbstractModelCellEditor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference celleditors.ecore#//AbstractModelCellEditor/cellType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute celleditors.ecore#//AbstractModelCellEditor/cellId"/>
+      <genOperations ecoreOperation="celleditors.ecore#//AbstractModelCellEditor/getModelCellEditorImpl"/>
+    </genClasses>
+    <genClasses ecoreClass="celleditors.ecore#//BasicCellEditor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute celleditors.ecore#//BasicCellEditor/basicCellEditorImpl"/>
+    </genClasses>
+    <genClasses ecoreClass="celleditors.ecore#//UnaryReferenceCellEditor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute celleditors.ecore#//UnaryReferenceCellEditor/unaryReferenceCellEditorImpl"/>
+    </genClasses>
+    <genClasses ecoreClass="celleditors.ecore#//NaryFeatureCellEditor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute celleditors.ecore#//NaryFeatureCellEditor/naryFeatureCellEditorImpl"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

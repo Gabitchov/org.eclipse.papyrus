@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.query.ocl.metamodel;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.emf.facet.query.ocl.metamodel.oclquery,
+ org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl,
+ org.eclipse.emf.facet.query.ocl.metamodel.oclquery.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="0.2.0";visibility:=reexport
+Bundle-ActivationPolicy: lazy

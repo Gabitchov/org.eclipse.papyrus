@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.emf.facet.common.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.emf.facet.common.core" id="builderRegistration" name="EMF Facet Builder Registration"/>
+      </appinfo>
+      <documentation>
+         This extension point allows to register builders that will be run when the main EMF Facet builder is run.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice>
+            <element ref="builder"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="builder">
+      <complexType>
+         <choice minOccurs="0" maxOccurs="unbounded">
+            <element ref="depends"/>
+         </choice>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A class that implements org.eclipse.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="depends">
+      <complexType>
+         <attribute name="builder" type="string" use="required">
+            <annotation>
+               <documentation>
+                  ID of an EMF Facet builder on which this EMF Facet builder depends.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.2.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         &lt;pre&gt;
+   &lt;extension point=&quot;org.eclipse.emf.facet.common.sdk.core.builderRegistration&quot;&gt;
+      &lt;builder class=&quot;org.eclipse.emf.facet.custom.sdk.core.internal.validation.CustomizationValidationBuilder&quot;/&gt;
+   &lt;/extension&gt;
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         The builder must implement org.eclipse.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         For an example, see the customization validation builder in org.eclipse.emf.facet.custom.sdk.core:&lt;br/&gt;
+org.eclipse.emf.facet.custom.sdk.core.internal.validation.CustomizationValidationBuilder
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2009-2012 Mia-Software.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+&lt;a 
+href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+Contributors:
+    Grégoire Dupé (Mia-Software)
+    Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
+      </documentation>
+   </annotation>
+
+</schema>

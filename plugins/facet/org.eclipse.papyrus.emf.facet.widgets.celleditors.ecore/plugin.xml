@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?><!--
+Copyright (c) 2010 CEA LIST
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+     Nicolas Bros (Mia-Software) - initial API and implementation
+-->
+
+<plugin>
+   <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.celleditors">
+      <cellEditorsModel path="org.eclipse.emf.facet.widgets.celleditors.ecore.modelcelleditors"/>
+   </extension>
+   <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.compositeEditorFactories">
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.BigDecimalCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.BigIntegerCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.BooleanCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.ByteCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.CharCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.DoubleCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.FloatCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.IntCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.LongCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.ShortCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.StringMultiCompositeFactory"/>
+   </extension>
+</plugin>

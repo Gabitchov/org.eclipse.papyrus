@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modelCellEditor:ModelCellEditorDeclarations xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:modelCellEditor="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor">
+  <modelCellEditors xsi:type="modelCellEditor:UnaryReferenceCellEditor" cellId="unaryref_cell" unaryReferenceCellEditorImpl="org.eclipse.emf.facet.widgets.celleditors.internal.core.UnaryReferenceCellEditor">
+    <cellType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:NaryFeatureCellEditor" cellId="naryref_cell" naryFeatureCellEditorImpl="org.eclipse.emf.facet.widgets.celleditors.internal.core.NaryReferenceCellEditor">
+    <cellType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </modelCellEditors>
+  <modelCellEditors xsi:type="modelCellEditor:NaryFeatureCellEditor" cellId="naryattr_cell" naryFeatureCellEditorImpl="org.eclipse.emf.facet.widgets.celleditors.internal.core.NaryAttributeCellEditor">
+    <cellType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EDataType"/>
+  </modelCellEditors>
+</modelCellEditor:ModelCellEditorDeclarations>
