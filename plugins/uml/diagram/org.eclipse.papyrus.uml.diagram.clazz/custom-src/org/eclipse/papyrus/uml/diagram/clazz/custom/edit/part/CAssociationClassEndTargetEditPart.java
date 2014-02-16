@@ -15,8 +15,8 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationEndSourceLabelHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
+import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndSourceLabelHelper;
 import org.eclipse.ui.views.properties.IPropertySource;
 
 /**

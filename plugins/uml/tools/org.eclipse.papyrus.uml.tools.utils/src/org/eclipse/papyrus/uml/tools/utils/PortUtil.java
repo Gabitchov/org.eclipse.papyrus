@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,11 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
+import java.util.Collection;
+
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 
 
 public class PortUtil extends PropertyUtil {
+
 	/**
 	 * return the custom label of the property, given UML2 specification and a custom style.
 	 * 
@@ -26,54 +29,52 @@ public class PortUtil extends PropertyUtil {
 	 * 
 	 * @return the string corresponding to the label of the property
 	 */
-	public static String getCustomLabel(Property property, int style) {
+	public static String getCustomLabel(Property property, Collection<String> maskValues) {
 		StringBuffer buffer = new StringBuffer();
 		// visibility
 
 		buffer.append(" ");
-		if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+		if(maskValues.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(property));
 		}
 
 		// derived property
-		if((style & ICustomAppearence.DISP_DERIVE) != 0) {
+		if(maskValues.contains(ICustomAppearance.DISP_DERIVE)) {
 			if(property.isDerived()) {
 				buffer.append("/");
 			}
 		}
 		// name
-		if((style & ICustomAppearence.DISP_NAME) != 0) {
+		if(maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(property.getName());
 		}
 
-		if((style & ICustomAppearence.DISP_TYPE) != 0) {
-			if( (style &ICustomAppearence.DISP_CONJUGATED)!=0){
-				if( ((Port)property).isConjugated()){
+		if(maskValues.contains(ICustomAppearance.DISP_TYPE)) {
+			if(maskValues.contains(ICustomAppearance.DISP_CONJUGATED)) {
+				if(((Port)property).isConjugated()) {
 					buffer.append(": ~");
-				}
-				else{
+				} else {
 					buffer.append(": ");
 				}
-			}
-			else{
+			} else {
 				buffer.append(": ");
 			}
 			// type
 			if(property.getType() != null) {
-				buffer.append( property.getType().getName());
+				buffer.append(property.getType().getName());
 			} else {
-				buffer.append( TypeUtil.UNDEFINED_TYPE_NAME);
+				buffer.append(TypeUtil.UNDEFINED_TYPE_NAME);
 			}
 		}
 
-		if((style & ICustomAppearence.DISP_MULTIPLICITY) != 0) {
+		if(maskValues.contains(ICustomAppearance.DISP_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
 			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 			buffer.append(multiplicity);
 		}
 
-		if((style & ICustomAppearence.DISP_DFLT_VALUE) != 0) {
+		if(maskValues.contains(ICustomAppearance.DISP_DEFAULT_VALUE)) {
 			// default value
 			if(property.getDefault() != null) {
 				buffer.append(" = ");
@@ -81,8 +82,8 @@ public class PortUtil extends PropertyUtil {
 			}
 		}
 
-		if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
-			boolean multiLine = ((style & ICustomAppearence.DISP_MULTI_LINE) != 0);
+		if(maskValues.contains(ICustomAppearance.DISP_MODIFIERS)) {
+			boolean multiLine = maskValues.contains(ICustomAppearance.DISP_MULTI_LINE);
 			// property modifiers
 			String modifiers = PropertyUtil.getModifiersAsString(property, multiLine);
 			if(!modifiers.equals("")) {
@@ -90,7 +91,7 @@ public class PortUtil extends PropertyUtil {
 					buffer.append("\n");
 				}
 
-				if (!buffer.toString().endsWith(" ")){					
+				if(!buffer.toString().endsWith(" ")) {
 					buffer.append(" ");
 				}
 

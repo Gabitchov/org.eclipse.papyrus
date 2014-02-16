@@ -1466,8 +1466,160 @@
          name="Display actor as stickman">
    </command>
 </extension>
+
+
 <!-- Custom extension point editpart provider for editing properties of stereotype-->
   
-  
+ <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="UseCase">
+			<mapping type="UseCase" humanReadableType="UseCaseDiagram"/>
+			
+	<mapping
+		humanReadableType="points"
+		type="7009">
+	</mapping>
+
+	<mapping
+		humanReadableType="points"
+		type="7010">
+	</mapping>
+
+	<mapping
+		humanReadableType="use cases"
+		type="7011">
+	</mapping>
+
+	<mapping
+		humanReadableType="points"
+		type="7012">
+	</mapping>
+
+	<mapping
+		humanReadableType="use cases"
+		type="7017">
+	</mapping>
+
+	<mapping
+		humanReadableType="points"
+		type="7014">
+	</mapping>
+
+	<mapping
+		humanReadableType="use cases"
+		type="7015">
+	</mapping>
+
+	<mapping
+		humanReadableType="PackageableElement"
+		type="7016">
+	</mapping>
+
+	<mapping
+		humanReadableType="PackageableElement"
+		type="7013">
+	</mapping>
+
+			
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="6030">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="6031">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="6032">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6008">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6033">
+	</mapping>
+
+
+	
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6010">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6034">
+	</mapping>
+
+
+	
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6011">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6014">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6012">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6013">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6015">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6035">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="0">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="6036">
+	</mapping>
+
+
+		</diagramMappings>
+	</extension>
 
 </plugin>

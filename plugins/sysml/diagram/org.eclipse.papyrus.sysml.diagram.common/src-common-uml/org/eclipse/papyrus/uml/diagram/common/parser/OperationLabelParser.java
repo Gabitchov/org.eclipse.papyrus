@@ -7,26 +7,33 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
+import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.uml.diagram.common.utils.ParameterLabelUtil;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.VisibilityKind;
 
@@ -55,11 +62,13 @@ public class OperationLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		
-		if (flags == 0) {
+
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
 			return MaskedLabel;
 		}
-		
+
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -68,7 +77,7 @@ public class OperationLabelParser extends NamedElementLabelParser {
 			Operation operation = (Operation)eObject;
 
 			// manage visibility
-			if((flags & ILabelPreferenceConstants.DISP_VISIBILITY) == ILabelPreferenceConstants.DISP_VISIBILITY) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_VISIBILITY)) {
 				String visibility;
 				switch(operation.getVisibility().getValue()) {
 				case VisibilityKind.PACKAGE:
@@ -91,33 +100,35 @@ public class OperationLabelParser extends NamedElementLabelParser {
 			}
 
 			// manage name and parameters
-			if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) && (operation.isSetName())) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_NAME)) && (operation.isSetName())) {
 				String name = operation.getName();
 
 				StringBuffer params = new StringBuffer();
 				for(Parameter parameter : operation.getOwnedParameters()) {
-					String currentParamLabel = parameterParser.getPrintString(new SemanticAdapter(parameter, null), flags);
-					params.append(params.length() == 0 ? currentParamLabel : ", " + currentParamLabel);
+					if(parameter.getDirection() != ParameterDirectionKind.RETURN_LITERAL) {
+						String currentParamLabel = ParameterLabelUtil.getPrintString(parameter, extractParameterMaskValues(maskValues));
+						params.append(params.length() == 0 ? currentParamLabel : ", " + currentParamLabel);
+					}
 				}
 
 				result = String.format(NAME_FORMAT, result, name, params);
 			}
 
 			// manage type
-			if(((flags & ILabelPreferenceConstants.DISP_TYPE) == ILabelPreferenceConstants.DISP_TYPE)) {
+			if((maskValues.contains(ILabelPreferenceConstants.DISP_TYPE))) {
 				String type = "<Undefined>";
 				if(operation.getType() != null) {
 					type = operation.getType().getName();
 				}
-				
+
 				// If type is undefined only show "<Undefined>" when explicitly asked.
-				if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
+				if((maskValues.contains(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE)) || (!"<Undefined>".equals(type))) {
 					result = String.format(TYPE_FORMAT, result, type);
 				}
 			}
 
 			// manage modifier
-			if((flags & ILabelPreferenceConstants.DISP_MODIFIERS) == ILabelPreferenceConstants.DISP_MODIFIERS) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_MODIFIERS)) {
 				StringBuffer sb = new StringBuffer();
 				if(operation.isAbstract()) {
 					sb.append(sb.length() == 0 ? "abstract" : ", abstract");
@@ -140,6 +151,19 @@ public class OperationLabelParser extends NamedElementLabelParser {
 				}
 			}
 		}
+		return result;
+	}
+
+	private static Collection<String> extractParameterMaskValues(Collection<String> operationMaskValues) {
+		Set<String> result = new HashSet<String>();
+
+		for(String maskValue : operationMaskValues) {
+			if(maskValue.startsWith(ICustomAppearance.PARAMETERS_PREFIX)) {
+				String newValue = StringHelper.firstToLower(maskValue.replace(ICustomAppearance.PARAMETERS_PREFIX, ""));
+				result.add(newValue);
+			}
+		}
+
 		return result;
 	}
 
@@ -180,19 +204,30 @@ public class OperationLabelParser extends NamedElementLabelParser {
 		}
 		return semanticElementsBeingParsed;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Map<Integer, String> getMasks() {
-		Map<Integer, String> masks = new HashMap<Integer, String>(5);
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>(5);
 		masks.put(ILabelPreferenceConstants.DISP_VISIBILITY, "Visibility");
 		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
 		masks.put(ILabelPreferenceConstants.DISP_TYPE, "Type");
 		masks.put(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE, "Show <Undefined> type");
 		masks.put(ILabelPreferenceConstants.DISP_MODIFIERS, "Modifiers");
-		masks.putAll(parameterParser.getMasks());
+
+		masks.put(ILabelPreferenceConstants.DISP_PARAMETER_DIRECTION, "Parameter direction");
+		masks.put(ILabelPreferenceConstants.DISP_PARAMETER_NAME, "Parameter name");
+		masks.put(ILabelPreferenceConstants.DISP_PARAMETER_TYPE, "Parameter type");
+		masks.put(ILabelPreferenceConstants.DISP_PARAMETER_MULTIPLICITY, "Parameter multiplicity");
+		masks.put(ILabelPreferenceConstants.DISP_PARAMETER_DEFAULT, "Parameter default value");
+		masks.put(ILabelPreferenceConstants.DISP_PARAMETER_MODIFIERS, "Parameter modifiers");
 		return masks;
+	}
+
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_TYPE, ILabelPreferenceConstants.DISP_PARAMETER_DIRECTION, ILabelPreferenceConstants.DISP_PARAMETER_NAME, ILabelPreferenceConstants.DISP_PARAMETER_TYPE);
 	}
 }

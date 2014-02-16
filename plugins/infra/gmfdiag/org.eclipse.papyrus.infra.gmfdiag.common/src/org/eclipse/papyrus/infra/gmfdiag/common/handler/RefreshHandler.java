@@ -28,9 +28,9 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * Handles the refresh command on the Papyrus editor (F5)
- * 
+ *
  * Refreshes the active diagram
- * 
+ *
  * @author Camille Letavernier
  */
 //TODO: To be refactored. Move to infra/gmfdiag/menu when the plugin exists
@@ -44,7 +44,7 @@ public class RefreshHandler extends AbstractHandler {
 
 	/**
 	 * Register a refresher part that is not attached to any editor
-	 * 
+	 *
 	 * @param refresher
 	 *        The refresher part
 	 */

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,12 +26,12 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusC
  * 
  * @author Camille Letavernier
  */
-//Implementation note: the CSS rely on these EAnnotations to determine 
-//whether the CSS appearance should be enabled or not. If the EAnnotations
-//are removed, the implementation of CSSApperanceProvider and ResetStyleHandler
-//should be changed accordingly (e.g. if EAnnotations are replaced by GMF
-//NamedStyles, see
-//Bug 321305 - https://bugs.eclipse.org/bugs/show_bug.cgi?id=321305 )
+// Implementation note: the CSS rely on these EAnnotations to determine
+// whether the CSS appearance should be enabled or not. If the EAnnotations
+// are removed, the implementation of CSSApperanceProvider and ResetStyleHandler
+// should be changed accordingly (e.g. if EAnnotations are replaced by GMF
+// NamedStyles, see
+// Bug 321305 - https://bugs.eclipse.org/bugs/show_bug.cgi?id=321305 )
 public class AnnotationStyleProvider implements AppearanceStyleProvider {
 
 	public boolean showElementIcon(EModelElement modelElement) {
@@ -48,9 +48,12 @@ public class AnnotationStyleProvider implements AppearanceStyleProvider {
 		return false;
 	}
 
-	//TODO: Improve this method. The annotation should be able to store either a String (FULL, NONE) or an Integer.
-	//The method should parse this string to the corresponding integer when called.
-	//Check whether this is compatible with the property view edition (Which already manipulates and parses "FULL" and "NONE")
+	// TODO: Improve this method. The annotation should be able to store either
+	// a String (FULL, NONE) or an Integer.
+	// The method should parse this string to the corresponding integer when
+	// called.
+	// Check whether this is compatible with the property view edition (Which
+	// already manipulates and parses "FULL" and "NONE")
 	public int getQualifiedNameDepth(EModelElement modelElement) {
 		EAnnotation qualifiedNameAnnotation = modelElement.getEAnnotation(VisualInformationPapyrusConstants.QUALIFIED_NAME);
 		if(qualifiedNameAnnotation != null) {
@@ -130,5 +133,6 @@ public class AnnotationStyleProvider implements AppearanceStyleProvider {
 	public static RecordingCommand getSetShadowCommand(TransactionalEditingDomain domain, EModelElement view, boolean shadowFigureValue) {
 		return new SetShadowFigureCommand(domain, view, shadowFigureValue);
 	}
+
 
 }

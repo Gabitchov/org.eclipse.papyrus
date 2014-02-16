@@ -21,7 +21,10 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.ruler.SnapToHelperUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.copy.DragEditPartsTrackerEx;
 
@@ -85,7 +88,13 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 	 */
 	@SuppressWarnings({ "unchecked" })
 	protected void snapPoint(ChangeBoundsRequest request) {
-		if(getSnapToHelper() != null && request.isSnapToEnabled()) {
+		if(getSnapToHelper() != null && request.isSnapToEnabled() && request.getEditParts().size() > 0) {
+
+			//test to know if we are moving using keyboard
+			if(!getCurrentInput().isAnyButtonDown()) {
+				calculateSnapPointFromArrowKey(request);
+				return;
+			}
 			int restrictedDirection = 0;
 			restrictedDirection = restrictedDirection | PositionConstants.EAST;
 			restrictedDirection = restrictedDirection | PositionConstants.WEST;
@@ -113,6 +122,109 @@ public class PapyrusDragEditPartsTrackerEx extends DragEditPartsTrackerEx {
 					min = Math.min(min, distances.get(i));
 				}
 				request.setMoveDelta(distVSPoint.get(min));
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param request
+	 *        a move request
+	 * @return
+	 *         the restricted direction for the request
+	 */
+	protected final int getRestrictedDirection(final ChangeBoundsRequest request) {
+		int restrictedDirection = 0;
+		final Point delta = request.getMoveDelta();
+		if(delta.x > 0) {
+			restrictedDirection = restrictedDirection | PositionConstants.EAST;
+			restrictedDirection = restrictedDirection | PositionConstants.WEST;
+		}
+		if(delta.x < 0) {
+			restrictedDirection = restrictedDirection | PositionConstants.EAST;
+			restrictedDirection = restrictedDirection | PositionConstants.WEST;
+		}
+		if(delta.y > 0) {
+			restrictedDirection = restrictedDirection | PositionConstants.SOUTH;
+			restrictedDirection = restrictedDirection | PositionConstants.NORTH;
+		}
+		if(delta.y < 0) {
+			restrictedDirection = restrictedDirection | PositionConstants.SOUTH;
+			restrictedDirection = restrictedDirection | PositionConstants.NORTH;
+		}
+		return restrictedDirection;
+	}
+
+	/**
+	 * 
+	 * @param request
+	 *        the move request
+	 */
+	@SuppressWarnings("unchecked")
+	protected void calculateSnapPointFromArrowKey(final ChangeBoundsRequest request) {
+		if(request.getEditParts().size() == 0) {
+			return;
+		}
+		final Object ep = request.getEditParts().get(0);
+		if(!(ep instanceof IGraphicalEditPart)) {
+			return;
+		}
+		final RootEditPart root = ((IGraphicalEditPart)ep).getRoot();
+		if(!(root instanceof DiagramRootEditPart)) {
+			return;
+		}
+		final double gridSpacing = ((DiagramRootEditPart)root).getGridSpacing();
+		int max = (int)(1 + gridSpacing);
+		int restrictedDirection = getRestrictedDirection(request);
+		final Point delta = request.getMoveDelta();
+		final Point newDelta = new Point(0, 0);
+		int newMove = 0;
+		while(newMove < max) {
+			newMove++;
+			if(delta.x > 0) {
+				newDelta.x = (int)newMove + delta.x;
+			}
+			if(delta.x < 0) {
+				newDelta.x = (-newMove) + delta.x;
+			}
+			if(delta.y > 0) {
+				newDelta.y = newMove + delta.y;
+			}
+			if(delta.y < 0) {
+				newDelta.y = (-newMove) + delta.y;
+			}
+			request.setMoveDelta(newDelta);
+			request.getExtendedData().put(SnapToHelperUtil.RESTRICTED_DIRECTIONS, restrictedDirection);
+
+			final Map<Double, PrecisionPoint> distVSPoint = new HashMap<Double, PrecisionPoint>();
+			if(this.snapOnCorners) {
+				distVSPoint.putAll(getCornerDistances(request));
+			}
+
+			if(this.snapOnMiddles) {
+				distVSPoint.putAll(getMiddleDistances(request));
+			}
+
+			if(this.snapOnCenter) {
+				distVSPoint.putAll(getCenterDistances(request));
+			}
+
+			final List<Double> distances = new ArrayList<Double>(distVSPoint.keySet());
+			if(distances.size() > 0) {
+				double min = distances.get(0);
+				//We look for the minus distance
+				for(int i = 1; i < distances.size() - 1; i++) {
+					min = Math.min(min, distances.get(i));
+				}
+				final Point minPoint = distVSPoint.get(min);
+				//the distance can't be null
+				if(minPoint.x != 0 || minPoint.y != 0) {
+					//the calculate move must be in the same direction than the keyboard move 
+					if(Integer.signum(minPoint.x) == Integer.signum(delta.x) && Integer.signum(minPoint.y) == Integer.signum(delta.y)) {
+						request.setMoveDelta(distVSPoint.get(min));
+						return;
+					}
+				}
 			}
 		}
 	}

@@ -7,13 +7,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +48,13 @@ public class ReceptionLabelParser extends NamedElementLabelParser implements IMa
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		
-		if (flags == 0) {
+
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
 			return MaskedLabel;
 		}
-		
+
 		String result = PREFIX;
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
@@ -59,13 +63,13 @@ public class ReceptionLabelParser extends NamedElementLabelParser implements IMa
 			Reception reception = (Reception)eObject;
 
 			// manage name
-			if(((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) && (reception.isSetName())) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_NAME) && reception.isSetName()) {
 				String name = reception.getName();
 				result = String.format(NAME_FORMAT, result, name);
 			}
 
 			// manage signal
-			if(((flags & ILabelPreferenceConstants.DISP_SIGNAL) == ILabelPreferenceConstants.DISP_SIGNAL)) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_SIGNAL)) {
 				String type = "<Undefined>";
 				if(reception.getSignal() != null) {
 					type = reception.getSignal().getName();
@@ -110,15 +114,19 @@ public class ReceptionLabelParser extends NamedElementLabelParser implements IMa
 		}
 		return semanticElementsBeingParsed;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Map<Integer, String> getMasks() {
-		Map<Integer, String> masks = new HashMap<Integer, String>(2);
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>();
 		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
-		masks.put(ILabelPreferenceConstants.DISP_SIGNAL, "Signel");
+		masks.put(ILabelPreferenceConstants.DISP_SIGNAL, "Signal");
 		return masks;
+	}
+
+	public Collection<String> getDefaultValue() {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_SIGNAL);
 	}
 }

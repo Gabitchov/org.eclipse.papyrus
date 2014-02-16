@@ -1140,7 +1140,129 @@
       <?gmfgen generated="true"?>
    </extension>
 
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="PapyrusUMLDeploymentDiagram">
+			<mapping type="PapyrusUMLDeploymentDiagram" humanReadableType="DeploymentDiagram"/>
+			
+	<mapping
+		humanReadableType="Model"
+		type="51">
+	</mapping>
 
+	<mapping
+		humanReadableType="PackageableElement"
+		type="38">
+	</mapping>
+
+	<mapping
+		humanReadableType="DeviceComposite"
+		type="17">
+	</mapping>
+
+	<mapping
+		humanReadableType="ExecutionEnvironmentComposite"
+		type="18">
+	</mapping>
+
+	<mapping
+		humanReadableType="Composite"
+		type="19">
+	</mapping>
+
+	<mapping
+		humanReadableType="ArtifactComposite"
+		type="26">
+	</mapping>
+
+	<mapping
+		humanReadableType="Model"
+		type="52">
+	</mapping>
+
+	<mapping
+		humanReadableType="PackageableElement"
+		type="39">
+	</mapping>
+
+	<mapping
+		humanReadableType="DeviceComposite"
+		type="30">
+	</mapping>
+
+	<mapping
+		humanReadableType="ExecutionEnvironmentComposite"
+		type="31">
+	</mapping>
+
+	<mapping
+		humanReadableType="Composite"
+		type="32">
+	</mapping>
+
+	<mapping
+		humanReadableType="ArtifactComposite"
+		type="33">
+	</mapping>
+
+	<mapping
+		humanReadableType="ArtifactComposite"
+		type="34">
+	</mapping>
+
+			
+	
+
+	
+
+	
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="13">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="14">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="10">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="11">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="4">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="12">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="15">
+	</mapping>
+
+
+	
+
+		</diagramMappings>
+	</extension>
 
 
    <!-- optionally, specify keybindings -->

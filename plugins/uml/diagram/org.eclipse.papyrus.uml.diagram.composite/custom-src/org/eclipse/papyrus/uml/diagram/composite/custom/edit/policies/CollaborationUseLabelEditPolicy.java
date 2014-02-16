@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,18 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.helper.CollaborationUseLabelHelper;
-import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.CollaborationUsePreferencePage;
-import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.IPapyrusCollaborationUsePreferencesConstant;
-import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -68,27 +61,9 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getCurrentDisplayValue() {
-		EAnnotation propertyDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		int displayValue = getDefaultDisplayValue();
-		if(propertyDisplay != null) {
-			displayValue = Integer.parseInt(propertyDisplay.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
-		} else {
-			// no specific information => look in preferences
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IPapyrusCollaborationUsePreferencesConstant.LABEL_DISPLAY_PREFERENCE);
-			if(displayValueTemp != 0) {
-				displayValue = displayValueTemp;
-			}
-		}
-		return displayValue;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public int getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_PROPERTY;
+	@Override
+	public Collection<String> getDefaultDisplayValue() {
+		return ICustomAppearance.DEFAULT_UML_PROPERTY;
 	}
 
 	/**
@@ -108,19 +83,9 @@ public class CollaborationUseLabelEditPolicy extends AbstractMaskManagedEditPoli
 	/**
 	 * {@inheritDoc}
 	 */
-	public Map<Integer, String> getMasks() {
+	@Override
+	public Map<String, String> getMasks() {
 		return CollaborationUseLabelHelper.getInstance().getMasks();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<Integer> getMaskValues() {
-		return CollaborationUseLabelHelper.getInstance().getMaskValues();
-	}
-
-	public String getPreferencePageID() {
-		return CollaborationUsePreferencePage.ID;
 	}
 
 	/**
