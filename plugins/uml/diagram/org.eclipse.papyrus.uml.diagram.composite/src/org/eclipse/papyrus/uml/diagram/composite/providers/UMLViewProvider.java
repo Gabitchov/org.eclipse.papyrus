@@ -149,22 +149,26 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if(elementType != null) {
 				if(elementType instanceof IExtendedHintedElementType) {
-					IElementType closestNonExtendedType = ElementTypeUtils.getClosestDiagramType(elementType);
-					if(!UMLElementTypes.isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof IHintedType))) {
-						return false; // foreign element type.
-					}
+//					IElementType closestNonExtendedType = ElementTypeUtils.getClosestDiagramType(elementType);
+//					if(!UMLElementTypes.isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof IHintedType))) {
+//						return false; // foreign element type.
+//					}
 				} else {
+					
 					if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 						return false; // foreign element type
 					}
+					
+					String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+					if(!op.getSemanticHint().equals(elementTypeHint)) {
+						return false; // if semantic hint is specified it should be the same as in element type
+					}
+					if(domainElement != null && visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
+						return false; // visual id for node EClass should match visual id from element type
+					}
+					
 				}
-				String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
-				if(!op.getSemanticHint().equals(elementTypeHint)) {
-					return false; // if semantic hint is specified it should be the same as in element type
-				}
-				if(domainElement != null && visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-					return false; // visual id for node EClass should match visual id from element type
-				}
+				
 			} else {
 				if(!CompositeStructureDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram

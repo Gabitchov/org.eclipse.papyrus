@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ASCII"?>
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" name="ExtendedTypesTestsProfile">
+  <dependencies href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#/"/>
+  <tabs label="ExtendedTypesTestsProfile" id="extendedtypestestsprofile" priority="100">
+    <sections name="Single PackageWithComponents" sectionFile="ui/SinglePackageWithComponents.xwt">
+      <widget href="ui/SinglePackageWithComponents.xwt#/"/>
+    </sections>
+    <sections name="Multiple PackageWithComponents" sectionFile="ui/MultiplePackageWithComponents.xwt">
+      <widget href="ui/MultiplePackageWithComponents.xwt#/"/>
+    </sections>
+    <sections name="Single StereotypeWithFeaturesToSet" sectionFile="ui/SingleStereotypeWithFeaturesToSet.xwt">
+      <widget href="ui/SingleStereotypeWithFeaturesToSet.xwt#/"/>
+    </sections>
+    <sections name="Multiple StereotypeWithFeaturesToSet" sectionFile="ui/MultipleStereotypeWithFeaturesToSet.xwt">
+      <widget href="ui/MultipleStereotypeWithFeaturesToSet.xwt#/"/>
+    </sections>
+  </tabs>
+  <views name="Single StereotypeWithFeaturesToSet" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
+    <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStereotypeWithFeaturesToSet">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="ExtendedTypesTestsProfile::StereotypeWithFeaturesToSet"/>
+    </constraints>
+  </views>
+  <dataContexts name="ExtendedTypesTestsProfile">
+    <elements name="PackageWithComponents">
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.1"/>
+    </elements>
+    <elements name="StereotypeWithFeaturesToSet">
+      <properties name="boolean" type="Boolean"/>
+      <properties name="multiStrings" multiplicity="-1"/>
+      <properties name="value" type="Integer"/>
+      <properties name="stringFeature"/>
+      <properties name="enumeration" type="Enumeration"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.1"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.2"/>
+  </dataContexts>
+</contexts:Context>

@@ -1,20 +1,29 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfiguration;
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
-import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
+import org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement;
+import org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration;
+
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,12 +90,40 @@ public class ApplyStereotypeActionConfigurationAdapterFactory extends AdapterFac
 				return createStereotypeToApplyAdapter();
 			}
 			@Override
+			public Adapter caseFeatureToSet(FeatureToSet object) {
+				return createFeatureToSetAdapter();
+			}
+			@Override
+			public Adapter caseFeatureValue(FeatureValue object) {
+				return createFeatureValueAdapter();
+			}
+			@Override
+			public Adapter caseListValue(ListValue object) {
+				return createListValueAdapter();
+			}
+			@Override
+			public Adapter caseConstantValue(ConstantValue object) {
+				return createConstantValueAdapter();
+			}
+			@Override
+			public Adapter caseDynamicValue(DynamicValue object) {
+				return createDynamicValueAdapter();
+			}
+			@Override
+			public Adapter caseQueryExecutionValue(QueryExecutionValue object) {
+				return createQueryExecutionValueAdapter();
+			}
+			@Override
+			public Adapter caseConfigurationElement(ConfigurationElement object) {
+				return createConfigurationElementAdapter();
+			}
+			@Override
 			public Adapter caseActionConfiguration(ActionConfiguration object) {
 				return createActionConfigurationAdapter();
 			}
 			@Override
-			public Adapter casePostActionConfiguration(PostActionConfiguration object) {
-				return createPostActionConfigurationAdapter();
+			public Adapter caseSemanticActionConfiguration(SemanticActionConfiguration object) {
+				return createSemanticActionConfigurationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -137,6 +174,104 @@ public class ApplyStereotypeActionConfigurationAdapterFactory extends AdapterFac
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureToSet <em>Feature To Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureToSet
+	 * @generated
+	 */
+	public Adapter createFeatureToSetAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureValue <em>Feature Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureValue
+	 * @generated
+	 */
+	public Adapter createFeatureValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ListValue <em>List Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ListValue
+	 * @generated
+	 */
+	public Adapter createListValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ConstantValue <em>Constant Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ConstantValue
+	 * @generated
+	 */
+	public Adapter createConstantValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.DynamicValue <em>Dynamic Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.DynamicValue
+	 * @generated
+	 */
+	public Adapter createDynamicValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.QueryExecutionValue <em>Query Execution Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.QueryExecutionValue
+	 * @generated
+	 */
+	public Adapter createQueryExecutionValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement <em>Configuration Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.extendedtypes.ConfigurationElement
+	 * @generated
+	 */
+	public Adapter createConfigurationElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.ActionConfiguration <em>Action Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -151,16 +286,16 @@ public class ApplyStereotypeActionConfigurationAdapterFactory extends AdapterFac
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration <em>Post Action Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration <em>Semantic Action Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration
+	 * @see org.eclipse.papyrus.infra.extendedtypes.SemanticActionConfiguration
 	 * @generated
 	 */
-	public Adapter createPostActionConfigurationAdapter() {
+	public Adapter createSemanticActionConfigurationAdapter() {
 		return null;
 	}
 

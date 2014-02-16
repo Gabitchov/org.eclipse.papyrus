@@ -13,11 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.edit.policy;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateFlowPortWithFlowSpecificationConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
@@ -42,18 +47,39 @@ public class BlockPropertyCompositeSemanticEditPolicy extends DefaultSemanticEdi
 		if ((eObject != null) && (eObject instanceof Property)) {
 			Type type = ((Property) eObject).getType();
 			if ((type != null) && (((ISpecializationType)SysMLElementTypes.BLOCK).getMatcher().matches(type))) {
+
+				IElementType elementTypeToCreate = req.getElementType();
+				IElementType baseType = elementTypeToCreate;
+				//if extended type, retrieve the sysml closest element element type
+				if(elementTypeToCreate instanceof IExtendedHintedElementType) {
+					List<IElementType> superTypes = Arrays.asList(elementTypeToCreate.getAllSuperTypes());
+					if(superTypes.contains(SysMLElementTypes.FLOW_PORT)) {
+						baseType = SysMLElementTypes.FLOW_PORT;
+					} else if(superTypes.contains(SysMLElementTypes.FLOW_PORT_IN)) {
+						baseType = SysMLElementTypes.FLOW_PORT_IN;
+					} else if(superTypes.contains(SysMLElementTypes.FLOW_PORT_OUT)) {
+						baseType = SysMLElementTypes.FLOW_PORT_OUT;
+					} else if(superTypes.contains(SysMLElementTypes.FLOW_PORT_IN_OUT)) {
+						baseType = SysMLElementTypes.FLOW_PORT_IN_OUT;
+					} else if(superTypes.contains(SysMLElementTypes.FLOW_PORT_NA)) {
+						baseType = SysMLElementTypes.FLOW_PORT_NA;
+					}  else if(superTypes.contains(UMLElementTypes.PORT )) {
+						baseType = UMLElementTypes.PORT ;
+					} 
+				}
 				
-				if((SysMLElementTypes.FLOW_PORT == req.getElementType())
-					|| (SysMLElementTypes.FLOW_PORT_IN == req.getElementType())
-					|| (SysMLElementTypes.FLOW_PORT_OUT == req.getElementType())
-					|| (SysMLElementTypes.FLOW_PORT_IN_OUT == req.getElementType())
-					|| (SysMLElementTypes.FLOW_PORT_NA == req.getElementType())
-					|| (UMLElementTypes.PORT == req.getElementType())) {
+				
+				if((SysMLElementTypes.FLOW_PORT == baseType)
+					|| (SysMLElementTypes.FLOW_PORT_IN == baseType)
+					|| (SysMLElementTypes.FLOW_PORT_OUT == baseType)
+					|| (SysMLElementTypes.FLOW_PORT_IN_OUT == baseType)
+					|| (SysMLElementTypes.FLOW_PORT_NA == baseType)
+					|| (UMLElementTypes.PORT == baseType)) {
 					
 					req.setContainer(type);
 				}
 				
-				if(SysMLElementTypes.FLOW_PORT_NA == req.getElementType()) {
+				if(SysMLElementTypes.FLOW_PORT_NA == baseType) {
 					req.setParameter(IConfigureCommandFactory.CONFIGURE_COMMAND_FACTORY_ID, new CreateFlowPortWithFlowSpecificationConfigureCommandFactory());
 				}
 			}

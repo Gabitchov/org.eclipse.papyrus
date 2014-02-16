@@ -1,12 +1,19 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -20,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply#isUpdateName <em>Update Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply#getRequiredProfiles <em>Required Profiles</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply#getFeaturesToSet <em>Features To Set</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,7 +47,7 @@ public interface StereotypeToApply extends EObject {
 	 * @return the value of the '<em>Stereotype Qualified Name</em>' attribute.
 	 * @see #setStereotypeQualifiedName(String)
 	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage#getStereotypeToApply_StereotypeQualifiedName()
-	 * @model dataType="types.String"
+	 * @model
 	 * @generated
 	 */
 	String getStereotypeQualifiedName();
@@ -65,7 +73,7 @@ public interface StereotypeToApply extends EObject {
 	 * @return the value of the '<em>Update Name</em>' attribute.
 	 * @see #setUpdateName(boolean)
 	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage#getStereotypeToApply_UpdateName()
-	 * @model dataType="types.Boolean"
+	 * @model
 	 * @generated
 	 */
 	boolean isUpdateName();
@@ -95,5 +103,21 @@ public interface StereotypeToApply extends EObject {
 	 * @generated
 	 */
 	EList<String> getRequiredProfiles();
+
+	/**
+	 * Returns the value of the '<em><b>Features To Set</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureToSet}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Features To Set</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Features To Set</em>' containment reference list.
+	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage#getStereotypeToApply_FeaturesToSet()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<FeatureToSet> getFeaturesToSet();
 
 } // StereotypeToApply
