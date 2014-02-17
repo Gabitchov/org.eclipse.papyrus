@@ -20,7 +20,7 @@ import org.eclipse.papyrus.uml.diagram.pkg.preferences.ModelPreferencePage;
 public class CustomModelPreferencePage extends ModelPreferencePage {
 
 	static {
-		compartmentTitleDefaultVisibilityMap.put("PackageableElementCompartment", Boolean.FALSE); //$NON-NLS-1$
+		compartmentTitleDefaultVisibilityMap.put("packaged elements", Boolean.FALSE); //$NON-NLS-1$
 	}
 
 	/**

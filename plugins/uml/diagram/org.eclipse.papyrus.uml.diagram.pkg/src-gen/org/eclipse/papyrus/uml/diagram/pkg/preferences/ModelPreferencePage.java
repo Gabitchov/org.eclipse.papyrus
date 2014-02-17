@@ -35,10 +35,10 @@ public class ModelPreferencePage extends PackageDiagramNodePreferencePage {
 	/** Static attribute initialization */
 	static {
 		compartmentDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
-		compartmentDefaultVisibilityMap.put("PackageableElementCompartment", Boolean.TRUE); //$NON-NLS-1$	
+		compartmentDefaultVisibilityMap.put("packaged elements", Boolean.TRUE); //$NON-NLS-1$	
 
 		compartmentTitleDefaultVisibilityMap = new LinkedHashMap<String, Boolean>();
-		compartmentTitleDefaultVisibilityMap.put("PackageableElementCompartment", Boolean.TRUE); //$NON-NLS-1$
+		compartmentTitleDefaultVisibilityMap.put("packaged elements", Boolean.TRUE); //$NON-NLS-1$
 
 		// Start of user code custom static initializations
 		// End of user code

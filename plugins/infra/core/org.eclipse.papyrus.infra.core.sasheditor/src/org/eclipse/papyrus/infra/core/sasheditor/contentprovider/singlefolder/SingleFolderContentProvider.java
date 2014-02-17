@@ -86,23 +86,15 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 * Add the page which should be an IPageModel instance. {@inheritDoc}
 	 */
 	public void addPage(Object newModel, int index) {
-		addPage((IPageModel)newModel, index);
+		addPage(index, (IPageModel)newModel);
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
 	public void addPage(IPageModel newModel) {
 		currentTabFolder.addItem(newModel);
 
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void addPage(IPageModel newModel, int index) {
+	public void addPage(int index, IPageModel newModel) {
 		currentTabFolder.addItem(index, newModel);
 	}
 
@@ -110,7 +102,7 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 * Do nothing because this implementation doesn't allows folders. {@inheritDoc}
 	 */
 	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
-
+		//Nothing
 	}
 
 	/**
@@ -145,10 +137,6 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 		currentTabFolder.removeTab(index);
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
 	public void removePage(IPageModel tabItem) {
 		currentTabFolder.removeTab(tabItem);
 	}
@@ -177,6 +165,7 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 	 * @param rawModel
 	 */
 	public void setCurrentFolder(Object rawModel) {
+		//Nothing
 	}
 
 	/**
@@ -195,12 +184,14 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 		 * @param listener
 		 */
 		public void addContentChangedListener(IContentChangedListener listener) {
-			if(listeners == null)
+			if(listeners == null) {
 				createListeners();
+			}
 
 			// Check if already exists.
-			if(listeners.contains(listener))
+			if(listeners.contains(listener)) {
 				return;
+			}
 
 			listeners.add(listener);
 		}
@@ -212,8 +203,9 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 		 * @param listener
 		 */
 		public void removeContentChangedListener(IContentChangedListener listener) {
-			if(listeners == null)
+			if(listeners == null) {
 				return;
+			}
 
 			listeners.remove(listener);
 		}
@@ -222,8 +214,9 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 		 * Create the list of listeners.
 		 */
 		private void createListeners() {
-			if(listeners == null)
+			if(listeners == null) {
 				listeners = new ArrayList<IContentChangedListener>();
+			}
 
 		}
 
@@ -233,8 +226,9 @@ public class SingleFolderContentProvider implements ISashWindowsContentProvider,
 		 * @param event
 		 */
 		public void fireContentChanged(ContentEvent event) {
-			if(listeners == null)
+			if(listeners == null) {
 				return;
+			}
 
 			for(IContentChangedListener listener : listeners) {
 				listener.contentChanged(event);
