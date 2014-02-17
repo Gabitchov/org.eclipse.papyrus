@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,12 +9,13 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *  
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class PropertyUtil {
 	/**
 	 * Get all properties that can be subset by this {@link Property} checks the type and the
 	 * multiplicity.
-	 * 
+	 *
 	 * @param property
 	 *        property for which the list of subsettable properties are made
 	 * @param noCheck
@@ -80,7 +81,7 @@ public class PropertyUtil {
 
 	/**
 	 * Find a subsetted property given its name and a context to find it.
-	 * 
+	 *
 	 * @param name
 	 *        the name of the property
 	 * @return the property found or <code>null</code> if the element was not found.
@@ -100,7 +101,7 @@ public class PropertyUtil {
 
 	/**
 	 * Get all properties that can be redefined by this {@link Property}.
-	 * 
+	 *
 	 * @return all properties that can be redefined
 	 */
 	public static List<Property> getRedefinableProperties(Property property) {
@@ -128,7 +129,7 @@ public class PropertyUtil {
 
 	/**
 	 * Find a redefined property given its name and a context to find it.
-	 * 
+	 *
 	 * @param name
 	 *        the name of the property
 	 * @return the property found or <code>null</code> if the element was not found.
@@ -147,7 +148,7 @@ public class PropertyUtil {
 
 	/**
 	 * Get the displayed string for the derived attribute of the property.
-	 * 
+	 *
 	 * @param property
 	 *        the property
 	 * @return If the property is derived, return "/". Otherwise return an empty String
@@ -158,7 +159,7 @@ public class PropertyUtil {
 
 	/**
 	 * return the full label of the property, given UML2 specification.
-	 * 
+	 *
 	 * @return the string corresponding to the label of the property
 	 */
 	public static String getLabel(Property property) {
@@ -209,34 +210,34 @@ public class PropertyUtil {
 
 	/**
 	 * return the custom label of the property, given UML2 specification and a custom style.
-	 * 
+	 *
 	 * @param style
-	 *        the integer representing the style of the label
-	 * 
+	 *        the collection of label fragments to display
+	 *
 	 * @return the string corresponding to the label of the property
 	 */
-	public static String getCustomLabel(Property property, int style) {
+	public static String getCustomLabel(Property property, Collection<String> style) {
 		StringBuffer buffer = new StringBuffer();
 		// visibility
 
 		buffer.append(" ");
-		if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+		if(style.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(property));
 		}
 
 		// derived property
-		if((style & ICustomAppearence.DISP_DERIVE) != 0) {
+		if(style.contains(ICustomAppearance.DISP_DERIVE)) {
 			if(property.isDerived()) {
 				buffer.append("/");
 			}
 		}
 		// name
-		if((style & ICustomAppearence.DISP_NAME) != 0) {
+		if(style.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(property.getName());
 		}
 
-		if((style & ICustomAppearence.DISP_TYPE) != 0) {
+		if(style.contains(ICustomAppearance.DISP_TYPE)) {
 			// type
 			if(property.getType() != null) {
 				buffer.append(": " + property.getType().getName());
@@ -245,13 +246,13 @@ public class PropertyUtil {
 			}
 		}
 
-		if((style & ICustomAppearence.DISP_MULTIPLICITY) != 0) {
+		if(style.contains(ICustomAppearance.DISP_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
 			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 			buffer.append(multiplicity);
 		}
 
-		if((style & ICustomAppearence.DISP_DFLT_VALUE) != 0) {
+		if(style.contains(ICustomAppearance.DISP_DEFAULT_VALUE)) {
 			// default value
 			if(property.getDefault() != null) {
 				buffer.append(" = ");
@@ -259,19 +260,19 @@ public class PropertyUtil {
 			}
 		}
 
-		if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
-			boolean multiLine = ((style & ICustomAppearence.DISP_MULTI_LINE) != 0);
+		if(style.contains(ICustomAppearance.DISP_MODIFIERS)) {
+			boolean multiLine = style.contains(ICustomAppearance.DISP_MULTI_LINE);
 			// property modifiers
 			String modifiers = PropertyUtil.getModifiersAsString(property, multiLine);
 			if(!modifiers.equals("")) {
 				if(multiLine) {
 					buffer.append("\n");
 				}
-				
-				if (!buffer.toString().endsWith(" ")){					
+
+				if(!buffer.toString().endsWith(" ")) {
 					buffer.append(" ");
 				}
-				
+
 				buffer.append(modifiers);
 			}
 		}
@@ -281,11 +282,11 @@ public class PropertyUtil {
 	/**
 	 * Returns the modifier of the property, separated by a comma, as as single line if <code>multiline</code> is <code>false</code> or as a multiline
 	 * string if <code>multiline</code> is <code>false</code>.
-	 * 
+	 *
 	 * @param multiLine
 	 *        boolean that indicates if the string should have several lines when set to <code>true</code> or only one line when set to
 	 *        <code>false</code>.
-	 * 
+	 *
 	 * @return a string giving all modifiers for the property
 	 */
 	public static String getModifiersAsString(Property property, boolean multiLine) {
@@ -330,7 +331,7 @@ public class PropertyUtil {
 
 	/**
 	 * Update the modifiers string
-	 * 
+	 *
 	 * @param buffer
 	 *        the existing bufferString to append
 	 * @param needsComma

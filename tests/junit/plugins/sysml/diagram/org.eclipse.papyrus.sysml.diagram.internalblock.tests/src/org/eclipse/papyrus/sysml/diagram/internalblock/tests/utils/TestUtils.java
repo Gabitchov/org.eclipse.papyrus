@@ -726,19 +726,19 @@ public class TestUtils {
 		history.addOperationHistoryListener(historyChange);
 		// Test execution
 		historyEventType = OperationHistoryEvent.DONE;
-		EditorUtils.getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
+		EditorUtils.getDiagramCommandStack().execute(command);
 		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 			fail("Command execution failed ()");
 		}
 		// Test undo
 		historyEventType = OperationHistoryEvent.DONE;
-		EditorUtils.getCommandStack().undo();
+		EditorUtils.getDiagramCommandStack().undo();
 		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 			fail("Command undo failed ()");
 		}
 		// Test redo
 		historyEventType = OperationHistoryEvent.DONE;
-		EditorUtils.getCommandStack().redo();
+		EditorUtils.getDiagramCommandStack().redo();
 		if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 			fail("Command redo failed ()");
 		}

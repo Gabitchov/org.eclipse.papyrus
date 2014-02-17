@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,17 +13,20 @@ package org.eclipse.papyrus.robotml.diagram.common.editpolicies;
 
 
 
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.PropertyLabelEditPolicy;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 
 
 public class CustomPropertyLabelEditPolicy extends PropertyLabelEditPolicy {
 
 
-	public final static int DEFAULT_ROBOTML_PROPERTY = ICustomAppearence.DISP_NAME | ICustomAppearence.DISP_TYPE;
+	public final static Collection<String> DEFAULT_ROBOTML_PROPERTY = Arrays.asList(ICustomAppearance.DISP_NAME, ICustomAppearance.DISP_TYPE);
 
 	@Override
-	public int getDefaultDisplayValue() {
+	public Collection<String> getDefaultDisplayValue() {
 		// TODO Auto-generated method stub
 		return DEFAULT_ROBOTML_PROPERTY;
 	}

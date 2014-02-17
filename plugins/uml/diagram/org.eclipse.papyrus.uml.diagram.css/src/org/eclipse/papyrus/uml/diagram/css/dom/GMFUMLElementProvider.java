@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,9 +17,17 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.w3c.dom.Element;
 
-
+/**
+ * An IElementProvider for UML-specific CSS concepts
+ *
+ * Provides a specialization of GMFElementAdapter for UML Elements
+ *
+ * @author Camille Letavernier
+ */
+@SuppressWarnings("restriction") //e4 CSS
 public class GMFUMLElementProvider implements IElementProvider {
 
+	@Override
 	public Element getElement(Object element, CSSEngine engine) {
 
 		if(!(element instanceof View)) {

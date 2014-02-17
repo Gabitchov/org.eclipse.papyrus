@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,8 +32,20 @@ public interface VisualInformationPapyrusConstants {
 
 	public static String LAYOUTFIGURE_VALUE = "layoutFigure_value";
 
-	/** key for the appearance of properties or other specific display */
+	/**
+	 * key for the appearance of properties or other specific display
+	 * 
+	 * @deprecated Use a StringListValueStyle instead. See {{@link #CUSTOM_MASK_LABEL}
+	 */
+	@Deprecated
 	public static final String CUSTOM_APPEARENCE_ANNOTATION = "CustomAppearance_Annotation";
+
+	/**
+	 * The name of the StringListValueStyle used for storing MaskLabels
+	 *
+	 * Replaces the former int-based EAnnotation ({@link #CUSTOM_APPEARENCE_ANNOTATION}, {@link #CUSTOM_APPEARANCE_MASK_VALUE})
+	 */
+	public static final String CUSTOM_MASK_LABEL = "maskLabel";
 
 	/**
 	 * this is a key of eAnnnotation that contains hypertext link or referenced document
@@ -42,6 +54,11 @@ public interface VisualInformationPapyrusConstants {
 
 	public static final String HYPERLINK_DIAGRAM_NAME = "diagram_name";
 
-	/** key for the appearance of properties or other specific display */
+	/**
+	 * key for the appearance of properties or other specific display
+	 * 
+	 * @deprecated Use a StringListValueStyle instead. See {{@link #CUSTOM_MASK_LABEL}
+	 */
+	@Deprecated
 	public static final String CUSTOM_APPEARANCE_MASK_VALUE = "CustomAppearance_MaskValue";
 }

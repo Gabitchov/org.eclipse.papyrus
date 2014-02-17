@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,16 +12,18 @@
  */
 package org.eclipse.papyrus.uml.tools.utils;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**
- *  util class to display name of instancespecification 
- *
+ * util class to display name of instancespecification
+ * 
  */
 public class InstanceSpecificationUtil {
+
 	/**
 	 * return the custom label of the operation, given UML2 specification and a custom style.
 	 * 
@@ -30,31 +32,38 @@ public class InstanceSpecificationUtil {
 	 * 
 	 * @return the string corresponding to the label of the operation
 	 */
-	public static String getCustomLabel(InstanceSpecification instance, int style) {
+	public static String getCustomLabel(InstanceSpecification instance, Collection<String> maskValues) {
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(" "); // adds " " first for correct display considerations
 
 		// name
-		if((style & ICustomAppearence.DISP_NAME) != 0) {
+		if(maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(NamedElementUtil.getName(instance));
 		}
 
 		// classifier
-		if((style & ICustomAppearence.DISP_TYPE) != 0) {
-			if( !getTypesAsString(instance, style).equals("")){
+		if(maskValues.contains(ICustomAppearance.DISP_TYPE)) {
+			if(!getTypesAsString(instance).equals("")) {
 				buffer.append(": ");
-				buffer.append(getTypesAsString(instance, style));}
+				buffer.append(getTypesAsString(instance));
+			}
 		}
 
+		//Workaround: empty label leads to invalid layout.
+		//FIXME: Fix the layout instead
+		if(buffer.length() == 0) {
+			buffer.append(" "); //Add a whitespace to avoid layout issues
+		}
+		//
 
 		return buffer.toString();
 	}
+
 	/**
 	 * Returns the list of classifier for an instance specification as a string
 	 * 
 	 * @return a string containing all classifier separated by commas
 	 */
-	private static String getTypesAsString(InstanceSpecification instance, int style) {
+	private static String getTypesAsString(InstanceSpecification instance) {
 		StringBuffer typeString = new StringBuffer();
 		Iterator<Classifier> classifierIterator = instance.getClassifiers().iterator();
 		boolean firstParameter = true;
@@ -63,8 +72,8 @@ public class InstanceSpecificationUtil {
 
 			// get the label for this Classifier
 			String classifierName = NamedElementUtil.getName(classifier);
-			if (!classifierName.trim().equals("")) {
-				if (!firstParameter) {
+			if(!classifierName.trim().equals("")) {
+				if(!firstParameter) {
 					typeString.append(", ");
 				}
 				typeString.append(classifierName);

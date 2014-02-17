@@ -7,13 +7,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,12 +25,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
-import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
-import org.eclipse.uml2.uml.InstanceValue;
+import org.eclipse.papyrus.uml.diagram.common.utils.ParameterLabelUtil;
 import org.eclipse.uml2.uml.Parameter;
-import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * Semantic Parser for {@link Parameter}
@@ -58,96 +57,21 @@ public class ParameterLabelParser extends NamedElementLabelParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		
-		if (flags == 0) {
+
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
 			return MaskedLabel;
 		}
-		
-		String result = "";
+
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
 
-		if((eObject != null) && (eObject instanceof Parameter)) {
-
+		if(eObject != null && eObject instanceof Parameter) {
 			Parameter parameter = (Parameter)eObject;
-
-			// manage direction
-			if((flags & ILabelPreferenceConstants.DISP_PARAM_DIRECTION) == ILabelPreferenceConstants.DISP_PARAM_DIRECTION) {
-				String direction;
-				switch(parameter.getDirection().getValue()) {
-				case ParameterDirectionKind.IN:
-					direction = "in";
-					break;
-				case ParameterDirectionKind.OUT:
-					direction = "out";
-					break;
-				case ParameterDirectionKind.INOUT:
-					direction = "inout";
-					break;
-				case ParameterDirectionKind.RETURN:
-					direction = "return";
-					break;
-				default:
-					direction = "in";
-					break;
-				}
-				result = String.format(DIRECTION_FORMAT, direction, result);
-
-				// manage name
-				if(((flags & ILabelPreferenceConstants.DISP_PARAM_NAME) == ILabelPreferenceConstants.DISP_PARAM_NAME) && (parameter.isSetName())) {
-					String name = parameter.getName();
-					result = String.format(NAME_FORMAT, result, name);
-				}
-
-				// manage type
-				if(((flags & ILabelPreferenceConstants.DISP_PARAM_TYPE) == ILabelPreferenceConstants.DISP_PARAM_TYPE)) {
-					String type = "<Undefined>";
-					if(parameter.getType() != null) {
-						type = parameter.getType().getName();
-					}
-
-					// If type is undefined only show "<Undefined>" when explicitly asked.
-					if(((flags & ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) == ILabelPreferenceConstants.DISP_UNDEFINED_TYPE) || (!"<Undefined>".equals(type))) {
-						result = String.format(TYPE_FORMAT, result, type);
-					}
-				}
-
-				// manage multiplicity
-				String lower = (parameter.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(parameter.getLowerValue()) : "1";
-				String upper = (parameter.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(parameter.getUpperValue()) : "1";
-				if(((flags & ILabelPreferenceConstants.DISP_PARAM_MULTIPLICITY) == ILabelPreferenceConstants.DISP_PARAM_MULTIPLICITY) && !("1".equals(lower) && "1".equals(upper))) {
-					result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
-				}
-
-				// manage default value
-				if(((flags & ILabelPreferenceConstants.DISP_PARAM_DEFAULTVALUE) == ILabelPreferenceConstants.DISP_PARAM_DEFAULTVALUE) && ((parameter.getDefaultValue() != null))) {
-					ValueSpecification valueSpecification = parameter.getDefaultValue();
-					if((valueSpecification instanceof InstanceValue && parameter.getType().equals(valueSpecification.getType())) || !(valueSpecification instanceof InstanceValue)) {
-						result = String.format(DEFAULT_VALUE_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));
-					}
-				}
-
-				// manage modifier
-				if((flags & ILabelPreferenceConstants.DISP_PARAM_MODIFIERS) == ILabelPreferenceConstants.DISP_PARAM_MODIFIERS) {
-					StringBuffer sb = new StringBuffer();
-					if(parameter.isOrdered()) {
-						sb.append(sb.length() == 0 ? "ordered" : ", ordered");
-					}
-					if(parameter.isUnique()) {
-						sb.append(sb.length() == 0 ? "unique" : ", unique");
-					}
-					if(parameter.isStream()) {
-						sb.append(sb.length() == 0 ? "stream" : ", stream");
-					}
-					if(parameter.isException()) {
-						sb.append(sb.length() == 0 ? "exception" : ", exception");
-					}
-					if(sb.length() != 0) {
-						result = String.format(MODIFIER_FORMAT, result, sb.toString());
-					}
-				}
-			}
+			return ParameterLabelUtil.getPrintString(parameter, maskValues);
 		}
-		return result;
+
+		return "";
 	}
 
 	/**
@@ -192,19 +116,24 @@ public class ParameterLabelParser extends NamedElementLabelParser {
 		}
 		return semanticElementsBeingParsed;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Map<Integer, String> getMasks() {
-		Map<Integer, String> masks = new HashMap<Integer, String>(6);
-		masks.put(ILabelPreferenceConstants.DISP_PARAM_DIRECTION, "Parameter direction");
-		masks.put(ILabelPreferenceConstants.DISP_PARAM_NAME, "Parameter name");
-		masks.put(ILabelPreferenceConstants.DISP_PARAM_TYPE, "Parameter type");
-		masks.put(ILabelPreferenceConstants.DISP_PARAM_MULTIPLICITY, "Parameter multiplicity");
-		masks.put(ILabelPreferenceConstants.DISP_PARAM_DEFAULTVALUE, "Parameter default value");
-		masks.put(ILabelPreferenceConstants.DISP_PARAM_MODIFIERS, "Parameter modifiers");
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>();
+		masks.put(ILabelPreferenceConstants.DISP_DIRECTION, "Direction");
+		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
+		masks.put(ILabelPreferenceConstants.DISP_TYPE, "Type");
+		masks.put(ILabelPreferenceConstants.DISP_MULTIPLICITY, "Multiplicity");
+		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_VALUE, "Default value");
+		masks.put(ILabelPreferenceConstants.DISP_MODIFIERS, "Modifiers");
 		return masks;
+	}
+
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME);
 	}
 }

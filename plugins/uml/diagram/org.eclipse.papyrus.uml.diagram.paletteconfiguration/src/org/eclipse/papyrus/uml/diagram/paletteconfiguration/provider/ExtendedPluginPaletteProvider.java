@@ -37,6 +37,7 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.ContributeToPaletteOperation;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
@@ -100,15 +101,14 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 	protected static ImageDescriptor DEFAULT_DRAWER_IMAGE_DESCRIPTOR = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/drawer.gif");
 
 	/**
-	 * Constructor.
-	 */
-	public ExtendedPluginPaletteProvider() {
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	public boolean provides(IOperation operation) {
+		if(operation instanceof ContributeToPaletteOperation) {
+			IEditorPart part = ((ContributeToPaletteOperation)operation).getEditor();
+			// check this can be a papyrus one. Otherwise, there should be no contribution
+			return true;
+		}
 		return false;
 	}
 

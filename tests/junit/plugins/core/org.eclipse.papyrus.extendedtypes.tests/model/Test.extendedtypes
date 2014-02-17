@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extendedtypes:ExtendedElementTypeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:applystereotypeactionconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/uml/applystereotypeaction/1.0" xmlns:extendedtypes="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0" xmlns:invariantcontainerconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0" xmlns:invariantsemantictypeconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0" xmlns:invariantstereotypeconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/stereotype/1.0" xmlns:runtimevalueseditionactionconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/emf/runtimevalueseditionaction/1.0" xmlns:setvaluesactionconfiguration="http://www.eclipse.org/papyrus/infra/extendedtypes/emf/setvaluesaction/1.0" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" name="Tests extended types" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.tests">
+  <elementType xsi:type="invariantsemantictypeconfiguration:InvariantSemanticTypeConfiguration" name="Component in specific package only" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.specificcomponent">
+    <iconEntry iconPath="icons/full/obj16/add_obj.gif" bundleId="org.eclipse.ui"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
+    <invariantRuleConfiguration xsi:type="invariantcontainerconfiguration:InvariantContainerConfiguration">
+      <permissions childType="org.eclipse.papyrus.uml.Package"/>
+      <permissions childType="org.eclipse.papyrus.infra.extendedtypes.tests.packagewithcomponentsonly" isPermitted="true" isStrict="true"/>
+    </invariantRuleConfiguration>
+  </elementType>
+  <elementType xsi:type="invariantsemantictypeconfiguration:InvariantSemanticTypeConfiguration" name="PackageWithComponentsOnly" description="Package that can contain only components" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.packagewithcomponentsonly">
+    <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
+    <invariantRuleConfiguration xsi:type="invariantstereotypeconfiguration:InvariantStereotypeConfiguration" stereotypeQualifiedName="ExtendedTypesTestsProfile::PackageWithComponents"/>
+  </elementType>
+  <elementType xsi:type="extendedtypes:AspectSemanticTypeConfiguration" name="Abstract Class Creation Action" description="Aspect Semantic element type to create abstract classes" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.aspectabstractclass">
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <actionConfiguration xsi:type="setvaluesactionconfiguration:SetValuesActionConfiguration">
+      <featuresToSet featureName="isAbstract">
+        <value xsi:type="setvaluesactionconfiguration:ConstantValue">
+          <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+        </value>
+      </featuresToSet>
+    </actionConfiguration>
+  </elementType>
+  <elementType xsi:type="extendedtypes:AspectSemanticTypeConfiguration" name="Class With Stereotype" description="Test extended type" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.classSimpleStereotype">
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <actionConfiguration xsi:type="applystereotypeactionconfiguration:ApplyStereotypeActionConfiguration" name="">
+      <stereotypesToApply stereotypeQualifiedName="ExtendedTypesTestsProfile::StereotypeWithFeaturesToSet">
+        <requiredProfiles>ExtendedTypesTestsProfile</requiredProfiles>
+      </stereotypesToApply>
+    </actionConfiguration>
+  </elementType>
+  <elementType xsi:type="extendedtypes:AspectSemanticTypeConfiguration" name="Package With Stereotype And Renamed" description="Test extended type" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.classSimpleStereotypeRename">
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <actionConfiguration xsi:type="applystereotypeactionconfiguration:ApplyStereotypeActionConfiguration" name="">
+      <stereotypesToApply stereotypeQualifiedName="ExtendedTypesTestsProfile::StereotypeWithFeaturesToSet" updateName="true">
+        <requiredProfiles>ExtendedTypesTestsProfile</requiredProfiles>
+      </stereotypesToApply>
+    </actionConfiguration>
+  </elementType>
+  <elementType xsi:type="extendedtypes:AspectSemanticTypeConfiguration" name="Class With Stereotype And Set Values" description="Test extended type" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.classSimpleStereotypeSetValues">
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+    <actionConfiguration xsi:type="applystereotypeactionconfiguration:ApplyStereotypeActionConfiguration" name="">
+      <stereotypesToApply stereotypeQualifiedName="ExtendedTypesTestsProfile::StereotypeWithFeaturesToSet" updateName="true">
+        <requiredProfiles>ExtendedTypesTestsProfile</requiredProfiles>
+        <featuresToSet featureName="stringFeature">
+          <value xsi:type="applystereotypeactionconfiguration:ConstantValue">
+            <valueInstance xsi:type="uml:LiteralString" value="MyStringValue"/>
+          </value>
+        </featuresToSet>
+        <featuresToSet featureName="value">
+          <value xsi:type="applystereotypeactionconfiguration:ConstantValue">
+            <valueInstance xsi:type="uml:LiteralInteger" value="3"/>
+          </value>
+        </featuresToSet>
+        <featuresToSet featureName="boolean">
+          <value xsi:type="applystereotypeactionconfiguration:ConstantValue">
+            <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+          </value>
+        </featuresToSet>
+        <featuresToSet featureName="enumeration">
+          <value xsi:type="applystereotypeactionconfiguration:ConstantValue">
+            <valueInstance xsi:type="uml:InstanceValue">
+              <instance href="ExtendedTypesTestsProfile.profile.uml#_KuG7kIf5EeOi95YnkGlwiQ"/>
+            </valueInstance>
+          </value>
+        </featuresToSet>
+        <featuresToSet featureName="multiStrings">
+          <value xsi:type="applystereotypeactionconfiguration:ListValue">
+            <values xsi:type="applystereotypeactionconfiguration:ConstantValue">
+              <valueInstance xsi:type="uml:LiteralString" value="MyFirstValue"/>
+            </values>
+            <values xsi:type="applystereotypeactionconfiguration:ConstantValue">
+              <valueInstance xsi:type="uml:LiteralString" value="MySecondValue"/>
+            </values>
+            <values xsi:type="applystereotypeactionconfiguration:ConstantValue">
+              <valueInstance xsi:type="uml:LiteralString" value="MyThirdValue"/>
+            </values>
+          </value>
+        </featuresToSet>
+      </stereotypesToApply>
+    </actionConfiguration>
+  </elementType>
+  <elementType xsi:type="extendedtypes:AspectSemanticTypeConfiguration" name="Abstract Class With Stereotype" description="Test extended type" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.abstractclassSimpleStereotype">
+    <specializedTypesID>org.eclipse.papyrus.infra.extendedtypes.tests.aspectabstractclass</specializedTypesID>
+    <actionConfiguration xsi:type="applystereotypeactionconfiguration:ApplyStereotypeActionConfiguration" name="">
+      <stereotypesToApply stereotypeQualifiedName="ExtendedTypesTestsProfile::StereotypeWithFeaturesToSet">
+        <requiredProfiles>ExtendedTypesTestsProfile</requiredProfiles>
+        <featuresToSet featureName="stringFeature">
+          <value xsi:type="applystereotypeactionconfiguration:ConstantValue">
+            <valueInstance xsi:type="uml:LiteralString" value="MyOtherValue"/>
+          </value>
+        </featuresToSet>
+        <featuresToSet featureName="value">
+          <value xsi:type="applystereotypeactionconfiguration:ConstantValue">
+            <valueInstance xsi:type="uml:LiteralInteger" value="18"/>
+          </value>
+        </featuresToSet>
+        <featuresToSet featureName="boolean">
+          <value xsi:type="applystereotypeactionconfiguration:ConstantValue">
+            <valueInstance xsi:type="uml:LiteralBoolean" value="true"/>
+          </value>
+        </featuresToSet>
+        <featuresToSet featureName="enumeration">
+          <value xsi:type="applystereotypeactionconfiguration:ConstantValue">
+            <valueInstance xsi:type="uml:InstanceValue">
+              <instance href="ExtendedTypesTestsProfile.profile.uml#_KuG7kIf5EeOi95YnkGlwiQ"/>
+            </valueInstance>
+          </value>
+        </featuresToSet>
+      </stereotypesToApply>
+    </actionConfiguration>
+  </elementType>
+  <elementType xsi:type="extendedtypes:AspectSemanticTypeConfiguration" name="Package With Stereotype And Renamed - View" identifier="org.eclipse.papyrus.infra.extendedtypes.tests.classSimpleStereotypeRenameWithView">
+    <specializedTypesID>org.eclipse.papyrus.infra.extendedtypes.tests.classSimpleStereotypeRename</specializedTypesID>
+    <actionConfiguration xsi:type="runtimevalueseditionactionconfiguration:RuntimeValuesEditionActionConfiguration">
+      <viewsToDisplay>
+        <view href="ExtendedTypesTestsProfile.ctx#//@views.0"/>
+      </viewsToDisplay>
+    </actionConfiguration>
+  </elementType>
+</extendedtypes:ExtendedElementTypeSet>

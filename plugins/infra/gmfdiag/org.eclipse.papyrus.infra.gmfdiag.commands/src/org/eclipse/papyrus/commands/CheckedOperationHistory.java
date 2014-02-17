@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos.
+ * Copyright (c) 2011, 2014 Atos, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos) - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 357250
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -72,11 +73,11 @@ public class CheckedOperationHistory implements IOperationHistory {
 	}
 
 	static {
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.papyrus.commands", "operationApprover");
+		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "operationApprover"); //$NON-NLS-1$
 
 		List<ApproverPriorityPair> approverPriorityPairs = new LinkedList<ApproverPriorityPair>();
 		for(IConfigurationElement elem : configElements) {
-			if("operationApprover".equals(elem.getName())) {
+			if("operationApprover".equals(elem.getName())) { //$NON-NLS-1$
 				try {
 					ApproverPriorityPair approverPriorityPair = new ApproverPriorityPair();
 					approverPriorityPair.approver = (IOperationApprover2)elem.createExecutableExtension("class");
@@ -84,8 +85,7 @@ public class CheckedOperationHistory implements IOperationHistory {
 
 					approverPriorityPairs.add(approverPriorityPair);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Activator.log.error("Uncaught exception in instantiation of operation approver.", e); //$NON-NLS-1$
 				}
 			}
 		}

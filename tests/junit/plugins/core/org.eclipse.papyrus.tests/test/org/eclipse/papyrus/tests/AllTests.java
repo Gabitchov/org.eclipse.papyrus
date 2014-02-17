@@ -64,6 +64,9 @@ public class AllTests {
 		/* search */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.search.tests.suites.AllTests.class));
 
+		/* css */
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.css.tests.tests.AllTests.class));
+
 		//
 		/* sysml moved to a separate launcher */
 		//

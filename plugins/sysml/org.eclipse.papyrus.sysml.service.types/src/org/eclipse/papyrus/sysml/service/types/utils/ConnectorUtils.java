@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.blocks.Block;
@@ -428,4 +429,33 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 		}
 		return true;
 	}
+	
+	
+
+	/**
+	 * Filter connectors that have this property in their <NestedConnectorEnd> property path.
+	 * @param connectors
+	 * @param part
+	 * @return connectors that have this property in their <NestedConnectorEnd> property path.
+	 */
+	public static List<Connector> filterConnectorByPropertyInNestedConnectorEnd(List<Connector> connectors, Property part) {		
+		List<Connector> res = new ArrayList<Connector>();
+		for(Connector connector : connectors) {
+			EList<ConnectorEnd> ends = connector.getEnds();
+			for(ConnectorEnd connectorEnd : ends) {
+				NestedConnectorEnd stereotypeApplication = UMLUtil.getStereotypeApplication(connectorEnd, NestedConnectorEnd.class);
+				if (stereotypeApplication != null){
+					EList<Property> propertyPath = stereotypeApplication.getPropertyPath();
+					for(Property property : propertyPath) {
+						if (property.equals(part)){	
+							res.add(connector);
+						}
+					}
+				}
+			}			
+		}
+		return res;
+	}	
+	
+	
 }

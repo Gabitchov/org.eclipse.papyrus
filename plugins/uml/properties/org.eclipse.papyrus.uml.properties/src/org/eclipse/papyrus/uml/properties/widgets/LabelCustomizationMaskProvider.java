@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.views.properties.providers.XWTCompliantMaskProviderLi
 
 /**
  * A MaskProvider for the labelCustomization property
- * 
+ *
  * @author Camille Letavernier
  */
 public class LabelCustomizationMaskProvider implements XWTCompliantMaskProvider {
@@ -42,7 +42,7 @@ public class LabelCustomizationMaskProvider implements XWTCompliantMaskProvider 
 	public LabelCustomizationMaskProvider() {
 	}
 
-	public Map<Integer, String> getMasks() {
+	public Map<String, String> getMasks() {
 		return editPolicy.getMasks();
 	}
 

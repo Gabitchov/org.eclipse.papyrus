@@ -7,12 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.parser;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,10 +45,12 @@ public class FlowPropertyLabelParser extends PropertyLabelParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
-		if (flags == 0) {
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
 			return MaskedLabel;
 		}
-		
+
 		String result = super.getPrintString(element, flags);
 
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
@@ -57,7 +61,7 @@ public class FlowPropertyLabelParser extends PropertyLabelParser {
 			if(flowProperty != null) {
 
 				// manage direction
-				if((flags & ILabelPreferenceConstants.DISP_DIRECTION) == ILabelPreferenceConstants.DISP_DIRECTION) {
+				if(maskValues.contains(ILabelPreferenceConstants.DISP_DIRECTION)) {
 					String direction;
 					switch(flowProperty.getDirection().getValue()) {
 					case FlowDirection.IN_VALUE:
@@ -114,9 +118,10 @@ public class FlowPropertyLabelParser extends PropertyLabelParser {
 		}
 		return semanticElementsBeingParsed;
 	}
-	
-	public Map<Integer, String> getMasks() {
-		Map<Integer, String> masks = new HashMap<Integer, String>(10);
+
+	@Override
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>(10);
 		masks.put(ILabelPreferenceConstants.DISP_DIRECTION, "Direction");
 		masks.put(ILabelPreferenceConstants.DISP_VISIBILITY, "Visibility");
 		masks.put(ILabelPreferenceConstants.DISP_DERIVE, "Is Derived");
@@ -125,8 +130,13 @@ public class FlowPropertyLabelParser extends PropertyLabelParser {
 		masks.put(ILabelPreferenceConstants.DISP_UNDEFINED_TYPE, "Show <Undefined> type");
 		masks.put(ILabelPreferenceConstants.DISP_MULTIPLICITY, "Multiplicity");
 		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY, "Show default multiplicity");
-		masks.put(ILabelPreferenceConstants.DISP_DEFAULTVALUE, "Default Value");
+		masks.put(ILabelPreferenceConstants.DISP_DEFAULT_VALUE, "Default Value");
 		masks.put(ILabelPreferenceConstants.DISP_MODIFIERS, "Modifiers");
 		return masks;
+	}
+
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_DIRECTION, ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_TYPE, ILabelPreferenceConstants.DISP_UNDEFINED_TYPE);
 	}
 }

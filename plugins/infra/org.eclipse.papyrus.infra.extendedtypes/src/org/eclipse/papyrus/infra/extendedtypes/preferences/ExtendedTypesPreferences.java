@@ -16,13 +16,16 @@ package org.eclipse.papyrus.infra.extendedtypes.preferences;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.ObjectOutputStream.PutField;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.extendedtypes.Activator;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
-
 
 /**
  * Preferences management for extended types
@@ -34,6 +37,8 @@ public class ExtendedTypesPreferences {
 
 	/** id for the node: extended types redefinition */
 	public final static String EXTENDED_TYPES_REDEFINITION = "extendedTypesRedefinition"; //$NON-NLS-1$
+
+	public static final String EXTENDED_TYPES_SET_WORKSPACE_DEFINITION = "extendedTypeSetsWorkspaceDefinition";
 
 	/** name of the ID attribute */
 	public final static String ID = "id"; //$NON-NLS-1$
@@ -82,22 +87,17 @@ public class ExtendedTypesPreferences {
 	 */
 	public static IMemento registerLocalRedefinition(String extendedTypesID, String path) {
 		XMLMemento rootMemento = getLocalRedefinitions();
-
 		// try to find an existing local definition for this extendedTypes
 		IMemento memento = getExtendedTypesRedefinitionNode(extendedTypesID);
-
 		// if one exists, remove it from the preferences
 		if(memento != null) {
 			unregisterLocalRedefinition(extendedTypesID);
 		}
-
 		// then register the new one
 		IMemento newMemento = rootMemento.createChild(EXTENDED_TYPES_REDEFINITION);
 		newMemento.putString(ID, extendedTypesID);
 		newMemento.putString(PATH, path);
-
 		saveLocalRedefinitions(rootMemento);
-
 		return newMemento;
 	}
 
@@ -116,6 +116,39 @@ public class ExtendedTypesPreferences {
 			// check equals. extendedTypes ID is not null, as checked at the begining of the method.
 			if(extendedTypesID.equals(extendedTypesNodeID)) {
 				return redefinitionMemento;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the memento associated to the extendedTypes set definition in workspace, or <code>null</code> if none exists
+	 * 
+	 * @return the memento found or <code>null</code> if no customization exists for this extendedTypes
+	 */
+	protected static IMemento[] getWorkspaceDefinitions() {
+		XMLMemento rootMemento = getLocalRedefinitions();
+		IMemento[] workspaceDefinitions = rootMemento.getChildren(EXTENDED_TYPES_SET_WORKSPACE_DEFINITION);
+		return workspaceDefinitions;
+	}
+
+	/**
+	 * Returns the memento associated to the extendedTypes set definition in workspace, or <code>null</code> if none exists
+	 * 
+	 * @return the memento found or <code>null</code> if no customization exists for this extendedTypes
+	 */
+	protected static IMemento getWorkspaceDefinition(String extendedTypeSetsID) {
+		if(extendedTypeSetsID == null) {
+			return null;
+		}
+		IMemento[] workspaceDefinitions = getWorkspaceDefinitions();
+		if(workspaceDefinitions == null || workspaceDefinitions.length == 0) {
+			return null;
+		}
+		for(IMemento memento : workspaceDefinitions) {
+			String id = memento.getString(ID);
+			if(extendedTypeSetsID.equals(id)) {
+				return memento;
 			}
 		}
 		return null;
@@ -158,9 +191,33 @@ public class ExtendedTypesPreferences {
 				newRootMemento.putMemento(memento);
 			}
 		}
+		for(IMemento memento : rootMemento.getChildren(EXTENDED_TYPES_SET_WORKSPACE_DEFINITION)) {
+			newRootMemento.putMemento(memento);
+		}
 		// save new Memento
 		saveLocalRedefinitions(newRootMemento);
+	}
 
+	/**
+	 * @param extendedTypesID
+	 */
+	public static void unregisterWorkspaceDefinition(String extendedTypesID) {
+		XMLMemento rootMemento = getLocalRedefinitions();
+		// no remove method...
+		// so, creation of a new root memento, then, duplicate all entries
+		// except the one to
+		// delete...
+		XMLMemento newRootMemento = XMLMemento.createWriteRoot(EXTENDED_TYPES_REDEFINITIONS);
+		for(IMemento memento : rootMemento.getChildren(EXTENDED_TYPES_REDEFINITION)) {
+			newRootMemento.putMemento(memento);
+		}
+		for(IMemento memento : rootMemento.getChildren(EXTENDED_TYPES_SET_WORKSPACE_DEFINITION)) {
+			if(!memento.getString(ID).equals(extendedTypesID)) {
+				newRootMemento.putMemento(memento);
+			}
+		}
+		// save new Memento
+		saveLocalRedefinitions(newRootMemento);
 	}
 
 	/**
@@ -176,7 +233,6 @@ public class ExtendedTypesPreferences {
 		StringWriter writer = new StringWriter();
 		try {
 			xmlMemento.save(writer);
-
 			if(getPreferenceStore() != null) {
 				getPreferenceStore().setValue(key, writer.toString());
 			}
@@ -193,5 +249,51 @@ public class ExtendedTypesPreferences {
 	 */
 	public static void saveLocalRedefinitions(XMLMemento rootMemento) {
 		saveMemento(rootMemento, EXTENDED_TYPES_REDEFINITIONS);
+	}
+
+	/**
+	 * Returns all the paths in the workspace that should be an extended type set to load, with the id as a key
+	 * 
+	 * @return
+	 */
+	public static Map<String, String> getLocalExtendedTypesDefinitions() {
+		IMemento[] mementos = getWorkspaceDefinitions();
+		if(mementos != null && mementos.length > 0) {
+			Map<String, String> idToPath = new HashMap<String, String>();
+			for(IMemento memento : mementos) {
+				String id = memento.getString(ID);
+				String path = memento.getString(PATH);
+				if(id != null && !"".equals(id) && path != null && !"".equals(PATH)) {
+					idToPath.put(id, path);
+				}
+			}
+			return idToPath;
+		}
+		return null;
+	}
+
+	/**
+	 * Register a new local redefinition of a extendedTypes.
+	 * 
+	 * @param extendedTypesID
+	 *        the id of the extendedTypes to register
+	 * @param path
+	 *        the path to the configuration of the extendedTypes
+	 * @return the memento that has been registered
+	 */
+	public static IMemento registerWorkspaceDefinition(String extendedTypesID, String path) {
+		XMLMemento rootMemento = getLocalRedefinitions();
+		// try to find an existing local definition for this extendedTypes
+		IMemento memento = getWorkspaceDefinition(extendedTypesID);
+		// if one exists, remove it from the preferences
+		if(memento != null) {
+			unregisterWorkspaceDefinition(extendedTypesID);
+		}
+		// then register the new one
+		IMemento newMemento = rootMemento.createChild(EXTENDED_TYPES_SET_WORKSPACE_DEFINITION);
+		newMemento.putString(ID, extendedTypesID);
+		newMemento.putString(PATH, path);
+		saveLocalRedefinitions(rootMemento);
+		return newMemento;
 	}
 }

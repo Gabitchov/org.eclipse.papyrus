@@ -782,9 +782,6 @@
          defaultHandler="org.eclipse.papyrus.uml.diagram.sequence.part.LoadResourceAction"/>
    </extension>
 
-   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
-   </extension>
 
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
       <?gmfgen generated="true"?>
@@ -2060,9 +2057,23 @@
                id="org.eclipse.papyrus.uml.diagram.sequence.displayBehaviorMenu">
          </dynamic>
       </menuContribution>
-   </extension>          
+   </extension>
    
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="PapyrusUMLSequenceDiagram">
+			<mapping type="PapyrusUMLSequenceDiagram" humanReadableType="SequenceDiagram"/>
+			
+	<mapping
+		humanReadableType="Interaction"
+		type="7001">
+	</mapping>
 
+	<mapping
+		humanReadableType="CombinedFragment"
+		type="7004">
+	</mapping>
+		</diagramMappings>
+	</extension>
 
 
    <!-- optionally, specify keybindings -->

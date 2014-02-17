@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -50,7 +50,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -63,7 +62,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeleteLinkDuringCreationCommand;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndSourceLabelHelper;
+import org.eclipse.papyrus.uml.diagram.common.helper.AssociationEndTargetLabelHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
@@ -74,18 +74,16 @@ import org.eclipse.uml2.uml.UMLPackage;
  * The Class MultiAssociationHelper to manage the creation of branches or transformation of binary
  * to n-ary association
  */
-public class MultiAssociationHelper extends ElementHelper {
-
-	private static final String SEMANTIC_BRANCH = "Semantic_Branch_Style";
+public class MultiAssociationHelper extends org.eclipse.papyrus.uml.diagram.common.helper.MultiAssociationHelper {
 
 	/**
 	 * get the member end that will be managed by the branch of the association.
-	 * 
+	 *
 	 * @param associationBranchView
 	 *        the association branch view
 	 * @param association
 	 *        the association
-	 * 
+	 *
 	 * @return the property concerned by the branch or null if the property is not found
 	 */
 	public static Property getPropertyToListen(Edge associationBranchView, Association association) {
@@ -112,19 +110,9 @@ public class MultiAssociationHelper extends ElementHelper {
 		view.getStyles().add(semanticbranchStyle);
 	}
 
-	public static Property getSemanticBranchEnd(View view) {
-		org.eclipse.gmf.runtime.notation.EObjectValueStyle semanticStyle = (org.eclipse.gmf.runtime.notation.EObjectValueStyle)view.getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), SEMANTIC_BRANCH);
-		return semanticStyle == null ? null : (Property)semanticStyle.getEObjectValue();
-	}
-
-	public static void setSemanticBranchEnd(View view, Property end) {
-		org.eclipse.gmf.runtime.notation.EObjectValueStyle semanticStyle = (org.eclipse.gmf.runtime.notation.EObjectValueStyle)view.getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), SEMANTIC_BRANCH);
-		semanticStyle.setEObjectValue(end);
-	}
-
 	/**
 	 * constructor.
-	 * 
+	 *
 	 * @param editDomain
 	 *        the editDomain , important to create commands can not be null
 	 */
@@ -135,10 +123,10 @@ public class MultiAssociationHelper extends ElementHelper {
 
 	/**
 	 * Display all branches command.
-	 * 
+	 *
 	 * @param associationNodeEditPart
 	 *        the association node edit part
-	 * 
+	 *
 	 * @return the command
 	 */
 	public Command displayAllBranchesCommand(AssociationNodeEditPart associationNodeEditPart) {
@@ -255,12 +243,12 @@ public class MultiAssociationHelper extends ElementHelper {
 
 	/**
 	 * transform binary association to n-ary association.
-	 * 
+	 *
 	 * @param createConnectionViewAndElementRequest
 	 *        the create connection view and element request
 	 * @param command
 	 *        the command
-	 * 
+	 *
 	 * @return the command in charge of this job
 	 */
 	private Command getAssociationToMultiAssociationCommand(CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, Command command) {
@@ -403,12 +391,12 @@ public class MultiAssociationHelper extends ElementHelper {
 
 	/**
 	 * code to create new branch.
-	 * 
+	 *
 	 * @param createConnectionViewAndElementRequest
 	 *        the create connection view and element request
 	 * @param command
 	 *        that will contain sub commands
-	 * 
+	 *
 	 * @return the command in charge of the branch creation
 	 */
 	private Command getBranchAssociationCommand(CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, Command command) {
@@ -454,12 +442,12 @@ public class MultiAssociationHelper extends ElementHelper {
 	/**
 	 * return commands to transform a binary association to n-ary association or allow adding
 	 * branches.
-	 * 
+	 *
 	 * @param createConnectionViewAndElementRequest
 	 *        the create connection view and element request
 	 * @param command
 	 *        that will contains subcommands
-	 * 
+	 *
 	 * @return the command
 	 */
 	public Command getCommand(CreateConnectionViewAndElementRequest createConnectionViewAndElementRequest, Command command) {
@@ -495,7 +483,7 @@ public class MultiAssociationHelper extends ElementHelper {
 
 	/**
 	 * look for a dependency node from a dependency branch.
-	 * 
+	 *
 	 * @param dependencyBranchEditPart
 	 * @return may be null
 	 */

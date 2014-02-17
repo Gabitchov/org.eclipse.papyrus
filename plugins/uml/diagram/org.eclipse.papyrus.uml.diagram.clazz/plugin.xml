@@ -2138,29 +2138,6 @@
 		
 
 </extension>
-
-
-
-<!-- added by Remi Schnekenburger-->
-<extension point="org.eclipse.ui.preferencePages">
-	<?gmfgen generated="false"?>
-	<page  	category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage"
-            id="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.PropertyPreferencePage"
-            name="Property" />
- <page
-       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
-       class="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.OperationPreferencePage"
-       id="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.OperationPreferencePage"
-       name="Operation">
- </page>
- <page
-       category="org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams.PapyrusUMLClassDiagram"
-       class="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage"
-       id="org.eclipse.papyrus.uml.diagram.clazz.custom.preferences.InstanceSpecificationPreferencePage"
-       name="InstanceSpecification">
- </page>	
-</extension>
 <extension
       point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
    <ParserProvider
@@ -3042,5 +3019,509 @@
       </Priority>
    </editpolicyProvider>
 </extension>
+
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="PapyrusUMLClassDiagram">
+			<mapping type="PapyrusUMLClassDiagram" humanReadableType="ClassDiagram"/>
+			
+	<mapping
+		humanReadableType="attributes"
+		type="7011">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7012">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7013">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7023">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7024">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7025">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7026">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7027">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7028">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7029">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7041">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7042">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7032">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7033">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="7030">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="7010">
+	</mapping>
+
+	<mapping
+		humanReadableType="literals"
+		type="7031">
+	</mapping>
+
+	<mapping
+		humanReadableType="slots"
+		type="7035">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7017">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7018">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7019">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7002">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7003">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7004">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7006">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7007">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7008">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7039">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7040">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7020">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7021">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7034">
+	</mapping>
+
+	<mapping
+		humanReadableType="slots"
+		type="7001">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7005">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="7009">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="7016">
+	</mapping>
+
+	<mapping
+		humanReadableType="literals"
+		type="7015">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7036">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7037">
+	</mapping>
+
+	<mapping
+		humanReadableType="TemplateParameter"
+		type="7014">
+	</mapping>
+
+	<mapping
+		humanReadableType="TemplateParameter"
+		type="7038">
+	</mapping>
+
+			
+	
+
+	
+
+	<mapping
+		humanReadableType="SourceRole"
+		type="6031">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="TargetRole"
+		type="6032">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6001">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="Name"
+		type="6002">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="TargetRole"
+		type="6003">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="SourceRole"
+		type="6005">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="SourceMultiplicity"
+		type="6033">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="TargetMultiplicity"
+		type="6034">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="TargetRole"
+		type="6024">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="TargetMultiplicity"
+		type="6035">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6007">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6008">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="Name"
+		type="6009">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6010">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="Name"
+		type="6011">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6012">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="Name"
+		type="6013">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Name"
+		type="6014">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6015">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Name"
+		type="6016">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6017">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Name"
+		type="6026">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6027">
+	</mapping>
+
+
+
+	
+
+	
+
+	<mapping
+		humanReadableType="Alias"
+		type="6020">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6021">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6022">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6030">
+	</mapping>
+
+
+
+	
+
+	
+
+	
+
+	
+
+	<mapping
+		humanReadableType="TemplateParameterSubstitution"
+		type="6023">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6036">
+	</mapping>
+
+
+
+	
+
+
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6037">
+	</mapping>
+
+
+
+	
+
+	<mapping
+		humanReadableType="SourceRole"
+		type="6039">
+	</mapping>
+
+
+
+	<mapping
+		humanReadableType="TargetRole"
+		type="6038">
+	</mapping>
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6041">
+	</mapping>
+
+
+
+	
+
+
+
+		</diagramMappings>
+	</extension>
 
 </plugin>

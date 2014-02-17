@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -52,7 +52,7 @@ import org.w3c.dom.stylesheets.StyleSheetList;
 
 /**
  * Base implementation for a hierarchic, lazy CSS Engine.
- * 
+ *
  * @author Camille Letavernier
  */
 //TODO : Listen on stylesheet modifications
@@ -162,6 +162,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	public void reset() {
 		resetCache();
 		super.reset();
+		styleSheetsList = null;
 		fireStyleSheetChanged();
 	}
 
@@ -181,7 +182,6 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 	 */
 	public void resetCache() {
 		declarationsCache.clear();
-		styleSheetsList = null;
 		availableClasses.clear();
 	}
 
@@ -309,7 +309,7 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 			return super.convert(value, toType, context);
 		} catch (Exception ex) {
 			//Activator.log.warn("Unsupported CSS value: " + value.getCssText() + ". Trying to convert it...");
-			return convert(value, toType); //FIXME: Sometimes, the conversion is not supported by the AbstractCSSEngine 
+			return convert(value, toType); //FIXME: Sometimes, the conversion is not supported by the AbstractCSSEngine
 		}
 	}
 
@@ -343,9 +343,9 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Handles a notification that an Element has changed.
-	 * 
+	 *
 	 * Source: GMFElementAdapter
 	 */
 	public void notifyChange(Element elementAdapter) {
@@ -365,9 +365,9 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Handles a notification that a graphical widget has been disposed.
-	 * 
+	 *
 	 * Source: GMFElementAdapter
 	 */
 	public void handleDispose(Object nativeWidget) {
@@ -376,9 +376,9 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Resets the CSS cache
-	 * 
+	 *
 	 * @see #resetCache()
 	 */
 	public void reapply() {

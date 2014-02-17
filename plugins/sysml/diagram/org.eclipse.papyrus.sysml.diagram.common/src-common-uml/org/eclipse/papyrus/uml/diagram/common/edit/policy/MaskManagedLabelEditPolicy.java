@@ -7,27 +7,24 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.edit.policy;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.edit.part.ITextAwareEditPart;
 import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
-import org.eclipse.papyrus.infra.emf.appearance.commands.AddMaskManagedLabelDisplayCommand;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
-import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.MaskLabelHelper;
 
 
 /**
@@ -41,8 +38,8 @@ public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements I
 	/**
 	 * {@inheritDoc}
 	 */
-	public Map<Integer, String> getMasks() {
-		Map<Integer, String> masks = new HashMap<Integer, String>();
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>();
 
 		IParser parser = getHostLabelEditPart().getParser();
 		if(parser instanceof IMaskManagedSemanticParser) {
@@ -55,64 +52,39 @@ public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements I
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getCurrentDisplayValue() {
-		return getHostLabelEditPart().getParserOptions().intValue();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public int getDefaultDisplayValue() {
-		return getHostLabelEditPart().getDefaultParserOptions().intValue();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void updateDisplayValue(int newValue) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(), newValue));
+	public Collection<String> getCurrentDisplayValue() {
+		Collection<String> result = MaskLabelHelper.getMaskValues(getView());
+		if(result == null) {
+			IParser parser = getHostLabelEditPart().getParser();
+			if(parser instanceof IMaskManagedSemanticParser) {
+				result = ((IMaskManagedSemanticParser)parser).getDefaultValue(getHost());
+			}
 		}
+
+		if(result == null) {
+			return Collections.emptySet();
+		}
+
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void updateDisplayValue(Collection<String> maskValues) {
+		MaskLabelHelper.setMaskValues(getView(), maskValues);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setDefaultDisplayValue() {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION));
-		}
-	}
-
-	// @unused.
-	public String getMaskLabel(int value) {
-		// Not implemented.
-		return null;
-	}
-
-	// @unused.
-	public Collection<String> getMaskLabels() {
-		// Not implemented.
-		return null;
-	}
-
-	// @unused.
-	public Collection<Integer> getMaskValues() {
-		// Not implemented.
-		return null;
+		MaskLabelHelper.unsetMaskValues(getView());
 	}
 
 	// @unused.
 	public void refreshDisplay() {
 		// Not implemented.
-	}
-
-	// @unused.
-	public String getPreferencePageID() {
-		// Not implemented.
-		return null;
 	}
 
 	/**
@@ -122,5 +94,9 @@ public class MaskManagedLabelEditPolicy extends GraphicalEditPolicy implements I
 	 */
 	private ITextAwareEditPart getHostLabelEditPart() {
 		return (ITextAwareEditPart)getHost();
+	}
+
+	private View getView() {
+		return (View)getHost().getModel();
 	}
 }

@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.El-Kouhen@lifl.fr
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.preferences;
 
@@ -32,7 +32,7 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "AttributeCompartment", "OperationCompartment" };
+	public static final String compartments[] = { "attributes", "operations" };
 
 	/**
 	 * Instantiates a new interface preference page.
@@ -101,8 +101,8 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("AttributeCompartment", Boolean.TRUE);
-		map.put("OperationCompartment", Boolean.TRUE);
+		map.put("attributes", Boolean.TRUE);
+		map.put("operations", Boolean.TRUE);
 		return map;
 	}
 
@@ -111,8 +111,8 @@ public class InterfacePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("AttributeCompartment", Boolean.FALSE);
-		map.put("OperationCompartment", Boolean.FALSE);
+		map.put("attributes", Boolean.FALSE);
+		map.put("operations", Boolean.FALSE);
 		return map;
 	}
 

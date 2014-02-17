@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes/src-gen"
-    editDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes.edit/src-gen" editorDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes.editor/src-gen"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 CEA LIST.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA; CEA LIST - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes/src-gen" editDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.uml.tools.extendedtypes" modelName="ApplyStereotypeActionConfiguration"
-    modelPluginClass="org.eclipse.papyrus.uml.tools.extendedtypes.Activator" testsDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes.tests/src-gen"
+    modelPluginClass="" testsDirectory="/org.eclipse.papyrus.uml.tools.extendedtypes.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.genmodel#//configuration platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.emf.facet.infra.query/model/query.genmodel#//query platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <foreignModel>ApplyStereotypeActionConfiguration.ecore</foreignModel>
   <genPackages prefix="ApplyStereotypeActionConfiguration" basePackage="org.eclipse.papyrus.uml.tools.extendedtypes"
       resource="XML" disposableProviderFactory="true" ecorePackage="ApplyStereotypeActionConfiguration.ecore#/">
@@ -16,6 +17,20 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeActionConfiguration.ecore#//StereotypeToApply/stereotypeQualifiedName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeActionConfiguration.ecore#//StereotypeToApply/updateName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeActionConfiguration.ecore#//StereotypeToApply/requiredProfiles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ApplyStereotypeActionConfiguration.ecore#//StereotypeToApply/featuresToSet"/>
     </genClasses>
+    <genClasses ecoreClass="ApplyStereotypeActionConfiguration.ecore#//FeatureToSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeActionConfiguration.ecore#//FeatureToSet/featureName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ApplyStereotypeActionConfiguration.ecore#//FeatureToSet/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ApplyStereotypeActionConfiguration.ecore#//FeatureValue"/>
+    <genClasses ecoreClass="ApplyStereotypeActionConfiguration.ecore#//ListValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ApplyStereotypeActionConfiguration.ecore#//ListValue/values"/>
+    </genClasses>
+    <genClasses ecoreClass="ApplyStereotypeActionConfiguration.ecore#//ConstantValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ApplyStereotypeActionConfiguration.ecore#//ConstantValue/valueInstance"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ApplyStereotypeActionConfiguration.ecore#//DynamicValue"/>
+    <genClasses ecoreClass="ApplyStereotypeActionConfiguration.ecore#//QueryExecutionValue"/>
   </genPackages>
 </genmodel:GenModel>

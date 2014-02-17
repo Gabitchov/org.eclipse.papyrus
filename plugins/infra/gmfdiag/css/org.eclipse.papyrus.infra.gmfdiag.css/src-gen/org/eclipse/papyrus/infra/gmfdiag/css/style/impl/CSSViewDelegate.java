@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.style.impl;
 
+import java.util.Arrays;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.DoubleValueStyle;
@@ -7,10 +9,12 @@ import org.eclipse.gmf.runtime.notation.IntValueStyle;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.StringListValueStyle;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
+import org.eclipse.papyrus.infra.gmfdiag.css.helper.ParserHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.w3c.dom.css.CSSValue;
@@ -26,6 +30,7 @@ public class CSSViewDelegate implements CSSView {
 		this.engine = engine;
 	}
 
+	@Override
 	public boolean isCSSVisible() {
 		CSSValue cssValue = engine.retrievePropertyValue(view, "visible");
 		if(cssValue == null) {
@@ -38,7 +43,9 @@ public class CSSViewDelegate implements CSSView {
 
 	private boolean lookupStyle = false;
 
+	@Override
 	public NamedStyle getCSSNamedStyle(EClass eClass, String name) {
+
 
 		if(!NotationPackage.eINSTANCE.getNamedStyle().isSuperTypeOf(eClass)) {
 			return null;
@@ -108,6 +115,14 @@ public class CSSViewDelegate implements CSSView {
 				doubleStyle.setDoubleValue(doubleValue);
 
 				return doubleStyle;
+			case NotationPackage.STRING_LIST_VALUE_STYLE:
+				String[] values = ParserHelper.parseValues(engine, cssValue);
+
+				StringListValueStyle stringListStyle = NotationFactory.eINSTANCE.createStringListValueStyle();
+				stringListStyle.setName(name);
+				stringListStyle.getStringListValue().addAll(Arrays.asList(values));
+
+				return stringListStyle;
 			default:
 				return null;
 			}
