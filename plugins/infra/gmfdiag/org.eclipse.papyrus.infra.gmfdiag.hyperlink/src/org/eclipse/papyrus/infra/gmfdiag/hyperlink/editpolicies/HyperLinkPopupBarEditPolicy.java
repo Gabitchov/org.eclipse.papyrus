@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,7 +26,6 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MouseEvent;
 import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.RoundedRectangle;
-import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EModelElement;
@@ -34,13 +33,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.DragTracker;
-import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Handle;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramAssistantEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellLabelProvider;
@@ -77,7 +74,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * Default tool placed on the popup bar.
-	 * 
+	 *
 	 * @author affrantz@us.ibm.com modified by Patrick Tessier
 	 */
 
@@ -94,11 +91,11 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * constructor.
-		 * 
+		 *
 		 * @param theImage
-		 *            the image to display
+		 *        the image to display
 		 * @param anObject
-		 *            the an object
+		 *        the an object
 		 */
 		public PopupBarLabelHandle(Object anObject, Image theImage) {
 			super(theImage);
@@ -120,9 +117,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * Gets the accessible location.
-		 * 
+		 *
 		 * @return the accessible location
-		 * 
+		 *
 		 * @see org.eclipse.gef.Handle#getAccessibleLocation()
 		 */
 		public Point getAccessibleLocation() {
@@ -139,9 +136,9 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * Gets the referenced object.
-		 * 
+		 *
 		 * @return the referenced object
-		 * 
+		 *
 		 * @see org.eclipse.gef.Handle#getDragTracker()
 		 */
 		public Object getReferencedObject() {
@@ -150,10 +147,10 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * Handle mouse entered.
-		 * 
+		 *
 		 * @param event
-		 *            the event
-		 * 
+		 *        the event
+		 *
 		 * @see org.eclipse.draw2d.IFigure#handleMouseEntered(org.eclipse.draw2d.MouseEvent)
 		 *      flip myMouseOver bit and repaint
 		 */
@@ -168,10 +165,10 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * Handle mouse exited.
-		 * 
+		 *
 		 * @param event
-		 *            the event
-		 * 
+		 *        the event
+		 *
 		 * @see org.eclipse.draw2d.IFigure#handleMouseExited(org.eclipse.draw2d.MouseEvent)
 		 *      flip myMouseOver bit and repaint
 		 */
@@ -186,27 +183,27 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * Handle mouse pressed.
-		 * 
+		 *
 		 * @param event
-		 *            the event
-		 * 
+		 *        the event
+		 *
 		 * @see org.eclipse.draw2d.IFigure#handleMousePressed(org.eclipse.draw2d.MouseEvent)
 		 *      set PopupBarEditPolicy.myActionMoveFigure bit so the popup bar
 		 *      is not dismissed after creating an item in the editpart
 		 */
 		@Override
 		public void handleMousePressed(MouseEvent event) {
-			if (1 == event.button) {
+			if(1 == event.button) {
 			}
 			super.handleMousePressed(event);
 		}
 
 		/**
 		 * Paint border.
-		 * 
+		 *
 		 * @param graphics
-		 *            the graphics
-		 * 
+		 *        the graphics
+		 *
 		 * @see org.eclipse.draw2d.Figure#paintBorder(org.eclipse.draw2d.Graphics)
 		 *      paint a focus rectangle for the label if the mouse is inside the
 		 *      label
@@ -215,14 +212,13 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		protected void paintBorder(Graphics graphics) {
 			super.paintBorder(graphics);
 
-			if (myMouseOver) {
+			if(myMouseOver) {
 
 				Rectangle area = getClientArea();
 				graphics.setForegroundColor(ColorConstants.black);
 				graphics.setBackgroundColor(ColorConstants.white);
 
-				graphics.drawFocus(area.x, area.y, area.width - 1,
-						area.height - 1);
+				graphics.drawFocus(area.x, area.y, area.width - 1, area.height - 1);
 
 			}
 
@@ -230,17 +226,17 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		/**
 		 * Paint figure.
-		 * 
+		 *
 		 * @param graphics
-		 *            the graphics
-		 * 
+		 *        the graphics
+		 *
 		 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
 		 */
 		@Override
 		protected void paintFigure(Graphics graphics) {
-			if (!isEnabled()) {
+			if(!isEnabled()) {
 				Image theImage = this.getIcon();
-				if (theImage != null) {
+				if(theImage != null) {
 					graphics.translate(bounds.x, bounds.y);
 					graphics.drawImage(theImage, getIconLocation());
 					graphics.translate(-bounds.x, -bounds.y);
@@ -262,9 +258,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		 * Instantiates a new popup bar label plus handle.
 		 */
 		public PopupBarLabelPlusHandle() {
-			super(null, AbstractUIPlugin.imageDescriptorFromPlugin(
-					"org.eclipse.papyrus.uml.diagram.common",
-					"/icons/obj16/Plus.gif").createImage());
+			super(null, AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Plus.gif").createImage());
 			// TODO Auto-generated constructor stub
 		}
 	}
@@ -272,17 +266,17 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	/**
 	 * Listens for mouse key presses so the popup bar can be dismissed if the
 	 * context menu is displayed.
-	 * 
+	 *
 	 * @author affrantz@us.ibm.com
 	 */
 	private class PopupBarMouseListener extends MouseListener.Stub {
 
 		/**
 		 * Mouse pressed.
-		 * 
+		 *
 		 * @param me
-		 *            the me
-		 * 
+		 *        the me
+		 *
 		 * @see org.eclipse.draw2d.MouseListener#mousePressed(org.eclipse.draw2d.MouseEvent)
 		 */
 		@Override
@@ -296,30 +290,22 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 		@Override
 		public void mousePressed(MouseEvent me) {
-			if (3 == me.button) // context menu, hide the popup bar
+			if(3 == me.button) // context menu, hide the popup bar
 			{
 				hideDiagramAssistant();
 			}
-			if (1 == me.button) // context menu, hide the popup bar
+			if(1 == me.button) // context menu, hide the popup bar
 			{
-				if (me.getSource() instanceof PopupBarLabelPlusHandle) {
-					hyperLinkManagerShell = new AdvancedHLManager(
-							getEditorRegistry(),
-							((IGraphicalEditPart) getHost()).getEditingDomain(),
-							(EModelElement) ((IGraphicalEditPart) getHost())
-									.getNotationView().getElement(),
-							((IGraphicalEditPart) getHost()).getNotationView(),
-							hyperlinkHelperFactory);
+				if(me.getSource() instanceof PopupBarLabelPlusHandle) {
+					hyperLinkManagerShell = new AdvancedHLManager(getEditorRegistry(), ((IGraphicalEditPart)getHost()).getEditingDomain(), (EModelElement)((IGraphicalEditPart)getHost()).getNotationView().getElement(), ((IGraphicalEditPart)getHost()).getNotationView(), hyperlinkHelperFactory);
 					hyperLinkManagerShell.setInput(hyperLinkObjectList);
 					hideDiagramAssistant();
 					hyperLinkManagerShell.open();
 					me.consume();
-				} else if (me.getSource() instanceof PopupBarLabelHandle) {
-					if ((((PopupBarLabelHandle) me.getSource())
-							.getReferencedObject()) instanceof HyperLinkObject) {
-						final HyperLinkObject hyperLinkObject = (HyperLinkObject) (((PopupBarLabelHandle) me
-								.getSource()).getReferencedObject());
-						if (hyperLinkObject.needsOpenCommand()) {
+				} else if(me.getSource() instanceof PopupBarLabelHandle) {
+					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperLinkObject) {
+						final HyperLinkObject hyperLinkObject = (HyperLinkObject)(((PopupBarLabelHandle)me.getSource()).getReferencedObject());
+						if(hyperLinkObject.needsOpenCommand()) {
 							try {
 								// FIXME: Sometimes, it is possible to
 								// automatically determine whether the editing
@@ -327,19 +313,14 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 								// We should use standard GMF/GEF commands with
 								// the DiagramCommandStack to have the same
 								// behavior than NavigationEditPolicy
-								TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart
-										.getInstance()
-										.getTransactionalEditingDomain(
-												getHost());
-								editingDomain.getCommandStack().execute(
-										new RecordingCommand(editingDomain,
-												"Open hyperlink") {
+								TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
+								editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Open hyperlink") {
 
-											@Override
-											protected void doExecute() {
-												hyperLinkObject.openLink();
-											}
-										});
+									@Override
+									protected void doExecute() {
+										hyperLinkObject.openLink();
+									}
+								});
 							} catch (ServiceException ex) {
 
 							}
@@ -359,7 +340,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * This is the figure that represents the ballon portion of the popup bar.
-	 * 
+	 *
 	 * @author affrantz@us.ibm.com
 	 */
 	private class RoundedRectangleWithTail extends RoundedRectangle {
@@ -415,43 +396,39 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 		// hyperLinkHelpers.add(new DiagramHyperLinkHelper());
 		// hyperLinkHelpers.add(new DocumentHyperLinkHelper());
 		// hyperLinkHelpers.add(new WebHyperLinkHelper());
-		hyperLinkHelpers.addAll(HyperLinkHelpersRegistrationUtil.INSTANCE
-				.getAllRegisteredHyperLinkHelper());
+		hyperLinkHelpers.addAll(HyperLinkHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkHelper());
 		hyperlinkHelperFactory = new HyperLinkHelperFactory(hyperLinkHelpers);
 	}
 
 	/**
 	 * Adds the object list in the popup bar.
-	 * 
+	 *
 	 * @param imageLocation
-	 *            the image location that will represent the object
+	 *        the image location that will represent the object
 	 * @param positonwidth
-	 *            the positonwidth to display the icon into the popup
+	 *        the positonwidth to display the icon into the popup
 	 * @param objectList
-	 *            the object list to add
-	 * 
+	 *        the object list to add
+	 *
 	 * @return the int the new position after adding all objects in the list
 	 */
 	public int addObjectList(int positonwidth, List<?> objectList) {
-		for (int i = 0; i < objectList.size(); i++) {
+		for(int i = 0; i < objectList.size(); i++) {
 			PopupBarLabelHandle handle = null;
 
 			ILabelProvider labelProvider = null;
 			try {
 				EObject contextElement = EMFHelper.getEObject(getHost());
-				labelProvider = ServiceUtilsForEObject.getInstance()
-						.getService(LabelProviderService.class, contextElement)
-						.getLabelProvider();
+				labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, contextElement).getLabelProvider();
 			} catch (ServiceException ex) {
 				Activator.log.error(ex);
 			}
 
-			if (labelProvider == null) {
+			if(labelProvider == null) {
 				labelProvider = new LabelProvider();
 			}
 
-			handle = new PopupBarLabelHandle(hyperLinkObjectList.get(i),
-					labelProvider.getImage(objectList.get(i)));
+			handle = new PopupBarLabelHandle(hyperLinkObjectList.get(i), labelProvider.getImage(objectList.get(i)));
 
 			Rectangle r1 = new Rectangle();
 			r1.setLocation(positonwidth, 5);
@@ -459,9 +436,8 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			r1.setSize(16, 16);
 
 			Label l = new Label();
-			if (labelProvider instanceof CellLabelProvider) {
-				l.setText(((CellLabelProvider) labelProvider)
-						.getToolTipText(hyperLinkObjectList.get(i)));
+			if(labelProvider instanceof CellLabelProvider) {
+				l.setText(((CellLabelProvider)labelProvider).getToolTipText(hyperLinkObjectList.get(i)));
 			} else {
 				l.setText(labelProvider.getText(hyperLinkObjectList.get(i)));
 			}
@@ -483,15 +459,14 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 * Return the EditorRegistry for nested editor descriptors. Subclass should
 	 * implements this method in order to return the registry associated to the
 	 * extension point namespace.
-	 * 
+	 *
 	 * @return the EditorRegistry for nested editor descriptors
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
-			return ServiceUtilsForEditPart.getInstance().getService(
-					IPageIconsRegistry.class, getHost());
+			return ServiceUtilsForEditPart.getInstance().getService(IPageIconsRegistry.class, getHost());
 		} catch (ServiceException e) {
 			// Return an empty registry always providing null;
 			return new PageIconsRegistry();
@@ -500,7 +475,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * Creates the popup bar figure.
-	 * 
+	 *
 	 * @return the i figure
 	 */
 	protected IFigure createPopupBarFigure() {
@@ -510,15 +485,15 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * Gets the editor registry.
-	 * 
+	 *
 	 * @return the singleton eINSTANCE of editor registry
-	 * 
+	 *
 	 * @generated NOT Get the EditorRegistry used to create editor instances.
 	 *            This default implementation return the singleton eINSTANCE.
 	 *            This method can be subclassed to return another registry.
 	 */
 	protected IPageIconsRegistry getEditorRegistry() {
-		if (editorRegistry == null) {
+		if(editorRegistry == null) {
 			editorRegistry = createEditorRegistry();
 		}
 		return editorRegistry;
@@ -526,7 +501,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * Gets the figure bar.
-	 * 
+	 *
 	 * @return the figure bar
 	 */
 	protected IFigure getFigureBar() {
@@ -539,20 +514,19 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 */
 	@Override
 	protected void hideDiagramAssistant() {
-		if (getFigureBar() != null) {
+		if(getFigureBar() != null) {
 			getFigureBar().removeMouseMotionListener(this);
 			getFigureBar().removeMouseListener(myMouseKeyListener);
 			IFigure layer = getLayer(LayerConstants.HANDLE_LAYER);
-			if (getFigureBar().getParent() != null) {
+			if(getFigureBar().getParent() != null) {
 				layer.remove(getFigureBar());
 			}
 
-			if (imagesToBeDisposed != null) {
-				for (Iterator iter = figureBar.getChildren().iterator(); iter
-						.hasNext();) {
+			if(imagesToBeDisposed != null) {
+				for(Iterator iter = figureBar.getChildren().iterator(); iter.hasNext();) {
 					Object current = iter.next();
-					if (current instanceof PopupBarLabelHandle) {
-						((PopupBarLabelHandle) current).dispose();
+					if(current instanceof PopupBarLabelHandle) {
+						((PopupBarLabelHandle)current).dispose();
 					}
 				}
 				imagesToBeDisposed.clear();
@@ -566,8 +540,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 	 */
 	@Override
 	protected boolean isDiagramAssistant(Object object) {
-		return object instanceof RoundedRectangleWithTail
-				|| object instanceof PopupBarLabelHandle;
+		return object instanceof RoundedRectangleWithTail || object instanceof PopupBarLabelHandle;
 	}
 
 	/**
@@ -581,7 +554,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * {@inheritedDoc}.
-	 * 
+	 *
 	 * @return true, if checks if is preference on
 	 */
 	@Override
@@ -591,18 +564,16 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * fill the popup bar.
-	 * 
+	 *
 	 * @return the width of popup bar
 	 */
 	protected int populatePopup() {
 		int xLoc = 5;
-		if (getFigureBar() != null) {
+		if(getFigureBar() != null) {
 			// add all subdiagrams
 
 			try {
-				hyperLinkObjectList = (ArrayList<HyperLinkObject>) hyperlinkHelperFactory
-						.getAllreferenced(((IGraphicalEditPart) getHost())
-								.getNotationView());
+				hyperLinkObjectList = (ArrayList<HyperLinkObject>)hyperlinkHelperFactory.getAllreferenced(((IGraphicalEditPart)getHost()).getNotationView());
 			} catch (HyperLinkException e) {
 				e.printStackTrace();
 			}
@@ -640,29 +611,30 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * {@inheritedDoc}.
-	 * 
+	 *
 	 * @param referencePoint
-	 *            the reference point
+	 *        the reference point
 	 */
 	@Override
 	protected void showDiagramAssistant(Point referencePoint) {
-		if (getFigureBar() == null) {
+		if(getFigureBar() == null) {
+			if(referencePoint == null) {
+				referencePoint = getHostFigure().getBounds().getCenter();
+			}
+
 			Point position = new Point(referencePoint);
 			createPopupBarFigure();
 			int width = populatePopup();
 			IFigure layer = getLayer(LayerConstants.HANDLE_LAYER);
 			layer.add(getFigureBar());
-			if (referencePoint == null) {
-				referencePoint = getHostFigure().getBounds().getCenter();
-			}
 
 			getHostFigure().translateToAbsolute(position);
 			getFigureBar().translateToRelative(position);
-			
+
 			getFigureBar().setSize(width, 30);
-			
+
 			position.x += 15;
-			
+
 			adjustToFitInViewport(position);
 
 			getFigureBar().setLocation(position);
@@ -670,7 +642,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 			getFigureBar().setForegroundColor(ColorConstants.orange);
 
 			// dismiss the popup bar after a delay
-			if (!shouldAvoidHidingDiagramAssistant()) {
+			if(!shouldAvoidHidingDiagramAssistant()) {
 				hideDiagramAssistantAfterDelay(getDisappearanceDelay());
 			}
 		}
@@ -678,19 +650,17 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	private void adjustToFitInViewport(Point position) {
 		Control control = getHost().getViewer().getControl();
-		if (control instanceof FigureCanvas) {
-			Rectangle viewportRect = ((FigureCanvas) control).getViewport()
-					.getClientArea();
-			Rectangle balloonRect = new Rectangle(position, getFigureBar()
-					.getSize());
+		if(control instanceof FigureCanvas) {
+			Rectangle viewportRect = ((FigureCanvas)control).getViewport().getClientArea();
+			Rectangle balloonRect = new Rectangle(position, getFigureBar().getSize());
 
 			int yDiff = viewportRect.y - balloonRect.y;
-			if (yDiff > 0) {
+			if(yDiff > 0) {
 				// balloon is above the viewport, shift down
 				position.translate(0, yDiff);
 			}
 			int xDiff = balloonRect.right() - viewportRect.right();
-			if (xDiff > 0) {
+			if(xDiff > 0) {
 				// balloon is to the right of the viewport, shift left
 				position.translate(-xDiff, 0);
 			}
@@ -699,39 +669,35 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	@Override
 	protected boolean shouldShowDiagramAssistant() {
-		return getHost().isActive() && isPreferenceOn() && isHostEditable()
-				&& isHostResolvable() && isDiagramPartActive();
+		return getHost().isActive() && isPreferenceOn() && isHostEditable() && isHostResolvable() && isDiagramPartActive();
 	}
 
 	/**
 	 * Checks if the diagram part is active.
-	 * 
+	 *
 	 * @return True if the diagram part is active; false otherwise.
 	 */
 	private boolean isDiagramPartActive() {
-		IWorkbenchWindow window = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
+		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 
-		if (window != null) {
+		if(window != null) {
 			IWorkbenchPage page = window.getActivePage();
-			if (page != null) {
+			if(page != null) {
 				IWorkbenchPart activePart = page.getActivePart();
 
 				IDiagramWorkbenchPart editorPart = null;
 
-				if (activePart instanceof IDiagramWorkbenchPart) {
-					editorPart = (IDiagramWorkbenchPart) activePart;
-				} else if (activePart instanceof IAdaptable) {
-					editorPart = (IDiagramWorkbenchPart) ((IAdaptable) activePart)
-							.getAdapter(IDiagramWorkbenchPart.class);
+				if(activePart instanceof IDiagramWorkbenchPart) {
+					editorPart = (IDiagramWorkbenchPart)activePart;
+				} else if(activePart instanceof IAdaptable) {
+					editorPart = (IDiagramWorkbenchPart)((IAdaptable)activePart).getAdapter(IDiagramWorkbenchPart.class);
 				}
 
-				if (editorPart == null) {
+				if(editorPart == null) {
 					return false;
 				}
 
-				return editorPart.getDiagramEditPart().getRoot()
-						.equals(((IGraphicalEditPart) getHost()).getRoot());
+				return editorPart.getDiagramEditPart().getRoot().equals(((IGraphicalEditPart)getHost()).getRoot());
 			}
 		}
 		return false;
@@ -739,26 +705,26 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 
 	/**
 	 * Checks if the host editpart is editable.
-	 * 
+	 *
 	 * @return True if the host is editable; false otherwise.
 	 */
 	private boolean isHostEditable() {
-		if (getHost() instanceof GraphicalEditPart) {
-			return ((GraphicalEditPart) getHost()).isEditModeEnabled();
+		if(getHost() instanceof GraphicalEditPart) {
+			return ((GraphicalEditPart)getHost()).isEditModeEnabled();
 		}
 		return true;
 	}
 
 	/**
 	 * Is the host's semantic reference resolvable (if applicable)?
-	 * 
+	 *
 	 * @return true if the semantic reference is resolvable, true if there is no
 	 *         semantic reference, and false otherwise
 	 */
 	private boolean isHostResolvable() {
-		final View view = (View) getHost().getModel();
+		final View view = (View)getHost().getModel();
 		EObject element = view.getElement();
-		if (element != null) {
+		if(element != null) {
 			return !element.eIsProxy();
 		}
 		return true;

@@ -1,20 +1,36 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.ApplyStereotypeActionConfigurationPackage;
+import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.FeatureToSet;
 import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.StereotypeToApply;
 
 /**
@@ -27,6 +43,7 @@ import org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfigur
  *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl.StereotypeToApplyImpl#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl.StereotypeToApplyImpl#isUpdateName <em>Update Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl.StereotypeToApplyImpl#getRequiredProfiles <em>Required Profiles</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl.StereotypeToApplyImpl#getFeaturesToSet <em>Features To Set</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,6 +99,16 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 	 * @ordered
 	 */
 	protected EList<String> requiredProfiles;
+
+	/**
+	 * The cached value of the '{@link #getFeaturesToSet() <em>Features To Set</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeaturesToSet()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FeatureToSet> featuresToSet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,6 +188,32 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<FeatureToSet> getFeaturesToSet() {
+		if (featuresToSet == null) {
+			featuresToSet = new EObjectContainmentEList<FeatureToSet>(FeatureToSet.class, this, ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY__FEATURES_TO_SET);
+		}
+		return featuresToSet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY__FEATURES_TO_SET:
+				return ((InternalEList<?>)getFeaturesToSet()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -170,6 +223,8 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 				return isUpdateName();
 			case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY__REQUIRED_PROFILES:
 				return getRequiredProfiles();
+			case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY__FEATURES_TO_SET:
+				return getFeaturesToSet();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,6 +248,10 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 				getRequiredProfiles().clear();
 				getRequiredProfiles().addAll((Collection<? extends String>)newValue);
 				return;
+			case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY__FEATURES_TO_SET:
+				getFeaturesToSet().clear();
+				getFeaturesToSet().addAll((Collection<? extends FeatureToSet>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -214,6 +273,9 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 			case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY__REQUIRED_PROFILES:
 				getRequiredProfiles().clear();
 				return;
+			case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY__FEATURES_TO_SET:
+				getFeaturesToSet().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -232,6 +294,8 @@ public class StereotypeToApplyImpl extends EObjectImpl implements StereotypeToAp
 				return updateName != UPDATE_NAME_EDEFAULT;
 			case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY__REQUIRED_PROFILES:
 				return requiredProfiles != null && !requiredProfiles.isEmpty();
+			case ApplyStereotypeActionConfigurationPackage.STEREOTYPE_TO_APPLY__FEATURES_TO_SET:
+				return featuresToSet != null && !featuresToSet.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

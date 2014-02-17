@@ -70,9 +70,9 @@ import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEdi
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.OperationLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.AppliedStereotypePropertyDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.OperationLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.OperationForInterfaceItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLTextSelectionEditPolicy;

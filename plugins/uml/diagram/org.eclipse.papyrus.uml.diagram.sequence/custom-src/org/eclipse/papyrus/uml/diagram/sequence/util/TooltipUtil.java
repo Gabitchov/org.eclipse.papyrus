@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
@@ -43,7 +44,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2Edit
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorLabelProvider;
-import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomLifelinePreferencePage;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
@@ -64,7 +64,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Display type name as tooltip of each node element
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=402964
- * 
+ *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class TooltipUtil {
@@ -161,7 +161,7 @@ public class TooltipUtil {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 */
 		public TooltipEditPolicy(TooltipUpdater updater) {
 			this.updater = updater;
@@ -216,9 +216,9 @@ public class TooltipUtil {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 * @param updater
-		 * 
+		 *
 		 */
 		public TooltipFigure(TooltipUpdater updater) {
 			this.updater = updater;
@@ -239,7 +239,7 @@ public class TooltipUtil {
 
 		/**
 		 * @see org.eclipse.draw2d.Figure#getPreferredSize(int, int)
-		 * 
+		 *
 		 * @param wHint
 		 * @param hHint
 		 * @return
@@ -298,7 +298,7 @@ public class TooltipUtil {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 */
 		public EditPartTooltipUpdater(GraphicalEditPart editPart) {
 			Assert.isNotNull(editPart);
@@ -307,9 +307,10 @@ public class TooltipUtil {
 
 		/**
 		 * @see org.eclipse.papyrus.uml.diagram.sequence.util.TooltipUtil.TooltipUpdater#getTooltipName()
-		 * 
+		 *
 		 * @return
 		 */
+		@Override
 		public String getTooltipName() {
 			if(editPart instanceof CombinedFragment2EditPart) {
 				return "Co Region";
@@ -361,9 +362,10 @@ public class TooltipUtil {
 
 		/**
 		 * @see org.eclipse.papyrus.uml.diagram.sequence.util.TooltipUtil.TooltipUpdater#getTooltipDescription()
-		 * 
+		 *
 		 * @return
 		 */
+		@Override
 		public String getTooltipDescription() {
 			//CoRegion
 			//			if(editPart instanceof CombinedFragment2EditPart) {
@@ -436,7 +438,9 @@ public class TooltipUtil {
 				}
 			}
 			if(semanticElement instanceof Lifeline) {
-				int displayValue = CustomLifelinePreferencePage.DEFAULT_LABEL_DISPLAY;
+				//Bug 417396
+				//FIXME: Refactored the displayValue as-is (int -> Collection<String>), although it is not used anymore to configure the tooltip. Remove?
+				Collection<String> displayValue = LifelineLabelHelper.DEFAULT_LABEL_DISPLAY;
 				IMaskManagedLabelEditPolicy policy = null;
 				if(editPart instanceof LifelineEditPart) {
 					policy = (IMaskManagedLabelEditPolicy)editPart.getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);

@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -70,6 +70,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LabelDirectEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextSelectionEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
@@ -207,7 +208,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 		String text = null;
 		EObject parserElement = getParserElement();
 		if(parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			text = getParser().getPrintString(new SemanticAdapter(parserElement, getNotationView()), getParserOptions().intValue());
 		}
 		if(text == null || text.length() == 0) {
 			text = defaultText;
@@ -231,7 +232,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 		if(getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
+		return getParser().getEditString(new SemanticAdapter(getParserElement(), getNotationView()), getParserOptions().intValue());
 	}
 
 	protected boolean isEditable() {
@@ -246,7 +247,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl<IParserEditStatus>() {
 
 							public void run() {
 								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));

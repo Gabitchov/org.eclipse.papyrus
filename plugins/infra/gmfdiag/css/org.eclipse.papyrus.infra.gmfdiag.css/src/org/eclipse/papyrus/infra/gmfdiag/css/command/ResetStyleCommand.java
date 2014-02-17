@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,6 +38,7 @@ public class ResetStyleCommand extends RecordingCommand {
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON);
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.SHADOWFIGURE);
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.QUALIFIED_NAME);
+		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
 	}
 
 	private Iterator<?> iterator;
@@ -91,6 +92,10 @@ public class ResetStyleCommand extends RecordingCommand {
 	}
 
 	private void resetStyle(View view) {
+		//Reset the view (Except for volatile/transient elements which are already derived, e.g. Stereotype compartments)
+		if(view.eContainingFeature().isTransient()) {
+			return;
+		}
 
 		Iterator<?> styleIterator = view.getStyles().iterator();
 		while(styleIterator.hasNext()) {
@@ -114,17 +119,15 @@ public class ResetStyleCommand extends RecordingCommand {
 		//Remove the Papyrus Style EAnnotations
 		resetStyleAnnotations(view);
 
-		if(view.eClass() != NotationPackage.eINSTANCE.getDecorationNode()) {
-			//Reset the visibility (Except for labels which are not yet supported)
-			view.eUnset(NotationPackage.eINSTANCE.getView_Visible());
-		}
+		//Reset the visibility
+		view.eUnset(NotationPackage.eINSTANCE.getView_Visible());
 	}
 
 	private void resetStyle(Style style) {
 		if(style instanceof NamedStyle) {
-			//Skip custom styles. 
+			//Skip custom styles.
 			//TODO: We should skip CSS Styles (CSSClass, CSSId, CSSStyle, DiagramStyleSheets),
-			//and reset custom GMF Styles (elementIcon, shadow, ...). 
+			//and reset custom GMF Styles (elementIcon, shadow, ...).
 			//What about external custom styles (ie. unkwnown styles)?
 			//They should be stylable, but they might contain something we don't want to reset...
 			return;
@@ -139,7 +142,7 @@ public class ResetStyleCommand extends RecordingCommand {
 		}
 	}
 
-	//Resets the "Force Value" annotations (Tags to indicate that the user 
+	//Resets the "Force Value" annotations (Tags to indicate that the user
 	//has manually selected a value, which will override the CSS Style)
 	private void resetAnnotations(View view) {
 		Iterator<EAnnotation> iterator = view.getEAnnotations().iterator();

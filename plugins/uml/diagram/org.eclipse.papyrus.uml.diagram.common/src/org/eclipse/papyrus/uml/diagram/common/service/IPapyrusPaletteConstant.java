@@ -83,6 +83,9 @@ public interface IPapyrusPaletteConstant {
 	/** id for the preference store for local palette definitions */
 	public final String PALETTE_LOCAL_DEFINITIONS = "localPaletteDefinition";
 
+	/** id for the preference store for local palette definitions */
+	public final String PALETTE_WORKSPACE_DEFINITIONS = "workspacePaletteDefinition";
+	
 	/** id for the preference definitions */
 	public final String HIDDEN_PALETTES = "hiddenPalettes";
 

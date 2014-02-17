@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008, 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,42 +33,43 @@ import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
-import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.uml2.uml.Property;
 
 /**
  * This the parser in charge of editing and displaying properties in Papyrus. For the edition of
  * properties, a dialog box is opened
- * 
+ *
  * @author Patrick Tessier
  */
 public class PropertyParser implements IParser {
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		return null;
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getEditString(final IAdaptable element, int flags) {
 		if(element instanceof EObjectAdapter) {
 			final Property property = ((Property)((EObjectAdapter)element).getRealObject());
-			return PropertyUtil.getCustomLabel(property, ICustomAppearence.DISP_NAME);
+			return property.getName();
 		}
 		return "";
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 		final Property property = ((Property)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
@@ -78,12 +79,14 @@ public class PropertyParser implements IParser {
 		} catch (ServiceException ex) {
 			return null;
 		}
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Property", (List)null) {
+
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Property", (List<?>)null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
 
+					@Override
 					public void run() {
 						RecordingCommand rc = new RecordingCommand(getEditingDomain()) {
 
@@ -102,25 +105,28 @@ public class PropertyParser implements IParser {
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		return "<default>";
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
 		return false;
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 		return new ParserEditStatus(UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, "");
 	}

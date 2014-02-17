@@ -249,13 +249,6 @@
 		properties="isUMLModel, isUMLProfile"
 		type="org.eclipse.jface.viewers.ISelection">
 	</propertyTester>
- <propertyTester
-       class="org.eclipse.papyrus.uml.diagram.common.util.UMLModelTester"
-       id="org.eclipse.papyrus.UMLModelTester"
-       namespace="org.eclipse.papyrus.UMLModelTester"
-       properties="isUMLModel, isUMLProfile"
-       type="org.eclipse.ui.IWorkbenchPart">
- </propertyTester>
 </extension>
 
 <!-- Reusable test definitions verifying:
@@ -266,25 +259,33 @@
 		point="org.eclipse.core.expressions.definitions">
 	
 	<definition id="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel">
-    <with
-          variable="activePart">
-       <test
-             forcePluginActivation="true"
-             property="org.eclipse.papyrus.UMLModelTester.isUMLModel"
-             value="true">
-       </test>
-    </with>
+		<and>
+		
+		<with variable="activeEditorId">
+			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
+		</with>
+
+		<with variable="selection">
+			<test property="org.eclipse.papyrus.UMLSelectionTester.isUMLModel" value="true"
+				forcePluginActivation="true"/>
+		</with>
+		
+		</and>
 	</definition>
 	
 	<definition id="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLProfile">
-    <with
-          variable="activePart">
-       <test
-             forcePluginActivation="true"
-             property="org.eclipse.papyrus.UMLModelTester.isUMLProfile"
-             value="true">
-       </test>
-    </with>
+		<and>
+		
+		<with variable="activeEditorId">
+			<equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
+		</with>
+
+		<with variable="selection">
+			<test property="org.eclipse.papyrus.UMLSelectionTester.isUMLProfile" value="true"
+				forcePluginActivation="true"/>
+		</with>
+		
+		</and>
 	</definition>	
 </extension>
 

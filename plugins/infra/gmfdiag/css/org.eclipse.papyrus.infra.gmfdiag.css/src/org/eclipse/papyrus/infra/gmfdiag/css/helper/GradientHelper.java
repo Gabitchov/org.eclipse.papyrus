@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,17 +22,17 @@ import org.w3c.dom.css.CSSValue;
 
 /**
  * A Helper class for manipulating CSS Gradient properties.
- * 
+ *
  * Gradient properties:
- * 
+ *
  * - fillColor
  * - gradientColor
  * - gradientStyle
  * - gradient (Composite property)
- * 
+ *
  * The support is currently incomplete, especially when using both the
  * composite property and the single ones in CSS files.
- * 
+ *
  * @author Camille Letavernier
  */
 @SuppressWarnings("restriction")
@@ -63,7 +63,7 @@ public class GradientHelper {
 	/**
 	 * Returns a GradientData from the CSS "gradient", "gradientColor" and/or
 	 * "gradientStyle" properties
-	 * 
+	 *
 	 * @param engine
 	 *        The engine used to retrieve the gradient
 	 * @param node
@@ -98,7 +98,7 @@ public class GradientHelper {
 				return null;
 			}
 
-			int[] gradientValues = parseGradient(engine, gradientString);
+			int[] gradientValues = parseGradient(engine, gradient);
 
 			return new GradientData(gradientValues[0], gradientValues[1], gradientValues[2]);
 		}
@@ -108,7 +108,7 @@ public class GradientHelper {
 	}
 
 	/** [color1, color2, style] */
-	private static int[] parseGradient(ExtendedCSSEngine engine, String gradient) {
+	private static int[] parseGradient(ExtendedCSSEngine engine, CSSValue gradient) {
 		String color1, color2, style;
 		color1 = color2 = style = null;
 

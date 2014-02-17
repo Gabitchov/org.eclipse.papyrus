@@ -1,15 +1,24 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2013 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.extendedtypes.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage;
 import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
 
@@ -20,18 +29,20 @@ import org.eclipse.papyrus.infra.extendedtypes.IconEntry;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.IconEntryImpl#getIconPath <em>Icon Path</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.IconEntryImpl#getBundleId <em>Bundle Id</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.IconEntryImpl#getIconPath <em>Icon Path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.extendedtypes.impl.IconEntryImpl#getBundleId <em>Bundle Id</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class IconEntryImpl extends EObjectImpl implements IconEntry {
+
 	/**
 	 * The default value of the '{@link #getIconPath() <em>Icon Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getIconPath()
 	 * @generated
 	 * @ordered
@@ -42,6 +53,7 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	 * The cached value of the '{@link #getIconPath() <em>Icon Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getIconPath()
 	 * @generated
 	 * @ordered
@@ -52,6 +64,7 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	 * The default value of the '{@link #getBundleId() <em>Bundle Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBundleId()
 	 * @generated
 	 * @ordered
@@ -62,6 +75,7 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	 * The cached value of the '{@link #getBundleId() <em>Bundle Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBundleId()
 	 * @generated
 	 * @ordered
@@ -71,6 +85,7 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IconEntryImpl() {
@@ -80,16 +95,18 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExtendedtypesPackage.Literals.ICON_ENTRY;
+		return ExtendedtypesPackage.eINSTANCE.getIconEntry();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getIconPath() {
@@ -99,18 +116,20 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIconPath(String newIconPath) {
 		String oldIconPath = iconPath;
 		iconPath = newIconPath;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedtypesPackage.ICON_ENTRY__ICON_PATH, oldIconPath, iconPath));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getBundleId() {
@@ -120,27 +139,29 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBundleId(String newBundleId) {
 		String oldBundleId = bundleId;
 		bundleId = newBundleId;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedtypesPackage.ICON_ENTRY__BUNDLE_ID, oldBundleId, bundleId));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExtendedtypesPackage.ICON_ENTRY__ICON_PATH:
-				return getIconPath();
-			case ExtendedtypesPackage.ICON_ENTRY__BUNDLE_ID:
-				return getBundleId();
+		switch(featureID) {
+		case ExtendedtypesPackage.ICON_ENTRY__ICON_PATH:
+			return getIconPath();
+		case ExtendedtypesPackage.ICON_ENTRY__BUNDLE_ID:
+			return getBundleId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -148,17 +169,18 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExtendedtypesPackage.ICON_ENTRY__ICON_PATH:
-				setIconPath((String)newValue);
-				return;
-			case ExtendedtypesPackage.ICON_ENTRY__BUNDLE_ID:
-				setBundleId((String)newValue);
-				return;
+		switch(featureID) {
+		case ExtendedtypesPackage.ICON_ENTRY__ICON_PATH:
+			setIconPath((String)newValue);
+			return;
+		case ExtendedtypesPackage.ICON_ENTRY__BUNDLE_ID:
+			setBundleId((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -166,17 +188,18 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExtendedtypesPackage.ICON_ENTRY__ICON_PATH:
-				setIconPath(ICON_PATH_EDEFAULT);
-				return;
-			case ExtendedtypesPackage.ICON_ENTRY__BUNDLE_ID:
-				setBundleId(BUNDLE_ID_EDEFAULT);
-				return;
+		switch(featureID) {
+		case ExtendedtypesPackage.ICON_ENTRY__ICON_PATH:
+			setIconPath(ICON_PATH_EDEFAULT);
+			return;
+		case ExtendedtypesPackage.ICON_ENTRY__BUNDLE_ID:
+			setBundleId(BUNDLE_ID_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -184,15 +207,16 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExtendedtypesPackage.ICON_ENTRY__ICON_PATH:
-				return ICON_PATH_EDEFAULT == null ? iconPath != null : !ICON_PATH_EDEFAULT.equals(iconPath);
-			case ExtendedtypesPackage.ICON_ENTRY__BUNDLE_ID:
-				return BUNDLE_ID_EDEFAULT == null ? bundleId != null : !BUNDLE_ID_EDEFAULT.equals(bundleId);
+		switch(featureID) {
+		case ExtendedtypesPackage.ICON_ENTRY__ICON_PATH:
+			return ICON_PATH_EDEFAULT == null ? iconPath != null : !ICON_PATH_EDEFAULT.equals(iconPath);
+		case ExtendedtypesPackage.ICON_ENTRY__BUNDLE_ID:
+			return BUNDLE_ID_EDEFAULT == null ? bundleId != null : !BUNDLE_ID_EDEFAULT.equals(bundleId);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -200,19 +224,19 @@ public class IconEntryImpl extends EObjectImpl implements IconEntry {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
-
+		if(eIsProxy())
+			return super.toString();
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (iconPath: ");
+		result.append(" (iconPath: "); //$NON-NLS-1$
 		result.append(iconPath);
-		result.append(", bundleId: ");
+		result.append(", bundleId: "); //$NON-NLS-1$
 		result.append(bundleId);
 		result.append(')');
 		return result.toString();
 	}
-
 } //IconEntryImpl

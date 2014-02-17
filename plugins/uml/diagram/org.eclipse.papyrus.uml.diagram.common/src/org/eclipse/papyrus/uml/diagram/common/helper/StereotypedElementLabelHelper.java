@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,7 +22,6 @@ import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gef.GraphicalEditPart;
@@ -31,11 +30,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -50,11 +50,7 @@ public abstract class StereotypedElementLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public Element getUMLElement(GraphicalEditPart editPart) {
-		EObject element = ((View)editPart.getModel()).getElement();
-		if(element instanceof Element) {
-			return (Element)element;
-		}
-		return null;
+		return UMLUtil.resolveUMLElement(editPart);
 	}
 
 	/**
@@ -329,7 +325,7 @@ public abstract class StereotypedElementLabelHelper {
 		// computes the icon to be displayed
 		final Collection<Image> imageToDisplay = stereotypeIconsToDisplay(editPart);
 		// should check if edit part has to display the element icon or not
-		if(NameLabelIconHelper.showLabelIcon((View)editPart.getModel())) {
+		if(AppearanceHelper.showElementIcon((View)editPart.getModel())) {
 			imageToDisplay.add(getImage(editPart));
 		}
 		// for each element in the list of stereotype icon, adds it to the icons

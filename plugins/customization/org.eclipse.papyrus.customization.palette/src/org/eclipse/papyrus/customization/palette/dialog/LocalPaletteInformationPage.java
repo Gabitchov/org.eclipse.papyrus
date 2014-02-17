@@ -172,7 +172,7 @@ public class LocalPaletteInformationPage extends WizardPage implements Listener 
 		}
 		initEditorID(editorIDValue);
 		initPaletteID(descriptor.getContributionID());
-		initPriority(PapyrusPalettePreferences.getPalettePriority(descriptor.getContributionID()));
+		initPriority(PapyrusPalettePreferences.getLocalPalettePriority(descriptor.getContributionID()));
 		validateOnLaunch = true;
 	}
 

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,12 +9,16 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
+import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -27,40 +31,40 @@ public class OperationUtil {
 
 	/**
 	 * return the custom label of the operation, given UML2 specification and a custom style.
-	 * 
+	 *
 	 * @param style
 	 *        the integer representing the style of the label
-	 * 
+	 *
 	 * @return the string corresponding to the label of the operation
 	 */
-	public static String getCustomLabel(Operation operation, int style) {
+	public static String getCustomLabel(Operation operation, Collection<String> maskValues) {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append(" "); // adds " " first for correct display considerations
 
 		// visibility
-		if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+		if(maskValues.contains(ICustomAppearance.DISP_VISIBILITY)) {
 			buffer.append(NamedElementUtil.getVisibilityAsSign(operation));
 		}
 
 		// name
-		if((style & ICustomAppearence.DISP_NAME) != 0) {
+		if(maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
 			buffer.append(operation.getName());
 		}
 
-		// 
+		//
 		// parameters : '(' parameter-list ')'
 		buffer.append("(");
-		buffer.append(OperationUtil.getParametersAsString(operation, style));
+		buffer.append(OperationUtil.getParametersAsString(operation, maskValues));
 		buffer.append(")");
 
 		// return type
-		if((style & ICustomAppearence.DISP_RT_TYPE) != 0) {
-			buffer.append(OperationUtil.getReturnTypeAsString(operation, style));
+		if(maskValues.contains(ICustomAppearance.DISP_RT_TYPE) || maskValues.contains(ICustomAppearance.DISP_TYPE)) {
+			buffer.append(OperationUtil.getReturnTypeAsString(operation, maskValues));
 		}
 
 		// modifiers
-		if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
+		if(maskValues.contains(ICustomAppearance.DISP_MODIFIERS)) {
 			String modifiers = OperationUtil.getModifiersAsString(operation);
 			if(!modifiers.equals("")) {
 				buffer.append("{");
@@ -73,14 +77,14 @@ public class OperationUtil {
 
 	/**
 	 * Returns return parameter label as a string, string parametrized with a style mask.
-	 * 
+	 *
 	 * @param style
 	 *        the mask that indicates which element to display
 	 * @return a string containing the return parameter type
 	 */
-	private static String getReturnTypeAsString(Operation operation, int style) {
-		boolean displayType = ((style & ICustomAppearence.DISP_RT_TYPE) != 0);
-		boolean displayMultiplicity = ((style & ICustomAppearence.DISP_RT_MULTIPLICITY) != 0);
+	private static String getReturnTypeAsString(Operation operation, Collection<String> maskValues) {
+		boolean displayType = maskValues.contains(ICustomAppearance.DISP_RT_TYPE) || maskValues.contains(ICustomAppearance.DISP_TYPE);
+		boolean displayMultiplicity = maskValues.contains(ICustomAppearance.DISP_RT_MULTIPLICITY) || maskValues.contains(ICustomAppearance.DISP_MULTIPLICITY);
 		StringBuffer label = new StringBuffer("");
 
 		// Retrieve the return parameter (assume to be unique if defined)
@@ -107,10 +111,10 @@ public class OperationUtil {
 
 	/**
 	 * Returns operation parameters as a string, the label is customized using a bit mask
-	 * 
+	 *
 	 * @return a string containing all parameters separated by commas
 	 */
-	private static String getParametersAsString(Operation operation, int style) {
+	private static String getParametersAsString(Operation operation, Collection<String> maskValues) {
 		StringBuffer paramString = new StringBuffer();
 		Iterator<Parameter> paramIterator = operation.getOwnedParameters().iterator();
 		boolean firstParameter = true;
@@ -119,12 +123,10 @@ public class OperationUtil {
 			// Do not include return parameters
 			if(!parameter.getDirection().equals(ParameterDirectionKind.RETURN_LITERAL)) {
 
-
-
 				// get the label for this parameter
-				String parameterString = ParameterUtil.getCustomLabel(parameter, style);
-				if (!parameterString.trim().equals("")) {
-					if (!firstParameter) {
+				String parameterString = ParameterUtil.getCustomLabel(parameter, extractParameterMaskValues(maskValues));
+				if(!parameterString.trim().equals("")) {
+					if(!firstParameter) {
 						paramString.append(", ");
 					}
 					paramString.append(parameterString);
@@ -135,9 +137,22 @@ public class OperationUtil {
 		return paramString.toString();
 	}
 
+	private static Collection<String> extractParameterMaskValues(Collection<String> operationMaskValues) {
+		Set<String> result = new HashSet<String>();
+
+		for(String maskValue : operationMaskValues) {
+			if(maskValue.startsWith(ICustomAppearance.PARAMETERS_PREFIX)) {
+				String newValue = StringHelper.firstToLower(maskValue.replace(ICustomAppearance.PARAMETERS_PREFIX, ""));
+				result.add(newValue);
+			}
+		}
+
+		return result;
+	}
+
 	/**
 	 * Returns operation modifiers as string, separated with comma.
-	 * 
+	 *
 	 * @return a string containing the modifiers
 	 */
 	private static String getModifiersAsString(Operation operation) {
@@ -202,7 +217,7 @@ public class OperationUtil {
 
 	/**
 	 * Gives the return parameter for this operation, or <code>null</code> if none exists.
-	 * 
+	 *
 	 * @return the return parameter of the operation or <code>null</code>
 	 */
 	private static Parameter getReturnParameter(Operation operation) {

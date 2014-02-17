@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,12 +18,12 @@ import java.util.Map;
  * 
  * @author Camille Letavernier
  * 
- * @see IntegerMask
+ * @see StringMask
  */
 public interface MaskProvider {
 
 	/**
 	 * @return the list of masks and their String descriptions
 	 */
-	public Map<Integer, String> getMasks();
+	public Map<String, String> getMasks();
 }

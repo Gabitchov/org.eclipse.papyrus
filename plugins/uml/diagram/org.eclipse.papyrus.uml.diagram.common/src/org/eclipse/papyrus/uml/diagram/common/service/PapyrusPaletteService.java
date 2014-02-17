@@ -502,7 +502,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	public static class LocalProviderDescriptor extends ProviderDescriptor {
 
 		/** palette description */
-		private final IPaletteDescription description;
+		protected final IPaletteDescription description;
 
 		/**
 		 * Creates a new Local Palette Descriptor
@@ -662,6 +662,29 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 
 	}
 
+	public static class WorkspaceProviderDescriptor extends LocalProviderDescriptor {
+
+		/**
+		 * @param description
+		 */
+		public WorkspaceProviderDescriptor(IPaletteDescription description) {
+			super(description);
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public IProvider getProvider() {
+			if(provider == null) {
+				provider = new WorkspacePaletteProvider();
+				((WorkspacePaletteProvider)provider).setContributions(description);
+			}
+			return provider;
+		}
+	}
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -715,6 +738,31 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		}
 
 	}
+	
+	/**
+	 * add providers for workspace palettes
+	 */
+	protected void configureWorkspacePalettes() {
+		// read the preference field that indicates where the local palettes
+		// are, their IDs, etc...
+		List<IPaletteDescription> workspacePalettes = PapyrusPalettePreferences.getWorkspacePalettes();
+		// create the providers linked to these configuration
+
+		// remove all local descriptors
+		for(org.eclipse.gmf.runtime.common.core.service.Service.ProviderDescriptor descriptor : getProviders()) {
+			if(descriptor instanceof WorkspaceProviderDescriptor) {
+				removeProvider(descriptor);
+			}
+		}
+
+		// create new list
+		for(IPaletteDescription palette : workspacePalettes) {
+			LocalProviderDescriptor descriptor = new WorkspaceProviderDescriptor(palette);
+			addProvider(palette.getPriority(), descriptor);
+		}
+
+	}
+	
 
 	/**
 	 * gets the singleton instance
@@ -736,6 +784,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		getInstance().configureProviders(DiagramUIPlugin.getPluginId(), "paletteProviders"); //$NON-NLS-1$
 		getInstance().configureProviders(Activator.ID, PALETTE_DEFINITION);
 		getInstance().configureLocalPalettes();
+		getInstance().configureWorkspacePalettes();
 	}
 
 	/**
@@ -982,7 +1031,11 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		// listen for local palette preferences...
 
 		String id = event.getKey();
-		if(IPapyrusPaletteConstant.PALETTE_LOCAL_DEFINITIONS.equals(id)) {
+		if(IPapyrusPaletteConstant.PALETTE_WORKSPACE_DEFINITIONS.equals(id)) {
+			// refresh available palette table viewer
+			getInstance().configureWorkspacePalettes();
+			providerChanged(new ProviderChangeEvent(this));
+		} else if(IPapyrusPaletteConstant.PALETTE_LOCAL_DEFINITIONS.equals(id)) {
 			// refresh available palette table viewer
 			getInstance().configureLocalPalettes();
 			providerChanged(new ProviderChangeEvent(this));

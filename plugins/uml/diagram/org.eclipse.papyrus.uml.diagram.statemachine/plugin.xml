@@ -1342,6 +1342,25 @@
 	</binding>
 		
 </extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="PapyrusUMLStateMachineDiagram">
+			<mapping type="PapyrusUMLStateMachineDiagram" humanReadableType="StateMachineDiagram"/>
+			
+	<mapping
+		humanReadableType="Region"
+		type="3002">
+	</mapping>
 
+	<mapping
+		humanReadableType="StateMachine"
+		type="2002">
+	</mapping>
+
+	<mapping
+		humanReadableType="State"
+		type="6002">
+	</mapping>
+		</diagramMappings>
+	</extension>
 
 </plugin>

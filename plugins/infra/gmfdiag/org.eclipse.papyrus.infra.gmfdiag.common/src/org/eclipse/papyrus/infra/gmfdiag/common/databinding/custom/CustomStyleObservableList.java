@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.common.listener.CustomStyleListener;
@@ -60,7 +62,7 @@ public class CustomStyleObservableList extends EMFObservableList implements ICha
 		this.view = view;
 		this.domain = domain;
 		observableConcreteList = (IObservableList)concreteList;
-		styleExists = isStyleCreated();
+		styleExists = styleExists();
 
 		view.eAdapters().add(listener = new CustomStyleListener(view, feature, this, styleName));
 	}
@@ -72,8 +74,27 @@ public class CustomStyleObservableList extends EMFObservableList implements ICha
 		changing = false;
 	}
 
-	private boolean isStyleCreated() {
-		return view.getNamedStyle(eClass, styleName) != null;
+	protected boolean styleExists() {
+		//getNamedStyle may return a volatile result when CSS are available. We want a persistent element, so we should call directly view#getStyles()
+		//Call directly view.getStyles() instead of view.getNamedStyle()
+		for(Style style : (List<Style>)view.getStyles()) {
+			if(eClass.isInstance(style)) {
+				NamedStyle namedStyle = (NamedStyle)style;
+				if(styleName.equals(namedStyle.getName())) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	protected boolean isStyleCreated() {
+		return getNamedStyle() != null;
+	}
+
+	protected NamedStyle getNamedStyle() {
+		return view.getNamedStyle(eClass, styleName);
 	}
 
 	private static IObservableList getWrappedList(View view, String styleName, EClass eClass, EStructuralFeature feature) {
@@ -83,7 +104,7 @@ public class CustomStyleObservableList extends EMFObservableList implements ICha
 			return EMFProperties.list(feature).observe(style);
 		}
 
-		//The style doesn't exist yet, we need to simulate it 
+		//The style doesn't exist yet, we need to simulate it
 		//(With an empty list)
 		return new WritableList();
 	}
@@ -123,12 +144,14 @@ public class CustomStyleObservableList extends EMFObservableList implements ICha
 		return new SetCustomStyleListValueCommand(domain, view, styleName, eClass, feature, index, value);
 	}
 
+	@Override
 	public void handleChange(ChangeEvent event) {
 		//If the ListValueStyle has been created or removed, we need to resync
 		//the concrete list with it
-		if(styleExists != (styleExists = isStyleCreated())) {
+		if(styleExists != (styleExists = styleExists())) {
 			observableConcreteList.dispose();
-			concreteList = observableConcreteList = getWrappedList(view, styleName, eClass, feature);
+			concreteList = observableConcreteList = getConcreteList();
+			observableConcreteList.addChangeListener(this);
 		}
 
 		//If this observable is not the source of the change, the wrapped
@@ -136,6 +159,10 @@ public class CustomStyleObservableList extends EMFObservableList implements ICha
 		if(!changing) {
 			refreshCacheList();
 		}
+	}
+
+	protected IObservableList getConcreteList() {
+		return getWrappedList(view, styleName, eClass, feature);
 	}
 
 	@Override

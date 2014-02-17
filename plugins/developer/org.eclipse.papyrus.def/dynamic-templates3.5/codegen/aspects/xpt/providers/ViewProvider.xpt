@@ -282,7 +282,6 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 		
 		if (hasTitle) {
 			org.eclipse.gmf.runtime.notation.TitleStyle ts = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createTitleStyle();
-			ts.setShowTitle(true);
 			rv.getStyles().add(ts);
 		}
 		if (canSort) {

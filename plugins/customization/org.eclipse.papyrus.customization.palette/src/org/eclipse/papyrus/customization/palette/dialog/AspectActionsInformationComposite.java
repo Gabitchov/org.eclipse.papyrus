@@ -15,17 +15,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.runtime.Assert;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.ITreeSelection;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.AspectToolService;
@@ -35,6 +34,8 @@ import org.eclipse.papyrus.uml.diagram.common.service.palette.IPaletteAspectTool
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPreAction;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -103,15 +104,6 @@ public class AspectActionsInformationComposite {
 	/** move down aspect action button */
 	protected Button moveDownActionButton;
 
-	/** the current services registry */
-	protected ServicesRegistry registry;
-
-
-	public AspectActionsInformationComposite(ServicesRegistry registry) {
-		Assert.isNotNull(registry);
-		this.registry = registry;
-	}
-
 	/**
 	 * Creates the content for this composite
 	 * 
@@ -121,7 +113,6 @@ public class AspectActionsInformationComposite {
 	 */
 	public Composite createComposite(Composite parent, List<Profile> appliedProfiles) {
 		this.appliedProfiles = appliedProfiles;
-
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(2, false);
 		layout.marginWidth = 0;
@@ -148,22 +139,29 @@ public class AspectActionsInformationComposite {
 
 		addActionButton = new Button(actionList, SWT.NONE);
 		addActionButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_ADD));
-		addActionButton.addSelectionListener(new SelectionListener() {
+		addActionButton.addMouseListener(new MouseListener() {
 
-			public void widgetSelected(SelectionEvent e) {
+			public void mouseUp(MouseEvent e) {
 				addButtonPressed();
 			}
 
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//Nothing
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+
 			}
 		});
 
 		removeActionButton = new Button(actionList, SWT.NONE);
 		removeActionButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_REMOVE));
-		removeActionButton.addSelectionListener(new SelectionListener() {
+		removeActionButton.addMouseListener(new MouseListener() {
 
-			public void widgetSelected(SelectionEvent e) {
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseUp(MouseEvent e) {
 				// remove the selected aspect action(s)
 				ITreeSelection selection = (ITreeSelection)viewer.getSelection();
 				if(selection != null && selection.size() > 0) {
@@ -178,19 +176,29 @@ public class AspectActionsInformationComposite {
 				setSelectedEntryProxy(selectedEntryProxy);
 			}
 
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//Nothing
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
 			}
 		});
 
 		moveUpActionButton = new Button(actionList, SWT.NONE);
 		moveUpActionButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_UP));
-		moveUpActionButton.addSelectionListener(new SelectionListener() {
+		moveUpActionButton.addMouseListener(new MouseListener() {
 
 			/**
 			 * @{inheritDoc
 			 */
-			public void widgetSelected(SelectionEvent e) {
+			public void mouseUp(MouseEvent e) {
 				IStructuredSelection selection = (IStructuredSelection)viewer.getSelection();
 				if(selection != null && selection.size() > 0 && selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
 					IAspectAction action = (IAspectAction)selection.getFirstElement();
@@ -216,19 +224,29 @@ public class AspectActionsInformationComposite {
 
 			}
 
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//Nothing
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
 			}
 		});
 
 		moveDownActionButton = new Button(actionList, SWT.NONE);
 		moveDownActionButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_DOWN));
-		moveDownActionButton.addSelectionListener(new SelectionListener() {
+		moveDownActionButton.addMouseListener(new MouseListener() {
 
 			/**
 			 * @{inheritDoc
 			 */
-			public void widgetSelected(SelectionEvent e) {
+			public void mouseUp(MouseEvent e) {
 				IStructuredSelection selection = (IStructuredSelection)viewer.getSelection();
 				if(selection != null && selection.size() > 0 && selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
 					IAspectAction action = (IAspectAction)selection.getFirstElement();
@@ -254,8 +272,18 @@ public class AspectActionsInformationComposite {
 
 			}
 
-			public void widgetDefaultSelected(SelectionEvent e) {
-				//Nothing
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
 			}
 		});
 
@@ -304,7 +332,6 @@ public class AspectActionsInformationComposite {
 					public void widgetSelected(SelectionEvent e) {
 						IAspectActionProvider factory = (IAspectActionProvider)((MenuItem)e.getSource()).getData();
 						IAspectAction action = factory.createAction(null);
-						action.setServicesRegistry(registry);
 						if(selectedEntryProxy instanceof IPaletteAspectToolEntryProxy) {
 							if(action instanceof IPostAction) {
 								((IPaletteAspectToolEntryProxy)selectedEntryProxy).getPostActions().add((IPostAction)action);
@@ -319,7 +346,7 @@ public class AspectActionsInformationComposite {
 					 * @{inheritDoc
 					 */
 					public void widgetDefaultSelected(SelectionEvent e) {
-						//Nothing
+
 					}
 				});
 			}
@@ -450,14 +477,14 @@ public class AspectActionsInformationComposite {
 		 * @{inheritDoc
 		 */
 		public void dispose() {
-			//Nothing
+
 		}
 
 		/**
 		 * @{inheritDoc
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			//Nothing
+
 		}
 
 	}
@@ -465,12 +492,11 @@ public class AspectActionsInformationComposite {
 	/**
 	 * Label provider for the aspect actions viewer
 	 */
-	protected class AspectActionLabelProvider extends LabelProvider {
+	protected class AspectActionLabelProvider implements ILabelProvider {
 
 		/**
 		 * @{inheritDoc
 		 */
-		@Override
 		public Image getImage(Object element) {
 			if(element instanceof IAspectAction) {
 				return ((IAspectAction)element).getImage();
@@ -481,12 +507,39 @@ public class AspectActionsInformationComposite {
 		/**
 		 * @{inheritDoc
 		 */
-		@Override
 		public String getText(Object element) {
 			if(element instanceof IAspectAction) {
 				return ((IAspectAction)element).getLabel();
 			}
 			return "notAnAction";
+		}
+
+		/**
+		 * @{inheritDoc
+		 */
+		public void addListener(ILabelProviderListener listener) {
+
+		}
+
+		/**
+		 * @{inheritDoc
+		 */
+		public void dispose() {
+
+		}
+
+		/**
+		 * @{inheritDoc
+		 */
+		public boolean isLabelProperty(Object element, String property) {
+			return false;
+		}
+
+		/**
+		 * @{inheritDoc
+		 */
+		public void removeListener(ILabelProviderListener listener) {
+
 		}
 
 	}

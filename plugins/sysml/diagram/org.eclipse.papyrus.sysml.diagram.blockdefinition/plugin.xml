@@ -1231,7 +1231,7 @@
 	</page>
 		
 	<page  	category="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences"
-		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CustomAssociationPreferencePage"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
 		name="Association">
 	</page>
@@ -1503,5 +1503,130 @@
 </extension>
 <!-- // End of user code 
   -->
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+       <diagramMappings diagramID="BlockDefinition">
+              <mapping type="BlockDefinition" humanReadableType="BlockDefinitionDiagram"/>
+              <!-- Compartments -->
+              <mapping
+                     humanReadableType="literals"
+                     type="compartment_uml_enumerationliteral_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="operations"
+                     type="compartment_uml_operation_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="standard ports"
+                     type="compartment_uml_port_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="properties"
+                     type="compartment_uml_property_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="constraints"
+                     type="compartment_sysml_constraint_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="flow ports"
+                     type="compartment_sysml_flowport_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="flow properties"
+                     type="compartment_sysml_flowproperty_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="parameters"
+                     type="compartment_sysml_parameter_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="parts"
+                     type="compartment_sysml_part_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="references"
+                     type="compartment_sysml_reference_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="values"
+                     type="compartment_sysml_value_as_list">
+              </mapping>
+              
+              <mapping
+                     humanReadableType="properties"
+                     type="compartment_sysml_property_as_list">
+              </mapping>
+   
+                      <!-- Link labels -->
 
+              <mapping
+                     humanReadableType="Name"
+                         type="affixedlabel_uml_namedelement_name">
+                  </mapping>
+                  
+                  <mapping
+                         humanReadableType="Name"
+                         type="affixedlabel_uml_appliedstereotype">
+                  </mapping>
+                  
+                  <mapping
+                         humanReadableType="Label"
+                         type="affixedlabel_uml_port_label">
+                  </mapping>
+                  
+                  <mapping
+                         humanReadableType="Label"
+                         type="affixedlabel_sysml_flowport_label">
+                  </mapping>
+   
+                  <mapping
+                         humanReadableType="Stereotype"
+                         type="linklabel_uml_appliedstereotype">
+                  </mapping>
+                  
+                  <mapping
+                         humanReadableType="Name"
+                         type="linklabel_uml_namedelement_name">
+                  </mapping>
+                  
+                  <mapping
+                         humanReadableType="SourceMultiplicity"
+                         type="linklabel_uml_association_source_multiplicity">
+                  </mapping>
+                  
+                  <mapping
+                         humanReadableType="SourceRole"
+                         type="linklabel_uml_association_source_role">
+                  </mapping>
+                  
+                  <mapping
+                         humanReadableType="TargetMultiplicity"
+                         type="linklabel_uml_association_target_multiplicity">
+                  </mapping>
+                  
+                  <mapping
+                         humanReadableType="TargetRole"
+                         type="linklabel_uml_association_target_role">
+                  </mapping>
+                  <mapping
+                        humanReadableType="slots"
+                        type="7001">
+                  </mapping>
+                  <mapping
+                        humanReadableType="slots"
+                        type="7035">
+                  </mapping>
+   
+          </diagramMappings>
+   </extension>
 </plugin>

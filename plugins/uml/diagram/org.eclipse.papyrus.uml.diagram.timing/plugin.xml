@@ -1537,6 +1537,55 @@
 		   <context views="customized-edit-parts"/>
 	   </editpartProvider>
    </extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="PapyrusUMLTimingDiagram">
+			<mapping type="PapyrusUMLTimingDiagram" humanReadableType="TimingDiagram"/>
+			
+	<mapping
+		humanReadableType="Interaction"
+		type="5">
+	</mapping>
 
+	<mapping
+		humanReadableType="FullLifelineStateDefinition"
+		type="7">
+	</mapping>
+
+	<mapping
+		humanReadableType="FullLifelineTimeline"
+		type="8">
+	</mapping>
+
+	<mapping
+		humanReadableType="CompactLifeline"
+		type="23">
+	</mapping>
+
+	<mapping
+		humanReadableType="TimeRuler"
+		type="29">
+	</mapping>
+
+	<mapping
+		humanReadableType="FullLifelineTimeRuler"
+		type="82">
+	</mapping>
+
+	<mapping
+		humanReadableType="CompactLifelineTimeRuler"
+		type="83">
+	</mapping>
+
+	<mapping
+		humanReadableType="FreeTimeRuler"
+		type="80">
+	</mapping>
+
+	<mapping
+		humanReadableType="LinearTimeRuler"
+		type="81">
+	</mapping>
+		</diagramMappings>
+	</extension>
  
 </plugin>

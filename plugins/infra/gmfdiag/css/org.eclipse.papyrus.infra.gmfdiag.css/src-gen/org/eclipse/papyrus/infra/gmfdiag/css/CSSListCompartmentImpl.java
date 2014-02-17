@@ -20,15 +20,19 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSDrawerStyle;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSTitleStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSDrawerStyleDelegate;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSTitleStyleDelegate;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 
-public class CSSListCompartmentImpl extends ListCompartmentImpl implements CSSDrawerStyle {
+public class CSSListCompartmentImpl extends ListCompartmentImpl implements CSSDrawerStyle, CSSTitleStyle {
 
 	protected ExtendedCSSEngine engine;
 
 	private CSSDrawerStyle drawerStyle;
+
+	private CSSTitleStyle titleStyle;
 
 	private CSSView cssView;
 
@@ -37,6 +41,13 @@ public class CSSListCompartmentImpl extends ListCompartmentImpl implements CSSDr
 			drawerStyle = new CSSDrawerStyleDelegate(this, getEngine());
 		}
 		return drawerStyle;
+	}
+
+	protected CSSTitleStyle getTitleStyle() {
+		if(titleStyle == null) {
+			titleStyle = new CSSTitleStyleDelegate(this, getEngine());
+		}
+		return titleStyle;
 	}
 
 	protected ExtendedCSSEngine getEngine() {
@@ -72,8 +83,22 @@ public class CSSListCompartmentImpl extends ListCompartmentImpl implements CSSDr
 
 	@Override
 	public boolean isCollapsed() {
-		//return super.isCollapsed();
 		return isCSSCollapsed();
+	}
+
+	public boolean isCSSShowTitle() {
+		boolean value = super.isShowTitle();
+
+		if(ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getTitleStyle_ShowTitle(), value)) {
+			return value;
+		} else {
+			return getTitleStyle().isCSSShowTitle();
+		}
+	}
+
+	@Override
+	public boolean isShowTitle() {
+		return isCSSShowTitle();
 	}
 
 	@Override

@@ -36,29 +36,6 @@
     <element xmi:type="ecore:EClass" href="PaletteConfiguration.ecore#//ToolConfiguration"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_FwHQct3dEd-vY7OSNoF8nA" x="800" y="490" width="173" height="163"/>
   </children>
-  <children xmi:type="notation:Node" xmi:id="_UiCXMN3eEd-vY7OSNoF8nA" type="1001">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_UjrV8N3eEd-vY7OSNoF8nA" source="Shortcut">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_UjrV8d3eEd-vY7OSNoF8nA" key="modelID" value="EcoreTools"/>
-    </eAnnotations>
-    <children xmi:type="notation:Node" xmi:id="_UiCXM93eEd-vY7OSNoF8nA" type="4001"/>
-    <children xmi:type="notation:Node" xmi:id="_UiCXNN3eEd-vY7OSNoF8nA" type="5001">
-      <children xmi:type="notation:Node" xmi:id="_TSNWsOECEd-0CYOJPs0ewQ" type="2001">
-        <element xmi:type="ecore:EAttribute" href="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.ecore#//QueryConfiguration/name"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_TSNWseECEd-0CYOJPs0ewQ"/>
-      </children>
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_UiCXNd3eEd-vY7OSNoF8nA"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_UiCXNt3eEd-vY7OSNoF8nA"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_UiCXN93eEd-vY7OSNoF8nA"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_UiCXON3eEd-vY7OSNoF8nA" type="5002">
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_UiCXOd3eEd-vY7OSNoF8nA"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_UiCXOt3eEd-vY7OSNoF8nA"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_UiCXO93eEd-vY7OSNoF8nA"/>
-    </children>
-    <styles xmi:type="notation:ShapeStyle" xmi:id="_UiCXMd3eEd-vY7OSNoF8nA" fontColor="4210752" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.ecore#//QueryConfiguration"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UiCXMt3eEd-vY7OSNoF8nA" x="1095" y="490" width="178"/>
-  </children>
   <children xmi:type="notation:Node" xmi:id="_tJSakOAfEd-0CYOJPs0ewQ" type="1001">
     <children xmi:type="notation:Node" xmi:id="_tJSak-AfEd-0CYOJPs0ewQ" type="4001"/>
     <children xmi:type="notation:Node" xmi:id="_tJSalOAfEd-0CYOJPs0ewQ" type="5001">
@@ -249,20 +226,6 @@
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_HkoiE93dEd-vY7OSNoF8nA" points="[0, 0, 0, 67]$[0, -67, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PIU2cOAhEd-0CYOJPs0ewQ" id="(0.9824561403508771,0.10294117647058823)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_HkoiGN3dEd-vY7OSNoF8nA" id="(0.07575757575757576,0.22058823529411764)"/>
-  </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_Ui7vEN3eEd-vY7OSNoF8nA" type="3002" source="_FwHQcN3dEd-vY7OSNoF8nA" target="_UiCXMN3eEd-vY7OSNoF8nA">
-    <children xmi:type="notation:Node" xmi:id="_Ui7vFN3eEd-vY7OSNoF8nA" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_Ui7vFd3eEd-vY7OSNoF8nA" x="-8" y="-23"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_Ui7vFt3eEd-vY7OSNoF8nA" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_Ui7vF93eEd-vY7OSNoF8nA" x="3" y="7"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_Ui7vEd3eEd-vY7OSNoF8nA" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_Ui7vEt3eEd-vY7OSNoF8nA" fontColor="4210752" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="PaletteConfiguration.ecore#//ToolConfiguration/preValidationQuery"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ui7vE93eEd-vY7OSNoF8nA" points="[0, 0, 0, 60]$[0, -60, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VRRbwN3eEd-vY7OSNoF8nA" id="(0.9248554913294798,0.07364341085271318)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eWOMAuEpEd-0CYOJPs0ewQ" id="(0.011235955056179775,0.26153846153846155)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_vgrvwOAfEd-0CYOJPs0ewQ" type="3002" source="_tJSakOAfEd-0CYOJPs0ewQ" target="_nCfB8HAKEeCt7epZDqnVSw">
     <children xmi:type="notation:Node" xmi:id="_vgrvxOAfEd-0CYOJPs0ewQ" type="4011">

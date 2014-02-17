@@ -13,21 +13,17 @@ While this allows defining a custom theme for our diagrams, this mechanism suffe
 *If we wanted to change the current theme, we’d have either to change each object’s appearance one by one, or to write an automatic transformation, which could be really complicated. 
 *It is not easy to export a Theme, as they are stored in the Eclipse preferences. It is almost impossible to ship a ready-to-use distribution of Papyrus with a custom theme.
 
-The release of Eclipse 4 Juno this summer gave us the opportunity to rely on their CSS Engine to support Cascading StyleSheets in Papyrus diagrams. Just like in web pages, the CSS format is used to separate the contents of our diagrams from their appearance. It becomes possible to change the appearance of a whole diagram, or even a set of diagrams, independently of the number of represented elements, in a single click.<br> 
+The release of Eclipse 4 gave us the opportunity to rely on their CSS Engine to support Cascading StyleSheets in Papyrus diagrams. Just like in web pages, the CSS format is used to separate the contents of our diagrams from their appearance. It becomes possible to change the appearance of a whole diagram, or even a set of diagrams, independently of the number of represented elements, in a single click.<br> 
 
 = Installation  =
 
-The CSS Stylesheet support is not shipped in the base installation of Papyrus. However, it can be easily installed from the Papyrus discovery site. Select “Help”, “Install Papyrus Additional Components”, and check “Diagram Stylesheets”. 
-
-[[Image:Papyrus CSS Installation.png|Installation]]<br> 
-
-Press finish, restart Eclipse, and that's it. 
+Since Papyrus 1.0 / Luna, the CSS Stylesheet support is now shipped in the base installation of Papyrus. It doesn't require any specific installation step anymore.
 
 Your diagrams should now look like the following: 
 
 [[Image:Papyrus CSS no theme.png|Papyrus diagram without CSS Theme]]<br> 
 
-[[Image:Papyrus CSS theme.png|Papyrus Diagram with CSS Theme]]<br> 
+[[Image:Papyrus CSS theme.png|Papyrus Diagram with CSS Theme]]<br>
 
 Note: If you opened a diagram which has been created without the CSS Support, it may still have a custom appearance, e.g. without Element icons. This might or might not be a problem, as this may conflict with the CSS Theme. You can reset all custom appearances by pressing the “Default style” button in the Style tab of the Diagram’s properties view. 
 

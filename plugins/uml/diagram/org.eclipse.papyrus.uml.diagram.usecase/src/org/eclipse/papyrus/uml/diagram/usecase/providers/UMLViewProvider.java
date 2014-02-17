@@ -1393,7 +1393,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		if(hasTitle) {
 			TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
-			ts.setShowTitle(true);
 			rv.getStyles().add(ts);
 		}
 		if(canSort) {
