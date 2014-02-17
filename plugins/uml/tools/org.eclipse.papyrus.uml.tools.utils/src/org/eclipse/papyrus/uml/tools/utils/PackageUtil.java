@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2009 CEA LIST.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Remi SCHNEKENBURGER (CEA LIST) Remi.schnekenburger@cea.fr - Initial API and implementation
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr
+ *  Christian W. Damus (CEA) - bug 402525
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -138,7 +139,8 @@ public class PackageUtil {
 	 * @return the top {@link Package} for the specified element
 	 */
 	public static Package getRootPackage(Element element) {
-		return getRootPackage(element.getNearestPackage());
+		Package nearest = element.getNearestPackage();
+		return (nearest == null) ? null : getRootPackage(nearest);
 	}
 
 	/**
