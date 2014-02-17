@@ -132,7 +132,8 @@ public class UnitLabelParser extends NamedElementLabelParser {
 		return masks;
 	}
 
-	public Collection<String> getDefaultValue() {
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
 		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_DIMENSION);
 	}
 }

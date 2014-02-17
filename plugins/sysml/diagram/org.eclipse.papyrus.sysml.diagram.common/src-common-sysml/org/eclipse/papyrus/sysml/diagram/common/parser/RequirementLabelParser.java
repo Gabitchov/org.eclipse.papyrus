@@ -99,6 +99,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 		return semanticElementsBeingParsed;
 	}
 
+	@Override
 	public Map<String, String> getMasks() {
 		Map<String, String> masks = new HashMap<String, String>();
 		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
@@ -106,7 +107,8 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 		return masks;
 	}
 
-	public Collection<String> getDefaultValue() {
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
 		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_ID);
 	}
 }

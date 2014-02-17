@@ -126,7 +126,8 @@ public class ReceptionLabelParser extends NamedElementLabelParser implements IMa
 		return masks;
 	}
 
-	public Collection<String> getDefaultValue() {
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
 		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_SIGNAL);
 	}
 }
