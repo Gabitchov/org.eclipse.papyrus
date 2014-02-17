@@ -1618,6 +1618,14 @@
                          humanReadableType="TargetRole"
                          type="linklabel_uml_association_target_role">
                   </mapping>
+                  <mapping
+                        humanReadableType="slots"
+                        type="7001">
+                  </mapping>
+                  <mapping
+                        humanReadableType="slots"
+                        type="7035">
+                  </mapping>
    
           </diagramMappings>
    </extension>
