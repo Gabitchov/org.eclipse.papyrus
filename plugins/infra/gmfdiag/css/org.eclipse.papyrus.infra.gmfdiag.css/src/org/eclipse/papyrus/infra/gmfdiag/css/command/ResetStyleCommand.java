@@ -92,6 +92,10 @@ public class ResetStyleCommand extends RecordingCommand {
 	}
 
 	private void resetStyle(View view) {
+		//Reset the view (Except for volatile/transient elements which are already derived, e.g. Stereotype compartments)
+		if(view.eContainingFeature().isTransient()) {
+			return;
+		}
 
 		Iterator<?> styleIterator = view.getStyles().iterator();
 		while(styleIterator.hasNext()) {
@@ -115,10 +119,8 @@ public class ResetStyleCommand extends RecordingCommand {
 		//Remove the Papyrus Style EAnnotations
 		resetStyleAnnotations(view);
 
-		if(view.eClass() != NotationPackage.eINSTANCE.getDecorationNode()) {
-			//Reset the visibility (Except for labels which are not yet supported)
-			view.eUnset(NotationPackage.eINSTANCE.getView_Visible());
-		}
+		//Reset the visibility
+		view.eUnset(NotationPackage.eINSTANCE.getView_Visible());
 	}
 
 	private void resetStyle(Style style) {
