@@ -26,12 +26,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.helper.CleanDiagramHelper;
-import org.eclipse.papyrus.uml.pastemanager.service.PasteCommandService;
+import org.eclipse.papyrus.uml.diagram.common.service.PasteCommandService;
 
 /**
  * The handler for the paste with model action
- * 
- * @author vl222926
  * 
  */
 public class PasteWithModelHandler extends AbstractHandler {
