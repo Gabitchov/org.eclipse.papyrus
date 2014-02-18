@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.profile.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLDiagramEditorPlugin;
 

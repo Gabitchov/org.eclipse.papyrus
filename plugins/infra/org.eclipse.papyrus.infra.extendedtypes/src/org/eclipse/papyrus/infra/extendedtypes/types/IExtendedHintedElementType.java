@@ -15,17 +15,11 @@ package org.eclipse.papyrus.infra.extendedtypes.types;
 
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
 
 
 /**
- * Element Type that contains a configuration for extensions (Pre/Post actions and validation) 
+ * interface implemented by all configurable element types specializations 
  */
 public interface IExtendedHintedElementType extends ISpecializationType, IHintedType {
-	
-	/**
-	 * Returns the Element Type configuration associated to the element type.
-	 * @return the Element Type configuration associated to the element type.
-	 */
-	public ExtendedElementTypeConfiguration getConfiguration();
+
 }

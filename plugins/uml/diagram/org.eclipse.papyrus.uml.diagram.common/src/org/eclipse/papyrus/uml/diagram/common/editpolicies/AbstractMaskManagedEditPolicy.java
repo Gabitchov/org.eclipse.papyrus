@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
@@ -22,10 +24,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
-import org.eclipse.papyrus.infra.emf.appearance.commands.AddMaskManagedLabelDisplayCommand;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
-import org.eclipse.papyrus.infra.emf.commands.RemoveEAnnotationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.MaskLabelHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.uml2.uml.Element;
 
@@ -44,7 +45,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	protected Element hostSemanticElement;
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -72,7 +73,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 
 	/**
 	 * Sets the semantic element which is linked to the edit policy
-	 * 
+	 *
 	 * @return the element linked to the edit policy
 	 */
 	protected Element initSemanticElement() {
@@ -96,7 +97,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	}
 
 	/**
-	 * 
+	 *
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -128,7 +129,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 
 	/**
 	 * Gets the diagram event broker from the editing domain.
-	 * 
+	 *
 	 * @return the diagram event broker
 	 */
 	protected DiagramEventBroker getDiagramEventBroker() {
@@ -141,7 +142,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 
 	/**
 	 * Returns the {@link Element} managed by this edit part.
-	 * 
+	 *
 	 * @return the {@link Element} managed by this edit part.
 	 */
 	public Element getUMLElement() {
@@ -150,7 +151,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 
 	/**
 	 * Returns the view controlled by the host edit part
-	 * 
+	 *
 	 * @return the view controlled by the host edit part
 	 */
 	protected View getView() {
@@ -160,7 +161,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	/**
 	 * Returns <code>true</code> if the specified object is the annotation in
 	 * charge of the mask managed label.
-	 * 
+	 *
 	 * @param object
 	 *        the object to be checked
 	 * @return <code>true</code> if the object is an {@link EAnnotation} and its
@@ -183,7 +184,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	/**
 	 * Returns <code>true</code> if the the annotation in charge of the mask
 	 * managed label is removed from the given object which should be a View.
-	 * 
+	 *
 	 * @param object
 	 *        the object to be checked
 	 * @param notification
@@ -216,7 +217,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
-	 * 
+	 *
 	 * @param notification
 	 *        the notification object
 	 */
@@ -231,21 +232,28 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * {@inheritDoc}
 	 */
 	public void setDefaultDisplayValue() {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION));
-		}
-
+		MaskLabelHelper.unsetMaskValues((View)getHost().getModel());
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void updateDisplayValue(int newValue) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(), newValue));
-		}
+	public void updateDisplayValue(Collection<String> newValue) {
+		MaskLabelHelper.setMaskValues((View)getHost().getModel(), newValue);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Collection<String> getCurrentDisplayValue() {
+		Collection<String> maskValues = MaskLabelHelper.getMaskValues((View)getHost().getModel());
+		if(maskValues == null) {
+			return getDefaultDisplayValue();
+		}
+
+		return maskValues;
+	}
+
+	protected abstract Collection<String> getDefaultDisplayValue();
 
 }

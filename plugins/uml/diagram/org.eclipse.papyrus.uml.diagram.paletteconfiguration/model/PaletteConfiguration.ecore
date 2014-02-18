@@ -7,7 +7,6 @@
         upperBound="-1" eType="#//DrawerConfiguration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ToolConfiguration" eSuperTypes="#//LeafConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="preValidationQuery" eType="ecore:EClass platform:/plugin/org.eclipse.papyrus.infra.queries.core.configuration/model/Configuration.ecore#//QueryConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="#//ToolKind"
         defaultValueLiteral="CreationTool"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementDescriptors" upperBound="-1"

@@ -29,7 +29,7 @@ public class PapyrusDragBorderNodeEditPartTrackerEx extends PapyrusDragEditParts
 	 * @param sourceEditPart
 	 */
 	public PapyrusDragBorderNodeEditPartTrackerEx(EditPart sourceEditPart) {
-		this(sourceEditPart, false, true, true);
+		this(sourceEditPart, false, false, true);
 	}
 
 	/**

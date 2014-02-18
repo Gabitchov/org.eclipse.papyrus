@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChanged
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.swt.SWT;
 
 /**
@@ -95,42 +96,26 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * Add the page which should be an IPageModel instance. {@inheritDoc}
 	 */
 	public void addPage(Object newModel, int index) {
-		addPage((IPageModel)newModel, index);
+		addPage(index, (IPageModel)newModel);
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
 	public void addPage(IPageModel newModel) {
 		currentTabFolder.doAddItem(newModel);
 		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
 	public void addPage(ITabFolderModel toFolderModel, IPageModel newModel) {
 		TabFolderModel srcFolder = (TabFolderModel)toFolderModel;
 		srcFolder.doAddItem(newModel);
 		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void addPage(IPageModel newModel, int index) {
+	public void addPage(int index, IPageModel newModel) {
 		currentTabFolder.doAddItem(index, newModel);
 		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public void addPage(ITabFolderModel toFolderModel, IPageModel newModel, int index) {
+	public void addPage(ITabFolderModel toFolderModel, int index, IPageModel newModel) {
 		TabFolderModel srcFolder = (TabFolderModel)toFolderModel;
 		srcFolder.doAddItem(index, newModel);
 		firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, newModel));
@@ -184,7 +169,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * @param targetFolderModel
 	 */
 	private void doSetCurrentFolder(TabFolderModel newCurrentFolder) {
-		currentTabFolder = (TabFolderModel)newCurrentFolder;
+		currentTabFolder = newCurrentFolder;
 	}
 
 	/**
@@ -192,25 +177,29 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * 
 	 * The change event is sent only once after the complete operation is performed. {@inheritDoc}
 	 * 
-	 * @param referenceFolder The folder used as reference to insert the newly created Folder. 
-	 * @param side The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
+	 * @param referenceFolder
+	 *        The folder used as reference to insert the newly created Folder.
+	 * @param side
+	 *        The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
 	 */
 	public void createFolder(ITabFolderModel sourceFolder, int tabIndex, ITabFolderModel referenceFolder, int side) {
 		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("createFolder()");
 
-		ITabFolderModel newFolder = doCreateFolder((TabFolderModel)sourceFolder, tabIndex, (TabFolderModel)referenceFolder, side);
+		doCreateFolder((TabFolderModel)sourceFolder, tabIndex, (TabFolderModel)referenceFolder, side);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, sourceFolder));
 		//		return newFolder;
 	}
 
 	/**
 	 * Create a new folder and insert it at the specified side of the reference folder.
-	 * The change event is sent only once after the complete operation is performed. 
+	 * The change event is sent only once after the complete operation is performed.
 	 * 
 	 * This method is not part of the {@link SashWindowsContainer} API. It is here to help writing junit tests.
 	 * 
-	 * @param referenceFolder The folder used as reference to insert the newly created Folder. 
-	 * @param side The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
+	 * @param referenceFolder
+	 *        The folder used as reference to insert the newly created Folder.
+	 * @param side
+	 *        The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
 	 */
 	public ITabFolderModel createFolder(ITabFolderModel referenceFolder, int side) {
 		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("createFolder()");
@@ -236,17 +225,17 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	/**
 	 * Move a tab from folder to folder.
 	 * The tab is added at the end of the target folder.
-	 * The change event is sent only once after the complete operation is performed. {@inheritDoc}
+	 * The change event is sent only once after the complete operation is performed.
 	 */
 	private void doMoveTab(TabFolderModel srcFolderModel, int sourceIndex, TabFolderModel targetFolderModel) {
 
 		// Move all
-		if( sourceIndex < 0) {
+		if(sourceIndex < 0) {
 			targetFolderModel.getChildren().addAll(srcFolderModel.getChildren());
 			srcFolderModel.getChildren().clear();
 			return;
 		}
-		
+
 		IPageModel tab = srcFolderModel.doRemoveTab(sourceIndex);
 		targetFolderModel.doAddItem(tab);
 	}
@@ -292,13 +281,15 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 */
 	private void removeEmptyFolder(TabFolderModel tabFolder) {
 		// Check if empty
-		if(tabFolder.getChildren().size() > 0)
+		if(tabFolder.getChildren().size() > 0) {
 			return;
+		}
 
 		AbstractModel parent = tabFolder.getParent();
 		// Forbid removing of the last folder
-		if(parent == rootModel)
+		if(parent == rootModel) {
 			return;
+		}
 
 		// Parent is a sash. Ask it to remove the child and itself
 		((SashPanelModel)parent).delete(tabFolder);
@@ -319,10 +310,11 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 
 		int direction;
 		// Compute sash direction
-		if(side == SWT.LEFT || side == SWT.RIGHT)
+		if(side == SWT.LEFT || side == SWT.RIGHT) {
 			direction = SWT.HORIZONTAL;
-		else
+		} else {
 			direction = SWT.VERTICAL;
+		}
 		// Create sash
 		if(side == SWT.LEFT || side == SWT.UP) {
 			newSash = new SashPanelModel(refParent, folderToInsert, refFolder, direction);
@@ -371,13 +363,13 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Remove the specified tab from its parent. {@inheritDoc}
+	 * Remove the specified tab from its parent.
 	 */
 	public void removePage(IPageModel tabItem) {
 
 		TabFolderModel folder = lookupPageFolder(tabItem);
-//		if(folder != null)
-//			folder.removeTab(tabItem);
+		//		if(folder != null)
+		//			folder.removeTab(tabItem);
 		if(folder != null) {
 			folder.doRemoveTab(tabItem);
 			removeEmptyFolder(folder);
@@ -469,12 +461,14 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		 * @param listener
 		 */
 		public void addContentChangedListener(IContentChangedListener listener) {
-			if(listeners == null)
+			if(listeners == null) {
 				createListeners();
+			}
 
 			// Check if already exists.
-			if(listeners.contains(listener))
+			if(listeners.contains(listener)) {
 				return;
+			}
 
 			listeners.add(listener);
 		}
@@ -486,8 +480,9 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		 * @param listener
 		 */
 		public void removeContentChangedListener(IContentChangedListener listener) {
-			if(listeners == null)
+			if(listeners == null) {
 				return;
+			}
 
 			listeners.remove(listener);
 		}
@@ -496,8 +491,9 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		 * Create the list of listeners.
 		 */
 		private void createListeners() {
-			if(listeners == null)
+			if(listeners == null) {
 				listeners = new ArrayList<IContentChangedListener>();
+			}
 
 		}
 
@@ -507,8 +503,9 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		 * @param event
 		 */
 		public void fireContentChanged(ContentEvent event) {
-			if(listeners == null)
+			if(listeners == null) {
 				return;
+			}
 
 			for(IContentChangedListener listener : listeners) {
 				listener.contentChanged(event);

@@ -474,5 +474,215 @@
 
 <!-- // End of user code 
   -->
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+	<diagramMappings diagramID="Package">
+		<mapping type="Package" humanReadableType="PackageDiagram"/>
+        <!-- Compartments -->
+        <mapping
+		humanReadableType="attributes"
+		type="7011">
+	</mapping>
 
+	<mapping
+		humanReadableType="operations"
+		type="7012">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7013">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7023">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7024">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7025">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7026">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7027">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7028">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7029">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7041">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7042">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7032">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7033">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="7030">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="7010">
+	</mapping>
+
+	<mapping
+		humanReadableType="literals"
+		type="7031">
+	</mapping>
+
+	<mapping
+		humanReadableType="slots"
+		type="7035">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7017">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7018">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7019">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7002">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7003">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7004">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7006">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7007">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7008">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7039">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7040">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7020">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7021">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7034">
+	</mapping>
+
+	<mapping
+		humanReadableType="slots"
+		type="7001">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="7005">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="7009">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="7016">
+	</mapping>
+
+	<mapping
+		humanReadableType="literals"
+		type="7015">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="7036">
+	</mapping>
+
+	<mapping
+		humanReadableType="nested classifiers"
+		type="7037">
+	</mapping>
+
+	<mapping
+		humanReadableType="TemplateParameter"
+		type="7014">
+	</mapping>
+
+	<mapping
+		humanReadableType="TemplateParameter"
+		type="7038">
+	</mapping>
+		<!-- Link labels -->
+    </diagramMappings>
+</extension>
 </plugin>

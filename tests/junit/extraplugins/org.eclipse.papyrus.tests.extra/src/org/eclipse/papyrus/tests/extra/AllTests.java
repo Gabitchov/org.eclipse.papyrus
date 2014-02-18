@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,7 +38,7 @@ public class AllTests {
 		/* UML Compare tests */
 		/**
 		 * UML Compare tests have been temporarily disabled. See:
-		 * 
+		 *
 		 * 389811: [Papyrus Compare] The Papyrus Compare feature is not compatible with Kepler
 		 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=389811
 		 */
@@ -47,9 +47,7 @@ public class AllTests {
 		//		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.compare.diff.tests.AllTests.class));
 
 		/* **************** plugins *********************** */
-		/* css */
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.css.tests.tests.AllTests.class));		
-		
+
 	}
 
 	/**
@@ -59,7 +57,7 @@ public class AllTests {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 * @param clazz
 		 *        the suite class – AllTests2
 		 * @throws InitializationError
@@ -73,7 +71,7 @@ public class AllTests {
 
 	/**
 	 * Returns the list of test classes
-	 * 
+	 *
 	 * @return the list of test classes
 	 */
 	private static Class<?>[] getSuites() {

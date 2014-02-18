@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,18 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.helper.ParameterLabelHelper;
-import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.IParameterPreferencesConstant;
-import org.eclipse.papyrus.uml.diagram.composite.custom.preferences.ParameterPreferencePage;
-import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.tools.utils.ICustomAppearence;
+import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -60,59 +53,17 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getCurrentDisplayValue() {
-		EAnnotation parameterDisplay = ((View)getHost().getModel()).getEAnnotation(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		int displayValue = getDefaultDisplayValue();
-		if(parameterDisplay != null) {
-			displayValue = Integer.parseInt(parameterDisplay.getDetails().get(VisualInformationPapyrusConstants.CUSTOM_APPEARANCE_MASK_VALUE));
-		} else {
-			// no specific information => look in preferences
-			IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-			int displayValueTemp = store.getInt(IParameterPreferencesConstant.LABEL_DISPLAY_PREFERENCE);
-			if(displayValueTemp != 0) {
-				displayValue = displayValueTemp;
-			}
-		}
-		return displayValue;
+	@Override
+	public Collection<String> getDefaultDisplayValue() {
+		return ICustomAppearance.DEFAULT_UML_PARAMETER;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public int getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_PARAMETER;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getMaskLabel(int value) {
-		return ParameterLabelHelper.getInstance().getMaskLabel(value);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<String> getMaskLabels() {
-		return ParameterLabelHelper.getInstance().getMaskLabels();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Map<Integer, String> getMasks() {
+	@Override
+	public Map<String, String> getMasks() {
 		return ParameterLabelHelper.getInstance().getMasks();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Collection<Integer> getMaskValues() {
-		return ParameterLabelHelper.getInstance().getMaskValues();
-	}
-
-	public String getPreferencePageID() {
-		return ParameterPreferencePage.ID;
 	}
 
 	/**
@@ -159,7 +110,7 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the the parameter has changed.
-	 * 
+	 *
 	 * @param parameter
 	 *        the parameter that has changed
 	 * @param notification
@@ -242,7 +193,7 @@ public class ParameterLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 	/**
 	 * notifies that the type of the parameter has changed.
-	 * 
+	 *
 	 * @param type
 	 *        the type of the parameter that has changed
 	 * @param notification

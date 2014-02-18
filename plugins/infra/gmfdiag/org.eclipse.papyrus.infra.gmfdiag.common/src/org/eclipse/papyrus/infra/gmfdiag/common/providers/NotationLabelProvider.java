@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,7 +24,9 @@ import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.extension.diagrameditor.PluggableEditorFactoryReader;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.types.NotationTypesMap;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.NamedElement;
 import org.w3c.dom.Element;
 
 /**
@@ -68,9 +70,9 @@ public class NotationLabelProvider extends EMFLabelProvider {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
-	 * 
+	 *
 	 * @param element
 	 * @return <ul>
 	 *         <li>if element is a {@link NamedElement}, we return its name</li>
@@ -85,6 +87,11 @@ public class NotationLabelProvider extends EMFLabelProvider {
 		}
 
 		if(element instanceof View) { // maybe it is a view of a compartment
+			String humanType = NotationTypesMap.instance.getHumanReadableType((View)element);
+			if(humanType != null) {
+				return humanType;
+			}
+
 			EditPart dummyEP = EditPartService.getInstance().createGraphicEditPart((View)element);
 			if(dummyEP instanceof ResizableCompartmentEditPart) {
 				return ((ResizableCompartmentEditPart)dummyEP).getCompartmentName();

@@ -16,8 +16,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 
@@ -29,7 +29,7 @@ public class EnumerationPreferencePage extends AbstractPapyrusNodePreferencePage
 	/**
 	 * @generated
 	 */
-	public static final String compartments[] = { "EnumerationLiteralCompartment" };
+	public static final String compartments[] = { "literals" };
 
 	/**
 	 * @generated
@@ -89,7 +89,7 @@ public class EnumerationPreferencePage extends AbstractPapyrusNodePreferencePage
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("EnumerationLiteralCompartment", Boolean.TRUE);
+		map.put("literals", Boolean.TRUE);
 		return map;
 	}
 
@@ -98,13 +98,14 @@ public class EnumerationPreferencePage extends AbstractPapyrusNodePreferencePage
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("EnumerationLiteralCompartment", Boolean.FALSE);
+		map.put("literals", Boolean.FALSE);
 		return map;
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
 		return getStaticCompartmentTitleVisibilityPreferences();
 	}

@@ -69,9 +69,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.AppliedStereotypePropertyDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.profile.custom.policies.PropertyLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.DataTypePropertyItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;

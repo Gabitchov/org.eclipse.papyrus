@@ -127,7 +127,7 @@
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.PortLabelEditPolicy"/>
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PortLabelEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0">
@@ -798,7 +798,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.PropertyLabelEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
@@ -850,7 +850,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.OperationLabelEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.OperationLabelEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
@@ -1070,7 +1070,7 @@
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.PropertyLabelEditPolicy"/>
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.0"
@@ -2634,7 +2634,7 @@
           itemSemanticEditPolicyClassName="ComponentCompositeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.12"
-          title="CompositeCompartment"
+          title="packaged elements"
           hideIfEmpty="false"
           node="/0/@diagram/@topLevelNodes.1"
           listLayout="false">
@@ -2659,7 +2659,7 @@
           itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.11"
-          title="ModelElementCompartment"
+          title="packaged elements"
           canCollapse="false"
           node="/0/@diagram/@topLevelNodes.2"
           listLayout="false">
@@ -2684,7 +2684,7 @@
           itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.11"
-          title="PackageableElementCompartment"
+          title="packaged elements"
           canCollapse="false"
           node="/0/@diagram/@topLevelNodes.3"
           listLayout="false">
@@ -2709,7 +2709,7 @@
           itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.11"
-          title="ModelElementCompartment"
+          title="packaged elements"
           canCollapse="false"
           node="/0/@diagram/@childNodes.1"
           listLayout="false">
@@ -2734,7 +2734,7 @@
           itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.11"
-          title="PackageableElementCompartment"
+          title="packaged elements"
           canCollapse="false"
           node="/0/@diagram/@childNodes.2"
           listLayout="false">
@@ -2759,7 +2759,7 @@
           itemSemanticEditPolicyClassName="ComponentCompositeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.12"
-          title="CompositeCompartmentCN"
+          title="packaged elements"
           hideIfEmpty="false"
           node="/0/@diagram/@childNodes.4"
           listLayout="false">
@@ -2784,7 +2784,7 @@
           itemSemanticEditPolicyClassName="ComponentCompositeCompartmentItemSemanticEditPolicyPCN"
           canonicalEditPolicyClassName="ComponentCompositeCompartmentCanonicalEditPolicyPCN"
           childNodes="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.12"
-          title="CompositeCompartmentPCN"
+          title="packaged elements"
           hideIfEmpty="false"
           node="/0/@diagram/@childNodes.5"
           listLayout="false">
@@ -2809,7 +2809,7 @@
           itemSemanticEditPolicyClassName="InterfaceAttributeCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="InterfaceAttributeCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.8"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@topLevelNodes.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2824,7 +2824,7 @@
           itemSemanticEditPolicyClassName="InterfaceOperationCompartmentItemSemanticEditPolicy"
           canonicalEditPolicyClassName="InterfaceOperationCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@topLevelNodes.4">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2839,7 +2839,7 @@
           itemSemanticEditPolicyClassName="InterfaceAttributeCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="InterfaceAttributeCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.8"
-          title="AttributeCompartment"
+          title="attributes"
           node="/0/@diagram/@childNodes.3">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2854,7 +2854,7 @@
           itemSemanticEditPolicyClassName="InterfaceOperationCompartmentItemSemanticEditPolicyCN"
           canonicalEditPolicyClassName="InterfaceOperationCompartmentCanonicalEditPolicyCN"
           childNodes="/0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10"
-          title="OperationCompartment"
+          title="operations"
           node="/0/@diagram/@childNodes.3">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>

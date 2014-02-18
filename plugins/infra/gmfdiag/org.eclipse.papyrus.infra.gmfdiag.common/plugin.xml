@@ -9,13 +9,6 @@
    <extension-point id="svgPostProcessors" name="svgPostProcessors" schema="schema/svgPostProcessors.exsd"/>
 
 <extension
-      point="org.eclipse.papyrus.infra.core.papyrusDiagram">
-   <editorContext
-         contextClass="org.eclipse.papyrus.infra.gmfdiag.common.GmfEditorContext"
-         id="com.cea.papyrus.gmf.editor.context">
-   </editorContext>
-   </extension>
-<extension
       point="org.eclipse.ui.handlers">
    <handler
          class="org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler"
@@ -179,5 +172,12 @@
       <Priority
             name="Low"></Priority>
    </shapeProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+   <mapping
+         humanReadableType="symbol"
+         type="compartment_shape_display">
+   </mapping>
 </extension>
 </plugin>

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,7 +23,7 @@ import org.w3c.dom.css.CSSValue;
 
 /**
  * Standard implementation of Papyrus Custom Style, CSS-based
- * 
+ *
  * @author Camille Letavernier
  */
 //FIXME: Use constants for the CSS Properties elementIcon, qualifiedNameDepth and shadow
@@ -48,7 +48,7 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param view
 	 *        The GMF view on which the custom style is applied
 	 * @param engine
@@ -116,4 +116,5 @@ public class CSSCustomStyleDelegate implements CustomStyle {
 		}
 		return (Boolean)engine.convert(cssValue, Boolean.class, null);
 	}
+
 }

@@ -3,31 +3,107 @@
 
 <!--
  <copyright>
- </copyright>
+ </copyright>r
 
  $Id$
 -->
 
 <plugin>
-   <extension-point id="extendedTypesSetConfiguration" name="Configuration for registering Extended Element Types Sets" schema="schema/extendedTypesSetConfiguration.exsd"/>
+   <extension-point id="extendedElementTypeSet" name="ExtendedElementTypeSet Configuration Model" schema="schema/extendedElementTypeSet.exsd"/>
    <extension-point id="extendedElementTypeActionProvider" name="Extended Element Type Action Provider" schema="schema/extendedElementTypeActionProvider.exsd"/>
-
+   <extension-point id="extendedTypeConfiguration" name="extended type configuration" schema="schema/extendedTypeConfiguration.exsd"/>
+   <extension-point id="invariantRule" name="Invariant Rule Extension Point" schema="schema/invariantRule.exsd"/>
+   <extension-point id="elementMatcherConfiguration" name="Element Macher Configuration" schema="schema/elementMatcherConfiguration.exsd"/>
+   <extension-point id="aspectActionConfiguration" name="Aspect Action Configuration" schema="schema/aspectActionConfiguration.exsd"/>
    <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated InvariantSemanticTypeConfiguration -->
       <package
-            uri="http://www.eclipse.org/papyrus/diagram/types/extendedtypes/0.7"
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"
+            class="org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.InvariantSemanticTypeConfigurationPackage"
+            genModel="model/InvariantSemanticTypeConfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated InvariantSemanticTypeConfiguration -->
+      <parser
+            type="invariantsemantictypeconfiguration"
+            class="org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.util.InvariantSemanticTypeConfigurationResourceFactoryImpl"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ExtendedTypes -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"
             class="org.eclipse.papyrus.infra.extendedtypes.ExtendedtypesPackage"
             genModel="model/ExtendedTypes.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated ExtendedTypes -->
       <parser
             type="extendedtypes"
             class="org.eclipse.papyrus.infra.extendedtypes.util.ExtendedtypesResourceFactoryImpl"/>
    </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated InvariantContainerConfiguration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0"
+            class="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.InvariantContainerConfigurationPackage"
+            genModel="model/InvariantContainerConfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated InvariantContainerConfiguration -->
+      <parser
+            type="invariantcontainerconfiguration"
+            class="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.util.InvariantContainerConfigurationResourceFactoryImpl"/>
+   </extension>
+   
    <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.extendedTypeConfiguration">
+      <configuration
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.InvariantSemanticTypeConfiguration"
+            description="Configuration for Semantic element Types that have invariants (always same father, always have a type, etc.)"
+            factoryClass="org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.InvariantElementTypeFactory"
+            name="Invariant Semantic Type Configuration">
+      </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.invariantRule">
+      <invariantRule
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.AndRule"
+            editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.AndRuleEditHelperAdvice">
+      </invariantRule>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.invariantRule">
+      <invariantRule
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.OrRule"
+            editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.OrRuleEditHelperAdvice">
+      </invariantRule>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.invariantRule">
+      <invariantRule
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.InvariantContainerConfiguration"
+            configurationModelCreation="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.InvariantContainerConfigurationModelCreation"
+            editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.InvariantContainerEditHelperAdvice"
+            semanticTypeDescriptor="org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration.InvariantContainerConfigurationContainerDescriptor">
+      </invariantRule>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.infra.extendedtypes.ExtendedTypeRegistryService"
+            description="Service used to registrer extended element types in the registry"
+            priority="50"
+            startKind="startup">
+      </service>
+   </extension>
+   
+    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <metamodel
-            nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+            nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
          <adviceBinding
                class="org.eclipse.papyrus.infra.extendedtypes.advices.ExtendedTypesOwnerAdvice"
                id="org.eclipse.papyrus.uml.advice.ExtendedTypesOwnerAdvice"
@@ -48,4 +124,93 @@
          </advice>
       </binding>
    </extension>
+   
+   
+      <extension
+         point="org.eclipse.ui.menus">
+         <menuContribution
+    allPopups="false"
+    locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+	<command
+       commandId="org.eclipse.papyrus.infra.extendedtypes.deploy"
+       icon="icons/configuration.gif"
+       style="push">
+	    <visibleWhen
+	          checkEnabled="false">
+	       <with
+	             variable="selection">
+	          <iterate
+	                ifEmpty="false"
+	                operator="and">
+	             <adapt
+	                   type="org.eclipse.core.resources.IFile">
+	                <or>
+	                   <test
+	                         property="org.eclipse.core.resources.extension"
+	                         value="extendedtypes">
+	                   </test>
+	                </or>
+	             </adapt>
+	          </iterate>
+	       </with>
+	    </visibleWhen>
+	</command>
+ <command
+       commandId="org.eclipse.papyrus.infra.extendedtypes.undeploy"
+       icon="icons/configuration.gif"
+       style="push">
+    <visibleWhen
+          checkEnabled="false">
+       <with
+             variable="selection">
+          <iterate
+                ifEmpty="false"
+                operator="and">
+             <adapt
+                   type="org.eclipse.core.resources.IFile">
+                <or>
+                   <test
+                         property="org.eclipse.core.resources.extension"
+                         value="extendedtypes">
+                   </test>
+                </or>
+             </adapt>
+          </iterate>
+       </with>
+    </visibleWhen>
+ </command>
+</menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.extendedtypes.handler.DeployExtendedTypeSetConfigurationHandler"
+            id="org.eclipse.papyrus.infra.extendedtypes.deploy"
+            name="Deploy Extended Types Set configuration">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.extendedtypes.handler.UndeployExtendedTypeSetConfigurationHandler"
+            id="org.eclipse.papyrus.infra.extendedtypes.undeploy"
+            name="Disable Extended Types Set configuration">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.extendedTypeConfiguration">
+      <configuration
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeConfiguration"
+            description="configuration for semantic element types that have aspect actions for creation"
+            factoryClass="org.eclipse.papyrus.infra.extendedtypes.AspectSemanticTypeFactory"
+            name="Aspect Semantic Type Configuration">
+      </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.extendedtypes.extendedTypeConfiguration">
+      <configuration
+            configurationClass="org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeConfiguration"
+            description="configuration for view-only element types that have potential aspect actions for creation"
+            factoryClass="org.eclipse.papyrus.infra.extendedtypes.AspectViewTypeFactory"
+            name="Aspect View Type Configuration">
+      </configuration>
+   </extension>
+  
 </plugin>

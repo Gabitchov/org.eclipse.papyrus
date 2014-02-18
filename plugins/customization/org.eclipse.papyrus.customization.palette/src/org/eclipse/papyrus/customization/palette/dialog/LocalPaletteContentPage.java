@@ -72,7 +72,6 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.customization.palette.proxies.XMLDefinitionPaletteProxyFactory;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
@@ -229,7 +228,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	protected PaletteEntryProxyInformationComposite informationComposite = new PaletteEntryProxyInformationComposite();
 
 	/** class in charge of the aspect tool information composite */
-	protected AspectActionsInformationComposite aspectActionComposite;
+	protected AspectActionsInformationComposite aspectActionComposite = new AspectActionsInformationComposite();
 
 	protected ToolBar toolbar;
 
@@ -250,8 +249,6 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		super(Messages.Local_Palette_ContentPage_Name, Messages.Local_Palette_ContentPage_Title, Activator.getImageDescriptor(WIZARD_ICON));
 		this.editorPart = part;
 		this.customizer = customizer;
-
-		this.aspectActionComposite = new AspectActionsInformationComposite((ServicesRegistry)editorPart.getAdapter(ServicesRegistry.class));
 	}
 
 	/**

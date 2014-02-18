@@ -11,9 +11,10 @@
 <plugin>
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated PaletteConfiguration -->
       <factory
             uri="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"
-            class="org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit.provider.PaletteconfigurationItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.uml.diagram.paletteconfiguration.provider.PaletteconfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

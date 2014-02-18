@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractListEditor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor;
+import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.Property;
@@ -33,7 +34,7 @@ import org.eclipse.swt.widgets.Control;
  * An Abstract class to factorize code for PropertyEditors. PropertyEditors are
  * <strong>not</strong> required to extend this class, but could benefit from
  * its methods.
- * 
+ *
  * @author Camille Letavernier
  */
 public abstract class AbstractPropertyEditor implements IChangeListener, CustomizablePropertyEditor {
@@ -98,7 +99,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Constructor. Constructs a new PropertyEditor with the given ListEditor
-	 * 
+	 *
 	 * @param editor
 	 */
 	protected AbstractPropertyEditor(AbstractListEditor editor) {
@@ -107,7 +108,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Constructor. Constructs a new PropertyEditor with the given ValueEditor
-	 * 
+	 *
 	 * @param editor
 	 */
 	protected AbstractPropertyEditor(AbstractValueEditor editor) {
@@ -116,7 +117,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Sets the ListEditor for this PropertyEditor
-	 * 
+	 *
 	 * @param editor
 	 */
 	protected void setEditor(AbstractListEditor editor) {
@@ -126,7 +127,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Sets the ValueEditor for this PropertyEditor
-	 * 
+	 *
 	 * @param editor
 	 */
 	protected void setEditor(AbstractValueEditor editor) {
@@ -159,6 +160,10 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			} catch (Exception ex) {
 				//TODO : Handle the exception here. Display something ?
 				Activator.log.error(ex);
+			}
+
+			if(getInputObservable() instanceof ICommitListener && getEditor() != null) {
+				getEditor().addCommitListener((ICommitListener)getInputObservable());
 			}
 
 			updateLabel();
@@ -195,7 +200,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Applies the readOnly state to the editor
-	 * 
+	 *
 	 * @param readOnly
 	 *        Indicates if this widget should be read-only
 	 */
@@ -225,7 +230,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * Sets the property path for this PropertyEditor.
 	 * The propertyPath elements should be separated by ":"
 	 * e.g. UML:NamedElement:name
-	 * 
+	 *
 	 * @param path
 	 */
 	public void setProperty(String path) {
@@ -269,7 +274,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Sets the input DataSource for this Property editor.
-	 * 
+	 *
 	 * @param input
 	 */
 	public void setInput(DataSource input) {
@@ -336,7 +341,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Finds the property associated to the Editor's {@link #propertyPath}
-	 * 
+	 *
 	 * @return The property associated to the Editor's {@link #propertyPath}
 	 */
 	protected Property getModelProperty() {
@@ -357,7 +362,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Marks this editor as readOnly
-	 * 
+	 *
 	 * @param readOnly
 	 */
 	public void setReadOnly(boolean readOnly) {
@@ -376,7 +381,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Tests if this editor is read-only
-	 * 
+	 *
 	 * @return
 	 *         True if this editor is read-only
 	 */
@@ -420,7 +425,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	/**
 	 * Returns the IObservable for this propertyEditor, or null if it is
 	 * not available
-	 * 
+	 *
 	 * @return The IObservable associated to this propertyEditor
 	 */
 	protected IObservable getInputObservable() {
@@ -446,7 +451,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Sets the editor's Layout Data
-	 * 
+	 *
 	 * @param data
 	 */
 	public void setLayoutData(Object data) {
@@ -457,7 +462,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Returns the editor's Layout Data
-	 * 
+	 *
 	 * @return
 	 *         The editor's layout data
 	 */
@@ -467,7 +472,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Indicates whether the editor's label should be displayed or not
-	 * 
+	 *
 	 * @param showLabel
 	 */
 	public void setShowLabel(boolean showLabel) {
@@ -480,7 +485,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 	/**
 	 * Indicates whether the editor's label is displayed or not
-	 * 
+	 *
 	 * @return
 	 *         true if the label should be displayed
 	 */
@@ -491,7 +496,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	/**
 	 * Sets the label for this editor. The label will replace the property's
 	 * default label
-	 * 
+	 *
 	 * @param customLabel
 	 *        The label to use with this property editor
 	 */

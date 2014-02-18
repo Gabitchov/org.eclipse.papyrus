@@ -21,14 +21,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IMetamodelType;
-import org.eclipse.papyrus.infra.extendedtypes.ExtendedElementTypeConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.PostActionConfiguration;
-import org.eclipse.papyrus.infra.extendedtypes.PreActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
-import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
 
 /**
  * Utility class for {@link IElementType}.
@@ -85,29 +80,29 @@ public class ElementTypeUtils {
 	public static boolean isSemanticallyEquivalent(IExtendedHintedElementType referenceType, IExtendedHintedElementType typeToCompare) {
 		boolean isEquivalent = true;
 		// check all pre/post action and validation
-		ExtendedElementTypeConfiguration referenceConfiguration = referenceType.getConfiguration();
-		ExtendedElementTypeConfiguration configurationToCompare = typeToCompare.getConfiguration();
-		List<QueryConfiguration> referencePrevalidation = referenceConfiguration.getPreValidation();
-		List<QueryConfiguration> prevalidationToCompare = configurationToCompare.getPreValidation();
-		if(referencePrevalidation != null) {
-			isEquivalent = isEquivalent && isEquivalent(referencePrevalidation, prevalidationToCompare);
-		} else if(prevalidationToCompare != null) {
-			isEquivalent = false;
-		}
-		List<PreActionConfiguration> referencePreaction = referenceConfiguration.getPreAction();
-		List<PreActionConfiguration> preactionToCompare = configurationToCompare.getPreAction();
-		if(referencePreaction != null) {
-			isEquivalent = isEquivalent && isEquivalent(referencePreaction, preactionToCompare);
-		} else if(preactionToCompare != null) {
-			isEquivalent = false;
-		}
-		List<PostActionConfiguration> referencePostaction = referenceConfiguration.getPostAction();
-		List<PostActionConfiguration> postactionToCompare = configurationToCompare.getPostAction();
-		if(referencePostaction != null) {
-			isEquivalent = isEquivalent && isEquivalent(referencePostaction, postactionToCompare);
-		} else if(postactionToCompare != null) {
-			isEquivalent = false;
-		}
+//		ExtendedElementTypeConfiguration referenceConfiguration = referenceType.getConfiguration();
+//		ExtendedElementTypeConfiguration configurationToCompare = typeToCompare.getConfiguration();
+//		List<QueryConfiguration> referencePrevalidation = referenceConfiguration.getPreValidation();
+//		List<QueryConfiguration> prevalidationToCompare = configurationToCompare.getPreValidation();
+//		if(referencePrevalidation != null) {
+//			isEquivalent = isEquivalent && isEquivalent(referencePrevalidation, prevalidationToCompare);
+//		} else if(prevalidationToCompare != null) {
+//			isEquivalent = false;
+//		}
+//		List<PreActionConfiguration> referencePreaction = referenceConfiguration.getPreAction();
+//		List<PreActionConfiguration> preactionToCompare = configurationToCompare.getPreAction();
+//		if(referencePreaction != null) {
+//			isEquivalent = isEquivalent && isEquivalent(referencePreaction, preactionToCompare);
+//		} else if(preactionToCompare != null) {
+//			isEquivalent = false;
+//		}
+//		List<PostActionConfiguration> referencePostaction = referenceConfiguration.getPostAction();
+//		List<PostActionConfiguration> postactionToCompare = configurationToCompare.getPostAction();
+//		if(referencePostaction != null) {
+//			isEquivalent = isEquivalent && isEquivalent(referencePostaction, postactionToCompare);
+//		} else if(postactionToCompare != null) {
+//			isEquivalent = false;
+//		}
 		return isEquivalent;
 	}
 
@@ -173,16 +168,16 @@ public class ElementTypeUtils {
 		if(!(elementType instanceof IExtendedHintedElementType)) {
 			return elementType;
 		}
-		// this is an extended type
-		String diagramElementTypeID = ((IExtendedHintedElementType)elementType).getConfiguration().getSpecializedDiagramTypeID();
-		if(diagramElementTypeID != null) {
-			return getClosestDiagramType(ElementTypeRegistry.getInstance().getType(diagramElementTypeID));
-		} else {
-			IElementType[] superTypes = elementType.getAllSuperTypes();
-			if(superTypes.length > 1) {
-				return getClosestDiagramType(superTypes[superTypes.length - 1]);
-			}
-		}
+//		// this is an extended type
+//		String diagramElementTypeID = ((IExtendedHintedElementType)elementType).getSpecializedTypeIds();
+//		if(diagramElementTypeID != null) {
+//			return getClosestDiagramType(ElementTypeRegistry.getInstance().getType(diagramElementTypeID));
+//		} else {
+//			IElementType[] superTypes = elementType.getAllSuperTypes();
+//			if(superTypes.length > 1) {
+//				return getClosestDiagramType(superTypes[superTypes.length - 1]);
+//			}
+//		}
 		return null;
 	}
 }

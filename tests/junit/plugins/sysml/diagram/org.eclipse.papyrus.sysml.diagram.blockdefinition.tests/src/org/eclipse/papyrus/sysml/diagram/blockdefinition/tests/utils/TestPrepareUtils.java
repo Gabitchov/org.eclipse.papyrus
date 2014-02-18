@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -43,6 +43,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -61,6 +62,9 @@ public class TestPrepareUtils {
 		SetCommand changeVisibilityCommand = new SetCommand(getTransactionalEditingDomain(), view, NotationPackage.eINSTANCE.getView_Visible(), !view.isVisible());
 		//getCommandStack().execute(new EMFtoGEFCommandWrapper(changeVisibilityCommand));
 		getTransactionalEditingDomain().getCommandStack().execute(changeVisibilityCommand);
+
+		//Workaround for CSS refresh issue (Bug 416737: [CSS] Setters of the CSS runtime notation API don't take into consideration CSS values)
+		DiagramHelper.refresh(EditorUtils.getDiagramEditPart(), true);
 	}
 
 	public static EObject createElement(IElementType elementType, View containerView) throws Exception {
@@ -123,7 +127,7 @@ public class TestPrepareUtils {
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
 		@SuppressWarnings("unchecked")
-		Collection<View> views = (Collection<View>)EMFCoreUtil.getReferencers(newObject, erefs);
+		Collection<View> views = EMFCoreUtil.getReferencers(newObject, erefs);
 
 		return (View)views.toArray()[0];
 	}
@@ -143,7 +147,7 @@ public class TestPrepareUtils {
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
 		@SuppressWarnings("unchecked")
-		Collection<View> views = (Collection<View>)EMFCoreUtil.getReferencers(newView, erefs);
+		Collection<View> views = EMFCoreUtil.getReferencers(newView, erefs);
 
 		return (View)views.toArray()[0];
 
@@ -190,7 +194,7 @@ public class TestPrepareUtils {
 
 		EReference[] erefs = new EReference[]{ NotationPackage.eINSTANCE.getView_Element() };
 		@SuppressWarnings("unchecked")
-		Collection<View> views = (Collection<View>)EMFCoreUtil.getReferencers(eObject, erefs);
+		Collection<View> views = EMFCoreUtil.getReferencers(eObject, erefs);
 
 		return (View)views.toArray()[0];
 	}

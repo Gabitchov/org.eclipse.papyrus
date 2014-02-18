@@ -47,7 +47,7 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.AppliedStereotypeOperationDisplayEditPolicy"/>
-        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.OperationLabelEditPolicy"/>
+        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.OperationLabelEditPolicy"/>
         <modelFacet>
           <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
           <containmentMetaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedOperation"/>
@@ -90,7 +90,7 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
-        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.PropertyLabelEditPolicy"/>
+        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DataType/ownedAttribute"/>
@@ -113,7 +113,7 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.AppliedStereotypePropertyDisplayEditPolicy"/>
-        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.PropertyLabelEditPolicy"/>
+        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy"/>
         <modelFacet>
           <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
           <containmentMetaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
@@ -136,7 +136,7 @@
           <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.AppliedStereotypeOperationDisplayEditPolicy"/>
-        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.OperationLabelEditPolicy"/>
+        <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.OperationLabelEditPolicy"/>
         <modelFacet>
           <metaClass href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Operation"/>
           <containmentMetaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Class/ownedOperation"/>
@@ -839,7 +839,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getRoleTargetLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndTargetEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="srcRole{0}" editorPattern="srcRole{0}" editPattern="srcRole{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -849,7 +849,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getRoleSourceLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="-20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndSourceEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndSourceEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="targMul{0}" editorPattern="targMul{0}" editPattern="targMul{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -859,7 +859,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getMultiplicitySourceLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndSourceMultiplicityEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndSourceMultiplicityEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="srcMul{0}" editorPattern="srcMul{0}" editPattern="srcMul{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -869,7 +869,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getMultiplicityTargetLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="-20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="srcMul{0}" editorPattern="srcMul{0}" editPattern="srcMul{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -906,7 +906,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getRoleSourceLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="-20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndTargetEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndTargetEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.4" viewPattern="srcRole{0}" editorPattern="srcRole{0}" editPattern="srcRole{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -916,7 +916,7 @@
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getMultiplicitySourceLabel" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="20"/>
           </viewmap>
-          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
+          <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.DisplayAssociationEndTargetMultiplicityEditPolicy"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.0" viewPattern="srcRole{0}" editorPattern="srcRole{0}" editPattern="srcRole{0}">
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -1101,59 +1101,59 @@
           <metaFeature href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/context"/>
         </modelFacet>
       </links>
-      <compartments visualID="1005" editPartClassName="PackagePackageableElementCompartmentEditPart" itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14" title="PackageableElementCompartment" canCollapse="false" node="/0/@diagram/@topLevelNodes.8" listLayout="false">
+      <compartments visualID="1005" editPartClassName="PackagePackageableElementCompartmentEditPart" itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14" title="packaged elements" canCollapse="false" node="/0/@diagram/@topLevelNodes.8" listLayout="false">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getPackageableElementFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomCreationRoleEditPolicy"/>
       </compartments>
-      <compartments visualID="11" editPartClassName="PackagePackageableElementCompartmentEditPartCN" itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14" title="PackageableElementCompartment" canCollapse="false" node="/0/@diagram/@childNodes.11" listLayout="false">
+      <compartments visualID="11" editPartClassName="PackagePackageableElementCompartmentEditPartCN" itemSemanticEditPolicyClassName="PackagePackageableElementCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="PackagePackageableElementCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14" title="packaged elements" canCollapse="false" node="/0/@diagram/@childNodes.11" listLayout="false">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getPackageableElementFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomCreationRoleEditPolicy"/>
       </compartments>
-      <compartments visualID="1042" editPartClassName="ProfilePackageableElementCompartmentEditPartTN" itemSemanticEditPolicyClassName="ProfilePackageableElementCompartmentItemSemanticEditPolicyTN" canonicalEditPolicyClassName="ProfilePackageableElementCompartmentCanonicalEditPolicyTN" childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.7" title="ProfilePackageableElementCompartment" canCollapse="false" node="/0/@diagram/@topLevelNodes.7" listLayout="false">
+      <compartments visualID="1042" editPartClassName="ProfilePackageableElementCompartmentEditPartTN" itemSemanticEditPolicyClassName="ProfilePackageableElementCompartmentItemSemanticEditPolicyTN" canonicalEditPolicyClassName="ProfilePackageableElementCompartmentCanonicalEditPolicyTN" childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.7" title="packaged elements" canCollapse="false" node="/0/@diagram/@topLevelNodes.7" listLayout="false">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getPackageableElementFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomCreationRoleEditPolicy"/>
       </compartments>
-      <compartments visualID="1051" editPartClassName="ProfilePackageableElementCompartmentEditPartCN" itemSemanticEditPolicyClassName="ProfilePackageableElementCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="ProfilePackageableElementCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.7" title="ProfilePackageableElementCompartment" canCollapse="false" node="/0/@diagram/@childNodes.10" listLayout="false">
+      <compartments visualID="1051" editPartClassName="ProfilePackageableElementCompartmentEditPartCN" itemSemanticEditPolicyClassName="ProfilePackageableElementCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="ProfilePackageableElementCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.7" title="packaged elements" canCollapse="false" node="/0/@diagram/@childNodes.10" listLayout="false">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getPackageableElementFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomCreationRoleEditPolicy"/>
       </compartments>
-      <compartments visualID="1071" editPartClassName="StereotypeAttributeCompartmentEditPart" itemSemanticEditPolicyClassName="StereotypeAttributeCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="StereotypeAttributeCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.4" title="AttributeCompartment" node="/0/@diagram/@topLevelNodes.2">
+      <compartments visualID="1071" editPartClassName="StereotypeAttributeCompartmentEditPart" itemSemanticEditPolicyClassName="StereotypeAttributeCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="StereotypeAttributeCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.4" title="attributes" node="/0/@diagram/@topLevelNodes.2">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getAttributeCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
-      <compartments visualID="1052" editPartClassName="StereotypeAttributeCompartmentEditPartCN" itemSemanticEditPolicyClassName="StereotypeAttributeCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="StereotypeAttributeCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.4" title="AttributeCompartment" node="/0/@diagram/@childNodes.6">
+      <compartments visualID="1052" editPartClassName="StereotypeAttributeCompartmentEditPartCN" itemSemanticEditPolicyClassName="StereotypeAttributeCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="StereotypeAttributeCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.4" title="attributes" node="/0/@diagram/@childNodes.6">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getAttributeCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
-      <compartments visualID="1019" editPartClassName="StereotypeOperationCompartmentEditPart" itemSemanticEditPolicyClassName="StereotypeOperationCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="StereotypeOperationCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.5" title="OperationCompartment" node="/0/@diagram/@topLevelNodes.2">
+      <compartments visualID="1019" editPartClassName="StereotypeOperationCompartmentEditPart" itemSemanticEditPolicyClassName="StereotypeOperationCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="StereotypeOperationCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.5" title="operations" node="/0/@diagram/@topLevelNodes.2">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getOperationCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
-      <compartments visualID="1053" editPartClassName="StereotypeOperationCompartmentEditPartCN" itemSemanticEditPolicyClassName="StereotypeOperationCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="StereotypeOperationCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.5" title="OperationCompartment" node="/0/@diagram/@childNodes.6">
+      <compartments visualID="1053" editPartClassName="StereotypeOperationCompartmentEditPartCN" itemSemanticEditPolicyClassName="StereotypeOperationCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="StereotypeOperationCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.5" title="operations" node="/0/@diagram/@childNodes.6">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getOperationCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
-      <compartments visualID="1057" editPartClassName="ModelPackageableElementCompartmentEditPartTN" itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicyTN" canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicyTN" childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14" title="ModelElementCompartment" canCollapse="false" node="/0/@diagram/@topLevelNodes.6" listLayout="false">
+      <compartments visualID="1057" editPartClassName="ModelPackageableElementCompartmentEditPartTN" itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicyTN" canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicyTN" childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14" title="packaged elements" canCollapse="false" node="/0/@diagram/@topLevelNodes.6" listLayout="false">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getPackageableElementFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
@@ -1161,7 +1161,7 @@
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomCreationRoleEditPolicy"/>
       </compartments>
-      <compartments visualID="1058" editPartClassName="ModelPackageableElementCompartmentEditPartCN" itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14" title="ModelElementCompartment" canCollapse="false" node="/0/@diagram/@childNodes.9" listLayout="false">
+      <compartments visualID="1058" editPartClassName="ModelPackageableElementCompartmentEditPartCN" itemSemanticEditPolicyClassName="ModelPackageableElementCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="ModelPackageableElementCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.0 /0/@diagram/@childNodes.14" title="packaged elements" canCollapse="false" node="/0/@diagram/@childNodes.9" listLayout="false">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getPackageableElementFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
@@ -1169,37 +1169,37 @@
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomCreationRoleEditPolicy"/>
       </compartments>
-      <compartments visualID="1062" editPartClassName="EnumerationEnumerationLiteralCompartmentEditPartCN" itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.2" title="EnumerationEnumerationLiteral" node="/0/@diagram/@childNodes.13">
+      <compartments visualID="1062" editPartClassName="EnumerationEnumerationLiteralCompartmentEditPartCN" itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.2" title="literals" node="/0/@diagram/@childNodes.13">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getEnumerationLiteralCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
-      <compartments visualID="1063" editPartClassName="EnumerationEnumerationLiteralCompartmentEditPart" itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.2" title="EnumerationEnumerationLiteral" node="/0/@diagram/@topLevelNodes.9">
+      <compartments visualID="1063" editPartClassName="EnumerationEnumerationLiteralCompartmentEditPart" itemSemanticEditPolicyClassName="EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="EnumerationEnumerationLiteralCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.2" title="literals" node="/0/@diagram/@topLevelNodes.9">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getEnumerationLiteralCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
-      <compartments visualID="1067" editPartClassName="DataTypeAttributeCompartmentEditPart" itemSemanticEditPolicyClassName="DataTypeAttributeCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.3" title="DataTypeAttributeCompartment" node="/0/@diagram/@topLevelNodes.11">
+      <compartments visualID="1067" editPartClassName="DataTypeAttributeCompartmentEditPart" itemSemanticEditPolicyClassName="DataTypeAttributeCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.3" title="attributes" node="/0/@diagram/@topLevelNodes.11">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getAttributeCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
-      <compartments visualID="1069" editPartClassName="DataTypeAttributeCompartmentEditPartCN" itemSemanticEditPolicyClassName="DataTypeAttributeCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.3" title="DataTypeAttributeCompartment" node="/0/@diagram/@childNodes.14">
+      <compartments visualID="1069" editPartClassName="DataTypeAttributeCompartmentEditPartCN" itemSemanticEditPolicyClassName="DataTypeAttributeCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="DataTypeAttributeCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.3" title="attributes" node="/0/@diagram/@childNodes.14">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getAttributeCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
-      <compartments visualID="1068" editPartClassName="DataTypeOperationCompartmentEditPart" itemSemanticEditPolicyClassName="DataTypeOperationCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.1" title="DataTypeOperationCompartment" node="/0/@diagram/@topLevelNodes.11">
+      <compartments visualID="1068" editPartClassName="DataTypeOperationCompartmentEditPart" itemSemanticEditPolicyClassName="DataTypeOperationCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicy" childNodes="/0/@diagram/@childNodes.1" title="operations" node="/0/@diagram/@topLevelNodes.11">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getOperationCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy"/>
       </compartments>
-      <compartments visualID="1070" editPartClassName="DataTypeOperationCompartmentEditPartCN" itemSemanticEditPolicyClassName="DataTypeOperationCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.1" title="DataTypeOperationCompartment" node="/0/@diagram/@childNodes.14">
+      <compartments visualID="1070" editPartClassName="DataTypeOperationCompartmentEditPartCN" itemSemanticEditPolicyClassName="DataTypeOperationCompartmentItemSemanticEditPolicyCN" canonicalEditPolicyClassName="DataTypeOperationCompartmentCanonicalEditPolicyCN" childNodes="/0/@diagram/@childNodes.1" title="operations" node="/0/@diagram/@childNodes.14">
         <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getOperationCompartmentFigure" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour xsi:type="gmfgen:CustomBehaviour" key="&quot;RemoveOrphanView&quot;" editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.profile.custom.policies.RemoveOrphanViewPolicy"/>

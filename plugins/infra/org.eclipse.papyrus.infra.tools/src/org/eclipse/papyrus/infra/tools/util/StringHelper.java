@@ -1,8 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2008-2013 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.tools.util;
 
-
-
-
+/**
+ * A library of static helpers for string-related operations
+ */
 public class StringHelper {
 
 	/**
@@ -85,11 +94,20 @@ public class StringHelper {
 		return source.substring(0, 1).toLowerCase() + source.substring(1);
 	}
 
+	/**
+	 * Returns the same string, except for "null" which is converted to the empty string
+	 * 
+	 * @param str
+	 * @return
+	 */
+	public static String trimToEmpty(String str) {
+		return str == null ? "" : str; //$NON-NLS-1$
+	}
 
-	/***
+
+	/*
 	 * 
 	 * The following methods have been copied from UML2Util (org.eclipse.uml2.common.util/UML2Util)
-	 * 
 	 */
 
 

@@ -7,5 +7,72 @@
             customizerDialog="org.eclipse.papyrus.customization.palette.dialog.PapyrusPaletteCustomizerDialog">
       </customizer>
    </extension>
-
+      <extension
+         point="org.eclipse.ui.menus">
+         <menuContribution
+    allPopups="false"
+    locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+	<command
+       commandId="org.eclipse.papyrus.customization.palette.deploy"
+       icon="icons/configuration.gif"
+       style="push">
+	    <visibleWhen
+	          checkEnabled="false">
+	       <with
+	             variable="selection">
+	          <iterate
+	                ifEmpty="false"
+	                operator="and">
+	             <adapt
+	                   type="org.eclipse.core.resources.IFile">
+	                <or>
+	                   <test
+	                         property="org.eclipse.core.resources.extension"
+	                         value="palette">
+	                   </test>
+	                </or>
+	             </adapt>
+	          </iterate>
+	       </with>
+	    </visibleWhen>
+	</command>
+ <command
+       commandId="org.eclipse.papyrus.customization.palette.undeploy"
+       icon="icons/configuration.gif"
+       style="push">
+    <visibleWhen
+          checkEnabled="false">
+       <with
+             variable="selection">
+          <iterate
+                ifEmpty="false"
+                operator="and">
+             <adapt
+                   type="org.eclipse.core.resources.IFile">
+                <or>
+                   <test
+                         property="org.eclipse.core.resources.extension"
+                         value="palette">
+                   </test>
+                </or>
+             </adapt>
+          </iterate>
+       </with>
+    </visibleWhen>
+ </command>
+</menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.eclipse.papyrus.customization.palette.handler.DeployPaletteConfigurationHandler"
+            id="org.eclipse.papyrus.customization.palette.deploy"
+            name="Deploy Palette configuration">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.customization.palette.handler.UndeployPaletteConfigurationHandler"
+            id="org.eclipse.papyrus.customization.palette.undeploy"
+            name="Disable Palette configuration">
+      </command>
+   </extension>
 </plugin>

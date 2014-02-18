@@ -104,7 +104,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("CompositeCompartment", Boolean.TRUE);
+		map.put("packaged elements", Boolean.TRUE);
 		return map;
 	}
 
@@ -116,7 +116,7 @@ public class ComponentPreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	private static TreeMap<String, Boolean> getStaticCompartmentTitleVisibilityPreferences() {
 		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
-		map.put("CompositeCompartment", Boolean.FALSE);
+		map.put("packaged elements", Boolean.FALSE);
 		return map;
 	}
 

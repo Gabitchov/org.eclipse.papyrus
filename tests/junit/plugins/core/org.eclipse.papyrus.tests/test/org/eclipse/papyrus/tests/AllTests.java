@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -48,7 +48,7 @@ public class AllTests {
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.edit.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.services.edit.tests.suites.AllTests"));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.services.labelprovider.tests.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.emf.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceTest"));
-		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.extendedtypes.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.extendedtypes.AllTests"));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.extendedtypes.tests.AllTests.class));
 		//		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.services.openelement.tests.AllTests.class));
 
 		/* views */
@@ -60,6 +60,9 @@ public class AllTests {
 
 		/* search */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.search.tests.suites.AllTests.class));
+
+		/* css */
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.css.tests.tests.AllTests.class));
 
 		//
 		/* sysml moved to a separate launcher */
@@ -84,7 +87,7 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.composite.test.AllTests.class));
 		//suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.sequence.tests.AllTests.class)); //Disabled. They currently do not run on Hudson
 		//		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.interactionoverview.tests.AllTests.class)); //Disabled. They currently do not run on Hudson
-		// 
+		//
 
 		//nattable tests
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.nattable.tests.tests.AllTests.class));
@@ -103,7 +106,7 @@ public class AllTests {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 * @param clazz
 		 *        the suite class � AllTests2
 		 * @throws InitializationError
@@ -117,7 +120,7 @@ public class AllTests {
 
 	/**
 	 * Returns the list of test classes
-	 * 
+	 *
 	 * @return the list of test classes
 	 */
 	private static Class<?>[] getSuites() {

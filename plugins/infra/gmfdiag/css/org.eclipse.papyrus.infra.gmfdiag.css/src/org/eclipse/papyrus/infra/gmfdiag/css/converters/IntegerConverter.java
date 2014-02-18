@@ -39,7 +39,7 @@ public class IntegerConverter extends AbstractCSSValueConverter {
 			return (int)((CSSPrimitiveValue)value).getFloatValue(CSSPrimitiveValue.CSS_NUMBER);
 		}
 		if(value instanceof Measure) {
-			return (int)((Measure)value).getIntegerValue(Measure.CSS_NUMBER);
+			return (int)((Measure)value).getIntegerValue(CSSPrimitiveValue.CSS_NUMBER);
 		}
 		throw new IllegalArgumentException("The value " + value + " is not a valid Integer");
 	}

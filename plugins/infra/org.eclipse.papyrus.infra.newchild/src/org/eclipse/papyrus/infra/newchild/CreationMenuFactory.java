@@ -66,7 +66,7 @@ public class CreationMenuFactory {
 	 * @return true if sub-menu has been added
 	 */
 	public boolean populateMenu(Menu menu, Folder folder, EObject selectedObject){
-		if(selectedObject!=null){
+		if(selectedObject!=null && folder!=null){
 			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu,SWT.CASCADE );
 			topMenuItem.setText(folder.getLabel());
 			if(folder.getIcon()!=null){
@@ -127,7 +127,6 @@ public class CreationMenuFactory {
 
 	}
 
-
 	/**
 	 * create menu by displaying if possible different roles
 	 * @param selectedObject the current object
@@ -186,7 +185,7 @@ public class CreationMenuFactory {
 	 * @param item
 	 */
 	protected void fillIcon(CreationMenu currentCreationMenu, MenuItem item) {
-		if(currentCreationMenu.getIcon()!=null){
+		if(currentCreationMenu.getIcon()!=null && !"".equals(currentCreationMenu.getIcon())){
 			URL url;
 			try {
 				url = new URL(currentCreationMenu.getIcon());
@@ -214,7 +213,8 @@ public class CreationMenuFactory {
 			if(eStructuralFeature instanceof EReference) {
 				EReference ref = (EReference)eStructuralFeature;
 				if(ref.isContainment()) {
-					if(isSubClass(ref.getEType(), getElementType(currentCreationMenu.getElementTypeIdRef()).getEClass())) {
+					IElementType menuType =  getElementType(currentCreationMenu.getElementTypeIdRef());
+					if(menuType!=null && isSubClass(ref.getEType(), menuType.getEClass())) {
 						possibleEFeatures.add(eStructuralFeature);
 					}
 				}

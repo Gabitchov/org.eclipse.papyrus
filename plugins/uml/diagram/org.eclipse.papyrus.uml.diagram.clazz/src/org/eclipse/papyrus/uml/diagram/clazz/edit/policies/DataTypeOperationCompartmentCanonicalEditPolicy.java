@@ -69,7 +69,7 @@ public class DataTypeOperationCompartmentCanonicalEditPolicy extends CanonicalEd
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getDataTypeOperationCompartment_7021SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getDataTypeOperations_7021SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -98,7 +98,7 @@ public class DataTypeOperationCompartmentCanonicalEditPolicy extends CanonicalEd
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getDataTypeOperationCompartment_7021SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getDataTypeOperations_7021SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();

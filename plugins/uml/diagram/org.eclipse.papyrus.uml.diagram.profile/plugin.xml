@@ -1536,4 +1536,175 @@
       </Priority>
    </editpolicyProvider>
 </extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="PapyrusUMLProfileDiagram">
+			<mapping type="PapyrusUMLProfileDiagram" humanReadableType="ProfileDiagram"/>
+			
+	<mapping
+		humanReadableType="packaged elements"
+		type="1005">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="11">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="1042">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="1051">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="1071">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="1052">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="1019">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="1053">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="1057">
+	</mapping>
+
+	<mapping
+		humanReadableType="packaged elements"
+		type="1058">
+	</mapping>
+
+	<mapping
+		humanReadableType="literals"
+		type="1062">
+	</mapping>
+
+	<mapping
+		humanReadableType="literals"
+		type="1063">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="1067">
+	</mapping>
+
+	<mapping
+		humanReadableType="attributes"
+		type="1069">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="1068">
+	</mapping>
+
+	<mapping
+		humanReadableType="operations"
+		type="1070">
+	</mapping>
+
+			
+	
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="6001">
+	</mapping>
+
+	<mapping
+		humanReadableType="Name"
+		type="6002">
+	</mapping>
+
+	<mapping
+		humanReadableType="TargetRole"
+		type="6003">
+	</mapping>
+
+	<mapping
+		humanReadableType="SourceRole"
+		type="6005">
+	</mapping>
+
+	<mapping
+		humanReadableType="SourceMultiplicity"
+		type="6033">
+	</mapping>
+
+	<mapping
+		humanReadableType="TargetMultiplicity"
+		type="6034">
+	</mapping>
+
+
+	
+
+	
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="6007">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6026">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6027">
+	</mapping>
+
+
+	
+
+	
+	<mapping
+		humanReadableType="Alias"
+		type="6020">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6021">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Stereotype"
+		type="6022">
+	</mapping>
+
+
+	
+
+	
+
+	
+
+		</diagramMappings>
+	</extension>
 </plugin>

@@ -7,14 +7,18 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -38,7 +42,14 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public String getPrintString(IAdaptable element, int flags) {
+
+		Collection<String> maskValues = getMaskValues(element);
+
+		if(maskValues.isEmpty()) {
+			return MaskedLabel;
+		}
 
 		String result = "";
 		EObject eObject = (EObject)element.getAdapter(EObject.class);
@@ -49,7 +60,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 			Requirement requirement = UMLUtil.getStereotypeApplication(clazz, Requirement.class);
 
 			// manage name
-			if((flags & ILabelPreferenceConstants.DISP_NAME) == ILabelPreferenceConstants.DISP_NAME) {
+			if(maskValues.contains(ILabelPreferenceConstants.DISP_NAME)) {
 				String name = clazz.getName();
 				result = String.format(NAME_FORMAT, name);
 			}
@@ -58,7 +69,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 			if(requirement != null) {
 
 				// manage id
-				if((flags & ILabelPreferenceConstants.DISP_ID) == ILabelPreferenceConstants.DISP_ID) {
+				if(maskValues.contains(ILabelPreferenceConstants.DISP_ID)) {
 					String id = requirement.getId();
 					result = String.format(ID_FORMAT, result, id);
 				}
@@ -71,6 +82,7 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public List<EObject> getSemanticElementsBeingParsed(EObject element) {
 		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
 
@@ -85,5 +97,18 @@ public class RequirementLabelParser extends NamedElementLabelParser {
 			}
 		}
 		return semanticElementsBeingParsed;
+	}
+
+	@Override
+	public Map<String, String> getMasks() {
+		Map<String, String> masks = new HashMap<String, String>();
+		masks.put(ILabelPreferenceConstants.DISP_NAME, "Name");
+		masks.put(ILabelPreferenceConstants.DISP_ID, "Id");
+		return masks;
+	}
+
+	@Override
+	public Collection<String> getDefaultValue(IAdaptable element) {
+		return Arrays.asList(ILabelPreferenceConstants.DISP_NAME, ILabelPreferenceConstants.DISP_ID);
 	}
 }

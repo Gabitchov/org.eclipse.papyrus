@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -30,8 +30,6 @@ public class CustomPreferenceInitializer extends BlockDefinitionDiagramPreferenc
 	@Override
 	public void initializeDefaultPreferences() {
 		super.initializeDefaultPreferences();
-
-		CustomAssociationPreferencePage.initDefaults(getPreferenceStore());
 
 		// Initialize default positions for labels.
 		initDefaultPosition(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID, UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID, 0, -10);
@@ -61,7 +59,7 @@ public class CustomPreferenceInitializer extends BlockDefinitionDiagramPreferenc
 
 	/**
 	 * Initialize default position of a link label in preferences.
-	 * 
+	 *
 	 * @param parentGraphicalType
 	 *        the graphical type of the view owning the label
 	 * @param graphicalType

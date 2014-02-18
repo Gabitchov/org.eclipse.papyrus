@@ -56,20 +56,20 @@ public class ExtendedTypesOwnerAdvice extends AbstractEditHelperAdvice {
 			}
 
 			// check all validation rules given by the configuration
-//			for(Object objectToEdit : request.getElementsToEdit()) {
-//				// there are queries to test
-//				for(QueryConfiguration queryConfiguration : queryConfigurations) {
-//					try {
-//					//	boolean result = QueryUtil.evaluateBooleanQuery((EObject)objectToEdit, queryConfiguration);
-//					//	if(!result) {
-//							// return an unexecutable command, so the create command will not be executable
-//							return UnexecutableCommand.INSTANCE;
-//						}
-//					} catch (Exception e) {
-//						Activator.log.error(e);
-//					}
-//				}
-//			}
+			for(Object objectToEdit : request.getElementsToEdit()) {
+				// there are queries to test
+				for(QueryConfiguration queryConfiguration : queryConfigurations) {
+					try {
+						boolean result = QueryUtil.evaluateBooleanQuery((EObject)objectToEdit, queryConfiguration);
+						if(!result) {
+							// return an unexecutable command, so the create command will not be executable
+							return UnexecutableCommand.INSTANCE;
+						}
+					} catch (Exception e) {
+						Activator.log.error(e);
+					}
+				}
+			}
 
 			// Check all pre and post action validation rules. They are given by the provider of the action
 			CompositeCommand compositeCommand = new CompositeCommand("PreValidationPostAction");

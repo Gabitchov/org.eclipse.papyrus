@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,9 +14,10 @@ package org.eclipse.papyrus.infra.gmfdiag.css.theme;
 import java.io.IOException;
 import java.net.URL;
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -32,9 +33,9 @@ import org.eclipse.swt.graphics.Image;
 /**
  * A Singleton to manage CSS Themes. Reads Themes from an extension point,
  * and provides an access to them.
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class ThemeManager {
 
@@ -46,7 +47,7 @@ public class ThemeManager {
 
 	/**
 	 * Returns all the Themes, sorted alphabetically
-	 * 
+	 *
 	 * @return
 	 */
 	public List<Theme> getThemes() {
@@ -57,7 +58,7 @@ public class ThemeManager {
 
 	/**
 	 * Returns the list of the workspace stylesheet's URLs.
-	 * 
+	 *
 	 * @return
 	 */
 	public List<URL> getWorkspaceStyleSheets() {
@@ -71,7 +72,7 @@ public class ThemeManager {
 	/**
 	 * Returns the theme associated to the given id, or null if it doesn't
 	 * exist
-	 * 
+	 *
 	 * @param themeId
 	 * @return
 	 */
@@ -81,7 +82,7 @@ public class ThemeManager {
 
 	private Map<String, Theme> getAllThemes() {
 		if(allThemes == null) {
-			allThemes = new HashMap<String, Theme>();
+			allThemes = new LinkedHashMap<String, Theme>(); //Keep the themes ordered, to avoid nondeterministic behavior
 			allThemes.put(EmptyTheme.instance.getId(), EmptyTheme.instance);
 			IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 
@@ -158,7 +159,7 @@ public class ThemeManager {
 		}
 
 		//The theme has not been defined: return the first one, and store it
-		List<Theme> sortedThemes = getThemes();
+		List<Theme> sortedThemes = new ArrayList<Theme>(getAllThemes().values());
 		if(sortedThemes.size() < 2) {
 			return EmptyTheme.instance;
 		}
@@ -189,7 +190,7 @@ public class ThemeManager {
 	/**
 	 * Sorts the Themes alphabetically (Based on their label). The Empty theme
 	 * is always the first element.
-	 * 
+	 *
 	 * @author Camille Letavernier
 	 */
 	private static class ThemeComparator implements Comparator<Theme> {
@@ -197,6 +198,7 @@ public class ThemeManager {
 		private ThemeComparator() {
 		}
 
+		@Override
 		public int compare(Theme o1, Theme o2) {
 			if(o1 == EmptyTheme.instance) {
 				return -1;

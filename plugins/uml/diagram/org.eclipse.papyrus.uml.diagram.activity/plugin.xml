@@ -4318,4 +4318,155 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	</binding>
 		
 </extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+		<diagramMappings diagramID="PapyrusUMLActivityDiagram">
+			<mapping type="PapyrusUMLActivityDiagram" humanReadableType="ActivityDiagram"/>
+			
+	<mapping
+		humanReadableType="ActivityFigureParameter"
+		type="7001">
+	</mapping>
+
+	<mapping
+		humanReadableType="ActivityFigurePrecondition"
+		type="7002">
+	</mapping>
+
+	<mapping
+		humanReadableType="ActivityFigurePostCondtion"
+		type="7003">
+	</mapping>
+
+	<mapping
+		humanReadableType="ActivityFigureContent"
+		type="7004">
+	</mapping>
+
+	<mapping
+		humanReadableType="StructuredActivityNodeContent"
+		type="7008">
+	</mapping>
+
+	<mapping
+		humanReadableType="StructuredActivityNodeContent"
+		type="7009">
+	</mapping>
+
+	<mapping
+		humanReadableType="StructuredActivityNodeContent"
+		type="7010">
+	</mapping>
+
+	<mapping
+		humanReadableType="StructuredActivityNodeContent"
+		type="7012">
+	</mapping>
+
+	<mapping
+		humanReadableType="StructuredActivityNodeContent"
+		type="7005">
+	</mapping>
+
+	<mapping
+		humanReadableType="ActivityPartitionContent"
+		type="7006">
+	</mapping>
+
+	<mapping
+		humanReadableType="InterruptibleActivityRegionContent"
+		type="7007">
+	</mapping>
+
+	<mapping
+		humanReadableType="ActivityFigureParameter"
+		type="7014">
+	</mapping>
+
+	<mapping
+		humanReadableType="ActivityFigurePrecondition"
+		type="7015">
+	</mapping>
+
+	<mapping
+		humanReadableType="ActivityFigurePostCondtion"
+		type="7016">
+	</mapping>
+
+	<mapping
+		humanReadableType="ActivityFigureContent"
+		type="7013">
+	</mapping>
+
+			
+	
+
+	
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6001">
+	</mapping>
+
+	<mapping
+		humanReadableType="Weight"
+		type="6002">
+	</mapping>
+
+	<mapping
+		humanReadableType="Selection"
+		type="6005">
+	</mapping>
+
+	<mapping
+		humanReadableType="Transformation"
+		type="6006">
+	</mapping>
+
+	<mapping
+		humanReadableType="DecisionInputFlow"
+		type="6007">
+	</mapping>
+
+	<mapping
+		humanReadableType="Guard"
+		type="6008">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6010">
+	</mapping>
+
+
+	
+	<mapping
+		humanReadableType="Name"
+		type="6003">
+	</mapping>
+
+	<mapping
+		humanReadableType="Weight"
+		type="6004">
+	</mapping>
+
+	<mapping
+		humanReadableType="Guard"
+		type="6009">
+	</mapping>
+
+	<mapping
+		humanReadableType="Stereotype"
+		type="6011">
+	</mapping>
+
+
+	
+
+	
+
+	
+
+		</diagramMappings>
+	</extension>
 </plugin>
