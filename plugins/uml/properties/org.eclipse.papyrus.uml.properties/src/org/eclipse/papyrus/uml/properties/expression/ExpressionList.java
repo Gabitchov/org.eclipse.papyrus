@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - 402525
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.expression;
 
@@ -17,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
@@ -36,7 +39,7 @@ import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
  * 
  * @author Camille Letavernier
  */
-public class ExpressionList extends WritableList implements IChangeListener, ICommitListener {
+public class ExpressionList extends WritableList implements IChangeListener, ICommitListener, IObserving {
 
 	private List<Expression> expressions;
 
@@ -164,6 +167,13 @@ public class ExpressionList extends WritableList implements IChangeListener, ICo
 		}
 
 		languages.add(language);
+	}
+	
+	public Object getObserved() {
+		return //
+		(languages instanceof IObserving) ? ((IObserving)languages).getObserved() : //
+		(bodies instanceof IObserving) ? ((IObserving)bodies).getObserved() : //
+		null;
 	}
 
 	/**

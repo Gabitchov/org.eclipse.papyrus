@@ -378,8 +378,11 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 		IAtomicOperationExecutor result;
 		if(context instanceof IAdaptable) {
 			result = (IAtomicOperationExecutor)((IAdaptable)context).getAdapter(IAtomicOperationExecutor.class);
-		} else {
+		} else if (context != null) {
 			result = (IAtomicOperationExecutor)Platform.getAdapterManager().getAdapter(context, IAtomicOperationExecutor.class);
+		} else {
+			// We can't adapt null, of course, so we will have to settle for the default executor
+			result = null;
 		}
 
 		if (result == null) {
