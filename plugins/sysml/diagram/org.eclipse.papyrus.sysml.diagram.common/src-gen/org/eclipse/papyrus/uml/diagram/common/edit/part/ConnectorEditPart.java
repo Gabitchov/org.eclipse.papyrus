@@ -19,10 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.blocks.BindingConnector;
-import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.uml.diagram.common.figure.ConnectorEdgeFigure;
-import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 
 public class ConnectorEditPart extends AbstractElementLinkEditPart {
@@ -85,6 +82,7 @@ public class ConnectorEditPart extends AbstractElementLinkEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 */
+	@Override
 	protected Connection createConnectionFigure() {
 		return new ConnectorEdgeFigure();
 	}
@@ -92,17 +90,22 @@ public class ConnectorEditPart extends AbstractElementLinkEditPart {
 	/**
 	 * Creates primary shape for this edit part.
 	 */
+	@Override
 	public ConnectorEdgeFigure getPrimaryShape() {
 		return (ConnectorEdgeFigure)getFigure();
 	}
 
 	@Override
 	protected void refreshLineWidth() {
-		if (org.eclipse.uml2.uml.util.UMLUtil.getStereotypeApplication((Element)resolveSemanticElement(), BindingConnector.class) != null) {
-			setLineWidth(2);
+		int width = getLineWidth();
+		if(width < 1) {
+			width = 1;
 		}
-		else {
-			setLineWidth(1);
+
+		if(org.eclipse.uml2.uml.util.UMLUtil.getStereotypeApplication((Element)resolveSemanticElement(), BindingConnector.class) != null) {
+			setLineWidth(width * 2);
+		} else {
+			setLineWidth(width);
 		}
 	}
 
