@@ -135,7 +135,7 @@ public class ModifySemanticValuesActionProvider extends AbstractProvider impleme
 				Object value = null;
 				QueryConfiguration configuration = queryExecutionValue.getConfiguration();
 				try {
-					value = QueryUtil.evaluateQuery(eObject, configuration);
+					//value = QueryUtil.evaluateQuery(eObject, configuration);
 				} catch (Exception e) {
 					Activator.log.error(e);
 				}

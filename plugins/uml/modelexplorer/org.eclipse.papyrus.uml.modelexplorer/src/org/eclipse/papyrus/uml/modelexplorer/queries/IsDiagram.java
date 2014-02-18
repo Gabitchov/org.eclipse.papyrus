@@ -13,9 +13,10 @@
 package org.eclipse.papyrus.uml.modelexplorer.queries;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.gmf.runtime.notation.Diagram;
 
 /**
@@ -24,10 +25,10 @@ import org.eclipse.gmf.runtime.notation.Diagram;
  * @Deprecated : use oep.infra.gmfdiag.modelexplorer#queries.IsDiagram
  */
 @Deprecated
-public class IsDiagram implements IJavaModelQuery<EObject, Boolean> {
+public class IsDiagram implements IJavaQuery2<EObject, Boolean> {
 
-	public Boolean evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 
-		return context instanceof Diagram;
-	}
+	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
+		return source instanceof Diagram;
+		}
 }

@@ -35,8 +35,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
@@ -299,19 +299,19 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		switch(dropAdapter.getCurrentOperation()) {
 		case DND.DROP_MOVE:
 			if(dropAdapter.getCurrentLocation() == ViewerDropAdapter.LOCATION_BEFORE) {
-				if(target instanceof ModelElementItem) {
+				if(target instanceof EObjectTreeElement) {
 					commandList = getOrderChangeCommand(target, true);
 				}
 			} else if(dropAdapter.getCurrentLocation() == ViewerDropAdapter.LOCATION_AFTER) {
-				if(target instanceof ModelElementItem) {
+				if(target instanceof EObjectTreeElement) {
 					commandList = getOrderChangeCommand(target, false);
 				}
 			} else if(dropAdapter.getCurrentLocation() == ViewerDropAdapter.LOCATION_ON) {
-				if(target instanceof ModelElementItem) {
+				if(target instanceof EObjectTreeElement) {
 					commandList = getDropIntoCommand(target, null);
 				}
-				if(target instanceof LinkItem) {
-					commandList = getDropIntoCommand(((LinkItem)target).getParent(), ((LinkItem)target).getReference());
+				if(target instanceof EReferenceTreeElement) {
+					commandList = getDropIntoCommand(((EReferenceTreeElement)target).getParent(), ((EReferenceTreeElement)target).getEReference());
 				}
 			}
 

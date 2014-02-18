@@ -31,7 +31,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ITreeElement;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -435,8 +436,8 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 	public void selectionChanged(SelectionChangedEvent event) {
 		IStructuredSelection selection = (IStructuredSelection)event.getSelection();
 		if(selection.size() == 1) {
-			ITreeElement child = null;
-			ITreeElement element = (ITreeElement)selection.getFirstElement();
+			EObjectTreeElement child = null;
+			EObjectTreeElement element = (EObjectTreeElement)selection.getFirstElement();
 
 			do {
 
@@ -449,7 +450,10 @@ public class Preview extends ViewPart implements ISelectionChangedListener, IPar
 				}
 
 				child = element;
-				element = element.getTreeParent();
+				EStructuralFeatureTreeElement elementFeature = element.getParent();
+				if( elementFeature.getParent()!=null){
+					element=elementFeature.getParent();
+				}
 			} while(child != element && element != null);
 		}
 	}

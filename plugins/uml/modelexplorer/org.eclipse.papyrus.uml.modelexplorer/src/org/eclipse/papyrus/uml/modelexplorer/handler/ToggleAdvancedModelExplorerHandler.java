@@ -13,24 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.handler;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
-import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.ToolItem;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.ui.navigator.CommonNavigator;
 
 /**
  * A Handler to toggle the Advanced/Simple UML ModelExplorer customization

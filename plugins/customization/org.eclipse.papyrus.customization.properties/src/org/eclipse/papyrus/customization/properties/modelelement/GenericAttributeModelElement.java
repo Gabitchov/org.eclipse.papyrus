@@ -22,15 +22,17 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.facet.infra.query.ModelQuery;
+import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.infra.constraints.ConfigProperty;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
+import org.eclipse.papyrus.views.properties.ui.WidgetAttribute;
 
 /**
  * XWT relies a lot on reflectivity, as it is based on an XML syntax.
@@ -114,7 +116,7 @@ public class GenericAttributeModelElement extends AbstractModelElement {
 				Iterator<EObject> iterator = result.iterator();
 				while(iterator.hasNext()) {
 					EObject eObject = iterator.next();
-					if(!(eObject instanceof ModelQuery)) {
+					if(!(eObject instanceof Query)) {
 						iterator.remove();
 					}
 				}

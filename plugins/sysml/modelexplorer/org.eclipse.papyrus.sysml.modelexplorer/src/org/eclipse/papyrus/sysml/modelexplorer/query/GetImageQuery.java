@@ -1,26 +1,28 @@
 package org.eclipse.papyrus.sysml.modelexplorer.query;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /** Create a basic label based on element name */
-public class GetImageQuery implements IJavaModelQuery<Element, String> {
+public class GetImageQuery implements IJavaQuery2<Element, String> {
 
 	public static final String sysml_plugin_path = "/org.eclipse.papyrus.sysml/";
 
-	public String evaluate(final Element context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
 
+	@Override
+	public String evaluate(Element source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
 		String iconPath = "";
-		if(!context.getAppliedStereotypes().isEmpty()) {
-			Stereotype first_stereotype = context.getAppliedStereotypes().get(0);
+		if(!source.getAppliedStereotypes().isEmpty()) {
+			Stereotype first_stereotype = source.getAppliedStereotypes().get(0);
 
 			if(!first_stereotype.getIcons().isEmpty()) {
-				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(context, first_stereotype, "icon");
+				org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(source, first_stereotype, "icon");
 				if(icon != null) {
 					iconPath = icon.getLocation();
 				}

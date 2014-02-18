@@ -12,9 +12,10 @@
  */
 package org.eclipse.papyrus.uml.modelexplorer.queries;
 
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractGetEditorIconQuery;
 
@@ -24,9 +25,10 @@ import org.eclipse.papyrus.views.modelexplorer.queries.AbstractGetEditorIconQuer
  * @Deprecated : use oep.infra.gmfdiag.modelexplorer#queries.GetDiagramIcon
  */
 @Deprecated
-public class GetDiagramIcon extends AbstractGetEditorIconQuery implements IJavaModelQuery<Diagram, String> {
+public class GetDiagramIcon extends AbstractGetEditorIconQuery implements IJavaQuery2<Diagram, String> {
 
-	public String evaluate(final Diagram context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		return "/" + getEditorRegistry(context).getEditorURLIcon(context); //$NON-NLS-1$
+
+	public String evaluate(Diagram source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
+		return "/" + getEditorRegistry(source).getEditorURLIcon(source); //$NON-NLS-1$
 	}
 }

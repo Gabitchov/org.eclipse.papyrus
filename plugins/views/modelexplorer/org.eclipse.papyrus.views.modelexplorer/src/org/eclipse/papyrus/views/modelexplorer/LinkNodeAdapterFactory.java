@@ -12,7 +12,7 @@ package org.eclipse.papyrus.views.modelexplorer;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 
 /**
  * This factory returns a LinkNode instance for any adapter instancing LinkItem or EReference
@@ -24,7 +24,7 @@ public class LinkNodeAdapterFactory implements IAdapterFactory {
 
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
 		if(adapterType == LinkNode.class) {
-			if(adaptableObject instanceof LinkItem || adaptableObject instanceof EReference) {
+			if(adaptableObject instanceof EReferenceTreeElement || adaptableObject instanceof EReference) {
 				return LinkNode.LinkNodeInstance;
 			}
 		}

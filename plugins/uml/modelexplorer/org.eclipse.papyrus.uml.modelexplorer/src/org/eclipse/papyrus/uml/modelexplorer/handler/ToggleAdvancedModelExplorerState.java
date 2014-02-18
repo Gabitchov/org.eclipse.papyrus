@@ -14,11 +14,6 @@
 package org.eclipse.papyrus.uml.modelexplorer.handler;
 
 import org.eclipse.core.commands.State;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
-import org.eclipse.papyrus.views.modelexplorer.Activator;
 
 /**
  * State for the AdvancedModelExplorer toggle action
@@ -34,17 +29,17 @@ public class ToggleAdvancedModelExplorerState extends State {
 
 	@Override
 	public Boolean getValue() {
-		MetamodelView simpleUMLCustomization = CustomizationsCatalog.getInstance().getCustomization(ToggleAdvancedModelExplorerHandler.SIMPLE_UML_CUSTOMIZATION);
-		if(simpleUMLCustomization == null) {
-			//The SimpleUML Customization doesn't exist. The advanced mode is activated
-			return true;
-		}
-
-		ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
-		if(customizationManager == null) {
-			//Should not happen, this is a singleton
-			return false;
-		}
+//		MetamodelView simpleUMLCustomization = CustomizationsCatalog.getInstance().getCustomization(ToggleAdvancedModelExplorerHandler.SIMPLE_UML_CUSTOMIZATION);
+//		if(simpleUMLCustomization == null) {
+//			//The SimpleUML Customization doesn't exist. The advanced mode is activated
+//			return true;
+//		}
+//
+//		ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
+//		if(customizationManager == null) {
+//			//Should not happen, this is a singleton
+//			return false;
+//		}
 		return false;
 		//return !customizationManager.getRegisteredCustomizations().contains(simpleUMLCustomization);
 	}

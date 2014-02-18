@@ -35,13 +35,13 @@ import org.eclipse.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialog;
 import org.eclipse.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialogFactory;
-import org.eclipse.emf.facet.infra.browser.Messages;
-import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-import org.eclipse.emf.facet.infra.browser.custom.TypeView;
-import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
-import org.eclipse.emf.facet.infra.facet.Facet;
-import org.eclipse.emf.facet.infra.facet.FacetSet;
-import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
+//import org.eclipse.emf.facet.infra.browser.Messages;
+//import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
+//import org.eclipse.emf.facet.infra.browser.custom.TypeView;
+//import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
+//import org.eclipse.emf.facet.infra.facet.Facet;
+//import org.eclipse.emf.facet.infra.facet.FacetSet;
+//import org.eclipse.emf.facet.infra.facet.core.FacetSetCatalog;
 import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
 import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
 import org.eclipse.jface.window.Window;
@@ -168,75 +168,75 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		return ModelUtils.getModelSet();
 	}
 
-	/**
-	 * load the facets
-	 * 
-	 * @param customizations
-	 *        list of customization
-	 * @param customizationManager
-	 *        the Customization Manager
-	 */
-	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
-		final Set<Facet> referencedFacets = new HashSet<Facet>();
-		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
-
-		for(MetamodelView customization : customizations) {
-			String metamodelURI = customization.getMetamodelURI();
-			// find customized FacetSet
-			FacetSet customizedFacetSet = null;
-			if(metamodelURI != null) {
-				for(FacetSet facetSet : facetSets) {
-					if(metamodelURI.equals(facetSet.getNsURI())) {
-						customizedFacetSet = facetSet;
-						break;
-					}
-				}
-			}
-			if(customizedFacetSet == null) {
-				continue;
-			}
-
-			// find customized Facets
-			EList<TypeView> types = customization.getTypes();
-			for(TypeView typeView : types) {
-				String metaclassName = typeView.getMetaclassName();
-				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
-				if(facet != null) {
-					referencedFacets.add(facet);
-				} else {
-					Activator.log.warn(NLS.bind(Messages.BrowserActionBarContributor_missingRequiredFacet, new Object[]{ metaclassName, customizedFacetSet.getName(), customization.getName() }));
-				}
-			}
-
-			for(Facet referencedFacet : referencedFacets) {
-				customizationManager.loadFacet(referencedFacet);
-			}
-		}
+//	/**
+//	 * load the facets
+//	 * 
+//	 * @param customizations
+//	 *        list of customization
+//	 * @param customizationManager
+//	 *        the Customization Manager
+//	 */
+//	protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
+//		final Set<Facet> referencedFacets = new HashSet<Facet>();
+//		final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
+//
+//		for(MetamodelView customization : customizations) {
+//			String metamodelURI = customization.getMetamodelURI();
+//			// find customized FacetSet
+//			FacetSet customizedFacetSet = null;
+//			if(metamodelURI != null) {
+//				for(FacetSet facetSet : facetSets) {
+//					if(metamodelURI.equals(facetSet.getNsURI())) {
+//						customizedFacetSet = facetSet;
+//						break;
+//					}
+//				}
+//			}
+//			if(customizedFacetSet == null) {
+//				continue;
+//			}
+//
+//			// find customized Facets
+//			EList<TypeView> types = customization.getTypes();
+//			for(TypeView typeView : types) {
+//				String metaclassName = typeView.getMetaclassName();
+//				Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
+//				if(facet != null) {
+//					referencedFacets.add(facet);
+//				} else {
+//					Activator.log.warn(NLS.bind(Messages.BrowserActionBarContributor_missingRequiredFacet, new Object[]{ metaclassName, customizedFacetSet.getName(), customization.getName() }));
+//				}
+//			}
+//
+//			for(Facet referencedFacet : referencedFacets) {
+//				customizationManager.loadFacet(referencedFacet);
+//			}
+//		}
 
 		//
 		// for modified facets
 		// customizationManager.getInstancesForMetaclasses().buildDerivationTree();
 		// customizationManager.getAppearanceConfiguration().touch();
 		// customizationManager.refreshDelayed(true);
-	}
+	//}
 
-	/**
-	 * fin a facet from
-	 * 
-	 * @param metaclassName
-	 * @param customizedFacetSet
-	 * @return
-	 */
-	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
-		EList<Facet> facets = customizedFacetSet.getFacets();
-		for(Facet facet : facets) {
-			String facetName = getMetaclassQualifiedName(facet);
-			if(metaclassName.equals(facetName)) {
-				return facet;
-			}
-		}
-		return null;
-	}
+//	/**
+//	 * fin a facet from
+//	 * 
+//	 * @param metaclassName
+//	 * @param customizedFacetSet
+//	 * @return
+//	 */
+//	private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
+//		EList<Facet> facets = customizedFacetSet.getFacets();
+//		for(Facet facet : facets) {
+//			String facetName = getMetaclassQualifiedName(facet);
+//			if(metaclassName.equals(facetName)) {
+//				return facet;
+//			}
+//		}
+//		return null;
+//	}
 
 	/** @return the qualified name of the given metaclass */
 	public static String getMetaclassQualifiedName(final EClassifier eClass) {

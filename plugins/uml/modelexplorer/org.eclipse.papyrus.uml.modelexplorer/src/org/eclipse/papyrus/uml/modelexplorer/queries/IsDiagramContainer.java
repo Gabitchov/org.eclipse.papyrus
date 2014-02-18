@@ -16,9 +16,10 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
@@ -29,11 +30,11 @@ import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQu
  * @Deprecated : use oep.infra.gmfdiag.modelexplorer#queries.IsDiagramContainer
  */
 @Deprecated
-public class IsDiagramContainer extends AbstractEditorContainerQuery implements IJavaModelQuery<EObject, Boolean> {
+public class IsDiagramContainer extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Boolean> {
 
 
-	public Boolean evaluate(final EObject context, ParameterValueList parameterValues) throws ModelQueryExecutionException {
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(context);
+	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
+		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
 		if(roots == null) {
 			return false;
 		}
@@ -41,11 +42,11 @@ public class IsDiagramContainer extends AbstractEditorContainerQuery implements 
 		while(roots.hasNext()) {
 			EObject root = roots.next();
 			if(root instanceof Diagram) {
-				if(EcoreUtil.equals(((Diagram)root).getElement(), context)) {
+				if(EcoreUtil.equals(((Diagram)root).getElement(), source)) {
 					return true;
 				}
 			}
 		}
 		return false;
 	}
-}
+	}

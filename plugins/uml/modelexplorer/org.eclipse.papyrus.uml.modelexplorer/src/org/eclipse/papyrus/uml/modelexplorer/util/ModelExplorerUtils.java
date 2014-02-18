@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.modelexplorer.util;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.uml.service.types.utils.CommandContext;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
@@ -63,8 +63,8 @@ public class ModelExplorerUtils {
 				// The following part introduce a dependency to EMF Facet.
 				// Although the selection can be adapted to EReference, the link parent is required but
 				// no API allows to get this element except LinkItem or ITreeElement.
-				if((reference != null) && (selection instanceof LinkItem)) {
-					container = ((LinkItem)selection).getParent();
+				if((reference != null) && (selection instanceof EReferenceTreeElement )) {
+					container = ((EReferenceTreeElement)selection).getParent();
 				}
 			}
 		}

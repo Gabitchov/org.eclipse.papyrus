@@ -12,20 +12,22 @@
 package org.eclipse.papyrus.views.modelexplorer.queries;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.infra.query.core.exception.ModelQueryExecutionException;
-import org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery;
-import org.eclipse.emf.facet.infra.query.core.java.ParameterValueList;
+import org.eclipse.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 
 /** Tests whether an element is a page */
-public class IsPage implements IJavaModelQuery<EObject, Boolean> {
+public class IsPage implements IJavaQuery2<EObject, Boolean> {
 
-	public Boolean evaluate(final EObject context, final ParameterValueList parameterValues) throws ModelQueryExecutionException {
+
+	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
 		try {
-			IPageManager pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(context);
-			return pageManager.allPages().contains(context);
+			IPageManager pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(source);
+			return pageManager.allPages().contains(source);
 		} catch (ServiceException ex) {
 			//Ignore
 		}

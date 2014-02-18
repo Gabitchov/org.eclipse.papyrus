@@ -44,7 +44,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.0",
  org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0",
  org.eclipse.papyrus.emf.facet.custom.metamodel,
- org.eclipse.papyrus.emf.facet.util.ui;bundle-version="0.4.0"
+ org.eclipse.papyrus.emf.facet.util.ui;bundle-version="0.4.0",
+ org.eclipse.papyrus.emf.facet.query.java.core
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.qualifier

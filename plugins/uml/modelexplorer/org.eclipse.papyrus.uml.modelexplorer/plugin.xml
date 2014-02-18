@@ -1087,7 +1087,7 @@
    </factory>
 </extension>
 
-   <extension point="org.eclipse.emf.facet.infra.facet.registration">
+   <!--extension point="org.eclipse.emf.facet.infra.facet.registration">
       <facetset file="resource/PapyrusUMLFacet.facetSet">
       </facetset>
    </extension>
@@ -1099,7 +1099,7 @@
             file="resource/SimpleUML.uiCustom"
             loadByDefault="true">
       </browserCustomization>
-   </extension>
+   </extension-->
    <extension point= "org.eclipse.ui.handlers">
 <handler class= "org.eclipse.papyrus.uml.modelexplorer.handler.AbstractionHandler" commandId="org.eclipse.papyrus.uml.service.types.AbstractionCreateCommand">
    <activeWhen>

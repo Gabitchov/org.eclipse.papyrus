@@ -16,6 +16,7 @@ import java.lang.reflect.Method;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.emf.facet.custom.ui.internal.CustomizedLabelProvider;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizationManager;
@@ -44,7 +45,7 @@ public class ContextLabelProvider extends CustomizedLabelProvider {
 
 	@Override
 	public String getText(Object element) {
-		if(!(element instanceof ITreeElement) && element instanceof EObject) {
+		if(!(element instanceof EObjectTreeElement) && element instanceof EObject) {
 			try {
 				Method method = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");//$NON-NLS-1$
 				method.setAccessible(true);
