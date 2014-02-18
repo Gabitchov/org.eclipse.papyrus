@@ -28,5 +28,5 @@ org.eclipse.papyrus.infra.core.sasheditor.internal.AllTests.class,
 org.eclipse.papyrus.infra.core.sasheditor.tests.texteditor.AllTests.class
 })
 public class AllTests {
-
+	//Testsuite
 }

@@ -17,6 +17,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -24,6 +25,8 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public class NamedElementUtil {
 
+	public static final String COPY_OF = "CopyOf";
+	
 	public static final String QUALIFIED_NAME_SEPARATOR = "::";
 
 	private final static String PUBLIC_STRING = "+";
@@ -82,11 +85,16 @@ public class NamedElementUtil {
 	}
 
 	@SuppressWarnings("rawtypes")
+	public static String getDefaultCopyNameWithIncrement(NamedElement namedElement, Collection contents) {
+		String newName = NLS.bind(COPY_OF + "_{0}_", namedElement.getName());
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(newName, contents);
+	}
+	
+	@SuppressWarnings("rawtypes")
 	public static String getDefaultNameWithIncrement(String prefix, EObject newElement, Collection contents) {
 		if(prefix == null) {
 			prefix = "";
 		}
-
 		return getDefaultNameWithIncrementFromBase(prefix + newElement.eClass().getName(), contents);
 	}
 
