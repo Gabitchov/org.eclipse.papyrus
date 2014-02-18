@@ -102,8 +102,21 @@ public class ResetStyleCommand extends RecordingCommand {
 			Object styleObject = styleIterator.next();
 			if(styleObject instanceof NamedStyle) {
 				NamedStyle customStyle = (NamedStyle)styleObject;
+
 				if(!CSSStyles.RESERVED_KEYWORDS.contains(customStyle.getName())) {
-					styleIterator.remove();
+
+					//Remove only NamedStyle which are supported by the CSS Implementation
+					//See org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate.getCSSNamedStyle(EClass, String)
+					//See Bug 425190 - [CSS] Loss of Notation information when CSS style is applied on Edges.
+					switch(customStyle.eClass().getClassifierID()) {
+					case NotationPackage.STRING_VALUE_STYLE:
+					case NotationPackage.BOOLEAN_VALUE_STYLE:
+					case NotationPackage.INT_VALUE_STYLE:
+					case NotationPackage.DOUBLE_VALUE_STYLE:
+					case NotationPackage.STRING_LIST_VALUE_STYLE:
+						styleIterator.remove();
+					}
+
 				}
 			} else if(styleObject instanceof Style) {
 				resetStyle((Style)styleObject);
