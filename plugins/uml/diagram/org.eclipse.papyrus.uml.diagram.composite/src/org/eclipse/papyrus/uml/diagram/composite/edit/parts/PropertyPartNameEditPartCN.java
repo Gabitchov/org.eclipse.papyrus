@@ -416,8 +416,7 @@ public class PropertyPartNameEditPartCN extends PapyrusCompartmentEditPart imple
 					setParser(((ICustomDirectEditorConfiguration)configuration).createParser(this.resolveSemanticElement()));
 					initializeDirectEditManager(theRequest);
 					return;
-				} 
-				if(configuration instanceof IPopupEditorConfiguration) {
+				} else if(configuration instanceof IPopupEditorConfiguration) {
 					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
@@ -565,6 +564,7 @@ public class PropertyPartNameEditPartCN extends PapyrusCompartmentEditPart imple
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * @generated
 	 */

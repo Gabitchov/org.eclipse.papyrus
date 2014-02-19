@@ -33,7 +33,10 @@ import com.google.inject.Injector;
  * This class is provided as a basis for contribution to the extension point directEditors of Papyrus,
  * for the case of popup editors.
  * Clients must simply override the method createPopupEditorHelper(Object editPart)
+ * 
+ * This class is deprecated, use DefaultDirectEditorConfiguration instead
  */
+@Deprecated
 public abstract class PopupEditorConfiguration implements IPopupEditorConfiguration {
 
 	private String language = "";

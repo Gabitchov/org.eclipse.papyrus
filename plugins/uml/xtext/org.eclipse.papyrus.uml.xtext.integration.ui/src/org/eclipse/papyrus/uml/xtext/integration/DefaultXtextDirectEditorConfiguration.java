@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
@@ -40,6 +39,7 @@ import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateSubtreeCommand;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
@@ -61,7 +61,7 @@ import com.google.inject.name.Names;
  * abstract base implementation of {@link ICustomDirectEditorConfiguration}
  * 
  * @author andreas muelder - Initial contribution and API
- * 
+ *         Ansgar Radermacher - Added possibility to configure context provider
  * 
  */
 public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
@@ -93,8 +93,21 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 		return SWT.SINGLE;
 	}
 
+	protected IContextElementProvider getContextProvider() {
+		return new IContextElementProvider() {
+
+			public EObject getContextObject() {
+				if (objectToEdit instanceof EObject) {
+					return (EObject) objectToEdit;
+				}
+				return null;
+			}
+		};
+	}
+	
 	public DirectEditManager createDirectEditManager(final ITextAwareEditPart host) {
-		IContextElementProvider provider = new IContextElementProvider() {
+		IContextElementProvider provider = getContextProvider();
+				/* new IContextElementProvider() {
 
 			public EObject getContextObject() {
 				if(host instanceof IGraphicalEditPart) {
@@ -103,6 +116,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 				return null;
 			}
 		};
+		*/
 		return new XtextDirectEditManager(host, getInjector(), getStyle(), provider);
 	}
 
@@ -117,19 +131,24 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 			}
 
 			public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-				CompositeCommand result = new CompositeCommand("validation");
-				IContextElementProvider provider = new IContextElementProvider() {
+				CompositeCommand result = new CompositeCommand("validation"); //$NON-NLS-1$
+				IContextElementProvider provider = getContextProvider();
+				/*{new IContextElementProvider() {
 
 					public EObject getContextObject() {
 						return semanticObject;
 					}
 				};
+				*/
 				XtextFakeResourceContext context = new XtextFakeResourceContext(getInjector());
 				context.getFakeResource().eAdapters().add(new ContextElementAdapter(provider));
 				try {
 					context.getFakeResource().load(new StringInputStream(newString), Collections.EMPTY_MAP);
 				} catch (IOException e) {
 					e.printStackTrace();
+				}
+				if (provider instanceof IContextElementProviderWithInit) {
+					((IContextElementProviderWithInit) provider).initResource(context.getFakeResource());
 				}
 				EcoreUtil2.resolveLazyCrossReferences(context.getFakeResource(), CancelIndicator.NullImpl);
 				if(!context.getFakeResource().getParseResult().hasSyntaxErrors() && context.getFakeResource().getErrors().size() == 0) {

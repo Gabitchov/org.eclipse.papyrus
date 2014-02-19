@@ -19,8 +19,9 @@ import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
-import org.eclipse.papyrus.uml.xtext.integration.core.IXtextFakeContextResourcesProvider;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
+import org.eclipse.papyrus.uml.xtext.integration.core.IXtextFakeContextResourcesProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.FocusAdapter;
@@ -94,6 +95,11 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 		if (provider != null) {
 			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters()
 					.add(new ContextElementAdapter(provider));
+			if (provider instanceof IContextElementProviderWithInit) {
+				// update resource, if required by text editor
+				((IContextElementProviderWithInit) provider).initResource(
+						xtextAdapter.getFakeResourceContext().getFakeResource());
+			}
 		}
 
 		// configure content assist

@@ -33,6 +33,7 @@ public class XtextFakeResourceContext {
 	@Inject
 	private @Named(Constants.FILE_EXTENSIONS)
 	String fakeResourceFileExtension;
+	
 
 	public XtextFakeResourceContext(Injector injector) {
 		injector.injectMembers(this);
