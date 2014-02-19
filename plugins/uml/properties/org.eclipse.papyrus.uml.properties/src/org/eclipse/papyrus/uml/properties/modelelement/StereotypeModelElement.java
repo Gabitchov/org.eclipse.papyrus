@@ -65,6 +65,9 @@ public class StereotypeModelElement extends EMFModelElement {
 	public IObservable doGetObservable(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
 		EStructuralFeature feature = getFeature(featurePath);
+		if(feature == null) {
+			return super.doGetObservable(propertyPath);
+		}
 
 		if(feature.getEType() instanceof EDataType && !(feature.getEType() instanceof EEnum)) {
 			if(feature.getUpperBound() == 1) {
@@ -89,6 +92,9 @@ public class StereotypeModelElement extends EMFModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
+		if(feature == null) {
+			return super.getLabelProvider(propertyPath);
+		}
 		if(feature.getEType() instanceof EEnum) {
 			return super.getLabelProvider(propertyPath);
 		}
@@ -101,6 +107,10 @@ public class StereotypeModelElement extends EMFModelElement {
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
+
+		if(feature == null) {
+			return super.getContentProvider(propertyPath);
+		}
 
 		return new UMLContentProvider(source, feature, stereotype);
 	}

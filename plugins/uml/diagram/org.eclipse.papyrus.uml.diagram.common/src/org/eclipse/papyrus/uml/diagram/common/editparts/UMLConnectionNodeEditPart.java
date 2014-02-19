@@ -309,4 +309,15 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionEditPart imple
 		return out;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void setLineWidth(int width) {
+		if(width < 0) {
+			width = 1;
+		}
+		getPrimaryShape().setLineWidth(width);
+	}
+
 }

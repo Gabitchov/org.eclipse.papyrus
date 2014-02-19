@@ -86,24 +86,26 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 				double spacing = drep.getGridSpacing();
 				final double max_value = spacing * 20;
 				final SnapToHelper helper = (SnapToHelper)getHost().getAdapter(SnapToHelper.class);
-				final LayoutHelper layoutHelper = new LayoutHelper();
-				while(add < max_value) {//we define a max value to do test
-					Rectangle LOCAL_BOUNDS = BOUNDS.getCopy();
-					LOCAL_BOUNDS.translate(add, add);
-					Rectangle tmp_rect = getBoundsOffest(req, LOCAL_BOUNDS, viewDescriptor);
-					final PrecisionRectangle resultRect = new PrecisionRectangle(tmp_rect);
-					resultRect.setWidth(-1);
-					resultRect.setHeight(-1);
-					PrecisionPoint res1 = new PrecisionPoint(tmp_rect.getLocation());
-					helper.snapPoint(request, PositionConstants.NORTH_WEST, res1.getPreciseCopy(), res1);
-					final Point pt = layoutHelper.validatePosition(getHostFigure(), resultRect.setLocation(res1));
-					if(couldBeSnaped) {
-						if(pt.equals(resultRect.getLocation())) {
-							rect.setLocation(resultRect.getLocation());
-							break;
-						} else {
-							add += spacing;
-							continue;
+				if(helper != null) {
+					final LayoutHelper layoutHelper = new LayoutHelper();
+					while(add < max_value) {//we define a max value to do test
+						Rectangle LOCAL_BOUNDS = BOUNDS.getCopy();
+						LOCAL_BOUNDS.translate(add, add);
+						Rectangle tmp_rect = getBoundsOffest(req, LOCAL_BOUNDS, viewDescriptor);
+						final PrecisionRectangle resultRect = new PrecisionRectangle(tmp_rect);
+						resultRect.setWidth(-1);
+						resultRect.setHeight(-1);
+						PrecisionPoint res1 = new PrecisionPoint(tmp_rect.getLocation());
+						helper.snapPoint(request, PositionConstants.NORTH_WEST, res1.getPreciseCopy(), res1);
+						final Point pt = layoutHelper.validatePosition(getHostFigure(), resultRect.setLocation(res1));
+						if(couldBeSnaped) {
+							if(pt.equals(resultRect.getLocation())) {
+								rect.setLocation(resultRect.getLocation());
+								break;
+							} else {
+								add += spacing;
+								continue;
+							}
 						}
 					}
 				}
