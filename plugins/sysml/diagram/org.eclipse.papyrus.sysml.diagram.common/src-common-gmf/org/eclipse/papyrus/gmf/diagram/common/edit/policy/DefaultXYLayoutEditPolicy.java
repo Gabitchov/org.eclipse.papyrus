@@ -40,8 +40,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstra
  */
 public class DefaultXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEditPolicy {
 
-	protected double spacing = 80;
-
 	/**
 	 * Called in response to a <tt>REQ_CREATE</tt> request. Returns a command
 	 * to set each created element bounds and auto-size properties.
@@ -64,33 +62,35 @@ public class DefaultXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEdi
 		while(iter.hasNext()) {
 			CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor)iter.next();
 			Rectangle rect = getBoundsOffest(req, BOUNDS, viewDescriptor);
-			
+
 			//see bug 427129: Figures newly created via the palette should be snapped to grid if "snap to grid" is activated
 			if(couldBeSnaped) {
 				//this code fix the bug in some case...
 				int add = 0;
 				DiagramRootEditPart drep = (DiagramRootEditPart)getHost().getRoot();
 				double spacing = drep.getGridSpacing();
-				final double max_value = spacing*20;
+				final double max_value = spacing * 20;
 				final SnapToHelper helper = (SnapToHelper)getHost().getAdapter(SnapToHelper.class);
-				final LayoutHelper layoutHelper = new LayoutHelper();
-				while(add < max_value) {//we define a max value to do test
-					Rectangle LOCAL_BOUNDS = BOUNDS.getCopy();
-					LOCAL_BOUNDS.translate(add, add);
-					Rectangle tmp_rect = getBoundsOffest(req, LOCAL_BOUNDS, viewDescriptor);
-					final PrecisionRectangle resultRect = new PrecisionRectangle(tmp_rect);
-					resultRect.setWidth(-1);
-					resultRect.setHeight(-1);
-					PrecisionPoint res1 = new PrecisionPoint(tmp_rect.getLocation());
-					helper.snapPoint(request, PositionConstants.NORTH_WEST, res1.getPreciseCopy(), res1);
-					final Point pt = layoutHelper.validatePosition(getHostFigure(), resultRect.setLocation(res1));
-					if(couldBeSnaped) {
-						if(pt.equals(resultRect.getLocation())) {
-							rect.setLocation(resultRect.getLocation());
-							break;
-						} else {
-							add +=spacing;
-							continue;
+				if(helper != null) {
+					final LayoutHelper layoutHelper = new LayoutHelper();
+					while(add < max_value) {//we define a max value to do test
+						Rectangle LOCAL_BOUNDS = BOUNDS.getCopy();
+						LOCAL_BOUNDS.translate(add, add);
+						Rectangle tmp_rect = getBoundsOffest(req, LOCAL_BOUNDS, viewDescriptor);
+						final PrecisionRectangle resultRect = new PrecisionRectangle(tmp_rect);
+						resultRect.setWidth(-1);
+						resultRect.setHeight(-1);
+						PrecisionPoint res1 = new PrecisionPoint(tmp_rect.getLocation());
+						helper.snapPoint(request, PositionConstants.NORTH_WEST, res1.getPreciseCopy(), res1);
+						final Point pt = layoutHelper.validatePosition(getHostFigure(), resultRect.setLocation(res1));
+						if(couldBeSnaped) {
+							if(pt.equals(resultRect.getLocation())) {
+								rect.setLocation(resultRect.getLocation());
+								break;
+							} else {
+								add += spacing;
+								continue;
+							}
 						}
 					}
 				}
