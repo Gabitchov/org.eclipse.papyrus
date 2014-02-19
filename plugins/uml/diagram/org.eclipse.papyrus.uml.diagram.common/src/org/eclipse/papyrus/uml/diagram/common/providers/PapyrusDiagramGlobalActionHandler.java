@@ -45,7 +45,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.helper.CleanDiagramHelper;
-import org.eclipse.papyrus.uml.pastemanager.service.PasteCommandService;
+import org.eclipse.papyrus.uml.diagram.common.service.PasteCommandService;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 

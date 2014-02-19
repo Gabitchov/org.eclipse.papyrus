@@ -36,7 +36,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.commands.Activator;
@@ -47,7 +46,6 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-;
 
 /**
  * this handler has in charge to exexute the paste of UML element with their applied stereotypes
@@ -55,16 +53,18 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class PasteElementCommand extends AbstractCommand {
 
-	protected ArrayList<EObject> eobjectTopaste = null;
+	private static final String TARGET_OWNER = "Target_Owner"; //$NON-NLS-1$
 
-	protected ArrayList<EObject> stereotypeApplicationTopaste = null;
+	private static final String ADDITIONAL_DUPLICATED_ELEMENTS = "Additional_Duplicated_Elements"; //$NON-NLS-1$
+
+	protected List<EObject> eobjectTopaste = null;
+
+	protected List<EObject> stereotypeApplicationTopaste = null;
 
 	protected EObject targetOwner;
 
 	protected CompositeCommand command;
 
-	//the prefix for the duplicated object
-	protected String COPY_OF = "CopyOf";
 
 	/**
 	 * get the command do the paste on the target owner
@@ -82,7 +82,7 @@ public class PasteElementCommand extends AbstractCommand {
 			Collection<Object> rawData = domain.getClipboard();
 
 			//2. filter only EObject
-			ArrayList<EObject> eobjectsTopaste = new ArrayList<EObject>();
+			List<EObject> eobjectsTopaste = new ArrayList<EObject>();
 			Iterator<Object> iterData = rawData.iterator();
 			while(iterData.hasNext()) {
 				Object object = iterData.next();
@@ -180,24 +180,37 @@ public class PasteElementCommand extends AbstractCommand {
 				command.compose(provider.getEditCommand(moveRequest));
 			}
 
-			//5 bis. Rename the duplicated objects (only the root elements that are copied, no need to rename *all* nested elements)
-			for(int i = 0; i < objectsToMove.size(); i++) {
-				EObject element = objectsToMove.get(i);
-				if(element instanceof NamedElement && domain instanceof TransactionalEditingDomain) {
-					String newName = NLS.bind(COPY_OF + "_{0}_", ((NamedElement)element).getName());
-					String incrementedName = NamedElementUtil.getDefaultNameWithIncrementFromBase(newName, targetOwner.eContents());
-					SetRequest renameRequest = new SetRequest((TransactionalEditingDomain)domain, element, UMLFactory.eINSTANCE.getUMLPackage().getNamedElement_Name(), incrementedName);
-					if(provider != null && command != null) {
-						command.compose(provider.getEditCommand(renameRequest));
-					}
-				}
-			}
+			renameDuplicatedObject(domain, targetOwner, objectsToMove, provider);
 
 			ICommand externalObjectsDuplicateCommand = getExternalObjectsDuplicateCommand(duplicatedObjects, targetOwner);
 			if(externalObjectsDuplicateCommand != null && command != null) {
 				command.compose(externalObjectsDuplicateCommand);
 			}
 
+		}
+	}
+
+	
+	/**
+	 *  Rename duplicated objects
+	 * @param domain
+	 * @param targetOwner
+	 * @param objectsToMove
+	 * @param provider
+	 */
+	private void renameDuplicatedObject(EditingDomain domain,
+			EObject targetOwner, List<EObject> objectsToMove,
+			IElementEditService provider) {
+		//5 bis. Rename the duplicated objects (only the root elements that are copied, no need to rename *all* nested elements)
+		for(int i = 0; i < objectsToMove.size(); i++) {
+			EObject element = objectsToMove.get(i);
+			if(element instanceof NamedElement && domain instanceof TransactionalEditingDomain) {
+				String incrementedName = NamedElementUtil.getDefaultCopyNameWithIncrement((NamedElement)element,targetOwner.eContents());
+				SetRequest renameRequest = new SetRequest((TransactionalEditingDomain)domain, element, UMLFactory.eINSTANCE.getUMLPackage().getNamedElement_Name(), incrementedName);
+				if(provider != null && command != null) {
+					command.compose(provider.getEditCommand(renameRequest));
+				}
+			}
 		}
 	}
 
@@ -219,8 +232,6 @@ public class PasteElementCommand extends AbstractCommand {
 		while(stereoApplIter.hasNext()) {
 			EObject eObject = stereoApplIter.next();
 			targetOwner.eResource().getContents().add(eObject);
-
-
 		}
 
 	}
@@ -295,8 +306,8 @@ public class PasteElementCommand extends AbstractCommand {
 				EObject object = (EObject)o;
 				DuplicateElementsRequest request = new DuplicateElementsRequest(Collections.singletonList(object));
 				request.setAllDuplicatedElementsMap(duplicatedElementsMap);
-				request.setParameter("Additional_Duplicated_Elements", duplicatedExternalElements);
-				request.setParameter("Target_Owner", targetOwner);
+				request.setParameter(ADDITIONAL_DUPLICATED_ELEMENTS, duplicatedExternalElements);
+				request.setParameter(TARGET_OWNER, targetOwner);
 				IElementEditService service = ElementEditServiceUtils.getCommandProvider(object);
 				ICommand command = service.getEditCommand(request);
 				if(command != null) {
