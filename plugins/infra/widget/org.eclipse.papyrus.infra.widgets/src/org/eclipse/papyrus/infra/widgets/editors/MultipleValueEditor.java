@@ -412,10 +412,13 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 					@Override
 					public void run() {
 						Object newElement = referenceFactory.createObject(MultipleValueEditor.this, context);
-						if(newElement != null) {
-							modelProperty.add(newElement);
-							commit();
+						if(newElement == null) {
+							// Cancel the operation
+							throw new OperationCanceledException();
 						}
+						
+						modelProperty.add(newElement);
+						commit();
 					}
 				}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
 			}

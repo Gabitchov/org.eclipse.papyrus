@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
@@ -223,7 +224,8 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 				public void run() {
 					Object value = valueFactory.createObject(createInstanceButton, context);
 					if(value == null) {
-						return;
+						// Cancel the operation
+						throw new OperationCanceledException();
 					}
 					Collection<Object> validatedObjects = valueFactory.validateObjects(Collections.singleton(value));
 					if(!validatedObjects.isEmpty()) {
