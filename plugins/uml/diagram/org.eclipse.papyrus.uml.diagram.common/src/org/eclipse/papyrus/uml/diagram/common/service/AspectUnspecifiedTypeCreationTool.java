@@ -24,14 +24,21 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
@@ -56,6 +63,7 @@ import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IAspectAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPostAction;
 import org.eclipse.papyrus.uml.diagram.common.service.palette.IPreAction;
+import org.eclipse.swt.SWT;
 import org.w3c.dom.NodeList;
 
 /**
@@ -278,7 +286,10 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 					request = new CreateViewAndElementRequest(viewDescriptor);
 					request.setExtendedData(getExtendedData());
 				}
-
+				if(request instanceof CreateRequest) {
+					//see bug 427129: Figures newly created via the palette should be snapped to grid if "snap to grid" is activated
+					((CreateRequest)request).setSnapToEnabled(!getCurrentInput().isModKeyDown(MODIFIER_NO_SNAPPING));
+				}
 				request.setType(getType());
 				requests.put(elementType, request);
 			}
@@ -297,6 +308,57 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 			return hint;
 		}
 
+	}
+
+	@Override
+	protected void createShapeAt(Point point) {
+		setTargetEditPart(getCurrentViewer().getRootEditPart().getContents());
+		getCreateRequest().setLocation(point);
+		setCurrentCommand(getCommand());
+		performCreation(0);
+	}
+
+	/**
+	 * Key modifier for ignoring snap while dragging. It's CTRL on Mac, and ALT
+	 * on all other platforms.
+	 */
+	static final int MODIFIER_NO_SNAPPING;
+
+	static {
+		if(Platform.OS_MACOSX.equals(Platform.getOS())) {
+			MODIFIER_NO_SNAPPING = SWT.CTRL;
+		} else {
+			MODIFIER_NO_SNAPPING = SWT.ALT;
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gef.tools.CreationTool#updateTargetRequest()
+	 *
+	 */
+	protected void updateTargetRequest() {
+		super.updateTargetRequest();
+		CreateRequest createRequest = getCreateRequest();
+		//see bug 427129: Figures newly created via the palette should be snapped to grid if "snap to grid" is activated
+		if(!isInState(STATE_DRAG_IN_PROGRESS) && !getCurrentInput().isModKeyDown(MODIFIER_NO_SNAPPING)) {
+			//allow to do a snap to grid for creation with one click
+			if(getTargetEditPart() != null) {
+				SnapToHelper helper = (SnapToHelper)getTargetEditPart().getAdapter(SnapToHelper.class);
+				Point loq = getLocation();
+				Rectangle bounds = new Rectangle(loq, loq);
+				createRequest.setSnapToEnabled(!getCurrentInput().isModKeyDown(MODIFIER_NO_SNAPPING));
+				createRequest.setLocation(bounds.getLocation());
+				if(helper != null && createRequest.isSnapToEnabled()) {
+					
+					PrecisionRectangle baseRect = new PrecisionRectangle(bounds);
+					PrecisionRectangle result = baseRect.getPreciseCopy();
+					helper.snapRectangle(createRequest, PositionConstants.NORTH_WEST, baseRect, result);
+					createRequest.setLocation(result.getLocation());
+				}
+				enforceConstraintsForSizeOnDropCreate(createRequest);
+			}
+		}
 	}
 
 }
