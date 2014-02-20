@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008, 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,33 +17,35 @@ package org.eclipse.papyrus.uml.properties.profile.ui.dialogs;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.standard.FilteredRegisteredElementsSelectionDialog;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
-import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
+import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
 /**
- * 
+ *
  */
 public class RegisteredProfileSelectionDialog extends FilteredRegisteredElementsSelectionDialog {
 
 	/**
-	 * 
+	 *
 	 */
 	private RegisteredProfile[] regProfiles;
 
 	/**
-	 * 
+	 *
 	 */
 	private Package currentPackage;
 
@@ -77,7 +79,13 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 		// 0);
 		// dialog.open();
 		this.open();
-		return this.treatSelection();
+		List<Profile> profilesToApply = this.treatSelection();
+
+		List<Profile> result = new LinkedList<Profile>();
+		for(Profile profile : profilesToApply) {
+			result.add((Profile)EcoreUtil.resolve(profile, currentPackage));
+		}
+		return result;
 	}
 
 	/**
@@ -89,9 +97,8 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 
 		// User selection
 		Object[] selection = this.getResult();
-		boolean hasChanged = false;
 
-		ResourceSet resourceSet = Util.getResourceSet(currentPackage);
+		ResourceSet resourceSet = Util.getSharedResourceSet();
 
 		if(selection == null) { // Cancel was selected
 			return new ArrayList<Profile>();
@@ -146,7 +153,7 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 			if(Dialog.OK == returnValue) {
 				Collection<ImportSpec<Profile>> dlgResult = profileDialog.getResult();
 				List<Profile> result = new java.util.ArrayList<Profile>(dlgResult.size());
-				for (ImportSpec<Profile> next : dlgResult) {
+				for(ImportSpec<Profile> next : dlgResult) {
 					result.add(next.getElement());
 				}
 				return result;

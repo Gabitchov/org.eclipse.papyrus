@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,6 @@ package org.eclipse.papyrus.robotml.diagram.common.utils;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.RobotML.RobotMLPackage;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -24,8 +23,6 @@ import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class is a Property tester used to check if current model (meaning the model currently opened in Papyrus) is a Proteus Model.
@@ -65,20 +62,21 @@ public class RobotmlSelectionTester extends PropertyTester {
 		return false;
 	}
 
-	/** True is root object is a UML Model with Proteus Profile (and sub profiles) applied */
+	/** True is root object is a UML Model with RobotML Profile (and sub profiles) applied */
 	protected boolean testRobotmlModelNature(Object receiver) {
 		boolean isRobotmlModel = false;
 
-
-
 		EObject root = getRoot(receiver);
 		if(root instanceof Package) {
+			return (((Package)root).getAppliedProfile("RobotML") != null);
 
-			Profile robotml = UMLUtil.getProfile(RobotMLPackage.eINSTANCE, root);
-
-			if(((Package)root).isProfileApplied(robotml)) {
-				isRobotmlModel = true;
-			}
+			//FIX: UMLUtil.getProfile() loads the profile into the resource set. This is not desired.
+			//
+			//			Profile robotml = UMLUtil.getProfile(RobotMLPackage.eINSTANCE, root);
+			//
+			//			if(((Package)root).isProfileApplied(robotml)) {
+			//				isRobotmlModel = true;
+			//			}
 		}
 
 

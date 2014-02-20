@@ -1,19 +1,16 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
-import java.util.Map;
-
-import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
-import org.eclipse.papyrus.infra.core.resource.IModel;
 
 /**
  * @author dumoulin
- * 
+ *
+ * @deprecated Use {@link SashModel} instead
  */
-public class DiModel extends AbstractBaseModel implements IModel {
+@Deprecated
+public class DiModel {
 
 	/**
 	 * File extension used for notation.
@@ -29,39 +26,5 @@ public class DiModel extends AbstractBaseModel implements IModel {
 	 * Model ID.
 	 */
 	public static final String MODEL_ID = "org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel"; //$NON-NLS-1$
-
-	/**
-	 * Get the file extension used for this model.
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
-	 * 
-	 * @return
-	 */
-	@Override
-	protected String getModelFileExtension() {
-		return MODEL_FILE_EXTENSION;
-	}
-
-	/**
-	 * Get the identifier used to register this model.
-	 * 
-	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getIdentifier()
-	 * 
-	 * @return
-	 */
-	@Override
-	public String getIdentifier() {
-		return MODEL_FILE_EXTENSION;
-	}
-
-	@Override
-	protected Map<Object, Object> getSaveOptions() {
-		Map<Object, Object> saveOptions = super.getSaveOptions();
-
-		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.FALSE);
-		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.FALSE);
-
-		return saveOptions;
-	}
 
 }

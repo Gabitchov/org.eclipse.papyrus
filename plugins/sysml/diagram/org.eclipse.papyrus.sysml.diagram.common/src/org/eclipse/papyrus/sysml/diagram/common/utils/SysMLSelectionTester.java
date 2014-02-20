@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
+ *
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -19,14 +19,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
-import org.eclipse.papyrus.sysml.SysmlPackage;
-import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
-import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * This class is a Property tester used to check is current model (meaning the model currently opened in Papyrus) is a SysML Model.
@@ -75,10 +70,15 @@ public class SysMLSelectionTester extends PropertyTester {
 
 		EObject root = getRoot(receiver);
 		if(root instanceof Package) {
-			Profile sysml = UMLUtil.getProfile(SysmlPackage.eINSTANCE, root);
-			if(((Package)root).isProfileApplied(sysml)) {
-				isSysMLModel = true;
-			}
+
+			return (((Package)root).getAppliedProfile("SysML") != null);
+
+			//FIX: UMLUtil.getProfile() loads the profile into the resource set. This is not desired.
+			//
+			//			Profile sysml = UMLUtil.getProfile(SysmlPackage.eINSTANCE, root);
+			//			if(((Package)root).isProfileApplied(sysml)) {
+			//				isSysMLModel = true;
+			//			}
 		}
 
 		return isSysMLModel;
@@ -90,10 +90,13 @@ public class SysMLSelectionTester extends PropertyTester {
 
 		EObject root = getRoot(receiver);
 		if(root instanceof Package) {
-			Profile sysml = UMLUtil.getProfile(RequirementsPackage.eINSTANCE, root);
-			if(((Package)root).isProfileApplied(sysml)) {
-				isSysMLModel = true;
-			}
+			return (((Package)root).getAppliedProfile("SysML::Requirements") != null);
+
+			//FIX: UMLUtil.getProfile() loads the profile into the resource set. This is not desired.
+			//			Profile sysml = UMLUtil.getProfile(RequirementsPackage.eINSTANCE, root);
+			//			if(((Package)root).isProfileApplied(sysml)) {
+			//				isSysMLModel = true;
+			//			}
 		}
 
 		return isSysMLModel;
@@ -105,10 +108,12 @@ public class SysMLSelectionTester extends PropertyTester {
 
 		EObject root = getRoot(receiver);
 		if(root instanceof Package) {
-			Profile sysml = UMLUtil.getProfile(BlocksPackage.eINSTANCE, root);
-			if(((Package)root).isProfileApplied(sysml)) {
-				isSysMLModel = true;
-			}
+			return (((Package)root).getAppliedProfile("SysML::Blocks") != null);
+			//FIX: UMLUtil.getProfile() loads the profile into the resource set. This is not desired.
+			//			Profile sysml = UMLUtil.getProfile(BlocksPackage.eINSTANCE, root);
+			//			if(((Package)root).isProfileApplied(sysml)) {
+			//				isSysMLModel = true;
+			//			}
 		}
 
 		return isSysMLModel;
