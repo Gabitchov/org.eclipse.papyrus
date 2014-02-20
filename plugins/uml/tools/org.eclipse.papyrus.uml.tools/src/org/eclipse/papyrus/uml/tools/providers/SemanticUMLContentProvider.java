@@ -68,6 +68,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	public SemanticUMLContentProvider(EObject editedEObject, EStructuralFeature feature, ResourceSet root) {
 		this(editedEObject, feature, getRoots(root));
+		listenOnResourceSet(root);
 	}
 
 	protected static EObject[] findRoots(EObject source) {
@@ -262,29 +263,35 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-
-		if(root != null) {
-			root.eAdapters().remove(resourceSetListener);
-		}
+		ResourceSet resourceSet = root;
 
 		if(newInput instanceof ResourceSet) {
-			root = (ResourceSet)newInput;
+			resourceSet = (ResourceSet)newInput;
 		} else if(newInput instanceof ServicesRegistry) {
 			try {
-				root = ServiceUtils.getInstance().getModelSet((ServicesRegistry)newInput);
+				resourceSet = ServiceUtils.getInstance().getModelSet((ServicesRegistry)newInput);
 			} catch (Exception ex) {
 				Activator.log.error(ex);
 			}
 		}
 
+		listenOnResourceSet(resourceSet);
+
 		this.viewer = viewer;
 
-		if(root != null) {
-			root.eAdapters().add(resourceSetListener);
-			this.roots = getRoots(root);
+		super.inputChanged(viewer, oldInput, newInput);
+	}
+
+	protected void listenOnResourceSet(ResourceSet resourceSet) {
+		if(this.root != null) {
+			this.root.eAdapters().remove(resourceSetListener);
 		}
 
-		super.inputChanged(viewer, oldInput, newInput);
+		if(resourceSet != null) {
+			this.root = resourceSet;
+			resourceSet.eAdapters().add(resourceSetListener);
+			this.roots = getRoots(root);
+		}
 	}
 
 	private ResourceSet root;
@@ -352,16 +359,13 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			//During display, a resource has been loaded (e.g. by a Label provider).
 			//Schedule an update (in the future, to avoid conflicts with a potential current update)
 			if(viewer != null && viewer.getControl() != null && !viewer.getControl().isDisposed()) {
-				System.out.println("Schedule update");
 				needsRefresh = true;
 				viewer.getControl().getDisplay().asyncExec(new Runnable() {
 
 					public void run() {
 						if(!needsRefresh || viewer == null || viewer.getControl() == null || viewer.getControl().isDisposed()) {
-							System.out.println("Cancel update");
 							return;
 						}
-						System.out.println("Do update");
 						needsRefresh = false;
 						viewer.refresh();
 					};
