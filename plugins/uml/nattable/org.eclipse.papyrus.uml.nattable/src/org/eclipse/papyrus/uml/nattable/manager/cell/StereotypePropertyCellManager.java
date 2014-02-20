@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.manager.cell;
@@ -20,11 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.osgi.util.NLS;
@@ -41,6 +43,7 @@ import org.eclipse.papyrus.uml.nattable.messages.Messages;
 import org.eclipse.papyrus.uml.nattable.paste.StereotypeApplicationStructure;
 import org.eclipse.papyrus.uml.nattable.utils.Constants;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
+import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
 import org.eclipse.papyrus.uml.tools.utils.EnumerationUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
@@ -192,6 +195,27 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		final Property prop = UMLTableUtils.getRealStereotypeProperty(el, id);
 		final List<Stereotype> stereotypes = UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id);
 		if(prop != null) {
+			if (stereotypes.isEmpty()) {
+				// Must first apply the stereotype
+				return new RecordingCommand(domain, "Set Value") {
+					
+					@Override
+					protected void doExecute() {
+						if (!applyRequiredStereotype(domain, el, id)) {
+							throw new OperationCanceledException();
+						} else {
+							// Now recursively execute the set-string-value command
+							Command command = getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
+							if (command == null || !command.canExecute()) {
+								throw new OperationCanceledException();
+							} else {
+								domain.getCommandStack().execute(command);
+							}
+						}
+					}
+				};
+			}
+			
 			if(stereotypes.size() == 1) {
 				final EObject stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
 				final EStructuralFeature steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
@@ -226,6 +250,27 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 		EObject stereotypeApplication = null;
 		EStructuralFeature steApFeature = null;
 		if(prop != null) {
+			if (stereotypes.isEmpty()) {
+				// Must first apply the stereotype
+				return new RecordingCommand(domain, "Set Value") {
+					
+					@Override
+					protected void doExecute() {
+						if (!applyRequiredStereotype(domain, el, id)) {
+							throw new OperationCanceledException();
+						} else {
+							// Now recursively execute the set-string-value command
+							Command command = getSetStringValueCommand(domain, columnElement, rowElement, newValue, valueSolver, tableManager);
+							if (command == null || !command.canExecute()) {
+								throw new OperationCanceledException();
+							} else {
+								domain.getCommandStack().execute(command);
+							}
+						}
+					}
+				};
+			}
+			
 			if(stereotypes.size() == 1) {
 				stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
 				switch(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, id).size()) {
@@ -368,5 +413,25 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 		createStringResolutionProblem(tableManager, columnElement, rowElement, valueAsString, solvedValue, sharedMap);
 
+	}
+
+	/**
+	 * 
+	 * @param el
+	 *        an element of the model
+	 * @param propertyId
+	 *        the id of the edited property
+	 * @return <code>true</code> if a stereotype has been applied
+	 */
+	private static boolean applyRequiredStereotype(TransactionalEditingDomain domain, final Element el, final String propertyId) {
+		if(UMLTableUtils.getAppliedStereotypesWithThisProperty(el, propertyId).size() == 0) {
+			final List<Stereotype> stereotypesList = UMLTableUtils.getApplicableStereotypesWithThisProperty(el, propertyId);
+			if(stereotypesList.size() == 1) {
+				final ApplyStereotypeCommand applyCommand = new ApplyStereotypeCommand(el, stereotypesList.get(0), domain);
+				domain.getCommandStack().execute(applyCommand);
+				return true;
+			}
+		}
+		return false;
 	}
 }

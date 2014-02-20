@@ -30,6 +30,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
  com.google.guava;bundle-version="11.0.0"
 Export-Package: org.eclipse.papyrus.infra.emf,
+ org.eclipse.papyrus.infra.emf.adapters,
  org.eclipse.papyrus.infra.emf.commands,
  org.eclipse.papyrus.infra.emf.databinding,
  org.eclipse.papyrus.infra.emf.dialog,

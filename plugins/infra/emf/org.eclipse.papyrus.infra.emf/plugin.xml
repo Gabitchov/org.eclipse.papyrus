@@ -57,5 +57,15 @@
          </elementType>
       </binding>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.emf.ecore.EObject"
+            class="org.eclipse.papyrus.infra.emf.adapters.EObjectAdapterFactory">
+         <adapter
+               type="org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor">
+         </adapter>
+      </factory>
+   </extension>
 
 </plugin>

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -18,6 +20,7 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -25,6 +28,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
@@ -399,45 +403,67 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * Handle add Action
 	 */
 	protected void addAction() {
+		final Object context = getContextElement();
+		
 		if(directCreation) {
 			if(referenceFactory != null && referenceFactory.canCreateObject()) {
-				Object newElement = referenceFactory.createObject(this);
-				if(newElement != null) {
-					modelProperty.add(newElement);
-					commit();
-				}
+				getOperationExecutor(context).execute(new Runnable() {
+
+					@Override
+					public void run() {
+						Object newElement = referenceFactory.createObject(MultipleValueEditor.this, context);
+						if(newElement == null) {
+							// Cancel the operation
+							throw new OperationCanceledException();
+						}
+						
+						modelProperty.add(newElement);
+						commit();
+					}
+				}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
 			}
 
 			return;
 		}
 
-		String dialogLabel = label == null ? null : label.getText();
-		MultipleValueSelectorDialog dialog = createMultipleValueSelectorDialog(getParent(), selector, ordered, unique, dialogLabel);
-		dialog.setLabelProvider((ILabelProvider)treeViewer.getLabelProvider());
-		dialog.setFactory(referenceFactory);
-		dialog.setUpperBound(upperBound);
+		getOperationExecutor(context).execute(new Runnable() {
 
-		if(modelProperty != null) {
-			dialog.setInitialSelections(modelProperty.toArray());
-		} else {
-			dialog.setInitialSelections(new Object[0]);
-		}
+			@Override
+			public void run() {
+				String dialogLabel = label == null ? null : label.getText();
+				MultipleValueSelectorDialog dialog = createMultipleValueSelectorDialog(getParent(), selector, ordered, unique, dialogLabel);
+				dialog.setLabelProvider((ILabelProvider)treeViewer.getLabelProvider());
+				dialog.setFactory(referenceFactory);
+				dialog.setUpperBound(upperBound);
+				dialog.setContextElement(context);
 
-		int returnCode = dialog.open();
-		if(returnCode == Window.CANCEL) {
-			return;
-		}
+				if(modelProperty != null) {
+					dialog.setInitialSelections(modelProperty.toArray());
+				} else {
+					dialog.setInitialSelections(new Object[0]);
+				}
 
-		modelProperty.clear();
+				int returnCode = dialog.open();
+				if(returnCode == Window.CANCEL) {
+					// Clear out the element selector in case we open this dialog again
+					selector.clearTemporaryElements();
+					
+					// Roll back whatever has been done, so far
+					throw new OperationCanceledException();
+				}
 
-		Object[] result = dialog.getResult();
-		if(result == null) {
-			return;
-		}
+				modelProperty.clear();
 
-		modelProperty.addAll(Arrays.asList(result));
+				Object[] result = dialog.getResult();
+				if(result == null) {
+					return;
+				}
 
-		commit();
+				modelProperty.addAll(Arrays.asList(result));
+
+				commit();
+			}
+		}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
 	}
 
 	@Override
@@ -513,19 +539,26 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		TreeItem selectedItem = treeViewer.getTree().getSelection()[0];
 		Tree parentTree = selectedItem.getParent();
 
-		int index = parentTree.indexOf(selectedItem);
+		final int index = parentTree.indexOf(selectedItem);
+		final Object currentValue = selection.getFirstElement();
+		
+		getOperationExecutor(currentValue).execute(new Runnable() {
+			
+			@SuppressWarnings("unchecked")
+			@Override
+			public void run() {
+				Object newValue = referenceFactory.edit(MultipleValueEditor.this.edit, currentValue);
 
-		Object currentValue = selection.getFirstElement();
-		Object newValue = referenceFactory.edit(this.edit, selection.getFirstElement());
+				if(newValue != currentValue && newValue != null) {
+					modelProperty.remove(index);
+					modelProperty.add(index, newValue);
 
-		if(newValue != currentValue && newValue != null) {
-			modelProperty.remove(index);
-			modelProperty.add(index, newValue);
+					//commit(); // The commit only occurs in the case where we modify the list (We don't commit direct edition on objects)
+				}
 
-			//commit(); // The commit only occurs in the case where we modify the list (We don't commit direct edition on objects)
-		}
-
-		commit();
+				commit();
+			}
+		}, NLS.bind(Messages.MultipleValueEditor_editOperation, labelText));
 	}
 
 	/**

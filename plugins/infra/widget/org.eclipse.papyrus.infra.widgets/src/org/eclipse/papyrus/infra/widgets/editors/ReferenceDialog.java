@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -16,9 +18,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.databinding.CLabelObservableValue;
@@ -213,14 +217,22 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 */
 	protected void createAction() {
 		if(valueFactory != null && valueFactory.canCreateObject()) {
-			Object value = valueFactory.createObject(createInstanceButton);
-			if(value == null) {
-				return;
-			}
-			Collection<Object> validatedObjects = valueFactory.validateObjects(Collections.singleton(value));
-			if(!validatedObjects.isEmpty()) {
-				setValue(validatedObjects.iterator().next());
-			}
+			final Object context = getContextElement();
+			getOperationExecutor(context).execute(new Runnable() {
+				
+				@Override
+				public void run() {
+					Object value = valueFactory.createObject(createInstanceButton, context);
+					if(value == null) {
+						// Cancel the operation
+						throw new OperationCanceledException();
+					}
+					Collection<Object> validatedObjects = valueFactory.validateObjects(Collections.singleton(value));
+					if(!validatedObjects.isEmpty()) {
+						setValue(validatedObjects.iterator().next());
+					}
+				}
+			}, NLS.bind(Messages.ReferenceDialog_setOperation, labelText));
 		}
 	}
 
@@ -229,13 +241,19 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 * that is currently selected
 	 */
 	protected void editAction() {
-		Object currentValue = getValue();
+		final Object currentValue = getValue();
 		if(currentValue != null && valueFactory != null && valueFactory.canEdit()) {
-			Object newValue = valueFactory.edit(editInstanceButton, getValue());
-			if(newValue != currentValue) {
-				setValue(newValue);
-			}
-			updateLabel();
+			getOperationExecutor(currentValue).execute(new Runnable() {
+				
+				@Override
+				public void run() {
+					Object newValue = valueFactory.edit(editInstanceButton, currentValue);
+					if(newValue != currentValue) {
+						setValue(newValue);
+					}
+					updateLabel();
+				}
+			}, NLS.bind(Messages.ReferenceDialog_editOperation, labelText));
 		}
 	}
 

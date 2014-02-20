@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - 402525
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
 
@@ -18,6 +20,7 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.emf.common.command.Command;
@@ -57,7 +60,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author Camille Letavernier
  */
-public class OwnerObservableValue extends AbstractObservableValue implements IChangeListener, AggregatedObservable, CommandBasedObservableValue {
+public class OwnerObservableValue extends AbstractObservableValue implements IChangeListener, AggregatedObservable, CommandBasedObservableValue, IObserving {
 
 	private Property memberEnd;
 
@@ -111,6 +114,10 @@ public class OwnerObservableValue extends AbstractObservableValue implements ICh
 		domain.getCommandStack().execute(command);
 	}
 
+	public Object getObserved() {
+		return memberEnd;
+	}
+	
 	@Override
 	public synchronized void dispose() {
 		super.dispose();

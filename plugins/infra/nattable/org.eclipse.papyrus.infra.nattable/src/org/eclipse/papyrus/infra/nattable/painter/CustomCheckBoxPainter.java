@@ -30,6 +30,11 @@ import org.eclipse.swt.graphics.Rectangle;
 public class CustomCheckBoxPainter extends CheckBoxPainter {
 
 	/**
+	 * the text painter used to paint N/A
+	 */
+	private TextPainter textPainter = new CustomizedCellPainter();
+
+	/**
 	 * 
 	 * @see org.eclipse.nebula.widgets.nattable.painter.cell.ImagePainter#getCellPainterAt(int, int,
 	 *      org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell, org.eclipse.swt.graphics.GC, org.eclipse.swt.graphics.Rectangle,
@@ -48,8 +53,7 @@ public class CustomCheckBoxPainter extends CheckBoxPainter {
 		try {
 			isChecked(cell, configRegistry);
 		} catch (Exception e) {
-			TextPainter painter = new CustomizedCellPainter();
-			return painter.getCellPainterAt(x, y, cell, gc, bounds, configRegistry);
+			return this;
 		}
 		return super.getCellPainterAt(x, y, cell, gc, bounds, configRegistry);
 	}
@@ -69,8 +73,7 @@ public class CustomCheckBoxPainter extends CheckBoxPainter {
 		try {
 			isChecked(cell, configRegistry);
 		} catch (Exception e) {
-			TextPainter painter = new CustomizedCellPainter();
-			painter.paintCell(cell, gc, bounds, configRegistry);
+			this.textPainter.paintCell(cell, gc, bounds, configRegistry);
 			return;
 		}
 		super.paintCell(cell, gc, bounds, configRegistry);
@@ -91,8 +94,7 @@ public class CustomCheckBoxPainter extends CheckBoxPainter {
 		try {
 			isChecked(cell, configRegistry);
 		} catch (Exception e) {
-			TextPainter painter = new CustomizedCellPainter();
-			return painter.getPreferredWidth(cell, gc, configRegistry);
+			return textPainter.getPreferredWidth(cell, gc, configRegistry);
 		}
 		return super.getPreferredWidth(cell, gc, configRegistry);
 	}
@@ -112,8 +114,7 @@ public class CustomCheckBoxPainter extends CheckBoxPainter {
 		try {
 			isChecked(cell, configRegistry);
 		} catch (Exception e) {
-			TextPainter painter = new CustomizedCellPainter();
-			return painter.getPreferredHeight(cell, gc, configRegistry);
+			return textPainter.getPreferredHeight(cell, gc, configRegistry);
 		}
 		return super.getPreferredHeight(cell, gc, configRegistry);
 	}

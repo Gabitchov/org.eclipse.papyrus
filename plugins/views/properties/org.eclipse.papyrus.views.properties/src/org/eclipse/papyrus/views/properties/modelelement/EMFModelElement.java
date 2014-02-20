@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.modelelement;
 
@@ -27,10 +29,12 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableValue;
+import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -199,7 +203,10 @@ public class EMFModelElement extends AbstractModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		try {
-			return ServiceUtilsForEObject.getInstance().getServiceRegistry(source).getService(LabelProviderService.class).getLabelProvider();
+			LabelProviderService lpSvc = (source.eResource() != null) //
+			? ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, source) //
+			: ServiceUtilsForResourceSet.getInstance().getService(LabelProviderService.class, NestedEditingDialogContext.getInstance().getResourceSet());
+			return lpSvc.getLabelProvider();
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);
 			return new EMFLabelProvider();

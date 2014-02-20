@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.creation;
@@ -71,16 +72,9 @@ public class BooleanEditionFactory extends StringEditionFactory {
 		super(title, label, new BooleanInputValidator());
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory#createObject(org.eclipse.swt.widgets.Control)
-	 *
-	 * @param widget
-	 * @return
-	 */
 	@Override
-	public Object createObject(Control widget) {
-		String txt = super.createObject(widget).toString();
+	public Object createObject(Control widget, Object context) {
+		String txt = super.createObject(widget, context).toString();
 		if(txt != null) {
 			return Boolean.parseBoolean(txt);
 		}

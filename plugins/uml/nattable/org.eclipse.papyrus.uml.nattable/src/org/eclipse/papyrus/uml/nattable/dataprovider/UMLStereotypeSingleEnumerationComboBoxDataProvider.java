@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.dataprovider;
@@ -18,8 +19,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
@@ -84,12 +83,10 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 		if(modelElement != null) {
 			final String id = AxisUtils.getPropertyId(this.axisElement);
 			final Property property = UMLTableUtils.getRealStereotypeProperty(modelElement, id);
-			final List<Stereotype> ste = UMLTableUtils.getAppliedStereotypesWithThisProperty(modelElement, id);
+			final List<Stereotype> ste = UMLTableUtils.getApplicableStereotypesWithThisProperty(modelElement, id);
 			if(ste.size() == 1) {
 				final Stereotype current = ste.get(0);
-				final EObject steAppl = modelElement.getStereotypeApplication(current);
-				final EStructuralFeature feature = steAppl.eClass().getEStructuralFeature(property.getName());
-				final EEnum eenum = (EEnum)feature.getEType();
+				final EEnum eenum = (EEnum)current.getProfile().getDefinition(property.getType());
 				for(final EEnumLiteral instances : eenum.getELiterals()) {
 					literals.add(instances.getInstance());
 				}

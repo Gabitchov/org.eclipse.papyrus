@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013, 2014 CEA LIST and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.config;
 
 import org.eclipse.emf.ecore.EClassifier;
@@ -35,7 +48,6 @@ import org.eclipse.papyrus.uml.nattable.editor.MultiReferenceCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiStringCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiUnlimitedNaturalCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.SingleReferenceValueCellEditor;
-import org.eclipse.papyrus.uml.nattable.editor.StereotypeApplierCellEditorWrapper;
 import org.eclipse.papyrus.uml.nattable.editor.StereotypeApplierDialogCellEditorWrapper;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.nattable.validator.RealDataValidator;
@@ -168,13 +180,11 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 			editor = super.getICellEditor(table, axisElement, elementProvider);
 			break;
 		}
-		// to apply required stereotype before edition
+		// to apply required stereotype before editing in a dialog (which we can reasonably encapsulate in a command)
 		// see bug 426709: [Table 2][Stereotype] Papyrus Table must allows to edit stereotype properties even if the required stereotypes is not yet applied
 		//		  https://bugs.eclipse.org/bugs/show_bug.cgi?id=426709
 		if(editor instanceof AbstractDialogCellEditor) {
 			editor = new StereotypeApplierDialogCellEditorWrapper((AbstractDialogCellEditor)editor, axisElement, elementProvider);
-		} else if(editor instanceof ICellEditor) {
-			editor = new StereotypeApplierCellEditorWrapper(editor, axisElement, elementProvider);
 		}
 		return editor;
 	}

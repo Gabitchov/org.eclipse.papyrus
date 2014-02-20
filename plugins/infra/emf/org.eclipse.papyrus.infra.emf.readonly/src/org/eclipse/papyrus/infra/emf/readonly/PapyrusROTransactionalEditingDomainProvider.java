@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin.
+ * Copyright (c) 2011, 2014 Atos Origin, CEA, and others.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -19,6 +19,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IResourceUndoContextPolicy;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
+import org.eclipse.papyrus.commands.NestingNotifyingWorkspaceCommandStack;
 import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStack;
 import org.eclipse.papyrus.infra.core.resource.ITransactionalEditingDomainProvider;
 
@@ -32,7 +33,7 @@ import org.eclipse.papyrus.infra.core.resource.ITransactionalEditingDomainProvid
 public class PapyrusROTransactionalEditingDomainProvider implements ITransactionalEditingDomainProvider {
 
 	public TransactionalEditingDomain createTransactionalEditingDomain(ResourceSet resourceSet) {
-		NotifyingWorkspaceCommandStack stack = new NotifyingWorkspaceCommandStack(CheckedOperationHistory.getInstance());
+		NotifyingWorkspaceCommandStack stack = new NestingNotifyingWorkspaceCommandStack(CheckedOperationHistory.getInstance());
 		stack.setResourceUndoContextPolicy(IResourceUndoContextPolicy.DEFAULT);
 
 		TransactionalEditingDomain result = new PapyrusROTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, resourceSet);

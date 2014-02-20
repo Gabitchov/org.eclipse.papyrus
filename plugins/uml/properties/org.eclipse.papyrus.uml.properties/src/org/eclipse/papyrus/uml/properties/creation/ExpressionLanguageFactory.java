@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.creation;
 
@@ -85,8 +87,8 @@ public class ExpressionLanguageFactory extends StringEditionFactory {
 	}
 
 	@Override
-	public Object createObject(Control widget) {
-		String languageName = (String)super.createObject(widget);
+	public Object createObject(Control widget, Object context) {
+		String languageName = (String)super.createObject(widget, context);
 		if(languageName == null) {
 			return null;
 		}

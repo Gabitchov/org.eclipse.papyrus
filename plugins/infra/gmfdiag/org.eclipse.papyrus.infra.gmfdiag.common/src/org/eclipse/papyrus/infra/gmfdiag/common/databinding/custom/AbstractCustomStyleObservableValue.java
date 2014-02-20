@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,14 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - 402525
+ * 
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.emf.common.command.Command;
@@ -31,7 +34,7 @@ import org.eclipse.papyrus.uml.tools.databinding.CommandBasedObservableValue;
  * @author Camille Letavernier
  * 
  */
-public abstract class AbstractCustomStyleObservableValue extends AbstractObservableValue implements CommandBasedObservableValue, IChangeListener {
+public abstract class AbstractCustomStyleObservableValue extends AbstractObservableValue implements CommandBasedObservableValue, IChangeListener, IObserving {
 
 	protected View source;
 
@@ -103,6 +106,11 @@ public abstract class AbstractCustomStyleObservableValue extends AbstractObserva
 
 	public Command getCommand(Object value) {
 		return new CustomStyleValueCommand(source, value, styleClass, styleFeature, styleName);
+	}
+	
+	@Override
+	public Object getObserved() {
+		return source;
 	}
 
 	@Override
