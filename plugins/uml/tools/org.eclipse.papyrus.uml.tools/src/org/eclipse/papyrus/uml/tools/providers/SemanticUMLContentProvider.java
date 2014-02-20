@@ -141,16 +141,14 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 		//return SemanticEMFContentProvider.getRoots(root);
 	}
 
-//	protected static URI[] excludedModels = new URI[0];
+	//	protected static URI[] excludedModels = new URI[0];
 
-	protected static URI[] excludedModels = new URI[]
-		{
-	//		URI.createURI(UMLResource.STANDARD_L2_PROFILE_URI),
-	//		URI.createURI(UMLResource.STANDARD_L3_PROFILE_URI),
-			URI.createURI(UMLResource.UML_METAMODEL_URI),
-			URI.createURI(UMLResource.ECORE_METAMODEL_URI)
+	protected static URI[] excludedModels = new URI[]{
+		//		URI.createURI(UMLResource.STANDARD_L2_PROFILE_URI),
+		//		URI.createURI(UMLResource.STANDARD_L3_PROFILE_URI),
+	URI.createURI(UMLResource.UML_METAMODEL_URI), URI.createURI(UMLResource.ECORE_METAMODEL_URI)
 	//		URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI)
-		};
+	};
 
 	protected static boolean isUMLModel(Resource resource, EObject rootElement) {
 		if(!isUMLResource(resource)) {
@@ -279,6 +277,8 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			}
 		}
 
+		this.viewer = viewer;
+
 		if(root != null) {
 			root.eAdapters().add(resourceSetListener);
 			this.roots = getRoots(root);
@@ -289,7 +289,11 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	private ResourceSet root;
 
+	private Viewer viewer;
+
 	private Adapter resourceSetListener = new AdapterImpl() {
+
+		private boolean needsRefresh = false;
 
 		@Override
 		public void notifyChanged(Notification msg) {
@@ -297,17 +301,72 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 				return;
 			}
 
+			if(msg.getNotifier() instanceof ResourceSet) {
+				notifyResourceSetChanged(msg);
+			} else if(msg.getNotifier() instanceof Resource) {
+				notifyResourceChanged(msg);
+			}
+		};
+
+		private void notifyResourceSetChanged(Notification msg) {
+			switch(msg.getEventType()) {
+			case Notification.ADD:
+			case Notification.ADD_MANY:
+				//Action for ADD and ADD_MANY
+				Object value = msg.getNewValue();
+				if(value instanceof Resource) {
+					Resource resource = (Resource)value;
+					resource.eAdapters().add(this);
+				} else if(value instanceof List<?>) {
+					List<?> list = (List<?>)value;
+					for(Object element : list) {
+						if(element instanceof Resource) {
+							((Resource)element).eAdapters().add(this);
+						}
+					}
+				}
+
+				//do not break the switch: we keep going with the following instructions (refresh the viewer)
+			case Notification.REMOVE:
+			case Notification.REMOVE_MANY:
+				//Actions for ADD, ADD_MANY, REMOVE, REMOVE_MANY
+				triggerRefresh();
+				break;
+			default:
+				System.out.println(msg.getEventType());
+			}
+		}
+
+		private void notifyResourceChanged(Notification msg) {
 			switch(msg.getEventType()) {
 			case Notification.ADD:
 			case Notification.ADD_MANY:
 			case Notification.REMOVE:
 			case Notification.REMOVE_MANY:
-				roots = getRoots(root);
-				break;
-			default:
-				System.out.println(msg.getEventType());
+				triggerRefresh();
 			}
+		}
 
-		};
+		private synchronized void triggerRefresh() {
+			roots = getRoots(root);
+			//During display, a resource has been loaded (e.g. by a Label provider).
+			//Schedule an update (in the future, to avoid conflicts with a potential current update)
+			if(viewer != null && viewer.getControl() != null && !viewer.getControl().isDisposed()) {
+				System.out.println("Schedule update");
+				needsRefresh = true;
+				viewer.getControl().getDisplay().asyncExec(new Runnable() {
+
+					public void run() {
+						if(!needsRefresh || viewer == null || viewer.getControl() == null || viewer.getControl().isDisposed()) {
+							System.out.println("Cancel update");
+							return;
+						}
+						System.out.println("Do update");
+						needsRefresh = false;
+						viewer.refresh();
+					};
+				});
+			}
+		}
 	};
 }

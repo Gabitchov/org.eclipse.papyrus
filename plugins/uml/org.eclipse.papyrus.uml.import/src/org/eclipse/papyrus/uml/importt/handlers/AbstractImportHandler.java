@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.uml.importt.handlers;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
 import org.eclipse.uml2.common.edit.command.ChangeCommand;
 import org.eclipse.uml2.uml.Package;
@@ -52,8 +53,11 @@ public abstract class AbstractImportHandler extends AbstractCommandHandler {
 	 */
 	protected void handleImportPackage(Package _package) {
 		PackageImport ei = UMLFactory.eINSTANCE.createPackageImport();
-		ei.setImportedPackage(_package);
+
+		Package importedPackage = EMFHelper.reloadIntoContext(_package, getSelectedElement());
+
 		((Package)getSelectedElement()).getPackageImports().add(ei);
+		ei.setImportedPackage(importedPackage);
 	}
 
 	/**

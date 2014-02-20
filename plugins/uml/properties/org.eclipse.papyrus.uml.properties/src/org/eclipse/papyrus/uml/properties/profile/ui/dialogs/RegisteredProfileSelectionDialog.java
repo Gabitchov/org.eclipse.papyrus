@@ -23,8 +23,8 @@ import java.util.List;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.standard.FilteredRegisteredElementsSelectionDialog;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
@@ -50,8 +50,8 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 	private Package currentPackage;
 
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 * @param umlPackage
 	 * @param parent
 	 */
@@ -61,8 +61,8 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 	}
 
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 * @return
 	 */
 	public List<Profile> run() {
@@ -83,14 +83,14 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 
 		List<Profile> result = new LinkedList<Profile>();
 		for(Profile profile : profilesToApply) {
-			result.add((Profile)EcoreUtil.resolve(profile, currentPackage));
+			result.add(EMFHelper.reloadIntoContext(profile, currentPackage));
 		}
 		return result;
 	}
 
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 * @return
 	 */
 	private List<Profile> treatSelection() {
