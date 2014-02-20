@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.papyrus.infra.queries.core.configuration.QueryConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration;
@@ -29,7 +28,6 @@ import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolKind;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ToolConfigurationImpl#getPreValidationQuery <em>Pre Validation Query</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ToolConfigurationImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ToolConfigurationImpl#getElementDescriptors <em>Element Descriptors</em>}</li>
  * </ul>
@@ -38,16 +36,6 @@ import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolKind;
  * @generated
  */
 public class ToolConfigurationImpl extends LeafConfigurationImpl implements ToolConfiguration {
-	/**
-	 * The cached value of the '{@link #getPreValidationQuery() <em>Pre Validation Query</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getPreValidationQuery()
-	 * @generated
-	 * @ordered
-	 */
-	protected QueryConfiguration preValidationQuery;
-
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -95,44 +83,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	@Override
 	protected EClass eStaticClass() {
 		return PaletteconfigurationPackage.Literals.TOOL_CONFIGURATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QueryConfiguration getPreValidationQuery() {
-		if (preValidationQuery != null && preValidationQuery.eIsProxy()) {
-			InternalEObject oldPreValidationQuery = (InternalEObject)preValidationQuery;
-			preValidationQuery = (QueryConfiguration)eResolveProxy(oldPreValidationQuery);
-			if (preValidationQuery != oldPreValidationQuery) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PaletteconfigurationPackage.TOOL_CONFIGURATION__PRE_VALIDATION_QUERY, oldPreValidationQuery, preValidationQuery));
-			}
-		}
-		return preValidationQuery;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QueryConfiguration basicGetPreValidationQuery() {
-		return preValidationQuery;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPreValidationQuery(QueryConfiguration newPreValidationQuery) {
-		QueryConfiguration oldPreValidationQuery = preValidationQuery;
-		preValidationQuery = newPreValidationQuery;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PaletteconfigurationPackage.TOOL_CONFIGURATION__PRE_VALIDATION_QUERY, oldPreValidationQuery, preValidationQuery));
 	}
 
 	/**
@@ -190,9 +140,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PaletteconfigurationPackage.TOOL_CONFIGURATION__PRE_VALIDATION_QUERY:
-				if (resolve) return getPreValidationQuery();
-				return basicGetPreValidationQuery();
 			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
 				return getKind();
 			case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
@@ -210,9 +157,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PaletteconfigurationPackage.TOOL_CONFIGURATION__PRE_VALIDATION_QUERY:
-				setPreValidationQuery((QueryConfiguration)newValue);
-				return;
 			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
 				setKind((ToolKind)newValue);
 				return;
@@ -232,9 +176,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PaletteconfigurationPackage.TOOL_CONFIGURATION__PRE_VALIDATION_QUERY:
-				setPreValidationQuery((QueryConfiguration)null);
-				return;
 			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
@@ -253,8 +194,6 @@ public class ToolConfigurationImpl extends LeafConfigurationImpl implements Tool
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PaletteconfigurationPackage.TOOL_CONFIGURATION__PRE_VALIDATION_QUERY:
-				return preValidationQuery != null;
 			case PaletteconfigurationPackage.TOOL_CONFIGURATION__KIND:
 				return kind != KIND_EDEFAULT;
 			case PaletteconfigurationPackage.TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS:
