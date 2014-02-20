@@ -21,6 +21,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -67,73 +69,56 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 		return result;
 	}
 
+	protected ICommand getRefusal() {
+		return UnexecutableCommand.INSTANCE;
+	}
+
 	@Override
-	public boolean approveRequest(IEditCommandRequest request) {
-		if(request instanceof CreateRelationshipRequest) {
-			return approveCreateRelationshipRequest((CreateRelationshipRequest)request);
-		} else if(request instanceof CreateElementRequest) {
-			return approveCreateElementRequest((CreateElementRequest)request);
-		} else if(request instanceof DestroyElementRequest) {
-			return approveDestroyElementRequest((DestroyElementRequest)request);
-		} else if(request instanceof DestroyReferenceRequest) {
-			return approveDestroyReferenceRequest((DestroyReferenceRequest)request);
-		} else if(request instanceof DuplicateElementsRequest) {
-			return approveDuplicateElementsRequest((DuplicateElementsRequest)request);
-		} else if(request instanceof MoveRequest) {
-			return approveMoveRequest((MoveRequest)request);
-		} else if(request instanceof ReorientReferenceRelationshipRequest) {
-			return approveReorientReferenceRelationshipRequest((ReorientReferenceRelationshipRequest)request);
-		} else if(request instanceof ReorientRelationshipRequest) {
-			return approveReorientRelationshipRequest((ReorientRelationshipRequest)request);
-		} else if(request instanceof SetRequest) {
-			return approveSetRequest((SetRequest)request);
-		}
-
-		return super.approveRequest(request);
-	}
-
-	protected boolean approveCreateElementRequest(CreateElementRequest request) {
+	protected ICommand getBeforeCreateCommand(CreateElementRequest request) {
 		EObject container = request.getContainer();
 
 		if((container != null) && isUneditable(request, container)) {
-			return false;
+			return getRefusal();
 		}
 
-		return true;
+		return super.getBeforeCreateCommand(request);
 	}
 
-	protected boolean approveCreateRelationshipRequest(CreateRelationshipRequest request) {
+	@Override
+	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
 		EObject container = request.getContainer();
 
 		if((container != null) && isUneditable(request, container)) {
-			return false;
+			return getRefusal();
 		}
 
 		if(isUneditable(request, request.getSource())) {
-			return false;
+			return getRefusal();
 		}
 		// Assume that the target (as in most cases) will not have an inverse reference to the new relationship
 
-		return true;
+		return super.getBeforeCreateRelationshipCommand(request);
 	}
 
-	protected boolean approveDestroyElementRequest(DestroyElementRequest request) {
+	@Override
+	protected ICommand getBeforeDestroyElementCommand(DestroyElementRequest request) {
 		EObject container = request.getContainer();
 
 		if((container != null) && isUneditable(request, container)) {
-			return false;
+			return getRefusal();
 		}
 		// Cross-resource containment to a read-only resource? Unlikely. Don't need to look at the object-to-be-destroyed
 
-		return true;
+		return super.getBeforeDestroyElementCommand(request);
 	}
 
-	protected boolean approveDestroyReferenceRequest(DestroyReferenceRequest request) {
+	@Override
+	protected ICommand getBeforeDestroyReferenceCommand(DestroyReferenceRequest request) {
 		EObject container = request.getContainer();
 
 		// Simple case is when the owner object is read-only
 		if((container != null) && isUneditable(request, container)) {
-			return false;
+			return getRefusal();
 		}
 
 		// Handle the case where the reference has an opposite
@@ -142,91 +127,96 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 			// The object being removed will have its inverse reference removed, also
 			EObject referenced = request.getReferencedObject();
 			if((referenced != null) && isUneditable(request, referenced)) {
-				return false;
+				return getRefusal();
 			}
 		}
 
-		return true;
+		return super.getBeforeDestroyReferenceCommand(request);
 	}
 
-	protected boolean approveDuplicateElementsRequest(DuplicateElementsRequest request) {
+	@Override
+	protected ICommand getBeforeDuplicateCommand(DuplicateElementsRequest request) {
 		List<?> elements = request.getElementsToBeDuplicated();
 
 		// Elements are duplicated in their containers, so the container must not be read-only
 		for(EObject next : Iterables.filter(elements, EObject.class)) {
 			EObject container = next.eContainer();
 			if((container != null) && isUneditable(request, container)) {
-				return false;
+				return getRefusal();
 			}
 		}
 
-		return true;
+		return super.getBeforeDuplicateCommand(request);
 	}
-
-	protected boolean approveMoveRequest(MoveRequest request) {
+	
+	@Override
+	protected ICommand getBeforeMoveCommand(MoveRequest request) {
 		// Is any of the former containers read-only?
 		for(EObject next : Iterables.filter(request.getElementsToMove().keySet(), EObject.class)) {
 			EObject container = next.eContainer();
 
 			if((container != null) && isUneditable(request, container)) {
 				System.out.printf("Container not writable: %s%n", container);
-				return false;
+				return getRefusal();
 			}
 		}
 
 		if(isUneditable(request, request.getTargetContainer())) {
-			return false;
+			return getRefusal();
 		}
 
-		return true;
+		return super.getBeforeMoveCommand(request);
 	}
 
-	protected boolean approveReorientRelationshipRequest(ReorientRelationshipRequest request) {
+	@Override
+	protected ICommand getBeforeReorientRelationshipCommand(ReorientRelationshipRequest request) {
 		EObject relationship = request.getRelationship();
 
 		// Simple case is when the owner object is read-only
 		if((relationship != null) && isUneditable(request, relationship)) {
-			return false;
+			return getRefusal();
 		}
 
 		// Assume that changing the target would not affect the target object because it would not have an inverse reference
 		if(request.getDirection() == ReorientRequest.REORIENT_SOURCE) {
 			if(isUneditable(request, request.getOldRelationshipEnd())) {
-				return false;
+				return getRefusal();
 			}
 			if(isUneditable(request, request.getNewRelationshipEnd())) {
-				return false;
+				return getRefusal();
 			}
 		}
 
-		return true;
+		return super.getBeforeReorientRelationshipCommand(request);
 	}
 
-	protected boolean approveReorientReferenceRelationshipRequest(ReorientReferenceRelationshipRequest request) {
+	@Override
+	protected ICommand getBeforeReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest request) {
 		EObject owner = request.getReferenceOwner();
 
 		// Simple case is when the owner object is read-only
 		if((owner != null) && isUneditable(request, owner)) {
-			return false;
+			return getRefusal();
 		}
 
 		// Assume that changing the target would not affect the target object because it would not have an inverse reference
 		if(request.getDirection() == ReorientRequest.REORIENT_SOURCE) {
 			if(isUneditable(request, request.getOldRelationshipEnd())) {
-				return false;
+				return getRefusal();
 			}
 			if(isUneditable(request, request.getNewRelationshipEnd())) {
-				return false;
+				return getRefusal();
 			}
 		}
 
-		return true;
+		return super.getBeforeReorientReferenceRelationshipCommand(request);
 	}
 
-	protected boolean approveSetRequest(SetRequest request) {
+	@Override
+	protected ICommand getBeforeSetCommand(SetRequest request) {
 		// Simple case of read-only element
 		if(isUneditable(request, request.getElementToEdit())) {
-			return false;
+			return getRefusal();
 		}
 
 		if(request.getFeature() instanceof EReference) {
@@ -237,14 +227,14 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 				if(!affectedOpposites.isEmpty()) {
 					for(EObject next : affectedOpposites) {
 						if(isUneditable(request, next)) {
-							return false;
+							return getRefusal();
 						}
 					}
 				}
 			}
 		}
 
-		return true;
+		return null;
 	}
 
 	/**

@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.emf.advice;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
@@ -219,7 +220,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		assumeThat(resourceMode.isAdviceEnabled(), is(true));
 
 		// We don't have any edit helpers suitable for this use case
-		assertApproval(new DuplicateElementsRequest(Collections.singletonList(classB)));
+		assertAdvice(new DuplicateElementsRequest(Collections.singletonList(classB)));
 	}
 
 	@Test
@@ -311,7 +312,7 @@ public class ReadOnlyObjectEditAdviceTest {
 
 		// We don't have any edit helpers suitable for this use case.
 		// Reorienting the target is always permitted because there is no inverse reference
-		assertThat(new ReadOnlyObjectEditAdvice().approveRequest(new ReorientReferenceRelationshipRequest(comment[0], classA, classB, ReorientRequest.REORIENT_TARGET)), is(true));
+		assertThat(new ReadOnlyObjectEditAdvice().getBeforeEditCommand(new ReorientReferenceRelationshipRequest(comment[0], classA, classB, ReorientRequest.REORIENT_TARGET)), nullValue());
 	}
 
 	@Test
@@ -332,7 +333,7 @@ public class ReadOnlyObjectEditAdviceTest {
 
 		// We don't have any edit helpers suitable for this use case.
 		// Reorienting the target is always permitted because there is no inverse reference
-		assertThat(new ReadOnlyObjectEditAdvice().approveRequest(new ReorientReferenceRelationshipRequest(comment[0], classB, classA, ReorientRequest.REORIENT_TARGET)), is(true));
+		assertThat(new ReadOnlyObjectEditAdvice().getBeforeEditCommand(new ReorientReferenceRelationshipRequest(comment[0], classB, classA, ReorientRequest.REORIENT_TARGET)), nullValue());
 	}
 
 	@Test
@@ -353,7 +354,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		});
 
 		// We don't have any edit helpers suitable for this use case
-		assertApproval(new ReorientReferenceRelationshipRequest(comment[0], comment[1], comment[0], ReorientRequest.REORIENT_SOURCE));
+		assertAdvice(new ReorientReferenceRelationshipRequest(comment[0], comment[1], comment[0], ReorientRequest.REORIENT_SOURCE));
 	}
 
 	@Test
@@ -374,7 +375,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		});
 
 		// We don't have any edit helpers suitable for this use case
-		assertApproval(new ReorientReferenceRelationshipRequest(comment[0], comment[1], comment[0], ReorientRequest.REORIENT_SOURCE));
+		assertAdvice(new ReorientReferenceRelationshipRequest(comment[0], comment[1], comment[0], ReorientRequest.REORIENT_SOURCE));
 	}
 
 	//
@@ -542,7 +543,8 @@ public class ReadOnlyObjectEditAdviceTest {
 		case LOCAL_WRITEABLE:
 		case LOCAL_READONLY:
 		case PLUGIN_NOADVICE:
-			assertThat("Command should be executable", command.canExecute(), is(true)); //$NON-NLS-1$
+			// The edit-helper can return null if there is no executable command to be provided
+			assertThat("Command should be executable", (command != null) && command.canExecute(), is(true)); //$NON-NLS-1$
 			break;
 		default:
 			// The edit-helper can return null if there is no executable command to be provided
@@ -551,8 +553,8 @@ public class ReadOnlyObjectEditAdviceTest {
 		}
 	}
 
-	void assertApproval(IEditCommandRequest request) {
-		boolean approved = new ReadOnlyObjectEditAdvice().approveRequest(request);
+	void assertAdvice(IEditCommandRequest request) {
+		ICommand command = new ReadOnlyObjectEditAdvice().getBeforeEditCommand(request);
 
 		switch(resourceMode) {
 		case WORKSPACE_WRITEABLE:
@@ -560,11 +562,12 @@ public class ReadOnlyObjectEditAdviceTest {
 		case LOCAL_WRITEABLE:
 		case LOCAL_READONLY:
 		case PLUGIN_NOADVICE:
-			assertThat("Request should be approved", approved, is(true)); //$NON-NLS-1$
+			// The advice can return null if there is no need to decorate the operation
+			assertThat("Request should be approved", (command == null) || command.canExecute(), is(true)); //$NON-NLS-1$
 			break;
 		default:
-			// The edit-helper can return null if there is no executable command to be provided
-			assertThat("Request should not be approved", approved, is(false)); //$NON-NLS-1$
+			// The advice can return null if there is no need to decorate the operation
+			assertThat("Request should not be approved", (command == null) || command.canExecute(), is(false)); //$NON-NLS-1$
 			break;
 		}
 	}
