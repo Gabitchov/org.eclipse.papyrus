@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 323802
  *
  */
 package org.eclipse.papyrus.commands;
@@ -49,7 +50,9 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 
 import com.google.common.base.Objects;
 
@@ -59,6 +62,9 @@ import com.google.common.base.Objects;
  */
 public class NestingNotifyingWorkspaceCommandStackTest {
 
+	@Rule
+	public final TestName testName = new TestName();
+	
 	// No API signatures but the most basic are required for nesting
 	private CommandStack fixture;
 
@@ -292,6 +298,9 @@ public class NestingNotifyingWorkspaceCommandStackTest {
 		Resource testModel = rset.getResource(URI.createURI(testModelURL.toExternalForm(), true), true);
 		testPackage = (EPackage)testModel.getContents().get(0);
 		foo = (EClass)testPackage.getEClassifier("Foo"); //$NON-NLS-1$
+		
+		// tweak the URI so that we don't think this is a plug-in deployed resource that is unmodifiable (which triggers transaction rollback)
+		testModel.setURI(URI.createPlatformResourceURI(String.format("%s/%s", testName.getMethodName(), testModel.getURI().lastSegment()), true));
 	}
 
 	@After
