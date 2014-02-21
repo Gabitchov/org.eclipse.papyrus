@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.NotificationFilter;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.InternalTransaction;
 import org.eclipse.emf.transaction.impl.TransactionChangeRecorder;
@@ -70,8 +71,8 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 	protected void assertNotReadOnly(Object object) {
 		InternalTransaction tx = getActiveTransaction();
 
-		// If there's no transaction, then there will be nothing to roll back
-		if(tx != null) {
+		// If there's no transaction, then there will be nothing to roll back.  And if it's unprotected, let the client do whatever
+		if((tx != null) && !Boolean.TRUE.equals(tx.getOptions().get(Transaction.OPTION_UNPROTECTED))) {
 			boolean readOnly;
 
 			// Check for Resource first because CDO resources *are* EObjects
