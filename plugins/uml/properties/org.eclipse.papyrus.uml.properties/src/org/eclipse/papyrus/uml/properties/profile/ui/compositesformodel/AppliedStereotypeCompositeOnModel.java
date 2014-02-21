@@ -15,7 +15,9 @@
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
@@ -23,9 +25,11 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.profile.Activator;
@@ -36,6 +40,7 @@ import org.eclipse.papyrus.uml.profile.tree.ProfileElementTreeViewerFilter;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypeTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
+import org.eclipse.papyrus.uml.profile.tree.objects.TreeObject;
 import org.eclipse.papyrus.uml.profile.utils.Util;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.ChooseSetStereotypeDialog;
 import org.eclipse.papyrus.uml.properties.profile.ui.panels.AppliedStereotypePanel;
@@ -425,6 +430,17 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	}
 
 	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.DecoratedTreeComposite#keepSelection(org.eclipse.jface.viewers.ISelection)
+	 *
+	 * @param pSelection
+	 */
+	@Override
+	public void keepSelection(ISelection pSelection) {
+		getDisplay().asyncExec(new SelectionKeeper(pSelection));
+	}
+
+	/**
 	 * Apply stereotype.
 	 * 
 	 * @param elt
@@ -536,5 +552,74 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		}
 
 	}
+
+	/**
+	 * 
+	 * @author gpascual
+	 *
+	 */
+	private class SelectionKeeper implements Runnable {
+
+		/** Selection to keep. */
+		ISelection selection = null;
+
+		/**
+		 * 
+		 * Constructor.
+		 *
+		 */
+		public SelectionKeeper(ISelection selection) {
+			this.selection = selection;
+		}
+
+		public void run() {
+			Object[] vSelectedElements = extractSelectedElements(selection);
+			Object[] vCorrespondingElements = getCorrespondingElements(vSelectedElements);
+			ISelection vSelection = new StructuredSelection(vCorrespondingElements);
+			treeViewer.setSelection(vSelection);
+
+		}
+
+
+
+
+
+		private Object[] getCorrespondingElements(Object[] vSelectedElements) {
+			StereotypedElementTreeObject vStereotypesTree = (StereotypedElementTreeObject)treeViewer.getInput();
+			List<Object> vReturn = new ArrayList<Object>();
+			for(Object vStereotype : vSelectedElements) {
+				if(vStereotype instanceof AppliedStereotypeTreeObject) {
+					AppliedStereotypeTreeObject vTreeObject = findAppliedStereotypeInTree(((AppliedStereotypeTreeObject)vStereotype).getStereotype(), vStereotypesTree);
+					vReturn.add(vTreeObject);
+				}
+			}
+
+			return vReturn.toArray();
+		}
+
+		private AppliedStereotypeTreeObject findAppliedStereotypeInTree(Stereotype stereotype, StereotypedElementTreeObject vStereotypesTree) {
+			AppliedStereotypeTreeObject vAppliedStereotypeObject = null;
+
+			for(TreeObject vChild : vStereotypesTree.getChildren()) {
+				if(vChild instanceof AppliedStereotypeTreeObject) {
+					if(stereotype.equals(((AppliedStereotypeTreeObject)vChild).getStereotype())) {
+						vAppliedStereotypeObject = (AppliedStereotypeTreeObject)vChild;
+					}
+				}
+			}
+
+			return vAppliedStereotypeObject;
+
+		}
+
+		private Object[] extractSelectedElements(ISelection pSelection) {
+			List<Object> vObjectsList = new ArrayList<Object>();
+			if(pSelection instanceof IStructuredSelection) {
+				vObjectsList.addAll(Arrays.asList(((IStructuredSelection)pSelection).toArray()));
+			}
+			return vObjectsList.toArray();
+		}
+	}
+
 
 }
