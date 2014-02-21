@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
+ *  Christian W. Damus (CEA) - bug 323802
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -46,6 +47,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.custom.ui.CustomizedContentProviderUtils;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -497,6 +499,27 @@ public class EMFHelper {
 		Boolean readOnly = (Boolean)attributes.get(URIConverter.ATTRIBUTE_READ_ONLY);
 
 		return readOnly == null ? false : readOnly;
+	}
+
+	/**
+	 * Tests if an object that is read only could possibly be made writable by some means (file system attributes, team provider hook, database
+	 * permissions, etc.)
+	 * 
+	 * @param eObject
+	 *        an object that is assumed to be read-only
+	 * @param domain
+	 *        the editing domain context of the {@link eObject}
+	 * @return
+	 *         whether the {@code eObject} could be made writable
+	 */
+	public static boolean canMakeWritable(final EObject eObject, final EditingDomain domain) {
+		if(domain != null) {
+			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
+			if(handler instanceof IReadOnlyHandler2) {
+				return ((IReadOnlyHandler2)handler).canMakeWritable(eObject).or(false);
+			}
+		}
+		return false;
 	}
 
 	/**

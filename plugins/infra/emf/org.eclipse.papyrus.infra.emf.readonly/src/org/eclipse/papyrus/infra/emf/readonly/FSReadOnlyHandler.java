@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin.
+ * Copyright (c) 2011, 2014 Atos Origin, CEA, and otherw.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -27,7 +28,7 @@ import org.eclipse.swt.widgets.Display;
 
 import com.google.common.base.Optional;
 
-public class FSReadOnlyHandler  extends AbstractReadOnlyHandler {
+public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 
 	public FSReadOnlyHandler(EditingDomain editingDomain) {
 		super(editingDomain);
@@ -88,4 +89,22 @@ public class FSReadOnlyHandler  extends AbstractReadOnlyHandler {
 		}
 	}
 
+	/**
+	 * I can make workspace resources writable.
+	 */
+	@Override
+	public Optional<Boolean> canMakeWritable(URI[] uris) {
+		Optional<Boolean> result = Optional.absent();
+
+		for(int i = 0; (!result.isPresent() || result.get()) && (i < uris.length); i++) {
+			if(uris[i].isPlatformResource()) {
+				result = Optional.of(true);
+			} else if(uris[i].isFile()) {
+				// We don't make non-workspace (external but local) files writable
+				result = Optional.of(false);
+			}
+		}
+
+		return result;
+	}
 }

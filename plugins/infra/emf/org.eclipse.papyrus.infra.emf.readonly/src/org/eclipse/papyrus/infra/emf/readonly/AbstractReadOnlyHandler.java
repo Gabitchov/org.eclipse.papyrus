@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Atos
+ * Copyright (c) 2013, 2014 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -17,11 +18,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 
 import com.google.common.base.Optional;
 
-public abstract class AbstractReadOnlyHandler implements IReadOnlyHandler {
+public abstract class AbstractReadOnlyHandler implements IReadOnlyHandler2 {
 
 	private EditingDomain editingDomain;
 
@@ -49,4 +50,18 @@ public abstract class AbstractReadOnlyHandler implements IReadOnlyHandler {
 		return Optional.absent();
 	}
 
+	/**
+	 * By default, we do not handle writability of these resources.
+	 */
+	public Optional<Boolean> canMakeWritable(URI[] uris) {
+		return Optional.absent();
+	}
+	
+	public Optional<Boolean> canMakeWritable(EObject object) {
+		Resource res = object.eResource();
+		if((res != null) && (res.getURI() != null)) {
+			return canMakeWritable(new URI[]{ res.getURI() });
+		}
+		return Optional.absent();
+	}
 }
