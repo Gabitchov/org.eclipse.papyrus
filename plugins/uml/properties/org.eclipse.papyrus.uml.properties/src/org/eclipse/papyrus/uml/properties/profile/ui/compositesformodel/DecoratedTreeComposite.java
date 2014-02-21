@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.tree.ProfileElementTreeViewer;
@@ -187,8 +188,7 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 * 
 	 * @return
 	 */
-	public Composite createContent(Composite parent,
-			TabbedPropertySheetWidgetFactory factory) {
+	public Composite createContent(Composite parent, TabbedPropertySheetWidgetFactory factory) {
 
 		FormData data;
 
@@ -319,6 +319,13 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	}
 
 	/**
+	 * @param pSelection
+	 */
+	public void keepSelection(ISelection pSelection) {
+
+	}
+
+	/**
 	 * action executed when the remove button is pressed.
 	 */
 	public abstract void removeButtonPressed();
@@ -446,11 +453,12 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 * @param e
 		 */
 		public void mouseUp(MouseEvent e) {
-			TreeItem[] treeItems = tree.getSelection();
-			upButtonPressed();
+			ISelection selection = treeViewer.getSelection();
+			downButtonPressed();
 			refresh();
+
 			// Keep selection
-			tree.setSelection(treeItems);
+			keepSelection(selection);
 		}
 	}
 
@@ -486,11 +494,13 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		 * @param e
 		 */
 		public void mouseUp(MouseEvent e) {
-			TreeItem[] treeItems = tree.getSelection();
-			downButtonPressed();
+			ISelection vSelection = treeViewer.getSelection();
+
+			upButtonPressed();
 			refresh();
 			// Keep selection
-			tree.setSelection(treeItems);
+			keepSelection(vSelection);
+
 		}
 	}
 
