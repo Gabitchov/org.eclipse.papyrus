@@ -19,6 +19,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.transaction.RollbackException;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -113,12 +114,19 @@ public class RollbackStatus extends Status implements IRollbackStatus {
 	public static IRollbackStatus findRollbackStatus(IStatus status) {
 		IRollbackStatus result = null;
 
-		if(status instanceof IRollbackStatus) {
-			result = (IRollbackStatus)status;
-		} else if(status.isMultiStatus()) {
-			IStatus[] children = status.getChildren();
-			for(int i = 0; (result == null) && (i < children.length); i++) {
-				result = findRollbackStatus(children[i]);
+		if(status != null) {
+			if(status instanceof IRollbackStatus) {
+				result = (IRollbackStatus)status;
+			} else if(status.isMultiStatus()) {
+				IStatus[] children = status.getChildren();
+				for(int i = 0; (result == null) && (i < children.length); i++) {
+					result = findRollbackStatus(children[i]);
+				}
+			}
+
+			if((result == null) && (status.getException() instanceof RollbackException)) {
+				// The RollbackStatus may be rolled up in a generic Status created from the RollbackException that originally carried it
+				result = findRollbackStatus(((RollbackException)status.getException()).getStatus());
 			}
 		}
 

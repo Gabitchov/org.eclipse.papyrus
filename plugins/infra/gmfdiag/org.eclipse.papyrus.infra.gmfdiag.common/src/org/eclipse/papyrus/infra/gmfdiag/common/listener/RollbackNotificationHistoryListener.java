@@ -17,10 +17,14 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IOperationHistoryListener;
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.OperationHistoryEvent;
+import org.eclipse.core.commands.operations.TriggeredOperations;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.IRollbackStatus;
@@ -51,6 +55,11 @@ public class RollbackNotificationHistoryListener implements IOperationHistoryLis
 			final long now = System.currentTimeMillis();
 
 			IRollbackStatus rollback = RollbackStatus.findRollbackStatus(event.getStatus());
+			if(rollback == null) {
+				// Failure of a TriggeredOperations results in an event without a status
+				rollback = findRollbackStatus(event.getOperation());
+			}
+
 			if(rollback != null) {
 				Collection<?> causalObjects = rollback.getCausalObjects();
 				Collection<String> labels = getObjectLabels(causalObjects);
@@ -116,4 +125,19 @@ public class RollbackNotificationHistoryListener implements IOperationHistoryLis
 		return result;
 	}
 
+	protected IRollbackStatus findRollbackStatus(IUndoableOperation operation) {
+		IRollbackStatus result = null;
+
+		if(operation instanceof ICommand) {
+			CommandResult commandResult = ((ICommand)operation).getCommandResult();
+			if(commandResult != null) {
+				result = RollbackStatus.findRollbackStatus(commandResult.getStatus());
+			}
+		} else if(operation instanceof TriggeredOperations) {
+			// We can't get the children out of a generic ICompositeOperation, and from this one only the initial triggering operation
+			return findRollbackStatus(((TriggeredOperations)operation).getTriggeringOperation());
+		}
+
+		return result;
+	}
 }
