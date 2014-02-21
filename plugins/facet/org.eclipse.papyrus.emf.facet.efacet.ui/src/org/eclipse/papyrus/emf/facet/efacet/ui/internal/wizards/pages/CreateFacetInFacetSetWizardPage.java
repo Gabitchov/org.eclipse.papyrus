@@ -9,19 +9,19 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal.wizards.pages;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.Facet;
-import org.eclipse.emf.facet.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.composites.BrowseComposite;
-import org.eclipse.emf.facet.efacet.ui.internal.composites.SelectETypeComposite.ETypeSelectionOptions;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.SelectETypeWizardImpl;
+import org.eclipse.papyrus.emf.facet.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites.BrowseComposite;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites.SelectETypeComposite.ETypeSelectionOptions;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.SelectETypeWizardImpl;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;

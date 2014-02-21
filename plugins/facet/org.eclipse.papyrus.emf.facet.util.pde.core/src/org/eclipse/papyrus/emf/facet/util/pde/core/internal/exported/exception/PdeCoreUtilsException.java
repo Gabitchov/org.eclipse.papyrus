@@ -8,7 +8,7 @@
  * Contributors:
  *     Fabien Treguer (Soft-Maint) - Bug 418565 - [Unit Test Failure] Missing dependencies during tests, target platform creation and load
  ******************************************************************************/
-package org.eclipse.emf.facet.util.pde.core.internal.exported.exception;
+package org.eclipse.papyrus.emf.facet.util.pde.core.internal.exported.exception;
 
 public class PdeCoreUtilsException extends Exception {
 

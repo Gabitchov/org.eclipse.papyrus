@@ -9,15 +9,15 @@
  *  Contributors:
  *  	Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  */
-package org.eclipse.emf.facet.custom.ui.internal.dialog;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.dialog;
 
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialog;
-import org.eclipse.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialogFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialog;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.dialog.ILoadCustomizationsDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.swt.widgets.Shell;
 
 public class LoadCustomizationsDialogFactory implements ILoadCustomizationsDialogFactory {

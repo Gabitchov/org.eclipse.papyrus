@@ -10,22 +10,22 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.query;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.query;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.dialog.query.IQueryDialogFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.query.AbstractQueryWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement;
-import org.eclipse.emf.facet.util.ui.utils.WidgetProperties;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.dialog.query.IQueryDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.query.AbstractQueryWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.WidgetProperties;
 import org.eclipse.swt.widgets.Composite;
 
 /**

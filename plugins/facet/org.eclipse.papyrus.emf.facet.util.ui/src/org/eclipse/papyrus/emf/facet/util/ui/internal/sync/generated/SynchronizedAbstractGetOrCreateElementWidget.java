@@ -9,27 +9,27 @@
  * Contributors:
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.sync.generated;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.sync.generated;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
 
 public class SynchronizedAbstractGetOrCreateElementWidget
 		extends
-		SynchronizedObject<org.eclipse.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWidget>
+		SynchronizedObject<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWidget>
 		implements
-		org.eclipse.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWidget {
+		org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWidget {
 
 	public SynchronizedAbstractGetOrCreateElementWidget(
-			final org.eclipse.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWidget object,
+			final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWidget object,
 			final Display display) {
 		super(object, display);
 	}
 
 	public final void addListener(
-			final org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
+			final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
 		voidExceptionFreeRunnable(new AbstractVoidExceptionFreeRunnable() {
 			@Override
 			public void voidSafeRun() {

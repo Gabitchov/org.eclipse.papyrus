@@ -14,12 +14,12 @@
  *     Grégoire Dupé (Mia-Software) - Bug 361817 - [Restructuring] Dynamic load to the facet catalog
  * 
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +32,7 @@ import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogFactory
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogFactory
  * @model kind="package"
  * @generated
  */
@@ -67,14 +67,14 @@ public interface EfacetcatalogPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EfacetcatalogPackage eINSTANCE = org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.EfacetcatalogPackageImpl.init();
+	EfacetcatalogPackage eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.EfacetcatalogPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl <em>Facet Set Catalog</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl <em>Facet Set Catalog</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.EfacetcatalogPackageImpl#getFacetSetCatalog()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.EfacetcatalogPackageImpl#getFacetSetCatalog()
 	 * @generated
 	 */
 	int FACET_SET_CATALOG = 0;
@@ -108,11 +108,11 @@ public interface EfacetcatalogPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.FacetSetCatalog <em>Facet Set Catalog</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.FacetSetCatalog <em>Facet Set Catalog</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Set Catalog</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.FacetSetCatalog
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.FacetSetCatalog
 	 * @generated
 	 */
 	EClass getFacetSetCatalog();
@@ -140,11 +140,11 @@ public interface EfacetcatalogPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl <em>Facet Set Catalog</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl <em>Facet Set Catalog</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.EfacetcatalogPackageImpl#getFacetSetCatalog()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.EfacetcatalogPackageImpl#getFacetSetCatalog()
 		 * @generated
 		 */
 		EClass FACET_SET_CATALOG = eINSTANCE.getFacetSetCatalog();

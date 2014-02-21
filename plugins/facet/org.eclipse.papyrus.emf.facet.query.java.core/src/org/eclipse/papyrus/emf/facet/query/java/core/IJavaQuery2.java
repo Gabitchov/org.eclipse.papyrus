@@ -11,11 +11,11 @@
  *     Nicolas Bros (Mia-Software) - Bug 361612 - New core for new version of the Facet metamodel
  *     Nicolas Bros (Mia-Software) - Bug 362191 - [Restructuring] Query mechanism for eFacet2
  */
-package org.eclipse.emf.facet.query.java.core;
+package org.eclipse.papyrus.emf.facet.query.java.core;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 
 /**
  * This interface is implemented by each Java query (a Java query is a query written in Java).
@@ -28,7 +28,7 @@ import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
  */
 public interface IJavaQuery2<T extends EObject, R> {
 	// This interface is a copy of
-	// org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery<T, R>
+	// org.eclipse.papyrus.emf.facet.infra.query.core.java.IJavaModelQuery<T, R>
 
 	/**
 	 * This method must be implemented by each sub class to implement query

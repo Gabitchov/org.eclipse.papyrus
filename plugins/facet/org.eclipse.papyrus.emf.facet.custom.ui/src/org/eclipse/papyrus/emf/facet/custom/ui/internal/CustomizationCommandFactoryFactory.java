@@ -10,12 +10,12 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.ui.internal.exported.ICustomizationCommandFactory;
-import org.eclipse.emf.facet.custom.ui.internal.exported.ICustomizationCommandFactoryFactory;
-import org.eclipse.emf.facet.util.emf.core.internal.exported.ICommandFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.ICustomizationCommandFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.ICustomizationCommandFactoryFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.exported.ICommandFactory;
 
 public class CustomizationCommandFactoryFactory implements
 		ICustomizationCommandFactoryFactory {

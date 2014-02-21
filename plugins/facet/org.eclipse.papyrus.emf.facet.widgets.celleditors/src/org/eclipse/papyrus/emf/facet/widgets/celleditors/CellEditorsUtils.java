@@ -8,7 +8,7 @@
  *  Vincent Lorenzo (CEA-LIST) - Bug 351931 - Use local cell editor in table
  *  Gregoire Dupe (Mia-Software) - Bug 351931 - Use local cell editor in table
  */
- package org.eclipse.emf.facet.widgets.celleditors;
+ package org.eclipse.papyrus.emf.facet.widgets.celleditors;
 
 import java.util.Iterator;
 import java.util.List;
@@ -17,8 +17,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
 
 /**
  * @since 0.1.1

@@ -9,10 +9,10 @@
  *  Contributors:
  *  	Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  */
-package org.eclipse.emf.facet.util.emf.core.internal.command;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.command;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.facet.util.emf.core.command.ICommandFactoryResult;
+import org.eclipse.papyrus.emf.facet.util.emf.core.command.ICommandFactoryResult;
 
 public class CommandFactoryResult<T> implements ICommandFactoryResult<T> {
 

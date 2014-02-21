@@ -10,17 +10,17 @@
  *    Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
  *    Nicolas Bros (Mia-Software) - Bug 335218 - Extension point for registering EObject, EPackage, model editor
  ***********************************************************************************/
-package org.eclipse.emf.facet.util.emf.ui.internal.preference.pages;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.preference.pages;
 
 import java.util.List;
 
 import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.emf.facet.util.emf.core.IBrowserRegistry;
-import org.eclipse.emf.facet.util.emf.core.IEObjectBrowserOpener;
-import org.eclipse.emf.facet.util.emf.core.IEPackageBrowserOpener;
-import org.eclipse.emf.facet.util.emf.core.IResourceBrowserOpener;
-import org.eclipse.emf.facet.util.emf.core.internal.preferences.PreferenceConstants;
-import org.eclipse.emf.facet.util.emf.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IBrowserRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IEObjectBrowserOpener;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IEPackageBrowserOpener;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IResourceBrowserOpener;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.preferences.PreferenceConstants;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.Messages;
 import org.eclipse.jface.preference.ComboFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.ui.IWorkbench;
@@ -38,7 +38,7 @@ public class DefaultBrowserPreferencePage extends FieldEditorPreferencePage impl
 		super(FieldEditorPreferencePage.GRID);
 		ScopedPreferenceStore scopedPreferenceStore = new ScopedPreferenceStore(
 				new InstanceScope(),
-				org.eclipse.emf.facet.util.emf.core.internal.Activator.PLUGIN_ID);
+				org.eclipse.papyrus.emf.facet.util.emf.core.internal.Activator.PLUGIN_ID);
 		setPreferenceStore(scopedPreferenceStore);
 	}
 

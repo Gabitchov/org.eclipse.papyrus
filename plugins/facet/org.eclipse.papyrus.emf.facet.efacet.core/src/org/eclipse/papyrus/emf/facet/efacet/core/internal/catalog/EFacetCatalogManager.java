@@ -11,17 +11,17 @@
  *  Nicolas Guyomar (Mia-Software) - Bug 333553 - The user has not to deal with two files to create a facet
  *  Nicolas Bros (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.core.internal.catalog;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.catalog;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.QuerySet;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogFactory;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
-import org.eclipse.emf.facet.efacet.core.internal.Messages;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogSet;
-import org.eclipse.emf.facet.util.emf.core.ICatalogManager;
+import org.eclipse.papyrus.emf.facet.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.QuerySet;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogFactory;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogManager;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet;
 
 /** @deprecated replaced by {@link EFacetCatalogManager2} for the new eFacet2 metamodel */
 @Deprecated

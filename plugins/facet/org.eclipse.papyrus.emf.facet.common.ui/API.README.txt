@@ -8,15 +8,15 @@
  *
  * Contributors:
  *   Nicolas Guyomar (Mia-Software) - Bug 339723 - Add x-friend on EMF Facet internal package
- *   Gregoire Dupe (Mia-Software) - Bug 339710 - org.eclipse.emf.facet.common.ui API Cleaning
+ *   Gregoire Dupe (Mia-Software) - Bug 339710 - org.eclipse.papyrus.emf.facet.common.ui API Cleaning
  *******************************************************************************/
  
- org.eclipse.emf.facet.common.ui.internal.controls
- 	x-internal:=used by org.eclipse.emf.facet.infra.*. No x-friends because we don't care about the warning in the "infra" plug-ins.
+ org.eclipse.papyrus.emf.facet.common.ui.internal.controls
+ 	x-internal:=used by org.eclipse.papyrus.emf.facet.infra.*. No x-friends because we don't care about the warning in the "infra" plug-ins.
  
- org.eclipse.emf.facet.common.ui.internal.views
-	x-friends:="org.eclipse.emf.facet.util.emf.ui" for EMF Facet internal utilization
+ org.eclipse.papyrus.emf.facet.common.ui.internal.views
+	x-friends:="org.eclipse.papyrus.emf.facet.util.emf.ui" for EMF Facet internal utilization
 
-org.eclipse.emf.facet.common.ui.internal.widgets
-	x-friends:="org.eclipse.emf.facet.efacet.ui" for EMF Facet internal utilization
-	x-friends:="org.eclipse.emf.facet.util.emf.ui" for EMF Facet internal utilization
+org.eclipse.papyrus.emf.facet.common.ui.internal.widgets
+	x-friends:="org.eclipse.papyrus.emf.facet.efacet.ui" for EMF Facet internal utilization
+	x-friends:="org.eclipse.papyrus.emf.facet.util.emf.ui" for EMF Facet internal utilization

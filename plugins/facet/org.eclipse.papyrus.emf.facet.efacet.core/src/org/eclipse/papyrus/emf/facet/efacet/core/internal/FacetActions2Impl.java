@@ -9,9 +9,9 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 338813 - [EMF Facet Framework] basic Facet actions
  *  Nicolas Bros (Mia-Software) - Bug 361612 - New core for new version of the Facet metamodel
- *  Gregoire Dupe (Mia-Software) - Bug 362087 - [Deprecated] org.eclipse.emf.facet.util.emf.core.ICatalogSetManager
+ *  Gregoire Dupe (Mia-Software) - Bug 362087 - [Deprecated] org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager
  */
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.io.IOException;
 
@@ -26,17 +26,17 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.core.internal.incubatingapi.IFacetActions2;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManager2;
-import org.eclipse.emf.facet.util.emf.core.exception.InvalidFacetSetException;
-import org.eclipse.emf.facet.util.pde.core.internal.exported.BuildPropertiesUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.incubatingapi.IFacetActions2;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager2;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.util.pde.core.internal.exported.BuildPropertiesUtils;
 
 public class FacetActions2Impl implements IFacetActions2 {
 

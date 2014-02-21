@@ -10,11 +10,11 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *  Gregoire Dupe (Mia-Software) - Bug 373248 - Clean PMD errors
  */
-package org.eclipse.emf.facet.efacet.ui.internal.composites;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites;
 
-import org.eclipse.emf.facet.efacet.core.internal.query.QueryEvaluatorFactoryRegistry;
-import org.eclipse.emf.facet.efacet.core.query.IQueryEvaluatorFactory;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.query.QueryEvaluatorFactoryRegistry;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryEvaluatorFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

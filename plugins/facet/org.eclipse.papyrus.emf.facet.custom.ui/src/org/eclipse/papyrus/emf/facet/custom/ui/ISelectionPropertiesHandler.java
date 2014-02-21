@@ -8,9 +8,9 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 377866 - selection customization
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui;
+package org.eclipse.papyrus.emf.facet.custom.ui;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
 
 /**
  * 

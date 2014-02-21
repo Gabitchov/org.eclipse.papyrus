@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.util.emf.core.serialization.model.serialization;
+package org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization;
 
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.SerializationFactory
+ * @see org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.SerializationFactory
  * @model kind="package"
  * @generated
  */
@@ -60,14 +60,14 @@ public interface SerializationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SerializationPackage eINSTANCE = org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.impl.SerializationPackageImpl.init();
+	SerializationPackage eINSTANCE = org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.impl.SerializationPackageImpl.init();
 
 	/**
 	 * The meta object id for the '<em>Extensible Serializable Java Object</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see java.lang.Object
-	 * @see org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.impl.SerializationPackageImpl#getExtensibleSerializableJavaObject()
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.impl.SerializationPackageImpl#getExtensibleSerializableJavaObject()
 	 * @generated
 	 */
 	int EXTENSIBLE_SERIALIZABLE_JAVA_OBJECT = 0;
@@ -111,7 +111,7 @@ public interface SerializationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see java.lang.Object
-		 * @see org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.impl.SerializationPackageImpl#getExtensibleSerializableJavaObject()
+		 * @see org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.impl.SerializationPackageImpl#getExtensibleSerializableJavaObject()
 		 * @generated
 		 */
 		EDataType EXTENSIBLE_SERIALIZABLE_JAVA_OBJECT = SerializationPackage.eINSTANCE.getExtensibleSerializableJavaObject();

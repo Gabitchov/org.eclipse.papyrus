@@ -9,7 +9,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -19,12 +19,12 @@ package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor;
  * The following features are supported:
  * <ul>
  * <li>
- * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor#getUnaryReferenceCellEditorImpl
+ * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor#getUnaryReferenceCellEditorImpl
  * <em>Unary Reference Cell Editor Impl</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getUnaryReferenceCellEditor()
+ * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getUnaryReferenceCellEditor()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface UnaryReferenceCellEditor extends AbstractModelCellEditor {
 	 * @return the value of the '<em>Unary Reference Cell Editor Impl</em>'
 	 *         attribute.
 	 * @see #setUnaryReferenceCellEditorImpl(String)
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getUnaryReferenceCellEditor_UnaryReferenceCellEditorImpl()
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getUnaryReferenceCellEditor_UnaryReferenceCellEditorImpl()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -51,7 +51,7 @@ public interface UnaryReferenceCellEditor extends AbstractModelCellEditor {
 
 	/**
 	 * Sets the value of the '
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor#getUnaryReferenceCellEditorImpl
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor#getUnaryReferenceCellEditorImpl
 	 * <em>Unary Reference Cell Editor Impl</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 

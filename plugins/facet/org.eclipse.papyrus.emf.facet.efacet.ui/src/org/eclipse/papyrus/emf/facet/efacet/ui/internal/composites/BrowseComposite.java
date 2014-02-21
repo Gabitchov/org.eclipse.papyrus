@@ -10,7 +10,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *  Gregoire Dupe (Mia-Software) - Bug 373248 - Clean PMD errors
  */
-package org.eclipse.emf.facet.efacet.ui.internal.composites;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;

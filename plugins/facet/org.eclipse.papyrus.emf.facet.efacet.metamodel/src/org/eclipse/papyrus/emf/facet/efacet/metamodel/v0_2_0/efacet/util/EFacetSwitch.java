@@ -17,7 +17,7 @@
  *       Gregoire Dupe (Mia-software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.util;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.util;
 
 import java.util.List;
 
@@ -32,18 +32,18 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.*;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Category;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.*;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +55,7 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage
  * @generated
  */
 public class EFacetSwitch<T> {

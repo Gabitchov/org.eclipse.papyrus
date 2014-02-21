@@ -10,21 +10,17 @@
  * 		David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryFactory;
-import org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery;
-
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,7 +47,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

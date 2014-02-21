@@ -9,13 +9,13 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.impl;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -24,7 +24,7 @@ import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceC
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.impl.UnaryReferenceCellEditorImpl#getUnaryReferenceCellEditorImpl
+ * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.impl.UnaryReferenceCellEditorImpl#getUnaryReferenceCellEditorImpl
  * <em>Unary Reference Cell Editor Impl</em>}</li>
  * </ul>
  * </p>

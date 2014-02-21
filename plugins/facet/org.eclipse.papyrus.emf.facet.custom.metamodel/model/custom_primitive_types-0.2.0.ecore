@@ -4,8 +4,8 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="custompt"
     nsURI="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types"
     nsPrefix="custompt">
-  <eClassifiers xsi:type="ecore:EDataType" name="Image" instanceClassName="org.eclipse.emf.facet.custom.metamodel.custompt.IImage"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="Color" instanceClassName="org.eclipse.emf.facet.custom.metamodel.custompt.IColor"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Image" instanceClassName="org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Color" instanceClassName="org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor"/>
   <eClassifiers xsi:type="ecore:EEnum" name="Shadow">
     <eLiterals name="NONE" literal="NONE"/>
     <eLiterals name="IN" value="1" literal="IN"/>

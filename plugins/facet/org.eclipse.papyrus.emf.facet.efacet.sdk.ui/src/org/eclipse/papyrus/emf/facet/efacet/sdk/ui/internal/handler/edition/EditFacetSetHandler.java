@@ -10,13 +10,13 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.edition;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.edition;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.sdk.ui.dialog.IFacetDialogFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.handler.HandlerUtils;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.handler.AbstractSelectionExpectedTypeHandler;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.dialog.IFacetDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.handler.HandlerUtils;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.handler.AbstractSelectionExpectedTypeHandler;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 public class EditFacetSetHandler extends AbstractSelectionExpectedTypeHandler {

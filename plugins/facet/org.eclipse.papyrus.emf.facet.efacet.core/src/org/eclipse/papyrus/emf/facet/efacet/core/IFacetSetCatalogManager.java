@@ -9,11 +9,11 @@
  *    Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *    Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core;
+package org.eclipse.papyrus.emf.facet.efacet.core;
 
 import java.util.Collection;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
 
 /**
  * @since 0.2

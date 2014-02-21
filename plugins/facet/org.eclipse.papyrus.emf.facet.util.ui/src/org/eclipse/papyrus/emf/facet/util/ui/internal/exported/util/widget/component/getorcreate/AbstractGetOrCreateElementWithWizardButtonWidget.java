@@ -10,10 +10,10 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.getorcreate;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.getorcreate;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.wizard.IExtendedWizard;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.wizard.IExtendedWizard;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -42,7 +42,7 @@ public abstract class AbstractGetOrCreateElementWithWizardButtonWidget<T extends
 				// TODO The wizard closing events must be cached by the use of
 				// call back pattern. The use of this pattern must be done in
 				// the subclass of this class, like in
-				// org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.getorcreate.AbstractGetOrCreateElementWithWizardButtonWidget<ETypedElement>
+				// org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.getorcreate.AbstractGetOrCreateElementWithWizardButtonWidget<ETypedElement>
 				// The following if statement and the methods 'onWizardCommited'
 				// 'onWizardCanceled' must be removed (replaced by the use of
 				// call backs)

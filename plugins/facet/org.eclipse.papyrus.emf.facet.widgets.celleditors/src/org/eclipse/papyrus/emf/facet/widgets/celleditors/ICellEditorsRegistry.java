@@ -7,16 +7,16 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 	Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ * 	Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *  Nicolas Bros (Mia-Software) - Bug 339855 - ModelCellEditor class should not be exposed
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.facet.widgets.celleditors.internal.CellEditorsRegistry;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.CellEditorsRegistry;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
 
 /** Registry for the "celleditors" extension point */
 public interface ICellEditorsRegistry {
@@ -28,7 +28,7 @@ public interface ICellEditorsRegistry {
 	/**
 	 * Returns a cell editor to edit a single value of the given type, or <code>null</code> if none
 	 * was found. Custom cell editors override the default ones (from
-	 * "org.eclipse.emf.facet.widgets.celleditors").
+	 * "org.eclipse.papyrus.emf.facet.widgets.celleditors").
 	 * 
 	 * @param type
 	 *            the type for which to get a cell editor
@@ -39,7 +39,7 @@ public interface ICellEditorsRegistry {
 	/**
 	 * Returns a cell editor to edit a list of values of the given type, or <code>null</code> if
 	 * none was found. Custom cell editors override the default ones (from
-	 * "org.eclipse.emf.facet.widgets.celleditors").
+	 * "org.eclipse.papyrus.emf.facet.widgets.celleditors").
 	 * 
 	 * @param type
 	 *            the type for which to get a cell editor
@@ -50,7 +50,7 @@ public interface ICellEditorsRegistry {
 	/**
 	 * Returns a cell editor to edit a single value of the given type, or <code>null</code> if none
 	 * was found. Custom cell editors override the default ones (from
-	 * "org.eclipse.emf.facet.widgets.celleditors").
+	 * "org.eclipse.papyrus.emf.facet.widgets.celleditors").
 	 * 
 	 * @param type
 	 *            the type for which to get a cell editor
@@ -65,7 +65,7 @@ public interface ICellEditorsRegistry {
 	/**
 	 * Returns a cell editor to edit a list of values of the given type, or <code>null</code> if
 	 * none was found. Custom cell editors override the default ones (from
-	 * "org.eclipse.emf.facet.widgets.celleditors").
+	 * "org.eclipse.papyrus.emf.facet.widgets.celleditors").
 	 * 
 	 * @param type
 	 *            the type for which to get a cell editor

@@ -8,10 +8,10 @@
  * Contributors:
  *     Nicolas Bros (Mia-Software) - Bug 372865 - FacetSet selection dialog
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget;
 
-import org.eclipse.emf.facet.efacet.ui.internal.exported.widget.IFacetSetSelectionWidget;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.widget.IFacetSetSelectionWidgetFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget.IFacetSetSelectionWidget;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget.IFacetSetSelectionWidgetFactory;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 

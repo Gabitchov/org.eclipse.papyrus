@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.ui;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipse.emf.facet.custom.ui.internal.Activator
+Bundle-Activator: org.eclipse.papyrus.emf.facet.custom.ui.internal.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -18,9 +18,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.emf.facet.common.ui
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.emf.facet.custom.ui,
- org.eclipse.emf.facet.custom.ui.internal,
- org.eclipse.emf.facet.custom.ui.internal.exported,
- org.eclipse.emf.facet.custom.ui.internal.exported.dialog,
- org.eclipse.emf.facet.custom.ui.internal.exported.exception
+Export-Package: org.eclipse.papyrus.emf.facet.custom.ui,
+ org.eclipse.papyrus.emf.facet.custom.ui.internal,
+ org.eclipse.papyrus.emf.facet.custom.ui.internal.exported,
+ org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.dialog,
+ org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.exception
 Service-Component: OSGI-INF/component.xml

@@ -11,11 +11,11 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.catalog.efacetcatalog;
+package org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.facet.efacet.QuerySet;
-import org.eclipse.emf.facet.util.emf.catalog.Catalog;
+import org.eclipse.papyrus.emf.facet.efacet.QuerySet;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Query Set Catalog</b></em>'.
@@ -28,12 +28,12 @@ import org.eclipse.emf.facet.util.emf.catalog.Catalog;
  * The following features are supported:
  * <ul>
  * <li>
- * {@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog#getInstalledQuerySets
+ * {@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog#getInstalledQuerySets
  * <em>Installed Query Sets</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage#getQuerySetCatalog()
+ * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage#getQuerySetCatalog()
  * @model
  * @generated
  * @deprecated cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
@@ -42,14 +42,14 @@ import org.eclipse.emf.facet.util.emf.catalog.Catalog;
 public interface QuerySetCatalog extends Catalog {
 	/**
 	 * Returns the value of the '<em><b>Installed Query Sets</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.facet.efacet.QuerySet}.
+	 * The list contents are of type {@link org.eclipse.papyrus.emf.facet.efacet.QuerySet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * "installedQuerySets" derived link aims at providing a direct access to QuerySet objects in the catalog.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Installed Query Sets</em>' reference list.
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage#getQuerySetCatalog_InstalledQuerySets()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage#getQuerySetCatalog_InstalledQuerySets()
 	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='self.installedQuerySets = self.installedEntries'"
 	 * @generated

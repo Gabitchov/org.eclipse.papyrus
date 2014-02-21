@@ -9,19 +9,19 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.impl;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorFactory;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorFactory;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--

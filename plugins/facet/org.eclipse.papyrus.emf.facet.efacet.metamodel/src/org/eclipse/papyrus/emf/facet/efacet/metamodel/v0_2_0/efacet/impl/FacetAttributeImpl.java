@@ -12,7 +12,7 @@
  * 	Emmanuelle RouillÃ© (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl;
 
 import java.util.Collection;
 
@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EAttributeImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Category;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,10 +39,10 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl#getDocumentation <em>Documentation</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl#getCategories <em>Categories</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl#getQuery <em>Query</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl#getOverride <em>Override</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl#getDocumentation <em>Documentation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl#getCategories <em>Categories</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl#getQuery <em>Query</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl#getOverride <em>Override</em>}</li>
  * </ul>
  * </p>
  *

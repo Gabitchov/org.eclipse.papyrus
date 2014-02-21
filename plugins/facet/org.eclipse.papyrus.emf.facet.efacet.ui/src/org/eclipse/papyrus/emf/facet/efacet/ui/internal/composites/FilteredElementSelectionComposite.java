@@ -8,9 +8,9 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.composites;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites;
 
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;

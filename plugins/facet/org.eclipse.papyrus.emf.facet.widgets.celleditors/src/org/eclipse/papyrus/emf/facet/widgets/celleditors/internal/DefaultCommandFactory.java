@@ -8,9 +8,9 @@
  *
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
- *   Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.command.MoveCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ICommandFactory;
 
 /**
  * This is the command factory that is used when no other command factory is

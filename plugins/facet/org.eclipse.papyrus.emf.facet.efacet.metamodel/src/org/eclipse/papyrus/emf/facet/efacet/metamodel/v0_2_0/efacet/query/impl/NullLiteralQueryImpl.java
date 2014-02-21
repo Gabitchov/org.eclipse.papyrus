@@ -16,12 +16,12 @@
  *       Olivier Remaud (Soft-Maint) - Bug 369824 - Add a simple way to return string literal constants from a customization query
  *       Gregoire Dupe (Mia-software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage;
 
 /**
  * <!-- begin-user-doc -->

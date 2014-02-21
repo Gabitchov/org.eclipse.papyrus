@@ -10,14 +10,14 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.handler;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.handler;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
-import org.eclipse.emf.facet.custom.sdk.ui.dialog.ICustomizationDialogFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.handler.AbstractSelectionExpectedTypeHandler;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.dialog.ICustomizationDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.handler.AbstractSelectionExpectedTypeHandler;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
 import org.eclipse.swt.widgets.Display;
 
 /**

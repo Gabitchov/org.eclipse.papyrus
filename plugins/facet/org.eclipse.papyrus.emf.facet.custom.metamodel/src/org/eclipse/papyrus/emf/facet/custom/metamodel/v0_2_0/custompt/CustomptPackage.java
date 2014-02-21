@@ -11,7 +11,7 @@
  *  
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt;
 
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptFactory
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptFactory
  * @model kind="package"
  * @generated
  */
@@ -63,24 +63,24 @@ public interface CustomptPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CustomptPackage eINSTANCE = org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl.init();
+	CustomptPackage eINSTANCE = org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow <em>Shadow</em>}' enum.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow <em>Shadow</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getShadow()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getShadow()
 	 * @generated
 	 */
 	int SHADOW = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment <em>Alignment</em>}' enum.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment <em>Alignment</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getAlignment()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getAlignment()
 	 * @generated
 	 */
 	int ALIGNMENT = 1;
@@ -89,8 +89,8 @@ public interface CustomptPackage extends EPackage {
 	 * The meta object id for the '<em>Image</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.custompt.IImage
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getImage()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getImage()
 	 * @generated
 	 */
 	int IMAGE = 2;
@@ -99,50 +99,50 @@ public interface CustomptPackage extends EPackage {
 	 * The meta object id for the '<em>Color</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.custompt.IColor
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getColor()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getColor()
 	 * @generated
 	 */
 	int COLOR = 3;
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow <em>Shadow</em>}'.
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow <em>Shadow</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Shadow</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow
 	 * @generated
 	 */
 	EEnum getShadow();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment <em>Alignment</em>}'.
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment <em>Alignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Alignment</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment
 	 * @generated
 	 */
 	EEnum getAlignment();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.emf.facet.custom.metamodel.custompt.IImage <em>Image</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Image</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.custompt.IImage
-	 * @model instanceClass="org.eclipse.emf.facet.custom.metamodel.custompt.IImage"
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage
+	 * @model instanceClass="org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage"
 	 * @generated
 	 */
 	EDataType getImage();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.emf.facet.custom.metamodel.custompt.IColor <em>Color</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor <em>Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Color</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.custompt.IColor
-	 * @model instanceClass="org.eclipse.emf.facet.custom.metamodel.custompt.IColor"
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor
+	 * @model instanceClass="org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor"
 	 * @generated
 	 */
 	EDataType getColor();
@@ -170,21 +170,21 @@ public interface CustomptPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow <em>Shadow</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow <em>Shadow</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getShadow()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getShadow()
 		 * @generated
 		 */
 		EEnum SHADOW = eINSTANCE.getShadow();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment <em>Alignment</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment <em>Alignment</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getAlignment()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getAlignment()
 		 * @generated
 		 */
 		EEnum ALIGNMENT = eINSTANCE.getAlignment();
@@ -193,8 +193,8 @@ public interface CustomptPackage extends EPackage {
 		 * The meta object literal for the '<em>Image</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.custompt.IImage
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getImage()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getImage()
 		 * @generated
 		 */
 		EDataType IMAGE = eINSTANCE.getImage();
@@ -203,8 +203,8 @@ public interface CustomptPackage extends EPackage {
 		 * The meta object literal for the '<em>Color</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.custompt.IColor
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getColor()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptPackageImpl#getColor()
 		 * @generated
 		 */
 		EDataType COLOR = eINSTANCE.getColor();

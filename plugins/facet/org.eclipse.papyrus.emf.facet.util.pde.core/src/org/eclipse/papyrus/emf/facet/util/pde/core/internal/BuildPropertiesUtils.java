@@ -7,12 +7,12 @@
  *
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
- *    Nicolas Bros (Mia-Software) - Bug 339991 - don't use internal APIs in org.eclipse.emf.facet.util.core.internal.BuildPropertiesUtils
+ *    Nicolas Bros (Mia-Software) - Bug 339991 - don't use internal APIs in org.eclipse.papyrus.emf.facet.util.core.internal.BuildPropertiesUtils
  *    Laurent Pichierri (Soft-Maint) - Bug 371204 - Compatibility with Helios
  *    Gregoire Dupe (Mia-Software) - Bug 371204 - Compatibility with Helios
- *    Gregoire Dupe (Mia-Software) - Bug 417789 - org.eclipse.emf.facet.util.core should not so much dependencies
+ *    Gregoire Dupe (Mia-Software) - Bug 417789 - org.eclipse.papyrus.emf.facet.util.core should not so much dependencies
  *******************************************************************************/
-package org.eclipse.emf.facet.util.pde.core.internal;
+package org.eclipse.papyrus.emf.facet.util.pde.core.internal;
 
 import java.io.ByteArrayInputStream;
 import java.lang.reflect.Method;
@@ -23,8 +23,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.pde.core.internal.exception.PdeCoreUtilsRuntimeException;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.pde.core.internal.exception.PdeCoreUtilsRuntimeException;
 import org.eclipse.pde.core.IEditableModel;
 import org.eclipse.pde.core.build.IBuild;
 import org.eclipse.pde.core.build.IBuildEntry;
@@ -34,7 +34,7 @@ import org.eclipse.pde.core.plugin.PluginRegistry;
 
 public final class BuildPropertiesUtils {
 
-	// This class has been copied from org.eclipse.emf.facet.infra.common.core.internal.utils.BuildPropertiesUtils
+	// This class has been copied from org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.BuildPropertiesUtils
 	
 	private BuildPropertiesUtils() {
 		// utilities class

@@ -11,7 +11,7 @@
  *    Nicolas Bros (Mia-Software)
  *    Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *******************************************************************************/
-package org.eclipse.emf.facet.common.sdk.core.internal.exported.utils;
+package org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -34,18 +34,18 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.facet.common.sdk.core.internal.Activator;
-import org.eclipse.emf.facet.common.sdk.core.internal.Messages;
-import org.eclipse.emf.facet.common.sdk.core.internal.exported.CommonConstants;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.core.internal.exported.FileUtils;
-import org.eclipse.emf.facet.util.core.internal.exported.FolderUtils;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.FileUtils;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.FolderUtils;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaConventions;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.launching.JavaRuntime;
+import org.eclipse.papyrus.emf.facet.common.sdk.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.common.sdk.core.internal.Messages;
+import org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported.CommonConstants;
 
 import com.ibm.icu.lang.UCharacter;
 
@@ -97,7 +97,7 @@ public final class ProjectUtils {
 					.append("Bundle-Activator: " + ProjectUtils.bundleActivatorQualifiedName(packageName) + "\n"); //$NON-NLS-1$ //$NON-NLS-2$
 			//manifestSB.append("Bundle-Vendor: bundle vendor\n"); //$NON-NLS-1$
 			manifestSB.append("Require-Bundle: org.eclipse.core.runtime,\n"); //$NON-NLS-1$
-			manifestSB.append(" org.eclipse.emf.facet.util.core\n"); //$NON-NLS-1$
+			manifestSB.append(" org.eclipse.papyrus.emf.facet.util.core\n"); //$NON-NLS-1$
 			manifestSB.append("Bundle-RequiredExecutionEnvironment: " //$NON-NLS-1$
 					+ ProjectUtils.JAVA_VERSION + "\n"); //$NON-NLS-1$
 			manifestSB.append("Bundle-ActivationPolicy: lazy\n"); //$NON-NLS-1$

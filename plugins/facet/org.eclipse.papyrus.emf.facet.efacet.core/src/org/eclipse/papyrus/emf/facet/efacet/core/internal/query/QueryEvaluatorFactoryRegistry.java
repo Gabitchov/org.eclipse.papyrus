@@ -11,7 +11,7 @@
  *  Nicolas Guyomar (Mia-Software) - Bug 349566 - Need some new query utils method for query creation
  *  Nicolas Bros (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.core.internal.query;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,18 +22,18 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.core.exception.QueryException;
-import org.eclipse.emf.facet.efacet.core.internal.Activator;
-import org.eclipse.emf.facet.efacet.core.query.IQueryEvaluator;
-import org.eclipse.emf.facet.efacet.core.query.IQueryEvaluatorFactory;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManager;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryEvaluator;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryEvaluatorFactory;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager;
 
 /** @deprecated replaced by {@link DerivedTypedElementImplementationFactoryRegistry} with the new eFacet2 metamodel */
 @Deprecated
 public class QueryEvaluatorFactoryRegistry {
-	private static final String QUERY_EVALUATOR_REGISTRATION_ID = "org.eclipse.emf.facet.efacet.core.query.evaluatorregistration"; //$NON-NLS-1$
+	private static final String QUERY_EVALUATOR_REGISTRATION_ID = "org.eclipse.papyrus.emf.facet.efacet.core.query.evaluatorregistration"; //$NON-NLS-1$
 	private static final String CLASS = "class"; //$NON-NLS-1$
 	public static final QueryEvaluatorFactoryRegistry INSTANCE = new QueryEvaluatorFactoryRegistry();
 

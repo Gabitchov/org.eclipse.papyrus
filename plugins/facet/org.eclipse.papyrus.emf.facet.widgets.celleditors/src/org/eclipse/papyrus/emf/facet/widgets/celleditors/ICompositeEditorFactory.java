@@ -10,7 +10,7 @@
  *    Nicolas Guyomar (Mia-Software) - Bug 334546 - [celleditors] no border on Text field
  *    Nicolas Bros (Mia-Software) - Bug 338437 - compositeEditors extension point cannot be used to register user types
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;

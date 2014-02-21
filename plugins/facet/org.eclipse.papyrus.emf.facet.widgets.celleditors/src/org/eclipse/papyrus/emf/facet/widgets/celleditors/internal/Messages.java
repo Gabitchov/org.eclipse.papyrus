@@ -8,14 +8,14 @@
  *
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
- *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 public final class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.widgets.celleditors.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.messages"; //$NON-NLS-1$
 	public static String CoreIFileComposite_mustSelectFile;
 	public static String CoreIFileComposite_selectFile;
 	public static String NaryAttributeEditingDialog_add;

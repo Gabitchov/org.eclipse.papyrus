@@ -10,9 +10,9 @@
  *  	Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  *  
  */
-package org.eclipse.emf.facet.query.java.javaquery;
+package org.eclipse.papyrus.emf.facet.query.java.javaquery;
 
-import org.eclipse.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,11 +22,11 @@ import org.eclipse.emf.facet.efacet.Query;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.facet.query.java.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage#getJavaQuery()
+ * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage#getJavaQuery()
  * @model
  * @generated
  * @deprecated cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=374198
@@ -43,14 +43,14 @@ public interface JavaQuery extends Query {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Implementation Class Name</em>' attribute.
 	 * @see #setImplementationClassName(String)
-	 * @see org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage#getJavaQuery_ImplementationClassName()
+	 * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage#getJavaQuery_ImplementationClassName()
 	 * @model
 	 * @generated
 	 */
 	String getImplementationClassName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.query.java.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Implementation Class Name</em>' attribute.

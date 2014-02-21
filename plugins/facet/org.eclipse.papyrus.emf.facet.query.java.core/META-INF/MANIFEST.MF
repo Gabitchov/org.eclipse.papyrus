@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.query.java.core;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipse.emf.facet.query.java.core.internal.plugin.Activator
+Bundle-Activator: org.eclipse.papyrus.emf.facet.query.java.core.internal.plugin.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="0.1.0";visibility:=reexport,
  org.eclipse.ui,
@@ -17,5 +17,5 @@ Require-Bundle: org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="0.1.0"
  org.eclipse.papyrus.emf.facet.efacet;bundle-version="0.2.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.emf.facet.query.java.core,
- org.eclipse.emf.facet.query.java.core.internal.exceptions
+Export-Package: org.eclipse.papyrus.emf.facet.query.java.core,
+ org.eclipse.papyrus.emf.facet.query.java.core.internal.exceptions

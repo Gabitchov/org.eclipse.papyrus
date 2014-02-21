@@ -10,15 +10,15 @@
  *   Nicolas Guyomar (Mia-Software) - initial API and implementation
  *   Nicolas Bros (Mia-Software) - Bug 334539 - [celleditors] change listener
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.ecore;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.widgets.celleditors.IListener;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.ecore.composite.DoubleComposite;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IListener;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditHandler;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.DoubleComposite;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 

@@ -9,19 +9,19 @@
  * Contributors:
  * 	 Gregoire Dupe (Mia-Software) - Bug 334000 Simple catalog manager
  *   Nicolas Guyomar (Mia-Software) - Bug 334000 Simple catalog manager
- *   Nicolas Guyomar (Mia-Software) - Bug 334529 ICatalogManager should be exposed in org.eclipse.emf.facet.common.core
+ *   Nicolas Guyomar (Mia-Software) - Bug 334529 ICatalogManager should be exposed in org.eclipse.papyrus.emf.facet.common.core
  *   Nicolas Guyomar (Mia-Software) - Bug 338811 - A model registration method in the interface ICatalogSetManager
  *   Gregoire Dupe (Mia-Software) - Bug 362084 - Get the instance of a catalog manager
- *   Gregoire Dupe (Mia-Software) - Bug 362087 - [Deprecated] org.eclipse.emf.facet.util.emf.core.ICatalogSetManager
+ *   Gregoire Dupe (Mia-Software) - Bug 362087 - [Deprecated] org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager
  */
-package org.eclipse.emf.facet.util.emf.core;
+package org.eclipse.papyrus.emf.facet.util.emf.core;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.util.emf.catalog.Catalog;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogSet;
-import org.eclipse.emf.facet.util.emf.core.exception.InvalidFacetSetException;
-import org.eclipse.emf.facet.util.emf.core.internal.catalog.CatalogSetManager;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.catalog.CatalogSetManager;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet;
 import org.osgi.framework.Bundle;
 
 /**

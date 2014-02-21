@@ -9,9 +9,9 @@
  * Contributors:
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
 
 /**
  * @since 0.3

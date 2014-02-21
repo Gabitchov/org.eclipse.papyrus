@@ -9,7 +9,7 @@
  *     Nicolas Bros (Mia-Software)
  *     Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.view;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.view;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -27,7 +27,7 @@ import org.eclipse.swt.dnd.DropTargetListener;
  * transferred locally (i.e. through {@link LocalTransfer}), and calls the given
  * {@link DropAction} with the dropped {@link EObject}s.
  */
-//Copied from org.eclipse.emf.facet.infra.query.ui.views.queryExecution.internal.DropAdapter
+//Copied from org.eclipse.papyrus.emf.facet.infra.query.ui.views.queryExecution.internal.DropAdapter
 public class DropAdapter implements DropTargetListener {
 
 	private final DropAction dropAction;

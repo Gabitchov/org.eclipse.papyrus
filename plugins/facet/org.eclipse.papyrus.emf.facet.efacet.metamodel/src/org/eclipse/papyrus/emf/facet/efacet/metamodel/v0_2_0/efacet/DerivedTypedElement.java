@@ -12,9 +12,9 @@
  * 	Emmanuelle RouillÃ© (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,12 +28,12 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getQuery <em>Query</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getOverride <em>Override</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getQuery <em>Query</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getOverride <em>Override</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getDerivedTypedElement()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getDerivedTypedElement()
  * @model abstract="true"
  * @generated
  */
@@ -48,14 +48,14 @@ public interface DerivedTypedElement extends FacetElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query</em>' containment reference.
 	 * @see #setQuery(Query)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getDerivedTypedElement_Query()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getDerivedTypedElement_Query()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Query getQuery();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getQuery <em>Query</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getQuery <em>Query</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Query</em>' containment reference.
@@ -73,14 +73,14 @@ public interface DerivedTypedElement extends FacetElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Override</em>' reference.
 	 * @see #setOverride(DerivedTypedElement)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getDerivedTypedElement_Override()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getDerivedTypedElement_Override()
 	 * @model
 	 * @generated
 	 */
 	DerivedTypedElement getOverride();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getOverride <em>Override</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getOverride <em>Override</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Override</em>' reference.

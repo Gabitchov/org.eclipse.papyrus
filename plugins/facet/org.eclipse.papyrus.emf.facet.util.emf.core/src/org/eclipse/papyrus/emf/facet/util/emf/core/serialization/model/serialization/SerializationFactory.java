@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.util.emf.core.serialization.model.serialization;
+package org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.SerializationPackage
+ * @see org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.SerializationPackage
  * @generated
  */
 public interface SerializationFactory extends EFactory {
@@ -27,7 +27,7 @@ public interface SerializationFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SerializationFactory eINSTANCE = org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.impl.SerializationFactoryImpl.init();
+	SerializationFactory eINSTANCE = org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.impl.SerializationFactoryImpl.init();
 
 	/**
 	 * Returns the package supported by this factory.

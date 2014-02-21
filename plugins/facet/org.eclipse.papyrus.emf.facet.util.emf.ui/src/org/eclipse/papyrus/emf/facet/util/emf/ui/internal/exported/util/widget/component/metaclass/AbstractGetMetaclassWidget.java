@@ -10,16 +10,16 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.emf.ui.internal.exported.util.widget.component.metaclass;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.util.widget.component.metaclass;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.util.emf.ui.internal.exported.util.wizard.SelectETypeWizardImpl;
-import org.eclipse.emf.facet.util.emf.ui.internal.exported.util.wizard.SynchronizedSelectETypeWizard;
-import org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.getorcreate.AbstractGetOrCreateElementWithWizardButtonWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.util.wizard.SelectETypeWizardImpl;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.util.wizard.SynchronizedSelectETypeWizard;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.getorcreate.AbstractGetOrCreateElementWithWizardButtonWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
 import org.eclipse.swt.widgets.Composite;
 
 /**

@@ -11,11 +11,11 @@
  * 
  * 
  */
-package org.eclipse.emf.facet.query.ocl.metamodel.oclquery;
+package org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,12 +25,12 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getContext <em>Context</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getOclExpression <em>Ocl Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getOclExpression <em>Ocl Expression</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage#getOclQuery()
+ * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage#getOclQuery()
  * @model
  * @generated
  */
@@ -45,14 +45,14 @@ public interface OclQuery extends Query {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Context</em>' reference.
 	 * @see #setContext(EClassifier)
-	 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage#getOclQuery_Context()
+	 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage#getOclQuery_Context()
 	 * @model
 	 * @generated
 	 */
 	EClassifier getContext();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getContext <em>Context</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getContext <em>Context</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Context</em>' reference.
@@ -71,14 +71,14 @@ public interface OclQuery extends Query {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ocl Expression</em>' attribute.
 	 * @see #setOclExpression(String)
-	 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage#getOclQuery_OclExpression()
+	 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage#getOclQuery_OclExpression()
 	 * @model
 	 * @generated
 	 */
 	String getOclExpression();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getOclExpression <em>Ocl Expression</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getOclExpression <em>Ocl Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Ocl Expression</em>' attribute.

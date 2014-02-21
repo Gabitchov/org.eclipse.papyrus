@@ -12,7 +12,7 @@
  * 	Emmanuelle RouillÃ© (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedContainmentReferenceInstance#getOwnedElements <em>Owned Elements</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedContainmentReferenceInstance#getOwnedElements <em>Owned Elements</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getMultiValuedContainmentReferenceInstance()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getMultiValuedContainmentReferenceInstance()
  * @model
  * @generated
  */
@@ -44,7 +44,7 @@ public interface MultiValuedContainmentReferenceInstance extends AbstractReferen
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Elements</em>' containment reference list.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getMultiValuedContainmentReferenceInstance_OwnedElements()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getMultiValuedContainmentReferenceInstance_OwnedElements()
 	 * @model containment="true"
 	 * @generated
 	 */

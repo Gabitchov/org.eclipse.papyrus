@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.util.emf.catalog;
+package org.eclipse.papyrus.emf.facet.util.emf.catalog;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.util.emf.catalog.Catalog#getInstalledEntries <em>Installed Entries</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.util.emf.catalog.Catalog#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog#getInstalledEntries <em>Installed Entries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.util.emf.catalog.CatalogPackage#getCatalog()
+ * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage#getCatalog()
  * @model interface="true" abstract="true"
  * @generated
  */
@@ -49,7 +49,7 @@ public interface Catalog extends EObject {
 	 * "installedEntries" represents all the EObject initially registered through the registration extension point.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Installed Entries</em>' reference list.
-	 * @see org.eclipse.emf.facet.util.emf.catalog.CatalogPackage#getCatalog_InstalledEntries()
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage#getCatalog_InstalledEntries()
 	 * @model
 	 * @generated
 	 */
@@ -68,14 +68,14 @@ public interface Catalog extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.emf.facet.util.emf.catalog.CatalogPackage#getCatalog_Name()
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage#getCatalog_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.util.emf.catalog.Catalog#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.

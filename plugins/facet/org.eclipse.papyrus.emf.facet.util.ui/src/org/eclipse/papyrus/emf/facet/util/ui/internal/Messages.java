@@ -10,12 +10,12 @@
  *     Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *     Thomas Cicognani (Soft-Maint) - Bug 406565 - Ok Dialog
  *******************************************************************************/
-package org.eclipse.emf.facet.util.ui.internal;
+package org.eclipse.papyrus.emf.facet.util.ui.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 public final class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.util.ui.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.util.ui.internal.messages"; //$NON-NLS-1$
 	public static String FilteredElementSelectionControl_type_filter_text;
 	public static String QuestionDialog_yes;
 	public static String QuestionDialog_no;

@@ -14,7 +14,7 @@
  *     Grégoire Dupé (Mia-Software) - Bug 361817 - [Restructuring] Dynamic load to the facet catalog
  * 
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.*;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.*;
 
 /**
  * <!-- begin-user-doc -->

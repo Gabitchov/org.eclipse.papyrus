@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 372865 - FacetSet selection dialog
  *******************************************************************************/
-package org.eclipse.emf.facet.util.swt.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.swt.internal.exported;
 
 import org.eclipse.swt.widgets.TreeItem;
 

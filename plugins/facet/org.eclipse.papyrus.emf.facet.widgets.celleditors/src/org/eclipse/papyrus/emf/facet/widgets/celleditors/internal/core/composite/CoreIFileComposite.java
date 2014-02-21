@@ -9,17 +9,17 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Nicolas Guyomar (Mia-Software) - Bug 334546 - [celleditors] no border on Text field
  *    Nicolas Bros (Mia-Software) - Bug 338437 - compositeEditors extension point cannot be used to register user types
- *    Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *    Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.core.composite;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.facet.widgets.celleditors.internal.Activator;
-import org.eclipse.emf.facet.widgets.celleditors.internal.Messages;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.Activator;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.Messages;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;

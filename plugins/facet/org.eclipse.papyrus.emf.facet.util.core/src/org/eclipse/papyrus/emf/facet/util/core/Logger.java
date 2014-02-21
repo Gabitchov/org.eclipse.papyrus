@@ -8,10 +8,10 @@
  * Contributors:
  *    Fabien Giquel (Mia-Software) - initial API and implementation
  *    Nicolas Bros (Mia-Software)
- *    Nicolas Bros (Mia-Software) - Bug 339657 - Move Logger to org.eclipse.emf.facet.util.core
- *    Nicolas Bros (Mia-Software) - Bug 340031 - NPE in org.eclipse.emf.facet.util.core.Logger#log
+ *    Nicolas Bros (Mia-Software) - Bug 339657 - Move Logger to org.eclipse.papyrus.emf.facet.util.core
+ *    Nicolas Bros (Mia-Software) - Bug 340031 - NPE in org.eclipse.papyrus.emf.facet.util.core.Logger#log
  *******************************************************************************/
-package org.eclipse.emf.facet.util.core;
+package org.eclipse.papyrus.emf.facet.util.core;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.facet.util.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.core.internal.Activator;
 
 /**
  * Helper for logging using Eclipse API

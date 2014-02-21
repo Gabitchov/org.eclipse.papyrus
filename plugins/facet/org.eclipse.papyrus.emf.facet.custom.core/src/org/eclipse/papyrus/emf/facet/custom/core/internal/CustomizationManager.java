@@ -13,7 +13,7 @@
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *      Nicolas Bros (Mia-Software) - Bug 378271 - [Table] Select Columns To Hide is broken
  */
-package org.eclipse.emf.facet.custom.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.core.internal;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,13 +26,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.core.exception.CustomizationException;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.IFacetManagerFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.exception.CustomizationException;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 
 public class CustomizationManager implements ICustomizationManager {
 

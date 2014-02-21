@@ -10,9 +10,9 @@
  *    Nicolas Guyomar (Mia-Software) - Bug 340339 - Need some Utils class for Folder/File/Project management
  *    Nicolas Guyomar (Mia-Software) - Bug 342451 - To be able to edit derived facet attributes and derived facet references in a table
  *    Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
- *    Thomas Cicognani (Soft-Maint) - Bug 398079 - org.eclipse.emf.facet.util.core.internal.exported.FileUtils.copyFolderFromBundle 
+ *    Thomas Cicognani (Soft-Maint) - Bug 398079 - org.eclipse.papyrus.emf.facet.util.core.internal.exported.FileUtils.copyFolderFromBundle 
  *******************************************************************************/
-package org.eclipse.emf.facet.util.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.core.internal.exported;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,7 +36,7 @@ import org.osgi.framework.Bundle;
  */
 public final class FileUtils {
 
-	// This class has been copied from org.eclipse.emf.facet.infra.common.core.internal.utils.FileUtils
+	// This class has been copied from org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.FileUtils
 
 	private static final int COPY_BUFFER_SIZE = 512 * 1024;
 

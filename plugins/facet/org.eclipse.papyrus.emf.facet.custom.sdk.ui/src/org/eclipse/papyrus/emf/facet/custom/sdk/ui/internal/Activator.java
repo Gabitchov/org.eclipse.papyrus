@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 375388 - Cell editor for IImage
  *    Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.sdk.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

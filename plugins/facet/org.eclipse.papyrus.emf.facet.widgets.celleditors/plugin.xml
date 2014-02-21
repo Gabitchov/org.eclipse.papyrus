@@ -23,7 +23,7 @@ Contributors:
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/EMF_Facet/ModelCellEditor/0.1.0/modelCellEditor"
-            class="org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage"
+            class="org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage"
             genModel="model/celleditors.genmodel"/>
    </extension>
 
@@ -33,20 +33,20 @@ Contributors:
       <content-type
             base-type="org.eclipse.emf.ecore.xmi"
             file-extensions="modelCellEditors"
-            id="org.eclipse.emf.facet.modelCellEditors.contenttype"
+            id="org.eclipse.papyrus.emf.facet.modelCellEditors.contenttype"
             name="%celleditors.content-type.name"
             priority="normal">
       </content-type>
    </extension>
 
    <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.celleditors">
-      <cellEditorsModel path="org.eclipse.emf.facet.widgets.celleditors.core.modelcelleditors"/>
+      <cellEditorsModel path="org.eclipse.papyrus.emf.facet.widgets.celleditors.core.modelcelleditors"/>
    </extension>
   
    <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.compositeEditorFactories">
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.internal.core.composite.factories.CoreIResourceCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.internal.core.composite.factories.CoreIFileCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.internal.core.composite.factories.CoreIProjectCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.factories.CoreIResourceCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.factories.CoreIFileCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.factories.CoreIProjectCompositeFactory"/>
    </extension>
 
 </plugin>

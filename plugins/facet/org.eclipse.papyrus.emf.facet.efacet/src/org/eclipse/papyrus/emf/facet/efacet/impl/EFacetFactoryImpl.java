@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.impl;
+package org.eclipse.papyrus.emf.facet.efacet.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -22,14 +22,14 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.emf.facet.efacet.*;
+import org.eclipse.papyrus.emf.facet.efacet.*;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -39,7 +39,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public static EFacetFactory init() {
@@ -60,7 +60,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EFacetFactoryImpl() {
@@ -71,7 +71,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -100,7 +100,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -117,7 +117,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -134,7 +134,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public FacetAttribute createFacetAttribute() {
@@ -146,7 +146,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public FacetReference createFacetReference() {
@@ -158,7 +158,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public FacetOperation createFacetOperation() {
@@ -170,7 +170,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public FacetSet createFacetSet() {
@@ -182,7 +182,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Facet createFacet() {
@@ -194,7 +194,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public QueryResult createQueryResult() {
@@ -206,7 +206,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Category createCategory() {
@@ -218,7 +218,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public OppositeReference createOppositeReference() {
@@ -230,7 +230,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public QuerySet createQuerySet() {
@@ -242,7 +242,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Literal createLiteral() {
@@ -254,7 +254,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public TypedElementRef createTypedElementRef() {
@@ -266,7 +266,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Parameter createParameter() {
@@ -278,7 +278,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public ParameterValue createParameterValue() {
@@ -290,7 +290,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public QueryContext createQueryContext() {
@@ -302,7 +302,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Exception createJavaExceptionFromString(final EDataType eDataType, final String initialValue) {
@@ -313,7 +313,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public String convertJavaExceptionToString(final EDataType eDataType, final Object instanceValue) {
@@ -324,7 +324,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EFacetPackage getEFacetPackage() {
@@ -336,7 +336,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public static EFacetPackage getPackage() {

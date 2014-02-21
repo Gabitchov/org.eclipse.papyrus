@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Laurent Pichierri (Soft-Maint) - Bug 371204 - Compatibility with Helios
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.core.internal.serialization;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,17 +17,17 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-//import org.eclipse.emf.facet.infra.common.core.internal.extensions.AbstractRegistry;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.core.internal.exported.AbstractRegistry;
-import org.eclipse.emf.facet.util.emf.core.internal.Activator;
-import org.eclipse.emf.facet.util.emf.core.serialization.ISerializationRegistry;
-import org.eclipse.emf.facet.util.emf.core.serialization.ISerializer;
+//import org.eclipse.papyrus.emf.facet.infra.common.core.internal.extensions.AbstractRegistry;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.AbstractRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.ISerializationRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.ISerializer;
 
 /** Registry for the "serialization" extension point */
 public class SerializationRegistry extends AbstractRegistry implements ISerializationRegistry {
 
-	private static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.emf.facet.util.emf.core"; //$NON-NLS-1$
+	private static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.papyrus.emf.facet.util.emf.core"; //$NON-NLS-1$
 	private static final String EXTENSION_POINT_NAME = "serialization"; //$NON-NLS-1$
 
 	private static final String SERIALIZER_ELEMENT = "serializer"; //$NON-NLS-1$

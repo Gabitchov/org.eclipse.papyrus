@@ -9,20 +9,20 @@
  * Contributors:
  * 	  Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *    Nicolas Bros (Mia-Software) - Bug 370442 - rewrite the Facet loading dialog for v0.2
- *    Grégoire Dupé (Mia-Software) - copied from org.eclipse.emf.facet.infra.query.ui.Messages
- *    Nicolas Bros (Mia-Software) - copied from org.eclipse.emf.facet.infra.query.ui.Messages
+ *    Grégoire Dupé (Mia-Software) - copied from org.eclipse.papyrus.emf.facet.infra.query.ui.Messages
+ *    Nicolas Bros (Mia-Software) - copied from org.eclipse.papyrus.emf.facet.infra.query.ui.Messages
  *    Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *    Nicolas Bros (Mia-Software) - Bug 372732 - [Facet] Rewrite the catalog views for 0.2
  *    Nicolas Bros (Mia-Software) - Bug 372865 - FacetSet selection dialog
  *    Vincent Lorenzo (CEA-LIST) - Bug 357621 - Improve the label displayed for Customization and Facets
  *    Nicolas Bros (Mia-Software) - Bug 379518 - NLS missing messages
  */
-package org.eclipse.emf.facet.efacet.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.efacet.ui.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.efacet.ui.internal.messages"; //$NON-NLS-1$
 
 	public static String Enter_a_nsUri;
 	public static String Please_enter_nsUri;
@@ -128,7 +128,7 @@ public class Messages extends NLS {
 	public static String JavaQueryWizardPage_has_side_effect;
 	public static String JavaQueryWizardPage_Query_name;
 	
-	//Begin copied from org.eclipse.emf.facet.infra.query.ui.Messages
+	//Begin copied from org.eclipse.papyrus.emf.facet.infra.query.ui.Messages
 	public static String QueryExecutionView_0;
 	public static String QueryExecutionView_1;
 	public static String QueryExecutionView_classpathWarning;
@@ -152,7 +152,7 @@ public class Messages extends NLS {
 	public static String QueryExecutionView_QueryException;
 	public static String QueryExecutionView_QueryReturnedNull;
 	public static String QueryExecutionView_SelectQueryToExecute;
-	//End copied from org.eclipse.emf.facet.infra.query.ui.Messages
+	//End copied from org.eclipse.papyrus.emf.facet.infra.query.ui.Messages
 	
 	static {
 		// initialize resource bundle

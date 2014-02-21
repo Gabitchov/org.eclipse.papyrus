@@ -15,7 +15,7 @@
  *  Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *  Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -23,26 +23,26 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.ExtensiblePackageImpl;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.impl.SerializationPackageImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.ExtensiblePackageImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.impl.SerializationPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -132,7 +132,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

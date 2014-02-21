@@ -14,28 +14,28 @@
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.util;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.*;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.*;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage
  * @generated
  */
 public class QueryAdapterFactory extends AdapterFactoryImpl {
@@ -151,13 +151,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery <em>Navigation Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery <em>Navigation Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery
 	 * @generated
 	 */
 	public Adapter createNavigationQueryAdapter() {
@@ -165,13 +165,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery <em>Is One Of Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery <em>Is One Of Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery
 	 * @generated
 	 */
 	public Adapter createIsOneOfQueryAdapter() {
@@ -179,13 +179,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery <em>String Literal Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery <em>String Literal Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery
 	 * @generated
 	 */
 	public Adapter createStringLiteralQueryAdapter() {
@@ -193,13 +193,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery <em>True Literal Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery <em>True Literal Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery
 	 * @generated
 	 */
 	public Adapter createTrueLiteralQueryAdapter() {
@@ -207,13 +207,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery <em>False Literal Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery <em>False Literal Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery
 	 * @generated
 	 */
 	public Adapter createFalseLiteralQueryAdapter() {
@@ -221,13 +221,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery <em>Null Literal Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery <em>Null Literal Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery
 	 * @generated
 	 */
 	public Adapter createNullLiteralQueryAdapter() {
@@ -235,13 +235,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery <em>Integer Literal Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery <em>Integer Literal Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery
 	 * @generated
 	 */
 	public Adapter createIntegerLiteralQueryAdapter() {
@@ -249,13 +249,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery <em>Float Literal Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery <em>Float Literal Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery
 	 * @generated
 	 */
 	public Adapter createFloatLiteralQueryAdapter() {
@@ -263,13 +263,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery <em>EObject Literal Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery <em>EObject Literal Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery
 	 * @generated
 	 */
 	public Adapter createEObjectLiteralQueryAdapter() {
@@ -277,13 +277,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery <em>Operation Call Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery <em>Operation Call Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery
 	 * @generated
 	 */
 	public Adapter createOperationCallQueryAdapter() {
@@ -291,13 +291,13 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query <em>Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query <em>Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query
 	 * @generated
 	 */
 	public Adapter createQueryAdapter() {

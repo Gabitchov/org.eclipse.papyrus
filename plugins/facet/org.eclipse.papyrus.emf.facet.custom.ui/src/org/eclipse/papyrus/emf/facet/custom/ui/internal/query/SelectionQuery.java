@@ -8,18 +8,18 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 377866 - selection customization
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui.internal.query;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.query;
 
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.core.exception.FacetManagerException;
-import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.FacetManagerException;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 
 /**
  * This is the query that returns the default selection for a given source and feature (i.e. row and column in a table).

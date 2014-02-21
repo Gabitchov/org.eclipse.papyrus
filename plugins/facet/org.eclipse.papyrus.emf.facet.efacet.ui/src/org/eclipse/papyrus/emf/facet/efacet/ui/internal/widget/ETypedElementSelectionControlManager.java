@@ -12,7 +12,7 @@
  *  Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  *  Nicolas Bros (Mia-Software) - Bug 370806 - [table] rewrite the "allowed contents" query selection dialog for v0.2
  */
-package org.eclipse.emf.facet.efacet.ui.internal.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,14 +23,14 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.efacet.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.ui.internal.preferences.PreferenceConstants;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.preferences.PreferenceConstants;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;

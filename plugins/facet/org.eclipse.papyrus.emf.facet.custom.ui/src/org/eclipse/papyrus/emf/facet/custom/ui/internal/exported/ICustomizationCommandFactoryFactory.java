@@ -9,11 +9,11 @@
  *  Contributors:
  *  	Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  */
-package org.eclipse.emf.facet.custom.ui.internal.exported;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.exported;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.ui.internal.CustomizationCommandFactoryFactory;
-import org.eclipse.emf.facet.util.emf.core.internal.exported.ICommandFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizationCommandFactoryFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.exported.ICommandFactory;
 
 public interface ICustomizationCommandFactoryFactory {
 

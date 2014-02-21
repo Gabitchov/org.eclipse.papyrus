@@ -12,7 +12,7 @@
  *      Nicolas Bros (Mia-Software) - Bug 372626 - Aggregates
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.custom.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.core.internal;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,17 +20,17 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.custom.core.ICustomizationCatalogManager;
-import org.eclipse.emf.facet.custom.core.internal.exception.CustomizationCatalogRuntimeException;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationCatalog;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogFactory;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogSet;
-import org.eclipse.emf.facet.util.emf.core.ICatalogManager;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
+import org.eclipse.papyrus.emf.facet.custom.core.internal.exception.CustomizationCatalogRuntimeException;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationCatalog;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet;
 
 /**
  * Customization catalog implementation using the catalog manager features provided by the plug-in
- * org.eclipse.emf.facet.util.emf.core
+ * org.eclipse.papyrus.emf.facet.util.emf.core
  * 
  * @author Gregoire Dupe
  * 

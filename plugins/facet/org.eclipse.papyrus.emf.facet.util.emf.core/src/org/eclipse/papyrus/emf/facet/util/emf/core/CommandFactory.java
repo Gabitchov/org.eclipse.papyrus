@@ -8,7 +8,7 @@
  *  Contributors:
  *      Gregoire Dupe (Mia-Software) - Bug 345730 - Deleting an element in the model breaks the table
  */
-package org.eclipse.emf.facet.util.emf.core;
+package org.eclipse.papyrus.emf.facet.util.emf.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.util.emf.core.internal.command.SetResourceContentCommand;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.command.SetResourceContentCommand;
 
 public final class CommandFactory {
 	

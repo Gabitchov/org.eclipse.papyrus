@@ -8,10 +8,10 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui;
+package org.eclipse.papyrus.emf.facet.custom.ui;
 
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.ui.internal.ResolvingCustomizedLabelProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.ResolvingCustomizedLabelProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 
 /**
  * A factory to create instances of {@link ICustomizedLabelProvider} that work on proxy UI elements, by customizing the

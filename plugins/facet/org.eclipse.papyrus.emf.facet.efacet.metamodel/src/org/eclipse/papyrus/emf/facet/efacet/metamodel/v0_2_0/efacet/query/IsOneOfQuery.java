@@ -15,11 +15,11 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,11 +33,11 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery#getExpectedEObjects <em>Expected EObjects</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery#getExpectedEObjects <em>Expected EObjects</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getIsOneOfQuery()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getIsOneOfQuery()
  * @model
  * @generated
  */
@@ -52,7 +52,7 @@ public interface IsOneOfQuery extends Query {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expected EObjects</em>' reference list.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getIsOneOfQuery_ExpectedEObjects()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getIsOneOfQuery_ExpectedEObjects()
 	 * @model
 	 * @generated
 	 */

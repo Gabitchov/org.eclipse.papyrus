@@ -12,21 +12,21 @@
  *    Nicolas Bros (Mia-Software) - Bug 362191 - [Restructuring] Query mechanism for eFacet2
  *    Nicolas Bros (Mia-Software) - Bug 376941 - [EFacet] Facet operation arguments in Facet model
  */
-package org.eclipse.emf.facet.query.java.core.internal.evaluator;
+package org.eclipse.papyrus.emf.facet.query.java.core.internal.evaluator;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.core.IDerivedTypedElementManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.core.internal.query.QueryUtils;
-import org.eclipse.emf.facet.efacet.core.query.IQueryImplementation;
-import org.eclipse.emf.facet.efacet.core.query.IQueryImplementationFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
-import org.eclipse.emf.facet.query.java.core.internal.plugin.Activator;
-import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery;
-import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.core.IDerivedTypedElementManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.query.QueryUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryImplementation;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryImplementationFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.internal.plugin.Activator;
+import org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.osgi.framework.Bundle;
 
 public class JavaQueryImplementationFactory implements IQueryImplementationFactory {

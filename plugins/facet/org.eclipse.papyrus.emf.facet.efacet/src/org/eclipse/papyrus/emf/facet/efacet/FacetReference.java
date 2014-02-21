@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet;
+package org.eclipse.papyrus.emf.facet.efacet;
 
 import org.eclipse.emf.ecore.EReference;
 
@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-model-doc -->
  *
  *
- * @see org.eclipse.emf.facet.efacet.EFacetPackage#getFacetReference()
+ * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage#getFacetReference()
  * @model
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated

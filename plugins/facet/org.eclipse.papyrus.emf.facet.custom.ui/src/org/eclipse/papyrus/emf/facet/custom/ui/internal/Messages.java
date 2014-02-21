@@ -12,12 +12,12 @@
  *    Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *    Vincent Lorenzo (CEA-LIST) - Bug 373255 - Add tooltips providing a documentation for the selected elements in the Select ETypedElement Dialog
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 public final class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.custom.ui.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.custom.ui.internal.messages"; //$NON-NLS-1$
 	public static String CustomizationsCatalogView_title;
 	public static String CustomizationsView_allQuerySets;
 	public static String CustomizationsView_jobName_RefreshCustomizationsView;

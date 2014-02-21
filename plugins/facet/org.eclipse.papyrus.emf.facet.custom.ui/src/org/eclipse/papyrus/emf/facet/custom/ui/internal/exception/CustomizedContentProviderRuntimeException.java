@@ -8,7 +8,7 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Bug 386387 - [CustomizedTreeContentProvider] The TreeElements are not preserved between two calls to getElements()
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui.internal.exception;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.exception;
 
 public class CustomizedContentProviderRuntimeException extends RuntimeException {
 

@@ -12,12 +12,12 @@
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *      Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.core;
+package org.eclipse.papyrus.emf.facet.custom.core;
 
 import java.util.List;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
 
 /**
  * This interface allows to access the customization catalog.

@@ -8,10 +8,10 @@
  *
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
- *    Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *    Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *    Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +19,15 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.core.internal.exported.AbstractRegistry;
-import org.eclipse.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
-import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.AbstractRegistry;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ICommandFactoriesRegistry;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ICommandFactory;
 
 /** Registry for the "loadingDepth" extension point */
 public class CommandFactoriesRegistry extends AbstractRegistry implements ICommandFactoriesRegistry {
 
-	private static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.emf.facet.widgets.celleditors"; //$NON-NLS-1$
+	private static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.papyrus.emf.facet.widgets.celleditors"; //$NON-NLS-1$
 	private static final String EXTENSION_POINT_NAME = "commandFactories"; //$NON-NLS-1$
 
 	private static final String COMMAND_FACTORY_ELEMENT = "commandFactory"; //$NON-NLS-1$

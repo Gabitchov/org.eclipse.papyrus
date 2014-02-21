@@ -9,10 +9,10 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.core;
+package org.eclipse.papyrus.emf.facet.custom.core;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.custom.core.internal.CustomizationPropertiesCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.internal.CustomizationPropertiesCatalogManagerFactory;
 
 /**
  * This interface provides the customization catalog manager.

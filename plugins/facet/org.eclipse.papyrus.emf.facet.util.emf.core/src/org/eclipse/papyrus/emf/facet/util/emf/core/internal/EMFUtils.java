@@ -10,7 +10,7 @@
  * 	  Nicolas Bros (Mia-Software) - Bug 340588 - Least common supertype
  *    Vincent Lorenzo (CEA-LIST) - bug 341328 - We need to be able to specify which column have to be hidden/visible using the customization mechanism
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.core.internal;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal;
 
 import java.util.ArrayList;
 import java.util.Collection;

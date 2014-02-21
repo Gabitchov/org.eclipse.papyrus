@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.sdk.core.internal.validation;
+package org.eclipse.papyrus.emf.facet.custom.sdk.core.internal.validation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder;
-import org.eclipse.emf.facet.custom.core.internal.exported.Constants;
 import org.eclipse.emf.validation.marker.MarkerUtil;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder;
+import org.eclipse.papyrus.emf.facet.custom.core.internal.exported.Constants;
 
 /** A builder that validates customization model files. */
 public class CustomizationValidationBuilder implements IEmfFacetProjectBuilder, IResourceDeltaVisitor, IResourceVisitor {

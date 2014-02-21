@@ -9,13 +9,13 @@
  * Contributors:
  * 	Gregoire Dupe (Mia-Software) - Bug 333553 - The user has not to deal with two files to create a facet
  */
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 @SuppressWarnings("PMD")
 public final class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.efacet.core.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.efacet.core.internal.messages"; //$NON-NLS-1$
 	public static String EFacetCatalogManager_FacetSetCatalogName;
 	public static String EFacetCatalogManager_QuerySetCatalogName;
 	static {

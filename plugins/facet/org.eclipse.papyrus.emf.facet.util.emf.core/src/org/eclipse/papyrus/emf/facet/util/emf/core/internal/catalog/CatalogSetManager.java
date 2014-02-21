@@ -9,14 +9,14 @@
  * Contributors:
  * 	  Gregoire Dupe (Mia-Software) - Bug 334000 Simple catalog manager
  *    Nicolas Guyomar (Mia-Software) - Bug 334000 Simple catalog manager
- *    Nicolas Guyomar (Mia-Software) - Bug 334529 - ICatalogManager should be exposed in org.eclipse.emf.facet.common.core
+ *    Nicolas Guyomar (Mia-Software) - Bug 334529 - ICatalogManager should be exposed in org.eclipse.papyrus.emf.facet.common.core
  *    Nicolas Guyomar (Mia-Software) - Bug 338811 - A model registration method in the interface ICatalogSetManager
  *    Gregoire Dupe (Mia-Software) - Bug 338811 - A model registration method in the interface ICatalogSetManager
  *    Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  *    Gregoire Dupe (Mia-Software) - Bug 362084 - Get the instance of a catalog manager
- *    Gregoire Dupe (Mia-Software) - Bug 362087 - [Deprecated] org.eclipse.emf.facet.util.emf.core.ICatalogSetManager
+ *    Gregoire Dupe (Mia-Software) - Bug 362087 - [Deprecated] org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager
  */
-package org.eclipse.emf.facet.util.emf.core.internal.catalog;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.catalog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,22 +38,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogFactory;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogSet;
-import org.eclipse.emf.facet.util.emf.core.ICatalogManager;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManager;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManager2;
-import org.eclipse.emf.facet.util.emf.core.exception.InvalidFacetSetException;
-import org.eclipse.emf.facet.util.emf.core.internal.Activator;
-import org.eclipse.emf.facet.util.pde.core.internal.exported.PluginUtils;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogManager;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager2;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.pde.core.internal.exported.PluginUtils;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet;
 import org.osgi.framework.Bundle;
 
-@SuppressWarnings("deprecation") //TODO Bug 362087 - [Deprecated] org.eclipse.emf.facet.util.emf.core.ICatalogSetManager
+@SuppressWarnings("deprecation") //TODO Bug 362087 - [Deprecated] org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager
 public class CatalogSetManager implements ICatalogSetManager, ICatalogSetManager2, Adapter {
 
-	private static final String CATALOG_MGR_EXTENSION_POINT_ID = "org.eclipse.emf.facet.util.emf.core.catalogmanager"; //$NON-NLS-1$
-	private static final String MODEL_DECLARATION_EXTENSION_POINT_ID = "org.eclipse.emf.facet.util.emf.core.modeldeclaration"; //$NON-NLS-1$
+	private static final String CATALOG_MGR_EXTENSION_POINT_ID = "org.eclipse.papyrus.emf.facet.util.emf.core.catalogmanager"; //$NON-NLS-1$
+	private static final String MODEL_DECLARATION_EXTENSION_POINT_ID = "org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration"; //$NON-NLS-1$
 	private static final String CLASS = "class"; //$NON-NLS-1$
 	private static final String FILE = "file"; //$NON-NLS-1$
 

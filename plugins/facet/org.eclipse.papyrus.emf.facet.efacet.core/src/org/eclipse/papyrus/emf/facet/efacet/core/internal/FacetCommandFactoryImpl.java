@@ -10,7 +10,7 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,16 +29,16 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.core.IFacetCommandFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.util.emf.core.command.EmfCommandUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetCommandFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.util.emf.core.command.EmfCommandUtils;
 
 /**
  * Concrete implementation of {@link IFacetCommandFactory}.

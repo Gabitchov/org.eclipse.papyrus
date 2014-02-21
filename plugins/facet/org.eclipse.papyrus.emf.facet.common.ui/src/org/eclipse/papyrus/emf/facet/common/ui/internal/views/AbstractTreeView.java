@@ -10,7 +10,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 334116 - common tree view with columns
  *******************************************************************************/
 
-package org.eclipse.emf.facet.common.ui.internal.views;
+package org.eclipse.papyrus.emf.facet.common.ui.internal.views;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,9 +21,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.facet.common.ui.internal.Activator;
-import org.eclipse.emf.facet.common.ui.internal.controls.PersistableColumn;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -32,6 +30,8 @@ import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.OpenEvent;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.controls.PersistableColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;

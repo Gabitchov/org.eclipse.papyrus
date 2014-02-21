@@ -9,7 +9,7 @@
  * Contributors:
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.handler;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.handler;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.expressions.IEvaluationContext;

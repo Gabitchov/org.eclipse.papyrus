@@ -14,7 +14,7 @@
  *     Grégoire Dupé (Mia-Software) - Bug 361817 - [Restructuring] Dynamic load to the facet catalog
  * 
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage
  * @generated
  */
 public interface EfacetcatalogFactory extends EFactory {
@@ -33,7 +33,7 @@ public interface EfacetcatalogFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EfacetcatalogFactory eINSTANCE = org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.EfacetcatalogFactoryImpl.init();
+	EfacetcatalogFactory eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.EfacetcatalogFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Facet Set Catalog</em>'.

@@ -15,7 +15,7 @@
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *  Gregoire Dupe (Mia-Software) - Bug 376576 - [EFacet] Change the multiplicity of Facet::extendedFacet
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl;
 
 import java.util.Collection;
 
@@ -31,11 +31,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,12 +44,12 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getDocumentation <em>Documentation</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getExtendedMetaclass <em>Extended Metaclass</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getFacetElements <em>Facet Elements</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getFacetOperations <em>Facet Operations</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getConformanceTypedElement <em>Conformance Typed Element</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getExtendedFacets <em>Extended Facets</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getDocumentation <em>Documentation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getExtendedMetaclass <em>Extended Metaclass</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getFacetElements <em>Facet Elements</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getFacetOperations <em>Facet Operations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getConformanceTypedElement <em>Conformance Typed Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getExtendedFacets <em>Extended Facets</em>}</li>
  * </ul>
  * </p>
  *

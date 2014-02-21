@@ -11,25 +11,20 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.util.emf.catalog.impl;
+package org.eclipse.papyrus.emf.facet.util.emf.catalog.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.emf.facet.util.emf.catalog.Catalog;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogSet;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +33,7 @@ import org.eclipse.emf.facet.util.emf.catalog.CatalogSet;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.util.emf.catalog.impl.CatalogSetImpl#getCatalogs <em>Catalogs</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogSetImpl#getCatalogs <em>Catalogs</em>}</li>
  * </ul>
  * </p>
  *

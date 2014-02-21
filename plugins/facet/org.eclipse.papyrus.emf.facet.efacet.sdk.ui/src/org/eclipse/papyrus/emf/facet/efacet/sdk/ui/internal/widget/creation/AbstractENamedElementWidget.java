@@ -10,19 +10,19 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.creation;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.creation;
 
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.core.IFacetCommandFactory;
-import org.eclipse.emf.facet.efacet.core.IFacetCommandFactoryFactory;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.AbstractCommandWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWithButtonWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetCommandFactory;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetCommandFactoryFactory;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.AbstractCommandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWithButtonWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
 import org.eclipse.swt.widgets.Composite;
 
 /**

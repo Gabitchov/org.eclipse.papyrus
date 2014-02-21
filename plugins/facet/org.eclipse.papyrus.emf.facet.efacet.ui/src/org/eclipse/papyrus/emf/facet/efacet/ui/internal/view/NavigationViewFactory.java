@@ -9,13 +9,13 @@
  *     Nicolas Bros (Mia-Software)
  *     Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.view;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.view;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.view.INavigationView;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.view.INavigationViewFactory;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.view.INavigationView;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.view.INavigationViewFactory;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -23,7 +23,7 @@ import org.eclipse.ui.PlatformUI;
 
 public class NavigationViewFactory implements INavigationViewFactory {
 
-	public static final String VIEW_ID = "org.eclipse.emf.facet.efacet.ui.view.navigation"; //$NON-NLS-1$
+	public static final String VIEW_ID = "org.eclipse.papyrus.emf.facet.efacet.ui.view.navigation"; //$NON-NLS-1$
 
 	public INavigationView openNavigationView(final EditingDomain editingDomain) {
 		INavigationView result = null;

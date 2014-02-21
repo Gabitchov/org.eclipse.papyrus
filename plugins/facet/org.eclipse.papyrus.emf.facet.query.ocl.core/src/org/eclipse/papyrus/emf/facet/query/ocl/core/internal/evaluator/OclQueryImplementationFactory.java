@@ -9,18 +9,18 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.query.ocl.core.internal.evaluator;
+package org.eclipse.papyrus.emf.facet.query.ocl.core.internal.evaluator;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.facet.efacet.core.IDerivedTypedElementManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.core.query.IQueryImplementation;
-import org.eclipse.emf.facet.efacet.core.query.IQueryImplementationFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.query.ocl.core.internal.Activator;
-import org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery;
-import org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.core.IDerivedTypedElementManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryImplementation;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryImplementationFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.query.ocl.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery;
+import org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.osgi.framework.Bundle;
 
 /**

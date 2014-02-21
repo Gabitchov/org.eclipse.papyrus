@@ -11,7 +11,7 @@
  *  	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  *  
  */
-package org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl;
+package org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
 
-import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery;
-import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryFactory;
-import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage;
+import org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryFactory;
+import org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public class JavaQueryPackageImpl extends EPackageImpl implements JavaQueryPacka
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

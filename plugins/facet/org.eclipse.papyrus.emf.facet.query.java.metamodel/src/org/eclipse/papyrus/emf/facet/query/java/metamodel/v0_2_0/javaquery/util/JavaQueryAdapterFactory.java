@@ -11,7 +11,7 @@
  *  	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  *  
  */
-package org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.util;
+package org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -20,16 +20,16 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
-import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.*;
+import org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage
+ * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage
  * @generated
  */
 public class JavaQueryAdapterFactory extends AdapterFactoryImpl {
@@ -109,13 +109,13 @@ public class JavaQueryAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery <em>Java Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery <em>Java Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery
+	 * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery
 	 * @generated
 	 */
 	public Adapter createJavaQueryAdapter() {
@@ -123,13 +123,13 @@ public class JavaQueryAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query <em>Query</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query <em>Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query
 	 * @generated
 	 */
 	public Adapter createQueryAdapter() {

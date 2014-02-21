@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *    Gregoire Dupe (Mia-Software) - Bug 386387 - [CustomizedTreeContentProvider] The TreeElements are not preserved between two calls to getElements()
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy;
 
 import org.eclipse.emf.ecore.EReference;
 
@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.EReference;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement#getEReference <em>EReference</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement#getEReference <em>EReference</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage#getEReferenceTreeElement()
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage#getEReferenceTreeElement()
  * @model
  * @generated
  */
@@ -43,14 +43,14 @@ public interface EReferenceTreeElement extends EStructuralFeatureTreeElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>EReference</em>' reference.
 	 * @see #setEReference(EReference)
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage#getEReferenceTreeElement_EReference()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage#getEReferenceTreeElement_EReference()
 	 * @model
 	 * @generated
 	 */
 	EReference getEReference();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement#getEReference <em>EReference</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement#getEReference <em>EReference</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>EReference</em>' reference.

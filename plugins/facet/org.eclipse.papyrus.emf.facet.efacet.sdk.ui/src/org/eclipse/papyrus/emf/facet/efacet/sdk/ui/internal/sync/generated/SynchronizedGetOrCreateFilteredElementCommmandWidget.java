@@ -10,27 +10,27 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.sync.generated;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.sync.generated;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
 import org.eclipse.swt.widgets.Display;
 
 public class SynchronizedGetOrCreateFilteredElementCommmandWidget<T extends java.lang.Object, W extends java.lang.Object>
 		extends
-		SynchronizedObject<org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<T, W>>
+		SynchronizedObject<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<T, W>>
 		implements
-		org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<T, W> {
+		org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<T, W> {
 
 	public SynchronizedGetOrCreateFilteredElementCommmandWidget(
-			final org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<T, W> object,
+			final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<T, W> object,
 			final Display display) {
 		super(object, display);
 	}
 
 	public final void addListener(
-			final org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
+			final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
 		voidExceptionFreeRunnable(new AbstractVoidExceptionFreeRunnable() {
 			@Override
 			public void voidSafeRun() {
@@ -110,10 +110,10 @@ public class SynchronizedGetOrCreateFilteredElementCommmandWidget<T extends java
 		});
 	}
 
-	public final org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<W> pressNewButton() {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<W>>() {
+	public final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<W> pressNewButton() {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<W>>() {
 			@Override
-			public org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<W> safeRun() {
+			public org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<W> safeRun() {
 				return SynchronizedGetOrCreateFilteredElementCommmandWidget.this
 						.getSynchronizedObject().pressNewButton();
 			}

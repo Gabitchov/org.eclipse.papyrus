@@ -9,10 +9,10 @@
  * Contributors:
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command;
 
 import org.eclipse.core.commands.Command;
-import org.eclipse.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
 
 /**
  * @since 0.3

@@ -9,14 +9,14 @@
  * Contributors:
  *    Thomas Cicognani (Soft-Maint) - Bug 424416 - Plug-in for JFace Utilities
  ******************************************************************************/
-package org.eclipse.emf.facet.util.jface.ui.internal.imageprovider;
+package org.eclipse.papyrus.emf.facet.util.jface.ui.internal.imageprovider;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.emf.facet.util.jface.ui.imageprovider.IImageProvider;
-import org.eclipse.emf.facet.util.jface.ui.imageprovider.IImageProviderFactory;
+import org.eclipse.papyrus.emf.facet.util.jface.ui.imageprovider.IImageProvider;
+import org.eclipse.papyrus.emf.facet.util.jface.ui.imageprovider.IImageProviderFactory;
 
 public class ImageProviderFactory implements IImageProviderFactory {
 

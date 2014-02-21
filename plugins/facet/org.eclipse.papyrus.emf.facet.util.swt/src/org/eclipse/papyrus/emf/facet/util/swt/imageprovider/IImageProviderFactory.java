@@ -9,10 +9,10 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Bug 406569 - Image provider factory
  ******************************************************************************/
-package org.eclipse.emf.facet.util.swt.imageprovider;
+package org.eclipse.papyrus.emf.facet.util.swt.imageprovider;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.emf.facet.util.swt.internal.imageprovider.ImageProviderFactory;
+import org.eclipse.papyrus.emf.facet.util.swt.internal.imageprovider.ImageProviderFactory;
 
 public interface IImageProviderFactory {
 

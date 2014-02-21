@@ -12,19 +12,19 @@ Contributors:
 
 <plugin>
    <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.celleditors">
-      <cellEditorsModel path="org.eclipse.emf.facet.widgets.celleditors.ecore.modelcelleditors"/>
+      <cellEditorsModel path="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.modelcelleditors"/>
    </extension>
    <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.compositeEditorFactories">
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.BigDecimalCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.BigIntegerCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.BooleanCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.ByteCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.CharCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.DoubleCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.FloatCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.IntCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.LongCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.ShortCompositeFactory"/>
-      <compositeEditorFactory class="org.eclipse.emf.facet.widgets.celleditors.ecore.composite.StringMultiCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.BigDecimalCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.BigIntegerCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.BooleanCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.ByteCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.CharCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.DoubleCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.FloatCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.IntCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.LongCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.ShortCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite.StringMultiCompositeFactory"/>
    </extension>
 </plugin>

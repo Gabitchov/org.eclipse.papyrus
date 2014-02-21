@@ -9,11 +9,11 @@
  * Contributors:
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.sdk.core.internal;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
-import org.eclipse.emf.facet.custom.sdk.core.ICustomizationCommandFactoryFactory;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.ICustomizationCommandFactoryFactory;
 
 public class CustomizationCommandFactoryFactory implements
 		ICustomizationCommandFactoryFactory {

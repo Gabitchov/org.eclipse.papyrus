@@ -8,9 +8,9 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.efacet.core.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.exception;
 
-import org.eclipse.emf.facet.efacet.core.internal.exception.DerivedTypedElementTypeCheckingException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.DerivedTypedElementTypeCheckingException;
 
 /**
  * This exception occurs when the type of a query result is not the one expected

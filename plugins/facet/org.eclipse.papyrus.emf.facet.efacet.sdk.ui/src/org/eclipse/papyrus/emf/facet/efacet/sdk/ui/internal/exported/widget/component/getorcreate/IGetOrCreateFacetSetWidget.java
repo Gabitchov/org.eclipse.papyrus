@@ -10,13 +10,13 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.getorcreate;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.getorcreate;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.component.getorcreate.GetOrCreateFacetSetWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWithButtonWidget;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.component.getorcreate.GetOrCreateFacetSetWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWithButtonWidget;
 
 /**
  * Interface for {@link GetOrCreateFacetSetWidget}.

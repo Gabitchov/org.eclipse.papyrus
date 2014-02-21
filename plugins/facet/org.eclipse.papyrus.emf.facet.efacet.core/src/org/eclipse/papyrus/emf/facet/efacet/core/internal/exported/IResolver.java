@@ -9,13 +9,13 @@
  *    Gregoire Dupe (Mia-Software) - Bug 375087 - [Table] ITableWidget.addColumn(List<ETypedElement>, List<FacetSet>)
  *    Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  */
-package org.eclipse.emf.facet.efacet.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.exported;
 
 import java.util.List;
 
 /**
  * The interface has to be implemented to contribute to the extension point
- * 'org.eclipse.emf.facet.efacet.core.internal.resolver'.
+ * 'org.eclipse.papyrus.emf.facet.efacet.core.internal.resolver'.
  */
 public interface IResolver {
 

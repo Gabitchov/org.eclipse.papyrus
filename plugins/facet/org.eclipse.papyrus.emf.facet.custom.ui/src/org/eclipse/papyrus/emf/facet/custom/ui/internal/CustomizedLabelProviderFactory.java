@@ -10,11 +10,11 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  *      David Couvrand (Soft-Maint) - Bug 418418 - [Customization] Overlay icons not implemented
  */
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.ui.ICustomizedLabelProvider;
-import org.eclipse.emf.facet.custom.ui.ICustomizedLabelProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 
 public class CustomizedLabelProviderFactory implements
 		ICustomizedLabelProviderFactory {

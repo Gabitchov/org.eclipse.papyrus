@@ -12,7 +12,7 @@
  * 	Emmanuelle RouillÃ© (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractAttributeInstance#getEAttribute <em>EAttribute</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractAttributeInstance#getEAttribute <em>EAttribute</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getAbstractAttributeInstance()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getAbstractAttributeInstance()
  * @model
  * @generated
  */
@@ -44,14 +44,14 @@ public interface AbstractAttributeInstance extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>EAttribute</em>' reference.
 	 * @see #setEAttribute(EAttribute)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getAbstractAttributeInstance_EAttribute()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getAbstractAttributeInstance_EAttribute()
 	 * @model required="true"
 	 * @generated
 	 */
 	EAttribute getEAttribute();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractAttributeInstance#getEAttribute <em>EAttribute</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractAttributeInstance#getEAttribute <em>EAttribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>EAttribute</em>' reference.

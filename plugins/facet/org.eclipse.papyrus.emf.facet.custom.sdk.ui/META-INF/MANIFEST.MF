@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit;bundle-version="2.6.0",
  org.eclipse.ui.ide;bundle-version="3.6.0",
  org.eclipse.core.expressions;bundle-version="3.4.200"
-Bundle-Activator: org.eclipse.emf.facet.custom.sdk.ui.internal.Activat
+Bundle-Activator: org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Activat
  or
 Bundle-Version: 0.4.0.201308190853
 Build-Jdk: 1.6.0_27
@@ -31,9 +31,9 @@ Bundle-Name: %Bundle-Name
 Archiver-Version: Plexus Archiver
 Created-By: Apache Maven
 Bundle-ManifestVersion: 2
-Export-Package: org.eclipse.emf.facet.custom.sdk.ui.dialog
+Export-Package: org.eclipse.papyrus.emf.facet.custom.sdk.ui.dialog
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.custom.sdk
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.sdk
  .ui/pom.properties
 SHA1-Digest: 96E/uYHm8QwzJpH96NOc4UoxF4Y=
 
@@ -221,7 +221,7 @@ Name: org/eclipse/emf/facet/custom/sdk/ui/internal/widgets/celleditors
  /composite/ImageComposite$3.class
 SHA1-Digest: US4JQlC83UyPrbRUs9kAiCU2xYU=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.custom.sdk
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.sdk
  .ui/pom.xml
 SHA1-Digest: Os/QnVt3ICG82YcUwUsYEBhTh1I=
 
@@ -370,7 +370,7 @@ SHA1-Digest: KjK421M4uOrnWsRzUAjk2FVPqxQ=
 Name: icons/FacetOperation.gif
 SHA1-Digest: geCi1ofnq5obJShghQN1sk0ACoI=
 
-Name: org.eclipse.emf.facet.custom.sdk.ui.modelcelleditors
+Name: org.eclipse.papyrus.emf.facet.custom.sdk.ui.modelcelleditors
 SHA1-Digest: mOF8luq4olJe/WCRqBrtQY1AjWo=
 
 Name: org/eclipse/emf/facet/custom/sdk/ui/dialog/ICustomizationDialogF

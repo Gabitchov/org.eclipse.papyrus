@@ -9,9 +9,9 @@
  *  Contributors:
  * 	  Gregoire Dupe (Mia-Software) - Design
  * 	  Nicolas Guyomar (Mia-Software) - Implementation
- *    Gregoire Dupe (Mia-Software) - Bug 371210 - Compatibility of org.eclipse.emf.facet.efacet with EMF 2.6.0
+ *    Gregoire Dupe (Mia-Software) - Bug 371210 - Compatibility of org.eclipse.papyrus.emf.facet.efacet with EMF 2.6.0
  */
-package org.eclipse.emf.facet.efacet.util;
+package org.eclipse.papyrus.emf.facet.efacet.util;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 
-import org.eclipse.emf.facet.efacet.*;
+import org.eclipse.papyrus.emf.facet.efacet.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,8 +39,8 @@ import org.eclipse.emf.facet.efacet.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.EFacetPackage
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated

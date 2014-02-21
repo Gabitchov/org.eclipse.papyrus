@@ -8,10 +8,10 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 377866 - selection customization
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui;
+package org.eclipse.papyrus.emf.facet.custom.ui;
 
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.ui.internal.PropertiesHandlerFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.PropertiesHandlerFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 
 /**
  * Factory for {@link ISelectionPropertiesHandler}

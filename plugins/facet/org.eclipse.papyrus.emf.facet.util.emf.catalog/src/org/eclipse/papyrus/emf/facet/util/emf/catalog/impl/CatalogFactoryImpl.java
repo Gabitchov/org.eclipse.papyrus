@@ -11,17 +11,14 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.util.emf.catalog.impl;
+package org.eclipse.papyrus.emf.facet.util.emf.catalog.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.emf.facet.util.emf.catalog.*;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.*;
 
 /**
  * <!-- begin-user-doc -->

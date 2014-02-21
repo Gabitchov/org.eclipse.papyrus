@@ -16,7 +16,7 @@
  *       Olivier Remaud (Soft-Maint) - Bug 369824 - Add a simple way to return string literal constants from a customization query
  *       Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.provider;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.provider;
 
 
 import java.util.Collection;
@@ -34,15 +34,15 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimeFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedContainmentReferenceInstance;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimeFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedContainmentReferenceInstance;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedContainmentReferenceInstance} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedContainmentReferenceInstance} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

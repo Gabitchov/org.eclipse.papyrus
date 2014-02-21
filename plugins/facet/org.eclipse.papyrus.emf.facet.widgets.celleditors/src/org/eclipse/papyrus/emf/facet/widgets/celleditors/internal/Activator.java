@@ -8,9 +8,9 @@
  *
  * Contributors:
  *   Nicolas Guyomar (Mia-Software) - initial API and implementation
- *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -20,7 +20,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.widgets.celleditors"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.widgets.celleditors"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

@@ -10,7 +10,7 @@
  *    Nicolas Bros (Mia-Software)
  *    Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.ui.internal.view;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +20,11 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
-import org.eclipse.emf.facet.common.ui.internal.views.AbstractTreeView;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.core.IBrowserRegistry;
-import org.eclipse.emf.facet.util.emf.ui.internal.Activator;
-import org.eclipse.emf.facet.util.emf.ui.internal.Messages;
-import org.eclipse.emf.facet.util.emf.ui.internal.utils.ImageUtils;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IBrowserRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.utils.ImageUtils;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
@@ -38,6 +37,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.views.AbstractTreeView;
 import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
@@ -57,7 +57,7 @@ public class PackageRegistryView extends AbstractTreeView implements IMenuListen
 
 	private static final int COLUMN_WIDTH = 200;
 
-	private static final String DEBUG_ID = "org.eclipse.emf.facet.infra.common.ui/debug/PackageRegistryView/event_debug"; //$NON-NLS-1$
+	private static final String DEBUG_ID = "org.eclipse.papyrus.emf.facet.infra.common.ui/debug/PackageRegistryView/event_debug"; //$NON-NLS-1$
 	private static final boolean DEBUG = Activator.getDefault().isDebugging()
 			&& new Boolean(Platform.getDebugOption(PackageRegistryView.DEBUG_ID)).booleanValue();
 

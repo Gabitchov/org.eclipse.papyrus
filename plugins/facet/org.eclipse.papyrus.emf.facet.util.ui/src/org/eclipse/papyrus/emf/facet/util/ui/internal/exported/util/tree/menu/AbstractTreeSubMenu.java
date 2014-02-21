@@ -9,12 +9,12 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.tree.menu;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.menu;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.util.tree.item.AbstractTreeItem;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.item.AbstractTreeItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;

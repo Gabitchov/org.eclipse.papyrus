@@ -20,11 +20,11 @@
  *    Nicolas Bros (Mia-Software) - Bug 376941 - [EFacet] Facet operation arguments in Facet model
  * 
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,11 +34,11 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery#getElement <em>Element</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getEObjectLiteralQuery()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getEObjectLiteralQuery()
  * @model
  * @generated
  * @since 0.2
@@ -54,14 +54,14 @@ public interface EObjectLiteralQuery extends Query {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see #setElement(EObject)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getEObjectLiteralQuery_Element()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getEObjectLiteralQuery_Element()
 	 * @model
 	 * @generated
 	 */
 	EObject getElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery#getElement <em>Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery#getElement <em>Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Element</em>' reference.

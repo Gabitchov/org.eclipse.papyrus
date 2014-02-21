@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.impl;
+package org.eclipse.papyrus.emf.facet.efacet.impl;
 
 import java.util.Collection;
 
@@ -30,10 +30,10 @@ import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import org.eclipse.emf.facet.efacet.Category;
-import org.eclipse.emf.facet.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.Facet;
-import org.eclipse.emf.facet.efacet.FacetElement;
+import org.eclipse.papyrus.emf.facet.efacet.Category;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.FacetElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,14 +42,14 @@ import org.eclipse.emf.facet.efacet.FacetElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.FacetElementImpl#getCategories <em>Categories</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.FacetElementImpl#getFacet <em>Facet</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.FacetElementImpl#getOverride <em>Override</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetElementImpl#getCategories <em>Categories</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetElementImpl#getFacet <em>Facet</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetElementImpl#getOverride <em>Override</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -60,7 +60,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- end-user-doc -->
 	 * @see #getCategories()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -72,7 +72,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- end-user-doc -->
 	 * @see #getOverride()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -82,7 +82,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	protected FacetElementImpl() {
@@ -93,7 +93,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -105,7 +105,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EList<Category> getCategories() {
@@ -119,7 +119,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Facet getFacet() {
@@ -133,7 +133,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public NotificationChain basicSetFacet(final Facet newFacet, NotificationChain msgs) {
@@ -145,7 +145,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setFacet(final Facet newFacet) {
@@ -175,7 +175,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public ETypedElement getOverride() {
@@ -195,7 +195,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public ETypedElement basicGetOverride() {
@@ -206,7 +206,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setOverride(final ETypedElement newOverride) {
@@ -221,7 +221,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -240,7 +240,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -256,7 +256,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -272,7 +272,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -295,7 +295,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@SuppressWarnings("unchecked")
@@ -320,7 +320,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -343,7 +343,7 @@ public abstract class FacetElementImpl extends ETypedElementImpl implements Face
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override

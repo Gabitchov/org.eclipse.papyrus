@@ -14,13 +14,11 @@
  *     Grégoire Dupé (Mia-Software) - Bug 361817 - [Restructuring] Dynamic load to the facet catalog
  * 
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-
-import org.eclipse.emf.facet.util.emf.catalog.Catalog;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +30,7 @@ import org.eclipse.emf.facet.util.emf.catalog.Catalog;
  * <!-- end-model-doc -->
  *
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage#getFacetSetCatalog()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage#getFacetSetCatalog()
  * @model
  * @generated
  */

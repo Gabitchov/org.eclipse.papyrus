@@ -9,7 +9,7 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.sdk.core.internal;
 
 import java.io.IOException;
 
@@ -18,13 +18,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.sdk.core.ICustomizationActions;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManager2;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManagerFactory;
-import org.eclipse.emf.facet.util.emf.core.exception.InvalidFacetSetException;
-import org.eclipse.emf.facet.util.pde.core.internal.exported.BuildPropertiesUtils;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.ICustomizationActions;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager2;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManagerFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.util.pde.core.internal.exported.BuildPropertiesUtils;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 
 /**
  * Concrete implementation of {@link ICustomizationActions}.

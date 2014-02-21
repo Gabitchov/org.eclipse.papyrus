@@ -14,9 +14,9 @@ package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
 
 import java.net.URL;
 
-import org.eclipse.emf.facet.util.core.Logger;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;

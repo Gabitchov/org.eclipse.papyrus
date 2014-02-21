@@ -8,7 +8,7 @@
  * Contributors:
  *     Nicolas Guyomar (Mia-Software) - Bug 349569 - Need new exceptions for java query class creation
  *******************************************************************************/
-package org.eclipse.emf.facet.query.java.core.internal.exceptions;
+package org.eclipse.papyrus.emf.facet.query.java.core.internal.exceptions;
 
 /**
  * This exception is raised whenever an URI is not a resource URI as expected

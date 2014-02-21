@@ -10,7 +10,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 335218 - Extension point for registering EObject, EPackage, model editor
  *    Laurent Pichierri (Soft-Maint) - Bug 371204 - Compatibility with Helios 
  ***********************************************************************************/
-package org.eclipse.emf.facet.util.emf.core.internal.registry;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.registry;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,13 +27,13 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.core.IBrowserRegistry;
-import org.eclipse.emf.facet.util.emf.core.IEObjectBrowserOpener;
-import org.eclipse.emf.facet.util.emf.core.IEPackageBrowserOpener;
-import org.eclipse.emf.facet.util.emf.core.IResourceBrowserOpener;
-import org.eclipse.emf.facet.util.emf.core.internal.Activator;
-import org.eclipse.emf.facet.util.emf.core.internal.preferences.PreferenceConstants;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IBrowserRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IEObjectBrowserOpener;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IEPackageBrowserOpener;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IResourceBrowserOpener;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.preferences.PreferenceConstants;
 
 /** A registry for the EObject, EPackage, and Resource browser opener extension point. */
 public class BrowserRegistry implements IBrowserRegistry {
@@ -45,7 +45,7 @@ public class BrowserRegistry implements IBrowserRegistry {
 	private final List<IEObjectBrowserOpener> eobjectBrowserOpeners;
 	private final List<IResourceBrowserOpener> resourceBrowserOpeners;
 
-	public static final String EXTENSION_POINT_MODEL_VIEWER_ID = "org.eclipse.emf.facet.util.emf.core.modelViewer"; //$NON-NLS-1$
+	public static final String EXTENSION_POINT_MODEL_VIEWER_ID = "org.eclipse.papyrus.emf.facet.util.emf.core.modelViewer"; //$NON-NLS-1$
 
 	public static final String CLASS = "class"; //$NON-NLS-1$
 
@@ -155,7 +155,7 @@ public class BrowserRegistry implements IBrowserRegistry {
 			}
 		}
 		// By default return the first editor registered through the extension
-		// point org.eclipse.emf.facet.util.emf.core.modelViewer
+		// point org.eclipse.papyrus.emf.facet.util.emf.core.modelViewer
 		if (!this.epackageBrowserOpeners.isEmpty()) {
 			return this.epackageBrowserOpeners.get(0);
 		}
@@ -178,7 +178,7 @@ public class BrowserRegistry implements IBrowserRegistry {
 			}
 		}
 		// By default return the first editor registered through the extension
-		// point org.eclipse.emf.facet.util.emf.core.modelViewer
+		// point org.eclipse.papyrus.emf.facet.util.emf.core.modelViewer
 		if (!this.eobjectBrowserOpeners.isEmpty()) {
 			return this.eobjectBrowserOpeners.get(0);
 		}
@@ -201,7 +201,7 @@ public class BrowserRegistry implements IBrowserRegistry {
 			}
 		}
 		// By default return the first editor registered through the extension
-		// point org.eclipse.emf.facet.util.emf.core.modelViewer
+		// point org.eclipse.papyrus.emf.facet.util.emf.core.modelViewer
 		if (!this.resourceBrowserOpeners.isEmpty()) {
 			return this.resourceBrowserOpeners.get(0);
 		}

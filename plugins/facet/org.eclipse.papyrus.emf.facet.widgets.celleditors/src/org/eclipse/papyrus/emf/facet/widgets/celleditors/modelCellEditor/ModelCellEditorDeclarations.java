@@ -9,7 +9,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  * <li>
- * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations#getModelCellEditors
+ * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations#getModelCellEditors
  * <em>Model Cell Editors</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getModelCellEditorDeclarations()
+ * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getModelCellEditorDeclarations()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface ModelCellEditorDeclarations extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Model Cell Editors</b></em>' containment
 	 * reference list. The list contents are of type
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor}
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor}
 	 * . <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Cell Editors</em>' containment reference
@@ -45,7 +45,7 @@ public interface ModelCellEditorDeclarations extends EObject {
 	 * 
 	 * @return the value of the '<em>Model Cell Editors</em>' containment
 	 *         reference list.
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getModelCellEditorDeclarations_ModelCellEditors()
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getModelCellEditorDeclarations_ModelCellEditors()
 	 * @model containment="true"
 	 * @generated
 	 */

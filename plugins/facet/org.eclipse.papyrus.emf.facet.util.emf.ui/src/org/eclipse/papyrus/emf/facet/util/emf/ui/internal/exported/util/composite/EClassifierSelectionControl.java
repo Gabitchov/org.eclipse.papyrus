@@ -10,7 +10,7 @@
  *    Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *    Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.ui.internal.exported.util.composite;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.util.composite;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.util.emf.ui.internal.Messages;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.composite.FilteredElementSelectionComposite;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.composite.FilteredElementSelectionComposite;
 import org.eclipse.swt.widgets.Composite;
 
 /**

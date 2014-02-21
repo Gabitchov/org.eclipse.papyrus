@@ -9,9 +9,9 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - Bug 406578 - Generic Label Provider for EMF objects
  */
-package org.eclipse.emf.facet.util.emf.ui.internal;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal;
 
-import org.eclipse.emf.facet.util.emf.ui.internal.exported.IEmfLabelProviderFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.IEmfLabelProviderFactory;
 import org.eclipse.jface.viewers.ILabelProvider;
 
 public class EmfLabelProviderFactory implements

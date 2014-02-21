@@ -10,19 +10,19 @@
  * 		David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  */
-package org.eclipse.emf.facet.custom.ui.internal.querytype;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.querytype;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery;
-import org.eclipse.emf.facet.custom.ui.internal.custompt.URIImage;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.core.query.IQueryImplementation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt.URIImage;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryImplementation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery;
 
 public class URIImageQueryEvaluator implements IQueryImplementation {
 

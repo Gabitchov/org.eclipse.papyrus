@@ -16,7 +16,7 @@
  *       Olivier Remaud (Soft-Maint) - Bug 369824 - Add a simple way to return string literal constants from a customization query
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.provider;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.provider;
 
 
 import java.util.Collection;
@@ -32,13 +32,13 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.provider.QueryItemProvider;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.provider.QueryItemProvider;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.impl;
+package org.eclipse.papyrus.emf.facet.efacet.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.facet.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.TypedElementRef;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.TypedElementRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,12 +31,12 @@ import org.eclipse.emf.facet.efacet.TypedElementRef;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.TypedElementRefImpl#getTypedElement <em>Typed Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.TypedElementRefImpl#getTypedElement <em>Typed Element</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -47,7 +47,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- end-user-doc -->
 	 * @see #getTypedElement()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -57,7 +57,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	protected TypedElementRefImpl() {
@@ -68,7 +68,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -80,7 +80,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public ETypedElement getTypedElement() {
@@ -100,7 +100,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public ETypedElement basicGetTypedElement() {
@@ -111,7 +111,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setTypedElement(final ETypedElement newTypedElement) {
@@ -126,7 +126,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -145,7 +145,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -162,7 +162,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -179,7 +179,7 @@ public class TypedElementRefImpl extends QueryImpl implements TypedElementRef {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override

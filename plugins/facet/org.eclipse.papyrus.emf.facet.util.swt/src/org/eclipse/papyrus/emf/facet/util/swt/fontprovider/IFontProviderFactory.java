@@ -9,9 +9,9 @@
  * Contributors:
  *      Grégoire Dupé (Mia-Software) - Bug 424122 - [Table] Images, fonts and colors are not shared between the instances of table
  ******************************************************************************/
-package org.eclipse.emf.facet.util.swt.fontprovider;
+package org.eclipse.papyrus.emf.facet.util.swt.fontprovider;
 
-import org.eclipse.emf.facet.util.swt.internal.fontprovider.FontProviderFactory;
+import org.eclipse.papyrus.emf.facet.util.swt.internal.fontprovider.FontProviderFactory;
 import org.eclipse.swt.graphics.Device;
 
 public interface IFontProviderFactory {

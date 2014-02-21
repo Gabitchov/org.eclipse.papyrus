@@ -8,7 +8,7 @@
  * Contributors:
  *     Fabien Treguer (Soft-Maint) - Bug 418565 - [Unit Test Failure] Missing dependencies during tests, target platform creation and load
  ******************************************************************************/
-package org.eclipse.emf.facet.util.pde.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.pde.core.internal.exported;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,9 +27,9 @@ import java.util.jar.JarOutputStream;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.facet.util.pde.core.internal.Activator;
-import org.eclipse.emf.facet.util.pde.core.internal.exported.exception.PdeCoreUtilsException;
-import org.eclipse.emf.facet.util.pde.core.internal.exported.exception.ReflexiveDiscouragedAccessException;
+import org.eclipse.papyrus.emf.facet.util.pde.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.pde.core.internal.exported.exception.PdeCoreUtilsException;
+import org.eclipse.papyrus.emf.facet.util.pde.core.internal.exported.exception.ReflexiveDiscouragedAccessException;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 

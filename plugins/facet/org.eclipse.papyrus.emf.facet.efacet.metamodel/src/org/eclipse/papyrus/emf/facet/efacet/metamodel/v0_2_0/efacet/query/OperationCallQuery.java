@@ -20,14 +20,14 @@
  *    Nicolas Bros (Mia-Software) - Bug 376941 - [EFacet] Facet operation arguments in Facet model
  * 
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EOperation;
 
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,12 +37,12 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery#getOperation <em>Operation</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery#getArguments <em>Arguments</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery#getOperation <em>Operation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getOperationCallQuery()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getOperationCallQuery()
  * @model
  * @generated
  * @since 0.2
@@ -58,14 +58,14 @@ public interface OperationCallQuery extends Query {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operation</em>' reference.
 	 * @see #setOperation(EOperation)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getOperationCallQuery_Operation()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getOperationCallQuery_Operation()
 	 * @model
 	 * @generated
 	 */
 	EOperation getOperation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery#getOperation <em>Operation</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery#getOperation <em>Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Operation</em>' reference.
@@ -76,7 +76,7 @@ public interface OperationCallQuery extends Query {
 
 	/**
 	 * Returns the value of the '<em><b>Arguments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query}.
+	 * The list contents are of type {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Arguments</em>' containment reference list isn't clear,
@@ -84,7 +84,7 @@ public interface OperationCallQuery extends Query {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Arguments</em>' containment reference list.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getOperationCallQuery_Arguments()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getOperationCallQuery_Arguments()
 	 * @model containment="true"
 	 * @generated
 	 */

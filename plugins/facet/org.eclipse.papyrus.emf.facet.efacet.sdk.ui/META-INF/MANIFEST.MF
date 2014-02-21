@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Built-By: hudsonbuild
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet.sdk.ui;singleton:=true
-Bundle-Activator: org.eclipse.emf.facet.efacet.sdk.ui.internal.Activat
+Bundle-Activator: org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Activat
  or
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -16,18 +16,18 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources;bundle-version="3.6.0",
  org.eclipse.papyrus.emf.facet.util.emf.ui;bundle-version="0.3.0",
  org.eclipse.ui.ide;bundle-version="3.6.0"
-Export-Package: org.eclipse.emf.facet.efacet.sdk.ui.dialog,org.eclipse
- .emf.facet.efacet.sdk.ui.internal.exported,org.eclipse.emf.facet.efac
- et.sdk.ui.internal.exported.dialog.query,org.eclipse.emf.facet.efacet
- .sdk.ui.internal.exported.widget,org.eclipse.emf.facet.efacet.sdk.ui.
- internal.exported.widget.component.getorcreate,org.eclipse.emf.facet.
- efacet.sdk.ui.internal.exported.widget.component.metaclass,org.eclips
- e.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query,or
- g.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation,o
- rg.eclipse.emf.facet.efacet.sdk.ui.internal.exported.wizard,org.eclip
- se.emf.facet.efacet.sdk.ui.internal.exported.wizard.page,org.eclipse.
- emf.facet.efacet.sdk.ui.internal.handler.creation,org.eclipse.emf.fac
- et.efacet.sdk.ui.internal.query
+Export-Package: org.eclipse.papyrus.emf.facet.efacet.sdk.ui.dialog,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.dialog.query,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.getorcreate,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.metaclass,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.wizard,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.wizard.page,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.creation,
+ org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.query
 Bundle-Version: 0.4.0.201308190853
 Build-Jdk: 1.6.0_27
 Bundle-ActivationPolicy: lazy
@@ -548,7 +548,7 @@ Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/widget/component/pr
  operties/name/GetOperationNameWidget.class
 SHA1-Digest: 32eDvt/hmd9ygNj3JuzfUo9ZCg4=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.efacet.sdk
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.efacet.sdk
  .ui/pom.properties
 SHA1-Digest: yD+WbzH4BzVMAjz8QRrxAqhS/64=
 
@@ -1114,7 +1114,7 @@ Name: org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/widget/cre
  ation/ICreateFacetInFacetSetWidget.class
 SHA1-Digest: iip2CSFttaN8sHDEkLNfxnB/DMQ=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.efacet.sdk
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.efacet.sdk
  .ui/pom.xml
 SHA1-Digest: PBWN1Z+YTBgmCtjuTVTVGasoAw8=
 

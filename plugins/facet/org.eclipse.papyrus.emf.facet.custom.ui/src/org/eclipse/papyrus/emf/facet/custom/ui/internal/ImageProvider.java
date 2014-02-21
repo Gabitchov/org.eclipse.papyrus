@@ -12,11 +12,11 @@
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *******************************************************************************/
 
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import java.net.URL;
 
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;

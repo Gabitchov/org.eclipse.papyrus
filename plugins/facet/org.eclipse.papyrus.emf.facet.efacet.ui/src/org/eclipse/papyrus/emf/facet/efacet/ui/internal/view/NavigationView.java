@@ -17,7 +17,7 @@
  *     Gregoire Dupe (Mia-Software) - Bug 378498 - Navigation view sometimes lacks an EditingDomain
  *     Nicolas Bros (Mia-Software) - Bug 379395 - Navigate should replace elements 
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.view;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.view;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,26 +41,24 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.core.ICustomizationManagerFactory;
-import org.eclipse.emf.facet.custom.ui.ICustomizedLabelProviderFactory;
-import org.eclipse.emf.facet.efacet.core.FacetUtils;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.IFacetManagerFactory;
-import org.eclipse.emf.facet.efacet.core.IFacetSetCatalogManager;
-import org.eclipse.emf.facet.efacet.core.IFacetSetCatalogManagerFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
-import org.eclipse.emf.facet.efacet.ui.IETypedElementResultDisplayer;
-import org.eclipse.emf.facet.efacet.ui.IETypedElementResultDisplayerOpener;
-import org.eclipse.emf.facet.efacet.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.view.INavigationView;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.widget.IETypedElementSelectionWidget;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.widget.IETypedElementSelectionWidgetFactory;
-import org.eclipse.emf.facet.efacet.ui.internal.view.DropAdapter.DropAction;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProviderFactory;
+import org.eclipse.papyrus.emf.facet.efacet.core.FacetUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetSetCatalogManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetSetCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
+import org.eclipse.papyrus.emf.facet.efacet.ui.IETypedElementResultDisplayer;
+import org.eclipse.papyrus.emf.facet.efacet.ui.IETypedElementResultDisplayerOpener;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.view.INavigationView;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget.IETypedElementSelectionWidget;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget.IETypedElementSelectionWidgetFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.view.DropAdapter.DropAction;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -73,6 +71,8 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.dnd.DND;
@@ -100,7 +100,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.part.WorkbenchPart;
 
-//Copied from org.eclipse.emf.facet.infra.query.ui.views.queryExecution.internal.QueryExecutionView
+//Copied from org.eclipse.papyrus.emf.facet.infra.query.ui.views.queryExecution.internal.QueryExecutionView
 public class NavigationView extends ViewPart implements INavigationView {
 
 	/**

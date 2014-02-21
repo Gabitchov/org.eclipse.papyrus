@@ -9,12 +9,12 @@
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.ecore;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.widgets.celleditors.ecore.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.messages"; //$NON-NLS-1$
 	public static String MultiLineDialog_enterAValue;
 	static {
 		// initialize resource bundle

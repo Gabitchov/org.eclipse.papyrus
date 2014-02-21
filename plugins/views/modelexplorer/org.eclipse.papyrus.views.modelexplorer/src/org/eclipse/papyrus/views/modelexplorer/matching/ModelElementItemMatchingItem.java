@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.views.modelexplorer.matching;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 
 /***
  * An IMatchingItem implementation that matches for ModelElementItem

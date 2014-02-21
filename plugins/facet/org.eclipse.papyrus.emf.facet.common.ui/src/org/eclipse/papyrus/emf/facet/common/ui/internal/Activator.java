@@ -9,7 +9,7 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
  */
-package org.eclipse.emf.facet.common.ui.internal;
+package org.eclipse.papyrus.emf.facet.common.ui.internal;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -19,7 +19,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.common.ui"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.common.ui"; //$NON-NLS-1$
 
 	private static Activator plugin;
 

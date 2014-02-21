@@ -10,19 +10,19 @@
  *  	Gabriel Barbier (Mia-Software) - initial API and implementation
  * 		Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
  ***********************************************************************************/
-package org.eclipse.emf.facet.util.emf.ui.internal.dialogs;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.dialogs;
 
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.common.ui.internal.widgets.AnywhereFilterMatcher;
-import org.eclipse.emf.facet.util.emf.ui.internal.Activator;
-import org.eclipse.emf.facet.util.emf.ui.internal.Messages;
-import org.eclipse.emf.facet.util.emf.ui.internal.utils.ImageProvider;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.utils.ImageProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.widgets.AnywhereFilterMatcher;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;

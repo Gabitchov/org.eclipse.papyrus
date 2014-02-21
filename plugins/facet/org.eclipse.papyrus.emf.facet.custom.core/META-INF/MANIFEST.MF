@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.core;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipse.emf.facet.custom.core.internal.Activator
+Bundle-Activator: org.eclipse.papyrus.emf.facet.custom.core.internal.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.emf.facet.efacet.metamodel
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.emf.facet.custom.core,
- org.eclipse.emf.facet.custom.core.exception,
- org.eclipse.emf.facet.custom.core.internal,
- org.eclipse.emf.facet.custom.core.internal.exported
+Export-Package: org.eclipse.papyrus.emf.facet.custom.core,
+ org.eclipse.papyrus.emf.facet.custom.core.exception,
+ org.eclipse.papyrus.emf.facet.custom.core.internal,
+ org.eclipse.papyrus.emf.facet.custom.core.internal.exported

@@ -9,14 +9,14 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.core;
+package org.eclipse.papyrus.emf.facet.efacet.core;
 
 import java.io.IOException;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.facet.efacet.core.internal.FacetActionsImpl;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetActionsImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.InvalidFacetSetException;
 
 /**
  * This interface contains methods to create {@link FacetSet}s.

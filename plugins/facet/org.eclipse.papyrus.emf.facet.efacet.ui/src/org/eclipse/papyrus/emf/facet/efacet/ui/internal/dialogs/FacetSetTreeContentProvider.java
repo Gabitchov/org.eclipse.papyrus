@@ -12,15 +12,15 @@
  *     Nicolas Bros (Mia-Software) - Bug 372865 - FacetSet selection dialog
  *     Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.dialogs;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.dialogs;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.efacet.core.FacetUtils;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.core.FacetUtils;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 

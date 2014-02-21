@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.presentation;
+package org.eclipse.papyrus.emf.facet.efacet.presentation;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -165,8 +165,8 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
-import org.eclipse.emf.facet.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.provider.EFacetItemProviderAdapterFactory;
+import org.eclipse.papyrus.emf.facet.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.provider.EFacetItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 
@@ -177,7 +177,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -568,7 +568,7 @@ public class EFacetEditor extends MultiPageEditorPart implements
 			BasicDiagnostic diagnostic =
 				new BasicDiagnostic
 					(Diagnostic.OK,
-					 "org.eclipse.emf.facet.efacet.editor", //$NON-NLS-1$
+					 "org.eclipse.papyrus.emf.facet.efacet.editor", //$NON-NLS-1$
 					 0,
 					 null,
 					 new Object [] { editingDomain.getResourceSet() });
@@ -905,7 +905,7 @@ public class EFacetEditor extends MultiPageEditorPart implements
 			BasicDiagnostic basicDiagnostic =
 				new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 "org.eclipse.emf.facet.efacet.editor", //$NON-NLS-1$
+					 "org.eclipse.papyrus.emf.facet.efacet.editor", //$NON-NLS-1$
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()), //$NON-NLS-1$
 					 new Object [] { exception == null ? (Object)resource : exception });
@@ -916,7 +916,7 @@ public class EFacetEditor extends MultiPageEditorPart implements
 			return
 				new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 "org.eclipse.emf.facet.efacet.editor", //$NON-NLS-1$
+					 "org.eclipse.papyrus.emf.facet.efacet.editor", //$NON-NLS-1$
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()), //$NON-NLS-1$
 					 new Object[] { exception });

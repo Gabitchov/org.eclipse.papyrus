@@ -10,17 +10,17 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.widget;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.AbstractCommandWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.AbstractGetOrCreateFilteredElementCommandWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.properties.AbstractGetPropertyWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.properties.bounds.AbstractGetBoundsWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
-import org.eclipse.emf.facet.util.ui.internal.widget.metaclass.FilteredElementSelectionWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.AbstractCommandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.AbstractGetOrCreateFilteredElementCommandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.properties.AbstractGetPropertyWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.properties.bounds.AbstractGetBoundsWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.widget.metaclass.FilteredElementSelectionWidget;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;

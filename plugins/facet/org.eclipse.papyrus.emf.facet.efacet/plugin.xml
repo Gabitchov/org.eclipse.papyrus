@@ -20,7 +20,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/emf/facet/efacet/0.1.incubation"
-            class="org.eclipse.emf.facet.efacet.EFacetPackage"
+            class="org.eclipse.papyrus.emf.facet.efacet.EFacetPackage"
             genModel="model/efacet.genmodel"/>
    </extension>
 

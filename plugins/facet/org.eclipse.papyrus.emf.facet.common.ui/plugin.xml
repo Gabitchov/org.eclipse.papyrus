@@ -16,22 +16,22 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="org.eclipse.emf.facet.common.ui.internal.preference.pages.EmfFacetRootPreferencePage"
-            id="org.eclipse.emf.facet.common.ui.preference.pages.EmfFacetRootPreferencePage"
+            class="org.eclipse.papyrus.emf.facet.common.ui.internal.preference.pages.EmfFacetRootPreferencePage"
+            id="org.eclipse.papyrus.emf.facet.common.ui.preference.pages.EmfFacetRootPreferencePage"
             name="%page.name">
       </page>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <category
-            id="org.eclipse.emf.facet.common.ui.views"
+            id="org.eclipse.papyrus.emf.facet.common.ui.views"
             name="%category.name">
       </category>
    </extension>
 
    <extension point="org.eclipse.ui.newWizards">
       <category
-            id="org.eclipse.emf.facet.common.ui.wizardsCategory"
+            id="org.eclipse.papyrus.emf.facet.common.ui.wizardsCategory"
             name="%category.name">
       </category>
    </extension>
@@ -41,7 +41,7 @@
             allPopups="false"
             locationURI="popup:org.eclipse.ui.popup.any">
          <menu
-               id="org.eclipse.emf.facet.common.ui.menu.examples"
+               id="org.eclipse.papyrus.emf.facet.common.ui.menu.examples"
                label="%emf.facet.examples">
             <visibleWhen
                   checkEnabled="true">

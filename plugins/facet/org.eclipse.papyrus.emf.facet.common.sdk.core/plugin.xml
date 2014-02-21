@@ -3,7 +3,7 @@
 <plugin>
    <extension-point id="builderRegistration" name="EMF Facet Builder registration" schema="schema/builderRegistration.exsd"/>
    <extension
-         id="org.eclipse.emf.facet.common.sdk.core.projectBuilder"
+         id="org.eclipse.papyrus.emf.facet.common.sdk.core.projectBuilder"
          name="EMF Facet project builder"
          point="org.eclipse.core.resources.builders">
       <builder
@@ -11,20 +11,20 @@
             hasNature="true"
             isConfigurable="false">
          <run
-               class="org.eclipse.emf.facet.common.sdk.core.internal.EmfFacetProjectBuilder">
+               class="org.eclipse.papyrus.emf.facet.common.sdk.core.internal.EmfFacetProjectBuilder">
          </run>
       </builder>
    </extension>
    <extension
-         id="org.eclipse.emf.facet.common.sdk.core.ProjectNature"
+         id="org.eclipse.papyrus.emf.facet.common.sdk.core.ProjectNature"
          name="EMF Facet"
          point="org.eclipse.core.resources.natures">
       <runtime>
          <run
-               class="org.eclipse.emf.facet.common.sdk.core.internal.EmfFacetProjectNature">
+               class="org.eclipse.papyrus.emf.facet.common.sdk.core.internal.EmfFacetProjectNature">
          </run>
       </runtime>
-      <builder id="org.eclipse.emf.facet.common.sdk.core.projectBuilder"/>
+      <builder id="org.eclipse.papyrus.emf.facet.common.sdk.core.projectBuilder"/>
       <requires-nature id="org.eclipse.jdt.core.javanature"/>
       <requires-nature id="org.eclipse.pde.PluginNature"/>
    </extension>

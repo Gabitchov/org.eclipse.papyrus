@@ -9,7 +9,7 @@
  * Contributors:
  *    Thomas Cicognani (Soft-Maint) - Bug 424416 - Plug-in for JFace Utilities
  ******************************************************************************/
-package org.eclipse.emf.facet.util.jface.ui.internal;
+package org.eclipse.papyrus.emf.facet.util.jface.ui.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

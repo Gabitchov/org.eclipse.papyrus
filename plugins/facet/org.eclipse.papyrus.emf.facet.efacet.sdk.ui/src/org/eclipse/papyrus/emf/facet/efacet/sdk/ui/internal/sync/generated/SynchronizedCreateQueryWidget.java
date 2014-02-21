@@ -8,20 +8,20 @@
  * Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
 
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.sync.generated;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.sync.generated;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
 
 @SuppressWarnings("PMD.ExcessivePublicCount")
-public class SynchronizedCreateQueryWidget extends SynchronizedObject<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget> implements org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget {
+public class SynchronizedCreateQueryWidget extends SynchronizedObject<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget> implements org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget {
 
-	public SynchronizedCreateQueryWidget(final org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget object, final Display display) {
+	public SynchronizedCreateQueryWidget(final org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget object, final Display display) {
 		super(object, display);
 	}
-	public final void addListener(final org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
+	public final void addListener(final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
 		voidExceptionFreeRunnable(new AbstractVoidExceptionFreeRunnable() {
 			@Override
 			public void voidSafeRun() {

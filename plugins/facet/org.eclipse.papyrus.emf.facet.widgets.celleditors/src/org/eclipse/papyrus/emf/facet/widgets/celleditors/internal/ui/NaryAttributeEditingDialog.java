@@ -8,10 +8,10 @@
  *
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
- *   Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *   Nicolas Guyomar (Mia-Software) - Bug 342451 - To be able to edit derived facet attributes and derived facet references in a table
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.ui;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.ui;
 
 import java.util.Iterator;
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
-import org.eclipse.emf.facet.widgets.celleditors.internal.Messages;
-import org.eclipse.emf.facet.widgets.internal.CustomizableLabelProvider;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditHandler;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.Messages;
+import org.eclipse.papyrus.emf.facet.widgets.internal.CustomizableLabelProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IOpenListener;

@@ -10,16 +10,16 @@
  *    Thomas Cicognani (Soft-Maint) - Bug 424416 - Plug-in for JFace Utilities
  ******************************************************************************/
 
-package org.eclipse.emf.facet.util.jface.ui.internal.imageprovider;
+package org.eclipse.papyrus.emf.facet.util.jface.ui.internal.imageprovider;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.emf.facet.util.core.DebugUtils;
-import org.eclipse.emf.facet.util.jface.ui.imageprovider.IImageProvider;
-import org.eclipse.emf.facet.util.jface.ui.internal.Activator;
-import org.eclipse.emf.facet.util.swt.imageprovider.IImageProviderFactory;
+import org.eclipse.papyrus.emf.facet.util.core.DebugUtils;
+import org.eclipse.papyrus.emf.facet.util.jface.ui.imageprovider.IImageProvider;
+import org.eclipse.papyrus.emf.facet.util.jface.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProviderFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DecorationOverlayIcon;
 import org.eclipse.swt.graphics.Image;
@@ -31,7 +31,7 @@ public final class ImageProvider implements IImageProvider {
 			.getDefault());
 	private final Map<Object, Image> map = new HashMap<Object, Image>();
 	private final Plugin plugin;
-	private final org.eclipse.emf.facet.util.swt.imageprovider.IImageProvider delegate;
+	private final org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProvider delegate;
 
 	ImageProvider(final Plugin plugin) {
 		this.plugin = plugin;

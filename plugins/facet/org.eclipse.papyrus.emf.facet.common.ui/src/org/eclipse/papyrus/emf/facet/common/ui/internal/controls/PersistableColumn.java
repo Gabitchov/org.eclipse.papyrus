@@ -9,18 +9,11 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Nicolas Bros (Mia-Software) - Bug 334116 - common tree view with columns
  *******************************************************************************/
-package org.eclipse.emf.facet.common.ui.internal.controls;
+package org.eclipse.papyrus.emf.facet.common.ui.internal.controls;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.facet.common.ui.internal.controls.wrappers.Column;
-import org.eclipse.emf.facet.common.ui.internal.controls.wrappers.SortableTable;
-import org.eclipse.emf.facet.common.ui.internal.controls.wrappers.SortableTree;
-import org.eclipse.emf.facet.common.ui.internal.controls.wrappers.SortableWidget;
-import org.eclipse.emf.facet.common.ui.internal.controls.wrappers.SortableWidgetFactory;
-import org.eclipse.emf.facet.common.ui.internal.controls.wrappers.TableColumn;
-import org.eclipse.emf.facet.common.ui.internal.controls.wrappers.TreeColumn;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -29,6 +22,13 @@ import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerColumn;
 import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.controls.wrappers.Column;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.controls.wrappers.SortableTable;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.controls.wrappers.SortableTree;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.controls.wrappers.SortableWidget;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.controls.wrappers.SortableWidgetFactory;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.controls.wrappers.TableColumn;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.controls.wrappers.TreeColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;

@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 372865 - FacetSet selection dialog
  *******************************************************************************/
-package org.eclipse.emf.facet.util.swt.internal;
+package org.eclipse.papyrus.emf.facet.util.swt.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
@@ -17,7 +17,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends Plugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.util.swt"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.util.swt"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

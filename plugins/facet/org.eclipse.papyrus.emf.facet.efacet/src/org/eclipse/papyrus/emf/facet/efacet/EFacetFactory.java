@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet;
+package org.eclipse.papyrus.emf.facet.efacet;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.EFacetPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -32,10 +32,10 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
-	EFacetFactory eINSTANCE = org.eclipse.emf.facet.efacet.impl.EFacetFactoryImpl.init();
+	EFacetFactory eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.impl.EFacetFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Facet Attribute</em>'.
@@ -43,7 +43,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Facet Attribute</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	FacetAttribute createFacetAttribute();
@@ -54,7 +54,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Facet Reference</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	FacetReference createFacetReference();
@@ -65,7 +65,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Facet Operation</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	FacetOperation createFacetOperation();
@@ -76,7 +76,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Facet Set</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	FacetSet createFacetSet();
@@ -87,7 +87,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Facet</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	Facet createFacet();
@@ -98,7 +98,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Query Result</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	QueryResult createQueryResult();
@@ -109,7 +109,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Category</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	Category createCategory();
@@ -120,7 +120,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Opposite Reference</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	OppositeReference createOppositeReference();
@@ -131,7 +131,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Query Set</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	QuerySet createQuerySet();
@@ -142,7 +142,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Literal</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	Literal createLiteral();
@@ -153,7 +153,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Typed Element Ref</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	TypedElementRef createTypedElementRef();
@@ -164,7 +164,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Parameter</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	Parameter createParameter();
@@ -175,7 +175,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Parameter Value</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	ParameterValue createParameterValue();
@@ -186,7 +186,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Query Context</em>'.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	QueryContext createQueryContext();
@@ -197,7 +197,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @return the package supported by this factory.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EFacetPackage getEFacetPackage();

@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.util.emf.catalog;
+package org.eclipse.papyrus.emf.facet.util.emf.catalog;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.util.emf.catalog.CatalogPackage
+ * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage
  * @generated
  */
 public interface CatalogFactory extends EFactory {
@@ -30,7 +30,7 @@ public interface CatalogFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CatalogFactory eINSTANCE = org.eclipse.emf.facet.util.emf.catalog.impl.CatalogFactoryImpl.init();
+	CatalogFactory eINSTANCE = org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Set</em>'.

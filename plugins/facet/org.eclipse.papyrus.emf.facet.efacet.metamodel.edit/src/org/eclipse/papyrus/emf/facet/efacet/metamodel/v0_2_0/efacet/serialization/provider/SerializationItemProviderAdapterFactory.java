@@ -15,7 +15,7 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
  *       Olivier Remaud (Soft-Maint) - Bug 369824 - Add a simple way to return string literal constants from a customization query
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.provider;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +34,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.util.SerializationAdapterFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.util.SerializationAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -85,7 +85,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractReferenceInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractReferenceInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -93,7 +93,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	protected AbstractReferenceInstanceItemProvider abstractReferenceInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractReferenceInstance}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractReferenceInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -108,7 +108,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedContainmentReferenceInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedContainmentReferenceInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -116,7 +116,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	protected MultiValuedContainmentReferenceInstanceItemProvider multiValuedContainmentReferenceInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedContainmentReferenceInstance}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedContainmentReferenceInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -131,7 +131,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedReferenceInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedReferenceInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -139,7 +139,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	protected MultiValuedReferenceInstanceItemProvider multiValuedReferenceInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedReferenceInstance}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedReferenceInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -154,7 +154,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedAttributeInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedAttributeInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -162,7 +162,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	protected SingleValuedAttributeInstanceItemProvider singleValuedAttributeInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedAttributeInstance}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedAttributeInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -177,7 +177,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.ExtendedEObjectReference} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.ExtendedEObjectReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -185,7 +185,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	protected ExtendedEObjectReferenceItemProvider extendedEObjectReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.ExtendedEObjectReference}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.ExtendedEObjectReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -200,7 +200,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedContainmentReferenceInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedContainmentReferenceInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -208,7 +208,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	protected SingleValuedContainmentReferenceInstanceItemProvider singleValuedContainmentReferenceInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedContainmentReferenceInstance}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedContainmentReferenceInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -223,7 +223,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedReferenceInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedReferenceInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -231,7 +231,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	protected SingleValuedReferenceInstanceItemProvider singleValuedReferenceInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedReferenceInstance}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedReferenceInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -246,7 +246,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedAttributeInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedAttributeInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -254,7 +254,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	protected MultiValuedAttributeInstanceItemProvider multiValuedAttributeInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedAttributeInstance}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedAttributeInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -269,7 +269,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractAttributeInstance} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractAttributeInstance} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -277,7 +277,7 @@ public class SerializationItemProviderAdapterFactory extends SerializationAdapte
 	protected AbstractAttributeInstanceItemProvider abstractAttributeInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractAttributeInstance}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.AbstractAttributeInstance}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

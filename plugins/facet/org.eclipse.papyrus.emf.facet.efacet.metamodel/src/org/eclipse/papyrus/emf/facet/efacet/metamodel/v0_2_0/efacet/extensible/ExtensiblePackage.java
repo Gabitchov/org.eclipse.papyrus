@@ -13,7 +13,7 @@
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensibleFactory
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensibleFactory
  * @model kind="package"
  * @generated
  */
@@ -66,14 +66,14 @@ public interface ExtensiblePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ExtensiblePackage eINSTANCE = org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.ExtensiblePackageImpl.init();
+	ExtensiblePackage eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.ExtensiblePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl <em>Query</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl <em>Query</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.ExtensiblePackageImpl#getQuery()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.ExtensiblePackageImpl#getQuery()
 	 * @generated
 	 */
 	int QUERY = 0;
@@ -107,32 +107,32 @@ public interface ExtensiblePackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query <em>Query</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query <em>Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Query</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query
 	 * @generated
 	 */
 	EClass getQuery();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanHaveSideEffects <em>Can Have Side Effects</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanHaveSideEffects <em>Can Have Side Effects</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Can Have Side Effects</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanHaveSideEffects()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanHaveSideEffects()
 	 * @see #getQuery()
 	 * @generated
 	 */
 	EAttribute getQuery_CanHaveSideEffects();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanBeCached <em>Can Be Cached</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanBeCached <em>Can Be Cached</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Can Be Cached</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanBeCached()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanBeCached()
 	 * @see #getQuery()
 	 * @generated
 	 */
@@ -161,11 +161,11 @@ public interface ExtensiblePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl <em>Query</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl <em>Query</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.ExtensiblePackageImpl#getQuery()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.ExtensiblePackageImpl#getQuery()
 		 * @generated
 		 */
 		EClass QUERY = eINSTANCE.getQuery();

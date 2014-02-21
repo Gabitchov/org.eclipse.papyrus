@@ -10,12 +10,12 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.properties.bounds;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.properties.bounds;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
-import org.eclipse.emf.facet.util.ui.utils.UIUtils;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.UIUtils;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridLayout;

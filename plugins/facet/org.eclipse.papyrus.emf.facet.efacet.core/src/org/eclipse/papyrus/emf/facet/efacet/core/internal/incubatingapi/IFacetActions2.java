@@ -11,7 +11,7 @@
  *  Nicolas Bros (Mia-Software) - Bug 361612 - New core for new version of the Facet metamodel
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.efacet.core.internal.incubatingapi;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.incubatingapi;
 
 import java.io.IOException;
 
@@ -20,13 +20,13 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.core.internal.FacetActions2Impl;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetActions2Impl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.InvalidFacetSetException;
 
 /**
  * This interface contains methods to create {@link Facet}s.

@@ -13,12 +13,12 @@
  *  Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *  Nicolas Bros (Mia-Software) - Bug 376941 - [EFacet] Facet operation arguments in Facet model
  */
-package org.eclipse.emf.facet.efacet.core.query;
+package org.eclipse.papyrus.emf.facet.efacet.core.query;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.facet.efacet.core.IDerivedTypedElementManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.core.IDerivedTypedElementManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 import org.osgi.framework.Bundle;
 
 /**
@@ -30,7 +30,7 @@ import org.osgi.framework.Bundle;
  */
 @Deprecated
 public interface IDerivedTypedElementImplementationFactory {
-	// Copy of org.eclipse.emf.facet.infra.query.core.IModelQueryFactory
+	// Copy of org.eclipse.papyrus.emf.facet.infra.query.core.IModelQueryFactory
 
 	/**
 	 * Create a derived typed element implementation, for getting and setting the value of the

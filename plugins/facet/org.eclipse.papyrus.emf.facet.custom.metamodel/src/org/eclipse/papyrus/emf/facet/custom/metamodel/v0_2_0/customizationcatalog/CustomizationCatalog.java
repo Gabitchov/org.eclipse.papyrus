@@ -11,9 +11,9 @@
  *   	Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog;
 
-import org.eclipse.emf.facet.util.emf.catalog.Catalog;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +21,7 @@ import org.eclipse.emf.facet.util.emf.catalog.Catalog;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage#getCustomizationCatalog()
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage#getCustomizationCatalog()
  * @model
  * @generated
  */

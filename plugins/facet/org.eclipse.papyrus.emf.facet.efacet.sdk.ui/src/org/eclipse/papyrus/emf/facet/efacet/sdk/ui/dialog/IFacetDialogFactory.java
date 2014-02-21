@@ -10,20 +10,20 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.dialog;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.dialog;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.dialog.FacetDialogFactoryImpl;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.dialog.SynchronizedFacetDialogFactory;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IDerivedTypedElementWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IEStructuralFeatureWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IETypedElementWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IFacetWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.dialog.FacetDialogFactoryImpl;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.dialog.SynchronizedFacetDialogFactory;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IDerivedTypedElementWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IEStructuralFeatureWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IETypedElementWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IFacetWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget;
 import org.eclipse.swt.widgets.Display;
 
 /**

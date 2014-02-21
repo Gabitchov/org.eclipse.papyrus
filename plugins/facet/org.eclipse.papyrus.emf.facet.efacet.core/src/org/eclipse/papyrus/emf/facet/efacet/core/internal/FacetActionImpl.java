@@ -10,7 +10,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 338813 - [EMF Facet Framework] basic Facet actions
  *  Nicolas Bros (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.io.IOException;
 
@@ -25,17 +25,17 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.Facet;
-import org.eclipse.emf.facet.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.core.IFacetAction;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManager;
-import org.eclipse.emf.facet.util.emf.core.exception.InvalidFacetSetException;
-import org.eclipse.emf.facet.util.pde.core.internal.exported.BuildPropertiesUtils;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetAction;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.util.pde.core.internal.exported.BuildPropertiesUtils;
 
 /** @deprecated */
 @Deprecated

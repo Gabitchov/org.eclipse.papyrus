@@ -146,7 +146,7 @@
           <styles xmi:type="notation:FilteringStyle" xmi:id="_BmfVC_tIEeCHmpaJaoX4Ew"/>
         </children>
         <styles xmi:type="notation:ShapeStyle" xmi:id="_BmfVAftIEeCHmpaJaoX4Ew" fontColor="4210752" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-        <element xmi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.facet.efacet2/model/efacet2.ecore#//declaration/DerivedTypedElement"/>
+        <element xmi:type="ecore:EClass" href="platform:/resource/org.eclipse.papyrus.emf.facet.efacet2/model/efacet2.ecore#//declaration/DerivedTypedElement"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BmfVAvtIEeCHmpaJaoX4Ew" x="440" y="7"/>
       </children>
       <children xmi:type="notation:Node" xmi:id="_jL-d4PtIEeCHmpaJaoX4Ew" type="2003">
@@ -165,7 +165,7 @@
           <styles xmi:type="notation:FilteringStyle" xmi:id="_jL-d6_tIEeCHmpaJaoX4Ew"/>
         </children>
         <styles xmi:type="notation:ShapeStyle" xmi:id="_jL-d4ftIEeCHmpaJaoX4Ew" fontColor="4210752" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-        <element xmi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.facet.efacet2/model/efacet2.ecore#//declaration/Query"/>
+        <element xmi:type="ecore:EClass" href="platform:/resource/org.eclipse.papyrus.emf.facet.efacet2/model/efacet2.ecore#//declaration/Query"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jL-d4vtIEeCHmpaJaoX4Ew" x="800" y="2"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_ALcTVvtIEeCHmpaJaoX4Ew"/>
@@ -174,7 +174,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_ALcTUftIEeCHmpaJaoX4Ew" fontColor="4210752" fontHeight="10" fillColor="13150135" lineColor="4210752"/>
     <styles xmi:type="notation:MultiDiagramLinkStyle" xmi:id="_ALcTUvtIEeCHmpaJaoX4Ew"/>
-    <element xmi:type="ecore:EPackage" href="platform:/resource/org.eclipse.emf.facet.efacet2/model/efacet2.ecore#/"/>
+    <element xmi:type="ecore:EPackage" href="platform:/resource/org.eclipse.papyrus.emf.facet.efacet2/model/efacet2.ecore#/"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ALcTU_tIEeCHmpaJaoX4Ew" x="15" y="-190" width="1028" height="178"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_4LBqsPtIEeCHmpaJaoX4Ew" type="1002">
@@ -196,7 +196,7 @@
           <styles xmi:type="notation:FilteringStyle" xmi:id="_5cOz4_tIEeCHmpaJaoX4Ew"/>
         </children>
         <styles xmi:type="notation:ShapeStyle" xmi:id="_5cFp8ftIEeCHmpaJaoX4Ew" fontColor="4210752" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-        <element xmi:type="ecore:EClass" href="platform:/resource/org.eclipse.emf.facet.efacet2/model/efacet2.ecore#//declaration/Facet"/>
+        <element xmi:type="ecore:EClass" href="platform:/resource/org.eclipse.papyrus.emf.facet.efacet2/model/efacet2.ecore#//declaration/Facet"/>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5cFp8vtIEeCHmpaJaoX4Ew" x="96" y="34"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_4LBqtvtIEeCHmpaJaoX4Ew"/>
@@ -205,7 +205,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_4LBqsftIEeCHmpaJaoX4Ew" fontColor="4210752" fontHeight="10" fillColor="13150135" lineColor="4210752"/>
     <styles xmi:type="notation:MultiDiagramLinkStyle" xmi:id="_4LBqsvtIEeCHmpaJaoX4Ew"/>
-    <element xmi:type="ecore:EPackage" href="platform:/resource/org.eclipse.emf.facet.efacet2/model/efacet2.ecore#//declaration"/>
+    <element xmi:type="ecore:EPackage" href="platform:/resource/org.eclipse.papyrus.emf.facet.efacet2/model/efacet2.ecore#//declaration"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4LBqs_tIEeCHmpaJaoX4Ew" x="340" y="350" width="408" height="148"/>
   </children>
   <children xmi:type="notation:Node" xmi:id="_7FlXUPtIEeCHmpaJaoX4Ew" type="1002">
@@ -343,7 +343,7 @@
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_jMbJ0ftIEeCHmpaJaoX4Ew" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_jMbJ0vtIEeCHmpaJaoX4Ew" fontColor="4210752" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.facet.efacet2/model/efacet2.ecore#//declaration/Query/owningDerivedTypedElement"/>
+    <element xmi:type="ecore:EReference" href="platform:/resource/org.eclipse.papyrus.emf.facet.efacet2/model/efacet2.ecore#//declaration/Query/owningDerivedTypedElement"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jMbJ0_tIEeCHmpaJaoX4Ew" points="[-103, -15, 287, 7]$[-316, -15, 74, 7]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_h3rH8vtJEeCHmpaJaoX4Ew" id="(0.5,0.5)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_h3rH8_tJEeCHmpaJaoX4Ew" id="(0.5,0.5)"/>
@@ -357,7 +357,7 @@
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_jMbJ2ftIEeCHmpaJaoX4Ew" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_jMbJ2vtIEeCHmpaJaoX4Ew" fontColor="4210752" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="platform:/resource/org.eclipse.emf.facet.efacet2/model/efacet2.ecore#//declaration/DerivedTypedElement/query"/>
+    <element xmi:type="ecore:EReference" href="platform:/resource/org.eclipse.papyrus.emf.facet.efacet2/model/efacet2.ecore#//declaration/DerivedTypedElement/query"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jMbJ2_tIEeCHmpaJaoX4Ew" points="[74, 7, -316, -15]$[287, 7, -103, -15]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jMk60PtIEeCHmpaJaoX4Ew" id="(0.5,0.5)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jMk60ftIEeCHmpaJaoX4Ew" id="(0.5,0.5)"/>

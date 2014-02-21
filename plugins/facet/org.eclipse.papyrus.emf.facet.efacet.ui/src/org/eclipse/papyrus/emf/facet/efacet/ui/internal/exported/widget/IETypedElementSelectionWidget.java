@@ -9,7 +9,7 @@
  *    Gregoire Dupe (Mia-Software) - Bug 370442 - rewrite the Facet loading dialog for v0.2
  *    Nicolas Bros (Mia-Software) - Bug 370806 - [table] rewrite the "allowed contents" query selection dialog for v0.2
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.exported.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget;
 
 import java.util.Collection;
 import java.util.List;

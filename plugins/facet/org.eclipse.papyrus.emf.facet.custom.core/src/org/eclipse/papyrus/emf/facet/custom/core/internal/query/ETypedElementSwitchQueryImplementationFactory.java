@@ -9,16 +9,16 @@
  *    Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *    Gregoire Dupé (Mia-Software) - Bug 418885 - ETypedElementSwitchQuery implemented using a deprecated query evaluator extension point
  */
-package org.eclipse.emf.facet.custom.core.internal.query;
+package org.eclipse.papyrus.emf.facet.custom.core.internal.query;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery;
-import org.eclipse.emf.facet.efacet.core.IDerivedTypedElementManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.core.query.IDerivedTypedElementImplementation;
-import org.eclipse.emf.facet.efacet.core.query.IDerivedTypedElementImplementationFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.core.IDerivedTypedElementManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IDerivedTypedElementImplementation;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IDerivedTypedElementImplementationFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery;
 import org.osgi.framework.Bundle;
 
 /**

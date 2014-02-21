@@ -14,21 +14,17 @@
  *     Grégoire Dupé (Mia-Software) - Bug 361817 - [Restructuring] Dynamic load to the facet catalog
  * 
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.FacetSetCatalog;
-
-import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.FacetSetCatalog;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +51,7 @@ public class EfacetcatalogPackageImpl extends EPackageImpl implements Efacetcata
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

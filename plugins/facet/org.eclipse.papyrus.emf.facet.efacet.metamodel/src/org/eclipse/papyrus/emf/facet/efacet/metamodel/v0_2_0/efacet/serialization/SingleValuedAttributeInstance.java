@@ -12,7 +12,7 @@
  * 	Emmanuelle RouillÃ© (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization;
 
 
 /**
@@ -23,11 +23,11 @@ package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedAttributeInstance#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedAttributeInstance#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getSingleValuedAttributeInstance()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getSingleValuedAttributeInstance()
  * @model
  * @generated
  */
@@ -42,14 +42,14 @@ public interface SingleValuedAttributeInstance extends AbstractAttributeInstance
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(Object)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getSingleValuedAttributeInstance_Value()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getSingleValuedAttributeInstance_Value()
 	 * @model
 	 * @generated
 	 */
 	Object getValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedAttributeInstance#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedAttributeInstance#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' attribute.

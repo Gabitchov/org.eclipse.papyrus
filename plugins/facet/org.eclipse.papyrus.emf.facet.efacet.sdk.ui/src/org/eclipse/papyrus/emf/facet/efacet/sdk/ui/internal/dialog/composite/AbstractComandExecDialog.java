@@ -10,13 +10,13 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.dialog.composite;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.dialog.composite;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.dialog.AbstractDialogWithCallback;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.dialog.AbstractDialogWithCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
 
 public abstract class AbstractComandExecDialog<T extends Object, W extends ICommandWidget>
 		extends AbstractDialogWithCallback<T, W> {

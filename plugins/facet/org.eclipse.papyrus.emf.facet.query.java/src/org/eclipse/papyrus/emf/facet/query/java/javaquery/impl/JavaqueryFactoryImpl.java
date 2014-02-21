@@ -10,16 +10,16 @@
  *  	Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  *  
  */
-package org.eclipse.emf.facet.query.java.javaquery.impl;
+package org.eclipse.papyrus.emf.facet.query.java.javaquery.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.facet.query.java.javaquery.JavaQuery;
-import org.eclipse.emf.facet.query.java.javaquery.JavaqueryFactory;
-import org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryFactory;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage;
 
 /**
  * <!-- begin-user-doc -->

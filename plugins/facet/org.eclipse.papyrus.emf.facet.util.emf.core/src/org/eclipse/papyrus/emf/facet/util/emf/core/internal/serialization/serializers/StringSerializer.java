@@ -8,9 +8,9 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.core.internal.serialization.serializers;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization.serializers;
 
-import org.eclipse.emf.facet.util.emf.core.serialization.ISerializer;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.ISerializer;
 
 public class StringSerializer implements ISerializer<String> {
 

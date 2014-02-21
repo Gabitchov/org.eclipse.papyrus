@@ -11,7 +11,7 @@
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *      Nicolas Bros (Mia-Software) - Bug 378271 - [Table] Select Columns To Hide is broken
  */
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -21,24 +21,24 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization;
-import org.eclipse.emf.facet.custom.ui.internal.exception.CustomizationEditRuntimeException;
-import org.eclipse.emf.facet.custom.ui.internal.exported.ICustomizationCommandFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.util.emf.core.command.ICommandFactoryResult;
-import org.eclipse.emf.facet.util.emf.core.command.ICommandFactoryResultFactory;
-import org.eclipse.emf.facet.util.emf.core.internal.exported.ICommandFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.exception.CustomizationEditRuntimeException;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.ICustomizationCommandFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.util.emf.core.command.ICommandFactoryResult;
+import org.eclipse.papyrus.emf.facet.util.emf.core.command.ICommandFactoryResultFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.exported.ICommandFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization;
 
 public class CustomizationCommandFactory implements ICustomizationCommandFactory {
 	

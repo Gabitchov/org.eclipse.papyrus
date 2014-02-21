@@ -10,14 +10,14 @@
  *  	Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  *  
  */
-package org.eclipse.emf.facet.query.java.javaquery.impl;
+package org.eclipse.papyrus.emf.facet.query.java.javaquery.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.facet.efacet.impl.QueryImpl;
-import org.eclipse.emf.facet.query.java.javaquery.JavaQuery;
-import org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage;
+import org.eclipse.papyrus.emf.facet.efacet.impl.QueryImpl;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +26,7 @@ import org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.emf.facet.query.java.javaquery.impl.JavaQueryImpl#getImplementationClassName <em>Implementation Class Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.emf.facet.query.java.javaquery.impl.JavaQueryImpl#getImplementationClassName <em>Implementation Class Name</em>}</li>
  * </ul>
  * </p>
  * 

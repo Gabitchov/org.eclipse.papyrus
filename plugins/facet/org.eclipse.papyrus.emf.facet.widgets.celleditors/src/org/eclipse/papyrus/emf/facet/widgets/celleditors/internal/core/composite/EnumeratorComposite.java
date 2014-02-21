@@ -8,10 +8,10 @@
  *
  * Contributors:
  *   Gregoire Dupe (Mia-Software) - initial API and implementation
- *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *   Gregoire Dupe (Mia-Software) - Bug 344563 - NPE with Enum Editor
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.core.composite;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite;
 
 import java.util.ArrayList;
 import java.util.List;

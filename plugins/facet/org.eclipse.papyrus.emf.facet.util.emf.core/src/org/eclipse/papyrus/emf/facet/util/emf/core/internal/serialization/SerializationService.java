@@ -9,13 +9,13 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Nicolas Bros (Mia-Software) - Bug 338907 - expose serialization services from SerializationFactoryImpl
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.core.internal.serialization;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization;
 
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.core.internal.Activator;
-import org.eclipse.emf.facet.util.emf.core.serialization.ISerializationRegistry;
-import org.eclipse.emf.facet.util.emf.core.serialization.ISerializationService;
-import org.eclipse.emf.facet.util.emf.core.serialization.ISerializer;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.ISerializationRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.ISerializationService;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.ISerializer;
 
 public class SerializationService implements ISerializationService {
 

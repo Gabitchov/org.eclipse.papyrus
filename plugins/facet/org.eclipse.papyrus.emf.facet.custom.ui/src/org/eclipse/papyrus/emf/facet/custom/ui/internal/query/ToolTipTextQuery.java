@@ -11,16 +11,16 @@
  *    
  *******************************************************************************/
 
-package org.eclipse.emf.facet.custom.ui.internal.query;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.query;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.custom.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
-import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.osgi.util.NLS;
 
 /**

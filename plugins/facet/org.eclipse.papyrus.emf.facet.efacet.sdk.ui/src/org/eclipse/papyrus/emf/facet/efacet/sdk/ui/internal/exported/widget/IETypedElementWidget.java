@@ -10,11 +10,11 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard;
 
 /**
  * @noextend This interface is not intended to be extended by clients.

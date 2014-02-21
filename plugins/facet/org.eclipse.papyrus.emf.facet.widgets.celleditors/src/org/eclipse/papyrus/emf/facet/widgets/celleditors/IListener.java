@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 334539 - [celleditors] change listener
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors;
 
 public interface IListener {
 	/** Sent when an event that the receiver has registered for occurs. */

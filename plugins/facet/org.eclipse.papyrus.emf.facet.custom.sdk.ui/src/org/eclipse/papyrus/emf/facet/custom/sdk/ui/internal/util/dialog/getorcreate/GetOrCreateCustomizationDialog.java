@@ -10,18 +10,18 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.dialog.getorcreate;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.dialog.getorcreate;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.sync.SynchronizedGetOrCreateFilteredElementCommmandWidget;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.dialog.AbstractGetOrCreateCustomizationDialog;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.command.GetOrCreateCustomizationWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.sync.SynchronizedGetOrCreateFilteredElementCommmandWidget;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.dialog.AbstractGetOrCreateCustomizationDialog;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.command.GetOrCreateCustomizationWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 
 /**
  * Provide a dialog where the user can select a {@link Customization} in the

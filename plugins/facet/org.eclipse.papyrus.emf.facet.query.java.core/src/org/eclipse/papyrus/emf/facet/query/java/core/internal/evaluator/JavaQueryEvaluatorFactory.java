@@ -8,20 +8,20 @@
  * Contributors:
  *    Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  */
-package org.eclipse.emf.facet.query.java.core.internal.evaluator;
+package org.eclipse.papyrus.emf.facet.query.java.core.internal.evaluator;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.core.exception.QueryException;
-import org.eclipse.emf.facet.efacet.core.exception.QueryExecutionException;
-import org.eclipse.emf.facet.efacet.core.query.IQueryEvaluator;
-import org.eclipse.emf.facet.efacet.core.query.IQueryEvaluatorFactory;
-import org.eclipse.emf.facet.query.java.core.IJavaQuery;
-import org.eclipse.emf.facet.query.java.core.internal.plugin.Activator;
-import org.eclipse.emf.facet.query.java.javaquery.JavaQuery;
-import org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryException;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryExecutionException;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryEvaluator;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryEvaluatorFactory;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.core.internal.plugin.Activator;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.osgi.framework.Bundle;
 
 

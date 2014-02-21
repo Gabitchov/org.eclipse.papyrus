@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 370806 - [table] rewrite the "allowed contents" query selection dialog for v0.2
  *    Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.util.core.internal.exported.IFilter;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.IFilter;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 

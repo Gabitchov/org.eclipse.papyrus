@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.efacet.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.efacet.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.facet.efacet.core" id="queryImplementationRegistration" name="EMF Facet Query Implementation Registration"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.efacet.core" id="queryImplementationRegistration" name="EMF Facet Query Implementation Registration"/>
       </appinfo>
       <documentation>
          Used to register an IQueryImplementationFactory, that creates instances of IQueryImplementation. The IQueryImplementation provides an implementation for a given type of queries (e.g. Java queries, OCL queries, ...)
@@ -55,7 +55,7 @@
                   Provides an implementation for an IQueryImplementationFactory, which instantiates IQueryImplementation for a given type of queries.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.efacet.core.query.IQueryImplementationFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryImplementationFactory"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -77,9 +77,9 @@
       </appinfo>
       <documentation>
          &lt;pre&gt;
-   &lt;extension point=&quot;org.eclipse.emf.facet.efacet.core.queryImplementationRegistration&quot;&gt;
+   &lt;extension point=&quot;org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration&quot;&gt;
       &lt;queryImplementationRegistration
-            class=&quot;org.eclipse.emf.facet.efacet.core.tests.internal.DummyQueryEvaluatorFactory&quot;&gt;
+            class=&quot;org.eclipse.papyrus.emf.facet.efacet.core.tests.internal.DummyQueryEvaluatorFactory&quot;&gt;
       &lt;/queryImplementationRegistration&gt;
    &lt;/extension&gt;
 &lt;/pre&gt;
@@ -95,7 +95,7 @@
          &lt;p&gt;
 See plug-ins:
 &lt;ul&gt;
-&lt;li&gt;org.eclipse.emf.facet.query.java.core
+&lt;li&gt;org.eclipse.papyrus.emf.facet.query.java.core
 &lt;/ul&gt;
 &lt;/p&gt;
       </documentation>

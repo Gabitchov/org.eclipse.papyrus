@@ -20,7 +20,7 @@
  *     Thomas Cicognani (Soft-Maint) - Bug 416221 - New methods to get references in FacetManager API
  *     Thomas Cicognani (Soft-Maint) - Bug 420193 - Listener on FacetManager
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -46,30 +46,30 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.core.FacetUtils;
-import org.eclipse.emf.facet.efacet.core.IDerivedTypedElementManager;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.IFacetManagerListener;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.core.exception.FacetManagerException;
-import org.eclipse.emf.facet.efacet.core.internal.exception.FacetConformanceEvaluationException;
-import org.eclipse.emf.facet.efacet.core.internal.exception.NonApplicableFacetException;
-import org.eclipse.emf.facet.efacet.core.internal.exception.NonConformingEObjectException;
-import org.eclipse.emf.facet.efacet.core.internal.exception.UnmatchingExpectedTypeException;
-import org.eclipse.emf.facet.efacet.core.internal.serialization.SerializationManager;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimeFactory;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.core.FacetUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.IDerivedTypedElementManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManagerListener;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.FacetManagerException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.FacetConformanceEvaluationException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.NonApplicableFacetException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.NonConformingEObjectException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.UnmatchingExpectedTypeException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.serialization.SerializationManager;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimeFactory;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 
 public class FacetManager implements IFacetManager, Adapter {
 

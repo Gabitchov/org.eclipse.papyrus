@@ -8,13 +8,13 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.impl;
+package org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.impl;
 
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.SerializationFactory;
-import org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.SerializationPackage;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.SerializationFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.SerializationPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +41,7 @@ public class SerializationPackageImpl extends EPackageImpl implements Serializat
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.SerializationPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.SerializationPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

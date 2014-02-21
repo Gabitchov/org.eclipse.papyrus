@@ -10,18 +10,18 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.edition;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.edition;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.component.properties.name.GetReferenceNameWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.creation.AbstractEStructuralFeatureWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.properties.name.AbstractGetElementNameWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.component.properties.name.GetReferenceNameWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.creation.AbstractEStructuralFeatureWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.properties.name.AbstractGetElementNameWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
 import org.eclipse.swt.widgets.Composite;
 
 /**

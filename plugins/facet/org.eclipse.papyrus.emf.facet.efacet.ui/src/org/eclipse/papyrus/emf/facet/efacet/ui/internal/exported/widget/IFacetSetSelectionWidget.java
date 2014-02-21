@@ -8,13 +8,13 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 372865 - FacetSet selection dialog
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.exported.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
 import org.eclipse.swt.widgets.Control;
 
 /**

@@ -10,9 +10,9 @@
  * 		David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_3_0.query;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -22,12 +22,12 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * The following features are supported:
  * <ul>
  * <li>
- * {@link org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery#getUri
+ * {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery#getUri
  * <em>Uri</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage#getURIImageQuery()
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage#getURIImageQuery()
  * @model
  * @generated
  * @since 0.3
@@ -43,14 +43,14 @@ public interface URIImageQuery extends Query {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Uri</em>' attribute.
 	 * @see #setUri(String)
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage#getURIImageQuery_Uri()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage#getURIImageQuery_Uri()
 	 * @model
 	 * @generated
 	 */
 	String getUri();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery#getUri <em>Uri</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery#getUri <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Uri</em>' attribute.

@@ -10,16 +10,16 @@
  *  	Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  *  
  */
-package org.eclipse.emf.facet.query.java.javaquery.impl;
+package org.eclipse.papyrus.emf.facet.query.java.javaquery.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.facet.efacet.EFacetPackage;
-import org.eclipse.emf.facet.query.java.javaquery.JavaQuery;
-import org.eclipse.emf.facet.query.java.javaquery.JavaqueryFactory;
-import org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryFactory;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,7 +49,7 @@ public class JavaqueryPackageImpl extends EPackageImpl implements JavaqueryPacka
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

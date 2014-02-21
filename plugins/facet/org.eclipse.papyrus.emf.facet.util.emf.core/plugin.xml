@@ -16,32 +16,32 @@
 -->
 <plugin>
    <extension-point id="modelViewer" name="%model.viewer.extension-point.name" schema="schema/modelViewer.exsd"/>
-   <extension-point id="org.eclipse.emf.facet.util.emf.core.catalogmanager" name="%extension-point.name" schema="schema/catalogmanager.exsd"/>
-   <extension-point id="org.eclipse.emf.facet.util.emf.core.modeldeclaration" name="%extension-point.name.0" schema="schema/org.eclipse.emf.facet.util.emf.core.modeldeclaration.exsd"/>
+   <extension-point id="org.eclipse.papyrus.emf.facet.util.emf.core.catalogmanager" name="%extension-point.name" schema="schema/catalogmanager.exsd"/>
+   <extension-point id="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration" name="%extension-point.name.0" schema="schema/org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration.exsd"/>
    <extension-point id="serialization" name="%serialization.extension-point.name" schema="schema/serialization.exsd"/>
 
    <extension
        point="org.eclipse.core.runtime.preferences">
       <initializer
-         class="org.eclipse.emf.facet.util.emf.core.internal.preferences.PreferenceInitializer">
+         class="org.eclipse.papyrus.emf.facet.util.emf.core.internal.preferences.PreferenceInitializer">
       </initializer>
    </extension>
    <extension
          point="org.eclipse.papyrus.emf.facet.util.emf.core.serialization">
       <serializer
-            class="org.eclipse.emf.facet.util.emf.core.internal.serialization.serializers.StringSerializer">
+            class="org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization.serializers.StringSerializer">
       </serializer>
       <serializer
-            class="org.eclipse.emf.facet.util.emf.core.internal.serialization.serializers.IntegerSerializer">
+            class="org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization.serializers.IntegerSerializer">
       </serializer>
       <serializer
-            class="org.eclipse.emf.facet.util.emf.core.internal.serialization.serializers.BooleanSerializer">
+            class="org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization.serializers.BooleanSerializer">
       </serializer>
       <serializer
-            class="org.eclipse.emf.facet.util.emf.core.internal.serialization.serializers.IResourceSerializer">
+            class="org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization.serializers.IResourceSerializer">
       </serializer>
       <serializer
-            class="org.eclipse.emf.facet.util.emf.core.internal.serialization.serializers.EMFURISerializer">
+            class="org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization.serializers.EMFURISerializer">
       </serializer>
    </extension>
 

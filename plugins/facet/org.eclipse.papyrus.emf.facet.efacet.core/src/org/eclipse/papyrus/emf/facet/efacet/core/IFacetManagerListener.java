@@ -8,7 +8,7 @@
  * Contributors:
  *     Thomas Cicognani (Soft-Maint) - Bug 420193 - Listener on FacetManager
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core;
+package org.eclipse.papyrus.emf.facet.efacet.core;
 
 /**
  * This interface allows clients to manage listeners added on the

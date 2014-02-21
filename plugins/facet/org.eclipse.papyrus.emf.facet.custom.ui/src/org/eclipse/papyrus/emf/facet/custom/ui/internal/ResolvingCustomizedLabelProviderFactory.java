@@ -9,11 +9,11 @@
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *    David Couvrand (Soft-Maint) - Bug 418418 - [Customization] Overlay icons not implemented
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.ui.ICustomizedLabelProvider;
-import org.eclipse.emf.facet.custom.ui.IResolvingCustomizedLabelProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.IResolvingCustomizedLabelProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 
 public class ResolvingCustomizedLabelProviderFactory implements IResolvingCustomizedLabelProviderFactory {
 

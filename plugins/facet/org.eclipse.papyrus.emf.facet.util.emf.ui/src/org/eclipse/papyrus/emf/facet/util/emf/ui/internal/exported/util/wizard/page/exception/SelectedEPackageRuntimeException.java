@@ -9,7 +9,7 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.emf.ui.internal.exported.util.wizard.page.exception;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.util.wizard.page.exception;
 
 /**
  * Exception when the list (where the selection has to be done) is not totally

@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.impl;
+package org.eclipse.papyrus.emf.facet.efacet.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.facet.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.QueryFacetElement;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.QueryFacetElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,12 +32,12 @@ import org.eclipse.emf.facet.efacet.QueryFacetElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryFacetElementImpl#getQuery <em>Query</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryFacetElementImpl#getQuery <em>Query</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -48,7 +48,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @see #getQuery()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -58,7 +58,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	protected QueryFacetElementImpl() {
@@ -69,7 +69,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -81,7 +81,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Query getQuery() {
@@ -92,7 +92,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public NotificationChain basicSetQuery(final Query newQuery, NotificationChain msgs) {
@@ -113,7 +113,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setQuery(final Query newQuery) {
@@ -139,7 +139,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -155,7 +155,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -171,7 +171,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -188,7 +188,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -205,7 +205,7 @@ public abstract class QueryFacetElementImpl extends FacetElementImpl implements 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override

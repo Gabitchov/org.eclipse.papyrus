@@ -8,14 +8,14 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 372626 - Aggregates
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui.internal.exported;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.exported;
 
 /**
  * @since 0.2
  */
 public final class CustomizationUIConstants {
 
-	private static final String CATALOG_VIEW_ID = "org.eclipse.emf.facet.custom.ui.view.catalog"; //$NON-NLS-1$
+	private static final String CATALOG_VIEW_ID = "org.eclipse.papyrus.emf.facet.custom.ui.view.catalog"; //$NON-NLS-1$
 
 	private CustomizationUIConstants() {
 		// utility class

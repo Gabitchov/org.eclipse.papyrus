@@ -11,13 +11,13 @@
  *     Grégoire Dupé (Mia-Software) - Bug 361612 - [Restructuring] New core for new version of the Facet metamodel
  *     Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.facet.efacet.core.internal.exception.UnmatchingExpectedTypeException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.UnmatchingExpectedTypeException;
 
 public final class CastUtils {
 	

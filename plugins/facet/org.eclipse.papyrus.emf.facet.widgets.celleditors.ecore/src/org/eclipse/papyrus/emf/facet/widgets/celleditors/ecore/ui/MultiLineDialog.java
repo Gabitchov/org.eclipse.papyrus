@@ -9,10 +9,10 @@
  * Contributors:
  *   Nicolas Guyomar (Mia-Software) - initial API and implementation
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.ecore.ui;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.ui;
 
-import org.eclipse.emf.facet.widgets.celleditors.ecore.Activator;
-import org.eclipse.emf.facet.widgets.celleditors.ecore.Messages;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.Activator;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.Messages;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;

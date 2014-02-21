@@ -2,6 +2,11 @@
 <?eclipse version="3.4"?>
 
 <plugin>
+
+<extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+  <modeldeclaration file="resources/PapyrusNotation.custom"/>
+</extension>
+
    <!-- TODO: EMF-FACET
    <extension point="org.eclipse.emf.facet.infra.query.registration">
       <modelqueryset file="resources/PapyrusNotationFacet.querySet">
@@ -81,4 +86,5 @@
             type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
    </extension>
+  
 </plugin>

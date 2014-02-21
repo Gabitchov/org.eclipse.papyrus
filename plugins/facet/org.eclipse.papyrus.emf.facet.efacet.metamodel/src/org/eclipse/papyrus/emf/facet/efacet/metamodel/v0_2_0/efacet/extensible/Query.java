@@ -13,13 +13,13 @@
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,12 +33,12 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanHaveSideEffects <em>Can Have Side Effects</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanBeCached <em>Can Be Cached</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanHaveSideEffects <em>Can Have Side Effects</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanBeCached <em>Can Be Cached</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage#getQuery()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage#getQuery()
  * @model abstract="true"
  * @generated
  */
@@ -53,14 +53,14 @@ public interface Query extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Can Have Side Effects</em>' attribute.
 	 * @see #setCanHaveSideEffects(boolean)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage#getQuery_CanHaveSideEffects()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage#getQuery_CanHaveSideEffects()
 	 * @model
 	 * @generated
 	 */
 	boolean isCanHaveSideEffects();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanHaveSideEffects <em>Can Have Side Effects</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanHaveSideEffects <em>Can Have Side Effects</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Can Have Side Effects</em>' attribute.
@@ -79,14 +79,14 @@ public interface Query extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Can Be Cached</em>' attribute.
 	 * @see #setCanBeCached(boolean)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage#getQuery_CanBeCached()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage#getQuery_CanBeCached()
 	 * @model
 	 * @generated
 	 */
 	boolean isCanBeCached();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanBeCached <em>Can Be Cached</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query#isCanBeCached <em>Can Be Cached</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Can Be Cached</em>' attribute.

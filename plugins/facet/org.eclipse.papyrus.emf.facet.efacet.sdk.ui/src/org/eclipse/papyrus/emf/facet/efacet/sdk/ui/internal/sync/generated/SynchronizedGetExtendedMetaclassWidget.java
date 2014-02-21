@@ -10,20 +10,20 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.sync.generated;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.sync.generated;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
 
 @SuppressWarnings("PMD.ExcessivePublicCount")
-public class SynchronizedGetExtendedMetaclassWidget extends SynchronizedObject<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.metaclass.IGetExtendedMetaclassWidget> implements org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.metaclass.IGetExtendedMetaclassWidget {
+public class SynchronizedGetExtendedMetaclassWidget extends SynchronizedObject<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.metaclass.IGetExtendedMetaclassWidget> implements org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.metaclass.IGetExtendedMetaclassWidget {
 
-	public SynchronizedGetExtendedMetaclassWidget(final org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.metaclass.IGetExtendedMetaclassWidget object, final Display display) {
+	public SynchronizedGetExtendedMetaclassWidget(final org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.metaclass.IGetExtendedMetaclassWidget object, final Display display) {
 		super(object, display);
 	}
-	public final void addListener(final org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
+	public final void addListener(final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
 		voidExceptionFreeRunnable(new AbstractVoidExceptionFreeRunnable() {
 			@Override
 			public void voidSafeRun() {
@@ -77,10 +77,10 @@ public class SynchronizedGetExtendedMetaclassWidget extends SynchronizedObject<o
 		});
 	}
 	
-	public final org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClass> pressButton() {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClass>>() {
+	public final org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClass> pressButton() {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClass>>() {
 			@Override
-			public org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClass> safeRun() {
+			public org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClass> safeRun() {
 				return SynchronizedGetExtendedMetaclassWidget.this.getSynchronizedObject().pressButton();
 			}
 		});

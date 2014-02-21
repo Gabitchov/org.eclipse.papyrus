@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 376941 - [EFacet] Facet operation arguments in Facet model
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core.internal.query;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +20,18 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.efacet.core.IDerivedTypedElementManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.core.internal.Activator;
-import org.eclipse.emf.facet.efacet.core.query.IQueryImplementation;
-import org.eclipse.emf.facet.efacet.core.query.IQueryImplementationFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.core.IDerivedTypedElementManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryImplementation;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryImplementationFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManagerFactory;
 import org.osgi.framework.Bundle;
 
 public class QueryImplementationFactoryRegistry {
-	private static final String EXT_ID = "org.eclipse.emf.facet.efacet.core.queryImplementationRegistration"; //$NON-NLS-1$
+	private static final String EXT_ID = "org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration"; //$NON-NLS-1$
 	private static final String CLASS = "class"; //$NON-NLS-1$
 	public static final QueryImplementationFactoryRegistry INSTANCE = new QueryImplementationFactoryRegistry();
 

@@ -12,7 +12,7 @@
  *    Nicolas Guyomar (Mia-Software) - Bug 340339 - Need some Utils class for Folder/File/Project management
  *******************************************************************************/
 
-package org.eclipse.emf.facet.util.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.core.internal.exported;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +27,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
  */
 public final class FolderUtils {
 
-	// This class has been copied from org.eclipse.emf.facet.infra.common.core.internal.utils.FolderUtils
+	// This class has been copied from org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.FolderUtils
 
 	private FolderUtils() {
 		// prevent instantiation

@@ -8,10 +8,10 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui;
+package org.eclipse.papyrus.emf.facet.custom.ui;
 
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 
 /**
  * An {@link ITreeContentProvider} which is implemented and customizable using the EMF Facet customization mechanisms.

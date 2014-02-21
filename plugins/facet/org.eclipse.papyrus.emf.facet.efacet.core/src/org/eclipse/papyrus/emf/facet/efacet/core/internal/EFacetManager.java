@@ -10,7 +10,7 @@
  * 	Gregoire Dupe (Mia-Software) - Bug 333553 - The user has not to deal with two files to create a facet
  *  Nicolas Bros (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,16 +19,16 @@ import java.util.List;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.efacet.EFacetFactory;
-import org.eclipse.emf.facet.efacet.ParameterValue;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.QueryContext;
-import org.eclipse.emf.facet.efacet.QueryResult;
-import org.eclipse.emf.facet.efacet.core.IEFacetManager;
-import org.eclipse.emf.facet.efacet.core.exception.QueryException;
-import org.eclipse.emf.facet.efacet.core.exception.QueryTypeCheckingException;
-import org.eclipse.emf.facet.efacet.core.internal.query.QueryEvaluatorFactoryRegistry;
-import org.eclipse.emf.facet.efacet.core.query.IQueryEvaluator;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.QueryContext;
+import org.eclipse.papyrus.emf.facet.efacet.QueryResult;
+import org.eclipse.papyrus.emf.facet.efacet.core.IEFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryException;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryTypeCheckingException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.query.QueryEvaluatorFactoryRegistry;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryEvaluator;
 
 /** @deprecated replaced by {@link DerivedTypedElementManager} */
 @Deprecated

@@ -9,11 +9,11 @@
  *    Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
  *    Gregoire Dupe (Mia-Software) - Bug 406578 - Generic Label Provider for EMF objects
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.ui.internal.utils;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.utils;
 
-import org.eclipse.emf.facet.util.emf.ui.internal.Activator;
-import org.eclipse.emf.facet.util.swt.imageprovider.IImageProvider;
-import org.eclipse.emf.facet.util.swt.imageprovider.IImageProviderFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProvider;
+import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProviderFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 

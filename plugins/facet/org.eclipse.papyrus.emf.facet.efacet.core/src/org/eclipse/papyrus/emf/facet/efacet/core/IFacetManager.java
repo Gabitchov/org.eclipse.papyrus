@@ -16,7 +16,7 @@
  *     Thomas Cicognani (Soft-Maint) - Bug 416221 - New methods to get references in FacetManager API
  *     Thomas Cicognani (Soft-Maint) - Bug 420193 - Listener on FacetManager
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core;
+package org.eclipse.papyrus.emf.facet.efacet.core;
 
 import java.util.Collection;
 import java.util.List;
@@ -31,12 +31,12 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.core.exception.FacetManagerException;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.FacetManagerException;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
 
 /**
  * This interface allows clients to use the EMF Facet API to get and set the values of virtually

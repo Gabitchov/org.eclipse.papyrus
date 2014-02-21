@@ -13,7 +13,7 @@
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage
  * @generated
  */
 public interface SerializationFactory extends EFactory {
@@ -32,7 +32,7 @@ public interface SerializationFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SerializationFactory eINSTANCE = org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.impl.SerializationFactoryImpl.init();
+	SerializationFactory eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.impl.SerializationFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Abstract Reference Instance</em>'.

@@ -10,7 +10,7 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.query;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.query;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -21,9 +21,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.InvalidRegistryObjectException;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.IQueryDialogFactoryStrategy;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.IQueryDialogFactoryStrategy;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -32,7 +32,7 @@ import org.eclipse.osgi.util.NLS;
 public class QueryWidgetCompositeFactoryImpl implements
 		IQueryWidgetCompositeFactoryFactory {
 
-	private static final String EXTENSION_POINT = "org.eclipse.emf.facet.efacet.sdk.ui.queryFactoryDialogRegistration"; //$NON-NLS-1$
+	private static final String EXTENSION_POINT = "org.eclipse.papyrus.emf.facet.efacet.sdk.ui.queryFactoryDialogRegistration"; //$NON-NLS-1$
 	private static final String DIALOG_FACTORY = "dialogFactory"; //$NON-NLS-1$
 	private static final String MANAGED_TYPE_NAME = "managedQueryTypeName"; //$NON-NLS-1$
 

@@ -9,11 +9,11 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.tree.menu;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.menu;
 
 import java.util.Map;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.util.tree.item.AbstractTreeItem;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.item.AbstractTreeItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

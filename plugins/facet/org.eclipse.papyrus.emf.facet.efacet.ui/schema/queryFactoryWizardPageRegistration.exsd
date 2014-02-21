@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.efacet.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.efacet.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.facet.efacet.ui" id="queryFactoryWizardPageRegistration" name="Query Factory Wizard Page Registration"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.efacet.ui" id="queryFactoryWizardPageRegistration" name="Query Factory Wizard Page Registration"/>
       </appinfo>
       <documentation>
          This extension point aims at registering a wizard page for the creation of a query.
@@ -63,7 +63,7 @@ This wizard page has to be associated to the EClass managed by the corresponding
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart"/>
                </appinfo>
             </annotation>
          </attribute>

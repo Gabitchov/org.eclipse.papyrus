@@ -16,7 +16,7 @@
  *     Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  *     Nicolas Bros (Mia-Software) - Bug 370806 - [table] rewrite the "allowed contents" query selection dialog for v0.2
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.dialogs;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.dialogs;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,13 +27,12 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.efacet.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.dialog.IETypedElementSelectionDialogInternal;
-import org.eclipse.emf.facet.efacet.ui.internal.widget.ETypedElementSelectionControlManager;
-import org.eclipse.emf.facet.efacet.ui.internal.widget.IETypedElementSelectionControlManager;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.dialog.IETypedElementSelectionDialogInternal;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget.ETypedElementSelectionControlManager;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget.IETypedElementSelectionControlManager;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -41,6 +40,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.OpenEvent;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;

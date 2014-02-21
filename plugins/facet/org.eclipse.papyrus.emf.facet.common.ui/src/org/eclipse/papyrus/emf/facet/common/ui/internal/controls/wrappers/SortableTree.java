@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Nicolas Bros (Mia-Software) - Bug 334116 - common tree view with columns
  *******************************************************************************/
-package org.eclipse.emf.facet.common.ui.internal.controls.wrappers;
+package org.eclipse.papyrus.emf.facet.common.ui.internal.controls.wrappers;
 
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerSorter;

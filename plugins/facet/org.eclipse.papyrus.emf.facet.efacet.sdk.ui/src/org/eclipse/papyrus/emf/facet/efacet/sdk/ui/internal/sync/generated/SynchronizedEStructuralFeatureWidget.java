@@ -8,20 +8,20 @@
  * Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
 
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.sync.generated;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.sync.generated;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
 
 @SuppressWarnings("PMD.ExcessivePublicCount")
-public class SynchronizedEStructuralFeatureWidget extends SynchronizedObject<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IEStructuralFeatureWidget> implements org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IEStructuralFeatureWidget {
+public class SynchronizedEStructuralFeatureWidget extends SynchronizedObject<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IEStructuralFeatureWidget> implements org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IEStructuralFeatureWidget {
 
-	public SynchronizedEStructuralFeatureWidget(final org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IEStructuralFeatureWidget object, final Display display) {
+	public SynchronizedEStructuralFeatureWidget(final org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IEStructuralFeatureWidget object, final Display display) {
 		super(object, display);
 	}
-	public final void addListener(final org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
+	public final void addListener(final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
 		voidExceptionFreeRunnable(new AbstractVoidExceptionFreeRunnable() {
 			@Override
 			public void voidSafeRun() {
@@ -84,10 +84,10 @@ public class SynchronizedEStructuralFeatureWidget extends SynchronizedObject<org
 		});
 	}
 	
-	public final org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet getContainer() {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet>() {
+	public final org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet getContainer() {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet>() {
 			@Override
-			public org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet safeRun() {
+			public org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet safeRun() {
 				return SynchronizedEStructuralFeatureWidget.this.getSynchronizedObject().getContainer();
 			}
 		});
@@ -102,10 +102,10 @@ public class SynchronizedEStructuralFeatureWidget extends SynchronizedObject<org
 		});
 	}
 	
-	public final org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet, org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IFacetWidget>> pressParentButton() {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet, org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IFacetWidget>>>() {
+	public final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet, org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IFacetWidget>> pressParentButton() {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet, org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IFacetWidget>>>() {
 			@Override
-			public org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet, org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IFacetWidget>> safeRun() {
+			public org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget<org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet, org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IFacetWidget>> safeRun() {
 				return SynchronizedEStructuralFeatureWidget.this.getSynchronizedObject().pressParentButton();
 			}
 		});
@@ -174,10 +174,10 @@ public class SynchronizedEStructuralFeatureWidget extends SynchronizedObject<org
 		}).booleanValue();
 	}
 	
-	public final org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClassifier> pressTypeButton() {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClassifier>>() {
+	public final org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClassifier> pressTypeButton() {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClassifier>>() {
 			@Override
-			public org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClassifier> safeRun() {
+			public org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard<org.eclipse.emf.ecore.EClassifier> safeRun() {
 				return SynchronizedEStructuralFeatureWidget.this.getSynchronizedObject().pressTypeButton();
 			}
 		});
@@ -228,10 +228,10 @@ public class SynchronizedEStructuralFeatureWidget extends SynchronizedObject<org
 		});
 	}
 	
-	public final org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query getQuery() {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query>() {
+	public final org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query getQuery() {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query>() {
 			@Override
-			public org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query safeRun() {
+			public org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query safeRun() {
 				return SynchronizedEStructuralFeatureWidget.this.getSynchronizedObject().getQuery();
 			}
 		});
@@ -255,16 +255,16 @@ public class SynchronizedEStructuralFeatureWidget extends SynchronizedObject<org
 		}).booleanValue();
 	}
 	
-	public final org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget> selectQueryType(final java.lang.String parm0) {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget>>() {
+	public final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget> selectQueryType(final java.lang.String parm0) {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget>>() {
 			@Override
-			public org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget> safeRun() {
+			public org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget> safeRun() {
 				return SynchronizedEStructuralFeatureWidget.this.getSynchronizedObject().selectQueryType(parm0);
 			}
 		});
 	}
 	
-	public final void setQuery(final org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query parm0) {
+	public final void setQuery(final org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query parm0) {
 		voidExceptionFreeRunnable(new AbstractVoidExceptionFreeRunnable() {
 			@Override
 			public void voidSafeRun() {

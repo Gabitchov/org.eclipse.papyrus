@@ -11,20 +11,20 @@
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
 
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.sync.generated;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.sync.generated;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
 
 @SuppressWarnings("PMD.ExcessivePublicCount")
-public class SynchronizedGetOrCreateFilteredFacetSetWidget extends SynchronizedObject<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget> implements org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget {
+public class SynchronizedGetOrCreateFilteredFacetSetWidget extends SynchronizedObject<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget> implements org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget {
 
-	public SynchronizedGetOrCreateFilteredFacetSetWidget(final org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget object, final Display display) {
+	public SynchronizedGetOrCreateFilteredFacetSetWidget(final org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget object, final Display display) {
 		super(object, display);
 	}
-	public final void addListener(final org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
+	public final void addListener(final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
 		voidExceptionFreeRunnable(new AbstractVoidExceptionFreeRunnable() {
 			@Override
 			public void voidSafeRun() {
@@ -87,25 +87,25 @@ public class SynchronizedGetOrCreateFilteredFacetSetWidget extends SynchronizedO
 		});
 	}
 	
-	public final org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet getElementSelected() {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet>() {
+	public final org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet getElementSelected() {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet>() {
 			@Override
-			public org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet safeRun() {
+			public org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet safeRun() {
 				return SynchronizedGetOrCreateFilteredFacetSetWidget.this.getSynchronizedObject().getElementSelected();
 			}
 		});
 	}
 	
-	public final org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget<org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet, org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget>> pressNewButton() {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget<org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet, org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget>>>() {
+	public final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget<org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet, org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget>> pressNewButton() {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget<org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet, org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget>>>() {
 			@Override
-			public org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget<org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet, org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget>> safeRun() {
+			public org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget<org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet, org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget>> safeRun() {
 				return SynchronizedGetOrCreateFilteredFacetSetWidget.this.getSynchronizedObject().pressNewButton();
 			}
 		});
 	}
 	
-	public final void selectElement(final org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet parm0) {
+	public final void selectElement(final org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet parm0) {
 		voidExceptionFreeRunnable(new AbstractVoidExceptionFreeRunnable() {
 			@Override
 			public void voidSafeRun() {

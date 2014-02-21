@@ -8,7 +8,7 @@
  * Contributors:
  *     Nicolas Bros (Mia-Software) - Bug 366367 - To be able to change the "CanBePresentedInTheTable" query
  *******************************************************************************/
-package org.eclipse.emf.facet.util.ui.internal.exported.dialog;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog;
 
 import org.eclipse.swt.widgets.Shell;
 

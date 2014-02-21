@@ -11,14 +11,14 @@
  * 
  * 
  */
-package org.eclipse.emf.facet.query.ocl.metamodel.oclquery;
+package org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Extensibl
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryFactory
+ * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryFactory
  * @model kind="package"
  * @generated
  */
@@ -66,14 +66,14 @@ public interface OclQueryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	OclQueryPackage eINSTANCE = org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryPackageImpl.init();
+	OclQueryPackage eINSTANCE = org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl <em>Ocl Query</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl <em>Ocl Query</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl
-	 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryPackageImpl#getOclQuery()
+	 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl
+	 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryPackageImpl#getOclQuery()
 	 * @generated
 	 */
 	int OCL_QUERY = 0;
@@ -125,32 +125,32 @@ public interface OclQueryPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery <em>Ocl Query</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery <em>Ocl Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Ocl Query</em>'.
-	 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery
+	 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery
 	 * @generated
 	 */
 	EClass getOclQuery();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getContext <em>Context</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Context</em>'.
-	 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getContext()
+	 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getContext()
 	 * @see #getOclQuery()
 	 * @generated
 	 */
 	EReference getOclQuery_Context();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getOclExpression <em>Ocl Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getOclExpression <em>Ocl Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Ocl Expression</em>'.
-	 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getOclExpression()
+	 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery#getOclExpression()
 	 * @see #getOclQuery()
 	 * @generated
 	 */
@@ -179,11 +179,11 @@ public interface OclQueryPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl <em>Ocl Query</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl <em>Ocl Query</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl
-		 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryPackageImpl#getOclQuery()
+		 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl
+		 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryPackageImpl#getOclQuery()
 		 * @generated
 		 */
 		EClass OCL_QUERY = eINSTANCE.getOclQuery();

@@ -2,11 +2,11 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=" Copyright (c) 2011 Mia-Software.&#xD;&#xA; &#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA; Contributors:&#xD;&#xA; &#x9;Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet&#xD;&#xA; "
-    modelDirectory="/org.eclipse.emf.facet.query.java/src" modelPluginID="org.eclipse.emf.facet.query.java"
+    modelDirectory="/org.eclipse.papyrus.emf.facet.query.java/src" modelPluginID="org.eclipse.papyrus.emf.facet.query.java"
     modelName="JavaQuery" nonNLSMarkers="true" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.facet.efacet/model/efacet.genmodel#//efacet">
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.emf.facet.efacet/model/efacet.genmodel#//efacet">
   <foreignModel>javaQuery.ecore</foreignModel>
-  <genPackages prefix="Javaquery" basePackage="org.eclipse.emf.facet.query.java" disposableProviderFactory="true"
+  <genPackages prefix="Javaquery" basePackage="org.eclipse.papyrus.emf.facet.query.java" disposableProviderFactory="true"
       childCreationExtenders="true" ecorePackage="javaQuery.ecore#/">
     <genClasses ecoreClass="javaQuery.ecore#//JavaQuery">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute javaQuery.ecore#//JavaQuery/implementationClassName"/>

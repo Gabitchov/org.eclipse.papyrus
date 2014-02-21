@@ -9,10 +9,10 @@
  *  Contributors:
  *      David Couvrand (Soft-Maint) - Bug 422058 - Implementation of strikethrough and underline in the CustomizedLabelProvider
  */
-package org.eclipse.emf.facet.custom.ui;
+package org.eclipse.papyrus.emf.facet.custom.ui;
 
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.core.exception.CustomizationException;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.exception.CustomizationException;
 import org.eclipse.swt.graphics.FontData;
 
 /**

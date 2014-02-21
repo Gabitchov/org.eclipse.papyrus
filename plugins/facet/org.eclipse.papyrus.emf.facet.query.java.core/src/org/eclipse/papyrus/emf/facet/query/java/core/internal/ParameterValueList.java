@@ -9,15 +9,15 @@
  *    Bertrand Daru (Mia-Software) - initial API and implementation
  *    Gregoire Dupe (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.query.java.core.internal;
+package org.eclipse.papyrus.emf.facet.query.java.core.internal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.eclipse.emf.facet.efacet.EFacetFactory;
-import org.eclipse.emf.facet.efacet.Parameter;
-import org.eclipse.emf.facet.efacet.ParameterValue;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetFactory;
+import org.eclipse.papyrus.emf.facet.efacet.Parameter;
+import org.eclipse.papyrus.emf.facet.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList;
 
 //deprecated APIs that are still maintained
 @SuppressWarnings("deprecation")
@@ -25,7 +25,7 @@ public class ParameterValueList extends ArrayList<ParameterValue> implements
 		IParameterValueList {
 
 	// This class is a copy of
-	// org.eclipse.emf.facet.infra.query.core.java.ParameterValueList
+	// org.eclipse.papyrus.emf.facet.infra.query.core.java.ParameterValueList
 
 	/** SERIAL ID */
 	private static final long serialVersionUID = 1L;

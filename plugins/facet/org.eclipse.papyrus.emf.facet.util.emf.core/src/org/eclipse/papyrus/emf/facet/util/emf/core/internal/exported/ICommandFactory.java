@@ -10,7 +10,7 @@
  *   Nicolas Bros (Mia-Software) - initial API and implementation
  *   Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.exported;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * 
  * @since 0.2
  */
-// Copied from org.eclipse.emf.facet.widgets.celleditors.ICommandFactory
+// Copied from org.eclipse.papyrus.emf.facet.widgets.celleditors.ICommandFactory
 public interface ICommandFactory {
 	/**
 	 * Whether this command factory should be used for the given {@link EditingDomain}

@@ -12,7 +12,7 @@
  * 	Emmanuelle RouillÃ© (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EParameter;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getParameter <em>Parameter</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getParameterValue()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getParameterValue()
  * @model
  * @generated
  */
@@ -49,14 +49,14 @@ public interface ParameterValue extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference.
 	 * @see #setParameter(EParameter)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getParameterValue_Parameter()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getParameterValue_Parameter()
 	 * @model required="true"
 	 * @generated
 	 */
 	EParameter getParameter();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getParameter <em>Parameter</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getParameter <em>Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Parameter</em>' reference.
@@ -75,14 +75,14 @@ public interface ParameterValue extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(Object)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getParameterValue_Value()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getParameterValue_Value()
 	 * @model
 	 * @generated
 	 */
 	Object getValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' attribute.

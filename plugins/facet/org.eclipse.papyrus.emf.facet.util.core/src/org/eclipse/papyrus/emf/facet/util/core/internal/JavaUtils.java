@@ -9,7 +9,7 @@
  *     Nicolas Guyomar (Mia-Software) - Bug 349566 - Need some new query utils method for query creation
  *     Nicolas Bros (Mia-Software) - Bug 349566 - Need some new query utils method for query creation
  *******************************************************************************/
-package org.eclipse.emf.facet.util.core.internal;
+package org.eclipse.papyrus.emf.facet.util.core.internal;
 
 public final class JavaUtils {
 

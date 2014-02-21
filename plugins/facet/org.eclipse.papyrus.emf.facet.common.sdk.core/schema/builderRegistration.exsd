@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.common.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.common.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.facet.common.core" id="builderRegistration" name="EMF Facet Builder Registration"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.common.core" id="builderRegistration" name="EMF Facet Builder Registration"/>
       </appinfo>
       <documentation>
          This extension point allows to register builders that will be run when the main EMF Facet builder is run.
@@ -55,10 +55,10 @@
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  A class that implements org.eclipse.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder.
+                  A class that implements org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -92,8 +92,8 @@
       </appinfo>
       <documentation>
          &lt;pre&gt;
-   &lt;extension point=&quot;org.eclipse.emf.facet.common.sdk.core.builderRegistration&quot;&gt;
-      &lt;builder class=&quot;org.eclipse.emf.facet.custom.sdk.core.internal.validation.CustomizationValidationBuilder&quot;/&gt;
+   &lt;extension point=&quot;org.eclipse.papyrus.emf.facet.common.sdk.core.builderRegistration&quot;&gt;
+      &lt;builder class=&quot;org.eclipse.papyrus.emf.facet.custom.sdk.core.internal.validation.CustomizationValidationBuilder&quot;/&gt;
    &lt;/extension&gt;
 &lt;/pre&gt;
       </documentation>
@@ -104,7 +104,7 @@
          <meta.section type="apiinfo"/>
       </appinfo>
       <documentation>
-         The builder must implement org.eclipse.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder
+         The builder must implement org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder
       </documentation>
    </annotation>
 
@@ -113,8 +113,8 @@
          <meta.section type="implementation"/>
       </appinfo>
       <documentation>
-         For an example, see the customization validation builder in org.eclipse.emf.facet.custom.sdk.core:&lt;br/&gt;
-org.eclipse.emf.facet.custom.sdk.core.internal.validation.CustomizationValidationBuilder
+         For an example, see the customization validation builder in org.eclipse.papyrus.emf.facet.custom.sdk.core:&lt;br/&gt;
+org.eclipse.papyrus.emf.facet.custom.sdk.core.internal.validation.CustomizationValidationBuilder
       </documentation>
    </annotation>
 

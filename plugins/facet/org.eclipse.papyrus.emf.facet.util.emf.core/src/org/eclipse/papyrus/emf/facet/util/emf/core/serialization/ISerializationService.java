@@ -9,9 +9,9 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Nicolas Bros (Mia-Software) - Bug 338907 - expose serialization services from SerializationFactoryImpl
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.core.serialization;
+package org.eclipse.papyrus.emf.facet.util.emf.core.serialization;
 
-import org.eclipse.emf.facet.util.emf.core.internal.serialization.SerializationService;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization.SerializationService;
 
 /**
  * Provides a serialization service so that the following is true:<br/>

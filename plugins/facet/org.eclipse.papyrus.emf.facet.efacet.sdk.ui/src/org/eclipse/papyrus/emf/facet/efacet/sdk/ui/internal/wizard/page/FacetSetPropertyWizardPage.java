@@ -10,10 +10,10 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *  Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.wizard.page;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.wizard.page;
 
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.wizard.page.IFacetSetPropertyWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.wizard.page.IFacetSetPropertyWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;

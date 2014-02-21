@@ -10,17 +10,17 @@
  * 	Gregoire Dupe (Mia-Software) - Bug 333553 - The user has not to deal with two files to create a facet
  *  Nicolas Bros (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.core;
+package org.eclipse.papyrus.emf.facet.efacet.core;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.ParameterValue;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.QueryContext;
-import org.eclipse.emf.facet.efacet.QueryResult;
-import org.eclipse.emf.facet.efacet.core.exception.QueryException;
-import org.eclipse.emf.facet.efacet.core.internal.EFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.QueryContext;
+import org.eclipse.papyrus.emf.facet.efacet.QueryResult;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.EFacetManager;
 
 /**
  * This interface allows the user to use the EMF Facet API for Query and Facet.

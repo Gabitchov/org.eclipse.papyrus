@@ -8,11 +8,11 @@
  * Contributors:
  *     Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  */
-package org.eclipse.emf.facet.query.java.core.internal;
+package org.eclipse.papyrus.emf.facet.query.java.core.internal;
 
-import org.eclipse.emf.facet.efacet.ParameterValue;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList;
-import org.eclipse.emf.facet.query.java.core.IParameterValueListFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueListFactory;
 
 /**
  * Implementation of {@link IParameterValueListFactory}

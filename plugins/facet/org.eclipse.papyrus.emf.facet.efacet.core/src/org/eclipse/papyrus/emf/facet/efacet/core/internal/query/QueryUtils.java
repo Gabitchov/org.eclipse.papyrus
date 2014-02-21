@@ -11,15 +11,15 @@
  *     Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *     Nicolas Bros (Mia-Software) - Bug 376941 - [EFacet] Facet operation arguments in Facet model
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core.internal.query;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.query;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.efacet.core.FacetUtils;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.core.FacetUtils;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 public final class QueryUtils {
 
@@ -55,7 +55,7 @@ public final class QueryUtils {
 	}
 
 	// Moved from
-	// org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
+	// org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
 	public static EClassifier getReturnType(final Query query) {
 		EClassifier result = null;
 		final DerivedTypedElement owningDTE = QueryUtils
@@ -67,7 +67,7 @@ public final class QueryUtils {
 	}
 
 	// Moved from
-	// org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
+	// org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
 	public static EClassifier getSourceType(final Query query) {
 		EClassifier result = null;
 		final DerivedTypedElement owningDTE = QueryUtils
@@ -87,7 +87,7 @@ public final class QueryUtils {
 	}
 
 	// Moved from
-	// org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
+	// org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
 	public static DerivedTypedElement getOwningDerivedTypedElement(
 			final Query query) {
 		DerivedTypedElement result = null;
@@ -108,7 +108,7 @@ public final class QueryUtils {
 	}
 
 	// Moved from
-	// org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
+	// org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl
 	public static boolean isMany(final Query query) {
 		boolean result = false;
 		final DerivedTypedElement owningDTE = QueryUtils

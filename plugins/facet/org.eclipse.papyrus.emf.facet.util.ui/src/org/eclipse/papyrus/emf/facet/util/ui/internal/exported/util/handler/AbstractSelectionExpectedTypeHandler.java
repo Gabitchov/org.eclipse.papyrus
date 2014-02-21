@@ -10,10 +10,10 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.handler;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.emf.facet.util.ui.internal.exported.handler.HandlerUtils;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.handler.HandlerUtils;
 
 /**
  * Abstract handler. All handlers must extends this class.

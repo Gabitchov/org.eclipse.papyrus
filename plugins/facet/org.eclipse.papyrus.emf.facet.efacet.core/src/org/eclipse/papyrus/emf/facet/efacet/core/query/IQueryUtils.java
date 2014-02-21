@@ -10,11 +10,11 @@
  * 	Gregoire Dupe (Mia-Software) - Bug 333553 - The user has not to deal with two files to create a facet
  *  Nicolas Bros (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.core.query;
+package org.eclipse.papyrus.emf.facet.efacet.core.query;
 
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
-import org.eclipse.emf.facet.efacet.core.internal.query.QueryUtilsImpl;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.query.QueryUtilsImpl;
 
 /**
  * Utility methods for manipulating queries.

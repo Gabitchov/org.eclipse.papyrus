@@ -9,7 +9,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors;
 
 public interface IModelCellEditHandler {
 	/**

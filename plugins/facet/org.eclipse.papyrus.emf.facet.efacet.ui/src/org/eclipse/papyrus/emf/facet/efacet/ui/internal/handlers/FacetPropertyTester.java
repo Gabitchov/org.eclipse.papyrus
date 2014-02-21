@@ -9,14 +9,14 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal.handlers;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.handlers;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.emf.facet.efacet.Facet;
-import org.eclipse.emf.facet.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.FacetSet;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 @Deprecated

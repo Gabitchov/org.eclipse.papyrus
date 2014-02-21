@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.sdk.core.internal.validation;
+package org.eclipse.papyrus.emf.facet.custom.sdk.core.internal.validation;
 
 import org.eclipse.emf.validation.model.IClientSelector;
 

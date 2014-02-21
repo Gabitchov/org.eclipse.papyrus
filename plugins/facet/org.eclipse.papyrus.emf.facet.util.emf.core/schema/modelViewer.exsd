@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.util.emf.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.util.emf.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.facet.util.emf.core" id="modelViewer" name="Model Viewer"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.util.emf.core" id="modelViewer" name="Model Viewer"/>
       </appinfo>
       <documentation>
          A model viewer for an EPackage, EObject and/or Resource can be declared with this extension point.
@@ -62,7 +62,7 @@
                   A class that implements IEPackageBrowserOpener.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.util.emf.ui.IEPackageBrowserOpener"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.util.emf.ui.IEPackageBrowserOpener"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -82,7 +82,7 @@
                   A class that implements IEObjectBrowserOpener.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.util.emf.ui.IEObjectBrowserOpener"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.util.emf.ui.IEObjectBrowserOpener"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -102,7 +102,7 @@
                   A class that implements IResourceBrowserOpener.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.util.emf.ui.IResourceBrowserOpener"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.util.emf.ui.IResourceBrowserOpener"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -126,7 +126,7 @@
          For example, the MoDisco model browser is registered like this in &lt;strong&gt;org.eclipse.gmt.modisco.infra.browser&lt;/strong&gt;:
 &lt;pre&gt;
   &lt;extension
-        point=&quot;org.eclipse.emf.facet.util.emf.core.modelViewer&quot;&gt;
+        point=&quot;org.eclipse.papyrus.emf.facet.util.emf.core.modelViewer&quot;&gt;
      &lt;resourceViewer
            class=&quot;org.eclipse.gmt.modisco.infra.browser.opener.BrowserOpener&quot;&gt;
      &lt;/resourceViewer&gt;

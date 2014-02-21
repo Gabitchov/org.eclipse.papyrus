@@ -10,10 +10,10 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.exported;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
 import org.eclipse.swt.widgets.Composite;
 
 /**

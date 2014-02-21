@@ -11,11 +11,11 @@
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *      Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  */
-package org.eclipse.emf.facet.custom.core;
+package org.eclipse.papyrus.emf.facet.custom.core;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.custom.core.internal.CustomizationManagerFactory;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.custom.core.internal.CustomizationManagerFactory;
 
 /**
  * Used to instantiate a customization manager

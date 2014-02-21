@@ -9,12 +9,12 @@
  *      Nicolas Bros (Mia-Software) - Bug 375388 - Cell editor for IImage
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.sdk.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.custom.sdk.ui.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.messages"; //$NON-NLS-1$
 	public static String ImageComposite_fullImage;
 	public static String Create_Customization_Model;
 	public static String CreateCustomizationWizardImpl_customization;

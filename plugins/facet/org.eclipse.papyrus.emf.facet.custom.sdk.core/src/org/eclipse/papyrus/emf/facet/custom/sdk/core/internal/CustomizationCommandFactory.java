@@ -10,19 +10,19 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *		Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.sdk.core.internal;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization;
-import org.eclipse.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization;
 
 /**
  * Concrete implementation of {@link ICustomizationCommandFactory}.

@@ -10,20 +10,20 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.query;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.query;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.dialog.AbstractCommandDialog;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.IQueryContext;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.IQueryDialogFactoryStrategy;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.sync.generated.SynchronizedCreateQueryWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.component.query.CreateQueryWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
-import org.eclipse.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.dialog.AbstractCommandDialog;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.IQueryContext;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.IQueryDialogFactoryStrategy;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query.ICreateQueryWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.sync.generated.SynchronizedCreateQueryWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.component.query.CreateQueryWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
 
 /**
  * This class provide the dialog for the creation of the specific dialog

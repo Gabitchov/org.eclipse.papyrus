@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.presentation;
+package org.eclipse.papyrus.emf.facet.efacet.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,7 +55,7 @@ import org.eclipse.ui.PartInitException;
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -194,7 +194,7 @@ public class EFacetActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(EfacetEditorPlugin.INSTANCE.getString("_UI_EFacetEditor_menu"), "org.eclipse.emf.facet.efacetMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
+		IMenuManager submenuManager = new MenuManager(EfacetEditorPlugin.INSTANCE.getString("_UI_EFacetEditor_menu"), "org.eclipse.papyrus.emf.facet.efacetMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
 		menuManager.insertAfter("additions", submenuManager); //$NON-NLS-1$
 		submenuManager.add(new Separator("settings")); //$NON-NLS-1$
 		submenuManager.add(new Separator("actions")); //$NON-NLS-1$

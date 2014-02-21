@@ -9,18 +9,18 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.ICreateFacetInFacetSetWizard;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.ICreateFacetSetWizard;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IFacetChildrenWizard;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.AddFacetAttributeWizardImpl;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.AddFacetOperationParameterWizardImpl;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.AddFacetOperationWizardImpl;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.AddFacetReferenceWizardImpl;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.CreateFacetInFacetSetWizardImpl;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.CreateFacetSetWizardImpl;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.ICreateFacetInFacetSetWizard;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.ICreateFacetSetWizard;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IFacetChildrenWizard;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.AddFacetAttributeWizardImpl;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.AddFacetOperationParameterWizardImpl;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.AddFacetOperationWizardImpl;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.AddFacetReferenceWizardImpl;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.CreateFacetInFacetSetWizardImpl;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.CreateFacetSetWizardImpl;
 import org.eclipse.jface.viewers.ISelection;
 
 @Deprecated

@@ -11,7 +11,7 @@
  *  
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -19,11 +19,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.facet.custom.metamodel.custompt.IColor;
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.*;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptFactory;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.*;
 
 /**
  * <!-- begin-user-doc -->

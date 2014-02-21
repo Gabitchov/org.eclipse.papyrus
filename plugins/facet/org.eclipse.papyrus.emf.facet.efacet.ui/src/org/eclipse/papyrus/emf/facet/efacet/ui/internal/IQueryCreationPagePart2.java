@@ -10,12 +10,12 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *  Gregoire Dupe (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 
@@ -119,7 +119,7 @@ public interface IQueryCreationPagePart2 {
 	public Query performFinish();
 
 	/**
-	 * This method is called by the {@link org.eclipse.emf.facet.efacet.ui.internal.wizards.pages.CreateQueryWizardPage}.
+	 * This method is called by the {@link org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages.CreateQueryWizardPage}.
 	 * 
 	 * @param parent
 	 *            the Wizard's composite to be completed with specific widget for this {@link Query} creation.

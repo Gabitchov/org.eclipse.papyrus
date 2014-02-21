@@ -18,7 +18,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/emf/facet/query/ocl/0.3.incubation/oclquery"
-            class="org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage"
+            class="org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage"
             genModel="model/oclQuery.genmodel"/>
    </extension>
 

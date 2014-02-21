@@ -15,7 +15,7 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
  *       Olivier Remaud (Soft-Maint) - Bug 369824 - Add a simple way to return string literal constants from a customization query
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.provider;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;

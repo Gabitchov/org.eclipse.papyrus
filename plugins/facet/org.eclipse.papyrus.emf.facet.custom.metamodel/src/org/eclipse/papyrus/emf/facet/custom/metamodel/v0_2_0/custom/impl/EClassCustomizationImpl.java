@@ -11,15 +11,13 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
 
 /**
  * <!-- begin-user-doc -->

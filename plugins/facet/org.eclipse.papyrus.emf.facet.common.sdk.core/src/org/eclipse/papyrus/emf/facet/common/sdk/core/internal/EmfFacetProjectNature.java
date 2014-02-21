@@ -9,7 +9,7 @@
  *    Fabien Giquel (Mia-Software)
  *    Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *******************************************************************************/
-package org.eclipse.emf.facet.common.sdk.core.internal;
+package org.eclipse.papyrus.emf.facet.common.sdk.core.internal;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IProject;
@@ -17,7 +17,7 @@ import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IProjectNature;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.facet.common.sdk.core.internal.exported.CommonConstants;
+import org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported.CommonConstants;
 
 /** The implementation of the EMF Facet project nature. */
 public class EmfFacetProjectNature implements IProjectNature {

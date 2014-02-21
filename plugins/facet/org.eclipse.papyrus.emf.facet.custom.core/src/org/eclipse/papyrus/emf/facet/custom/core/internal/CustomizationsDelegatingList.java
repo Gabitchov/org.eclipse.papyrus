@@ -10,15 +10,15 @@
  *    Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  *    Thomas Cicognani (Soft-Maint) - Bug 420192 - UnsupportedOperationException in a usefull method 
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.core.internal;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 
 /** Represents a list of {@link Customization}s that exists as a subset of a delegate list of {@link FacetSet}s. */
 public class CustomizationsDelegatingList implements List<Customization> {

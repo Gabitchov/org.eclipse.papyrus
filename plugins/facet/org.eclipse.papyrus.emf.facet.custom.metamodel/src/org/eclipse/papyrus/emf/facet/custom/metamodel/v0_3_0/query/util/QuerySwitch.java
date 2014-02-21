@@ -10,15 +10,15 @@
  * 		David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.util;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage
  * @generated
  */
 public class QuerySwitch<T> {

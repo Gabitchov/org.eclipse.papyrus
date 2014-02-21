@@ -10,11 +10,11 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.query;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.query;
 
 import java.util.List;
 
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.IQueryDialogFactoryStrategy;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.IQueryDialogFactoryStrategy;
 
 /**
  * This interface provide to get all the plug-ins extending the extension point

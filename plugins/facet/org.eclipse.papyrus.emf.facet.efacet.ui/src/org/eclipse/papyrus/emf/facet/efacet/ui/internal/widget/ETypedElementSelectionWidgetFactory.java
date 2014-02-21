@@ -10,14 +10,14 @@
  *     Vincent Lorenzo (CEA-LIST) -  Bug 372644 - Create Customizable tooltips for the TreeViewer using a CustomizableLabelProvider
  *     Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget;
 
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.widget.IETypedElementSelectionWidget;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.widget.IETypedElementSelectionWidgetFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget.IETypedElementSelectionWidget;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget.IETypedElementSelectionWidgetFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 

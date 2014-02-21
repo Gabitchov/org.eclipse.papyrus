@@ -9,33 +9,33 @@
  *    Fabien Giquel (Mia-Software) - initial API and implementation
  *    Nicolas Bros (Mia-Software) - Bug 338437 - compositeEditors extension point cannot be used to register user types
  *    Nicolas Guyomar (Mia-Software) - Bug 338826 - CompositeEditorFactoriesRegistry.getCompositeEditorFactory() should be parameterized 
- *    Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *    Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *    Nicolas Bros (Mia-Software) - Bug 341369 - CompositeEditorFactoriesRegistry : inverted type comparison
  *    Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.composite.registries;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.composite.registries;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.core.internal.exported.AbstractRegistry;
-import org.eclipse.emf.facet.widgets.celleditors.ICompositeEditorFactory;
-import org.eclipse.emf.facet.widgets.celleditors.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.AbstractRegistry;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ICompositeEditorFactory;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.Activator;
 
 /**
  * Registry for composite editors extension point
  */
 public class CompositeEditorFactoriesRegistry extends AbstractRegistry
 		implements
-		org.eclipse.emf.facet.widgets.celleditors.core.composite.registries.ICompositeEditorFactoriesRegistry,
-		org.eclipse.emf.facet.widgets.celleditors.core.composite.registry.ICompositeEditorFactoriesRegistry {
+		org.eclipse.papyrus.emf.facet.widgets.celleditors.core.composite.registries.ICompositeEditorFactoriesRegistry,
+		org.eclipse.papyrus.emf.facet.widgets.celleditors.core.composite.registry.ICompositeEditorFactoriesRegistry {
 
 	private static final String CLASS_ATTRIBUTE = "class"; //$NON-NLS-1$
 
-	private static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.emf.facet.widgets.celleditors"; //$NON-NLS-1$
+	private static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.papyrus.emf.facet.widgets.celleditors"; //$NON-NLS-1$
 	private static final String EXTENSION_POINT_NAME = "compositeEditorFactories"; //$NON-NLS-1$
 	private final List<ICompositeEditorFactory<?>> compositeFactories;
 

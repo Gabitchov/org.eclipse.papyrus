@@ -10,13 +10,13 @@
  *   Nicolas Guyomar (Mia-Software) - initial API and implementation
  *   Nicolas Guyomar (Mia-Software) - Bug 334546 - [celleditors] no border on Text field
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.ecore.composite;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite;
 
 import java.math.BigInteger;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.facet.widgets.celleditors.ecore.Activator;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;

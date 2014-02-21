@@ -11,7 +11,7 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.provider;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.provider;
 
 
 import java.util.Collection;
@@ -28,13 +28,13 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.provider.QueryItemProvider;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.provider.QueryItemProvider;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

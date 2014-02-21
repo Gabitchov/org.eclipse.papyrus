@@ -23,15 +23,15 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="0.4.0",
  org.eclipse.papyrus.emf.facet.efacet.metamodel
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.emf.facet.widgets.celleditors,
- org.eclipse.emf.facet.widgets.celleditors.core.composite.registries,
- org.eclipse.emf.facet.widgets.celleditors.internal;x-friends:="org.eclipse.emf.facet.widgets.nattable",
- org.eclipse.emf.facet.widgets.celleditors.internal.composite.registries;x-internal:=true,
- org.eclipse.emf.facet.widgets.celleditors.internal.core;x-friends:="org.eclipse.emf.facet.widgets.nattable",
- org.eclipse.emf.facet.widgets.celleditors.internal.core.composite;x-internal:=true,
- org.eclipse.emf.facet.widgets.celleditors.internal.core.composite.factories;x-internal:=true,
- org.eclipse.emf.facet.widgets.celleditors.internal.ui;x-internal:=true,
- org.eclipse.emf.facet.widgets.celleditors.modelCellEditor,
- org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.impl;x-internal:=true,
- org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.util;x-friends:="org.eclipse.emf.facet.widgets.celleditors.edit"
-Bundle-Activator: org.eclipse.emf.facet.widgets.celleditors.internal.Activator
+Export-Package: org.eclipse.papyrus.emf.facet.widgets.celleditors,
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.core.composite.registries,
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.internal;x-friends:="org.eclipse.papyrus.emf.facet.widgets.nattable",
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.composite.registries;x-internal:=true,
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core;x-friends:="org.eclipse.papyrus.emf.facet.widgets.nattable",
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite;x-internal:=true,
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.factories;x-internal:=true,
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.ui;x-internal:=true,
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor,
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.impl;x-internal:=true,
+ org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.util;x-friends:="org.eclipse.papyrus.emf.facet.widgets.celleditors.edit"
+Bundle-Activator: org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.Activator

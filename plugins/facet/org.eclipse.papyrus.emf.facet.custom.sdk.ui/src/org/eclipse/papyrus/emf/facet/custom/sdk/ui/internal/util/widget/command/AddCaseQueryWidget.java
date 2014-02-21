@@ -10,18 +10,18 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.command;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.command;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
-import org.eclipse.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.property.name.GetCaseQueryNameWidget;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.property.name.GetCaseQueryTypeWidget;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.IQueryContext;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.query.SelectQueryTypeWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.AbstractCommandWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.property.name.GetCaseQueryNameWidget;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.property.name.GetCaseQueryTypeWidget;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.IQueryContext;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.query.SelectQueryTypeWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.AbstractCommandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
 import org.eclipse.swt.widgets.Composite;
 
 /**

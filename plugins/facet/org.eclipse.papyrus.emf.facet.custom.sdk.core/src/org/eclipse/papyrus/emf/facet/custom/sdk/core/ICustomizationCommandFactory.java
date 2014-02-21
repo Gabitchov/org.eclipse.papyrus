@@ -10,15 +10,15 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.core;
+package org.eclipse.papyrus.emf.facet.custom.sdk.core;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization;
-import org.eclipse.emf.facet.custom.sdk.core.internal.CustomizationCommandFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.internal.CustomizationCommandFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization;
 
 /**
  * This interface provide a command factory. A command modify the editingDomain.

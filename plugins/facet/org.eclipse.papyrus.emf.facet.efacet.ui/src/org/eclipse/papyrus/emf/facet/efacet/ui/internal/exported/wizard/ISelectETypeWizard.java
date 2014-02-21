@@ -9,7 +9,7 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal.exported.wizard;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard;
 
 import org.eclipse.emf.ecore.EClassifier;
 

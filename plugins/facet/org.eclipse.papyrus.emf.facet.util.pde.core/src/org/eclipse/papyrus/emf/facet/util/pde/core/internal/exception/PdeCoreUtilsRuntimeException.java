@@ -8,7 +8,7 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Bug 408344 - [Releng] Deep folders cause build break
  *******************************************************************************/
-package org.eclipse.emf.facet.util.pde.core.internal.exception;
+package org.eclipse.papyrus.emf.facet.util.pde.core.internal.exception;
 
 public class PdeCoreUtilsRuntimeException extends RuntimeException {
 

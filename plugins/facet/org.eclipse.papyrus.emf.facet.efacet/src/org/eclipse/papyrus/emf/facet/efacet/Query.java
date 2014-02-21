@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet;
+package org.eclipse.papyrus.emf.facet.efacet;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -30,17 +30,17 @@ import org.eclipse.emf.ecore.ETypedElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.Query#getScope <em>Scope</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.Query#isHasSideEffect <em>Has Side Effect</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.Query#isCanBeCached <em>Can Be Cached</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.Query#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.Query#getScope <em>Scope</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.Query#isHasSideEffect <em>Has Side Effect</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.Query#isCanBeCached <em>Can Be Cached</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.Query#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.EFacetPackage#getQuery()
+ * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage#getQuery()
  * @model abstract="true"
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -54,22 +54,22 @@ public interface Query extends ETypedElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Scope</em>' reference.
 	 * @see #setScope(EClass)
-	 * @see org.eclipse.emf.facet.efacet.EFacetPackage#getQuery_Scope()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage#getQuery_Scope()
 	 * @model
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getScope();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.Query#getScope <em>Scope</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.Query#getScope <em>Scope</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Scope</em>' reference.
 	 * @see #getScope()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	void setScope(EClass value);
@@ -84,22 +84,22 @@ public interface Query extends ETypedElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Has Side Effect</em>' attribute.
 	 * @see #setHasSideEffect(boolean)
-	 * @see org.eclipse.emf.facet.efacet.EFacetPackage#getQuery_HasSideEffect()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage#getQuery_HasSideEffect()
 	 * @model default="false"
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	boolean isHasSideEffect();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.Query#isHasSideEffect <em>Has Side Effect</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.Query#isHasSideEffect <em>Has Side Effect</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Has Side Effect</em>' attribute.
 	 * @see #isHasSideEffect()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	void setHasSideEffect(boolean value);
@@ -114,29 +114,29 @@ public interface Query extends ETypedElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Can Be Cached</em>' attribute.
 	 * @see #setCanBeCached(boolean)
-	 * @see org.eclipse.emf.facet.efacet.EFacetPackage#getQuery_CanBeCached()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage#getQuery_CanBeCached()
 	 * @model default="false"
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	boolean isCanBeCached();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.Query#isCanBeCached <em>Can Be Cached</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.Query#isCanBeCached <em>Can Be Cached</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Can Be Cached</em>' attribute.
 	 * @see #isCanBeCached()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	void setCanBeCached(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.facet.efacet.Parameter}.
+	 * The list contents are of type {@link org.eclipse.papyrus.emf.facet.efacet.Parameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
@@ -144,10 +144,10 @@ public interface Query extends ETypedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameters</em>' containment reference list.
-	 * @see org.eclipse.emf.facet.efacet.EFacetPackage#getQuery_Parameters()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage#getQuery_Parameters()
 	 * @model containment="true"
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EList<Parameter> getParameters();

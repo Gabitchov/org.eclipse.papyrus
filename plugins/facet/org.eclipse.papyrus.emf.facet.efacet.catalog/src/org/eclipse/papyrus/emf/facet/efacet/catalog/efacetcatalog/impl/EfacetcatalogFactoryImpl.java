@@ -11,17 +11,17 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl;
+package org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogFactory;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogFactory;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->

@@ -12,11 +12,11 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractGetEditorIconQuery;
 
 /** Return the path to the icon of the corresponding diagram */

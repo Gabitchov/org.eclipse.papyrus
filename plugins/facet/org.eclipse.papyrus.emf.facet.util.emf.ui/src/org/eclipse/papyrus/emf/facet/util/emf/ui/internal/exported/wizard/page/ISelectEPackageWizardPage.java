@@ -9,7 +9,7 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.page;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.page;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.wizard.IWizardPage;

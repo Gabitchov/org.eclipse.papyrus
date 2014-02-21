@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *******************************************************************************/
-package org.eclipse.emf.facet.common.sdk.core.internal;
+package org.eclipse.papyrus.emf.facet.common.sdk.core.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

@@ -19,7 +19,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/emf/facet/query/java/0.1.incubation"
-            class="org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage"
+            class="org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage"
             genModel="model/javaQuery.genmodel"/>
    </extension>
 </plugin>

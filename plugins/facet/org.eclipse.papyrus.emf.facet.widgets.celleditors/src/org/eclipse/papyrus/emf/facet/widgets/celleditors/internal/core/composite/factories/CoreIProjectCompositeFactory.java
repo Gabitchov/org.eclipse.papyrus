@@ -8,12 +8,12 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 342548 - [Java Discovery] Illegal parameter initializer for ELEMENTS_TO_ANALYZE
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.core.composite.factories;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.factories;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
-import org.eclipse.emf.facet.widgets.celleditors.ICompositeEditorFactory;
-import org.eclipse.emf.facet.widgets.celleditors.internal.core.composite.CoreIProjectComposite;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ICompositeEditorFactory;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.CoreIProjectComposite;
 import org.eclipse.swt.widgets.Composite;
 
 public class CoreIProjectCompositeFactory implements ICompositeEditorFactory<IProject> {

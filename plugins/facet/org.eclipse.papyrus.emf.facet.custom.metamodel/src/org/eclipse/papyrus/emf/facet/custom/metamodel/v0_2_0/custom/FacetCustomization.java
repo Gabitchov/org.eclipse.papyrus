@@ -11,11 +11,11 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,11 +29,11 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization#getCustomizedFacet <em>Customized Facet</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization#getCustomizedFacet <em>Customized Facet</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getFacetCustomization()
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getFacetCustomization()
  * @model
  * @generated
  */
@@ -48,14 +48,14 @@ public interface FacetCustomization extends Facet {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Customized Facet</em>' reference.
 	 * @see #setCustomizedFacet(Facet)
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getFacetCustomization_CustomizedFacet()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getFacetCustomization_CustomizedFacet()
 	 * @model required="true"
 	 * @generated
 	 */
 	Facet getCustomizedFacet();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization#getCustomizedFacet <em>Customized Facet</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization#getCustomizedFacet <em>Customized Facet</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Customized Facet</em>' reference.

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - Bug 406570 - Handlers to Save and SaveAs EMF resources
  */
-package org.eclipse.emf.facet.util.emf.ui.internal;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -17,12 +17,12 @@ import java.util.Collections;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.ui.internal.dialogs.SaveAsDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IOkDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IOkDialogFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.dialogs.SaveAsDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IOkDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IOkDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Shell;
 

@@ -10,14 +10,14 @@
  *    Gregoire Dupe (Mia-Software) - Bug 406569 - Image provider factory
  *    Gregoire Dupe (Mia-Software) - Bug 423611 - ImageProvider doesn't use singleton instance
  ******************************************************************************/
-package org.eclipse.emf.facet.util.swt.internal.imageprovider;
+package org.eclipse.papyrus.emf.facet.util.swt.internal.imageprovider;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.emf.facet.util.swt.imageprovider.IImageProvider;
-import org.eclipse.emf.facet.util.swt.imageprovider.IImageProviderFactory;
+import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProvider;
+import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProviderFactory;
 
 public class ImageProviderFactory implements IImageProviderFactory {
 

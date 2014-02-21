@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.composites.FilteredElementSelectionComposite;
-import org.eclipse.emf.facet.efacet.ui.internal.composites.SelectETypeComposite.ETypeSelectionOptions;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites.FilteredElementSelectionComposite;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites.SelectETypeComposite.ETypeSelectionOptions;
 import org.eclipse.swt.widgets.Composite;
 
 /**

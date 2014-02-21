@@ -11,7 +11,7 @@
  * 		Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.sdk.core.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

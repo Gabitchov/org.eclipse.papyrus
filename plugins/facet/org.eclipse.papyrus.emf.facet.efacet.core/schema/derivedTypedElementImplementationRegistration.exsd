@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.efacet.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.efacet.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.facet.efacet.core" id="derivedTypedElementImplementationRegistration" name="Derived Typed Element Evaluator Registration"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.efacet.core" id="derivedTypedElementImplementationRegistration" name="Derived Typed Element Evaluator Registration"/>
       </appinfo>
       <documentation>
          Allow the registration of an IderivedTypedElementImplementationFactory, that instantiates IDerivedTypedElementImplementation that conform to the EMF Facet framework.
@@ -61,7 +61,7 @@ The IDerivedTypedElementImplementation provides an implementation for a given ty
                   Provides an implementation for a IDerivedTypedElementImplementationFactory, which instantiates IDerivedTypedElementImplementation for a given type of queries.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.efacet.core.query.IDerivedTypedElementImplementationFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.efacet.core.query.IDerivedTypedElementImplementationFactory"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -83,9 +83,9 @@ The IDerivedTypedElementImplementation provides an implementation for a given ty
       </appinfo>
       <documentation>
          &lt;pre&gt;
-   &lt;extension point=&quot;org.eclipse.emf.facet.efacet.core.derivedTypedElementImplementationRegistration&quot;&gt;
+   &lt;extension point=&quot;org.eclipse.papyrus.emf.facet.efacet.core.derivedTypedElementImplementationRegistration&quot;&gt;
       &lt;derivedTypedElementImplementationRegistration
-            class=&quot;org.eclipse.emf.facet.efacet.core.tests.internal.DummyQueryEvaluatorFactory&quot;&gt;
+            class=&quot;org.eclipse.papyrus.emf.facet.efacet.core.tests.internal.DummyQueryEvaluatorFactory&quot;&gt;
       &lt;/derivedTypedElementImplementationRegistration&gt;
    &lt;/extension&gt;
 &lt;/pre&gt;
@@ -101,7 +101,7 @@ The IDerivedTypedElementImplementation provides an implementation for a given ty
          &lt;p&gt;
 See plug-ins:
 &lt;ul&gt;
-&lt;li&gt;org.eclipse.emf.facet.query.java.core
+&lt;li&gt;org.eclipse.papyrus.emf.facet.query.java.core
 &lt;/ul&gt;
 &lt;/p&gt;
       </documentation>

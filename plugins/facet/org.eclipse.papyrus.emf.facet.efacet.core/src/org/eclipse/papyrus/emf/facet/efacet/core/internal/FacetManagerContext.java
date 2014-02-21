@@ -19,7 +19,7 @@
  *     Fabien Treguer (Soft-Maint) - Bug 423285 - [Table] FacetSets not stored in a resource cause model manager crashes
  *******************************************************************************/
 
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,18 +38,18 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.efacet.core.FacetUtils;
-import org.eclipse.emf.facet.efacet.core.IFacetManagerListener;
-import org.eclipse.emf.facet.efacet.core.exception.FacetManagerException;
-import org.eclipse.emf.facet.efacet.core.internal.FacetManager.ConformanceState;
-import org.eclipse.emf.facet.efacet.core.internal.exception.UnmatchingExpectedTypeException;
-import org.eclipse.emf.facet.efacet.core.internal.exported.IResolverManager;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.core.internal.exported.ListUtils;
-import org.eclipse.emf.facet.util.emf.core.ModelUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.FacetUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManagerListener;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.FacetManagerException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetManager.ConformanceState;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.UnmatchingExpectedTypeException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exported.IResolverManager;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.ListUtils;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ModelUtils;
 
 /**
  * @author oremaud
@@ -63,7 +63,7 @@ import org.eclipse.emf.facet.util.emf.core.ModelUtils;
  */
 class FacetManagerContext implements List<FacetSet> {
 
-	private static final String SILENT_OPTION = "org.eclipse.emf.facet.efacet.core.internal.FacetManagerContext.getOverrideCandidateFeatures.silent"; //$NON-NLS-1$
+	private static final String SILENT_OPTION = "org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetManagerContext.getOverrideCandidateFeatures.silent"; //$NON-NLS-1$
 	private static final boolean SILENT = Boolean
 			.getBoolean(FacetManagerContext.SILENT_OPTION);
 

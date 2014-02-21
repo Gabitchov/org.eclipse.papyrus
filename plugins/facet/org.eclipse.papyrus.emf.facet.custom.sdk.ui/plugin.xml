@@ -14,18 +14,18 @@
 -->
 <plugin>
    <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.celleditors">
-      <cellEditorsModel path="org.eclipse.emf.facet.custom.sdk.ui.modelcelleditors"/>
+      <cellEditorsModel path="org.eclipse.papyrus.emf.facet.custom.sdk.ui.modelcelleditors"/>
    </extension>
    <extension point="org.eclipse.papyrus.emf.facet.widgets.celleditors.compositeEditorFactories">
-      <compositeEditorFactory class="org.eclipse.emf.facet.custom.sdk.ui.internal.widgets.celleditors.composite.ImageCompositeFactory"/>
+      <compositeEditorFactory class="org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.widgets.celleditors.composite.ImageCompositeFactory"/>
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
       <wizard
-            category="org.eclipse.emf.facet.common.ui.wizardsCategory"
-            class="org.eclipse.emf.facet.custom.sdk.ui.internal.util.wizard.CreateCustimizationWizardImpl"
+            category="org.eclipse.papyrus.emf.facet.common.ui.wizardsCategory"
+            class="org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.wizard.CreateCustimizationWizardImpl"
             icon="icons/full/obj16/CustomModelFile.gif"
-            id="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomModelWizardID"
+            id="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomModelWizardID"
             name="%wizard.name">
          <description>
             %wizard.description
@@ -38,23 +38,23 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.emf.facet.custom.sdk.ui.internal.util.handler.CreateEClassCustomizationHandler"
-            id="org.eclipse.emf.facet.custom.sdk.ui.CreateEClassCustomization"
+            defaultHandler="org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.handler.CreateEClassCustomizationHandler"
+            id="org.eclipse.papyrus.emf.facet.custom.sdk.ui.CreateEClassCustomization"
             name="%command.custo.name">
       </command>
       <command
-            defaultHandler="org.eclipse.emf.facet.custom.sdk.ui.internal.util.handler.CreateFacetCustomizationHandler"
-            id="org.eclipse.emf.facet.custom.sdk.ui.CreateFacetCustomization"
+            defaultHandler="org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.handler.CreateFacetCustomizationHandler"
+            id="org.eclipse.papyrus.emf.facet.custom.sdk.ui.CreateFacetCustomization"
             name="%command.custo.name.1">
       </command>
       <command
-            defaultHandler="org.eclipse.emf.facet.custom.sdk.ui.internal.util.handler.AddCustomizationPropertyInEClassHandler"
-            id="org.eclipse.emf.facet.custom.sdk.ui.AddCustomization"
+            defaultHandler="org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.handler.AddCustomizationPropertyInEClassHandler"
+            id="org.eclipse.papyrus.emf.facet.custom.sdk.ui.AddCustomization"
             name="%command.custo.name.2">
       </command>
       <command
-            defaultHandler="org.eclipse.emf.facet.custom.sdk.ui.internal.util.handler.AddCaseQueryHandler"
-            id="org.eclipse.emf.facet.custom.sdk.ui.AddCaseQuery"
+            defaultHandler="org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.handler.AddCaseQueryHandler"
+            id="org.eclipse.papyrus.emf.facet.custom.sdk.ui.AddCaseQuery"
             name="%command.custo.name.3">
       </command>
    </extension>
@@ -62,11 +62,11 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="true"
-            locationURI="popup:org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomEditorID?before=edit">
+            locationURI="popup:org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomEditorID?before=edit">
          <menu
                label="%menu.custo.label">
             <command
-                  commandId="org.eclipse.emf.facet.custom.sdk.ui.CreateEClassCustomization"
+                  commandId="org.eclipse.papyrus.emf.facet.custom.sdk.ui.CreateEClassCustomization"
                   icon="icons/full/obj16/CustomModelFile.gif"
                   label="%command.custo.name"
                   style="push">
@@ -75,7 +75,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.custom.sdk.ui.CreateFacetCustomization"
+                  commandId="org.eclipse.papyrus.emf.facet.custom.sdk.ui.CreateFacetCustomization"
                   icon="icons/full/obj16/CustomModelFile.gif"
                   label="%command.custo.name.1"
                   style="push">
@@ -84,7 +84,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.custom.sdk.ui.AddCustomization"
+                  commandId="org.eclipse.papyrus.emf.facet.custom.sdk.ui.AddCustomization"
                   icon="icons/full/obj16/CustomModelFile.gif"
                   label="%command.custo.name.2"
                   style="push">
@@ -93,7 +93,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.custom.sdk.ui.AddCaseQuery"
+                  commandId="org.eclipse.papyrus.emf.facet.custom.sdk.ui.AddCaseQuery"
                   icon="icons/querySet.gif"
                   label="%command.custo.name.3"
                   style="push">
@@ -105,7 +105,7 @@
          <menu
                label="%menu.label">
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.createFacetSetInFacetSet"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.createFacetSetInFacetSet"
                   icon="icons/FacetSet.gif"
                   label="%command.name"
                   style="push">
@@ -114,7 +114,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.createFacetInFacetSet"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.createFacetInFacetSet"
                   icon="icons/facet.gif"
                   label="%command.name.0"
                   style="push">
@@ -123,7 +123,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.addAttributeInFacet"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addAttributeInFacet"
                   icon="icons/FacetAttribute.gif"
                   label="%command.name.1"
                   style="push">
@@ -132,7 +132,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.addOperationInFacet"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addOperationInFacet"
                   icon="icons/FacetOperation.gif"
                   label="%command.name.2"
                   style="push">
@@ -141,7 +141,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.addReferenceInFacet"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addReferenceInFacet"
                   icon="icons/FacetReference.gif"
                   label="%command.name.4"
                   style="push">
@@ -150,7 +150,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.addParameterInOperation"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addParameterInOperation"
                   icon="icons/ParameterValue.gif"
                   label="%command.name.3"
                   style="push">
@@ -159,7 +159,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetSet"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetSet"
                   icon="icons/FacetSet.gif"
                   label="%command.name.5"
                   style="push">
@@ -168,7 +168,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacet"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacet"
                   icon="icons/facet.gif"
                   label="%command.name.6"
                   style="push">
@@ -177,7 +177,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetAttribute"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetAttribute"
                   icon="icons/FacetAttribute.gif"
                   label="%command.name.7"
                   style="push">
@@ -186,7 +186,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetOperation"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetOperation"
                   icon="icons/FacetOperation.gif"
                   label="%command.name.8"
                   style="push">
@@ -195,7 +195,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetOperationParameter"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetOperationParameter"
                   icon="icons/ParameterValue.gif"
                   label="%command.name.9"
                   style="push">
@@ -204,7 +204,7 @@
                </visibleWhen>
             </command>
             <command
-                  commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetReference"
+                  commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetReference"
                   icon="icons/FacetReference.gif"
                   label="%command.name.10"
                   style="push">
@@ -218,6 +218,6 @@
    <extension
          point="org.eclipse.ui.startup">
       <startup
-            class="org.eclipse.emf.facet.custom.sdk.ui.internal.Startup"></startup>
+            class="org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Startup"></startup>
    </extension>
 </plugin>

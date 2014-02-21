@@ -10,7 +10,7 @@
  *  	Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  *  
  */
-package org.eclipse.emf.facet.query.java.javaquery;
+package org.eclipse.papyrus.emf.facet.query.java.javaquery;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EFactory;
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage
+ * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage
  * @generated
  * @deprecated cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=374198
  */
@@ -32,7 +32,7 @@ public interface JavaqueryFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	JavaqueryFactory eINSTANCE = org.eclipse.emf.facet.query.java.javaquery.impl.JavaqueryFactoryImpl.init();
+	JavaqueryFactory eINSTANCE = org.eclipse.papyrus.emf.facet.query.java.javaquery.impl.JavaqueryFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Java Query</em>'.

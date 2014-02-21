@@ -8,19 +8,19 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Bug 386387 - [CustomizedTreeContentProvider] The TreeElements are not preserved between two calls to getElements()
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement;
-import org.eclipse.emf.facet.custom.ui.internal.exception.CustomizedContentProviderRuntimeException;
-import org.eclipse.emf.facet.util.core.DebugUtils;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.exception.CustomizedContentProviderRuntimeException;
+import org.eclipse.papyrus.emf.facet.util.core.DebugUtils;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement;
 
 public class TreeElementAdapter implements Adapter {
 

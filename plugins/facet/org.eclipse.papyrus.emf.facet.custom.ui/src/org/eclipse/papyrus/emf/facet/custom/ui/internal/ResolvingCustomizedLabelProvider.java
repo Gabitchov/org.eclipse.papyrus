@@ -8,17 +8,17 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
-import org.eclipse.emf.facet.custom.ui.CustomizedContentProviderUtils;
-import org.eclipse.emf.facet.custom.ui.ICustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.CustomizedContentProviderUtils;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;

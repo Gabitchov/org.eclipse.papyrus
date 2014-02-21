@@ -9,7 +9,7 @@
  * Contributors:
  *   Gregoire Dupe (Mia-Software) - initial API and implementation
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors;
 
 import org.eclipse.core.runtime.IStatus;
 

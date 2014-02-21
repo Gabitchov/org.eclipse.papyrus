@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 342548 - [Java Discovery] Illegal parameter initializer for ELEMENTS_TO_ANALYZE
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.core.composite;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;

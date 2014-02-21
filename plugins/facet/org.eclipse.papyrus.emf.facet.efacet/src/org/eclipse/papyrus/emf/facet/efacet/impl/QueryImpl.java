@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.impl;
+package org.eclipse.papyrus.emf.facet.efacet.impl;
 
 import java.util.Collection;
 
@@ -29,9 +29,9 @@ import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.emf.facet.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.Parameter;
-import org.eclipse.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.Parameter;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,15 +40,15 @@ import org.eclipse.emf.facet.efacet.Query;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryImpl#getScope <em>Scope</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryImpl#isHasSideEffect <em>Has Side Effect</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryImpl#isCanBeCached <em>Can Be Cached</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryImpl#getScope <em>Scope</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryImpl#isHasSideEffect <em>Has Side Effect</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryImpl#isCanBeCached <em>Can Be Cached</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -59,7 +59,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @see #getScope()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -71,7 +71,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @see #isHasSideEffect()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -83,7 +83,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @see #isHasSideEffect()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -95,7 +95,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @see #isCanBeCached()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -107,7 +107,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @see #isCanBeCached()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -119,7 +119,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- end-user-doc -->
 	 * @see #getParameters()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -129,7 +129,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	protected QueryImpl() {
@@ -140,7 +140,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -152,7 +152,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EClass getScope() {
@@ -172,7 +172,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EClass basicGetScope() {
@@ -183,7 +183,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setScope(final EClass newScope) {
@@ -198,7 +198,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public boolean isHasSideEffect() {
@@ -209,7 +209,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setHasSideEffect(final boolean newHasSideEffect) {
@@ -224,7 +224,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public boolean isCanBeCached() {
@@ -235,7 +235,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setCanBeCached(final boolean newCanBeCached) {
@@ -250,7 +250,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EList<Parameter> getParameters() {
@@ -264,7 +264,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -280,7 +280,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -305,7 +305,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@SuppressWarnings("unchecked")
@@ -333,7 +333,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -359,7 +359,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -381,7 +381,7 @@ public abstract class QueryImpl extends ETypedElementImpl implements Query {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override

@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.wizards.pages;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.widget.MetamodelSelectionControl;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget.MetamodelSelectionControl;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

@@ -11,7 +11,7 @@
  *  	Vincent Lorenzo (CEA-LIST)   - Bug 372644 - Create Customizable tooltips for the TreeViewer using a CustomizableLabelProvider
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Shadow</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage#getShadow()
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage#getShadow()
  * @model
  * @generated
  */

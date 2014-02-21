@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 372732 - [Facet] Rewrite the catalog views for 0.2
  *******************************************************************************/
-package org.eclipse.emf.facet.common.ui.internal.exported.views;
+package org.eclipse.papyrus.emf.facet.common.ui.internal.exported.views;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 

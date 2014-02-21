@@ -8,7 +8,7 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software)
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.ui.internal.utils;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.utils;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;

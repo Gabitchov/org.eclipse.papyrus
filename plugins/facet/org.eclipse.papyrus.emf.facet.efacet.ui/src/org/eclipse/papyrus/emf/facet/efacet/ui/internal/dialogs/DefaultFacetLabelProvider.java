@@ -9,12 +9,12 @@
  *     Nicolas Bros (Mia-Software) - Bug 370442 - rewrite the Facet loading dialog for v0.2
  *     Nicolas Bros(Mia-Software) - Bug 370806 - [table] rewrite the "allowed contents" query selection dialog for v0.2
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.dialogs;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.dialogs;
 
 import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.util.emf.ui.internal.utils.ImageUtils;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.utils.ImageUtils;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 

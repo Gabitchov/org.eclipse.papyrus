@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet.ui;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipse.emf.facet.efacet.ui.internal.Activator
+Bundle-Activator: org.eclipse.papyrus.emf.facet.efacet.ui.internal.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide,
  org.eclipse.papyrus.emf.facet.efacet.core;bundle-version="0.1.0",
@@ -25,11 +25,11 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %Bundle-Vendor
-Export-Package: org.eclipse.emf.facet.efacet.ui,
- org.eclipse.emf.facet.efacet.ui.internal.composites;x-friends:="org.eclipse.emf.facet.query.java.ui",
- org.eclipse.emf.facet.efacet.ui.internal.exported;x-friends:="org.eclipse.emf.facet.aggregate.tests",
- org.eclipse.emf.facet.efacet.ui.internal.exported.dialog;x-friends:="org.eclipse.emf.facet.widgets.table.ui,org.eclipse.emf.facet.efacet.tests,org.eclipse.emf.facet.aggregate.tests",
- org.eclipse.emf.facet.efacet.ui.internal.exported.view;x-friends:="org.eclipse.emf.facet.efacet.tests",
- org.eclipse.emf.facet.efacet.ui.internal.exported.widget;x-friends:="org.eclipse.emf.facet.efacet.tests",
- org.eclipse.emf.facet.efacet.ui.internal.exported.wizard;x-friends:="org.eclipse.emf.facet.query.java.ui",
- org.eclipse.emf.facet.efacet.ui.internal.wizards;x-friends:="org.eclipse.emf.facet.query.java.ui"
+Export-Package: org.eclipse.papyrus.emf.facet.efacet.ui,
+ org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites;x-friends:="org.eclipse.papyrus.emf.facet.query.java.ui",
+ org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported;x-friends:="org.eclipse.papyrus.emf.facet.aggregate.tests",
+ org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.dialog;x-friends:="org.eclipse.papyrus.emf.facet.widgets.table.ui,org.eclipse.papyrus.emf.facet.efacet.tests,org.eclipse.papyrus.emf.facet.aggregate.tests",
+ org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.view;x-friends:="org.eclipse.papyrus.emf.facet.efacet.tests",
+ org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget;x-friends:="org.eclipse.papyrus.emf.facet.efacet.tests",
+ org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard;x-friends:="org.eclipse.papyrus.emf.facet.query.java.ui",
+ org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards;x-friends:="org.eclipse.papyrus.emf.facet.query.java.ui"

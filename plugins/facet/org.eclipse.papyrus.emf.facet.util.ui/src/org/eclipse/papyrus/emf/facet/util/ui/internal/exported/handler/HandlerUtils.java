@@ -11,7 +11,7 @@
  *  	Grégoire Dupé (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *      Grégoire Dupé (Mia-Software) - Bug 423181 - Unchecked cast in HandlerUtils.getStructuredSelection()
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.handler;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.handler;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;

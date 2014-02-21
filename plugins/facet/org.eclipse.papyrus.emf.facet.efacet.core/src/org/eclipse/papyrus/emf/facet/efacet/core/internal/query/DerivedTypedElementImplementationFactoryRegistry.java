@@ -10,11 +10,11 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 333553 - The user has not to deal with two files to create a facet
  *  Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  *  Nicolas Bros (Mia-Software) - Bug 361612 - New core for new version of the Facet metamodel
- *  Gregoire Dupe (Mia-Software) - Bug 362087 - [Deprecated] org.eclipse.emf.facet.util.emf.core.ICatalogSetManager
+ *  Gregoire Dupe (Mia-Software) - Bug 362087 - [Deprecated] org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager
  *  Nicolas Bros (Mia-Software) - Bug 362191 - [Restructuring] Query mechanism for eFacet2
  *  Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  */
-package org.eclipse.emf.facet.efacet.core.internal.query;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,20 +26,20 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.efacet.core.IDerivedTypedElementManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.core.internal.Activator;
-import org.eclipse.emf.facet.efacet.core.query.IDerivedTypedElementImplementation;
-import org.eclipse.emf.facet.efacet.core.query.IDerivedTypedElementImplementationFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.core.IDerivedTypedElementManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IDerivedTypedElementImplementation;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IDerivedTypedElementImplementationFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManagerFactory;
 import org.osgi.framework.Bundle;
 
 /** @deprecated replaced by {@link QueryImplementationFactoryRegistry}. No tracking bug because this API has not been released yet. */
 @Deprecated
 public class DerivedTypedElementImplementationFactoryRegistry {
-	private static final String DERIVED_TYPED_ELEMENT_IMPLEMENTATION_REGISTRATION_ID = "org.eclipse.emf.facet.efacet.core.derivedTypedElementImplementationRegistration"; //$NON-NLS-1$
+	private static final String DERIVED_TYPED_ELEMENT_IMPLEMENTATION_REGISTRATION_ID = "org.eclipse.papyrus.emf.facet.efacet.core.derivedTypedElementImplementationRegistration"; //$NON-NLS-1$
 	private static final String CLASS = "class"; //$NON-NLS-1$
 	public static final DerivedTypedElementImplementationFactoryRegistry INSTANCE = new DerivedTypedElementImplementationFactoryRegistry();
 

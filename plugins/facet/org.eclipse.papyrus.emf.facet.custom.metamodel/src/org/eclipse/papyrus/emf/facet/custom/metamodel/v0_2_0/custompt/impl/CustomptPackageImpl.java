@@ -11,18 +11,18 @@
  *  
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl;
 
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.facet.custom.metamodel.custompt.IColor;
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptFactory;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class CustomptPackageImpl extends EPackageImpl implements CustomptPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

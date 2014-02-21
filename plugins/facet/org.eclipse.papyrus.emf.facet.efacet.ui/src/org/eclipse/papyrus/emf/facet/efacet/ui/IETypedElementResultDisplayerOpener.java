@@ -9,18 +9,18 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  */
-package org.eclipse.emf.facet.efacet.ui;
+package org.eclipse.papyrus.emf.facet.efacet.ui;
 
 import java.util.List;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
 import org.eclipse.ui.IWorkbenchPart;
 
 
 /**
- * This method must be implemented and referenced by the extension point org.eclipse.emf.facet.efacet.ui.displayeropener
+ * This method must be implemented and referenced by the extension point org.eclipse.papyrus.emf.facet.efacet.ui.displayeropener
  * 
- * This is a new version of the org.eclipse.emf.facet.infra.query.ui.views.queryExecution.QueryResultDisplayer.
+ * This is a new version of the org.eclipse.papyrus.emf.facet.infra.query.ui.views.queryExecution.QueryResultDisplayer.
  * @author Gregoire Dupe
  *
  */

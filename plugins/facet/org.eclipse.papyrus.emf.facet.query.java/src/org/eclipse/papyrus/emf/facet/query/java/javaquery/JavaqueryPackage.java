@@ -10,12 +10,12 @@
  *  	Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  *  
  */
-package org.eclipse.emf.facet.query.java.javaquery;
+package org.eclipse.papyrus.emf.facet.query.java.javaquery;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +29,7 @@ import org.eclipse.emf.facet.efacet.EFacetPackage;
  * </ul>
  * <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.query.java.javaquery.JavaqueryFactory
+ * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryFactory
  * @model kind="package"
  * @generated
  * @deprecated cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=374198
@@ -66,14 +66,14 @@ public interface JavaqueryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	JavaqueryPackage eINSTANCE = org.eclipse.emf.facet.query.java.javaquery.impl.JavaqueryPackageImpl.init();
+	JavaqueryPackage eINSTANCE = org.eclipse.papyrus.emf.facet.query.java.javaquery.impl.JavaqueryPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.query.java.javaquery.impl.JavaQueryImpl <em>Java Query</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.query.java.javaquery.impl.JavaQueryImpl <em>Java Query</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.query.java.javaquery.impl.JavaQueryImpl
-	 * @see org.eclipse.emf.facet.query.java.javaquery.impl.JavaqueryPackageImpl#getJavaQuery()
+	 * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.impl.JavaQueryImpl
+	 * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.impl.JavaqueryPackageImpl#getJavaQuery()
 	 * @generated
 	 */
 	int JAVA_QUERY = 0;
@@ -224,21 +224,21 @@ public interface JavaqueryPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.query.java.javaquery.JavaQuery <em>Java Query</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery <em>Java Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Java Query</em>'.
-	 * @see org.eclipse.emf.facet.query.java.javaquery.JavaQuery
+	 * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery
 	 * @generated
 	 */
 	EClass getJavaQuery();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.query.java.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Implementation Class Name</em>'.
-	 * @see org.eclipse.emf.facet.query.java.javaquery.JavaQuery#getImplementationClassName()
+	 * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery#getImplementationClassName()
 	 * @see #getJavaQuery()
 	 * @generated
 	 */
@@ -267,11 +267,11 @@ public interface JavaqueryPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.query.java.javaquery.impl.JavaQueryImpl <em>Java Query</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.query.java.javaquery.impl.JavaQueryImpl <em>Java Query</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.query.java.javaquery.impl.JavaQueryImpl
-		 * @see org.eclipse.emf.facet.query.java.javaquery.impl.JavaqueryPackageImpl#getJavaQuery()
+		 * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.impl.JavaQueryImpl
+		 * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.impl.JavaqueryPackageImpl#getJavaQuery()
 		 * @generated
 		 */
 		EClass JAVA_QUERY = JavaqueryPackage.eINSTANCE.getJavaQuery();

@@ -18,7 +18,7 @@
  *       Gregoire Dupe (Mia-software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime;
 
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage
  * @generated
  */
 public interface RuntimeFactory extends EFactory {
@@ -38,7 +38,7 @@ public interface RuntimeFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RuntimeFactory eINSTANCE = org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimeFactoryImpl.init();
+	RuntimeFactory eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimeFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>ETyped Element Primitive Type Result</em>'.

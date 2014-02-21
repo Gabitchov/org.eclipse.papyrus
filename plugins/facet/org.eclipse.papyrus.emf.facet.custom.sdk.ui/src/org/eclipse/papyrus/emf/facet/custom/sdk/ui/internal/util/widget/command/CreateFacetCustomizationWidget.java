@@ -10,19 +10,19 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.command;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.command;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization;
-import org.eclipse.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.getorcreate.GetCustomizedFacetWidget;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.getorcreate.GetCustomizedFacetWidget;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization;
 import org.eclipse.swt.widgets.Composite;
 
 /**

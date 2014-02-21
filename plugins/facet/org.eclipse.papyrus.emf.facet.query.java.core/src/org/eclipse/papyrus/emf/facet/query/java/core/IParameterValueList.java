@@ -9,12 +9,12 @@
  *    Bertrand Daru (Mia-Software) - initial API and implementation
  *    Gregoire Dupe (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.query.java.core;
+package org.eclipse.papyrus.emf.facet.query.java.core;
 
 import java.util.List;
 
-import org.eclipse.emf.facet.efacet.Parameter;
-import org.eclipse.emf.facet.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.Parameter;
+import org.eclipse.papyrus.emf.facet.efacet.ParameterValue;
 
 /**
  * List of query parameters, with two methods for direct access to value or
@@ -25,7 +25,7 @@ import org.eclipse.emf.facet.efacet.ParameterValue;
 @Deprecated
 public interface IParameterValueList extends List<ParameterValue> {
 	// This interface is a rewrite of
-	// org.eclipse.emf.facet.infra.query.core.java.ParameterValueList
+	// org.eclipse.papyrus.emf.facet.infra.query.core.java.ParameterValueList
 
 	/**
 	 * Return the value of the parameter with the specified name.

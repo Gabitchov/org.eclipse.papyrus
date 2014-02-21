@@ -10,13 +10,13 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.property.name;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.property.name;
 
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.properties.name.AbstractPrintElementWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.properties.name.AbstractPrintElementWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
 import org.eclipse.swt.widgets.Composite;
 
 /**

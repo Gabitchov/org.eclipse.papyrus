@@ -9,7 +9,7 @@
  *     Nicolas Bros (Mia-Software) - initial API and implementation
  *     Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
  *******************************************************************************/
-package org.eclipse.emf.facet.common.core.internal.utils;
+package org.eclipse.papyrus.emf.facet.common.core.internal.utils;
 
 import java.util.Vector;
 

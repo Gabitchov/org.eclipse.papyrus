@@ -10,9 +10,9 @@
  *     Gregoire Dupe (Mia-Software) - Bug 406570 - Handlers to Save and SaveAs EMF resources
  */
 
-package org.eclipse.emf.facet.util.emf.ui.internal.dialogs;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.dialogs;
 
-import org.eclipse.emf.facet.util.emf.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;

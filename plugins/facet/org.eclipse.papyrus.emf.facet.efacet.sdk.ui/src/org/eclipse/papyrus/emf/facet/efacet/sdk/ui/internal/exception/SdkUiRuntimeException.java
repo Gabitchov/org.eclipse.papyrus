@@ -9,7 +9,7 @@
  * Contributors:
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.exception;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exception;
 
 public class SdkUiRuntimeException extends RuntimeException {
 

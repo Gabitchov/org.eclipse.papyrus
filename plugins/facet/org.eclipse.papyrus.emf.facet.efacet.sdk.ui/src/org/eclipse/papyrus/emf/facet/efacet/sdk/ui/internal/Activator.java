@@ -8,12 +8,12 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
-// Copied from org.eclipse.emf.facet.aggregate.metamodel.notgenerated.internal.Activator
+// Copied from org.eclipse.papyrus.emf.facet.aggregate.metamodel.notgenerated.internal.Activator
 @SuppressWarnings("PMD.UseSingleton")
 // @SuppressWarnings("PMD.UseSingleton") We cannot conforms to this rule because
 // this class is an Eclipse plug-in activator which will be instantiated by the

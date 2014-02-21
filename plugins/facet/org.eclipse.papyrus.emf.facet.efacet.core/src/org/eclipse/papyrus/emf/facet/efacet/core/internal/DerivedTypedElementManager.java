@@ -18,7 +18,7 @@
  *  Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  Gregoire Dupe (Mia-Software) - Bug 418885 - ETypedElementSwitchQuery implemented using a deprecated query evaluator extension point
  */
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -28,22 +28,22 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.core.IDerivedTypedElementManager;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.core.internal.exception.DerivedTypedElementEvaluationException;
-import org.eclipse.emf.facet.efacet.core.internal.exception.DerivedTypedElementTypeCheckingException;
-import org.eclipse.emf.facet.efacet.core.internal.exception.UnmatchingExpectedTypeException;
-import org.eclipse.emf.facet.efacet.core.internal.query.DerivedTypedElementImplementationFactoryRegistry;
-import org.eclipse.emf.facet.efacet.core.internal.query.QueryImplementationFactoryRegistry;
-import org.eclipse.emf.facet.efacet.core.internal.query.QueryUtils;
-import org.eclipse.emf.facet.efacet.core.query.IDerivedTypedElementImplementation;
-import org.eclipse.emf.facet.efacet.core.query.IQueryImplementation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.core.IDerivedTypedElementManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.DerivedTypedElementEvaluationException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.DerivedTypedElementTypeCheckingException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.UnmatchingExpectedTypeException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.query.DerivedTypedElementImplementationFactoryRegistry;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.query.QueryImplementationFactoryRegistry;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.query.QueryUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IDerivedTypedElementImplementation;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryImplementation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 
 public class DerivedTypedElementManager implements IDerivedTypedElementManager {
 

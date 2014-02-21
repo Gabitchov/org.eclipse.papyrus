@@ -10,7 +10,7 @@
  *    Thomas Cicognani (Soft-Maint) - Bug 424416 - Plug-in for JFace Utilities
  ******************************************************************************/
 
-package org.eclipse.emf.facet.util.jface.ui.imageprovider;
+package org.eclipse.papyrus.emf.facet.util.jface.ui.imageprovider;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DecorationOverlayIcon;

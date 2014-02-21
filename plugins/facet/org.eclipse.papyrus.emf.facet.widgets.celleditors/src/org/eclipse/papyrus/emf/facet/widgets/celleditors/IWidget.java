@@ -10,7 +10,7 @@
  *   Nicolas Guyomar (Mia-Software) - initial API and implementation
  *   Nicolas Bros (Mia-Software)
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Listener;

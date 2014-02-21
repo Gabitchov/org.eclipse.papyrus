@@ -8,12 +8,12 @@
  *
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Bug 366804 - [Restructuring] Table widget upgrade
- *    Grégoire Dupé - Bug 365843 - [Unit Test Failure][0.2/3.8][0.2/4.2] org.eclipse.emf.facet.widgets.nattable.tests.swtbot.Bug344925Test.testBug344925
+ *    Grégoire Dupé - Bug 365843 - [Unit Test Failure][0.2/3.8][0.2/4.2] org.eclipse.papyrus.emf.facet.widgets.nattable.tests.swtbot.Bug344925Test.testBug344925
  *    Grégoire Dupé - Bug 367613 - Table widget refactoring
  *    Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *    Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *******************************************************************************/
-package org.eclipse.emf.facet.util.core;
+package org.eclipse.papyrus.emf.facet.util.core;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;

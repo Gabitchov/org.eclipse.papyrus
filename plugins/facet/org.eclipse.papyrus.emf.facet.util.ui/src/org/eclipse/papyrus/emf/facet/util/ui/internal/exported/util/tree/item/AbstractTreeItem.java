@@ -9,14 +9,14 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.tree.item;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.item;
 
 import java.util.Map;
 
-import org.eclipse.emf.facet.util.ui.internal.Messages;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.tree.ExtendedTree;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.tree.menu.AbstractTreeMenuItem;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.ExtendedTree;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.menu.AbstractTreeMenuItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;

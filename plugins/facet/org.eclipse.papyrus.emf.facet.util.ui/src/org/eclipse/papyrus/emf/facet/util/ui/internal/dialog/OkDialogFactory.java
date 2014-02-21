@@ -9,12 +9,12 @@
  * Contributors:
  * 		Thomas Cicognani (Soft-Maint) - Bug 406565 - Ok Dialog
  */
-package org.eclipse.emf.facet.util.ui.internal.dialog;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.dialog;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IOkDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IOkDialogFactory;
-import org.eclipse.emf.facet.util.ui.internal.sync.generated.SynchronizedOkDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IOkDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IOkDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.sync.generated.SynchronizedOkDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;

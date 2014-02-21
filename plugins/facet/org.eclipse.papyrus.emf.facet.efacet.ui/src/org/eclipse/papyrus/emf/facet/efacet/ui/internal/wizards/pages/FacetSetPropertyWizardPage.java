@@ -9,10 +9,10 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal.wizards.pages;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;

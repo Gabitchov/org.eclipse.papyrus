@@ -11,21 +11,21 @@
  *    Thomas Cicognani (Soft-Maint) - Bug 424414 - ImageManager doesn't cache images
  *    Thomas Cicognani (Soft-Maint) - Bug 424416 - Plug-in for JFace Utilities
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.core.internal.exported.CustomizationUtils;
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.util.jface.ui.imageprovider.IImageProvider;
-import org.eclipse.emf.facet.util.jface.ui.imageprovider.IImageProviderFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.util.jface.ui.imageprovider.IImageProvider;
+import org.eclipse.papyrus.emf.facet.util.jface.ui.imageprovider.IImageProviderFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.DecorationOverlayIcon;
 import org.eclipse.jface.viewers.IDecorationContext;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelDecorator;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.internal.exported.CustomizationUtils;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.swt.graphics.Image;
 
 public class CustomizedLabelDecorator extends LabelDecorator {

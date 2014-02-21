@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Nicolas Bros (Mia-Software) - Bug 338907 - expose serialization services from SerializationFactoryImpl
  */
-package org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.impl;
+package org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.facet.util.emf.core.serialization.ISerializationService;
-import org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.SerializationFactory;
-import org.eclipse.emf.facet.util.emf.core.serialization.model.serialization.SerializationPackage;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.ISerializationService;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.SerializationFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.core.serialization.model.serialization.SerializationPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->

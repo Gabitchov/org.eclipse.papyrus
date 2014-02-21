@@ -17,12 +17,12 @@
  *       Gregoire Dupe (Mia-software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,14 +36,14 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getDerivedTypedElement <em>Derived Typed Element</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getParameterValues <em>Parameter Values</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getException <em>Exception</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getDerivedTypedElement <em>Derived Typed Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getParameterValues <em>Parameter Values</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getException <em>Exception</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult()
  * @model abstract="true"
  * @generated
  */
@@ -57,14 +57,14 @@ public interface ETypedElementResult extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Derived Typed Element</em>' reference.
 	 * @see #setDerivedTypedElement(ETypedElement)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult_DerivedTypedElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult_DerivedTypedElement()
 	 * @model required="true"
 	 * @generated
 	 */
 	ETypedElement getDerivedTypedElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getDerivedTypedElement <em>Derived Typed Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getDerivedTypedElement <em>Derived Typed Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Derived Typed Element</em>' reference.
@@ -75,14 +75,14 @@ public interface ETypedElementResult extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Parameter Values</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue}.
+	 * The list contents are of type {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * This is the list of the values given as parameters for the query execution.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter Values</em>' containment reference list.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult_ParameterValues()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult_ParameterValues()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -98,14 +98,14 @@ public interface ETypedElementResult extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(EObject)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult_Source()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult_Source()
 	 * @model required="true"
 	 * @generated
 	 */
 	EObject getSource();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getSource <em>Source</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
@@ -124,14 +124,14 @@ public interface ETypedElementResult extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Exception</em>' attribute.
 	 * @see #setException(Throwable)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult_Exception()
-	 * @model dataType="org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.JavaException" transient="true"
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult_Exception()
+	 * @model dataType="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.JavaException" transient="true"
 	 * @generated
 	 */
 	Throwable getException();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getException <em>Exception</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getException <em>Exception</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Exception</em>' attribute.

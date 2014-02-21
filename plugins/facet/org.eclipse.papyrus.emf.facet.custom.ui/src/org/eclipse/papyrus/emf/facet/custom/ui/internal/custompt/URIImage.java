@@ -10,11 +10,11 @@
  * 		David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  */
-package org.eclipse.emf.facet.custom.ui.internal.custompt;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt;
 
 import java.io.InputStream;
 
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 
 public class URIImage implements IImage {
 	

@@ -9,11 +9,11 @@
  * Contributors:
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.metaclass;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.metaclass;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard;
-import org.eclipse.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWithButtonWidget;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard.ISelectETypeWizard;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.getorcreate.IAbstractGetOrCreateElementWithButtonWidget;
 
 public interface IGetExtendedMetaclassWidget extends
 		IAbstractGetOrCreateElementWithButtonWidget<ISelectETypeWizard<EClass>> {

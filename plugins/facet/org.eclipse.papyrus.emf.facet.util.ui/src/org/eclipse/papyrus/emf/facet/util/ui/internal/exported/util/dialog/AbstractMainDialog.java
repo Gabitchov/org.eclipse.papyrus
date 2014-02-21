@@ -10,12 +10,12 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.dialog;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.dialog;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.AbstractCommandWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
-import org.eclipse.emf.facet.util.ui.utils.WidgetProperties;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.AbstractCommandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.WidgetProperties;
 
 /**
  * This abstract class will create a dialog. All the action's dialog must

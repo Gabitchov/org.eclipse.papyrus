@@ -10,12 +10,12 @@
  *      Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.custom.ui.internal.exported.dialog;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.dialog;
 
 import java.util.List;
 
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.ui.internal.exported.exception.IllegalParameterException;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.exception.IllegalParameterException;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 
 /**
  * A dialog to load {@link Customization}s.

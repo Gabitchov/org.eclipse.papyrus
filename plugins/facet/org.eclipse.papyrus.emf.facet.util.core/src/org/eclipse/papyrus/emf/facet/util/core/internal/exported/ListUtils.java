@@ -8,7 +8,7 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - Bug 375087 - [Table] ITableWidget.addColumn(List<ETypedElement>, List<FacetSet>)
  *******************************************************************************/
-package org.eclipse.emf.facet.util.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.core.internal.exported;
 
 import java.util.ArrayList;
 import java.util.Collection;

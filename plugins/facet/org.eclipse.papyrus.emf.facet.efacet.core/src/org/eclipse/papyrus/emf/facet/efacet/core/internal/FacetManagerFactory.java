@@ -13,13 +13,13 @@
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *  Thomas Cicognani (Soft-Maint) - Bug 416223 - IFacetManagerFactory.getOrCreateFacetManager should not create an instance per call
  */
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.IFacetManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManagerFactory;
 
 public class FacetManagerFactory implements IFacetManagerFactory {
 

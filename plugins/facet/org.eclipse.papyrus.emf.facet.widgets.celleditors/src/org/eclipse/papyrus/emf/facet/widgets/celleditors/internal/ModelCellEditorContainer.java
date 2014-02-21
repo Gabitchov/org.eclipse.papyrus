@@ -7,12 +7,12 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *    Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal;
 
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditorContainer;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditorContainer;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
 
 public class ModelCellEditorContainer<T extends AbstractModelCellEditor> implements
 		IModelCellEditorContainer<AbstractModelCellEditor> {

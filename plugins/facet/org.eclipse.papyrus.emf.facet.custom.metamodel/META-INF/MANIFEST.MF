@@ -7,15 +7,15 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
- org.eclipse.emf.facet.custom.metamodel.custompt,
- org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom,
- org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl,
- org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.util,
- org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog,
- org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt;x-internal:=true,
- org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy,
- org.eclipse.emf.facet.custom.metamodel.v0_3_0.query,
- org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.util;x-internal:=true
+ org.eclipse.papyrus.emf.facet.custom.metamodel.custompt,
+ org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom,
+ org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl,
+ org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.util,
+ org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog,
+ org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt;x-internal:=true,
+ org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy,
+ org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query,
+ org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.util;x-internal:=true
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.papyrus.emf.facet.efacet.metamodel;visibility:=reexport,

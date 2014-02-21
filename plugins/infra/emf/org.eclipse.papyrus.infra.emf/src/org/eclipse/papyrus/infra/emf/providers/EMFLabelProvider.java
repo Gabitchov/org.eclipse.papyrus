@@ -18,9 +18,9 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.custom.ui.internal.CustomizedLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedLabelProvider;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IDetailLabelProvider;
@@ -147,7 +147,7 @@ public class EMFLabelProvider extends CustomizedLabelProvider implements IDetail
 			if(selectedEObject.size() == 1 || hasCommonImage(selectedEObject)) {
 				return getImage(selectedEObject.toArray()[0]);
 			} else {
-				final EClass common = org.eclipse.emf.facet.util.emf.core.internal.EMFUtils.computeLeastCommonSupertype(getEClasses(selectedEObject));
+				final EClass common = org.eclipse.papyrus.emf.facet.util.emf.core.internal.EMFUtils.computeLeastCommonSupertype(getEClasses(selectedEObject));
 				if(!common.isAbstract()) {
 					//FIXME : the label provider service should manage this case
 					final Object instance = common.getEPackage().getEFactoryInstance().create(common);

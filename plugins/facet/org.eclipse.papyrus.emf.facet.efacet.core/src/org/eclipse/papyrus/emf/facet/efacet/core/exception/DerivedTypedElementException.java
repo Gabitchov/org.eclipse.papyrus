@@ -9,9 +9,9 @@
  *     Gregoire Dupe (Mia-Software) - initial API and implementation
  *     Nicolas Bros (Mia-Software) - Bug 362191 - [Restructuring] Query mechanism for eFacet2
  */
-package org.eclipse.emf.facet.efacet.core.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.exception;
 
-import org.eclipse.emf.facet.efacet.core.internal.exception.DerivedTypedElementEvaluationException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.DerivedTypedElementEvaluationException;
 
 /**
  * This exception is raised when something is wrong with a query, and there is not a more specific
@@ -21,7 +21,7 @@ import org.eclipse.emf.facet.efacet.core.internal.exception.DerivedTypedElementE
 public class DerivedTypedElementException extends Exception {
 
 	// This class is a copy of :
-	// org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException
+	// org.eclipse.papyrus.emf.facet.infra.query.core.exception.ModelQueryException
 
 	private static final long serialVersionUID = -3203874059325745157L;
 

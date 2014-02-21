@@ -11,11 +11,11 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.provider;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
 
 /**
  * This is the central singleton for the Custom edit plugin.

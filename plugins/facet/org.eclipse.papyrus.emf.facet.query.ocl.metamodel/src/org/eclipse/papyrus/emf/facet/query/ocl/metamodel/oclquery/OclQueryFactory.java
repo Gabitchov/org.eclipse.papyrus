@@ -11,7 +11,7 @@
  * 
  * 
  */
-package org.eclipse.emf.facet.query.ocl.metamodel.oclquery;
+package org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage
+ * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage
  * @generated
  */
 public interface OclQueryFactory extends EFactory {
@@ -30,7 +30,7 @@ public interface OclQueryFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	OclQueryFactory eINSTANCE = org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryFactoryImpl.init();
+	OclQueryFactory eINSTANCE = org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Ocl Query</em>'.

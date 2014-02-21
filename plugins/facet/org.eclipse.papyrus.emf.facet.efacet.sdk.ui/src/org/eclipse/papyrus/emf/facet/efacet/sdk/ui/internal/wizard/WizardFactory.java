@@ -9,11 +9,11 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.wizard;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.wizard;
 
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.wizard.IWizardFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.wizard.SynchronizedWizard;
-import org.eclipse.emf.facet.util.ui.internal.exported.wizard.IExtendedWizard;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.wizard.IWizardFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.wizard.SynchronizedWizard;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.wizard.IExtendedWizard;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.widgets.Display;
 

@@ -9,7 +9,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.impl;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.impl;
 
 import java.util.Collection;
 
@@ -20,9 +20,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -31,7 +31,7 @@ import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditor
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.impl.ModelCellEditorDeclarationsImpl#getModelCellEditors
+ * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.impl.ModelCellEditorDeclarationsImpl#getModelCellEditors
  * <em>Model Cell Editors</em>}</li>
  * </ul>
  * </p>

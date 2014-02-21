@@ -15,20 +15,20 @@
  *     Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *     Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core.internal.catalog;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.catalog;
 
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.core.IFacetSetCatalogManager;
-import org.eclipse.emf.facet.efacet.core.internal.Messages;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.FacetSetCatalog;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogSet;
-import org.eclipse.emf.facet.util.emf.core.ICatalogManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetSetCatalogManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.FacetSetCatalog;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogManager;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet;
 
 public class EFacetCatalogManager2 implements IFacetSetCatalogManager, ICatalogManager {
 

@@ -20,12 +20,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.eclipse.emf.facet.efacet.presentation.EFacetEditorID"
+            id="org.eclipse.papyrus.emf.facet.efacet.presentation.EFacetEditorID"
             name="%_UI_EFacetEditor_label"
             icon="icons/full/obj16/EFacetModelFile.gif"
             extensions="efacet"
-            class="org.eclipse.emf.facet.efacet.presentation.EFacetEditor"
-            contributorClass="org.eclipse.emf.facet.efacet.presentation.EFacetActionBarContributor">
+            class="org.eclipse.papyrus.emf.facet.efacet.presentation.EFacetEditor"
+            contributorClass="org.eclipse.papyrus.emf.facet.efacet.presentation.EFacetActionBarContributor">
       </editor>
    </extension>
 

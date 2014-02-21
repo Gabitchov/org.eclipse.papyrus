@@ -8,12 +8,12 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 376941 - [EFacet] Facet operation arguments in Facet model
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core.query;
+package org.eclipse.papyrus.emf.facet.efacet.core.query;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.facet.efacet.core.IDerivedTypedElementManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.core.IDerivedTypedElementManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 import org.osgi.framework.Bundle;
 
 /**

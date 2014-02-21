@@ -10,12 +10,12 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *  Gregoire Dupe (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
 
 /**
  * This interface is dedicated to the registry

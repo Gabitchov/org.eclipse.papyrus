@@ -12,7 +12,7 @@
  * 	Emmanuelle RouillÃ© (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ETypedElement;
@@ -29,18 +29,18 @@ import org.eclipse.emf.ecore.ETypedElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement#getCategories <em>Categories</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement#getCategories <em>Categories</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacetElement()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacetElement()
  * @model abstract="true"
  * @generated
  */
 public interface FacetElement extends ETypedElement, DocumentedElement {
 	/**
 	 * Returns the value of the '<em><b>Categories</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Category}.
+	 * The list contents are of type {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Categories</em>' reference list isn't clear,
@@ -48,7 +48,7 @@ public interface FacetElement extends ETypedElement, DocumentedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Categories</em>' reference list.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacetElement_Categories()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacetElement_Categories()
 	 * @model
 	 * @generated
 	 */

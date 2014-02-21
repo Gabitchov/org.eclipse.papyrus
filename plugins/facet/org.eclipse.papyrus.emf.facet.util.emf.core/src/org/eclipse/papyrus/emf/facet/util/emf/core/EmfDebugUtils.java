@@ -8,11 +8,11 @@
  *
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Bug 366804 - [Restructuring] Table widget upgrade
- *    Grégoire Dupé (Mia-Software) - Bug 365843 - [Unit Test Failure][0.2/3.8][0.2/4.2] org.eclipse.emf.facet.widgets.nattable.tests.swtbot.Bug344925Test.testBug344925
- *    Grégoire Dupé (Mia-Software) - Bug 367700 - [Unit Test Failure][0.2/3.8] org.eclipse.emf.facet.widgets.table.tests.internal.v0_2.swtbot.NatTableUITests.testOpenLoadCustomizationDialog
+ *    Grégoire Dupé (Mia-Software) - Bug 365843 - [Unit Test Failure][0.2/3.8][0.2/4.2] org.eclipse.papyrus.emf.facet.widgets.nattable.tests.swtbot.Bug344925Test.testBug344925
+ *    Grégoire Dupé (Mia-Software) - Bug 367700 - [Unit Test Failure][0.2/3.8] org.eclipse.papyrus.emf.facet.widgets.table.tests.internal.v0_2.swtbot.NatTableUITests.testOpenLoadCustomizationDialog
  *    Grégoire Dupé (Mia-Software) - Bug 373078 - API Cleaning
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.core;
+package org.eclipse.papyrus.emf.facet.util.emf.core;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.facet.util.core.DebugUtils;
-import org.eclipse.emf.facet.util.emf.core.exception.DebugRuntimeException;
+import org.eclipse.papyrus.emf.facet.util.core.DebugUtils;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.DebugRuntimeException;
 
 /**
  * @since 0.2

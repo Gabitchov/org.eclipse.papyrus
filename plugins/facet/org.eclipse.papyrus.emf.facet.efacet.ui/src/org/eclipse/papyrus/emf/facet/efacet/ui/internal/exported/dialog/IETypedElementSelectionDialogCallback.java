@@ -8,7 +8,7 @@
  * Contributors:
  *     Nicolas Bros (Mia-Software) - Bug 370806 - [table] rewrite the "allowed contents" query selection dialog for v0.2
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.exported.dialog;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.dialog;
 
 import java.util.List;
 

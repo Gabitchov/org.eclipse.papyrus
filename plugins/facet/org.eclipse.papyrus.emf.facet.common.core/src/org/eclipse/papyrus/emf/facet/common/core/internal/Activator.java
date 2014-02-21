@@ -10,7 +10,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
  *   Nicolas Guyomar (Mia-Software) - Bug 334000 Simple catalog manager
  */
-package org.eclipse.emf.facet.common.core.internal;
+package org.eclipse.papyrus.emf.facet.common.core.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

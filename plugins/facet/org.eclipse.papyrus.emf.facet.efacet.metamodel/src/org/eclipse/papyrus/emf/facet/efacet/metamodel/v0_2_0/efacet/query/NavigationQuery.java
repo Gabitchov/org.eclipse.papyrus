@@ -13,11 +13,11 @@
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,12 +31,12 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery#getPath <em>Path</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery#isFailOnError <em>Fail On Error</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery#getPath <em>Path</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery#isFailOnError <em>Fail On Error</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getNavigationQuery()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getNavigationQuery()
  * @model
  * @generated
  */
@@ -51,7 +51,7 @@ public interface NavigationQuery extends Query {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Path</em>' reference list.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getNavigationQuery_Path()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getNavigationQuery_Path()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -68,14 +68,14 @@ public interface NavigationQuery extends Query {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fail On Error</em>' attribute.
 	 * @see #setFailOnError(boolean)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getNavigationQuery_FailOnError()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getNavigationQuery_FailOnError()
 	 * @model default="true"
 	 * @generated
 	 */
 	boolean isFailOnError();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery#isFailOnError <em>Fail On Error</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery#isFailOnError <em>Fail On Error</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Fail On Error</em>' attribute.

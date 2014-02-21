@@ -9,18 +9,18 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.util;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance
@@ -30,7 +30,7 @@ import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceC
  * inheritance hierarchy until a non-null result is returned, which is the
  * result of the switch. <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage
+ * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage
  * @generated
  */
 public class ModelCellEditorSwitch<T> {

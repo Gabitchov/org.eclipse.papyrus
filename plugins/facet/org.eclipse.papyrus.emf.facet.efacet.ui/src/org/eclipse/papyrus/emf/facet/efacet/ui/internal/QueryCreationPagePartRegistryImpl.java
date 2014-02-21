@@ -9,7 +9,7 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,14 +20,14 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 
 //TODO @Deprecated must be removed after a refactoring planed by https://bugs.eclipse.org/bugs/show_bug.cgi?id=364601
 @Deprecated
 public class QueryCreationPagePartRegistryImpl implements IQueryCreationPagePartRegistry {
 
-	private static final String EXTENSION_POINT_ID = "org.eclipse.emf.facet.efacet.ui.queryFactoryWizardPageRegistration"; //$NON-NLS-1$
+	private static final String EXTENSION_POINT_ID = "org.eclipse.papyrus.emf.facet.efacet.ui.queryFactoryWizardPageRegistration"; //$NON-NLS-1$
 	private static final String WIZARD_PAGE = "wizardPage"; //$NON-NLS-1$
 	private static final String MANAGED_TYPE_NAME = "managedQueryTypeName"; //$NON-NLS-1$
 

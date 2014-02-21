@@ -9,9 +9,9 @@
  *  Contributors:
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  */
-package org.eclipse.emf.facet.custom.ui.internal.custompt;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt;
 
-import org.eclipse.emf.facet.custom.metamodel.custompt.IColor;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor;
 
 public class Color implements IColor {
 

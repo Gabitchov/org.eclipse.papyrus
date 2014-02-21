@@ -11,19 +11,16 @@
  *   	Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationCatalog;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationPropertiesCatalog;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogFactory;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage;
-
-import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationCatalog;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationPropertiesCatalog;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +54,7 @@ public class CustomizationcatalogPackageImpl extends EPackageImpl implements Cus
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

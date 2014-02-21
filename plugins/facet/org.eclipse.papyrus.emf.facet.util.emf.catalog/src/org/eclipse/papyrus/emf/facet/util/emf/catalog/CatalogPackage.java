@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.util.emf.catalog;
+package org.eclipse.papyrus.emf.facet.util.emf.catalog;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.util.emf.catalog.CatalogFactory
+ * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogFactory
  * @model kind="package"
  * @generated
  */
@@ -64,14 +64,14 @@ public interface CatalogPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CatalogPackage eINSTANCE = org.eclipse.emf.facet.util.emf.catalog.impl.CatalogPackageImpl.init();
+	CatalogPackage eINSTANCE = org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.util.emf.catalog.impl.CatalogSetImpl <em>Set</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogSetImpl <em>Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.util.emf.catalog.impl.CatalogSetImpl
-	 * @see org.eclipse.emf.facet.util.emf.catalog.impl.CatalogPackageImpl#getCatalogSet()
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogSetImpl
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogPackageImpl#getCatalogSet()
 	 * @generated
 	 */
 	int CATALOG_SET = 0;
@@ -95,11 +95,11 @@ public interface CatalogPackage extends EPackage {
 	int CATALOG_SET_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.util.emf.catalog.Catalog <em>Catalog</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog <em>Catalog</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.util.emf.catalog.Catalog
-	 * @see org.eclipse.emf.facet.util.emf.catalog.impl.CatalogPackageImpl#getCatalog()
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogPackageImpl#getCatalog()
 	 * @generated
 	 */
 	int CATALOG = 1;
@@ -133,53 +133,53 @@ public interface CatalogPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.util.emf.catalog.CatalogSet <em>Set</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet <em>Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Set</em>'.
-	 * @see org.eclipse.emf.facet.util.emf.catalog.CatalogSet
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet
 	 * @generated
 	 */
 	EClass getCatalogSet();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.util.emf.catalog.CatalogSet#getCatalogs <em>Catalogs</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet#getCatalogs <em>Catalogs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Catalogs</em>'.
-	 * @see org.eclipse.emf.facet.util.emf.catalog.CatalogSet#getCatalogs()
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet#getCatalogs()
 	 * @see #getCatalogSet()
 	 * @generated
 	 */
 	EReference getCatalogSet_Catalogs();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.util.emf.catalog.Catalog <em>Catalog</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog <em>Catalog</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Catalog</em>'.
-	 * @see org.eclipse.emf.facet.util.emf.catalog.Catalog
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog
 	 * @generated
 	 */
 	EClass getCatalog();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.facet.util.emf.catalog.Catalog#getInstalledEntries <em>Installed Entries</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog#getInstalledEntries <em>Installed Entries</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Installed Entries</em>'.
-	 * @see org.eclipse.emf.facet.util.emf.catalog.Catalog#getInstalledEntries()
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog#getInstalledEntries()
 	 * @see #getCatalog()
 	 * @generated
 	 */
 	EReference getCatalog_InstalledEntries();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.util.emf.catalog.Catalog#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.emf.facet.util.emf.catalog.Catalog#getName()
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog#getName()
 	 * @see #getCatalog()
 	 * @generated
 	 */
@@ -208,11 +208,11 @@ public interface CatalogPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.util.emf.catalog.impl.CatalogSetImpl <em>Set</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogSetImpl <em>Set</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.util.emf.catalog.impl.CatalogSetImpl
-		 * @see org.eclipse.emf.facet.util.emf.catalog.impl.CatalogPackageImpl#getCatalogSet()
+		 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogSetImpl
+		 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogPackageImpl#getCatalogSet()
 		 * @generated
 		 */
 		EClass CATALOG_SET = eINSTANCE.getCatalogSet();
@@ -226,11 +226,11 @@ public interface CatalogPackage extends EPackage {
 		EReference CATALOG_SET__CATALOGS = eINSTANCE.getCatalogSet_Catalogs();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.util.emf.catalog.Catalog <em>Catalog</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog <em>Catalog</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.util.emf.catalog.Catalog
-		 * @see org.eclipse.emf.facet.util.emf.catalog.impl.CatalogPackageImpl#getCatalog()
+		 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog
+		 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.impl.CatalogPackageImpl#getCatalog()
 		 * @generated
 		 */
 		EClass CATALOG = eINSTANCE.getCatalog();

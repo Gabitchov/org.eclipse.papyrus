@@ -11,11 +11,11 @@
  *   	Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains
@@ -28,7 +28,7 @@ import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
  * </ul>
  * <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogFactory
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogFactory
  * @model kind="package"
  * @generated
  * @noextend This interface is not intended to be extended by clients.
@@ -65,14 +65,14 @@ public interface CustomizationcatalogPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CustomizationcatalogPackage eINSTANCE = org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl.init();
+	CustomizationcatalogPackage eINSTANCE = org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationCatalogImpl <em>Customization Catalog</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationCatalogImpl <em>Customization Catalog</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationCatalogImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl#getCustomizationCatalog()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationCatalogImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl#getCustomizationCatalog()
 	 * @generated
 	 */
 	int CUSTOMIZATION_CATALOG = 0;
@@ -105,11 +105,11 @@ public interface CustomizationcatalogPackage extends EPackage {
 	int CUSTOMIZATION_CATALOG_FEATURE_COUNT = CatalogPackage.CATALOG_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl <em>Customization Properties Catalog</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl <em>Customization Properties Catalog</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl#getCustomizationPropertiesCatalog()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl#getCustomizationPropertiesCatalog()
 	 * @generated
 	 */
 	int CUSTOMIZATION_PROPERTIES_CATALOG = 1;
@@ -143,21 +143,21 @@ public interface CustomizationcatalogPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationCatalog <em>Customization Catalog</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationCatalog <em>Customization Catalog</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Customization Catalog</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationCatalog
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationCatalog
 	 * @generated
 	 */
 	EClass getCustomizationCatalog();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationPropertiesCatalog <em>Customization Properties Catalog</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationPropertiesCatalog <em>Customization Properties Catalog</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Customization Properties Catalog</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationPropertiesCatalog
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationPropertiesCatalog
 	 * @generated
 	 */
 	EClass getCustomizationPropertiesCatalog();
@@ -185,21 +185,21 @@ public interface CustomizationcatalogPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationCatalogImpl <em>Customization Catalog</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationCatalogImpl <em>Customization Catalog</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationCatalogImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl#getCustomizationCatalog()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationCatalogImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl#getCustomizationCatalog()
 		 * @generated
 		 */
 		EClass CUSTOMIZATION_CATALOG = eINSTANCE.getCustomizationCatalog();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl <em>Customization Properties Catalog</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl <em>Customization Properties Catalog</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl#getCustomizationPropertiesCatalog()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationcatalogPackageImpl#getCustomizationPropertiesCatalog()
 		 * @generated
 		 */
 		EClass CUSTOMIZATION_PROPERTIES_CATALOG = eINSTANCE.getCustomizationPropertiesCatalog();

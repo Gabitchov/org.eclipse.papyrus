@@ -10,10 +10,10 @@
  *      Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.efacet.core;
+package org.eclipse.papyrus.emf.facet.efacet.core;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.efacet.core.internal.FacetCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetCatalogManagerFactory;
 
 /**
  * @since 0.2

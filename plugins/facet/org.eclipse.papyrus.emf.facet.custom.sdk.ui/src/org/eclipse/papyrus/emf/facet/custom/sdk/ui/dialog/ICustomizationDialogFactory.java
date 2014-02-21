@@ -10,11 +10,11 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Gregoire Dupe (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.dialog;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.dialog;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.dialog.CustomizationDialogFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.dialog.CustomizationDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
 import org.eclipse.swt.widgets.Display;
 
 /**

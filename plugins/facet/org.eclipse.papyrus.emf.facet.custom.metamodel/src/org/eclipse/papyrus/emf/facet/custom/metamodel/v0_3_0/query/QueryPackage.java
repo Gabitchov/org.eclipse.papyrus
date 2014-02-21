@@ -10,13 +10,13 @@
  * 		David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_3_0.query;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +29,7 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Extensibl
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryFactory
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryFactory
  * @model kind="package"
  * @generated
  */
@@ -64,14 +64,14 @@ public interface QueryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	QueryPackage eINSTANCE = org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl.QueryPackageImpl.init();
+	QueryPackage eINSTANCE = org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl.QueryPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl <em>URI Image Query</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl <em>URI Image Query</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl.QueryPackageImpl#getURIImageQuery()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl.QueryPackageImpl#getURIImageQuery()
 	 * @generated
 	 */
 	int URI_IMAGE_QUERY = 0;
@@ -114,21 +114,21 @@ public interface QueryPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery <em>URI Image Query</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery <em>URI Image Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>URI Image Query</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery
 	 * @generated
 	 */
 	EClass getURIImageQuery();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery#getUri <em>Uri</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery#getUri <em>Uri</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Uri</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery#getUri()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery#getUri()
 	 * @see #getURIImageQuery()
 	 * @generated
 	 */
@@ -157,11 +157,11 @@ public interface QueryPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl <em>URI Image Query</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl <em>URI Image Query</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl.QueryPackageImpl#getURIImageQuery()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl.QueryPackageImpl#getURIImageQuery()
 		 * @generated
 		 */
 		EClass URI_IMAGE_QUERY = eINSTANCE.getURIImageQuery();

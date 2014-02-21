@@ -10,18 +10,14 @@
  * 		David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery;
-
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.URIImageQuery;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +26,7 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.Quer
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl#getUri <em>Uri</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl.URIImageQueryImpl#getUri <em>Uri</em>}</li>
  * </ul>
  * </p>
  *

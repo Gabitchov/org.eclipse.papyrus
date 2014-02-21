@@ -7,14 +7,14 @@
  *
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
- *    Nicolas Bros (Mia-Software) - Bug 339653 - org.eclipse.emf.facet.widgets API Cleaning
+ *    Nicolas Bros (Mia-Software) - Bug 339653 - org.eclipse.papyrus.emf.facet.widgets API Cleaning
  *    Vincent Lorenzo (CEA-LIST) - bug 341192 - Add the method to get the image for Select Columns To Hide in the ImageManager
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.internal;
+package org.eclipse.papyrus.emf.facet.widgets.internal;
 
 import java.net.URL;
 
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.graphics.Image;

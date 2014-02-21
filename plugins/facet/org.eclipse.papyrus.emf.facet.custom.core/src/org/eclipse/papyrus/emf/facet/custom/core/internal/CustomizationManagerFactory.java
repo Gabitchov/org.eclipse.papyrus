@@ -10,12 +10,12 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.custom.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.core.internal;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.core.ICustomizationManagerFactory;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
 
 public class CustomizationManagerFactory implements
 		ICustomizationManagerFactory {

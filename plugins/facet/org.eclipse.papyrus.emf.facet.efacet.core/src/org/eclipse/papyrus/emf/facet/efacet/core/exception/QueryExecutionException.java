@@ -8,9 +8,9 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.efacet.core.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.exception;
 
-import org.eclipse.emf.facet.efacet.core.internal.exception.DerivedTypedElementEvaluationException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.DerivedTypedElementEvaluationException;
 
 /**
  * This exception occurs when something goes wrong during the execution of a
@@ -22,7 +22,7 @@ import org.eclipse.emf.facet.efacet.core.internal.exception.DerivedTypedElementE
 @Deprecated
 public class QueryExecutionException extends QueryException {
 	// This class is a copy of
-	// org.eclipse.emf.facet.infra.query.core.ModelQueryExecutionException
+	// org.eclipse.papyrus.emf.facet.infra.query.core.ModelQueryExecutionException
 
 	private static final long serialVersionUID = -8464252257666617685L;
 

@@ -8,16 +8,16 @@
  * Contributors:
  *     Nicolas Bros (Mia-Software) - Bug 372865 - FacetSet selection dialog
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.dialogs;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.dialogs;
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.dialog.IFacetSetSelectionDialog;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.dialog.IFacetSetSelectionDialogFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.dialog.IFacetSetSelectionDialog;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.dialog.IFacetSetSelectionDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 

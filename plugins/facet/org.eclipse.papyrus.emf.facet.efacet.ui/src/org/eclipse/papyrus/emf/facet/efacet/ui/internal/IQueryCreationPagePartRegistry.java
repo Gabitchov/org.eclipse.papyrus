@@ -9,11 +9,11 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal;
 
 import java.util.Map;
 
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
 
 
 /**

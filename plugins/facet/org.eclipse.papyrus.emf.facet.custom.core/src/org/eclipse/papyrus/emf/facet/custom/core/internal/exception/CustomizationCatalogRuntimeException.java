@@ -10,7 +10,7 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.custom.core.internal.exception;
+package org.eclipse.papyrus.emf.facet.custom.core.internal.exception;
 
 /**
  * @noinstantiate This class is not intended to be instantiated by clients.

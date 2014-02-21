@@ -9,7 +9,7 @@
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.ui;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.ui;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.widgets.celleditors.ICommandFactory;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ICommandFactory;
 
 public final class EditingUtils {
 	private EditingUtils() {

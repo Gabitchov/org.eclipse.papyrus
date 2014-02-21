@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;

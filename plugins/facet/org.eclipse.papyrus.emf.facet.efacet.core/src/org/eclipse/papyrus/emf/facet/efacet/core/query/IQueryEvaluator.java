@@ -10,16 +10,16 @@
  *   Nicolas Bros (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  *   Nicolas Bros (Mia-Software) - Bug 376941 - [EFacet] Facet operation arguments in Facet model
  */
-package org.eclipse.emf.facet.efacet.core.query;
+package org.eclipse.papyrus.emf.facet.efacet.core.query;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.ParameterValue;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.QueryResult;
-import org.eclipse.emf.facet.efacet.core.exception.QueryException;
-import org.eclipse.emf.facet.efacet.core.exception.QueryExecutionException;
+import org.eclipse.papyrus.emf.facet.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.QueryResult;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryException;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryExecutionException;
 
 /**
  * This interface is the EMF Facet QueryEvaluator for query evaluation

@@ -9,11 +9,11 @@
  * Contributors:
  *  Vincent Lorenzo (CEA-LIST) - Bug 357621 - Improve the label displayed for Customization and Facets
  */
-package org.eclipse.emf.facet.efacet.ui.internal.preferences;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.emf.facet.efacet.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.ui.internal.widget.ETypedElementSelectionControl;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget.ETypedElementSelectionControl;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 public class PreferencesInitializer extends AbstractPreferenceInitializer {

@@ -9,7 +9,7 @@
  *    Gregoire Dupe (Mia-Software) - Bug 375087 - [Table] ITableWidget.addColumn(List<ETypedElement>, List<FacetSet>)
  *    Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  */
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,14 +18,14 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.facet.efacet.core.internal.exported.IResolver;
-import org.eclipse.emf.facet.efacet.core.internal.exported.IResolverManager;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exported.IResolver;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exported.IResolverManager;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 
 public class ResolverManager implements IResolverManager {
 
 	private static final String ATT_NAME = "class"; //$NON-NLS-1$
-	private static final String EXT_POINT_ID = "org.eclipse.emf.facet.efacet.core.internal.resolver"; //$NON-NLS-1$
+	private static final String EXT_POINT_ID = "org.eclipse.papyrus.emf.facet.efacet.core.internal.resolver"; //$NON-NLS-1$
 	private final List<IResolver> resolvers = new ArrayList<IResolver>();
 
 	public ResolverManager() {

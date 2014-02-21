@@ -11,7 +11,7 @@
  * 
  * 
  */
-package org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl;
+package org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.emf.facet.query.ocl.metamodel.oclquery.*;
+import org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.*;
 
 /**
  * <!-- begin-user-doc -->

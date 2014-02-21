@@ -13,7 +13,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 380391 - PluginUtils#importPlugin should use the Bundle API
  *    Gregoire Dupe (Mia-Software) - Bug 408344 - [Releng] Deep folders cause build break
  *******************************************************************************/
-package org.eclipse.emf.facet.util.pde.core.internal;
+package org.eclipse.papyrus.emf.facet.util.pde.core.internal;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
@@ -56,10 +56,10 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.core.internal.exported.FileUtils;
-import org.eclipse.emf.facet.util.core.internal.exported.FolderUtils;
-import org.eclipse.emf.facet.util.core.internal.exported.IFilter;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.FileUtils;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.FolderUtils;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.IFilter;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaConventions;
@@ -86,7 +86,7 @@ import com.ibm.icu.lang.UCharacter;
 public final class PluginUtils {
 
 	// This class has been copied from
-	// org.eclipse.emf.facet.infra.common.core.internal.utils.PluginUtils
+	// org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.PluginUtils
 
 	private PluginUtils() {
 		// utilities class

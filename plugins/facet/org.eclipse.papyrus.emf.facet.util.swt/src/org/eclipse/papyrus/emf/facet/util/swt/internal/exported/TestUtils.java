@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 378475 - unit test failures after table refactoring
  *******************************************************************************/
-package org.eclipse.emf.facet.util.swt.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.swt.internal.exported;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IViewPart;

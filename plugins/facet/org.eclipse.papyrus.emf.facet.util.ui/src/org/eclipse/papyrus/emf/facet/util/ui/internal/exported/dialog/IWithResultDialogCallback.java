@@ -11,7 +11,7 @@
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  *      Grégoire Dupé (Mia-Software) - Bug 406570 - Handlers to Save and SaveAs EMF resources
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.dialog;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog;
 
 
 /**

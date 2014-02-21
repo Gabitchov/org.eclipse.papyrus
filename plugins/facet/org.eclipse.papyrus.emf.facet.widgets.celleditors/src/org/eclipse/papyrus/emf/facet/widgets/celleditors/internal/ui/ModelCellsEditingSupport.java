@@ -8,19 +8,19 @@
  *
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
- *   Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *   Nicolas Bros (Mia-Software) - Bug 339855 - ModelCellEditor class should not be exposed
  *   Nicolas Guyomar (Mia-Software) - Bug 342451 - To be able to edit derived facet attributes and derived facet references in a table
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.ui;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.ui;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.widgets.celleditors.ICellEditorsRegistry;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ICellEditorsRegistry;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditHandler;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.EditingSupport;

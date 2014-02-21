@@ -10,12 +10,12 @@
  *      Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.efacet.core.internal;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.efacet.core.IFacetSetCatalogManager;
-import org.eclipse.emf.facet.efacet.core.IFacetSetCatalogManagerFactory;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetSetCatalogManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetSetCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManagerFactory;
 
 public class FacetCatalogManagerFactory implements IFacetSetCatalogManagerFactory {
 

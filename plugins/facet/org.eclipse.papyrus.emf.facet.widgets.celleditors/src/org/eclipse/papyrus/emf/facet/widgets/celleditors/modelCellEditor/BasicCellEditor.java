@@ -9,7 +9,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
@@ -19,12 +19,12 @@ package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor;
  * The following features are supported:
  * <ul>
  * <li>
- * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor#getBasicCellEditorImpl
+ * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor#getBasicCellEditorImpl
  * <em>Basic Cell Editor Impl</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getBasicCellEditor()
+ * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getBasicCellEditor()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface BasicCellEditor extends AbstractModelCellEditor {
 	 * 
 	 * @return the value of the '<em>Basic Cell Editor Impl</em>' attribute.
 	 * @see #setBasicCellEditorImpl(String)
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getBasicCellEditor_BasicCellEditorImpl()
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getBasicCellEditor_BasicCellEditorImpl()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -48,7 +48,7 @@ public interface BasicCellEditor extends AbstractModelCellEditor {
 
 	/**
 	 * Sets the value of the '
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor#getBasicCellEditorImpl
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor#getBasicCellEditorImpl
 	 * <em>Basic Cell Editor Impl</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 

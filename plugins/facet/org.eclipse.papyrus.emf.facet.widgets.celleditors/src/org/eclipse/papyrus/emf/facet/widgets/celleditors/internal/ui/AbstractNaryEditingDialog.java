@@ -9,14 +9,14 @@
  * Contributors:
  *   Nicolas Guyomar (Mia-Software) - Bug 342451 - To be able to edit derived facet attributes and derived facet references in a table
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.ui;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditHandler;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;

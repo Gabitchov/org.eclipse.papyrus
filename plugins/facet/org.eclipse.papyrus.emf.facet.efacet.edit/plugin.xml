@@ -20,7 +20,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
             uri="http://www.eclipse.org/emf/facet/efacet/0.1.incubation"
-            class="org.eclipse.emf.facet.efacet.provider.EFacetItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.emf.facet.efacet.provider.EFacetItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

@@ -9,14 +9,13 @@
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *    Gregoire Dupe (Mia-Software) - Bug 386387 - [CustomizedTreeContentProvider] The TreeElements are not preserved between two calls to getElements()
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.util;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.*;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +27,7 @@ import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage
  * @generated
  */
 public class TreeproxySwitch<T> {

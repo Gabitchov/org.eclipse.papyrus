@@ -13,11 +13,11 @@
 package org.eclipse.papyrus.uml.modelexplorer.queries;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 
 /**
  * Return tru eif the element is a diagram * FIXME : delete this class when the bug EMF-Facet 365744 will be corrected!

@@ -10,7 +10,7 @@
  * 		David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_3_0.query;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EFactory;
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.QueryPackage
  * @generated
  * @since 0.3
  */
@@ -29,7 +29,7 @@ public interface QueryFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	QueryFactory eINSTANCE = org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl.QueryFactoryImpl.init();
+	QueryFactory eINSTANCE = org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl.QueryFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>URI Image Query</em>'.

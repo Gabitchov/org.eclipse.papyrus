@@ -11,12 +11,12 @@
  *  	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  *  
  */
-package org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery;
+package org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Extensibl
  * </ul>
  * <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryFactory
+ * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryFactory
  * @model kind="package"
  * @generated
  * @noextend This interface is not intended to be extended by clients.
@@ -67,14 +67,14 @@ public interface JavaQueryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	JavaQueryPackage eINSTANCE = org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryPackageImpl.init();
+	JavaQueryPackage eINSTANCE = org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl <em>Java Query</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl <em>Java Query</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl
-	 * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryPackageImpl#getJavaQuery()
+	 * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl
+	 * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryPackageImpl#getJavaQuery()
 	 * @generated
 	 */
 	int JAVA_QUERY = 0;
@@ -117,21 +117,21 @@ public interface JavaQueryPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery <em>Java Query</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery <em>Java Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Java Query</em>'.
-	 * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery
+	 * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery
 	 * @generated
 	 */
 	EClass getJavaQuery();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Implementation Class Name</em>'.
-	 * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery#getImplementationClassName()
+	 * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery#getImplementationClassName()
 	 * @see #getJavaQuery()
 	 * @generated
 	 */
@@ -160,11 +160,11 @@ public interface JavaQueryPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl <em>Java Query</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl <em>Java Query</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl
-		 * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryPackageImpl#getJavaQuery()
+		 * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl
+		 * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryPackageImpl#getJavaQuery()
 		 * @generated
 		 */
 		EClass JAVA_QUERY = eINSTANCE.getJavaQuery();

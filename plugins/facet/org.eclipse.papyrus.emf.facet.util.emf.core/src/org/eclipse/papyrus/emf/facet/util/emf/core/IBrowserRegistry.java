@@ -10,14 +10,14 @@
  *    Fabien Giquel (Mia-Software) -Bug 335218 - Extension point for registering EObject, EPackage, model editor
  *    Nicolas Bros (Mia-Software) - Bug 335218 - Extension point for registering EObject, EPackage, model editor
  ***********************************************************************************/
-package org.eclipse.emf.facet.util.emf.core;
+package org.eclipse.papyrus.emf.facet.util.emf.core;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.util.emf.core.internal.registry.BrowserRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.registry.BrowserRegistry;
 
 /**
  * A registry for the {@link EObject}, {@link EPackage}, and {@link Resource} browser opener

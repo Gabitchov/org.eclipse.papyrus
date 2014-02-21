@@ -9,15 +9,15 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal.handlers;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.facet.efacet.ui.internal.IFacetUIFactory;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IFacetChildrenWizard;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.IFacetUIFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IFacetChildrenWizard;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;

@@ -4,13 +4,13 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/emf/facet/query/java/0.2.incubation/javaquery"
-            class="org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage"
+            class="org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage"
             genModel="model/javaQuery-0.2.0.genmodel"/>
    </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/emf/facet/query/java/0.2.incubation"
-            class="org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage"
+            class="org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage"
             genModel="model/javaQuery-0.2.0.genmodel"/>
    </extension>
 </plugin>

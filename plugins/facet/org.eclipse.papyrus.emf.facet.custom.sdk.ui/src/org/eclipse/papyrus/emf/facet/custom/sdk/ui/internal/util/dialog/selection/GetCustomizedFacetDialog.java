@@ -10,14 +10,14 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.dialog.selection;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.dialog.selection;
 
-import org.eclipse.emf.facet.custom.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.dialog.AbstractGetCustomizationDialog;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.getorcreate.GetCustomizedFacetWidget;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.getorcreate.GetFiltredCustomizedFacetWidget;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.dialog.AbstractGetCustomizationDialog;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.getorcreate.GetCustomizedFacetWidget;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.getorcreate.GetFiltredCustomizedFacetWidget;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
 
 /**
  * Concrete dialog for the selection of the customized facet.

@@ -9,9 +9,9 @@
  * Contributors:
  * 		Thomas Cicognani (Soft-Maint) - Bug 406565 - Ok Dialog
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.dialog;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog;
 
-import org.eclipse.emf.facet.util.ui.internal.dialog.OkDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.dialog.OkDialogFactory;
 import org.eclipse.swt.widgets.Shell;
 
 /**

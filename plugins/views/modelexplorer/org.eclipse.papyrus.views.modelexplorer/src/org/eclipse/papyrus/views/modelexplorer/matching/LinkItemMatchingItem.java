@@ -16,7 +16,7 @@ package org.eclipse.papyrus.views.modelexplorer.matching;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 
 /***
  * An IMatchingItem implementation that matches for LinkItems

@@ -14,16 +14,14 @@
  *     Grégoire Dupé (Mia-Software) - Bug 361817 - [Restructuring] Dynamic load to the facet catalog
  * 
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.util;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.*;
-
-import org.eclipse.emf.facet.util.emf.catalog.Catalog;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.*;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +33,7 @@ import org.eclipse.emf.facet.util.emf.catalog.Catalog;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.EfacetcatalogPackage
  * @generated
  */
 public class EfacetcatalogSwitch<T> {

@@ -9,7 +9,7 @@
  *  Contributors:
  *  	Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  */
-package org.eclipse.emf.facet.efacet.core.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.exception;
 
 /**
  * @since 0.2

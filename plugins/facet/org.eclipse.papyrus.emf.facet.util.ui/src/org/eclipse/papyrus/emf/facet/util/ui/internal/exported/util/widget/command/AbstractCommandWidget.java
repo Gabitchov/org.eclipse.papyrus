@@ -10,14 +10,14 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command;
 
 import org.eclipse.core.commands.Command;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.dialog.AbstractDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.dialog.AbstractMainDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
-import org.eclipse.emf.facet.util.ui.utils.WidgetProperties;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.dialog.AbstractDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.dialog.AbstractMainDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.widget.IAbstractWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.WidgetProperties;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -53,7 +53,7 @@ public abstract class AbstractCommandWidget extends AbstractWidget implements IC
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget#getCommand()
+	 * @see org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget#getCommand()
 	 */
 	public abstract Object getCommand();
 

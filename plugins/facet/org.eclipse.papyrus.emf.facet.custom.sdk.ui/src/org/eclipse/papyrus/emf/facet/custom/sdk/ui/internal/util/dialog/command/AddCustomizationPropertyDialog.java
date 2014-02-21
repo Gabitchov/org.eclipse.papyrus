@@ -10,16 +10,16 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.dialog.command;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.dialog.command;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.dialog.AbstractCustomizationMainDialog;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.command.AddCustomizationPropertyWidget;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.dialog.AbstractCustomizationMainDialog;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.command.AddCustomizationPropertyWidget;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization;
 
 /**
  * Concrete dialog for the creation of a customization property into a

@@ -18,7 +18,7 @@
  *       Gregoire Dupe (Mia-software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimeFactory
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimeFactory
  * @model kind="package"
  * @generated
  */
@@ -72,14 +72,14 @@ public interface RuntimePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RuntimePackage eINSTANCE = org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl.init();
+	RuntimePackage eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl <em>ETyped Element Result</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl <em>ETyped Element Result</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementResult()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementResult()
 	 * @generated
 	 */
 	int ETYPED_ELEMENT_RESULT = 4;
@@ -130,11 +130,11 @@ public interface RuntimePackage extends EPackage {
 	int ETYPED_ELEMENT_RESULT_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeResultImpl <em>ETyped Element Primitive Type Result</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeResultImpl <em>ETyped Element Primitive Type Result</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeResultImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementPrimitiveTypeResult()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeResultImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementPrimitiveTypeResult()
 	 * @generated
 	 */
 	int ETYPED_ELEMENT_PRIMITIVE_TYPE_RESULT = 0;
@@ -194,11 +194,11 @@ public interface RuntimePackage extends EPackage {
 	int ETYPED_ELEMENT_PRIMITIVE_TYPE_RESULT_FEATURE_COUNT = ETYPED_ELEMENT_RESULT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectResultImpl <em>ETyped Element EObject Result</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectResultImpl <em>ETyped Element EObject Result</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectResultImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementEObjectResult()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectResultImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementEObjectResult()
 	 * @generated
 	 */
 	int ETYPED_ELEMENT_EOBJECT_RESULT = 1;
@@ -258,11 +258,11 @@ public interface RuntimePackage extends EPackage {
 	int ETYPED_ELEMENT_EOBJECT_RESULT_FEATURE_COUNT = ETYPED_ELEMENT_RESULT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeListResultImpl <em>ETyped Element Primitive Type List Result</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeListResultImpl <em>ETyped Element Primitive Type List Result</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeListResultImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementPrimitiveTypeListResult()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeListResultImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementPrimitiveTypeListResult()
 	 * @generated
 	 */
 	int ETYPED_ELEMENT_PRIMITIVE_TYPE_LIST_RESULT = 2;
@@ -322,11 +322,11 @@ public interface RuntimePackage extends EPackage {
 	int ETYPED_ELEMENT_PRIMITIVE_TYPE_LIST_RESULT_FEATURE_COUNT = ETYPED_ELEMENT_RESULT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectListResultImpl <em>ETyped Element EObject List Result</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectListResultImpl <em>ETyped Element EObject List Result</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectListResultImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementEObjectListResult()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectListResultImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementEObjectListResult()
 	 * @generated
 	 */
 	int ETYPED_ELEMENT_EOBJECT_LIST_RESULT = 3;
@@ -390,145 +390,145 @@ public interface RuntimePackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see java.lang.Throwable
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getJavaException()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getJavaException()
 	 * @generated
 	 */
 	int JAVA_EXCEPTION = 5;
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult <em>ETyped Element Primitive Type Result</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult <em>ETyped Element Primitive Type Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ETyped Element Primitive Type Result</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult
 	 * @generated
 	 */
 	EClass getETypedElementPrimitiveTypeResult();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult#getResult <em>Result</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult#getResult <em>Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Result</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult#getResult()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult#getResult()
 	 * @see #getETypedElementPrimitiveTypeResult()
 	 * @generated
 	 */
 	EAttribute getETypedElementPrimitiveTypeResult_Result();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult <em>ETyped Element EObject Result</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult <em>ETyped Element EObject Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ETyped Element EObject Result</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult
 	 * @generated
 	 */
 	EClass getETypedElementEObjectResult();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult#getResult <em>Result</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult#getResult <em>Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Result</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult#getResult()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult#getResult()
 	 * @see #getETypedElementEObjectResult()
 	 * @generated
 	 */
 	EReference getETypedElementEObjectResult_Result();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult <em>ETyped Element Primitive Type List Result</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult <em>ETyped Element Primitive Type List Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ETyped Element Primitive Type List Result</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult
 	 * @generated
 	 */
 	EClass getETypedElementPrimitiveTypeListResult();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult#getResultList <em>Result List</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult#getResultList <em>Result List</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Result List</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult#getResultList()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult#getResultList()
 	 * @see #getETypedElementPrimitiveTypeListResult()
 	 * @generated
 	 */
 	EAttribute getETypedElementPrimitiveTypeListResult_ResultList();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult <em>ETyped Element EObject List Result</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult <em>ETyped Element EObject List Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ETyped Element EObject List Result</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult
 	 * @generated
 	 */
 	EClass getETypedElementEObjectListResult();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult#getResultList <em>Result List</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult#getResultList <em>Result List</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Result List</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult#getResultList()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult#getResultList()
 	 * @see #getETypedElementEObjectListResult()
 	 * @generated
 	 */
 	EReference getETypedElementEObjectListResult_ResultList();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult <em>ETyped Element Result</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult <em>ETyped Element Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ETyped Element Result</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult
 	 * @generated
 	 */
 	EClass getETypedElementResult();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getDerivedTypedElement <em>Derived Typed Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getDerivedTypedElement <em>Derived Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Derived Typed Element</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getDerivedTypedElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getDerivedTypedElement()
 	 * @see #getETypedElementResult()
 	 * @generated
 	 */
 	EReference getETypedElementResult_DerivedTypedElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getParameterValues <em>Parameter Values</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getParameterValues <em>Parameter Values</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Parameter Values</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getParameterValues()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getParameterValues()
 	 * @see #getETypedElementResult()
 	 * @generated
 	 */
 	EReference getETypedElementResult_ParameterValues();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getSource()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getSource()
 	 * @see #getETypedElementResult()
 	 * @generated
 	 */
 	EReference getETypedElementResult_Source();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getException <em>Exception</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getException <em>Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Exception</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getException()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getException()
 	 * @see #getETypedElementResult()
 	 * @generated
 	 */
@@ -568,11 +568,11 @@ public interface RuntimePackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeResultImpl <em>ETyped Element Primitive Type Result</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeResultImpl <em>ETyped Element Primitive Type Result</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeResultImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementPrimitiveTypeResult()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeResultImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementPrimitiveTypeResult()
 		 * @generated
 		 */
 		EClass ETYPED_ELEMENT_PRIMITIVE_TYPE_RESULT = eINSTANCE.getETypedElementPrimitiveTypeResult();
@@ -586,11 +586,11 @@ public interface RuntimePackage extends EPackage {
 		EAttribute ETYPED_ELEMENT_PRIMITIVE_TYPE_RESULT__RESULT = eINSTANCE.getETypedElementPrimitiveTypeResult_Result();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectResultImpl <em>ETyped Element EObject Result</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectResultImpl <em>ETyped Element EObject Result</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectResultImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementEObjectResult()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectResultImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementEObjectResult()
 		 * @generated
 		 */
 		EClass ETYPED_ELEMENT_EOBJECT_RESULT = eINSTANCE.getETypedElementEObjectResult();
@@ -604,11 +604,11 @@ public interface RuntimePackage extends EPackage {
 		EReference ETYPED_ELEMENT_EOBJECT_RESULT__RESULT = eINSTANCE.getETypedElementEObjectResult_Result();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeListResultImpl <em>ETyped Element Primitive Type List Result</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeListResultImpl <em>ETyped Element Primitive Type List Result</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeListResultImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementPrimitiveTypeListResult()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementPrimitiveTypeListResultImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementPrimitiveTypeListResult()
 		 * @generated
 		 */
 		EClass ETYPED_ELEMENT_PRIMITIVE_TYPE_LIST_RESULT = eINSTANCE.getETypedElementPrimitiveTypeListResult();
@@ -622,11 +622,11 @@ public interface RuntimePackage extends EPackage {
 		EAttribute ETYPED_ELEMENT_PRIMITIVE_TYPE_LIST_RESULT__RESULT_LIST = eINSTANCE.getETypedElementPrimitiveTypeListResult_ResultList();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectListResultImpl <em>ETyped Element EObject List Result</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectListResultImpl <em>ETyped Element EObject List Result</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectListResultImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementEObjectListResult()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectListResultImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementEObjectListResult()
 		 * @generated
 		 */
 		EClass ETYPED_ELEMENT_EOBJECT_LIST_RESULT = eINSTANCE.getETypedElementEObjectListResult();
@@ -640,11 +640,11 @@ public interface RuntimePackage extends EPackage {
 		EReference ETYPED_ELEMENT_EOBJECT_LIST_RESULT__RESULT_LIST = eINSTANCE.getETypedElementEObjectListResult_ResultList();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl <em>ETyped Element Result</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl <em>ETyped Element Result</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementResult()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getETypedElementResult()
 		 * @generated
 		 */
 		EClass ETYPED_ELEMENT_RESULT = eINSTANCE.getETypedElementResult();
@@ -686,7 +686,7 @@ public interface RuntimePackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see java.lang.Throwable
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getJavaException()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.RuntimePackageImpl#getJavaException()
 		 * @generated
 		 */
 		EDataType JAVA_EXCEPTION = eINSTANCE.getJavaException();

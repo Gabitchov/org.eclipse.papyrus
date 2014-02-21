@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.widget.celleditors" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.widget.celleditors" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.facet.widget.celleditors" id="compositeEditorFactories" name="Composite cell editor factories"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.widget.celleditors" id="compositeEditorFactories" name="Composite cell editor factories"/>
       </appinfo>
       <documentation>
          Use this extension point to provide new composite cell editors factories, that are used to find the right cell editor composite to use for a given type. Each factory handles a single type.
@@ -60,7 +60,7 @@
                   A factory implementation to create composite cell editors for a specific type handled by the factory. The factory must implement CompositeEditorFactory.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.widgets.celleditors.ICompositeEditorFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.widgets.celleditors.ICompositeEditorFactory"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -82,9 +82,9 @@
       </appinfo>
       <documentation>
          &lt;pre&gt;
-   &lt;extension point=&quot;org.eclipse.emf.facet.widgets.celleditors.compositeEditorFactories&quot;&gt;
-      &lt;compositeEditorFactory class=&quot;org.eclipse.emf.facet.widgets.celleditors.core.composite.factories.CoreIResourceCompositeFactory&quot;/&gt;
-      &lt;compositeEditorFactory class=&quot;org.eclipse.emf.facet.widgets.celleditors.core.composite.factories.CoreIFileCompositeFactory&quot;/&gt;
+   &lt;extension point=&quot;org.eclipse.papyrus.emf.facet.widgets.celleditors.compositeEditorFactories&quot;&gt;
+      &lt;compositeEditorFactory class=&quot;org.eclipse.papyrus.emf.facet.widgets.celleditors.core.composite.factories.CoreIResourceCompositeFactory&quot;/&gt;
+      &lt;compositeEditorFactory class=&quot;org.eclipse.papyrus.emf.facet.widgets.celleditors.core.composite.factories.CoreIFileCompositeFactory&quot;/&gt;
    &lt;/extension&gt;
 &lt;/pre&gt;
       </documentation>
@@ -96,7 +96,7 @@
       </appinfo>
       <documentation>
          &lt;p&gt;
-Composite cell editor factories must implement &lt;tt&gt; org.eclipse.emf.facet.widgets.celleditors.core.composite.CompositeEditorFactory&amp;lt;T&amp;gt;&lt;/tt&gt;
+Composite cell editor factories must implement &lt;tt&gt; org.eclipse.papyrus.emf.facet.widgets.celleditors.core.composite.CompositeEditorFactory&amp;lt;T&amp;gt;&lt;/tt&gt;
 &lt;/p&gt;
 
 
@@ -110,8 +110,8 @@ Composite cell editor factories must implement &lt;tt&gt; org.eclipse.emf.facet.
       <documentation>
          &lt;p&gt;
 Look at cell editor implementations in the following packages:&lt;ul&gt;
-&lt;li&gt;org.eclipse.emf.facet.widgets.celleditors.core.composite.factories
-&lt;li&gt;org.eclipse.emf.facet.widgets.celleditors.ecore.composite
+&lt;li&gt;org.eclipse.papyrus.emf.facet.widgets.celleditors.core.composite.factories
+&lt;li&gt;org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite
 &lt;/ul&gt;
 &lt;/p&gt;
       </documentation>

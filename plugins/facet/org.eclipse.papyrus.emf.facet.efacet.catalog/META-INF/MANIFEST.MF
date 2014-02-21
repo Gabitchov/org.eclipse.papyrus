@@ -12,5 +12,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.emf.facet.efacet,
  org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="0.2.0"
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: org.eclipse.emf.facet.efacet.catalog.plugin.Activator
-Export-Package: org.eclipse.emf.facet.efacet.catalog.efacetcatalog
+Bundle-Activator: org.eclipse.papyrus.emf.facet.efacet.catalog.plugin.Activator
+Export-Package: org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog

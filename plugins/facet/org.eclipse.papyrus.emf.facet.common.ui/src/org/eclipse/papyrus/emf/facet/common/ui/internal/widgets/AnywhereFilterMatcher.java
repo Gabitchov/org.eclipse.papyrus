@@ -8,9 +8,9 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software)
  *******************************************************************************/
-package org.eclipse.emf.facet.common.ui.internal.widgets;
+package org.eclipse.papyrus.emf.facet.common.ui.internal.widgets;
 
-import org.eclipse.emf.facet.common.core.internal.utils.StringMatcher;
+import org.eclipse.papyrus.emf.facet.common.core.internal.utils.StringMatcher;
 import org.eclipse.ui.dialogs.FilteredList.FilterMatcher;
 
 /** This is a matcher that matches anywhere, not just at the beginning. */

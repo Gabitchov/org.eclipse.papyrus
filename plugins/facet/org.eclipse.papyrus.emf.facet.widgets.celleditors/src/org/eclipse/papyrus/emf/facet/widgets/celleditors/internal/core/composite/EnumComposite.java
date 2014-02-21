@@ -8,16 +8,16 @@
  *
  * Contributors:
  *   Gregoire Dupe (Mia-Software) - initial API and implementation
- *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *   Nicolas Bros (Mia-Software) - Bug 334539 - [celleditors] change listener
  *   Gregoire Dupe (Mia-Software) - Bug 344563 - NPE with Enum Editor
  *   Nicolas Guyomar (Mia-Software) - Bug 344563 - NPE with Enum Editor 
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.core.composite;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite;
 
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
-import org.eclipse.emf.facet.widgets.celleditors.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;

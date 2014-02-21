@@ -9,11 +9,11 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.component.query;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.component.query;
 
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.properties.AbstractGetPropertyWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.properties.AbstractGetPropertyWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement;
 import org.eclipse.swt.widgets.Composite;
 
 /**

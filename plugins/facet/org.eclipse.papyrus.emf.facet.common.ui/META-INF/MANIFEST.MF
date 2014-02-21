@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.common.ui;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipse.emf.facet.common.ui.internal.Activator
+Bundle-Activator: org.eclipse.papyrus.emf.facet.common.ui.internal.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -13,11 +13,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.emf.facet.common.core;bundle-version="0.4.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.emf.facet.common.ui.internal,
- org.eclipse.emf.facet.common.ui.internal.controls,
- org.eclipse.emf.facet.common.ui.internal.controls.wrappers,
- org.eclipse.emf.facet.common.ui.internal.exported.views,
- org.eclipse.emf.facet.common.ui.internal.preference.pages,
- org.eclipse.emf.facet.common.ui.internal.views,
- org.eclipse.emf.facet.common.ui.internal.widgets
+Export-Package: org.eclipse.papyrus.emf.facet.common.ui.internal,
+ org.eclipse.papyrus.emf.facet.common.ui.internal.controls,
+ org.eclipse.papyrus.emf.facet.common.ui.internal.controls.wrappers,
+ org.eclipse.papyrus.emf.facet.common.ui.internal.exported.views,
+ org.eclipse.papyrus.emf.facet.common.ui.internal.preference.pages,
+ org.eclipse.papyrus.emf.facet.common.ui.internal.views,
+ org.eclipse.papyrus.emf.facet.common.ui.internal.widgets
 

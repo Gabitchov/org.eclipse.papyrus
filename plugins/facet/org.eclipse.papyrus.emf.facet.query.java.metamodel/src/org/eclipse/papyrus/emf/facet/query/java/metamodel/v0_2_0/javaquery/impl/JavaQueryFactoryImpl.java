@@ -11,7 +11,7 @@
  *  	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  *  
  */
-package org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl;
+package org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.*;
+import org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.*;
 
 /**
  * <!-- begin-user-doc -->

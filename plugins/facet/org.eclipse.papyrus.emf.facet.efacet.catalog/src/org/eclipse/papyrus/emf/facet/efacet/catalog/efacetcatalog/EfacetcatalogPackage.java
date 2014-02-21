@@ -11,12 +11,12 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.catalog.efacetcatalog;
+package org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta
@@ -29,7 +29,7 @@ import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
  * </ul>
  * <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogFactory
+ * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogFactory
  * @model kind="package"
  * @generated
  * @deprecated cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
@@ -66,14 +66,14 @@ public interface EfacetcatalogPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EfacetcatalogPackage eINSTANCE = org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl.init();
+	EfacetcatalogPackage eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl <em>Query Set Catalog</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl <em>Query Set Catalog</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl#getQuerySetCatalog()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl#getQuerySetCatalog()
 	 * @generated
 	 */
 	int QUERY_SET_CATALOG = 0;
@@ -115,11 +115,11 @@ public interface EfacetcatalogPackage extends EPackage {
 	int QUERY_SET_CATALOG_FEATURE_COUNT = CatalogPackage.CATALOG_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.FacetSetCatalogImpl <em>Facet Set Catalog</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.FacetSetCatalogImpl <em>Facet Set Catalog</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.FacetSetCatalogImpl
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl#getFacetSetCatalog()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.FacetSetCatalogImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl#getFacetSetCatalog()
 	 * @generated
 	 */
 	int FACET_SET_CATALOG = 1;
@@ -162,42 +162,42 @@ public interface EfacetcatalogPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog <em>Query Set Catalog</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog <em>Query Set Catalog</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Query Set Catalog</em>'.
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog
 	 * @generated
 	 */
 	EClass getQuerySetCatalog();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog#getInstalledQuerySets <em>Installed Query Sets</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog#getInstalledQuerySets <em>Installed Query Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Installed Query Sets</em>'.
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog#getInstalledQuerySets()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog#getInstalledQuerySets()
 	 * @see #getQuerySetCatalog()
 	 * @generated
 	 */
 	EReference getQuerySetCatalog_InstalledQuerySets();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog <em>Facet Set Catalog</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog <em>Facet Set Catalog</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Set Catalog</em>'.
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog
 	 * @generated
 	 */
 	EClass getFacetSetCatalog();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog#getInstalledFacetSets <em>Installed Facet Sets</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog#getInstalledFacetSets <em>Installed Facet Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Installed Facet Sets</em>'.
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog#getInstalledFacetSets()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog#getInstalledFacetSets()
 	 * @see #getFacetSetCatalog()
 	 * @generated
 	 */
@@ -226,11 +226,11 @@ public interface EfacetcatalogPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl <em>Query Set Catalog</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl <em>Query Set Catalog</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl
-		 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl#getQuerySetCatalog()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl#getQuerySetCatalog()
 		 * @generated
 		 */
 		EClass QUERY_SET_CATALOG = eINSTANCE.getQuerySetCatalog();
@@ -244,11 +244,11 @@ public interface EfacetcatalogPackage extends EPackage {
 		EReference QUERY_SET_CATALOG__INSTALLED_QUERY_SETS = eINSTANCE.getQuerySetCatalog_InstalledQuerySets();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.FacetSetCatalogImpl <em>Facet Set Catalog</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.FacetSetCatalogImpl <em>Facet Set Catalog</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.FacetSetCatalogImpl
-		 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl#getFacetSetCatalog()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.FacetSetCatalogImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogPackageImpl#getFacetSetCatalog()
 		 * @generated
 		 */
 		EClass FACET_SET_CATALOG = eINSTANCE.getFacetSetCatalog();

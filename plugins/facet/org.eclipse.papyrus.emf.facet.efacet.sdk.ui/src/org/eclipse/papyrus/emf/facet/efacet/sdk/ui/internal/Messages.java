@@ -9,8 +9,8 @@
  * Contributors:
  * 	  Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *    Nicolas Bros (Mia-Software) - Bug 370442 - rewrite the Facet loading dialog for v0.2
- *    Grégoire Dupé (Mia-Software) - copied from org.eclipse.emf.facet.infra.query.ui.Messages
- *    Nicolas Bros (Mia-Software) - copied from org.eclipse.emf.facet.infra.query.ui.Messages
+ *    Grégoire Dupé (Mia-Software) - copied from org.eclipse.papyrus.emf.facet.infra.query.ui.Messages
+ *    Nicolas Bros (Mia-Software) - copied from org.eclipse.papyrus.emf.facet.infra.query.ui.Messages
  *    Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *    Nicolas Bros (Mia-Software) - Bug 372732 - [Facet] Rewrite the catalog views for 0.2
  *    Nicolas Bros (Mia-Software) - Bug 372865 - FacetSet selection dialog
@@ -18,12 +18,12 @@
  *    Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *    Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.efacet.sdk.ui.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.messages"; //$NON-NLS-1$
 
 	public static String New;
 
@@ -158,7 +158,7 @@ public class Messages extends NLS {
 	public static String JavaQueryWizardPage_Query_name;
 	public static String Query_Select_Name_And_Type;
 	
-	//Begin copied from org.eclipse.emf.facet.infra.query.ui.Messages
+	//Begin copied from org.eclipse.papyrus.emf.facet.infra.query.ui.Messages
 	public static String Query_name;
 	public static String QueryExecutionView_0;
 	public static String QueryExecutionView_1;
@@ -195,7 +195,7 @@ public class Messages extends NLS {
 	public static String Metaclass_mustSelectMetaclass;
 	public static String ExtendedMetaClass;
 
-	//End copied from org.eclipse.emf.facet.infra.query.ui.Messages
+	//End copied from org.eclipse.papyrus.emf.facet.infra.query.ui.Messages
 
 	// Edition
 	public static String Edit_FacetSet;

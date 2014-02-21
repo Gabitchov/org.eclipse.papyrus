@@ -11,7 +11,7 @@
  *   Nicolas Bros (Mia-Software)
  *   Nicolas Bros (Mia-Software) - Bug 334539 - [celleditors] change listener
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors;
 
 import org.eclipse.swt.widgets.Composite;
 

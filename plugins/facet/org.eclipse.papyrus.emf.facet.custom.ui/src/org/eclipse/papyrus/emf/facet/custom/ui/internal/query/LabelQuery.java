@@ -13,7 +13,7 @@
  *      Gregoire Dupe (Mia-Software) - Bug 375087 - [Table] ITableWidget.addColumn(List<ETypedElement>, List<FacetSet>)
  *      Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  */
-package org.eclipse.emf.facet.custom.ui.internal.query;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.query;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProvider;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
-import org.eclipse.emf.facet.util.emf.core.ModelUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ModelUtils;
 
 public class LabelQuery implements IJavaQuery2<EObject, String> {
 
@@ -91,7 +91,7 @@ public class LabelQuery implements IJavaQuery2<EObject, String> {
 	 * @return a default name based on a string feature of the given
 	 *         {@link EObject}
 	 */
-	// from org.eclipse.emf.facet.infra.common.core.internal.utils.ModelUtils
+	// from org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.ModelUtils
 	public static String getDefaultName(final EObject eObject) {
 		String result = ""; //$NON-NLS-1$
 		// find a feature that can be used as a name
@@ -111,8 +111,8 @@ public class LabelQuery implements IJavaQuery2<EObject, String> {
 	 *            a name
 	 * @return an EStructuralFeature
 	 */
-	// Copied from org.eclipse.emf.edit.provider.ReflectiveItemProvider to org.eclipse.emf.facet.infra.common.core.internal.utils.ModelUtils
-	// Copied from org.eclipse.emf.facet.infra.common.core.internal.utils.ModelUtils
+	// Copied from org.eclipse.emf.edit.provider.ReflectiveItemProvider to org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.ModelUtils
+	// Copied from org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.ModelUtils
 	private static EStructuralFeature getLabelFeature(final EClass eClass) {
 		EAttribute result = null;
 		for (final EAttribute eAttribute : eClass.getEAllAttributes()) {

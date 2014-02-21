@@ -10,16 +10,16 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.dialog;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.dialog;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exception.SdkUiRuntimeException;
-import org.eclipse.emf.facet.util.core.DebugUtils;
-import org.eclipse.emf.facet.util.emf.core.EmfDebugUtils;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.dialog.AbstractMainDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exception.SdkUiRuntimeException;
+import org.eclipse.papyrus.emf.facet.util.core.DebugUtils;
+import org.eclipse.papyrus.emf.facet.util.emf.core.EmfDebugUtils;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.dialog.AbstractMainDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
 import org.eclipse.osgi.util.NLS;
 
 public abstract class AbstractComandMainDialog<W extends ICommandWidget>

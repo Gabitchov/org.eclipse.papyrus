@@ -10,7 +10,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *  Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.wizard.page;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.wizard.page;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -21,11 +21,11 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.wizard.page.ICreateFacetSetWizardPage;
-import org.eclipse.emf.facet.util.core.Logger;
-//import org.eclipse.emf.facet.util.core.internal.exported.PluginUtils;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.wizard.page.ICreateFacetSetWizardPage;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+//import org.eclipse.papyrus.emf.facet.util.core.internal.exported.PluginUtils;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;

@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.impl;
+package org.eclipse.papyrus.emf.facet.efacet.impl;
 
 import java.util.Collection;
 
@@ -30,10 +30,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.emf.facet.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.ParameterValue;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.QueryResult;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.QueryResult;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,17 +42,17 @@ import org.eclipse.emf.facet.efacet.QueryResult;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryResultImpl#getQuery <em>Query</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryResultImpl#getScope <em>Scope</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryResultImpl#getParameterValues <em>Parameter Values</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryResultImpl#getResult <em>Result</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryResultImpl#getException <em>Exception</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.impl.QueryResultImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl#getQuery <em>Query</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl#getScope <em>Scope</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl#getParameterValues <em>Parameter Values</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl#getException <em>Exception</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl#getSource <em>Source</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -63,7 +63,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- end-user-doc -->
 	 * @see #getQuery()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -75,7 +75,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- end-user-doc -->
 	 * @see #getScope()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -87,7 +87,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- end-user-doc -->
 	 * @see #getParameterValues()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -99,7 +99,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- end-user-doc -->
 	 * @see #getResult()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -111,7 +111,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- end-user-doc -->
 	 * @see #getResult()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -123,7 +123,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- end-user-doc -->
 	 * @see #getException()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -135,7 +135,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- end-user-doc -->
 	 * @see #getException()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -147,7 +147,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- end-user-doc -->
 	 * @see #getSource()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -157,7 +157,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	protected QueryResultImpl() {
@@ -168,7 +168,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -180,7 +180,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Query getQuery() {
@@ -200,7 +200,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Query basicGetQuery() {
@@ -211,7 +211,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setQuery(final Query newQuery) {
@@ -226,7 +226,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EObject getScope() {
@@ -246,7 +246,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EObject basicGetScope() {
@@ -257,7 +257,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setScope(final EObject newScope) {
@@ -272,7 +272,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EList<ParameterValue> getParameterValues() {
@@ -286,7 +286,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Object getResult() {
@@ -297,7 +297,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setResult(final Object newResult) {
@@ -312,7 +312,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public Exception getException() {
@@ -323,7 +323,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setException(final Exception newException) {
@@ -338,7 +338,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EObject getSource() {
@@ -358,7 +358,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public EObject basicGetSource() {
@@ -369,7 +369,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	public void setSource(final EObject newSource) {
@@ -384,7 +384,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -400,7 +400,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -435,7 +435,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@SuppressWarnings("unchecked")
@@ -469,7 +469,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -501,7 +501,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override
@@ -527,7 +527,7 @@ public class QueryResultImpl extends EObjectImpl implements QueryResult {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	@Override

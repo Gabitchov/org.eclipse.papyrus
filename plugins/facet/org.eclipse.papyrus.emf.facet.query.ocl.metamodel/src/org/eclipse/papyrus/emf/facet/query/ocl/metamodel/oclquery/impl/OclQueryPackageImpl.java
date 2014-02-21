@@ -11,7 +11,7 @@
  * 
  * 
  */
-package org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl;
+package org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -20,13 +20,13 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
 
-import org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery;
-import org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryFactory;
-import org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage;
+import org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery;
+import org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryFactory;
+import org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public class OclQueryPackageImpl extends EPackageImpl implements OclQueryPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

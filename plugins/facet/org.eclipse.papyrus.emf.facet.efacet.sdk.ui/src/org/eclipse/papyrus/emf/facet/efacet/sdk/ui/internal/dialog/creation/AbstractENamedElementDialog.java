@@ -10,14 +10,14 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.dialog.creation;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.dialog.creation;
 
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.dialog.AbstractComandMainDialog;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.dialog.AbstractComandMainDialog;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
 
 public abstract class AbstractENamedElementDialog<C extends EObject, CW extends Object, W extends IENamedElementWidget<C, CW>>
 		extends AbstractComandMainDialog<W> {

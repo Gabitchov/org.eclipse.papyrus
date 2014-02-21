@@ -9,10 +9,10 @@
  * Contributors:
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.core;
+package org.eclipse.papyrus.emf.facet.efacet.core;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.core.internal.FacetCommandFactoryFactory;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetCommandFactoryFactory;
 
 /**
  * @since 0.3

@@ -11,16 +11,16 @@
  *     Gregoire Dupe (Mia-Software) - Bug 375087 - [Table] ITableWidget.addColumn(List<ETypedElement>, List<FacetSet>)
  *     Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.exported.dialog;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.dialog;
 
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.efacet.ui.internal.dialogs.ETypedElementSelectionDialogFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.dialogs.ETypedElementSelectionDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.swt.widgets.Shell;
 
 /**

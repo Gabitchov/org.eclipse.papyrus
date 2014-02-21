@@ -12,19 +12,19 @@
  *    Nicolas Bros (Mia-Software) - Bug 361612 - New core for new version of the Facet metamodel
  *    David Couvrand (Soft-Maint) - Bug 418813 - [Query] Optimization in creation of ParameterValueList2
  */
-package org.eclipse.emf.facet.query.java.core.internal;
+package org.eclipse.papyrus.emf.facet.query.java.core.internal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 
 public class ParameterValueList2 extends ArrayList<ParameterValue> implements IParameterValueList2 {
 	// This class is a copy of
-	// org.eclipse.emf.facet.infra.query.core.java.ParameterValueList
+	// org.eclipse.papyrus.emf.facet.infra.query.core.java.ParameterValueList
 
 	private static final long serialVersionUID = 1L;
 

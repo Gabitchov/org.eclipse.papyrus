@@ -10,7 +10,7 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.widget.getorcreate;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.widget.getorcreate;
 
 import java.io.File;
 import java.util.Collection;
@@ -20,14 +20,14 @@ import java.util.Map;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.core.IFacetSetCatalogManager;
-import org.eclipse.emf.facet.efacet.core.IFacetSetCatalogManagerFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.util.emf.ui.util.EditingUtil;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.AbstractGetOrCreateFilteredElementCommandWidget;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetSetCatalogManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetSetCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.util.EditingUtil;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.AbstractGetOrCreateFilteredElementCommandWidget;
 import org.eclipse.swt.widgets.Composite;
 
 /**

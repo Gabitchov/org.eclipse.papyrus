@@ -9,7 +9,7 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 334000 Simple catalog manager
  */
-package org.eclipse.emf.facet.util.emf.catalog.plugin;
+package org.eclipse.papyrus.emf.facet.util.emf.catalog.plugin;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

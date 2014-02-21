@@ -10,7 +10,7 @@
  *   Nicolas Guyomar (Mia-Software) - Bug 338811 - A model registration method in the interface ICatalogSetManager
  *   Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.util.emf.core.exception;
+package org.eclipse.papyrus.emf.facet.util.emf.core.exception;
 
 /**
  * This exception is raised when an invalid FacetSet is found

@@ -8,20 +8,20 @@
  * Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
 
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.sync.generated;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.sync.generated;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.SynchronizedObject;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
 
 @SuppressWarnings("PMD.ExcessivePublicCount")
-public class SynchronizedENamedElementWidget <C extends org.eclipse.emf.ecore.EObject, CW extends java.lang.Object> extends SynchronizedObject<org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget <C, CW>> implements org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget <C, CW> {
+public class SynchronizedENamedElementWidget <C extends org.eclipse.emf.ecore.EObject, CW extends java.lang.Object> extends SynchronizedObject<org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget <C, CW>> implements org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget <C, CW> {
 
-	public SynchronizedENamedElementWidget(final org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget <C, CW> object, final Display display) {
+	public SynchronizedENamedElementWidget(final org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IENamedElementWidget <C, CW> object, final Display display) {
 		super(object, display);
 	}
-	public final void addListener(final org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
+	public final void addListener(final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget parm0) {
 		voidExceptionFreeRunnable(new AbstractVoidExceptionFreeRunnable() {
 			@Override
 			public void voidSafeRun() {
@@ -102,10 +102,10 @@ public class SynchronizedENamedElementWidget <C extends org.eclipse.emf.ecore.EO
 		});
 	}
 	
-	public final org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<CW> pressParentButton() {
-		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<CW>>() {
+	public final org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<CW> pressParentButton() {
+		return safeSyncExec(new AbstractExceptionFreeRunnable<org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<CW>>() {
 			@Override
-			public org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog<CW> safeRun() {
+			public org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog<CW> safeRun() {
 				return SynchronizedENamedElementWidget.this.getSynchronizedObject().pressParentButton();
 			}
 		});

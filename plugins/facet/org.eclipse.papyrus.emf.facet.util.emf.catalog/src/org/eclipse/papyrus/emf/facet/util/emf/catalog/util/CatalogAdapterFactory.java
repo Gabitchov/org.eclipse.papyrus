@@ -11,23 +11,20 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.util.emf.catalog.util;
+package org.eclipse.papyrus.emf.facet.util.emf.catalog.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.facet.util.emf.catalog.*;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.util.emf.catalog.CatalogPackage
+ * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage
  * @generated
  */
 // generated code
@@ -109,13 +106,13 @@ public class CatalogAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.util.emf.catalog.CatalogSet <em>Set</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet <em>Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.util.emf.catalog.CatalogSet
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet
 	 * @generated
 	 */
 	public Adapter createCatalogSetAdapter() {
@@ -123,13 +120,13 @@ public class CatalogAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.facet.util.emf.catalog.Catalog <em>Catalog</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog <em>Catalog</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.util.emf.catalog.Catalog
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog
 	 * @generated
 	 */
 	public Adapter createCatalogAdapter() {

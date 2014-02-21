@@ -11,9 +11,9 @@
  *  	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  *  
  */
-package org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery;
+package org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,11 +23,11 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage#getJavaQuery()
+ * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage#getJavaQuery()
  * @model
  * @generated
  */
@@ -42,14 +42,14 @@ public interface JavaQuery extends Query {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Implementation Class Name</em>' attribute.
 	 * @see #setImplementationClassName(String)
-	 * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage#getJavaQuery_ImplementationClassName()
+	 * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage#getJavaQuery_ImplementationClassName()
 	 * @model
 	 * @generated
 	 */
 	String getImplementationClassName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery#getImplementationClassName <em>Implementation Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Implementation Class Name</em>' attribute.

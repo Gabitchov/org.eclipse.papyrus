@@ -11,7 +11,7 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.provider;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,7 +30,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.util.CustomAdapterFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.util.CustomAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -81,7 +81,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -89,7 +89,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	protected CustomizationItemProvider customizationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -104,7 +104,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -112,7 +112,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	protected EClassCustomizationItemProvider eClassCustomizationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -127,7 +127,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -135,7 +135,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	protected FacetCustomizationItemProvider facetCustomizationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -150,7 +150,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -158,7 +158,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	protected ETypedElementSwitchQueryItemProvider eTypedElementSwitchQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -173,7 +173,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -181,7 +181,7 @@ public class CustomItemProviderAdapterFactory extends CustomAdapterFactory imple
 	protected ETypedElementCaseItemProvider eTypedElementCaseItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

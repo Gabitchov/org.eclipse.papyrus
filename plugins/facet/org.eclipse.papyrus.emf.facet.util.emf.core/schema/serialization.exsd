@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.widgets.celleditors" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.widgets.celleditors" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.emf.facet.widgets.celleditors" id="serialization" name="Serialization"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.widgets.celleditors" id="serialization" name="Serialization"/>
       </appInfo>
       <documentation>
          This extension point is used to specify an implementation for serializing specific types.
@@ -60,7 +60,7 @@
                   A class that implements the interface ISerializer to provide an implementation for the serialization of a type.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.util.emf.core.ISerializer"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.util.emf.core.ISerializer"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -84,7 +84,7 @@
          &lt;p&gt;
 A serializer can be registered like this:
 &lt;pre&gt;
-   &lt;extension point=&quot;org.eclipse.emf.facet.util.emf.core.serialization&quot;&gt;
+   &lt;extension point=&quot;org.eclipse.papyrus.emf.facet.util.emf.core.serialization&quot;&gt;
       &lt;serializer class=&quot;com.example.MyTypeSerializer&quot;/&gt;
    &lt;/extension&gt;
 &lt;/pre&gt;
@@ -113,7 +113,7 @@ A serializer must implement the interface ISerializer&lt;T&gt; :
          <meta.section type="implementation"/>
       </appInfo>
       <documentation>
-         &lt;p&gt;See default serializers registered in plug-in &quot;org.eclipse.emf.facet.util.emf.core&quot;, defined in package &quot;org.eclipse.emf.facet.util.emf.core.serialization&quot;.&lt;/p&gt;
+         &lt;p&gt;See default serializers registered in plug-in &quot;org.eclipse.papyrus.emf.facet.util.emf.core&quot;, defined in package &quot;org.eclipse.papyrus.emf.facet.util.emf.core.serialization&quot;.&lt;/p&gt;
       </documentation>
    </annotation>
 

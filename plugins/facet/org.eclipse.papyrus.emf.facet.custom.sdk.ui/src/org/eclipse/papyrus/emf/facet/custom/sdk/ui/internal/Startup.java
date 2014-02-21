@@ -8,7 +8,7 @@
  * Contributors:
  *    Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.sdk.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal;
 import org.eclipse.ui.IStartup;
 
 

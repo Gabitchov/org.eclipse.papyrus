@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl;
+package org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl;
 
 import java.util.Collection;
 
@@ -24,9 +24,9 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectEList.Unsettable;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.facet.efacet.QuerySet;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
+import org.eclipse.papyrus.emf.facet.efacet.QuerySet;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Query Set Catalog</b></em>
@@ -35,12 +35,12 @@ import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl#getInstalledEntries
+ * {@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl#getInstalledEntries
  * <em>Installed Entries</em>}</li>
- * <li>{@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl#getName
+ * <li>{@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl#getName
  * <em>Name</em>}</li>
  * <li>
- * {@link org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl#getInstalledQuerySets
+ * {@link org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.QuerySetCatalogImpl#getInstalledQuerySets
  * <em>Installed Query Sets</em>}</li>
  * </ul>
  * </p>

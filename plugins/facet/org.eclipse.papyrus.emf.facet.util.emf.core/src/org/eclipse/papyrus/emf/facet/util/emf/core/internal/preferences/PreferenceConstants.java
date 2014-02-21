@@ -11,7 +11,7 @@
  *  Fabien Giquel (Mia-Software)
  *  Nicolas Bros (Mia-Software) - Bug 335218 - Extension point for registering EObject, EPackage, model editor
  */
-package org.eclipse.emf.facet.util.emf.core.internal.preferences;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.preferences;
 
 public final class PreferenceConstants {
 

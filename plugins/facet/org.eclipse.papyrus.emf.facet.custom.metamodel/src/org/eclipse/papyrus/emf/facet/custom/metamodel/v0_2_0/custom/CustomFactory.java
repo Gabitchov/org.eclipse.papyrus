@@ -11,14 +11,14 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom;
 
 import org.eclipse.emf.ecore.EFactory;
 
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage
  * @generated
  */
 public interface CustomFactory extends EFactory {
@@ -28,7 +28,7 @@ public interface CustomFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CustomFactory eINSTANCE = org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomFactoryImpl.init();
+	CustomFactory eINSTANCE = org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Customization</em>'.

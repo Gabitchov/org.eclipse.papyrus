@@ -8,11 +8,11 @@
  *
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
- *   Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Guyomar (Mia-Software) - Bug 339554 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *   Nicolas Guyomar (Mia-Software) - Bug 342451 - To be able to edit derived facet attributes and derived facet references in a table
  *   Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.ui;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.ui;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,11 +23,11 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
-import org.eclipse.emf.facet.util.emf.ui.internal.dialogs.CreateInstanceDialog;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
-import org.eclipse.emf.facet.widgets.celleditors.internal.Messages;
-import org.eclipse.emf.facet.widgets.internal.CustomizableLabelProvider;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.dialogs.CreateInstanceDialog;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditHandler;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.Messages;
+import org.eclipse.papyrus.emf.facet.widgets.internal.CustomizableLabelProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IOpenListener;

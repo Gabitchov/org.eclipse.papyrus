@@ -11,16 +11,16 @@
  *    Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *******************************************************************************/
 
-package org.eclipse.emf.facet.util.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.core.internal.exported;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.core.internal.Activator;
-import org.eclipse.emf.facet.util.core.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.core.internal.Messages;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipse.osgi.util.NLS;
  * @since 0.2
  */
 public abstract class AbstractRegistry {
-// copy of org.eclipse.emf.facet.infra.common.core.internal.extensions.AbstractRegistry
+// copy of org.eclipse.papyrus.emf.facet.infra.common.core.internal.extensions.AbstractRegistry
 	/**
 	 * Initialize the registry by reading the extension point to discover
 	 * extensions. This method calls

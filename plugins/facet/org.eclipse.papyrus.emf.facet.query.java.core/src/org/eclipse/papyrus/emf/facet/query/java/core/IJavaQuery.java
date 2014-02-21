@@ -8,10 +8,10 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.query.java.core;
+package org.eclipse.papyrus.emf.facet.query.java.core;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.core.exception.QueryExecutionException;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryExecutionException;
 
 /**
  * This is the EMF Facet Java Query interface. A java query is a query written
@@ -31,7 +31,7 @@ import org.eclipse.emf.facet.efacet.core.exception.QueryExecutionException;
 public interface IJavaQuery<T extends EObject, R> {
 
 	// This interface is a copy of
-	// org.eclipse.emf.facet.infra.query.core.java.IJavaModelQuery<T, R>
+	// org.eclipse.papyrus.emf.facet.infra.query.core.java.IJavaModelQuery<T, R>
 
 	/**
 	 * This method must be implemented by each sub class to implement query

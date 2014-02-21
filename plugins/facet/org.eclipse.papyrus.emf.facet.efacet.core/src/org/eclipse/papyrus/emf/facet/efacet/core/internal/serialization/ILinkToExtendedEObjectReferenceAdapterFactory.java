@@ -9,7 +9,7 @@
  * Contributors:
  * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  */
-package org.eclipse.emf.facet.efacet.core.internal.serialization;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.serialization;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;

@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.core.serialization;
+package org.eclipse.papyrus.emf.facet.util.emf.core.serialization;
 
 /**
  * The interface that must be implemented when adding an extension to the "serializer" extension

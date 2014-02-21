@@ -12,7 +12,7 @@
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *       Gregoire Dupe (Mia-Software) - Bug 376576 - [EFacet] Change the multiplicity of Facet::extendedFacet 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.provider;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.provider;
 
 
 import java.util.Collection;
@@ -31,13 +31,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase} object.
+ * This is the item provider adapter for a {@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

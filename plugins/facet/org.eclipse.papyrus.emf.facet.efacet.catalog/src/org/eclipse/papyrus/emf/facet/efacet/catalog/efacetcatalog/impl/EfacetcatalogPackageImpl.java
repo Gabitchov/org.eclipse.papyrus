@@ -11,18 +11,18 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl;
+package org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.facet.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogFactory;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogFactory;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -57,7 +57,7 @@ public class EfacetcatalogPackageImpl extends EPackageImpl implements Efacetcata
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

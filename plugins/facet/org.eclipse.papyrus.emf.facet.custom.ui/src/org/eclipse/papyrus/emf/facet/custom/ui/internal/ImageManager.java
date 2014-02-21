@@ -9,7 +9,7 @@
  *    David Couvrand (Soft-Maint) - Bug 418418 - [Customization] Overlay icons not implemented
  *    Thomas Cicognani (Soft-Maint) - Bug 424414 - ImageManager doesn't cache images 
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -17,14 +17,14 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
-import org.eclipse.emf.facet.custom.ui.internal.custompt.ImageWrapper;
-import org.eclipse.emf.facet.custom.ui.internal.custompt.URIImage;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.swt.imageprovider.IImageProvider;
-import org.eclipse.emf.facet.util.swt.imageprovider.IImageProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt.ImageWrapper;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt.URIImage;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProvider;
+import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProviderFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.swt.graphics.Device;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;

@@ -10,19 +10,19 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *  Grégoire Dupe (Mia-Software) - Bug 373248 - Clean PMD errors 
  */
-package org.eclipse.emf.facet.efacet.ui.internal.wizards;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.Facet;
-import org.eclipse.emf.facet.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.ui.internal.IQueryCreationPagePartRegistry;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IFacetChildrenWizard;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.pages.AbstractFacetWizardPage;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.pages.CreateQueryWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.IQueryCreationPagePartRegistry;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IFacetChildrenWizard;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages.AbstractFacetWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages.CreateQueryWizardPage;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;

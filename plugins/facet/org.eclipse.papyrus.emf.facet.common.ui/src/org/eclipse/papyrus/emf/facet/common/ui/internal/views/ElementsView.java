@@ -10,7 +10,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 334116 - common tree view with columns
  *    Nicolas Bros (Mia-Software) - Bug 372732 - [Facet] Rewrite the catalog views for 0.2
  *******************************************************************************/
-package org.eclipse.emf.facet.common.ui.internal.views;
+package org.eclipse.papyrus.emf.facet.common.ui.internal.views;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,11 +22,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.facet.common.ui.internal.Activator;
-import org.eclipse.emf.facet.common.ui.internal.Messages;
-import org.eclipse.emf.facet.common.ui.internal.controls.PersistableColumn;
-import org.eclipse.emf.facet.common.ui.internal.exported.views.IColumnDescription;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -36,6 +32,10 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.OpenEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.controls.PersistableColumn;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.exported.views.IColumnDescription;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;

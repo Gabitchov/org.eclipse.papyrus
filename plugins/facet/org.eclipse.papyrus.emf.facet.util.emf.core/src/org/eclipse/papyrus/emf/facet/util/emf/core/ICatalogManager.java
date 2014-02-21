@@ -10,11 +10,11 @@
  * 	  Gregoire Dupe (Mia-Software) - Bug 334000 Simple catalog manager
  *    Nicolas Guyomar (Mia-Software) - Bug 334000 Simple catalog manager
  */
-package org.eclipse.emf.facet.util.emf.core;
+package org.eclipse.papyrus.emf.facet.util.emf.core;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogSet;
-import org.eclipse.emf.facet.util.emf.core.internal.catalog.CatalogSetManager;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.catalog.CatalogSetManager;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet;
 
 /**
  * Manager for catalogs containing registered elements defined in models.

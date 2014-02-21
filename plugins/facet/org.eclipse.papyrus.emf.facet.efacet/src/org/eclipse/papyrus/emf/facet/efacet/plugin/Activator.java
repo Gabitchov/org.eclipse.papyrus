@@ -9,7 +9,7 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.efacet.plugin;
+package org.eclipse.papyrus.emf.facet.efacet.plugin;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
@@ -20,7 +20,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends Plugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.efacet"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.efacet"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

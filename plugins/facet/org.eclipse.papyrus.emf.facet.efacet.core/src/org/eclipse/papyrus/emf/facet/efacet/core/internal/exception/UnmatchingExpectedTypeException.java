@@ -9,10 +9,10 @@
  * 	   Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  *     Nicolas Bros (Mia-Software) - Bug 361612 - New core for new version of the Facet metamodel
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core.internal.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.exception;
 
-import org.eclipse.emf.facet.efacet.core.exception.FacetManagerException;
-import org.eclipse.emf.facet.util.core.internal.ErrorHandlingUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.FacetManagerException;
+import org.eclipse.papyrus.emf.facet.util.core.internal.ErrorHandlingUtils;
 
 /**
  * This exception is raised when a value's type does not match with the expected type

@@ -9,7 +9,7 @@
  *  Contributors:
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  */
-package org.eclipse.emf.facet.custom.ui.internal.exported.exception;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.exception;
 
 import java.util.List;
 

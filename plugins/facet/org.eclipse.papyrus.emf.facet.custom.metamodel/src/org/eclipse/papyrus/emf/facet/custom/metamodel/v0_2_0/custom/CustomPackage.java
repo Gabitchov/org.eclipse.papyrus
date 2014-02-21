@@ -12,14 +12,14 @@
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *       Gregoire Dupe (Mia-Software) - Bug 376576 - [EFacet] Change the multiplicity of Facet::extendedFacet 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains
@@ -31,7 +31,7 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Extensibl
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomFactory
  * @model kind="package"
  * @generated
  */
@@ -66,14 +66,14 @@ public interface CustomPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CustomPackage eINSTANCE = org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl.init();
+	CustomPackage eINSTANCE = org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl <em>Customization</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl <em>Customization</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getCustomization()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getCustomization()
 	 * @generated
 	 */
 	int CUSTOMIZATION = 0;
@@ -187,11 +187,11 @@ public interface CustomPackage extends EPackage {
 	int CUSTOMIZATION_FEATURE_COUNT = EFacetPackage.FACET_SET_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl <em>EClass Customization</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl <em>EClass Customization</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getEClassCustomization()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getEClassCustomization()
 	 * @generated
 	 */
 	int ECLASS_CUSTOMIZATION = 1;
@@ -333,11 +333,11 @@ public interface CustomPackage extends EPackage {
 	int ECLASS_CUSTOMIZATION_FEATURE_COUNT = EFacetPackage.FACET_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.FacetCustomizationImpl <em>Facet Customization</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.FacetCustomizationImpl <em>Facet Customization</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.FacetCustomizationImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getFacetCustomization()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.FacetCustomizationImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getFacetCustomization()
 	 * @generated
 	 */
 	int FACET_CUSTOMIZATION = 2;
@@ -488,11 +488,11 @@ public interface CustomPackage extends EPackage {
 	int FACET_CUSTOMIZATION_FEATURE_COUNT = EFacetPackage.FACET_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementSwitchQueryImpl <em>ETyped Element Switch Query</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementSwitchQueryImpl <em>ETyped Element Switch Query</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementSwitchQueryImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getETypedElementSwitchQuery()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementSwitchQueryImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getETypedElementSwitchQuery()
 	 * @generated
 	 */
 	int ETYPED_ELEMENT_SWITCH_QUERY = 3;
@@ -534,11 +534,11 @@ public interface CustomPackage extends EPackage {
 	int ETYPED_ELEMENT_SWITCH_QUERY_FEATURE_COUNT = ExtensiblePackage.QUERY_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementCaseImpl <em>ETyped Element Case</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementCaseImpl <em>ETyped Element Case</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementCaseImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getETypedElementCase()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementCaseImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getETypedElementCase()
 	 * @generated
 	 */
 	int ETYPED_ELEMENT_CASE = 4;
@@ -572,105 +572,105 @@ public interface CustomPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization <em>Customization</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization <em>Customization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Customization</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization
 	 * @generated
 	 */
 	EClass getCustomization();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization#isMustBeLoadedByDefault <em>Must Be Loaded By Default</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization#isMustBeLoadedByDefault <em>Must Be Loaded By Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Must Be Loaded By Default</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization#isMustBeLoadedByDefault()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization#isMustBeLoadedByDefault()
 	 * @see #getCustomization()
 	 * @generated
 	 */
 	EAttribute getCustomization_MustBeLoadedByDefault();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization <em>EClass Customization</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization <em>EClass Customization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>EClass Customization</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.EClassCustomization
 	 * @generated
 	 */
 	EClass getEClassCustomization();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization <em>Facet Customization</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization <em>Facet Customization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Customization</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization
 	 * @generated
 	 */
 	EClass getFacetCustomization();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization#getCustomizedFacet <em>Customized Facet</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization#getCustomizedFacet <em>Customized Facet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Customized Facet</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization#getCustomizedFacet()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.FacetCustomization#getCustomizedFacet()
 	 * @see #getFacetCustomization()
 	 * @generated
 	 */
 	EReference getFacetCustomization_CustomizedFacet();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery <em>ETyped Element Switch Query</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery <em>ETyped Element Switch Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ETyped Element Switch Query</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery
 	 * @generated
 	 */
 	EClass getETypedElementSwitchQuery();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery#getCases <em>Cases</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery#getCases <em>Cases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Cases</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery#getCases()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementSwitchQuery#getCases()
 	 * @see #getETypedElementSwitchQuery()
 	 * @generated
 	 */
 	EReference getETypedElementSwitchQuery_Cases();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase <em>ETyped Element Case</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase <em>ETyped Element Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ETyped Element Case</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase
 	 * @generated
 	 */
 	EClass getETypedElementCase();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getCase <em>Case</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getCase <em>Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Case</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getCase()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getCase()
 	 * @see #getETypedElementCase()
 	 * @generated
 	 */
 	EReference getETypedElementCase_Case();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Value</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getValue()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getValue()
 	 * @see #getETypedElementCase()
 	 * @generated
 	 */
@@ -699,11 +699,11 @@ public interface CustomPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl <em>Customization</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl <em>Customization</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getCustomization()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomizationImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getCustomization()
 		 * @generated
 		 */
 		EClass CUSTOMIZATION = eINSTANCE.getCustomization();
@@ -717,21 +717,21 @@ public interface CustomPackage extends EPackage {
 		EAttribute CUSTOMIZATION__MUST_BE_LOADED_BY_DEFAULT = eINSTANCE.getCustomization_MustBeLoadedByDefault();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl <em>EClass Customization</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl <em>EClass Customization</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getEClassCustomization()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.EClassCustomizationImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getEClassCustomization()
 		 * @generated
 		 */
 		EClass ECLASS_CUSTOMIZATION = eINSTANCE.getEClassCustomization();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.FacetCustomizationImpl <em>Facet Customization</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.FacetCustomizationImpl <em>Facet Customization</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.FacetCustomizationImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getFacetCustomization()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.FacetCustomizationImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getFacetCustomization()
 		 * @generated
 		 */
 		EClass FACET_CUSTOMIZATION = eINSTANCE.getFacetCustomization();
@@ -745,11 +745,11 @@ public interface CustomPackage extends EPackage {
 		EReference FACET_CUSTOMIZATION__CUSTOMIZED_FACET = eINSTANCE.getFacetCustomization_CustomizedFacet();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementSwitchQueryImpl <em>ETyped Element Switch Query</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementSwitchQueryImpl <em>ETyped Element Switch Query</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementSwitchQueryImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getETypedElementSwitchQuery()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementSwitchQueryImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getETypedElementSwitchQuery()
 		 * @generated
 		 */
 		EClass ETYPED_ELEMENT_SWITCH_QUERY = eINSTANCE.getETypedElementSwitchQuery();
@@ -763,11 +763,11 @@ public interface CustomPackage extends EPackage {
 		EReference ETYPED_ELEMENT_SWITCH_QUERY__CASES = eINSTANCE.getETypedElementSwitchQuery_Cases();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementCaseImpl <em>ETyped Element Case</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementCaseImpl <em>ETyped Element Case</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementCaseImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getETypedElementCase()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.ETypedElementCaseImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.impl.CustomPackageImpl#getETypedElementCase()
 		 * @generated
 		 */
 		EClass ETYPED_ELEMENT_CASE = eINSTANCE.getETypedElementCase();

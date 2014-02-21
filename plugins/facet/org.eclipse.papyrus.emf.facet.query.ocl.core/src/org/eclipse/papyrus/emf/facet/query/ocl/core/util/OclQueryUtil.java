@@ -9,7 +9,7 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.query.ocl.core.util;
+package org.eclipse.papyrus.emf.facet.query.ocl.core.util;
 
 import java.util.List;
 

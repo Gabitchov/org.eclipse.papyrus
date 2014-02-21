@@ -9,15 +9,15 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.tree;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree;
 
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.tree.item.AbstractTreeItem;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.tree.menu.AbstractTreeMenu;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.tree.menu.ExtendedTreeMenu;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.item.AbstractTreeItem;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.menu.AbstractTreeMenu;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.tree.menu.ExtendedTreeMenu;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;

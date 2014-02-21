@@ -9,21 +9,19 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.wizard;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.wizard;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.sdk.core.ICustomizationActions;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.Activator;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.wizard.page.CreateCustomizationWizardPage;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.util.wizard.page.CustomPropertyWizardPage;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.wizard.page.ICreateCustomizationWizardPage;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.wizard.page.ICustomizationPropertyWizardPage;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.ICustomizationActions;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.wizard.page.CreateCustomizationWizardPage;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.wizard.page.CustomPropertyWizardPage;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.wizard.page.ICreateCustomizationWizardPage;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.wizard.page.ICustomizationPropertyWizardPage;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -32,6 +30,8 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorPart;

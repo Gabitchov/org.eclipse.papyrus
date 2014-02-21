@@ -11,19 +11,17 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.util.emf.catalog.impl;
+package org.eclipse.papyrus.emf.facet.util.emf.catalog.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.emf.facet.util.emf.catalog.Catalog;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogFactory;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogPackage;
-import org.eclipse.emf.facet.util.emf.catalog.CatalogSet;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,7 +55,7 @@ public class CatalogPackageImpl extends EPackageImpl implements CatalogPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.facet.util.emf.catalog.CatalogPackage#eNS_URI
+	 * @see org.eclipse.papyrus.emf.facet.util.emf.catalog.CatalogPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

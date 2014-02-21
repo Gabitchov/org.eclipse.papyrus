@@ -9,7 +9,7 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - Bug 406570 - Handlers to Save and SaveAs EMF resources
  */
-package org.eclipse.emf.facet.util.emf.ui.internal.handler;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.facet.util.emf.ui.internal.ResourceUiUtils;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.ResourceUiUtils;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Shell;

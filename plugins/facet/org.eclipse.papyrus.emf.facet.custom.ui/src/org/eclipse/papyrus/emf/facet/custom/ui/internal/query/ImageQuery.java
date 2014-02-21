@@ -12,7 +12,7 @@
  *      Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *      Gregoire Dupe (Mia-Software) - Bug 424122 - [Table] Images, fonts and colors are not shared between the instances of table
  */
-package org.eclipse.emf.facet.custom.ui.internal.query;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.query;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -21,19 +21,19 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
-import org.eclipse.emf.facet.custom.ui.internal.Activator;
-import org.eclipse.emf.facet.custom.ui.internal.ImageProvider;
-import org.eclipse.emf.facet.custom.ui.internal.custompt.ImageWrapper;
-import org.eclipse.emf.facet.efacet.core.IFacetManager;
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
-import org.eclipse.emf.facet.query.java.core.IJavaQuery2;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
-import org.eclipse.emf.facet.util.swt.imageprovider.IImageProvider;
-import org.eclipse.emf.facet.util.swt.imageprovider.IImageProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.ImageProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt.ImageWrapper;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProvider;
+import org.eclipse.papyrus.emf.facet.util.swt.imageprovider.IImageProviderFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.swt.graphics.Image;
 
 public class ImageQuery implements IJavaQuery2<EObject, IImage> {

@@ -9,7 +9,7 @@
  *    Grégoire Dupé (Mia-Software) - Initial API
  *    Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *******************************************************************************/
-package org.eclipse.emf.facet.common.sdk.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported;
 
 import java.util.Map;
 
@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 /**
  * The EMF Facet project builder delegates its build behavior to a set of classes
  * implementing this interface. This set of classes is defined through the use of
- * the <tt>org.eclipse.emf.facet.common.sdk.core.builderRegistration</tt> extension
+ * the <tt>org.eclipse.papyrus.emf.facet.common.sdk.core.builderRegistration</tt> extension
  * point.
  * 
  * @author Grégoire Dupé (Mia-Software)

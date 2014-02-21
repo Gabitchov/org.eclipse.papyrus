@@ -10,14 +10,14 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *  Gregoire Dupe (Mia-Software) - Bug 373248 - Clean PMD errors
  */
-package org.eclipse.emf.facet.efacet.ui.internal.composites;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.SelectETypeWizardImpl;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.SelectETypeWizardImpl;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;

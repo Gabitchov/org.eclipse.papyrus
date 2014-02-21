@@ -10,7 +10,7 @@
  *   Nicolas Bros (Mia-Software) - initial API and implementation
  *   Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -21,10 +21,10 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * See also {@link ICommandFactoriesRegistry}
  */
 public interface ICommandFactory extends
-		org.eclipse.emf.facet.util.emf.core.internal.exported.ICommandFactory {
+		org.eclipse.papyrus.emf.facet.util.emf.core.internal.exported.ICommandFactory {
 
 	// The content of this interface ha been moved to
-	// org.eclipse.emf.facet.util.emf.core.internal.exported.ICommandFactory to
+	// org.eclipse.papyrus.emf.facet.util.emf.core.internal.exported.ICommandFactory to
 	// solve a cyclic
-	// dependency issue (with the plug-in org.eclipse.emf.facet.custom.ui)
+	// dependency issue (with the plug-in org.eclipse.papyrus.emf.facet.custom.ui)
 }

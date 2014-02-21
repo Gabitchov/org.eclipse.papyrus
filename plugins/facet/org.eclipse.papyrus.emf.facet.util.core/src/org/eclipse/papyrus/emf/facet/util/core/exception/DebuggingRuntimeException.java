@@ -9,7 +9,7 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Bug 366804 - [Restructuring] Table widget upgrade
  *******************************************************************************/
-package org.eclipse.emf.facet.util.core.exception;
+package org.eclipse.papyrus.emf.facet.util.core.exception;
 
 public class DebuggingRuntimeException extends RuntimeException {
 

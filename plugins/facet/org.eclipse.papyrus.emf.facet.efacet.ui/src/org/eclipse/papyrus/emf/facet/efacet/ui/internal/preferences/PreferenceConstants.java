@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA-LIST) - Bug 357621 - Improve the label displayed for Customization and Facets
  *  Gregoire Dupe (CEA-LIST) - Bug 357621 - Improve the label displayed for Customization and Facets
  */
-package org.eclipse.emf.facet.efacet.ui.internal.preferences;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.preferences;
 
 public final class PreferenceConstants {
 

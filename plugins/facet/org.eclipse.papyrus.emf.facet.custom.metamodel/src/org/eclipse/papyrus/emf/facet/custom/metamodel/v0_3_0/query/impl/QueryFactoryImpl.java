@@ -10,17 +10,14 @@
  * 		David Couvrand (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  *  	Nicolas Rault (Soft-Maint) - Bug 402725 - Need a query to get an image from an URI
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.impl;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipse.emf.facet.custom.metamodel.v0_3_0.query.*;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_3_0.query.*;
 
 /**
  * <!-- begin-user-doc -->

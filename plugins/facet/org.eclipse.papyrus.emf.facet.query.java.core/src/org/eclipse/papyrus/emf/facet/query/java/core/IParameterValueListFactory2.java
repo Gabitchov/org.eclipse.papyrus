@@ -10,10 +10,10 @@
  *    Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  *    Nicolas Bros (Mia-Software) - Bug 361612 - New core for new version of the Facet metamodel
  */
-package org.eclipse.emf.facet.query.java.core;
+package org.eclipse.papyrus.emf.facet.query.java.core;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
-import org.eclipse.emf.facet.query.java.core.internal.ParameterValueListFactoryImpl2;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.query.java.core.internal.ParameterValueListFactoryImpl2;
 
 /**
  * @since 0.2

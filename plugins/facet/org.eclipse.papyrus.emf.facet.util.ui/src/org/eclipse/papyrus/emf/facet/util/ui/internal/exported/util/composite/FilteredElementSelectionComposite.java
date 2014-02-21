@@ -9,10 +9,10 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *******************************************************************************/
-package org.eclipse.emf.facet.util.ui.internal.exported.util.composite;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.composite;
 
-import org.eclipse.emf.facet.util.ui.internal.Messages;
-import org.eclipse.emf.facet.util.ui.internal.exported.composite.IFilteredElementSelectionComposite;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.composite.IFilteredElementSelectionComposite;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
@@ -79,7 +79,7 @@ public class FilteredElementSelectionComposite extends Composite implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.facet.util.ui.internal.exported.util.composite.
+	 * @see org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.composite.
 	 * IFilteredElementSelectionComposite#setElements(java.lang.Object[])
 	 */
 	public void setElements(final Object[] elements) {
@@ -122,7 +122,7 @@ public class FilteredElementSelectionComposite extends Composite implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.facet.util.ui.internal.exported.util.composite.
+	 * @see org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.composite.
 	 * IFilteredElementSelectionComposite#getFirstSelectedElement()
 	 */
 	public Object getFirstSelectedElement() {
@@ -137,7 +137,7 @@ public class FilteredElementSelectionComposite extends Composite implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.facet.util.ui.internal.exported.util.composite.
+	 * @see org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.composite.
 	 * IFilteredElementSelectionComposite#getSelectedElements()
 	 */
 	public Object[] getSelectedElements() {
@@ -151,7 +151,7 @@ public class FilteredElementSelectionComposite extends Composite implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.facet.util.ui.internal.exported.util.composite.
+	 * @see org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.composite.
 	 * IFilteredElementSelectionComposite#getFilteredList()
 	 */
 	public FilteredList getFilteredList() {
@@ -161,7 +161,7 @@ public class FilteredElementSelectionComposite extends Composite implements
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.emf.facet.util.ui.internal.exported.util.composite.
+	 * @see org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.composite.
 	 * IFilteredElementSelectionComposite#getFilterText()
 	 */
 	public Text getFilterText() {

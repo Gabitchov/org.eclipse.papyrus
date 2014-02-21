@@ -10,24 +10,24 @@
  *    Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *******************************************************************************/
 
-package org.eclipse.emf.facet.efacet.ui.internal.view;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.view;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.emf.facet.efacet.ui.IETypedElementResultDisplayer;
-import org.eclipse.emf.facet.efacet.ui.internal.Activator;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.core.internal.exported.AbstractRegistry;
+import org.eclipse.papyrus.emf.facet.efacet.ui.IETypedElementResultDisplayer;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.internal.exported.AbstractRegistry;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * The singleton registry of {@link IETypedElementResultDisplayer}s, which initializes
  * the registry by reading extensions when first accessed.
  */
-//Copied from org.eclipse.emf.facet.infra.query.ui.views.queryExecution.internal.QueryResultDisplayersRegistry
+//Copied from org.eclipse.papyrus.emf.facet.infra.query.ui.views.queryExecution.internal.QueryResultDisplayersRegistry
 public class QueryResultDisplayersRegistry extends AbstractRegistry {
 
 	private static final String EXTENSION_POINT_NAME = "eTypedElementResultDisplay"; //$NON-NLS-1$

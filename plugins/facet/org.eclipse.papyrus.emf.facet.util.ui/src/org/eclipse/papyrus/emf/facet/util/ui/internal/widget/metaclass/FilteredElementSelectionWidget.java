@@ -9,10 +9,10 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.widget.metaclass;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.widget.metaclass;
 
-import org.eclipse.emf.facet.util.ui.internal.Messages;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.AbstractWidget;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;

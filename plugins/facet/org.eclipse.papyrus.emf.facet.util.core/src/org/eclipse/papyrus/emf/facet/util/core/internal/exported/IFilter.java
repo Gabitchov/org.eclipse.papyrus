@@ -11,13 +11,13 @@
  *    Nicolas Guyomar (Mia-Software) - Bug 340339 - Need some Utils class for Folder/File/Project management
  *    Gregoire Dupe (Mia-Software) - Bug 340339 - Need some Utils class for Folder/File/Project management
  *******************************************************************************/
-package org.eclipse.emf.facet.util.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.core.internal.exported;
 
 /**
  * @since 0.2
  */
 public interface IFilter<T> {
-	// This class has been copied from org.eclipse.emf.facet.infra.common.core.internal.utils.IFilter
+	// This class has been copied from org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.IFilter
 	
 	/**
 	 * @param object

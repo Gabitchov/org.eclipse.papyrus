@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *    Gregoire Dupe (Mia-Software) - Bug 386387 - [CustomizedTreeContentProvider] The TreeElements are not preserved between two calls to getElements()
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyFactory
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyFactory
  * @model kind="package"
  * @generated
  */
@@ -61,14 +61,14 @@ public interface TreeproxyPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	TreeproxyPackage eINSTANCE = org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl.init();
+	TreeproxyPackage eINSTANCE = org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeElementImpl <em>Tree Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeElementImpl <em>Tree Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeElementImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getTreeElement()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getTreeElement()
 	 * @generated
 	 */
 	int TREE_ELEMENT = 0;
@@ -83,11 +83,11 @@ public interface TreeproxyPackage extends EPackage {
 	int TREE_ELEMENT_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EObjectTreeElementImpl <em>EObject Tree Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EObjectTreeElementImpl <em>EObject Tree Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EObjectTreeElementImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEObjectTreeElement()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EObjectTreeElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEObjectTreeElement()
 	 * @generated
 	 */
 	int EOBJECT_TREE_ELEMENT = 1;
@@ -129,11 +129,11 @@ public interface TreeproxyPackage extends EPackage {
 	int EOBJECT_TREE_ELEMENT_FEATURE_COUNT = TREE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EStructuralFeatureTreeElementImpl <em>EStructural Feature Tree Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EStructuralFeatureTreeElementImpl <em>EStructural Feature Tree Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EStructuralFeatureTreeElementImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEStructuralFeatureTreeElement()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EStructuralFeatureTreeElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEStructuralFeatureTreeElement()
 	 * @generated
 	 */
 	int ESTRUCTURAL_FEATURE_TREE_ELEMENT = 4;
@@ -166,11 +166,11 @@ public interface TreeproxyPackage extends EPackage {
 	int ESTRUCTURAL_FEATURE_TREE_ELEMENT_FEATURE_COUNT = TREE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EReferenceTreeElementImpl <em>EReference Tree Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EReferenceTreeElementImpl <em>EReference Tree Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EReferenceTreeElementImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEReferenceTreeElement()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EReferenceTreeElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEReferenceTreeElement()
 	 * @generated
 	 */
 	int EREFERENCE_TREE_ELEMENT = 2;
@@ -212,11 +212,11 @@ public interface TreeproxyPackage extends EPackage {
 	int EREFERENCE_TREE_ELEMENT_FEATURE_COUNT = ESTRUCTURAL_FEATURE_TREE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EAttributeTreeElementImpl <em>EAttribute Tree Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EAttributeTreeElementImpl <em>EAttribute Tree Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EAttributeTreeElementImpl
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEAttributeTreeElement()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EAttributeTreeElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEAttributeTreeElement()
 	 * @generated
 	 */
 	int EATTRIBUTE_TREE_ELEMENT = 3;
@@ -259,127 +259,127 @@ public interface TreeproxyPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement <em>Tree Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement <em>Tree Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Tree Element</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement
 	 * @generated
 	 */
 	EClass getTreeElement();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement <em>EObject Tree Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement <em>EObject Tree Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>EObject Tree Element</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement
 	 * @generated
 	 */
 	EClass getEObjectTreeElement();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getEObject <em>EObject</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getEObject <em>EObject</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>EObject</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getEObject()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getEObject()
 	 * @see #getEObjectTreeElement()
 	 * @generated
 	 */
 	EReference getEObjectTreeElement_EObject();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getSfTreeElmement <em>Sf Tree Elmement</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getSfTreeElmement <em>Sf Tree Elmement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Sf Tree Elmement</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getSfTreeElmement()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getSfTreeElmement()
 	 * @see #getEObjectTreeElement()
 	 * @generated
 	 */
 	EReference getEObjectTreeElement_SfTreeElmement();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getParent <em>Parent</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Parent</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getParent()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement#getParent()
 	 * @see #getEObjectTreeElement()
 	 * @generated
 	 */
 	EReference getEObjectTreeElement_Parent();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement <em>EReference Tree Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement <em>EReference Tree Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>EReference Tree Element</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement
 	 * @generated
 	 */
 	EClass getEReferenceTreeElement();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement#getEReference <em>EReference</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement#getEReference <em>EReference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>EReference</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement#getEReference()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement#getEReference()
 	 * @see #getEReferenceTreeElement()
 	 * @generated
 	 */
 	EReference getEReferenceTreeElement_EReference();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement <em>EAttribute Tree Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement <em>EAttribute Tree Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>EAttribute Tree Element</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement
 	 * @generated
 	 */
 	EClass getEAttributeTreeElement();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement#getEAttribute <em>EAttribute</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement#getEAttribute <em>EAttribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>EAttribute</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement#getEAttribute()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement#getEAttribute()
 	 * @see #getEAttributeTreeElement()
 	 * @generated
 	 */
 	EReference getEAttributeTreeElement_EAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement <em>EStructural Feature Tree Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement <em>EStructural Feature Tree Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>EStructural Feature Tree Element</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement
 	 * @generated
 	 */
 	EClass getEStructuralFeatureTreeElement();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement#getParent <em>Parent</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Parent</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement#getParent()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement#getParent()
 	 * @see #getEStructuralFeatureTreeElement()
 	 * @generated
 	 */
 	EReference getEStructuralFeatureTreeElement_Parent();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement#getReferedEObjectTE <em>Refered EObject TE</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement#getReferedEObjectTE <em>Refered EObject TE</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Refered EObject TE</em>'.
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement#getReferedEObjectTE()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EStructuralFeatureTreeElement#getReferedEObjectTE()
 	 * @see #getEStructuralFeatureTreeElement()
 	 * @generated
 	 */
@@ -408,21 +408,21 @@ public interface TreeproxyPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeElementImpl <em>Tree Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeElementImpl <em>Tree Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeElementImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getTreeElement()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getTreeElement()
 		 * @generated
 		 */
 		EClass TREE_ELEMENT = eINSTANCE.getTreeElement();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EObjectTreeElementImpl <em>EObject Tree Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EObjectTreeElementImpl <em>EObject Tree Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EObjectTreeElementImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEObjectTreeElement()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EObjectTreeElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEObjectTreeElement()
 		 * @generated
 		 */
 		EClass EOBJECT_TREE_ELEMENT = eINSTANCE.getEObjectTreeElement();
@@ -452,11 +452,11 @@ public interface TreeproxyPackage extends EPackage {
 		EReference EOBJECT_TREE_ELEMENT__PARENT = eINSTANCE.getEObjectTreeElement_Parent();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EReferenceTreeElementImpl <em>EReference Tree Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EReferenceTreeElementImpl <em>EReference Tree Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EReferenceTreeElementImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEReferenceTreeElement()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EReferenceTreeElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEReferenceTreeElement()
 		 * @generated
 		 */
 		EClass EREFERENCE_TREE_ELEMENT = eINSTANCE.getEReferenceTreeElement();
@@ -470,11 +470,11 @@ public interface TreeproxyPackage extends EPackage {
 		EReference EREFERENCE_TREE_ELEMENT__EREFERENCE = eINSTANCE.getEReferenceTreeElement_EReference();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EAttributeTreeElementImpl <em>EAttribute Tree Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EAttributeTreeElementImpl <em>EAttribute Tree Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EAttributeTreeElementImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEAttributeTreeElement()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EAttributeTreeElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEAttributeTreeElement()
 		 * @generated
 		 */
 		EClass EATTRIBUTE_TREE_ELEMENT = eINSTANCE.getEAttributeTreeElement();
@@ -488,11 +488,11 @@ public interface TreeproxyPackage extends EPackage {
 		EReference EATTRIBUTE_TREE_ELEMENT__EATTRIBUTE = eINSTANCE.getEAttributeTreeElement_EAttribute();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EStructuralFeatureTreeElementImpl <em>EStructural Feature Tree Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EStructuralFeatureTreeElementImpl <em>EStructural Feature Tree Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EStructuralFeatureTreeElementImpl
-		 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEStructuralFeatureTreeElement()
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.EStructuralFeatureTreeElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyPackageImpl#getEStructuralFeatureTreeElement()
 		 * @generated
 		 */
 		EClass ESTRUCTURAL_FEATURE_TREE_ELEMENT = eINSTANCE.getEStructuralFeatureTreeElement();

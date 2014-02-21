@@ -8,21 +8,21 @@
  *
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
- *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *   Nicolas Bros (Mia-Software) - Bug 334539 - [celleditors] change listener
  *   Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.core;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.util.emf.core.ModelUtils;
-import org.eclipse.emf.facet.widgets.celleditors.IListener;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.internal.core.composite.UnaryReferenceCellEditorComposite;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ModelUtils;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IListener;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditHandler;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.UnaryReferenceCellEditorComposite;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 

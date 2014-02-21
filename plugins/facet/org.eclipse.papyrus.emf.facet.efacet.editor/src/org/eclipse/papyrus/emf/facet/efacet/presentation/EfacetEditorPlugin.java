@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.presentation;
+package org.eclipse.papyrus.emf.facet.efacet.presentation;
 
 import org.eclipse.emf.common.EMFPlugin;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated

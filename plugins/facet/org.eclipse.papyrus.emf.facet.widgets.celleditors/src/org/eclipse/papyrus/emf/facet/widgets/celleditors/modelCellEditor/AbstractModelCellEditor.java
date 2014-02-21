@@ -9,7 +9,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -22,15 +22,15 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  * <li>
- * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor#getCellType
+ * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor#getCellType
  * <em>Cell Type</em>}</li>
  * <li>
- * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor#getCellId
+ * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor#getCellId
  * <em>Cell Id</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getAbstractModelCellEditor()
+ * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getAbstractModelCellEditor()
  * @model abstract="true"
  * @generated
  */
@@ -46,7 +46,7 @@ public interface AbstractModelCellEditor extends EObject {
 	 * 
 	 * @return the value of the '<em>Cell Type</em>' reference.
 	 * @see #setCellType(EClassifier)
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getAbstractModelCellEditor_CellType()
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getAbstractModelCellEditor_CellType()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -54,7 +54,7 @@ public interface AbstractModelCellEditor extends EObject {
 
 	/**
 	 * Sets the value of the '
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor#getCellType
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor#getCellType
 	 * <em>Cell Type</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -76,7 +76,7 @@ public interface AbstractModelCellEditor extends EObject {
 	 * 
 	 * @return the value of the '<em>Cell Id</em>' attribute.
 	 * @see #setCellId(String)
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getAbstractModelCellEditor_CellId()
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage#getAbstractModelCellEditor_CellId()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -84,7 +84,7 @@ public interface AbstractModelCellEditor extends EObject {
 
 	/**
 	 * Sets the value of the '
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor#getCellId
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor#getCellId
 	 * <em>Cell Id</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 

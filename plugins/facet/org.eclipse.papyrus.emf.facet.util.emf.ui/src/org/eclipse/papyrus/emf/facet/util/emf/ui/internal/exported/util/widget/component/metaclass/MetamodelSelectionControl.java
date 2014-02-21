@@ -9,14 +9,14 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.emf.ui.internal.exported.util.widget.component.metaclass;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.util.widget.component.metaclass;
 
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.composite.FilteredElementSelectionComposite;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.composite.FilteredElementSelectionComposite;
 import org.eclipse.swt.widgets.Composite;
 
 /**

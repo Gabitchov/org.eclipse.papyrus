@@ -11,7 +11,7 @@
  * 
  * 
  */
-package org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl;
+package org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl;
 
-import org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQuery;
-import org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage;
+import org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQuery;
+import org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,8 +33,8 @@ import org.eclipse.emf.facet.query.ocl.metamodel.oclquery.OclQueryPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl#getContext <em>Context</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl#getOclExpression <em>Ocl Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.query.ocl.metamodel.oclquery.impl.OclQueryImpl#getOclExpression <em>Ocl Expression</em>}</li>
  * </ul>
  * </p>
  *

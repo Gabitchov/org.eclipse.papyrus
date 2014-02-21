@@ -10,15 +10,15 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command;
 
 import java.util.Map;
 
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.dialog.AbstractDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.dialog.SynchronizedAbstractDialog;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.component.CreateElementWidget;
-import org.eclipse.emf.facet.util.ui.internal.widget.metaclass.FilteredElementSelectionWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.dialog.AbstractDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.dialog.SynchronizedAbstractDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.component.CreateElementWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.widget.metaclass.FilteredElementSelectionWidget;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -104,7 +104,7 @@ public abstract class AbstractGetOrCreateFilteredElementCommandWidget<T extends 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget#getElementSelected()
+	 * @see org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget#getElementSelected()
 	 */
 	public T getElementSelected() {
 		T result = null;
@@ -118,7 +118,7 @@ public abstract class AbstractGetOrCreateFilteredElementCommandWidget<T extends 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget#selectElement(T)
+	 * @see org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget#selectElement(T)
 	 */
 	public void selectElement(final T element) {
 		Object[] selectionsParam = new Object[1];
@@ -138,7 +138,7 @@ public abstract class AbstractGetOrCreateFilteredElementCommandWidget<T extends 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget#pressNewButton()
+	 * @see org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.IGetOrCreateFilteredElementCommmandWidget#pressNewButton()
 	 */
 	public IDialog<W> pressNewButton() {
 		return new SynchronizedAbstractDialog<W>(

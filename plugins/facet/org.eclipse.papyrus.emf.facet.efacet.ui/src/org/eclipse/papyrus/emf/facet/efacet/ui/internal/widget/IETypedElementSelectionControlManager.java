@@ -9,7 +9,7 @@
  *     Vincent Lorenzo (CEA-LIST) -  Bug 372644 - Create Customizable tooltips for the TreeViewer using a CustomizableLabelProvider
  *     Gregoire Dupe (Mia-Software) -  Bug 372644 - Create Customizable tooltips for the TreeViewer using a CustomizableLabelProvider
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget;
 
 import java.util.Collection;
 import java.util.List;

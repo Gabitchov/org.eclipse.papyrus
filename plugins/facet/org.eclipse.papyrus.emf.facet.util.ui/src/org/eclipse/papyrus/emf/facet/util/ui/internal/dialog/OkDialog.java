@@ -9,14 +9,14 @@
  * Contributors:
  * 		Thomas Cicognani (Soft-Maint) - Bug 406565 - Ok Dialog
  */
-package org.eclipse.emf.facet.util.ui.internal.dialog;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.dialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.facet.util.ui.internal.Messages;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IOkDialog;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IOkDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;

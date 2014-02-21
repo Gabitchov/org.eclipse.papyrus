@@ -10,4 +10,7 @@
       <modelqueryset file="facet/PaletteConfiguration.querySet"/>
    </extension>
    -->
+   <extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+  <modeldeclaration file="facet/PaletteConfiguration.custom"/>
+</extension>
 </plugin>

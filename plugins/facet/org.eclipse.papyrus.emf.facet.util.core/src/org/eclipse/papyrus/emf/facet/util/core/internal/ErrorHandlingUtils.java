@@ -8,7 +8,7 @@
  * Contributors:
  *     Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.util.core.internal;
+package org.eclipse.papyrus.emf.facet.util.core.internal;
 
 public final class ErrorHandlingUtils {
 	private ErrorHandlingUtils() {

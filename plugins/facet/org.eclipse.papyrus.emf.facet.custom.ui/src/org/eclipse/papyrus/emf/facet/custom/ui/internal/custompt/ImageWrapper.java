@@ -10,13 +10,13 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  *  	Nicolas Bros (Mia-Software) - Bug 374941 - To be able to customize overlay icons on EClass
  */
-package org.eclipse.emf.facet.custom.ui.internal.custompt;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;

@@ -8,7 +8,7 @@
  *  	Grégoire Dupé (Mia-Software) - Integration into ITM-Factory
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.utils;
+package org.eclipse.papyrus.emf.facet.util.ui.utils;
 
 
 /**

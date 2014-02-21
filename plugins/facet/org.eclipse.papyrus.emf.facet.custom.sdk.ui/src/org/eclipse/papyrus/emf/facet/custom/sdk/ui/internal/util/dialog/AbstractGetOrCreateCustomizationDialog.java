@@ -10,14 +10,14 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.ui.internal.util.dialog;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.util.dialog;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
-import org.eclipse.emf.facet.custom.sdk.core.ICustomizationCommandFactoryFactory;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.ICustomizationCommandFactory;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.ICustomizationCommandFactoryFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
 
 public abstract class AbstractGetOrCreateCustomizationDialog<T, W extends ICommandWidget>
 		extends AbstractGetCustomizationDialog<T, W> {

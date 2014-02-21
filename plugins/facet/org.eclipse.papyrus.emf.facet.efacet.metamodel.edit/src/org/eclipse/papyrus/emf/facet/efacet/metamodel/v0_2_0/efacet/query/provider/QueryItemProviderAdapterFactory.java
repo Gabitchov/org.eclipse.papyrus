@@ -15,7 +15,7 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
  *       Olivier Remaud (Soft-Maint) - Bug 369824 - Add a simple way to return string literal constants from a customization query
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.provider;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +34,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.util.QueryAdapterFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.util.QueryAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -85,7 +85,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -93,7 +93,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected NavigationQueryItemProvider navigationQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -108,7 +108,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -116,7 +116,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected IsOneOfQueryItemProvider isOneOfQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IsOneOfQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -131,7 +131,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -139,7 +139,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected StringLiteralQueryItemProvider stringLiteralQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.StringLiteralQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -154,7 +154,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -162,7 +162,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected TrueLiteralQueryItemProvider trueLiteralQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLiteralQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -177,7 +177,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -185,7 +185,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected FalseLiteralQueryItemProvider falseLiteralQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FalseLiteralQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -200,7 +200,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -208,7 +208,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected NullLiteralQueryItemProvider nullLiteralQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NullLiteralQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -223,7 +223,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -231,7 +231,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected IntegerLiteralQueryItemProvider integerLiteralQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -246,7 +246,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -254,7 +254,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected FloatLiteralQueryItemProvider floatLiteralQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -269,7 +269,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -277,7 +277,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected EObjectLiteralQueryItemProvider eObjectLiteralQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -292,7 +292,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -300,7 +300,7 @@ public class QueryItemProviderAdapterFactory extends QueryAdapterFactory impleme
 	protected OperationCallQueryItemProvider operationCallQueryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

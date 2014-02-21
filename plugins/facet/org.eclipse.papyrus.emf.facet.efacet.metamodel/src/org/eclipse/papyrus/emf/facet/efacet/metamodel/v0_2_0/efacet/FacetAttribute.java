@@ -12,7 +12,7 @@
  * 	Emmanuelle RouillÃ© (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet;
 
 import org.eclipse.emf.ecore.EAttribute;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EAttribute;
  * <!-- end-model-doc -->
  *
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacetAttribute()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacetAttribute()
  * @model
  * @generated
  */

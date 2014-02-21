@@ -7,11 +7,11 @@
  *
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
- *    Nicolas Bros (Mia-Software) - Bug 339653 - org.eclipse.emf.facet.widgets API Cleaning
+ *    Nicolas Bros (Mia-Software) - Bug 339653 - org.eclipse.papyrus.emf.facet.widgets API Cleaning
  *    Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *******************************************************************************/
 
-package org.eclipse.emf.facet.widgets.internal;
+package org.eclipse.papyrus.emf.facet.widgets.internal;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -21,10 +21,10 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.ui.ICustomizedLabelProvider;
-import org.eclipse.emf.facet.custom.ui.ICustomizedLabelProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProviderFactory;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.swt.graphics.Image;
 
 @Deprecated

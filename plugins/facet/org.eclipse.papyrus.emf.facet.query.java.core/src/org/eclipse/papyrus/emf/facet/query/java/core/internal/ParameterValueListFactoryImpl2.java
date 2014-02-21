@@ -9,11 +9,11 @@
  *     Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  *     Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  */
-package org.eclipse.emf.facet.query.java.core.internal;
+package org.eclipse.papyrus.emf.facet.query.java.core.internal;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList2;
-import org.eclipse.emf.facet.query.java.core.IParameterValueListFactory2;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueListFactory2;
 
 public class ParameterValueListFactoryImpl2 implements
 		IParameterValueListFactory2 {

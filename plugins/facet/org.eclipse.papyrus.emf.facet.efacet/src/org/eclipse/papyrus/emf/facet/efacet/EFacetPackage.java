@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet;
+package org.eclipse.papyrus.emf.facet.efacet;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -31,10 +31,10 @@ import org.eclipse.emf.ecore.EcorePackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.EFacetFactory
+ * @see org.eclipse.papyrus.emf.facet.efacet.EFacetFactory
  * @model kind="package"
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -44,7 +44,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	String eNAME = "efacet"; //$NON-NLS-1$
@@ -54,7 +54,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	String eNS_URI = "http://www.eclipse.org/emf/facet/efacet/0.1.incubation"; //$NON-NLS-1$
@@ -64,7 +64,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	String eNS_PREFIX = "efacet"; //$NON-NLS-1$
@@ -74,19 +74,19 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
-	EFacetPackage eINSTANCE = org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl.init();
+	EFacetPackage eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.FacetAttributeImpl <em>Facet Attribute</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetAttributeImpl <em>Facet Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.FacetAttributeImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetAttribute()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetAttributeImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetAttribute()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int FACET_ATTRIBUTE = 0;
@@ -96,7 +96,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -107,7 +107,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -118,7 +118,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -129,7 +129,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -140,7 +140,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -151,7 +151,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -162,7 +162,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -173,7 +173,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -184,7 +184,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -195,7 +195,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -206,7 +206,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -217,7 +217,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -228,7 +228,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -239,7 +239,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -250,7 +250,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -261,7 +261,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -272,7 +272,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -283,7 +283,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -294,7 +294,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -305,7 +305,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -316,7 +316,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -327,7 +327,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -338,7 +338,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -349,7 +349,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -360,20 +360,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int FACET_ATTRIBUTE_FEATURE_COUNT = EcorePackage.EATTRIBUTE_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.FacetReferenceImpl <em>Facet Reference</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetReferenceImpl <em>Facet Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.FacetReferenceImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetReference()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetReferenceImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetReference()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int FACET_REFERENCE = 1;
@@ -383,7 +383,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -394,7 +394,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -405,7 +405,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -416,7 +416,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -427,7 +427,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -438,7 +438,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -449,7 +449,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -460,7 +460,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -471,7 +471,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -482,7 +482,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -493,7 +493,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -504,7 +504,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -515,7 +515,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -526,7 +526,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -537,7 +537,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -548,7 +548,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -559,7 +559,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -570,7 +570,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -581,7 +581,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -592,7 +592,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -603,7 +603,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -614,7 +614,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -625,7 +625,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -636,7 +636,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -647,7 +647,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -658,7 +658,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -669,7 +669,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -680,7 +680,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -691,20 +691,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int FACET_REFERENCE_FEATURE_COUNT = EcorePackage.EREFERENCE_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.FacetOperationImpl <em>Facet Operation</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetOperationImpl <em>Facet Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.FacetOperationImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetOperation()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetOperationImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetOperation()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int FACET_OPERATION = 2;
@@ -714,7 +714,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -725,7 +725,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -736,7 +736,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -747,7 +747,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -758,7 +758,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -769,7 +769,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -780,7 +780,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -791,7 +791,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -802,7 +802,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -813,7 +813,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -824,7 +824,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -835,7 +835,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -846,7 +846,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -857,7 +857,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -868,7 +868,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -879,7 +879,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -890,7 +890,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -901,7 +901,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -912,7 +912,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -923,20 +923,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int FACET_OPERATION_FEATURE_COUNT = EcorePackage.EOPERATION_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.FacetSetImpl <em>Facet Set</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetSetImpl <em>Facet Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.FacetSetImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetSet()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetSetImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetSet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int FACET_SET = 3;
@@ -946,7 +946,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -957,7 +957,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -968,7 +968,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -979,7 +979,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -990,7 +990,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1001,7 +1001,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1012,7 +1012,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1023,7 +1023,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1034,7 +1034,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1045,7 +1045,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1056,7 +1056,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1067,20 +1067,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int FACET_SET_FEATURE_COUNT = EcorePackage.EPACKAGE_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.FacetImpl <em>Facet</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetImpl <em>Facet</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.FacetImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacet()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int FACET = 4;
@@ -1090,7 +1090,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1101,7 +1101,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1112,7 +1112,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1123,7 +1123,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1134,7 +1134,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1145,7 +1145,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1156,7 +1156,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1167,7 +1167,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1178,7 +1178,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1189,7 +1189,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1200,7 +1200,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1211,7 +1211,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1222,20 +1222,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int FACET_FEATURE_COUNT = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.QueryImpl <em>Query</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryImpl <em>Query</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.QueryImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQuery()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QueryImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQuery()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int QUERY = 5;
@@ -1245,7 +1245,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1256,7 +1256,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1267,7 +1267,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1278,7 +1278,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1289,7 +1289,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1300,7 +1300,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1311,7 +1311,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1322,7 +1322,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1333,7 +1333,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1344,7 +1344,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1355,7 +1355,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1366,7 +1366,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1377,7 +1377,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1388,7 +1388,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1399,20 +1399,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int QUERY_FEATURE_COUNT = EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.QueryResultImpl <em>Query Result</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl <em>Query Result</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.QueryResultImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQueryResult()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQueryResult()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int QUERY_RESULT = 6;
@@ -1422,7 +1422,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1433,7 +1433,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1444,7 +1444,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1455,7 +1455,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1466,7 +1466,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1477,7 +1477,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1488,20 +1488,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int QUERY_RESULT_FEATURE_COUNT = 6;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.CategoryImpl <em>Category</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.CategoryImpl <em>Category</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.CategoryImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getCategory()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.CategoryImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getCategory()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int CATEGORY = 7;
@@ -1511,20 +1511,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int CATEGORY_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.FacetElementImpl <em>Facet Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetElementImpl <em>Facet Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.FacetElementImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetElement()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int FACET_ELEMENT = 8;
@@ -1534,7 +1534,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1545,7 +1545,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1556,7 +1556,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1567,7 +1567,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1578,7 +1578,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1589,7 +1589,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1600,7 +1600,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1611,7 +1611,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1622,7 +1622,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1633,7 +1633,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1644,7 +1644,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1655,7 +1655,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1666,7 +1666,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1677,20 +1677,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int FACET_ELEMENT_FEATURE_COUNT = EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.QueryFacetElementImpl <em>Query Facet Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryFacetElementImpl <em>Query Facet Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.QueryFacetElementImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQueryFacetElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QueryFacetElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQueryFacetElement()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int QUERY_FACET_ELEMENT = 9;
@@ -1700,7 +1700,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1711,7 +1711,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1722,7 +1722,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1733,7 +1733,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1744,7 +1744,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1755,7 +1755,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1766,7 +1766,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1777,7 +1777,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1788,7 +1788,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1799,7 +1799,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1810,7 +1810,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1821,7 +1821,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1832,7 +1832,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1843,7 +1843,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1854,20 +1854,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int QUERY_FACET_ELEMENT_FEATURE_COUNT = EFacetPackage.FACET_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.OppositeReferenceImpl <em>Opposite Reference</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.OppositeReferenceImpl <em>Opposite Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.OppositeReferenceImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getOppositeReference()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.OppositeReferenceImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getOppositeReference()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int OPPOSITE_REFERENCE = 10;
@@ -1877,7 +1877,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1888,7 +1888,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1899,7 +1899,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1910,7 +1910,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1921,7 +1921,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1932,7 +1932,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1943,7 +1943,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1954,7 +1954,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1965,7 +1965,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1976,7 +1976,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1987,7 +1987,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -1998,7 +1998,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2009,7 +2009,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2020,7 +2020,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2031,20 +2031,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int OPPOSITE_REFERENCE_FEATURE_COUNT = EFacetPackage.FACET_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.QuerySetImpl <em>Query Set</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QuerySetImpl <em>Query Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.QuerySetImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQuerySet()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QuerySetImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQuerySet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int QUERY_SET = 11;
@@ -2054,7 +2054,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2065,7 +2065,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2076,20 +2076,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int QUERY_SET_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.LiteralImpl <em>Literal</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.LiteralImpl <em>Literal</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.LiteralImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getLiteral()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.LiteralImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getLiteral()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int LITERAL = 12;
@@ -2099,7 +2099,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2110,7 +2110,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2121,7 +2121,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2132,7 +2132,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2143,7 +2143,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2154,7 +2154,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2165,7 +2165,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2176,7 +2176,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2187,7 +2187,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2198,7 +2198,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2209,7 +2209,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2220,7 +2220,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2231,7 +2231,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2242,7 +2242,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2253,7 +2253,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2264,20 +2264,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int LITERAL_FEATURE_COUNT = EFacetPackage.QUERY_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.TypedElementRefImpl <em>Typed Element Ref</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.TypedElementRefImpl <em>Typed Element Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.TypedElementRefImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getTypedElementRef()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.TypedElementRefImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getTypedElementRef()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int TYPED_ELEMENT_REF = 13;
@@ -2287,7 +2287,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2298,7 +2298,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2309,7 +2309,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2320,7 +2320,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2331,7 +2331,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2342,7 +2342,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2353,7 +2353,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2364,7 +2364,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2375,7 +2375,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2386,7 +2386,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2397,7 +2397,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2408,7 +2408,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2419,7 +2419,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2430,7 +2430,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2441,7 +2441,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2452,20 +2452,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int TYPED_ELEMENT_REF_FEATURE_COUNT = EFacetPackage.QUERY_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.ParameterImpl <em>Parameter</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.ParameterImpl <em>Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.ParameterImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getParameter()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.ParameterImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getParameter()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int PARAMETER = 14;
@@ -2475,7 +2475,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2486,7 +2486,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2497,7 +2497,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2508,7 +2508,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2519,7 +2519,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2530,7 +2530,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2541,7 +2541,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2552,7 +2552,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2563,7 +2563,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2574,7 +2574,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2585,20 +2585,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int PARAMETER_FEATURE_COUNT = EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.ParameterValueImpl <em>Parameter Value</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.ParameterValueImpl <em>Parameter Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.ParameterValueImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getParameterValue()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.ParameterValueImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getParameterValue()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int PARAMETER_VALUE = 15;
@@ -2608,7 +2608,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2619,7 +2619,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2630,20 +2630,20 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
 	int PARAMETER_VALUE_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.impl.QueryContextImpl <em>Query Context</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryContextImpl <em>Query Context</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.impl.QueryContextImpl
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQueryContext()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QueryContextImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQueryContext()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int QUERY_CONTEXT = 16;
@@ -2653,7 +2653,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2664,7 +2664,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2675,7 +2675,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 * @ordered
 	 */
 	@Deprecated
@@ -2686,604 +2686,604 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see java.lang.Exception
-	 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getJavaException()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getJavaException()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	int JAVA_EXCEPTION = 17;
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.FacetAttribute <em>Facet Attribute</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.FacetAttribute <em>Facet Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Attribute</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetAttribute
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetAttribute
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getFacetAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.FacetReference <em>Facet Reference</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.FacetReference <em>Facet Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Reference</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetReference
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetReference
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getFacetReference();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.FacetOperation <em>Facet Operation</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.FacetOperation <em>Facet Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Operation</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetOperation
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetOperation
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getFacetOperation();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.FacetSet <em>Facet Set</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.FacetSet <em>Facet Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Set</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetSet
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetSet
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getFacetSet();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.FacetSet#getFacets <em>Facets</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.FacetSet#getFacets <em>Facets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Facets</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetSet#getFacets()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetSet#getFacets()
 	 * @see #getFacetSet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacetSet_Facets();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.FacetSet#getCategories <em>Categories</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.FacetSet#getCategories <em>Categories</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Categories</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetSet#getCategories()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetSet#getCategories()
 	 * @see #getFacetSet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacetSet_Categories();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.FacetSet#getExtendedEPackage <em>Extended EPackage</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.FacetSet#getExtendedEPackage <em>Extended EPackage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Extended EPackage</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetSet#getExtendedEPackage()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetSet#getExtendedEPackage()
 	 * @see #getFacetSet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacetSet_ExtendedEPackage();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.Facet <em>Facet</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.Facet <em>Facet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Facet
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Facet
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getFacet();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.emf.facet.efacet.Facet#getFacetSet <em>Facet Set</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.emf.facet.efacet.Facet#getFacetSet <em>Facet Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Facet Set</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Facet#getFacetSet()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Facet#getFacetSet()
 	 * @see #getFacet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacet_FacetSet();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.facet.efacet.Facet#getConformanceQuery <em>Conformance Query</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.emf.facet.efacet.Facet#getConformanceQuery <em>Conformance Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Conformance Query</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Facet#getConformanceQuery()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Facet#getConformanceQuery()
 	 * @see #getFacet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacet_ConformanceQuery();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.Facet#getExtendedMetaclass <em>Extended Metaclass</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.Facet#getExtendedMetaclass <em>Extended Metaclass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Extended Metaclass</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Facet#getExtendedMetaclass()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Facet#getExtendedMetaclass()
 	 * @see #getFacet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacet_ExtendedMetaclass();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.Facet#getFacetElements <em>Facet Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.Facet#getFacetElements <em>Facet Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Facet Elements</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Facet#getFacetElements()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Facet#getFacetElements()
 	 * @see #getFacet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacet_FacetElements();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.Query <em>Query</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.Query <em>Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Query</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Query
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Query
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getQuery();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.Query#getScope <em>Scope</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.Query#getScope <em>Scope</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Scope</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Query#getScope()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Query#getScope()
 	 * @see #getQuery()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getQuery_Scope();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.Query#isHasSideEffect <em>Has Side Effect</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.Query#isHasSideEffect <em>Has Side Effect</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Has Side Effect</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Query#isHasSideEffect()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Query#isHasSideEffect()
 	 * @see #getQuery()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EAttribute getQuery_HasSideEffect();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.Query#isCanBeCached <em>Can Be Cached</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.Query#isCanBeCached <em>Can Be Cached</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Can Be Cached</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Query#isCanBeCached()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Query#isCanBeCached()
 	 * @see #getQuery()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EAttribute getQuery_CanBeCached();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.Query#getParameters <em>Parameters</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.Query#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Query#getParameters()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Query#getParameters()
 	 * @see #getQuery()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getQuery_Parameters();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.QueryResult <em>Query Result</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.QueryResult <em>Query Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Query Result</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryResult
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryResult
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getQueryResult();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.QueryResult#getQuery <em>Query</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.QueryResult#getQuery <em>Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Query</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryResult#getQuery()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryResult#getQuery()
 	 * @see #getQueryResult()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getQueryResult_Query();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.QueryResult#getScope <em>Scope</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.QueryResult#getScope <em>Scope</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Scope</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryResult#getScope()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryResult#getScope()
 	 * @see #getQueryResult()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getQueryResult_Scope();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.QueryResult#getParameterValues <em>Parameter Values</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.QueryResult#getParameterValues <em>Parameter Values</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Parameter Values</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryResult#getParameterValues()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryResult#getParameterValues()
 	 * @see #getQueryResult()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getQueryResult_ParameterValues();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.QueryResult#getResult <em>Result</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.QueryResult#getResult <em>Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Result</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryResult#getResult()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryResult#getResult()
 	 * @see #getQueryResult()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EAttribute getQueryResult_Result();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.QueryResult#getException <em>Exception</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.QueryResult#getException <em>Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Exception</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryResult#getException()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryResult#getException()
 	 * @see #getQueryResult()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EAttribute getQueryResult_Exception();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.QueryResult#getSource <em>Source</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.QueryResult#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Source</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryResult#getSource()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryResult#getSource()
 	 * @see #getQueryResult()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getQueryResult_Source();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.Category <em>Category</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.Category <em>Category</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Category</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Category
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Category
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getCategory();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.FacetElement <em>Facet Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.FacetElement <em>Facet Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Element</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetElement
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetElement
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getFacetElement();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.facet.efacet.FacetElement#getCategories <em>Categories</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.FacetElement#getCategories <em>Categories</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Categories</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetElement#getCategories()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetElement#getCategories()
 	 * @see #getFacetElement()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacetElement_Categories();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipse.emf.facet.efacet.FacetElement#getFacet <em>Facet</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.emf.facet.efacet.FacetElement#getFacet <em>Facet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Facet</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetElement#getFacet()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetElement#getFacet()
 	 * @see #getFacetElement()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacetElement_Facet();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.FacetElement#getOverride <em>Override</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.FacetElement#getOverride <em>Override</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Override</em>'.
-	 * @see org.eclipse.emf.facet.efacet.FacetElement#getOverride()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.FacetElement#getOverride()
 	 * @see #getFacetElement()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getFacetElement_Override();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.QueryFacetElement <em>Query Facet Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.QueryFacetElement <em>Query Facet Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Query Facet Element</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryFacetElement
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryFacetElement
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getQueryFacetElement();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.facet.efacet.QueryFacetElement#getQuery <em>Query</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.emf.facet.efacet.QueryFacetElement#getQuery <em>Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Query</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryFacetElement#getQuery()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryFacetElement#getQuery()
 	 * @see #getQueryFacetElement()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getQueryFacetElement_Query();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.OppositeReference <em>Opposite Reference</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.OppositeReference <em>Opposite Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Opposite Reference</em>'.
-	 * @see org.eclipse.emf.facet.efacet.OppositeReference
+	 * @see org.eclipse.papyrus.emf.facet.efacet.OppositeReference
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getOppositeReference();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.OppositeReference#getFOpposite <em>FOpposite</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.OppositeReference#getFOpposite <em>FOpposite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>FOpposite</em>'.
-	 * @see org.eclipse.emf.facet.efacet.OppositeReference#getFOpposite()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.OppositeReference#getFOpposite()
 	 * @see #getOppositeReference()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getOppositeReference_FOpposite();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.QuerySet <em>Query Set</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.QuerySet <em>Query Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Query Set</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QuerySet
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QuerySet
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getQuerySet();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.QuerySet#getQueries <em>Queries</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.QuerySet#getQueries <em>Queries</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Queries</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QuerySet#getQueries()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QuerySet#getQueries()
 	 * @see #getQuerySet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getQuerySet_Queries();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.QuerySet#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.QuerySet#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QuerySet#getName()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QuerySet#getName()
 	 * @see #getQuerySet()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EAttribute getQuerySet_Name();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.Literal <em>Literal</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.Literal <em>Literal</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Literal</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Literal
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Literal
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getLiteral();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.Literal#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.Literal#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Literal#getValue()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Literal#getValue()
 	 * @see #getLiteral()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EAttribute getLiteral_Value();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.TypedElementRef <em>Typed Element Ref</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.TypedElementRef <em>Typed Element Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Typed Element Ref</em>'.
-	 * @see org.eclipse.emf.facet.efacet.TypedElementRef
+	 * @see org.eclipse.papyrus.emf.facet.efacet.TypedElementRef
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getTypedElementRef();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.TypedElementRef#getTypedElement <em>Typed Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.TypedElementRef#getTypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Typed Element</em>'.
-	 * @see org.eclipse.emf.facet.efacet.TypedElementRef#getTypedElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.TypedElementRef#getTypedElement()
 	 * @see #getTypedElementRef()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getTypedElementRef_TypedElement();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.Parameter <em>Parameter</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.Parameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Parameter</em>'.
-	 * @see org.eclipse.emf.facet.efacet.Parameter
+	 * @see org.eclipse.papyrus.emf.facet.efacet.Parameter
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getParameter();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.ParameterValue <em>Parameter Value</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.ParameterValue <em>Parameter Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Parameter Value</em>'.
-	 * @see org.eclipse.emf.facet.efacet.ParameterValue
+	 * @see org.eclipse.papyrus.emf.facet.efacet.ParameterValue
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getParameterValue();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.ParameterValue#getParameter <em>Parameter</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.ParameterValue#getParameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Parameter</em>'.
-	 * @see org.eclipse.emf.facet.efacet.ParameterValue#getParameter()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.ParameterValue#getParameter()
 	 * @see #getParameterValue()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getParameterValue_Parameter();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.emf.facet.efacet.ParameterValue#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.emf.facet.efacet.ParameterValue#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Value</em>'.
-	 * @see org.eclipse.emf.facet.efacet.ParameterValue#getValue()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.ParameterValue#getValue()
 	 * @see #getParameterValue()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EAttribute getParameterValue_Value();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.QueryContext <em>Query Context</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.QueryContext <em>Query Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Query Context</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryContext
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryContext
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EClass getQueryContext();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.facet.efacet.QueryContext#getSelectedModelElements <em>Selected Model Elements</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.QueryContext#getSelectedModelElements <em>Selected Model Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Selected Model Elements</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryContext#getSelectedModelElements()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryContext#getSelectedModelElements()
 	 * @see #getQueryContext()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EReference getQueryContext_SelectedModelElements();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.emf.facet.efacet.QueryContext#getSelectedModels <em>Selected Models</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.emf.facet.efacet.QueryContext#getSelectedModels <em>Selected Models</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Selected Models</em>'.
-	 * @see org.eclipse.emf.facet.efacet.QueryContext#getSelectedModels()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.QueryContext#getSelectedModels()
 	 * @see #getQueryContext()
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EAttribute getQueryContext_SelectedModels();
@@ -3296,7 +3296,7 @@ public interface EFacetPackage extends EPackage {
 	 * @see java.lang.Exception
 	 * @model instanceClass="java.lang.Exception"
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EDataType getJavaException();
@@ -3307,7 +3307,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EFacetFactory getEFacetFactory();
@@ -3323,54 +3323,54 @@ public interface EFacetPackage extends EPackage {
 	 * </ul>
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.FacetAttributeImpl <em>Facet Attribute</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetAttributeImpl <em>Facet Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.FacetAttributeImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetAttribute()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetAttributeImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetAttribute()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass FACET_ATTRIBUTE = EFacetPackage.eINSTANCE.getFacetAttribute();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.FacetReferenceImpl <em>Facet Reference</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetReferenceImpl <em>Facet Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.FacetReferenceImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetReference()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetReferenceImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetReference()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass FACET_REFERENCE = EFacetPackage.eINSTANCE.getFacetReference();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.FacetOperationImpl <em>Facet Operation</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetOperationImpl <em>Facet Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.FacetOperationImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetOperation()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetOperationImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetOperation()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass FACET_OPERATION = EFacetPackage.eINSTANCE.getFacetOperation();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.FacetSetImpl <em>Facet Set</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetSetImpl <em>Facet Set</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.FacetSetImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetSet()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetSetImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetSet()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass FACET_SET = EFacetPackage.eINSTANCE.getFacetSet();
@@ -3380,7 +3380,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET_SET__FACETS = EFacetPackage.eINSTANCE.getFacetSet_Facets();
@@ -3390,7 +3390,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET_SET__CATEGORIES = EFacetPackage.eINSTANCE.getFacetSet_Categories();
@@ -3400,19 +3400,19 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET_SET__EXTENDED_EPACKAGE = EFacetPackage.eINSTANCE.getFacetSet_ExtendedEPackage();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.FacetImpl <em>Facet</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetImpl <em>Facet</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.FacetImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacet()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacet()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass FACET = EFacetPackage.eINSTANCE.getFacet();
@@ -3422,7 +3422,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET__FACET_SET = EFacetPackage.eINSTANCE.getFacet_FacetSet();
@@ -3432,7 +3432,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET__CONFORMANCE_QUERY = EFacetPackage.eINSTANCE.getFacet_ConformanceQuery();
@@ -3442,7 +3442,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET__EXTENDED_METACLASS = EFacetPackage.eINSTANCE.getFacet_ExtendedMetaclass();
@@ -3452,19 +3452,19 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET__FACET_ELEMENTS = EFacetPackage.eINSTANCE.getFacet_FacetElements();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.QueryImpl <em>Query</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryImpl <em>Query</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.QueryImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQuery()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QueryImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQuery()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass QUERY = EFacetPackage.eINSTANCE.getQuery();
@@ -3474,7 +3474,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference QUERY__SCOPE = EFacetPackage.eINSTANCE.getQuery_Scope();
@@ -3484,7 +3484,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EAttribute QUERY__HAS_SIDE_EFFECT = EFacetPackage.eINSTANCE.getQuery_HasSideEffect();
@@ -3494,7 +3494,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EAttribute QUERY__CAN_BE_CACHED = EFacetPackage.eINSTANCE.getQuery_CanBeCached();
@@ -3504,19 +3504,19 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference QUERY__PARAMETERS = EFacetPackage.eINSTANCE.getQuery_Parameters();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.QueryResultImpl <em>Query Result</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl <em>Query Result</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.QueryResultImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQueryResult()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QueryResultImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQueryResult()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass QUERY_RESULT = EFacetPackage.eINSTANCE.getQueryResult();
@@ -3526,7 +3526,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference QUERY_RESULT__QUERY = EFacetPackage.eINSTANCE.getQueryResult_Query();
@@ -3536,7 +3536,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference QUERY_RESULT__SCOPE = EFacetPackage.eINSTANCE.getQueryResult_Scope();
@@ -3546,7 +3546,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference QUERY_RESULT__PARAMETER_VALUES = EFacetPackage.eINSTANCE.getQueryResult_ParameterValues();
@@ -3556,7 +3556,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EAttribute QUERY_RESULT__RESULT = EFacetPackage.eINSTANCE.getQueryResult_Result();
@@ -3566,7 +3566,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EAttribute QUERY_RESULT__EXCEPTION = EFacetPackage.eINSTANCE.getQueryResult_Exception();
@@ -3576,31 +3576,31 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference QUERY_RESULT__SOURCE = EFacetPackage.eINSTANCE.getQueryResult_Source();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.CategoryImpl <em>Category</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.CategoryImpl <em>Category</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.CategoryImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getCategory()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.CategoryImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getCategory()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass CATEGORY = EFacetPackage.eINSTANCE.getCategory();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.FacetElementImpl <em>Facet Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.FacetElementImpl <em>Facet Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.FacetElementImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getFacetElement()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.FacetElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getFacetElement()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass FACET_ELEMENT = EFacetPackage.eINSTANCE.getFacetElement();
@@ -3610,7 +3610,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET_ELEMENT__CATEGORIES = EFacetPackage.eINSTANCE.getFacetElement_Categories();
@@ -3620,7 +3620,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET_ELEMENT__FACET = EFacetPackage.eINSTANCE.getFacetElement_Facet();
@@ -3630,19 +3630,19 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference FACET_ELEMENT__OVERRIDE = EFacetPackage.eINSTANCE.getFacetElement_Override();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.QueryFacetElementImpl <em>Query Facet Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryFacetElementImpl <em>Query Facet Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.QueryFacetElementImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQueryFacetElement()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QueryFacetElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQueryFacetElement()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass QUERY_FACET_ELEMENT = EFacetPackage.eINSTANCE.getQueryFacetElement();
@@ -3652,19 +3652,19 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference QUERY_FACET_ELEMENT__QUERY = EFacetPackage.eINSTANCE.getQueryFacetElement_Query();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.OppositeReferenceImpl <em>Opposite Reference</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.OppositeReferenceImpl <em>Opposite Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.OppositeReferenceImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getOppositeReference()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.OppositeReferenceImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getOppositeReference()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass OPPOSITE_REFERENCE = EFacetPackage.eINSTANCE.getOppositeReference();
@@ -3674,19 +3674,19 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference OPPOSITE_REFERENCE__FOPPOSITE = EFacetPackage.eINSTANCE.getOppositeReference_FOpposite();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.QuerySetImpl <em>Query Set</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QuerySetImpl <em>Query Set</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.QuerySetImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQuerySet()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QuerySetImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQuerySet()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass QUERY_SET = EFacetPackage.eINSTANCE.getQuerySet();
@@ -3696,7 +3696,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference QUERY_SET__QUERIES = EFacetPackage.eINSTANCE.getQuerySet_Queries();
@@ -3706,19 +3706,19 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EAttribute QUERY_SET__NAME = EFacetPackage.eINSTANCE.getQuerySet_Name();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.LiteralImpl <em>Literal</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.LiteralImpl <em>Literal</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.LiteralImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getLiteral()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.LiteralImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getLiteral()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass LITERAL = EFacetPackage.eINSTANCE.getLiteral();
@@ -3728,19 +3728,19 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EAttribute LITERAL__VALUE = EFacetPackage.eINSTANCE.getLiteral_Value();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.TypedElementRefImpl <em>Typed Element Ref</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.TypedElementRefImpl <em>Typed Element Ref</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.TypedElementRefImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getTypedElementRef()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.TypedElementRefImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getTypedElementRef()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass TYPED_ELEMENT_REF = EFacetPackage.eINSTANCE.getTypedElementRef();
@@ -3750,31 +3750,31 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference TYPED_ELEMENT_REF__TYPED_ELEMENT = EFacetPackage.eINSTANCE.getTypedElementRef_TypedElement();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.ParameterImpl <em>Parameter</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.ParameterImpl <em>Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.ParameterImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getParameter()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.ParameterImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getParameter()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass PARAMETER = EFacetPackage.eINSTANCE.getParameter();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.ParameterValueImpl <em>Parameter Value</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.ParameterValueImpl <em>Parameter Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.ParameterValueImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getParameterValue()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.ParameterValueImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getParameterValue()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass PARAMETER_VALUE = EFacetPackage.eINSTANCE.getParameterValue();
@@ -3784,7 +3784,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference PARAMETER_VALUE__PARAMETER = EFacetPackage.eINSTANCE.getParameterValue_Parameter();
@@ -3794,19 +3794,19 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EAttribute PARAMETER_VALUE__VALUE = EFacetPackage.eINSTANCE.getParameterValue_Value();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.impl.QueryContextImpl <em>Query Context</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.impl.QueryContextImpl <em>Query Context</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.impl.QueryContextImpl
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getQueryContext()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.QueryContextImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getQueryContext()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EClass QUERY_CONTEXT = EFacetPackage.eINSTANCE.getQueryContext();
@@ -3816,7 +3816,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EReference QUERY_CONTEXT__SELECTED_MODEL_ELEMENTS = EFacetPackage.eINSTANCE.getQueryContext_SelectedModelElements();
@@ -3826,7 +3826,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EAttribute QUERY_CONTEXT__SELECTED_MODELS = EFacetPackage.eINSTANCE.getQueryContext_SelectedModels();
@@ -3836,9 +3836,9 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see java.lang.Exception
-		 * @see org.eclipse.emf.facet.efacet.impl.EFacetPackageImpl#getJavaException()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.impl.EFacetPackageImpl#getJavaException()
 		 * @generated
-		 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+		 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 		 */
 		@Deprecated
 		EDataType JAVA_EXCEPTION = EFacetPackage.eINSTANCE.getJavaException();

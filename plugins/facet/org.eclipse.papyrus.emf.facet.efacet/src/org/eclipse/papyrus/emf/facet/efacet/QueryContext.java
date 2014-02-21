@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet;
+package org.eclipse.papyrus.emf.facet.efacet;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -31,15 +31,15 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.QueryContext#getSelectedModelElements <em>Selected Model Elements</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.QueryContext#getSelectedModels <em>Selected Models</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.QueryContext#getSelectedModelElements <em>Selected Model Elements</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.QueryContext#getSelectedModels <em>Selected Models</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.EFacetPackage#getQueryContext()
+ * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage#getQueryContext()
  * @model
  * @generated
- * @deprecated use the new eFacet metamodel in org.eclipse.emf.facet.efacet.metamodel. Cf.
+ * @deprecated use the new eFacet metamodel in org.eclipse.papyrus.emf.facet.efacet.metamodel. Cf.
  *             https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
 @Deprecated
@@ -54,10 +54,10 @@ public interface QueryContext extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Selected Model Elements</em>' reference list.
-	 * @see org.eclipse.emf.facet.efacet.EFacetPackage#getQueryContext_SelectedModelElements()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage#getQueryContext_SelectedModelElements()
 	 * @model
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EList<EObject> getSelectedModelElements();
@@ -72,10 +72,10 @@ public interface QueryContext extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Selected Models</em>' attribute list.
-	 * @see org.eclipse.emf.facet.efacet.EFacetPackage#getQueryContext_SelectedModels()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.EFacetPackage#getQueryContext_SelectedModels()
 	 * @model transient="true"
 	 * @generated
-	 * @deprecated use the new eFacet2 metamodel in org.eclipse.emf.facet.efacet2.metamodel
+	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
 	EList<Resource> getSelectedModels();

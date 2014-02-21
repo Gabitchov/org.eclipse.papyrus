@@ -10,7 +10,7 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  *  	Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  */
-package org.eclipse.emf.facet.custom.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.core.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

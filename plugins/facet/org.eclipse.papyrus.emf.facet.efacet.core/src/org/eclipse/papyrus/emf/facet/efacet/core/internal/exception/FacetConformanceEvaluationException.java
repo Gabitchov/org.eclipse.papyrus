@@ -8,7 +8,7 @@
  * Contributors:
  *     Nicolas Bros (Mia-Software) - Bug 361612 - New core for new version of the Facet metamodel
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core.internal.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.exception;
 
 /**
  * Happens when there is an error evaluating a Facet's conformance typed element.

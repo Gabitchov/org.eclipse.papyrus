@@ -11,7 +11,7 @@
  *  	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  *  
  */
-package org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery;
+package org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EFactory;
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage
+ * @see org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage
  * @generated
  * @noextend This interface is not intended to be extended by clients.
  * @noimplement This interface is not intended to be implemented by clients.
@@ -33,7 +33,7 @@ public interface JavaQueryFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	JavaQueryFactory eINSTANCE = org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryFactoryImpl.init();
+	JavaQueryFactory eINSTANCE = org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Java Query</em>'.

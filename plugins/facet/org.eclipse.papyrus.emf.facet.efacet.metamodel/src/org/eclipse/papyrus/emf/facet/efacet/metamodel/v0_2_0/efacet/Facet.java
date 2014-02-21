@@ -15,7 +15,7 @@
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *  Gregoire Dupe (Mia-Software) - Bug 376576 - [EFacet] Change the multiplicity of Facet::extendedFacet
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -35,15 +35,15 @@ import org.eclipse.emf.ecore.ETypedElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedMetaclass <em>Extended Metaclass</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetElements <em>Facet Elements</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetOperations <em>Facet Operations</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getConformanceTypedElement <em>Conformance Typed Element</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedFacets <em>Extended Facets</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedMetaclass <em>Extended Metaclass</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetElements <em>Facet Elements</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetOperations <em>Facet Operations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getConformanceTypedElement <em>Conformance Typed Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedFacets <em>Extended Facets</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet()
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='( self.query.scope = self.facet.extendedMetaClass ) and ( self.query.name = self.name )'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='self.conformanceQuery.scope = self.extendedMetaClass'"
  *        annotation="org.eclipse.ocl.ecore.OCL body='not(self.container().oclCastAs(FacetSet).facets->exists(f|f.extendedMetaClass.container() <> self.extendedMetaClass.container() ))'"
@@ -60,14 +60,14 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extended Metaclass</em>' reference.
 	 * @see #setExtendedMetaclass(EClass)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_ExtendedMetaclass()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_ExtendedMetaclass()
 	 * @model annotation="GenModel documentation='The \"extendedMetaclass\" reference references the virtually subtyped EClass.'"
 	 * @generated
 	 */
 	EClass getExtendedMetaclass();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedMetaclass <em>Extended Metaclass</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedMetaclass <em>Extended Metaclass</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Extended Metaclass</em>' reference.
@@ -85,7 +85,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 * This composite reference contains virtual attributes, references and operations.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Facet Elements</em>' containment reference list.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_FacetElements()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_FacetElements()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -93,7 +93,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Facet Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation}.
+	 * The list contents are of type {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Facet Operations</em>' containment reference list isn't clear,
@@ -101,7 +101,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Facet Operations</em>' containment reference list.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_FacetOperations()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_FacetOperations()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -117,14 +117,14 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Conformance Typed Element</em>' reference.
 	 * @see #setConformanceTypedElement(ETypedElement)
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_ConformanceTypedElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_ConformanceTypedElement()
 	 * @model
 	 * @generated
 	 */
 	ETypedElement getConformanceTypedElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getConformanceTypedElement <em>Conformance Typed Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getConformanceTypedElement <em>Conformance Typed Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Conformance Typed Element</em>' reference.
@@ -135,7 +135,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Extended Facets</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet}.
+	 * The list contents are of type {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extended Facets</em>' reference list isn't clear,
@@ -143,7 +143,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Extended Facets</em>' reference list.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_ExtendedFacets()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_ExtendedFacets()
 	 * @model annotation="GenModel documentation='A facet can extend other facets. If A facet A can extend a facet B. In this case an eObject conforms to the facet A if it matches conformance evaluation of A and B. '"
 	 * @generated
 	 * @since 0.2

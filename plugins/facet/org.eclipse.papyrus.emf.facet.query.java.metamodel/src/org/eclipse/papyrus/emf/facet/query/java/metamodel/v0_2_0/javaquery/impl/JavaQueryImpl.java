@@ -11,7 +11,7 @@
  *  	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  *  
  */
-package org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl;
+package org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl;
 
-import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery;
-import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage;
+import org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +31,7 @@ import org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.JavaQueryPack
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl#getImplementationClassName <em>Implementation Class Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.query.java.metamodel.v0_2_0.javaquery.impl.JavaQueryImpl#getImplementationClassName <em>Implementation Class Name</em>}</li>
  * </ul>
  * </p>
  *

@@ -8,10 +8,10 @@
  * Contributors:
  *    Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
  ***********************************************************************************/
-package org.eclipse.emf.facet.common.ui.internal.preference.pages;
+package org.eclipse.papyrus.emf.facet.common.ui.internal.preference.pages;
 
-import org.eclipse.emf.facet.common.ui.internal.Activator;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.Activator;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 

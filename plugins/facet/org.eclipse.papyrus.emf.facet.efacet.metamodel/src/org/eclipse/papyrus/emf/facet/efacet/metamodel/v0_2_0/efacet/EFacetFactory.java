@@ -14,7 +14,7 @@
  *  Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage
  * @generated
  */
 public interface EFacetFactory extends EFactory {
@@ -33,7 +33,7 @@ public interface EFacetFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EFacetFactory eINSTANCE = org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetFactoryImpl.init();
+	EFacetFactory eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Facet Attribute</em>'.

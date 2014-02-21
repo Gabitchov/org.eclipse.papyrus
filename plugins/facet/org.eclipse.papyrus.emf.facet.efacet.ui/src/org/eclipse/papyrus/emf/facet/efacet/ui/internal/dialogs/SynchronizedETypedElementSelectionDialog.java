@@ -10,16 +10,16 @@
  *     Nicolas Bros (Mia-Software) - Bug 370806 - [table] rewrite the "allowed contents" query selection dialog for v0.2
  *     Gregoire Dupe (Mia-Software) - Bug 375087 - [Table] ITableWidget.addColumn(List<ETypedElement>, List<FacetSet>)
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.dialogs;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.dialogs;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.dialog.IETypedElementSelectionDialog;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.dialog.IETypedElementSelectionDialogInternal;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
-import org.eclipse.emf.facet.util.ui.internal.exported.displaysync.SynchronizedComposite;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.dialog.IETypedElementSelectionDialog;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.dialog.IETypedElementSelectionDialogInternal;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.AbstractVoidExceptionFreeRunnable;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync.SynchronizedComposite;
 import org.eclipse.swt.widgets.Shell;
 
 /** A synchronization facade for {@link IETypedElementSelectionDialog}. */

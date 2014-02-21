@@ -6,12 +6,12 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    Grégoire Dupé (Mia-Software) - Bug 365808 - [Unit Test Failure][0.2/4.2][0.2/3.8] org.eclipse.emf.facet.widgets.nattable.tests.NatTableAPITests
+ *    Grégoire Dupé (Mia-Software) - Bug 365808 - [Unit Test Failure][0.2/4.2][0.2/3.8] org.eclipse.papyrus.emf.facet.widgets.nattable.tests.NatTableAPITests
  *    Grégoire Dupé (Mia-Software) - Bug 367153 - synchronization utilities
  *    Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *    Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  *******************************************************************************/
-package org.eclipse.emf.facet.util.ui.internal.exported.displaysync;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.displaysync;
 
 import org.eclipse.swt.widgets.Display;
 

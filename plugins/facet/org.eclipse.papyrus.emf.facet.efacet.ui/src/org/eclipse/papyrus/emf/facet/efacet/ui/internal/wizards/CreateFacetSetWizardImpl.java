@@ -9,20 +9,20 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal.wizards;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.facet.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.core.IFacetAction;
-import org.eclipse.emf.facet.efacet.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.ICreateFacetSetWizard;
-import org.eclipse.emf.facet.efacet.ui.internal.utils.ImageProvider;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.pages.FacetSetPropertyWizardPage;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.pages.CreateFacetSetWizardPage;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetAction;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.ICreateFacetSetWizard;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.utils.ImageProvider;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages.FacetSetPropertyWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages.CreateFacetSetWizardPage;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;

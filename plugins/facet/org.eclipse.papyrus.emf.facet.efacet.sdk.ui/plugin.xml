@@ -15,10 +15,10 @@
    <extension-point id="queryFactoryDialogRegistration" name="%extension-point.name" schema="schema/queryFactoryDialogRegistration.exsd"/>
   <extension point="org.eclipse.ui.newWizards">
       <wizard
-            category="org.eclipse.emf.facet.common.ui.wizardsCategory"
-            class="org.eclipse.emf.facet.efacet.sdk.ui.internal.wizard.CreateFacetSetWizard"
+            category="org.eclipse.papyrus.emf.facet.common.ui.wizardsCategory"
+            class="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.wizard.CreateFacetSetWizard"
             icon="icons/facet.gif"
-            id="org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.presentation.EFacetModelWizardID"
+            id="org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.presentation.EFacetModelWizardID"
             name="%wizard.name">
          <description>
             %wizard.description
@@ -32,11 +32,11 @@
          point="org.eclipse.ui.menus">
     <menuContribution
             allPopups="true"
-            locationURI="popup:org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.presentation.EFacetEditorID?before=edit">
+            locationURI="popup:org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.presentation.EFacetEditorID?before=edit">
       <menu
                label="%menu.label">
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.createFacetSetInFacetSet"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.createFacetSetInFacetSet"
                icon="icons/FacetSet.gif"
                label="%command.name"
                style="push">
@@ -45,7 +45,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.createFacetInFacetSet"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.createFacetInFacetSet"
                icon="icons/facet.gif"
                label="%command.name.0"
                style="push">
@@ -54,7 +54,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.addAttributeInFacet"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addAttributeInFacet"
                icon="icons/FacetAttribute.gif"
                label="%command.name.1"
                style="push">
@@ -63,7 +63,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.addOperationInFacet"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addOperationInFacet"
                icon="icons/FacetOperation.gif"
                label="%command.name.2"
                style="push">
@@ -72,7 +72,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.addReferenceInFacet"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addReferenceInFacet"
                icon="icons/FacetReference.gif"
                label="%command.name.4"
                style="push">
@@ -81,7 +81,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.addParameterInOperation"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addParameterInOperation"
                icon="icons/ParameterValue.gif"
                label="%command.name.3"
                style="push">
@@ -90,7 +90,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetSet"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetSet"
                icon="icons/FacetSet.gif"
                label="%command.name.5"
                style="push">
@@ -99,7 +99,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacet"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacet"
                icon="icons/facet.gif"
                label="%command.name.6"
                style="push">
@@ -108,7 +108,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetAttribute"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetAttribute"
                icon="icons/FacetAttribute.gif"
                label="%command.name.7"
                style="push">
@@ -117,7 +117,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetOperation"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetOperation"
                icon="icons/FacetOperation.gif"
                label="%command.name.8"
                style="push">
@@ -126,7 +126,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetOperationParameter"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetOperationParameter"
                icon="icons/ParameterValue.gif"
                label="%command.name.9"
                style="push">
@@ -135,7 +135,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.emf.facet.efacet.sdk.ui.editFacetReference"
+               commandId="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetReference"
                icon="icons/FacetReference.gif"
                label="%command.name.10"
                style="push">
@@ -149,70 +149,70 @@
   <extension
         point="org.eclipse.ui.commands">
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.creation.CreateFacetSetInFacetSetHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.createFacetSetInFacetSet"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.creation.CreateFacetSetInFacetSetHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.createFacetSetInFacetSet"
            name="%command.name">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.creation.CreateFacetInFacetSetHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.createFacetInFacetSet"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.creation.CreateFacetInFacetSetHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.createFacetInFacetSet"
            name="%command.name.0">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.creation.AddAttributeInFacetHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.addAttributeInFacet"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.creation.AddAttributeInFacetHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addAttributeInFacet"
            name="%command.name.1">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.creation.AddOperationInFacetHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.addOperationInFacet"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.creation.AddOperationInFacetHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addOperationInFacet"
            name="%command.name.2">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.creation.AddReferenceInFacetHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.addReferenceInFacet"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.creation.AddReferenceInFacetHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addReferenceInFacet"
            name="%command.name.4">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.creation.AddParameterInOperationHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.addParameterInOperation"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.creation.AddParameterInOperationHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.addParameterInOperation"
            name="%command.name.3">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetSetHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.editFacetSet"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetSetHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetSet"
            name="%command.name.5">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.editFacet"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacet"
            name="%command.name.6">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetAttributeHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.editFacetAttribute"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetAttributeHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetAttribute"
            name="%command.name.7">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetOperationHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.editFacetOperation"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetOperationHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetOperation"
            name="%command.name.8">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetOperationParameterHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.editFacetOperationParameter"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetOperationParameterHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetOperationParameter"
            name="%command.name.9">
      </command>
      <command
-           defaultHandler="org.eclipse.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetReferenceHandler"
-           id="org.eclipse.emf.facet.efacet.sdk.ui.editFacetReference"
+           defaultHandler="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.edition.EditFacetReferenceHandler"
+           id="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.editFacetReference"
            name="%command.name.10">
      </command>
   </extension>
   <extension
         point="org.eclipse.ui.startup">
      <startup
-           class="org.eclipse.emf.facet.efacet.sdk.ui.internal.Startup">
+           class="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Startup">
      </startup>
   </extension>
 </plugin>

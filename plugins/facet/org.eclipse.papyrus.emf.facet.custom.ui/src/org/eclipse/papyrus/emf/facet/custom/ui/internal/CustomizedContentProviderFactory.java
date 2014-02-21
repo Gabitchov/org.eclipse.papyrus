@@ -10,12 +10,12 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  *      Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  */
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.ui.ICustomizedContentProvider;
-import org.eclipse.emf.facet.custom.ui.ICustomizedContentProviderFactory;
-import org.eclipse.emf.facet.custom.ui.ICustomizedTreeContentProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedContentProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedContentProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedTreeContentProvider;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 
 @SuppressWarnings("deprecation")
 //@SuppressWarnings("deprecation") : Bug 380229 - [deprecated] ICustomizedContentProvider

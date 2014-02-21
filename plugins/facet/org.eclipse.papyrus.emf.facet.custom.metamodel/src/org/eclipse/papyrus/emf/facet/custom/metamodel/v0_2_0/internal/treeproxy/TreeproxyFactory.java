@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *    Gregoire Dupe (Mia-Software) - Bug 386387 - [CustomizedTreeContentProvider] The TreeElements are not preserved between two calls to getElements()
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage
  * @generated
  */
 public interface TreeproxyFactory extends EFactory {
@@ -28,7 +28,7 @@ public interface TreeproxyFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	TreeproxyFactory eINSTANCE = org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyFactoryImpl.init();
+	TreeproxyFactory eINSTANCE = org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.impl.TreeproxyFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>EObject Tree Element</em>'.

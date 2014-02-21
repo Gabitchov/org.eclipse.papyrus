@@ -9,7 +9,7 @@
  *    Nicolas Bros (Mia-Software) - Bug 379683 - customizable Tree content provider
  *    Gregoire Dupe (Mia-Software) - Bug 386387 - [CustomizedTreeContentProvider] The TreeElements are not preserved between two calls to getElements()
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy;
 
 import org.eclipse.emf.ecore.EAttribute;
 
@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.EAttribute;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement#getEAttribute <em>EAttribute</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement#getEAttribute <em>EAttribute</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage#getEAttributeTreeElement()
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage#getEAttributeTreeElement()
  * @model
  * @generated
  */
@@ -43,14 +43,14 @@ public interface EAttributeTreeElement extends EStructuralFeatureTreeElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>EAttribute</em>' reference.
 	 * @see #setEAttribute(EAttribute)
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage#getEAttributeTreeElement_EAttribute()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeproxyPackage#getEAttributeTreeElement_EAttribute()
 	 * @model
 	 * @generated
 	 */
 	EAttribute getEAttribute();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement#getEAttribute <em>EAttribute</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EAttributeTreeElement#getEAttribute <em>EAttribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>EAttribute</em>' reference.

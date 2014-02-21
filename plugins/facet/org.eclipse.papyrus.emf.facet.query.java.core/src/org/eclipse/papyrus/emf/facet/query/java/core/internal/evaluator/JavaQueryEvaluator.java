@@ -8,18 +8,18 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.query.java.core.internal.evaluator;
+package org.eclipse.papyrus.emf.facet.query.java.core.internal.evaluator;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.ParameterValue;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.core.exception.QueryException;
-import org.eclipse.emf.facet.efacet.core.query.IQueryEvaluator;
-import org.eclipse.emf.facet.query.java.core.IJavaQuery;
-import org.eclipse.emf.facet.query.java.core.IParameterValueList;
-import org.eclipse.emf.facet.query.java.core.IParameterValueListFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ParameterValue;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.QueryException;
+import org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryEvaluator;
+import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList;
+import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueListFactory;
 
 /**
  * This class is the EMF Facet Java Query Evaluator
@@ -31,7 +31,7 @@ import org.eclipse.emf.facet.query.java.core.IParameterValueListFactory;
 public class JavaQueryEvaluator implements IQueryEvaluator {
 
 	// This class is modified copy of :
-	// org.eclipse.emf.facet.infra.query.core.java.internal.JavaModelQueryAdapter
+	// org.eclipse.papyrus.emf.facet.infra.query.core.java.internal.JavaModelQueryAdapter
 	private final IJavaQuery<EObject, ?> javaQuery;
 	private boolean checkResultType = false;
 

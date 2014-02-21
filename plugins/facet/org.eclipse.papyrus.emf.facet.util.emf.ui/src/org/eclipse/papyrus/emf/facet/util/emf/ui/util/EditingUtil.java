@@ -9,7 +9,7 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.emf.ui.util;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.util;
 
 import java.io.File;
 

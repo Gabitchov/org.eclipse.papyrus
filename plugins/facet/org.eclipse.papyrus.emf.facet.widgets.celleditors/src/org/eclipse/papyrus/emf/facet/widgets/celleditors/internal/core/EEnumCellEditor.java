@@ -8,20 +8,20 @@
  *
  * Contributors:
  *   Gregoire Dupe (Mia-Software) - initial API and implementation
- *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *   Nicolas Bros (Mia-Software) - Bug 334539 - [celleditors] change listener
  *   Gregoire Dupe (Mia-Software) - Bug 344563 - NPE with Enum Editor
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.core;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.widgets.celleditors.IListener;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.internal.core.composite.EnumeratorComposite;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IListener;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditHandler;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite.EnumeratorComposite;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 

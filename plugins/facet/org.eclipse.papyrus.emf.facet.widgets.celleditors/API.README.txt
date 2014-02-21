@@ -11,11 +11,11 @@
  *   Nicolas Guyomar (Mia-Software) - Bug 340976 - Missing x-friend in celleditors plug-in
  *******************************************************************************/
  
-org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.util
-	x-friends:="org.eclipse.emf.facet.widgets.celleditors.edit" for EMF Facet internal use
+org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.util
+	x-friends:="org.eclipse.papyrus.emf.facet.widgets.celleditors.edit" for EMF Facet internal use
 	
-org.eclipse.emf.facet.widgets.celleditors.internal.core
-	x-friends:="org.eclipse.emf.facet.widgets.nattable" for EMF Facet internal use
+org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core
+	x-friends:="org.eclipse.papyrus.emf.facet.widgets.nattable" for EMF Facet internal use
 	
-org.eclipse.emf.facet.widgets.celleditors.internal
-	x-friends:="org.eclipse.emf.facet.widgets.nattable" for EMF Facet internal use
+org.eclipse.papyrus.emf.facet.widgets.celleditors.internal
+	x-friends:="org.eclipse.papyrus.emf.facet.widgets.nattable" for EMF Facet internal use

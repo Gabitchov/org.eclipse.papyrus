@@ -10,10 +10,10 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.emf.ui.internal.exported.wizard;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.exported.wizard;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.facet.util.ui.internal.exported.wizard.IExtendedWizard;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.wizard.IExtendedWizard;
 
 /**
  * @since 0.3

@@ -9,9 +9,9 @@
  * Contributors:
  * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values. 
  */
-package org.eclipse.emf.facet.efacet.core.internal.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.exception;
 
-import org.eclipse.emf.facet.efacet.core.exception.FacetManagerException;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.FacetManagerException;
 
 /**
  * This exception is raised when an IOException is caught when trying to save a structural feature instance model 

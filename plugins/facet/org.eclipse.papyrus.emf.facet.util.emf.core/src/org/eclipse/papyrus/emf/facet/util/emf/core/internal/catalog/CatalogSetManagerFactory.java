@@ -9,12 +9,12 @@
  * Contributors:
  * 	  Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  */
-package org.eclipse.emf.facet.util.emf.core.internal.catalog;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.catalog;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManager2;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManagerFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManager2;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManagerFactory;
 
 public class CatalogSetManagerFactory implements ICatalogSetManagerFactory {
 

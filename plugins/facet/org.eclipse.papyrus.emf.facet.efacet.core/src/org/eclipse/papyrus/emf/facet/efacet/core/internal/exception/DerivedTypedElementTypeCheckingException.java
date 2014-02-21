@@ -9,9 +9,9 @@
  *     Gregoire Dupe (Mia-Software) - initial API and implementation
  *     Nicolas Bros (Mia-Software) - Bug 362191 - [Restructuring] Query mechanism for eFacet2
  */
-package org.eclipse.emf.facet.efacet.core.internal.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.exception;
 
-import org.eclipse.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 
 /**
  * This exception occurs when the type of the result of evaluating a derived typed element is not

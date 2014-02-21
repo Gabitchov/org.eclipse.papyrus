@@ -9,24 +9,24 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.wizard;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.wizard;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.facet.efacet.core.IFacetActions;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.WorkbenchUtils;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.wizard.page.ICreateFacetSetWizardPage;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.wizard.page.IFacetSetPropertyWizardPage;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.wizard.page.CreateFacetSetWizardPage;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.wizard.page.FacetSetPropertyWizardPage;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.wizard.page.SynchronizedCreateFacetSetWizardPage;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.wizard.page.SynchronizedFacetSetPropertyWizardPage;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.ui.internal.exported.wizard.IExtendedWizard;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetActions;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.WorkbenchUtils;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.wizard.page.ICreateFacetSetWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.wizard.page.IFacetSetPropertyWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.wizard.page.CreateFacetSetWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.wizard.page.FacetSetPropertyWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.wizard.page.SynchronizedCreateFacetSetWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.wizard.page.SynchronizedFacetSetPropertyWizardPage;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.wizard.IExtendedWizard;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;

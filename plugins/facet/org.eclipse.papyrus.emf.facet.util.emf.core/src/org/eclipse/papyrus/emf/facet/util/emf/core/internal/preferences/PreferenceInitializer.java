@@ -11,16 +11,16 @@
  * 	Nicolas Bros (Mia-Software) - Bug 335218 - Extension point for registering EObject, EPackage, model editor
  *  Laurent Pichierri (Soft-Maint) - Bug 371204 - Compatibility with Helios
  */
-package org.eclipse.emf.facet.util.emf.core.internal.preferences;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.emf.facet.util.emf.core.IBrowserRegistry;
-import org.eclipse.emf.facet.util.emf.core.IEObjectBrowserOpener;
-import org.eclipse.emf.facet.util.emf.core.IEPackageBrowserOpener;
-import org.eclipse.emf.facet.util.emf.core.IResourceBrowserOpener;
-import org.eclipse.emf.facet.util.emf.core.internal.Activator;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IBrowserRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IEObjectBrowserOpener;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IEPackageBrowserOpener;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IResourceBrowserOpener;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.Activator;
 
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
 

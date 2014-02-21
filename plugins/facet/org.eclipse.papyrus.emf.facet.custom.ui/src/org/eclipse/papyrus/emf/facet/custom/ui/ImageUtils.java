@@ -10,11 +10,11 @@
  *    Nicolas Bros (Mia-Software) - Bug 375388 - Cell editor for IImage
  *    Nicolas Rault (Soft-Maint) - Bug 412565 - Need an URIImage Constructor
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.ui;
+package org.eclipse.papyrus.emf.facet.custom.ui;
 
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
-import org.eclipse.emf.facet.custom.ui.internal.custompt.ImageWrapper;
-import org.eclipse.emf.facet.custom.ui.internal.custompt.URIImage;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt.ImageWrapper;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt.URIImage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.swt.graphics.Image;
 
 /**

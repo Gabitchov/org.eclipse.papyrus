@@ -9,7 +9,7 @@
  *  Contributors:
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  */
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -20,7 +20,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.custom.ui"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.custom.ui"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

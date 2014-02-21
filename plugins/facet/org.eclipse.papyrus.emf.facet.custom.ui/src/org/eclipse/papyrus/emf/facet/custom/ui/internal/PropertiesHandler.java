@@ -15,7 +15,7 @@
  *      Nicolas Bros (Mia-Software) - Bug 377866 - selection customization
  *      David Couvrand (Soft-Maint) - Bug 422058 - Implementation of strikethrough and underline in the CustomizedLabelProvider
  */
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,15 +24,15 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.ui.IContentPropertiesHandler;
-import org.eclipse.emf.facet.custom.ui.IFontPropertiesHandler;
-import org.eclipse.emf.facet.custom.ui.ISelectionPropertiesHandler;
-import org.eclipse.emf.facet.custom.ui.internal.exported.ILabelPropertiesHandler;
-import org.eclipse.emf.facet.efacet.core.FacetUtils;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.custom.ui.IContentPropertiesHandler;
+import org.eclipse.papyrus.emf.facet.custom.ui.IFontPropertiesHandler;
+import org.eclipse.papyrus.emf.facet.custom.ui.ISelectionPropertiesHandler;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.ILabelPropertiesHandler;
+import org.eclipse.papyrus.emf.facet.efacet.core.FacetUtils;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 
 public class PropertiesHandler implements IContentPropertiesHandler,
 		ILabelPropertiesHandler, ISelectionPropertiesHandler, IFontPropertiesHandler {
@@ -74,7 +74,7 @@ public class PropertiesHandler implements IContentPropertiesHandler,
 	/**
 	 * 
 	 * @deprecated Must be replaced by
-	 *             org.eclipse.emf.facet.custom.ui.internal.PropertiesHandler
+	 *             org.eclipse.papyrus.emf.facet.custom.ui.internal.PropertiesHandler
 	 *             .PropertiesHandler(ICustomizationManager)
 	 */
 	@Deprecated

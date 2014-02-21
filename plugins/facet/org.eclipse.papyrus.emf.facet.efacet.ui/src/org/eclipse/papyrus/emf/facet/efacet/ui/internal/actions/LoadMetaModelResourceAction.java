@@ -8,7 +8,7 @@
  * Contributors:
  *    Gregoire DUPE (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.actions;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.actions;
 
 import java.util.Arrays;
 
@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-import org.eclipse.emf.facet.common.ui.internal.widgets.AnywhereFilterMatcher;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.widgets.AnywhereFilterMatcher;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
-// This class has been copied from org.eclipse.emf.facet.infra.facet.editor.presentation.LoadMetaModelResourceAction
+// This class has been copied from org.eclipse.papyrus.emf.facet.infra.facet.editor.presentation.LoadMetaModelResourceAction
 
 /**
  * @author Gregoire Dupe

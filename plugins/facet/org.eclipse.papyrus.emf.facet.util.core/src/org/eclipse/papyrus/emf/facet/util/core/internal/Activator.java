@@ -8,17 +8,17 @@
  * 
  * Contributors:
  * 	 Gregoire Dupe (Mia-Software) - Bug 338811 - A model registration method in the interface ICatalogSetManager
- *   Nicolas Bros (Mia-Software) - Bug 340031 - NPE in org.eclipse.emf.facet.util.core.Logger#log
+ *   Nicolas Bros (Mia-Software) - Bug 340031 - NPE in org.eclipse.papyrus.emf.facet.util.core.Logger#log
  *   Nicolas Guyomar (Mia-Software) - Bug 340339 - Need some Utils class for Folder/File/Project management
  */
-package org.eclipse.emf.facet.util.core.internal;
+package org.eclipse.papyrus.emf.facet.util.core.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
 public class Activator extends Plugin {
 
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.util.core"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.util.core"; //$NON-NLS-1$
 	private static BundleContext context;
 	private static Activator plugin;
 

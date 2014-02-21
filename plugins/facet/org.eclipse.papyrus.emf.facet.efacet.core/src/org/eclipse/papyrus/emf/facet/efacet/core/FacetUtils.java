@@ -30,7 +30,7 @@
  *     Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  *     Grégoire Dupé (Mia-Software) - Bug 391442 - Select ETypedElement Dialog doesn't used the subpackages (subEFacetSet)
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core;
+package org.eclipse.papyrus.emf.facet.efacet.core;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,19 +48,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.efacet.core.exception.FacetManagerException;
-import org.eclipse.emf.facet.efacet.core.internal.exported.IResolverManager;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
-import org.eclipse.emf.facet.util.emf.core.ModelUtils;
-import org.eclipse.emf.facet.util.emf.core.internal.EMFUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.exception.FacetManagerException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exported.IResolverManager;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectListResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementEObjectResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ModelUtils;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.EMFUtils;
 
 /**
  * @since 0.2
@@ -375,7 +375,7 @@ public final class FacetUtils {
 	}
 
 	// Moved from
-	// org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl
+	// org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl
 	public static EPackage getExtendedEPackage(final FacetSet facetSet) {
 		final List<Facet> facets = FacetUtils.getFacets(facetSet);
 		EPackage result = null;
@@ -396,7 +396,7 @@ public final class FacetUtils {
 	}
 
 	// Copied (and refactored) from
-	// org.eclipse.emf.facet.efacet.core.internal.FacetManager
+	// org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetManager
 	public static <T extends ETypedElement> Set<T> getETypedElements(
 			final EObject eObject, final Class<T> classs,
 			final IFacetManager facetManager) throws FacetManagerException {
@@ -409,7 +409,7 @@ public final class FacetUtils {
 	}
 
 	// Copied (and refactored) from
-	// org.eclipse.emf.facet.efacet.core.internal.FacetManager
+	// org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetManager
 	private static <T extends ETypedElement> Set<T> getETypedElements(
 			final EObject eObject, final FacetSet facetSet,
 			final Class<T> classs, final IFacetManager manager)
@@ -461,7 +461,7 @@ public final class FacetUtils {
 	}
 
 	// Copied (and refactored) from
-	// org.eclipse.emf.facet.efacet.core.internal.FacetManager
+	// org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetManager
 	private static List<ETypedElement> getAllETypedElements(
 			final Facet facet) {
 		final List<ETypedElement> structFeatures = new LinkedList<ETypedElement>();
@@ -533,7 +533,7 @@ public final class FacetUtils {
 	 * 
 	 */
 	// Copied from
-	// org.eclipse.emf.facet.efacet.core.internal.FacetManagerContext
+	// org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetManagerContext
 	// * Contributors:
 	// * Olivier Remaud (Soft-Maint) - Bug 361794 - [Restructuring] EMF Facet
 	// customization meta-model

@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 361612 - New core for new version of the Facet metamodel
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.core.internal.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.internal.exception;
 
 /**
  * This exception is raised when an object cannot be extended by a facet because the class of the object does not correspond

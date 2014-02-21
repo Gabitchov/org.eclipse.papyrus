@@ -15,7 +15,7 @@
    <extension
          point="org.eclipse.papyrus.emf.facet.efacet.core.queryImplementationRegistration">
       <queryImplementationRegistration
-            class="org.eclipse.emf.facet.query.ocl.core.internal.evaluator.OclQueryImplementationFactory">
+            class="org.eclipse.papyrus.emf.facet.query.ocl.core.internal.evaluator.OclQueryImplementationFactory">
       </queryImplementationRegistration>
    </extension>
 

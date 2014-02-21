@@ -10,7 +10,7 @@
  *  	Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  *  
  */
-package org.eclipse.emf.facet.query.java.javaquery.util;
+package org.eclipse.papyrus.emf.facet.query.java.javaquery.util;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.query.java.javaquery.JavaQuery;
-import org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaQuery;
+import org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage;
  * which is the result of the switch.
  * <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.query.java.javaquery.JavaqueryPackage
+ * @see org.eclipse.papyrus.emf.facet.query.java.javaquery.JavaqueryPackage
  * @generated
  * @deprecated cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=374198
  */

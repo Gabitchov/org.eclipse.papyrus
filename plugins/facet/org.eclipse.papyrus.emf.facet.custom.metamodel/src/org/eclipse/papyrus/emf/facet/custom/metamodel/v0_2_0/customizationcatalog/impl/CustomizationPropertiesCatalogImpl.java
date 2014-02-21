@@ -11,24 +11,19 @@
  *   	Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationPropertiesCatalog;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationPropertiesCatalog;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,8 +32,8 @@ import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.Custom
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl#getInstalledEntries <em>Installed Entries</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl#getInstalledEntries <em>Installed Entries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.impl.CustomizationPropertiesCatalogImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *

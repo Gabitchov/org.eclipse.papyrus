@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Guyomar (Mia-Software) - Bug 334615 - Java Query for EMF Facet
  */
-package org.eclipse.emf.facet.query.java.core.internal.plugin;
+package org.eclipse.papyrus.emf.facet.query.java.core.internal.plugin;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -19,7 +19,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.query.java.core"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.query.java.core"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

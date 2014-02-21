@@ -10,7 +10,7 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.custom.core.exception;
+package org.eclipse.papyrus.emf.facet.custom.core.exception;
 
 /**
  * This exception is thrown when the computation of a customization property value failed.

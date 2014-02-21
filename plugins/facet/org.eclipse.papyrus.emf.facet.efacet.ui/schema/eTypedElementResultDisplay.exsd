@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.infra.query.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.infra.query.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.facet.infra.query.ui" id="queryResultDisplay" name="Display the results of a model query"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.infra.query.ui" id="queryResultDisplay" name="Display the results of a model query"/>
       </appinfo>
       <documentation>
          Use this extension point to provide a view or editor that can display the results of a model query.
@@ -60,7 +60,7 @@
                   Implemented by a view or editor that wants to be used to display the results of a model query.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.efacet.ui.IETypedElementResultDisplayer"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.efacet.ui.IETypedElementResultDisplayer"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -83,7 +83,7 @@
          <meta.section type="implementation"/>
       </appinfo>
       <documentation>
-         See plugin &quot;org.eclipse.emf.facet.infra.browser&quot;.
+         See plugin &quot;org.eclipse.papyrus.emf.facet.infra.browser&quot;.
       </documentation>
    </annotation>
 

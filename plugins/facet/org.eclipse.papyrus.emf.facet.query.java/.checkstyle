@@ -10,7 +10,7 @@ Contributors:
     Nicolas Guyomar (Mia-Software) - initial API and implementation
 -->
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
-  <local-check-config name="EmfFacet" location="../org.eclipse.emf.facet.archi.tech.rules/checkstyle/EmfFacet.checkstyle" type="project" description=""/>
+  <local-check-config name="EmfFacet" location="../org.eclipse.papyrus.emf.facet.archi.tech.rules/checkstyle/EmfFacet.checkstyle" type="project" description=""/>
   <fileset name="all" enabled="true" check-config-name="EmfFacet" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>

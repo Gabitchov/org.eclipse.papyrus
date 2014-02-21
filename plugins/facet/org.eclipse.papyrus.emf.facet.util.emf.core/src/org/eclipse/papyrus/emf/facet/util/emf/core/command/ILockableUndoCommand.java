@@ -8,7 +8,7 @@
  *  Contributors:
  *      Gregoire Dupe (Mia-Software) - Bug 345730 - Deleting an element in the model breaks the table
  */
-package org.eclipse.emf.facet.util.emf.core.command;
+package org.eclipse.papyrus.emf.facet.util.emf.core.command;
 
 /**
  * This interface is used to force an EMF command to not be "undo-able"

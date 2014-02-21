@@ -10,12 +10,12 @@
  *    Nicolas Guyomar (Mia-Software) - Bug 334546 - [celleditors] no border on Text field
  *    Nicolas Bros (Mia-Software) - Bug 338437 - compositeEditors extension point cannot be used to register user types
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.ecore.composite;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore.composite;
 
 import java.math.BigDecimal;
 
-import org.eclipse.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
-import org.eclipse.emf.facet.widgets.celleditors.ICompositeEditorFactory;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.ICompositeEditorFactory;
 import org.eclipse.swt.widgets.Composite;
 
 public class BigDecimalCompositeFactory implements ICompositeEditorFactory<BigDecimal> {

@@ -9,7 +9,7 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal;
 
 import org.eclipse.ui.IStartup;
 

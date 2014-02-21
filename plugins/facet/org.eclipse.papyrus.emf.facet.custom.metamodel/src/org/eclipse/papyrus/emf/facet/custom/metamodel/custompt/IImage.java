@@ -9,7 +9,7 @@
  *  Contributors:
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  */
-package org.eclipse.emf.facet.custom.metamodel.custompt;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.custompt;
 
 import java.io.InputStream;
 import java.io.Serializable;

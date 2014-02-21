@@ -9,9 +9,9 @@
  *     Nicolas Bros (Mia-Software) - Bug 366367 - To be able to change the "CanBePresentedInTheTable" query
  *     Gregoire Dupe (Mia-Software) - Bug 374903 - [Table] ITableWidget.setLoadedFacetSets
  *******************************************************************************/
-package org.eclipse.emf.facet.util.ui.internal.exported.dialog;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog;
 
-import org.eclipse.emf.facet.util.ui.internal.dialog.QuestionDialogFactory;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.dialog.QuestionDialogFactory;
 import org.eclipse.swt.widgets.Shell;
 
 /** A factory to instantiate {@link IQuestionDialog} */

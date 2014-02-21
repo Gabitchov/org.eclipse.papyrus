@@ -10,7 +10,7 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.util.ui.utils;
+package org.eclipse.papyrus.emf.facet.util.ui.utils;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -17,28 +17,28 @@
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.LabelQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.LabelQuery"/>
     </facetOperations>
     <facetOperations name="image" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/>
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.ImageQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.ImageQuery"/>
     </facetOperations>
     <facetOperations name="fontName" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.FontNameQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.FontNameQuery"/>
     </facetOperations>
     <facetOperations name="fontSize" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.FontSizeQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.FontSizeQuery"/>
     </facetOperations>
     <facetOperations name="isBold" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
@@ -59,14 +59,14 @@
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.BackgroundQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.BackgroundQuery"/>
     </facetOperations>
     <facetOperations name="foreground" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types#//Color"/>
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.ForegroundQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.ForegroundQuery"/>
     </facetOperations>
     <facetOperations name="isUnderlined" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
@@ -136,7 +136,7 @@
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.SelectionQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.SelectionQuery"/>
     </facetOperations>
   </eClassifiers>
   <eClassifiers xsi:type="efacet:Facet" name="CustomizedToolTipEObject">
@@ -146,7 +146,7 @@
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.ToolTipTextQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.ToolTipTextQuery"/>
     </facetOperations>
     <facetOperations name="image" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/>
@@ -160,14 +160,14 @@
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.FontNameQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.FontNameQuery"/>
     </facetOperations>
     <facetOperations name="fontSize" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.FontSizeQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.FontSizeQuery"/>
     </facetOperations>
     <facetOperations name="isBold" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
@@ -188,14 +188,14 @@
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.ToolTipBackgroundQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.ToolTipBackgroundQuery"/>
     </facetOperations>
     <facetOperations name="foreground" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types#//Color"/>
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.ForegroundQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.ForegroundQuery"/>
     </facetOperations>
     <facetOperations name="topLeftOverlay" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/>
@@ -244,28 +244,28 @@
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.ToolTipDelayQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.ToolTipDelayQuery"/>
     </facetOperations>
     <facetOperations name="timeDisplayed" lowerBound="1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.ToolTipDelayQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.ToolTipDelayQuery"/>
     </facetOperations>
     <facetOperations name="alignment" lowerBound="1">
       <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types#//Alignment"/>
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.ToolTipAlignmentQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.ToolTipAlignmentQuery"/>
     </facetOperations>
     <facetOperations name="shadow" lowerBound="1">
       <eType xsi:type="ecore:EEnum" href="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types#//Shadow"/>
       <eParameters name="eStructuralFeature">
       	<eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
       </eParameters>
-      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.custom.ui.internal.query.ToolTipShadowQuery"/>
+      <query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.ToolTipShadowQuery"/>
     </facetOperations>
   </eClassifiers>
 </efacet:FacetSet>

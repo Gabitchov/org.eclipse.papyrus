@@ -10,10 +10,10 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *  Gregoire Dupe (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.ui.internal.exported.wizard;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
 
 /**
  * TODO This interface has to be renamed to ICreateFacetInFacetSetWizard before the release of 0.2

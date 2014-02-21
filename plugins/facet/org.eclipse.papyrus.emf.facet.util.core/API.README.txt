@@ -13,12 +13,12 @@
  *   Nicolas Guyomar (Mia-Software) - Bug 338813 - [EMF Facet Framework] basic Facet actions
  *   Gregoire Dupe (Mia-Software) - Bug 371204 - Compatibility with Helios
  *******************************************************************************/
- org.eclipse.emf.facet.util.core.internal
- 	x-friends:="org.eclipse.emf.facet.common.core,org.eclipse.emf.facet.util.emf.core" for EMF Facet internal use
- 	x-friends:="org.eclipse.emf.facet.efacet.tests" use PluginUtils.importPlugin(Bundle) to create test projects 	 
- 	x-friends:="org.eclipse.emf.facet.widgets.nattable.tests" use PluginUtils.importPlugin(Bundle) to create test projects
- 	x-friends:="org.eclipse.emf.facet.query.java.ui" uses PluginUtils.configureAsPluginProject(IProject) to setup facet project
-	x-friends:="org.eclipse.emf.facet.query.java.ui.tests" for testing purpose
-	x-friends:="org.eclipse.emf.facet.efacet.core" to add a new facet model to the build.properties
-	x-friends:="org.eclipse.emf.facet.efacet.tests" so that the tests can access internal utils
- 	x-friends:="org.eclipse.emf.facet.infra.common.core" to get up to date the deprecated on copied methods.
+ org.eclipse.papyrus.emf.facet.util.core.internal
+ 	x-friends:="org.eclipse.papyrus.emf.facet.common.core,org.eclipse.papyrus.emf.facet.util.emf.core" for EMF Facet internal use
+ 	x-friends:="org.eclipse.papyrus.emf.facet.efacet.tests" use PluginUtils.importPlugin(Bundle) to create test projects 	 
+ 	x-friends:="org.eclipse.papyrus.emf.facet.widgets.nattable.tests" use PluginUtils.importPlugin(Bundle) to create test projects
+ 	x-friends:="org.eclipse.papyrus.emf.facet.query.java.ui" uses PluginUtils.configureAsPluginProject(IProject) to setup facet project
+	x-friends:="org.eclipse.papyrus.emf.facet.query.java.ui.tests" for testing purpose
+	x-friends:="org.eclipse.papyrus.emf.facet.efacet.core" to add a new facet model to the build.properties
+	x-friends:="org.eclipse.papyrus.emf.facet.efacet.tests" so that the tests can access internal utils
+ 	x-friends:="org.eclipse.papyrus.emf.facet.infra.common.core" to get up to date the deprecated on copied methods.

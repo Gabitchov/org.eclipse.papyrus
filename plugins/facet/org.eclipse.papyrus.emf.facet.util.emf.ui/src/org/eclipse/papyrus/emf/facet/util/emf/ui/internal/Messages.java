@@ -12,12 +12,12 @@
  *  Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  Gregoire Dupe (Mia-Software) - Bug 406570 - Handlers to Save and SaveAs EMF resources
  */
-package org.eclipse.emf.facet.util.emf.ui.internal;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.util.emf.ui.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.util.emf.ui.internal.messages"; //$NON-NLS-1$
 	public static String CreateInstanceDialog_selectNewInstanceEClass;
 	public static String PackageRegistryView_initializing;
 	public static String PackageRegistryView_copyNsURI;

@@ -7,5 +7,5 @@
 #
 # Contributors:
 #    Thomas Cicognani (Soft-Maint) - Bug 424416 - Plug-in for JFace Utilities
-org.eclipse.emf.facet.util.jface.ui.ui/debug=false
-org.eclipse.emf.facet.util.jface.ui.ui/debug/ImageProvider=false
+org.eclipse.papyrus.emf.facet.util.jface.ui.ui/debug=false
+org.eclipse.papyrus.emf.facet.util.jface.ui.ui/debug/ImageProvider=false

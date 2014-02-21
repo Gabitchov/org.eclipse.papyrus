@@ -10,5 +10,5 @@
  *   Nicolas Guyomar (Mia-Software) - Bug 349569 - Need new exceptions for java query class creation
  *******************************************************************************/
  
- org.eclipse.emf.facet.query.java.core.internal.exceptions
- 	x-friends:="org.eclipse.emf.facet.query.java.ui" for EMF Facet Java Query Wizard
+ org.eclipse.papyrus.emf.facet.query.java.core.internal.exceptions
+ 	x-friends:="org.eclipse.papyrus.emf.facet.query.java.ui" for EMF Facet Java Query Wizard

@@ -10,14 +10,14 @@
  *     Gregoire Dupe (Mia-Software) - Bug 334000 - Simple catalog manager
  *     Nicolas Bros (Mia-Software) - Bug 335218 - Extension point for registering EObject, EPackage, model editor
  */
-package org.eclipse.emf.facet.util.emf.core.internal;
+package org.eclipse.papyrus.emf.facet.util.emf.core.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
 public class Activator extends Plugin {
 
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.util.emf.core"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.util.emf.core"; //$NON-NLS-1$
 
 	private static BundleContext context;
 	private static Activator plugin;

@@ -15,7 +15,7 @@
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *  Gregoire Dupe (Mia-Software) - Bug 376576 - [EFacet] Change the multiplicity of Facet::extendedFacet
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EcorePackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='org.eclipse.ocl.ecore.OCL'"
  * @generated
@@ -71,14 +71,14 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EFacetPackage eINSTANCE = org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl.init();
+	EFacetPackage eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl <em>Facet Attribute</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl <em>Facet Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetAttribute()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetAttribute()
 	 * @generated
 	 */
 	int FACET_ATTRIBUTE = 0;
@@ -309,11 +309,11 @@ public interface EFacetPackage extends EPackage {
 	int FACET_ATTRIBUTE_FEATURE_COUNT = EcorePackage.EATTRIBUTE_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl <em>Facet Reference</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl <em>Facet Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetReference()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetReference()
 	 * @generated
 	 */
 	int FACET_REFERENCE = 1;
@@ -580,11 +580,11 @@ public interface EFacetPackage extends EPackage {
 	int FACET_REFERENCE_FEATURE_COUNT = EcorePackage.EREFERENCE_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl <em>Facet Operation</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl <em>Facet Operation</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetOperation()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetOperation()
 	 * @generated
 	 */
 	int FACET_OPERATION = 2;
@@ -770,11 +770,11 @@ public interface EFacetPackage extends EPackage {
 	int FACET_OPERATION_FEATURE_COUNT = EcorePackage.EOPERATION_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl <em>Facet Set</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl <em>Facet Set</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetSet()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetSet()
 	 * @generated
 	 */
 	int FACET_SET = 3;
@@ -879,11 +879,11 @@ public interface EFacetPackage extends EPackage {
 	int FACET_SET_FEATURE_COUNT = EcorePackage.EPACKAGE_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl <em>Facet</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl <em>Facet</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacet()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacet()
 	 * @generated
 	 */
 	int FACET = 4;
@@ -1025,11 +1025,11 @@ public interface EFacetPackage extends EPackage {
 	int FACET_FEATURE_COUNT = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 6;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl <em>Category</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl <em>Category</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getCategory()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getCategory()
 	 * @generated
 	 */
 	int CATEGORY = 5;
@@ -1071,11 +1071,11 @@ public interface EFacetPackage extends EPackage {
 	int CATEGORY_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl <em>Facet Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl <em>Facet Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetElement()
 	 * @generated
 	 */
 	int FACET_ELEMENT = 6;
@@ -1198,11 +1198,11 @@ public interface EFacetPackage extends EPackage {
 	int FACET_ELEMENT_FEATURE_COUNT = EcorePackage.ETYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl <em>Derived Typed Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl <em>Derived Typed Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getDerivedTypedElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getDerivedTypedElement()
 	 * @generated
 	 */
 	int DERIVED_TYPED_ELEMENT = 7;
@@ -1343,11 +1343,11 @@ public interface EFacetPackage extends EPackage {
 	int DERIVED_TYPED_ELEMENT_FEATURE_COUNT = FACET_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.ParameterValueImpl <em>Parameter Value</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.ParameterValueImpl <em>Parameter Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.ParameterValueImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getParameterValue()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.ParameterValueImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getParameterValue()
 	 * @generated
 	 */
 	int PARAMETER_VALUE = 8;
@@ -1380,11 +1380,11 @@ public interface EFacetPackage extends EPackage {
 	int PARAMETER_VALUE_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DocumentedElementImpl <em>Documented Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DocumentedElementImpl <em>Documented Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DocumentedElementImpl
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getDocumentedElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DocumentedElementImpl
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getDocumentedElement()
 	 * @generated
 	 */
 	int DOCUMENTED_ELEMENT = 9;
@@ -1412,123 +1412,123 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.resource.Resource
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getResource()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getResource()
 	 * @generated
 	 */
 	int RESOURCE = 10;
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute <em>Facet Attribute</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute <em>Facet Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Attribute</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute
 	 * @generated
 	 */
 	EClass getFacetAttribute();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference <em>Facet Reference</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference <em>Facet Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Reference</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference
 	 * @generated
 	 */
 	EClass getFacetReference();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation <em>Facet Operation</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation <em>Facet Operation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Operation</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation
 	 * @generated
 	 */
 	EClass getFacetOperation();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet <em>Facet Set</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet <em>Facet Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Set</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet
 	 * @generated
 	 */
 	EClass getFacetSet();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet#getCategories <em>Categories</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet#getCategories <em>Categories</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Categories</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet#getCategories()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet#getCategories()
 	 * @see #getFacetSet()
 	 * @generated
 	 */
 	EReference getFacetSet_Categories();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet <em>Facet</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet <em>Facet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet
 	 * @generated
 	 */
 	EClass getFacet();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedMetaclass <em>Extended Metaclass</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedMetaclass <em>Extended Metaclass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Extended Metaclass</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedMetaclass()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedMetaclass()
 	 * @see #getFacet()
 	 * @generated
 	 */
 	EReference getFacet_ExtendedMetaclass();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetElements <em>Facet Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetElements <em>Facet Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Facet Elements</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetElements()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetElements()
 	 * @see #getFacet()
 	 * @generated
 	 */
 	EReference getFacet_FacetElements();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetOperations <em>Facet Operations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetOperations <em>Facet Operations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Facet Operations</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetOperations()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetOperations()
 	 * @see #getFacet()
 	 * @generated
 	 */
 	EReference getFacet_FacetOperations();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getConformanceTypedElement <em>Conformance Typed Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getConformanceTypedElement <em>Conformance Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Conformance Typed Element</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getConformanceTypedElement()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getConformanceTypedElement()
 	 * @see #getFacet()
 	 * @generated
 	 */
 	EReference getFacet_ConformanceTypedElement();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedFacets <em>Extended Facets</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedFacets <em>Extended Facets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Extended Facets</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedFacets()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedFacets()
 	 * @see #getFacet()
 	 * @generated
 	 * @since 0.2
@@ -1536,116 +1536,116 @@ public interface EFacetPackage extends EPackage {
 	EReference getFacet_ExtendedFacets();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Category <em>Category</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category <em>Category</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Category</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Category
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category
 	 * @generated
 	 */
 	EClass getCategory();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement <em>Facet Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement <em>Facet Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Facet Element</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement
 	 * @generated
 	 */
 	EClass getFacetElement();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement#getCategories <em>Categories</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement#getCategories <em>Categories</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Categories</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement#getCategories()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement#getCategories()
 	 * @see #getFacetElement()
 	 * @generated
 	 */
 	EReference getFacetElement_Categories();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement <em>Derived Typed Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement <em>Derived Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Derived Typed Element</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement
 	 * @generated
 	 */
 	EClass getDerivedTypedElement();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getQuery <em>Query</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getQuery <em>Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Query</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getQuery()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getQuery()
 	 * @see #getDerivedTypedElement()
 	 * @generated
 	 */
 	EReference getDerivedTypedElement_Query();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getOverride <em>Override</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getOverride <em>Override</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Override</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getOverride()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement#getOverride()
 	 * @see #getDerivedTypedElement()
 	 * @generated
 	 */
 	EReference getDerivedTypedElement_Override();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue <em>Parameter Value</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue <em>Parameter Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Parameter Value</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue
 	 * @generated
 	 */
 	EClass getParameterValue();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getParameter <em>Parameter</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getParameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Parameter</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getParameter()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getParameter()
 	 * @see #getParameterValue()
 	 * @generated
 	 */
 	EReference getParameterValue_Parameter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getValue()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue#getValue()
 	 * @see #getParameterValue()
 	 * @generated
 	 */
 	EAttribute getParameterValue_Value();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement <em>Documented Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement <em>Documented Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Documented Element</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement
 	 * @generated
 	 */
 	EClass getDocumentedElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement#getDocumentation <em>Documentation</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement#getDocumentation <em>Documentation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Documentation</em>'.
-	 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement#getDocumentation()
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement#getDocumentation()
 	 * @see #getDocumentedElement()
 	 * @generated
 	 */
@@ -1685,41 +1685,41 @@ public interface EFacetPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl <em>Facet Attribute</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl <em>Facet Attribute</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetAttribute()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetAttributeImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetAttribute()
 		 * @generated
 		 */
 		EClass FACET_ATTRIBUTE = eINSTANCE.getFacetAttribute();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl <em>Facet Reference</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl <em>Facet Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetReference()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetReference()
 		 * @generated
 		 */
 		EClass FACET_REFERENCE = eINSTANCE.getFacetReference();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl <em>Facet Operation</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl <em>Facet Operation</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetOperation()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetOperation()
 		 * @generated
 		 */
 		EClass FACET_OPERATION = eINSTANCE.getFacetOperation();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl <em>Facet Set</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl <em>Facet Set</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetSet()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetSetImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetSet()
 		 * @generated
 		 */
 		EClass FACET_SET = eINSTANCE.getFacetSet();
@@ -1733,11 +1733,11 @@ public interface EFacetPackage extends EPackage {
 		EReference FACET_SET__CATEGORIES = eINSTANCE.getFacetSet_Categories();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl <em>Facet</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl <em>Facet</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacet()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacet()
 		 * @generated
 		 */
 		EClass FACET = eINSTANCE.getFacet();
@@ -1784,21 +1784,21 @@ public interface EFacetPackage extends EPackage {
 		EReference FACET__EXTENDED_FACETS = eINSTANCE.getFacet_ExtendedFacets();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl <em>Category</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl <em>Category</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getCategory()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getCategory()
 		 * @generated
 		 */
 		EClass CATEGORY = eINSTANCE.getCategory();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl <em>Facet Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl <em>Facet Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetElement()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getFacetElement()
 		 * @generated
 		 */
 		EClass FACET_ELEMENT = eINSTANCE.getFacetElement();
@@ -1812,11 +1812,11 @@ public interface EFacetPackage extends EPackage {
 		EReference FACET_ELEMENT__CATEGORIES = eINSTANCE.getFacetElement_Categories();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl <em>Derived Typed Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl <em>Derived Typed Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getDerivedTypedElement()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getDerivedTypedElement()
 		 * @generated
 		 */
 		EClass DERIVED_TYPED_ELEMENT = eINSTANCE.getDerivedTypedElement();
@@ -1838,11 +1838,11 @@ public interface EFacetPackage extends EPackage {
 		EReference DERIVED_TYPED_ELEMENT__OVERRIDE = eINSTANCE.getDerivedTypedElement_Override();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.ParameterValueImpl <em>Parameter Value</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.ParameterValueImpl <em>Parameter Value</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.ParameterValueImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getParameterValue()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.ParameterValueImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getParameterValue()
 		 * @generated
 		 */
 		EClass PARAMETER_VALUE = eINSTANCE.getParameterValue();
@@ -1864,11 +1864,11 @@ public interface EFacetPackage extends EPackage {
 		EAttribute PARAMETER_VALUE__VALUE = eINSTANCE.getParameterValue_Value();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DocumentedElementImpl <em>Documented Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DocumentedElementImpl <em>Documented Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DocumentedElementImpl
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getDocumentedElement()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DocumentedElementImpl
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getDocumentedElement()
 		 * @generated
 		 */
 		EClass DOCUMENTED_ELEMENT = eINSTANCE.getDocumentedElement();
@@ -1886,7 +1886,7 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.emf.ecore.resource.Resource
-		 * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getResource()
+		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.EFacetPackageImpl#getResource()
 		 * @generated
 		 */
 		EDataType RESOURCE = eINSTANCE.getResource();

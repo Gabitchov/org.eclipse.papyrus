@@ -9,11 +9,11 @@
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
  *   Nicolas Guyomar (Mia-Software) - initial API and implementation
- *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *   Nicolas Bros (Mia-Software) - Bug 334539 - [celleditors] change listener
  *   Grégoire Dupé (Mia-Software) - Bug 424122 - [Table] Images, fonts and colors are not shared between the instances of table
  *****************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.core.composite;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core.composite;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,11 +23,11 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.util.swt.fontprovider.IFontProvider;
-import org.eclipse.emf.facet.util.swt.fontprovider.IFontProviderFactory;
-import org.eclipse.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
-import org.eclipse.emf.facet.widgets.celleditors.internal.Messages;
-import org.eclipse.emf.facet.widgets.internal.CustomizableLabelProvider;
+import org.eclipse.papyrus.emf.facet.util.swt.fontprovider.IFontProvider;
+import org.eclipse.papyrus.emf.facet.util.swt.fontprovider.IFontProviderFactory;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.Messages;
+import org.eclipse.papyrus.emf.facet.widgets.internal.CustomizableLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.fieldassist.ComboContentAdapter;
 import org.eclipse.jface.fieldassist.ContentProposalAdapter;

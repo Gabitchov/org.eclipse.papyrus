@@ -8,12 +8,12 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 372732 - [Facet] Rewrite the catalog views for 0.2
  *******************************************************************************/
-package org.eclipse.emf.facet.common.ui.internal;
+package org.eclipse.papyrus.emf.facet.common.ui.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.common.ui.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.common.ui.internal.messages"; //$NON-NLS-1$
 	public static String ElementsView_refreshJobTitle;
 	static {
 		// initialize resource bundle

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.util.emf.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.util.emf.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.facet.util.emf.core" id="org.eclipse.emf.facet.util.emf.core.modeldeclaration" name="modeldeclaration"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.util.emf.core" id="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration" name="modeldeclaration"/>
       </appinfo>
       <documentation>
          Allows the registration of an EMF model.

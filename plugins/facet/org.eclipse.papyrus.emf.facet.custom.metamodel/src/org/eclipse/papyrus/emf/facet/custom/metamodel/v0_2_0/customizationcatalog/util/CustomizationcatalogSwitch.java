@@ -11,16 +11,14 @@
  *   	Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.util;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.*;
-
-import org.eclipse.emf.facet.util.emf.catalog.Catalog;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.*;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +30,7 @@ import org.eclipse.emf.facet.util.emf.catalog.Catalog;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogPackage
  * @generated
  */
 public class CustomizationcatalogSwitch<T> {

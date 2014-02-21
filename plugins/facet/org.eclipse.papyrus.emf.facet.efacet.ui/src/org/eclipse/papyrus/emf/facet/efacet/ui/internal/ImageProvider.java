@@ -11,9 +11,9 @@
  *    Nicolas Guyomar (Mia-Software) - Bug 339874 - Infra QuerySelectionDialog should have a "querySet" icon
  *    Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  ********************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal;
 
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.graphics.Image;
@@ -23,7 +23,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * @author Grégoire Dupé (Mia-Software)
  */
 @Deprecated
-//Copied from org.eclipse.emf.facet.infra.query.ui.ImageProvider
+//Copied from org.eclipse.papyrus.emf.facet.infra.query.ui.ImageProvider
 public final class ImageProvider {
 	//	private static final String MODEL_QUERY = "icons/modelQuery.png"; //$NON-NLS-1$
 	private static final String REMOVE = "icons/remove.gif"; //$NON-NLS-1$

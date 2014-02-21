@@ -9,10 +9,10 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  */
-package org.eclipse.emf.facet.efacet.ui.internal.exported.view;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.view;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.ui.internal.view.NavigationViewFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.view.NavigationViewFactory;
 
 /**
  * This interface allows to get an instance of the {@link INavigationView} interface

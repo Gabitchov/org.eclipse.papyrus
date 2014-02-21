@@ -11,12 +11,12 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +30,12 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Query;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getCase <em>Case</em>}</li>
- *   <li>{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getCase <em>Case</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getETypedElementCase()
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getETypedElementCase()
  * @model
  * @generated
  */
@@ -50,14 +50,14 @@ public interface ETypedElementCase extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Case</em>' reference.
 	 * @see #setCase(ETypedElement)
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getETypedElementCase_Case()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getETypedElementCase_Case()
 	 * @model required="true"
 	 * @generated
 	 */
 	ETypedElement getCase();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getCase <em>Case</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getCase <em>Case</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Case</em>' reference.
@@ -76,14 +76,14 @@ public interface ETypedElementCase extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference.
 	 * @see #setValue(Query)
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getETypedElementCase_Value()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getETypedElementCase_Value()
 	 * @model containment="true"
 	 * @generated
 	 */
 	Query getValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getValue <em>Value</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.ETypedElementCase#getValue <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' containment reference.

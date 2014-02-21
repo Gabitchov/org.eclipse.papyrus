@@ -10,7 +10,7 @@
  *    Nicolas Bros (Mia-Software)
  *    Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *******************************************************************************/
-package org.eclipse.emf.facet.common.sdk.core.internal;
+package org.eclipse.papyrus.emf.facet.common.sdk.core.internal;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -25,9 +25,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.facet.common.sdk.core.internal.exported.CommonConstants;
-import org.eclipse.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder;
-import org.eclipse.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported.CommonConstants;
+import org.eclipse.papyrus.emf.facet.common.sdk.core.internal.exported.IEmfFacetProjectBuilder;
 
 /**
  * A builder for EMF Facet projects, that delegates to children builders provided by the extension point

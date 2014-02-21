@@ -10,7 +10,7 @@
  * 	 Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *   Nicolas Bros (Mia-Software) - Bug 379439 - Missing icons for Navigation view actions
  */
-package org.eclipse.emf.facet.efacet.ui.internal;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -20,7 +20,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.efacet.ui"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.efacet.ui"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;

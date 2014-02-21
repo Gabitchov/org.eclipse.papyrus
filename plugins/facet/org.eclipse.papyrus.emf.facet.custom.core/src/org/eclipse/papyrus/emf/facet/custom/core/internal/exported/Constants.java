@@ -9,7 +9,7 @@
  *    Gregoire Dupe (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *******************************************************************************/
 
-package org.eclipse.emf.facet.custom.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.custom.core.internal.exported;
 
 public final class Constants {
 

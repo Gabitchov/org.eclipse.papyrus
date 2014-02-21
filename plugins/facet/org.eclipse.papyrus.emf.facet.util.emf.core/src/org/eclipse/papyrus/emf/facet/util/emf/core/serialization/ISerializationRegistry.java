@@ -8,11 +8,11 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.core.serialization;
+package org.eclipse.papyrus.emf.facet.util.emf.core.serialization;
 
 import java.util.List;
 
-import org.eclipse.emf.facet.util.emf.core.internal.serialization.SerializationRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.core.internal.serialization.SerializationRegistry;
 
 /** The registry of {@link ISerializer}s per type. */
 public interface ISerializationRegistry {

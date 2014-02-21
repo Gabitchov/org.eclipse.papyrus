@@ -12,7 +12,7 @@
  *    Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *******************************************************************************/
 
-package org.eclipse.emf.facet.efacet.ui.internal.view;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.view;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,22 +23,22 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.facet.common.ui.internal.exported.views.IColumnDescription;
-import org.eclipse.emf.facet.common.ui.internal.exported.views.IElementsViewFactory;
-import org.eclipse.emf.facet.efacet.core.FacetUtils;
-import org.eclipse.emf.facet.efacet.core.IFacetSetCatalogManagerFactory;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Category;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.dialogs.FacetSetTreeContentProvider;
-import org.eclipse.emf.facet.efacet.ui.internal.utils.ImageProvider;
-import org.eclipse.emf.facet.util.emf.ui.internal.utils.ImageUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.FacetUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetSetCatalogManagerFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.dialogs.FacetSetTreeContentProvider;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.utils.ImageProvider;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.utils.ImageUtils;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IOpenListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.OpenEvent;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.exported.views.IColumnDescription;
+import org.eclipse.papyrus.emf.facet.common.ui.internal.exported.views.IElementsViewFactory;
 import org.eclipse.swt.graphics.Image;
 
 /**

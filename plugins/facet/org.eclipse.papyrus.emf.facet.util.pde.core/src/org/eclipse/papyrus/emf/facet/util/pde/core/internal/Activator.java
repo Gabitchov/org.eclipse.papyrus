@@ -6,9 +6,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *    Gregoire Dupe (Mia-Software) - Bug 417789 - org.eclipse.emf.facet.util.core should not so much dependencies
+ *    Gregoire Dupe (Mia-Software) - Bug 417789 - org.eclipse.papyrus.emf.facet.util.core should not so much dependencies
  */
- package org.eclipse.emf.facet.util.pde.core.internal;
+ package org.eclipse.papyrus.emf.facet.util.pde.core.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

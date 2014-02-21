@@ -9,14 +9,14 @@
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *    Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget;
 
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.efacet.ui.internal.composites.FilteredElementSelectionComposite;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.composites.FilteredElementSelectionComposite;
 import org.eclipse.swt.widgets.Composite;
 
 /**

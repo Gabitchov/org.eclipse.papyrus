@@ -10,7 +10,7 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.util.emf.core.command;
+package org.eclipse.papyrus.emf.facet.util.emf.core.command;
 
 import org.eclipse.emf.common.command.Command;
 

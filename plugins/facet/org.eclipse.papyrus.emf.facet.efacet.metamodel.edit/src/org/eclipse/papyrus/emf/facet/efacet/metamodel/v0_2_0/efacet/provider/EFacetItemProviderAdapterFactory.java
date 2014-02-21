@@ -16,7 +16,7 @@
  *       Olivier Remaud (Soft-Maint) - Bug 369824 - Add a simple way to return string literal constants from a customization query
  *       Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.provider;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,7 +35,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.util.EFacetAdapterFactory;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.util.EFacetAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -86,7 +86,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -94,7 +94,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	protected FacetAttributeItemProvider facetAttributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetAttribute}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -109,7 +109,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -117,7 +117,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	protected FacetReferenceItemProvider facetReferenceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -132,7 +132,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -140,7 +140,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	protected FacetOperationItemProvider facetOperationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -155,7 +155,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -163,7 +163,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	protected FacetSetItemProvider facetSetItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -178,7 +178,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -186,7 +186,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	protected FacetItemProvider facetItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -201,7 +201,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Category} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -209,7 +209,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	protected CategoryItemProvider categoryItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Category}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -224,7 +224,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -232,7 +232,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	protected ParameterValueItemProvider parameterValueItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -247,7 +247,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -255,7 +255,7 @@ public class EFacetItemProviderAdapterFactory extends EFacetAdapterFactory imple
 	protected DocumentedElementItemProvider documentedElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DocumentedElement}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

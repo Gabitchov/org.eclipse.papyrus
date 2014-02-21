@@ -11,9 +11,9 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom;
 
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,11 +27,11 @@ import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization#isMustBeLoadedByDefault <em>Must Be Loaded By Default</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization#isMustBeLoadedByDefault <em>Must Be Loaded By Default</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getCustomization()
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getCustomization()
  * @model
  * @generated
  */
@@ -46,14 +46,14 @@ public interface Customization extends FacetSet {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Must Be Loaded By Default</em>' attribute.
 	 * @see #setMustBeLoadedByDefault(boolean)
-	 * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getCustomization_MustBeLoadedByDefault()
+	 * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.CustomPackage#getCustomization_MustBeLoadedByDefault()
 	 * @model default="false" required="true"
 	 * @generated
 	 */
 	boolean isMustBeLoadedByDefault();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization#isMustBeLoadedByDefault <em>Must Be Loaded By Default</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization#isMustBeLoadedByDefault <em>Must Be Loaded By Default</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Must Be Loaded By Default</em>' attribute.

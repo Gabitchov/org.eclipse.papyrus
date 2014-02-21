@@ -9,12 +9,12 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.core.internal;
+package org.eclipse.papyrus.emf.facet.custom.core.internal;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.custom.core.ICustomizationPropertiesCatalogManager;
-import org.eclipse.emf.facet.custom.core.ICustomizationPropertiesCatalogManagerFactory;
-import org.eclipse.emf.facet.util.emf.core.ICatalogSetManagerFactory;
+import org.eclipse.papyrus.emf.facet.util.emf.core.ICatalogSetManagerFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationPropertiesCatalogManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationPropertiesCatalogManagerFactory;
 
 /**
  * Implementation of {@link ICustomizationPropertiesCatalogManagerFactory}.

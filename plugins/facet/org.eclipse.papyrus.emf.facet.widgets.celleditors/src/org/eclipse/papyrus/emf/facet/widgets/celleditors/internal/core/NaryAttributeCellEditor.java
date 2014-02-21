@@ -8,18 +8,18 @@
  *
  * Contributors:
  *   Nicolas Bros (Mia-Software) - initial API and implementation
- *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.emf.facet.widgets.celleditors API cleaning
+ *   Nicolas Bros (Mia-Software) - Bug 339664 - org.eclipse.papyrus.emf.facet.widgets.celleditors API cleaning
  *   Nicolas Guyomar (Mia-Software) - Bug 342451 - To be able to edit derived facet attributes and derived facet references in a table
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal.core;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.core;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.facet.widgets.celleditors.IModelCellEditHandler;
-import org.eclipse.emf.facet.widgets.celleditors.INaryEAttributeCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.internal.ui.NaryAttributeEditingDialog;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.IModelCellEditHandler;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.INaryEAttributeCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.internal.ui.NaryAttributeEditingDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;

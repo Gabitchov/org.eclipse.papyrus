@@ -11,7 +11,7 @@
  *  
  *  
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EFactory;
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage
+ * @see org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.CustomptPackage
  * @generated
  * @noextend This interface is not intended to be extended by clients.
  * @noimplement This interface is not intended to be implemented by clients.
@@ -31,7 +31,7 @@ public interface CustomptFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	CustomptFactory eINSTANCE = org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptFactoryImpl.init();
+	CustomptFactory eINSTANCE = org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.impl.CustomptFactoryImpl.init();
 
 	/**
 	 * Returns the package supported by this factory.

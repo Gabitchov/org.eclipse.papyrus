@@ -8,12 +8,12 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 375388 - Cell editor for IImage
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.sdk.ui.internal.widgets.celleditors.composite;
+package org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.widgets.celleditors.composite;
 
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
-import org.eclipse.emf.facet.custom.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.custom.ui.ImageUtils;
-import org.eclipse.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
+import org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.custom.ui.ImageUtils;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.AbstractCellEditorComposite;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;

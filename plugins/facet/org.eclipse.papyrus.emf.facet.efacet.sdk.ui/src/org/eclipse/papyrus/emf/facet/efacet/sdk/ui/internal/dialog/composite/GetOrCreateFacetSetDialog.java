@@ -10,16 +10,16 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.dialog.composite;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.dialog.composite;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.sync.generated.SynchronizedGetOrCreateFilteredFacetSetWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.creation.GetOrCreateFiltredFacetSetWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.creation.IGetOrCreateFilteredFacetSetWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.sync.generated.SynchronizedGetOrCreateFilteredFacetSetWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.creation.GetOrCreateFiltredFacetSetWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IWithResultDialogCallback;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
 
 /**
  * Provide a dialog where the user can select a facetSet in the existing

@@ -10,10 +10,10 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.component.query;
 
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.component.query.CreateQueryWidget;
-import org.eclipse.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.component.query.CreateQueryWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.util.widget.command.ICommandWidget;
 
 
 /**

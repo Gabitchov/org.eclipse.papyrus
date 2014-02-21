@@ -11,16 +11,16 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.catalog.efacetcatalog.util;
+package org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog;
-import org.eclipse.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
-import org.eclipse.emf.facet.util.emf.catalog.Catalog;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.FacetSetCatalog;
+import org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.QuerySetCatalog;
+import org.eclipse.papyrus.emf.facet.util.emf.catalog.Catalog;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the
@@ -29,7 +29,7 @@ import org.eclipse.emf.facet.util.emf.catalog.Catalog;
  * inheritance hierarchy until a non-null result is returned, which is the result of the switch.
  * <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage
  * @generated
  * @deprecated cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */

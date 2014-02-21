@@ -8,7 +8,7 @@
  * Contributors:
  *     Gregoire Dupe (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.efacet.core.exception;
+package org.eclipse.papyrus.emf.facet.efacet.core.exception;
 
 /**
  * This exception is raised when something is wrong with a query, and there is not a more specific
@@ -20,7 +20,7 @@ package org.eclipse.emf.facet.efacet.core.exception;
 public class QueryException extends Exception {
 
 	// This class is a copy of :
-	// org.eclipse.emf.facet.infra.query.core.exception.ModelQueryException
+	// org.eclipse.papyrus.emf.facet.infra.query.core.exception.ModelQueryException
 
 	private static final long serialVersionUID = -3203874059325745157L;
 

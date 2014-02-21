@@ -10,7 +10,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Bug 338813 - [EMF Facet Framework] basic Facet actions
  *  Nicolas Bros (Mia-Software) - Bug 361617 - Deprecation of APIs for the old Facet metamodels
  */
-package org.eclipse.emf.facet.efacet.core;
+package org.eclipse.papyrus.emf.facet.efacet.core;
 
 import java.io.IOException;
 
@@ -18,14 +18,14 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.Facet;
-import org.eclipse.emf.facet.efacet.FacetAttribute;
-import org.eclipse.emf.facet.efacet.FacetOperation;
-import org.eclipse.emf.facet.efacet.FacetReference;
-import org.eclipse.emf.facet.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.core.internal.FacetActionImpl;
-import org.eclipse.emf.facet.efacet.core.internal.incubatingapi.IFacetActions2;
-import org.eclipse.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.FacetAttribute;
+import org.eclipse.papyrus.emf.facet.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.FacetActionImpl;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.incubatingapi.IFacetActions2;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.InvalidFacetSetException;
 
 /**
  * This interface contains methods declaration to deal with {@link Facet} and

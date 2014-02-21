@@ -9,5 +9,5 @@
  * Contributors:
  *   Gregoire Dupe (Mia-Software) - Bug 341238 - We need to be able to specify which column have to be hidden/visible using the customization mechanism
  *******************************************************************************/
- org.eclipse.emf.facet.util.emf.core
-	x-friends:="org.eclipse.emf.facet.widgets.nattable" org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget need to use org.eclipse.emf.facet.util.emf.core.internal.EMFUtils
+ org.eclipse.papyrus.emf.facet.util.emf.core
+	x-friends:="org.eclipse.papyrus.emf.facet.widgets.nattable" org.eclipse.papyrus.emf.facet.widgets.nattable.internal.NatTableWidget need to use org.eclipse.papyrus.emf.facet.util.emf.core.internal.EMFUtils

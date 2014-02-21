@@ -2,11 +2,11 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=" Copyright (c) 2011 Mia-Software.&#xD;&#xA; &#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA; Contributors:&#xD;&#xA; &#x9;Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model&#xD;&#xA;      Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework&#xD;&#xA;      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning "
-    modelDirectory="/org.eclipse.emf.facet.custom.metamodel/src" modelPluginID="org.eclipse.emf.facet.custom.metamodel"
+    modelDirectory="/org.eclipse.papyrus.emf.facet.custom.metamodel/src" modelPluginID="org.eclipse.papyrus.emf.facet.custom.metamodel"
     modelName="Custom" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    copyrightFields="false" runtimeVersion="2.6" usedGenPackages="platform:/plugin/org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.genmodel#//efacet">
+    copyrightFields="false" runtimeVersion="2.6" usedGenPackages="platform:/plugin/org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.genmodel#//efacet">
   <foreignModel>custom-0.2.0.ecore</foreignModel>
-  <genPackages prefix="Custom" basePackage="org.eclipse.emf.facet.custom.metamodel.v0_2_0"
+  <genPackages prefix="Custom" basePackage="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0"
       disposableProviderFactory="true" ecorePackage="custom-0.2.0.ecore#/">
     <genClasses ecoreClass="custom-0.2.0.ecore#//Customization">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute custom-0.2.0.ecore#//Customization/mustBeLoadedByDefault"/>

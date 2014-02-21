@@ -9,8 +9,8 @@
 # Contributors:
 #      Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
 ###############################################################################
-org.eclipse.emf.facet.util.ui/debug=false
-org.eclipse.emf.facet.util.ui/debug/SelectEPackageWizardPage=false
-org.eclipse.emf.facet.util.ui/debug/SelectEClassifierWizardPage=false
-org.eclipse.emf.facet.util.ui/debug/SelectETypeWizardImpl=false
-org.eclipse.emf.facet.util.ui/debug/FilteredElementSelectionComposite=false
+org.eclipse.papyrus.emf.facet.util.ui/debug=false
+org.eclipse.papyrus.emf.facet.util.ui/debug/SelectEPackageWizardPage=false
+org.eclipse.papyrus.emf.facet.util.ui/debug/SelectEClassifierWizardPage=false
+org.eclipse.papyrus.emf.facet.util.ui/debug/SelectETypeWizardImpl=false
+org.eclipse.papyrus.emf.facet.util.ui/debug/FilteredElementSelectionComposite=false

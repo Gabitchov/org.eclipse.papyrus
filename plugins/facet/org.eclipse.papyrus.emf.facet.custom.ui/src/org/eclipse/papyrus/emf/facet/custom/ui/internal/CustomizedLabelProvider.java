@@ -9,7 +9,7 @@
  *  Contributors:
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  *      Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
- *      Nicolas Bros (Mia-Software) - Bug 372198 - resource leak in org.eclipse.emf.facet.custom.ui.internal.CustomizedLabelProvider
+ *      Nicolas Bros (Mia-Software) - Bug 372198 - resource leak in org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedLabelProvider
  *      Vincent Lorenzo (CEA-LIST) - Bug 372644 - Create Customizable tooltips for the TreeViewer using a CustomizableLabelProvider
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  *      Nicolas Bros (Mia-Software) - Bug 374941 - To be able to customize overlay icons on EClass
@@ -24,7 +24,7 @@
  *      Grégoire Dupé (Mia-Software) - Bug 424122 - [Table] Images, fonts and colors are not shared between the instances of table
  *      Thomas Cicognani (Soft-Maint) - Bug 424414 - ImageManager doesn't cache images
  */
-package org.eclipse.emf.facet.custom.ui.internal;
+package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,28 +33,28 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
-import org.eclipse.emf.facet.custom.core.ICustomizationManagerFactory;
-import org.eclipse.emf.facet.custom.core.exception.CustomizationException;
-import org.eclipse.emf.facet.custom.core.internal.exported.CustomizationUtils;
-import org.eclipse.emf.facet.custom.metamodel.custompt.IColor;
-import org.eclipse.emf.facet.custom.metamodel.custompt.IImage;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow;
-import org.eclipse.emf.facet.custom.ui.ICustomOverride;
-import org.eclipse.emf.facet.custom.ui.ICustomizedLabelProvider;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
-import org.eclipse.emf.facet.util.core.DebugUtils;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.util.swt.colorprovider.IColorProvider;
-import org.eclipse.emf.facet.util.swt.colorprovider.IColorProviderFactory;
-import org.eclipse.emf.facet.util.swt.fontprovider.IFontProvider;
-import org.eclipse.emf.facet.util.swt.fontprovider.IFontProviderFactory;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomOverride;
+import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
+import org.eclipse.papyrus.emf.facet.util.core.DebugUtils;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.util.swt.colorprovider.IColorProvider;
+import org.eclipse.papyrus.emf.facet.util.swt.colorprovider.IColorProviderFactory;
+import org.eclipse.papyrus.emf.facet.util.swt.fontprovider.IFontProvider;
+import org.eclipse.papyrus.emf.facet.util.swt.fontprovider.IFontProviderFactory;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
+import org.eclipse.papyrus.emf.facet.custom.core.exception.CustomizationException;
+import org.eclipse.papyrus.emf.facet.custom.core.internal.exported.CustomizationUtils;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Alignment;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custompt.Shadow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;

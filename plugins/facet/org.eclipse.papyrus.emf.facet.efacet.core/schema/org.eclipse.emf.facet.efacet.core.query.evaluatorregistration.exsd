@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.efacet.core.query.evaluatorregistration" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.efacet.core.query.evaluatorregistration" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.facet.efacet.core.query.evaluatorregistration" id="evaluatorregistration" name="QueryEvaluatorRegistration"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.efacet.core.query.evaluatorregistration" id="evaluatorregistration" name="QueryEvaluatorRegistration"/>
       </appinfo>
       <documentation>
          Allow the registration of a queryEvaluatorFactory. 
@@ -56,7 +56,7 @@ This factory allows the user to create queryEvaluators conform to the EMF Facet 
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.efacet.core.query.IQueryEvaluatorFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.efacet.core.query.IQueryEvaluatorFactory"/>
                </appinfo>
             </annotation>
          </attribute>

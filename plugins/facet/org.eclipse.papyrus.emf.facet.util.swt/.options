@@ -7,5 +7,5 @@
 #
 # Contributors:
 #    Gregoire Dupe (Mia-Software) - Bug 423611 - ImageProvider doesn't use singleton instance
-org.eclipse.emf.facet.util.swt/debug=false
-org.eclipse.emf.facet.util.swt/debug/ImageProvider=false
+org.eclipse.papyrus.emf.facet.util.swt/debug=false
+org.eclipse.papyrus.emf.facet.util.swt/debug/ImageProvider=false

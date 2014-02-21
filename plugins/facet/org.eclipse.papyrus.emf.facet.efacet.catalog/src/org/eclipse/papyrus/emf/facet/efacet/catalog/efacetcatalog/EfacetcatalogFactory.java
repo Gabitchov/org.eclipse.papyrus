@@ -11,7 +11,7 @@
  * 	Nicolas Guyomar (Mia-Software) - Implementation
  *  
  */
-package org.eclipse.emf.facet.efacet.catalog.efacetcatalog;
+package org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EFactory;
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each
  * non-abstract class of the model. <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage
  * @generated
  * @deprecated cf. https://bugs.eclipse.org/bugs/show_bug.cgi?id=373672
  */
@@ -31,7 +31,7 @@ public interface EfacetcatalogFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	EfacetcatalogFactory eINSTANCE = org.eclipse.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogFactoryImpl.init();
+	EfacetcatalogFactory eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.impl.EfacetcatalogFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Query Set Catalog</em>'.

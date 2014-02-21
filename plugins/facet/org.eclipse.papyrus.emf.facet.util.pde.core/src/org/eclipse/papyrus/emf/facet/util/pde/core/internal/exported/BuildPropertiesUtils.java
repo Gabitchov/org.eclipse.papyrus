@@ -8,7 +8,7 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  *******************************************************************************/
-package org.eclipse.emf.facet.util.pde.core.internal.exported;
+package org.eclipse.papyrus.emf.facet.util.pde.core.internal.exported;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -25,13 +25,13 @@ public final class BuildPropertiesUtils {
 	}
 
 	public static void addToBuild(final IFile file) throws CoreException {
-		org.eclipse.emf.facet.util.pde.core.internal.BuildPropertiesUtils
+		org.eclipse.papyrus.emf.facet.util.pde.core.internal.BuildPropertiesUtils
 				.addToBuild(file);
 	}
 
 	public static IBuildModel getBuildModel(final IPluginModelBase model)
 			throws CoreException {
-		return org.eclipse.emf.facet.util.pde.core.internal.BuildPropertiesUtils
+		return org.eclipse.papyrus.emf.facet.util.pde.core.internal.BuildPropertiesUtils
 				.getBuildModel(model);
 	}
 }

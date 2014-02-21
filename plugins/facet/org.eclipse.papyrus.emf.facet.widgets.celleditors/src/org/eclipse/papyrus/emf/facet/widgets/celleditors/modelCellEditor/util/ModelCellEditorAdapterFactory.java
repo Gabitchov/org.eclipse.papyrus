@@ -9,25 +9,25 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  */
-package org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.util;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
  * an adapter <code>createXXX</code> method for each class of the model. <!--
  * end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage
+ * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorPackage
  * @generated
  */
 public class ModelCellEditorAdapterFactory extends AdapterFactoryImpl {
@@ -124,14 +124,14 @@ public class ModelCellEditorAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations
 	 * <em>Declarations</em>}'. <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.ModelCellEditorDeclarations
 	 * @generated
 	 */
 	public Adapter createModelCellEditorDeclarationsAdapter() {
@@ -140,14 +140,14 @@ public class ModelCellEditorAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor
 	 * <em>Abstract Model Cell Editor</em>}'. <!-- begin-user-doc --> This
 	 * default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases
 	 * anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor
 	 * @generated
 	 */
 	public Adapter createAbstractModelCellEditorAdapter() {
@@ -156,14 +156,14 @@ public class ModelCellEditorAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor
 	 * <em>Basic Cell Editor</em>}'. <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.BasicCellEditor
 	 * @generated
 	 */
 	public Adapter createBasicCellEditorAdapter() {
@@ -172,14 +172,14 @@ public class ModelCellEditorAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor
 	 * <em>Unary Reference Cell Editor</em>}'. <!-- begin-user-doc --> This
 	 * default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases
 	 * anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.UnaryReferenceCellEditor
 	 * @generated
 	 */
 	public Adapter createUnaryReferenceCellEditorAdapter() {
@@ -188,14 +188,14 @@ public class ModelCellEditorAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor
+	 * {@link org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor
 	 * <em>Nary Feature Cell Editor</em>}'. <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor
+	 * @see org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.NaryFeatureCellEditor
 	 * @generated
 	 */
 	public Adapter createNaryFeatureCellEditorAdapter() {

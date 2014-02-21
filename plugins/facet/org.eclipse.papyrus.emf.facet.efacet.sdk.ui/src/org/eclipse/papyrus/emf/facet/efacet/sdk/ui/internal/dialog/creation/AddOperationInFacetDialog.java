@@ -10,15 +10,15 @@
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  *  	Grégoire Dupé (Mia-Software) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.efacet.sdk.ui.internal.dialog.creation;
+package org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.dialog.creation;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.exported.widget.IDerivedTypedElementWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.sync.generated.SynchronizedDerivedTypedElementWidget;
-import org.eclipse.emf.facet.efacet.sdk.ui.internal.widget.creation.AddOperationInFacetWidget;
-import org.eclipse.emf.facet.util.ui.utils.PropertyElement2;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.widget.IDerivedTypedElementWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.sync.generated.SynchronizedDerivedTypedElementWidget;
+import org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.widget.creation.AddOperationInFacetWidget;
+import org.eclipse.papyrus.emf.facet.util.ui.utils.PropertyElement2;
 
 /**
  * Concrete dialog for the creation of an Operation in a facet.

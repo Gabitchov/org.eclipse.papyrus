@@ -10,10 +10,10 @@
  *  	Gregoire Dupe (Mia-Software) - Bug 361794 - [Restructuring] New customization meta-model
  *      Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.custom.ui;
+package org.eclipse.papyrus.emf.facet.custom.ui;
 
-import org.eclipse.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 
 /**
  * This interface allow to used a {@link IContentProvider} which is implemented

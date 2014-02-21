@@ -10,7 +10,7 @@
  *     Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *     Nicolas Bros (Mia-Software) - Bug 379395 - Navigate should replace elements
  */
-package org.eclipse.emf.facet.efacet.ui.internal.exported.view;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.view;
 
 import java.io.NotActiveException;
 import java.util.Collection;
@@ -19,7 +19,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.facet.efacet.ui.IETypedElementResultDisplayerOpener;
+import org.eclipse.papyrus.emf.facet.efacet.ui.IETypedElementResultDisplayerOpener;
 import org.eclipse.ui.part.WorkbenchPart;
 
 /**
@@ -92,7 +92,7 @@ public interface INavigationView {
 
 	/**
 	 * This method returns the list of {@link IETypedElementResultDisplayerOpener} which have
-	 * been resisted using the org.eclipse.emf.facet.efacet.ui.displayeropener extension point.
+	 * been resisted using the org.eclipse.papyrus.emf.facet.efacet.ui.displayeropener extension point.
 	 * 
 	 * @return a list of {@link IETypedElementResultDisplayerOpener}
 	 */

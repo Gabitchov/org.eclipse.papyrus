@@ -15,7 +15,7 @@
  *  Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *  Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning
  */
-package org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
+package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EFactory;
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
  * 
- * @see org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage
+ * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage
  * @generated
  * @noextend This interface is not intended to be extended by clients.
  * @noimplement This interface is not intended to be implemented by clients.
@@ -37,7 +37,7 @@ public interface QueryFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	QueryFactory eINSTANCE = org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryFactoryImpl.init();
+	QueryFactory eINSTANCE = org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Navigation Query</em>'.

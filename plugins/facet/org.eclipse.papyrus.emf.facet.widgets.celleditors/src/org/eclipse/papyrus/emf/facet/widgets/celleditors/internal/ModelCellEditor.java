@@ -10,11 +10,11 @@
  *   Nicolas Bros (Mia-Software) - initial API and implementation
  *   Nicolas Bros (Mia-Software) - Bug 339855 - ModelCellEditor class should not be exposed
  *******************************************************************************/
-package org.eclipse.emf.facet.widgets.celleditors.internal;
+package org.eclipse.papyrus.emf.facet.widgets.celleditors.internal;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.facet.util.core.Logger;
-import org.eclipse.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
+import org.eclipse.papyrus.emf.facet.util.core.Logger;
+import org.eclipse.papyrus.emf.facet.widgets.celleditors.modelCellEditor.AbstractModelCellEditor;
 
 public class ModelCellEditor {
 	private final String bundleName;

@@ -8,12 +8,12 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - Bug 375054 - Add validation warning for overlay on EClass
  *******************************************************************************/
-package org.eclipse.emf.facet.common.sdk.core.internal;
+package org.eclipse.papyrus.emf.facet.common.sdk.core.internal;
 
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.common.sdk.core.internal.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.common.sdk.core.internal.messages"; //$NON-NLS-1$
 	public static String ProjectUtils_createEMFFacetProject;
 	public static String ProjectUtils_createPluginProject;
 	static {

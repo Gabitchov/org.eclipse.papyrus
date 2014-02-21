@@ -9,7 +9,7 @@
  * Contributors:
  * 		Thomas Cicognani (Soft-Maint) - Bug 406565 - Ok Dialog
  */
-package org.eclipse.emf.facet.util.ui.internal.exported.dialog;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog;
 
 
 /**

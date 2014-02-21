@@ -10,7 +10,7 @@
  * 	 Gregoire Dupe (Mia-Software) - Bug 364325 - [Restructuring] The user must be able to navigate into a model using the Facet.
  *   Nicolas Bros (Mia-Software) - Bug 379395 - Navigate should replace elements
  */
-package org.eclipse.emf.facet.efacet.ui.internal.handlers;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.handlers;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,8 +21,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.view.INavigationView;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.view.INavigationViewFactory;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.view.INavigationView;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.view.INavigationViewFactory;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;

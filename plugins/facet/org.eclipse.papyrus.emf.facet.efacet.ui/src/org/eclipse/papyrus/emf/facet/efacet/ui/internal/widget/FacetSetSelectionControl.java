@@ -10,7 +10,7 @@
  *     Gregoire Dupe (Mia-Software) - Bug 372626 - Aggregates
  *     Nicolas Bros (Mia-Software) - Bug 372626 - Aggregates
  *******************************************************************************/
-package org.eclipse.emf.facet.efacet.ui.internal.widget;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.widget;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,13 +25,13 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.efacet.core.internal.exported.IResolverManager;
-import org.eclipse.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.ui.internal.Activator;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.dialogs.FacetSetTreeContentProvider;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.widget.IFacetSetSelectionWidget;
-import org.eclipse.emf.facet.util.emf.ui.internal.utils.ImageUtils;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exported.IResolverManager;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Activator;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.dialogs.FacetSetTreeContentProvider;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.widget.IFacetSetSelectionWidget;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.utils.ImageUtils;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ICheckStateListener;

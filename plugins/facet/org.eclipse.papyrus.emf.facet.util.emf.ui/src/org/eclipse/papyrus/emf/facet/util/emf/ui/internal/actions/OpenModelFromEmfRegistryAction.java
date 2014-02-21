@@ -10,11 +10,11 @@
  *    Nicolas Bros (Mia-Software)
  *    Nicolas Guyomar (Mia-Software) - Bug 333652 Extension point offering the possibility to declare an EPackage browser
  *******************************************************************************/
-package org.eclipse.emf.facet.util.emf.ui.internal.actions;
+package org.eclipse.papyrus.emf.facet.util.emf.ui.internal.actions;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.facet.util.emf.core.IBrowserRegistry;
-import org.eclipse.emf.facet.util.emf.ui.internal.dialogs.UriSelectionDialog;
+import org.eclipse.papyrus.emf.facet.util.emf.core.IBrowserRegistry;
+import org.eclipse.papyrus.emf.facet.util.emf.ui.internal.dialogs.UriSelectionDialog;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.window.Window;

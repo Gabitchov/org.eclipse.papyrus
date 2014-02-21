@@ -9,14 +9,14 @@
  * Contributors:
  *  	Alban Ménager (Soft-Maint) - Bug 387470 - [EFacet][Custom] Editors
  */
-package org.eclipse.emf.facet.custom.sdk.core;
+package org.eclipse.papyrus.emf.facet.custom.sdk.core;
 
 import java.io.IOException;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
-import org.eclipse.emf.facet.custom.sdk.core.internal.CustomizationActionsImpl;
-import org.eclipse.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.custom.sdk.core.internal.CustomizationActionsImpl;
+import org.eclipse.papyrus.emf.facet.util.emf.core.exception.InvalidFacetSetException;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 
 /**
  * This interface provides the creation of a new customization model file.

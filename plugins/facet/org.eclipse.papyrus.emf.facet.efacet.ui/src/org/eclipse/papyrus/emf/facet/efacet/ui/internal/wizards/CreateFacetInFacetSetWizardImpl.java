@@ -9,24 +9,24 @@
  * Contributors:
  * 	Nicolas Guyomar (Mia-Software) - Bug 349546 - EMF Facet facetSet editor
  */
-package org.eclipse.emf.facet.efacet.ui.internal.wizards;
+package org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.facet.efacet.EFacetFactory;
-import org.eclipse.emf.facet.efacet.Facet;
-import org.eclipse.emf.facet.efacet.FacetSet;
-import org.eclipse.emf.facet.efacet.Query;
-import org.eclipse.emf.facet.efacet.core.IFacetAction;
-import org.eclipse.emf.facet.efacet.ui.internal.IQueryCreationPagePartRegistry;
-import org.eclipse.emf.facet.efacet.ui.internal.Messages;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.ICreateFacetInFacetSetWizard;
-import org.eclipse.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.pages.CreateFacetInFacetSetWizardPage;
-import org.eclipse.emf.facet.efacet.ui.internal.wizards.pages.CreateQueryWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.EFacetFactory;
+import org.eclipse.papyrus.emf.facet.efacet.Facet;
+import org.eclipse.papyrus.emf.facet.efacet.FacetSet;
+import org.eclipse.papyrus.emf.facet.efacet.Query;
+import org.eclipse.papyrus.emf.facet.efacet.core.IFacetAction;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.IQueryCreationPagePartRegistry;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.Messages;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.ICreateFacetInFacetSetWizard;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.exported.wizard.IQueryCreationPagePart;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages.CreateFacetInFacetSetWizardPage;
+import org.eclipse.papyrus.emf.facet.efacet.ui.internal.wizards.pages.CreateQueryWizardPage;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.facet.widgets.celleditors" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.emf.facet.widgets.celleditors" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.emf.facet.widgets.celleditors" id="commandFactories" name="Command Factories"/>
+         <meta.schema plugin="org.eclipse.papyrus.emf.facet.widgets.celleditors" id="commandFactories" name="Command Factories"/>
       </appInfo>
       <documentation>
          Use this extension point to specify a Command factory that must be used when creating emf.edit Commands for a specific editing domain.
@@ -55,7 +55,7 @@
                   The implementation class of a Command factory.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.facet.widgets.celleditors.ICommandFactory"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.emf.facet.widgets.celleditors.ICommandFactory"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -77,7 +77,7 @@
       </appInfo>
       <documentation>
          &lt;pre&gt;
-   &lt;extension point=&quot;org.eclipse.emf.facet.widgets.celleditors.commandFactories&quot;&gt;
+   &lt;extension point=&quot;org.eclipse.papyrus.emf.facet.widgets.celleditors.commandFactories&quot;&gt;
       &lt;commandFactory class=&quot;com.example.MyCommandFactory&quot;/&gt;
    &lt;/extension&gt;
 &lt;/pre&gt;

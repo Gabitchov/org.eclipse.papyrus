@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="custom"
     nsURI="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom" nsPrefix="custom">
-  <eClassifiers xsi:type="ecore:EClass" name="Customization" eSuperTypes="../../org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//FacetSet">
+  <eClassifiers xsi:type="ecore:EClass" name="Customization" eSuperTypes="../../org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//FacetSet">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The customization model element is the root of a customization model. A customization is applied to only one ePackage and contains EClassCustomizations."/>
     </eAnnotations>
@@ -15,19 +15,19 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EClassCustomization" eSuperTypes="../../org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//Facet">
+  <eClassifiers xsi:type="ecore:EClass" name="EClassCustomization" eSuperTypes="../../org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//Facet">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An EClassCustomization contains the customization for an EClass. There must not exist two EClassCustomizations customizing the same EClass in the same customization."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FacetCustomization" eSuperTypes="../../org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//Facet">
+  <eClassifiers xsi:type="ecore:EClass" name="FacetCustomization" eSuperTypes="../../org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//Facet">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A FacetCustomization contains the customization for a Facet. There must not exist two FacetCustomizations customizing the same facet in the same customization."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="customizedFacet" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//Facet"/>
+        eType="ecore:EClass ../../org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//Facet"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ETypedElementSwitchQuery" eSuperTypes="../../org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//extensible/Query">
+  <eClassifiers xsi:type="ecore:EClass" name="ETypedElementSwitchQuery" eSuperTypes="../../org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//extensible/Query">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This query can return a value depending of an instance of ETypedElement. This query is dedicated to the definition of customizations."/>
     </eAnnotations>
@@ -39,7 +39,7 @@
       <details key="documentation" value="Case part of the ETypedElementSwitchQuery."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="case" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../org.eclipse.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//extensible/Query"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../org.eclipse.papyrus.emf.facet.efacet.metamodel/model/efacet-0.2.0.ecore#//extensible/Query"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

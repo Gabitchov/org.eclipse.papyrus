@@ -9,7 +9,7 @@
  *    Gregoire Dupe (Mia-Software) - Initial API
  *    Nicolas Bros (Mia-Software) - Bug 372865 - FacetSet selection dialog
  *******************************************************************************/
-package org.eclipse.emf.facet.util.ui.internal.exported.dialog;
+package org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog;
 
 /**
  * A callback used to return a dialog's result asynchronously.
