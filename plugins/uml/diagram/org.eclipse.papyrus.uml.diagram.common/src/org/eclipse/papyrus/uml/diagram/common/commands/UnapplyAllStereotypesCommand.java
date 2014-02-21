@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.uml.diagram.common.commands;
 
+import java.util.List;
+import java.util.ListIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -27,7 +29,9 @@ public class UnapplyAllStereotypesCommand extends CompositeCommand {
 
 	public UnapplyAllStereotypesCommand(TransactionalEditingDomain domain, String label, Element element) {
 		super(label);
-		for(EObject stereotypeApplication : element.getStereotypeApplications()) {
+		List<EObject> stereotypeApplications = element.getStereotypeApplications();
+		for (ListIterator<EObject> it = stereotypeApplications.listIterator(stereotypeApplications.size()); it.hasPrevious(); ) {
+			EObject stereotypeApplication = it.previous();
 			DestroyElementRequest stereoReq = new DestroyElementRequest(domain, stereotypeApplication, false);
 			add(new DestroyElementCommand(stereoReq));
 		}
