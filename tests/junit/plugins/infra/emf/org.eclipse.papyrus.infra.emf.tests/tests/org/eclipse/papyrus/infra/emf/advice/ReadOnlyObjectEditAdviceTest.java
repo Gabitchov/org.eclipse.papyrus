@@ -16,9 +16,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeThat;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -32,13 +32,18 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
@@ -57,6 +62,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Dependency;
@@ -100,8 +106,6 @@ public class ReadOnlyObjectEditAdviceTest {
 
 	private IFile workspaceFile;
 
-	private File localFile;
-
 	private TransactionalEditingDomain domain;
 
 	private Package writablePackage;
@@ -143,7 +147,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		final Dependency dep = classA.getClientDependency("A-->D"); //$NON-NLS-1$
 
 		// By-pass edit-helpers to set up the dependency
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -184,7 +188,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		final Type classD = writablePackage.getOwnedType("D"); //$NON-NLS-1$
 
 		// By-pass edit-helpers to set up the relationship
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -203,7 +207,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		final Dependency dep = classA.getClientDependency("A-->D"); //$NON-NLS-1$
 
 		// By-pass edit-helpers to set up the relationship
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -243,7 +247,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		assertThat("Wrong initial supplier in test model dependency", classD, notNullValue()); //$NON-NLS-1$
 
 		// By-pass edit-helpers to set up the relationship
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -281,7 +285,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		final Dependency dep = classA.getClientDependency("A-->D"); //$NON-NLS-1$
 
 		// By-pass edit-helpers to set up the relationship
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -301,7 +305,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		final Comment[] comment = { null };
 
 		// By-pass edit-helpers to set up the reference
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -322,7 +326,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		final Comment[] comment = { null };
 
 		// By-pass edit-helpers to set up the reference
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -337,13 +341,13 @@ public class ReadOnlyObjectEditAdviceTest {
 	}
 
 	@Test
-	public void testReorientReferenceCommand_sourceOldReadonly() {
+	public void testReorientReferenceCommand_sourceOldReadOnly() {
 		assumeThat(resourceMode.isAdviceEnabled(), is(true));
 
 		final Comment[] comment = { null, null };
 
 		// By-pass edit-helpers to set up the reference
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -364,7 +368,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		final Comment[] comment = { null, null };
 
 		// By-pass edit-helpers to set up the reference
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		executeUnprotected(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -410,11 +414,6 @@ public class ReadOnlyObjectEditAdviceTest {
 			workspaceFile = project.getFile("readonly.uml"); //$NON-NLS-1$
 			readOnlyURI = URI.createPlatformResourceURI(workspaceFile.getFullPath().toString(), true);
 			break;
-		case LOCAL_WRITEABLE:
-		case LOCAL_READONLY:
-			localFile = tmp.newFile("readonly.uml"); //$NON-NLS-1$
-			readOnlyURI = URI.createFileURI(localFile.getAbsolutePath());
-			break;
 		default: // plug-in resource
 			readOnlyURI = URI.createPlatformPluginURI(String.format("%s/resources/readonly.uml", TEST_BUNDLE), true); //$NON-NLS-1$
 			break;
@@ -430,10 +429,6 @@ public class ReadOnlyObjectEditAdviceTest {
 		case WORKSPACE_READONLY:
 			// Must first create the file, then make it read-only
 			readOnlyPackage.eResource().save(null);
-			break;
-		case LOCAL_READONLY:
-			localFile.setWritable(false, true);
-			localFile.setWritable(false, false);
 			break;
 		default:
 			// Nothing to do
@@ -452,7 +447,7 @@ public class ReadOnlyObjectEditAdviceTest {
 		Package result = null;
 
 		if(domain == null) {
-			domain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain();
+			domain = TransactionalEditingDomainManager.createTransactionalEditingDomain(new ResourceSetImpl());
 		}
 
 		Resource res = domain.getResourceSet().createResource(uri);
@@ -497,11 +492,6 @@ public class ReadOnlyObjectEditAdviceTest {
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
-
-		if(localFile != null) {
-			localFile.setWritable(true, true);
-			localFile.delete();
-		}
 	}
 
 	IClientContext getClientContext() {
@@ -540,8 +530,6 @@ public class ReadOnlyObjectEditAdviceTest {
 		switch(resourceMode) {
 		case WORKSPACE_WRITEABLE:
 		case WORKSPACE_READONLY:
-		case LOCAL_WRITEABLE:
-		case LOCAL_READONLY:
 		case PLUGIN_NOADVICE:
 			// The edit-helper can return null if there is no executable command to be provided
 			assertThat("Command should be executable", (command != null) && command.canExecute(), is(true)); //$NON-NLS-1$
@@ -559,24 +547,31 @@ public class ReadOnlyObjectEditAdviceTest {
 		switch(resourceMode) {
 		case WORKSPACE_WRITEABLE:
 		case WORKSPACE_READONLY:
-		case LOCAL_WRITEABLE:
-		case LOCAL_READONLY:
 		case PLUGIN_NOADVICE:
 			// The advice can return null if there is no need to decorate the operation
-			assertThat("Request should be approved", (command == null) || command.canExecute(), is(true)); //$NON-NLS-1$
+			assertThat("Advice should be executable", (command == null) || command.canExecute(), is(true)); //$NON-NLS-1$
 			break;
 		default:
 			// The advice can return null if there is no need to decorate the operation
-			assertThat("Request should not be approved", (command == null) || command.canExecute(), is(false)); //$NON-NLS-1$
+			assertThat("Advice should not be executable", (command == null) || command.canExecute(), is(false)); //$NON-NLS-1$
 			break;
+		}
+	}
+
+	void executeUnprotected(Command command) {
+		try {
+			((TransactionalCommandStack)domain.getCommandStack()).execute(command, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, true));
+		} catch (InterruptedException e) {
+			fail("Unprotected command execution interrupted.");
+		} catch (RollbackException e) {
+			e.printStackTrace();
+			fail("Unprotected command execution rolled back: " + e.getLocalizedMessage());
 		}
 	}
 
 	enum ResourceMode {
 		WORKSPACE_WRITEABLE("writable in workspace"), //$NON-NLS-1$
 		WORKSPACE_READONLY("read-only in workspace"), //$NON-NLS-1$
-		LOCAL_WRITEABLE("writable in local FS"), //$NON-NLS-1$
-		LOCAL_READONLY("read-only in local FS"), //$NON-NLS-1$
 		PLUGIN_NOADVICE("deployed in plug-in, advice disabled"), //$NON-NLS-1$
 		PLUGIN("deployed in plug-in"); //$NON-NLS-1$
 

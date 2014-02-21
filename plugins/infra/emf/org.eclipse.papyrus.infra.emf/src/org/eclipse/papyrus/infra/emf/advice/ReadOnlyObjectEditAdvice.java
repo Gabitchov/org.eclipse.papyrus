@@ -17,10 +17,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
@@ -44,7 +43,7 @@ import com.google.common.collect.Sets;
 
 
 /**
- * Advice that disapproves edits that would modify objects that are read-only and could not reasonably be made writable.
+ * Advice that vetoes edits that would modify objects that are read-only and could not reasonably be made writable.
  */
 public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 
@@ -55,15 +54,10 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 	protected boolean isUneditable(IEditCommandRequest request, EObject object) {
 		boolean result = false;
 
-		if(EMFHelper.isReadOnly(object, request.getEditingDomain())) {
-			// If it is in a resource and it is a local file, we may be able to make it writable using team provider hooks or some other means.  Otherwise, no
-			Resource resource = object.eResource();
-			if(resource == null) {
-				result = true;
-			} else {
-				URI uri = resource.getURI();
-				result = !(uri.isPlatformResource() || uri.isFile());
-			}
+		EditingDomain domain = request.getEditingDomain();
+		if(EMFHelper.isReadOnly(object, domain)) {
+			// Check whether we have some means of making it writable
+			result = !EMFHelper.canMakeWritable(object, domain);
 		}
 
 		return result;
