@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
@@ -27,6 +29,7 @@ import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConsta
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
@@ -107,4 +110,8 @@ public class StereotypeAppearanceModelElement extends AbstractModelElement imple
 		return true;
 	}
 
+	@Override
+	public boolean isEditable(String propertyPath) {
+		return !EMFHelper.isReadOnly(umlSource);
+	}
 }
