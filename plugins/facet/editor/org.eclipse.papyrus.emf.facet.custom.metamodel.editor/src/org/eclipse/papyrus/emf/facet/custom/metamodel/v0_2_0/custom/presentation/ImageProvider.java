@@ -10,7 +10,7 @@
  *    Vincent Lorenzo (CEA-LIST) - bug 341238 - We need to be able to specify which column have to be hidden/visible using the customization mechanism
  *******************************************************************************/
 
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
 
 import java.net.URL;
 

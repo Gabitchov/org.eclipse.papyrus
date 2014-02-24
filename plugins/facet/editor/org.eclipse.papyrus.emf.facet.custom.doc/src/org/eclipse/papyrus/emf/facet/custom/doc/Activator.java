@@ -1,4 +1,4 @@
-package org.eclipse.emf.facet.custom.doc;
+package org.eclipse.papyrus.emf.facet.custom.doc;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

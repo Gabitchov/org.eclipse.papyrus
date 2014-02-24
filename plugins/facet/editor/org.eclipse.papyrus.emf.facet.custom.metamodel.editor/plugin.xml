@@ -22,9 +22,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomModelWizardID"
+            id="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomModelWizardID"
             name="%_UI_CustomModelWizard_label"
-            class="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomModelWizard"
+            class="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/CustomModelFile.gif">
          <description>%_UI_CustomModelWizard_description</description>
@@ -34,12 +34,12 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomEditorID"
+            id="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomEditorID"
             name="%_UI_CustomEditor_label"
             icon="icons/full/obj16/CustomModelFile.gif"
             extensions="custom"
-            class="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomEditor"
-            contributorClass="org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomActionBarContributor">
+            class="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomEditor"
+            contributorClass="org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation.CustomActionBarContributor">
       </editor>
    </extension>
 

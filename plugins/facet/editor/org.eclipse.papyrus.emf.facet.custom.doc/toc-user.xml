@@ -10,6 +10,6 @@
  Contributors:
     Nicolas Bros (Mia-Software) - Bug 375789 - Documentation
 -->
-<toc label="Customization" link_to="../org.eclipse.emf.facet.doc/maintoc.xml#user.anchor.2">
+<toc label="Customization" link_to="../org.eclipse.papyrus.emf.facet.doc/maintoc.xml#user.anchor.2">
    <topic label="Customization" href="mediawiki/user.html"/>
 </toc>

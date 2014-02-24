@@ -11,7 +11,7 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -189,7 +189,7 @@ public class CustomActionBarContributor
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(CustomEditorPlugin.INSTANCE.getString("_UI_CustomEditor_menu"), "org.eclipse.emf.facet.custom.metamodel.v0_2_0.customMenuID");
+		IMenuManager submenuManager = new MenuManager(CustomEditorPlugin.INSTANCE.getString("_UI_CustomEditor_menu"), "org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));

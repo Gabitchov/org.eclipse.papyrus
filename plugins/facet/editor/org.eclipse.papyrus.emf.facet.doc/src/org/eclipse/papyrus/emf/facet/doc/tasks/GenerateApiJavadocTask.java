@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.doc.tasks;
+package org.eclipse.papyrus.emf.facet.doc.tasks;
 
 import java.io.File;
 import java.io.FileInputStream;

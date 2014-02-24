@@ -145,7 +145,7 @@ Name: javadoc/org/eclipse/emf/facet/query/ocl/core/util/package-use.ht
  ml
 SHA1-Digest: lgB9NQ7kd4O8g8jikm9KI60ridg=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.doc/pom.pr
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.doc/pom.pr
  operties
 SHA1-Digest: T0rSXLQKRdIbp04f7pYVsahbspc=
 
@@ -709,7 +709,7 @@ SHA1-Digest: OaCOPuCHduyijLfC39J1nkziEmQ=
 Name: mediawiki/ramp_down-toc.xml
 SHA1-Digest: 9IdLRwd4675KyYf44KwAHYKwOVM=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.doc/pom.xm
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.doc/pom.xm
  l
 SHA1-Digest: +TrT7NnbBIJSFcEUOf/FzjnuRtU=
 

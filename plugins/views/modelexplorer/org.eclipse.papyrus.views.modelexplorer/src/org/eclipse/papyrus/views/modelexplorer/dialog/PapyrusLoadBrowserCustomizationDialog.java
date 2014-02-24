@@ -20,11 +20,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EPackage;
-//import org.eclipse.emf.facet.infra.browser.custom.MetamodelView;
-//import org.eclipse.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
-//import org.eclipse.emf.facet.infra.browser.uicore.internal.util.ImageProvider;
-//import org.eclipse.emf.facet.infra.common.core.internal.utils.ModelUtils;
-//import org.eclipse.emf.facet.infra.facet.FacetSet;
+//import org.eclipse.papyrus.emf.facet.infra.browser.custom.MetamodelView;
+//import org.eclipse.papyrus.emf.facet.infra.browser.custom.core.CustomizationsCatalog;
+//import org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.util.ImageProvider;
+//import org.eclipse.papyrus.emf.facet.infra.common.core.internal.utils.ModelUtils;
+//import org.eclipse.papyrus.emf.facet.infra.facet.FacetSet;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -270,7 +270,7 @@ public class PapyrusLoadBrowserCustomizationDialog extends MultipleValueSelector
 //		return customizations;
 //	}
 //
-//	//Copied from {@link org.eclipse.emf.facet.infra.browser.custom.ui.dialogs.LoadCustomizationsDialog#createLabelProvider()}
+//	//Copied from {@link org.eclipse.papyrus.emf.facet.infra.browser.custom.ui.dialogs.LoadCustomizationsDialog#createLabelProvider()}
 //	/**
 //	 * Creates a LabelProvider for EMF Facet MetamodelView elements
 //	 * 

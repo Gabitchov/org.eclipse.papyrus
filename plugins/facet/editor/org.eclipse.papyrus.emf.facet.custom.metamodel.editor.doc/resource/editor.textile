@@ -68,7 +68,7 @@ The dialog allows specifying generic features for Custom classes and the propert
 Figure 6 : Edition of an EClassCustom
 
 
-In this example, the EClassCustom extends the metaclass from the org.eclipse.emf.facet.examples.library metamodel, the editor will
+In this example, the EClassCustom extends the metaclass from the org.eclipse.papyrus.emf.facet.examples.library metamodel, the editor will
 automatically load every model in which a facet specifies this metamodel, hence the loading of .efacet and .custom files available in the
 platform. This allow an easy access of all declared facets bound to an element of the customized metamodel.
 

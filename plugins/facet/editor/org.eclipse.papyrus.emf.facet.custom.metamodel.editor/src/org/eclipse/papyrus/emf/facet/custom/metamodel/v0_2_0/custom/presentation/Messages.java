@@ -8,12 +8,12 @@
  * Contributors:
  *     Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
 
 import org.eclipse.osgi.util.NLS;
 
 public final class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.facet.custom.metamodel.editor.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.emf.facet.custom.metamodel.editor.messages"; //$NON-NLS-1$
 
 	public static String CustomizationEditor_add;
 	public static String CustomizationEditor_appliesToSubInstances;

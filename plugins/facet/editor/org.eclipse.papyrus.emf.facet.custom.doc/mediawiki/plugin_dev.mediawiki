@@ -4,7 +4,7 @@ EMF Facet provides a customization selection dialog:
 
 [[Image:../img/LoadCustomizationsDialog.png]]
 
-To open this dialog to let the user select customizations, use <code>ILoadCustomizationsDialogFactory#createLoadCustomizationDialog</code> from the plug-in '''org.eclipse.emf.facet.custom.ui'''. For example:
+To open this dialog to let the user select customizations, use <code>ILoadCustomizationsDialogFactory#createLoadCustomizationDialog</code> from the plug-in '''org.eclipse.papyrus.emf.facet.custom.ui'''. For example:
 
 <pre>
 ILoadCustomizationsDialogListener callback = new ILoadCustomizationsDialogListener() {

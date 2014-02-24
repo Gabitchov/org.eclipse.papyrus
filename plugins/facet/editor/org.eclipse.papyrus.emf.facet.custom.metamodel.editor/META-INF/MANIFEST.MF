@@ -3,7 +3,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Built-By: hudsonbuild
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.custom.metamodel.editor;singleton:=true
-Bundle-Activator: org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation.Activator
+Bundle-Activator: org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.papyrus.emf.facet.custom.metamodel.edit;visibility:=reexport,
@@ -50,7 +50,7 @@ Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
  n/CustomModelWizard.class
 SHA1-Digest: zPICwLw1MMdSYMw3Qy77cPTD/iE=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.custom.met
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.met
  amodel.editor/pom.properties
 SHA1-Digest: aaofIniFQcvYh/8YffWqmdAjU6Y=
 
@@ -78,7 +78,7 @@ Name: org/eclipse/emf/facet/custom/metamodel/v0_2_0/custom/presentatio
  n/CustomEditor$11.class
 SHA1-Digest: aCGd0LETYBDgF5HzVOt4Keo5hB4=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.custom.met
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.met
  amodel.editor/pom.xml
 SHA1-Digest: HLvXDSszH515HuZ/i7KF+OpgR7U=
 

@@ -8,7 +8,7 @@
  * Contributors:
  *    Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -17,7 +17,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/** The plug-in ID */
-	public static final String PLUGIN_ID = "org.eclipse.emf.facet.custom.metamodel.editor"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.emf.facet.custom.metamodel.editor"; //$NON-NLS-1$
 
 	/** The shared instance */
 	private static Activator plugin;

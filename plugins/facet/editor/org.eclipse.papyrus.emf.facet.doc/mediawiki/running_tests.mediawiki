@@ -1,8 +1,8 @@
 To run the EMF Facet tests, you must:
 * install EMF Facet, or checkout all EMF Facet plug-ins in your workspace (from https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/)
 * check-out everything from https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/tests/
-* run org.eclipse.emf.facet.tests.AllTests as a '''JUnit Plug-in Test'''
-* run org.eclipse.emf.facet.tests.AllUITests as a '''JUnit Plug-in Test''', with '''Run in UI thread''' unchecked in the launch configuration
+* run org.eclipse.papyrus.emf.facet.tests.AllTests as a '''JUnit Plug-in Test'''
+* run org.eclipse.papyrus.emf.facet.tests.AllUITests as a '''JUnit Plug-in Test''', with '''Run in UI thread''' unchecked in the launch configuration
 
 <font size="-2">
 Copyright (c) 2012 Mia-Software.

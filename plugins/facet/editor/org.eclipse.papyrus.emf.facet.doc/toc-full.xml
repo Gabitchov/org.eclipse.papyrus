@@ -18,26 +18,26 @@
 
 <toc label="EMF Facet Documentation">
    <topic label="User Guide">
-      <topic label="EFacet" href="../org.eclipse.emf.facet.efacet.doc/mediawiki/user.html"/>
-      <topic label="Customization" href="../org.eclipse.emf.facet.custom.doc/mediawiki/user.html"/>
-      <topic label="Aggregates" href="../org.eclipse.emf.facet.aggregate.doc/mediawiki/user.html"/>
-      <topic label="Table Widget" href="../org.eclipse.emf.facet.widgets.table.doc/mediawiki/user.html"/>
-      <topic label="General EMF Utilities" href="../org.eclipse.emf.facet.util.emf.doc/mediawiki/user.html"/>
+      <topic label="EFacet" href="../org.eclipse.papyrus.emf.facet.efacet.doc/mediawiki/user.html"/>
+      <topic label="Customization" href="../org.eclipse.papyrus.emf.facet.custom.doc/mediawiki/user.html"/>
+      <topic label="Aggregates" href="../org.eclipse.papyrus.emf.facet.aggregate.doc/mediawiki/user.html"/>
+      <topic label="Table Widget" href="../org.eclipse.papyrus.emf.facet.widgets.table.doc/mediawiki/user.html"/>
+      <topic label="General EMF Utilities" href="../org.eclipse.papyrus.emf.facet.util.emf.doc/mediawiki/user.html"/>
       <topic label="Deprecated Components">
-         <topic label="NatTable Widget (previous version)" href="../org.eclipse.emf.facet.widgets.nattable.doc/mediawiki/user.html"/>
+         <topic label="NatTable Widget (previous version)" href="../org.eclipse.papyrus.emf.facet.widgets.nattable.doc/mediawiki/user.html"/>
       </topic>
    </topic>
 
    <topic label="Developer Guide">
-      <topic label="EFacet" href="../org.eclipse.emf.facet.efacet.doc/mediawiki/plugin_dev.html"/>
-      <topic label="Customization" href="../org.eclipse.emf.facet.custom.doc/mediawiki/plugin_dev.html"/>
-      <topic label="Aggregates" href="../org.eclipse.emf.facet.aggregate.doc/mediawiki/plugin_dev.html"/>
-      <topic label="Table Widget" href="../org.eclipse.emf.facet.widgets.table.doc/mediawiki/plugin_dev.html"/>
-      <topic label="General EMF Utilities" href="../org.eclipse.emf.facet.util.emf.doc/mediawiki/plugin_dev.html"/>
+      <topic label="EFacet" href="../org.eclipse.papyrus.emf.facet.efacet.doc/mediawiki/plugin_dev.html"/>
+      <topic label="Customization" href="../org.eclipse.papyrus.emf.facet.custom.doc/mediawiki/plugin_dev.html"/>
+      <topic label="Aggregates" href="../org.eclipse.papyrus.emf.facet.aggregate.doc/mediawiki/plugin_dev.html"/>
+      <topic label="Table Widget" href="../org.eclipse.papyrus.emf.facet.widgets.table.doc/mediawiki/plugin_dev.html"/>
+      <topic label="General EMF Utilities" href="../org.eclipse.papyrus.emf.facet.util.emf.doc/mediawiki/plugin_dev.html"/>
       <topic href="javadoc/index.html" label="API Reference"/>
       <topic label="Deprecated Components">
-         <topic label="Model Browser" href="../org.eclipse.emf.facet.infra.browser.doc/mediawiki/plugin_dev.html"/>
-         <topic label="NatTable Widget (previous version)" href="../org.eclipse.emf.facet.widgets.nattable.doc/mediawiki/plugin_dev.html"/>
+         <topic label="Model Browser" href="../org.eclipse.papyrus.emf.facet.infra.browser.doc/mediawiki/plugin_dev.html"/>
+         <topic label="NatTable Widget (previous version)" href="../org.eclipse.papyrus.emf.facet.widgets.nattable.doc/mediawiki/plugin_dev.html"/>
       </topic>
    </topic>
 

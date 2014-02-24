@@ -4,10 +4,10 @@
 <plugin>
 
    <!-- TODO: EMF-FACET update queries and custom
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resource/UMLPapyrusDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.query.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
       <modelqueryset file="resource/PapyrusBrowserQuery.querySet"/>
    </extension-->
    <extension point="org.eclipse.ui.navigator.navigatorContent">
@@ -31,7 +31,7 @@
          </triggerPoints>
          <possibleChildren>
             <or>
-               <instanceof value="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
+               <instanceof value="org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
                </instanceof>
                <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
                </instanceof>
@@ -1081,17 +1081,17 @@
      and to mask the command in case it is not supported or executable.
   -->
 <extension point="org.eclipse.core.runtime.adapters">
-   <factory adaptableType="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem" class="org.eclipse.papyrus.uml.modelexplorer.factory.ModelElementItemFactory">
+   <factory adaptableType="org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.model.ModelElementItem" class="org.eclipse.papyrus.uml.modelexplorer.factory.ModelElementItemFactory">
       <adapter type="org.eclipse.uml2.uml.NamedElement">
       </adapter>
    </factory>
 </extension>
 
-   <!--extension point="org.eclipse.emf.facet.infra.facet.registration">
+   <!--extension point="org.eclipse.papyrus.emf.facet.infra.facet.registration">
       <facetset file="resource/PapyrusUMLFacet.facetSet">
       </facetset>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resource/UMLFacetDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
       <browserCustomization file="resource/NotationCustomization.uiCustom" loadByDefault="true">
       </browserCustomization>

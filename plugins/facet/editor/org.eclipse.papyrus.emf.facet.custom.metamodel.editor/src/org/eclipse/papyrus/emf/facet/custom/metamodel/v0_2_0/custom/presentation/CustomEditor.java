@@ -11,7 +11,7 @@
  *       Gregoire Dupe (Mia-Software) - Bug 369987 - [Restructuring][Table] Switch to the new customization and facet framework
  *       Gregoire Dupe (Mia-Software) - Bug 373078 - API Cleaning 
  */
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
 
 
 import java.io.IOException;
@@ -285,7 +285,7 @@ implements IGotoMarker, ISelectionProvider, IMenuListener, IEditingDomainProvide
 
 	private static final int VERTICAL_SPACE_BETWEEN_BUTTON_GROUPS = 30;
 	private static final int VERTICAL_SPACE_BEFORE_FIRST_BUTTON = 10;
-	public static final String ID = "org.eclipse.emf.facet.infra.browser.custom.editor"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.emf.facet.infra.browser.custom.editor"; //$NON-NLS-1$
 	private static final int MAIN_FORM_MARGIN_WIDTH = 4;
 	private static final int MAIN_FORM_MARGIN_HEIGHT = 6;
 	private static final int LEFT_PANE_SASH_WEIGHT = 400;
@@ -1234,7 +1234,7 @@ implements IGotoMarker, ISelectionProvider, IMenuListener, IEditingDomainProvide
 			BasicDiagnostic basicDiagnostic =
 					new BasicDiagnostic
 					(Diagnostic.ERROR,
-							"org.eclipse.emf.facet.custom.metamodel.editor",
+							"org.eclipse.papyrus.emf.facet.custom.metamodel.editor",
 							0,
 							getString("_UI_CreateModelError_message", resource.getURI()),
 							new Object [] { exception == null ? (Object)resource : exception });
@@ -1245,7 +1245,7 @@ implements IGotoMarker, ISelectionProvider, IMenuListener, IEditingDomainProvide
 			return
 					new BasicDiagnostic
 					(Diagnostic.ERROR,
-							"org.eclipse.emf.facet.custom.metamodel.editor",
+							"org.eclipse.papyrus.emf.facet.custom.metamodel.editor",
 							0,
 							getString("_UI_CreateModelError_message", resource.getURI()),
 							new Object[] { exception });
@@ -1305,7 +1305,7 @@ implements IGotoMarker, ISelectionProvider, IMenuListener, IEditingDomainProvide
 			BasicDiagnostic diagnostic =
 					new BasicDiagnostic
 					(Diagnostic.OK,
-							"org.eclipse.emf.facet.custom.metamodel.editor",
+							"org.eclipse.papyrus.emf.facet.custom.metamodel.editor",
 							0,
 							null,
 							new Object [] { editingDomain.getResourceSet() });

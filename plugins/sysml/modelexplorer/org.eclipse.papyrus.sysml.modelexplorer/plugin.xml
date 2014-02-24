@@ -3,13 +3,13 @@
 <plugin>
 
 <!-- SysML ModelExplorer customization -->
-<!--extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+<!--extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
 	<browserCustomization
        file="resources/SysMLDefaultExplorerCustomization.uiCustom"
        loadByDefault="true"/>
 </extension>
    
-<extension point="org.eclipse.emf.facet.infra.query.registration">
+<extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
 	<modelqueryset file="resources/SysMLDefaultExplorerQueries.querySet"/>
 </extension>
 -->

@@ -8,7 +8,7 @@
  * Contributors:
  *     Nicolas Bros (Mia-Software) - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -13,28 +13,28 @@
 		<pre>  &lt;extension point="org.eclipse.ui.activities"&gt;
      &lt;activity
            description="%activity.description"
-           id="org.eclipse.emf.facet.capabilities.activity"
+           id="org.eclipse.papyrus.emf.facet.capabilities.activity"
            name="%activity.name"&gt;
      &lt;/activity&gt;
      &lt;category
            description="%category.description"
-           id="org.eclipse.emf.facet.capabilities.category"
+           id="org.eclipse.papyrus.emf.facet.capabilities.category"
            name="%category.name"&gt;
      &lt;/category&gt;
      &lt;categoryActivityBinding
-           activityId="org.eclipse.emf.facet.capabilities.activity"
-           categoryId="org.eclipse.emf.facet.capabilities.category"&gt;
+           activityId="org.eclipse.papyrus.emf.facet.capabilities.activity"
+           categoryId="org.eclipse.papyrus.emf.facet.capabilities.category"&gt;
      &lt;/categoryActivityBinding&gt;
      &lt;activityPatternBinding
-           activityId="org.eclipse.emf.facet.capabilities.activity"
+           activityId="org.eclipse.papyrus.emf.facet.capabilities.activity"
            isEqualityPattern="false"
            pattern="org\.eclipse\.emf\.facet\..*/.*"&gt;
      &lt;/activityPatternBinding&gt;
-     &lt;defaultEnablement id="org.eclipse.emf.facet.capabilities.activity"/&gt;
+     &lt;defaultEnablement id="org.eclipse.papyrus.emf.facet.capabilities.activity"/&gt;
   &lt;/extension&gt;
 </pre>
 		<p>(in plug-in 
-			<a href="https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/org.eclipse.emf.facet.capabilities">https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/org.eclipse.emf.facet.capabilities</a>)
+			<a href="https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/org.eclipse.papyrus.emf.facet.capabilities">https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/org.eclipse.papyrus.emf.facet.capabilities</a>)
 		</p>
 		<p>Product maintainers can use this definition as a starting point for customizing their product.</p>
 		<h2 id="Selective_Capabilities">Selective Capabilities</h2>
@@ -42,7 +42,7 @@
 		<pre>  &lt;activityPatternBinding
         activityId="com.example.myActivity"
         isEqualityPattern="true"
-        pattern="org.eclipse.emf.facet.infra.common.ui/org.eclipse.emf.facet.NewProjectWizard"&gt;
+        pattern="org.eclipse.papyrus.emf.facet.infra.common.ui/org.eclipse.papyrus.emf.facet.NewProjectWizard"&gt;
   &lt;/activityPatternBinding&gt;
 </pre>
 		<p><font size="-2">

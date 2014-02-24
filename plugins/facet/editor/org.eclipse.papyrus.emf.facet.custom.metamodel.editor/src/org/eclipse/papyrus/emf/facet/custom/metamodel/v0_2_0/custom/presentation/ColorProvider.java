@@ -10,7 +10,7 @@
  *    
  *******************************************************************************/
 
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
 
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.swt.graphics.Color;

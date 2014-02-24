@@ -1,4 +1,4 @@
-package org.eclipse.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
+package org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.presentation;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

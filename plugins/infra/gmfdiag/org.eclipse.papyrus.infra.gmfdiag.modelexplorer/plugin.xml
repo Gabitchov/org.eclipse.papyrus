@@ -8,23 +8,23 @@
 </extension>
 
    <!-- TODO: EMF-FACET
-   <extension point="org.eclipse.emf.facet.infra.query.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
       <modelqueryset file="resources/PapyrusNotationFacet.querySet">
       </modelqueryset>
    </extension>
 
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization
             file="resources/PapyrusNotation.uiCustom"
             loadByDefault="true"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization
             file="resources/PapyrusNotationFacet.uiCustom"
             loadByDefault="true"/>
    </extension>
    <extension
-         point="org.eclipse.emf.facet.infra.facet.registration">
+         point="org.eclipse.papyrus.emf.facet.infra.facet.registration">
       <facetset
             file="resources/PapyrusNotationFacet.facetSet">
       </facetset>

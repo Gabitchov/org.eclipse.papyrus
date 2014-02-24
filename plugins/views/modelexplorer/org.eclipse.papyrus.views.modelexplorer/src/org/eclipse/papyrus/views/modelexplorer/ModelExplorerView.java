@@ -383,7 +383,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// Removal also fixes bug 400012: no scrollbar although tree is larger than visible area
 		Collection<Listener> listenersToRemove = new LinkedList<Listener>();
 		for(Listener listener : tree.getListeners(SWT.MeasureItem)) {
-			if(listener.getClass().getName().contains("org.eclipse.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) {
+			if(listener.getClass().getName().contains("org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) {
 				listenersToRemove.add(listener);
 			}
 		}

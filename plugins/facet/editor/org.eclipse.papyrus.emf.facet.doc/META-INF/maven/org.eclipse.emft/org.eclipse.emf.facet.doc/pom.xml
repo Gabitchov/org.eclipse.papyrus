@@ -5,13 +5,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <parent>
-      <artifactId>org.eclipse.emf.facet.build</artifactId>
+      <artifactId>org.eclipse.papyrus.emf.facet.build</artifactId>
       <groupId>org.eclipse.emft</groupId>
       <version>0.4.0</version>
       <relativePath>../../</relativePath>
   </parent>
    <groupId>org.eclipse.emft</groupId>
-   <artifactId>org.eclipse.emf.facet.doc</artifactId>
+   <artifactId>org.eclipse.papyrus.emf.facet.doc</artifactId>
    <version>0.4.0-SNAPSHOT</version>
    <packaging>eclipse-plugin</packaging>
    <build>
@@ -56,10 +56,10 @@
                   </goals>
                   <configuration>
                      <target>
-                        <ant antfile="/opt/users/hudsonbuild/workspace/emffacet-nightly/org.eclipse.emf.facet.releng.tycho.util/doc.build.xml"
+                        <ant antfile="/opt/users/hudsonbuild/workspace/emffacet-nightly/org.eclipse.papyrus.emf.facet.releng.tycho.util/doc.build.xml"
                              target="all"
                              inheritRefs="true">
-                           <property name="org.eclipse.emf.facet.releng.tycho.util.doc.build.downloads"
+                           <property name="org.eclipse.papyrus.emf.facet.releng.tycho.util.doc.build.downloads"
                                      value="${project.build.directory}/downloads"/>
                         </ant>
                      </target>

@@ -47,7 +47,7 @@ SHA1-Digest: nJDwOHTLVShDaAKcYawrKvTFWhs=
 Name: plugin.xml
 SHA1-Digest: 5KUarOJ2rgoOl2RXSpuXKl5RgXI=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.custom.doc
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.doc
  /pom.properties
 SHA1-Digest: 7/zxAz8zdWAeaTVdcE0Lf9CIq4Q=
 
@@ -63,7 +63,7 @@ SHA1-Digest: FA4uzJfZENFYwDw0N2EHoCn2c58=
 Name: img/CustomizationMetaclass.png
 SHA1-Digest: clfdviinwTyac0+0ISFY13VU5wE=
 
-Name: META-INF/maven/org.eclipse.emft/org.eclipse.emf.facet.custom.doc
+Name: META-INF/maven/org.eclipse.emft/org.eclipse.papyrus.emf.facet.custom.doc
  /pom.xml
 SHA1-Digest: 4aJXr5iQjP41tAR9kOZMqLkEn8s=
 

@@ -36,7 +36,7 @@
             <or>
                <instanceof value="org.eclipse.gmf.runtime.notation.impl.DiagramImpl">
                </instanceof>
-               <instanceof value="org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem"/>
+               <instanceof value="org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.model.ModelElementItem"/>
             </or>
          </possibleChildren>
          <actionProvider class="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider" id="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider">
@@ -374,23 +374,23 @@
 </extension>
 <!-- 
 TODO: PAPYRUS EMF-FACET update uiCustom Here
-   <extension point="org.eclipse.emf.facet.infra.query.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
       <modelqueryset file="resources/PapyrusEcoreBrowserQuery.querySet"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="resources/PapyrusEcoreBrowser.uiCustom"/>
    </extension>
    <extension point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
       <context description="The ModelExplorer labelProvider context" id="org.eclipse.papyrus.views.modelexplorer.labelProvider.context">
       </context>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.facet.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.facet.registration">
       <facetset file="resources/PapyrusPages.facetSet"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.query.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
       <modelqueryset file="resources/PapyrusPages.querySet"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization
             file="resources/PapyrusPages.uiCustom"
             loadByDefault="true"/>

@@ -3,10 +3,10 @@
 
 <plugin>
 <!-- TODO: PAPYRUS EMF-FACET
-<extension point="org.eclipse.emf.facet.infra.browser.custom.core.registration">
+<extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
       <browserCustomization file="facet/PaletteConfiguration.uiCustom"/>
    </extension>
-   <extension point="org.eclipse.emf.facet.infra.query.registration">
+   <extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
       <modelqueryset file="facet/PaletteConfiguration.querySet"/>
    </extension>
    -->

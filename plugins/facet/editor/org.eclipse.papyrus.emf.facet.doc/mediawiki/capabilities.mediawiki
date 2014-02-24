@@ -3,27 +3,27 @@ EMF Facet currently defines an '''Activity''' (aka '''Capability''' in the UI) t
    <extension point="org.eclipse.ui.activities">
       <activity
             description="%activity.description"
-            id="org.eclipse.emf.facet.capabilities.activity"
+            id="org.eclipse.papyrus.emf.facet.capabilities.activity"
             name="%activity.name">
       </activity>
       <category
             description="%category.description"
-            id="org.eclipse.emf.facet.capabilities.category"
+            id="org.eclipse.papyrus.emf.facet.capabilities.category"
             name="%category.name">
       </category>
       <categoryActivityBinding
-            activityId="org.eclipse.emf.facet.capabilities.activity"
-            categoryId="org.eclipse.emf.facet.capabilities.category">
+            activityId="org.eclipse.papyrus.emf.facet.capabilities.activity"
+            categoryId="org.eclipse.papyrus.emf.facet.capabilities.category">
       </categoryActivityBinding>
       <activityPatternBinding
-            activityId="org.eclipse.emf.facet.capabilities.activity"
+            activityId="org.eclipse.papyrus.emf.facet.capabilities.activity"
             isEqualityPattern="false"
             pattern="org\.eclipse\.emf\.facet\..*/.*">
       </activityPatternBinding>
-      <defaultEnablement id="org.eclipse.emf.facet.capabilities.activity"/>
+      <defaultEnablement id="org.eclipse.papyrus.emf.facet.capabilities.activity"/>
    </extension>
 
-(in plug-in https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/org.eclipse.emf.facet.capabilities)
+(in plug-in https://dev.eclipse.org/svnroot/modeling/org.eclipse.emft.facet/trunk/plugins/org.eclipse.papyrus.emf.facet.capabilities)
 
 Product maintainers can use this definition as a starting point for customizing their product.
 
@@ -32,7 +32,7 @@ Capabilities can be as selective as you want. For example, you can choose to dis
    <activityPatternBinding
          activityId="com.example.myActivity"
          isEqualityPattern="true"
-         pattern="org.eclipse.emf.facet.infra.common.ui/org.eclipse.emf.facet.NewProjectWizard">
+         pattern="org.eclipse.papyrus.emf.facet.infra.common.ui/org.eclipse.papyrus.emf.facet.NewProjectWizard">
    </activityPatternBinding>
 
 <font size="-2">

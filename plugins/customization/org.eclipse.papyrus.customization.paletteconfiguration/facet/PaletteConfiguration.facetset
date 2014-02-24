@@ -5,7 +5,7 @@
       xmlns:query="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet/query"
       xmlns:javaQuery2="http://www.eclipse.org/papyrus/emf/facet/query/java/0.2.incubation"
       xmlns:library="http://www.eclipse.org/papyrus/emf/facet/examples/library/0.2.incubation/library"
-      name="org.eclipse.emf.facet.efacet.examples.library.core.facet"
+      name="org.eclipse.papyrus.emf.facet.efacet.examples.library.core.facet"
       documentation="Queries">
 	<eSubpackages xsi:type="efacet:FacetSet" name="PaletteConfiguration" documentation="PaletteConfiguration">
 		<eClassifiers xsi:type="efacet:Facet" name="Configuration" documentation="Configuration">

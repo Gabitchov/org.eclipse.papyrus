@@ -118,7 +118,7 @@
 			<img border="0" src="../img/EClassAndFacetCustomizationMetaclasses.png"/>
 		</p>
 		<h3 id="customizable_features">customizable features</h3>
-		<p>Customizable features are defined in Facets as FacetOperations. For example, this FacetSet defines basic customizable features such as label, icon, etc.: <code>platform:/plugin/org.eclipse.emf.facet.custom.ui/resources/customproperties.efacet</code></p>
+		<p>Customizable features are defined in Facets as FacetOperations. For example, this FacetSet defines basic customizable features such as label, icon, etc.: <code>platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet</code></p>
 		<p>The following instance diagram shows how a Facet named 
 			<b>CustomizedEObject</b> is defined in 
 			<i>customproperties.efacet</i>. Its 
@@ -288,15 +288,15 @@
 	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
 	xmlns:efacet="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet"
 	xmlns:javaQuery2="http://www.eclipse.org/papyrus/emf/facet/query/java/0.2.incubation"
-	name="org.eclipse.emf.facet.efacet.examples.library.core.custom"&gt;
+	name="org.eclipse.papyrus.emf.facet.efacet.examples.library.core.custom"&gt;
 
   &lt;eClassifiers xsi:type="custom:EClassCustomization"&gt;
     &lt;extendedMetaclass href="http://www.eclipse.org/papyrus/emf/facet/examples/library/0.2.incubation/library#//Writer"/&gt;
-    &lt;extendedFacets href="platform:/plugin/org.eclipse.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/&gt;
+    &lt;extendedFacets href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/&gt;
     &lt;facetOperations xsi:type="efacet:FacetOperation" name="label" lowerBound="1"&gt;
       &lt;eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/&gt;
-      &lt;query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.efacet.examples.library.core.internal.queries.WriterLabel"/&gt;
-      &lt;override xsi:type="efacet:FacetOperation" href="platform:/plugin/org.eclipse.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/&gt;
+      &lt;query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.efacet.examples.library.core.internal.queries.WriterLabel"/&gt;
+      &lt;override xsi:type="efacet:FacetOperation" href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/label"/&gt;
       &lt;eParameters xsi:type="ecore:EParameter" name="eStructuralFeature"&gt;
       	&lt;eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/&gt;
       &lt;/eParameters&gt;
@@ -304,11 +304,11 @@
   &lt;/eClassifiers&gt;
 
   &lt;eClassifiers xsi:type="custom:FacetCustomization"&gt;
-    &lt;extendedFacets href="platform:/plugin/org.eclipse.emf.facet.efacet.examples.library.core/library.efacet#//writer/UnproductiveWriter"/&gt;
+    &lt;extendedFacets href="platform:/plugin/org.eclipse.papyrus.emf.facet.efacet.examples.library.core/library.efacet#//writer/UnproductiveWriter"/&gt;
     &lt;facetOperations xsi:type="efacet:FacetOperation" name="bottomRightOverlay" lowerBound="1"&gt;
       &lt;eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/&gt;
-      &lt;query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.emf.facet.efacet.examples.library.core.internal.queries.UnproductiveWriterOverlay"/&gt;
-      &lt;override xsi:type="efacet:FacetOperation" href="platform:/plugin/org.eclipse.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/bottomRightOverlay"/&gt;
+      &lt;query xsi:type="javaQuery2:JavaQuery" implementationClassName="org.eclipse.papyrus.emf.facet.efacet.examples.library.core.internal.queries.UnproductiveWriterOverlay"/&gt;
+      &lt;override xsi:type="efacet:FacetOperation" href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/bottomRightOverlay"/&gt;
       &lt;eParameters xsi:type="ecore:EParameter" name="eStructuralFeature"&gt;
       	&lt;eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/&gt;
       &lt;/eParameters&gt;
@@ -392,10 +392,10 @@
 		</ul>
 		<h2 id="Registration">Registration</h2>
 		<p>To make a customization available at runtime in the customization catalog, you must register it with extension point 
-			<b>org.eclipse.emf.facet.util.emf.core.modeldeclaration</b>, like this:
+			<b>org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration</b>, like this:
 		</p>
 		<pre>
-&lt;extension point="org.eclipse.emf.facet.util.emf.core.modeldeclaration"&gt;
+&lt;extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration"&gt;
   &lt;modeldeclaration file="myCustomization.custom"/&gt;
 &lt;/extension&gt;
 Also, your ".custom" file must be included in your plug-in's build.properties in order to be available in deployed plug-ins.
