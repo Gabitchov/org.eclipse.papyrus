@@ -48,7 +48,7 @@ public interface QueryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/emf/facet/custom/0.3.incubation/query";
+	String eNS_URI = "http://www.eclipse.org/papyrus/emf/facet/custom/0.3.incubation/query";
 
 	/**
 	 * The package namespace name.

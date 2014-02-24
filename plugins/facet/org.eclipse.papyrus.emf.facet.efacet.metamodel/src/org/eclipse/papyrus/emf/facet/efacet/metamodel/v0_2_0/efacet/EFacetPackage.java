@@ -55,7 +55,7 @@ public interface EFacetPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.

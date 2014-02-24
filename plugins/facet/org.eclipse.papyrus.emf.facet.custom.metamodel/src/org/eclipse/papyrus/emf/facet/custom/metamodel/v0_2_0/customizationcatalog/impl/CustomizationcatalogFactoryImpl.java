@@ -35,7 +35,7 @@ public class CustomizationcatalogFactoryImpl extends EFactoryImpl implements Cus
 	 */
 	public static CustomizationcatalogFactory init() {
 		try {
-			CustomizationcatalogFactory theCustomizationcatalogFactory = (CustomizationcatalogFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/facet/custom/0.2.internal/customizationcatalog"); 
+			CustomizationcatalogFactory theCustomizationcatalogFactory = (CustomizationcatalogFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/custom/0.2.internal/customizationcatalog"); 
 			if (theCustomizationcatalogFactory != null) {
 				return theCustomizationcatalogFactory;
 			}

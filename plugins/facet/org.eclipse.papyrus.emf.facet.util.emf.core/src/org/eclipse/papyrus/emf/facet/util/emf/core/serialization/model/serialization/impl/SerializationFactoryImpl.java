@@ -35,7 +35,7 @@ public class SerializationFactoryImpl extends EFactoryImpl implements Serializat
 	public static SerializationFactory init() {
 		try {
 			SerializationFactory theSerializationFactory = (SerializationFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://www.eclipse.org/emf/facet/serialization/0.1.incubation"); //$NON-NLS-1$ 
+					.getEFactory("http://www.eclipse.org/papyrus/emf/facet/serialization/0.1.incubation"); //$NON-NLS-1$ 
 			if (theSerializationFactory != null) {
 				return theSerializationFactory;
 			}

@@ -50,7 +50,7 @@ public interface SerializationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet/serialization"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet/serialization"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.

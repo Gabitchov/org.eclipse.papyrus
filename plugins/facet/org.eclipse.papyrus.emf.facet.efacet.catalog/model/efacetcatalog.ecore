@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="efacetcatalog"
-    nsURI="http://www.eclipse.org/emf/facet/eFacetCatalog/0.1.incubation" nsPrefix="efacetcatalog">
+    nsURI="http://www.eclipse.org/papyrus/emf/facet/eFacetCatalog/0.1.incubation" nsPrefix="efacetcatalog">
   <eClassifiers xsi:type="ecore:EClass" name="QuerySetCatalog" eSuperTypes="platform:/plugin/org.eclipse.papyrus.emf.facet.util.emf.catalog/model/catalog.ecore#//Catalog">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A QuerySetCatalog aims at referencing EMF Facet QuerySet."/>

@@ -57,7 +57,7 @@ public interface EFacetPackage extends EPackage {
 	 * @deprecated use the new eFacet2 metamodel in org.eclipse.papyrus.emf.facet.efacet2.metamodel
 	 */
 	@Deprecated
-	String eNS_URI = "http://www.eclipse.org/emf/facet/efacet/0.1.incubation"; //$NON-NLS-1$
+	String eNS_URI = "http://www.eclipse.org/papyrus/emf/facet/efacet/0.1.incubation"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.

@@ -38,7 +38,7 @@ public class JavaQueryFactoryImpl extends EFactoryImpl implements JavaQueryFacto
 	 */
 	public static JavaQueryFactory init() {
 		try {
-			JavaQueryFactory theJavaQueryFactory = (JavaQueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/facet/query/java/0.2.incubation/javaquery"); //$NON-NLS-1$ 
+			JavaQueryFactory theJavaQueryFactory = (JavaQueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/query/java/0.2.incubation/javaquery"); //$NON-NLS-1$ 
 			if (theJavaQueryFactory != null) {
 				return theJavaQueryFactory;
 			}

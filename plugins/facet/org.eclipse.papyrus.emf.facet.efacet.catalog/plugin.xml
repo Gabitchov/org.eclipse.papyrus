@@ -17,7 +17,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/emf/facet/eFacetCatalog/0.1.incubation"
+            uri="http://www.eclipse.org/papyrus/emf/facet/eFacetCatalog/0.1.incubation"
             class="org.eclipse.papyrus.emf.facet.efacet.catalog.efacetcatalog.EfacetcatalogPackage"
             genModel="model/efacetcatalog.genmodel"/>
    </extension>

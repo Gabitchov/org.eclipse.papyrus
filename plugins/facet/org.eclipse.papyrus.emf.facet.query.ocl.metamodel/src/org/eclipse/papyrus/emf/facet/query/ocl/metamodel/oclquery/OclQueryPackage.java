@@ -50,7 +50,7 @@ public interface OclQueryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/emf/facet/query/ocl/0.3.incubation/oclquery";
+	String eNS_URI = "http://www.eclipse.org/papyrus/emf/facet/query/ocl/0.3.incubation/oclquery";
 
 	/**
 	 * The package namespace name.

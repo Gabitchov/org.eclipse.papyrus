@@ -50,7 +50,7 @@ public interface CustomPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom";
+	String eNS_URI = "http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom";
 
 	/**
 	 * The package namespace name.

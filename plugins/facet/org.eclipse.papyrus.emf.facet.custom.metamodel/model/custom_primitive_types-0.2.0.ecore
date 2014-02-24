@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="custompt"
-    nsURI="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types"
+    nsURI="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom_primitive_types"
     nsPrefix="custompt">
   <eClassifiers xsi:type="ecore:EDataType" name="Image" instanceClassName="org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Color" instanceClassName="org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IColor"/>

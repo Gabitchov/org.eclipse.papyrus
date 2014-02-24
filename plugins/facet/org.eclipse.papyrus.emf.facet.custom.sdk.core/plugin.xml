@@ -9,8 +9,8 @@
              name="%modelValidation.category">
        </category>
        <constraintProvider mode="Batch">
-          <package namespaceUri="http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom"/>
-          <package namespaceUri="http://www.eclipse.org/emf/facet/efacet/0.2.incubation/efacet"/>
+          <package namespaceUri="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom"/>
+          <package namespaceUri="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet"/>
           <constraints categories="org.eclipse.papyrus.emf.facet.custom.sdk.core.validation.category">
              <constraint
                    class="org.eclipse.papyrus.emf.facet.custom.sdk.core.internal.validation.AvoidEClassOverlayConstraint"

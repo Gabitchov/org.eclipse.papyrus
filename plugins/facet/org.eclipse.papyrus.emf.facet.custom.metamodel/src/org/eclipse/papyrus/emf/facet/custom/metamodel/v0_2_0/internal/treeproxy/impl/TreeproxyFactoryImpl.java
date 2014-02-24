@@ -33,7 +33,7 @@ public class TreeproxyFactoryImpl extends EFactoryImpl implements TreeproxyFacto
 	 */
 	public static TreeproxyFactory init() {
 		try {
-			TreeproxyFactory theTreeproxyFactory = (TreeproxyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/facet/custom/0.2.incubation/internal/treeproxy"); 
+			TreeproxyFactory theTreeproxyFactory = (TreeproxyFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/internal/treeproxy"); 
 			if (theTreeproxyFactory != null) {
 				return theTreeproxyFactory;
 			}

@@ -35,7 +35,7 @@ public class CustomFactoryImpl extends EFactoryImpl implements CustomFactory {
 	 */
 	public static CustomFactory init() {
 		try {
-			CustomFactory theCustomFactory = (CustomFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom"); 
+			CustomFactory theCustomFactory = (CustomFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom"); 
 			if (theCustomFactory != null) {
 				return theCustomFactory;
 			}

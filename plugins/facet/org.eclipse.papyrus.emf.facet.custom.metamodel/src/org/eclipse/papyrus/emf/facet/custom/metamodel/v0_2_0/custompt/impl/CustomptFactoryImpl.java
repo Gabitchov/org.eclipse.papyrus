@@ -38,7 +38,7 @@ public class CustomptFactoryImpl extends EFactoryImpl implements CustomptFactory
 	 */
 	public static CustomptFactory init() {
 		try {
-			CustomptFactory theCustomptFactory = (CustomptFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/facet/custom/0.2.incubation/custom_primitive_types"); 
+			CustomptFactory theCustomptFactory = (CustomptFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom_primitive_types"); 
 			if (theCustomptFactory != null) {
 				return theCustomptFactory;
 			}

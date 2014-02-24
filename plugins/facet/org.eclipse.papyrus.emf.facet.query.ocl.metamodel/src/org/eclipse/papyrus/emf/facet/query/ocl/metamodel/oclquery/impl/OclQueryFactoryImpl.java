@@ -38,7 +38,7 @@ public class OclQueryFactoryImpl extends EFactoryImpl implements OclQueryFactory
 	 */
 	public static OclQueryFactory init() {
 		try {
-			OclQueryFactory theOclQueryFactory = (OclQueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/facet/query/ocl/0.3.incubation/oclquery"); 
+			OclQueryFactory theOclQueryFactory = (OclQueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/query/ocl/0.3.incubation/oclquery"); 
 			if (theOclQueryFactory != null) {
 				return theOclQueryFactory;
 			}
