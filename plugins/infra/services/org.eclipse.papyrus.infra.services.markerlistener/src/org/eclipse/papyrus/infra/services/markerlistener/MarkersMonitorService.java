@@ -1,23 +1,24 @@
 /*****************************************************************************
  * Copyright (c) 2011, 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
  *  Arnaud Cuccuru (CEA LIST) - arnaud.cuccuru@cea.fr
  *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
- *  
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.markerlistener;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.markerlistener.providers.IMarkerMonitor;
+import org.eclipse.papyrus.infra.services.markerlistener.providers.IMarkerProvider;
 import org.eclipse.papyrus.infra.services.markerlistener.providers.MarkerMonitorRegistry;
 import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtils;
 
@@ -57,7 +59,7 @@ public class MarkersMonitorService implements IService {
 
 	/**
 	 * Gets the services registry.
-	 * 
+	 *
 	 * @return the services registry
 	 */
 	public ServicesRegistry getServicesRegistry() {
@@ -67,7 +69,7 @@ public class MarkersMonitorService implements IService {
 
 	/**
 	 * Sets the services registry.
-	 * 
+	 *
 	 * @param servicesRegistry
 	 *        the new services registry
 	 */
@@ -84,7 +86,7 @@ public class MarkersMonitorService implements IService {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#init(org.eclipse.papyrus.infra.core.services.ServicesRegistry)
-	 * 
+	 *
 	 * @param servicesRegistry
 	 * @throws ServiceException
 	 */
@@ -118,7 +120,7 @@ public class MarkersMonitorService implements IService {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
-	 * 
+	 *
 	 * @throws ServiceException
 	 */
 	public void startService() throws ServiceException {
@@ -136,7 +138,7 @@ public class MarkersMonitorService implements IService {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#disposeService()
-	 * 
+	 *
 	 * @throws ServiceException
 	 */
 	public void disposeService() throws ServiceException {
@@ -182,8 +184,11 @@ public class MarkersMonitorService implements IService {
 	}
 
 	public Collection<? extends IPapyrusMarker> getMarkers(Resource resource, String type, boolean includeSubtypes) throws CoreException {
-
-		return MarkerListenerUtils.getMarkerProvider(resource).getMarkers(resource, type, includeSubtypes);
+		List<IPapyrusMarker> result = new LinkedList<IPapyrusMarker>();
+		for(IMarkerProvider provider : MarkerListenerUtils.getMarkerProviders(resource)) {
+			result.addAll(provider.getMarkers(resource, type, includeSubtypes));
+		}
+		return result;
 	}
 
 	private IMarkerEventListener createRelayListener() {
