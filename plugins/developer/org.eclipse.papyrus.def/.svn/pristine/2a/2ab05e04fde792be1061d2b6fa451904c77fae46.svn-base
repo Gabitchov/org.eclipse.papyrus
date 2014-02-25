@@ -1,7 +1,0 @@
-bin.includes = META-INF/,\
-               .,\
-               about.html,\
-               dynamic-templates3.5/,\
-               plugin.properties
-src.includes = dynamic-templates3.5,\
-               about.html
