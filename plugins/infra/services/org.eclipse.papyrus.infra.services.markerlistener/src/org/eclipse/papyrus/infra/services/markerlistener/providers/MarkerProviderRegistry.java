@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,7 @@ import static org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListe
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -59,17 +60,16 @@ public class MarkerProviderRegistry {
 	 * delegation.
 	 */
 	private void prune() {
-		if (needPrune) {
+		if(needPrune) {
 			needPrune = false;
-			for (ListIterator<IMarkerProvider> iter = providers.listIterator(); iter
-				.hasNext();) {
+			for(ListIterator<IMarkerProvider> iter = providers.listIterator(); iter.hasNext();) {
 
 				IMarkerProvider next = iter.next();
-				if (next == IMarkerProvider.NULL) {
+				if(next == IMarkerProvider.NULL) {
 					iter.remove();
-				} else if (next instanceof MyRegistryReader.Descriptor) {
-					MyRegistryReader.Descriptor desc = (MyRegistryReader.Descriptor) next;
-					if (desc.instance != null) {
+				} else if(next instanceof MyRegistryReader.Descriptor) {
+					MyRegistryReader.Descriptor desc = (MyRegistryReader.Descriptor)next;
+					if(desc.instance != null) {
 						iter.set(desc.instance);
 					}
 				}
@@ -77,14 +77,22 @@ public class MarkerProviderRegistry {
 		}
 	}
 
+	/**
+	 * @param resource
+	 * @return
+	 *
+	 * @deprecated
+	 *             MarkerProviders should not be exclusive. Use #getMarkerProviders(Resource) instead
+	 */
+	@Deprecated
 	public IMarkerProvider getMarkerProvider(Resource resource) {
 		IMarkerProvider result = IMarkerProvider.NULL;
 
-		synchronized (providers) {
+		synchronized(providers) {
 			prune();
 
-			for (IMarkerProvider next : providers) {
-				if (next.canProvideMarkersFor(resource)) {
+			for(IMarkerProvider next : providers) {
+				if(next.canProvideMarkersFor(resource)) {
 					result = next;
 					break;
 				}
@@ -94,19 +102,34 @@ public class MarkerProviderRegistry {
 		return result;
 	}
 
+	public List<IMarkerProvider> getMarkerProviders(Resource resource) {
+		List<IMarkerProvider> result = new LinkedList<IMarkerProvider>();
+
+		synchronized(providers) {
+			prune();
+
+			for(IMarkerProvider next : providers) {
+				if(next.canProvideMarkersFor(resource)) {
+					result.add(next);
+				}
+			}
+		}
+
+		return result;
+	}
+
 	private void removeProvider(String className) {
-		synchronized (providers) {
-			for (Iterator<IMarkerProvider> iter = providers.iterator(); iter
-				.hasNext();) {
+		synchronized(providers) {
+			for(Iterator<IMarkerProvider> iter = providers.iterator(); iter.hasNext();) {
 
 				IMarkerProvider next = iter.next();
-				if (next instanceof MyRegistryReader.Descriptor) {
-					MyRegistryReader.Descriptor desc = (MyRegistryReader.Descriptor) next;
-					if (className.equals(desc.getClassName())) {
+				if(next instanceof MyRegistryReader.Descriptor) {
+					MyRegistryReader.Descriptor desc = (MyRegistryReader.Descriptor)next;
+					if(className.equals(desc.getClassName())) {
 						iter.remove();
 						break;
 					}
-				} else if (className.equals(next.getClass().getName())) {
+				} else if(className.equals(next.getClass().getName())) {
 					iter.remove();
 					break;
 				}
@@ -118,8 +141,7 @@ public class MarkerProviderRegistry {
 	// Nested types
 	//
 
-	private class MyRegistryReader
-			extends RegistryReader {
+	private class MyRegistryReader extends RegistryReader {
 
 		private static final String E_ENABLEMENT = "enablement";
 
@@ -132,24 +154,21 @@ public class MarkerProviderRegistry {
 		private boolean inEnablement;
 
 		MyRegistryReader() {
-			super(Platform.getExtensionRegistry(), Activator.PLUGIN_ID,
-				EXT_POINT);
+			super(Platform.getExtensionRegistry(), Activator.PLUGIN_ID, EXT_POINT);
 		}
 
 		@Override
 		protected boolean readElement(IConfigurationElement element, boolean add) {
-			return add
-				? handleAdd(element)
-				: handleRemove(element);
+			return add ? handleAdd(element) : handleRemove(element);
 		}
 
 		private boolean handleAdd(IConfigurationElement element) {
 			boolean result = false;
 
-			if (E_PROVIDER.equals(element.getName())) {
+			if(E_PROVIDER.equals(element.getName())) {
 				inEnablement = false;
 
-				if (element.getAttribute(A_CLASS) == null) {
+				if(element.getAttribute(A_CLASS) == null) {
 					logMissingAttribute(element, A_CLASS);
 				} else {
 					currentDescriptor = new Descriptor(element, A_CLASS);
@@ -157,13 +176,11 @@ public class MarkerProviderRegistry {
 				}
 
 				result = true;
-			} else if (E_ENABLEMENT.equals(element.getName())) {
-				if (currentDescriptor != null) {
+			} else if(E_ENABLEMENT.equals(element.getName())) {
+				if(currentDescriptor != null) {
 					inEnablement = true;
 					try {
-						currentDescriptor
-							.setMatchResourceExpression(ExpressionConverter
-								.getDefault().perform(element));
+						currentDescriptor.setMatchResourceExpression(ExpressionConverter.getDefault().perform(element));
 						result = true;
 					} catch (CoreException e) {
 						Activator.getDefault().getLog().log(e.getStatus());
@@ -179,9 +196,9 @@ public class MarkerProviderRegistry {
 		private boolean handleRemove(IConfigurationElement element) {
 			boolean result = true;
 
-			if (E_PROVIDER.equals(element.getName())) {
+			if(E_PROVIDER.equals(element.getName())) {
 				String className = element.getAttribute(A_CLASS);
-				if (className == null) {
+				if(className == null) {
 					logMissingAttribute(element, A_CLASS);
 					result = false;
 				} else {
@@ -192,9 +209,7 @@ public class MarkerProviderRegistry {
 			return result;
 		}
 
-		private class Descriptor
-				extends PluginClassDescriptor
-				implements IMarkerProvider {
+		private class Descriptor extends PluginClassDescriptor implements IMarkerProvider {
 
 			private Expression matchResource;
 
@@ -213,13 +228,11 @@ public class MarkerProviderRegistry {
 			}
 
 			IMarkerProvider getInstance() {
-				if (instance == null) {
+				if(instance == null) {
 					try {
-						instance = (IMarkerProvider) createInstance();
+						instance = (IMarkerProvider)createInstance();
 					} catch (Exception e) {
-						Activator.log.error(
-							"Failed to instantiate marker provider extension.",
-							e);
+						Activator.log.error("Failed to instantiate marker provider extension.", e);
 						instance = IMarkerProvider.NULL;
 					}
 
@@ -230,17 +243,14 @@ public class MarkerProviderRegistry {
 			}
 
 			public boolean canProvideMarkersFor(Resource resource) {
-				return (instance == null)
-					? evaluateEnablement(resource)
-					: instance.canProvideMarkersFor(resource);
+				return (instance == null) ? evaluateEnablement(resource) : instance.canProvideMarkersFor(resource);
 			}
 
 			private boolean evaluateEnablement(Resource resource) {
 				boolean result;
 
-				if (matchResource != null) {
-					IEvaluationContext ctx = new EvaluationContext(null,
-						resource);
+				if(matchResource != null) {
+					IEvaluationContext ctx = new EvaluationContext(null, resource);
 
 					ctx.addVariable("isFile", getFile(resource) != null);
 
@@ -259,46 +269,34 @@ public class MarkerProviderRegistry {
 				return result;
 			}
 
-			public Collection<? extends IPapyrusMarker> getMarkers(
-					Resource resource, String type, boolean includeSubtypes)
-					throws CoreException {
+			public Collection<? extends IPapyrusMarker> getMarkers(Resource resource, String type, boolean includeSubtypes) throws CoreException {
 
-				return getInstance()
-					.getMarkers(resource, type, includeSubtypes);
+				return getInstance().getMarkers(resource, type, includeSubtypes);
 			}
 
-			public void createMarkers(Resource resource, Diagnostic diagnostic,
-					IProgressMonitor monitor)
-					throws CoreException {
+			public void createMarkers(Resource resource, Diagnostic diagnostic, IProgressMonitor monitor) throws CoreException {
 
 				getInstance().createMarkers(resource, diagnostic, monitor);
 			}
 
 			@Deprecated
-			public void deleteMarkers(EObject object, IProgressMonitor monitor)
-					throws CoreException {
+			public void deleteMarkers(EObject object, IProgressMonitor monitor) throws CoreException {
 
 				getInstance().deleteMarkers(object, monitor);
 			}
 
 			@Deprecated
-			public void deleteMarkers(Resource resource,
-					IProgressMonitor monitor)
-					throws CoreException {
+			public void deleteMarkers(Resource resource, IProgressMonitor monitor) throws CoreException {
 
 				getInstance().deleteMarkers(resource, monitor);
 			}
 
-			public void deleteMarkers(EObject object, IProgressMonitor monitor,
-					String markerType, boolean includeSubtypes)
-					throws CoreException {
+			public void deleteMarkers(EObject object, IProgressMonitor monitor, String markerType, boolean includeSubtypes) throws CoreException {
 				getInstance().deleteMarkers(object, monitor, markerType, includeSubtypes);
-				
+
 			}
 
-			public void deleteMarkers(Resource resource,
-					IProgressMonitor monitor, String markerType,
-					boolean includeSubtypes) throws CoreException {
+			public void deleteMarkers(Resource resource, IProgressMonitor monitor, String markerType, boolean includeSubtypes) throws CoreException {
 				getInstance().deleteMarkers(resource, monitor, markerType, includeSubtypes);
 			}
 		}
