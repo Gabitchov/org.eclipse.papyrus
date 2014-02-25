@@ -182,6 +182,22 @@
    </mapping>
 </extension>
 <extension
+      point="org.eclipse.papyrus.infra.services.decoration.decorationSpecificFunctions">
+   <client
+         class="org.eclipse.papyrus.infra.gmfdiag.common.decoration.ExternalReferenceDecoration"
+         decorationType="org.eclipse.papyrus.infra.gmfdiag.common.externalref">
+   </client>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+   <editpolicyProvider
+         class="org.eclipse.papyrus.infra.gmfdiag.common.providers.ExternalReferenceEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
+</extension>
+<extension
       point="org.eclipse.papyrus.infra.gmfdiag.commands.historyListeners">
    <historyListener
          class="org.eclipse.papyrus.infra.gmfdiag.common.listener.RollbackNotificationHistoryListener">

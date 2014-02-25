@@ -1,22 +1,23 @@
 /*****************************************************************************
  * Copyright (c) 2011, 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr 
+ *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
  * Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
  * Christian W. Damus (CEA) - support marker type hierarchy in CDO problem markers (CDO)
- * 
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.markerlistener.util;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Set;
@@ -121,8 +122,19 @@ public class MarkerListenerUtils {
 		return null;
 	}
 
+	/**
+	 * @param resource
+	 * @return
+	 * @deprecated
+	 *             MarkerProviders should not be exclusive. Use #getMarkerProviders(Resource) instead
+	 */
+	@Deprecated
 	public static IMarkerProvider getMarkerProvider(Resource resource) {
 		return MarkerProviderRegistry.INSTANCE.getMarkerProvider(resource);
+	}
+
+	public static List<IMarkerProvider> getMarkerProviders(Resource resource) {
+		return MarkerProviderRegistry.INSTANCE.getMarkerProviders(resource);
 	}
 
 	public static IFile getFile(Resource resource) {
