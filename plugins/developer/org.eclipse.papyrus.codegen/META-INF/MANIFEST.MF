@@ -3,7 +3,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gmf.codegen;bundle-version="2.1.0",
  org.eclipse.gmf.codegen.ui;bundle-version="1.1.0",
- org.eclipse.m2m.qvt.oml;bundle-version="2.0.0"
+ org.eclipse.gmf.codegen.xtend.ui;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.codegen;x-internal:=true,
  org.eclipse.papyrus.codegen.actions;x-internal:=true,
  org.eclipse.papyrus.codegen.utils
