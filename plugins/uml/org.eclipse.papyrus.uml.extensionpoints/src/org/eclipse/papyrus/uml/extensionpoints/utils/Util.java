@@ -16,6 +16,8 @@ import java.util.Iterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.uml.extensionpoints.Activator;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -59,7 +61,9 @@ public class Util {
 	 *        the object from which the ResourceSet is retrieved
 	 * @return the ResourceSet in which the eObject is managed, or a new one if no resource is
 	 *         associated to the eObject
+	 * @deprecated Registered Libraries/Profiles should not be loaded into the current resource set. Use {@link #getSharedResourceSet()} instead
 	 */
+	@Deprecated
 	public static ResourceSet getResourceSet(EObject eObject) {
 		if(eObject != null && eObject.eResource() != null) {
 			return eObject.eResource().getResourceSet();
@@ -78,6 +82,20 @@ public class Util {
 			Activator.log("should not create a new ResourceSetImpl");
 			return new ResourceSetImpl();
 		}
+	}
+
+	private static ResourceSet sharedResourceSet;
+
+	public static ResourceSet getSharedResourceSet() {
+		if(sharedResourceSet == null) {
+			sharedResourceSet = new ResourceSetImpl();
+
+			sharedResourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
+			sharedResourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+			sharedResourceSet.getLoadOptions().put(XMIResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
+			sharedResourceSet.getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+		}
+		return sharedResourceSet;
 	}
 
 }

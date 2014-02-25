@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
 
@@ -23,17 +23,17 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 
 /**
  * @deprecated Please use {@link org.eclipse.papyrus.infra.emf.utils.EMFHelper} instead
- * (which inherit this one) for architectural reason.
+ *             (which inherit this one) for architectural reason.
  */
 @Deprecated
 public class EMFHelper {
 
 	/**
 	 * Gets the usages.
-	 * 
+	 *
 	 * @param source
 	 *        the source
-	 * 
+	 *
 	 * @return the usages or null if there is no usages
 	 */
 	public static Collection<Setting> getUsages(EObject source) {
@@ -56,7 +56,7 @@ public class EMFHelper {
 			}
 		}
 
-		return crossReferencer.getInverseReferences(source, true);
+		return crossReferencer.getInverseReferences(source, false);
 	}
 
 }

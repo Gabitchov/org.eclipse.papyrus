@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -763,5 +764,43 @@ public class EMFHelper {
 			result.add(element);
 		}
 		return result;
+	}
+
+	/**
+	 * Returns the given element, reloaded into the resource set of the context element,
+	 * or the source element itself if not possible.
+	 *
+	 * Use this method for e.g. loading an element from a shared resource set into another resource set
+	 * (Apply a registered profile/library, drop an element from the project explorer, ...)
+	 *
+	 * @param element
+	 * @param contextElement
+	 * @return
+	 */
+	public static <T extends EObject> T reloadIntoContext(T element, EObject contextElement) {
+		ResourceSet sourceResourceSet = getResourceSet(element);
+		ResourceSet loadingContext = getResourceSet(contextElement);
+
+		if(sourceResourceSet == loadingContext || loadingContext == null) {
+			return element;
+		}
+
+		URI sourceURI = EcoreUtil.getURI(element);
+		EObject result = loadingContext.getEObject(sourceURI, true);
+
+		return (T)result;
+	}
+
+	/**
+	 * Returns the resourceSet owning this eObject, or null if it is detached
+	 *
+	 * @param eObject
+	 */
+	public static ResourceSet getResourceSet(EObject eObject) {
+		if(eObject == null || eObject.eResource() == null) {
+			return null;
+		}
+
+		return eObject.eResource().getResourceSet();
 	}
 }

@@ -17,14 +17,14 @@ import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * A Helper class related to the GMF Notation metamodel.
- *
+ * 
  * @author Camille Letavernier
  */
 public class NotationHelper {
 
 	/**
 	 * Retrieves the GMF View associated to the source object
-	 *
+	 * 
 	 * @param source
 	 *        the source
 	 * @return the resolved view, or null if it cannot be found
@@ -51,7 +51,7 @@ public class NotationHelper {
 	 * Tests whether the given View is a reference to an external element.
 	 * A view is an external reference if its graphical container is different from its semantic
 	 * container (i.e. self.element.eContainer() != self.primaryView.eContainer().element)
-	 *
+	 * 
 	 * @param diagramElement
 	 * @return
 	 */
@@ -81,6 +81,7 @@ public class NotationHelper {
 			return false;
 		}
 
-		return parentSemanticElement != semanticElement.eContainer();
+		//Relax the constraints for elements displayed on themselves (e.g. Frame in Composite Structure Diagram)
+		return parentSemanticElement != semanticElement.eContainer() && parentSemanticElement != semanticElement;
 	}
 }
