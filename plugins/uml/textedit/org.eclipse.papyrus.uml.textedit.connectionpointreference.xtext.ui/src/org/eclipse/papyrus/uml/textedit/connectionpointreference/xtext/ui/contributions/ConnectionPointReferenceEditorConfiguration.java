@@ -15,18 +15,14 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.DefaultXtextSemanticValidator;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
-import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule;
 import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.internal.UMLConnectionPointReferenceActivator;
-import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.validation.UMLConnectionPointReferenceJavaValidator;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Pseudostate;
 
 import com.google.inject.Injector;
 
-public class ConnectionPointReferencePopupEditorConfiguration extends PopupEditorConfiguration {
+public class ConnectionPointReferenceEditorConfiguration extends DefaultXtextDirectEditorConfiguration {
 
 	private ConnectionPointReference connectionPoint;
 
@@ -34,7 +30,7 @@ public class ConnectionPointReferencePopupEditorConfiguration extends PopupEdito
 
 	private List<Pseudostate> newExits = new ArrayList<Pseudostate>();
 
-	public ConnectionPointReferencePopupEditorConfiguration() {
+	public ConnectionPointReferenceEditorConfiguration() {
 		super();
 	}
 
@@ -153,7 +149,7 @@ public class ConnectionPointReferencePopupEditorConfiguration extends PopupEdito
 		}
 
 		public UpdateConnectionPointReferenceCommand(ConnectionPointReference connectionPointReference) {
-			super(ConnectionPointReferencePopupEditorConfiguration.getEditingDomain(connectionPointReference), "ConnectionPointReference Update", getWorkspaceFiles(connectionPointReference));
+			super(ConnectionPointReferenceEditorConfiguration.getEditingDomain(connectionPointReference), "ConnectionPointReference Update", getWorkspaceFiles(connectionPointReference));
 			this.connectionPointReference = connectionPointReference;
 		}
 
@@ -166,5 +162,15 @@ public class ConnectionPointReferencePopupEditorConfiguration extends PopupEdito
 			ex.printStackTrace(System.err);
 		}
 		return null;
+	}
+
+	@Override
+	public Injector getInjector() {
+		return UMLConnectionPointReferenceActivator.getInstance().getInjector(UMLConnectionPointReferenceActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_CONNECTIONPOINTREFERENCE_XTEXT_UMLCONNECTIONPOINTREFERENCE);
+	}
+
+	@Override
+	protected ICommand getParseCommand(EObject umlObject, EObject xtextObject) {
+		return new UpdateConnectionPointReferenceCommand((ConnectionPointReference) umlObject);
 	}
 }

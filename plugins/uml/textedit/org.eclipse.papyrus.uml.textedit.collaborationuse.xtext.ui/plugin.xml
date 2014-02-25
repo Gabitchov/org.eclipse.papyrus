@@ -189,7 +189,7 @@
             language="Advanced CollaborationUse Editor"
             objectToEdit="org.eclipse.uml2.uml.CollaborationUse">
          <popupeditor
-               editorConfiguration="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.contributions.CollaborationUsePopupEditor">
+               editorConfiguration="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.contributions.CollaborationUseEditor">
          </popupeditor>
       </DirectEditor>
    </extension>
