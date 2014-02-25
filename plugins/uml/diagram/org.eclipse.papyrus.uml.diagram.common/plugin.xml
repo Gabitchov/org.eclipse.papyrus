@@ -592,4 +592,22 @@
       </Priority>
    </editpolicyProvider>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.pasteStrategy">
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.StereotypePasteStrategy">
+   </strategy>
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.paste.ImportResourcePasteStrategy">
+   </strategy>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.copyStrategy">
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.copy.AllContentCopyStrategy">
+   </strategy>
+   <strategy
+         strategy="org.eclipse.papyrus.uml.diagram.common.strategy.copy.RootOnlyCopyStrategy">
+   </strategy>
+</extension>
 </plugin>
