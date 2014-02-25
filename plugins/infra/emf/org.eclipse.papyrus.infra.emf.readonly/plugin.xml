@@ -5,6 +5,11 @@
    <extension
          point="org.eclipse.papyrus.infra.emf.readonly.readOnlyHandler">
       <readOnlyHandler
+            class="org.eclipse.papyrus.infra.emf.readonly.ReferencedModelReadOnlyHandler"
+            id="org.eclipse.papyrus.infra.emf.readonly.ReferencedModelReadOnlyHandler"
+            priority="15">
+      </readOnlyHandler>
+      <readOnlyHandler
             class="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyHandler"
             id="org.eclipse.papyrus.infra.emf.readonly.FSReadOnlyHandler"
             priority="10">

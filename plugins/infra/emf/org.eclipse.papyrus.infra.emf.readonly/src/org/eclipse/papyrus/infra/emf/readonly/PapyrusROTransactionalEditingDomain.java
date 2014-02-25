@@ -54,6 +54,11 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 	
 	@Override
 	protected TransactionChangeRecorder createChangeRecorder(ResourceSet rset) {
+		// Ensure that the ControlledResourceTracker gets in ahead of the change recorder so that it processes
+		// notifications pertaining to sub-model unit structure, first, to ensure correct determination of
+		// read-only state for cross-model-referenced objects
+		ControlledResourceTracker.getInstance(this);
+		
 		return new TransactionChangeRecorder(this, rset) {
 			@Override
 			protected void appendNotification(Notification notification) {
