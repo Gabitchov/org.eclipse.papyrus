@@ -41,7 +41,7 @@ public class CDOAwareTransactionalEditingDomain extends PapyrusROTransactionalEd
 	}
 
 	@Override
-	protected TransactionChangeRecorder createChangeRecorder(ResourceSet rset) {
+	protected TransactionChangeRecorder doCreateChangeRecorder(ResourceSet rset) {
 		return new DawnTransactionChangeRecorder(this, rset) {
 
 			@Override

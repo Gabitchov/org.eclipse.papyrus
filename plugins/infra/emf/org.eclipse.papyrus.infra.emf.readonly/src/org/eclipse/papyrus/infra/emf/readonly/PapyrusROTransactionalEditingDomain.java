@@ -59,6 +59,10 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 		// read-only state for cross-model-referenced objects
 		ControlledResourceTracker.getInstance(this);
 		
+		return doCreateChangeRecorder(rset);
+	}
+
+	protected TransactionChangeRecorder doCreateChangeRecorder(ResourceSet rset) {
 		return new TransactionChangeRecorder(this, rset) {
 			@Override
 			protected void appendNotification(Notification notification) {
@@ -72,12 +76,12 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 			}
 		};
 	}
-
 	protected void assertNotReadOnly(Object object) {
 		InternalTransaction tx = getActiveTransaction();
 
-		// If there's no transaction, then there will be nothing to roll back.  And if it's unprotected, let the client do whatever
-		if((tx != null) && !Boolean.TRUE.equals(tx.getOptions().get(Transaction.OPTION_UNPROTECTED))) {
+		// If there's no transaction, then there will be nothing to roll back.  And if it's unprotected, let the client do whatever.
+		// And, of course, don't interfere with rollback!
+		if((tx != null) && !tx.isRollingBack() && !Boolean.TRUE.equals(tx.getOptions().get(Transaction.OPTION_UNPROTECTED))) {
 			boolean readOnly;
 
 			// Check for Resource first because CDO resources *are* EObjects
