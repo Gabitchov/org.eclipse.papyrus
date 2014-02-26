@@ -46,6 +46,15 @@ public abstract class AbstractImportHandler extends AbstractCommandHandler {
 	}
 
 	/**
+	 * Loads the Package resource into the current resource set
+	 * 
+	 * @param _package
+	 */
+	protected void handleLoadPackage(Package _package) {
+		EMFHelper.reloadIntoContext(_package, getSelectedElement());
+	}
+
+	/**
 	 * Creates a PackageImport in the current package, which refers to the
 	 * selected package
 	 * 

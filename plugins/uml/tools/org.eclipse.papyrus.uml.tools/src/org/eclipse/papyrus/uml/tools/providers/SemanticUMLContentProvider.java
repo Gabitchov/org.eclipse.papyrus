@@ -14,9 +14,7 @@ package org.eclipse.papyrus.uml.tools.providers;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -29,6 +27,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.adapters.ResourceSetRootsAdapter;
 import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -40,7 +39,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
  * A semantic Hierarchic Content Provider for UML
- *
+ * 
  * @author Camille Letavernier
  */
 public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
@@ -68,7 +67,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	public SemanticUMLContentProvider(EObject editedEObject, EStructuralFeature feature, ResourceSet root) {
 		this(editedEObject, feature, getRoots(root));
-		listenOnResourceSet(root);
+		this.root = root;
 	}
 
 	protected static EObject[] findRoots(EObject source) {
@@ -106,40 +105,6 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			}
 		}
 		return rootElements.toArray(new EObject[0]);
-
-		//		if(root instanceof ModelSet) {
-		//			ModelSet modelSet = (ModelSet)root;
-		//TODO : Find all semantic roots, including Models and Libraries
-		//This is related to the ModelSet evolution
-		//			try {
-		//				EObject rootElement = UmlUtils.getUmlModel(modelSet).lookupRoot();
-		//				if(rootElement == null) {
-		//					return new EObject[0];
-		//				}
-		//
-		//				Resource rootResource = rootElement.eResource();
-		//				if(rootResource == null) {
-		//					return new EObject[]{ rootElement };
-		//				}
-		//
-		//				List<EObject> rootObjects = new LinkedList<EObject>();
-		//				for(EObject rootObject : rootResource.getContents()) {
-		//					if(rootObject instanceof Element) {
-		//						rootObjects.add(rootObject);
-		//					}
-		//				}
-		//
-		//				if(rootObjects.isEmpty()) {
-		//					return new EObject[]{ rootElement };
-		//				}
-		//
-		//				return rootObjects.toArray(new EObject[0]);
-		//			} catch (NotFoundException ex) {
-		//				Activator.log.error(ex);
-		//			}
-		//		}
-		//
-		//return SemanticEMFContentProvider.getRoots(root);
 	}
 
 	//	protected static URI[] excludedModels = new URI[0];
@@ -165,6 +130,10 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 		}
 
 		for(EObject rootObject : resource.getContents()) {
+			if(rootObject.eIsProxy()) {
+				continue;
+			}
+
 			if(rootObject.eContainer() != null) { //Controlled element
 				return false;
 			}
@@ -222,7 +191,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 	/**
 	 * This method should return either the StereotypeApplication (For Sto - Sto associations),
 	 * or the UML Element (For Sto - UML associations)
-	 *
+	 * 
 	 * This depends on the wanted metaclass.
 	 */
 	//TODO : In some cases, we may have a filter based on both a UML Metaclass and a Stereotype
@@ -277,7 +246,11 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			}
 		}
 
-		listenOnResourceSet(resourceSet);
+		if(newInput == null) {
+			resourceSetListener.unsetTarget(root);
+		} else {
+			listenOnResourceSet(resourceSet);
+		}
 
 		this.viewer = viewer;
 
@@ -285,68 +258,34 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 	}
 
 	protected void listenOnResourceSet(ResourceSet resourceSet) {
-		if(this.root != null) {
-			this.root.eAdapters().remove(resourceSetListener);
-		}
-
+		resourceSetListener.unsetTarget(root);
+		resourceSetListener.setTarget(resourceSet);
 		if(resourceSet != null) {
 			this.root = resourceSet;
-			resourceSet.eAdapters().add(resourceSetListener);
 			this.roots = getRoots(root);
 		}
+	}
+
+	@Override
+	public void dispose() {
+		resourceSetListener.unsetTarget(root);
+		super.dispose();
 	}
 
 	private ResourceSet root;
 
 	private Viewer viewer;
 
-	private Adapter resourceSetListener = new AdapterImpl() {
+	private ResourceSetRootsAdapter resourceSetListener = new ResourceSetRootsAdapter() {
 
 		private boolean needsRefresh = false;
 
 		@Override
-		public void notifyChanged(Notification msg) {
+		protected void doNotify(Notification msg) {
 			if(root == null || msg.isTouch()) {
 				return;
 			}
 
-			if(msg.getNotifier() instanceof ResourceSet) {
-				notifyResourceSetChanged(msg);
-			} else if(msg.getNotifier() instanceof Resource) {
-				notifyResourceChanged(msg);
-			}
-		};
-
-		private void notifyResourceSetChanged(Notification msg) {
-			switch(msg.getEventType()) {
-			case Notification.ADD:
-			case Notification.ADD_MANY:
-				//Action for ADD and ADD_MANY
-				Object value = msg.getNewValue();
-				if(value instanceof Resource) {
-					Resource resource = (Resource)value;
-					resource.eAdapters().add(this);
-				} else if(value instanceof List<?>) {
-					List<?> list = (List<?>)value;
-					for(Object element : list) {
-						if(element instanceof Resource) {
-							((Resource)element).eAdapters().add(this);
-						}
-					}
-				}
-
-				//do not break the switch: we keep going with the following instructions (refresh the viewer)
-			case Notification.REMOVE:
-			case Notification.REMOVE_MANY:
-				//Actions for ADD, ADD_MANY, REMOVE, REMOVE_MANY
-				triggerRefresh();
-				break;
-			default:
-				System.out.println(msg.getEventType());
-			}
-		}
-
-		private void notifyResourceChanged(Notification msg) {
 			switch(msg.getEventType()) {
 			case Notification.ADD:
 			case Notification.ADD_MANY:
@@ -375,4 +314,5 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			}
 		}
 	};
+
 }

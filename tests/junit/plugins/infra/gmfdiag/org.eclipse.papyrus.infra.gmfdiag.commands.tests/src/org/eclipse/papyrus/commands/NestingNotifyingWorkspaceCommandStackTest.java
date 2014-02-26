@@ -294,7 +294,7 @@ public class NestingNotifyingWorkspaceCommandStackTest {
 		AdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		domain = new PapyrusROTransactionalEditingDomain(adapterFactory, (TransactionalCommandStack)fixture, rset);
 
-		URL testModelURL = getClass().getResource("bug402525.ecore"); //$NON-NLS-1$
+		URL testModelURL = getClass().getResource("Bug402525.ecore"); //$NON-NLS-1$
 		Resource testModel = rset.getResource(URI.createURI(testModelURL.toExternalForm(), true), true);
 		testPackage = (EPackage)testModel.getContents().get(0);
 		foo = (EClass)testPackage.getEClassifier("Foo"); //$NON-NLS-1$

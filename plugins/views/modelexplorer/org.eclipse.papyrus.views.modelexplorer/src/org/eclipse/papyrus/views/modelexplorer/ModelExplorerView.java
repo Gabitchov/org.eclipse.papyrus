@@ -932,10 +932,17 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				}
 
 				if(r != null) {
-					ResourceSet rs = r.getResourceSet();
+					final ResourceSet rs = r.getResourceSet();
+					final Resource resource = r;
 					if(rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
-						commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
-						commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
+						commonViewer.getControl().getDisplay().syncExec(new Runnable() {
+
+							public void run() {
+								commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
+								commonViewer.expandToLevel(new ReferencableMatchingItem(resource), 1);
+							}
+						});
+
 					}
 				}
 
@@ -1008,12 +1015,17 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 * @param viewer
 	 *        The ComonViewer to select it in
 	 */
-	public static void reveal(ISelection selection, CommonViewer viewer) {
+	public static void reveal(final ISelection selection, final CommonViewer viewer) {
 		if(selection instanceof IStructuredSelection) {
 			IStructuredSelection structured = (IStructuredSelection)selection;
 			reveal(Lists.newArrayList(structured.iterator()), viewer);
 		} else {
-			viewer.setSelection(selection);
+			viewer.getControl().getDisplay().syncExec(new Runnable() {
+
+				public void run() {
+					viewer.setSelection(selection);
+				}
+			});
 		}
 	}
 
