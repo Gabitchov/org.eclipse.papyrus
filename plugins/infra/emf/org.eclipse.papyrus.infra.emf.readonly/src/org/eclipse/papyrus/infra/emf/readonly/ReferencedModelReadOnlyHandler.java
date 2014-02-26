@@ -40,12 +40,33 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler {
 
 	private final Set<URI> readableReferencedModels = new HashSet<URI>();
 
+	private boolean interactive = true;
+	
 	public ReferencedModelReadOnlyHandler(EditingDomain editingDomain) {
 		super(editingDomain);
 
 		controlledResourceTracker = ControlledResourceTracker.getInstance(editingDomain);
 	}
 
+	/**
+	 * Queries whether I interact with the user to confirm making resources writable. I am interactive by default.
+	 * 
+	 * @return whether I am interactive
+	 */
+	public boolean isInteractive() {
+		return interactive;
+	}
+	
+	/**
+	 * Sets whether I interact with the user to confirm making resources writable.
+	 * 
+	 * @param interactive
+	 *        whether I am interactive
+	 */
+	public void setInteractive(boolean interactive) {
+		this.interactive = interactive;
+	}
+	
 	public Optional<Boolean> anyReadOnly(URI[] uris) {
 		Optional<Boolean> result = Optional.absent();
 
@@ -88,27 +109,30 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler {
 		}
 
 		if(!toMakeWritable.isEmpty()) {
-			final boolean[] enableWrite = { false };
-			Display.getCurrent().syncExec(new Runnable() {
+			final boolean[] enableWrite = { !isInteractive() };
+			
+			if(isInteractive()) {
+				Display.getCurrent().syncExec(new Runnable() {
 
-				public void run() {
-					StringBuilder message = new StringBuilder(Messages.ReferencedModelReadOnlyHandler_promptMsg);
-					for(URI uri : toMakeWritable) {
-						String path;
-						if(uri.isPlatformResource()) {
-							path = uri.toPlatformString(true);
-						} else if(uri.isFile()) {
-							path = uri.toFileString();
-						} else {
-							path = uri.toString();
+					public void run() {
+						StringBuilder message = new StringBuilder(Messages.ReferencedModelReadOnlyHandler_promptMsg);
+						for(URI uri : toMakeWritable) {
+							String path;
+							if(uri.isPlatformResource()) {
+								path = uri.toPlatformString(true);
+							} else if(uri.isFile()) {
+								path = uri.toFileString();
+							} else {
+								path = uri.toString();
+							}
+
+							message.append(path);
+							message.append("\n"); //$NON-NLS-1$
 						}
-
-						message.append(path);
-						message.append("\n"); //$NON-NLS-1$
+						enableWrite[0] = MessageDialog.openConfirm(Display.getCurrent().getActiveShell(), Messages.ReferencedModelReadOnlyHandler_promptTitle, message.toString());
 					}
-					enableWrite[0] = MessageDialog.openConfirm(Display.getCurrent().getActiveShell(), Messages.ReferencedModelReadOnlyHandler_promptTitle, message.toString());
-				}
-			});
+				});
+			}
 
 			if(enableWrite[0]) {
 				for(URI next : toMakeWritable) {
