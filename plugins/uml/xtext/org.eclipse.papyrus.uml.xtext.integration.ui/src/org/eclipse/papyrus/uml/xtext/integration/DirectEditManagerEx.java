@@ -136,14 +136,11 @@ public abstract class DirectEditManagerEx extends DirectEditManager {
 			return;
 		committing = true;
 		try {
-			System.err.println("before erase feedback");
 			eraseFeedback();
-			System.err.println("after erase feedback");
 			if (isDirty()) {
 				CommandStack stack = getEditPart().getViewer().getEditDomain()
 						.getCommandStack();
 				stack.execute(getEditPart().getCommand(getDirectEditRequest()));
-			
 			}
 		} finally {
 			bringDown();
@@ -154,7 +151,7 @@ public abstract class DirectEditManagerEx extends DirectEditManager {
 	/**
 	 * Creates the cell editor on the given composite. The cell editor is
 	 * created by instantiating the cell editor type passed into this
-	 * DirectEditManager's constuctor.
+	 * DirectEditManager's constructor.
 	 * 
 	 * @param composite
 	 *            the composite to create the cell editor on
