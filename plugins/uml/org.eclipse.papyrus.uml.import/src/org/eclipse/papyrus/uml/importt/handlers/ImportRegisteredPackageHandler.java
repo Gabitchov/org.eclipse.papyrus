@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.importt.handlers;
@@ -18,10 +19,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.extensionpoints.library.FilteredRegisteredLibrariesSelectionDialog;
@@ -37,12 +38,8 @@ import org.eclipse.uml2.uml.Package;
 
 public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected Command getCommand() {
+	protected ICommand getGMFCommand() {
 		return new ImportLibraryFromRepositoryCommand();
 	}
 

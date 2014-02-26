@@ -111,7 +111,7 @@
          class="org.eclipse.papyrus.infra.emf.readonly.ReadOnlyTester"
          id="org.eclipse.papyrus.infra.emf.readonly.tester"
          namespace="org.eclipse.papyrus.infra.emf.readonly.tester"
-         properties="isReadOnly"
+         properties="isReadOnly,canMakeWritable"
          type="org.eclipse.jface.viewers.IStructuredSelection">
    </propertyTester>
 </extension>
