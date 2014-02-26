@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011, 2013 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.importt.handlers;
 
@@ -54,7 +54,7 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 	 */
 	protected void importLibraries(RegisteredLibrary[] librariesToImport) {
 		// retrieve the current resource set
-		ResourceSet resourceSet = Util.getResourceSet(getSelectedElement());
+		ResourceSet resourceSet = Util.getSharedResourceSet();
 
 		for(int i = 0; i < librariesToImport.length; i++) {
 			RegisteredLibrary currentLibrary = (librariesToImport[i]);
@@ -66,16 +66,18 @@ public class ImportRegisteredPackageHandler extends AbstractImportHandler {
 			if(dialog.open() == Window.OK) {
 				Collection<ImportSpec<Package>> result = dialog.getResult();
 
-				for (ImportSpec<Package> resultElement : result) {
-					Package selectedPackage = resultElement
-						.getElement();
-					switch (resultElement.getAction()) {
-						case COPY :
-							handleCopyPackage(selectedPackage);
-							break;
-						default :
-							handleImportPackage(selectedPackage);
-							break;
+				for(ImportSpec<Package> resultElement : result) {
+					Package selectedPackage = resultElement.getElement();
+					switch(resultElement.getAction()) {
+					case COPY:
+						handleCopyPackage(selectedPackage);
+						break;
+					case IMPORT:
+						handleImportPackage(selectedPackage);
+						break;
+					default: //Load
+						handleLoadPackage(selectedPackage);
+						break;
 					}
 				}
 			}
