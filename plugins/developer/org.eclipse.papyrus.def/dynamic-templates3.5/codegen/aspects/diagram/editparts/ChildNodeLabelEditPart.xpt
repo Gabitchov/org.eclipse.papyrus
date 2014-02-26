@@ -76,7 +76,7 @@ public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsLis
 «DEFINE specifyInheritance FOR papyrusgmfgenextension::ExtendedGenView-»«superOwnedEditPart»«ENDDEFINE»
 «REM»END: BEGIN: PapyrusGenCode«ENDREM»
 
-«DEFINE implementsList FOR gmfgen::GenChildLabelNode»implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart«ENDDEFINE»
+«DEFINE implementsList FOR gmfgen::GenChildLabelNode»implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit«ENDDEFINE»
 
 «DEFINE attributes FOR gmfgen::GenChildLabelNode-»
 	«EXPAND xpt::diagram::editparts::Common::visualIDConstant FOR self-»

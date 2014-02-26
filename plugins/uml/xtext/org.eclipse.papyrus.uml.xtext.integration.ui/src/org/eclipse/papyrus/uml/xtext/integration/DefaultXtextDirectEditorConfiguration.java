@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
@@ -93,7 +94,11 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 		return SWT.SINGLE;
 	}
 
-	protected IContextElementProvider getContextProvider() {
+	/**
+	 * Clients may override, if the objectToEdit is not equal to the context element
+	 * @return the context provider
+	 */
+	public IContextElementProvider getContextProvider() {
 		return new IContextElementProvider() {
 
 			public EObject getContextObject() {
@@ -106,18 +111,22 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	}
 	
 	public DirectEditManager createDirectEditManager(final ITextAwareEditPart host) {
-		IContextElementProvider provider = getContextProvider();
-				/* new IContextElementProvider() {
+		IContextElementProvider provider;
+		if (objectToEdit != null) {
+			provider = getContextProvider();
+		}
+		else {
+			provider = new IContextElementProvider() {
 
-			public EObject getContextObject() {
-				if(host instanceof IGraphicalEditPart) {
-					return ((IGraphicalEditPart)host).resolveSemanticElement();
+				public EObject getContextObject() {
+					if(host instanceof IGraphicalEditPart) {
+						return ((IGraphicalEditPart)host).resolveSemanticElement();
+					}
+					return null;
 				}
-				return null;
-			}
-		};
-		*/
-		return new XtextDirectEditManager(host, getInjector(), getStyle(), provider);
+			};
+		}
+		return new XtextDirectEditManager(host, getInjector(), getStyle(), this);
 	}
 
 	/**
@@ -133,13 +142,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 			public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 				CompositeCommand result = new CompositeCommand("validation"); //$NON-NLS-1$
 				IContextElementProvider provider = getContextProvider();
-				/*{new IContextElementProvider() {
 
-					public EObject getContextObject() {
-						return semanticObject;
-					}
-				};
-				*/
 				XtextFakeResourceContext context = new XtextFakeResourceContext(getInjector());
 				context.getFakeResource().eAdapters().add(new ContextElementAdapter(provider));
 				try {
@@ -221,12 +224,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	}
 
 	public CellEditor createCellEditor(Composite parent, final EObject semanticObject) {
-		IContextElementProvider provider = new IContextElementProvider() {
-
-			public EObject getContextObject() {
-				return semanticObject;
-			}
-		};
+		IContextElementProvider provider = getContextProvider();
 		XtextStyledTextCellEditorEx cellEditor = new XtextStyledTextCellEditorEx(SWT.MULTI | SWT.BORDER, getInjector(), provider) {
 
 			// This is a workaround for bug

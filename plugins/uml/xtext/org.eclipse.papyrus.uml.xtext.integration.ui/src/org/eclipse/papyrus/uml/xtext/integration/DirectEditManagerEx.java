@@ -37,8 +37,9 @@ import org.eclipse.swt.widgets.Display;
  * getCellEditorFrame to protected
  * 
  * TODO: Delete me when https://bugs.eclipse.org/bugs/show_bug.cgi?id=388697 is fixed
+ *       CAVEAT: this variant also cleans the parser in bringDown()
  */
-@SuppressWarnings("all")
+@SuppressWarnings("rawtypes")
 public abstract class DirectEditManagerEx extends DirectEditManager {
 
 	private static final Color BLUE = ColorConstants.menuBackgroundSelected;
@@ -59,6 +60,8 @@ public abstract class DirectEditManagerEx extends DirectEditManager {
 	private boolean committing = false;
 	private Object feature;
 
+	
+	
 	/**
 	 * Constructs a new DirectEditManager for the given source edit part. The
 	 * cell editor will be created by instantiating the type <i>editorType</i>.
@@ -101,6 +104,10 @@ public abstract class DirectEditManagerEx extends DirectEditManager {
 		this.feature = feature;
 	}
 
+	public boolean isActive() {
+		return getCellEditor() != null;
+	}
+	
 	/**
 	 * Cleanup is done here. Any feedback is erased and listeners unhooked. If
 	 * the cell editor is not <code>null</code>, it will be
@@ -129,11 +136,14 @@ public abstract class DirectEditManagerEx extends DirectEditManager {
 			return;
 		committing = true;
 		try {
+			System.err.println("before erase feedback");
 			eraseFeedback();
+			System.err.println("after erase feedback");
 			if (isDirty()) {
 				CommandStack stack = getEditPart().getViewer().getEditDomain()
 						.getCommandStack();
 				stack.execute(getEditPart().getCommand(getDirectEditRequest()));
+			
 			}
 		} finally {
 			bringDown();
@@ -152,6 +162,7 @@ public abstract class DirectEditManagerEx extends DirectEditManager {
 	 */
 	protected CellEditor createCellEditorOn(Composite composite) {
 		try {
+			@SuppressWarnings("unchecked")
 			Constructor constructor = editorType
 					.getConstructor(new Class[] { Composite.class });
 			return (CellEditor) constructor

@@ -51,6 +51,8 @@ import com.google.inject.Injector;
  */
 public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 
+	private static final String GTK = "gtk"; //$NON-NLS-1$
+	
 	private Injector injector;
 	private StyledTextXtextAdapter xtextAdapter;
 	private IXtextFakeContextResourcesProvider contextFakeResourceProvider;
@@ -192,7 +194,11 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 	 */
 	@Override
 	protected void focusLost() {
-		if (SWT.getPlatform().equals("gtk")) {
+		if (completionProposalAdapter == null) {
+			super.focusLost();
+			return;
+		}
+		if (SWT.getPlatform().equals(GTK)) {
 			if (ignoreNextFocusLost) {
 				ignoreNextFocusLost = false;
 				return;

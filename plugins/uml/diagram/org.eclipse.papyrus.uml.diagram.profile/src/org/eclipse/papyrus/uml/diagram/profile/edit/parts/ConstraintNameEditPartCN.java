@@ -60,6 +60,7 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
@@ -80,7 +81,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class ConstraintNameEditPartCN extends PapyrusCompartmentEditPart implements ITextAwareEditPart {
+public class ConstraintBodyEditPartCN extends PapyrusCompartmentEditPart implements ITextAwareEditPart, IControlParserForDirectEdit {
 
 	/**
 	 * @generated
@@ -396,7 +397,6 @@ public class ConstraintNameEditPartCN extends PapyrusCompartmentEditPart impleme
 				Dialog dialog = null;
 				if(configuration instanceof ICustomDirectEditorConfiguration) {
 					setManager(((ICustomDirectEditorConfiguration)configuration).createDirectEditManager(this));
-					setParser(((ICustomDirectEditorConfiguration)configuration).createParser(this.resolveSemanticElement()));
 					initializeDirectEditManager(theRequest);
 					return;
 				} else if(configuration instanceof IPopupEditorConfiguration) {

@@ -141,7 +141,7 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 	}
 
 	@Override
-	protected IContextElementProvider getContextProvider() {
+	public IContextElementProvider getContextProvider() {
 		return new IContextElementProviderWithInit() {
 
 			public EObject getContextObject() {

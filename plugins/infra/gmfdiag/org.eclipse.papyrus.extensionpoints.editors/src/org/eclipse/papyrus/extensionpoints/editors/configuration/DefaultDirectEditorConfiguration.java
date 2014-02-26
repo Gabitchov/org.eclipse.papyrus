@@ -84,7 +84,7 @@ public class DefaultDirectEditorConfiguration implements IDirectEditorConfigurat
 	 * {@inheritDoc}
 	 */
 	public String getTextToEdit(Object objectToEdit) {
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**

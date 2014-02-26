@@ -17,6 +17,7 @@ import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfigu
 import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
+import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.FocusEvent;
@@ -125,12 +126,22 @@ public class AdvancedEditingPropertySection extends
 					+ semanticClassName;
 			String languagePreferred = store.getString(key);
 
-			if (languagePreferred != null && !languagePreferred.equals("")) {
+			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
 				IDirectEditorConfiguration configuration = DirectEditorsUtil
 						.findEditorConfiguration(languagePreferred,
 								semanticClassName);
 				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
-					return (DefaultXtextDirectEditorConfiguration) configuration;
+					DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;
+					IContextElementProvider provider = xtextConfiguration.getContextProvider();
+					if (provider instanceof IContextElementProviderWithInit) {
+						// update resource, if required by text editor
+						if (xtextAdapter != null) {
+							((IContextElementProviderWithInit) provider).initResource(
+								xtextAdapter.getFakeResourceContext().getFakeResource());
+						}
+					}
+					xtextConfiguration.preEditAction(part.resolveSemanticElement());
+					return xtextConfiguration;
 				}
 			}
 		}
