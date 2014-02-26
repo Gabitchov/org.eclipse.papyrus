@@ -312,9 +312,6 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the same resource for convenience
 	 */
 	protected Resource setResourceOptions(Resource r) {
-		if(r != null && r.getURI() != null && r.getURI().toString().contains("Robot")) {
-			System.out.println("Break");
-		}
 		if(r != null && isTrackingModification() && !r.isTrackingModification()) {
 			r.setTrackingModification(true);
 		}

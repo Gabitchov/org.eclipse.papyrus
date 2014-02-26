@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 
 /**
  * A semantic Hierarchic Content Provider for UML
- *
+ * 
  * @author Camille Letavernier
  */
 public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
@@ -222,7 +222,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 	/**
 	 * This method should return either the StereotypeApplication (For Sto - Sto associations),
 	 * or the UML Element (For Sto - UML associations)
-	 *
+	 * 
 	 * This depends on the wanted metaclass.
 	 */
 	//TODO : In some cases, we may have a filter based on both a UML Metaclass and a Stereotype
@@ -341,8 +341,6 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 				//Actions for ADD, ADD_MANY, REMOVE, REMOVE_MANY
 				triggerRefresh();
 				break;
-			default:
-				System.out.println(msg.getEventType());
 			}
 		}
 
