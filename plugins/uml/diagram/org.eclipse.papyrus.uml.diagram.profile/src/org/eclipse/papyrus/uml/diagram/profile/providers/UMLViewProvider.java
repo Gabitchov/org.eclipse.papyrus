@@ -77,7 +77,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBondyEditPartCN;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPartCN;
@@ -950,7 +950,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "Constraint");
 		Node label1059 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPartCN.VISUAL_ID));
-		Node label5064 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBondyEditPartCN.VISUAL_ID));
+		Node label5064 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyEditPartCN.VISUAL_ID));
 		return node;
 	}
 

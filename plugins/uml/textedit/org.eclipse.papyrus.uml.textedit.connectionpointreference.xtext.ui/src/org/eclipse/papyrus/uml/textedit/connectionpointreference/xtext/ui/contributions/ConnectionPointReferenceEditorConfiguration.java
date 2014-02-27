@@ -9,10 +9,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.ui.internal.UMLConnectionPointReferenceActivator;
@@ -67,6 +65,7 @@ public class ConnectionPointReferenceEditorConfiguration extends DefaultXtextDir
 		return "not a ConnectionPointReference";
 	}
 
+	/*
 	@Override
 	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
 		// resolves the edit part, and the associated semantic element
@@ -119,7 +118,8 @@ public class ConnectionPointReferenceEditorConfiguration extends DefaultXtextDir
 		};
 		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new DefaultXtextSemanticValidator());
 	}
-
+	*/
+	
 	/**
 	 * @author CEA LIST
 	 * 
