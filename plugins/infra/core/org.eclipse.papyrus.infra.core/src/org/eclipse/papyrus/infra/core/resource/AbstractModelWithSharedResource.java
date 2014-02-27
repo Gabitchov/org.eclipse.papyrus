@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.resource;
 
@@ -18,13 +18,13 @@ import org.eclipse.emf.ecore.resource.Resource;
  * Base class for models sharing a common {@link Resource}. To share a common {@link Resource}, one of the model should be Master, while the other are
  * slaves. The Master is the one performing the save operation. All the model
  * should use the same file extension. So, {@link #getModelFileExtension()} should return the same value for all models.
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  * @param T
  *        Type of the roots of the model.
  */
-public abstract class AbstractModelWithSharedResource<T extends EObject> extends AbstractBaseModel {
+public abstract class AbstractModelWithSharedResource<T extends EObject> extends EMFLogicalModel {
 
 	/**
 	 * Possible type for this model: master or slave
@@ -39,9 +39,9 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	private ModelKind modelKind;
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param modelKind
 	 */
 	public AbstractModelWithSharedResource(ModelKind modelKind) {
@@ -50,7 +50,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 
 	/**
 	 * By default, we are a slave. Constructor.
-	 * 
+	 *
 	 * @param modelKind
 	 */
 	public AbstractModelWithSharedResource() {
@@ -94,7 +94,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 
 	/**
 	 * Lookup for the resource in the resourceSet.
-	 * 
+	 *
 	 * @param uri
 	 *        the URI (without extension) of the resource to look for
 	 */
@@ -109,9 +109,9 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 
 	/**
 	 * Do nothing as we are slave. The Resource is save by the master model.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#saveModel()
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	@Override
@@ -141,7 +141,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	/**
 	 * Get the root of this model. Lookup in the associated {@link Resource} for
 	 * the root.
-	 * 
+	 *
 	 * @return The root of the model, or null if no root exist.
 	 */
 	@SuppressWarnings("unchecked")
@@ -160,7 +160,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 
 	/**
 	 * Get the roots of this model. Lookup in the associated {@link Resource} for the roots.
-	 * 
+	 *
 	 * @return A list containing the roots of the model. The list is empty if
 	 *         there is no root.
 	 */
@@ -181,7 +181,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	/**
 	 * Return true if the provided object is a root of the model, false
 	 * otherwise. This method should be implemented by subclasses.
-	 * 
+	 *
 	 * @param object
 	 * @return
 	 */
@@ -189,7 +189,7 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 
 	/**
 	 * Add a root to this model.
-	 * 
+	 *
 	 * @param root
 	 */
 	public void addModelRoot(T root) {

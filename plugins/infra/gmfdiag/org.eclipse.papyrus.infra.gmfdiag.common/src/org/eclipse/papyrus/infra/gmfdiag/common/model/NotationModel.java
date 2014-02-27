@@ -1,9 +1,12 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
+import java.util.Collections;
+
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -16,7 +19,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 /**
  * @author dumoulin
- * 
+ *
  */
 public class NotationModel extends EMFLogicalModel implements IModel {
 
@@ -31,9 +34,9 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 	public static final String MODEL_ID = "org.eclipse.papyrus.infra.core.resource.notation.NotationModel"; //$NON-NLS-1$
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 */
 	public NotationModel() {
 
@@ -41,9 +44,9 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 
 	/**
 	 * Get the file extension used for this model.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -53,9 +56,9 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 
 	/**
 	 * Get the identifier used to register this model.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getIdentifier()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -65,7 +68,7 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 
 	/**
 	 * Add a new initialized {@link Diagram} to the model.
-	 * 
+	 *
 	 * @param newDiagram
 	 *        The diagram to add.
 	 */
@@ -94,5 +97,20 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 		}
 
 		return false;
+	}
+
+	@Override
+	public void handle(Resource resource) {
+		super.handle(resource);
+		if(resource == null) {
+			return;
+		}
+
+		if(!isRelatedResource(resource)) {
+			URI notationURI = resource.getURI().trimFileExtension().appendFileExtension(NOTATION_FILE_EXTENSION);
+			if(getResourceSet().getURIConverter().exists(notationURI, Collections.emptyMap())) {
+				getResourceSet().getResource(notationURI, true);
+			}
+		}
 	}
 }
