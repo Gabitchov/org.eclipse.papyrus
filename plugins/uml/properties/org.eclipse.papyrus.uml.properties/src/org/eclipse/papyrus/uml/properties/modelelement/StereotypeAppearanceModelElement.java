@@ -112,6 +112,6 @@ public class StereotypeAppearanceModelElement extends AbstractModelElement imple
 
 	@Override
 	public boolean isEditable(String propertyPath) {
-		return !EMFHelper.isReadOnly(umlSource);
+		return !EMFHelper.isReadOnly(diagramElement);
 	}
 }
