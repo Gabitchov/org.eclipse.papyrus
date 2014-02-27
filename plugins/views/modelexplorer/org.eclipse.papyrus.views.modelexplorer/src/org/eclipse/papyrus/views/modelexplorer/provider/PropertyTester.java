@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,19 +21,19 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * This class provides test called by the plugin.xml in order to know if handlers should be active or not.
- * 
+ *
  * Sometimes these test can be done directly in the plugin.xml in the activeWhen (with instanceof, adapt, ...),
  * but in this case, Eclipse doesn't refresh correctly the status of the command in the menu Edit or in other menu.
- * 
- * 
- * 
+ *
+ *
+ *
  */
 public class PropertyTester extends org.eclipse.core.expressions.PropertyTester {
 
@@ -47,9 +47,9 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	public static final String IS_PAGE = "isPage";//$NON-NLS-1$
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[], java.lang.Object)
-	 * 
+	 *
 	 * @param receiver
 	 * @param property
 	 * @param args
@@ -73,14 +73,14 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	}
 
 	/**
-	 * 
+	 *
 	 * @param selection
 	 *        the current selection
 	 * @return
 	 *         <code>true</code> if all selected elements are pages
 	 */
 	private boolean isPage(IStructuredSelection selection) {
-		IPageManager pageManager = getPageManager();
+		IPageManager pageManager = getPageManager(selection);
 		if(pageManager != null) {
 			if(!selection.isEmpty()) {
 				Iterator<?> iter = selection.iterator();
@@ -98,6 +98,10 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	}
 
 	protected boolean isPage(EObject element, IPageManager pageManager) {
+		if(element == null) {
+			return false;
+		}
+
 		if(pageManager.allPages().contains(element)) {
 			return true;
 		}
@@ -108,29 +112,28 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 
 	/**
 	 * Returns the page manager
-	 * 
+	 *
 	 * @return
 	 *         the page manager
 	 */
-	protected IPageManager getPageManager() {
+	protected IPageManager getPageManager(IStructuredSelection selection) {
 		IPageManager pageMngr = null;
 		try {
-			ServiceUtilsForActionHandlers instance = org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance();
+			ServiceUtilsForSelection instance = ServiceUtilsForSelection.getInstance();
 			if(instance != null) {
-				pageMngr = instance.getIPageManager();
+				pageMngr = instance.getIPageManager(selection);
 			}
 		} catch (NullPointerException npe) {
-			//NPE
+			//We cannot find the page manager. Just return null.
 		} catch (ServiceException e) {
-			//we are closing the editor, so the model explorer has nothing to display
-			//			e.printStackTrace();
+			//We cannot find the page manager. Just return null.
 		}
 		return pageMngr;
 	}
 
 	/**
 	 * Tests if the current activePart is the Model Explorer
-	 * 
+	 *
 	 * @param receiver
 	 * @return
 	 */
@@ -140,7 +143,7 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 
 	/**
 	 * Tests if all elements in the selection are EObject
-	 * 
+	 *
 	 * @param selection
 	 * @return
 	 */
