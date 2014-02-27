@@ -25,6 +25,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -33,7 +34,9 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -161,6 +164,28 @@ public class ReadOnlyObjectEditAdviceTest {
 		assertExecutability(command);
 	}
 
+	/**
+	 * Test that adding a read-only object to a new container by means of setting a containment reference is forbidden (as the side-effect is to
+	 * remove it from the originating read-only containment context).
+	 */
+	@Test
+	public void testSetCommand_containmentOldContainerReadonly() {
+		ICommand command = getEditCommand(writablePackage, new SetRequest(writablePackage, UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT, classB));
+		assertExecutability(command);
+	}
+
+	/**
+	 * Test that adding a read-only object to a new container by means of setting a containment reference to a new list is forbidden (as the
+	 * side-effect is to remove it from the originating read-only containment context).
+	 */
+	@Test
+	public void testSetCommand_containmentOldContainerReadonlyMany() {
+		List<EObject> newList = new UniqueEList<EObject>(writablePackage.getPackagedElements());
+		newList.add(classB);
+		ICommand command = getEditCommand(writablePackage, new SetRequest(writablePackage, UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT, newList));
+		assertExecutability(command);
+	}
+
 	@Test
 	public void testCreateCommand() {
 		IElementType propertyType = getElementType(UMLPackage.Literals.PROPERTY);
@@ -230,6 +255,16 @@ public class ReadOnlyObjectEditAdviceTest {
 	@Test
 	public void testMoveCommand_fromReadOnly() {
 		ICommand command = getEditCommand(readOnlyPackage, new MoveRequest(writablePackage, UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT, classB));
+		assertExecutability(command);
+	}
+
+	/**
+	 * Test the special case of a root element of a read-only resource being moved to a writable resource. Roots do not have containers (read-only
+	 * or otherwise) so we need to check the originating containing resource for read-only state.
+	 */
+	@Test
+	public void testMoveCommand_rootFromReadOnly() {
+		ICommand command = getEditCommand(readOnlyPackage, new MoveRequest(writablePackage, UMLPackage.Literals.PACKAGE__PACKAGED_ELEMENT, readOnlyPackage));
 		assertExecutability(command);
 	}
 

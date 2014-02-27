@@ -524,6 +524,27 @@ public class EMFHelper {
 	}
 
 	/**
+	 * Tests if a resource that is read only could possibly be made writable by some means (file system attributes, team provider hook, database
+	 * permissions, etc.)
+	 * 
+	 * @param resource
+	 *        a resource that is assumed to be read-only
+	 * @param domain
+	 *        the editing domain context of the {@link resource}
+	 * @return
+	 *         whether the {@code resource} could be made writable
+	 */
+	public static boolean canMakeWritable(final Resource resource, final EditingDomain domain) {
+		if(domain != null) {
+			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
+			if(handler instanceof IReadOnlyHandler2) {
+				return ((IReadOnlyHandler2)handler).canMakeWritable(new URI[] { resource.getURI() }).or(false);
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Tests if the given EStructuralFeature is required (ie. should always
 	 * have a value)
 	 * 

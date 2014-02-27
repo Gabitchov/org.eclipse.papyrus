@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -51,6 +52,21 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 		super();
 	}
 
+	protected boolean isContainerUneditable(IEditCommandRequest request, EObject object) {
+		boolean result = false;
+		EObject container = object.eContainer();
+
+		if(container == null) {
+			// Resource root. Is the resource editable?
+			Resource resource = object.eResource();
+			result = (resource != null) && isUneditable(request, resource);
+		} else {
+			result = isUneditable(request, container);
+		}
+
+		return result;
+	}
+
 	protected boolean isUneditable(IEditCommandRequest request, EObject object) {
 		boolean result = false;
 
@@ -58,6 +74,18 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 		if(EMFHelper.isReadOnly(object, domain)) {
 			// Check whether we have some means of making it writable
 			result = !EMFHelper.canMakeWritable(object, domain);
+		}
+
+		return result;
+	}
+
+	protected boolean isUneditable(IEditCommandRequest request, Resource resource) {
+		boolean result = false;
+
+		EditingDomain domain = request.getEditingDomain();
+		if(EMFHelper.isReadOnly(resource, domain)) {
+			// Check whether we have some means of making it writable
+			result = !EMFHelper.canMakeWritable(resource, domain);
 		}
 
 		return result;
@@ -142,15 +170,12 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 
 		return super.getBeforeDuplicateCommand(request);
 	}
-	
+
 	@Override
 	protected ICommand getBeforeMoveCommand(MoveRequest request) {
 		// Is any of the former containers read-only?
 		for(EObject next : Iterables.filter(request.getElementsToMove().keySet(), EObject.class)) {
-			EObject container = next.eContainer();
-
-			if((container != null) && isUneditable(request, container)) {
-				System.out.printf("Container not writable: %s%n", container);
+			if(isContainerUneditable(request, next)) {
 				return getRefusal();
 			}
 		}
@@ -223,6 +248,21 @@ public class ReadOnlyObjectEditAdvice extends AbstractEditHelperAdvice {
 						if(isUneditable(request, next)) {
 							return getRefusal();
 						}
+					}
+				}
+			} else if(ref.isContainment()) {
+				// Current container of any object must not change if it is read-only (and different from new container)
+				EObject owner = request.getElementToEdit();
+				Object value = request.getValue();
+				if(value instanceof Collection<?>) {
+					for(EObject next : Iterables.filter((Collection<?>)value, EObject.class)) {
+						if((next.eContainer() != owner) && isContainerUneditable(request, next)) {
+							return getRefusal();
+						}
+					}
+				} else if(request.getValue() instanceof EObject) {
+					if(isContainerUneditable(request, (EObject)value)) {
+						return getRefusal();
 					}
 				}
 			}
