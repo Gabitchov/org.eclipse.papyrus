@@ -13,12 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions;
 
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.contentassist.CompletionProposalUtils;
 import org.eclipse.papyrus.uml.alf.naming.ALFIDConverter;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
+import org.eclipse.papyrus.uml.xtext.integration.CompletionProposalUtils;
 import org.eclipse.uml2.uml.Property;
 
 public class UMLPropertyEditorPropertyUtil extends PropertyUtil {

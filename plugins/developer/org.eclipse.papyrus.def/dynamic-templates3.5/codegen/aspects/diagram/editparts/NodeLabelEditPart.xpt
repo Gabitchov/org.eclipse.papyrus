@@ -47,7 +47,7 @@ public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsLis
 «DEFINE extendsList FOR gmfgen::GenNodeLabel»extends org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart«ENDDEFINE»
 «REM»END: PapyrusGenCode«ENDREM»
 
-«DEFINE implementsList FOR gmfgen::GenNodeLabel»implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart«ENDDEFINE»
+«DEFINE implementsList FOR gmfgen::GenNodeLabel»implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit«ENDDEFINE»
 
 «DEFINE attributes FOR gmfgen::GenNodeLabel-»
 	«EXPAND xpt::diagram::editparts::Common::visualIDConstant FOR self-»

@@ -25,11 +25,12 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.transition.xtext;bundle-version
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.0.0",
  org.eclipse.core.expressions;bundle-version="3.4.200",
- org.eclipse.papyrus.infra.gmfdiag.xtext.glue;bundle-version="1.0.0",
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.0.0",
  org.eclipse.papyrus.uml.alf.common.ui;bundle-version="1.0.0",
- org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.0.0"
+ org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
 Bundle-Vendor: %providerName
 Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
@@ -37,5 +38,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.textedit.transition.xtext.ui
  .internal.UmlTransitionActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.transition.xtext
  .ui;singleton:=true
-Import-Package: org.apache.log4j
 

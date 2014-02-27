@@ -43,7 +43,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassPropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBondyEditPartCN;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeNameEditPart;
@@ -854,7 +854,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getPackageName_1010Parser();
 		case ConstraintNameEditPartCN.VISUAL_ID:
 			return getConstraintName_1059Parser();
-		case ConstraintBondyEditPartCN.VISUAL_ID:
+		case ConstraintBodyEditPartCN.VISUAL_ID:
 			return getConstraintSpecification_5064Parser();
 		case EnumerationNameEditPartCN.VISUAL_ID:
 			return getEnumerationName_5055Parser();

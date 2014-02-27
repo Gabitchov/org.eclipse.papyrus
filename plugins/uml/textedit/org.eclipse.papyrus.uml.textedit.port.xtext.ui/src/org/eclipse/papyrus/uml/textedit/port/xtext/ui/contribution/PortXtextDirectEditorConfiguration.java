@@ -44,6 +44,8 @@ import com.google.inject.Injector;
  */
 public class PortXtextDirectEditorConfiguration extends DefaultXtextDirectEditorConfiguration {
 
+	private static final String PORT_UPDATE = "port update"; //$NON-NLS-1$
+
 	private Port port;
 
 	private boolean newIsDerived;
@@ -102,8 +104,8 @@ public class PortXtextDirectEditorConfiguration extends DefaultXtextDirectEditor
 		PortRule portRuleObject = (PortRule) xtextObject;
 
 		// Retrieves the information to be populated in modelObject
-		newIsDerived = portRuleObject.getIsDerived() != null && portRuleObject.getIsDerived().equals("/");
-		isConjugated = portRuleObject.getIsConjugated() != null && portRuleObject.getIsConjugated().equals("~");
+		newIsDerived = portRuleObject.getIsDerived() != null && portRuleObject.getIsDerived().equals("/"); //$NON-NLS-1$
+		isConjugated = portRuleObject.getIsConjugated() != null && portRuleObject.getIsConjugated().equals("~"); //$NON-NLS-1$
 		newIsReadOnly = false;
 		newIsUnique = false;
 		newIsUnion = false;
@@ -144,7 +146,7 @@ public class PortXtextDirectEditorConfiguration extends DefaultXtextDirectEditor
 		if (portRuleObject.getMultiplicity() != null) {
 			if (portRuleObject.getMultiplicity().getBounds().size() == 1) {
 				String tempBound = portRuleObject.getMultiplicity().getBounds().get(0).getValue();
-				if (tempBound.equals("*")) {
+				if (tempBound.equals("*")) { //$NON-NLS-1$
 					newLowerBound = 0;
 					newUpperBound = -1;
 				} else {
@@ -155,7 +157,7 @@ public class PortXtextDirectEditorConfiguration extends DefaultXtextDirectEditor
 				String tempBound = portRuleObject.getMultiplicity().getBounds().get(0).getValue();
 				newLowerBound = new Integer(tempBound).intValue();
 				tempBound = portRuleObject.getMultiplicity().getBounds().get(1).getValue();
-				if (tempBound.equals("*")) {
+				if (tempBound.equals("*")) { //$NON-NLS-1$
 					newUpperBound = -1;
 				} else {
 					newUpperBound = new Integer(tempBound).intValue();
@@ -169,7 +171,7 @@ public class PortXtextDirectEditorConfiguration extends DefaultXtextDirectEditor
 			newDefault = null;
 		}
 
-		newName = "" + ALFIDConverter.IDtoName(portRuleObject.getName());
+		newName = "" + ALFIDConverter.IDtoName(portRuleObject.getName()); //$NON-NLS-1$
 
 		TypeRule typeRule = portRuleObject.getType();
 		if (typeRule == null) {
@@ -200,7 +202,7 @@ public class PortXtextDirectEditorConfiguration extends DefaultXtextDirectEditor
 	}
 
 	private CompositeCommand getUpdateCommand(EObject editedObject) {
-		org.eclipse.gmf.runtime.common.core.command.CompositeCommand updateCommand = new CompositeCommand("port update");
+		org.eclipse.gmf.runtime.common.core.command.CompositeCommand updateCommand = new CompositeCommand(PORT_UPDATE);
 
 		SetRequest setIsDerivedRequest = new SetRequest(editedObject, UMLPackage.eINSTANCE.getProperty_IsDerived(),
 				newIsDerived);

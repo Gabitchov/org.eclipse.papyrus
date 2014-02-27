@@ -16,21 +16,13 @@ package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.contributions
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.commands.CheckedOperationHistory;
-import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.internal.UmlCollaborationUseActivator;
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.CollaborationUseRule;
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.TypeRule;
-import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.validation.SemanticValidator;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -42,7 +34,7 @@ import com.google.inject.Injector;
  * Editor for the {@link CollaborationUse}
  * 
  */
-public class CollaborationUsePopupEditor extends org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration {
+public class CollaborationUseEditor extends DefaultXtextDirectEditorConfiguration {
 
 	/** the new name for the {@link CollaborationUse} */
 	private String newName;
@@ -63,7 +55,7 @@ public class CollaborationUsePopupEditor extends org.eclipse.papyrus.infra.gmfdi
 	 * @param editPart
 	 * @return
 	 */
-	@Override
+	/*
 	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
 
 		// resolves the edit part, and the associated semantic element
@@ -146,7 +138,8 @@ public class CollaborationUsePopupEditor extends org.eclipse.papyrus.infra.gmfdi
 		};
 		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new SemanticValidator());
 	}
-
+	*/
+	
 	/**
 	 * Returns the list of requests to update the {@link #collaborationUse}
 	 * 
@@ -199,5 +192,21 @@ public class CollaborationUsePopupEditor extends org.eclipse.papyrus.infra.gmfdi
 			// TODO: either complete the grammar, or use another label provider
 		}
 		return "not a CollaborationUse"; //$NON-NLS-1$
+	}
+
+	@Override
+	public Injector getInjector() {
+		return UmlCollaborationUseActivator.getInstance().getInjector(UmlCollaborationUseActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_COLLABORATIONUSE_XTEXT_UMLCOLLABORATIONUSE);
+	}
+
+	@Override
+	protected ICommand getParseCommand(EObject umlObject, EObject xtextObject) {
+		if(!(umlObject instanceof CollaborationUse)) {
+			return null;
+		}
+
+		// Creates and executes the update command
+		IUndoableOperation updateCommand = getUpdateCommand();
+		return (ICommand) updateCommand;
 	}
 }

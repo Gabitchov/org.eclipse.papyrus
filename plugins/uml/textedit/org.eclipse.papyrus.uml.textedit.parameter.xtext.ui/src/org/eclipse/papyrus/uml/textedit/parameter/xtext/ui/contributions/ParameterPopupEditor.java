@@ -26,7 +26,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.internal.UmlParameterActivator;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.ParameterRule;
@@ -41,7 +42,7 @@ import com.google.inject.Injector;
 
 
 
-public class ParameterPopupEditor extends org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration {
+public class ParameterPopupEditor extends PopupEditorConfiguration {
 
 	/** the new name for the {@link Parameter} */
 	private String newName;
@@ -293,7 +294,7 @@ public class ParameterPopupEditor extends org.eclipse.papyrus.infra.gmfdiag.xtex
 	 */
 	protected IUndoableOperation getUpdateCommand() {
 		CompositeCommand cc = new CompositeCommand("Set values for Parameter"); //$NON-NLS-1$
-		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(parameter);
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(parameter);
 		if(provider != null) {
 
 			ICommand editCommand = null;

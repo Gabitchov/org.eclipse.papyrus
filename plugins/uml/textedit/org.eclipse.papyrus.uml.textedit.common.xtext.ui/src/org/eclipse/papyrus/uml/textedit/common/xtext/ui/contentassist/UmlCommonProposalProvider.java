@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
@@ -18,6 +17,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator;
@@ -93,19 +93,19 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		ISelection mySelection = activePage.getSelection();
 		if(mySelection instanceof IStructuredSelection) {
-			Object first = ((IStructuredSelection)mySelection).getFirstElement();
-			if(first != null) {
-				if(first instanceof IAdaptable) {
-					Element el = (Element)((IAdaptable)first).getAdapter(Element.class);
-					this.contextElement = el;
-					if(el != null) {
-						List<Namespace> namespaces = el.getNearestPackage().allNamespaces();
-						if(namespaces.size() == 0) {
-							this.model = el.getNearestPackage();
-						} else {
-							this.model = namespaces.get(namespaces.size() - 1);
-						}
+			EObject first = EMFHelper.getEObject(((IStructuredSelection)mySelection).getFirstElement());
+
+			if(first instanceof Element) {
+				Element element = (Element)first;
+				this.contextElement = element;
+				if(element != null) {
+					List<Namespace> namespaces = element.getNearestPackage().allNamespaces();
+					if(namespaces.size() == 0) {
+						this.model = element.getNearestPackage();
+					} else {
+						this.model = namespaces.get(namespaces.size() - 1);
 					}
+
 				}
 			}
 		}

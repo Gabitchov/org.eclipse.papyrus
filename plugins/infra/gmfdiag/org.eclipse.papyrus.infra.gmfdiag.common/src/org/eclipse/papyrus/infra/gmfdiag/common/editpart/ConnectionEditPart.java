@@ -44,6 +44,16 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 	 */
 	protected static final String LINE_DASH_GAP = "lineDashGap";
 
+	/**
+	 * Minimum length of dashes for dashed connectors
+	 */
+	protected static final int LINE_DASH_MIN_LENGTH = 2;
+
+	/**
+	 * Minimum length of the gapas between dashes
+	 */
+	protected static final int LINE_GAP_MIN_LENGTH = 2;
+
 	public ConnectionEditPart(View view) {
 		super(view);
 	}
@@ -63,7 +73,7 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 			int lineDashLength = extract((IntValueStyle)connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_LENGTH));
 			int lineDashGap = extract((IntValueStyle)connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_GAP));
 			if(lineStyle != null) {
-				setupLineStyle(edge, lineStyle, connector.getLineWidth(), lineDashLength, lineDashGap);
+				setupLineStyle(edge, lineStyle, connector.getLineWidth(), lineDashLength < LINE_DASH_MIN_LENGTH ? LINE_DASH_MIN_LENGTH : lineDashLength, lineDashGap < LINE_GAP_MIN_LENGTH ? LINE_GAP_MIN_LENGTH : lineDashGap);
 			} else {
 				edge.resetStyle();
 			}

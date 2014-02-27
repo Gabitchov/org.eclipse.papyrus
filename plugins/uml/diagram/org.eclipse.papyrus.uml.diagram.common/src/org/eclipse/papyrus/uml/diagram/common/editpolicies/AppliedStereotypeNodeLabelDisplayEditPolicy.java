@@ -14,11 +14,15 @@
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.graphics.Image;
@@ -55,7 +59,7 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 			// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 			if(figure instanceof IPapyrusNodeUMLElementFigure) {
 				((IPapyrusNodeUMLElementFigure)figure).setStereotypeDisplay(tag + (stereotypesOnlyToDisplay().equals("") ? stereotypesToDisplay : stereotypesToDisplay), imageToDisplay);
-				refreshAppliedStereotypesProperties(((IPapyrusNodeUMLElementFigure)figure));
+				refreshAppliedStereotypesProperties(((IPapyrusNodeNamedElementFigure) figure));
 			}
 			// TODO we should manage PapyrusNodeFigure here too (and
 			// WrappingLabel ?)
@@ -65,11 +69,18 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 	/**
 	 * Refreshes the displayed stereotypes properties for this edit part.
 	 */
-	protected void refreshAppliedStereotypesProperties(IPapyrusNodeUMLElementFigure figure) {
+	protected void refreshAppliedStereotypesProperties(IPapyrusNodeNamedElementFigure figure) {
 		final String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
 
 		refreshAppliedStereotypesPropertiesInCompartment(stereotypesPropertiesToDisplay, figure);
 		refreshAppliedStereotypesPropertiesInBrace(stereotypesPropertiesToDisplay, figure);
+
+		BooleanValueStyle displayStereotypes = (BooleanValueStyle) getView().getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), NamedElementEditPart.DISPLAY_STEREOTYPES);
+		if (displayStereotypes != null && !displayStereotypes.isBooleanValue()) {
+			figure.removeStereotypeLabel();
+		} else {
+			figure.restoreStereotypeLabel();
+		}
 	}
 
 	/**

@@ -23,13 +23,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.DefaultXtextSemanticValidator;
-import org.eclipse.papyrus.infra.gmfdiag.xtext.glue.edit.part.IXtextEMFReconciler;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.Activator;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal.UmlTransitionActivator;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.BehaviorKind;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.CallOrSignalEventRule;
@@ -38,6 +37,7 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EventRule
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.RelativeTimeEventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TimeEventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule;
+import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
@@ -70,76 +70,9 @@ import com.google.inject.Injector;
  *         of an xtext generated editor, for Transitions of UML StateMachines.
  * 
  */
-public class TransitionPopupEditorConfigurationContribution extends PopupEditorConfiguration {
-
-	private Transition transition = null;
+public class TransitionPopupEditorConfigurationContribution extends DefaultXtextDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
 
 	private final static String EVENTS = "events";
-
-	private TransitionRule transitionRuleObject = null;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#createPopupEditorHelper(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
-	 */
-	@Override
-	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
-
-		// resolves the edit part, and the associated semantic element
-		if(!(editPart instanceof IGraphicalEditPart)) {
-			return null;
-		}
-		final IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart)editPart;
-
-		if(!(graphicalEditPart.resolveSemanticElement() instanceof Transition)) {
-			return null;
-		}
-		transition = (Transition)graphicalEditPart.resolveSemanticElement();
-
-		// retrieves the XText injector
-		Injector injector = UmlTransitionActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition");
-
-		// builds the text content and extension for a temporary file, to be edited by the xtext editor
-		String textToEdit = "" + this.getTextToEdit(graphicalEditPart.resolveSemanticElement());
-		String fileExtension = "" + ".umltransition";
-
-		// builds a new IXtextEMFReconciler.
-		// Its purpose is to extract any relevant information from the textual specification,
-		// and then merge it in the context UML model if necessary
-		IXtextEMFReconciler reconciler = new IXtextEMFReconciler() {
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void reconcile(EObject modelObject, EObject xtextObject) {
-				// first: retrieves / determines if the xtextObject is a TransitionRule object
-				EObject modifiedObject = xtextObject;
-				if(!(modelObject instanceof Transition)) {
-					return;
-				}
-				while(xtextObject != null && !(xtextObject instanceof TransitionRule)) {
-					modifiedObject = modifiedObject.eContainer();
-				}
-				if(modifiedObject == null) {
-					return;
-				}
-				transitionRuleObject = (TransitionRule)xtextObject;
-
-				// Creates and executes the update command
-				TransactionalEditingDomain dom = graphicalEditPart.getEditingDomain();
-				UpdateUMLTransitionCommand updateCommand = new UpdateUMLTransitionCommand(dom,transition);
-				dom.getCommandStack().execute(new GMFtoEMFCommandWrapper(updateCommand));
-			}
-		};
-		return super.createPopupEditorHelper(graphicalEditPart,
-			injector,
-			reconciler,
-			textToEdit,
-			fileExtension,
-			new DefaultXtextSemanticValidator());
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -224,9 +157,9 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 	 */
 	protected class UpdateUMLTransitionCommand extends AbstractTransactionalCommand {
 
-		private Transition transition;
+		private final Transition transition;
 
-		private String newName = "";
+		private final TransitionRule transitionRuleObject;
 
 		private List<Trigger> newTriggers = new ArrayList<Trigger>();
 
@@ -242,8 +175,6 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 
-			
-			
 			// - Events associated with triggers of this transition
 			for(Trigger t : transition.getTriggers()) {
 				Event e = t.getEvent();
@@ -283,32 +214,31 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 				guardSpecification.getBodies().add("" + transitionRuleObject.getGuard().getConstraint());
 				this.newConstraint.setSpecification(guardSpecification);
 			}
-			
+
 			boolean hasEffect = transitionRuleObject.getEffect() != null && transitionRuleObject.getEffect().getKind() != null && transitionRuleObject.getEffect().getBehaviorName() != null;
 			BehaviorKind oldKind = getBehaviorKind(transition.getEffect());
-			
-			if ((!hasEffect) || (transitionRuleObject.getEffect().getKind() != oldKind)) {
+
+			if((!hasEffect) || (transitionRuleObject.getEffect().getKind() != oldKind)) {
 				// delete owned effect behavior
 				Behavior effect = transition.getEffect();
 				transition.setEffect(null);
 				if(effect != null) {
 					effect.destroy();
-				}			
+				}
 			}
-			
+
 			// Create the new behavior
 			if(hasEffect) {
 				String behaviorName = transitionRuleObject.getEffect().getBehaviorName();
-				if (transition.getEffect() == null) {
+				if(transition.getEffect() == null) {
 					// behavior does exist yet => create
 					Behavior newEffectBehavior = createUMLBehavior(transitionRuleObject.getEffect().getKind(), behaviorName);
 					transition.setEffect(newEffectBehavior);
-				}
-				else {
+				} else {
 					transition.getEffect().setName(behaviorName);
 				}
 			}
-			
+
 			return CommandResult.newOKCommandResult(transition);
 		}
 
@@ -327,8 +257,7 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 				PackageableElement ep = np.getPackagedElement(name);
 				if(ep instanceof Package) {
 					return (Package)ep;
-				}
-				else if(ep == null) {
+				} else if(ep == null) {
 					// does not exist, create
 					return np.createNestedPackage(name);
 				}
@@ -475,8 +404,7 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			} else if(eventRule instanceof TimeEventRule) {
 				TimeEventRule timeEventRule = (TimeEventRule)eventRule;
 				if(timeEventRule.getExpr() != null) {
-					e = getOrCreateTimeEvent(timeEventRule.getExpr(),
-						timeEventRule instanceof RelativeTimeEventRule);
+					e = getOrCreateTimeEvent(timeEventRule.getExpr(), timeEventRule instanceof RelativeTimeEventRule);
 				}
 			} else { // AnyReceiveEventRule
 				e = UMLFactory.eINSTANCE.createAnyReceiveEvent();
@@ -488,28 +416,30 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 
 		/**
 		 * Return the behaviorKind for a given behavior
-		 * @param behavior the behavior
+		 * 
+		 * @param behavior
+		 *        the behavior
 		 * @return
 		 */
 		protected BehaviorKind getBehaviorKind(Behavior behavior) {
-			if (behavior instanceof OpaqueBehavior) {
+			if(behavior instanceof OpaqueBehavior) {
 				return BehaviorKind.OPAQUE_BEHAVIOR;
-			}
-			else if (behavior instanceof Activity) {
+			} else if(behavior instanceof Activity) {
 				return BehaviorKind.ACTIVITY;
-			}
-			else if (behavior instanceof StateMachine) {
+			} else if(behavior instanceof StateMachine) {
 				return BehaviorKind.STATE_MACHINE;
-			}
-			else {
+			} else {
 				return null;
 			}
 		}
 
 		/**
 		 * Create a new UML behavior of a given kind
-		 * @param kind the behavior kind
-		 * @param name the name of the behavior
+		 * 
+		 * @param kind
+		 *        the behavior kind
+		 * @param name
+		 *        the name of the behavior
 		 * @return the created behavior
 		 */
 		protected Behavior createUMLBehavior(BehaviorKind kind, String name) {
@@ -541,9 +471,45 @@ public class TransitionPopupEditorConfigurationContribution extends PopupEditorC
 			return behavior;
 		}
 
-		public UpdateUMLTransitionCommand(TransactionalEditingDomain domain, Transition transition) {
+		public UpdateUMLTransitionCommand(TransactionalEditingDomain domain, Transition transition, TransitionRule transitionRule) {
 			super(domain, "Transition Update", getWorkspaceFiles(transition));
 			this.transition = transition;
+			this.transitionRuleObject = transitionRule;
+		}
+	}
+
+	@Override
+	public Injector getInjector() {
+		return UmlTransitionActivator.getInstance().getInjector(UmlTransitionActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_TRANSITION_XTEXT_UMLTRANSITION);
+	}
+
+	@Override
+	protected ICommand getParseCommand(EObject modelObject, EObject xtextObject) {
+		// first: retrieves / determines if the xtextObject is a TransitionRule object
+		EObject modifiedObject = xtextObject;
+
+		if(!(modelObject instanceof Transition)) {
+			return null;
+		}
+
+		Transition transition = (Transition)modelObject;
+
+		while(xtextObject != null && !(xtextObject instanceof TransitionRule)) {
+			modifiedObject = modifiedObject.eContainer();
+		}
+		if(modifiedObject == null) {
+			return null;
+		}
+		TransitionRule transitionRuleObject = (TransitionRule)xtextObject;
+
+		// Creates and executes the update command
+		try {
+			TransactionalEditingDomain dom = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(transition);
+			UpdateUMLTransitionCommand updateCommand = new UpdateUMLTransitionCommand(dom, transition, transitionRuleObject);
+			return updateCommand;
+		} catch (ServiceException ex) {
+			Activator.log.error(ex);
+			return null;
 		}
 	}
 
