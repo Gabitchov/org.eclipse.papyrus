@@ -50,6 +50,7 @@ public class PropertiesHandler implements IContentPropertiesHandler,
 	private static final String FONT_SIZE = "fontSize"; //$NON-NLS-1$
 	private static final String IS_BOLD = "isBold"; //$NON-NLS-1$
 	private static final String IS_ITALIC = "isItalic"; //$NON-NLS-1$
+	private static final String COLLAPSE_LINK = "collapseLink"; //$NON-NLS-1$
 	private static final String IS_VISIBLE = "isVisible"; //$NON-NLS-1$
 	private static final String IS_UNDERLINED = "isUnderlined"; //$NON-NLS-1$
 	private static final String IS_STRUCKTHROUGH = "isStruckthrough"; //$NON-NLS-1$
@@ -124,6 +125,11 @@ public class PropertiesHandler implements IContentPropertiesHandler,
 				PropertiesHandler.IMAGE);
 	}
 
+	
+	public FacetOperation getCollapseLink() {
+		return getPropertyByName(PropertiesHandler.CUSTOM,
+				PropertiesHandler.COLLAPSE_LINK);
+	}
 	public FacetOperation getLabelProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.LABEL);

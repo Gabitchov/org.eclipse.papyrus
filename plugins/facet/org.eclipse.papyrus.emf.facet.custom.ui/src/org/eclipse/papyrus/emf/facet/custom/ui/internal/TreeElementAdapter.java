@@ -25,7 +25,7 @@ import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.
 public class TreeElementAdapter implements Adapter {
 
 	private static final boolean DEBUG = DebugUtils.getDebugStatus(Activator
-			.getDefault());
+		.getDefault());
 
 	private final EObjectTreeElement treeElement;
 
@@ -35,50 +35,52 @@ public class TreeElementAdapter implements Adapter {
 
 	public void notifyChanged(final Notification notification) {
 		DebugUtils.debug(DEBUG,
-				"Modified element=" + this.treeElement.getEObject()); //$NON-NLS-1$
+			"Modified element=" + this.treeElement.getEObject()); //$NON-NLS-1$
 		DebugUtils.debug(DEBUG,
-				"Notification feature=" + notification.getFeature()); //$NON-NLS-1$
-		for (EStructuralFeatureTreeElement subElement : this.treeElement
-				.getSfTreeElmement()) {
-			final EStructuralFeature feature = getSF(subElement);
+			"Notification feature=" + notification.getFeature()); //$NON-NLS-1$
+		for (Object subElement : this.treeElement
+			.getSfTreeElmement()) {
+			if( subElement instanceof EStructuralFeatureTreeElement){
+				final EStructuralFeature feature = getSF((EStructuralFeatureTreeElement)subElement);
 			if (feature.equals(notification.getFeature())) {
-				subElement.getReferedEObjectTE().clear();
+				((EStructuralFeatureTreeElement)subElement).getReferedEObjectTE().clear();
 				DebugUtils.debug(
-						DEBUG,
-						NLS.bind(
-								"Cleanning= {0}::{1}", //$NON-NLS-1$
-								feature.getContainerClass().getName(),
-								feature.getName()));
+					DEBUG,
+					NLS.bind(
+						"Cleanning= {0}::{1}", //$NON-NLS-1$
+						feature.getContainerClass().getName(),
+						feature.getName()));
 			}
 		}
 	}
+}
 
-	private static EStructuralFeature getSF(
-			final EStructuralFeatureTreeElement structFeatuteTE) {
-		EStructuralFeature result;
-		if (structFeatuteTE instanceof EAttributeTreeElement) {
-			final EAttributeTreeElement eAttributeTE = (EAttributeTreeElement) structFeatuteTE;
-			result = eAttributeTE.getEAttribute();
-		} else if (structFeatuteTE instanceof EReferenceTreeElement) {
-			final EReferenceTreeElement eReferenceTE = (EReferenceTreeElement) structFeatuteTE;
-			result = eReferenceTE.getEReference();
-		} else {
-			throw new CustomizedContentProviderRuntimeException(
-					"Illegal agrument: " + structFeatuteTE); //$NON-NLS-1$
-		}
-		return result;
+private static EStructuralFeature getSF(
+	final EStructuralFeatureTreeElement structFeatuteTE) {
+	EStructuralFeature result;
+	if (structFeatuteTE instanceof EAttributeTreeElement) {
+		final EAttributeTreeElement eAttributeTE = (EAttributeTreeElement) structFeatuteTE;
+		result = eAttributeTE.getEAttribute();
+	} else if (structFeatuteTE instanceof EReferenceTreeElement) {
+		final EReferenceTreeElement eReferenceTE = (EReferenceTreeElement) structFeatuteTE;
+		result = eReferenceTE.getEReference();
+	} else {
+		throw new CustomizedContentProviderRuntimeException(
+			"Illegal agrument: " + structFeatuteTE); //$NON-NLS-1$
 	}
+	return result;
+}
 
-	public Notifier getTarget() {
-		return null;
-	}
+public Notifier getTarget() {
+	return null;
+}
 
-	public void setTarget(final Notifier newTarget) {
-		// Nothing to do
-	}
+public void setTarget(final Notifier newTarget) {
+	// Nothing to do
+}
 
-	public boolean isAdapterForType(final Object type) {
-		return false;
-	}
+public boolean isAdapterForType(final Object type) {
+	return false;
+}
 
 }

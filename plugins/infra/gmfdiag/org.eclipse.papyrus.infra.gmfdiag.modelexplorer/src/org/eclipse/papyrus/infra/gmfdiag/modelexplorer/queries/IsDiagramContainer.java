@@ -15,10 +15,13 @@ package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReference;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
@@ -31,19 +34,25 @@ public class IsDiagramContainer extends AbstractEditorContainerQuery implements 
 	 */
 
 	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
-		if(roots == null) {
-			return false;
-		}
+		ParameterValue parameterValue= (ParameterValue)parameterValues.getParameterValueByName("eStructuralFeature");
+		EStructuralFeature eStructuralFeature=(EStructuralFeature)parameterValue.getValue();
+		if((eStructuralFeature instanceof FacetReference)&&("diagrams".equals((eStructuralFeature).getName()))){
 
-		while(roots.hasNext()) {
-			EObject root = roots.next();
-			if(root instanceof Diagram) {
-				if(EcoreUtil.equals(((Diagram)root).getElement(), source)) {
-					return true;
+			Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
+			if(roots == null) {
+				return false;
+			}
+
+			while(roots.hasNext()) {
+				EObject root = roots.next();
+				if(root instanceof Diagram) {
+					if(EcoreUtil.equals(((Diagram)root).getElement(), source)) {
+						return true;
+					}
 				}
 			}
+			return false;
 		}
-		return false;
+		return true;
 	}
 }

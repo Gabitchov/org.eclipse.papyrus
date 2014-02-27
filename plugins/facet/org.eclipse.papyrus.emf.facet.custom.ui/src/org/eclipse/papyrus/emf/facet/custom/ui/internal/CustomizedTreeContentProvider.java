@@ -15,7 +15,10 @@ package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -23,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.emf.facet.custom.ui.IContentPropertiesHandler;
 import org.eclipse.papyrus.emf.facet.custom.ui.IContentPropertiesHandlerFactory;
 import org.eclipse.papyrus.emf.facet.custom.ui.ICustomizedContentProvider;
@@ -49,10 +53,73 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 	private final IContentPropertiesHandler contentHandler;
 	private Object previousInput;
 	private Object[] rootElements;
+	
+	private final Map<EObjectCacheElement, TreeElement> cache;
+
+	private class EObjectCacheElement {
+
+		//Not null
+		private final EObject element;
+
+		//May be null
+		private final TreeElement parent;
+
+		public EObjectCacheElement(EObject element, TreeElement parent) {
+			this.element = element;
+			this.parent = parent;
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result + ((element == null) ? 0 : element.hashCode());
+			result = prime * result + ((parent == null) ? 0 : parent.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if(this == obj) {
+				return true;
+			}
+			if(obj == null) {
+				return false;
+			}
+			if(!(obj instanceof EObjectCacheElement)) {
+				return false;
+			}
+			EObjectCacheElement other = (EObjectCacheElement)obj;
+			if(!getOuterType().equals(other.getOuterType())) {
+				return false;
+			}
+			if(element == null) {
+				if(other.element != null) {
+					return false;
+				}
+			} else if(!element.equals(other.element)) {
+				return false;
+			}
+			if(parent == null) {
+				if(other.parent != null) {
+					return false;
+				}
+			} else if(!parent.equals(other.parent)) {
+				return false;
+			}
+			return true;
+		}
+
+		private CustomizedTreeContentProvider getOuterType() {
+			return CustomizedTreeContentProvider.this;
+		}
+	}
 
 	public CustomizedTreeContentProvider(final ICustomizationManager customManager) {
 		this.customManager = customManager;
 		this.contentHandler = IContentPropertiesHandlerFactory.DEFAULT.createIContentPropertiesHandler(customManager);
+		this.cache = new HashMap<EObjectCacheElement, TreeElement>();
 	}
 
 	protected Object[] getRootElements(final Object inputElement) {
@@ -96,13 +163,10 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return result;
 	}
 
-	protected static EObjectTreeElement createEObjectProxy(
-			final Object element, final EStructuralFeatureTreeElement parent) {
-		final EObject eObject = (EObject) element;
+	protected static EObjectTreeElement createEObjectProxy(final Object element, final TreeElement parent) {
+		final EObject eObject = (EObject)element;
 		final EObjectTreeElement eObjectProxy = TreeproxyFactory.eINSTANCE.createEObjectTreeElement();
 		eObjectProxy.setEObject(eObject);
-		eObjectProxy.setParent(parent);
-		eObject.eAdapters().add(new TreeElementAdapter(eObjectProxy));
 		return eObjectProxy;
 	}
 
@@ -126,13 +190,10 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return result;
 	}
 
-	private Object[] getChildren(final EObjectTreeElement treeElement) {
-		List<EStructuralFeatureTreeElement> children = treeElement.getSfTreeElmement();
-		if (children == null || children.isEmpty()) {
-			children = new ArrayList<EStructuralFeatureTreeElement>();
-			children.addAll(createAttributes(treeElement));
-			children.addAll(createReferences(treeElement));
-		}
+	public Object[] getChildren(final EObjectTreeElement treeElement) {
+		final ArrayList<Object> children = new ArrayList<Object>();
+		children.addAll(createAttributes(treeElement));
+		children.addAll(createReferences(treeElement));
 		return children.toArray();
 	}
 
@@ -187,14 +248,14 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 	}
 
 	private TreeElement getSingleValuedReferenceChild(final EReference eReference,
-			final EObject eObject, final EReferenceTreeElement parent) {
+		final EObject eObject, final EReferenceTreeElement parent) {
 		TreeElement child = null;
 		if (parent.getReferedEObjectTE() == null || parent.getReferedEObjectTE().size() == 0) {
 			try {
 				final IFacetManager facetManager = this.customManager
-						.getFacetManager();
+					.getFacetManager();
 				final EObject referedEObject = facetManager.getOrInvoke(
-						eObject, eReference, EObject.class);
+					eObject, eReference, EObject.class);
 				if (referedEObject != null) {
 					child = createEObjectProxy(referedEObject, parent);
 				}
@@ -208,15 +269,15 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 	}
 
 	private List<EObjectTreeElement> getMultiValuedReferenceChildren(
-			final EReference eReference, final EObject eObject,
-			final EReferenceTreeElement parent) {
+		final EReference eReference, final EObject eObject,
+		final EReferenceTreeElement parent) {
 		List<EObjectTreeElement> children = new ArrayList<EObjectTreeElement>();
 		if (parent.getReferedEObjectTE() == null || parent.getReferedEObjectTE().size() == 0) {
 			try {
 				final IFacetManager facetManager = this.customManager
-						.getFacetManager();
+					.getFacetManager();
 				final List<Object> result = facetManager
-						.getOrInvokeMultiValued(eObject, eReference, null);
+					.getOrInvokeMultiValued(eObject, eReference, null);
 				for (final Object object : result) {
 					if (object instanceof EObject) {
 						final EObject childEObject = (EObject) object;
@@ -232,20 +293,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return children;
 	}
 
-	private Collection<EAttributeTreeElement> createAttributes(final EObjectTreeElement treeElement) {
-		final EObject eObject = treeElement.getEObject();
-		final EClass eClass = eObject.eClass();
-		final IFacetManager facetManager = this.customManager.getFacetManager();
-		final List<EAttribute> allAttributes = new ArrayList<EAttribute>();
-		allAttributes.addAll(eClass.getEAllAttributes());
-		try {
-			final Set<EAttribute> facetAttributes = FacetUtils.getETypedElements(eObject, EAttribute.class, facetManager);
-			allAttributes.addAll(facetAttributes);
-		} catch (final FacetManagerException e) {
-			Logger.logError(e, Activator.getDefault());
-		}
-		return createAttributeProxies(allAttributes, treeElement);
-	}
+
 
 	private Collection<EAttributeTreeElement> createAttributeProxies(final List<EAttribute> allAttributes, final EObjectTreeElement parent) {
 		final EObject eObject = parent.getEObject();
@@ -261,30 +309,23 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return result;
 	}
 
-	private Collection<EReferenceTreeElement> createReferences(final EObjectTreeElement treeElement) {
-		final EObject eObject = treeElement.getEObject();
-		final EClass eClass = eObject.eClass();
-		final IFacetManager facetManager = this.customManager.getFacetManager();
-		final List<EReference> allReferences = new ArrayList<EReference>();
-		allReferences.addAll(eClass.getEAllReferences());
-		try {
-			final Set<EReference> facetReferences = FacetUtils.getETypedElements(eObject, EReference.class, facetManager);
-			allReferences.addAll(facetReferences);
-		} catch (final FacetManagerException e) {
-			Logger.logError(e, Activator.getDefault());
-		}
-		return createReferenceProxies(allReferences, treeElement);
-	}
+	
 
-	private Collection<EReferenceTreeElement> createReferenceProxies(final List<EReference> allReferences, final EObjectTreeElement parent) {
+	private  Collection<? extends Object> createReferenceProxies(final List<EReference> allReferences, final EObjectTreeElement parent) {
 		final EObject eObject = parent.getEObject();
 		final List<EReferenceTreeElement> result = new ArrayList<EReferenceTreeElement>();
 		for (final EReference eReference : allReferences) {
 			if (isVisible(eObject, eReference)) {
-				final EReferenceTreeElement referenceProxy = TreeproxyFactory.eINSTANCE.createEReferenceTreeElement();
-				referenceProxy.setEReference(eReference);
-				referenceProxy.setParent(parent);
-				result.add(referenceProxy);
+				if(!(collapseLink(eObject, eReference))) {
+					final EReferenceTreeElement referenceProxy = TreeproxyFactory.eINSTANCE.createEReferenceTreeElement();
+					referenceProxy.setEReference(eReference);
+					referenceProxy.setParent(parent);
+					result.add(referenceProxy);
+				}
+				else{
+					System.err.println("Do not Create an eReference"+ eReference+" create directly its childreen");
+				}
+				
 			}
 		}
 		return result;
@@ -303,9 +344,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return getChildren(element).length > 0;
 	}
 
-	public void dispose() {
-		// nothing to do
-	}
+	
 
 	public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {
 		// nothing to do
@@ -326,5 +365,163 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 			}
 		}
 		return result.booleanValue();
+	}
+
+	private boolean collapseLink(final Object object, final EReference eTypedElement) {
+		Boolean result = Boolean.TRUE;
+		if (object instanceof EObject) {
+			final EObject eObject = (EObject) object;
+			try {
+				result = this.customManager.getCustomValueOf(eObject, eTypedElement, this.contentHandler.getCollapseLink(), Boolean.class);
+			} catch (final CustomizationException e) {
+				Logger.logError(e, Activator.getDefault());
+			}
+		}
+		return result.booleanValue();
+	}
+	
+	
+	
+	private Collection<? extends Object> createReferences(final EObjectTreeElement treeElement) {
+		final EObject eObject = treeElement.getEObject();
+		final EClass eClass = eObject.eClass();
+		final IFacetManager facetManager = this.customManager.getFacetManager();
+		final List<EReference> allReferences = new ArrayList<EReference>();
+		allReferences.addAll(eClass.getEAllReferences());
+		try {
+			final Set<EReference> facetReferences = FacetUtils.getETypedElements(eObject, EReference.class, facetManager);
+			allReferences.addAll(facetReferences);
+		} catch (final FacetManagerException e) {
+			Logger.logError(e, Activator.getDefault());
+		}
+
+		Collection<Object> result = new LinkedList<Object>();
+
+		for(EReference reference : allReferences) {
+			if(isVisible(eObject, reference)) {
+				if(collapseLink(eObject, reference)) {
+					if(reference.getUpperBound() != 1) {
+						result.addAll(getMultiValuedReferenceChildren(reference, eObject, treeElement));
+					} else {
+						Object child = getSingleValuedReferenceChild(reference, eObject, treeElement);
+						if(child != null) {
+							result.add(child);
+						}
+					}
+				} else {
+					result.add(getEReferenceProxy(reference, treeElement));
+				}
+			}
+		}
+
+		return result;
+	}
+
+	private Collection<? extends Object> createAttributes(final EObjectTreeElement treeElement) {
+		final EObject eObject = treeElement.getEObject();
+		final EClass eClass = eObject.eClass();
+		final IFacetManager facetManager = this.customManager.getFacetManager();
+		final List<EAttribute> allAttributes = new ArrayList<EAttribute>();
+		allAttributes.addAll(eClass.getEAllAttributes());
+		try {
+			final Set<EAttribute> facetAttributes = FacetUtils.getETypedElements(eObject, EAttribute.class, facetManager);
+			allAttributes.addAll(facetAttributes);
+		} catch (final FacetManagerException e) {
+			Logger.logError(e, Activator.getDefault());
+		}
+
+
+		List<TreeElement> result = new LinkedList<TreeElement>();
+		for(EAttribute eAttribute : allAttributes) {
+			TreeElement eAttributeTreeElement = getEAttributeProxy(eAttribute, treeElement);
+			if(eAttributeTreeElement != null) {
+				result.add(eAttributeTreeElement);
+			}
+		}
+		return result;
+	}
+
+
+
+	private EReferenceTreeElement createReferenceProxy(final EReference reference, final EObjectTreeElement parent) {
+		final EObject eObject = parent.getEObject();
+		if(isVisible(eObject, reference)) {
+			final EReferenceTreeElement referenceProxy = TreeproxyFactory.eINSTANCE.createEReferenceTreeElement();
+			referenceProxy.setEReference(reference);
+			referenceProxy.setParent(parent);
+			return referenceProxy;
+		}
+		return null;
+	}
+
+	private EAttributeTreeElement createAttributeProxy(final EAttribute attribute, final EObjectTreeElement parent) {
+		final EObject eObject = parent.getEObject();
+		if(isVisible(eObject, attribute)) {
+			final EAttributeTreeElement attributeProxy = TreeproxyFactory.eINSTANCE.createEAttributeTreeElement();
+			attributeProxy.setEAttribute(attribute);
+			attributeProxy.setParent(parent);
+			return attributeProxy;
+		}
+		return null;
+	}
+
+	private Object getSingleValuedReferenceChild(final EReference eReference, final EObject eObject, final TreeElement parent) {
+		Object child = null;
+		try {
+			final IFacetManager facetManager = this.customManager.getFacetManager();
+			final Object result = facetManager.getOrInvoke(eObject, eReference, null);
+			if(result instanceof EObject) {
+				final EObject childEObject = (EObject)result;
+				child = getEObjectProxy(childEObject, parent);
+			}
+		} catch (final FacetManagerException e) {
+			Logger.logError(e, Activator.getDefault());
+		}
+		return child;
+	}
+
+	private List<Object> getMultiValuedReferenceChildren(final EReference eReference, final EObject eObject, final TreeElement parent) {
+		final List<Object> children = new ArrayList<Object>();
+		try {
+			final IFacetManager facetManager = this.customManager.getFacetManager();
+			final List<Object> result = facetManager.getOrInvokeMultiValued(eObject, eReference, null);
+			for(final Object object : result) {
+				if(object instanceof EObject) {
+					final EObject childEObject = (EObject)object;
+					children.add(getEObjectProxy(childEObject, parent));
+				}
+			}
+		} catch (final FacetManagerException e) {
+			Logger.logError(e, Activator.getDefault());
+		}
+		return children;
+	}
+
+	protected EObjectTreeElement getEObjectProxy(final Object element, final TreeElement parent) {
+		EObjectCacheElement cacheElement = new EObjectCacheElement((EObject)element, parent);
+		if(!(cache.containsKey(cacheElement))) {
+			cache.put(cacheElement, createEObjectProxy(element, parent));
+		}
+		return (EObjectTreeElement)cache.get(cacheElement);
+	}
+
+	protected EAttributeTreeElement getEAttributeProxy(final Object element, final TreeElement parent) {
+		EObjectCacheElement cacheElement = new EObjectCacheElement((EObject)element, parent);
+		if(!(cache.containsKey(cacheElement))) {
+			cache.put(cacheElement, createAttributeProxy((EAttribute)element, (EObjectTreeElement)parent));
+		}
+		return (EAttributeTreeElement)cache.get(cacheElement);
+	}
+
+	protected EReferenceTreeElement getEReferenceProxy(final Object element, final EObjectTreeElement parent) {
+		EObjectCacheElement cacheElement = new EObjectCacheElement((EObject)element, parent);
+		if(!(cache.containsKey(cacheElement))) {
+			cache.put(cacheElement, createReferenceProxy((EReference)element, parent));
+		}
+		return (EReferenceTreeElement)cache.get(cacheElement);
+	}
+
+	public void dispose() {
+		cache.clear();
 	}
 }

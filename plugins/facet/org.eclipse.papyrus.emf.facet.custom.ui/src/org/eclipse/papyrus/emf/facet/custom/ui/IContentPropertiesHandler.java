@@ -22,4 +22,5 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperati
  */
 public interface IContentPropertiesHandler {
 	FacetOperation getIsVisible();
+	public FacetOperation getCollapseLink();
 }
