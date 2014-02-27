@@ -34,6 +34,15 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public abstract class NamedElementEditPart extends UMLNodeEditPart implements IUMLNamedElementEditPart {
 
+	/**
+	 * CSS boolean property controlling whether stereotypes should be displayed
+	 */
+	public static final String DISPLAY_STEREOTYPES = "displayStereotypes";
+
+	/**
+	 * CSS boolean property controlling whether tags should be displayed
+	 */
+	public static final String DISPLAY_TAGS = "displayTags";
 
 
 	/**
@@ -85,14 +94,24 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	protected void refreshLabelDisplay() {
 		View view = getNotationView();
 		BooleanValueStyle displayNameStyle = (BooleanValueStyle)view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), NameDisplayEditPolicy.DISPLAY_NAME);
+		BooleanValueStyle displayStereotypes = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_STEREOTYPES);
+		BooleanValueStyle displayTags = (BooleanValueStyle) view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), DISPLAY_TAGS);
 		if(displayNameStyle != null && !displayNameStyle.isBooleanValue()) {
 			getNodeNamedElementFigure().removeNameLabel();
 			getNodeNamedElementFigure().removeStereotypeLabel();
 			getNodeNamedElementFigure().removeTaggedLabel();
 		} else {
 			getNodeNamedElementFigure().restoreNameLabel();
-			getNodeNamedElementFigure().restoreStereotypeLabel();
-			getNodeNamedElementFigure().restoreTaggedLabel();
+			if (displayStereotypes != null && !displayStereotypes.isBooleanValue()) {
+				getNodeNamedElementFigure().removeStereotypeLabel();
+			} else {
+				getNodeNamedElementFigure().restoreStereotypeLabel();
+			}
+			if (displayTags != null && !displayTags.isBooleanValue()) {
+				getNodeNamedElementFigure().removeTaggedLabel();
+			} else {
+				getNodeNamedElementFigure().restoreTaggedLabel();
+			}
 		}
 	}
 
