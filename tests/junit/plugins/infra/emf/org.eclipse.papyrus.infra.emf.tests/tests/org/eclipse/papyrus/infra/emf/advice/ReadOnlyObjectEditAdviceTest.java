@@ -17,7 +17,6 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
-import static org.junit.Assume.assumeThat;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,6 +64,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.core.resource.TransactionalEditingDomainManager;
+import org.eclipse.papyrus.junit.utils.rules.Condition;
+import org.eclipse.papyrus.junit.utils.rules.ConditionRule;
+import org.eclipse.papyrus.junit.utils.rules.Conditional;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Dependency;
@@ -101,6 +103,9 @@ public class ReadOnlyObjectEditAdviceTest {
 	@Parameter
 	public ResourceMode resourceMode;
 
+	@Rule
+	public final ConditionRule condition = new ConditionRule();
+	
 	@Rule
 	public final TemporaryFolder tmp = new TemporaryFolder();
 
@@ -244,9 +249,8 @@ public class ReadOnlyObjectEditAdviceTest {
 	}
 
 	@Test
+	@Conditional(key = "adviceEnabled")
 	public void testDuplicateCommand() {
-		assumeThat(resourceMode.isAdviceEnabled(), is(true));
-
 		// We don't have any edit helpers suitable for this use case
 		assertAdvice(new DuplicateElementsRequest(Collections.singletonList(classB)));
 	}
@@ -333,9 +337,8 @@ public class ReadOnlyObjectEditAdviceTest {
 	}
 
 	@Test
+	@Conditional(key = "adviceEnabled")
 	public void testReorientReferenceCommand_targetOldReadonly() {
-		assumeThat(resourceMode.isAdviceEnabled(), is(true));
-
 		final Comment[] comment = { null };
 
 		// By-pass edit-helpers to set up the reference
@@ -354,9 +357,8 @@ public class ReadOnlyObjectEditAdviceTest {
 	}
 
 	@Test
+	@Conditional(key = "adviceEnabled")
 	public void testReorientReferenceCommand_targetNewReadonly() {
-		assumeThat(resourceMode.isAdviceEnabled(), is(true));
-
 		final Comment[] comment = { null };
 
 		// By-pass edit-helpers to set up the reference
@@ -375,9 +377,8 @@ public class ReadOnlyObjectEditAdviceTest {
 	}
 
 	@Test
+	@Conditional(key = "adviceEnabled")
 	public void testReorientReferenceCommand_sourceOldReadOnly() {
-		assumeThat(resourceMode.isAdviceEnabled(), is(true));
-
 		final Comment[] comment = { null, null };
 
 		// By-pass edit-helpers to set up the reference
@@ -396,9 +397,8 @@ public class ReadOnlyObjectEditAdviceTest {
 	}
 
 	@Test
+	@Conditional(key = "adviceEnabled")
 	public void testReorientReferenceCommand_sourceNewReadonly() {
-		assumeThat(resourceMode.isAdviceEnabled(), is(true));
-
 		final Comment[] comment = { null, null };
 
 		// By-pass edit-helpers to set up the reference
@@ -428,6 +428,11 @@ public class ReadOnlyObjectEditAdviceTest {
 				return new Object[]{ input };
 			}
 		}));
+	}
+
+	@Condition
+	public boolean adviceEnabled() {
+		return resourceMode.isAdviceEnabled();
 	}
 
 	@Before
