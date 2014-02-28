@@ -429,6 +429,8 @@ public class XtextDirectEditManager extends DirectEditManagerEx {
 		installCustomParser();
 		super.commit();
 		resetDefaultParser();
+		getEditPart().refresh();
+		
 	}
 
 	/**
