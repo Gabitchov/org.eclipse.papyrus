@@ -11,18 +11,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.IStrategy;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * A strategy to be applied when pasting elements
  */
-
-// TODO Extract a super interface for merging with drop
-public interface IPasteStrategy extends IStrategy{
+public interface IPasteStrategy extends IStrategy {
 
 	/**
 	 * A user-readable label
@@ -43,6 +44,7 @@ public interface IPasteStrategy extends IStrategy{
 	 * 
 	 * @return
 	 */
+	@Deprecated
 	public Image getImage();
 
 	/**
@@ -64,16 +66,50 @@ public interface IPasteStrategy extends IStrategy{
 	 *         A command, or null if the strategy cannot handle the request
 	 */
 	public Command getCommand(Request request, EditPart targetEditPart);
-	
+
 	/**
 	 * The default priority for this strategy. Might be overridden by a user
 	 * preference.
 	 * 
 	 * @return
-	 * @deprecated The priority mechanism isn't used anymore
+	 * @deprecated The priority mechanism should not be used anymore
 	 */
 	@Deprecated
 	public int getPriority();
-	
-	
+
+	/**
+	 * Get the command for the semantic strategy pasting
+	 * 
+	 * @param domain
+	 * @param targetOwner
+	 * @param papyrusClipboard
+	 * @return
+	 */
+	public org.eclipse.emf.common.command.Command getSemanticCommand(EditingDomain domain, EObject targetOwner, PapyrusClipboard<Object> papyrusClipboard);
+
+	/**
+	 * Get the command for the graphical and semantic strategy pasting
+	 * 
+	 * @param domain
+	 * @param targetOwner
+	 * @param papyrusClipboard
+	 * @return
+	 */
+	public Command getGraphicalCommand(EditingDomain domain, org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart targetOwner, PapyrusClipboard<Object> papyrusClipboard);
+
+
+	/**
+	 * Get the required strategy if one
+	 * 
+	 * @return
+	 */
+	public IPasteStrategy dependsOn();
+
+	/**
+	 * Prepare in the clipboard the data required for the pasting strategy
+	 * 
+	 * @param papyrusClipboard
+	 */
+	public void prepare(PapyrusClipboard<Object> papyrusClipboard);
+
 }

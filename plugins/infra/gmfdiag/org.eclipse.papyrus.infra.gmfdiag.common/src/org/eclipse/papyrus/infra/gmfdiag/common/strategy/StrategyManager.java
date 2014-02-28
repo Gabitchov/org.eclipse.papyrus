@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.strategy;
 
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,9 +37,6 @@ import org.osgi.service.prefs.BackingStoreException;
 /**
  * Singleton instance. This class is used to read and manage the various
  * DropStrategies: activation, order (priority)
- * 
- * 
- * @author Camille Letavernier
  * 
  */
 public class StrategyManager implements IStrategyManager {
@@ -223,11 +221,11 @@ public class StrategyManager implements IStrategyManager {
 	}
 
 	/**
-	 * All DropStrategies
 	 * The values are grouped by priority.
 	 * 
 	 * (Including the DefaultIStrategy)
 	 */
+	@Deprecated // remove all ref to priority
 	public Map<Integer, List<IStrategy>> getAllAvailableStrategies() {
 		return allAvailableStrategies;
 	}
@@ -380,6 +378,21 @@ public class StrategyManager implements IStrategyManager {
 		} catch (BackingStoreException ex) {
 			Activator.log.error(ex);
 		}
+	}
+
+	/**
+	 * Return all active strategies
+	 */
+	@Override
+	public List<IStrategy> getAllActiveStrategies() {
+		List<IStrategy> res = new ArrayList<IStrategy>();	
+		List<IStrategy> allStrategies = getAllStrategies();
+		for (IStrategy iStrategy : allStrategies) {
+			if (isActive(iStrategy)){
+				res.add(iStrategy);
+			}
+		}
+		return res;
 	}
 
 

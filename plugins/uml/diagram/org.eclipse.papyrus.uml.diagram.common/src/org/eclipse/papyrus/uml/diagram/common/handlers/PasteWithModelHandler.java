@@ -35,7 +35,9 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * 
  * @see org.eclipse.core.commands.IHandler
  * @see org.eclipse.core.commands.AbstractHandler
+ * @Deprecated seems unused, use org.eclipse.papyrus.uml.diagram.menu.handlers.PasteWithModelHandler
  */
+@Deprecated // seems unused, use org.eclipse.papyrus.uml.diagram.menu.handlers.PasteWithModelHandler
 public class PasteWithModelHandler extends AbstractHandler {
 
 	/**
