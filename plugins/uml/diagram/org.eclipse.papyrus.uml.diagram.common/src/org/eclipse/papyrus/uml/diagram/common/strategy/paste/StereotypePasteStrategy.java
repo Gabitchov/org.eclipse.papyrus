@@ -25,6 +25,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.papyrus.infra.core.clipboard.IClipboardAdditionalData;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
@@ -142,8 +143,11 @@ public class StereotypePasteStrategy implements IPasteStrategy {
 					StereotypeClipboard stereotypeClipboard = (StereotypeClipboard) additionnalData;
 					Stereotype stereotype = stereotypeClipboard.getStereotype();
 					if (stereotype != null) {
+						// reload the stereotype in the new Contex-ResourceSet (Required because in org.eclipse.uml2.uml.internal.operations.PackageOperations
+						// L960 in getProfileApplication the test is using == instead of equals)
+						Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, targetOwner);
 						// append command to apply stereotype
-						ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand((Element)target, stereotype, (TransactionalEditingDomain) domain);
+						ApplyStereotypeCommand applyStereotypeCommand = new ApplyStereotypeCommand((Element)target, stereotypeInTargetContext, (TransactionalEditingDomain) domain);
 						compoundCommand.append(applyStereotypeCommand);					
 					}
 				}
