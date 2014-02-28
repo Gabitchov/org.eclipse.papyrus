@@ -23,7 +23,6 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * 
- * @author vl222926
  * 
  */
 public abstract class AbstractDiagramActionHandler extends AbstractDiagramHandler {

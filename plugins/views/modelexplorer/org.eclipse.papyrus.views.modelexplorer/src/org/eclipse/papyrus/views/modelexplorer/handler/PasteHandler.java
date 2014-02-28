@@ -9,38 +9,49 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Use paste strategy 
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.PasteFromClipboardCommand;
+import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.IStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.PasteStrategyManager;
 
 /**
  * Handler for the Paste Action
- * 
- * 
  * 
  */
 public class PasteHandler extends AbstractCommandHandler {
 
 	/**
-	 * 
 	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
-	 * 
 	 * @return
 	 */
 	@Override
 	protected Command getCommand() {
 		List<EObject> selection = getSelectedElements();
-		if(selection.size() == 1) {
-			return PasteFromClipboardCommand.create(getEditingDomain(), selection.get(0), null);
+
+		List<IStrategy> allStrategies = PasteStrategyManager.getInstance()
+				.getAllActiveStrategies();
+
+		if (selection.size() == 1) { //Paste is only available on a simple selection 
+			CompoundCommand compoundCommand = new CompoundCommand();
+			for (IStrategy iStrategy : allStrategies) {
+				Command emfCommand = ((IPasteStrategy) iStrategy)
+						.getSemanticCommand(getEditingDomain(), selection.get(0),PapyrusClipboard.getInstance());
+				if (emfCommand!=null) {
+					compoundCommand.append(emfCommand);
+				}
+			}
+			return compoundCommand;
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
-
 }

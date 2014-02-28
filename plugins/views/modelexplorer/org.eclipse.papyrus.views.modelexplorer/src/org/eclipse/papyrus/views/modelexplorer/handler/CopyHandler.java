@@ -17,7 +17,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.CopyToClipboardCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.IStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.PasteStrategyManager;
 
 /**
  * Handler for the Copy Action
@@ -36,7 +40,19 @@ public class CopyHandler extends AbstractCommandHandler {
 	@Override
 	protected Command getCommand() {
 		List<EObject> selection = getSelectedElements();
-		return CopyToClipboardCommand.create(getEditingDomain(), selection);
-	}
-
+		TransactionalEditingDomain editingDomain = getEditingDomain();
+		// TODO : select copyStrategy
+		PapyrusClipboard<Object> papyrusClipboard = PapyrusClipboard.getNewInstance();
+		
+		org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultCopyCommand defaultCopyCommand = new org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultCopyCommand(editingDomain,papyrusClipboard, selection);
+		
+		//TODO : prepare paste strategy
+		List<IStrategy> allStrategies = PasteStrategyManager.getInstance()
+				.getAllStrategies();
+		for (IStrategy iStrategy : allStrategies) {
+			IPasteStrategy iPasteStrategy = (IPasteStrategy) iStrategy;
+			iPasteStrategy.prepare(papyrusClipboard);
+		}				
+		return defaultCopyCommand;
+		}
 }

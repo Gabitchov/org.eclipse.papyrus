@@ -33,8 +33,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 /**
  * Handler used to select all elements with the same type in a diagram
  * 
- * @author vl222926
- * 
  */
 public class SelectElementWithTheSameTypeHandler extends AbstractDiagramHandler {
 

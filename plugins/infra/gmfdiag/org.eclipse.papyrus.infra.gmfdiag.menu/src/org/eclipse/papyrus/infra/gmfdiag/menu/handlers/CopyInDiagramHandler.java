@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,30 +8,47 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
 
-import org.eclipse.gmf.runtime.common.ui.action.global.GlobalActionId;
+import java.util.List;
+
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultDiagramCopyCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.IStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.PasteStrategyManager;
 
 /**
- * This Copy handler retarget the Copy action to the GMF action, but now this action is declared using the Eclipse Framework
- * 
- * @author vl222926
- * 
+ * Handler for the Copy Action in Diagram
  */
-public class CopyInDiagramHandler extends AbstractDiagramActionHandler {
+public class CopyInDiagramHandler extends AbstractGraphicalCommandHandler {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.infra.gmfdiag.menu.handlers.AbstractDiagramActionHandler#getActionId()
+	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
 	 * 
 	 * @return
 	 */
 	@Override
-	protected String getActionId() {
-		return GlobalActionId.COPY;
-	}
+	protected Command getCommand() {
+		PapyrusClipboard<Object> papyrusClipboard = PapyrusClipboard.getNewInstance();
+		List<IGraphicalEditPart> selectedElements = getSelectedElements();
+		TransactionalEditingDomain editingDomain = getEditingDomain();
+		// TODO : select copyStrategy
+		DefaultDiagramCopyCommand defaultDiagramCopyCommand = new DefaultDiagramCopyCommand(editingDomain, papyrusClipboard, selectedElements);
 
+		List<IStrategy> allStrategies = PasteStrategyManager.getInstance().getAllStrategies();
+		for(IStrategy iStrategy : allStrategies) {
+			IPasteStrategy iIPasteStrategy = (IPasteStrategy)iStrategy;
+			iIPasteStrategy.prepare(papyrusClipboard);
+		}
+		return new EMFtoGEFCommandWrapper(defaultDiagramCopyCommand); 
+	}
 }

@@ -252,22 +252,6 @@
 
 <!-- This handler is activated when deleteInModelExplorer variable is valid.
   -->
-<extension point="org.eclipse.ui.handlers">
-	<handler class="org.eclipse.papyrus.views.modelexplorer.handler.DeleteCommandHandler" commandId="org.eclipse.ui.edit.delete">
-		<activeWhen>
-     <with variable="selection">
-        <and>
-           <with variable="activePart">
-              <instanceof value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
-              </instanceof>
-           </with>
-           <test forcePluginActivation="true" property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject" value="true">
-           </test>
-        </and>
-     </with>
-		</activeWhen>
-	</handler>
-</extension>
 <extension point="org.eclipse.ui.commands">
    <command categoryId="org.eclipse.papyrus.editor.category" description="The command to open in a tab" id="org.eclipse.papyrus.views.modelexplorer.popup.open.command" name="Open Command">
    </command>
@@ -382,6 +366,72 @@
          </and>
       </activeWhen>
    </handler>
+   <handler
+         class="org.eclipse.papyrus.views.modelexplorer.handler.DeleteCommandHandler"
+         commandId="org.eclipse.ui.edit.delete">
+      <activeWhen>
+         <with
+               variable="selection">
+            <and>
+               <with
+                     variable="activePart">
+                  <instanceof
+                        value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+                  </instanceof>
+               </with>
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+                     value="true">
+               </test>
+            </and>
+         </with>
+      </activeWhen>
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.views.modelexplorer.handler.CopyHandler"
+         commandId="org.eclipse.ui.edit.copy">
+      <activeWhen>
+         <and>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+               </instanceof>
+            </with>
+            <with
+                  variable="selection">
+               <test
+                     forcePluginActivation="true"
+                     property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+    <handler
+          class="org.eclipse.papyrus.views.modelexplorer.handler.PasteHandler"
+          commandId="org.eclipse.ui.edit.paste">
+       <activeWhen>
+          <and>
+             <with
+                   variable="activePart">
+                <instanceof
+                      value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
+                </instanceof>
+             </with>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
+                      value="true">
+                </test>
+             </with>
+          </and>
+       </activeWhen>
+    </handler>   
 </extension>
 <extension point="org.eclipse.core.expressions.propertyTesters">
       <!-- the property tester is used to enabled/disabled handler -->
