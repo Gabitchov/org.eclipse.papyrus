@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.core,
+ org.eclipse.papyrus.infra.core.clipboard,
  org.eclipse.papyrus.infra.core.contentoutline,
  org.eclipse.papyrus.infra.core.editor,
  org.eclipse.papyrus.infra.core.editorsfactory,
