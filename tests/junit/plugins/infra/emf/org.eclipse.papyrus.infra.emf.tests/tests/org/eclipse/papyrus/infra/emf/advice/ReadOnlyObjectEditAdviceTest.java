@@ -424,7 +424,6 @@ public class ReadOnlyObjectEditAdviceTest {
 	public static Collection<Object[]> parameters() {
 		return ImmutableList.copyOf(Iterables.transform(Arrays.asList(ResourceMode.values()), new Function<Object, Object[]>() {
 
-			@Override
 			public Object[] apply(Object input) {
 				return new Object[]{ input };
 			}
