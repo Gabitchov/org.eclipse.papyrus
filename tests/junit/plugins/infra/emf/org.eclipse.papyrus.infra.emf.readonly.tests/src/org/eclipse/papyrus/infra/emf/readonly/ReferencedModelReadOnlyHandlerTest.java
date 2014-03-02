@@ -21,8 +21,11 @@ import static org.junit.Assume.assumeThat;
 import java.util.Collections;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -138,7 +141,30 @@ public class ReferencedModelReadOnlyHandlerTest {
 		assertNotReadOnly(ssn);
 		assertLocalViewsNotReadOnly(ssn.getType());
 	}
-
+	
+	/**
+	 * Test that a referenced resource is not considered read-only if it does not exist, because in that case it couldn't
+	 * possibly be subject to conflicting edits in some other editor.
+	 */
+	@Test
+	public void testNonExistentResourceIsUnhandled() {
+		Property ssn = person.getAttribute("ssn", null);
+		
+		Resource referenced = ssn.getType().eResource();
+		
+		// Don't use the URIConverter delete API for this
+		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(referenced.getURI().toPlatformString(true)));
+		assertThat(file.exists(), is(true));
+		try {
+			file.delete(true, null);
+		} catch (CoreException e) {
+			e.printStackTrace();
+			fail("Failed to delete referenced resource's underlying file: " + e.getLocalizedMessage());
+		}
+		
+		assertNotReadOnly(ssn.getType());
+	}
+	
 	//
 	// Test framework
 	//

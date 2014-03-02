@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
@@ -70,8 +71,12 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler {
 	public Optional<Boolean> anyReadOnly(URI[] uris) {
 		Optional<Boolean> result = Optional.absent();
 
+		final URIConverter converter = getEditingDomain().getResourceSet().getURIConverter();
+		
 		for(int i = 0; i < uris.length; i++) {
-			if(!readableReferencedModels.contains(uris[i].trimFileExtension()) && isNotModelSetMainModel(uris[i])) {
+			// If the resource doesn't exist, then it can't be opened in some other editor, so
+			// we needn't be concerned about editing it in the context of a referencing model
+			if(!readableReferencedModels.contains(uris[i].trimFileExtension()) && isNotModelSetMainModel(uris[i]) && converter.exists(uris[i], null)) {
 				result = Optional.of(true);
 				break;
 			}
