@@ -186,10 +186,11 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 			Optional<Boolean> isRO = orderedHandlersArray[i].anyReadOnly(uris);
 			if(isRO.isPresent() && isRO.get()) {
 				Optional<Boolean> result = orderedHandlersArray[i].makeWritable(uris);
-				// makeWritable should provide an answer since anyReadOnly returned a positive value
-				// if no answer consider it fails
+				// makeWritable should provide an answer since anyReadOnly returned a positive value.
+				// If no answer consider it a failure
 				if(!result.isPresent() || !result.get()) {
 					finalResult = false;
+					break;
 				}
 			}
 		}
