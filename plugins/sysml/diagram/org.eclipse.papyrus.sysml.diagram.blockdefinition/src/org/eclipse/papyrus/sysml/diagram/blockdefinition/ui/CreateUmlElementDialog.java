@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,9 +28,11 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -40,7 +42,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.messages.Messages;
-import org.eclipse.papyrus.uml.diagram.common.util.Util;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -93,7 +95,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent
 	 * @param domain
@@ -129,7 +131,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Sets the forbidden names.
-	 * 
+	 *
 	 * @param forbiddenNames
 	 *        the new forbidden names
 	 */
@@ -139,7 +141,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Creates the dialog area.
-	 * 
+	 *
 	 * @param parent
 	 *        the parent
 	 * @return the control
@@ -164,7 +166,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Creates the name section and put it at the top of the composite.
-	 * 
+	 *
 	 * @param parent
 	 *        the composite parent
 	 */
@@ -194,7 +196,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Returns the default name for the new Element.
-	 * 
+	 *
 	 * @return the default name
 	 *         the default name for the new Element
 	 */
@@ -205,7 +207,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 		int max = 0;
 		do {
 
-			ArrayList<?> allInterface = Util.getInstancesFilteredByType(pack, Interface.class, null);
+			List<Interface> allInterface = ElementUtil.getInstancesFilteredByType(pack, Interface.class, null);
 			for(Object object : allInterface) {
 				String name = NamedElementUtil.getName((NamedElement)object);
 				if(name != null && name.startsWith(type)) {
@@ -234,7 +236,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Tests if the proposed name is not forbidden
-	 * 
+	 *
 	 * @param name
 	 *        a name
 	 * @return
@@ -249,7 +251,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Returns the command to create the new element which the chosen name.
-	 * 
+	 *
 	 * @return the command
 	 *         the command to create the new element which the chosen name
 	 */
@@ -274,7 +276,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Compute result.
-	 * 
+	 *
 	 * @see org.eclipse.ui.dialogs.ElementTreeSelectionDialog#computeResult()
 	 */
 	@Override
@@ -286,7 +288,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Set the value to {@link #name} and {@link #parentContainer}.
-	 * 
+	 *
 	 * @see org.eclipse.ui.dialogs.SelectionStatusDialog#okPressed()
 	 */
 	@Override
@@ -303,7 +305,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * Returns a command corresponding to this request.
-	 * 
+	 *
 	 * @param request
 	 *        a request
 	 * @return the command
@@ -332,7 +334,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 * @param domain
 		 *        the domain
 		 * @param label
@@ -351,7 +353,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 		/**
 		 * Do execute with result.
-		 * 
+		 *
 		 * @param monitor
 		 *        the monitor
 		 * @param info
@@ -376,7 +378,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 	/**
 	 * This command allows to create a new element when its parent is not yet created when the command is build
-	 * 
+	 *
 	 * We need a such command, because {@link CreateRelationshipCommand#getCommandResult()} return <code>null</code> when the command has not been
 	 * executed.
 	 */
@@ -387,7 +389,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 * @param domain
 		 *        the domain
 		 * @param label
@@ -404,7 +406,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 
 		/**
 		 * Do execute with result.
-		 * 
+		 *
 		 * @param monitor
 		 *        the monitor
 		 * @param info
