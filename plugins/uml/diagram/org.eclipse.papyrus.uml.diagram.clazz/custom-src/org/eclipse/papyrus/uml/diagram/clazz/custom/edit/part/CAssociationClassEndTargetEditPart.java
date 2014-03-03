@@ -29,7 +29,7 @@ public class CAssociationClassEndTargetEditPart extends AssociationClassRoleTarg
 	 * Instantiates a new association end target edit part.
 	 * 
 	 * @param view
-	 *        the view
+	 *            the view
 	 */
 	public CAssociationClassEndTargetEditPart(View view) {
 		super(view);
@@ -45,8 +45,8 @@ public class CAssociationClassEndTargetEditPart extends AssociationClassRoleTarg
 		return AssociationEndSourceLabelHelper.getInstance().getUMLElement(this);
 	}
 
-	public Object getAdapter(Class key) {
-		if(key == IPropertySource.class) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class key) {
+		if (key == IPropertySource.class) {
 			return resolveSemanticElement();
 		}
 		return super.getAdapter(key);

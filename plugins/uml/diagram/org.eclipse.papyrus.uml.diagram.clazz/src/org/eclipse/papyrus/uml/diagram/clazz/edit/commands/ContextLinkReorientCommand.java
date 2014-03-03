@@ -1,14 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2014 CEA LIST.
+ *
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Boutheina Bannour (CEA LIST) boutheina.bannour@cea.fr - Initial API and implementation
- *
+ *  CEA LIST - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.edit.commands;
 
@@ -64,13 +64,13 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(false == referenceOwner instanceof Constraint) {
+		if (false == referenceOwner instanceof Constraint) {
 			return false;
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -80,7 +80,7 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof Namespace && newEnd instanceof Constraint)) {
+		if (!(oldEnd instanceof Namespace && newEnd instanceof Constraint)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintContext_8500(getNewSource(), getOldTarget());
@@ -90,7 +90,7 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof Namespace && newEnd instanceof Namespace)) {
+		if (!(oldEnd instanceof Namespace && newEnd instanceof Namespace)) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintContext_8500(getOldSource(), getNewTarget());
@@ -99,14 +99,16 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+	protected CommandResult doExecuteWithResult(
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -116,8 +118,12 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().setContext(null);
-		getNewSource().setContext(getOldTarget());
+		getOldSource().setContext(
+				null
+				);
+		getNewSource().setContext(
+				getOldTarget()
+				);
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -125,7 +131,9 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().setContext(getNewTarget());
+		getOldSource().setContext(
+				getNewTarget()
+				);
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -133,27 +141,28 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Constraint getOldSource() {
-		return (Constraint)referenceOwner;
+		return (Constraint) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Constraint getNewSource() {
-		return (Constraint)newEnd;
+		return (Constraint) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Namespace getOldTarget() {
-		return (Namespace)oldEnd;
+		return (Namespace) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Namespace getNewTarget() {
-		return (Namespace)newEnd;
+		return (Namespace) newEnd;
 	}
+
 }

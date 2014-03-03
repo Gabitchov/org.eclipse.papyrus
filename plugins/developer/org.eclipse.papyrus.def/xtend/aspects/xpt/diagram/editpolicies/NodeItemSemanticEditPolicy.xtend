@@ -58,8 +58,8 @@ import xpt.editor.VisualIDRegistry
 	
 	«««	Papyrus REM : 
 	«««	Test to know how the delete of this EditPart is done : we used the DeleteService or the "Traditional method"
-
-	«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).filter[v | v.genView.contains(this)].size != 0»
+	
+	«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).filter[v | v.genView.contains(it)].size != 0»
 		«generatedMemberComment»
 		«getDestroyElementCommandByService(it)»
 	«ELSE»

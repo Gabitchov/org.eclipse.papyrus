@@ -1,32 +1,33 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.CommentAnnotatedElementItemSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
 
 /**
  * @generated
  */
-public class CommentAnnotatedElementEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class CommentAnnotatedElementEditPart extends ConnectionEditPart
+		implements ITreeBranchEditPart
+{
 
 	/**
 	 * @generated
@@ -58,26 +59,14 @@ public class CommentAnnotatedElementEditPart extends ConnectionEditPart implemen
 	 * @generated
 	 */
 	protected Connection createConnectionFigure() {
-		return new CommentLinkDescriptor();
+		return new SimpleDashedEdgeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public CommentLinkDescriptor getPrimaryShape() {
-		return (CommentLinkDescriptor)getFigure();
+	public SimpleDashedEdgeFigure getPrimaryShape() {
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 
-	/**
-	 * @generated
-	 */
-	public class CommentLinkDescriptor extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public CommentLinkDescriptor() {
-			this.setLineStyle(Graphics.LINE_DASH);
-		}
-	}
 }

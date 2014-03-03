@@ -233,6 +233,7 @@ import xpt.editor.VisualIDRegistry
 
 		
 			«generatedMemberComment»
+			@SuppressWarnings("unchecked")
 			public org.eclipse.gmf.runtime.notation.Diagram createDiagram(org.eclipse.core.runtime.IAdaptable semanticAdapter, String diagramKind, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
 				org.eclipse.gmf.runtime.notation.Diagram diagram = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDiagram();«/* FIXME instantiate diagramRunTimeClass instead */»
 				diagram.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDiagramStyle());
@@ -418,7 +419,7 @@ import xpt.editor.VisualIDRegistry
 	«ENDIF»
 		«xptViewStyles.addCustomStyles(it, 'edge.getStyles()')»
 		org.eclipse.gmf.runtime.notation.RelativeBendpoints bendpoints = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createRelativeBendpoints();
-		java.util.ArrayList<org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint> points = new java.util.ArrayList<org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint>(2); 
+		java.util.List<org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint> points = new java.util.ArrayList<org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint>(2); 
 		points.add(new org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint());
 		points.add(new org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint());
 		bendpoints.setPoints(points);

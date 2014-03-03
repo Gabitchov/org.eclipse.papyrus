@@ -52,6 +52,7 @@ import xpt.providers.ElementTypes
 	@Inject extension Utils_qvto;
 	@Inject extension Common;
 
+	@Inject  aspects.xpt.diagram.editpolicies.Utils_qvto aspectsUtils_qvto
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 	@Inject ElementTypes xptElementTypes;
 		@Inject CreateLinkCommand xptCreateLinkCommand;
@@ -77,15 +78,21 @@ import xpt.providers.ElementTypes
 				return null;
 			}
 			org.eclipse.gmf.runtime.emf.type.core.IElementType baseElementType = requestElementType;
+			«IF aspectsUtils_qvto.containsCreateStartLinkCommand(it)»
 			boolean isExtendedType = false;
+			«ENDIF»
 			if(requestElementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
 				baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.getClosestDiagramType(requestElementType);
 				if(baseElementType != null) {
+					«IF aspectsUtils_qvto.containsCreateStartLinkCommand(it)»
 					isExtendedType = true;
+					«ENDIF»
 				} else {
 					// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 					baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.findClosestNonExtendedElementType((org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType)requestElementType);
+					«IF aspectsUtils_qvto.containsCreateStartLinkCommand(it)»
 					isExtendedType = true;
+					«ENDIF»
 				}
 			}
 			«FOR l : getAllPotentialLinks(it)»
@@ -102,15 +109,21 @@ import xpt.providers.ElementTypes
 				return null;
 			}
 			org.eclipse.gmf.runtime.emf.type.core.IElementType baseElementType = requestElementType;
+			«IF aspectsUtils_qvto.containsCreateCompleteLinkCommand(it)»
 			boolean isExtendedType = false;
+			«ENDIF»
 			if(requestElementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
 				baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.getClosestDiagramType(requestElementType);
 				if(baseElementType != null) {
+					«IF aspectsUtils_qvto.containsCreateCompleteLinkCommand(it)»
 					isExtendedType = true;
+					«ENDIF»
 				} else {
 					// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
 					baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.findClosestNonExtendedElementType((org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType)requestElementType);
+					«IF aspectsUtils_qvto.containsCreateCompleteLinkCommand(it)»
 					isExtendedType = true;
+					«ENDIF»
 				}
 			}	
 			«FOR l : getAllPotentialLinks(it)»
@@ -164,15 +177,19 @@ import xpt.providers.ElementTypes
 		«generatedMemberComment(
 			'Returns command to reorient EClass based link. New link target or source\n' + 'should be the domain model element associated with this node.\n'
 		)»
-		protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(
-				org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest req) {
-			switch (getVisualID(req)) {
-			«FOR rLink : getReroutableTypeLinks(it)»
-				«reorientLinkCommandWithService(rLink)»
-			«ENDFOR»
-			}
-			return super.getReorientRelationshipCommand(req);
-			}
+			protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(
+					org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest req) {
+				switch (getVisualID(req)) {
+					«FOR link : getReroutableTypeLinks(it)»
+					«reorientLinkCommandWithService(link) »
+					«ENDFOR»
+					«callReorientCommand(it)»
+					«FOR link : getReroutableTypeLinks(it)»
+					«reorientLinkCommandWithoutService(link) »
+					«ENDFOR»
+				}
+				return super.getReorientRelationshipCommand(req);
+				}
 		'''
 
 	//This function writes only  : "case myLinkEditPart.VISUAL_ID:" 
@@ -204,7 +221,7 @@ import xpt.providers.ElementTypes
 
 	// This function writes the code for the Links which uses their own ReorientCommand (the initial code)
 	def reorientLinkCommandWithoutService(GenLink it) '''
-		«IF it.eResource.allContents.filter(EditPartUsingReorientService).filter[v|v.genView.contains(it)].size != 0»
+		«IF it.eResource.allContents.filter(EditPartUsingReorientService).filter[v|v.genView.contains(it)].size == 0»
 			«reorientLinkCommand(it)» 
 		«ENDIF»
 	'''

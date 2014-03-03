@@ -12,11 +12,13 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Connector;
@@ -41,65 +43,76 @@ public class CustomContextLinkCreateCommand extends ContextLinkCreateCommand {
 
 	@Override
 	public boolean canExecute() {
-		if(source == null && target == null) {
+		if (source == null && target == null) {
 			return false;
 		}
-		if(source != null && false == source instanceof Constraint) {
+		if (source != null && false == source instanceof Constraint) {
 			return false;
 		}
-		if(target != null && false == target instanceof Namespace) {
+		if (target != null && false == target instanceof Namespace) {
 			return false;
 		}
-		if(getSource() == null) {
+		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
-		if(getSource() != null) {
+		if (getSource() != null) {
 			// the context is already set
-			if(getSource().getContext() != null && target != null && getSource().getContext() != target) {
+			if (getSource().getContext() != null && target != null && getSource().getContext() != target) {
 				return false;
 			}
 		}
 		View viewSource = findView(source);
-		
-		if(viewSource != null && source instanceof Constraint) {
+
+		if (viewSource != null && source instanceof Constraint) {
 			View viewTarget = findView(target);
-			List sourceConnections = ViewUtil.getSourceConnections(viewSource);
-			
-			for(Object connector : sourceConnections) {
-				if(!(connector instanceof Connector)) {
+
+			List<ConnectionEditPart> sourceConnections = new ArrayList<ConnectionEditPart>();
+			for (Object connection : ViewUtil.getSourceConnections(viewSource)) {
+				if (connection instanceof ConnectionEditPart)
+				{
+					sourceConnections.add((ConnectionEditPart) connection);
+				}
+			}
+
+			for (Object connector : sourceConnections) {
+				if (!(connector instanceof Connector)) {
 					continue;
 				}
-				Edge edge = (Edge)connector;
+				Edge edge = (Edge) connector;
 
-				if(("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
-					if(viewTarget == edge.getTarget()) {
+				if (("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
+					if (viewTarget == edge.getTarget()) {
 						// the context link is already
-						//  drawn between the Constraint and the NamedElement
+						// drawn between the Constraint and the NamedElement
 						return false;
 					}
 				}
 			}
 		}
-		if(resolveTargetNamespace() != null && (resolveTargetNamespace().getOwnedRules().contains(resolveTargetNamespace()))) {
-				
+		if (resolveTargetNamespace() != null && (resolveTargetNamespace().getOwnedRules().contains(resolveTargetNamespace()))) {
+
 			return false;
 		}
 		return true;
 	}
 
 	private View findView(EObject element) {
-		if(element == null) {
+		if (element == null) {
 			return null;
 		}
 		Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(element);
-		for(Setting ref : settings) {
-			if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
-				View view = (View)ref.getEObject();
-				if(view != null) {
+		for (Setting ref : settings) {
+			if (NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
+				View view = (View) ref.getEObject();
+				if (view != null) {
 					return view;
 				}
 			}
 		}
 		return null;
+	}
+
+	protected Namespace resolveTargetNamespace() {
+		return (Namespace) target;
 	}
 }

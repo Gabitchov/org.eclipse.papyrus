@@ -12,19 +12,10 @@
  */
 package utils
 
-
 import com.google.inject.Singleton
-import org.eclipse.papyrus.codegen.utils.PapyrusGenConstants
 
 @Singleton class PrefsConstant_qvto {
 
-	def String getPreferenceConstantFileName() {
-		return PapyrusGenConstants.getIDiagramPreferenceConstantJavaClassName()
-	}
-
-	def String getDiagramPreferencePageFileName(String diagramName) {
-		return PapyrusGenConstants.getDiagramPreferencePageJavaClassName(diagramName)
-	}
 
 	def String getDiagramPreferencePageCategory() {
 		return "org.eclipse.papyrus.infra.gmfdiag.preferences.diagrams"

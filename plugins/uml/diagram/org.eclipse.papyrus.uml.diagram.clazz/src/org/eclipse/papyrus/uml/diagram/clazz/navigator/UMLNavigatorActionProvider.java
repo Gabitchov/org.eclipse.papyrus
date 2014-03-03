@@ -1,15 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.navigator;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -59,9 +59,9 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 	 */
 	public void init(ICommonActionExtensionSite aSite) {
 		super.init(aSite);
-		if(aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
+		if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
 			myContribute = true;
-			makeActions((ICommonViewerWorkbenchSite)aSite.getViewSite());
+			makeActions((ICommonViewerWorkbenchSite) aSite.getViewSite());
 		} else {
 			myContribute = false;
 		}
@@ -78,12 +78,12 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 	 * @generated
 	 */
 	public void fillActionBars(IActionBars actionBars) {
-		if(!myContribute) {
+		if (!myContribute) {
 			return;
 		}
-		IStructuredSelection selection = (IStructuredSelection)getContext().getSelection();
+		IStructuredSelection selection = (IStructuredSelection) getContext().getSelection();
 		myOpenDiagramAction.selectionChanged(selection);
-		if(myOpenDiagramAction.isEnabled()) {
+		if (myOpenDiagramAction.isEnabled()) {
 			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN, myOpenDiagramAction);
 		}
 	}
@@ -122,16 +122,16 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 		 */
 		public final void selectionChanged(IStructuredSelection selection) {
 			myDiagram = null;
-			if(selection.size() == 1) {
+			if (selection.size() == 1) {
 				Object selectedElement = selection.getFirstElement();
-				if(selectedElement instanceof UMLNavigatorItem) {
-					selectedElement = ((UMLNavigatorItem)selectedElement).getView();
-				} else if(selectedElement instanceof IAdaptable) {
-					selectedElement = ((IAdaptable)selectedElement).getAdapter(View.class);
+				if (selectedElement instanceof UMLNavigatorItem) {
+					selectedElement = ((UMLNavigatorItem) selectedElement).getView();
+				} else if (selectedElement instanceof IAdaptable) {
+					selectedElement = ((IAdaptable) selectedElement).getAdapter(View.class);
 				}
-				if(selectedElement instanceof Diagram) {
-					Diagram diagram = (Diagram)selectedElement;
-					if(ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(diagram))) {
+				if (selectedElement instanceof Diagram) {
+					Diagram diagram = (Diagram) selectedElement;
+					if (ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(diagram))) {
 						myDiagram = diagram;
 					}
 				}
@@ -143,9 +143,10 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 		 * @generated
 		 */
 		public void run() {
-			if(myDiagram == null || myDiagram.eResource() == null) {
+			if (myDiagram == null || myDiagram.eResource() == null) {
 				return;
 			}
+
 			IEditorInput editorInput = getEditorInput(myDiagram);
 			IWorkbenchPage page = myViewerSite.getPage();
 			try {
@@ -160,11 +161,11 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 		 */
 		private static IEditorInput getEditorInput(Diagram diagram) {
 			Resource diagramResource = diagram.eResource();
-			for(EObject nextEObject : diagramResource.getContents()) {
-				if(nextEObject == diagram) {
+			for (EObject nextEObject : diagramResource.getContents()) {
+				if (nextEObject == diagram) {
 					return new FileEditorInput(WorkspaceSynchronizer.getFile(diagramResource));
 				}
-				if(nextEObject instanceof Diagram) {
+				if (nextEObject instanceof Diagram) {
 					break;
 				}
 			}
@@ -173,5 +174,7 @@ public class UMLNavigatorActionProvider extends CommonActionProvider {
 			IEditorInput editorInput = new URIEditorInput(uri, editorName);
 			return editorInput;
 		}
+
 	}
+
 }

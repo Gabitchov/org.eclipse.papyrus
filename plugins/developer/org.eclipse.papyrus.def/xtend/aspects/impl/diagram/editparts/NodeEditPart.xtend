@@ -36,10 +36,12 @@ import xpt.diagram.editparts.Utils_qvto
 
 @Singleton class NodeEditPart extends impl.diagram.editparts.NodeEditPart {
 	@Inject extension Common;
-	@Inject extension Utils_qvto;
+
 	@Inject extension EditPartsUtils_qvto;
 	@Inject extension  VisualIDRegistry;
 	
+	@Inject extension Utils_qvto;
+	@Inject extension xpt.diagram.Utils_qvto;
 	@Inject EditPartFactory xptEditPartFactory;
 		@Inject impl.diagram.editparts.TextAware xptTextAware;
 	
@@ -117,6 +119,24 @@ override addFixedChild (GenNode it)'''
 	}
 '''
 
+	override def setLineWidth(GenNode it) '''
+		«generatedMemberComment»
+		protected void setLineWidth(int width) {
+			if (primaryShape instanceof org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) {	
+				((org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) primaryShape).setLineWidth(«IF getDiagram().isPixelMapMode()»width«ELSE»getMapMode().DPtoLP(width)«ENDIF»);
+			}
+		}
+	'''
+	
+		override def setLineStyle(GenNode it) '''
+		«generatedMemberComment»
+		protected void setLineType(int style) {
+			if (primaryShape instanceof org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) {	
+				((org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure) primaryShape).setLineStyle(style);
+			}
+		}
+	'''
+
 override createNodePlate (GenNode it)'''
 	«generatedMemberComment»
 	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
@@ -179,6 +199,17 @@ def genSpecificLocator(SpecificLocator it, GenChildSideAffixedNode child)'''
 		}
 		
 '''
+
+	override def borderItemSelectionEP(GenNode it) '''
+	new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy() {
+	
+		protected java.util.List<?> createSelectionHandles() {
+			org.eclipse.gef.handles.MoveHandle mh = new org.eclipse.gef.handles.MoveHandle((org.eclipse.gef.GraphicalEditPart) getHost());
+			mh.setBorder(null);
+			return java.util.Collections.singletonList(mh);
+		}
+	}
+	'''
 
 //BEGIN PapyrusGencode
 //Overwrite an existing method to set the preference value in the editpart

@@ -30,7 +30,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
@@ -91,8 +91,5 @@ Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagra
- mEditorPlugin
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.clazz;singleton:=
- true
-
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.clazz; singleton:=true

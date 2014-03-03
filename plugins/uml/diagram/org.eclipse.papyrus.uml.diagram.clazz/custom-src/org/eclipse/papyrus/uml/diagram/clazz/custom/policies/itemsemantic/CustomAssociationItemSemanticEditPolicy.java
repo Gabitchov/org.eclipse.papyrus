@@ -47,20 +47,20 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 	 * {@inheritDoc}
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Association_4001 == req.getElementType()) {
+		if (UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
+		if (UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+		if (UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
 	}
 
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		switch(getVisualID(req)) {
+		switch (getVisualID(req)) {
 		case AssociationClassLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		case AssociationEditPart.VISUAL_ID:
@@ -76,22 +76,21 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 	 */
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		EObject selectedEObject = req.getElementToDestroy();
 		CompoundCommand cmd = new CompoundCommand();
 		List<EObject> todestroy = new ArrayList<EObject>();
 		EObject mainObjectToDelete = req.getElementToDestroy();
 		todestroy.add(mainObjectToDelete);
-		if(mainObjectToDelete instanceof Association) {
+		if (mainObjectToDelete instanceof Association) {
 			// check end properties. If they do not belong to the association, they should be deleted also
-			Association association = (Association)mainObjectToDelete;
-			for(Property end : association.getMemberEnds()) {
-				if(end.getOwner() != association) {
+			Association association = (Association) mainObjectToDelete;
+			for (Property end : association.getMemberEnds()) {
+				if (end.getOwner() != association) {
 					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(end);
 					DestroyElementRequest Destructreq = new DestroyElementRequest(end, false);
-					if(provider != null) {
+					if (provider != null) {
 						// Retrieve delete command from the Element Edit service
 						ICommand deleteCommand = provider.getEditCommand(Destructreq);
-						if(deleteCommand != null) {
+						if (deleteCommand != null) {
 							cmd.add(new ICommandProxy(deleteCommand));
 						}
 					}
@@ -107,13 +106,13 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 	 * {@inheritDoc}
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Association_4001 == req.getElementType()) {
+		if (UMLElementTypes.Association_4001 == req.getElementType()) {
 			return getGEFWrapper(new org.eclipse.papyrus.uml.diagram.clazz.custom.command.CAssociationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
+		if (UMLElementTypes.AssociationClass_4017 == req.getElementType()) {
 			return getGEFWrapper(new CAssociationClassCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
+		if (UMLElementTypes.TemplateBinding_4015 == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getStartCreateRelationshipCommand(req);

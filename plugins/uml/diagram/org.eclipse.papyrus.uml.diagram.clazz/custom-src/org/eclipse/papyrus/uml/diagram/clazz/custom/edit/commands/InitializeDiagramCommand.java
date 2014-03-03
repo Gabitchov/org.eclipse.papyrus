@@ -75,17 +75,17 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// To load visualIDRegistry
 		host().refresh();
-		List createdViews = new LinkedList();
+		List<Object> createdViews = new LinkedList<Object>();
 		createdViews.addAll(populateSemanticNodes());
-		if(createdViews.size() > 0) {
-			RestoreRelatedLinksCommand restoreRelatedLinksCommand = new RestoreRelatedLinksCommand(((DiagramEditPart)getHost()), createdViews);
+		if (createdViews.size() > 0) {
+			RestoreRelatedLinksCommand restoreRelatedLinksCommand = new RestoreRelatedLinksCommand(((DiagramEditPart) getHost()), createdViews);
 			CommandUtil.executeCommand(new ICommandProxy(restoreRelatedLinksCommand), host());
 			// DeferredLayoutCommand layoutCmd = new
 			// DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
 			// CommandUtils.executeCommand(new ICommandProxy(layoutCmd), host());
 		}
 		// Make views immutable
-		List viewAdapters = prepareAdapterList(createdViews);
+		List<Object> viewAdapters = prepareAdapterList(createdViews);
 		final Command immutable = SetViewMutabilityCommand.makeImmutable(viewAdapters);
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 
@@ -101,30 +101,30 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	 * forwarded to the target. Forwards the supplied request to the editpart's <code>host</code>.
 	 * 
 	 * @param request
-	 *        a <code>CreareConnecgtorViewRequest</code>
+	 *            a <code>CreareConnecgtorViewRequest</code>
 	 * @return Command to create the views in the request
 	 */
 	protected Command getCreateViewCommand(CreateRequest request) {
-		if(request instanceof CreateConnectionViewRequest) {
-			CreateConnectionViewRequest ccr = (CreateConnectionViewRequest)request;
+		if (request instanceof CreateConnectionViewRequest) {
+			CreateConnectionViewRequest ccr = (CreateConnectionViewRequest) request;
 			EditPart ep = ccr.getTargetEditPart() == null ? ccr.getSourceEditPart() : ccr.getTargetEditPart();
 			return ep.getCommand(request);
 		}
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 		Command cmd = host().getCommand(request);
-		if(cmd == null) {
+		if (cmd == null) {
 			assert request instanceof CreateViewRequest;
-			Iterator descriptors = ((CreateViewRequest)request).getViewDescriptors().iterator();
-			while(descriptors.hasNext()) {
-				ViewDescriptor descriptor = (ViewDescriptor)descriptors.next();
+			Iterator<? extends ViewDescriptor> descriptors = ((CreateViewRequest) request).getViewDescriptors().iterator();
+			while (descriptors.hasNext()) {
+				ViewDescriptor descriptor = (ViewDescriptor) descriptors.next();
 				ICommand createCommand = getCreateViewCommand(descriptor);
 				cc.compose(createCommand);
 			}
 		} else {
 			cc.compose(new CommandProxy(cmd));
-			Iterator descriptors = ((CreateViewRequest)request).getViewDescriptors().iterator();
-			while(descriptors.hasNext()) {
-				ViewDescriptor descriptor = (ViewDescriptor)descriptors.next();
+			Iterator<? extends ViewDescriptor> descriptors = ((CreateViewRequest) request).getViewDescriptors().iterator();
+			while (descriptors.hasNext()) {
+				ViewDescriptor descriptor = (ViewDescriptor) descriptors.next();
 				cc.compose(new CommandProxy(SetViewMutabilityCommand.makeMutable(descriptor)));
 			}
 		}
@@ -136,8 +136,8 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	 * @return ICommand to create a view given a descriptor
 	 */
 	protected ICommand getCreateViewCommand(ViewDescriptor descriptor) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		CreateCommand createCommand = new CreateCommand(editingDomain, descriptor, (View)getHost().getModel());
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		CreateCommand createCommand = new CreateCommand(editingDomain, descriptor, (View) getHost().getModel());
 		CompositeCommand cmd = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 		cmd.compose(createCommand);
 		cmd.compose(new CommandProxy(SetViewMutabilityCommand.makeMutable(descriptor)));
@@ -148,10 +148,10 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	 * Return a create view request. The request's location is set to {@link ICanonicalShapeCompartmentLayout#UNDEFINED}.
 	 * 
 	 * @param descriptors
-	 *        a {@link CreateViewRequest.ViewDescriptor} list.
+	 *            a {@link CreateViewRequest.ViewDescriptor} list.
 	 * @return a create request
 	 */
-	protected CreateViewRequest getCreateViewRequest(List descriptors) {
+	protected CreateViewRequest getCreateViewRequest(List<ViewDescriptor> descriptors) {
 		CreateViewRequest cvr = new CreateViewRequest(descriptors);
 		Point loc = ICanonicalShapeCompartmentLayout.UNDEFINED.getLocation();
 		cvr.setLocation(loc);
@@ -162,7 +162,7 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	 * @return the current diagram
 	 */
 	private Diagram getDiagram() {
-		return ((View)getHost().getModel()).getDiagram();
+		return ((View) getHost().getModel()).getDiagram();
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	 * Convenience method to create a view descriptor. Will call {@link #getViewDescriptor(IAdaptable, Class, String, int)}
 	 * 
 	 * @param element
-	 *        semantic element.
+	 *            semantic element.
 	 * @return view descriptor
 	 */
 	protected ViewDescriptor getViewDescriptor(EObject element) {
@@ -193,16 +193,16 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	 * Return a view descriptor.
 	 * 
 	 * @param elementAdapter
-	 *        semantic element
+	 *            semantic element
 	 * @param viewKind
-	 *        type of view to create
+	 *            type of view to create
 	 * @param hint
-	 *        factory hint
+	 *            factory hint
 	 * @param index
-	 *        index
+	 *            index
 	 * @return a create <i>non-persisted</i> view descriptor
 	 */
-	protected ViewDescriptor getViewDescriptor(IAdaptable elementAdapter, Class viewKind, String hint, int index) {
+	protected ViewDescriptor getViewDescriptor(IAdaptable elementAdapter, Class<?> viewKind, String hint, int index) {
 		return new ViewDescriptor(elementAdapter, viewKind, hint, index, false, host().getDiagramPreferencesHint());
 	}
 
@@ -215,45 +215,49 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 
 	protected List<ViewDescriptor> populateSemanticNodes() {
 		List<ViewDescriptor> descriptors = new ArrayList<ViewDescriptor>();
-		View viewObject = (View)getHost().getModel();
+		View viewObject = (View) getHost().getModel();
 		EObject container = getDiagram().getElement();
-		if(container instanceof Package) {
-			Package rootPackage = (Package)container;
+		if (container instanceof Package) {
+			Package rootPackage = (Package) container;
 			Iterator<PackageableElement> it = rootPackage.getPackagedElements().iterator();
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				PackageableElement element = it.next();
-				if(!(element instanceof AssociationClass)) {
+				if (!(element instanceof AssociationClass)) {
 					int visualID = UMLVisualIDRegistry.getNodeVisualID(viewObject, element);
-					if(visualID != -1) {
+					if (visualID != -1) {
 						ViewDescriptor descriptor = getViewDescriptor(element);
 						descriptors.add(descriptor);
 					}
 				}
 			}
 		}
-		if(!descriptors.isEmpty()) {
+		if (!descriptors.isEmpty()) {
 			// create the request
 			CreateViewRequest request = getCreateViewRequest(descriptors);
 			// get the command and execute it.
 			Command cmd = getCreateViewCommand(request);
-			if(cmd != null && cmd.canExecute()) {
+			if (cmd != null && cmd.canExecute()) {
 				SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
 				CommandUtil.executeCommand(cmd, host());
-				return (List)request.getNewObject();
+
+				@SuppressWarnings("unchecked")
+				List<ViewDescriptor> result = (List<ViewDescriptor>) request.getNewObject();
+				return result;
+
 			}
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
-	private List prepareAdapterList(List createdViews) {
-		List viewAdapters = new ArrayList();
+	private List<Object> prepareAdapterList(List<Object> createdViews) {
+		List<Object> viewAdapters = new ArrayList<Object>();
 		viewAdapters.add(host());
-		ListIterator li = createdViews.listIterator();
-		while(li.hasNext()) {
+		ListIterator<Object> li = createdViews.listIterator();
+		while (li.hasNext()) {
 			Object obj = li.next();
-			if(obj != null) {
-				if(!(obj instanceof IAdaptable) && obj instanceof EObject) {
-					viewAdapters.add(new EObjectAdapter((EObject)obj));
+			if (obj != null) {
+				if (!(obj instanceof IAdaptable) && obj instanceof EObject) {
+					viewAdapters.add(new EObjectAdapter((EObject) obj));
 				} else {
 					viewAdapters.add(obj);
 				}

@@ -40,17 +40,17 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CreateAssociationClassSupplement extends SupplementCommand {
 
-	private CreateRelationshipRequest request;
+	// private CreateRelationshipRequest request;
 
 	/**
 	 * this is the constructor of the supplement command for the association
 	 * 
 	 * @param container
-	 *        the container of the association (package)
+	 *            the container of the association (package)
 	 * @param source
-	 *        the source of the association (Type)
+	 *            the source of the association (Type)
 	 * @param target
-	 *        the target of the association (Type)
+	 *            the target of the association (Type)
 	 */
 	public CreateAssociationClassSupplement(EObject container, EObject source, EObject target) {
 		super(container, source, target);
@@ -91,9 +91,9 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		}
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
-		targetProperty.setType((Type)getTarget());
-		targetProperty.setName(((Type)getTarget()).getName().toLowerCase());
+		Property targetProperty = (Property) c.getCommandResult().getReturnValue();
+		targetProperty.setType((Type) getTarget());
+		targetProperty.setName(((Type) getTarget()).getName().toLowerCase());
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
 		// create source property
@@ -107,29 +107,29 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		}
 		assert (c.getCommandResult() == null);
 		assert (c.getCommandResult().getReturnValue() == null);
-		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();
-		sourceProperty.setType((Type)getSource());
-		sourceProperty.setName(((Type)getSource()).getName().toLowerCase());
+		Property sourceProperty = (Property) c.getCommandResult().getReturnValue();
+		sourceProperty.setType((Type) getSource());
+		sourceProperty.setName(((Type) getSource()).getName().toLowerCase());
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
-		if((memberEnds.indexOf(((Property)sourceProperty)) >= 0)) {
-			association.getMemberEnds().move(0, ((Property)sourceProperty));
+		if ((memberEnds.indexOf(((Property) sourceProperty)) >= 0)) {
+			association.getMemberEnds().move(0, ((Property) sourceProperty));
 		} else {
-			association.getMemberEnds().add(0, ((Property)sourceProperty));
+			association.getMemberEnds().add(0, ((Property) sourceProperty));
 		}
-		if((memberEnds.indexOf(((Property)targetProperty)) >= 0)) {
-			association.getMemberEnds().move(1, ((Property)targetProperty));
+		if ((memberEnds.indexOf(((Property) targetProperty)) >= 0)) {
+			association.getMemberEnds().move(1, ((Property) targetProperty));
 		} else {
-			association.getMemberEnds().add(1, ((Property)targetProperty));
+			association.getMemberEnds().add(1, ((Property) targetProperty));
 		}
-		((Package)getContainer()).getPackagedElements().add(association);
+		((Package) getContainer()).getPackagedElements().add(association);
 		ElementInitializers.getInstance().init_AssociationClass_2013(association);
 		// ////////////////////////////////////////////////////////////////////
 		return association;
 	}
 
 	public void setRequest(CreateRelationshipRequest request) {
-		this.request = request;
+		// this.request = request;
 	}
 }

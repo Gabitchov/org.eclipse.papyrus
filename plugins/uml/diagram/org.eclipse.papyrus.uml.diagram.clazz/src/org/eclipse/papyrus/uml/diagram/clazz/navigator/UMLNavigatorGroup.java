@@ -1,15 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.navigator;
 
 import java.util.Collection;
@@ -33,7 +33,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	private Collection myChildren = new LinkedList();
+	private Collection<java.lang.Object> myChildren = new LinkedList<java.lang.Object>();
 
 	/**
 	 * @generated
@@ -68,7 +68,7 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	public void addChildren(Collection children) {
+	public void addChildren(Collection<java.lang.Object> children) {
 		myChildren.addAll(children);
 	}
 
@@ -90,9 +90,9 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if(obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup) {
-			org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup)obj;
-			if(getGroupName().equals(anotherGroup.getGroupName())) {
+		if (obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup) {
+			org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup anotherGroup = (org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorGroup) obj;
+			if (getGroupName().equals(anotherGroup.getGroupName())) {
 				return getParent().equals(anotherGroup.getParent());
 			}
 		}
@@ -105,4 +105,5 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}
+
 }

@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.helper.advice;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -51,44 +50,43 @@ public class ConstraintHelperAdvice extends AbstractEditHelperAdvice {
 	protected ICommand getAfterSetCommand(SetRequest request) {
 		EObject element = request.getElementToEdit();
 		View view = findView(element);
-		if(view != null) {
-			if(element instanceof Constraint) {
+		if (view != null) {
+			if (element instanceof Constraint) {
 				EStructuralFeature feature = request.getFeature();
 				final Object value = request.getValue();
 				Edge edgeToDestroy = null;
 				Element targetContextElement = null;
-				if(UMLPackage.eINSTANCE.getConstraint_Context().equals(feature)) {
-					Namespace constraintContext = ((Constraint)element).getContext();
-					if(constraintContext == value) {
+				if (UMLPackage.eINSTANCE.getConstraint_Context().equals(feature)) {
+					Namespace constraintContext = ((Constraint) element).getContext();
+					if (constraintContext == value) {
 						// if the new value to set is the already context value
 						// then do noting
 						return null;
 					}
 					targetContextElement = constraintContext;
-					if(targetContextElement != null) {
+					if (targetContextElement != null) {
 						View target = findView(targetContextElement);
-						List sourceConnections = ViewUtil.getSourceConnections(view);
-						for(Object connector : sourceConnections) {
-							if(!(connector instanceof Connector)) {
+						for (Object connector : ViewUtil.getSourceConnections(view)) {
+							if (!(connector instanceof Connector)) {
 								continue;
 							}
-							Edge edge = (Edge)connector;
-							if(("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
-								if(target == edge.getTarget()) {
+							Edge edge = (Edge) connector;
+							if (("" + ContextLinkEditPart.VISUAL_ID).equals(edge.getType())) {
+								if (target == edge.getTarget()) {
 									edgeToDestroy = edge;
 								}
 							}
 						}
 					}
-					if(edgeToDestroy != null) {
+					if (edgeToDestroy != null) {
 						TransactionalEditingDomain editingDomain = request.getEditingDomain();
 						CompositeCommand command = new CompositeCommand("Clear context links");
 						DestroyElementRequest destroy = new DestroyElementRequest(editingDomain, edgeToDestroy, false);
 						Object eHelperContext = destroy.getEditHelperContext();
 						IElementType context = ElementTypeRegistry.getInstance().getElementType(eHelperContext);
-						if(context != null) {
+						if (context != null) {
 							ICommand result = context.getEditCommand(destroy);
-							if(result != null) {
+							if (result != null) {
 								command.add(result);
 							}
 						}
@@ -101,14 +99,14 @@ public class ConstraintHelperAdvice extends AbstractEditHelperAdvice {
 	}
 
 	private View findView(EObject element) {
-		if(element == null) {
+		if (element == null) {
 			return null;
 		}
 		Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(element);
-		for(Setting ref : settings) {
-			if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
-				View view = (View)ref.getEObject();
-				if(view != null) {
+		for (Setting ref : settings) {
+			if (NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
+				View view = (View) ref.getEObject();
+				if (view != null) {
 					return view;
 				}
 			}

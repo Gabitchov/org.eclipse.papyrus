@@ -1,15 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.navigator;
 
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -27,16 +27,19 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[]{ View.class, EObject.class };
+		@SuppressWarnings("rawtypes")
+		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
+			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem)adaptableObject).getView();
+				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
+					return ((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem) adaptableObject).getView();
 				}
 				return null;
 			}
 
+			@SuppressWarnings("rawtypes")
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}
@@ -80,8 +83,8 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	 * @generated
 	 */
 	public boolean equals(Object obj) {
-		if(obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem) {
-			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem)obj).getView()));
+		if (obj instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem) {
+			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLNavigatorItem) obj).getView()));
 		}
 		return super.equals(obj);
 	}
@@ -92,4 +95,5 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
 	}
+
 }

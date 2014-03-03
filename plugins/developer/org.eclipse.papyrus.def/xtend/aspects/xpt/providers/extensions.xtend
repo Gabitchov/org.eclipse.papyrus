@@ -76,7 +76,7 @@ import xpt.providers.ShortcutsDecoratorProvider
 		«tripleSpace(2)»</editpartProvider>
 		«tripleSpace(1)»</extension>
 		
-		«modelingAssistantProvider(it)»
+«««		«modelingAssistantProvider(it)»
 		
 		«tripleSpace(1)»<extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
 		«tripleSpace(2)»«xmlGeneratedTag»
@@ -138,25 +138,25 @@ import xpt.providers.ShortcutsDecoratorProvider
 		«tripleSpace(1)»</extension>
 	'''
 
-	override modelingAssistantProvider(GenDiagram it) '''
-	
-	   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
-      «xmlGeneratedTag»
-	      <modelingAssistantProvider class="«getModelingAssistantProviderQualifiedClassName()»">
-	         <Priority name="«modelingAssistantProviderPriority»"/>
-	         <object class="«getEditPartQualifiedClassName()»" id="«getUniqueIdentifier()»"/>
-	«FOR n :topLevelNodes»
-	         <object class="«n.getEditPartQualifiedClassName()»" id="«n.getUniqueIdentifier()»"/>
-	«ENDFOR»
-	«FOR n:childNodes»
-	         <object class="«n.getEditPartQualifiedClassName()»" id="«n.getUniqueIdentifier()»"/>
-	«ENDFOR»
-	         <context elements="«getUniqueIdentifier()»,«FOR n : topLevelNodes SEPARATOR ','»«n.getUniqueIdentifier()»«ENDFOR»,«FOR n : childNodes SEPARATOR ','»«n.getUniqueIdentifier()»«ENDFOR»"/>
-	      </modelingAssistantProvider>
-	   </extension>
-	
-
-	'''
+//	override modelingAssistantProvider(GenDiagram it) '''
+//	
+//	   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+//      «xmlGeneratedTag»
+//	      <modelingAssistantProvider class="«getModelingAssistantProviderQualifiedClassName()»">
+//	         <Priority name="«modelingAssistantProviderPriority»"/>
+//	         <object class="«getEditPartQualifiedClassName()»" id="«getUniqueIdentifier()»"/>
+//	«FOR n :topLevelNodes»
+//	         <object class="«n.getEditPartQualifiedClassName()»" id="«n.getUniqueIdentifier()»"/>
+//	«ENDFOR»
+//	«FOR n:childNodes»
+//	         <object class="«n.getEditPartQualifiedClassName()»" id="«n.getUniqueIdentifier()»"/>
+//	«ENDFOR»
+//	         <context elements="«getUniqueIdentifier()»,«FOR n : topLevelNodes SEPARATOR ','»«n.getUniqueIdentifier()»«ENDFOR»,«FOR n : childNodes SEPARATOR ','»«n.getUniqueIdentifier()»«ENDFOR»"/>
+//	      </modelingAssistantProvider>
+//	   </extension>
+//	
+//
+//	'''
 
 
 

@@ -1,15 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -63,22 +63,21 @@ public class AbstractionCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean canExecute() {
-		if(source == null && target == null) {
+		if (source == null && target == null) {
 			return false;
 		}
-		if(source != null && false == source instanceof NamedElement) {
+		if (source != null && false == source instanceof NamedElement) {
 			return false;
 		}
-		if(target != null && false == target instanceof NamedElement) {
+		if (target != null && false == target instanceof NamedElement) {
 			return false;
 		}
-		if(getSource() == null) {
+		if (getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		if(getContainer() == null) {
+		if (getContainer() == null) {
 			return false;
 		}
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateAbstraction_4006(getContainer(), getSource(), getTarget());
@@ -87,33 +86,37 @@ public class AbstractionCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
+
 		Abstraction newElement = UMLFactory.eINSTANCE.createAbstraction();
-		getContainer().getPackagedElements().add(newElement);
-		newElement.getClients().add(getSource());
-		newElement.getSuppliers().add(getTarget());
+		getContainer().getPackagedElements()
+				.add(newElement);
+		newElement.getClients()
+				.add(getSource());
+		newElement.getSuppliers()
+				.add(getTarget());
 		ElementInitializers.getInstance().init_Abstraction_4006(newElement);
 		doConfigure(newElement, monitor, info);
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
+
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void doConfigure(Abstraction newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
+		IElementType elementType = ((CreateElementRequest) getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());
+		configureRequest.setClientContext(((CreateElementRequest) getRequest()).getClientContext());
 		configureRequest.addParameters(getRequest().getParameters());
 		configureRequest.setParameter(CreateRelationshipRequest.SOURCE, getSource());
 		configureRequest.setParameter(CreateRelationshipRequest.TARGET, getTarget());
 		ICommand configureCommand = elementType.getEditCommand(configureRequest);
-		if(configureCommand != null && configureCommand.canExecute()) {
+		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
@@ -121,7 +124,6 @@ public class AbstractionCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}
@@ -130,14 +132,14 @@ public class AbstractionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected NamedElement getSource() {
-		return (NamedElement)source;
+		return (NamedElement) source;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getTarget() {
-		return (NamedElement)target;
+		return (NamedElement) target;
 	}
 
 	/**
@@ -150,18 +152,18 @@ public class AbstractionCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
-	 * 
 	 * @generated
 	 */
 	protected Package deduceContainer(EObject source, EObject target) {
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null; element = element.eContainer()) {
-			if(element instanceof Package) {
-				return (Package)element;
+		for (EObject element = source; element != null; element = element.eContainer()) {
+			if (element instanceof Package) {
+				return (Package) element;
 			}
 		}
 		return null;
 	}
+
 }

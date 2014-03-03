@@ -233,7 +233,7 @@ override labelSetterFigureClassName (Viewmap it)'''
 
 override getModelChildren (GenCommonBase it)'''
 	«generatedMemberComment»
-	protected java.util.List getModelChildren() {
+	protected java.util.List<?> getModelChildren() {
 		return java.util.Collections.EMPTY_LIST;
 	}
 '''
@@ -360,7 +360,7 @@ override getEditTextValidator (GenCommonBase it)'''
 					try {
 						org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus valid =
 							(org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus) getEditingDomain().runExclusive(
-								new org.eclipse.emf.transaction.RunnableWithResult.Impl() {
+								new org.eclipse.emf.transaction.RunnableWithResult.Impl<java.lang.Object>() {
 
 							public void run() {
 								setResult(parser.isValidEditString(new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(element), (String) value));
@@ -768,7 +768,7 @@ def updateExtendedEditorConfiguration (GenCommonBase it)'''
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(
 				org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
+		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
 			configuration = org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement()
 					.eClass().getInstanceClassName());
 		} else if (org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {

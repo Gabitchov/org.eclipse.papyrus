@@ -41,7 +41,7 @@ public class NamedElementHelper {
 	 * Generic method that returns a new unique name within a namespace.
 	 * 
 	 * @param umlParent
-	 *        the parent of the element to create
+	 *            the parent of the element to create
 	 * 
 	 * @return a distinguisable name within the namespace of the umlParent
 	 */
@@ -50,19 +50,19 @@ public class NamedElementHelper {
 		String name = ""; //$NON-NLS-1$
 		boolean found = false;
 		// i <10000: avoid infinite loops
-		for(int i = 0; i < 10001; i++) {
+		for (int i = 0; i < 10001; i++) {
 			found = false;
 			name = getBaseString() + i;
-			Iterator it = umlParent.getOwnedElements().iterator();
-			while(it.hasNext() && !found) {
+			Iterator<Element> it = umlParent.getOwnedElements().iterator();
+			while (it.hasNext() && !found) {
 				Object o = it.next();
-				if(o instanceof NamedElement) {
-					if(name.equals(((NamedElement)o).getName())) {
+				if (o instanceof NamedElement) {
+					if (name.equals(((NamedElement) o).getName())) {
 						found = true;
 					}
 				}
 			}
-			if(!found) {
+			if (!found) {
 				return name;
 			}
 		}
@@ -73,7 +73,7 @@ public class NamedElementHelper {
 	 * set the base string for the name
 	 * 
 	 * @param baseString
-	 *        a string that is the prefix
+	 *            a string that is the prefix
 	 */
 	public void setBaseString(String baseString) {
 		this.baseString = baseString;

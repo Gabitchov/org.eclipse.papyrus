@@ -1,15 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
 import org.eclipse.draw2d.Connection;
@@ -27,7 +27,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.AssociationClassLinkI
 /**
  * @generated
  */
-public class AssociationClassLinkEditPart extends AbstractAssociationEditPart implements ITreeBranchEditPart {
+public class AssociationClassLinkEditPart extends AbstractAssociationEditPart
+		implements ITreeBranchEditPart
+{
 
 	/**
 	 * @generated
@@ -55,12 +57,14 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationClassRoleSourceEditPart) {
-			((AssociationClassRoleSourceEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
+			((AssociationClassRoleSourceEditPart) childEditPart).setLabel(
+					getPrimaryShape().getRoleSourceLabel());
 			return true;
 		}
-		if(childEditPart instanceof AssociationClassRoleTargetEditPart) {
-			((AssociationClassRoleTargetEditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
+		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
+			((AssociationClassRoleTargetEditPart) childEditPart).setLabel(
+					getPrimaryShape().getRoleTargetLabel());
 			return true;
 		}
 		return false;
@@ -70,7 +74,7 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -80,10 +84,10 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationClassRoleSourceEditPart) {
+		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationClassRoleTargetEditPart) {
+		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
 			return true;
 		}
 		return false;
@@ -93,7 +97,7 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -115,6 +119,7 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 * @generated
 	 */
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+		return (AssociationFigure) getFigure();
 	}
+
 }

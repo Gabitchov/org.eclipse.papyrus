@@ -90,6 +90,20 @@ public class «className(it)» extends org.eclipse.gmf.runtime.diagram.ui.editpoli
 }
 '''
 
+override def addDestroyShortcutsCommand(GenDiagram it) '''
+	«generatedMemberComment('Clean all shortcuts to the host element from the same diagram')»
+	protected void addDestroyShortcutsCommand(org.eclipse.gmf.runtime.common.core.command.ICompositeCommand cmd, org.eclipse.gmf.runtime.notation.View view) {
+		«_assert('view.getEAnnotation(\"Shortcut\") == null')»
+		for (java.util.Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
+			org.eclipse.gmf.runtime.notation.View nextView = (org.eclipse.gmf.runtime.notation.View) it.next();
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { «nonNLS()»
+				continue;
+			}
+			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), nextView));
+		}
+	}
+'''
+
 	override attributes(GenDiagram it) '''
 		«generatedMemberComment('Extended request data key to hold editpart visual id.')»
 		public static final String VISUAL_ID_KEY = "visual_id"; «nonNLS()»

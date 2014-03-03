@@ -36,19 +36,19 @@ public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamat
 	public void activate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		hostSemanticElement = initSemanticElement();
-		if(hostSemanticElement != null) {
+		if (hostSemanticElement != null) {
 			// adds a listener on the view and the element controlled by the editpart
 			getDiagramEventBroker().addNotificationListener(view, this);
 			getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
-			if(((TemplateParameter)hostSemanticElement).getParameteredElement() != null) {
-				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
+			if (((TemplateParameter) hostSemanticElement).getParameteredElement() != null) {
+				getDiagramEventBroker().addNotificationListener(((TemplateParameter) hostSemanticElement).getParameteredElement(), this);
 			}
-			if(((TemplateParameter)hostSemanticElement).getDefault() != null) {
-				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
+			if (((TemplateParameter) hostSemanticElement).getDefault() != null) {
+				getDiagramEventBroker().addNotificationListener(((TemplateParameter) hostSemanticElement).getDefault(), this);
 			}
 			refreshDisplay();
 		} else {
@@ -63,33 +63,34 @@ public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamat
 	public void deactivate() {
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
-		if(view == null) {
+		if (view == null) {
 			return;
 		}
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
-		if(hostSemanticElement != null) {
+		if (hostSemanticElement != null) {
 			getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
-		}
-		if(((TemplateParameter)hostSemanticElement).getParameteredElement() != null) {
-			getDiagramEventBroker().removeNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
-			if(((TemplateParameter)hostSemanticElement).getParameteredElement() instanceof Operation) {
-				Operation op = (Operation)((TemplateParameter)hostSemanticElement).getParameteredElement();
-				Iterator<Parameter> iter = op.getOwnedParameters().iterator();
-				while(iter.hasNext()) {
-					Parameter param = iter.next();
-					getDiagramEventBroker().removeNotificationListener(param, this);
+
+			if (((TemplateParameter) hostSemanticElement).getParameteredElement() != null) {
+				getDiagramEventBroker().removeNotificationListener(((TemplateParameter) hostSemanticElement).getParameteredElement(), this);
+				if (((TemplateParameter) hostSemanticElement).getParameteredElement() instanceof Operation) {
+					Operation op = (Operation) ((TemplateParameter) hostSemanticElement).getParameteredElement();
+					Iterator<Parameter> iter = op.getOwnedParameters().iterator();
+					while (iter.hasNext()) {
+						Parameter param = iter.next();
+						getDiagramEventBroker().removeNotificationListener(param, this);
+					}
 				}
 			}
-		}
-		if(((TemplateParameter)hostSemanticElement).getDefault() != null) {
-			getDiagramEventBroker().removeNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
-			if(((TemplateParameter)hostSemanticElement).getDefault() instanceof Operation) {
-				Operation op = (Operation)((TemplateParameter)hostSemanticElement).getDefault();
-				Iterator<Parameter> iter = op.getOwnedParameters().iterator();
-				while(iter.hasNext()) {
-					Parameter param = iter.next();
-					getDiagramEventBroker().removeNotificationListener(param, this);
+			if (((TemplateParameter) hostSemanticElement).getDefault() != null) {
+				getDiagramEventBroker().removeNotificationListener(((TemplateParameter) hostSemanticElement).getDefault(), this);
+				if (((TemplateParameter) hostSemanticElement).getDefault() instanceof Operation) {
+					Operation op = (Operation) ((TemplateParameter) hostSemanticElement).getDefault();
+					Iterator<Parameter> iter = op.getOwnedParameters().iterator();
+					while (iter.hasNext()) {
+						Parameter param = iter.next();
+						getDiagramEventBroker().removeNotificationListener(param, this);
+					}
 				}
 			}
 		}
@@ -98,41 +99,41 @@ public class OperationTemplateParamaterDisplayEditPolicy extends TemplateParamat
 	}
 
 	public void notifyChanged(Notification notification) {
-		if(notification.getEventType() == Notification.SET) {
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_ParameteredElement())) {
-				//add a listener
-				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getParameteredElement(), this);
-				if(((TemplateParameter)hostSemanticElement).getParameteredElement() instanceof Operation) {
-					Operation op = (Operation)((TemplateParameter)hostSemanticElement).getParameteredElement();
+		if (notification.getEventType() == Notification.SET) {
+			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_ParameteredElement())) {
+				// add a listener
+				getDiagramEventBroker().addNotificationListener(((TemplateParameter) hostSemanticElement).getParameteredElement(), this);
+				if (((TemplateParameter) hostSemanticElement).getParameteredElement() instanceof Operation) {
+					Operation op = (Operation) ((TemplateParameter) hostSemanticElement).getParameteredElement();
 					Iterator<Parameter> iter = op.getOwnedParameters().iterator();
-					while(iter.hasNext()) {
+					while (iter.hasNext()) {
 						Parameter param = iter.next();
 						getDiagramEventBroker().addNotificationListener(param, this);
 					}
 				}
 			}
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_Default())) {
-				getDiagramEventBroker().addNotificationListener(((TemplateParameter)hostSemanticElement).getDefault(), this);
-				if(((TemplateParameter)hostSemanticElement).getDefault() instanceof Operation) {
-					Operation op = (Operation)((TemplateParameter)hostSemanticElement).getDefault();
+			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getTemplateParameter_Default())) {
+				getDiagramEventBroker().addNotificationListener(((TemplateParameter) hostSemanticElement).getDefault(), this);
+				if (((TemplateParameter) hostSemanticElement).getDefault() instanceof Operation) {
+					Operation op = (Operation) ((TemplateParameter) hostSemanticElement).getDefault();
 					Iterator<Parameter> iter = op.getOwnedParameters().iterator();
-					while(iter.hasNext()) {
+					while (iter.hasNext()) {
 						Parameter param = iter.next();
 						getDiagramEventBroker().addNotificationListener(param, this);
 					}
 				}
 			}
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter())) {
-				if(notification.getNewValue() != null) {
-					getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
+			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter())) {
+				if (notification.getNewValue() != null) {
+					getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
 				} else {
-					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+					getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
 				}
 			}
 		}
-		if(notification.getEventType() == Notification.REMOVE) {
-			if(notification.getFeature().equals(UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter())) {
-				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+		if (notification.getEventType() == Notification.REMOVE) {
+			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter())) {
+				getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
 			}
 		}
 		refreshDisplay();

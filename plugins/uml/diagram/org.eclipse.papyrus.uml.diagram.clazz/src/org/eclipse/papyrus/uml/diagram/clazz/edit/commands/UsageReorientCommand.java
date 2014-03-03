@@ -1,15 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -58,13 +58,13 @@ public class UsageReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if(false == getElementToEdit() instanceof Usage) {
+		if (false == getElementToEdit() instanceof Usage) {
 			return false;
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 		return false;
@@ -74,17 +74,19 @@ public class UsageReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		if(getLink().getSuppliers().size() != 1) {
+		if (getLink().getSuppliers()
+				.size() != 1) {
 			return false;
 		}
-		NamedElement target = (NamedElement)getLink().getSuppliers().get(0);
-		if(!(getLink().eContainer() instanceof Package)) {
+		NamedElement target = (NamedElement) getLink().getSuppliers()
+				.get(0);
+		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
+		Package container = (Package) getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistUsage_4007(container, getLink(), getNewSource(), target);
 	}
 
@@ -92,31 +94,35 @@ public class UsageReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
+		if (!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		if(getLink().getClients().size() != 1) {
+		if (getLink().getClients()
+				.size() != 1) {
 			return false;
 		}
-		NamedElement source = (NamedElement)getLink().getClients().get(0);
-		if(!(getLink().eContainer() instanceof Package)) {
+		NamedElement source = (NamedElement) getLink().getClients()
+				.get(0);
+		if (!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
+		Package container = (Package) getLink().eContainer();
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistUsage_4007(container, getLink(), source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		if(!canExecute()) {
+	protected CommandResult doExecuteWithResult(
+			IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -126,8 +132,10 @@ public class UsageReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getLink().getClients().remove(getOldSource());
-		getLink().getClients().add(getNewSource());
+		getLink().getClients()
+				.remove(getOldSource());
+		getLink().getClients()
+				.add(getNewSource());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -135,8 +143,10 @@ public class UsageReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getLink().getSuppliers().remove(getOldTarget());
-		getLink().getSuppliers().add(getNewTarget());
+		getLink().getSuppliers()
+				.remove(getOldTarget());
+		getLink().getSuppliers()
+				.add(getNewTarget());
 		return CommandResult.newOKCommandResult(getLink());
 	}
 
@@ -144,34 +154,34 @@ public class UsageReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected Usage getLink() {
-		return (Usage)getElementToEdit();
+		return (Usage) getElementToEdit();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getOldSource() {
-		return (NamedElement)oldEnd;
+		return (NamedElement) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getNewSource() {
-		return (NamedElement)newEnd;
+		return (NamedElement) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getOldTarget() {
-		return (NamedElement)oldEnd;
+		return (NamedElement) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NamedElement getNewTarget() {
-		return (NamedElement)newEnd;
+		return (NamedElement) newEnd;
 	}
 }

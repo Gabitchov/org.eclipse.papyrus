@@ -1,23 +1,18 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
@@ -28,8 +23,8 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -41,8 +36,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.TemplateFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic.CustomRedefinableTemplateSignatureItemSemanticEditPolicy;
@@ -57,7 +52,8 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
+public class TemplateSignatureEditPart extends ShapeNodeEditPart
+{
 
 	/**
 	 * @generated
@@ -104,7 +100,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -129,22 +125,25 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	}
 
 	/**
+	 * org.eclipse.papyrus.uml.diagram.clazz.custom.figure.TemplateFigure
 	 * @generated
 	 */
 	public TemplateFigure getPrimaryShape() {
-		return (TemplateFigure)primaryShape;
+		return (TemplateFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
+
+		if (childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((TemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((TemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -152,9 +151,9 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
+		if (childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			pane.remove(((TemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((TemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -164,7 +163,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -174,7 +173,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -184,7 +183,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
+		if (editPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			return getPrimaryShape().getTemplateParameterRectangle();
 		}
 		return getContentPane();
@@ -199,8 +198,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		//FIXME: workaround for #154536
-		result.getBounds().setSize(result.getPreferredSize());
+
 		return result;
 	}
 
@@ -224,13 +222,11 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *        instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -242,7 +238,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -252,7 +248,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -261,8 +257,8 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineWidth(width);
+		if (primaryShape instanceof NodeFigure) {
+			((NodeFigure) primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -270,50 +266,25 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof NodeFigure) {
+			((NodeFigure) primaryShape).setLineStyle(style);
 		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMARelTypesOnTarget() {
-		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(UMLElementTypes.CommentAnnotatedElement_4013);
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
-		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
-		LinkedList<IElementType> types = new LinkedList<IElementType>();
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
-			types.add(UMLElementTypes.Comment_2012);
-			types.add(UMLElementTypes.Comment_3028);
-		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
-			types.add(UMLElementTypes.Constraint_2011);
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		return types;
 	}
 
 	/**
 	 * @generated
 	 */
 	public EditPart getTargetEditPart(Request request) {
-		if(request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.ClassifierTemplateParameter_3031) {
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (type == UMLElementTypes.ClassifierTemplateParameter_3031) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.OperationTemplateParameter_3035) {
+			if (type == UMLElementTypes.OperationTemplateParameter_3035) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.TemplateParameter_3016) {
+			if (type == UMLElementTypes.TemplateParameter_3016) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 		}
@@ -325,28 +296,44 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
+				.getPreferenceStore();
 		Object result = null;
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+
+		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE
+				.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE
+				.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 				prefColor = PreferencesConstantsHelper.getElementConstant("TemplateSignature", PreferencesConstantsHelper.COLOR_LINE);
-			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFontStyle_FontColor()) {
 				prefColor = PreferencesConstantsHelper.getElementConstant("TemplateSignature", PreferencesConstantsHelper.COLOR_FONT);
-			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_FillColor()) {
 				prefColor = PreferencesConstantsHelper.getElementConstant("TemplateSignature", PreferencesConstantsHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			result = FigureUtilities
+					.RGBToInteger(PreferenceConverter
+							.getColor(
+									(IPreferenceStore) preferenceStore, prefColor));
+		} else if (feature == NotationPackage.eINSTANCE
+				.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE
+				.getFillStyle_Gradient()) {
 			String prefGradient = PreferencesConstantsHelper.getElementConstant("TemplateSignature", PreferencesConstantsHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
-			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
-				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+					preferenceStore.getString(prefGradient));
+			if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter
+						.getTransparency());
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-		if(result == null) {
+
+		if (result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

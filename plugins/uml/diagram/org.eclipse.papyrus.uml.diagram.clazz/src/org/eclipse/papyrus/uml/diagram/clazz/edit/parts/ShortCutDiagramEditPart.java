@@ -1,15 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
@@ -43,8 +42,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic.CustomShortcutDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ShortCutDiagramItemSemanticEditPolicy;
@@ -59,7 +58,8 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
+public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart
+{
 
 	/**
 	 * @generated
@@ -98,48 +98,27 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	}
 
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
-	 **/
-	protected void handleNotificationEvent(Notification event) {
-		/*
-		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
-		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
-		 */
-		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
-			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View)getModel()).getChildren();
-			if(!(notifier instanceof Edge)) {
-				if(modelChildren.contains(event.getNotifier())) {
-					return;
-				}
-			}
-		}
-		super.handleNotificationEvent(event);
-	}
-
-	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
-				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View) child.getModel();
+				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case DiagramNameEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
-						protected List createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+						protected List<?> createSelectionHandles() {
+							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					};
+					}
+					;
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -157,6 +136,28 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	}
 
 	/**
+	 *Papyrus codeGen
+	 *@generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		/*
+		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 */
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (!(notifier instanceof Edge)) {
+				if (modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
@@ -164,21 +165,23 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	}
 
 	/**
+	 * org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure
 	 * @generated
 	 */
 	public DiagramNodeFigure getPrimaryShape() {
-		return (DiagramNodeFigure)primaryShape;
+		return (DiagramNodeFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof DiagramNameEditPart) {
+		if (borderItemEditPart instanceof DiagramNameEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else {
+		} else
+		{
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
@@ -192,6 +195,7 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 
@@ -215,9 +219,7 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *        instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -228,7 +230,7 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -238,7 +240,7 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -247,8 +249,8 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineWidth(width);
+		if (primaryShape instanceof NodeFigure) {
+			((NodeFigure) primaryShape).setLineWidth(width);
 		}
 	}
 
@@ -256,8 +258,8 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if(primaryShape instanceof Shape) {
-			((Shape)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof NodeFigure) {
+			((NodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -273,28 +275,44 @@ public class ShortCutDiagramEditPart extends AbstractShortCutDiagramEditPart {
 	 */
 	@Override
 	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
+		IPreferenceStore preferenceStore = (IPreferenceStore) getDiagramPreferencesHint()
+				.getPreferenceStore();
 		Object result = null;
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+
+		if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE
+				.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE
+				.getFillStyle_FillColor()) {
 			String prefColor = null;
-			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+			if (feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
 				prefColor = PreferencesConstantsHelper.getElementConstant("ShortCutDiagram", PreferencesConstantsHelper.COLOR_LINE);
-			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFontStyle_FontColor()) {
 				prefColor = PreferencesConstantsHelper.getElementConstant("ShortCutDiagram", PreferencesConstantsHelper.COLOR_FONT);
-			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_FillColor()) {
 				prefColor = PreferencesConstantsHelper.getElementConstant("ShortCutDiagram", PreferencesConstantsHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			result = FigureUtilities
+					.RGBToInteger(PreferenceConverter
+							.getColor(
+									(IPreferenceStore) preferenceStore, prefColor));
+		} else if (feature == NotationPackage.eINSTANCE
+				.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE
+				.getFillStyle_Gradient()) {
 			String prefGradient = PreferencesConstantsHelper.getElementConstant("ShortCutDiagram", PreferencesConstantsHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
-			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
-				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
+					preferenceStore.getString(prefGradient));
+			if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter
+						.getTransparency());
+			} else if (feature == NotationPackage.eINSTANCE
+					.getFillStyle_Gradient()) {
 				result = gradientPreferenceConverter.getGradientData();
 			}
 		}
-		if(result == null) {
+
+		if (result == null) {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;

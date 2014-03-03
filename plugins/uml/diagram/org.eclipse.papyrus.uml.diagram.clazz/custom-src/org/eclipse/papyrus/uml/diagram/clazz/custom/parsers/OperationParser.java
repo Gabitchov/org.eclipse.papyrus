@@ -14,8 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
 
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -55,8 +53,8 @@ public class OperationParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public String getEditString(final IAdaptable element, int flags) {
-		if(element instanceof EObjectAdapter) {
-			final Operation operation = ((Operation)((EObjectAdapter)element).getRealObject());
+		if (element instanceof EObjectAdapter) {
+			final Operation operation = ((Operation) ((EObjectAdapter) element).getRealObject());
 			return operation.getName();
 		}
 		return "";
@@ -67,7 +65,7 @@ public class OperationParser implements IParser {
 	 * {@inheritDoc}
 	 */
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		final Operation operation = ((Operation)((EObjectAdapter)element).getRealObject());
+		final Operation operation = ((Operation) ((EObjectAdapter) element).getRealObject());
 		final String result = newString;
 		final TransactionalEditingDomain editingDomain;
 		try {
@@ -75,7 +73,7 @@ public class OperationParser implements IParser {
 		} catch (ServiceException ex) {
 			return null;
 		}
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Operation", (List)null) {
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(editingDomain, "Edit Operation", null) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

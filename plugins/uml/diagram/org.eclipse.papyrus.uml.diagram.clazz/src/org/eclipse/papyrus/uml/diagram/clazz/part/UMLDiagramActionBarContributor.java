@@ -1,15 +1,15 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- */
+ *  CEA LIST - Initial API and implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.part;
 
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
@@ -28,7 +28,8 @@ public class UMLDiagramActionBarContributor extends DiagramActionBarContributor 
 	/**
 	 * @generated
 	 */
-	protected Class getEditorClass() {
+
+	protected Class<UMLDiagramEditor> getEditorClass() {
 		return UMLDiagramEditor.class;
 	}
 
@@ -50,7 +51,7 @@ public class UMLDiagramActionBarContributor extends DiagramActionBarContributor 
 		fileMenu.remove("pageSetupAction"); //$NON-NLS-1$
 		IMenuManager editMenu = bars.getMenuManager().findMenuUsingPath(IWorkbenchActionConstants.M_EDIT);
 		assert editMenu != null;
-		if(editMenu.find("validationGroup") == null) { //$NON-NLS-1$
+		if (editMenu.find("validationGroup") == null) { //$NON-NLS-1$
 			editMenu.add(new GroupMarker("validationGroup")); //$NON-NLS-1$
 		}
 		IAction validateAction = new ValidateAction(page);

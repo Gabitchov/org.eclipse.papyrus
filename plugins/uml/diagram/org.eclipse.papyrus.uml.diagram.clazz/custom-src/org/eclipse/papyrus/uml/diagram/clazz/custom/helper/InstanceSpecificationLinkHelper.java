@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.helper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -25,17 +26,17 @@ public class InstanceSpecificationLinkHelper {
 	/**
 	 * 
 	 * @param instance
-	 *        link where instance end end are look for
-	 * @return a arrayList of two elements that are instance specfication : ends of this instance Link
+	 *            link where instance end end are look for
+	 * @return a list of two elements that are instance specfication : ends of this instance Link
 	 *         if this is not an instance link : the size of the array list is 0
 	 */
-	public static ArrayList<InstanceSpecification> getEnds(InstanceSpecification instance) {
-		ArrayList<InstanceSpecification> array = new ArrayList<InstanceSpecification>();
+	public static List<InstanceSpecification> getEnds(InstanceSpecification instance) {
+		List<InstanceSpecification> array = new ArrayList<InstanceSpecification>();
 		EAnnotation endtypes = instance.getEAnnotation(INSTANCE_END);
-		if(endtypes != null) {
+		if (endtypes != null) {
 			assert (endtypes.getReferences().size() == 2);
-			array.add((InstanceSpecification)endtypes.getReferences().get(0));
-			array.add((InstanceSpecification)endtypes.getReferences().get(1));
+			array.add((InstanceSpecification) endtypes.getReferences().get(0));
+			array.add((InstanceSpecification) endtypes.getReferences().get(1));
 		}
 		return array;
 	}
@@ -45,11 +46,11 @@ public class InstanceSpecificationLinkHelper {
 	 * 
 	 * @param instanceLink
 	 * @param end
-	 *        to add
+	 *            to add
 	 */
 	public static void addEnd(InstanceSpecification instanceLink, InstanceSpecification end) {
 		EAnnotation endtypes = instanceLink.getEAnnotation(INSTANCE_END);
-		if(endtypes == null) {
+		if (endtypes == null) {
 			endtypes = instanceLink.createEAnnotation(INSTANCE_END);
 		}
 		endtypes.getReferences().add(end);
@@ -60,11 +61,11 @@ public class InstanceSpecificationLinkHelper {
 	 * 
 	 * @param instanceLink
 	 * @param end
-	 *        to add
+	 *            to add
 	 */
 	public static void removeEnd(InstanceSpecification instanceLink, InstanceSpecification end) {
 		EAnnotation endtypes = instanceLink.getEAnnotation(INSTANCE_END);
-		if(endtypes == null) {
+		if (endtypes == null) {
 			endtypes = instanceLink.createEAnnotation(INSTANCE_END);
 		}
 		endtypes.getReferences().remove(end);
