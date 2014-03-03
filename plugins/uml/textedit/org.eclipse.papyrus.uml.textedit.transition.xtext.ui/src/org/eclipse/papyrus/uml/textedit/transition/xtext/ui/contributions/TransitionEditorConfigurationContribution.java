@@ -71,28 +71,31 @@ import com.google.inject.Injector;
  *         of an xtext generated editor, for Transitions of UML StateMachines.
  * 
  */
-public class TransitionPopupEditorConfigurationContribution extends DefaultXtextDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
+@SuppressWarnings("nls")
+public class TransitionEditorConfigurationContribution extends DefaultXtextDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
 
-	private final static String EVENTS = "events";
+	private static final String EMPTY = ""; //$NON-NLS-1$
+	private final static String EVENTS = "events"; //$NON-NLS-1$
 
 	/**
-	 * Clients may override to change style to {@link SWT}.MULTI
+	 * Override to change style to {@link SWT}.MULTI
 	 */
 	@Override
 	public int getStyle() {
-		return SWT.MULTI | SWT.WRAP;
+		return SWT.MULTI;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
 	 */
+	@SuppressWarnings("nls")
 	@Override
 	public String getTextToEdit(Object editedObject) {
 		if(editedObject instanceof Transition) {
 			Transition transition = (Transition)editedObject;
-			String textToEdit = "";
+			String textToEdit = EMPTY;
 
 			// Triggers
 			if(!transition.getTriggers().isEmpty()) {
@@ -110,9 +113,9 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 						textToEdit = textToEdit + ((SignalEvent)e).getSignal().getName();
 					} else if(e instanceof ChangeEvent) {
 
-						textToEdit = textToEdit + "when " + "\"" + retrieveBody((OpaqueExpression)((ChangeEvent)e).getChangeExpression(), "Natural language") + "\"";
+						textToEdit = textToEdit + "when \"" + retrieveBody((OpaqueExpression)((ChangeEvent)e).getChangeExpression(), "Natural language") + "\"";
 					} else if(e instanceof TimeEvent) {
-						String absRelPrefix = "" + (((TimeEvent)e).isRelative() ? "after " : "at ");
+						String absRelPrefix = EMPTY + (((TimeEvent)e).isRelative() ? "after " : "at ");
 						textToEdit = textToEdit + absRelPrefix + "\"" + retrieveBody((OpaqueExpression)((TimeEvent)e).getWhen().getExpr(), "Natural language") + "\"";
 					} else { // any receive event
 						textToEdit = textToEdit + "all";
@@ -126,11 +129,11 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 			}
 
 			if(transition.getEffect() != null) {
-				textToEdit = textToEdit + " / ";
-				String behaviorKind = "";
-				behaviorKind = behaviorKind + ((behaviorKind.equals("") && (transition.getEffect() instanceof Activity)) ? "Activity " : "");
-				behaviorKind = behaviorKind + ((behaviorKind.equals("") && (transition.getEffect() instanceof StateMachine)) ? "StateMachine " : "");
-				behaviorKind = behaviorKind + ((behaviorKind.equals("") && (transition.getEffect() instanceof OpaqueBehavior)) ? "OpaqueBehavior " : "");
+				textToEdit = textToEdit + " /\n";
+				String behaviorKind = EMPTY;
+				behaviorKind = behaviorKind + ((behaviorKind.equals(EMPTY) && (transition.getEffect() instanceof Activity)) ? "Activity " : EMPTY);
+				behaviorKind = behaviorKind + ((behaviorKind.equals(EMPTY) && (transition.getEffect() instanceof StateMachine)) ? "StateMachine " : EMPTY);
+				behaviorKind = behaviorKind + ((behaviorKind.equals(EMPTY) && (transition.getEffect() instanceof OpaqueBehavior)) ? "OpaqueBehavior " : EMPTY);
 				textToEdit = textToEdit + behaviorKind + " " + transition.getEffect().getName();
 			}
 
@@ -141,7 +144,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 	}
 
 	private String retrieveBody(OpaqueExpression exp, String languageName) {
-		String body = "";
+		String body = EMPTY;
 		if(exp == null) {
 			return body;
 		}
@@ -151,7 +154,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 				if(index < exp.getBodies().size()) {
 					return exp.getBodies().get(index);
 				} else {
-					return "";
+					return EMPTY;
 				}
 			}
 			index++;
@@ -165,6 +168,10 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 	 *         A command for updating the context UML model
 	 */
 	protected class UpdateUMLTransitionCommand extends AbstractTransactionalCommand {
+
+		private static final String ANY = "any"; //$NON-NLS-1$
+
+		private static final String NATURAL_LANGUAGE = "Natural language"; //$NON-NLS-1$
 
 		private final Transition transition;
 
@@ -217,10 +224,10 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 			}
 			// Create the new constraint
 			if(transitionRuleObject.getGuard() != null && transitionRuleObject.getGuard().getConstraint() != null) {
-				this.newConstraint = transition.createGuard("");
+				this.newConstraint = transition.createGuard(EMPTY);
 				OpaqueExpression guardSpecification = UMLFactory.eINSTANCE.createOpaqueExpression();
-				guardSpecification.getLanguages().add("Natural language");
-				guardSpecification.getBodies().add("" + transitionRuleObject.getGuard().getConstraint());
+				guardSpecification.getLanguages().add(NATURAL_LANGUAGE);
+				guardSpecification.getBodies().add(EMPTY + transitionRuleObject.getGuard().getConstraint());
 				this.newConstraint.setSpecification(guardSpecification);
 			}
 
@@ -281,7 +288,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 		 * @return
 		 */
 		private CallEvent getOrCreateCallEvent(Operation operation) {
-			String name = "CE - " + operation.getClass_().getName() + " - " + operation.getName();
+			String name = "CE - " + operation.getClass_().getName() + " - " + operation.getName(); //$NON-NLS-1$ //$NON-NLS-2$
 			Package eventPkg = getEventPackage();
 			for(PackageableElement existingPE : eventPkg.getPackagedElements()) {
 				if(existingPE instanceof CallEvent) {
@@ -307,7 +314,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 		 */
 		private SignalEvent getOrCreateSignalEvent(Signal signal) {
 			Package eventPkg = getEventPackage();
-			String name = "SE - " + signal.getName();
+			String name = "SE - " + signal.getName(); //$NON-NLS-1$
 			for(PackageableElement existingPE : eventPkg.getPackagedElements()) {
 				if(existingPE instanceof SignalEvent) {
 					// Call event with this operation exists already
@@ -332,7 +339,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 		 */
 		private ChangeEvent getOrCreateChangeEvent(String opaqueChangeExpr) {
 			Package eventPkg = getEventPackage();
-			String name = "CE - " + opaqueChangeExpr;
+			String name = "CE - " + opaqueChangeExpr; //$NON-NLS-1$
 			for(PackageableElement existingPE : eventPkg.getPackagedElements()) {
 				if(existingPE instanceof ChangeEvent) {
 					// Call event with this operation exists already
@@ -348,7 +355,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 			}
 			ChangeEvent ce = UMLFactory.eINSTANCE.createChangeEvent();
 			OpaqueExpression changeExpression = UMLFactory.eINSTANCE.createOpaqueExpression();
-			changeExpression.getLanguages().add("Natural language");
+			changeExpression.getLanguages().add(NATURAL_LANGUAGE);
 			changeExpression.getBodies().add(opaqueChangeExpr);
 			ce.setChangeExpression(changeExpression);
 			ce.setName(name);
@@ -364,7 +371,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 		 */
 		private TimeEvent getOrCreateTimeEvent(String opaqueWhen, boolean isRelative) {
 			Package eventPkg = getEventPackage();
-			String name = "TE - " + opaqueWhen;
+			String name = "TE - " + opaqueWhen; //$NON-NLS-1$
 			for(PackageableElement existingPE : eventPkg.getPackagedElements()) {
 				if(existingPE instanceof TimeEvent) {
 					// Call event with this operation exists already
@@ -380,7 +387,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 			}
 			TimeEvent te = UMLFactory.eINSTANCE.createTimeEvent();
 			OpaqueExpression timeExpressionExp = UMLFactory.eINSTANCE.createOpaqueExpression();
-			timeExpressionExp.getLanguages().add("Natural language");
+			timeExpressionExp.getLanguages().add(NATURAL_LANGUAGE);
 			timeExpressionExp.getBodies().add(opaqueWhen);
 			TimeExpression timeExpression = UMLFactory.eINSTANCE.createTimeExpression();
 			timeExpression.setExpr(timeExpressionExp);
@@ -418,7 +425,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 			} else { // AnyReceiveEventRule
 				e = UMLFactory.eINSTANCE.createAnyReceiveEvent();
 				getEventPackage().getPackagedElements().add(e);
-				e.setName("any");
+				e.setName(ANY);
 			}
 			return e;
 		}
@@ -481,7 +488,7 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 		}
 
 		public UpdateUMLTransitionCommand(TransactionalEditingDomain domain, Transition transition, TransitionRule transitionRule) {
-			super(domain, "Transition Update", getWorkspaceFiles(transition));
+			super(domain, "Transition Update", getWorkspaceFiles(transition)); //$NON-NLS-1$
 			this.transition = transition;
 			this.transitionRuleObject = transitionRule;
 		}
