@@ -14,12 +14,11 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 
@@ -68,11 +67,7 @@ public class PageMngrImpl implements IPageMngr {
 	@Override
 	@Deprecated
 	public void addPage(Object pageIdentifier) {
-
-		// We do not need to disable event delivering,
-		// as addition to pageList doesn't fire events.
-
-		diSashModel.getPageList().addPage(pageIdentifier);
+		//Nothing to do. The list of pages is now computed dynamically
 	}
 
 	/**
@@ -91,14 +86,16 @@ public class PageMngrImpl implements IPageMngr {
 	 */
 	@Override
 	public List<Object> allPages() {
-
-		List<Object> list = new ArrayList<Object>();
-		for(PageRef pageRef : diSashModel.getPageList().getAvailablePage()) {
-
-			list.add(pageRef.getPageIdentifier());
+		//FIXME: Temporary, naive code. Need to implement a mechanism to contribute page providers
+		List<Object> result = new LinkedList<Object>();
+		for(Resource resource : diSashModel.eResource().getResourceSet().getResources()) {
+			if(resource != null && resource.isLoaded()) {
+				if("notation".equals(resource.getURI().fileExtension())) {
+					result.addAll(resource.getContents());
+				}
+			}
 		}
-
-		return list;
+		return result;
 	}
 
 	/**
@@ -157,18 +154,6 @@ public class PageMngrImpl implements IPageMngr {
 
 		// We do not need to disable event delivering as the operation already fired
 		// one single event.
-
-		Iterator<PageRef> iterator = diSashModel.getPageList().getAvailablePage().iterator();
-		boolean found = false;
-		while(iterator.hasNext() && found == false) {
-			// Bug #288806 : the test should be inversed
-			if(pageIdentifier.equals(iterator.next().getPageIdentifier())) {
-				found = true;
-			}
-		}
-		if(!found) {
-			diSashModel.getPageList().addPage(pageIdentifier);
-		}
 		diSashModel.getSashModel().addPage(getCurrentFolder(), pageIdentifier);
 	}
 
@@ -179,8 +164,7 @@ public class PageMngrImpl implements IPageMngr {
 	 */
 	@Override
 	public void removePage(Object pageIdentifier) {
-		// remove from pageList and from SashModel
-		diSashModel.getPageList().removePage(pageIdentifier);
+		// remove from SashModel
 
 		contentChangedEventProvider.setDeliver(false);
 		diSashModel.getSashModel().removePageAndEmptyFolder(pageIdentifier);

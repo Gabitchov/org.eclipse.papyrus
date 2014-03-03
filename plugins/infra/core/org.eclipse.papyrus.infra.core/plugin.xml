@@ -317,8 +317,13 @@
       </serviceFactory>
       <service
             classname="org.eclipse.papyrus.infra.core.services.ResourceUpdateService"
+            id="org.eclipse.papyrus.infra.core.services.ResourceUpdateService"
             priority="1"
             startKind="startup">
+         <dependsOn
+               description="This service is used to reopen the IMultiDiagramEditor when changes are detected"
+               serviceKeyRef="org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor">
+         </dependsOn>
       </service>
    </extension>
    <extension

@@ -1,13 +1,19 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
+import java.util.Collections;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
+import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource.ModelKind;
+import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 
 /**
@@ -21,12 +27,20 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
  * @author cedric dumoulin
  * 
  */
-public class SashModel extends AbstractModelWithSharedResource<org.eclipse.papyrus.infra.core.sashwindows.di.SashModel> implements IModel {
+public class SashModel extends EMFLogicalModel implements IModel {
 
 	/**
-	 * File extension used for notation.
+	 * File extension.
+	 * 
+	 * @deprecated Use {@link DiModel#MODEL_FILE_EXTENSION} instead. The SashModel has been moved to a separate file
 	 */
+	@Deprecated
 	public static final String MODEL_FILE_EXTENSION = "di"; //$NON-NLS-1$
+
+	/**
+	 * File extension for the Sash model
+	 */
+	public static final String SASH_MODEL_FILE_EXTENSION = "sash"; //$NON-NLS-1$
 
 	/**
 	 * Model ID.
@@ -39,7 +53,7 @@ public class SashModel extends AbstractModelWithSharedResource<org.eclipse.papyr
 	 * 
 	 */
 	public SashModel() {
-		super(ModelKind.master);
+
 	}
 
 	/**
@@ -51,7 +65,7 @@ public class SashModel extends AbstractModelWithSharedResource<org.eclipse.papyr
 	 */
 	@Override
 	protected String getModelFileExtension() {
-		return MODEL_FILE_EXTENSION;
+		return SASH_MODEL_FILE_EXTENSION;
 	}
 
 	/**
@@ -67,8 +81,33 @@ public class SashModel extends AbstractModelWithSharedResource<org.eclipse.papyr
 	}
 
 	@Override
-	protected boolean isModelRoot(EObject object) {
-		return object instanceof org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
+	public void loadModel(URI uriWithoutExtension) {
+
+		URI sashModelURI = getSashModelURI(uriWithoutExtension);
+
+		try {
+			super.loadModel(sashModelURI);
+		} catch (Exception ex) {
+			createModel(sashModelURI);
+		}
+		if(resource == null) {
+			createModel(sashModelURI);
+		}
+	}
+
+	protected URI getSashModelURI(URI uriWithoutExtension) {
+		URIConverter converter = getModelManager().getURIConverter();
+		URI legacyURI = uriWithoutExtension.appendFileExtension(MODEL_FILE_EXTENSION);
+
+		if(converter.exists(legacyURI, Collections.emptyMap())) {
+			return legacyURI;
+		}
+
+		IPath stateLocation = Activator.getDefault().getStateLocation();
+		stateLocation = stateLocation.append(uriWithoutExtension.toString());
+
+		URI workspaceFileURI = URI.createFileURI(stateLocation.toString());
+		return workspaceFileURI;
 	}
 
 	@Override

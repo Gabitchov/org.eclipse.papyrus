@@ -5,6 +5,7 @@ package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
@@ -12,9 +13,7 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
 /**
  * @author dumoulin
  *
- * @deprecated Use {@link SashModel} instead
  */
-@Deprecated
 public class DiModel extends EMFLogicalModel implements IModel {
 
 	/**
@@ -28,9 +27,17 @@ public class DiModel extends EMFLogicalModel implements IModel {
 	public static final String DI_FILE_EXTENSION = MODEL_FILE_EXTENSION;
 
 	/**
-	 * Model ID.
+	 * Sash Model ID.
+	 * 
+	 * @deprecated Use {@link SashModel#MODEL_ID} instead
 	 */
+	@Deprecated
 	public static final String MODEL_ID = "org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel"; //$NON-NLS-1$
+
+	/**
+	 * The ID of the DI Model
+	 */
+	public static final String DI_MODEL_ID = "org.eclipse.papyrus.infra.core.resource.DiModel"; //$NON-NLS-1$
 
 	/**
 	 * Get the file extension used for this model.
@@ -41,7 +48,7 @@ public class DiModel extends EMFLogicalModel implements IModel {
 	 */
 	@Override
 	protected String getModelFileExtension() {
-		return MODEL_FILE_EXTENSION;
+		return DI_FILE_EXTENSION;
 	}
 
 	/**
@@ -53,8 +60,21 @@ public class DiModel extends EMFLogicalModel implements IModel {
 	 */
 	@Override
 	public String getIdentifier() {
-		return MODEL_FILE_EXTENSION;
+		return DI_MODEL_ID;
 	}
+
+	@Override
+	public void loadModel(URI uriWithoutExtension) {
+		try {
+			super.loadModel(uriWithoutExtension);
+		} catch (Exception ex) {
+			createModel(uriWithoutExtension);
+		}
+		if(resource == null) {
+			createModel(uriWithoutExtension);
+		}
+	}
+
 
 	@Override
 	protected Map<Object, Object> getSaveOptions() {

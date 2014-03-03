@@ -13,6 +13,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.core.Activator;
 
 /**
  * Base class for models sharing a common {@link Resource}. To share a common {@link Resource}, one of the model should be Master, while the other are
@@ -62,17 +63,22 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	 */
 	@Override
 	public void loadModel(URI uriWithoutExtension) {
+		try {
+			// Look for the resource
+			lookupResource(uriWithoutExtension);
 
-		// Look for the resource
-		lookupResource(uriWithoutExtension);
-
-		// Check if model is loaded.
-		if(resourceIsSet()) {
-			configureResource(resource);
-			return;
+			// Check if model is loaded.
+			if(resourceIsSet()) {
+				configureResource(resource);
+				return;
+			}
+			// model is not loaded, do it.
+			super.loadModel(uriWithoutExtension);
+		} catch (Exception ex) {
+			if(modelKind == ModelKind.master) {
+				Activator.log.error(ex);
+			}
 		}
-		// model is not loaded, do it.
-		super.loadModel(uriWithoutExtension);
 	}
 
 	/**
@@ -80,16 +86,21 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 	 */
 	@Override
 	public void createModel(URI uri) {
+		try {
+			// Look for the resource
+			lookupResource(uri);
 
-		// Look for the resource
-		lookupResource(uri);
-
-		// Check if model is loaded.
-		if(resourceIsSet()) {
-			configureResource(resource);
-			return;
+			// Check if model is loaded.
+			if(resourceIsSet()) {
+				configureResource(resource);
+				return;
+			}
+			super.createModel(uri);
+		} catch (Exception ex) {
+			if(modelKind == ModelKind.master) {
+				Activator.log.error(ex);
+			}
 		}
-		super.createModel(uri);
 	}
 
 	/**
