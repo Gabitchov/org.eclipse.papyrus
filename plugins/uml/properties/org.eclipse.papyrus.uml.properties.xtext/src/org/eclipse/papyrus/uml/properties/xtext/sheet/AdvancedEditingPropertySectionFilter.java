@@ -14,6 +14,9 @@ public class AdvancedEditingPropertySectionFilter implements IFilter {
 	public boolean select(Object toTest) {
 		if (toTest instanceof IGraphicalEditPart) {
 			IGraphicalEditPart part = (IGraphicalEditPart) toTest;
+			if (part.resolveSemanticElement() == null) {
+				return false;
+			}
 			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
 					+ part.resolveSemanticElement().eClass().getInstanceClassName();
