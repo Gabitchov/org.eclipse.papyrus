@@ -25,6 +25,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
@@ -199,6 +200,14 @@ public class XtextStyledTextCellEditor extends StyledTextCellEditor {
 		if (SWT.getPlatform().equals(GTK)) {
 			if (ignoreNextFocusLost) {
 				ignoreNextFocusLost = false;
+				// styledText has lost focus, set it again.
+				Display.getDefault().asyncExec(new Runnable() {
+					
+					public void run() {
+						 styledText.setFocus();						
+					}
+				});
+
 				return;
 			}
 
