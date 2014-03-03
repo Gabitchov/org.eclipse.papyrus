@@ -44,6 +44,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtext.resource.XtextResource;
 
@@ -109,6 +110,12 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				opaqueExpression.getBodies().add(indexOfOCLBody, newTextualRepresentation);
 			}
 			constraint.setSpecification(opaqueExpression);
+			
+			// update context object, if null (TODO: clarify, if responsibility of textual editor).
+			EObject context = getContextProvider().getContextObject();
+			if ((constraint.getContext() == null) && (context instanceof Namespace)) {
+				constraint.setContext((Namespace) context);
+			}
 			return CommandResult.newOKCommandResult(constraint);
 		}
 	}
@@ -169,6 +176,9 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 	
 	@Override
 	public IParser createParser(final EObject semanticObject) {
+		if (objectToEdit == null) {
+			objectToEdit = semanticObject;
+		}
 		final IParser defaultParser = super.createParser(semanticObject);
 		return new IParser() {
 

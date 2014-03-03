@@ -286,7 +286,7 @@ public class Decoration implements IPapyrusDecoration {
 				}
 			}
 		}
-		if (message.length() > 0) {
+		if ((message != null) && message.length() > 0) {
 			return message;
 		}
 		else {
