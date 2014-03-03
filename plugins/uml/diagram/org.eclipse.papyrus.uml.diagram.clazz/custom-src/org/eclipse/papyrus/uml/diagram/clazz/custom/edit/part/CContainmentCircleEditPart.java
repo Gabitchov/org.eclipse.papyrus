@@ -8,13 +8,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  
+ *   Mickaël Adam (ALL4TEC) mickael.adam@all4tec.net
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentCircleEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.EllipseFigure;
 
 public class CContainmentCircleEditPart extends ContainmentCircleEditPart {
 
@@ -38,7 +39,7 @@ public class CContainmentCircleEditPart extends ContainmentCircleEditPart {
 	 * Modify the default size of the containment circle node
 	 */
 	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
-		org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure result = new org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure(20, 20);
+		org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure result = new EllipseFigure(20, 20);
 		// FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
