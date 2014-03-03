@@ -74,9 +74,12 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler {
 		final URIConverter converter = getEditingDomain().getResourceSet().getURIConverter();
 		
 		for(int i = 0; i < uris.length; i++) {
+			// Clients may pass object URIs (including fragments), so trim to a resource URI because we operate on the resource level
+			URI next = uris[i].trimFragment();
+			
 			// If the resource doesn't exist, then it can't be opened in some other editor, so
 			// we needn't be concerned about editing it in the context of a referencing model
-			if(!readableReferencedModels.contains(uris[i].trimFileExtension()) && isNotModelSetMainModel(uris[i]) && converter.exists(uris[i], null)) {
+			if(!readableReferencedModels.contains(next.trimFileExtension()) && isNotModelSetMainModel(next) && converter.exists(next, null)) {
 				result = Optional.of(true);
 				break;
 			}
@@ -90,7 +93,10 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler {
 		Optional<Boolean> result = Optional.absent();
 
 		for(int i = 0; i < uris.length; i++) {
-			if(isNotModelSetMainModel(uris[i])) {
+			// Clients may pass object URIs (including fragments), so trim to a resource URI because we operate on the resource level
+			URI next = uris[i].trimFragment();
+			
+			if(isNotModelSetMainModel(next)) {
 				result = Optional.of(true);
 			} else {
 				// If it's not something I handle, then bomb
@@ -108,8 +114,11 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler {
 		final List<URI> toMakeWritable = new ArrayList<URI>(uris.length);
 
 		for(int i = 0; i < uris.length; i++) {
-			if(isNotModelSetMainModel(uris[i])) {
-				toMakeWritable.add(uris[i]);
+			// Clients may pass object URIs (including fragments), so trim to a resource URI because we operate on the resource level
+			URI next = uris[i].trimFragment();
+
+			if(isNotModelSetMainModel(next)) {
+				toMakeWritable.add(next);
 			}
 		}
 
