@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
-import org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes.EllipseFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.EllipseFigure;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfacePortLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
