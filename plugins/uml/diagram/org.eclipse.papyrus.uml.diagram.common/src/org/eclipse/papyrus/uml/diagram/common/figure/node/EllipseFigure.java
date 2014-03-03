@@ -9,7 +9,7 @@
  *    IBM Corporation - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes;
+package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
 
 
