@@ -165,6 +165,19 @@ public class ReferencedModelReadOnlyHandlerTest {
 		assertNotReadOnly(ssn.getType());
 	}
 	
+	/**
+	 * Test that we do not get confused by clients that pass object URIs (including fragments) into the read-only handler API,
+	 * resulting in thinking that an object in a writable resource is read-only because its file-extension-trimmed URI doesn't
+	 * match the resource's.
+	 */
+	@Test
+	public void testObjectURIsWithFragment() {
+		Property ssn = person.getAttribute("ssn", null);
+		URI uri = EcoreUtil.getURI(ssn);
+		assertThat(fixture.anyReadOnly(new URI[]{ uri }).or(false), is(false));
+		assertThat(fixture.canMakeWritable(new URI[]{ uri }).or(true), is(false));
+	}
+	
 	//
 	// Test framework
 	//
