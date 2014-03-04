@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2013, 2014 Itemis AG, CEA LIST, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,8 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Itemis -  Initial API and implementation
- * Ansgar Radermacher - added undo/redo support (inspired by code from Petr Bodnar)
+ *  Itemis -  Initial API and implementation
+ *  Ansgar Radermacher - added undo/redo support (inspired by code from Petr Bodnar)
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 
@@ -27,6 +28,7 @@ import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
@@ -83,6 +85,9 @@ public class AdvancedEditingPropertySection extends
 			textControl.setText(printString);
 		}
 
+		if (textControl != null) {
+			textControl.setEnabled(!isReadOnly());
+		}
 	}
 
 	@Override
@@ -291,5 +296,11 @@ public class AdvancedEditingPropertySection extends
 
 	public EObject getContextObject() {
 		return getEObject();
+	}
+	
+	@Override
+	protected boolean isReadOnly() {
+		EObject context = getContextObject();
+		return (context == null) || EMFHelper.isReadOnly(context) || super.isReadOnly();
 	}
 }
