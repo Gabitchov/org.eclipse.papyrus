@@ -19,7 +19,6 @@ package org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -42,9 +41,7 @@ import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.ICon
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
 import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.LiteralString;
-import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtext.resource.XtextResource;
 
@@ -111,11 +108,6 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 			}
 			constraint.setSpecification(opaqueExpression);
 			
-			// update context object, if null (TODO: clarify, if responsibility of textual editor).
-			EObject context = getContextProvider().getContextObject();
-			if ((constraint.getContext() == null) && (context instanceof Namespace)) {
-				constraint.setContext((Namespace) context);
-			}
 			return CommandResult.newOKCommandResult(constraint);
 		}
 	}
@@ -149,10 +141,7 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 
 			public EObject getContextObject() {
 				if(objectToEdit instanceof Constraint) {
-					EList<Element> contrainedElements = ((Constraint)objectToEdit).getConstrainedElements();
-					if (contrainedElements.size() > 0) {
-						return contrainedElements.get(0);
-					}
+					return ((Constraint)objectToEdit).getContext();
 				}
 				return null;
 			}
