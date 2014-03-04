@@ -12,19 +12,30 @@
  *****************************************************************************/
 package org.eclipse.papyrus.codegen;
 
-import java.lang.reflect.InvocationTargetException;
-
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.gmf.codegen.xtend.ui.handlers.CodegenEmittersWithXtend2;
 import org.eclipse.gmf.codegen.xtend.ui.handlers.GeneratorTextEmitter;
 import org.eclipse.gmf.common.UnexpectedBehaviourException;
 import org.eclipse.gmf.internal.common.codegen.TextEmitter;
 
-
+@SuppressWarnings("restriction")
 public class PapyrusCodegenEmitters extends CodegenEmittersWithXtend2 {
 
 	public PapyrusCodegenEmitters(boolean useBaseTemplatesOnly, String templateDirectory, boolean includeDynamicModelTemplates) {
 		super(useBaseTemplatesOnly, templateDirectory, includeDynamicModelTemplates);
 	}
-	
+
+	@Override
+	public GeneratorTextEmitter getModelingAssistantProviderEmitter() throws UnexpectedBehaviourException {
+		return null;
+	}
+
+	@Override
+	public TextEmitter getNodeEditPartModelingAssistantProviderEmitter() {
+		return null;
+	}
+
+	@Override
+	public GeneratorTextEmitter getDeleteElementActionEmitter() {
+		return null;
+	}
 }

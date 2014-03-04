@@ -16,15 +16,10 @@ import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.gmf.codegen.xtend.ui.handlers.GeneratorWithXtend2;
 import org.eclipse.gmf.common.UnexpectedBehaviourException;
 
-
 public class PapyrusGenerator extends GeneratorWithXtend2 {
-
-
-
 
 	public PapyrusGenerator(GenEditorGenerator genModel, PapyrusCodegenEmitters emitters) {
 		super(genModel, emitters);
-
 	}
 
 	/**
@@ -33,7 +28,7 @@ public class PapyrusGenerator extends GeneratorWithXtend2 {
 	@Override
 	protected void customRun() throws InterruptedException, UnexpectedBehaviourException {
 		super.customRun();
-	}
 
+	}
 
 }

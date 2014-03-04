@@ -15,17 +15,16 @@
 package aspects.xpt.editor
 
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 
 //This class is not used, now we use org.eclipse.papyrus.common.actions.DeleteFromModelAction 
 @Singleton class DeleteElementAction extends xpt.editor.DeleteElementAction {
 
 
 
-	override DeleteElementAction(GenDiagram it) '''
-		//This file is not used. 
-		//The DeleteElementAction is removed from the plugin and replaced by DeleteFromModelAction in the plugin org.eclipse.diagram.common.
-	'''
+//	override DeleteElementAction(GenDiagram it) '''
+//		//This file is not used. 
+//		//The DeleteElementAction is removed from the plugin and replaced by DeleteFromModelAction in the plugin org.eclipse.diagram.common.
+//	'''
 
 
 }
