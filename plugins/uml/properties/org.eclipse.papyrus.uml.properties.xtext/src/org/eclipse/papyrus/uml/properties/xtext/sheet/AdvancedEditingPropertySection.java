@@ -71,8 +71,11 @@ public class AdvancedEditingPropertySection extends
 
 	protected boolean isRedo;
 
+	protected EObject currentEObj;
+	
 	public AdvancedEditingPropertySection() {
 		undoRedoStack = new UndoRedoStack<ExtendedModifyEvent>();
+		ModelListener.currentEditor = this;
 	}
 	
 	@Override
@@ -135,7 +138,7 @@ public class AdvancedEditingPropertySection extends
 					// ignore focus lost
 					return;
 				}
-				if (parser != null) {
+				if ((parser != null) &&	!parser.getEditString(null, 0).equals(textControl.getText())) {
 					ICommand command = parser.getParseCommand(
 							new EObjectAdapter(getEObject()),
 							textControl.getText(), 0);
@@ -274,7 +277,7 @@ public class AdvancedEditingPropertySection extends
 			
 			IGraphicalEditPart part = getEditPartFromSelection();
 			if (part != null) {
-				// newConfiguration.preEditAction(part.resolveSemanticElement());	
+				newConfiguration.preEditAction(part.resolveSemanticElement());	
 			}
 			
 			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters()
@@ -290,7 +293,11 @@ public class AdvancedEditingPropertySection extends
 					((IContextElementProviderWithInit) provider).initResource(
 						xtextAdapter.getFakeResourceContext().getFakeResource());
 				}
-			}		
+			}
+			Object semanticObject = configuration.getObjectToEdit();
+			if (semanticObject instanceof EObject) {
+				currentEObj = (EObject) semanticObject;
+			}
 		}
 	}
 

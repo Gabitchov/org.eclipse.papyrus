@@ -48,6 +48,7 @@ public class DirectEditorEditingSupport extends EditingSupport {
 		EObject semanticObject = (EObject) ((IAdaptable) element)
 				.getAdapter(EObject.class);
 		Composite parent = (Composite) getViewer().getControl();
+		configuration.preEditAction(semanticObject);
 		return configuration.createCellEditor(parent, semanticObject);
 	}
 
