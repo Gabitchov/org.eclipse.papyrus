@@ -163,7 +163,9 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 				} else {
 					result.add(createInvalidStringCommand(newString, semanticObject));
 				}
-				result.add(new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician()));
+				ValidateSubtreeCommand validationCommand = new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician());
+				validationCommand.disableUIFeedback();
+				result.add(validationCommand);
 				return result;
 			}
 

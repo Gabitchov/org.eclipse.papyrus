@@ -182,7 +182,9 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(semanticObject);
 				if (semanticObject instanceof Constraint) {
 					result.add(new UpdateConstraintCommand(editingDomain, (Constraint) semanticObject, newString));
-					result.add(new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician()));
+					ValidateSubtreeCommand validationCommand = new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician());
+					validationCommand.disableUIFeedback();
+					result.add(validationCommand);
 				}
 				return result;
 			}
