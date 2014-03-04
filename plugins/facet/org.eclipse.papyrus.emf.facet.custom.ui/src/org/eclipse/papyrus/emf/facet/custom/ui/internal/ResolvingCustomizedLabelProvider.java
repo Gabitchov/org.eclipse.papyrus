@@ -42,7 +42,9 @@ public class ResolvingCustomizedLabelProvider implements ICustomizedLabelProvide
 			final EAttributeTreeElement treeElement = (EAttributeTreeElement) element;
 			final EObjectTreeElement parent = (EObjectTreeElement) treeElement.getParent();
 			image = this.delegate.getImage(parent.getEObject(), treeElement.getEAttribute());
-		} else {
+		} 
+	
+		else {
 			image = this.delegate.getImage(CustomizedContentProviderUtils.resolve(element));
 		}
 		return image;

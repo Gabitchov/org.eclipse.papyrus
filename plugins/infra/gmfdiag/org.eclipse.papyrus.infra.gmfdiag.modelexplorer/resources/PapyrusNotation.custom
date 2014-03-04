@@ -3,8 +3,12 @@
   <eClassifiers xsi:type="custom:EClassCustomization" name="Diagram" documentation="Representation of diagram in model explorer">
     <extendedMetaclass href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
     <facetOperations name="GetDiagramIcon" documentation="Return the path to the icon of the corresponding diagram">
-      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/>
+      <eParameters name="eObject">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eParameters>
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.GetDiagramIcon"/>
+      <override xsi:type="efacet:FacetOperation" href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>
     </facetOperations>
     <facetOperations name="NotVisibleStructuralFeature">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

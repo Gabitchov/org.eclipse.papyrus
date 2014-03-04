@@ -21,13 +21,13 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 
 /** Tests whether an element is a page */
-public class IsPage implements IJavaQuery2<EObject, Boolean> {
+public class IsOpenedPage implements IJavaQuery2<EObject, Boolean> {
 
 
 	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
 		try {
 			IPageManager pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(source);
-			return pageManager.allPages().contains(source);
+			return pageManager.isOpen(source);
 		} catch (ServiceException ex) {
 			//Ignore
 		}

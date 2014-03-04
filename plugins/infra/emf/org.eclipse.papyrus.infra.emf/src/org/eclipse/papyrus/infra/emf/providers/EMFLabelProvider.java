@@ -20,7 +20,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.DecoratingCustomizedLabelProvider;
+import org.eclipse.papyrus.emf.facet.custom.ui.internal.ResolvingCustomizedLabelProvider;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IDetailLabelProvider;
@@ -35,7 +38,7 @@ import org.eclipse.swt.graphics.Image;
  * 
  * @author Camille Letavernier
  */
-public class EMFLabelProvider extends CustomizedLabelProvider implements IDetailLabelProvider, IQualifierLabelProvider {
+public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implements IDetailLabelProvider, IQualifierLabelProvider {
 
 	protected ILabelProvider baseEMFLabelProvider;
 
@@ -43,7 +46,7 @@ public class EMFLabelProvider extends CustomizedLabelProvider implements IDetail
 	 * Creates a new EMFObjectLabelProvider.
 	 */
 	public EMFLabelProvider() {
-		super(Activator.getDefault().getCustomizationManager()); //Note: CustomizableModelLabelProvider doesn't use the CustomizationManager. It relies on the content provider's CustomizationManager
+		super(new DecoratingCustomizedLabelProvider(Activator.getDefault().getCustomizationManager())); //Note: CustomizableModelLabelProvider doesn't use the CustomizationManager. It relies on the content provider's CustomizationManager
 		baseEMFLabelProvider = new StandardEMFLabelProvider();
 	}
 
@@ -56,9 +59,9 @@ public class EMFLabelProvider extends CustomizedLabelProvider implements IDetail
 			return ""; //$NON-NLS-1$
 		}
 
-		//if(element instanceof ITreeElement) {
-		//	return super.getText(element);
-		//}
+//		if(element instanceof TreeElement) {
+//			return super.getText(element);
+//		}
 
 		EObject eObject = EMFHelper.getEObject(element);
 		if(eObject != null) {
@@ -104,9 +107,9 @@ public class EMFLabelProvider extends CustomizedLabelProvider implements IDetail
 	 */
 	@Override
 	public Image getImage(Object element) {
-		//if(element instanceof ITreeElement) {
-		//	return super.getImage(element);
-		//}
+		if(element instanceof TreeElement) {
+			return super.getImage(element);
+		}
 
 		EObject eObject = EMFHelper.getEObject(element);
 		if(eObject != null) {

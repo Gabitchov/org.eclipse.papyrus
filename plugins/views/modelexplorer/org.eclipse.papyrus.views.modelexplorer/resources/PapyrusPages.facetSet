@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<facet:FacetSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:facet="http://www.eclipse.org/EmfFacet/infra/facet/0.8.incubation" xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation" name="PapyrusPages" nsURI="http://www.eclipse.org/papyrus/views/modelexplorer/pages" nsPrefix="papyrusPages">
-  <eClassifiers xsi:type="facet:Facet" name="Page" abstract="true">
-    <eSuperTypes href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <conditionQuery xsi:type="query:JavaModelQuery" href="PapyrusPages.querySet#isPage"/>
-  </eClassifiers>
-  <extendedPackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
-</facet:FacetSet>

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.Activator;
@@ -63,14 +64,17 @@ public class ImageQuery implements IJavaQuery2<EObject, IImage> {
 		final IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory
 				.adapt(source, IItemLabelProvider.class);
 		if (itemLabelProvider != null) {
-			final ImageDescriptor imgDescriptor = ExtendedImageRegistry
-					.getInstance().getImageDescriptor(source);
-			final IImageProvider imgProvider = IImageProviderFactory.DEFAULT
-					.createIImageProvider(Activator.getDefault());
-			if (imgDescriptor != null) {
-				final Image image = imgProvider.getImage(imgDescriptor);
-				result = new ImageWrapper(image);
-			}
+			Object imageObject = itemLabelProvider.getImage(source);
+			Image image = ExtendedImageRegistry.getInstance().getImage(imageObject);
+			result = new ImageWrapper(image);
+////			final ImageDescriptor imgDescriptor = ExtendedImageRegistry
+////					.getInstance().getImageDescriptor(source);
+//			final IImageProvider imgProvider = IImageProviderFactory.DEFAULT
+//					.createIImageProvider(Activator.getDefault());
+//			if (imgDescriptor != null) {
+//				final Image image = imgProvider.getImage(imgDescriptor);
+//				result = new ImageWrapper(image);
+//			}
 		}
 		return result;
 	}
