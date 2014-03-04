@@ -221,10 +221,14 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 
 		for(int i = 0; (i < orderedHandlersArray.length); i++) {
 			if(orderedHandlersArray[i] instanceof IReadOnlyHandler2) {
-				Optional<Boolean> canMakeWritable = ((IReadOnlyHandler2)orderedHandlersArray[i]).canMakeWritable(uris);
-				if(canMakeWritable.isPresent()) {
-					result = canMakeWritable.get();
-					break;
+				IReadOnlyHandler2 h2 = (IReadOnlyHandler2)orderedHandlersArray[i];
+				if (h2.anyReadOnly(uris).or(false)) {
+					// Only ask a handler about making writable what it considers to be read-only
+					Optional<Boolean> canMakeWritable = h2.canMakeWritable(uris);
+					if(canMakeWritable.isPresent()) {
+						result = canMakeWritable.get();
+						break;
+					}
 				}
 			}
 		}
@@ -237,10 +241,14 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 
 		for(int i = 0; (i < orderedHandlersArray.length); i++) {
 			if(orderedHandlersArray[i] instanceof IReadOnlyHandler2) {
-				Optional<Boolean> canMakeWritable = ((IReadOnlyHandler2)orderedHandlersArray[i]).canMakeWritable(object);
-				if(canMakeWritable.isPresent()) {
-					result = canMakeWritable.get();
-					break;
+				IReadOnlyHandler2 h2 = (IReadOnlyHandler2)orderedHandlersArray[i];
+				if (h2.isReadOnly(object).or(false)) {
+					// Only ask a handler about making writable what it considers to be read-only
+					Optional<Boolean> canMakeWritable = h2.canMakeWritable(object);
+					if(canMakeWritable.isPresent()) {
+						result = canMakeWritable.get();
+						break;
+					}
 				}
 			}
 		}
