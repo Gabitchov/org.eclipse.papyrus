@@ -38,6 +38,7 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.RelativeT
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TimeEventRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
+import org.eclipse.swt.SWT;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
@@ -74,6 +75,14 @@ public class TransitionPopupEditorConfigurationContribution extends DefaultXtext
 
 	private final static String EVENTS = "events";
 
+	/**
+	 * Clients may override to change style to {@link SWT}.MULTI
+	 */
+	@Override
+	public int getStyle() {
+		return SWT.MULTI | SWT.WRAP;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 

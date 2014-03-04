@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.widgets;
 
@@ -27,6 +29,8 @@ public class ResetStyleWidget implements SelectionListener {
 
 	private DataSource input;
 
+	private String propertyPath;
+	
 	public ResetStyleWidget(Composite parent, int style) {
 		button = new Button(parent, SWT.PUSH);
 		button.addSelectionListener(this);
@@ -65,9 +69,28 @@ public class ResetStyleWidget implements SelectionListener {
 
 	public void setInput(DataSource input) {
 		this.input = input;
+		checkInput();
 	}
 
 	public DataSource getInput() {
 		return input;
 	}
+	
+	public String getProperty() {
+		return propertyPath;
+	}
+
+	public void setProperty(String property) {
+		this.propertyPath = property;
+		checkInput();
+	}
+	
+	protected void checkInput() {
+		if((propertyPath != null) && (input != null)) {
+			button.setEnabled(input.isEditable(propertyPath));
+		} else {
+			button.setEnabled(true); // For compatibility with XWT models that don't specify the property
+		}
+	}
+
 }

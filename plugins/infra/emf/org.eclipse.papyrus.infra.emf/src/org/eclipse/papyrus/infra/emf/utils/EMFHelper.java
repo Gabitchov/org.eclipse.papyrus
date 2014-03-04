@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
- *
+ * Copyright (c) 2010, 2014 CEA LIST and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
- *
+ *  Christian W. Damus (CEA) - bug 323802
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
 
@@ -47,6 +48,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.custom.ui.CustomizedContentProviderUtils;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -54,7 +56,7 @@ import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 
 /**
  * A Helper class for manipulating EMF Objects
- *
+ * 
  * @author Camille Letavernier
  */
 //TODO : Check implementations. Most of them are old and don't always match the specification
@@ -62,7 +64,7 @@ public class EMFHelper {
 
 	/**
 	 * Returns the EClass corresponding to the given nsUri and className
-	 *
+	 * 
 	 * @param nsUri
 	 *        The NSURI of the EClass' EPackage
 	 * @param className
@@ -81,7 +83,7 @@ public class EMFHelper {
 
 	/**
 	 * Return the EClass corresponding to the given EPackage and className
-	 *
+	 * 
 	 * @param metamodel
 	 *        The EClass' EPackage
 	 * @param className
@@ -105,7 +107,7 @@ public class EMFHelper {
 
 	/**
 	 * Tests if an Object is an instance of the given EClass
-	 *
+	 * 
 	 * @param element
 	 *        The EObject to test
 	 * @param className
@@ -130,7 +132,7 @@ public class EMFHelper {
 	/**
 	 * Tests if the given eClass is a Subclass of fromClass
 	 * Also returns true when eClass == fromClass
-	 *
+	 * 
 	 * @param eClass
 	 * @param fromClass
 	 * @return
@@ -158,7 +160,7 @@ public class EMFHelper {
 	 * Returns the EObject corresponding to the input object
 	 * Tests if the input is an EObject, or if it is Adaptable
 	 * to an EObject
-	 *
+	 * 
 	 * @param source
 	 * @return An EObject corresponding to the input source, or null
 	 *         if the EObject could not be resolved
@@ -193,11 +195,11 @@ public class EMFHelper {
 	 * where objects are {@code EObject}s but shouldn't be treated as
 	 * "model content". But, a minimum requirement is that the {@code object} is
 	 * an {@link EObject}.
-	 *
+	 * 
 	 * @param object
 	 *        an object
 	 * @return whether it is "model content"
-	 *
+	 * 
 	 * @see EMFHelper#asEMFModelElement(Object)
 	 */
 	public static boolean isEMFModelElement(Object object) {
@@ -206,12 +208,12 @@ public class EMFHelper {
 
 	/**
 	 * Casts an {@code object} as an EMF model element, if appropriate.
-	 *
+	 * 
 	 * @param object
 	 *        an object
 	 * @return the object as an EMF model element, or {@code null} if it is not
 	 *         an EMF model element
-	 *
+	 * 
 	 * @see #isEMFModelElement(Object)
 	 */
 	public static EObject asEMFModelElement(Object object) {
@@ -221,7 +223,7 @@ public class EMFHelper {
 	/**
 	 * Retrieve the EditingDomain for the given source object. The object is first
 	 * resolved to an EObject through #getEObject when possible.
-	 *
+	 * 
 	 * @param source
 	 * @return
 	 *         The source object's editing domain, or null if it couldn't be found
@@ -232,7 +234,7 @@ public class EMFHelper {
 
 	/**
 	 * Retrieve the EditingDomain for the given source EObject
-	 *
+	 * 
 	 * @param source
 	 * @return
 	 *         The source eObject's editing domain, or null if it couldn't be found
@@ -252,7 +254,7 @@ public class EMFHelper {
 	/**
 	 * Return the eClassifier' qualified name. The qualified name is obtained by the concatenation
 	 * of its package hierarchy with the class name, separated by the given separator
-	 *
+	 * 
 	 * @param eClassifier
 	 * @param separator
 	 *        The separator used between each package name
@@ -266,7 +268,7 @@ public class EMFHelper {
 	/**
 	 * Return the ePackage's qualified name. The qualified name is obtained by the concatenation
 	 * of its superPackage hierarchy with the ePackage name, separated by the given separator
-	 *
+	 * 
 	 * @param ePackage
 	 * @param separator
 	 *        The separator used between each package name
@@ -284,7 +286,7 @@ public class EMFHelper {
 	/**
 	 * Loads and returns the first EObject at the given URI.
 	 * The EObject is loaded in the given resourceSet.
-	 *
+	 * 
 	 * @param resourceSet
 	 *        The ResourceSet in which the model will be loaded
 	 * @param uri
@@ -317,7 +319,7 @@ public class EMFHelper {
 	/**
 	 * Return the root package containing the given package, or the package
 	 * itself if it is already the root
-	 *
+	 * 
 	 * @param ePackage
 	 * @return
 	 *         The Root package
@@ -337,7 +339,7 @@ public class EMFHelper {
 	/**
 	 * Return the list of EClasses that are subtypes
 	 * of the given EClass
-	 *
+	 * 
 	 * @param type
 	 * @param concreteClassesOnly
 	 *        If true, only Concrete EClasses will be returned. Abstract and Interface EClasses will be filtered
@@ -358,7 +360,7 @@ public class EMFHelper {
 	/**
 	 * Return the list of EClasses that are sub types
 	 * of the given EClass
-	 *
+	 * 
 	 * @param type
 	 * @param concreteClassesOnly
 	 *        If true, only Concrete EClasses will be returned. Abstract and Interface EClasses will be filtered
@@ -382,7 +384,7 @@ public class EMFHelper {
 
 	/**
 	 * Return the list of EClasses that are sub types of the given EClass
-	 *
+	 * 
 	 * @param type
 	 * @param concreteClassesOnly
 	 *        If true, only Concrete EClasses will be returned. Abstract and Interface EClasses will be filtered
@@ -431,7 +433,7 @@ public class EMFHelper {
 	/**
 	 * Tests if an EObject is read only
 	 * Delegates to the EObject's editing domain if it can be found
-	 *
+	 * 
 	 * @param eObject
 	 * @return
 	 *         True if the EObject is read only
@@ -444,9 +446,9 @@ public class EMFHelper {
 	/**
 	 * Tests if an EObject is read only
 	 * Delegates to the given editing domain if it isn't null
-	 *
+	 * 
 	 * @param eObject
-	 *
+	 * 
 	 * @param domain
 	 * @return
 	 *         True if the EObject is read only
@@ -468,7 +470,7 @@ public class EMFHelper {
 	/**
 	 * Tests if the Resource is read only
 	 * Delegates to the given editing domain if it isn't null
-	 *
+	 * 
 	 * @param resource
 	 * @param domain
 	 * @return
@@ -501,17 +503,59 @@ public class EMFHelper {
 	}
 
 	/**
+	 * Tests if an object that is read only could possibly be made writable by some means (file system attributes, team provider hook, database
+	 * permissions, etc.)
+	 * 
+	 * @param eObject
+	 *        an object that is assumed to be read-only
+	 * @param domain
+	 *        the editing domain context of the {@link eObject}
+	 * @return
+	 *         whether the {@code eObject} could be made writable
+	 */
+	public static boolean canMakeWritable(final EObject eObject, final EditingDomain domain) {
+		if(domain != null) {
+			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
+			if(handler instanceof IReadOnlyHandler2) {
+				return ((IReadOnlyHandler2)handler).canMakeWritable(eObject).or(false);
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Tests if a resource that is read only could possibly be made writable by some means (file system attributes, team provider hook, database
+	 * permissions, etc.)
+	 * 
+	 * @param resource
+	 *        a resource that is assumed to be read-only
+	 * @param domain
+	 *        the editing domain context of the {@link resource}
+	 * @return
+	 *         whether the {@code resource} could be made writable
+	 */
+	public static boolean canMakeWritable(final Resource resource, final EditingDomain domain) {
+		if(domain != null) {
+			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
+			if(handler instanceof IReadOnlyHandler2) {
+				return ((IReadOnlyHandler2)handler).canMakeWritable(new URI[] { resource.getURI() }).or(false);
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Tests if the given EStructuralFeature is required (ie. should always
 	 * have a value)
-	 *
+	 * 
 	 * A feature is required if at least of one the following conditions if
 	 * true :
-	 *
+	 * 
 	 * - It has a defaultValue
 	 * - Its lowerBound is at least 1
 	 * - It is an enumeration (Enumerations always have a default value)
 	 * - It is a Java primitive type, and is not marked as Unsettable
-	 *
+	 * 
 	 * @param feature
 	 *        the feature to test
 	 * @return
@@ -544,7 +588,7 @@ public class EMFHelper {
 
 	/**
 	 * Returns all objects of type T contained in the resource
-	 *
+	 * 
 	 * @param resource
 	 * @param type
 	 * @return
@@ -565,7 +609,7 @@ public class EMFHelper {
 
 	/**
 	 * Returns all the EPackages and nested EPackages contained in this resource
-	 *
+	 * 
 	 * @param resource
 	 * @return
 	 */
@@ -585,7 +629,7 @@ public class EMFHelper {
 	/**
 	 * Returns all packages nested in the given EPackage (recursively). Does not
 	 * include the base EPackage.
-	 *
+	 * 
 	 * @param basePackage
 	 * @return
 	 */
@@ -601,10 +645,10 @@ public class EMFHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param resource
 	 *        a resource
-	 *
+	 * 
 	 * @return
 	 *         the list of the metamodels known by the resource
 	 */
@@ -620,9 +664,9 @@ public class EMFHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * Returns the XMI ID of the given {@link EObject} or <code>null</code> if it cannot be resolved.
-	 *
+	 * 
 	 * @param object
 	 *        Object which we seek the XMI ID of.
 	 * @return <code>object</code>'s XMI ID, <code>null</code> if not applicable.
@@ -639,10 +683,10 @@ public class EMFHelper {
 
 	/**
 	 * Gets the usages.
-	 *
+	 * 
 	 * @param source
 	 *        the source
-	 *
+	 * 
 	 * @return the usages or null if there is no usages
 	 */
 	public static Collection<Setting> getUsages(EObject source) {
@@ -657,7 +701,7 @@ public class EMFHelper {
 	 * Test if the used element is referenced by other elements than the known
 	 * referencer (except its container). It ignores references from an other meta-model.
 	 * </pre>
-	 *
+	 * 
 	 * @param usedObject
 	 *        the used object
 	 * @param knownReferencer
@@ -692,7 +736,7 @@ public class EMFHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param superType
 	 *        an eclassifier
 	 * @param subType
@@ -726,7 +770,7 @@ public class EMFHelper {
 
 	/**
 	 * Computes the path from the root EObject to the given element, as a List of EObjects
-	 *
+	 * 
 	 * @param element
 	 * @return
 	 */

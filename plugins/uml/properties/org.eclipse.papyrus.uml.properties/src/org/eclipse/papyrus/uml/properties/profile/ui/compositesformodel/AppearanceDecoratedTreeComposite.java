@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,12 +10,14 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
 import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.profile.tree.ProfileElementTreeViewer;
 import org.eclipse.papyrus.uml.profile.tree.PropertyValueTreeViewer;
 import org.eclipse.swt.custom.CLabel;
@@ -133,6 +135,11 @@ public abstract class AppearanceDecoratedTreeComposite extends Composite impleme
 	public void refresh() {
 	}
 
+	public boolean isReadOnly() {
+		Element element = getElement();
+		return (element == null) || EMFHelper.isReadOnly(element);
+	}
+	
 	/**
 	 * Returns the CommmandStack of the current editor.
 	 * 

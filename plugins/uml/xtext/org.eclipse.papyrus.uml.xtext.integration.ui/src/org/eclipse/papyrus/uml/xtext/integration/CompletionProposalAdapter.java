@@ -14,6 +14,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
@@ -24,11 +25,15 @@ import org.eclipse.swt.widgets.Listener;
  * 
  * @author patrick.koenemann@itemis.de
  * 
+ *         ansgar.radermacher@cea.fr: added delayedIsPopupOpen()
+ * 
  */
 public class CompletionProposalAdapter implements ICompletionListener {
 
 	private final IContentAssistant contentAssistant;
 
+	protected boolean delayedIsOpen;	
+	
 	/**
 	 * <p>
 	 * This adapter installs listener on the given control and delegates the
@@ -57,6 +62,21 @@ public class CompletionProposalAdapter implements ICompletionListener {
 
 		this.contentAssistant = contentAssistant;
 		addControlListener(control);
+		addContentProposalListener(new ICompletionProposalListener() {
+			
+			public void proposalPopupOpened(CompletionProposalAdapter adapter) {
+			}
+			
+			public void proposalPopupClosed(CompletionProposalAdapter adapter) {
+				// reset open status asynchronously.
+				Display.getDefault().asyncExec(new Runnable() {
+					
+					public void run() {
+						delayedIsOpen = false;
+					}
+				});
+			}
+		});
 	}
 
 	/**
@@ -436,6 +456,7 @@ public class CompletionProposalAdapter implements ICompletionListener {
 	private void openProposalPopup(boolean autoActivated) {
 		if (isValid() && isEnabled()) {
 
+			delayedIsOpen = true;
 			// XXX here we delegate the request!
 			contentAssistant.showPossibleCompletions();
 
@@ -546,6 +567,16 @@ public class CompletionProposalAdapter implements ICompletionListener {
 	}
 
 	/**
+	 * @return true, if popup is open. Flag whether is reset asynchronously.
+	 *	This means that it still returns true, when isProposalPopupOpen() already
+	 *  returns false. This is useful to filter for instance the escape key
+	 *  once the popup is open.
+	 */
+	public boolean delayedIsPopupOpen() {
+		return delayedIsOpen;
+	}
+	
+	/**
 	 * @return <code>true</code> if the content assistant has the completion
 	 *         proposal popup open; <code>false</code> otherwise.
 	 */
@@ -556,7 +587,7 @@ public class CompletionProposalAdapter implements ICompletionListener {
 		 */
 		try {
 			final Method m = ContentAssistant.class
-					.getDeclaredMethod("isProposalPopupActive");
+					.getDeclaredMethod("isProposalPopupActive"); //$NON-NLS-1$
 			m.setAccessible(true);
 			try {
 				final Object result = m.invoke(contentAssistant);

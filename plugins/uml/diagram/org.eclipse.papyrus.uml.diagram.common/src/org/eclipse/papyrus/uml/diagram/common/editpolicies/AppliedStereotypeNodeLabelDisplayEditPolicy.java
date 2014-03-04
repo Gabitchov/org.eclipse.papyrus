@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 429275
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -59,7 +60,12 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 			// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 			if(figure instanceof IPapyrusNodeUMLElementFigure) {
 				((IPapyrusNodeUMLElementFigure)figure).setStereotypeDisplay(tag + (stereotypesOnlyToDisplay().equals("") ? stereotypesToDisplay : stereotypesToDisplay), imageToDisplay);
-				refreshAppliedStereotypesProperties(((IPapyrusNodeNamedElementFigure) figure));
+
+				if(figure instanceof IPapyrusNodeNamedElementFigure) {
+					refreshAppliedStereotypesProperties((IPapyrusNodeNamedElementFigure)figure);
+				} else {
+					refreshAppliedStereotypesProperties((IPapyrusNodeUMLElementFigure)figure);
+				}
 			}
 			// TODO we should manage PapyrusNodeFigure here too (and
 			// WrappingLabel ?)
@@ -81,6 +87,16 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 		} else {
 			figure.restoreStereotypeLabel();
 		}
+	}
+
+	/**
+	 * Refreshes the displayed stereotypes properties for this edit part.
+	 */
+	protected void refreshAppliedStereotypesProperties(IPapyrusNodeUMLElementFigure figure) {
+		final String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay((View)getHost().getModel());
+
+		refreshAppliedStereotypesPropertiesInCompartment(stereotypesPropertiesToDisplay, figure);
+		refreshAppliedStereotypesPropertiesInBrace(stereotypesPropertiesToDisplay, figure);
 	}
 
 	/**

@@ -230,10 +230,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if(elementType != null) {
 				if(elementType instanceof IExtendedHintedElementType) {
-					IElementType closestNonExtendedType = ElementTypeUtils.getClosestDiagramType(elementType);
-					if(!UMLElementTypes.isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof IHintedType))) {
-						return false; // foreign element type.
+//					if(elementType instanceof IExtendedHintedElementType) {
+					if(domainElement !=null) {
+						if(!UMLVisualIDRegistry.checkNodeVisualID(op.getContainerView(), domainElement, visualID)) {
+							return false;
+						}
 					}
+//					IElementType closestNonExtendedType = ElementTypeUtils.getClosestDiagramType(elementType);
+//					if(!UMLElementTypes.isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof IHintedType))) {
+//						return false; // foreign element type.
+//					}
 				} else {
 					if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 						return false; // foreign element type

@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
+ *  Christian W. Damus (CEA) - bug 323802
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.modelelement;
@@ -242,14 +243,22 @@ public class EMFModelElement extends AbstractModelElement {
 	}
 
 	@Override
-	public boolean isEditable(String propertyPath) {
+	public final boolean isEditable(String propertyPath) {
+		return isFeatureEditable(propertyPath) && isElementEditable();
+	}
+
+	protected boolean isFeatureEditable(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if(feature == null) {
 			return false;
 		}
-		return feature.isChangeable() && !EMFHelper.isReadOnly(source);
+		return feature.isChangeable();
 	}
-
+	
+	protected boolean isElementEditable() {
+		return !EMFHelper.isReadOnly(source);
+	}
+	
 	@Override
 	public boolean forceRefresh(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);

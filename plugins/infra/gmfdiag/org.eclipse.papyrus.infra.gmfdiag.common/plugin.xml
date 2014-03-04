@@ -197,4 +197,10 @@
       </Priority>
    </editpolicyProvider>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.commands.historyListeners">
+   <historyListener
+         class="org.eclipse.papyrus.infra.gmfdiag.common.listener.RollbackNotificationHistoryListener">
+   </historyListener>
+</extension>
 </plugin>

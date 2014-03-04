@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,19 +8,14 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.InternalTransaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
@@ -35,6 +29,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityComman
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.NotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -121,68 +116,15 @@ public class ShapeCompartmentEditPolicy extends GraphicalEditPolicy implements N
 	 */
 	protected void executeShapeCompartmentCreation(final IGraphicalEditPart editPart) {
 		try {
-			//			getEditingDomain(editPart).runExclusive(new Runnable() {
-
-			/**
-			 * {@inheritDoc}
-			 */
-			//				public void run() {
-			Display.getCurrent().syncExec(new Runnable() {
-
-				/**
-				 * {@inheritDoc}
-				 */
-				public void run() {
-					//boolean isVisible = hasToDisplayCompartment(editPart.getNotationView());
-					CreateShapeCompartmentViewCommand command = new CreateShapeCompartmentViewCommand(getEditingDomain(editPart), "Create Compartment", "Command that creates the compartment displaying shapes", editPart.getNotationView(), /* isVisible */false);
-					Map<String, Boolean> options = new HashMap<String, Boolean>();
-					//options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-					try {
-						//This should not change the command stack, as this transaction will only manipulate transient views. Create a transaction manually, if needed
-						InternalTransactionalEditingDomain editingDomain = (InternalTransactionalEditingDomain)editPart.getEditingDomain();
-						InternalTransaction activeTransaction = editingDomain.getActiveTransaction();
-						if(activeTransaction != null && activeTransaction.isActive()) {
-							if(activeTransaction.isReadOnly()) {
-								//We're in a read-only active transaction (e.g. post-commit).
-								//Typical case: We create a new gmf::View in a transaction. 
-								//The transaction has been committed, and the edit part is being created during the post-commit
-								//post-commit is read-only. We cannot create a read-write transaction in this state, so we need
-								//to deactive the read-only transaction first.
-
-								try {
-									//Deactivate the read-only transaction
-									editingDomain.deactivate(activeTransaction);
-
-									//Start a new read-write transaction
-									InternalTransaction it = editingDomain.startTransaction(false, options);
-									command.execute();
-									it.commit();
-								} finally {
-									//Reactive the read-only transaction
-									editingDomain.activate(activeTransaction);
-								}
-
-							} else {
-								//We're already in an active read-write transaction. Simply execute the command
-								//Never happens?
-								command.execute();
-							}
-						} else {
-							//We're not in a transaction. Start a new read-write transaction
-							//Typical case: opening the diagram
-							InternalTransaction it = editingDomain.startTransaction(false, options);
-							command.execute();
-							it.commit();
-						}
-
-					} catch (Exception e) {
-						Activator.log.error(e);
-					}
-					// editPart.getEditingDomain().getCommandStack().execute(command);
-				}
-			});
-			//				}
-			//			});
+			//boolean isVisible = hasToDisplayCompartment(editPart.getNotationView());
+			TransactionalEditingDomain domain = getEditingDomain(editPart);
+			CreateShapeCompartmentViewCommand command = new CreateShapeCompartmentViewCommand(domain, "Create Compartment", "Command that creates the compartment displaying shapes", editPart.getNotationView(), /* isVisible */false);
+			try {
+				//This should not change the command stack, as this transaction will only manipulate transient views. Create a transaction manually, if needed
+				GMFUnsafe.write(domain, command);
+			} catch (Exception e) {
+				Activator.log.error(e);
+			}
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
@@ -261,32 +203,19 @@ public class ShapeCompartmentEditPolicy extends GraphicalEditPolicy implements N
 	 *        the stereotype application
 	 */
 	protected void setVisibility(final View view, final boolean isVisible) {
-		try {
-			final GraphicalEditPart editPart = (GraphicalEditPart)getHost();
-			editPart.getEditingDomain().runExclusive(new Runnable() {
+		final GraphicalEditPart editPart = (GraphicalEditPart)getHost();
+		Display.getCurrent().asyncExec(new Runnable() {
 
-				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-							SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
-							//use to avoid to put it in the command stack
-							Map<String, Boolean> options = new HashMap<String, Boolean>();
-							options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-							try {
-								InternalTransaction it = ((InternalTransactionalEditingDomain)editPart.getEditingDomain()).startTransaction(false, options);
-								setCommand.execute();
-								it.commit();
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
+			public void run() {
+				SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
+				//use to avoid to put it in the command stack
+				try {
+					GMFUnsafe.write(editPart.getEditingDomain(), setCommand);
+				} catch (Exception e) {
+					Activator.log.error(e);
 				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
+			}
+		});
 	}
 
 }

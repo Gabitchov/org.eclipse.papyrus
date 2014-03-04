@@ -142,6 +142,9 @@ public class PreferencesConstantsHelper {
 
 	public final static String DRAW_CONNECTION_POINT_CONSTANT = "drawConnectionPoint"; //$NON-NLS-1$
 
+	public final static String INVERT_BINDING_FOR_DEFAULT_RESIZE_AND_CONSTRAINED_RESIZE_CONSTANT = "invertBindingForDefaultResizeAndConstrainedResize"; //$NON-NLS-1$
+
+	
 	/**
 	 * A preference of type COLOR FILL
 	 */
@@ -308,12 +311,21 @@ public class PreferencesConstantsHelper {
 	 * A preference to view the page break on the diagram
 	 */
 	public static final int VIEW_PAGE_BREAK = GRID_LINE_STYLE + 1;
-	
+
 	/**
 	 * A preference to draw big point when 2 links have a common part
 	 */
-	public static final int DRAW_CONNECTION_POINT = VIEW_PAGE_BREAK +1;
+	public static final int DRAW_CONNECTION_POINT = VIEW_PAGE_BREAK + 1;
 
+	/**
+	 * A Papyrus preference to define the if the default resize action is constrained or not.
+	 * if the preference is <code>false</code>
+	 * <ul>
+	 * <li>default resize is not constraint</li>
+	 * <li>resize + SHIFT is constrained</li>
+	 * </ul>
+	 */
+	public static final int INVERT_BINDING_FOR_DEFAULT_RESIZE_AND_CONSTRAINED_RESIZE = DRAW_CONNECTION_POINT + 1;
 
 	/**
 	 * Get the preference constant used to store the preference of an element.

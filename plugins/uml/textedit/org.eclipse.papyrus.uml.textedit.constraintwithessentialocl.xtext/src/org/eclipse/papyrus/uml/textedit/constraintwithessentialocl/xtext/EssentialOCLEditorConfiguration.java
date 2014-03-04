@@ -19,6 +19,7 @@ package org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -40,9 +41,10 @@ import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfigu
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtext.resource.XtextResource;
 
@@ -70,14 +72,6 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 		return SWT.MULTI | SWT.WRAP;
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	public Point getPreferedSize() {
-		return new Point(SWT.DEFAULT, SWT.DEFAULT);
-	}
-	
-
 	/**
 	 * the command to save the content of the OCL constraint into the body of the UML constraint element
 	 * 
@@ -116,6 +110,12 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				opaqueExpression.getBodies().add(indexOfOCLBody, newTextualRepresentation);
 			}
 			constraint.setSpecification(opaqueExpression);
+			
+			// update context object, if null (TODO: clarify, if responsibility of textual editor).
+			EObject context = getContextProvider().getContextObject();
+			if ((constraint.getContext() == null) && (context instanceof Namespace)) {
+				constraint.setContext((Namespace) context);
+			}
 			return CommandResult.newOKCommandResult(constraint);
 		}
 	}
@@ -149,7 +149,10 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 
 			public EObject getContextObject() {
 				if(objectToEdit instanceof Constraint) {
-					return ((Constraint)objectToEdit).getConstrainedElements().get(0);
+					EList<Element> contrainedElements = ((Constraint)objectToEdit).getConstrainedElements();
+					if (contrainedElements.size() > 0) {
+						return contrainedElements.get(0);
+					}
 				}
 				return null;
 			}
@@ -173,6 +176,9 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 	
 	@Override
 	public IParser createParser(final EObject semanticObject) {
+		if (objectToEdit == null) {
+			objectToEdit = semanticObject;
+		}
 		final IParser defaultParser = super.createParser(semanticObject);
 		return new IParser() {
 

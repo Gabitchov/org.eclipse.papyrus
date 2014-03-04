@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
@@ -129,7 +131,7 @@ public class UMLModelElement extends EMFModelElement {
 	}
 
 	@Override
-	public boolean isEditable(String propertyPath) {
+	protected boolean isFeatureEditable(String propertyPath) {
 		EStructuralFeature feature = getFeature(propertyPath);
 		if(feature == UMLPackage.eINSTANCE.getMessage_Signature()) {
 			return true;
@@ -145,7 +147,7 @@ public class UMLModelElement extends EMFModelElement {
 			return false;
 			//return true; //TODO : Unsupported yet
 		}
-		return super.isEditable(propertyPath);
+		return super.isFeatureEditable(propertyPath);
 	}
 
 	@Override

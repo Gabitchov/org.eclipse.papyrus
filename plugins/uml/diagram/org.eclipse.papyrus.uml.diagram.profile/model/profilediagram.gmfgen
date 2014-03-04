@@ -351,7 +351,7 @@
             <metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
-        <labels visualID="5064" editPartClassName="ConstraintBondyEditPartCN" itemSemanticEditPolicyClassName="ConstraintBodyItemSemanticEditPolicy">
+        <labels visualID="5064" editPartClassName="ConstraintBodyEditPartCN" itemSemanticEditPolicyClassName="ConstraintBodyItemSemanticEditPolicy">
           <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getConstraintFigure" figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure"/>
           <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.5">
@@ -1241,7 +1241,7 @@
         <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.eclipse.uml2.uml.diagram.pathmaps" name="Pathmaps" kind="Pathmaps"/>
       </preferencePages>
     </diagram>
-    <plugin iD="org.eclipse.papyrus.uml.diagram.profile" name="PapyrusUMLProfileDiagram" provider="CEA LIST" version="0.10.0.vqualifier">
+    <plugin iD="org.eclipse.papyrus.uml.diagram.profile" name="PapyrusUMLProfileDiagram" provider="CEA LIST" version="1.0.0.vqualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>

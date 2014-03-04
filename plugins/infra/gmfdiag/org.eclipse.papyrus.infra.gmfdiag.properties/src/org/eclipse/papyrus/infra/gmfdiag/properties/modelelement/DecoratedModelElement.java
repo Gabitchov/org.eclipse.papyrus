@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *		
  *		CEA LIST - Initial API and implementation
+ *      Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBooleanStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomIntStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.ShapeDecorator;
@@ -114,12 +116,8 @@ public class DecoratedModelElement extends AbstractModelElement {
 	 */
 	@Override
 	public boolean isEditable(String propertyPath) {
-		if(ShapeDecorator.SHAPE_DECORATOR_DIRECTION.equals(propertyPath)) {
-			return true;
-		}
-
-		if(ShapeDecorator.SHAPE_DECORATOR_VISIBILITY.equals(propertyPath)) {
-			return true;
+		if(ShapeDecorator.SHAPE_DECORATOR_DIRECTION.equals(propertyPath) || ShapeDecorator.SHAPE_DECORATOR_VISIBILITY.equals(propertyPath)) {
+			return !EMFHelper.isReadOnly(source);
 		}
 
 		return super.isEditable(propertyPath);

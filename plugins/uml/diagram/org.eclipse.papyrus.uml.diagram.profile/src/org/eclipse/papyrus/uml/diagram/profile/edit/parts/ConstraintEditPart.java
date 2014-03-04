@@ -20,10 +20,8 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -31,14 +29,8 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gef.requests.DirectEditRequest;
-import org.eclipse.gmf.runtime.common.core.util.Log;
-import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -233,40 +225,6 @@ public class ConstraintEditPart extends AbstractConstraintEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
-	}
-
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#performDirectEditRequest(org.eclipse.gef.requests.DirectEditRequest)
-	 */
-	protected void performDirectEditRequest(Request request) {
-		EditPart editPart = this;
-		if (request instanceof DirectEditRequest){
-			Point p = new Point(((DirectEditRequest)request).getLocation());
-			getFigure().translateToRelative(p);
-			IFigure fig = getFigure().findFigureAt(p);
-			editPart =(EditPart) getViewer().getVisualPartMap().get(fig);
-		}
-		if (editPart == this) {
-			try {
-				editPart = (EditPart) getEditingDomain().runExclusive(
-					new RunnableWithResult.Impl() {
-
-						public void run() {
-							setResult(getChildren().get(1));
-						}
-					});
-			} catch (InterruptedException e) {
-				Trace.catching(DiagramUIPlugin.getInstance(),
-					DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(),
-					"performDirectEditRequest", e); //$NON-NLS-1$
-				Log.error(DiagramUIPlugin.getInstance(),
-					DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING,
-					"performDirectEditRequest", e); //$NON-NLS-1$
-			}
-			if (editPart != null){
-				editPart.performRequest(request);
-			}
-		}
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin.
+ * Copyright (c) 2011, 2014 Atos Origin, CEA, and otherw.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,10 +9,13 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.resources.IFile;
@@ -27,7 +30,7 @@ import org.eclipse.swt.widgets.Display;
 
 import com.google.common.base.Optional;
 
-public class FSReadOnlyHandler  extends AbstractReadOnlyHandler {
+public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 
 	public FSReadOnlyHandler(EditingDomain editingDomain) {
 		super(editingDomain);
@@ -54,32 +57,42 @@ public class FSReadOnlyHandler  extends AbstractReadOnlyHandler {
 
 	public Optional<Boolean> makeWritable(final URI[] uris) {
 		final AtomicBoolean doEnableWrite = new AtomicBoolean();
-		Display.getCurrent().syncExec(new Runnable() {
-
-			public void run() {
-				String message = "Do you want to remove read only flag on those files ?\n\n";
-				for(URI uri : uris) {
-					IFile file = getFile(uri);
-					if(file != null && file.isReadOnly()) {
-						message += file.getName() + "\n";
-					}
-				}
-				doEnableWrite.set(MessageDialog.openConfirm(Display.getCurrent().getActiveShell(), "Enable write", message));
+		
+		// We can't make a file writable if it already is (there are read-only handlers that treat files that
+		// are filesystem-writable as read-only for other reasons)
+		Collection<IFile> readOnlyFiles = new ArrayList<IFile>(uris.length);
+		for(int i = 0; i < uris.length; i++) {
+			IFile file = getFile(uris[i]);
+			if((file != null) && file.isReadOnly()) {
+				readOnlyFiles.add(file);
 			}
-		});
-
+		}
+		
+		if (!readOnlyFiles.isEmpty()) {
+			Display.getCurrent().syncExec(new Runnable() {
+	
+				public void run() {
+					String message = "Do you want to remove read only flag on those files ?\n\n";
+					for(URI uri : uris) {
+						IFile file = getFile(uri);
+						if(file != null && file.isReadOnly()) {
+							message += file.getName() + "\n";
+						}
+					}
+					doEnableWrite.set(MessageDialog.openConfirm(Display.getCurrent().getActiveShell(), "Enable Write", message));
+				}
+			});
+		}
+		
 		if(doEnableWrite.get()) {
 			Boolean ok = true;
-			for(URI uri : uris) {
-				IFile file = getFile(uri);
-				if(file != null && file.isReadOnly()) {
-					try {
-						ResourceAttributes att = file.getResourceAttributes();
-						att.setReadOnly(false);
-						file.setResourceAttributes(att);
-					} catch (CoreException e) {
-						ok = false;
-					}
+			for(IFile file : readOnlyFiles) {
+				try {
+					ResourceAttributes att = file.getResourceAttributes();
+					att.setReadOnly(false);
+					file.setResourceAttributes(att);
+				} catch (CoreException e) {
+					ok = false;
 				}
 			}
 			return Optional.of(ok);
@@ -88,4 +101,22 @@ public class FSReadOnlyHandler  extends AbstractReadOnlyHandler {
 		}
 	}
 
+	/**
+	 * I can make workspace resources writable.
+	 */
+	@Override
+	public Optional<Boolean> canMakeWritable(URI[] uris) {
+		Optional<Boolean> result = Optional.absent();
+
+		for(int i = 0; (!result.isPresent() || result.get()) && (i < uris.length); i++) {
+			if(uris[i].isPlatformResource()) {
+				result = Optional.of(true);
+			} else if(uris[i].isFile()) {
+				// We don't make non-workspace (external but local) files writable
+				result = Optional.of(false);
+			}
+		}
+
+		return result;
+	}
 }

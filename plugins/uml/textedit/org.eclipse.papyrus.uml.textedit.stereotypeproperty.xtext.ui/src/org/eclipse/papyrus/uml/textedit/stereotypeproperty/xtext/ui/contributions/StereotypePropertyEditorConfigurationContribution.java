@@ -35,6 +35,7 @@ import org.eclipse.papyrus.uml.alf.alf.NameExpression;
 import org.eclipse.papyrus.uml.alf.alf.STRING_LITERAL;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AppliedStereotypePropertyEditorUtil;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.StringConstants;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.internal.AppliedStereotypePropertyActivator;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Element;
@@ -42,7 +43,7 @@ import org.eclipse.uml2.uml.Enumeration;
 
 import com.google.inject.Injector;
 
-public class StereotypePropertyPopupEditorConfigurationContribution extends DefaultXtextDirectEditorConfiguration {
+public class StereotypePropertyEditorConfigurationContribution extends DefaultXtextDirectEditorConfiguration {
 
 	@Override
 	public Injector getInjector() {
@@ -54,32 +55,32 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Defa
 
 	@Override
 	protected ICommand getParseCommand(EObject umlObject, EObject xtextObject) {
-		CompositeCommand command = new CompositeCommand("");
+		CompositeCommand command = new CompositeCommand(""); //$NON-NLS-1$
 		final AppliedStereotypeProperty appliedStereotypeProperty = (AppliedStereotypeProperty) umlObject;
 		Object[] result = AppliedStereotypePropertyEditorUtil.getPossibleElements(appliedStereotypeProperty);
 		// ref element stereotype application
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("Stereotype")) {
+		if (appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals(StringConstants.STEREOTYPE)) {
 			command.add(reconcileRefToStereotypeApp(appliedStereotypeProperty, xtextObject, result));
 		}
 
 		// int
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("Integer")) {
+		if (appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals(StringConstants.INTEGER)) {
 			command.add(reconcileInteger(appliedStereotypeProperty, xtextObject));
 		}
 		// boolean
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("Boolean")) {
+		if (appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals(StringConstants.BOOLEAN)) {
 			command.add(reconcileBoolean(appliedStereotypeProperty, xtextObject));
 		}
 		// string
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals("String")) {
+		if (appliedStereotypeProperty.getStereotypeProperty().getType().getName().equals(StringConstants.STRING)) {
 			command.add(reconcileString(appliedStereotypeProperty, xtextObject));
 		}
 		// dataType
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("DataType")) {
+		if (appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals(StringConstants.DATA_TYPE)) {
 			command.add(reconcileString(appliedStereotypeProperty, xtextObject));
 		}
 		// primitiveType
-		if (appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals("PrimitiveType")) {
+		if (appliedStereotypeProperty.getStereotypeProperty().getType().eClass().getName().equals(StringConstants.PRIMITIVE_TYPE)) {
 			command.add(reconcileString(appliedStereotypeProperty, xtextObject));
 		}
 		if (appliedStereotypeProperty.getStereotypeProperty().getType() instanceof Enumeration) {
@@ -137,7 +138,7 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Defa
 		// cardinality *
 		else {
 			if (eObjects.size() == 0) {
-				return createUpdateCommand(appliedStereotypeProperty, new ArrayList());
+				return createUpdateCommand(appliedStereotypeProperty, new ArrayList<Object>());
 			} else {
 				// iterate on NameExpression
 				ArrayList<Object> stereotypeApplicationList = new ArrayList<Object>();
@@ -389,7 +390,7 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Defa
 
 	protected ICommand createUpdateCommand(final AppliedStereotypeProperty appliedStereotypeProperty, final Object value) {
 		AbstractTransactionalCommand setValueCommand = new AbstractTransactionalCommand(
-				TransactionUtil.getEditingDomain(appliedStereotypeProperty), "", Collections.EMPTY_LIST) {
+				TransactionUtil.getEditingDomain(appliedStereotypeProperty), "", Collections.EMPTY_LIST) { //$NON-NLS-1$
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
@@ -430,7 +431,7 @@ public class StereotypePropertyPopupEditorConfigurationContribution extends Defa
 			// TODO: default values not supported by the grammar
 			// TODO: either complete the grammar, or use another label provider
 		}
-		return "<UNDEFINED>";
+		return "<UNDEFINED>"; //$NON-NLS-1$
 	}
 
 }
