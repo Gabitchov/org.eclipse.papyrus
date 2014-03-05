@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.resources.IFile;
@@ -55,32 +57,42 @@ public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 
 	public Optional<Boolean> makeWritable(final URI[] uris) {
 		final AtomicBoolean doEnableWrite = new AtomicBoolean();
-		Display.getCurrent().syncExec(new Runnable() {
-
-			public void run() {
-				String message = "Do you want to remove read only flag on those files ?\n\n";
-				for(URI uri : uris) {
-					IFile file = getFile(uri);
-					if(file != null && file.isReadOnly()) {
-						message += file.getName() + "\n";
-					}
-				}
-				doEnableWrite.set(MessageDialog.openConfirm(Display.getCurrent().getActiveShell(), "Enable write", message));
+		
+		// We can't make a file writable if it already is (there are read-only handlers that treat files that
+		// are filesystem-writable as read-only for other reasons)
+		Collection<IFile> readOnlyFiles = new ArrayList<IFile>(uris.length);
+		for(int i = 0; i < uris.length; i++) {
+			IFile file = getFile(uris[i]);
+			if((file != null) && file.isReadOnly()) {
+				readOnlyFiles.add(file);
 			}
-		});
-
+		}
+		
+		if (!readOnlyFiles.isEmpty()) {
+			Display.getCurrent().syncExec(new Runnable() {
+	
+				public void run() {
+					String message = "Do you want to remove read only flag on those files ?\n\n";
+					for(URI uri : uris) {
+						IFile file = getFile(uri);
+						if(file != null && file.isReadOnly()) {
+							message += file.getName() + "\n";
+						}
+					}
+					doEnableWrite.set(MessageDialog.openConfirm(Display.getCurrent().getActiveShell(), "Enable Write", message));
+				}
+			});
+		}
+		
 		if(doEnableWrite.get()) {
 			Boolean ok = true;
-			for(URI uri : uris) {
-				IFile file = getFile(uri);
-				if(file != null && file.isReadOnly()) {
-					try {
-						ResourceAttributes att = file.getResourceAttributes();
-						att.setReadOnly(false);
-						file.setResourceAttributes(att);
-					} catch (CoreException e) {
-						ok = false;
-					}
+			for(IFile file : readOnlyFiles) {
+				try {
+					ResourceAttributes att = file.getResourceAttributes();
+					att.setReadOnly(false);
+					file.setResourceAttributes(att);
+				} catch (CoreException e) {
+					ok = false;
 				}
 			}
 			return Optional.of(ok);

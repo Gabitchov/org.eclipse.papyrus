@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2008 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,13 +10,12 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Modification
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.util;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -31,11 +30,10 @@ import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
@@ -83,96 +81,9 @@ public class Util {
 	 *        may be null, metatype is ignored if not null
 	 * @return an arraylist containing the selected instances
 	 */
-	public static ArrayList getInstancesFilteredByType(Package topPackage, Class metaType, Stereotype appliedStereotype) {
-		//		List<EObject> elements = ElementUtil.getInstancesFilteredByType(topPackage, metaType, appliedStereotype);
-		//		return new ArrayList<EObject>(elements);
-		// retrieve parent element
-		// Package topPackage = Util.topPackage(element);
-		// Assert.isNotNull(topPackage,
-		// "Top package should not be null for element " + element);
-		Iterator iter = topPackage.eAllContents();
-		ArrayList filteredElements = new ArrayList();
-
-		while(iter.hasNext()) {
-			Object currentElt = iter.next();
-
-			// If currentElt is an ElementImport, it is replaced by the imported
-			// Element.
-			if(currentElt instanceof ElementImport) {
-				ElementImport elementImport = (ElementImport)currentElt;
-				currentElt = elementImport.getImportedElement();
-			}
-
-			/* package imports treatment */
-			else if(currentElt instanceof PackageImport) {
-				Iterator piIter = ((PackageImport)currentElt).getImportedPackage().eAllContents();
-				while(piIter.hasNext()) {
-					Object piCurrentElt = piIter.next();
-					if(piCurrentElt instanceof Element) {
-						if(appliedStereotype != null) {
-
-							Iterator appStIter = ((Element)piCurrentElt).getAppliedStereotypes().iterator();
-							while(appStIter.hasNext()) {
-								Stereotype currentSt = (Stereotype)appStIter.next();
-
-								if(currentSt.conformsTo(appliedStereotype)) {
-									filteredElements.add(piCurrentElt);
-								}
-							}
-
-						} else { // if (appliedStereotype == null)
-							if(metaType.isInstance(piCurrentElt)) {
-								filteredElements.add(piCurrentElt);
-							}
-
-							/** add imported meta elements */
-							else if(piCurrentElt instanceof ElementImport) {
-								Iterator eIter = ((ElementImport)piCurrentElt).getImportedElement().eAllContents();
-								while(eIter.hasNext()) {
-									Object currentEIelt = eIter.next();
-									if(metaType.isInstance(currentEIelt))
-										filteredElements.add(currentEIelt);
-								}
-							}
-						}
-					}
-
-				}
-			}
-
-			// Filtering elements
-			if(currentElt instanceof Element) {
-
-				if(appliedStereotype != null) {
-
-					Iterator appStIter = ((Element)currentElt).getAppliedStereotypes().iterator();
-					while(appStIter.hasNext()) {
-						Stereotype currentSt = (Stereotype)appStIter.next();
-
-						if(currentSt.conformsTo(appliedStereotype)) {
-							filteredElements.add(currentElt);
-						}
-					}
-
-				} else { // if (appliedStereotype == null)
-					if(metaType.isInstance(currentElt)) {
-						filteredElements.add(currentElt);
-					}
-
-					/** add imported meta elements */
-					else if(currentElt instanceof ElementImport) {
-						Iterator eIter = ((ElementImport)currentElt).getImportedElement().eAllContents();
-						while(eIter.hasNext()) {
-							Object currentEIelt = eIter.next();
-							if(metaType.isInstance(currentEIelt))
-								filteredElements.add(currentEIelt);
-						}
-					}
-				}
-			}
-		}
-
-		return filteredElements;
+	@Deprecated
+	public static <T extends EObject> List<T> getInstancesFilteredByType(Package topPackage, Class<T> metaType, Stereotype appliedStereotype) {
+		return ElementUtil.getInstancesFilteredByType(topPackage, metaType, appliedStereotype);
 	}
 
 	/**
@@ -268,7 +179,7 @@ public class Util {
 	 * 
 	 */
 	public static Object getValueFromString(Property property, ArrayList<String> stringValues) {
-		ArrayList returnedValue = new ArrayList();
+		List<Object> returnedValue = new ArrayList<Object>();
 
 		Type type = property.getType();
 		if(type instanceof PrimitiveType) {
@@ -320,22 +231,22 @@ public class Util {
 
 		// the applied profiles
 		EList<Profile> profiles = ((org.eclipse.uml2.uml.Package)packageContainer).getAllAppliedProfiles();
-		ArrayList<Object> returnedValues = new ArrayList<Object>();
-		ArrayList<Object> metaclassElement = new ArrayList<Object>();
+		List<Element> returnedValues = new ArrayList<Element>();
+		List<Element> metaclassElement = new ArrayList<Element>();
 		String metaclassName = ((org.eclipse.uml2.uml.Class)property.getType()).getName();
 
 		/*
 		 * we research all the representation of the metaclass in the Profiles
 		 */
 		// Try to retrieve type of the metaclass
-		java.lang.Class metaType = null;
+		java.lang.Class<? extends Element> metaType = null;
 		try {
-			metaType = java.lang.Class.forName("org.eclipse.uml2.uml." + metaclassName); //$NON-NLS-1$
+			metaType = java.lang.Class.forName("org.eclipse.uml2.uml." + metaclassName).asSubclass(Element.class); //$NON-NLS-1$
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		for(Profile profile : profiles) {
-			metaclassElement.addAll(Util.getInstancesFilteredByType(profile, metaType, null));
+			metaclassElement.addAll(ElementUtil.getInstancesFilteredByType(profile, metaType, null));
 		}
 
 		/*
@@ -346,7 +257,7 @@ public class Util {
 			for(Object metaclassRepresentation : metaclassElement) {
 				if(metaclassRepresentation instanceof NamedElement) {
 					if(((NamedElement)metaclassRepresentation).getQualifiedName().equals(valuesQualifiedName)) {
-						((ArrayList)returnedValues).add(metaclassRepresentation);
+						returnedValues.add((NamedElement)metaclassRepresentation);
 					}
 				}
 			}
@@ -380,7 +291,7 @@ public class Util {
 		 * we research all the representation of the stereotype in the Profiles
 		 */
 		for(Profile profile : profiles) {
-			stereotypedElement.addAll(Util.getInstancesFilteredByType(profile, null, (Stereotype)property.getType()));
+			stereotypedElement.addAll(ElementUtil.getInstancesFilteredByType(profile, null, (Stereotype)property.getType()));
 		}
 
 		/*

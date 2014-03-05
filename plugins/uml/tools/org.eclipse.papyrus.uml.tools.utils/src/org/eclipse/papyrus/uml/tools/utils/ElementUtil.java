@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
@@ -338,38 +338,45 @@ public class ElementUtil {
 
 			/* package imports treatment */
 			else if(currentElt instanceof PackageImport) {
-				Iterator<EObject> piIter = ((PackageImport)currentElt).getImportedPackage().eAllContents();
-				while(piIter.hasNext()) {
-					EObject piCurrentElt = piIter.next();
-					if(piCurrentElt instanceof Element) {
-						if(appliedStereotype != null) {
+				Package importedPackage = ((PackageImport)currentElt).getImportedPackage();
+				if(importedPackage != null) {
+					Iterator<EObject> piIter = importedPackage.eAllContents();
+					while(piIter.hasNext()) {
+						EObject piCurrentElt = piIter.next();
+						if(piCurrentElt instanceof Element) {
+							if(appliedStereotype != null) {
 
-							Iterator<Stereotype> appStIter = ((Element)piCurrentElt).getAppliedStereotypes().iterator();
-							while(appStIter.hasNext()) {
-								Stereotype currentSt = (Stereotype)appStIter.next();
+								Iterator<Stereotype> appStIter = ((Element)piCurrentElt).getAppliedStereotypes().iterator();
+								while(appStIter.hasNext()) {
+									Stereotype currentSt = appStIter.next();
 
-								if(currentSt.conformsTo(appliedStereotype)) {
+									if(currentSt.conformsTo(appliedStereotype)) {
+										filteredElements.add((T)piCurrentElt);
+									}
+								}
+
+							} else { // if (appliedStereotype == null)
+								if(metaType.isInstance(piCurrentElt)) {
 									filteredElements.add((T)piCurrentElt);
 								}
-							}
 
-						} else { // if (appliedStereotype == null)
-							if(metaType.isInstance(piCurrentElt)) {
-								filteredElements.add((T)piCurrentElt);
-							}
-
-							/** add imported meta elements */
-							else if(piCurrentElt instanceof ElementImport) {
-								Iterator<EObject> eIter = ((ElementImport)piCurrentElt).getImportedElement().eAllContents();
-								while(eIter.hasNext()) {
-									EObject currentEIelt = eIter.next();
-									if(metaType.isInstance(currentEIelt))
-										filteredElements.add((T)currentEIelt);
+								/** add imported meta elements */
+								else if(piCurrentElt instanceof ElementImport) {
+									Element importedElement = ((ElementImport)piCurrentElt).getImportedElement();
+									if(importedElement != null) {
+										Iterator<EObject> eIter = importedElement.eAllContents();
+										while(eIter.hasNext()) {
+											EObject currentEIelt = eIter.next();
+											if(metaType.isInstance(currentEIelt)) {
+												filteredElements.add((T)currentEIelt);
+											}
+										}
+									}
 								}
 							}
 						}
-					}
 
+					}
 				}
 			}
 
@@ -380,7 +387,7 @@ public class ElementUtil {
 
 					Iterator<Stereotype> appStIter = ((Element)currentElt).getAppliedStereotypes().iterator();
 					while(appStIter.hasNext()) {
-						Stereotype currentSt = (Stereotype)appStIter.next();
+						Stereotype currentSt = appStIter.next();
 
 						if(currentSt.conformsTo(appliedStereotype)) {
 							filteredElements.add((T)currentElt);
@@ -397,8 +404,9 @@ public class ElementUtil {
 						Iterator<EObject> eIter = ((ElementImport)currentElt).getImportedElement().eAllContents();
 						while(eIter.hasNext()) {
 							EObject currentEIelt = eIter.next();
-							if(metaType.isInstance(currentEIelt))
+							if(metaType.isInstance(currentEIelt)) {
 								filteredElements.add((T)currentEIelt);
+							}
 						}
 					}
 				}

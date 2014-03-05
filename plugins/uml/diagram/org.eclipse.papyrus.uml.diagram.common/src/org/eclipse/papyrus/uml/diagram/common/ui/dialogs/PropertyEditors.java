@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,12 +19,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.papyrus.infra.widgets.validator.IntegerInputValidator;
 import org.eclipse.papyrus.infra.widgets.validator.RealInputValidator;
 import org.eclipse.papyrus.infra.widgets.validator.UnlimitedNaturalInputValidator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
-import org.eclipse.papyrus.uml.diagram.common.util.Util;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
@@ -46,11 +45,11 @@ public class PropertyEditors {
 	 */
 	/** IntegerEditor Title */
 	public static final String IntegerEditor_Title = Messages.PropertyEditors_IntegerTitle;
-	
+
 	/** IntegerEditor Title */
 	public static final String RealEditor_Title = Messages.PropertyEditors_RealTitle;
-	
-	
+
+
 	/** UnlimitedNaturalEditor Title */
 	public static final String UnlimitedNaturalEditor_Title = Messages.PropertyEditors_UnlimitedNaturalTitle;
 
@@ -147,7 +146,7 @@ public class PropertyEditors {
 		}
 		return value;
 	}
-	
+
 	/**
 	 * 
 	 * @param property
@@ -186,7 +185,7 @@ public class PropertyEditors {
 				value = dialog.getValue();
 			}
 		} else {
-			if(value != null) {
+			if(oldValue != null) {
 				value = oldValue.toString();
 			}
 		}
@@ -361,7 +360,7 @@ public class PropertyEditors {
 			 * we research all the elements stereotyped with type!
 			 */
 			for(Profile profile : appliedProfiles) {
-				stereotypedElement.addAll(Util.getInstancesFilteredByType(profile, null, (Stereotype)type));
+				stereotypedElement.addAll(ElementUtil.getInstancesFilteredByType(profile, null, (Stereotype)type));
 			}
 
 			if(property.getLower() > 0) {
@@ -439,14 +438,14 @@ public class PropertyEditors {
 			String metaclassName = ((org.eclipse.uml2.uml.Class)type).getName();
 
 			// Try to retrieve type of the metaclass
-			java.lang.Class metaType = null;
+			java.lang.Class<? extends Element> metaType = null;
 			try {
-				metaType = java.lang.Class.forName("org.eclipse.uml2.uml." + metaclassName); //$NON-NLS-1$
+				metaType = java.lang.Class.forName("org.eclipse.uml2.uml." + metaclassName).asSubclass(Element.class); //$NON-NLS-1$
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			for(Profile profile : appliedProfiles) {
-				metaclassElement.addAll(Util.getInstancesFilteredByType(profile, metaType, null));
+				metaclassElement.addAll(ElementUtil.getInstancesFilteredByType(profile, metaType, null));
 			}
 
 			/*

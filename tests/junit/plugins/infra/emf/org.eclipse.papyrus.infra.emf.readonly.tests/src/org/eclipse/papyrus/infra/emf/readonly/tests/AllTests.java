@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.infra.emf.readonly.tests;
 
 import org.eclipse.papyrus.infra.emf.readonly.PapyrusROTransactionalEditingDomainTest;
+import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManagerTest;
 import org.eclipse.papyrus.infra.emf.readonly.ReferencedModelReadOnlyHandlerTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -24,7 +25,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-PapyrusROTransactionalEditingDomainTest.class, ReferencedModelReadOnlyHandlerTest.class
+PapyrusROTransactionalEditingDomainTest.class, ReferencedModelReadOnlyHandlerTest.class, ReadOnlyManagerTest.class
 })
 public class AllTests {
 

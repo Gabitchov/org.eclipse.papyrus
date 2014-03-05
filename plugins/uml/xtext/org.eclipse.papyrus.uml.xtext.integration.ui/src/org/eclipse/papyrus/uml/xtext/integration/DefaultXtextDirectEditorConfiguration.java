@@ -133,6 +133,9 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	 * Adapts {@link IDirectEditorConfiguration} to gmfs {@link IParser} interface for reuse in GMF direct editing infrastructure.
 	 */
 	public IParser createParser(final EObject semanticObject) {
+		if (objectToEdit == null) {
+			objectToEdit = semanticObject;
+		}
 		return new IParser() {
 
 			public String getEditString(IAdaptable element, int flags) {
@@ -160,7 +163,9 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 				} else {
 					result.add(createInvalidStringCommand(newString, semanticObject));
 				}
-				result.add(new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician()));
+				ValidateSubtreeCommand validationCommand = new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician());
+				validationCommand.disableUIFeedback();
+				result.add(validationCommand);
 				return result;
 			}
 
