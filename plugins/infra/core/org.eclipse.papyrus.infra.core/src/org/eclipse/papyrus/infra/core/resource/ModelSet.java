@@ -876,12 +876,14 @@ public class ModelSet extends ResourceSetImpl {
 		EcoreUtil.resolveAll(this); //Save will not be consistent if we don't load all related resources first
 
 		// Get the file name, without extension.
-		uriWithoutExtension = uri.trimFileExtension();
+		URI newUriWithoutExtension = uri.trimFileExtension();
 
 		// Walk all registered models
 		for(IModel model : models.values()) {
-			model.setModelURI(uriWithoutExtension);
+			model.setModelURI(newUriWithoutExtension);
 		}
+
+		this.uriWithoutExtension = newUriWithoutExtension;
 
 		// Save with new paths
 		save(new NullProgressMonitor());

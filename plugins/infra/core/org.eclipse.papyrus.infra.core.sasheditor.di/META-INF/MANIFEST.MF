@@ -5,7 +5,8 @@ Require-Bundle: org.eclipse.swt;bundle-version="3.5.0",
  org.eclipse.core.runtime;bundle-version="3.6.0",
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
- org.eclipse.emf.transaction;bundle-version="1.4.0"
+ org.eclipse.emf.transaction;bundle-version="1.4.0",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.0"
 Export-Package: org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider,
  org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands,
  org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils,

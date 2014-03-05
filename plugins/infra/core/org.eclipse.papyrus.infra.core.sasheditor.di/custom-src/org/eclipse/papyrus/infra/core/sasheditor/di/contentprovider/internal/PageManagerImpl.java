@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 Cedric Dumoulin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -42,7 +42,7 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 	 *        need the class in order to deactivate event triggering during the operations.
 	 * 
 	 */
-	public PageManagerImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider) {
+	protected PageManagerImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider) {
 		super(diSashModel, contentChangedEventProvider);
 	}
 
@@ -53,23 +53,31 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 	 * @param contentChangedEventProvider
 	 * @param folderAndPageMngr
 	 */
-	public PageManagerImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider, ICurrentFolderAndPageMngr folderAndPageMngr) {
+	protected PageManagerImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider, ICurrentFolderAndPageMngr folderAndPageMngr) {
 		super(diSashModel, contentChangedEventProvider, folderAndPageMngr);
 	}
 
+	@Override
 	public void closeAllOpenedPages(Object pageIdentifier) {
 		while(isOpen(pageIdentifier)) {
 			closePage(pageIdentifier);
 		}
 	}
 
+	@Override
 	public void selectPage(final Object pageIdentifier) {
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				folderAndPageMngr.setActivePage(pageIdentifier);
 			}
 		});
+	}
+
+	@Override
+	public void removePage(Object pageIdentifier) {
+		closeAllOpenedPages(pageIdentifier);
 	}
 
 	public void setCurrentFolderAndPageMngr(ICurrentFolderAndPageMngr currentFolderAndPageMngr) {

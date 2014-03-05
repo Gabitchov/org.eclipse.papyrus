@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
 import java.util.Hashtable;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -23,8 +22,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -32,9 +29,9 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 
 /**
  * This handler allows to Close Diagrams and Tables
- * 
- * 
- * 
+ *
+ *
+ *
  */
 public class CloseHandler extends AbstractModelExplorerHandler implements IExecutableExtension {
 
@@ -56,9 +53,9 @@ public class CloseHandler extends AbstractModelExplorerHandler implements IExecu
 	protected String parameterID = "close_parameter"; //$NON-NLS-1$
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 * 
+	 *
 	 * @param event
 	 * @return
 	 * @throws ExecutionException
@@ -66,34 +63,17 @@ public class CloseHandler extends AbstractModelExplorerHandler implements IExecu
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		final IPageManager pageMngr;
-		TransactionalEditingDomain editingDomain;
 
 		try {
 			ServicesRegistry registry = ServiceUtilsForHandlers.getInstance().getServiceRegistry(event);
 			pageMngr = registry.getService(IPageManager.class);
-			editingDomain = registry.getService(TransactionalEditingDomain.class);
 		} catch (ServiceException ex) {
 			throw new ExecutionException(ex.getMessage(), ex);
 		}
 
 		// What kind of command ?
 		if(PARAMETER_ALL.equals(parameter)) {
-			boolean atLeastOneOpenedPage = false;
-			for(Object page : pageMngr.allPages()) {
-				if(pageMngr.isOpen(page)) {
-					atLeastOneOpenedPage = true;
-					break;
-				}
-			}
-			if(atLeastOneOpenedPage) {
-				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Close all pages") {
-
-					@Override
-					protected void doExecute() {
-						pageMngr.closeAllOpenedPages();
-					}
-				});
-			}
+			pageMngr.closeAllOpenedPages();
 
 			return null;
 		}
@@ -107,37 +87,21 @@ public class CloseHandler extends AbstractModelExplorerHandler implements IExecu
 			return null;
 		}
 
-
-		final List<EObject> pagesToClose = new LinkedList<EObject>();
 		// Check each selected object
 		for(EObject selected : selectedProperties) {
 			if(pageMngr.isOpen(selected)) {
-				pagesToClose.add(selected);
+				pageMngr.closePage(selected);
 			}
 		}
-
-		if(pagesToClose.isEmpty()) {
-			return null;
-		}
-
-		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Close pages") {
-
-			@Override
-			protected void doExecute() {
-				for(EObject page : pagesToClose) {
-					pageMngr.closePage(page);
-				}
-			}
-		});
 
 		return null;
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.core.runtime.IExecutableExtension#setInitializationData(org.eclipse.core.runtime.IConfigurationElement, java.lang.String,
 	 *      java.lang.Object)
-	 * 
+	 *
 	 * @param config
 	 * @param propertyName
 	 * @param data

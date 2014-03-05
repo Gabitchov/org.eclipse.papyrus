@@ -54,7 +54,7 @@ public interface IPageMngr {
 	 * @param pageIdentifier
 	 *        The object identifying the page
 	 * 
-	 * @deprecated The pages are now computed dynamically
+	 * @deprecated The pages are now computed dynamically. Use {@link IPageManager#closeAllOpenedPages(Object)} instead
 	 */
 	@Deprecated
 	public void removePage(Object pageIdentifier);

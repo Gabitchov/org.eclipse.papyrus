@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,8 +20,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -65,7 +63,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 	/**
 	 * Gets the selected editor.
-	 * 
+	 *
 	 * @return the selectedEditor
 	 */
 	protected Object getSelectedEditor() {
@@ -74,7 +72,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 	/**
 	 * Sets the selected editor
-	 * 
+	 *
 	 * @param selectedEditor
 	 *        the selectedEditor to set
 	 */
@@ -101,7 +99,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 	 * component using the component's <code>addDiagramCreateListener<code> method. When
 	 * the diagramCreate event occurs, that object's appropriate
 	 * method is invoked.
-	 * 
+	 *
 	 * @see DiagramCreateEvent
 	 */
 	public class DiagramCreateListener extends SelectionAdapter {
@@ -117,7 +115,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 		/**
 		 * {@inheritedDoc}.
-		 * 
+		 *
 		 * @param e
 		 *        the e
 		 */
@@ -153,7 +151,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 		/**
 		 * Instantiates a new diagram create listener.
-		 * 
+		 *
 		 * @param commandDescriptor
 		 *        the command descriptor
 		 * @param backboneContext
@@ -172,7 +170,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 		/**
 		 * Sets the container.
-		 * 
+		 *
 		 * @param container
 		 *        the new container
 		 */
@@ -186,7 +184,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 	/**
 	 * Instantiates a new editor look for diagram.
-	 * 
+	 *
 	 * @param editorFactoryRegistry
 	 *        the editor factory registry
 	 * @param amodel
@@ -276,10 +274,8 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				Iterator<?> iterator = iSelection.iterator();
 
 				final IPageManager pageManager;
-				TransactionalEditingDomain editingDomain;
 				try {
 					pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(model);
-					editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(model);
 				} catch (ServiceException ex) {
 					Activator.log.error(ex);
 					return;
@@ -297,15 +293,9 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 					return;
 				}
 
-				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Delete diagrams") {
-
-					@Override
-					protected void doExecute() {
-						for(Object page : pagesToDelete) {
-							pageManager.removePage(page);
-						}
-					}
-				});
+				for(Object page : pagesToDelete) {
+					pageManager.closeAllOpenedPages(page);
+				}
 
 				//getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$
 				getModeFilteredTree().getViewer().refresh();

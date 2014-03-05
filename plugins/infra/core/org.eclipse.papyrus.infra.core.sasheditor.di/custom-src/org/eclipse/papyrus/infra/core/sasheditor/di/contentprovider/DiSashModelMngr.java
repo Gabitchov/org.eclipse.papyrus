@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009 CEA LIST & LIFL
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,11 +16,12 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.ContentChangedEventProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiContentProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.TransactionalPageManagerImpl;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 
@@ -38,13 +39,13 @@ public class DiSashModelMngr {
 	/**
 	 * Instance of the pageMngr.
 	 */
-	private PageMngrImpl pageMngr = null;
+	private PageManagerImpl pageMngr = null;
 
 	/**
 	 * Instance of the DiContentProvider used to manipulate SashModel.
 	 */
 	private DiContentProvider contentProvider;
-	
+
 	/**
 	 * Object used externally listen to model changes.
 	 * The object is also used internally to control how events are fired (limit multiple events).
@@ -59,6 +60,7 @@ public class DiSashModelMngr {
 	 * Constructor.
 	 * Create a DiSashModelMngr with the specified factory. A SashModel is created but not attached to a resource.
 	 * This constructor is for subclasses. The subclasses should initialize the sashWindowMngr
+	 *
 	 * @param pageModelFactory
 	 * @param createDefaultSashModel
 	 *        If true, create the default SashModel by calling {@link #createDefaultSashModel()}
@@ -66,8 +68,7 @@ public class DiSashModelMngr {
 	protected DiSashModelMngr(IPageModelFactory pageModelFactory, boolean createDefaultSashModel) {
 		this.pageModelFactory = pageModelFactory;
 		// Create a SashModel
-		if(createDefaultSashModel)
-		{
+		if(createDefaultSashModel) {
 			sashWindowMngr = createDefaultSashModel();
 		}
 	}
@@ -148,9 +149,9 @@ public class DiSashModelMngr {
 	 * 
 	 * @return the PageMngrImpl
 	 */
-	protected final PageMngrImpl getPageMngrImpl() {
+	protected final PageManagerImpl getPageMngrImpl() {
 		if(pageMngr == null) {
-			pageMngr = new PageMngrImpl(sashWindowMngr, getContentChangedEventProvider());
+			pageMngr = new TransactionalPageManagerImpl(sashWindowMngr, getContentChangedEventProvider());
 		}
 
 		return pageMngr;
@@ -176,7 +177,7 @@ public class DiSashModelMngr {
 	 * 
 	 * @return
 	 */
-	public IPageMngr getIPageMngr() {
+	public IPageManager getIPageMngr() {
 		return getPageMngrImpl();
 	}
 
@@ -229,7 +230,7 @@ public class DiSashModelMngr {
 	 * @param diResource
 	 * @return The non transactional version of the IPageMngr
 	 */
-	public static IPageMngr createIPageMngr(Resource diResource) {
+	public static IPageManager createIPageMngr(Resource diResource) {
 
 		// Create an instance of the DiSashModelMngr with no factory.
 		// The factory is not needed since we don't get the ISashWindowsContentProvider.

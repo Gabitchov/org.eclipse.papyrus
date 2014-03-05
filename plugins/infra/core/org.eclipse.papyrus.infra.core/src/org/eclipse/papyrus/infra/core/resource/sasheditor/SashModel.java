@@ -5,6 +5,7 @@ package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
@@ -23,15 +24,15 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
  * subclass {@link AbstractModelWithSharedResource}, be declared as {@link ModelKind#slave} (which is the default.), and set
  * {@link #getModelFileExtension()} to return the same file extension as this
  * model ({@link #MODEL_FILE_EXTENSION}).
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
 public class SashModel extends EMFLogicalModel implements IModel {
 
 	/**
 	 * File extension.
-	 * 
+	 *
 	 * @deprecated Use {@link DiModel#MODEL_FILE_EXTENSION} instead. The SashModel has been moved to a separate file
 	 */
 	@Deprecated
@@ -48,9 +49,9 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	public static final String MODEL_ID = "org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel"; //$NON-NLS-1$
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 */
 	public SashModel() {
 
@@ -58,9 +59,9 @@ public class SashModel extends EMFLogicalModel implements IModel {
 
 	/**
 	 * Get the file extension used for this model.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getModelFileExtension()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -70,9 +71,9 @@ public class SashModel extends EMFLogicalModel implements IModel {
 
 	/**
 	 * Get the identifier used to register this model.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.AbstractBaseModel#getIdentifier()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -95,18 +96,51 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		}
 	}
 
+	@Override
+	public void setModelURI(URI uriWithoutExtension) {
+		URI newURIWithoutExtension;
+		if(resourceURI != null && isLegacy(resourceURI)) {
+			newURIWithoutExtension = getLegacyURI(uriWithoutExtension);
+		} else {
+			newURIWithoutExtension = getPreferenceStoreURI(uriWithoutExtension);
+		}
+
+		super.setModelURI(newURIWithoutExtension);
+	}
+
+	protected boolean isLegacy(URI uri) {
+		return Objects.equals(uri.trimFileExtension(), getModelManager().getURIWithoutExtension());
+	}
+
 	protected URI getSashModelURI(URI uriWithoutExtension) {
 		URIConverter converter = getModelManager().getURIConverter();
-		URI legacyURI = uriWithoutExtension.appendFileExtension(MODEL_FILE_EXTENSION);
+		URI legacyURI = getLegacyURI(uriWithoutExtension);
 
 		if(converter.exists(legacyURI, Collections.emptyMap())) {
 			return legacyURI;
 		}
 
+		URI preferenceStoreURI = getPreferenceStoreURI(uriWithoutExtension);
+
+		return preferenceStoreURI;
+	}
+
+	protected URI getLegacyURI(URI uriWithoutExtension) {
+		URI legacyURI = uriWithoutExtension.appendFileExtension(MODEL_FILE_EXTENSION);
+		return legacyURI;
+	}
+
+	protected URI getPreferenceStoreURI(URI uriWithoutExtension) {
 		IPath stateLocation = Activator.getDefault().getStateLocation();
-		stateLocation = stateLocation.append(uriWithoutExtension.toString());
+
+		if(uriWithoutExtension.isPlatform()) {
+			stateLocation = stateLocation.append(uriWithoutExtension.toPlatformString(true));
+		} else {
+			stateLocation = stateLocation.append(URI.decode(uriWithoutExtension.toString())); //TODO properly support and test non-platform URIs
+		}
 
 		URI workspaceFileURI = URI.createFileURI(stateLocation.toString());
+
 		return workspaceFileURI;
 	}
 
