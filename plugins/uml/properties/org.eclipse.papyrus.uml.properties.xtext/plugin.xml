@@ -25,4 +25,11 @@
       </propertyTab>
       </propertyTabs>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.modelListener">
+      <listener
+            name="advancedEditing.modelListener"
+            realization="org.eclipse.papyrus.uml.properties.xtext.sheet.ModelListener">
+      </listener>
+   </extension>
 </plugin>
