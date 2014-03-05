@@ -1,6 +1,17 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) 2011, 2014 CEA LIST and others.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 429242
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
 
 import static org.eclipse.papyrus.infra.core.Activator.log;
@@ -10,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.extension.ExtensionException;
 import org.eclipse.papyrus.infra.core.extension.ExtensionUtils;
@@ -54,6 +66,9 @@ public class ModelsReader extends ExtensionUtils {
 
 	/** name of the attribute "identifier"*/
 	public static final String IDENTIFIER_ATTRIBUTE_NAME = "identifier";
+	
+	/** Name of the extension indicating the model's canonical file extension. */
+	private static final String EXTENSION_ATTRIBUTE = "fileExtension"; //$NON-NLS-1$
 
 	/** Namespace where to look for the extension points. */
 	protected String extensionPointNamespace;
@@ -96,11 +111,39 @@ public class ModelsReader extends ExtensionUtils {
 		// // global snippets
 		// modelSet.addModelSetSnippet(new TypeCacheInitializer());
 		// Reading data from plugins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EXTENSION_POINT_NAME);
+		IConfigurationElement[] configElements = getExtensions();
 		addDeclaredModels(configElements, modelSet);
 		addDeclaredModelSetSnippets(configElements, modelSet);
 	}
 
+	private IConfigurationElement[] getExtensions() {
+		return Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointNamespace, EXTENSION_POINT_NAME);
+	}
+
+	/**
+	 * Queries whether there is a registered model correlating to the specified URI.
+	 * 
+	 * @param uri
+	 *        a resource URI (including the file extension, if there is one)
+	 * 
+	 * @return {@code true} if the URI has a file extension and that extension is associated with any registered {@link IModel}; {@code false},
+	 *         otherwise
+	 */
+	public boolean hasAssociatedModel(URI uri) {
+		boolean result = false;
+
+		String extension = uri.fileExtension();
+		if(extension != null) {
+			IConfigurationElement[] configs = getExtensions();
+			for(int i = 0; !result && (i < configs.length); i++) {
+				String modelExtension = configs[i].getAttribute(EXTENSION_ATTRIBUTE);
+				result = (modelExtension != null) && modelExtension.equals(extension);
+			}
+		}
+
+		return result;
+	}
+	
 	/**
 	 * Read and instanciate declared models
 	 * 

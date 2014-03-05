@@ -187,6 +187,18 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	}
 
 	/**
+	 * Queries whether my resource (based on the given URI) exists in the current model set.
+	 * 
+	 * @param uriWithoutExtension
+	 *        the base resource URI to check
+	 * 
+	 * @return whether my resource based on this URI exists
+	 */
+	protected boolean exists(URI uriWithoutExtension) {
+		return modelSet.getURIConverter().exists(uriWithoutExtension.appendFileExtension(getModelFileExtension()), null);
+	}
+	
+	/**
 	 * Import the model by using the provided fullpath as a hint for the
 	 * resource URI. In this implementation, simply call {@link #loadModel(IPath)}
 	 * 

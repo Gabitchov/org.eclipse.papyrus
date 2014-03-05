@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.admin.CDOAdminClientManager;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
+import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOEditorUtil;
@@ -53,6 +54,7 @@ import org.eclipse.papyrus.cdo.internal.ui.admin.RepositoryAdminListener;
 import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDragAdapter;
 import org.eclipse.papyrus.cdo.internal.ui.dnd.ResourceDropAdapter;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
+import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
@@ -290,10 +292,25 @@ public class ModelRepositoriesView extends ContainerView {
 		} else if(object instanceof IPapyrusRepository) {
 			invoke(connectRepositoryAction);
 		} else if(object instanceof CDOResourceLeaf) {
-			openCDOEditor((CDOResourceLeaf)object);
+			CDOResourceLeaf leaf = (CDOResourceLeaf)object;
+			if(isPapyrusResource(leaf)) {
+				invoke(openModelAction);
+			} else {
+				openCDOEditor(leaf);
+			}
 		} else {
 			super.doubleClicked(object);
 		}
+	}
+
+	protected boolean isPapyrusResource(CDOResourceNode resourceNode) {
+		boolean result = false;
+
+		if(resourceNode instanceof CDOResource) {
+			result = new ModelsReader().hasAssociatedModel(resourceNode.getURI());
+		}
+
+		return result;
 	}
 
 	protected void invoke(Action action) {

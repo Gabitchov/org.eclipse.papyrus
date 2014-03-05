@@ -80,6 +80,13 @@ The class will be registered using the key set in the Model.
                </appInfo>
             </annotation>
          </attribute>
+         <attribute name="fileExtension" type="string">
+            <annotation>
+               <documentation>
+                  Indicates the resource URI file extension that the model keys on to correlate to resources in the model set.  Although this is optional, it is recommended to support the determination of whether a resource is one that may be loaded into the Papyrus editor.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

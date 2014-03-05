@@ -1,6 +1,17 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2011, 2014 LIFL, CEA LIST, and others.
  *
- */
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 429242
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
 import java.util.Map;
@@ -71,11 +82,15 @@ public class DiModel extends AbstractModelWithSharedResource<EObject> implements
 
 	@Override
 	public void loadModel(URI uriWithoutExtension) {
-		try {
-			super.loadModel(uriWithoutExtension);
-		} catch (Exception ex) {
-			createModel(uriWithoutExtension);
+		// It is a common use case that this resource does not (and will not) exist
+		if(exists(uriWithoutExtension)) {
+			try {
+				super.loadModel(uriWithoutExtension);
+			} catch (Exception ex) {
+				createModel(uriWithoutExtension);
+			}
 		}
+		
 		if(resource == null) {
 			createModel(uriWithoutExtension);
 		}

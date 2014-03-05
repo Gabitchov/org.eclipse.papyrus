@@ -47,7 +47,8 @@
          point="org.eclipse.papyrus.infra.core.model">
       <model
             classname="org.eclipse.papyrus.uml.tools.model.ExtendedUmlModel"
-            description="Model for UML">
+            description="Model for UML"
+            fileExtension="uml">
          <modelSnippet
                classname="org.eclipse.papyrus.uml.tools.model.UmlSnippet"
                description="Complete the UML model.">

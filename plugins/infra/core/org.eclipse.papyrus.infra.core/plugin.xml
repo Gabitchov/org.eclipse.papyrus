@@ -183,7 +183,8 @@
          point="org.eclipse.papyrus.infra.core.model">
       <model
             classname="org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel"
-            description="Model for sash system">
+            description="Model for sash system"
+            fileExtension="sash">
       </model>
       <modelSetSnippet
             classname="org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryInitializer"
@@ -191,7 +192,8 @@
       </modelSetSnippet>
       <model
             classname="org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel"
-            description="Main Papyrus IModel">
+            description="Main Papyrus IModel"
+            fileExtension="di">
       </model>
    </extension>
    <extension
