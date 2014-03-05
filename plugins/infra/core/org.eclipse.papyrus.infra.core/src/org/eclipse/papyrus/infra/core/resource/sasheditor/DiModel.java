@@ -6,15 +6,16 @@ package org.eclipse.papyrus.infra.core.resource.sasheditor;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMIResource;
-import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
+import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 
 /**
  * @author dumoulin
  *
  */
-public class DiModel extends EMFLogicalModel implements IModel {
+public class DiModel extends AbstractModelWithSharedResource<EObject> implements IModel {
 
 	/**
 	 * File extension used for notation.
@@ -38,6 +39,11 @@ public class DiModel extends EMFLogicalModel implements IModel {
 	 * The ID of the DI Model
 	 */
 	public static final String DI_MODEL_ID = "org.eclipse.papyrus.infra.core.resource.DiModel"; //$NON-NLS-1$
+
+
+	public DiModel() {
+		super(ModelKind.master);
+	}
 
 	/**
 	 * Get the file extension used for this model.
@@ -84,6 +90,11 @@ public class DiModel extends EMFLogicalModel implements IModel {
 		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.FALSE);
 
 		return saveOptions;
+	}
+
+	@Override
+	protected boolean isModelRoot(EObject object) {
+		return false; //DiModel is currently an empty model
 	}
 
 }

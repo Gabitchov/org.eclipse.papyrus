@@ -42,7 +42,7 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	 */
 	public static DiFactory init() {
 		try {
-			DiFactory theDiFactory = (DiFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/sashdi"); 
+			DiFactory theDiFactory = (DiFactory)EPackage.Registry.INSTANCE.getEFactory(DiPackage.eNS_URI);
 			if (theDiFactory != null) {
 				return theDiFactory;
 			}

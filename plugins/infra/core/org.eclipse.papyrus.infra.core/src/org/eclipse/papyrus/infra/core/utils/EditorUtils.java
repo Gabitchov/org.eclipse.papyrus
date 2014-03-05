@@ -29,12 +29,14 @@ import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -55,7 +57,7 @@ import org.eclipse.ui.PlatformUI;
  * registered in the Eclipse workbench. This can lead to a null or an exception,
  * and sometime this can lead to getting the shared object of another main
  * editor !
- *
+ * 
  * @author cedric dumoulin
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
  */
@@ -64,7 +66,7 @@ public class EditorUtils {
 
 	/**
 	 * Gets the opened multi-diagram editors.
-	 *
+	 * 
 	 * @return The opened {@link IMultiDiagramEditor} or null if an error
 	 *         occured.
 	 */
@@ -90,7 +92,7 @@ public class EditorUtils {
 
 	/**
 	 * Returns the editors that are related to to given file.<BR>
-	 *
+	 * 
 	 * @param file
 	 *        The file (model, di or notation).
 	 * @return The associated editors.
@@ -119,11 +121,11 @@ public class EditorUtils {
 	/**
 	 * Create an instance of IPageMngr acting on the provided resource. This
 	 * instance is suitable to add, remove, close or open diagrams.
-	 *
+	 * 
 	 * @param diResource
 	 * @return The non transactional implementation of IPageMngr
 	 */
-	public static IPageMngr getIPageMngr(Resource diResource) {
+	public static IPageManager getIPageMngr(Resource diResource) {
 		return DiSashModelMngr.createIPageMngr(diResource);
 	}
 
@@ -147,8 +149,8 @@ public class EditorUtils {
 	 * This method should not be used during the editor initialization phase. <br>
 	 * In any case, a check should be done on the returned value that can be
 	 * null. Usage of this method is discouraged. Use {@link #getMultiDiagramEditorChecked()} instead.
-	 *
-	 *
+	 * 
+	 * 
 	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
 	 */
 	public static IMultiDiagramEditor getMultiDiagramEditor() {
@@ -177,9 +179,9 @@ public class EditorUtils {
 	 * This method return null if the ServicesRegistry can not be found. <br>
 	 * TODO This method introduce dependency on GMF. It can be moved to a GMF
 	 * plugin.
-	 *
+	 * 
 	 * @return The active diagram or null if not found.
-	 *
+	 * 
 	 * @deprecated The core do make suppositions about the type of nested
 	 *             Editors, GMF stuff should be moved in GMF projects. In many
 	 *             case, {@link #lookupActiveNestedIEditor()} can be used.
@@ -198,9 +200,9 @@ public class EditorUtils {
 	 * This method return null if the ServicesRegistry can not be found. <br>
 	 * TODO This method introduce dependency on GMF. It can be moved to a GMF
 	 * plugin.
-	 *
+	 * 
 	 * @return the active diagram editor or null if not found.
-	 *
+	 * 
 	 * @deprecated The core do make suppositions about the type of nested
 	 *             Editors, GMF stuff should be moved in GMF projects. In many
 	 *             case, {@link #lookupActiveNestedIEditor()} can be used.
@@ -234,8 +236,8 @@ public class EditorUtils {
 	 * .class).getActiveEditor(); <br>
 	 * It is preferable to retrieve the ServiceRegistry from elsewhere whenever
 	 * it is possible. <br>
-	 *
-	 *
+	 * 
+	 * 
 	 * @return
 	 * @deprecated Check
 	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
@@ -273,7 +275,7 @@ public class EditorUtils {
 	 * .class).getActiveSashWindowsPage(); <br>
 	 * It is preferable to retrieve the ServiceRegistry from elsewhere whenever
 	 * it is possible.
-	 *
+	 * 
 	 * @return
 	 * @deprecated Check
 	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
@@ -296,7 +298,7 @@ public class EditorUtils {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 */
 	private static ISashWindowsContainer getSashWindowContainer() {
@@ -311,7 +313,7 @@ public class EditorUtils {
 
 	/**
 	 * Gets the di resource set.
-	 *
+	 * 
 	 * @return Get the current {@link DiResourceSet} or null if not found.
 	 * @deprecated Check
 	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
@@ -355,7 +357,7 @@ public class EditorUtils {
 	 * WARNING: This method can return null if there is no Active Editor. This
 	 * happen during the editor initialization, especially when there is no
 	 * other editor opened.
-	 *
+	 * 
 	 * @return Get the current {@link TransactionalEditingDomain} or null if not
 	 *         found
 	 * @deprecated Check
@@ -396,12 +398,12 @@ public class EditorUtils {
 	 * In GMF EditParts or EditPolicies, the ServiceRegistry can be retrieved
 	 * with methods from
 	 * org.eclipse.papyrus.uml.diagram.common.util.DiagramCoreServiceUtils
-	 *
-	 *
+	 * 
+	 * 
 	 * WARNING: This method throws an exception when no Active Editor is found.
 	 * This happen during the editor initialization, especially when there is no
 	 * other editor opened.
-	 *
+	 * 
 	 * @return Get the current {@link TransactionalEditingDomain}
 	 * @throws ServiceException
 	 * @throws ServiceNotFoundException
@@ -430,7 +432,7 @@ public class EditorUtils {
 
 	/**
 	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
-	 *
+	 * 
 	 * @param servicesRegistry
 	 * @return
 	 * @deprecated Check
@@ -454,7 +456,7 @@ public class EditorUtils {
 
 	/**
 	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
-	 *
+	 * 
 	 * @param servicesRegistry
 	 * @return
 	 * @throws ServiceException
@@ -487,12 +489,12 @@ public class EditorUtils {
 	 * In GMF EditParts or EditPolicies, the ServiceRegistry can be retrieved
 	 * with methods from
 	 * org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF
-	 *
+	 * 
 	 * <br>
 	 * WARNING: This method can return null if there is no Active Editor. This
 	 * happen during the editor initialization, especially when there is no
 	 * other editor opened.
-	 *
+	 * 
 	 * @return The {@link ServicesRegistry} or null if not found.
 	 * @deprecated Check
 	 *             modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments
@@ -516,7 +518,7 @@ public class EditorUtils {
 	 * Get the service registry of the currently active main editor. <br>
 	 * WARNING - This method doesn't work during the initialization of the main
 	 * editor. See note in class doc.
-	 *
+	 * 
 	 * @return The {@link ServicesRegistry} or null if not found.
 	 * @throws ServiceException
 	 *         If an error occurs.
@@ -552,7 +554,7 @@ public class EditorUtils {
 	 * This method should not be used during the editor initialization phase. <br>
 	 * In any case, a check should be done on the returned value that can be
 	 * null. <br>
-	 *
+	 * 
 	 * @return the ISashWindowsContentProvider from the main editor or null if
 	 *         not found.
 	 * @deprecated Check
@@ -587,7 +589,7 @@ public class EditorUtils {
 	 * This method should not be used during the editor initialization phase. <br>
 	 * In any case, a check should be done on the returned value that can be
 	 * null.
-	 *
+	 * 
 	 * @return the ISashWindowsContentProvider from the main editor or null if
 	 *         not found.
 	 * @deprecated Check
@@ -614,7 +616,7 @@ public class EditorUtils {
 
 	/**
 	 * Get the Eclipse ActiveEditor.
-	 *
+	 * 
 	 * @return The active {@link CoreMultiDiagramEditor} or null if not found.
 	 * @deprecated Use {@link EditorUtils#getMultiDiagramEditor()}
 	 */
@@ -636,8 +638,8 @@ public class EditorUtils {
 	 * editor, or if the editor is not instance of IMultiDiagramEditor. <br>
 	 * This method is designed to be used by ui actions that interact with the
 	 * active editor. <br>
-	 *
-	 *
+	 * 
+	 * 
 	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
 	 * @throws BackboneException
 	 *         If it is not possible to get an instanceof {@link IMultiDiagramEditor}
@@ -660,10 +662,10 @@ public class EditorUtils {
 
 	/**
 	 * Obtains the URI of the EMF resource identified by the given editor reference.
-	 *
+	 * 
 	 * @param editorRef
 	 *        an editor reference
-	 *
+	 * 
 	 * @return the best-effort URI of the resource that it edits, or {@code null} if it could not be determined,
 	 *         including the case when the editor input could not be obtained from the reference
 	 */
@@ -678,10 +680,10 @@ public class EditorUtils {
 
 	/**
 	 * Obtains the URI of the EMF resource edited by the given {@code editor}.
-	 *
+	 * 
 	 * @param editor
 	 *        an open editor
-	 *
+	 * 
 	 * @return the best-effort URI of the resource that it edits, or {@code null} if it could not be determined,
 	 *         such as if the editor input could not be obtained from the editor
 	 */
@@ -691,10 +693,10 @@ public class EditorUtils {
 
 	/**
 	 * Obtains the URI of the EMF resource identified by the given editor input.
-	 *
+	 * 
 	 * @param editorInput
 	 *        an editor input
-	 *
+	 * 
 	 * @return the best-effort URI of the resource that it edits, or {@code null} if it could not be determined
 	 */
 	public static URI getResourceURI(IEditorInput editorInput) {

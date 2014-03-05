@@ -18,6 +18,10 @@
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.core.model">
+      <model
+            classname="org.eclipse.papyrus.infra.services.controlmode.history.HistoryModel"
+            description="Model for History">
+      </model>
    </extension>
 
 </plugin>

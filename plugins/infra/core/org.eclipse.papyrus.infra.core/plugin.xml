@@ -187,6 +187,10 @@
             classname="org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryInitializer"
             description="Adapter attached to the ModelSet (aka ResourceSet)">
       </modelSetSnippet>
+      <model
+            classname="org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel"
+            description="Main Papyrus IModel">
+      </model>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.core.service">

@@ -105,6 +105,7 @@ public interface DiFactory extends EFactory {
 	 * @return a new object of class '<em>Page List</em>'.
 	 * @generated
 	 */
+	@Deprecated
 	PageList createPageList();
 
 	/**
