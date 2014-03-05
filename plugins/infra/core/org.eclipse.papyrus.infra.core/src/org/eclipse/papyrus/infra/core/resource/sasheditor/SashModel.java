@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2014 CEA LIST.
+ * Copyright (c) 2009-2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,14 +9,14 @@
  * Contributors:
  * 	Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Rewrite the sash model - store in the plugin's PreferenceStore (Bug 429239)
+ *  Christian W. Damus (CEA) - bug 429242
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.Objects;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -24,7 +24,10 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
+
+import com.google.common.base.Objects;
 
 /**
  * Model for the sash system.
@@ -37,6 +40,8 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
  * 
  */
 public class SashModel extends EMFLogicalModel implements IModel {
+
+	private SashModelProviderManager providerManager;
 
 	/**
 	 * File extension.
@@ -82,6 +87,23 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	}
 
 	@Override
+	public void init(ModelSet modelSet) {
+		super.init(modelSet);
+
+		this.providerManager = new SashModelProviderManager(modelSet);
+	}
+
+	@Override
+	public void unload() {
+		if(providerManager != null) {
+			providerManager.dispose();
+			providerManager = null;
+		}
+
+		super.unload();
+	}
+
+	@Override
 	protected boolean isRelatedResource(Resource resource) {
 		if(resource == null) {
 			return false;
@@ -123,7 +145,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	@Override
 	public void createModel(URI uriWithoutExtension) {
 		if(isLegacy(uriWithoutExtension)) {
-			super.createModel(getPreferenceStoreURI(uriWithoutExtension).trimFileExtension());
+			super.createModel(getSashModelStoreURI(uriWithoutExtension).trimFileExtension());
 		} else {
 			super.createModel(uriWithoutExtension);
 		}
@@ -135,7 +157,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		if(resourceURI != null && isLegacy(resourceURI)) {
 			newURI = getLegacyURI(uriWithoutExtension);
 		} else {
-			newURI = getPreferenceStoreURI(uriWithoutExtension);
+			newURI = getSashModelStoreURI(uriWithoutExtension);
 		}
 
 		super.setModelURI(newURI.trimFileExtension());
@@ -145,7 +167,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		if(uri == null) {
 			return false;
 		}
-		return Objects.equals(uri.trimFileExtension(), getModelManager().getURIWithoutExtension());
+		return Objects.equal(uri.trimFileExtension(), getModelManager().getURIWithoutExtension());
 	}
 
 	/**
@@ -177,7 +199,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 			}
 		}
 
-		URI preferenceStoreURI = getPreferenceStoreURI(uriWithoutExtension);
+		URI preferenceStoreURI = getSashModelStoreURI(uriWithoutExtension);
 
 		return preferenceStoreURI;
 	}
@@ -186,18 +208,8 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		return uriWithoutExtension.appendFileExtension(MODEL_FILE_EXTENSION);
 	}
 
-	protected URI getPreferenceStoreURI(URI uriWithoutExtension) {
-		IPath stateLocation = Activator.getDefault().getStateLocation();
-
-		if(uriWithoutExtension.isPlatform()) {
-			stateLocation = stateLocation.append(uriWithoutExtension.toPlatformString(true));
-		} else {
-			stateLocation = stateLocation.append(URI.decode(uriWithoutExtension.toString())); //TODO properly support and test non-platform URIs
-		}
-
-		URI workspaceFileURI = URI.createFileURI(stateLocation.toString()).appendFileExtension(SASH_MODEL_FILE_EXTENSION);
-
-		return workspaceFileURI;
+	protected URI getSashModelStoreURI(URI uriWithoutExtension) {
+		return providerManager.getSashModelProvider(uriWithoutExtension).getSashModelURI(uriWithoutExtension);
 	}
 
 	@Override
