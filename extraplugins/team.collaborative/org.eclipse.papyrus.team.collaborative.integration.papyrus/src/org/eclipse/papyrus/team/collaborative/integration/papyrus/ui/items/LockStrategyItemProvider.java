@@ -43,7 +43,6 @@ public class LockStrategyItemProvider extends org.eclipse.ui.actions.CompoundCon
 		if(isEnabled()) {
 			Collection<ActionContributionItem> contribution = Collections2.transform(ICollaborativeManager.INSTANCE.getStrategies().values(), new Function<ILockingStrategy.Descriptor, ActionContributionItem>() {
 
-				@Override
 				public ActionContributionItem apply(final ILockingStrategy.Descriptor from) {
 
 					Action action = new LockAction(from);

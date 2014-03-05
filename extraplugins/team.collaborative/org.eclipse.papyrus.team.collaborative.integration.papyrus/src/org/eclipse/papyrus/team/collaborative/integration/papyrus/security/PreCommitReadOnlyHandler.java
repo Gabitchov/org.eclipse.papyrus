@@ -120,7 +120,6 @@ public class PreCommitReadOnlyHandler implements IModelSetSnippet {
 
 	private WeakHashMap<EditingDomain, ResourceSetListener> link = new WeakHashMap<EditingDomain, PreCommitReadOnlyHandler.ResourceSetListener>();
 
-	@Override
 	public void start(ModelSet modelsManager) {
 		TransactionalEditingDomain transactionalEditingDomain = modelsManager.getTransactionalEditingDomain();
 		ResourceSetListener listener = new ResourceSetListener();
@@ -129,7 +128,6 @@ public class PreCommitReadOnlyHandler implements IModelSetSnippet {
 
 	}
 
-	@Override
 	public void dispose(ModelSet modelsManager) {
 		TransactionalEditingDomain transactionalEditingDomain = modelsManager.getTransactionalEditingDomain();
 		transactionalEditingDomain.removeResourceSetListener(link.get(transactionalEditingDomain));

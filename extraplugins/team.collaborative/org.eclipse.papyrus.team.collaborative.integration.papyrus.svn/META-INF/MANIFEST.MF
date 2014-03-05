@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SVN Control
 Bundle-SymbolicName: org.eclipse.papyrus.team.collaborative.integration.papyrus.svn;singleton:=true
-Bundle-Version: 1.7.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.team.collaborative.integration.papyrus.svn.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.4.0",
  org.eclipse.papyrus.editor,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.papyrus.team.collaborative;bundle-version="1.7.0",
+ org.eclipse.papyrus.team.collaborative;bundle-version="1.0.0",
  com.google.guava,
  org.eclipse.papyrus.infra.gmfdiag.modelexplorer,
  org.eclipse.ui.navigator;bundle-version="3.5.101",

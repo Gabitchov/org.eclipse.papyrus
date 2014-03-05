@@ -95,7 +95,6 @@ public class CommitDialog extends PreviewDialog {
 		messageValueText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		messageValueText.addModifyListener(new ModifyListener() {
 
-			@Override
 			public void modifyText(ModifyEvent e) {
 				message = messageValueText.getMessage();
 

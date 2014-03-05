@@ -67,7 +67,7 @@
       </menuContribution>
    </extension>
    <extension
-         point="org.eclipse.papyrus.team.collaborative.collaborative">
+         point="org.eclipse.papyrus.team.collaborative.contribution">
       <LockingStrategy
             id="org.eclipse.papyrus.team.collaborative.integration.papyrus.elementsandcontents"
             impl="org.eclipse.papyrus.team.collaborative.integration.papyrus.stategies.PapyrusSelectionAllContent"

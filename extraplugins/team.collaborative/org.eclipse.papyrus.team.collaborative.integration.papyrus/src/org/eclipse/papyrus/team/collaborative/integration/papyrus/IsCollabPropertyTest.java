@@ -11,10 +11,10 @@
 package org.eclipse.papyrus.team.collaborative.integration.papyrus;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.team.collaborative.utils.CollabUtils;
 
 
@@ -39,7 +39,6 @@ public class IsCollabPropertyTest extends PropertyTester {
 	 * 
 	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[], java.lang.Object)
 	 */
-	@Override
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		if(IS_COLLAB_PROPERTY.equals(property)) {
 			if(receiver instanceof ISelection) {
@@ -47,12 +46,9 @@ public class IsCollabPropertyTest extends PropertyTester {
 				if(selection instanceof IStructuredSelection) {
 					IStructuredSelection structurSelection = (IStructuredSelection)selection;
 					Object first = structurSelection.getFirstElement();
-					if(first instanceof IAdaptable) {
-						Object eObject = ((IAdaptable)first).getAdapter(EObject.class);
-						if(eObject != null) {
-							EObject eObject2 = (EObject)eObject;
-							return CollabUtils.isCollab(eObject2);
-						}
+					EObject eObject = EMFHelper.getEObject(first);
+					if(eObject != null) {
+						return CollabUtils.isCollab(eObject);
 					}
 				}
 			}

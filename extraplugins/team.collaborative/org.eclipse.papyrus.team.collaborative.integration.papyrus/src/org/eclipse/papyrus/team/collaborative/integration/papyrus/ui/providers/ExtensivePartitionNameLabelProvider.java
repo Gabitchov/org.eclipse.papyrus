@@ -89,7 +89,6 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 	 * 
 	 * @see org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider#getText(java.lang.Object)
 	 */
-	@Override
 	public String getText(Object element) {
 		String superText = internal.getText(element);
 		if(element instanceof ModelElementItem) {
@@ -140,7 +139,6 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 	 * @see org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider#getFont(java.lang.Object)
 	 */
 	@SuppressWarnings("restriction")
-	@Override
 	public Font getFont(Object element) {
 		if(predicate != null) {
 			if(element instanceof ModelElementItem) {
@@ -164,7 +162,6 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 	 * @see org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider#getForeground(java.lang.Object)
 	 */
 	@SuppressWarnings("restriction")
-	@Override
 	public Color getForeground(Object element) {
 		if(predicate != null) {
 			if(element instanceof ModelElementItem) {
@@ -183,40 +180,34 @@ public class ExtensivePartitionNameLabelProvider implements IFontProvider, IColo
 	}
 
 
-	@Override
 	public void addListener(ILabelProviderListener listener) {
 		internal.addListener(listener);
 
 	}
 
 
-	@Override
 	public void dispose() {
 		internal.dispose();
 
 	}
 
 
-	@Override
 	public boolean isLabelProperty(Object element, String property) {
 		return internal.isLabelProperty(element, property);
 	}
 
 
-	@Override
 	public void removeListener(ILabelProviderListener listener) {
 		internal.removeListener(listener);
 
 	}
 
 
-	@Override
 	public Image getImage(Object element) {
 		return internal.getImage(element);
 	}
 
 
-	@Override
 	public Color getBackground(Object element) {
 		if(internal instanceof IColorProvider) {
 			return ((IColorProvider)internal).getBackground(element);

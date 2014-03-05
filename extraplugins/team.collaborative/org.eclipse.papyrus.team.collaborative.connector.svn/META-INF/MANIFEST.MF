@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Svn Connector
+Bundle-Name: SVN Connector
 Bundle-SymbolicName: org.eclipse.papyrus.team.collaborative.connector.svn;singleton:=true
-Bundle-Version: 1.7.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.team.collaborative.connector.svn.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

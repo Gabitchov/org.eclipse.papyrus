@@ -48,7 +48,6 @@ public class UpdateHandler extends AbstractCollabHandler {
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
-	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		if(!UIUtils.saveAllDirtyEditor().isOK()) {
 			return null;

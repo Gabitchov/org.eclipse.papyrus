@@ -62,7 +62,6 @@ public final class RefreshHelper {
 			this.elementsToRefresh = elementsToRefresh;
 		}
 
-		@Override
 		public void run() {
 
 			try {

@@ -37,6 +37,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForWorkbenchPage;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.team.collaborative.IExtendedURI;
 import org.eclipse.papyrus.team.collaborative.integration.papyrus.Activator;
@@ -118,7 +121,6 @@ public class UIUtils {
 	public static Collection<EObject> getLeafSemanticElement(Collection<IExtendedURI> uris, ResourceSet resourceSet) {
 		Collection<IExtendedURI> semanticURIS = Collections2.filter(uris, new Predicate<IExtendedURI>() {
 
-			@Override
 			public boolean apply(IExtendedURI arg0) {
 				return UmlModel.UML_FILE_EXTENSION.equals(arg0.getUri().fileExtension());
 			}
@@ -158,7 +160,7 @@ public class UIUtils {
 				Iterator<?> ite = ((IStructuredSelection)selection).iterator();
 				while(ite.hasNext()) {
 					Object next = ite.next();
-					EObject eObject = getEObject(next);
+					EObject eObject = EMFHelper.getEObject(next);
 					if(eObject != null) {
 						result.add(eObject);
 					}
@@ -205,25 +207,6 @@ public class UIUtils {
 			}
 		});
 	}
-
-	/**
-	 * Gets the e object.
-	 * 
-	 * @param in
-	 *        the in
-	 * @return the e object
-	 */
-	protected static EObject getEObject(Object in) {
-		if(in instanceof EObject) {
-			return (EObject)in;
-		} else if(in instanceof IAdaptable) {
-			return (EObject)((IAdaptable)in).getAdapter(EObject.class);
-		} else {
-			IAdapterManager adapterService = (IAdapterManager)PlatformUI.getWorkbench().getService(IAdapterManager.class);
-			return (EObject)adapterService.getAdapter(in, EObject.class);
-		}
-	}
-
 
 	/**
 	 * Display an error dialog using a status.
@@ -274,33 +257,34 @@ public class UIUtils {
 		}
 		return object.toString();
 	}
-	
-	public static ILabelProvider getModelExplorerLavelProvider(){
+
+	public static ILabelProvider getModelExplorerLavelProvider() {
 		ILabelProvider labelProvider = getLabelProvider(ModelExplorerView.LABEL_PROVIDER_SERVICE_CONTEXT);
-		if(labelProvider == null){
+		if(labelProvider == null) {
 			labelProvider = getLabelProvider();
 		}
 		return labelProvider;
 	}
-	public static ILabelProvider getLabelProvider(){
+
+	public static ILabelProvider getLabelProvider() {
 		return getLabelProvider(null);
 	}
-	public static ILabelProvider getLabelProvider(String context){
-		IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if (editor instanceof CoreMultiDiagramEditor) {
-			CoreMultiDiagramEditor coreEditor = (CoreMultiDiagramEditor) editor;
-			try {
-				LabelProviderService service = coreEditor.getServicesRegistry().getService(LabelProviderService.class);
-				if(context != null){
-					return service.getLabelProvider(context);
-				}else {
-					return service.getLabelProvider();
-				}
-			} catch (ServiceException e) {
-				e.printStackTrace();
-				return null;
+
+	public static ILabelProvider getLabelProvider(String context) {
+
+		try {
+			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			ServicesRegistry serviceRegistry = ServiceUtilsForWorkbenchPage.getInstance().getServiceRegistry(activePage);
+			LabelProviderService service = serviceRegistry.getService(LabelProviderService.class);
+			if(context != null) {
+				return service.getLabelProvider(context);
+			} else {
+				return service.getLabelProvider();
 			}
+		} catch (ServiceException e) {
+			e.printStackTrace();
 		}
+
 		return null;
 	}
 

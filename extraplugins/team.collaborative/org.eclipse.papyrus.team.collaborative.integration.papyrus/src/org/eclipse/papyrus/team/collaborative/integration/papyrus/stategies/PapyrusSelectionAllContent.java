@@ -41,7 +41,6 @@ public class PapyrusSelectionAllContent extends AbstractResourceBaseStrategy {
 	 * 
 	 * @see org.eclipse.papyrus.team.collaborative.strategy.ILockingStrategy#getBusinessObject(java.util.Collection)
 	 */
-	@Override
 	public Set<IExtendedURI> getBusinessObject(Collection<EObject> eOjbects) {
 		if(!eOjbects.isEmpty()) {
 			ResourceSet ressourceSet = eOjbects.iterator().next().eResource().getResourceSet();
@@ -54,7 +53,6 @@ public class PapyrusSelectionAllContent extends AbstractResourceBaseStrategy {
 				}
 				Predicate<Resource> semanticResourcePredicate = new Predicate<Resource>() {
 
-					@Override
 					public boolean apply(Resource input) {
 						return "uml".equals(input.getURI().fileExtension());
 					}

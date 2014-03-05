@@ -38,7 +38,6 @@ public class PapyrusCurrentResource extends AbstractResourceBaseStrategy {
 	 * 
 	 * @see org.eclipse.papyrus.team.collaborative.strategy.ILockingStrategy#getBusinessObject(java.util.Collection)
 	 */
-	@Override
 	public Set<IExtendedURI> getBusinessObject(Collection<EObject> eOjbects) {
 		if(!eOjbects.isEmpty()) {
 			ResourceSet ressourceSet = eOjbects.iterator().next().eResource().getResourceSet();

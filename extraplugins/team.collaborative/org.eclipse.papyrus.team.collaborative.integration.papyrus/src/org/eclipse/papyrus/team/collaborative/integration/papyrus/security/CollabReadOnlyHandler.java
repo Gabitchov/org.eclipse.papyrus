@@ -48,7 +48,6 @@ public class CollabReadOnlyHandler extends AbstractReadOnlyHandler {
 	 * 
 	 * @see org.eclipse.papyrus.readonly.IReadOnlyHandler#isReadOnly(org.eclipse.emf.common.util.URI[], org.eclipse.emf.edit.domain.EditingDomain)
 	 */
-	@Override
 	public Optional<Boolean> anyReadOnly(URI[] uris) {
 		if(uris != null && uris.length > 0 && getEditingDomain() != null) {
 			ArrayList<URI> urisList = Lists.newArrayList(uris);
@@ -76,7 +75,6 @@ public class CollabReadOnlyHandler extends AbstractReadOnlyHandler {
 	 * 
 	 * @see org.eclipse.papyrus.readonly.IReadOnlyHandler#enableWrite(org.eclipse.emf.common.util.URI[], org.eclipse.emf.edit.domain.EditingDomain)
 	 */
-	@Override
 	public Optional<Boolean> makeWritable(URI[] uris) {
 		ArrayList<URI> urisList = Lists.newArrayList(uris);
 		Collection<IExtendedURI> extendedURICollection = Collections2.transform(urisList, CollabFunctionsFactory.getURIToExtendedURIWithContainment());

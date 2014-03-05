@@ -37,7 +37,6 @@ public class MatchingURIObject implements Predicate<EObject> {
 		this.uris = uris;
 	}
 
-	@Override
 	public boolean apply(EObject input) {
 		List<EObject> objectToTEObjects = new ArrayList<EObject>();
 		objectToTEObjects.add(input);

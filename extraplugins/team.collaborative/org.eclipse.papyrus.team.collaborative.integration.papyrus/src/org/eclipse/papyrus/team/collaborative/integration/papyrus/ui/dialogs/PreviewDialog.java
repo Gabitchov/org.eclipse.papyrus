@@ -17,17 +17,21 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForWorkbenchPage;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
+import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.papyrus.views.modelexplorer.CustomCommonViewer;
 import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
@@ -38,6 +42,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
 import com.google.common.base.Function;
@@ -94,27 +99,30 @@ public class PreviewDialog extends TitleAreaDialog {
 		container.setLayout(new FillLayout(SWT.HORIZONTAL));
 		container.setLayoutData(new GridData(GridData.FILL_BOTH));
 		treeViewer = new CustomCommonViewer("org.eclipse.papyrus.modelexplorer.modelexplorer", container, SWT.BORDER);
-		treeViewer.setContentProvider(new MoDiscoContentProvider() {
+		treeViewer.setContentProvider(new SemanticUMLContentProvider() {
 
-			@Override
-			protected EObject[] getRootElements(ModelSet modelSet) {
-				UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
-
-				if(umlModel == null)
-					return null;
-
-				EList<EObject> contents = umlModel.getResource().getContents();
-				ArrayList<EObject> result = new ArrayList<EObject>();
-				Iterator<EObject> iterator = contents.iterator();
-				while(iterator.hasNext()) {
-					EObject eObject = (EObject)iterator.next();
-					//Shall be improved
-					if(eObject.eClass().getEPackage().getNsURI().contains("uml")) {
-						result.add(eObject);
-					}
-				}
-				return result.toArray(new EObject[result.size()]);
-			}
+//			@Override
+//			protected static EObject[] getRoots(ResourceSet root) {
+//				if(root instanceof ModelSet) {
+//					ModelSet modelSet = (ModelSet)root;
+//					UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
+//					
+//					if(umlModel == null)
+//						return null;
+//					
+//					EList<EObject> contents = umlModel.getResource().getContents();
+//					ArrayList<EObject> result = new ArrayList<EObject>();
+//					Iterator<EObject> iterator = contents.iterator();
+//					while(iterator.hasNext()) {
+//						EObject eObject = (EObject)iterator.next();
+//						//Shall be improved
+//						if(eObject.eClass().getEPackage().getNsURI().contains("uml")) {
+//							result.add(eObject);
+//						}
+//					}
+//				}
+//				return result.toArray(new EObject[result.size()]);
+//			}
 
 			@Override
 			public Object[] getChildren(Object parentElement) {
@@ -132,10 +140,18 @@ public class PreviewDialog extends TitleAreaDialog {
 			}
 		});
 		treeViewer.setLabelProvider(labelProvider);
-		treeViewer.setInput(((CoreMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor()).getServicesRegistry());
-		if(objectsToReveal != null) {
-			reveal(objectsToReveal);
+
+		try {
+			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			ServicesRegistry serviceRegistry = ServiceUtilsForWorkbenchPage.getInstance().getServiceRegistry(activePage);
+			treeViewer.setInput(serviceRegistry);
+			if(objectsToReveal != null) {
+				reveal(objectsToReveal);
+			}
+		} catch (ServiceException e) {
+			e.printStackTrace();
 		}
+
 		return area;
 	}
 

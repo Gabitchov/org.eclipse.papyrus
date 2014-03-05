@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.team.collaborative.collaborative">
+         point="org.eclipse.papyrus.team.collaborative.contribution">
       <ParticipantFactory
             id="org.eclipse.papyrus.team.collaborative.connector.svn"
             impl="org.eclipse.papyrus.team.collaborative.connector.svn.SVNCollabFactory"
