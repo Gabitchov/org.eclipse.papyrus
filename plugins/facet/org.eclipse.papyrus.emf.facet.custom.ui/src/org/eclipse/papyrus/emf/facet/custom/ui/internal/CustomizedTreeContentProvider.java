@@ -53,7 +53,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 	private final IContentPropertiesHandler contentHandler;
 	private Object previousInput;
 	private Object[] rootElements;
-	
+
 	private final Map<EObjectCacheElement, TreeElement> cache;
 
 	private class EObjectCacheElement {
@@ -309,7 +309,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return result;
 	}
 
-	
+
 
 	private  Collection<? extends Object> createReferenceProxies(final List<EReference> allReferences, final EObjectTreeElement parent) {
 		final EObject eObject = parent.getEObject();
@@ -325,7 +325,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 				else{
 					System.err.println("Do not Create an eReference"+ eReference+" create directly its childreen");
 				}
-				
+
 			}
 		}
 		return result;
@@ -344,7 +344,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return getChildren(element).length > 0;
 	}
 
-	
+
 
 	public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {
 		// nothing to do
@@ -379,9 +379,9 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		}
 		return result.booleanValue();
 	}
-	
-	
-	
+
+
+
 	private Collection<? extends Object> createReferences(final EObjectTreeElement treeElement) {
 		final EObject eObject = treeElement.getEObject();
 		final EClass eClass = eObject.eClass();
@@ -433,9 +433,11 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 
 		List<TreeElement> result = new LinkedList<TreeElement>();
 		for(EAttribute eAttribute : allAttributes) {
-			TreeElement eAttributeTreeElement = getEAttributeProxy(eAttribute, treeElement);
-			if(eAttributeTreeElement != null) {
-				result.add(eAttributeTreeElement);
+			if(isVisible(eObject, eAttribute)) {
+				TreeElement eAttributeTreeElement = getEAttributeProxy(eAttribute, treeElement);
+				if(eAttributeTreeElement != null) {
+					result.add(eAttributeTreeElement);
+				}
 			}
 		}
 		return result;

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="efacet"
-    nsURI="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet" nsPrefix="efacet">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="efacet" nsURI="http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet"
+    nsPrefix="efacet">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="validationDelegates" value="org.eclipse.ocl.ecore.OCL"/>
   </eAnnotations>

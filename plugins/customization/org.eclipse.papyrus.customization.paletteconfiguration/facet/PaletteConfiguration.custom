@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <custom:Customization xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:custom="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:javaQuery="http://www.eclipse.org/papyrus/emf/facet/query/java/0.2.incubation/javaquery" name="PaletteConfiguration">
   <eClassifiers xsi:type="custom:EClassCustomization" name="PaletteConfiguration" documentation="PaletteConfiguration">
-    <extendedMetaclass href="platform:/plugins/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//PaletteConfiguration"/>
+    <extendedMetaclass href="platform:/plugin/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//PaletteConfiguration"/>
   </eClassifiers>
   <eClassifiers xsi:type="custom:EClassCustomization" name="DrawerConfiguration" documentation="DrawerConfiguration">
-    <extendedMetaclass href="platform:/plugins/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//DrawerConfiguration"/>
+    <extendedMetaclass href="platform:/plugin/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//DrawerConfiguration"/>
     <facetOperations name="getDrawerLabel" documentation="Returns the label for a drawer">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.GetDrawerLabelQuery"/>
     </facetOperations>
   </eClassifiers>
   <eClassifiers xsi:type="custom:EClassCustomization" name="Configuration" documentation="Configuration">
-    <extendedMetaclass href="platform:/plugins/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//Configuration"/>
+    <extendedMetaclass href="platform:/plugin/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//Configuration"/>
     <facetOperations name="hasIcon" lowerBound="1" documentation="Returns true if the element has a specific icon to display">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.HasIconQuery"/>
@@ -22,13 +22,13 @@
     </facetOperations>
   </eClassifiers>
   <eClassifiers xsi:type="custom:EClassCustomization" name="ToolConfiguration" documentation="ToolConfiguration">
-    <extendedMetaclass href="platform:/plugins/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//ToolConfiguration"/>
+    <extendedMetaclass href="platform:/plugin/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//ToolConfiguration"/>
     <facetOperations name="getToolLabel" lowerBound="1" documentation="Returns the Label for a tool.">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
       <query xsi:type="javaQuery:JavaQuery" implementationClassName="org.eclipse.papyrus.customization.paletteconfiguration.queries.GetToolLabelQuery"/>
     </facetOperations>
   </eClassifiers>
   <eClassifiers xsi:type="custom:EClassCustomization" name="StackConfiguration" instanceClassName="" documentation="StackConfiguration">
-    <extendedMetaclass href="platform:/plugins/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//StackConfiguration"/>
+    <extendedMetaclass href="platform:/plugin/org.eclipse.papyrus.uml.diagram.paletteconfiguration/model/PaletteConfiguration.ecore#//StackConfiguration"/>
   </eClassifiers>
 </custom:Customization>

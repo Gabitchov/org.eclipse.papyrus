@@ -5,8 +5,10 @@ package org.eclipse.papyrus.uml.modelexplorer.queries;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
+import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.uml2.uml.NamedElement;
@@ -22,6 +24,10 @@ public class GetComplexName implements IJavaQuery2<NamedElement, String> {
 
 
 	public String evaluate(NamedElement source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
+		ParameterValue parameterValue= (ParameterValue)parameterValues.getParameterValueByName("eObject");
+		if(parameterValue.getValue() instanceof EStructuralFeature){
+			return ((EStructuralFeature)parameterValue.getValue()).getName();
+		}
 		String txt = ""; //$NON-NLS-1$
 		List<Stereotype> stereoList = source.getAppliedStereotypes();
 		if (stereoList.size() == 0) {

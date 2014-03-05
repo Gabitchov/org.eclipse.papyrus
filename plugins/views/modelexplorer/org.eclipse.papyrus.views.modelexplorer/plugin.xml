@@ -3,7 +3,7 @@
 
 <plugin>
 <extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
-  <modeldeclaration file="resources/PapyrusPage.custom"/>
+  <modeldeclaration file="resources/OpenedPage.custom"/>
 </extension>
    <extension-point id="actionHandler" name="actionHandler" schema="schema/org.eclipse.papyrus.views.modelexplorer.actionHandler.exsd"/>
    <extension

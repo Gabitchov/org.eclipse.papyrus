@@ -59,9 +59,9 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 			return ""; //$NON-NLS-1$
 		}
 
-//		if(element instanceof TreeElement) {
-//			return super.getText(element);
-//		}
+		if(element instanceof TreeElement) {
+			return super.getText(element);
+		}
 
 		EObject eObject = EMFHelper.getEObject(element);
 		if(eObject != null) {

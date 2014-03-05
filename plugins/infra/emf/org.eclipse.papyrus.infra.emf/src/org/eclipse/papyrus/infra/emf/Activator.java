@@ -156,7 +156,7 @@ public class Activator extends AbstractUIPlugin {
 
 			// load customizations defined as default through the customization
 			// extension
-			ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(new ResourceSetImpl());
+			ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(customizationManager.getResourceSet());
 			//no possibility to get default customization
 			//List<MetamodelView> registryDefaultCustomizations = customCatalog.;
 			List<Customization> registryAllCustomizations = customCatalog.getRegisteredCustomizations();
