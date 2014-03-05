@@ -1,11 +1,11 @@
 package org.eclipse.papyrus.uml.diagram.wizards;
 
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
-import org.eclipse.papyrus.uml.diagram.wizards.InitModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.junit.Test;
 
 
 public class TestCreateModelWizard extends TestNewModelWizardBase {
@@ -22,13 +22,15 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 		};
 	}
 
+	@Test
 	public void testOrderOfPages() {
-		Class[] expectedPages = new Class[]{ NewModelFilePage.class, SelectDiagramCategoryPage.class, SelectDiagramKindPage.class, };
+		Class<?>[] expectedPages = new Class[]{ NewModelFilePage.class, SelectDiagramCategoryPage.class, SelectDiagramKindPage.class, };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);
 	}
 
+	@Test
 	public void testDiagramFileExtentionLabel() {
 		final String expectedExtension = "test.xxx";
 		IWorkbenchWizard wizard = new InitModelWizard() {
@@ -50,7 +52,7 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 		//assertEquals(expectedExtension, page.getFileExtension());
 	}
 
-
+	@Test
 	public void testDiagramFileExtenstionForProfile() {
 		final String expectedExtension = "profile.di";
 		InitModelWizard wizard = new InitModelWizard() {
@@ -62,16 +64,17 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 
 			@Override
 			protected String[] getDiagramCategoryIds() {
-				return new String[]{CreateProfileModelCommand.COMMAND_ID};
+				return new String[]{ CreateProfileModelCommand.COMMAND_ID };
 			}
 
 		};
 
 		initWizardDialog(wizard);
-//		String actual = wizard.getDiagramFileExtension();
-//		assertEquals(expectedExtension, actual);
+		//		String actual = wizard.getDiagramFileExtension();
+		//		assertEquals(expectedExtension, actual);
 	}
 
+	@Test
 	public void testDiagramFileExtenstionForUML() {
 		final String expectedExtension = "di";
 		InitModelWizard wizard = new InitModelWizard() {
@@ -83,14 +86,14 @@ public class TestCreateModelWizard extends TestNewModelWizardBase {
 
 			@Override
 			protected String[] getDiagramCategoryIds() {
-				return new String[]{"uml"};
+				return new String[]{ "uml" };
 			}
 
 		};
 
 		initWizardDialog(wizard);
-//		String actual = wizard.getDiagramFileExtension();
-//		assertEquals(expectedExtension, actual);
+		//		String actual = wizard.getDiagramFileExtension();
+		//		assertEquals(expectedExtension, actual);
 	}
 
 }
