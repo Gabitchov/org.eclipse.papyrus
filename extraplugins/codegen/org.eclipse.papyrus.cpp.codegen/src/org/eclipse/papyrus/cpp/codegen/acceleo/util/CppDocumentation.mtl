@@ -1,4 +1,4 @@
-[module CppDocumentation('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module CppDocumentation('http://www.eclipse.org/uml2/5.0.0/UML')/]
 [import org::eclipse::papyrus::acceleo::GenUtils/]
 
 

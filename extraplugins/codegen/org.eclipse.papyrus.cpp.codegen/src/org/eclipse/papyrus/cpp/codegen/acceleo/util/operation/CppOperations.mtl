@@ -1,4 +1,4 @@
-[module CppOperations('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/papyrus/C_Cpp/1', 'http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2')/]
+[module CppOperations('http://www.eclipse.org/uml2/5.0.0/UML', 'http://www.eclipse.org/papyrus/C_Cpp/1', 'http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard')/]
 [import org::eclipse::papyrus::acceleo::GenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::utils::CppGenUtils/]
 [import org::eclipse::papyrus::cpp::codegen::utils::Modifier/]

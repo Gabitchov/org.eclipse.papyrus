@@ -7,17 +7,17 @@
     xmlns:query="http://www.eclipse.org/EmfFacet/infra/query/0.8.incubation"
     name="RobotMLExplorerQueries">
   <associatedMetamodels
-      href="http://www.eclipse.org/uml2/4.0.0/UML#/"/>
+      href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
   <associatedMetamodels
-      href="http://www.eclipse.org/uml2/4.0.0/Types#/"/>
+      href="http://www.eclipse.org/uml2/5.0.0/Types#/"/>
   <queries xsi:type="query:JavaModelQuery"
       name="getImage"
       description="RobotML icon provider"
       implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.GetImageQuery">
     <returnType
         xsi:type="ecore:EDataType"
-        href="http://www.eclipse.org/uml2/4.0.0/Types#//String"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+        href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery"
       name="hasImage"
@@ -25,8 +25,8 @@
       implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.HasImageQuery">
     <returnType
         xsi:type="ecore:EDataType"
-        href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+        href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery"
       name="GetAllPorts"
@@ -35,8 +35,8 @@
       implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.GetAllPortsQuery">
     <returnType
         xsi:type="ecore:EClass"
-        href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery"
       name="GetAllSubSystems"
@@ -45,8 +45,8 @@
       implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.GetAllSubSystemsQuery">
     <returnType
         xsi:type="ecore:EClass"
-        href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery"
       name="GetOtherProperties"
@@ -55,8 +55,8 @@
       implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.GetOtherPropertiesQuery">
     <returnType
         xsi:type="ecore:EClass"
-        href="http://www.eclipse.org/uml2/4.0.0/UML#//Property"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Classifier"/>
+        href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
   </queries>
   <queries xsi:type="query:JavaModelQuery"
       name="RobotMLProfileApplied"
@@ -64,7 +64,7 @@
       implementationClassName="org.eclipse.papyrus.robotml.modelexplorer.query.RobotMLProfileAppliedQuery">
     <returnType
         xsi:type="ecore:EDataType"
-        href="http://www.eclipse.org/uml2/4.0.0/Types#//Boolean"/>
-    <scope href="http://www.eclipse.org/uml2/4.0.0/UML#//Element"/>
+        href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+    <scope href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
   </queries>
 </query:ModelQuerySet>

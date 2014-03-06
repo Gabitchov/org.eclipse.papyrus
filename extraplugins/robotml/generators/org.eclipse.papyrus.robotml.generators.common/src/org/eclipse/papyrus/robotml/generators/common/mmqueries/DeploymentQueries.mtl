@@ -15,7 +15,7 @@
  *
  *****************************************************************************/
 [/comment]
-[module DeploymentQueries('http://www.eclipse.org/uml2/4.0.0/UML', 'http://Papyrus/RobotML/1')]
+[module DeploymentQueries('http://www.eclipse.org/uml2/5.0.0/UML', 'http://Papyrus/RobotML/1')]
 
 [comment] 
 These functions are implemented in file DeploymentQueries.java.

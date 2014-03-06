@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module CppGenUtils('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module CppGenUtils('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [query public getTemplateParametersWoType(arg0 : Classifier) : String
 	= invoke('org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils', 'getTemplateParametersWoType(org.eclipse.uml2.uml.Classifier)', Sequence{arg0})
