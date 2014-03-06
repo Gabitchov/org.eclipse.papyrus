@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,9 +20,9 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
- * 
+ *
  * This class is used to represent a UML Property
- * 
+ *
  */
 public class PropertyRepresentation {
 
@@ -36,14 +36,14 @@ public class PropertyRepresentation {
 	private ArrayList<Value> values;
 
 	/** the UML property represented by this class */
-	private Property UMLProperty;
+	private Property umlProperty;
 
 	/** Is it a runtime property? */
 	private boolean isRuntimeProperty = false;
 
 /**
 	 * the {@link StereotypeRepresentation owning this
-	 * 
+	 *
 	 * @link PropertyRepresentation}
 	 */
 	private StereotypeRepresentation stereotype;
@@ -61,9 +61,9 @@ public class PropertyRepresentation {
 	static public String separator = "|";; //$NON-NLS-1$
 
 	/**
-	 * 
+	 *
 	 * Constructor.
-	 * 
+	 *
 	 * @param stereotypeQualifiedName
 	 *        the stereotype owning this property
 	 * @param propertyQualifiedName
@@ -76,10 +76,10 @@ public class PropertyRepresentation {
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor. Note : the values aren't not duplicated. The two
 	 * PropertyRepresentation share the same instances of the values
-	 * 
+	 *
 	 * @param propRep
 	 *        the PropertyRepresentation used to instantiate a new
 	 *        PropertyRepresentation
@@ -94,7 +94,7 @@ public class PropertyRepresentation {
 
 	/**
 	 * Returns the property qualified name
-	 * 
+	 *
 	 * @return the property qualified name
 	 */
 	public String getQualifiedName() {
@@ -103,7 +103,7 @@ public class PropertyRepresentation {
 
 	/**
 	 * Adds the value to this property
-	 * 
+	 *
 	 * @param value
 	 *        the value to add to this property
 	 */
@@ -114,7 +114,7 @@ public class PropertyRepresentation {
 
 	/**
 	 * Returns all the values owned by this property
-	 * 
+	 *
 	 * @return all the values owned by this property
 	 */
 	public ArrayList<Value> getValues() {
@@ -123,17 +123,17 @@ public class PropertyRepresentation {
 
 	/**
 	 * Returns the type of the property
-	 * 
+	 *
 	 * @return the type of the property
 	 */
 	public Type getType() {
-		Assert.isNotNull(UMLProperty, "The property has not been set!"); //$NON-NLS-1$
-		return UMLProperty.getType();
+		Assert.isNotNull(umlProperty, "The property has not been set!"); //$NON-NLS-1$
+		return umlProperty.getType();
 	}
 
 	/**
 	 * Setter for {@link #propID}
-	 * 
+	 *
 	 * @return {@link #propID}
 	 */
 	public String getPropertyId() {
@@ -142,23 +142,23 @@ public class PropertyRepresentation {
 
 	/**
 	 * Returns the upper multiplicity
-	 * 
+	 *
 	 * @return the upper multiplicity
 	 */
 	public int getUpperMultiplicity() {
-		Assert.isNotNull(UMLProperty, "The property has not been set!"); //$NON-NLS-1$
-		return UMLProperty.getUpper();
+		Assert.isNotNull(umlProperty, "The property has not been set!"); //$NON-NLS-1$
+		return umlProperty.getUpper();
 	}
 
 	/**
 	 * Returns the string corresponding to the property multiplicity
-	 * 
+	 *
 	 * @return the string corresponding to the property multiplicity
 	 */
 	protected String getPropertyMultiplicity() {
-		Assert.isNotNull(UMLProperty, "The property has not been set!"); //$NON-NLS-1$
-		String multiplicity = "[" + UMLProperty.getLower() + ".."; //$NON-NLS-1$ //$NON-NLS-2$
-		int upper = UMLProperty.getUpper();
+		Assert.isNotNull(umlProperty, "The property has not been set!"); //$NON-NLS-1$
+		String multiplicity = "[" + umlProperty.getLower() + ".."; //$NON-NLS-1$ //$NON-NLS-2$
+		int upper = umlProperty.getUpper();
 		if(upper == -1) {
 			multiplicity += "*"; //$NON-NLS-1$
 		} else {
@@ -169,29 +169,30 @@ public class PropertyRepresentation {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
-	 * 
+	 *
 	 * @return
 	 */
+	@Override
 	public String toString() {
 		return this.propID;
 	}
 
 	/**
 	 * Returns the string corresponding to the value to display for the property
-	 * 
+	 *
 	 * @return the string corresponding to the value to display for the property
-	 * 
+	 *
 	 */
 	protected String getValueToDisplay() {
 		String label = null;
 		ArrayList<Value> values = getValues();
 		if(!values.isEmpty()) {
 			label = values.toString();
-		} else if(UMLProperty.isSetDefault()) {
-			label = UMLProperty.getDefault();
-		} else if(UMLProperty.isMultivalued()) {
+		} else if(umlProperty.getDefaultValue() != null) {
+			label = umlProperty.getDefault();
+		} else if(umlProperty.isMultivalued()) {
 			label = "[]"; //$NON-NLS-1$
 		}
 		return label;
@@ -199,7 +200,7 @@ public class PropertyRepresentation {
 
 	/**
 	 * Setter for the value to {@link #isRuntimeProperty}
-	 * 
+	 *
 	 * @param value
 	 */
 	public void setRuntime(boolean value) {
@@ -208,7 +209,7 @@ public class PropertyRepresentation {
 
 	/**
 	 * Getter for {@link #isRuntimeProperty}
-	 * 
+	 *
 	 * @return {@link #isRuntimeProperty}
 	 */
 	public boolean isRuntime() {
@@ -216,28 +217,28 @@ public class PropertyRepresentation {
 	}
 
 	/**
-	 * Setter for {@link #UMLProperty}
-	 * 
+	 * Setter for {@link #umlProperty}
+	 *
 	 * @param property
 	 *        the UML {@link Property}
 	 */
 	public void setUMLProperty(Property property) {
-		this.UMLProperty = property;
+		this.umlProperty = property;
 		this.name = property.getName();
 	}
 
 	/**
 	 * Set the stereotype owning this property (often called by {@link StereotypeRepresentation#addProperty(PropertyRepresentation)})
-	 * 
+	 *
 	 * @param ste
-	 * 
+	 *
 	 */
 	public void setStereotype(StereotypeRepresentation ste) {
 		this.stereotype = ste;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param value
 	 *        the value to remove
 	 */
@@ -246,7 +247,7 @@ public class PropertyRepresentation {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return <ul>
 	 *         <li>{@code true} if the property has values</li>
 	 *         <li>{@code false} if not</li>
@@ -258,7 +259,7 @@ public class PropertyRepresentation {
 
 	/**
 	 * Returns the {@link StereotypeRepresentation} owning this {@link PropertyRepresentation}
-	 * 
+	 *
 	 * @return the {@link StereotypeRepresentation} owning this {@link PropertyRepresentation}
 	 */
 	public StereotypeRepresentation getStereotypeRepresentation() {
@@ -267,18 +268,18 @@ public class PropertyRepresentation {
 
 	/**
 	 * Returns the {@link org.eclipse.uml.uml.Property} represented by this {@link PropertyRepresentation}
-	 * 
+	 *
 	 * @return the {@link org.eclipse.uml.uml.Property} represented by this {@link PropertyRepresentation}
 	 */
 	public Property getUMLProperty() {
-		Assert.isNotNull(UMLProperty, "The property has not been set!"); //$NON-NLS-1$
-		return UMLProperty;
+		Assert.isNotNull(umlProperty, "The property has not been set!"); //$NON-NLS-1$
+		return umlProperty;
 	}
 
 	/**
 	 * Returns the string representing this property, with this type and this
 	 * value
-	 * 
+	 *
 	 * @return the string representing this property, with this type and this
 	 *         value
 	 */
@@ -295,7 +296,7 @@ public class PropertyRepresentation {
 	/**
 	 * Returns the values owned by this {@link PropertyRepresentation},
 	 * represented by a string
-	 * 
+	 *
 	 * @return the values owned by this {@link PropertyRepresentation},
 	 *         represented by a string
 	 */
