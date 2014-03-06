@@ -18,14 +18,15 @@ package org.eclipse.papyrus.eastadl.interchange;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>RIF Import Area</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * Contains requirement specific data to be imported from an external RIF file.
  * 
- * If an element will be imported from external the uuid will be taken from the given external exchange data file, because the identifier is global unique and shall not be changed somewhere.
+ * If an element will be imported from external the uuid will be taken from the given external exchange data file, because the identifier is global
+ * unique and shall not be changed somewhere.
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.interchange.InterchangePackage#getRIFImportArea()
  * @model
  * @generated

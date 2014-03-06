@@ -25,46 +25,49 @@ import org.eclipse.uml2.uml.NamedElement;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>EA Element</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * The EAElement is an abstract metaclass that represents an arbitrary named entity in the domain model. It specializes AUTOSAR Identifiable which has the shortName attribute used for identification of the element within the namespace in which it is defined.
+ * The EAElement is an abstract metaclass that represents an arbitrary named entity in the domain model. It specializes AUTOSAR Identifiable which has
+ * the shortName attribute used for identification of the element within the namespace in which it is defined.
  * 
  * The abbreviation EA in the name of this metaclass is short for EAST-ADL.
  * 
  * 
  * Semantics:
- * Also the EAElement can be used to extend the EAST-ADL2 approach to other languages and standards by adding a generalize relation from the respective (non EAST-ADL2) element to the EAElement.
+ * Also the EAElement can be used to extend the EAST-ADL2 approach to other languages and standards by adding a generalize relation from the
+ * respective (non EAST-ADL2) element to the EAElement.
  * 
  * 
  * Changes:
  * New class in EAST-ADL2
  * 
- * Extension: 
+ * Extension:
  * The EAElement stereotype is an abstract stereotype
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement#getBase_NamedElement <em>Base Named Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement#getOwnedComment <em>Owned Comment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement#getBase_NamedElement <em>Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement#getOwnedComment <em>Owned Comment</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.infrastructure.elements.ElementsPackage#getEAElement()
  * @model abstract="true"
  * @generated
  */
 public interface EAElement extends EObject {
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.eastadl.infrastructure.elements.ElementsPackage#getEAElement_Name()
@@ -78,6 +81,7 @@ public interface EAElement extends EObject {
 	 * The list contents are of type {@link org.eclipse.papyrus.eastadl.infrastructure.elements.Comment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Owned Comment</em>' reference list.
 	 * @see org.eclipse.papyrus.eastadl.infrastructure.elements.ElementsPackage#getEAElement_OwnedComment()
 	 * @model ordered="false"
@@ -89,10 +93,10 @@ public interface EAElement extends EObject {
 	 * Returns the value of the '<em><b>Base Named Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Named Element</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Base Named Element</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Base Named Element</em>' reference.
 	 * @see #setBase_NamedElement(NamedElement)
 	 * @see org.eclipse.papyrus.eastadl.infrastructure.elements.ElementsPackage#getEAElement_Base_NamedElement()
@@ -102,10 +106,13 @@ public interface EAElement extends EObject {
 	NamedElement getBase_NamedElement();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement#getBase_NamedElement <em>Base Named Element</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement#getBase_NamedElement <em>Base Named Element</em>}'
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Named Element</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Base Named Element</em>' reference.
 	 * @see #getBase_NamedElement()
 	 * @generated
 	 */
@@ -115,7 +122,9 @@ public interface EAElement extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */

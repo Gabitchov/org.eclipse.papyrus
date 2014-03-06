@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.eastadl.dependability.safetyconstraints.*;
 import org.eclipse.papyrus.eastadl.dependability.safetyconstraints.ASILKind;
 import org.eclipse.papyrus.eastadl.dependability.safetyconstraints.FaultFailure;
 import org.eclipse.papyrus.eastadl.dependability.safetyconstraints.QuantitativeSafetyConstraint;
@@ -33,12 +34,15 @@ import org.eclipse.papyrus.eastadl.dependability.safetyconstraints.Safetyconstra
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SafetyconstraintsFactoryImpl extends EFactoryImpl implements SafetyconstraintsFactory {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -51,16 +55,16 @@ public class SafetyconstraintsFactoryImpl extends EFactoryImpl implements Safety
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static SafetyconstraintsFactory init() {
 		try {
 			SafetyconstraintsFactory theSafetyconstraintsFactory = (SafetyconstraintsFactory)EPackage.Registry.INSTANCE.getEFactory(SafetyconstraintsPackage.eNS_URI);
-			if (theSafetyconstraintsFactory != null) {
+			if(theSafetyconstraintsFactory != null) {
 				return theSafetyconstraintsFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new SafetyconstraintsFactoryImpl();
@@ -70,6 +74,7 @@ public class SafetyconstraintsFactoryImpl extends EFactoryImpl implements Safety
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetyconstraintsFactoryImpl() {
@@ -79,37 +84,43 @@ public class SafetyconstraintsFactoryImpl extends EFactoryImpl implements Safety
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case SafetyconstraintsPackage.ASIL_KIND:
-				return convertASILKindToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case SafetyconstraintsPackage.ASIL_KIND:
+			return convertASILKindToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case SafetyconstraintsPackage.FAULT_FAILURE: return createFaultFailure();
-			case SafetyconstraintsPackage.SAFETY_CONSTRAINT: return createSafetyConstraint();
-			case SafetyconstraintsPackage.QUANTITATIVE_SAFETY_CONSTRAINT: return createQuantitativeSafetyConstraint();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		case SafetyconstraintsPackage.FAULT_FAILURE:
+			return createFaultFailure();
+		case SafetyconstraintsPackage.SAFETY_CONSTRAINT:
+			return createSafetyConstraint();
+		case SafetyconstraintsPackage.QUANTITATIVE_SAFETY_CONSTRAINT:
+			return createQuantitativeSafetyConstraint();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FaultFailure createFaultFailure() {
@@ -120,21 +131,23 @@ public class SafetyconstraintsFactoryImpl extends EFactoryImpl implements Safety
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case SafetyconstraintsPackage.ASIL_KIND:
-				return createASILKindFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case SafetyconstraintsPackage.ASIL_KIND:
+			return createASILKindFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public QuantitativeSafetyConstraint createQuantitativeSafetyConstraint() {
@@ -145,17 +158,20 @@ public class SafetyconstraintsFactoryImpl extends EFactoryImpl implements Safety
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ASILKind createASILKindFromString(EDataType eDataType, String initialValue) {
 		ASILKind result = ASILKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if(result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertASILKindToString(EDataType eDataType, Object instanceValue) {
@@ -165,6 +181,7 @@ public class SafetyconstraintsFactoryImpl extends EFactoryImpl implements Safety
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetyConstraint createSafetyConstraint() {
@@ -175,6 +192,7 @@ public class SafetyconstraintsFactoryImpl extends EFactoryImpl implements Safety
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetyconstraintsPackage getSafetyconstraintsPackage() {

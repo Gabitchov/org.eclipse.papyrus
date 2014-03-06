@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.EastadlFactory
  * @model kind="package"
  * @generated
@@ -43,6 +44,7 @@ public interface EastadlPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
@@ -51,6 +53,7 @@ public interface EastadlPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.eastadl.dummy <em>dummy</em>}' enum.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
+		 * 
 		 * @see org.eclipse.papyrus.eastadl.dummy
 		 * @see org.eclipse.papyrus.eastadl.impl.EastadlPackageImpl#getdummy()
 		 * @generated
@@ -62,6 +65,7 @@ public interface EastadlPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "eastadl";
@@ -69,6 +73,7 @@ public interface EastadlPackage extends EPackage {
 	/**
 	 * The package namespace URI.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.papyrusuml.org/EAST-ADL2/1";
@@ -76,6 +81,7 @@ public interface EastadlPackage extends EPackage {
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "EAST-ADL2";
@@ -83,6 +89,7 @@ public interface EastadlPackage extends EPackage {
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	EastadlPackage eINSTANCE = org.eclipse.papyrus.eastadl.impl.EastadlPackageImpl.init();
@@ -91,6 +98,7 @@ public interface EastadlPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.eastadl.dummy <em>dummy</em>}' enum.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see org.eclipse.papyrus.eastadl.dummy
 	 * @see org.eclipse.papyrus.eastadl.impl.EastadlPackageImpl#getdummy()
 	 * @generated
@@ -101,6 +109,7 @@ public interface EastadlPackage extends EPackage {
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.eastadl.dummy <em>dummy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for enum '<em>dummy</em>'.
 	 * @see org.eclipse.papyrus.eastadl.dummy
 	 * @generated
@@ -111,6 +120,7 @@ public interface EastadlPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */

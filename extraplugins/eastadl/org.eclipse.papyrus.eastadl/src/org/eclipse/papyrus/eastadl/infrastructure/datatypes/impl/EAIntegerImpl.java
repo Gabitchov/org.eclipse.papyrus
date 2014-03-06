@@ -29,18 +29,20 @@ import org.eclipse.papyrus.eastadl.infrastructure.datatypes.EAInteger;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EAIntegerImpl#getMin <em>Min</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EAIntegerImpl#getMax <em>Max</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EAIntegerImpl#getMin <em>Min</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.EAIntegerImpl#getMax <em>Max</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
+
 	/**
 	 * The default value of the '{@link #getMin() <em>Min</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMin()
 	 * @generated
 	 * @ordered
@@ -51,6 +53,7 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	 * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMin()
 	 * @generated
 	 * @ordered
@@ -61,6 +64,7 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	 * The default value of the '{@link #getMax() <em>Max</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMax()
 	 * @generated
 	 * @ordered
@@ -71,6 +75,7 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	 * The cached value of the '{@link #getMax() <em>Max</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMax()
 	 * @generated
 	 * @ordered
@@ -80,6 +85,7 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EAIntegerImpl() {
@@ -89,15 +95,16 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DatatypesPackage.EA_INTEGER__MIN:
-				return getMin();
-			case DatatypesPackage.EA_INTEGER__MAX:
-				return getMax();
+		switch(featureID) {
+		case DatatypesPackage.EA_INTEGER__MIN:
+			return getMin();
+		case DatatypesPackage.EA_INTEGER__MAX:
+			return getMax();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -105,15 +112,16 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DatatypesPackage.EA_INTEGER__MIN:
-				return min != MIN_EDEFAULT;
-			case DatatypesPackage.EA_INTEGER__MAX:
-				return max != MAX_EDEFAULT;
+		switch(featureID) {
+		case DatatypesPackage.EA_INTEGER__MIN:
+			return min != MIN_EDEFAULT;
+		case DatatypesPackage.EA_INTEGER__MAX:
+			return max != MAX_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -121,17 +129,18 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DatatypesPackage.EA_INTEGER__MIN:
-				setMin((Integer)newValue);
-				return;
-			case DatatypesPackage.EA_INTEGER__MAX:
-				setMax((Integer)newValue);
-				return;
+		switch(featureID) {
+		case DatatypesPackage.EA_INTEGER__MIN:
+			setMin((Integer)newValue);
+			return;
+		case DatatypesPackage.EA_INTEGER__MAX:
+			setMax((Integer)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -139,6 +148,7 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,17 +159,18 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DatatypesPackage.EA_INTEGER__MIN:
-				setMin(MIN_EDEFAULT);
-				return;
-			case DatatypesPackage.EA_INTEGER__MAX:
-				setMax(MAX_EDEFAULT);
-				return;
+		switch(featureID) {
+		case DatatypesPackage.EA_INTEGER__MIN:
+			setMin(MIN_EDEFAULT);
+			return;
+		case DatatypesPackage.EA_INTEGER__MAX:
+			setMax(MAX_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -167,6 +178,7 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getMax() {
@@ -176,6 +188,7 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getMin() {
@@ -185,35 +198,39 @@ public class EAIntegerImpl extends RangeableDatatypeImpl implements EAInteger {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMax(int newMax) {
 		int oldMax = max;
 		max = newMax;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatatypesPackage.EA_INTEGER__MAX, oldMax, max));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMin(int newMin) {
 		int oldMin = min;
 		min = newMin;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatatypesPackage.EA_INTEGER__MIN, oldMin, min));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (min: ");

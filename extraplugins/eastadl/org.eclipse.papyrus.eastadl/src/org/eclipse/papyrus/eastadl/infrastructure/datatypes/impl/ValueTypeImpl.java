@@ -29,19 +29,21 @@ import org.eclipse.papyrus.eastadl.infrastructure.datatypes.ValueType;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.ValueTypeImpl#getSemantics <em>Semantics</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.ValueTypeImpl#getDimension <em>Dimension</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.ValueTypeImpl#getUnit <em>Unit</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.ValueTypeImpl#getSemantics <em>Semantics</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.ValueTypeImpl#getDimension <em>Dimension</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.datatypes.impl.ValueTypeImpl#getUnit <em>Unit</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType {
+
 	/**
 	 * The default value of the '{@link #getSemantics() <em>Semantics</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSemantics()
 	 * @generated
 	 * @ordered
@@ -52,6 +54,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	 * The cached value of the '{@link #getSemantics() <em>Semantics</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSemantics()
 	 * @generated
 	 * @ordered
@@ -62,6 +65,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	 * The default value of the '{@link #getDimension() <em>Dimension</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDimension()
 	 * @generated
 	 * @ordered
@@ -72,6 +76,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	 * The cached value of the '{@link #getDimension() <em>Dimension</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDimension()
 	 * @generated
 	 * @ordered
@@ -82,6 +87,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	 * The default value of the '{@link #getUnit() <em>Unit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUnit()
 	 * @generated
 	 * @ordered
@@ -92,6 +98,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUnit()
 	 * @generated
 	 * @ordered
@@ -101,6 +108,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ValueTypeImpl() {
@@ -110,17 +118,18 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DatatypesPackage.VALUE_TYPE__SEMANTICS:
-				return getSemantics();
-			case DatatypesPackage.VALUE_TYPE__DIMENSION:
-				return getDimension();
-			case DatatypesPackage.VALUE_TYPE__UNIT:
-				return getUnit();
+		switch(featureID) {
+		case DatatypesPackage.VALUE_TYPE__SEMANTICS:
+			return getSemantics();
+		case DatatypesPackage.VALUE_TYPE__DIMENSION:
+			return getDimension();
+		case DatatypesPackage.VALUE_TYPE__UNIT:
+			return getUnit();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -128,17 +137,18 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DatatypesPackage.VALUE_TYPE__SEMANTICS:
-				return SEMANTICS_EDEFAULT == null ? semantics != null : !SEMANTICS_EDEFAULT.equals(semantics);
-			case DatatypesPackage.VALUE_TYPE__DIMENSION:
-				return DIMENSION_EDEFAULT == null ? dimension != null : !DIMENSION_EDEFAULT.equals(dimension);
-			case DatatypesPackage.VALUE_TYPE__UNIT:
-				return UNIT_EDEFAULT == null ? unit != null : !UNIT_EDEFAULT.equals(unit);
+		switch(featureID) {
+		case DatatypesPackage.VALUE_TYPE__SEMANTICS:
+			return SEMANTICS_EDEFAULT == null ? semantics != null : !SEMANTICS_EDEFAULT.equals(semantics);
+		case DatatypesPackage.VALUE_TYPE__DIMENSION:
+			return DIMENSION_EDEFAULT == null ? dimension != null : !DIMENSION_EDEFAULT.equals(dimension);
+		case DatatypesPackage.VALUE_TYPE__UNIT:
+			return UNIT_EDEFAULT == null ? unit != null : !UNIT_EDEFAULT.equals(unit);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -146,20 +156,21 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DatatypesPackage.VALUE_TYPE__SEMANTICS:
-				setSemantics((String)newValue);
-				return;
-			case DatatypesPackage.VALUE_TYPE__DIMENSION:
-				setDimension((String)newValue);
-				return;
-			case DatatypesPackage.VALUE_TYPE__UNIT:
-				setUnit((String)newValue);
-				return;
+		switch(featureID) {
+		case DatatypesPackage.VALUE_TYPE__SEMANTICS:
+			setSemantics((String)newValue);
+			return;
+		case DatatypesPackage.VALUE_TYPE__DIMENSION:
+			setDimension((String)newValue);
+			return;
+		case DatatypesPackage.VALUE_TYPE__UNIT:
+			setUnit((String)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -167,6 +178,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,6 +189,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSemantics() {
@@ -186,32 +199,34 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSemantics(String newSemantics) {
 		String oldSemantics = semantics;
 		semantics = newSemantics;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatatypesPackage.VALUE_TYPE__SEMANTICS, oldSemantics, semantics));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DatatypesPackage.VALUE_TYPE__SEMANTICS:
-				setSemantics(SEMANTICS_EDEFAULT);
-				return;
-			case DatatypesPackage.VALUE_TYPE__DIMENSION:
-				setDimension(DIMENSION_EDEFAULT);
-				return;
-			case DatatypesPackage.VALUE_TYPE__UNIT:
-				setUnit(UNIT_EDEFAULT);
-				return;
+		switch(featureID) {
+		case DatatypesPackage.VALUE_TYPE__SEMANTICS:
+			setSemantics(SEMANTICS_EDEFAULT);
+			return;
+		case DatatypesPackage.VALUE_TYPE__DIMENSION:
+			setDimension(DIMENSION_EDEFAULT);
+			return;
+		case DatatypesPackage.VALUE_TYPE__UNIT:
+			setUnit(UNIT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -219,6 +234,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDimension() {
@@ -228,6 +244,7 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getUnit() {
@@ -237,35 +254,39 @@ public abstract class ValueTypeImpl extends EADatatypeImpl implements ValueType 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDimension(String newDimension) {
 		String oldDimension = dimension;
 		dimension = newDimension;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatatypesPackage.VALUE_TYPE__DIMENSION, oldDimension, dimension));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUnit(String newUnit) {
 		String oldUnit = unit;
 		unit = newUnit;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatatypesPackage.VALUE_TYPE__UNIT, oldUnit, unit));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (semantics: ");

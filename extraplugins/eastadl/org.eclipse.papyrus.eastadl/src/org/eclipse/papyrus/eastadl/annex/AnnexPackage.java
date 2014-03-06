@@ -23,34 +23,39 @@ import org.eclipse.emf.ecore.EPackage;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.annex.AnnexFactory
  * @model kind="package"
  * @generated
  */
 public interface AnnexPackage extends EPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 *   <li>each class,</li>
-	 *   <li>each feature of each class,</li>
-	 *   <li>each enum,</li>
-	 *   <li>and each data type</li>
+	 * <li>each class,</li>
+	 * <li>each feature of each class,</li>
+	 * <li>each enum,</li>
+	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
 		 * The meta object literal for the '<em>Dummy</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @see java.lang.String
 		 * @see org.eclipse.papyrus.eastadl.annex.impl.AnnexPackageImpl#getDummy()
 		 * @generated
@@ -63,6 +68,7 @@ public interface AnnexPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "annex";
@@ -71,6 +77,7 @@ public interface AnnexPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.papyrusuml.org/EAST-ADL2/Annex/1";
@@ -79,6 +86,7 @@ public interface AnnexPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "Annex";
@@ -87,6 +95,7 @@ public interface AnnexPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	AnnexPackage eINSTANCE = org.eclipse.papyrus.eastadl.annex.impl.AnnexPackageImpl.init();
@@ -96,6 +105,7 @@ public interface AnnexPackage extends EPackage {
 	 * The meta object id for the '<em>Dummy</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see java.lang.String
 	 * @see org.eclipse.papyrus.eastadl.annex.impl.AnnexPackageImpl#getDummy()
 	 * @generated
@@ -106,6 +116,7 @@ public interface AnnexPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -115,6 +126,7 @@ public interface AnnexPackage extends EPackage {
 	 * Returns the meta object for data type '{@link java.lang.String <em>Dummy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for data type '<em>Dummy</em>'.
 	 * @see java.lang.String
 	 * @model instanceClass="java.lang.String"

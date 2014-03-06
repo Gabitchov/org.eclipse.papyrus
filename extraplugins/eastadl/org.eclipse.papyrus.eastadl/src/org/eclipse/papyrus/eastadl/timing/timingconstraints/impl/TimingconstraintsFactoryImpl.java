@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.eastadl.timing.timingconstraints.*;
 import org.eclipse.papyrus.eastadl.timing.timingconstraints.AgeTimingConstraint;
 import org.eclipse.papyrus.eastadl.timing.timingconstraints.ArbitraryEventConstraint;
 import org.eclipse.papyrus.eastadl.timing.timingconstraints.InputSynchronizationConstraint;
@@ -36,12 +37,15 @@ import org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPac
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TimingconstraintsFactoryImpl extends EFactoryImpl implements TimingconstraintsFactory {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -54,16 +58,16 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static TimingconstraintsFactory init() {
 		try {
 			TimingconstraintsFactory theTimingconstraintsFactory = (TimingconstraintsFactory)EPackage.Registry.INSTANCE.getEFactory(TimingconstraintsPackage.eNS_URI);
-			if (theTimingconstraintsFactory != null) {
+			if(theTimingconstraintsFactory != null) {
 				return theTimingconstraintsFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new TimingconstraintsFactoryImpl();
@@ -73,6 +77,7 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimingconstraintsFactoryImpl() {
@@ -82,27 +87,37 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case TimingconstraintsPackage.AGE_TIMING_CONSTRAINT: return createAgeTimingConstraint();
-			case TimingconstraintsPackage.INPUT_SYNCHRONIZATION_CONSTRAINT: return createInputSynchronizationConstraint();
-			case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT: return createOutputSynchronizationConstraint();
-			case TimingconstraintsPackage.REACTION_CONSTRAINT: return createReactionConstraint();
-			case TimingconstraintsPackage.SPORADIC_EVENT_CONSTRAINT: return createSporadicEventConstraint();
-			case TimingconstraintsPackage.PERIODIC_EVENT_CONSTRAINT: return createPeriodicEventConstraint();
-			case TimingconstraintsPackage.PATTERN_EVENT_CONSTRAINT: return createPatternEventConstraint();
-			case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT: return createArbitraryEventConstraint();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		case TimingconstraintsPackage.AGE_TIMING_CONSTRAINT:
+			return createAgeTimingConstraint();
+		case TimingconstraintsPackage.INPUT_SYNCHRONIZATION_CONSTRAINT:
+			return createInputSynchronizationConstraint();
+		case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT:
+			return createOutputSynchronizationConstraint();
+		case TimingconstraintsPackage.REACTION_CONSTRAINT:
+			return createReactionConstraint();
+		case TimingconstraintsPackage.SPORADIC_EVENT_CONSTRAINT:
+			return createSporadicEventConstraint();
+		case TimingconstraintsPackage.PERIODIC_EVENT_CONSTRAINT:
+			return createPeriodicEventConstraint();
+		case TimingconstraintsPackage.PATTERN_EVENT_CONSTRAINT:
+			return createPatternEventConstraint();
+		case TimingconstraintsPackage.ARBITRARY_EVENT_CONSTRAINT:
+			return createArbitraryEventConstraint();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AgeTimingConstraint createAgeTimingConstraint() {
@@ -113,6 +128,7 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ArbitraryEventConstraint createArbitraryEventConstraint() {
@@ -123,6 +139,7 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InputSynchronizationConstraint createInputSynchronizationConstraint() {
@@ -133,6 +150,7 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OutputSynchronizationConstraint createOutputSynchronizationConstraint() {
@@ -143,6 +161,7 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PatternEventConstraint createPatternEventConstraint() {
@@ -153,6 +172,7 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PeriodicEventConstraint createPeriodicEventConstraint() {
@@ -163,6 +183,7 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ReactionConstraint createReactionConstraint() {
@@ -173,6 +194,7 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SporadicEventConstraint createSporadicEventConstraint() {
@@ -183,6 +205,7 @@ public class TimingconstraintsFactoryImpl extends EFactoryImpl implements Timing
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimingconstraintsPackage getTimingconstraintsPackage() {

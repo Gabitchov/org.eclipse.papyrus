@@ -31,17 +31,19 @@ import org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.ArchitectureImpl#getDescribedBy <em>Described By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.ArchitectureImpl#getDescribedBy <em>Described By</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ArchitectureImpl extends ConceptImpl implements Architecture {
+
 	/**
 	 * The cached value of the '{@link #getDescribedBy() <em>Described By</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDescribedBy()
 	 * @generated
 	 * @ordered
@@ -51,6 +53,7 @@ public class ArchitectureImpl extends ConceptImpl implements Architecture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ArchitectureImpl() {
@@ -60,6 +63,7 @@ public class ArchitectureImpl extends ConceptImpl implements Architecture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ArchitecturalDescription basicGetDescribedBy() {
@@ -69,14 +73,16 @@ public class ArchitectureImpl extends ConceptImpl implements Architecture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case NeedsPackage.ARCHITECTURE__DESCRIBED_BY:
-				if (resolve) return getDescribedBy();
-				return basicGetDescribedBy();
+		switch(featureID) {
+		case NeedsPackage.ARCHITECTURE__DESCRIBED_BY:
+			if(resolve)
+				return getDescribedBy();
+			return basicGetDescribedBy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -84,13 +90,14 @@ public class ArchitectureImpl extends ConceptImpl implements Architecture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case NeedsPackage.ARCHITECTURE__DESCRIBED_BY:
-				return describedBy != null;
+		switch(featureID) {
+		case NeedsPackage.ARCHITECTURE__DESCRIBED_BY:
+			return describedBy != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -98,14 +105,15 @@ public class ArchitectureImpl extends ConceptImpl implements Architecture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case NeedsPackage.ARCHITECTURE__DESCRIBED_BY:
-				setDescribedBy((ArchitecturalDescription)newValue);
-				return;
+		switch(featureID) {
+		case NeedsPackage.ARCHITECTURE__DESCRIBED_BY:
+			setDescribedBy((ArchitecturalDescription)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -113,6 +121,7 @@ public class ArchitectureImpl extends ConceptImpl implements Architecture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,14 +132,15 @@ public class ArchitectureImpl extends ConceptImpl implements Architecture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case NeedsPackage.ARCHITECTURE__DESCRIBED_BY:
-				setDescribedBy((ArchitecturalDescription)null);
-				return;
+		switch(featureID) {
+		case NeedsPackage.ARCHITECTURE__DESCRIBED_BY:
+			setDescribedBy((ArchitecturalDescription)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -138,14 +148,15 @@ public class ArchitectureImpl extends ConceptImpl implements Architecture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ArchitecturalDescription getDescribedBy() {
-		if (describedBy != null && describedBy.eIsProxy()) {
+		if(describedBy != null && describedBy.eIsProxy()) {
 			InternalEObject oldDescribedBy = (InternalEObject)describedBy;
 			describedBy = (ArchitecturalDescription)eResolveProxy(oldDescribedBy);
-			if (describedBy != oldDescribedBy) {
-				if (eNotificationRequired())
+			if(describedBy != oldDescribedBy) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NeedsPackage.ARCHITECTURE__DESCRIBED_BY, oldDescribedBy, describedBy));
 			}
 		}
@@ -155,12 +166,13 @@ public class ArchitectureImpl extends ConceptImpl implements Architecture {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDescribedBy(ArchitecturalDescription newDescribedBy) {
 		ArchitecturalDescription oldDescribedBy = describedBy;
 		describedBy = newDescribedBy;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NeedsPackage.ARCHITECTURE__DESCRIBED_BY, oldDescribedBy, describedBy));
 	}
 

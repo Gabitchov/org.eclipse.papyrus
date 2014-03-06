@@ -20,8 +20,8 @@ package org.eclipse.papyrus.eastadl.infrastructure.elements;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Rationale</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.infrastructure.elements.ElementsPackage#getRationale()
  * @model
  * @generated

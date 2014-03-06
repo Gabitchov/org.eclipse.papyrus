@@ -100,17 +100,19 @@ import org.eclipse.papyrus.eastadl.variability.impl.VariabilityPackageImpl;
 import org.eclipse.papyrus.sysml.SysmlPackage;
 import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class RequirementsPackageImpl extends EPackageImpl implements RequirementsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -118,16 +120,18 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link RequirementsPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link RequirementsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static RequirementsPackage init() {
-		if (isInited) return (RequirementsPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementsPackage.eNS_URI);
+		if(isInited)
+			return (RequirementsPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementsPackage.eNS_URI);
 
 		// Obtain or create and register package
 		RequirementsPackageImpl theRequirementsPackage = (RequirementsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RequirementsPackageImpl());
@@ -229,7 +233,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		// Mark meta-data to indicate it can't be changed
 		theRequirementsPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(RequirementsPackage.eNS_URI, theRequirementsPackage);
 		return theRequirementsPackage;
@@ -237,6 +241,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass qualityRequirementEClass = null;
@@ -244,6 +249,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementSpecificationObjectEClass = null;
@@ -251,6 +257,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementsContainerEClass = null;
@@ -258,6 +265,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementsRelatedInformationEClass = null;
@@ -265,6 +273,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementsRelationshipEClass = null;
@@ -272,6 +281,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass satisfyEClass = null;
@@ -279,6 +289,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass useCaseEClass = null;
@@ -286,6 +297,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass includeEClass = null;
@@ -293,6 +305,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass extendEClass = null;
@@ -300,6 +313,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass extensionPointEClass = null;
@@ -307,6 +321,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass redefinableElementEClass = null;
@@ -314,6 +329,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass refineEClass = null;
@@ -321,6 +337,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass deriveRequirementEClass = null;
@@ -328,6 +345,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementsRelationGroupEClass = null;
@@ -335,6 +353,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementsLinkEClass = null;
@@ -342,6 +361,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementsModelEClass = null;
@@ -349,6 +369,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass operationalSituationEClass = null;
@@ -356,6 +377,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass actorEClass = null;
@@ -363,37 +385,40 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass requirementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum qualityRequirementKindEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.requirements.RequirementsPackage#eNS_URI
 	 * @see #init()
@@ -404,13 +429,15 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -505,6 +532,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDeriveRequirement() {
@@ -514,6 +542,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDeriveRequirement_Derived() {
@@ -523,6 +552,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDeriveRequirement_DerivedFrom() {
@@ -532,6 +562,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getOperationalSituation() {
@@ -541,6 +572,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getOperationalSituation_Base_Class() {
@@ -550,6 +582,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getActor() {
@@ -559,6 +592,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getActor_Base_Actor() {
@@ -567,6 +601,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getQualityRequirement() {
@@ -575,6 +610,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getQualityRequirement_QualityRequirementType() {
@@ -583,6 +619,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getQualityRequirementKind() {
@@ -592,6 +629,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRefine() {
@@ -601,6 +639,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRefine_RefinedBy() {
@@ -610,6 +649,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRefine_Base_Dependency() {
@@ -619,6 +659,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRefine_RefinedBy_path() {
@@ -628,6 +669,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRefine_RefinedRequirement() {
@@ -637,6 +679,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirement() {
@@ -646,6 +689,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getRequirement_Formalism() {
@@ -655,6 +699,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirement_Mode() {
@@ -664,6 +709,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getRequirement_Url() {
@@ -673,6 +719,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirementsContainer() {
@@ -682,6 +729,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsContainer_ChildContainer() {
@@ -691,6 +739,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsContainer_ContainedReqSpecObject() {
@@ -700,6 +749,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsContainer_ParentContainer() {
@@ -709,6 +759,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsContainer_Base_Class() {
@@ -718,6 +769,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsContainer_Base_Package() {
@@ -726,6 +778,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsFactory getRequirementsFactory() {
@@ -735,6 +788,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirementsLink() {
@@ -744,6 +798,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getRequirementsLink_IsBidirectional() {
@@ -753,6 +808,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsLink_Source() {
@@ -762,6 +818,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsLink_Target() {
@@ -771,6 +828,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirementsModel() {
@@ -780,6 +838,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsModel_OperationalSituation() {
@@ -789,6 +848,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsModel_Base_Package() {
@@ -798,6 +858,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsModel_Requirement() {
@@ -807,6 +868,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsModel_RequirementContainer() {
@@ -816,6 +878,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsModel_UseCase() {
@@ -825,6 +888,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirementSpecificationObject() {
@@ -834,6 +898,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementSpecificationObject_ReferencingContainer() {
@@ -843,6 +908,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirementsRelatedInformation() {
@@ -852,6 +918,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsRelatedInformation_Base_Class() {
@@ -861,6 +928,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirementsRelationGroup() {
@@ -870,6 +938,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsRelationGroup_Relation() {
@@ -879,6 +948,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsRelationGroup_Base_Class() {
@@ -888,6 +958,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsRelationGroup_Base_Package() {
@@ -897,6 +968,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRequirementsRelationship() {
@@ -906,6 +978,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRequirementsRelationship_Base_Class() {
@@ -915,6 +988,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSatisfy() {
@@ -924,6 +998,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSatisfy_SatisfiedBy() {
@@ -933,6 +1008,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSatisfy_SatisfiedBy_path() {
@@ -942,6 +1018,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUseCase() {
@@ -951,6 +1028,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_Base_UseCase() {
@@ -960,6 +1038,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_Include() {
@@ -969,6 +1048,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_Extend() {
@@ -978,6 +1058,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_ExtensionPoint() {
@@ -987,6 +1068,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getInclude() {
@@ -996,6 +1078,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getInclude_Base_Include() {
@@ -1005,6 +1088,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getInclude_Addition() {
@@ -1014,6 +1098,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getExtend() {
@@ -1023,6 +1108,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExtend_Base_Extend() {
@@ -1032,6 +1118,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExtend_ExtendedCase() {
@@ -1041,6 +1128,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExtend_ExtensionLocation() {
@@ -1050,6 +1138,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getExtensionPoint() {
@@ -1059,6 +1148,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getExtensionPoint_Base_ExtensionPoint() {
@@ -1068,6 +1158,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRedefinableElement() {
@@ -1077,6 +1168,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getRedefinableElement_Base_RedefinableElement() {
@@ -1086,6 +1178,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSatisfy_SatisfiedRequirement() {
@@ -1095,6 +1188,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSatisfy_SatisfiedUseCase() {
@@ -1102,13 +1196,15 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -1123,7 +1219,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		BehaviorPackage theBehaviorPackage = (BehaviorPackage)EPackage.Registry.INSTANCE.getEPackage(BehaviorPackage.eNS_URI);
 		ElementsPackage theElementsPackage = (ElementsPackage)EPackage.Registry.INSTANCE.getEPackage(ElementsPackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
-		L2Package theL2Package = (L2Package)EPackage.Registry.INSTANCE.getEPackage(L2Package.eNS_URI);
+		StandardPackage theStandardPackage = (StandardPackage)EPackage.Registry.INSTANCE.getEPackage(StandardPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theVerificationvalidationPackage);
@@ -1147,7 +1243,7 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 		extendEClass.getESuperTypes().add(theElementsPackage.getRelationship());
 		extensionPointEClass.getESuperTypes().add(this.getRedefinableElement());
 		refineEClass.getESuperTypes().add(this.getRequirementsRelationship());
-		refineEClass.getESuperTypes().add(theL2Package.getRefine());
+		refineEClass.getESuperTypes().add(theStandardPackage.getRefine());
 		deriveRequirementEClass.getESuperTypes().add(this.getRequirementsRelationship());
 		deriveRequirementEClass.getESuperTypes().add(theRequirementsPackage_1.getDeriveReqt());
 		requirementsRelationGroupEClass.getESuperTypes().add(theElementsPackage.getTraceableSpecification());

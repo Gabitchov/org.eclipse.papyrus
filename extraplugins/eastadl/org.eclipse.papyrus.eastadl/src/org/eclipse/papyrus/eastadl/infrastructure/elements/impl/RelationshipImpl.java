@@ -26,13 +26,15 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.Relationship;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class RelationshipImpl extends EAElementImpl implements Relationship {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RelationshipImpl() {
@@ -42,6 +44,7 @@ public abstract class RelationshipImpl extends EAElementImpl implements Relation
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

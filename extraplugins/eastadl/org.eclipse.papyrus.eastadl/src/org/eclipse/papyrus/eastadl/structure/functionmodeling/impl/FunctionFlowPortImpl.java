@@ -41,13 +41,13 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionFlowPortImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionFlowPortImpl#getBase_NamedElement <em>Base Named Element</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionFlowPortImpl#getOwnedComment <em>Owned Comment</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionFlowPortImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionFlowPortImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionFlowPortImpl#getBase_NamedElement <em>Base Named Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionFlowPortImpl#getOwnedComment <em>Owned Comment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.FunctionFlowPortImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPort {
@@ -56,6 +56,7 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -66,6 +67,7 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_NamedElement()
 	 * @generated
 	 * @ordered
@@ -76,6 +78,7 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 	 * The cached value of the '{@link #getOwnedComment() <em>Owned Comment</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getOwnedComment()
 	 * @generated
 	 * @ordered
@@ -84,6 +87,7 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionFlowPortImpl() {
@@ -101,7 +105,7 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 		if(getBase_Port() != null) {
 			Type umlType = getBase_Port().getType();
 
-			
+
 			if(umlType != null) {
 				dataType = (EADatatype)UMLUtil.getStereotypeApplication(umlType, EADatatype.class);
 			}
@@ -112,21 +116,27 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == EAElement.class) {
-			switch (derivedFeatureID) {
-				case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME: return ElementsPackage.EA_ELEMENT__NAME;
-				case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT: return ElementsPackage.EA_ELEMENT__BASE_NAMED_ELEMENT;
-				case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT: return ElementsPackage.EA_ELEMENT__OWNED_COMMENT;
-				default: return -1;
+		if(baseClass == EAElement.class) {
+			switch(derivedFeatureID) {
+			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME:
+				return ElementsPackage.EA_ELEMENT__NAME;
+			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT:
+				return ElementsPackage.EA_ELEMENT__BASE_NAMED_ELEMENT;
+			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT:
+				return ElementsPackage.EA_ELEMENT__OWNED_COMMENT;
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == FunctionPort.class) {
-			switch (derivedFeatureID) {
-				default: return -1;
+		if(baseClass == FunctionPort.class) {
+			switch(derivedFeatureID) {
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -134,21 +144,27 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == EAElement.class) {
-			switch (baseFeatureID) {
-				case ElementsPackage.EA_ELEMENT__NAME: return FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME;
-				case ElementsPackage.EA_ELEMENT__BASE_NAMED_ELEMENT: return FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT;
-				case ElementsPackage.EA_ELEMENT__OWNED_COMMENT: return FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT;
-				default: return -1;
+		if(baseClass == EAElement.class) {
+			switch(baseFeatureID) {
+			case ElementsPackage.EA_ELEMENT__NAME:
+				return FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME;
+			case ElementsPackage.EA_ELEMENT__BASE_NAMED_ELEMENT:
+				return FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT;
+			case ElementsPackage.EA_ELEMENT__OWNED_COMMENT:
+				return FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT;
+			default:
+				return -1;
 			}
 		}
-		if (baseClass == FunctionPort.class) {
-			switch (baseFeatureID) {
-				default: return -1;
+		if(baseClass == FunctionPort.class) {
+			switch(baseFeatureID) {
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -156,68 +172,74 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME:
-				return getName();
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT:
-				if (resolve) return getBase_NamedElement();
-				return basicGetBase_NamedElement();
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT:
-				return getOwnedComment();
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME:
+			return getName();
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT:
+			if(resolve)
+				return getBase_NamedElement();
+			return basicGetBase_NamedElement();
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT:
+			return getOwnedComment();
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__TYPE:
+			if(resolve)
+				return getType();
+			return basicGetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT:
-				return base_NamedElement != null;
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT:
-				return ownedComment != null && !ownedComment.isEmpty();
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__TYPE:
-				return basicGetType() != null;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME:
+			return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT:
+			return base_NamedElement != null;
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT:
+			return ownedComment != null && !ownedComment.isEmpty();
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__TYPE:
+			return basicGetType() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME:
-				setName((String)newValue);
-				return;
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT:
-				setBase_NamedElement((NamedElement)newValue);
-				return;
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT:
-				getOwnedComment().clear();
-				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME:
+			setName((String)newValue);
+			return;
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT:
+			setBase_NamedElement((NamedElement)newValue);
+			return;
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT:
+			getOwnedComment().clear();
+			getOwnedComment().addAll((Collection<? extends Comment>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,20 +250,21 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT:
-				setBase_NamedElement((NamedElement)null);
-				return;
-			case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT:
-				getOwnedComment().clear();
-				return;
+		switch(featureID) {
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT:
+			setBase_NamedElement((NamedElement)null);
+			return;
+		case FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT:
+			getOwnedComment().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -259,10 +282,11 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Comment> getOwnedComment() {
-		if (ownedComment == null) {
+		if(ownedComment == null) {
 			ownedComment = new EObjectResolvingEList<Comment>(Comment.class, this, FunctionmodelingPackage.FUNCTION_FLOW_PORT__OWNED_COMMENT);
 		}
 		return ownedComment;
@@ -270,6 +294,7 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EADatatype getType() {
@@ -299,14 +324,15 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NamedElement getBase_NamedElement() {
-		if (base_NamedElement != null && base_NamedElement.eIsProxy()) {
+		if(base_NamedElement != null && base_NamedElement.eIsProxy()) {
 			InternalEObject oldBase_NamedElement = (InternalEObject)base_NamedElement;
 			base_NamedElement = (NamedElement)eResolveProxy(oldBase_NamedElement);
-			if (base_NamedElement != oldBase_NamedElement) {
-				if (eNotificationRequired())
+			if(base_NamedElement != oldBase_NamedElement) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 			}
 		}
@@ -316,6 +342,7 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NamedElement basicGetBase_NamedElement() {
@@ -325,12 +352,13 @@ public class FunctionFlowPortImpl extends FlowPortImpl implements FunctionFlowPo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_NamedElement(NamedElement newBase_NamedElement) {
 		NamedElement oldBase_NamedElement = base_NamedElement;
 		base_NamedElement = newBase_NamedElement;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FunctionmodelingPackage.FUNCTION_FLOW_PORT__BASE_NAMED_ELEMENT, oldBase_NamedElement, base_NamedElement));
 	}
 

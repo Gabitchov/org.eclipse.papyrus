@@ -30,17 +30,20 @@ import org.eclipse.uml2.uml.PackageableElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.EAPackageableElementImpl#getBase_PackageableElement <em>Base Packageable Element</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.EAPackageableElementImpl#getBase_PackageableElement <em>Base Packageable
+ * Element</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class EAPackageableElementImpl extends EAElementImpl implements EAPackageableElement {
+
 	/**
 	 * The cached value of the '{@link #getBase_PackageableElement() <em>Base Packageable Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_PackageableElement()
 	 * @generated
 	 * @ordered
@@ -50,6 +53,7 @@ public abstract class EAPackageableElementImpl extends EAElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EAPackageableElementImpl() {
@@ -59,6 +63,7 @@ public abstract class EAPackageableElementImpl extends EAElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,14 +74,15 @@ public abstract class EAPackageableElementImpl extends EAElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PackageableElement getBase_PackageableElement() {
-		if (base_PackageableElement != null && base_PackageableElement.eIsProxy()) {
+		if(base_PackageableElement != null && base_PackageableElement.eIsProxy()) {
 			InternalEObject oldBase_PackageableElement = (InternalEObject)base_PackageableElement;
 			base_PackageableElement = (PackageableElement)eResolveProxy(oldBase_PackageableElement);
-			if (base_PackageableElement != oldBase_PackageableElement) {
-				if (eNotificationRequired())
+			if(base_PackageableElement != oldBase_PackageableElement) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT, oldBase_PackageableElement, base_PackageableElement));
 			}
 		}
@@ -86,6 +92,7 @@ public abstract class EAPackageableElementImpl extends EAElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PackageableElement basicGetBase_PackageableElement() {
@@ -95,26 +102,29 @@ public abstract class EAPackageableElementImpl extends EAElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_PackageableElement(PackageableElement newBase_PackageableElement) {
 		PackageableElement oldBase_PackageableElement = base_PackageableElement;
 		base_PackageableElement = newBase_PackageableElement;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT, oldBase_PackageableElement, base_PackageableElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT:
-				if (resolve) return getBase_PackageableElement();
-				return basicGetBase_PackageableElement();
+		switch(featureID) {
+		case ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT:
+			if(resolve)
+				return getBase_PackageableElement();
+			return basicGetBase_PackageableElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,14 +132,15 @@ public abstract class EAPackageableElementImpl extends EAElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT:
-				setBase_PackageableElement((PackageableElement)newValue);
-				return;
+		switch(featureID) {
+		case ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT:
+			setBase_PackageableElement((PackageableElement)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -137,14 +148,15 @@ public abstract class EAPackageableElementImpl extends EAElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT:
-				setBase_PackageableElement((PackageableElement)null);
-				return;
+		switch(featureID) {
+		case ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT:
+			setBase_PackageableElement((PackageableElement)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,13 +164,14 @@ public abstract class EAPackageableElementImpl extends EAElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT:
-				return base_PackageableElement != null;
+		switch(featureID) {
+		case ElementsPackage.EA_PACKAGEABLE_ELEMENT__BASE_PACKAGEABLE_ELEMENT:
+			return base_PackageableElement != null;
 		}
 		return super.eIsSet(featureID);
 	}

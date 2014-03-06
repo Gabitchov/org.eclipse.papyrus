@@ -97,6 +97,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
@@ -104,6 +105,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass stakeholderNeedEClass = null;
@@ -111,6 +113,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass problemStatementEClass = null;
@@ -118,6 +121,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass productPositioningEClass = null;
@@ -125,6 +129,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass businessOpportunityEClass = null;
@@ -132,6 +137,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass conceptEClass = null;
@@ -139,6 +145,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass missionEClass = null;
@@ -146,6 +153,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass vehicleSystemEClass = null;
@@ -153,6 +161,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass architectureEClass = null;
@@ -160,6 +169,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass architecturalDescriptionEClass = null;
@@ -167,6 +177,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass architecturalModelEClass = null;
@@ -174,6 +185,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass stakeholderEClass = null;
@@ -181,6 +193,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -188,16 +201,18 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link NeedsPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link NeedsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead,
+	 * they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static NeedsPackage init() {
-		if (isInited) return (NeedsPackage)EPackage.Registry.INSTANCE.getEPackage(NeedsPackage.eNS_URI);
+		if(isInited)
+			return (NeedsPackage)EPackage.Registry.INSTANCE.getEPackage(NeedsPackage.eNS_URI);
 
 		// Obtain or create and register package
 		NeedsPackageImpl theNeedsPackage = (NeedsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NeedsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NeedsPackageImpl());
@@ -299,7 +314,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 		// Mark meta-data to indicate it can't be changed
 		theNeedsPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NeedsPackage.eNS_URI, theNeedsPackage);
 		return theNeedsPackage;
@@ -308,6 +323,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -315,19 +331,19 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage#eNS_URI
 	 * @see #init()
@@ -338,14 +354,16 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -405,39 +423,20 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	 * Initializes the annotations for <b>redefines</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createRedefinesAnnotations() {
-		String source = "redefines";				
-		addAnnotation
-		  (getStakeholderNeed_Need(), 
-		   source, 
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(EastadlPackage.eNS_URI).appendFragment("//infrastructure/elements/TraceableSpecification/note")
-		   });			
-		addAnnotation
-		  (getProblemStatement_Problem(), 
-		   source, 
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(EastadlPackage.eNS_URI).appendFragment("//infrastructure/elements/TraceableSpecification/note")
-		   });				
-		addAnnotation
-		  (getBusinessOpportunity_BusinessOpportunity(), 
-		   source, 
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(EastadlPackage.eNS_URI).appendFragment("//infrastructure/elements/TraceableSpecification/note")
-		   });						
+		String source = "redefines";
+		addAnnotation(getStakeholderNeed_Need(), source, new String[]{}, new URI[]{ URI.createURI(EastadlPackage.eNS_URI).appendFragment("//infrastructure/elements/TraceableSpecification/note") });
+		addAnnotation(getProblemStatement_Problem(), source, new String[]{}, new URI[]{ URI.createURI(EastadlPackage.eNS_URI).appendFragment("//infrastructure/elements/TraceableSpecification/note") });
+		addAnnotation(getBusinessOpportunity_BusinessOpportunity(), source, new String[]{}, new URI[]{ URI.createURI(EastadlPackage.eNS_URI).appendFragment("//infrastructure/elements/TraceableSpecification/note") });
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getArchitecturalDescription() {
@@ -447,6 +446,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getArchitecturalDescription_Aggregates() {
@@ -456,6 +456,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getArchitecturalDescription_Identifies() {
@@ -465,6 +466,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getArchitecturalModel() {
@@ -474,6 +476,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getArchitecture() {
@@ -483,6 +486,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getArchitecture_DescribedBy() {
@@ -492,6 +496,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getBusinessOpportunity() {
@@ -501,6 +506,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getBusinessOpportunity_Base_Class() {
@@ -510,6 +516,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getBusinessOpportunity_BusinessOpportunity() {
@@ -519,6 +526,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getBusinessOpportunity_ProblemStatement() {
@@ -528,6 +536,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getBusinessOpportunity_ProductPositioning() {
@@ -537,6 +546,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getConcept() {
@@ -546,6 +556,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMission() {
@@ -555,6 +566,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NeedsFactory getNeedsFactory() {
@@ -564,6 +576,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getProblemStatement() {
@@ -573,6 +586,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProblemStatement_Base_Class() {
@@ -582,6 +596,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProblemStatement_Affects() {
@@ -591,6 +606,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProblemStatement_Impact() {
@@ -600,6 +616,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProblemStatement_Problem() {
@@ -609,6 +626,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProblemStatement_SolutionBenefits() {
@@ -618,6 +636,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getProductPositioning() {
@@ -627,6 +646,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProductPositioning_Base_Class() {
@@ -636,6 +656,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProductPositioning_DrivingNeeds() {
@@ -645,6 +666,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProductPositioning_KeyCapabilities() {
@@ -654,6 +676,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProductPositioning_PrimaryCompetitiveAlternative() {
@@ -663,6 +686,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProductPositioning_PrimaryDifferentiation() {
@@ -672,6 +696,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProductPositioning_TargetCustomers() {
@@ -681,6 +706,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getStakeholder() {
@@ -690,6 +716,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getStakeholder_Base_Class() {
@@ -699,6 +726,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getStakeholder_Responsibilities() {
@@ -708,6 +736,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getStakeholder_SuccessCriteria() {
@@ -717,6 +746,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getStakeholderNeed() {
@@ -726,6 +756,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getStakeholderNeed_Base_Class() {
@@ -735,6 +766,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getStakeholderNeed_Need() {
@@ -744,6 +776,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getStakeholderNeed_Priority() {
@@ -753,6 +786,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getStakeholderNeed_ProblemStatement() {
@@ -762,6 +796,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getStakeholderNeed_StakeHolder() {
@@ -771,6 +806,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getVehicleSystem() {
@@ -780,6 +816,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVehicleSystem_Fulfills() {
@@ -789,6 +826,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVehicleSystem_Has() {
@@ -798,6 +836,7 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getVehicleSystem_HasAn() {
@@ -805,14 +844,16 @@ public class NeedsPackageImpl extends EPackageImpl implements NeedsPackage {
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

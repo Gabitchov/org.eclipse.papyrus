@@ -39,22 +39,24 @@ import org.eclipse.uml2.uml.NamedElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getDesignConstraintType <em>Design Constraint Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getBase_Constraint <em>Base Constraint</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getGenericConstraintValue <em>Generic Constraint Value</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getMode <em>Mode</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getDesignConstraintType <em>Design Constraint Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getBase_Constraint <em>Base Constraint</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getGenericConstraintValue <em>Generic Constraint Value</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.genericconstraints.impl.GenericConstraintImpl#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class GenericConstraintImpl extends TraceableSpecificationImpl implements GenericConstraint {
+
 	/**
 	 * The default value of the '{@link #getDesignConstraintType() <em>Design Constraint Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDesignConstraintType()
 	 * @generated
 	 * @ordered
@@ -65,6 +67,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	 * The cached value of the '{@link #getDesignConstraintType() <em>Design Constraint Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getDesignConstraintType()
 	 * @generated
 	 * @ordered
@@ -75,6 +78,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	 * The cached value of the '{@link #getBase_Constraint() <em>Base Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Constraint()
 	 * @generated
 	 * @ordered
@@ -85,6 +89,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	 * The default value of the '{@link #getGenericConstraintValue() <em>Generic Constraint Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getGenericConstraintValue()
 	 * @generated
 	 * @ordered
@@ -95,6 +100,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	 * The cached value of the '{@link #getGenericConstraintValue() <em>Generic Constraint Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getGenericConstraintValue()
 	 * @generated
 	 * @ordered
@@ -105,6 +111,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Class()
 	 * @generated
 	 * @ordered
@@ -115,6 +122,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -125,6 +133,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	 * The cached value of the '{@link #getMode() <em>Mode</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMode()
 	 * @generated
 	 * @ordered
@@ -134,6 +143,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GenericConstraintImpl() {
@@ -143,25 +153,28 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__DESIGN_CONSTRAINT_TYPE:
-				return getDesignConstraintType();
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT:
-				if (resolve) return getBase_Constraint();
-				return basicGetBase_Constraint();
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__GENERIC_CONSTRAINT_VALUE:
-				return getGenericConstraintValue();
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__TARGET:
-				return getTarget();
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__MODE:
-				return getMode();
+		switch(featureID) {
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__DESIGN_CONSTRAINT_TYPE:
+			return getDesignConstraintType();
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT:
+			if(resolve)
+				return getBase_Constraint();
+			return basicGetBase_Constraint();
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__GENERIC_CONSTRAINT_VALUE:
+			return getGenericConstraintValue();
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS:
+			if(resolve)
+				return getBase_Class();
+			return basicGetBase_Class();
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__TARGET:
+			return getTarget();
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__MODE:
+			return getMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,23 +182,24 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__DESIGN_CONSTRAINT_TYPE:
-				return designConstraintType != DESIGN_CONSTRAINT_TYPE_EDEFAULT;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT:
-				return base_Constraint != null;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__GENERIC_CONSTRAINT_VALUE:
-				return GENERIC_CONSTRAINT_VALUE_EDEFAULT == null ? genericConstraintValue != null : !GENERIC_CONSTRAINT_VALUE_EDEFAULT.equals(genericConstraintValue);
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS:
-				return base_Class != null;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__TARGET:
-				return target != null && !target.isEmpty();
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__MODE:
-				return mode != null && !mode.isEmpty();
+		switch(featureID) {
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__DESIGN_CONSTRAINT_TYPE:
+			return designConstraintType != DESIGN_CONSTRAINT_TYPE_EDEFAULT;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT:
+			return base_Constraint != null;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__GENERIC_CONSTRAINT_VALUE:
+			return GENERIC_CONSTRAINT_VALUE_EDEFAULT == null ? genericConstraintValue != null : !GENERIC_CONSTRAINT_VALUE_EDEFAULT.equals(genericConstraintValue);
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS:
+			return base_Class != null;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__TARGET:
+			return target != null && !target.isEmpty();
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__MODE:
+			return mode != null && !mode.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -193,32 +207,33 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__DESIGN_CONSTRAINT_TYPE:
-				setDesignConstraintType((GenericConstraintKind)newValue);
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT:
-				setBase_Constraint((Constraint)newValue);
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__GENERIC_CONSTRAINT_VALUE:
-				setGenericConstraintValue((String)newValue);
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__TARGET:
-				getTarget().clear();
-				getTarget().addAll((Collection<? extends NamedElement>)newValue);
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__MODE:
-				getMode().clear();
-				getMode().addAll((Collection<? extends Mode>)newValue);
-				return;
+		switch(featureID) {
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__DESIGN_CONSTRAINT_TYPE:
+			setDesignConstraintType((GenericConstraintKind)newValue);
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT:
+			setBase_Constraint((Constraint)newValue);
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__GENERIC_CONSTRAINT_VALUE:
+			setGenericConstraintValue((String)newValue);
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__TARGET:
+			getTarget().clear();
+			getTarget().addAll((Collection<? extends NamedElement>)newValue);
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__MODE:
+			getMode().clear();
+			getMode().addAll((Collection<? extends Mode>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -226,6 +241,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -236,29 +252,30 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__DESIGN_CONSTRAINT_TYPE:
-				setDesignConstraintType(DESIGN_CONSTRAINT_TYPE_EDEFAULT);
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT:
-				setBase_Constraint((Constraint)null);
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__GENERIC_CONSTRAINT_VALUE:
-				setGenericConstraintValue(GENERIC_CONSTRAINT_VALUE_EDEFAULT);
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__TARGET:
-				getTarget().clear();
-				return;
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT__MODE:
-				getMode().clear();
-				return;
+		switch(featureID) {
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__DESIGN_CONSTRAINT_TYPE:
+			setDesignConstraintType(DESIGN_CONSTRAINT_TYPE_EDEFAULT);
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT:
+			setBase_Constraint((Constraint)null);
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__GENERIC_CONSTRAINT_VALUE:
+			setGenericConstraintValue(GENERIC_CONSTRAINT_VALUE_EDEFAULT);
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__TARGET:
+			getTarget().clear();
+			return;
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT__MODE:
+			getMode().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -266,6 +283,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GenericConstraintKind getDesignConstraintType() {
@@ -275,6 +293,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getGenericConstraintValue() {
@@ -284,10 +303,11 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Mode> getMode() {
-		if (mode == null) {
+		if(mode == null) {
 			mode = new EObjectResolvingEList<Mode>(Mode.class, this, GenericconstraintsPackage.GENERIC_CONSTRAINT__MODE);
 		}
 		return mode;
@@ -296,10 +316,11 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NamedElement> getTarget() {
-		if (target == null) {
+		if(target == null) {
 			target = new EObjectResolvingEList<NamedElement>(NamedElement.class, this, GenericconstraintsPackage.GENERIC_CONSTRAINT__TARGET);
 		}
 		return target;
@@ -308,26 +329,28 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDesignConstraintType(GenericConstraintKind newDesignConstraintType) {
 		GenericConstraintKind oldDesignConstraintType = designConstraintType;
 		designConstraintType = newDesignConstraintType == null ? DESIGN_CONSTRAINT_TYPE_EDEFAULT : newDesignConstraintType;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericconstraintsPackage.GENERIC_CONSTRAINT__DESIGN_CONSTRAINT_TYPE, oldDesignConstraintType, designConstraintType));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Constraint getBase_Constraint() {
-		if (base_Constraint != null && base_Constraint.eIsProxy()) {
+		if(base_Constraint != null && base_Constraint.eIsProxy()) {
 			InternalEObject oldBase_Constraint = (InternalEObject)base_Constraint;
 			base_Constraint = (Constraint)eResolveProxy(oldBase_Constraint);
-			if (base_Constraint != oldBase_Constraint) {
-				if (eNotificationRequired())
+			if(base_Constraint != oldBase_Constraint) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT, oldBase_Constraint, base_Constraint));
 			}
 		}
@@ -337,6 +360,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Constraint basicGetBase_Constraint() {
@@ -346,38 +370,41 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Constraint(Constraint newBase_Constraint) {
 		Constraint oldBase_Constraint = base_Constraint;
 		base_Constraint = newBase_Constraint;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CONSTRAINT, oldBase_Constraint, base_Constraint));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setGenericConstraintValue(String newGenericConstraintValue) {
 		String oldGenericConstraintValue = genericConstraintValue;
 		genericConstraintValue = newGenericConstraintValue;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericconstraintsPackage.GENERIC_CONSTRAINT__GENERIC_CONSTRAINT_VALUE, oldGenericConstraintValue, genericConstraintValue));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
+		if(base_Class != null && base_Class.eIsProxy()) {
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
@@ -387,6 +414,7 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
@@ -396,23 +424,26 @@ public class GenericConstraintImpl extends TraceableSpecificationImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericconstraintsPackage.GENERIC_CONSTRAINT__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (designConstraintType: ");

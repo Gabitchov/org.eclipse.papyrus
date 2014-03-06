@@ -102,6 +102,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class HardwaremodelingPackageImpl extends EPackageImpl implements HardwaremodelingPackage {
@@ -109,6 +110,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass hardwareComponentTypeEClass = null;
@@ -116,6 +118,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum ioHardwarePinKindEEnum = null;
@@ -123,6 +126,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum logicalBusKindEEnum = null;
@@ -130,6 +134,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass hardwareConnectorEClass = null;
@@ -137,6 +142,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass hardwarePinEClass = null;
@@ -144,6 +150,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass hardwareComponentPrototypeEClass = null;
@@ -151,6 +158,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass allocationTargetEClass = null;
@@ -158,6 +166,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass logicalBusEClass = null;
@@ -165,6 +174,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass hardwarePinGroupEClass = null;
@@ -172,6 +182,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass powerHardwarePinEClass = null;
@@ -179,6 +190,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass ioHardwarePinEClass = null;
@@ -186,6 +198,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass communicationHardwarePinEClass = null;
@@ -193,6 +206,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass nodeEClass = null;
@@ -200,6 +214,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass powerSupplyEClass = null;
@@ -207,6 +222,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass sensorEClass = null;
@@ -214,6 +230,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass actuatorEClass = null;
@@ -221,6 +238,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -228,16 +246,18 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link HardwaremodelingPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link HardwaremodelingPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static HardwaremodelingPackage init() {
-		if (isInited) return (HardwaremodelingPackage)EPackage.Registry.INSTANCE.getEPackage(HardwaremodelingPackage.eNS_URI);
+		if(isInited)
+			return (HardwaremodelingPackage)EPackage.Registry.INSTANCE.getEPackage(HardwaremodelingPackage.eNS_URI);
 
 		// Obtain or create and register package
 		HardwaremodelingPackageImpl theHardwaremodelingPackage = (HardwaremodelingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof HardwaremodelingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new HardwaremodelingPackageImpl());
@@ -339,7 +359,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 		// Mark meta-data to indicate it can't be changed
 		theHardwaremodelingPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(HardwaremodelingPackage.eNS_URI, theHardwaremodelingPackage);
 		return theHardwaremodelingPackage;
@@ -348,6 +368,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -355,19 +376,19 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#eNS_URI
 	 * @see #init()
@@ -378,14 +399,16 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -457,6 +480,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getActuator() {
@@ -466,6 +490,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAllocationTarget() {
@@ -475,6 +500,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getIOHardwarePin() {
@@ -484,6 +510,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getIOHardwarePin_Type() {
@@ -493,6 +520,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getCommunicationHardwarePin() {
@@ -502,6 +530,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getHardwareComponentPrototype() {
@@ -511,6 +540,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareComponentPrototype_Type() {
@@ -520,6 +550,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareComponentPrototype_Base_Property() {
@@ -529,6 +560,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getHardwareComponentType() {
@@ -538,6 +570,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareComponentType_Bus() {
@@ -547,6 +580,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareComponentType_Connector() {
@@ -556,6 +590,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareComponentType_Part() {
@@ -565,6 +600,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareComponentType_Base_Class() {
@@ -574,6 +610,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareComponentType_Port() {
@@ -583,6 +620,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareComponentType_PortGroup() {
@@ -592,6 +630,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getIOHardwarePinKind() {
@@ -601,6 +640,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getHardwareConnector() {
@@ -610,6 +650,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareConnector_Base_Connector() {
@@ -619,6 +660,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareConnector_Port() {
@@ -628,6 +670,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareConnector_Port1_path() {
@@ -637,6 +680,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwareConnector_Port2_path() {
@@ -646,6 +690,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HardwaremodelingFactory getHardwaremodelingFactory() {
@@ -655,6 +700,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getHardwarePin() {
@@ -664,6 +710,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwarePin_Base_Port() {
@@ -673,6 +720,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHardwarePin_Direction() {
@@ -682,6 +730,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHardwarePin_Impedance() {
@@ -691,6 +740,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHardwarePin_IsGround() {
@@ -700,6 +750,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHardwarePin_Power() {
@@ -709,6 +760,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHardwarePin_Voltage() {
@@ -718,6 +770,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getHardwarePinGroup() {
@@ -727,6 +780,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwarePinGroup_Base_Port() {
@@ -736,6 +790,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwarePinGroup_Base_Class() {
@@ -745,6 +800,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwarePinGroup_Port() {
@@ -754,6 +810,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHardwarePinGroup_PortGroup() {
@@ -763,6 +820,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getLogicalBus() {
@@ -772,6 +830,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getLogicalBus_Base_Class() {
@@ -781,6 +840,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getLogicalBus_BusSpeed() {
@@ -790,6 +850,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getLogicalBus_BusType() {
@@ -799,6 +860,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getLogicalBus_Wire() {
@@ -808,6 +870,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getLogicalBus_Wire_path() {
@@ -817,6 +880,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getLogicalBusKind() {
@@ -826,6 +890,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getNode() {
@@ -835,6 +900,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getNode_ExecutionRate() {
@@ -844,6 +910,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getNode_NonVolatileMemory() {
@@ -853,6 +920,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getNode_VolatileMemory() {
@@ -862,6 +930,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPowerHardwarePin() {
@@ -871,6 +940,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPowerSupply() {
@@ -880,6 +950,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPowerSupply_IsActive() {
@@ -889,6 +960,7 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSensor() {
@@ -896,14 +968,16 @@ public class HardwaremodelingPackageImpl extends EPackageImpl implements Hardwar
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

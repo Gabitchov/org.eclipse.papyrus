@@ -21,9 +21,10 @@ package org.eclipse.papyrus.eastadl.infrastructure.datatypes;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Rangeable Datatype</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * The stereotype RangeableDatatype reflects numeric datatypes that may have a range (between a minimal and a maximal value). An example for a RangeableDatatype is the Celsius temperature scale with minValue = -273.15.
+ * The stereotype RangeableDatatype reflects numeric datatypes that may have a range (between a minimal and a maximal value). An example for a
+ * RangeableDatatype is the Celsius temperature scale with minValue = -273.15.
  * 
  * Semantics:
  * The stereotype RangeableDatatype reflects numeric datatypes that may have a range (between a minimal and a maximal value).
@@ -31,8 +32,8 @@ package org.eclipse.papyrus.eastadl.infrastructure.datatypes;
  * 
  * Extension: UML Datatype
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.infrastructure.datatypes.DatatypesPackage#getRangeableDatatype()
  * @model abstract="true"
  * @generated

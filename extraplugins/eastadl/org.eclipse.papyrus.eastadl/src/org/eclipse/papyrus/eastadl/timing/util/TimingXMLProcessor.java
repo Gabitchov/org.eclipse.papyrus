@@ -27,6 +27,7 @@ import org.eclipse.papyrus.eastadl.timing.TimingPackage;
  * This class contains helper methods to serialize and deserialize XML documents
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TimingXMLProcessor extends XMLProcessor {
@@ -34,6 +35,7 @@ public class TimingXMLProcessor extends XMLProcessor {
 	/**
 	 * Public constructor to instantiate the helper.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimingXMLProcessor() {
@@ -49,7 +51,7 @@ public class TimingXMLProcessor extends XMLProcessor {
 	 */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
+		if(registrations == null) {
 			super.getRegistrations();
 			registrations.put(XML_EXTENSION, new TimingResourceFactoryImpl());
 			registrations.put(STAR_EXTENSION, new TimingResourceFactoryImpl());

@@ -26,6 +26,7 @@ import org.eclipse.papyrus.eastadl.dependability.DependabilityPackage;
  * This class contains helper methods to serialize and deserialize XML documents
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DependabilityXMLProcessor extends XMLProcessor {
@@ -34,22 +35,24 @@ public class DependabilityXMLProcessor extends XMLProcessor {
 	 * Public constructor to instantiate the helper.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DependabilityXMLProcessor() {
 		super((EPackage.Registry.INSTANCE));
 		DependabilityPackage.eINSTANCE.eClass();
 	}
-	
+
 	/**
 	 * Register for "*" and "xml" file extensions the DependabilityResourceFactoryImpl factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
+		if(registrations == null) {
 			super.getRegistrations();
 			registrations.put(XML_EXTENSION, new DependabilityResourceFactoryImpl());
 			registrations.put(STAR_EXTENSION, new DependabilityResourceFactoryImpl());

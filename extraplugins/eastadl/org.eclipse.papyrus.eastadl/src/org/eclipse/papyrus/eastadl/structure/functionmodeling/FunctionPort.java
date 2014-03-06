@@ -22,12 +22,12 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Function Port</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * The ports conserve variables for component interaction.
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPackage#getFunctionPort()
  * @model abstract="true"
  * @generated

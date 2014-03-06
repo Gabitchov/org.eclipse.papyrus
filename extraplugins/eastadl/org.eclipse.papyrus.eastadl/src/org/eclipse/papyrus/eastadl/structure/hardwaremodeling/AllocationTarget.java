@@ -22,17 +22,18 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Allocation Target</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * The AllocationTarget is a superclass for elements to which AllocateableElements can be allocated. 
+ * The AllocationTarget is a superclass for elements to which AllocateableElements can be allocated.
  * 
  * Semantics:
- * An AllocationTarget is a resource element in the Hardware Design Architecture which may host functional behaviors in the Functional Design Architecture.
+ * An AllocationTarget is a resource element in the Hardware Design Architecture which may host functional behaviors in the Functional Design
+ * Architecture.
  * 
  * Extension: abstract, no extension
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#getAllocationTarget()
  * @model abstract="true"
  * @generated

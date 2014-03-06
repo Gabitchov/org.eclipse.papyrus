@@ -31,17 +31,19 @@ import org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPac
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.OutputSynchronizationConstraintImpl#getWidth <em>Width</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.OutputSynchronizationConstraintImpl#getWidth <em>Width</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl implements OutputSynchronizationConstraint {
+
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getWidth()
 	 * @generated
 	 * @ordered
@@ -51,6 +53,7 @@ public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected OutputSynchronizationConstraintImpl() {
@@ -60,6 +63,7 @@ public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration basicGetWidth() {
@@ -69,14 +73,16 @@ public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH:
-				if (resolve) return getWidth();
-				return basicGetWidth();
+		switch(featureID) {
+		case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH:
+			if(resolve)
+				return getWidth();
+			return basicGetWidth();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -84,13 +90,14 @@ public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH:
-				return width != null;
+		switch(featureID) {
+		case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH:
+			return width != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -98,14 +105,15 @@ public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH:
-				setWidth((TimeDuration)newValue);
-				return;
+		switch(featureID) {
+		case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH:
+			setWidth((TimeDuration)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -113,6 +121,7 @@ public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,14 +132,15 @@ public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH:
-				setWidth((TimeDuration)null);
-				return;
+		switch(featureID) {
+		case TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH:
+			setWidth((TimeDuration)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -138,14 +148,15 @@ public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TimeDuration getWidth() {
-		if (width != null && width.eIsProxy()) {
+		if(width != null && width.eIsProxy()) {
 			InternalEObject oldWidth = (InternalEObject)width;
 			width = (TimeDuration)eResolveProxy(oldWidth);
-			if (width != oldWidth) {
-				if (eNotificationRequired())
+			if(width != oldWidth) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH, oldWidth, width));
 			}
 		}
@@ -155,12 +166,13 @@ public class OutputSynchronizationConstraintImpl extends ReactionConstraintImpl 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setWidth(TimeDuration newWidth) {
 		TimeDuration oldWidth = width;
 		width = newWidth;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TimingconstraintsPackage.OUTPUT_SYNCHRONIZATION_CONSTRAINT__WIDTH, oldWidth, width));
 	}
 

@@ -21,18 +21,18 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Description</b></em>'. <!--
  * end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * An abstract metaclass describing the timing events and their relations within the model.
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.TimingDescription#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.TimingDescription#getBase_Class <em>Base Class</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.timing.TimingPackage#getTimingDescription()
  * @model abstract="true"
  * @generated
@@ -43,10 +43,10 @@ public interface TimingDescription extends EAElement {
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Class</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.eastadl.timing.TimingPackage#getTimingDescription_Base_Class()
@@ -59,7 +59,9 @@ public interface TimingDescription extends EAElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.timing.TimingDescription#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Class</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */

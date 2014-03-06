@@ -90,6 +90,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class GenericconstraintsPackageImpl extends EPackageImpl implements GenericconstraintsPackage {
@@ -97,6 +98,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass genericConstraintSetEClass = null;
@@ -104,6 +106,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass takeRateConstraintEClass = null;
@@ -111,6 +114,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass genericConstraintEClass = null;
@@ -118,6 +122,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum genericConstraintKindEEnum = null;
@@ -125,6 +130,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -132,16 +138,18 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link GenericconstraintsPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link GenericconstraintsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it
+	 * directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static GenericconstraintsPackage init() {
-		if (isInited) return (GenericconstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(GenericconstraintsPackage.eNS_URI);
+		if(isInited)
+			return (GenericconstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(GenericconstraintsPackage.eNS_URI);
 
 		// Obtain or create and register package
 		GenericconstraintsPackageImpl theGenericconstraintsPackage = (GenericconstraintsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof GenericconstraintsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new GenericconstraintsPackageImpl());
@@ -243,7 +251,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 		// Mark meta-data to indicate it can't be changed
 		theGenericconstraintsPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(GenericconstraintsPackage.eNS_URI, theGenericconstraintsPackage);
 		return theGenericconstraintsPackage;
@@ -252,6 +260,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -259,19 +268,19 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.genericconstraints.GenericconstraintsPackage#eNS_URI
 	 * @see #init()
@@ -282,14 +291,16 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -317,6 +328,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getGenericConstraint() {
@@ -326,6 +338,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getGenericConstraint_DesignConstraintType() {
@@ -335,6 +348,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGenericConstraint_Base_Constraint() {
@@ -344,6 +358,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getGenericConstraint_GenericConstraintValue() {
@@ -353,6 +368,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGenericConstraint_Base_Class() {
@@ -362,6 +378,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGenericConstraint_Mode() {
@@ -371,6 +388,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGenericConstraint_Target() {
@@ -380,6 +398,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getGenericConstraintKind() {
@@ -389,6 +408,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getGenericConstraintSet() {
@@ -398,6 +418,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGenericConstraintSet_GenericConstraint() {
@@ -407,6 +428,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGenericConstraintSet_Base_Package() {
@@ -416,6 +438,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getGenericConstraintSet_Base_Class() {
@@ -425,6 +448,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GenericconstraintsFactory getGenericconstraintsFactory() {
@@ -434,6 +458,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTakeRateConstraint() {
@@ -443,6 +468,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTakeRateConstraint_Source() {
@@ -452,6 +478,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTakeRateConstraint_TakeRate() {
@@ -459,14 +486,16 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package
@@ -492,7 +521,7 @@ public class GenericconstraintsPackageImpl extends EPackageImpl implements Gener
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(genericConstraintEClass, GenericConstraint.class, "GenericConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getGenericConstraint_DesignConstraintType(), this.getGenericConstraintKind(), "designConstraintType", "", 0, 1, GenericConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getGenericConstraint_DesignConstraintType(), this.getGenericConstraintKind(), "designConstraintType", null, 0, 1, GenericConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getGenericConstraint_Base_Constraint(), theUMLPackage.getConstraint(), null, "base_Constraint", null, 0, 1, GenericConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getGenericConstraint_GenericConstraintValue(), theTypesPackage.getString(), "genericConstraintValue", null, 1, 1, GenericConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getGenericConstraint_Base_Class(), theUMLPackage.getClass_(), null, "base_Class", null, 0, 1, GenericConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
