@@ -15,6 +15,7 @@
 
 package org.eclipse.papyrus.uml.properties.xtext.sheet;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -220,11 +221,11 @@ public class AdvancedEditingPropertySection extends
 	
 	 
 	protected DefaultXtextDirectEditorConfiguration getConfigurationFromSelection() {
-		IGraphicalEditPart part = getEditPartFromSelection();
-		if (part != null) {
+		EObject semanticElement = getSemanticObjectFromSelection();
+		if (semanticElement != null) {
 			IPreferenceStore store = Activator.getDefault()
 					.getPreferenceStore();
-			String semanticClassName = part.resolveSemanticElement().eClass()
+			String semanticClassName = semanticElement.eClass()
 					.getInstanceClassName();
 			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
 					+ semanticClassName;
@@ -237,7 +238,7 @@ public class AdvancedEditingPropertySection extends
 				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
 					
 					DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;
-					xtextConfiguration.preEditAction(part.resolveSemanticElement());
+					xtextConfiguration.preEditAction(semanticElement);
 					return xtextConfiguration;
 				}
 			}
@@ -245,18 +246,21 @@ public class AdvancedEditingPropertySection extends
 		return null;
 	}
 
-	protected IGraphicalEditPart getEditPartFromSelection() {
+	protected EObject getSemanticObjectFromSelection() {
 		Object selection = getPrimarySelection();
 		if (selection instanceof IGraphicalEditPart) {
-			return (IGraphicalEditPart) selection;
+			return ((IGraphicalEditPart) selection).resolveSemanticElement();
+		}
+		else if (selection instanceof IAdaptable) {
+			return (EObject) ((IAdaptable) selection).getAdapter(EObject.class);
 		}
 		return null;
 	}
 
 	protected IParser getParser() {
-		final IGraphicalEditPart part = getEditPartFromSelection();
-		if (configuration != null && part != null) {
-			return configuration.createParser(part.resolveSemanticElement());
+		final EObject semanticElement = getSemanticObjectFromSelection();
+		if (configuration != null && semanticElement != null) {
+			return configuration.createParser(semanticElement);
 		}
 		return null;
 	}
@@ -275,9 +279,9 @@ public class AdvancedEditingPropertySection extends
 			xtextAdapter = new StyledTextXtextAdapter(
 					configuration.getInjector());
 			
-			IGraphicalEditPart part = getEditPartFromSelection();
-			if (part != null) {
-				newConfiguration.preEditAction(part.resolveSemanticElement());	
+			EObject semanticElement = getSemanticObjectFromSelection();
+			if (semanticElement != null) {
+				newConfiguration.preEditAction(semanticElement);	
 			}
 			
 			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters()
