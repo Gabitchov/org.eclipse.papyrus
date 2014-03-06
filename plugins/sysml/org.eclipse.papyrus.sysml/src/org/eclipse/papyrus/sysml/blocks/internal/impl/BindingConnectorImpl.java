@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BindingConnector;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.uml2.uml.Connector;
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Connector;
  * 
  * @generated
  */
-public class BindingConnectorImpl extends EObjectImpl implements BindingConnector {
+public class BindingConnectorImpl extends MinimalEObjectImpl.Container implements BindingConnector {
 
 	/**
 	 * The cached value of the '{@link #getBase_Connector() <em>Base Connector</em>}' reference.

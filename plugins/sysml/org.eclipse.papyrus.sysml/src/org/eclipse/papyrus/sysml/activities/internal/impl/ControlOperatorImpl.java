@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.ControlOperator;
 import org.eclipse.uml2.uml.Behavior;
@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.Operation;
  * 
  * @generated
  */
-public class ControlOperatorImpl extends EObjectImpl implements ControlOperator {
+public class ControlOperatorImpl extends MinimalEObjectImpl.Container implements ControlOperator {
 
 	/**
 	 * The cached value of the '{@link #getBase_Operation() <em>Base Operation</em>}' reference.

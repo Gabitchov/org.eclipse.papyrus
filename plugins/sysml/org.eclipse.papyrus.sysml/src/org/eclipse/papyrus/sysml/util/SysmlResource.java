@@ -16,10 +16,11 @@ package org.eclipse.papyrus.sysml.util;
 import org.eclipse.papyrus.sysml.SysmlPackage;
 
 /**
- *  For all deprecated  : use org.eclipse.uml2.uml.util.UMLUtil.getStereotypeApplication
- *  Ex  : 
- *	 replace  appliedStereotype = connectorEnd.getAppliedStereotype("SysML::Blocks::NestedConnectorEnd");connectorEnd.getStereotypeApplication(appliedStereotype); 
- *   by       org.eclipse.uml2.uml.util.UMLUtil.getStereotypeApplication(element, NestedConnectorEnd.class);
+ * For all deprecated : use org.eclipse.uml2.uml.util.UMLUtil.getStereotypeApplication
+ * Ex :
+ * replace appliedStereotype =
+ * connectorEnd.getAppliedStereotype("SysML::Blocks::NestedConnectorEnd");connectorEnd.getStereotypeApplication(appliedStereotype);
+ * by org.eclipse.uml2.uml.util.UMLUtil.getStereotypeApplication(element, NestedConnectorEnd.class);
  */
 public class SysmlResource {
 
@@ -33,7 +34,7 @@ public class SysmlResource {
 
 	public static final String SYSML_PROFILE_URI = PROFILES_PATHMAP + "SysML.profile.uml"; //$NON-NLS-1$
 
-	
+
 	// Stereotypes ids
 	@Deprecated
 	public static String CONFORM_ID = "SysML::ModelElements::Conform";
@@ -69,7 +70,7 @@ public class SysmlResource {
 
 	@Deprecated
 	public static String VALUE_TYPE_ID = "SysML::Blocks::ValueType";
-	
+
 	@Deprecated
 	public static String NESTED_CONNECTOR_END_ID = "SysML::Blocks::NestedConnectorEnd";
 

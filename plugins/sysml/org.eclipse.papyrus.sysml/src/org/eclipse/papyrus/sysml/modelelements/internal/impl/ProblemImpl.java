@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.Problem;
 import org.eclipse.uml2.uml.Comment;
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Comment;
  * 
  * @generated
  */
-public class ProblemImpl extends EObjectImpl implements Problem {
+public class ProblemImpl extends MinimalEObjectImpl.Container implements Problem {
 
 	/**
 	 * The cached value of the '{@link #getBase_Comment() <em>Base Comment</em>}' reference.

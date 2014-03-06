@@ -50,7 +50,7 @@ public class UsecasesFactoryImpl extends EFactoryImpl implements UsecasesFactory
 	 */
 	public static UsecasesFactory init() {
 		try {
-			UsecasesFactory theUsecasesFactory = (UsecasesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/UseCases");
+			UsecasesFactory theUsecasesFactory = (UsecasesFactory)EPackage.Registry.INSTANCE.getEFactory(UsecasesPackage.eNS_URI);
 			if(theUsecasesFactory != null) {
 				return theUsecasesFactory;
 			}

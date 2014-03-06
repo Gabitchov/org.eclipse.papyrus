@@ -55,7 +55,7 @@ public class PortandflowsFactoryImpl extends EFactoryImpl implements Portandflow
 	 */
 	public static PortandflowsFactory init() {
 		try {
-			PortandflowsFactory thePortandflowsFactory = (PortandflowsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows");
+			PortandflowsFactory thePortandflowsFactory = (PortandflowsFactory)EPackage.Registry.INSTANCE.getEFactory(PortandflowsPackage.eNS_URI);
 			if(thePortandflowsFactory != null) {
 				return thePortandflowsFactory;
 			}

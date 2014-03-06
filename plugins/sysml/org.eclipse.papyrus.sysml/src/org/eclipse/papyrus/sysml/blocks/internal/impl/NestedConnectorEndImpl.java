@@ -14,13 +14,12 @@
 package org.eclipse.papyrus.sysml.blocks.internal.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
@@ -40,7 +39,7 @@ import org.eclipse.uml2.uml.Type;
  * 
  * @generated
  */
-public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnectorEnd {
+public class NestedConnectorEndImpl extends MinimalEObjectImpl.Container implements NestedConnectorEnd {
 
 	/**
 	 * The cached value of the '{@link #getPropertyPath() <em>Property Path</em>}' reference list.

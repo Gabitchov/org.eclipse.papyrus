@@ -13,8 +13,13 @@ Export-Package: org.eclipse.papyrus.sysml.activities.provider,
 Require-Bundle: org.eclipse.papyrus.sysml;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.core.runtime;bundle-version="3.6.0",
  org.eclipse.emf.edit;bundle-version="2.8.0",
- org.eclipse.uml2.uml.edit;bundle-version="4.0.0",
- org.eclipse.uml2.uml.profile.l2;bundle-version="1.0.0"
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.uml2.uml.profile.standard;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
+ org.eclipse.uml2.types;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.uml2.uml;bundle-version="[5.0.0,6.0.0)";visibility:=reexport,
+ org.eclipse.uml2.uml.edit;bundle-version="[5.0.0,6.0.0)",
+ org.eclipse.uml2.common.edit;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
@@ -22,8 +27,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.sysml.provider.SysmlEditPlugin$I
- mplementation
+Bundle-Activator: org.eclipse.papyrus.sysml.provider.SysmlEditPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.edit;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

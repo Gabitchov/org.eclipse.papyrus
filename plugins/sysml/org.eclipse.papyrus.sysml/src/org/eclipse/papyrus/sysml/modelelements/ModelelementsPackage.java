@@ -258,6 +258,16 @@ public interface ModelelementsPackage extends EPackage {
 	int CONFORM_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Conform</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONFORM_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewImpl <em>View</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -293,6 +303,16 @@ public interface ModelelementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIEW_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>View</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ViewPointImpl
@@ -369,6 +389,16 @@ public interface ModelelementsPackage extends EPackage {
 	int VIEW_POINT_FEATURE_COUNT = 6;
 
 	/**
+	 * The number of operations of the '<em>View Point</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_POINT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.internal.impl.RationaleImpl <em>Rationale</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -397,6 +427,16 @@ public interface ModelelementsPackage extends EPackage {
 	int RATIONALE_FEATURE_COUNT = 1;
 
 	/**
+	 * The number of operations of the '<em>Rationale</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int RATIONALE_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.internal.impl.ProblemImpl <em>Problem</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -423,6 +463,16 @@ public interface ModelelementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROBLEM_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Problem</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROBLEM_OPERATION_COUNT = 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.modelelements.Conform <em>Conform</em>}'.
