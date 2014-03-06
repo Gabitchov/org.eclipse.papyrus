@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,12 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
+import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -20,18 +23,24 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.cdo.internal.core.Activator;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 /**
  * This is the DependencyAdapter type. Enjoy.
  */
 public class DependencyAdapter extends AdapterImpl {
+
+	private final ModelsReader modelsMetadata = new ModelsReader();
 
 	private final Set<Resource> dependencies = Sets.newLinkedHashSet();
 
@@ -84,17 +93,26 @@ public class DependencyAdapter extends AdapterImpl {
 	}
 
 	private void analyze(Resource resource) {
-		for(TreeIterator<EObject> iter = EcoreUtil.getAllProperContents(resource, false); iter.hasNext();) {
-			EObject next = iter.next();
+		if(resource.getContents().isEmpty() && isDIResource(resource)) {
+			// similarly-named resources that are recognized by Papyrus are implicitly components
+			for(Resource next : getImplicitComponents(resource)) {
+				if(isUserModelResource(next.getURI())) {
+					addDependency(next);
+				}
+			}
+		} else {
+			for(TreeIterator<EObject> iter = EcoreUtil.getAllProperContents(resource, false); iter.hasNext();) {
+				EObject next = iter.next();
 
-			// ignore annotations, such as are used for hyperlinks
-			if(next instanceof EAnnotation) {
-				iter.prune();
-			} else {
-				for(EObject xref : next.eCrossReferences()) {
-					Resource xrefRes = xref.eResource();
-					if((xrefRes != null) && (isUserModelResource(xrefRes.getURI()))) {
-						addDependency(xrefRes);
+				// ignore annotations, such as are used for hyperlinks
+				if(next instanceof EAnnotation) {
+					iter.prune();
+				} else {
+					for(EObject xref : next.eCrossReferences()) {
+						Resource xrefRes = xref.eResource();
+						if((xrefRes != null) && (isUserModelResource(xrefRes.getURI()))) {
+							addDependency(xrefRes);
+						}
 					}
 				}
 			}
@@ -132,13 +150,39 @@ public class DependencyAdapter extends AdapterImpl {
 		return CDOUtils.adapt(getResource().getResourceSet(), ModelSet.class);
 	}
 
+	private Iterable<Resource> getImplicitComponents(Resource diResource) {
+		// usually only two components:  diagrams and semantics
+		Collection<Resource> result = Lists.newArrayListWithExpectedSize(2);
+
+		ResourceSet rset = diResource.getResourceSet();
+		URIConverter converter = rset.getURIConverter();
+
+		for(URI next : modelsMetadata.getKnownModelURIs(diResource.getURI())) {
+			if(!next.equals(diResource.getURI()) && converter.exists(next, null)) {
+				try {
+					result.add(rset.getResource(next, true));
+				} catch (Exception e) {
+					Activator.log.error("Uncaught exception in loading component of Papyrus model.", e); //$NON-NLS-1$
+				}
+			}
+		}
+
+		return result;
+	}
+
 	public static boolean isDIResource(Resource resource) {
 		boolean result = false;
 
-		for(EObject next : resource.getContents()) {
-			if(next instanceof SashWindowsMngr) {
-				result = true;
-				break;
+		if(resource.getContents().isEmpty()) {
+			// DI resources are typically empty; just markers
+			result = DiModel.DI_FILE_EXTENSION.equals(resource.getURI().fileExtension());
+		} else {
+			// Look for legacy DI content (the Sash Model that now is in a *.sash resource in the workspace metadata area)
+			for(EObject next : resource.getContents()) {
+				if(next instanceof SashWindowsMngr) {
+					result = true;
+					break;
+				}
 			}
 		}
 
