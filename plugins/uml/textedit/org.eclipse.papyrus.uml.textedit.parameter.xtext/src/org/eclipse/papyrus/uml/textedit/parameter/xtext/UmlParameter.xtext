@@ -1,7 +1,7 @@
 grammar org.eclipse.papyrus.uml.textedit.parameter.xtext.UmlParameter //with org.eclipse.xtext.common.Terminals
 with org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon
 
-import "http://www.eclipse.org/uml2/4.0.0/UML" as uml
+import "http://www.eclipse.org/uml2/5.0.0/UML" as uml
 import "http://www.eclipse.org/papyrus/uml/textedit/common/xtext/UmlCommon" as common
 
 generate umlParameter "http://www.eclipse.org/papyrus/uml/textedit/parameter/xtext/UmlParameter"
