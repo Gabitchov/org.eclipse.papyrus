@@ -30,7 +30,7 @@ import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -178,12 +178,7 @@ public class DependencyAdapter extends AdapterImpl {
 			result = DiModel.DI_FILE_EXTENSION.equals(resource.getURI().fileExtension());
 		} else {
 			// Look for legacy DI content (the Sash Model that now is in a *.sash resource in the workspace metadata area)
-			for(EObject next : resource.getContents()) {
-				if(next instanceof SashWindowsMngr) {
-					result = true;
-					break;
-				}
-			}
+			result = DiUtils.lookupSashWindowsMngr(resource) != null;
 		}
 
 		return result;

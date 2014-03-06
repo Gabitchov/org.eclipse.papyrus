@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,13 +8,15 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.l10n;
 
 import org.eclipse.osgi.util.NLS;
 
 /**
- * This is the Messages type.  Enjoy.
+ * This is the Messages type. Enjoy.
  */
 public class Messages extends NLS {
 
@@ -176,11 +178,15 @@ public class Messages extends NLS {
 
 	public static String ModelReferencesPage_1;
 
+	public static String ModelReferencesPage_2;
+
 	public static String ModelReferencesPage_3;
 
 	public static String ModelReferencesPage_4;
 
 	public static String ModelReferencesPage_5;
+
+	public static String ModelReferencesPage_6;
 
 	public static String ModelReferencesPage_7;
 
@@ -293,6 +299,7 @@ public class Messages extends NLS {
 	public static String RepositorySelectionPage_3;
 
 	public static String RepositorySelectionPage_4;
+
 	public static String ResolveConflictsHandler_0;
 
 	public static String ResolveConflictsHandler_1;
