@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.infra.emf.readonly;
 
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -41,10 +40,11 @@ import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.papyrus.infra.core.resource.IRollbackStatus;
 import org.eclipse.papyrus.infra.core.resource.RollbackStatus;
 import org.eclipse.uml2.common.util.UML2Util;
-import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.UseCase;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.junit.After;
 import org.junit.Before;
@@ -76,14 +76,14 @@ public class PapyrusROTransactionalEditingDomainTest {
 
 			@Override
 			protected void doExecute() {
-				Dependency ab = (Dependency)model.getPackagedElement("A-->B");
-				assertThat(ab, notNullValue());
+				UseCase doIt = (UseCase)model.getOwnedType("DoIt");
+				assertThat(doIt, notNullValue());
 
 				// can load a read-only resource just fine
 				Model primTypes = UML2Util.load(fixture.getResourceSet(), URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI), UMLPackage.Literals.MODEL);
-				Type string = primTypes.getOwnedType("String");
+				Classifier string = (Classifier)primTypes.getOwnedType("String");
 				assertThat(string, notNullValue());
-				ab.getClients().add(string);
+				doIt.getSubjects().add(string);
 			}
 		};
 
@@ -93,9 +93,9 @@ public class PapyrusROTransactionalEditingDomainTest {
 		assertThat(fixture.getCommandStack().canUndo(), is(false));
 
 		// The change was rolled back
-		Dependency ab = (Dependency)model.getPackagedElement("A-->B");
-		assertThat(ab.getClients().size(), is(1));
-		assertThat(ab.getClients().get(0), instanceOf(org.eclipse.uml2.uml.Class.class));
+		UseCase doIt = (UseCase)model.getOwnedType("DoIt");
+		assertThat(doIt.getSubjects().size(), is(1));
+		assertThat(doIt.getSubjects().get(0).getName(), is("A"));
 	}
 
 	/**
@@ -104,20 +104,20 @@ public class PapyrusROTransactionalEditingDomainTest {
 	 */
 	@Test
 	public void testReferenceToReadOnlyObjectWithOppositeRolledBackOperation() {
-		final Type string[] = { null };
+		final Classifier string[] = { null };
 
 		AbstractEMFOperation op = new AbstractEMFOperation(fixture, "Test") {
 
 			@Override
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				Dependency ab = (Dependency)model.getPackagedElement("A-->B");
-				assertThat(ab, notNullValue());
+				UseCase doIt = (UseCase)model.getOwnedType("DoIt");
+				assertThat(doIt, notNullValue());
 
 				// can load a read-only resource just fine
 				Model primTypes = UML2Util.load(fixture.getResourceSet(), URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI), UMLPackage.Literals.MODEL);
-				string[0] = primTypes.getOwnedType("String");
+				string[0] = (Classifier)primTypes.getOwnedType("String");
 				assertThat(string, notNullValue());
-				ab.getClients().add(string[0]);
+				doIt.getSubjects().add(string[0]);
 
 				return Status.OK_STATUS;
 			}
@@ -150,9 +150,9 @@ public class PapyrusROTransactionalEditingDomainTest {
 		assertThat(history.canUndo(ctx), is(false));
 
 		// The change was rolled back
-		Dependency ab = (Dependency)model.getPackagedElement("A-->B");
-		assertThat(ab.getClients().size(), is(1));
-		assertThat(ab.getClients().get(0), instanceOf(org.eclipse.uml2.uml.Class.class));
+		UseCase doIt = (UseCase)model.getOwnedType("DoIt");
+		assertThat(doIt.getSubjects().size(), is(1));
+		assertThat(doIt.getSubjects().get(0).getName(), is("A"));
 
 		assertThat(status[0], notNullValue());
 		assertThat(status[0].getCode(), is(IRollbackStatus.READ_ONLY_OBJECT));
