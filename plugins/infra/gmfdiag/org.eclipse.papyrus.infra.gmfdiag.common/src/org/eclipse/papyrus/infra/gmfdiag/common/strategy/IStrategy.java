@@ -11,9 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.strategy;
 
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -48,22 +45,7 @@ public interface IStrategy {
 	 * 
 	 * @return
 	 */
-	public String getID();
-
-	/**
-	 * The command to be executed when the strategy is applied.
-	 * Should return null if the strategy cannot handle the request.
-	 * 
-	 * @param request
-	 *        The drop request
-	 * @param targetEditPart
-	 *        The target edit part
-	 * @return
-	 *         A command, or null if the strategy cannot handle the request
-	 */
-	public Command getCommand(Request request, EditPart targetEditPart);
-	
-	
+	public String getID();	
 	
 	// TODO Remove that
 	/**

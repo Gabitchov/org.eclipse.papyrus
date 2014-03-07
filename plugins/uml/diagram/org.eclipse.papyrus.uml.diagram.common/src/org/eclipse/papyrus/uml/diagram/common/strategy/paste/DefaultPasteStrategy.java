@@ -16,8 +16,6 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.notation.View;
@@ -31,18 +29,18 @@ import org.eclipse.swt.graphics.Image;
 
 
 /**
- * The Class ImportResourcePasteStrategy.
+ * The Class DefaultPasteStrategy.
  */
-public class ImportResourcePasteStrategy implements IPasteStrategy {
+public class DefaultPasteStrategy implements IPasteStrategy {
 
 
 	/** The instance. */
-	private static IPasteStrategy instance = new ImportResourcePasteStrategy();
+	private static IPasteStrategy instance = new DefaultPasteStrategy();
 
 	/**
-	 * Gets the single instance of ImportResourcePasteStrategy.
+	 * Gets the single instance of DefaultPasteStrategy.
 	 *
-	 * @return single instance of ImportResourcePasteStrategy
+	 * @return single instance of DefaultPasteStrategy
 	 */
 	public static IPasteStrategy getInstance() {
 		return instance;
@@ -53,21 +51,21 @@ public class ImportResourcePasteStrategy implements IPasteStrategy {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#getLabel()
 	 */
 	public String getLabel() {
-		return "ImportResourcePasteStrategy"; //$NON-NLS-1$
+		return "DefaultPasteStrategy"; //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#getID()
 	 */
 	public String getID() {
-		return Activator.ID + ".ImportResourcePasteStrategy"; //$NON-NLS-1$
+		return Activator.ID + ".DefaultPasteStrategy"; //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#getDescription()
 	 */
 	public String getDescription() {
-		return "Import required ressources for paste."; //$NON-NLS-1$
+		return "Default Paste Strategy"; //$NON-NLS-1$
 	}
 
 	/**
@@ -112,23 +110,11 @@ public class ImportResourcePasteStrategy implements IPasteStrategy {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#getCommand(org.eclipse.gef.Request, org.eclipse.gef.EditPart)
-	 */
-	@Override
-	public Command getCommand(Request request, EditPart targetEditPart) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy#getSemanticCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard)
 	 */
 	@Override
 	public org.eclipse.emf.common.command.Command getSemanticCommand(EditingDomain domain, EObject targetOwner, PapyrusClipboard<Object> papyrusClipboard) {
-		// TODO : deport to Default Copy
-
-		DefaultPasteCommand pasteElementCommand = new DefaultPasteCommand(domain, targetOwner, papyrusClipboard);
-		return pasteElementCommand;
+		return new DefaultPasteCommand(domain, targetOwner, papyrusClipboard);
 	}
 
 	/* (non-Javadoc)
@@ -136,7 +122,6 @@ public class ImportResourcePasteStrategy implements IPasteStrategy {
 	 */
 	@Override
 	public IPasteStrategy dependsOn() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -145,7 +130,6 @@ public class ImportResourcePasteStrategy implements IPasteStrategy {
 	 */
 	@Override
 	public void prepare(PapyrusClipboard<Object> papyrusClipboard) {
-		// TODO Auto-generated method stub
 	}
 
 
@@ -160,5 +144,6 @@ public class ImportResourcePasteStrategy implements IPasteStrategy {
 		compoundCommand.add(gmFtoGEFCommandWrapper);
 		return compoundCommand;
 	}
+
 
 }

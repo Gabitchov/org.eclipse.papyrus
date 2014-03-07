@@ -45,12 +45,11 @@ public class DefaultCopyCommand extends AbstractOverrideableCommand implements N
 	public DefaultCopyCommand(EditingDomain domain, PapyrusClipboard papyrusClipboard, Collection<EObject> pObjectsToPutInClipboard) {
 		super(domain);
 		objectsToPutInClipboard = new ArrayList<Object>();
-		for(EObject element : pObjectsToPutInClipboard) {
-			EcoreUtil.Copier copier = new EcoreUtil.Copier();
-			Object copy = copier.copy(element);
-			papyrusClipboard.addInternalCopyInClipboard(element, copy);
-			objectsToPutInClipboard.add(copy);
-		}
+		EcoreUtil.Copier copier = new EcoreUtil.Copier();
+		copier.copyAll(pObjectsToPutInClipboard);
+		copier.copyReferences();
+		papyrusClipboard.addAllInternalCopyInClipboard(copier);
+		objectsToPutInClipboard.add(copier.values());
 	}
 
 

@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Use of a paste strategies
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
@@ -19,15 +19,13 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultCopyCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.IStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.PasteStrategyManager;
 
 /**
  * Handler for the Copy Action
- * 
- * 
- * 
  */
 public class CopyHandler extends AbstractCommandHandler {
 
@@ -41,18 +39,25 @@ public class CopyHandler extends AbstractCommandHandler {
 	protected Command getCommand() {
 		List<EObject> selection = getSelectedElements();
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		// TODO : select copyStrategy
 		PapyrusClipboard<Object> papyrusClipboard = PapyrusClipboard.getNewInstance();
-		
-		org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultCopyCommand defaultCopyCommand = new org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultCopyCommand(editingDomain,papyrusClipboard, selection);
-		
-		//TODO : prepare paste strategy
-		List<IStrategy> allStrategies = PasteStrategyManager.getInstance()
-				.getAllStrategies();
-		for (IStrategy iStrategy : allStrategies) {
-			IPasteStrategy iPasteStrategy = (IPasteStrategy) iStrategy;
+
+		DefaultCopyCommand defaultCopyCommand = new DefaultCopyCommand(editingDomain, papyrusClipboard, selection); // TODO : select copyStrategy
+
+		List<IStrategy> allStrategies = PasteStrategyManager.getInstance().getAllStrategies();
+		for(IStrategy iStrategy : allStrategies) {
+			IPasteStrategy iPasteStrategy = (IPasteStrategy)iStrategy;
 			iPasteStrategy.prepare(papyrusClipboard);
-		}				
-		return defaultCopyCommand;
 		}
+		return defaultCopyCommand;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#setEnabled(java.lang.Object)
+	 */
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		PapyrusClipboard<Object> instance = PapyrusClipboard.getInstance();
+		super.setEnabled(evaluationContext); // setenabled should'nt clear/modify the clipboard
+		PapyrusClipboard.setInstance(instance);
+	}
 }

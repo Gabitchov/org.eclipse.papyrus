@@ -13,7 +13,9 @@ package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.command.AbstractCommand.NonDirtying;
 import org.eclipse.emf.ecore.EObject;
@@ -50,21 +52,21 @@ public class DefaultDiagramCopyCommand extends AbstractOverrideableCommand imple
 		objectsToPutInClipboard = new ArrayList<Object>();
 		EcoreUtil.Copier copier = new EcoreUtil.Copier();
 		List<EObject> objectToCopy = new ArrayList<EObject>();
+
 		for(IGraphicalEditPart iGraphicalEditPart : pObjectsToPutInClipboard) {
-			Object object = iGraphicalEditPart.getModel();
-			if(object instanceof View) {
-				View view = (View)object;
-				EObject element = view.getElement();
-				objectToCopy.add(view);
-				objectToCopy.add(element);
-			}
-			copier.copyAll(objectToCopy);
-			copier.copyReferences();
-			for(EObject eObject : objectToCopy) {
-				papyrusClipboard.addInternalCopyInClipboard(eObject, copier.get(eObject));
-			}
+			View notationView = iGraphicalEditPart.getNotationView();
+			EObject element = notationView.getElement();
+			objectToCopy.add(notationView);
+			objectToCopy.add(element);
 		}
 
+		List<EObject> filterDescendants = EcoreUtil.filterDescendants(objectToCopy);
+		copier.copyAll(filterDescendants);
+		copier.copyReferences();
+
+		Map<EObject, Object> mapInternalCopyInClipboard = new HashMap<EObject, Object>();
+		mapInternalCopyInClipboard.putAll(copier);
+		papyrusClipboard.addAllInternalCopyInClipboard(mapInternalCopyInClipboard);
 	}
 
 

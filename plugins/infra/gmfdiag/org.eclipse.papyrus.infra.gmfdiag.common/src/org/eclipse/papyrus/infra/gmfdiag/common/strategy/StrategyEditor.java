@@ -51,7 +51,6 @@ public class StrategyEditor extends MultipleReferenceEditor {
 
 	protected /*final*/ Map<IStrategy, Button> checkboxes;
 
-	
 	protected IStrategyManager instance;
 	
 	public StrategyEditor(Composite parent, int style, IStrategyManager instance2) {

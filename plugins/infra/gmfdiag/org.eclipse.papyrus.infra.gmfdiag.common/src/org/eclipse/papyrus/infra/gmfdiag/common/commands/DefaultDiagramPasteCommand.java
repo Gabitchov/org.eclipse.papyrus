@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -55,31 +56,34 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 
 	protected ICommand editCommand;
 
-
 	/**
 	 * Constructor.
 	 * 
 	 * @param editingDomain
 	 * @param label
-	 * @param eObjectsToBeDuplicated
+	 * @param papyrusClipboard
 	 * @param subCommand
 	 * @param container
 	 */
-	public DefaultDiagramPasteCommand(TransactionalEditingDomain editingDomain, String label, List<Object> eObjectsToBeDuplicated, View container) {
+	public DefaultDiagramPasteCommand(TransactionalEditingDomain editingDomain, String label, PapyrusClipboard papyrusClipboard, View container) {
 		super(editingDomain, label, null);
 		this.container = container;
 		EcoreUtil.Copier copier = new EcoreUtil.Copier();
-		copier.copyAll(eObjectsToBeDuplicated);
+
+		List<EObject> rootElementInClipboard = EcoreUtil.filterDescendants(papyrusClipboard);
+		copier.copyAll(rootElementInClipboard);
 		copier.copyReferences();
-		Collection<EObject> values = copier.values();
-		viewList.addAll(values);
-		for(Object eObject : eObjectsToBeDuplicated) {
+		viewList.addAll(EcoreUtil.filterDescendants(copier.values()));
+		for(Object eObject : rootElementInClipboard) {
 			if(!(eObject instanceof View)) {
 				viewList.remove(copier.get(eObject));
 				semanticList.add(copier.get(eObject));
 			}
 		}
-		MoveRequest moveRequest = new MoveRequest(container.getElement(), semanticList);
+
+		// Inform the clipboard of the element created (used by strategies)	
+		papyrusClipboard.addAllInternalToTargetCopy(copier);
+		MoveRequest moveRequest = new MoveRequest(container.getElement(), EcoreUtil.filterDescendants(semanticList));
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container.getElement());
 		if(provider != null) {
 			editCommand = provider.getEditCommand(moveRequest);

@@ -38,6 +38,10 @@ public class PapyrusClipboard<E> extends ArrayList<E> {
 		} 
 		return instance;
 	}
+
+	public static void setInstance(PapyrusClipboard<Object> pInstance) {
+		instance = pInstance;
+	}	
 	
 	/**
 	 * Init a new instance for a new copy selection
@@ -51,8 +55,8 @@ public class PapyrusClipboard<E> extends ArrayList<E> {
 	/**
 	 * Clean the clipboard (target data) before pasting 
 	 */
-	public static void resetTarget() {
-		// TODO : clean all target data
+	public void resetTarget() {
+		internalClipboardToTargetCopy = new HashMap<Object, EObject>();
 	}
 	
 	/**
@@ -84,6 +88,12 @@ public class PapyrusClipboard<E> extends ArrayList<E> {
 		sourceToInternalClipboard.put(source, copy);
 	}
 
+	public void addAllInternalCopyInClipboard(Map<EObject, Object> mapInternalCopyInClipboard) {
+		getInstance().addAll(mapInternalCopyInClipboard.values());
+		sourceToInternalClipboard.putAll(mapInternalCopyInClipboard);
+	}	
+	
+	
 	/**
 	 * Store internal copy in clipboard while keeping mapping
 	 * @param source the copied selection

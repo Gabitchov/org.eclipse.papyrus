@@ -39,6 +39,9 @@ public class PasteInDiagramHandler extends AbstractGraphicalCommandHandler {
 	 */
 	@Override
 	protected Command getCommand() {
+		
+		PapyrusClipboard.getInstance().resetTarget();
+		
 		List<IGraphicalEditPart> selectedElements = getSelectedElements();
 		if (selectedElements.size() == 1){ // Paste is only enabled on a simple selection
 			//if (PapyrusClipboard.getInstance().size() > 0) { // TODO : Paste is only enabled if there is something inside the clipboard

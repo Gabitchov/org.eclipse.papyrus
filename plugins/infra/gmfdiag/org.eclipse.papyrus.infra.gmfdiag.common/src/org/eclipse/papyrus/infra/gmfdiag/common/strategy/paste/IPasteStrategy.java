@@ -13,8 +13,6 @@ package org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.IStrategy;
@@ -65,7 +63,7 @@ public interface IPasteStrategy extends IStrategy {
 	 * @return
 	 *         A command, or null if the strategy cannot handle the request
 	 */
-	public Command getCommand(Request request, EditPart targetEditPart);
+//	public Command getCommand(Request request, EditPart targetEditPart);
 
 	/**
 	 * The default priority for this strategy. Might be overridden by a user

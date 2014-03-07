@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -66,13 +67,14 @@ public class DefaultPasteCommand extends AbstractCommand {
 				}
 			}
 
+			List<EObject> rootElementToPaste = EcoreUtil.filterDescendants(eobjectsTopaste);
+
 			//Copy all eObjects (inspired from PasteFromClipboardCommand)
 			EcoreUtil.Copier copier = new EcoreUtil.Copier();
-			copier.copyAll(eobjectsTopaste);
+			copier.copyAll(rootElementToPaste);
 			copier.copyReferences();
 			Map<EObject, EObject> duplicatedObjects = new HashMap<EObject, EObject>();
 			duplicatedObjects.putAll(copier);
-
 
 			// Inform the clipboard of the elment created (used by strategies)		
 			papyrusClipboard.addAllInternalToTargetCopy(duplicatedObjects);
@@ -80,7 +82,7 @@ public class DefaultPasteCommand extends AbstractCommand {
 			//Prepare the move command to move UML element to their new owner
 			//Nota: move only the "root" semantic elements to be paste
 			List<EObject> objectsToMove = new ArrayList<EObject>();
-			Iterator<EObject> it = eobjectsTopaste.iterator();
+			Iterator<EObject> it = rootElementToPaste.iterator();
 			while(it.hasNext()) {
 				EObject eObject = it.next();
 				EObject copyObject = duplicatedObjects.get(eObject);
@@ -89,7 +91,7 @@ public class DefaultPasteCommand extends AbstractCommand {
 				}
 			}
 
-			MoveRequest moveRequest = new MoveRequest(targetOwner, objectsToMove);
+			MoveRequest moveRequest = new MoveRequest(targetOwner, EcoreUtil.filterDescendants(objectsToMove));
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetOwner);
 			if(provider != null) {
 				command = new CompositeCommand("Paste All Object"); //$NON-NLS-1$
