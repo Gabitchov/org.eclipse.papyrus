@@ -156,7 +156,7 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.papyrus.facet"
+         id="org.eclipse.papyrus.emf.facet.feature"
          version="0.0.0"/>
 
    <plugin

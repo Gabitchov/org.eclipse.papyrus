@@ -49,6 +49,9 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.papyrus.infra.services.source.feature"
          version="0.0.0"/>
+   <includes
+         id="org.eclipse.papyrus.emf.facet.source.feature"
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.papyrus.infra.widget.source.feature"
