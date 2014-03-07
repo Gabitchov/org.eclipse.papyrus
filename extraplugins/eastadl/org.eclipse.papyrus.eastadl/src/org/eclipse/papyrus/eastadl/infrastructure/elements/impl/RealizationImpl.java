@@ -40,14 +40,14 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getRealized <em>Realized</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getRealizedBy <em>Realized By</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getBase_Realization <em>Base Realization</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getRealizedBy_path <em>Realized By path</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getRealized_path <em>Realized path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getRealized <em>Realized</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getRealizedBy <em>Realized By</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getBase_Realization <em>Base Realization</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getRealizedBy_path <em>Realized By path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.RealizationImpl#getRealized_path <em>Realized path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class RealizationImpl extends RelationshipImpl implements Realization {
@@ -56,6 +56,7 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 	 * The cached value of the '{@link #getBase_Realization() <em>Base Realization</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Realization()
 	 * @generated
 	 * @ordered
@@ -66,6 +67,7 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 	 * The cached value of the '{@link #getRealizedBy_path() <em>Realized By path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRealizedBy_path()
 	 * @generated
 	 * @ordered
@@ -76,6 +78,7 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 	 * The cached value of the '{@link #getRealized_path() <em>Realized path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRealized_path()
 	 * @generated
 	 * @ordered
@@ -84,6 +87,7 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RealizationImpl() {
@@ -92,72 +96,77 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ElementsPackage.REALIZATION__REALIZED:
-				return getRealized();
-			case ElementsPackage.REALIZATION__REALIZED_BY:
-				return getRealizedBy();
-			case ElementsPackage.REALIZATION__BASE_REALIZATION:
-				if (resolve) return getBase_Realization();
-				return basicGetBase_Realization();
-			case ElementsPackage.REALIZATION__REALIZED_BY_PATH:
-				return getRealizedBy_path();
-			case ElementsPackage.REALIZATION__REALIZED_PATH:
-				return getRealized_path();
+		switch(featureID) {
+		case ElementsPackage.REALIZATION__REALIZED:
+			return getRealized();
+		case ElementsPackage.REALIZATION__REALIZED_BY:
+			return getRealizedBy();
+		case ElementsPackage.REALIZATION__BASE_REALIZATION:
+			if(resolve)
+				return getBase_Realization();
+			return basicGetBase_Realization();
+		case ElementsPackage.REALIZATION__REALIZED_BY_PATH:
+			return getRealizedBy_path();
+		case ElementsPackage.REALIZATION__REALIZED_PATH:
+			return getRealized_path();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ElementsPackage.REALIZATION__REALIZED:
-				return !getRealized().isEmpty();
-			case ElementsPackage.REALIZATION__REALIZED_BY:
-				return !getRealizedBy().isEmpty();
-			case ElementsPackage.REALIZATION__BASE_REALIZATION:
-				return base_Realization != null;
-			case ElementsPackage.REALIZATION__REALIZED_BY_PATH:
-				return realizedBy_path != null && !realizedBy_path.isEmpty();
-			case ElementsPackage.REALIZATION__REALIZED_PATH:
-				return realized_path != null && !realized_path.isEmpty();
+		switch(featureID) {
+		case ElementsPackage.REALIZATION__REALIZED:
+			return !getRealized().isEmpty();
+		case ElementsPackage.REALIZATION__REALIZED_BY:
+			return !getRealizedBy().isEmpty();
+		case ElementsPackage.REALIZATION__BASE_REALIZATION:
+			return base_Realization != null;
+		case ElementsPackage.REALIZATION__REALIZED_BY_PATH:
+			return realizedBy_path != null && !realizedBy_path.isEmpty();
+		case ElementsPackage.REALIZATION__REALIZED_PATH:
+			return realized_path != null && !realized_path.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ElementsPackage.REALIZATION__BASE_REALIZATION:
-				setBase_Realization((org.eclipse.uml2.uml.Realization)newValue);
-				return;
-			case ElementsPackage.REALIZATION__REALIZED_BY_PATH:
-				getRealizedBy_path().clear();
-				getRealizedBy_path().addAll((Collection<? extends NamedElement>)newValue);
-				return;
-			case ElementsPackage.REALIZATION__REALIZED_PATH:
-				getRealized_path().clear();
-				getRealized_path().addAll((Collection<? extends NamedElement>)newValue);
-				return;
+		switch(featureID) {
+		case ElementsPackage.REALIZATION__BASE_REALIZATION:
+			setBase_Realization((org.eclipse.uml2.uml.Realization)newValue);
+			return;
+		case ElementsPackage.REALIZATION__REALIZED_BY_PATH:
+			getRealizedBy_path().clear();
+			getRealizedBy_path().addAll((Collection<? extends NamedElement>)newValue);
+			return;
+		case ElementsPackage.REALIZATION__REALIZED_PATH:
+			getRealized_path().clear();
+			getRealized_path().addAll((Collection<? extends NamedElement>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,20 +176,21 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ElementsPackage.REALIZATION__BASE_REALIZATION:
-				setBase_Realization((org.eclipse.uml2.uml.Realization)null);
-				return;
-			case ElementsPackage.REALIZATION__REALIZED_BY_PATH:
-				getRealizedBy_path().clear();
-				return;
-			case ElementsPackage.REALIZATION__REALIZED_PATH:
-				getRealized_path().clear();
-				return;
+		switch(featureID) {
+		case ElementsPackage.REALIZATION__BASE_REALIZATION:
+			setBase_Realization((org.eclipse.uml2.uml.Realization)null);
+			return;
+		case ElementsPackage.REALIZATION__REALIZED_BY_PATH:
+			getRealizedBy_path().clear();
+			return;
+		case ElementsPackage.REALIZATION__REALIZED_PATH:
+			getRealized_path().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -237,14 +247,15 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Realization getBase_Realization() {
-		if (base_Realization != null && base_Realization.eIsProxy()) {
+		if(base_Realization != null && base_Realization.eIsProxy()) {
 			InternalEObject oldBase_Realization = (InternalEObject)base_Realization;
 			base_Realization = (org.eclipse.uml2.uml.Realization)eResolveProxy(oldBase_Realization);
-			if (base_Realization != oldBase_Realization) {
-				if (eNotificationRequired())
+			if(base_Realization != oldBase_Realization) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ElementsPackage.REALIZATION__BASE_REALIZATION, oldBase_Realization, base_Realization));
 			}
 		}
@@ -254,6 +265,7 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Realization basicGetBase_Realization() {
@@ -263,22 +275,24 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Realization(org.eclipse.uml2.uml.Realization newBase_Realization) {
 		org.eclipse.uml2.uml.Realization oldBase_Realization = base_Realization;
 		base_Realization = newBase_Realization;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ElementsPackage.REALIZATION__BASE_REALIZATION, oldBase_Realization, base_Realization));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NamedElement> getRealizedBy_path() {
-		if (realizedBy_path == null) {
+		if(realizedBy_path == null) {
 			realizedBy_path = new EObjectResolvingEList<NamedElement>(NamedElement.class, this, ElementsPackage.REALIZATION__REALIZED_BY_PATH);
 		}
 		return realizedBy_path;
@@ -287,10 +301,11 @@ public class RealizationImpl extends RelationshipImpl implements Realization {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NamedElement> getRealized_path() {
-		if (realized_path == null) {
+		if(realized_path == null) {
 			realized_path = new EObjectResolvingEList<NamedElement>(NamedElement.class, this, ElementsPackage.REALIZATION__REALIZED_PATH);
 		}
 		return realized_path;

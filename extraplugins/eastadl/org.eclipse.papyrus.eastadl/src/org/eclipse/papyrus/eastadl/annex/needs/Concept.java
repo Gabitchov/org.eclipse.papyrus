@@ -22,12 +22,12 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.EAElement;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Concept</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
  * An abstract or general idea inferred or derived from specific instances. [Webster]
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage#getConcept()
  * @model abstract="true"
  * @generated

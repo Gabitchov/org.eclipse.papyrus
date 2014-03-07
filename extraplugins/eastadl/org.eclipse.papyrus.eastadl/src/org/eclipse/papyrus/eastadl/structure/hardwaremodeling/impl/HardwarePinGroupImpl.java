@@ -37,20 +37,22 @@ import org.eclipse.uml2.uml.Port;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.HardwarePinGroupImpl#getBase_Port <em>Base Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.HardwarePinGroupImpl#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.HardwarePinGroupImpl#getPortGroup <em>Port Group</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.HardwarePinGroupImpl#getPort <em>Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.HardwarePinGroupImpl#getBase_Port <em>Base Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.HardwarePinGroupImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.HardwarePinGroupImpl#getPortGroup <em>Port Group</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.HardwarePinGroupImpl#getPort <em>Port</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGroup {
+
 	/**
 	 * The cached value of the '{@link #getBase_Port() <em>Base Port</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Port()
 	 * @generated
 	 * @ordered
@@ -61,6 +63,7 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Class()
 	 * @generated
 	 * @ordered
@@ -71,6 +74,7 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	 * The cached value of the '{@link #getPortGroup() <em>Port Group</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPortGroup()
 	 * @generated
 	 * @ordered
@@ -81,6 +85,7 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	 * The cached value of the '{@link #getPort() <em>Port</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPort()
 	 * @generated
 	 * @ordered
@@ -90,6 +95,7 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected HardwarePinGroupImpl() {
@@ -99,21 +105,24 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT:
-				if (resolve) return getBase_Port();
-				return basicGetBase_Port();
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT_GROUP:
-				return getPortGroup();
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT:
-				return getPort();
+		switch(featureID) {
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT:
+			if(resolve)
+				return getBase_Port();
+			return basicGetBase_Port();
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS:
+			if(resolve)
+				return getBase_Class();
+			return basicGetBase_Class();
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT_GROUP:
+			return getPortGroup();
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT:
+			return getPort();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -121,19 +130,20 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT:
-				return base_Port != null;
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS:
-				return base_Class != null;
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT_GROUP:
-				return portGroup != null && !portGroup.isEmpty();
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT:
-				return port != null && !port.isEmpty();
+		switch(featureID) {
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT:
+			return base_Port != null;
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS:
+			return base_Class != null;
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT_GROUP:
+			return portGroup != null && !portGroup.isEmpty();
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT:
+			return port != null && !port.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -141,26 +151,27 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT:
-				setBase_Port((Port)newValue);
-				return;
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT_GROUP:
-				getPortGroup().clear();
-				getPortGroup().addAll((Collection<? extends HardwarePinGroup>)newValue);
-				return;
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT:
-				getPort().clear();
-				getPort().addAll((Collection<? extends HardwarePin>)newValue);
-				return;
+		switch(featureID) {
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT:
+			setBase_Port((Port)newValue);
+			return;
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+			return;
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT_GROUP:
+			getPortGroup().clear();
+			getPortGroup().addAll((Collection<? extends HardwarePinGroup>)newValue);
+			return;
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT:
+			getPort().clear();
+			getPort().addAll((Collection<? extends HardwarePin>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -168,6 +179,7 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -178,14 +190,15 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Port getBase_Port() {
-		if (base_Port != null && base_Port.eIsProxy()) {
+		if(base_Port != null && base_Port.eIsProxy()) {
 			InternalEObject oldBase_Port = (InternalEObject)base_Port;
 			base_Port = (Port)eResolveProxy(oldBase_Port);
-			if (base_Port != oldBase_Port) {
-				if (eNotificationRequired())
+			if(base_Port != oldBase_Port) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT, oldBase_Port, base_Port));
 			}
 		}
@@ -195,6 +208,7 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Port basicGetBase_Port() {
@@ -204,26 +218,28 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Port(Port newBase_Port) {
 		Port oldBase_Port = base_Port;
 		base_Port = newBase_Port;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT, oldBase_Port, base_Port));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
+		if(base_Class != null && base_Class.eIsProxy()) {
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
@@ -233,6 +249,7 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
@@ -242,35 +259,37 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT:
-				setBase_Port((Port)null);
-				return;
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT_GROUP:
-				getPortGroup().clear();
-				return;
-			case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT:
-				getPort().clear();
-				return;
+		switch(featureID) {
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_PORT:
+			setBase_Port((Port)null);
+			return;
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
+			return;
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT_GROUP:
+			getPortGroup().clear();
+			return;
+		case HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT:
+			getPort().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -278,10 +297,11 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<HardwarePin> getPort() {
-		if (port == null) {
+		if(port == null) {
 			port = new EObjectResolvingEList<HardwarePin>(HardwarePin.class, this, HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT);
 		}
 		return port;
@@ -290,10 +310,11 @@ public class HardwarePinGroupImpl extends EAElementImpl implements HardwarePinGr
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<HardwarePinGroup> getPortGroup() {
-		if (portGroup == null) {
+		if(portGroup == null) {
 			portGroup = new EObjectResolvingEList<HardwarePinGroup>(HardwarePinGroup.class, this, HardwaremodelingPackage.HARDWARE_PIN_GROUP__PORT_GROUP);
 		}
 		return portGroup;

@@ -7,6 +7,8 @@
    <extension-point id="service" name="Service" schema="schema/service.exsd"/>
    <extension-point id="model" name="plugin.xml.ModelName" schema="schema/model.exsd"/>
    <extension-point id="transactionalEditingDomainProvider" name="transactionalEditingDomainProvider" schema="schema/transactionalEditingDomainProvider.exsd"/>
+   <extension-point id="sashModelProvider" name="Sash Model Providers" schema="schema/sashModelProvider.exsd"/>
+   
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -181,12 +183,18 @@
          point="org.eclipse.papyrus.infra.core.model">
       <model
             classname="org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel"
-            description="Model for sash system">
+            description="Model for sash system"
+            fileExtension="sash">
       </model>
       <modelSetSnippet
             classname="org.eclipse.papyrus.infra.core.modelsetquery.impl.ModelSetQueryInitializer"
             description="Adapter attached to the ModelSet (aka ResourceSet)">
       </modelSetSnippet>
+      <model
+            classname="org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel"
+            description="Main Papyrus IModel"
+            fileExtension="di">
+      </model>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.core.service">
@@ -317,8 +325,13 @@
       </serviceFactory>
       <service
             classname="org.eclipse.papyrus.infra.core.services.ResourceUpdateService"
+            id="org.eclipse.papyrus.infra.core.services.ResourceUpdateService"
             priority="1"
             startKind="startup">
+         <dependsOn
+               description="This service is used to reopen the IMultiDiagramEditor when changes are detected"
+               serviceKeyRef="org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor">
+         </dependsOn>
       </service>
    </extension>
    <extension

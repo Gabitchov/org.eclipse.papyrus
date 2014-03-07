@@ -37,21 +37,23 @@ import org.eclipse.papyrus.eastadl.structure.hardwaremodeling.LogicalBusKind;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getBusSpeed <em>Bus Speed</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getBusType <em>Bus Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getWire <em>Wire</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getWire_path <em>Wire path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getBusSpeed <em>Bus Speed</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getBusType <em>Bus Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getWire <em>Wire</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.hardwaremodeling.impl.LogicalBusImpl#getWire_path <em>Wire path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
+
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Class()
 	 * @generated
 	 * @ordered
@@ -62,6 +64,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	 * The default value of the '{@link #getBusSpeed() <em>Bus Speed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBusSpeed()
 	 * @generated
 	 * @ordered
@@ -72,6 +75,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	 * The cached value of the '{@link #getBusSpeed() <em>Bus Speed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBusSpeed()
 	 * @generated
 	 * @ordered
@@ -82,6 +86,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	 * The default value of the '{@link #getBusType() <em>Bus Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBusType()
 	 * @generated
 	 * @ordered
@@ -92,6 +97,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	 * The cached value of the '{@link #getBusType() <em>Bus Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBusType()
 	 * @generated
 	 * @ordered
@@ -102,6 +108,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	 * The cached value of the '{@link #getWire() <em>Wire</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getWire()
 	 * @generated
 	 * @ordered
@@ -112,6 +119,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	 * The cached value of the '{@link #getWire_path() <em>Wire path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getWire_path()
 	 * @generated
 	 * @ordered
@@ -121,6 +129,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected LogicalBusImpl() {
@@ -130,22 +139,24 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
-			case HardwaremodelingPackage.LOGICAL_BUS__BUS_SPEED:
-				return getBusSpeed();
-			case HardwaremodelingPackage.LOGICAL_BUS__BUS_TYPE:
-				return getBusType();
-			case HardwaremodelingPackage.LOGICAL_BUS__WIRE:
-				return getWire();
-			case HardwaremodelingPackage.LOGICAL_BUS__WIRE_PATH:
-				return getWire_path();
+		switch(featureID) {
+		case HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS:
+			if(resolve)
+				return getBase_Class();
+			return basicGetBase_Class();
+		case HardwaremodelingPackage.LOGICAL_BUS__BUS_SPEED:
+			return getBusSpeed();
+		case HardwaremodelingPackage.LOGICAL_BUS__BUS_TYPE:
+			return getBusType();
+		case HardwaremodelingPackage.LOGICAL_BUS__WIRE:
+			return getWire();
+		case HardwaremodelingPackage.LOGICAL_BUS__WIRE_PATH:
+			return getWire_path();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -153,21 +164,22 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS:
-				return base_Class != null;
-			case HardwaremodelingPackage.LOGICAL_BUS__BUS_SPEED:
-				return BUS_SPEED_EDEFAULT == null ? busSpeed != null : !BUS_SPEED_EDEFAULT.equals(busSpeed);
-			case HardwaremodelingPackage.LOGICAL_BUS__BUS_TYPE:
-				return busType != BUS_TYPE_EDEFAULT;
-			case HardwaremodelingPackage.LOGICAL_BUS__WIRE:
-				return wire != null && !wire.isEmpty();
-			case HardwaremodelingPackage.LOGICAL_BUS__WIRE_PATH:
-				return wire_path != null && !wire_path.isEmpty();
+		switch(featureID) {
+		case HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS:
+			return base_Class != null;
+		case HardwaremodelingPackage.LOGICAL_BUS__BUS_SPEED:
+			return BUS_SPEED_EDEFAULT == null ? busSpeed != null : !BUS_SPEED_EDEFAULT.equals(busSpeed);
+		case HardwaremodelingPackage.LOGICAL_BUS__BUS_TYPE:
+			return busType != BUS_TYPE_EDEFAULT;
+		case HardwaremodelingPackage.LOGICAL_BUS__WIRE:
+			return wire != null && !wire.isEmpty();
+		case HardwaremodelingPackage.LOGICAL_BUS__WIRE_PATH:
+			return wire_path != null && !wire_path.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -175,29 +187,30 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
-			case HardwaremodelingPackage.LOGICAL_BUS__BUS_SPEED:
-				setBusSpeed((Float)newValue);
-				return;
-			case HardwaremodelingPackage.LOGICAL_BUS__BUS_TYPE:
-				setBusType((LogicalBusKind)newValue);
-				return;
-			case HardwaremodelingPackage.LOGICAL_BUS__WIRE:
-				getWire().clear();
-				getWire().addAll((Collection<? extends HardwareConnector>)newValue);
-				return;
-			case HardwaremodelingPackage.LOGICAL_BUS__WIRE_PATH:
-				getWire_path().clear();
-				getWire_path().addAll((Collection<? extends HardwareComponentPrototype>)newValue);
-				return;
+		switch(featureID) {
+		case HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+			return;
+		case HardwaremodelingPackage.LOGICAL_BUS__BUS_SPEED:
+			setBusSpeed((Float)newValue);
+			return;
+		case HardwaremodelingPackage.LOGICAL_BUS__BUS_TYPE:
+			setBusType((LogicalBusKind)newValue);
+			return;
+		case HardwaremodelingPackage.LOGICAL_BUS__WIRE:
+			getWire().clear();
+			getWire().addAll((Collection<? extends HardwareConnector>)newValue);
+			return;
+		case HardwaremodelingPackage.LOGICAL_BUS__WIRE_PATH:
+			getWire_path().clear();
+			getWire_path().addAll((Collection<? extends HardwareComponentPrototype>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -205,6 +218,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,14 +229,15 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
+		if(base_Class != null && base_Class.eIsProxy()) {
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
@@ -232,6 +247,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
@@ -241,38 +257,40 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
-			case HardwaremodelingPackage.LOGICAL_BUS__BUS_SPEED:
-				setBusSpeed(BUS_SPEED_EDEFAULT);
-				return;
-			case HardwaremodelingPackage.LOGICAL_BUS__BUS_TYPE:
-				setBusType(BUS_TYPE_EDEFAULT);
-				return;
-			case HardwaremodelingPackage.LOGICAL_BUS__WIRE:
-				getWire().clear();
-				return;
-			case HardwaremodelingPackage.LOGICAL_BUS__WIRE_PATH:
-				getWire_path().clear();
-				return;
+		switch(featureID) {
+		case HardwaremodelingPackage.LOGICAL_BUS__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
+			return;
+		case HardwaremodelingPackage.LOGICAL_BUS__BUS_SPEED:
+			setBusSpeed(BUS_SPEED_EDEFAULT);
+			return;
+		case HardwaremodelingPackage.LOGICAL_BUS__BUS_TYPE:
+			setBusType(BUS_TYPE_EDEFAULT);
+			return;
+		case HardwaremodelingPackage.LOGICAL_BUS__WIRE:
+			getWire().clear();
+			return;
+		case HardwaremodelingPackage.LOGICAL_BUS__WIRE_PATH:
+			getWire_path().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -280,6 +298,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Float getBusSpeed() {
@@ -289,6 +308,7 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LogicalBusKind getBusType() {
@@ -298,10 +318,11 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<HardwareConnector> getWire() {
-		if (wire == null) {
+		if(wire == null) {
 			wire = new EObjectResolvingEList<HardwareConnector>(HardwareConnector.class, this, HardwaremodelingPackage.LOGICAL_BUS__WIRE);
 		}
 		return wire;
@@ -310,10 +331,11 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<HardwareComponentPrototype> getWire_path() {
-		if (wire_path == null) {
+		if(wire_path == null) {
 			wire_path = new EObjectResolvingEList<HardwareComponentPrototype>(HardwareComponentPrototype.class, this, HardwaremodelingPackage.LOGICAL_BUS__WIRE_PATH);
 		}
 		return wire_path;
@@ -322,35 +344,39 @@ public class LogicalBusImpl extends AllocationTargetImpl implements LogicalBus {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBusSpeed(Float newBusSpeed) {
 		Float oldBusSpeed = busSpeed;
 		busSpeed = newBusSpeed;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, HardwaremodelingPackage.LOGICAL_BUS__BUS_SPEED, oldBusSpeed, busSpeed));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBusType(LogicalBusKind newBusType) {
 		LogicalBusKind oldBusType = busType;
 		busType = newBusType == null ? BUS_TYPE_EDEFAULT : newBusType;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, HardwaremodelingPackage.LOGICAL_BUS__BUS_TYPE, oldBusType, busType));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (busSpeed: ");

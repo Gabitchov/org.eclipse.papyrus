@@ -27,6 +27,7 @@ import org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPa
  * This class contains helper methods to serialize and deserialize XML documents
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class HardwaremodelingXMLProcessor extends XMLProcessor {
@@ -35,22 +36,24 @@ public class HardwaremodelingXMLProcessor extends XMLProcessor {
 	 * Public constructor to instantiate the helper.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public HardwaremodelingXMLProcessor() {
 		super((EPackage.Registry.INSTANCE));
 		HardwaremodelingPackage.eINSTANCE.eClass();
 	}
-	
+
 	/**
 	 * Register for "*" and "xml" file extensions the HardwaremodelingResourceFactoryImpl factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
+		if(registrations == null) {
 			super.getRegistrations();
 			registrations.put(XML_EXTENSION, new HardwaremodelingResourceFactoryImpl());
 			registrations.put(STAR_EXTENSION, new HardwaremodelingResourceFactoryImpl());

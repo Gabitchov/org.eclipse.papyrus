@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bugs 402525, 323802
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.tests;
 
@@ -80,6 +80,7 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.dnd.tests.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.tools.tests.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.stereotypeproperty.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.diagram.wizards.AllTests.class));
 
 		/* uml idagrams */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.diagram.clazz.test.AllTests.class));
@@ -111,7 +112,7 @@ public class AllTests {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 * @param clazz
 		 *        the suite class � AllTests2
 		 * @throws InitializationError
@@ -125,7 +126,7 @@ public class AllTests {
 
 	/**
 	 * Returns the list of test classes
-	 * 
+	 *
 	 * @return the list of test classes
 	 */
 	private static Class<?>[] getSuites() {

@@ -102,7 +102,8 @@ public interface FlowPort extends EObject {
 	 * 
 	 * @return the value of the '<em>Is Atomic</em>' attribute.
 	 * @see org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage#getFlowPort_IsAtomic()
-	 * @model default="false" unique="false" required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model default="false" unique="false" dataType="org.eclipse.uml2.types.Boolean" required="true" transient="true" changeable="false"
+	 *        volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
 	boolean isAtomic();
@@ -118,7 +119,7 @@ public interface FlowPort extends EObject {
 	 * @return the value of the '<em>Is Conjugated</em>' attribute.
 	 * @see #setIsConjugated(boolean)
 	 * @see org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage#getFlowPort_IsConjugated()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" dataType="org.eclipse.uml2.types.Boolean" ordered="false"
 	 * @generated
 	 */
 	boolean isConjugated();

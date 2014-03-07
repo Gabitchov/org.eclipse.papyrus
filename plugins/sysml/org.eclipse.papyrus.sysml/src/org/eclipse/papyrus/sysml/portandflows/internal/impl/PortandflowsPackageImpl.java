@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.portandflows.internal.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -46,8 +47,9 @@ import org.eclipse.papyrus.sysml.statemachines.StatemachinesPackage;
 import org.eclipse.papyrus.sysml.statemachines.internal.impl.StatemachinesPackageImpl;
 import org.eclipse.papyrus.sysml.usecases.UsecasesPackage;
 import org.eclipse.papyrus.sysml.usecases.internal.impl.UsecasesPackageImpl;
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.profile.l2.L2Package;
+import org.eclipse.uml2.uml.profile.standard.StandardPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
@@ -86,7 +88,7 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 		isInited = true;
 
 		// Initialize simple dependencies
-		L2Package.eINSTANCE.eClass();
+		StandardPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SysmlPackageImpl theSysmlPackage = (SysmlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) instanceof SysmlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SysmlPackage.eNS_URI) : SysmlPackage.eINSTANCE);
@@ -220,10 +222,12 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 		createEAttribute(flowPortEClass, FLOW_PORT__IS_ATOMIC);
 		createEAttribute(flowPortEClass, FLOW_PORT__IS_CONJUGATED);
 		createEAttribute(flowPortEClass, FLOW_PORT__DIRECTION);
+		createEOperation(flowPortEClass, FLOW_PORT___GET_ICON);
 
 		flowPropertyEClass = createEClass(FLOW_PROPERTY);
 		createEReference(flowPropertyEClass, FLOW_PROPERTY__BASE_PROPERTY);
 		createEAttribute(flowPropertyEClass, FLOW_PROPERTY__DIRECTION);
+		createEOperation(flowPropertyEClass, FLOW_PROPERTY___GET_ICON);
 
 		flowSpecificationEClass = createEClass(FLOW_SPECIFICATION);
 		createEReference(flowSpecificationEClass, FLOW_SPECIFICATION__BASE_INTERFACE);
@@ -273,6 +277,16 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EOperation getFlowPort__GetIcon() {
+		return flowPortEClass.getEOperations().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -315,6 +329,16 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 	 */
 	public EAttribute getFlowProperty_Direction() {
 		return (EAttribute)flowPropertyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EOperation getFlowProperty__GetIcon() {
+		return flowPropertyEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -390,6 +414,7 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 
 		// Obtain other dependent packages
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -397,20 +422,20 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 
 		// Add supertypes to classes
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes, features, and operations; add parameters
 		initEClass(flowPortEClass, FlowPort.class, "FlowPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlowPort_Base_Port(), theUMLPackage.getPort(), null, "base_Port", null, 1, 1, FlowPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFlowPort_IsAtomic(), ecorePackage.getEBoolean(), "isAtomic", "false", 1, 1, FlowPort.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFlowPort_IsConjugated(), ecorePackage.getEBoolean(), "isConjugated", null, 0, 1, FlowPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFlowPort_IsAtomic(), theTypesPackage.getBoolean(), "isAtomic", "false", 1, 1, FlowPort.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFlowPort_IsConjugated(), theTypesPackage.getBoolean(), "isConjugated", null, 0, 1, FlowPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFlowPort_Direction(), this.getFlowDirection(), "direction", "inout", 1, 1, FlowPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		addEOperation(flowPortEClass, theUMLPackage.getImage(), "getIcon", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		initEOperation(getFlowPort__GetIcon(), theUMLPackage.getImage(), "getIcon", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(flowPropertyEClass, FlowProperty.class, "FlowProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlowProperty_Base_Property(), theUMLPackage.getProperty(), null, "base_Property", null, 1, 1, FlowProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFlowProperty_Direction(), this.getFlowDirection(), "direction", "inout", 1, 1, FlowProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		addEOperation(flowPropertyEClass, theUMLPackage.getImage(), "getIcon", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		initEOperation(getFlowProperty__GetIcon(), theUMLPackage.getImage(), "getIcon", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(flowSpecificationEClass, FlowSpecification.class, "FlowSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlowSpecification_Base_Interface(), theUMLPackage.getInterface(), null, "base_Interface", null, 1, 1, FlowSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

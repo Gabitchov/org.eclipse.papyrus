@@ -13,11 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.portandflows.internal.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
@@ -43,7 +45,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * @generated
  */
-public class FlowPortImpl extends EObjectImpl implements FlowPort {
+public class FlowPortImpl extends MinimalEObjectImpl.Container implements FlowPort {
 
 	/**
 	 * The cached value of the '{@link #getBase_Port() <em>Base Port</em>}' reference.
@@ -164,6 +166,21 @@ public class FlowPortImpl extends EObjectImpl implements FlowPort {
 			return direction != DIRECTION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch(operationID) {
+		case PortandflowsPackage.FLOW_PORT___GET_ICON:
+			return getIcon();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

@@ -18,6 +18,7 @@ package org.eclipse.papyrus.eastadl.genericconstraints.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.papyrus.eastadl.genericconstraints.*;
 import org.eclipse.papyrus.eastadl.genericconstraints.GenericConstraint;
 import org.eclipse.papyrus.eastadl.genericconstraints.GenericConstraintSet;
 import org.eclipse.papyrus.eastadl.genericconstraints.GenericconstraintsPackage;
@@ -31,21 +32,23 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.TraceableSpecificatio
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
- * to invoke the <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.genericconstraints.GenericconstraintsPackage
  * @generated
  */
 public class GenericconstraintsSwitch<T> extends Switch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static GenericconstraintsPackage modelPackage;
@@ -54,10 +57,11 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public GenericconstraintsSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = GenericconstraintsPackage.eINSTANCE;
 		}
 	}
@@ -66,6 +70,7 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @parameter ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
@@ -81,7 +86,9 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Context</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -96,7 +103,9 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Generic Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -111,7 +120,9 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Generic Constraint Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -126,7 +137,9 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Take Rate Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -141,7 +154,9 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EA Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -156,7 +171,9 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EA Packageable Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -171,7 +188,9 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Traceable Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -186,7 +205,9 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
+	 * 
+	 * @param object
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -200,40 +221,57 @@ public class GenericconstraintsSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT: {
-				GenericConstraint genericConstraint = (GenericConstraint)theEObject;
-				T result = caseGenericConstraint(genericConstraint);
-				if (result == null) result = caseTraceableSpecification(genericConstraint);
-				if (result == null) result = caseEAPackageableElement(genericConstraint);
-				if (result == null) result = caseEAElement(genericConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GenericconstraintsPackage.GENERIC_CONSTRAINT_SET: {
-				GenericConstraintSet genericConstraintSet = (GenericConstraintSet)theEObject;
-				T result = caseGenericConstraintSet(genericConstraintSet);
-				if (result == null) result = caseContext(genericConstraintSet);
-				if (result == null) result = caseEAElement(genericConstraintSet);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case GenericconstraintsPackage.TAKE_RATE_CONSTRAINT: {
-				TakeRateConstraint takeRateConstraint = (TakeRateConstraint)theEObject;
-				T result = caseTakeRateConstraint(takeRateConstraint);
-				if (result == null) result = caseGenericConstraint(takeRateConstraint);
-				if (result == null) result = caseTraceableSpecification(takeRateConstraint);
-				if (result == null) result = caseEAPackageableElement(takeRateConstraint);
-				if (result == null) result = caseEAElement(takeRateConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		switch(classifierID) {
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT:
+		{
+			GenericConstraint genericConstraint = (GenericConstraint)theEObject;
+			T result = caseGenericConstraint(genericConstraint);
+			if(result == null)
+				result = caseTraceableSpecification(genericConstraint);
+			if(result == null)
+				result = caseEAPackageableElement(genericConstraint);
+			if(result == null)
+				result = caseEAElement(genericConstraint);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case GenericconstraintsPackage.GENERIC_CONSTRAINT_SET:
+		{
+			GenericConstraintSet genericConstraintSet = (GenericConstraintSet)theEObject;
+			T result = caseGenericConstraintSet(genericConstraintSet);
+			if(result == null)
+				result = caseContext(genericConstraintSet);
+			if(result == null)
+				result = caseEAElement(genericConstraintSet);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case GenericconstraintsPackage.TAKE_RATE_CONSTRAINT:
+		{
+			TakeRateConstraint takeRateConstraint = (TakeRateConstraint)theEObject;
+			T result = caseTakeRateConstraint(takeRateConstraint);
+			if(result == null)
+				result = caseGenericConstraint(takeRateConstraint);
+			if(result == null)
+				result = caseTraceableSpecification(takeRateConstraint);
+			if(result == null)
+				result = caseEAPackageableElement(takeRateConstraint);
+			if(result == null)
+				result = caseEAElement(takeRateConstraint);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 

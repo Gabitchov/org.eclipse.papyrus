@@ -14,12 +14,11 @@
 package org.eclipse.papyrus.sysml.modelelements.internal.impl;
 
 import java.util.Iterator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.View;
@@ -40,7 +39,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * @generated
  */
-public class ViewImpl extends EObjectImpl implements View {
+public class ViewImpl extends MinimalEObjectImpl.Container implements View {
 
 	/**
 	 * The cached value of the '{@link #getBase_Package() <em>Base Package</em>}' reference.

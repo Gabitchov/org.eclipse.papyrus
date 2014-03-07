@@ -20,20 +20,20 @@ package org.eclipse.papyrus.eastadl.structure.hardwaremodeling;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Communication Hardware Pin</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * CommunicationHardwarePin represents an electrical connection point that can be used to define how the wire harness is logically defined. 
+ * CommunicationHardwarePin represents an electrical connection point that can be used to define how the wire harness is logically defined.
  * 
  * Semantics:
- * The CommunicationHardwarePin represents the hardware connection point of a communication bus. 
+ * The CommunicationHardwarePin represents the hardware connection point of a communication bus.
  * 
  * Depending on modeling style, one or two pins may be defined for a dual-wire bus.
  * 
  * Notation:
  * CommunicationHardwarePin is shown as a solid square with a C inside. Its name may appear outside the square.
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.structure.hardwaremodeling.HardwaremodelingPackage#getCommunicationHardwarePin()
  * @model
  * @generated

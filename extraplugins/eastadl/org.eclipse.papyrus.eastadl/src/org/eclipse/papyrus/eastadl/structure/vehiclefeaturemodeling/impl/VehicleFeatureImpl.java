@@ -32,13 +32,15 @@ import org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.Vehiclefeatu
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl#isIsDesignVariabilityRationale <em>Is Design Variability Rationale</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl#isIsCustomerVisible <em>Is Customer Visible</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl#isIsRemoved <em>Is Removed</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl#getDeviationAttributeSet <em>Deviation Attribute Set</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl#isIsDesignVariabilityRationale <em>Is Design
+ * Variability Rationale</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl#isIsCustomerVisible <em>Is Customer Visible</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl#isIsRemoved <em>Is Removed</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.vehiclefeaturemodeling.impl.VehicleFeatureImpl#getDeviationAttributeSet <em>Deviation Attribute
+ * Set</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
@@ -47,6 +49,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 	 * The default value of the '{@link #isIsDesignVariabilityRationale() <em>Is Design Variability Rationale</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isIsDesignVariabilityRationale()
 	 * @generated
 	 * @ordered
@@ -57,6 +60,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 	 * The cached value of the '{@link #isIsDesignVariabilityRationale() <em>Is Design Variability Rationale</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isIsDesignVariabilityRationale()
 	 * @generated
 	 * @ordered
@@ -66,6 +70,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 	/**
 	 * The default value of the '{@link #isIsCustomerVisible() <em>Is Customer Visible</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isIsCustomerVisible()
 	 * @generated
 	 * @ordered
@@ -75,6 +80,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 	/**
 	 * The cached value of the '{@link #isIsCustomerVisible() <em>Is Customer Visible</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #isIsCustomerVisible()
 	 * @generated
 	 * @ordered
@@ -104,6 +110,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 	/**
 	 * The cached value of the '{@link #getDeviationAttributeSet() <em>Deviation Attribute Set</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getDeviationAttributeSet()
 	 * @generated
 	 * @ordered
@@ -112,6 +119,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected VehicleFeatureImpl() {
@@ -121,6 +129,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DeviationAttributeSet basicGetDeviationAttributeSet() {
@@ -129,112 +138,122 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetDeviationAttributeSet(DeviationAttributeSet newDeviationAttributeSet,
-			NotificationChain msgs) {
+	public NotificationChain basicSetDeviationAttributeSet(DeviationAttributeSet newDeviationAttributeSet, NotificationChain msgs) {
 		DeviationAttributeSet oldDeviationAttributeSet = deviationAttributeSet;
 		deviationAttributeSet = newDeviationAttributeSet;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET, oldDeviationAttributeSet, newDeviationAttributeSet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if(msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE:
-				return isIsDesignVariabilityRationale();
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE:
-				return isIsCustomerVisible();
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_REMOVED:
-				return isIsRemoved();
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
-				if (resolve) return getDeviationAttributeSet();
-				return basicGetDeviationAttributeSet();
+		switch(featureID) {
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE:
+			return isIsDesignVariabilityRationale();
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE:
+			return isIsCustomerVisible();
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_REMOVED:
+			return isIsRemoved();
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
+			if(resolve)
+				return getDeviationAttributeSet();
+			return basicGetDeviationAttributeSet();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
-				if (deviationAttributeSet != null)
-					msgs = ((InternalEObject)deviationAttributeSet).eInverseRemove(this, VehiclefeaturemodelingPackage.DEVIATION_ATTRIBUTE_SET__FEATURE, DeviationAttributeSet.class, msgs);
-				return basicSetDeviationAttributeSet((DeviationAttributeSet)otherEnd, msgs);
+		switch(featureID) {
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
+			if(deviationAttributeSet != null)
+				msgs = ((InternalEObject)deviationAttributeSet).eInverseRemove(this, VehiclefeaturemodelingPackage.DEVIATION_ATTRIBUTE_SET__FEATURE, DeviationAttributeSet.class, msgs);
+			return basicSetDeviationAttributeSet((DeviationAttributeSet)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
-				return basicSetDeviationAttributeSet(null, msgs);
+		switch(featureID) {
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
+			return basicSetDeviationAttributeSet(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE:
-				return isDesignVariabilityRationale != IS_DESIGN_VARIABILITY_RATIONALE_EDEFAULT;
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE:
-				return isCustomerVisible != IS_CUSTOMER_VISIBLE_EDEFAULT;
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_REMOVED:
-				return isRemoved != IS_REMOVED_EDEFAULT;
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
-				return deviationAttributeSet != null;
+		switch(featureID) {
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE:
+			return isDesignVariabilityRationale != IS_DESIGN_VARIABILITY_RATIONALE_EDEFAULT;
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE:
+			return isCustomerVisible != IS_CUSTOMER_VISIBLE_EDEFAULT;
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_REMOVED:
+			return isRemoved != IS_REMOVED_EDEFAULT;
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
+			return deviationAttributeSet != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	
+
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE:
-				setIsDesignVariabilityRationale((Boolean)newValue);
-				return;
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE:
-				setIsCustomerVisible((Boolean)newValue);
-				return;
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_REMOVED:
-				setIsRemoved((Boolean)newValue);
-				return;
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
-				setDeviationAttributeSet((DeviationAttributeSet)newValue);
-				return;
+		switch(featureID) {
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE:
+			setIsDesignVariabilityRationale((Boolean)newValue);
+			return;
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE:
+			setIsCustomerVisible((Boolean)newValue);
+			return;
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_REMOVED:
+			setIsRemoved((Boolean)newValue);
+			return;
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
+			setDeviationAttributeSet((DeviationAttributeSet)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,37 +263,39 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE:
-				setIsDesignVariabilityRationale(IS_DESIGN_VARIABILITY_RATIONALE_EDEFAULT);
-				return;
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE:
-				setIsCustomerVisible(IS_CUSTOMER_VISIBLE_EDEFAULT);
-				return;
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_REMOVED:
-				setIsRemoved(IS_REMOVED_EDEFAULT);
-				return;
-			case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
-				setDeviationAttributeSet((DeviationAttributeSet)null);
-				return;
+		switch(featureID) {
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE:
+			setIsDesignVariabilityRationale(IS_DESIGN_VARIABILITY_RATIONALE_EDEFAULT);
+			return;
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE:
+			setIsCustomerVisible(IS_CUSTOMER_VISIBLE_EDEFAULT);
+			return;
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_REMOVED:
+			setIsRemoved(IS_REMOVED_EDEFAULT);
+			return;
+		case VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET:
+			setDeviationAttributeSet((DeviationAttributeSet)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DeviationAttributeSet getDeviationAttributeSet() {
-		if (deviationAttributeSet != null && deviationAttributeSet.eIsProxy()) {
+		if(deviationAttributeSet != null && deviationAttributeSet.eIsProxy()) {
 			InternalEObject oldDeviationAttributeSet = (InternalEObject)deviationAttributeSet;
 			deviationAttributeSet = (DeviationAttributeSet)eResolveProxy(oldDeviationAttributeSet);
-			if (deviationAttributeSet != oldDeviationAttributeSet) {
-				if (eNotificationRequired())
+			if(deviationAttributeSet != oldDeviationAttributeSet) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET, oldDeviationAttributeSet, deviationAttributeSet));
 			}
 		}
@@ -283,6 +304,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isIsCustomerVisible() {
@@ -291,6 +313,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isIsDesignVariabilityRationale() {
@@ -299,6 +322,7 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isIsRemoved() {
@@ -307,62 +331,68 @@ public class VehicleFeatureImpl extends FeatureImpl implements VehicleFeature {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDeviationAttributeSet(DeviationAttributeSet newDeviationAttributeSet) {
-		if (newDeviationAttributeSet != deviationAttributeSet) {
+		if(newDeviationAttributeSet != deviationAttributeSet) {
 			NotificationChain msgs = null;
-			if (deviationAttributeSet != null)
+			if(deviationAttributeSet != null)
 				msgs = ((InternalEObject)deviationAttributeSet).eInverseRemove(this, VehiclefeaturemodelingPackage.DEVIATION_ATTRIBUTE_SET__FEATURE, DeviationAttributeSet.class, msgs);
-			if (newDeviationAttributeSet != null)
+			if(newDeviationAttributeSet != null)
 				msgs = ((InternalEObject)newDeviationAttributeSet).eInverseAdd(this, VehiclefeaturemodelingPackage.DEVIATION_ATTRIBUTE_SET__FEATURE, DeviationAttributeSet.class, msgs);
 			msgs = basicSetDeviationAttributeSet(newDeviationAttributeSet, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
+			if(msgs != null)
+				msgs.dispatch();
+		} else if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VehiclefeaturemodelingPackage.VEHICLE_FEATURE__DEVIATION_ATTRIBUTE_SET, newDeviationAttributeSet, newDeviationAttributeSet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsCustomerVisible(boolean newIsCustomerVisible) {
 		boolean oldIsCustomerVisible = isCustomerVisible;
 		isCustomerVisible = newIsCustomerVisible;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_CUSTOMER_VISIBLE, oldIsCustomerVisible, isCustomerVisible));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsDesignVariabilityRationale(boolean newIsDesignVariabilityRationale) {
 		boolean oldIsDesignVariabilityRationale = isDesignVariabilityRationale;
 		isDesignVariabilityRationale = newIsDesignVariabilityRationale;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_DESIGN_VARIABILITY_RATIONALE, oldIsDesignVariabilityRationale, isDesignVariabilityRationale));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIsRemoved(boolean newIsRemoved) {
 		boolean oldIsRemoved = isRemoved;
 		isRemoved = newIsRemoved;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, VehiclefeaturemodelingPackage.VEHICLE_FEATURE__IS_REMOVED, oldIsRemoved, isRemoved));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isDesignVariabilityRationale: ");

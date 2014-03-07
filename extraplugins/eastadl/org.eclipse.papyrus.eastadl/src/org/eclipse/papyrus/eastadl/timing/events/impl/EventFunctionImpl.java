@@ -37,19 +37,21 @@ import org.eclipse.papyrus.eastadl.timing.impl.EventImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionImpl#getFunction <em>Function</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionImpl#getFunctionType <em>Function Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionImpl#getFunction_path <em>Function path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionImpl#getFunction <em>Function</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionImpl#getFunctionType <em>Function Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionImpl#getFunction_path <em>Function path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EventFunctionImpl extends EventImpl implements EventFunction {
+
 	/**
 	 * The cached value of the '{@link #getFunction() <em>Function</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFunction()
 	 * @generated
 	 * @ordered
@@ -60,6 +62,7 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	 * The cached value of the '{@link #getFunctionType() <em>Function Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFunctionType()
 	 * @generated
 	 * @ordered
@@ -70,6 +73,7 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	 * The cached value of the '{@link #getFunction_path() <em>Function path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFunction_path()
 	 * @generated
 	 * @ordered
@@ -79,6 +83,7 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EventFunctionImpl() {
@@ -88,6 +93,7 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionPrototype basicGetFunction() {
@@ -97,6 +103,7 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionType basicGetFunctionType() {
@@ -106,19 +113,22 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FUNCTION__FUNCTION:
-				if (resolve) return getFunction();
-				return basicGetFunction();
-			case EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE:
-				if (resolve) return getFunctionType();
-				return basicGetFunctionType();
-			case EventsPackage.EVENT_FUNCTION__FUNCTION_PATH:
-				return getFunction_path();
+		switch(featureID) {
+		case EventsPackage.EVENT_FUNCTION__FUNCTION:
+			if(resolve)
+				return getFunction();
+			return basicGetFunction();
+		case EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE:
+			if(resolve)
+				return getFunctionType();
+			return basicGetFunctionType();
+		case EventsPackage.EVENT_FUNCTION__FUNCTION_PATH:
+			return getFunction_path();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,17 +136,18 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FUNCTION__FUNCTION:
-				return function != null;
-			case EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE:
-				return functionType != null;
-			case EventsPackage.EVENT_FUNCTION__FUNCTION_PATH:
-				return function_path != null && !function_path.isEmpty();
+		switch(featureID) {
+		case EventsPackage.EVENT_FUNCTION__FUNCTION:
+			return function != null;
+		case EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE:
+			return functionType != null;
+		case EventsPackage.EVENT_FUNCTION__FUNCTION_PATH:
+			return function_path != null && !function_path.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -144,22 +155,23 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FUNCTION__FUNCTION:
-				setFunction((FunctionPrototype)newValue);
-				return;
-			case EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE:
-				setFunctionType((FunctionType)newValue);
-				return;
-			case EventsPackage.EVENT_FUNCTION__FUNCTION_PATH:
-				getFunction_path().clear();
-				getFunction_path().addAll((Collection<? extends FunctionPrototype>)newValue);
-				return;
+		switch(featureID) {
+		case EventsPackage.EVENT_FUNCTION__FUNCTION:
+			setFunction((FunctionPrototype)newValue);
+			return;
+		case EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE:
+			setFunctionType((FunctionType)newValue);
+			return;
+		case EventsPackage.EVENT_FUNCTION__FUNCTION_PATH:
+			getFunction_path().clear();
+			getFunction_path().addAll((Collection<? extends FunctionPrototype>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -167,6 +179,7 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,20 +190,21 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FUNCTION__FUNCTION:
-				setFunction((FunctionPrototype)null);
-				return;
-			case EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE:
-				setFunctionType((FunctionType)null);
-				return;
-			case EventsPackage.EVENT_FUNCTION__FUNCTION_PATH:
-				getFunction_path().clear();
-				return;
+		switch(featureID) {
+		case EventsPackage.EVENT_FUNCTION__FUNCTION:
+			setFunction((FunctionPrototype)null);
+			return;
+		case EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE:
+			setFunctionType((FunctionType)null);
+			return;
+		case EventsPackage.EVENT_FUNCTION__FUNCTION_PATH:
+			getFunction_path().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -198,14 +212,15 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionPrototype getFunction() {
-		if (function != null && function.eIsProxy()) {
+		if(function != null && function.eIsProxy()) {
 			InternalEObject oldFunction = (InternalEObject)function;
 			function = (FunctionPrototype)eResolveProxy(oldFunction);
-			if (function != oldFunction) {
-				if (eNotificationRequired())
+			if(function != oldFunction) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.EVENT_FUNCTION__FUNCTION, oldFunction, function));
 			}
 		}
@@ -215,14 +230,15 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionType getFunctionType() {
-		if (functionType != null && functionType.eIsProxy()) {
+		if(functionType != null && functionType.eIsProxy()) {
 			InternalEObject oldFunctionType = (InternalEObject)functionType;
 			functionType = (FunctionType)eResolveProxy(oldFunctionType);
-			if (functionType != oldFunctionType) {
-				if (eNotificationRequired())
+			if(functionType != oldFunctionType) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE, oldFunctionType, functionType));
 			}
 		}
@@ -232,34 +248,37 @@ public class EventFunctionImpl extends EventImpl implements EventFunction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFunction(FunctionPrototype newFunction) {
 		FunctionPrototype oldFunction = function;
 		function = newFunction;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT_FUNCTION__FUNCTION, oldFunction, function));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFunctionType(FunctionType newFunctionType) {
 		FunctionType oldFunctionType = functionType;
 		functionType = newFunctionType;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT_FUNCTION__FUNCTION_TYPE, oldFunctionType, functionType));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionPrototype> getFunction_path() {
-		if (function_path == null) {
+		if(function_path == null) {
 			function_path = new EObjectResolvingEList<FunctionPrototype>(FunctionPrototype.class, this, EventsPackage.EVENT_FUNCTION__FUNCTION_PATH);
 		}
 		return function_path;

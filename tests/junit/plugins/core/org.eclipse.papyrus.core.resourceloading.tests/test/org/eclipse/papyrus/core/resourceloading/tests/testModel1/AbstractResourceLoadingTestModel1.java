@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2013 Atos Origin, CEA, and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,9 @@
  *
  *****************************************************************************/
 package org.eclipse.papyrus.core.resourceloading.tests.testModel1;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import junit.framework.TestCase;
 
@@ -42,9 +45,9 @@ import org.junit.Before;
  * - Check that all the controlled resources are loaded
  * - Check that all the needed profiles (resource and pathmap) are loaded
  * - Check that all references to controlled resource are resolved
- * 
+ *
  * @author eperico
- * 
+ *
  */
 public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 
@@ -80,7 +83,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 
 	/**
 	 * Copy test model from the test plugin to the platform where the tests are executed
-	 * 
+	 *
 	 * @return the project in the runtime platform
 	 * @throws Exception
 	 */
@@ -128,7 +131,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 
 	/**
 	 * Gets the current resource loading strategy.
-	 * 
+	 *
 	 * @return the strategy
 	 */
 	public abstract int getStrategy();
@@ -291,7 +294,8 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		// Unload models
-		for(Resource r : modelSet.getResources()) {
+		List<Resource> resources = new LinkedList<Resource>(modelSet.getResources());
+		for(Resource r : resources) {
 			try {
 				r.unload();
 			} catch (Exception e) {
@@ -303,7 +307,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 
 	/**
 	 * Creates the folder name in the specified project
-	 * 
+	 *
 	 * @param project
 	 * @param name
 	 * @throws CoreException

@@ -22,17 +22,17 @@ import org.eclipse.papyrus.eastadl.structure.featuremodeling.FeaturemodelingPack
 
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature Tree Node</b></em>
- * '. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature Tree Node</b></em> '. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class FeatureTreeNodeImpl extends ContextImpl implements FeatureTreeNode {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FeatureTreeNodeImpl() {
@@ -41,6 +41,7 @@ public abstract class FeatureTreeNodeImpl extends ContextImpl implements Feature
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,17 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -35,12 +31,9 @@ import org.eclipse.papyrus.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageModelFactoryRegistry;
 import org.eclipse.papyrus.infra.core.extension.NotFoundException;
-import org.eclipse.papyrus.infra.core.extension.diagrameditor.PluggableEditorFactoryReader;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
@@ -58,6 +51,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
+
 //TODO: Refactor. Remove the diagram creation listener, and use a Dialog (Which is blocker) instead of a Shell
 public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
@@ -69,7 +63,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 	/**
 	 * Gets the selected editor.
-	 * 
+	 *
 	 * @return the selectedEditor
 	 */
 	protected Object getSelectedEditor() {
@@ -77,13 +71,8 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 	}
 
 	/**
-	 * This factory is used to know if represent a valid editor or not
-	 */
-	private PageModelFactoryRegistry pageFactory = null;
-
-	/**
 	 * Sets the selected editor
-	 * 
+	 *
 	 * @param selectedEditor
 	 *        the selectedEditor to set
 	 */
@@ -110,7 +99,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 	 * component using the component's <code>addDiagramCreateListener<code> method. When
 	 * the diagramCreate event occurs, that object's appropriate
 	 * method is invoked.
-	 * 
+	 *
 	 * @see DiagramCreateEvent
 	 */
 	public class DiagramCreateListener extends SelectionAdapter {
@@ -126,7 +115,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 		/**
 		 * {@inheritedDoc}.
-		 * 
+		 *
 		 * @param e
 		 *        the e
 		 */
@@ -162,7 +151,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 		/**
 		 * Instantiates a new diagram create listener.
-		 * 
+		 *
 		 * @param commandDescriptor
 		 *        the command descriptor
 		 * @param backboneContext
@@ -181,7 +170,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 		/**
 		 * Sets the container.
-		 * 
+		 *
 		 * @param container
 		 *        the new container
 		 */
@@ -195,7 +184,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 	/**
 	 * Instantiates a new editor look for diagram.
-	 * 
+	 *
 	 * @param editorFactoryRegistry
 	 *        the editor factory registry
 	 * @param amodel
@@ -238,45 +227,10 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		}
 
 		treeViewer.setLabelProvider(labelProvider);
-		// treeViewer.setContentProvider(new
-		// CustomAdapterFactoryContentProvider(adapterFactory));
-		// treeViewer.setContentProvider(new
-		// SemanticEMFContentProvider(amodel)); //This content provider will
-		// only display the selected element, instead of the root element
-		// FIXME:  Use a standard, non-deprecated content
-		treeViewer.setContentProvider(new MoDiscoContentProvider() {
-
-			@Override
-			public boolean hasChildren(Object element) {
-				return super.getChildren(element).length > 0;
-			}
-			/**
-			 * 
-			 * @see org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider#getChildren(java.lang.Object)
-			 *
-			 * @param parentElement
-			 * @return
-			 */
-			//in some case we return diagram twice!
-			//TODO the best correction we be able to manage applied facet, because if we get diagram twice it is probably because there are 2 facets with the same behavior applied
-			@Override
-			public Object[] getChildren(Object parentElement) {
-				List<Object> alreadyVisited = new ArrayList<Object>();
-				List<Object> returnedChildren = new ArrayList<Object>();
-				Object[] children = super.getChildren(parentElement);
-				for(Object current : children) {
-					if(current instanceof IAdaptable) {
-						EObject el = (EObject)((IAdaptable)current).getAdapter(EObject.class);
-						if(!alreadyVisited.contains(el)) {
-							returnedChildren.add(current);
-							alreadyVisited.add(el);
-						}
-					}
-				}
-				return returnedChildren.toArray();
-			}
-		});
-		// treeViewer.setInput(model.eResource());
+		//		treeViewer.setContentProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
+		//		treeViewer.setContentProvider(new SemanticEMFContentProvider(amodel)); //This content provider will only display the selected element, instead of the root element
+		treeViewer.setContentProvider(new MoDiscoContentProvider()); //FIXME: Use a standard, non-deprecated content provider.
+		//treeViewer.setInput(model.eResource());
 		treeViewer.setInput(registry);
 
 		// install diagramlist
@@ -290,7 +244,8 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		//we can't reuse the same instance of the label provider see bug 385599: [Hyperlink] We can't select the diagram/table for referencing them
 		diagramListTreeViewer.setLabelProvider(labelProvider);
 
-		diagramListTreeViewer.setContentProvider(new EditorListContentProvider(model, getPageModelFactoryRegistry()));
+
+		diagramListTreeViewer.setContentProvider(new EditorListContentProvider(model));
 		diagramListTreeViewer.setInput(""); //$NON-NLS-1$
 
 		// add listner on the new button to display menu for each diagram
@@ -319,10 +274,8 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				Iterator<?> iterator = iSelection.iterator();
 
 				final IPageManager pageManager;
-				TransactionalEditingDomain editingDomain;
 				try {
 					pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(model);
-					editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(model);
 				} catch (ServiceException ex) {
 					Activator.log.error(ex);
 					return;
@@ -340,15 +293,9 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 					return;
 				}
 
-				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain, "Delete diagrams") {
-
-					@Override
-					protected void doExecute() {
-						for(Object page : pagesToDelete) {
-							pageManager.removePage(page);
-						}
-					}
-				});
+				for(Object page : pagesToDelete) {
+					pageManager.closeAllOpenedPages(page);
+				}
 
 				//getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$
 				getModeFilteredTree().getViewer().refresh();
@@ -438,45 +385,14 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		if(!(object instanceof EObject)) {
 			return false;
 		}
-		EObject eobject = (EObject)object;
+
+		EObject eObject = (EObject)object;
+
 		try {
-			final IPageManager pageMng = ServiceUtilsForEObject.getInstance().getIPageManager(eobject);
-			if(pageMng.allPages().contains(eobject)) {
-				return true;
-			}
+			return ServiceUtilsForEObject.getInstance().getIPageMngr(eObject).allPages().contains(object);
 		} catch (ServiceException ex) {
-			//nothing to do
+			return false;
 		}
-
-		//if we are here, there are 2 cases : 
-		//1. the object is a valid editor but it is not in the page manager (imported file probably)
-		//2. or the object is not a valid editor
-		IPageModel pageModel = getPageModelFactoryRegistry().createIPageModel(eobject);
-		if(pageModel != null) {
-			pageModel = null;
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * 
-	 * @return
-	 *         returns the page model factory
-	 */
-	protected PageModelFactoryRegistry getPageModelFactoryRegistry() {
-		if(this.pageFactory == null) {
-			this.pageFactory = new PageModelFactoryRegistry();
-			final PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
-			ServicesRegistry reg = null;
-			try {
-				reg = ServiceUtilsForEObject.getInstance().getServiceRegistry(model);
-				editorReader.populate(pageFactory, reg);
-			} catch (ServiceException e) {
-				Activator.log.error(e);
-			}
-		}
-		return this.pageFactory;
 	}
 
 }

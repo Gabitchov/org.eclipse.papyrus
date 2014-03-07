@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
+@Deprecated
 public interface PageList extends EObject {
 
 	/**

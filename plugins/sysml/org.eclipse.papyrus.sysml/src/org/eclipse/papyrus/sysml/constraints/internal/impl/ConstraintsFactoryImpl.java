@@ -51,7 +51,7 @@ public class ConstraintsFactoryImpl extends EFactoryImpl implements ConstraintsF
 	 */
 	public static ConstraintsFactory init() {
 		try {
-			ConstraintsFactory theConstraintsFactory = (ConstraintsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints");
+			ConstraintsFactory theConstraintsFactory = (ConstraintsFactory)EPackage.Registry.INSTANCE.getEFactory(ConstraintsPackage.eNS_URI);
 			if(theConstraintsFactory != null) {
 				return theConstraintsFactory;
 			}

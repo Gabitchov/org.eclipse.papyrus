@@ -37,19 +37,21 @@ import org.eclipse.papyrus.eastadl.annex.needs.VehicleSystem;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.VehicleSystemImpl#getFulfills <em>Fulfills</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.VehicleSystemImpl#getHasAn <em>Has An</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.VehicleSystemImpl#getHas <em>Has</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.VehicleSystemImpl#getFulfills <em>Fulfills</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.VehicleSystemImpl#getHasAn <em>Has An</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.impl.VehicleSystemImpl#getHas <em>Has</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
+
 	/**
 	 * The cached value of the '{@link #getFulfills() <em>Fulfills</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFulfills()
 	 * @generated
 	 * @ordered
@@ -60,6 +62,7 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	 * The cached value of the '{@link #getHasAn() <em>Has An</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getHasAn()
 	 * @generated
 	 * @ordered
@@ -70,6 +73,7 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	 * The cached value of the '{@link #getHas() <em>Has</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getHas()
 	 * @generated
 	 * @ordered
@@ -79,6 +83,7 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected VehicleSystemImpl() {
@@ -88,6 +93,7 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Architecture basicGetHasAn() {
@@ -97,18 +103,20 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case NeedsPackage.VEHICLE_SYSTEM__FULFILLS:
-				return getFulfills();
-			case NeedsPackage.VEHICLE_SYSTEM__HAS_AN:
-				if (resolve) return getHasAn();
-				return basicGetHasAn();
-			case NeedsPackage.VEHICLE_SYSTEM__HAS:
-				return getHas();
+		switch(featureID) {
+		case NeedsPackage.VEHICLE_SYSTEM__FULFILLS:
+			return getFulfills();
+		case NeedsPackage.VEHICLE_SYSTEM__HAS_AN:
+			if(resolve)
+				return getHasAn();
+			return basicGetHasAn();
+		case NeedsPackage.VEHICLE_SYSTEM__HAS:
+			return getHas();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,17 +124,18 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case NeedsPackage.VEHICLE_SYSTEM__FULFILLS:
-				return fulfills != null && !fulfills.isEmpty();
-			case NeedsPackage.VEHICLE_SYSTEM__HAS_AN:
-				return hasAn != null;
-			case NeedsPackage.VEHICLE_SYSTEM__HAS:
-				return has != null && !has.isEmpty();
+		switch(featureID) {
+		case NeedsPackage.VEHICLE_SYSTEM__FULFILLS:
+			return fulfills != null && !fulfills.isEmpty();
+		case NeedsPackage.VEHICLE_SYSTEM__HAS_AN:
+			return hasAn != null;
+		case NeedsPackage.VEHICLE_SYSTEM__HAS:
+			return has != null && !has.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -134,23 +143,24 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case NeedsPackage.VEHICLE_SYSTEM__FULFILLS:
-				getFulfills().clear();
-				getFulfills().addAll((Collection<? extends Mission>)newValue);
-				return;
-			case NeedsPackage.VEHICLE_SYSTEM__HAS_AN:
-				setHasAn((Architecture)newValue);
-				return;
-			case NeedsPackage.VEHICLE_SYSTEM__HAS:
-				getHas().clear();
-				getHas().addAll((Collection<? extends Stakeholder>)newValue);
-				return;
+		switch(featureID) {
+		case NeedsPackage.VEHICLE_SYSTEM__FULFILLS:
+			getFulfills().clear();
+			getFulfills().addAll((Collection<? extends Mission>)newValue);
+			return;
+		case NeedsPackage.VEHICLE_SYSTEM__HAS_AN:
+			setHasAn((Architecture)newValue);
+			return;
+		case NeedsPackage.VEHICLE_SYSTEM__HAS:
+			getHas().clear();
+			getHas().addAll((Collection<? extends Stakeholder>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -158,6 +168,7 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,20 +179,21 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case NeedsPackage.VEHICLE_SYSTEM__FULFILLS:
-				getFulfills().clear();
-				return;
-			case NeedsPackage.VEHICLE_SYSTEM__HAS_AN:
-				setHasAn((Architecture)null);
-				return;
-			case NeedsPackage.VEHICLE_SYSTEM__HAS:
-				getHas().clear();
-				return;
+		switch(featureID) {
+		case NeedsPackage.VEHICLE_SYSTEM__FULFILLS:
+			getFulfills().clear();
+			return;
+		case NeedsPackage.VEHICLE_SYSTEM__HAS_AN:
+			setHasAn((Architecture)null);
+			return;
+		case NeedsPackage.VEHICLE_SYSTEM__HAS:
+			getHas().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -189,10 +201,11 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Mission> getFulfills() {
-		if (fulfills == null) {
+		if(fulfills == null) {
 			fulfills = new EObjectResolvingEList<Mission>(Mission.class, this, NeedsPackage.VEHICLE_SYSTEM__FULFILLS);
 		}
 		return fulfills;
@@ -201,10 +214,11 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Stakeholder> getHas() {
-		if (has == null) {
+		if(has == null) {
 			has = new EObjectResolvingEList<Stakeholder>(Stakeholder.class, this, NeedsPackage.VEHICLE_SYSTEM__HAS);
 		}
 		return has;
@@ -213,14 +227,15 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Architecture getHasAn() {
-		if (hasAn != null && hasAn.eIsProxy()) {
+		if(hasAn != null && hasAn.eIsProxy()) {
 			InternalEObject oldHasAn = (InternalEObject)hasAn;
 			hasAn = (Architecture)eResolveProxy(oldHasAn);
-			if (hasAn != oldHasAn) {
-				if (eNotificationRequired())
+			if(hasAn != oldHasAn) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NeedsPackage.VEHICLE_SYSTEM__HAS_AN, oldHasAn, hasAn));
 			}
 		}
@@ -230,12 +245,13 @@ public class VehicleSystemImpl extends ConceptImpl implements VehicleSystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setHasAn(Architecture newHasAn) {
 		Architecture oldHasAn = hasAn;
 		hasAn = newHasAn;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, NeedsPackage.VEHICLE_SYSTEM__HAS_AN, oldHasAn, hasAn));
 	}
 

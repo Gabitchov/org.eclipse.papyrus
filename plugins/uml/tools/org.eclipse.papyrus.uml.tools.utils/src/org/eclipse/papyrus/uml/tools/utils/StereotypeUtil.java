@@ -63,7 +63,7 @@ public class StereotypeUtil {
 
 	/**
 	 * returns the list of all super stereotypes for the specified stereotype
-	 * 
+	 *
 	 * @param stereotype
 	 *        the stereotype for which super-stereotypes are looked for.
 	 * @return the list of all stereotypes from which the specified stereotype inherits
@@ -81,10 +81,10 @@ public class StereotypeUtil {
 
 	/**
 	 * Parse the stereotype image and select those that have an "icon" kind (EAnnotation).
-	 * 
+	 *
 	 * @param stereotype
 	 *        to parse
-	 * 
+	 *
 	 * @return a EList of {@link Image}
 	 */
 	public static EList<Image> getIcons(Stereotype stereotype) {
@@ -104,10 +104,10 @@ public class StereotypeUtil {
 
 	/**
 	 * Returns the list of names (not qualified) of properties to display.
-	 * 
+	 *
 	 * @param stereotype
 	 * @param stPropList
-	 * 
+	 *
 	 * @return
 	 */
 	private static List<String> getStereoPropertiesToDisplay(org.eclipse.uml2.uml.Stereotype stereotype, List<String> stPropList) {
@@ -125,11 +125,11 @@ public class StereotypeUtil {
 
 	/**
 	 * return string that contains value of properties of applied stereotype
-	 * 
+	 *
 	 * @param stereotypesPropertiesToDisplay
 	 *        list of properties of stereotype to display grammar=
 	 *        {<B>stereotypequalifiedName</B>'.'<B>propertyName</B>','}*
-	 * 
+	 *
 	 * @return a string withe the following grammar grammar=
 	 *         {'\u00AB'<B>StereotypeName</B>'\u00BB''#'
 	 *         {<B>propertyName</B>'='<B>propertyValue</B>'|'}*';'}*
@@ -186,7 +186,7 @@ public class StereotypeUtil {
 
 	/**
 	 * Computes the display of a property value.
-	 * 
+	 *
 	 * @param stereotype
 	 *        the stereotype that contains the property to be displayed
 	 * @param property
@@ -229,7 +229,7 @@ public class StereotypeUtil {
 
 	/**
 	 * Computes the display of a property value.
-	 * 
+	 *
 	 * @param stereotype
 	 *        the stereotype that contains the property to be displayed
 	 * @param property
@@ -269,7 +269,7 @@ public class StereotypeUtil {
 
 	/**
 	 * Retrieves a property of the specified stereotype, given its name
-	 * 
+	 *
 	 * @param stereotype
 	 *        the stereotype owner of the property
 	 * @param propertyName
@@ -293,11 +293,11 @@ public class StereotypeUtil {
 
 	/**
 	 * return string that contains value of properties of applied stereotype
-	 * 
+	 *
 	 * @param stereotypesPropertiesToDisplay
 	 *        list of properties of stereotype to display grammar=
 	 *        {<B>stereotypequalifiedName</B>'.'<B>propertyName</B>','}*
-	 * 
+	 *
 	 * @return a string with the following grammar grammar=
 	 *         {(<B>propertyName</B>'='<B>propertyValue</B>',')*
 	 *         <B>propertyName</B>'='<B>propertyValue</B>'}
@@ -402,7 +402,7 @@ public class StereotypeUtil {
 
 	/**
 	 * return the string that represents the value of property when its type is an Enumeration
-	 * 
+	 *
 	 * @param property
 	 *        the property to display
 	 * @param stereotype
@@ -420,7 +420,7 @@ public class StereotypeUtil {
 		String out = "";
 		if((property.getUpper() == 1) && (umlElement.getValue(stereotype, property.getName()) != null)) {
 			if((property.getLower() != 0) || umlElement.getValue(stereotype, property.getName()) != null) {
-				if(property.isSetDefault() || umlElement.getValue(stereotype, property.getName()) != null) {
+				if(property.getDefaultValue() != null || umlElement.getValue(stereotype, property.getName()) != null) {
 					Object val = umlElement.getValue(stereotype, property.getName());
 					if(val instanceof EnumerationLiteral) {
 						out = property.getName() + EQUAL_SEPARATOR + ((EnumerationLiteral)val).getLabel() + PROPERTY_VALUE_SEPARATOR;
@@ -444,7 +444,7 @@ public class StereotypeUtil {
 
 	/**
 	 * return the string that represents the value of property when its type is a Metaclass
-	 * 
+	 *
 	 * @param property
 	 *        the property to display
 	 * @param stereotype
@@ -496,7 +496,7 @@ public class StereotypeUtil {
 
 	/**
 	 * return the string that represents the value of property when its type is a stereotype
-	 * 
+	 *
 	 * @param property
 	 *        the property to display
 	 * @param stereotype
@@ -553,7 +553,7 @@ public class StereotypeUtil {
 
 	/**
 	 * return the string that represents the value of property
-	 * 
+	 *
 	 * @param property
 	 *        the property to display
 	 * @param stereotype
@@ -570,7 +570,7 @@ public class StereotypeUtil {
 	private static String getPropertyValue(Property property, Stereotype stereotype, Element umlElement, final String EQUAL_SEPARATOR, final String PROPERTY_VALUE_SEPARATOR, boolean withDelimitator) {
 		String out = "";
 		if((property.getLower() != 0) || umlElement.getValue(stereotype, property.getName()) != null) {
-			if(property.isSetDefault() || umlElement.getValue(stereotype, property.getName()) != null) {
+			if(property.getDefaultValue() != null || umlElement.getValue(stereotype, property.getName()) != null) {
 				if(withDelimitator) {
 					String value = "" + umlElement.getValue(stereotype, property.getName());
 					out = property.getName() + EQUAL_SEPARATOR + value + PROPERTY_VALUE_SEPARATOR;
@@ -610,10 +610,10 @@ public class StereotypeUtil {
 
 	/**
 	 * Parse the stereotype image and select those that have an "shape" kind (EAnnotation).
-	 * 
+	 *
 	 * @param stereotype
 	 *        to parse
-	 * 
+	 *
 	 * @return a EList of {@link Image}
 	 */
 	public static EList<Image> getShapes(Stereotype stereotype) {
@@ -632,7 +632,7 @@ public class StereotypeUtil {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param stereotype
 	 *        a stereotype
 	 * @return
@@ -649,7 +649,7 @@ public class StereotypeUtil {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param stereotype
 	 *        a stereotype
 	 * @return
@@ -666,7 +666,7 @@ public class StereotypeUtil {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param property
 	 *        a property
 	 * @return
@@ -677,18 +677,18 @@ public class StereotypeUtil {
 		if(association instanceof Extension) {
 			Extension ext = (Extension)association;
 			Class metaClass = ext.getMetaclass();
-			if(property.getName().equals(BASE_PREFIX + metaClass.getName())) { //$NON-NLS-1$
+			if(property.getName().equals(BASE_PREFIX + metaClass.getName())) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * This method verifies if a stereotype is applied on an UML element
-	 * 
+	 *
 	 * @param element
 	 *        A UML element
 	 * @param str_name
@@ -700,7 +700,7 @@ public class StereotypeUtil {
 
 	/**
 	 * This method verifies if a stereotype is applied on an UML element
-	 * 
+	 *
 	 * @param element
 	 *        A UML element
 	 * @param the
@@ -718,21 +718,21 @@ public class StereotypeUtil {
 
 	/**
 	 * This method verifies if a stereotype is applicable on an UML element
-	 * 
+	 *
 	 * @param element
 	 *        A UML element
 	 * @param the
 	 *        class of an element of a static profile
 	 */
 	public static boolean isApplicable(Element element, java.lang.Class<? extends EObject> clazz) {
-		return getStereoName(element,  clazz) != null;
+		return getStereoName(element, clazz) != null;
 	}
-	
+
 
 	/**
 	 * Apply a stereotype. The stereotype is not applied, if already a sub-stereotype is applied.
 	 * If you want to apply the new stereotype also in this case, use applyExact instead.
-	 * 
+	 *
 	 * @param element
 	 *        the element
 	 * @param stereo_name
@@ -756,7 +756,7 @@ public class StereotypeUtil {
 
 	/**
 	 * unapply a stereotype when the name of the stereotype is given.
-	 * 
+	 *
 	 * @param element
 	 *        the element
 	 * @param stereo_name
@@ -776,7 +776,7 @@ public class StereotypeUtil {
 	 * Apply a stereotype and return the stereotype application (if successful).
 	 * The stereotype is not applied, if already a sub-stereotype is applied.
 	 * If you want to apply the new stereotype also in this case, use applyExact instead.
-	 * 
+	 *
 	 * @param element
 	 *        the element
 	 * @param stereo_name
@@ -790,13 +790,13 @@ public class StereotypeUtil {
 		return null;
 	}
 
-	
+
 	/**
 	 * Apply a stereotype.
 	 * Caveat: the function relies on the correspondence between the fully qualified
 	 * stereotype name and the package name within the static profile. The latter may
 	 * use a different prefix (as it is the case with the MARTE analysis & design profile).
-	 * 
+	 *
 	 * @param element
 	 *        the element
 	 * @param class a class of a static profile
@@ -811,7 +811,7 @@ public class StereotypeUtil {
 	 * Caveat: the function relies on the correspondence between the fully qualified
 	 * stereotype name and the package name within the static profile. The latter may
 	 * use a different prefix (as it is the case with the MARTE analysis & design profile).
-	 * 
+	 *
 	 * @param element
 	 *        the element
 	 * @param stereo_name
@@ -827,15 +827,15 @@ public class StereotypeUtil {
 	 * Get the stereotype-name that may relate to the name of an interface within a static profile.
 	 * Note that the class name within a static profile might have a prefix, such as org.eclipse.papyrus. This
 	 * functions tries to remove prefixes iteratively, if a stereotype is not applicable.
-	 *
+	 * 
 	 * @param clazz
 	 * @return
 	 */
 	public static String getStereoName(Element element, java.lang.Class<? extends EObject> clazz) {
 		String name = clazz.getName().replace(".", "::"); //$NON-NLS-1$ //$NON-NLS-2$;
-		while (element.getApplicableStereotype(name) == null) {
+		while(element.getApplicableStereotype(name) == null) {
 			int index = name.indexOf("::"); //$NON-NLS-1$
-			if (index == -1) {
+			if(index == -1) {
 				return null;
 			}
 			name = name.substring(index + 2);

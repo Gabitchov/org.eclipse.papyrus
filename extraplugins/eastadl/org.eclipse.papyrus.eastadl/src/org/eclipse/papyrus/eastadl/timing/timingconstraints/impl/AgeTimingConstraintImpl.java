@@ -26,13 +26,15 @@ import org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPac
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class AgeTimingConstraintImpl extends DelayConstraintImpl implements AgeTimingConstraint {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AgeTimingConstraintImpl() {
@@ -42,6 +44,7 @@ public class AgeTimingConstraintImpl extends DelayConstraintImpl implements AgeT
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

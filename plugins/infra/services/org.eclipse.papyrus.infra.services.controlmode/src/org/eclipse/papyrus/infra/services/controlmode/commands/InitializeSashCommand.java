@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 Atos.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,9 +34,9 @@ import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParamete
 /**
  * Initialize the di resource with all necessary informations
  * ex : Page Ref
- * 
+ *
  * @author adaussy
- * 
+ *
  */
 public class InitializeSashCommand extends AbstractControlCommand {
 
@@ -64,7 +64,7 @@ public class InitializeSashCommand extends AbstractControlCommand {
 			e.printStackTrace();
 			return CommandResult.newErrorCommandResult(e);
 		}
-		return  CommandResult.newOKCommandResult();
+		return CommandResult.newOKCommandResult();
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class InitializeSashCommand extends AbstractControlCommand {
 
 	/**
 	 * Create a new {@link SashModel} and add page ref for each diagrams and tables being controlled
-	 * 
+	 *
 	 * @param openables
 	 * @return
 	 * @throws SashEditorException
@@ -101,7 +101,7 @@ public class InitializeSashCommand extends AbstractControlCommand {
 		for(EObject openable : openables) {
 			PageRef pageRef = DiUtils.getPageRef(diResource, openable);
 			if(pageRef != null) {
-				windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
+				//windowsMngr.getPageList().addPage(pageRef.getPageIdentifier()); //The page list is not used anymore
 				DiUtils.addPageToTabFolder(windowsMngr, pageRef);
 			}
 		}

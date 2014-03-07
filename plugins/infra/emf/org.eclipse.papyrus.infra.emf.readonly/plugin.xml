@@ -19,6 +19,9 @@
             id="org.eclipse.papyrus.infra.emf.readonly.EMFReadOnlyHandler"
             priority="5">
       </readOnlyHandler>
+      <readOnlyHandler
+            class="org.eclipse.papyrus.infra.emf.readonly.SashModelReadOnlyHandler"
+            priority="20"></readOnlyHandler>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">

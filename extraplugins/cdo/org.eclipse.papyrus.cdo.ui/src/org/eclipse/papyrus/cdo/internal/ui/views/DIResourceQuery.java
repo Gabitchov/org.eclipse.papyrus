@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.views;
 
@@ -71,8 +73,12 @@ public class DIResourceQuery {
 		super();
 
 		this.viewer = viewer;
+
+		// Query for all SashWindowsMngr instances (legacy DI models, definitely accurate) and
+		// all resources named *.di that are empty (new-style DI models)
 		this.query = view.createQuery("ocl", //$NON-NLS-1$
-			"SashWindowsMngr.allInstances()->collect(oclAsType(ecore::EObject).eResource())", //$NON-NLS-1$
+			"SashWindowsMngr.allInstances()->collect(oclAsType(ecore::EObject).eResource()).oclAsType(eresource::CDOResource)->union(" + //$NON-NLS-1$
+			"eresource::CDOResource.allInstances()->select(uRI.toString().endsWith('.di') and contents->isEmpty()))", //$NON-NLS-1$
 			DiPackage.Literals.SASH_MODEL);
 
 		view.addListener(cdoViewListener);

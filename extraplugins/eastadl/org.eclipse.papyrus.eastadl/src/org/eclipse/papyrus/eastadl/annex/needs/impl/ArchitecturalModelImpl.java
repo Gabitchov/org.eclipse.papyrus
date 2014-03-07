@@ -26,13 +26,15 @@ import org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ArchitecturalModelImpl extends ConceptImpl implements ArchitecturalModel {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ArchitecturalModelImpl() {
@@ -42,6 +44,7 @@ public class ArchitecturalModelImpl extends ConceptImpl implements Architectural
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

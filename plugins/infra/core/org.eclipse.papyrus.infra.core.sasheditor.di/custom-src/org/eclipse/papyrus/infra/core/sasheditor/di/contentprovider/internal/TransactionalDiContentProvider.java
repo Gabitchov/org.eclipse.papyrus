@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
@@ -8,6 +8,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.Activator;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.TransactionHelper;
 
 
 /**
@@ -52,19 +54,19 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param page
 	 * 
 	 */
+	@Override
 	public void addPage(final Object page) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		try {
+			TransactionHelper.run(getTransactionalEditingDomain(), new Runnable() {
 
-		RecordingCommand command = new RecordingCommand(editingDomain, "Open page") {
-
-			@Override
-			protected void doExecute() {
-				diContentProvider.addPage(page);
-
-			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+				@Override
+				public void run() {
+					diContentProvider.addPage(page);
+				}
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**
@@ -73,19 +75,19 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param index
 	 * 
 	 */
+	@Override
 	public void addPage(final Object page, final int index) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		try {
+			TransactionHelper.run(getTransactionalEditingDomain(), new Runnable() {
 
-		RecordingCommand command = new RecordingCommand(editingDomain, "Open page") {
-
-			@Override
-			protected void doExecute() {
-				diContentProvider.addPage(page, index);
-
-			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+				@Override
+				public void run() {
+					diContentProvider.addPage(page, index);
+				}
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**
@@ -94,6 +96,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @return
 	 * 
 	 */
+	@Override
 	public IAbstractPanelModel createChildSashModel(final Object root) {
 		return diContentProvider.createChildSashModel(root);
 	}
@@ -107,19 +110,19 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param side
 	 * 
 	 */
+	@Override
 	public void createFolder(final ITabFolderModel tabFolder, final int tabIndex, final ITabFolderModel targetFolder, final int side) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		try {
+			TransactionHelper.run(getTransactionalEditingDomain(), new Runnable() {
 
-		RecordingCommand command = new RecordingCommand(editingDomain, "Create folder") {
-
-			@Override
-			protected void doExecute() {
-				diContentProvider.createFolder(tabFolder, tabIndex, targetFolder, side);
-
-			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+				@Override
+				public void run() {
+					diContentProvider.createFolder(tabFolder, tabIndex, targetFolder, side);
+				}
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**
@@ -129,19 +132,8 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * 
 	 * @param rawModel
 	 */
+	@Override
 	public void setCurrentFolder(final Object rawModel) {
-		//		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
-
-		//		RecordingCommand command = new RecordingCommand(editingDomain) {
-		//
-		//			@Override
-		//			protected void doExecute() {
-		//				diContentProvider.setCurrentFolder(rawModel);
-		//
-		//			}
-		//		};
-
-		//		editingDomain.getCommandStack().execute(command);
 		diContentProvider.setCurrentFolder(rawModel);
 	}
 
@@ -150,6 +142,7 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @return
 	 * 
 	 */
+	@Override
 	public Object getRootModel() {
 		return diContentProvider.getRootModel();
 	}
@@ -162,19 +155,19 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param newIndex
 	 * 
 	 */
+	@Override
 	public void movePage(final ITabFolderModel folderModel, final int oldIndex, final int newIndex) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		try {
+			TransactionHelper.run(getTransactionalEditingDomain(), new Runnable() {
 
-		RecordingCommand command = new RecordingCommand(editingDomain, "Move page") {
-
-			@Override
-			protected void doExecute() {
-				diContentProvider.movePage(folderModel, oldIndex, newIndex);
-
-			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+				@Override
+				public void run() {
+					diContentProvider.movePage(folderModel, oldIndex, newIndex);
+				}
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**
@@ -186,19 +179,19 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param targetIndex
 	 * 
 	 */
+	@Override
 	public void movePage(final ITabFolderModel srcFolderModel, final int sourceIndex, final ITabFolderModel targetFolderModel, final int targetIndex) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		try {
+			TransactionHelper.run(getTransactionalEditingDomain(), new Runnable() {
 
-		RecordingCommand command = new RecordingCommand(editingDomain, "Move page") {
-
-			@Override
-			protected void doExecute() {
-				diContentProvider.movePage(srcFolderModel, sourceIndex, targetFolderModel, targetIndex);
-
-			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+				@Override
+				public void run() {
+					diContentProvider.movePage(srcFolderModel, sourceIndex, targetFolderModel, targetIndex);
+				}
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**
@@ -206,19 +199,19 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param index
 	 * 
 	 */
+	@Override
 	public void removePage(final int index) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		try {
+			TransactionHelper.run(getTransactionalEditingDomain(), new Runnable() {
 
-		RecordingCommand command = new RecordingCommand(editingDomain, "Close page") {
-
-			@Override
-			protected void doExecute() {
-				diContentProvider.removePage(index);
-
-			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+				@Override
+				public void run() {
+					diContentProvider.removePage(index);
+				}
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**
@@ -226,19 +219,19 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param page
 	 * 
 	 */
+	@Override
 	public void removePage(final Object page) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		try {
+			TransactionHelper.run(getTransactionalEditingDomain(), new Runnable() {
 
-		RecordingCommand command = new RecordingCommand(editingDomain, "Close page") {
-
-			@Override
-			protected void doExecute() {
-				diContentProvider.removePage(page);
-
-			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+				@Override
+				public void run() {
+					diContentProvider.removePage(page);
+				}
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 	/**
@@ -248,19 +241,19 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 	 * @param tabIndex
 	 * 
 	 */
+	@Override
 	public void removePage(final ITabFolderModel parentFolder, final int tabIndex) {
-		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+		try {
+			TransactionHelper.run(getTransactionalEditingDomain(), new Runnable() {
 
-		RecordingCommand command = new RecordingCommand(editingDomain, "Close page") {
-
-			@Override
-			protected void doExecute() {
-				diContentProvider.removePage(parentFolder, tabIndex);
-
-			}
-		};
-
-		editingDomain.getCommandStack().execute(command);
+				@Override
+				public void run() {
+					diContentProvider.removePage(parentFolder, tabIndex);
+				}
+			});
+		} catch (Exception ex) {
+			Activator.log.error(ex);
+		}
 	}
 
 }

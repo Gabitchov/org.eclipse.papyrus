@@ -8,7 +8,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
@@ -41,6 +40,7 @@ public abstract class TestNewModelWizardBase extends TestCase {
 	protected IWorkbenchWizard initWizardDialog(final IWorkbenchWizard wizard) {
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				wizard.init(getWorkbench(), getSelection());
 				WizardDialog dialog = new WizardDialog(getShell(), wizard);
@@ -61,7 +61,7 @@ public abstract class TestNewModelWizardBase extends TestCase {
 		return Activator.getDefault().getWorkbench();
 	}
 
-	protected void testOrderOfPages(IWorkbenchWizard wizard, Class[] expectedPages) {
+	protected void testOrderOfPages(IWorkbenchWizard wizard, Class<?>[] expectedPages) {
 		IWizardPage next = wizard.getPages()[0];
 		for(int i = 0; i < expectedPages.length; i++) {
 			String isNullMessageFormat = "page %s expected, but actual is: null";
@@ -76,7 +76,7 @@ public abstract class TestNewModelWizardBase extends TestCase {
 
 	}
 
-	protected void testPageInstanceOf(IWizardPage next, Class expectedClass, int index) {
+	protected void testPageInstanceOf(IWizardPage next, Class<?> expectedClass, int index) {
 		String wrongClassFormat = "page %s expected to be SelectRootElementPage, but actual is: %s";
 		assertTrue(String.format(wrongClassFormat, index, next.getClass()), expectedClass.isInstance(next));
 	}

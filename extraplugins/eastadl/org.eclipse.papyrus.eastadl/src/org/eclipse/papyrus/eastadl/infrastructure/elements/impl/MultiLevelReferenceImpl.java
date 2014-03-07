@@ -32,12 +32,12 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.MultiLevelReferenceImpl#getBase_Dependency <em>Base Dependency</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.MultiLevelReferenceImpl#getReferring <em>Referring</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.MultiLevelReferenceImpl#getReference <em>Reference</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.MultiLevelReferenceImpl#getBase_Dependency <em>Base Dependency</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.MultiLevelReferenceImpl#getReferring <em>Referring</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.infrastructure.elements.impl.MultiLevelReferenceImpl#getReference <em>Reference</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MultiLevelReferenceImpl extends RelationshipImpl implements MultiLevelReference {
@@ -46,13 +46,16 @@ public class MultiLevelReferenceImpl extends RelationshipImpl implements MultiLe
 	 * The cached value of the '{@link #getBase_Dependency() <em>Base Dependency</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Dependency()
 	 * @generated
 	 * @ordered
 	 */
 	protected Dependency base_Dependency;
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MultiLevelReferenceImpl() {
@@ -95,57 +98,64 @@ public class MultiLevelReferenceImpl extends RelationshipImpl implements MultiLe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY:
-				if (resolve) return getBase_Dependency();
-				return basicGetBase_Dependency();
-			case ElementsPackage.MULTI_LEVEL_REFERENCE__REFERRING:
-				if (resolve) return getReferring();
-				return basicGetReferring();
-			case ElementsPackage.MULTI_LEVEL_REFERENCE__REFERENCE:
-				if (resolve) return getReference();
-				return basicGetReference();
+		switch(featureID) {
+		case ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY:
+			if(resolve)
+				return getBase_Dependency();
+			return basicGetBase_Dependency();
+		case ElementsPackage.MULTI_LEVEL_REFERENCE__REFERRING:
+			if(resolve)
+				return getReferring();
+			return basicGetReferring();
+		case ElementsPackage.MULTI_LEVEL_REFERENCE__REFERENCE:
+			if(resolve)
+				return getReference();
+			return basicGetReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY:
-				return base_Dependency != null;
-			case ElementsPackage.MULTI_LEVEL_REFERENCE__REFERRING:
-				return basicGetReferring() != null;
-			case ElementsPackage.MULTI_LEVEL_REFERENCE__REFERENCE:
-				return basicGetReference() != null;
+		switch(featureID) {
+		case ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY:
+			return base_Dependency != null;
+		case ElementsPackage.MULTI_LEVEL_REFERENCE__REFERRING:
+			return basicGetReferring() != null;
+		case ElementsPackage.MULTI_LEVEL_REFERENCE__REFERENCE:
+			return basicGetReference() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY:
-				setBase_Dependency((Dependency)newValue);
-				return;
+		switch(featureID) {
+		case ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY:
+			setBase_Dependency((Dependency)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -156,14 +166,15 @@ public class MultiLevelReferenceImpl extends RelationshipImpl implements MultiLe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Dependency getBase_Dependency() {
-		if (base_Dependency != null && base_Dependency.eIsProxy()) {
+		if(base_Dependency != null && base_Dependency.eIsProxy()) {
 			InternalEObject oldBase_Dependency = (InternalEObject)base_Dependency;
 			base_Dependency = (Dependency)eResolveProxy(oldBase_Dependency);
-			if (base_Dependency != oldBase_Dependency) {
-				if (eNotificationRequired())
+			if(base_Dependency != oldBase_Dependency) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 			}
 		}
@@ -173,6 +184,7 @@ public class MultiLevelReferenceImpl extends RelationshipImpl implements MultiLe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Dependency basicGetBase_Dependency() {
@@ -182,31 +194,34 @@ public class MultiLevelReferenceImpl extends RelationshipImpl implements MultiLe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Dependency(Dependency newBase_Dependency) {
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY:
-				setBase_Dependency((Dependency)null);
-				return;
+		switch(featureID) {
+		case ElementsPackage.MULTI_LEVEL_REFERENCE__BASE_DEPENDENCY:
+			setBase_Dependency((Dependency)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAElement getReference() {
@@ -216,6 +231,7 @@ public class MultiLevelReferenceImpl extends RelationshipImpl implements MultiLe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAElement getReferring() {

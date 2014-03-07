@@ -20,12 +20,13 @@ package org.eclipse.papyrus.eastadl.annex.needs;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Architectural Model</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * A view may consist of one or more architectural models. Each such architectural model is developed using the methods established by its associated architectural viewpoint. An architectural model may participate in more than one view. [IEEE 1471]
+ * A view may consist of one or more architectural models. Each such architectural model is developed using the methods established by its associated
+ * architectural viewpoint. An architectural model may participate in more than one view. [IEEE 1471]
  * <!-- end-model-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage#getArchitecturalModel()
  * @model
  * @generated

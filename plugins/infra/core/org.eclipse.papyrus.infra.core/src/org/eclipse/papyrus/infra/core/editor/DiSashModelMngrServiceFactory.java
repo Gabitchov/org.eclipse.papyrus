@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.eclipse.papyrus.infra.core.editor;
 
@@ -9,7 +9,7 @@ import org.eclipse.papyrus.infra.core.editorsfactory.PageModelFactoryRegistry;
 import org.eclipse.papyrus.infra.core.extension.diagrameditor.PluggableEditorFactoryReader;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.TransactionalDiSashModelMngr;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngr;
 import org.eclipse.papyrus.infra.core.services.IServiceFactory;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -26,7 +26,7 @@ public class DiSashModelMngrServiceFactory implements IServiceFactory {
 
 	private SashModel sashModel;
 
-	private TransactionalDiSashModelMngr sashModelMngr;
+	private DiSashModelMngr sashModelMngr;
 
 	private ServicesRegistry servicesRegistry;
 
@@ -36,6 +36,7 @@ public class DiSashModelMngrServiceFactory implements IServiceFactory {
 	 * @param servicesRegistry
 	 * @throws ServiceException
 	 */
+	@Override
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 
 		this.servicesRegistry = servicesRegistry;
@@ -52,6 +53,7 @@ public class DiSashModelMngrServiceFactory implements IServiceFactory {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void startService() throws ServiceException {
 
 		// Read declared editors
@@ -59,11 +61,12 @@ public class DiSashModelMngrServiceFactory implements IServiceFactory {
 		PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(Activator.PLUGIN_ID);
 		editorReader.populate(pageModelRegistry, servicesRegistry);
 
-		if(sashModel.getResource() == null)
+		if(sashModel.getResource() == null) {
 			throw new ServiceException("Can't start " + this.getClass().getSimpleName() + "'. Required model (SashModel) should be loaded prior starting the service.");
+		}
 
 		// create the service
-		sashModelMngr = new TransactionalDiSashModelMngr(pageModelRegistry, sashModel.getResource(), transactionalEditingDomain);
+		sashModelMngr = new DiSashModelMngr(pageModelRegistry, sashModel.getResource());
 
 	}
 
@@ -72,6 +75,7 @@ public class DiSashModelMngrServiceFactory implements IServiceFactory {
 	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void disposeService() throws ServiceException {
 	}
 
@@ -81,6 +85,7 @@ public class DiSashModelMngrServiceFactory implements IServiceFactory {
 	 * @return
 	 * @throws ServiceException
 	 */
+	@Override
 	public Object createServiceInstance() throws ServiceException {
 
 		// Start locally the service if needed.

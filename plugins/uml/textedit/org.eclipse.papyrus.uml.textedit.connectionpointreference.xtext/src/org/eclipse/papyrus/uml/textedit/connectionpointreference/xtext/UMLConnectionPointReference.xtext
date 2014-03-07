@@ -14,7 +14,7 @@
 
 grammar org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference with org.eclipse.papyrus.uml.alf.Common
 
-import "http://www.eclipse.org/uml2/4.0.0/UML" as uml
+import "http://www.eclipse.org/uml2/5.0.0/UML" as uml
 
 generate uMLConnectionPointReference "http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference"
 

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.eastadl.dependability.safetycase.*;
 import org.eclipse.papyrus.eastadl.dependability.safetycase.Claim;
 import org.eclipse.papyrus.eastadl.dependability.safetycase.Ground;
 import org.eclipse.papyrus.eastadl.dependability.safetycase.LifecycleStageKind;
@@ -34,12 +35,15 @@ import org.eclipse.papyrus.eastadl.dependability.safetycase.Warrant;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SafetycaseFactoryImpl extends EFactoryImpl implements SafetycaseFactory {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -52,16 +56,16 @@ public class SafetycaseFactoryImpl extends EFactoryImpl implements SafetycaseFac
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static SafetycaseFactory init() {
 		try {
 			SafetycaseFactory theSafetycaseFactory = (SafetycaseFactory)EPackage.Registry.INSTANCE.getEFactory(SafetycasePackage.eNS_URI);
-			if (theSafetycaseFactory != null) {
+			if(theSafetycaseFactory != null) {
 				return theSafetycaseFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new SafetycaseFactoryImpl();
@@ -71,6 +75,7 @@ public class SafetycaseFactoryImpl extends EFactoryImpl implements SafetycaseFac
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetycaseFactoryImpl() {
@@ -80,6 +85,7 @@ public class SafetycaseFactoryImpl extends EFactoryImpl implements SafetycaseFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertLifecycleStageKindToString(EDataType eDataType, Object instanceValue) {
@@ -89,38 +95,45 @@ public class SafetycaseFactoryImpl extends EFactoryImpl implements SafetycaseFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case SafetycasePackage.LIFECYCLE_STAGE_KIND:
-				return convertLifecycleStageKindToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case SafetycasePackage.LIFECYCLE_STAGE_KIND:
+			return convertLifecycleStageKindToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case SafetycasePackage.SAFETY_CASE: return createSafetyCase();
-			case SafetycasePackage.GROUND: return createGround();
-			case SafetycasePackage.WARRANT: return createWarrant();
-			case SafetycasePackage.CLAIM: return createClaim();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		case SafetycasePackage.SAFETY_CASE:
+			return createSafetyCase();
+		case SafetycasePackage.GROUND:
+			return createGround();
+		case SafetycasePackage.WARRANT:
+			return createWarrant();
+		case SafetycasePackage.CLAIM:
+			return createClaim();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Claim createClaim() {
@@ -131,21 +144,23 @@ public class SafetycaseFactoryImpl extends EFactoryImpl implements SafetycaseFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case SafetycasePackage.LIFECYCLE_STAGE_KIND:
-				return createLifecycleStageKindFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case SafetycasePackage.LIFECYCLE_STAGE_KIND:
+			return createLifecycleStageKindFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Ground createGround() {
@@ -156,17 +171,20 @@ public class SafetycaseFactoryImpl extends EFactoryImpl implements SafetycaseFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LifecycleStageKind createLifecycleStageKindFromString(EDataType eDataType, String initialValue) {
 		LifecycleStageKind result = LifecycleStageKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if(result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetyCase createSafetyCase() {
@@ -177,6 +195,7 @@ public class SafetycaseFactoryImpl extends EFactoryImpl implements SafetycaseFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Warrant createWarrant() {
@@ -187,6 +206,7 @@ public class SafetycaseFactoryImpl extends EFactoryImpl implements SafetycaseFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SafetycasePackage getSafetycasePackage() {

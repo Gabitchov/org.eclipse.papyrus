@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 
 public class AcceleoDriver {
 
-	public final static String UML_URI = "http://www.eclipse.org/uml2/4.0.0/UML";  //$NON-NLS-1$
+	public final static String UML_URI = "http://www.eclipse.org/uml2/5.0.0/UML";  //$NON-NLS-1$
 
 	public final static String DOT = "."; //$NON-NLS-1$
 	

@@ -40,23 +40,25 @@ import org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionType;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getTriggerCondition <em>Trigger Condition</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getTriggerPolicy <em>Trigger Policy</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getMode <em>Mode</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getFunction <em>Function</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getPort <em>Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getFunctionPrototype <em>Function Prototype</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getTriggerCondition <em>Trigger Condition</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getTriggerPolicy <em>Trigger Policy</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getMode <em>Mode</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getFunction <em>Function</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getPort <em>Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.behavior.impl.FunctionTriggerImpl#getFunctionPrototype <em>Function Prototype</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigger {
+
 	/**
 	 * The default value of the '{@link #getTriggerCondition() <em>Trigger Condition</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTriggerCondition()
 	 * @generated
 	 * @ordered
@@ -67,6 +69,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	 * The cached value of the '{@link #getTriggerCondition() <em>Trigger Condition</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTriggerCondition()
 	 * @generated
 	 * @ordered
@@ -77,6 +80,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getBase_Class()
 	 * @generated
 	 * @ordered
@@ -87,6 +91,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	 * The default value of the '{@link #getTriggerPolicy() <em>Trigger Policy</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTriggerPolicy()
 	 * @generated
 	 * @ordered
@@ -97,6 +102,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	 * The cached value of the '{@link #getTriggerPolicy() <em>Trigger Policy</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTriggerPolicy()
 	 * @generated
 	 * @ordered
@@ -107,6 +113,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	 * The cached value of the '{@link #getMode() <em>Mode</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getMode()
 	 * @generated
 	 * @ordered
@@ -117,6 +124,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	 * The cached value of the '{@link #getFunction() <em>Function</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFunction()
 	 * @generated
 	 * @ordered
@@ -127,6 +135,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	 * The cached value of the '{@link #getPort() <em>Port</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPort()
 	 * @generated
 	 * @ordered
@@ -137,6 +146,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	 * The cached value of the '{@link #getFunctionPrototype() <em>Function Prototype</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getFunctionPrototype()
 	 * @generated
 	 * @ordered
@@ -146,6 +156,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected FunctionTriggerImpl() {
@@ -155,6 +166,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionType basicGetFunction() {
@@ -164,6 +176,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionPrototype basicGetFunctionPrototype() {
@@ -173,28 +186,32 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_CONDITION:
-				return getTriggerCondition();
-			case BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS:
-				if (resolve) return getBase_Class();
-				return basicGetBase_Class();
-			case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_POLICY:
-				return getTriggerPolicy();
-			case BehaviorPackage.FUNCTION_TRIGGER__MODE:
-				return getMode();
-			case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION:
-				if (resolve) return getFunction();
-				return basicGetFunction();
-			case BehaviorPackage.FUNCTION_TRIGGER__PORT:
-				return getPort();
-			case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE:
-				if (resolve) return getFunctionPrototype();
-				return basicGetFunctionPrototype();
+		switch(featureID) {
+		case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_CONDITION:
+			return getTriggerCondition();
+		case BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS:
+			if(resolve)
+				return getBase_Class();
+			return basicGetBase_Class();
+		case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_POLICY:
+			return getTriggerPolicy();
+		case BehaviorPackage.FUNCTION_TRIGGER__MODE:
+			return getMode();
+		case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION:
+			if(resolve)
+				return getFunction();
+			return basicGetFunction();
+		case BehaviorPackage.FUNCTION_TRIGGER__PORT:
+			return getPort();
+		case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE:
+			if(resolve)
+				return getFunctionPrototype();
+			return basicGetFunctionPrototype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,25 +219,26 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_CONDITION:
-				return TRIGGER_CONDITION_EDEFAULT == null ? triggerCondition != null : !TRIGGER_CONDITION_EDEFAULT.equals(triggerCondition);
-			case BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS:
-				return base_Class != null;
-			case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_POLICY:
-				return triggerPolicy != TRIGGER_POLICY_EDEFAULT;
-			case BehaviorPackage.FUNCTION_TRIGGER__MODE:
-				return mode != null && !mode.isEmpty();
-			case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION:
-				return function != null;
-			case BehaviorPackage.FUNCTION_TRIGGER__PORT:
-				return port != null && !port.isEmpty();
-			case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE:
-				return functionPrototype != null;
+		switch(featureID) {
+		case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_CONDITION:
+			return TRIGGER_CONDITION_EDEFAULT == null ? triggerCondition != null : !TRIGGER_CONDITION_EDEFAULT.equals(triggerCondition);
+		case BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS:
+			return base_Class != null;
+		case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_POLICY:
+			return triggerPolicy != TRIGGER_POLICY_EDEFAULT;
+		case BehaviorPackage.FUNCTION_TRIGGER__MODE:
+			return mode != null && !mode.isEmpty();
+		case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION:
+			return function != null;
+		case BehaviorPackage.FUNCTION_TRIGGER__PORT:
+			return port != null && !port.isEmpty();
+		case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE:
+			return functionPrototype != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -228,35 +246,36 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_CONDITION:
-				setTriggerCondition((String)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_POLICY:
-				setTriggerPolicy((TriggerPolicyKind)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__MODE:
-				getMode().clear();
-				getMode().addAll((Collection<? extends Mode>)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION:
-				setFunction((FunctionType)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__PORT:
-				getPort().clear();
-				getPort().addAll((Collection<? extends FunctionPort>)newValue);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE:
-				setFunctionPrototype((FunctionPrototype)newValue);
-				return;
+		switch(featureID) {
+		case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_CONDITION:
+			setTriggerCondition((String)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_POLICY:
+			setTriggerPolicy((TriggerPolicyKind)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__MODE:
+			getMode().clear();
+			getMode().addAll((Collection<? extends Mode>)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION:
+			setFunction((FunctionType)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__PORT:
+			getPort().clear();
+			getPort().addAll((Collection<? extends FunctionPort>)newValue);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE:
+			setFunctionPrototype((FunctionPrototype)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -264,6 +283,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -274,32 +294,33 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_CONDITION:
-				setTriggerCondition(TRIGGER_CONDITION_EDEFAULT);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS:
-				setBase_Class((org.eclipse.uml2.uml.Class)null);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_POLICY:
-				setTriggerPolicy(TRIGGER_POLICY_EDEFAULT);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__MODE:
-				getMode().clear();
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION:
-				setFunction((FunctionType)null);
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__PORT:
-				getPort().clear();
-				return;
-			case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE:
-				setFunctionPrototype((FunctionPrototype)null);
-				return;
+		switch(featureID) {
+		case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_CONDITION:
+			setTriggerCondition(TRIGGER_CONDITION_EDEFAULT);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS:
+			setBase_Class((org.eclipse.uml2.uml.Class)null);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_POLICY:
+			setTriggerPolicy(TRIGGER_POLICY_EDEFAULT);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__MODE:
+			getMode().clear();
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION:
+			setFunction((FunctionType)null);
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__PORT:
+			getPort().clear();
+			return;
+		case BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE:
+			setFunctionPrototype((FunctionPrototype)null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -307,14 +328,15 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionType getFunction() {
-		if (function != null && function.eIsProxy()) {
+		if(function != null && function.eIsProxy()) {
 			InternalEObject oldFunction = (InternalEObject)function;
 			function = (FunctionType)eResolveProxy(oldFunction);
-			if (function != oldFunction) {
-				if (eNotificationRequired())
+			if(function != oldFunction) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BehaviorPackage.FUNCTION_TRIGGER__FUNCTION, oldFunction, function));
 			}
 		}
@@ -324,14 +346,15 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionPrototype getFunctionPrototype() {
-		if (functionPrototype != null && functionPrototype.eIsProxy()) {
+		if(functionPrototype != null && functionPrototype.eIsProxy()) {
 			InternalEObject oldFunctionPrototype = (InternalEObject)functionPrototype;
 			functionPrototype = (FunctionPrototype)eResolveProxy(oldFunctionPrototype);
-			if (functionPrototype != oldFunctionPrototype) {
-				if (eNotificationRequired())
+			if(functionPrototype != oldFunctionPrototype) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE, oldFunctionPrototype, functionPrototype));
 			}
 		}
@@ -341,10 +364,11 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Mode> getMode() {
-		if (mode == null) {
+		if(mode == null) {
 			mode = new EObjectResolvingEList<Mode>(Mode.class, this, BehaviorPackage.FUNCTION_TRIGGER__MODE);
 		}
 		return mode;
@@ -353,10 +377,11 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionPort> getPort() {
-		if (port == null) {
+		if(port == null) {
 			port = new EObjectResolvingEList<FunctionPort>(FunctionPort.class, this, BehaviorPackage.FUNCTION_TRIGGER__PORT);
 		}
 		return port;
@@ -365,6 +390,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTriggerCondition() {
@@ -374,6 +400,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TriggerPolicyKind getTriggerPolicy() {
@@ -383,50 +410,54 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFunction(FunctionType newFunction) {
 		FunctionType oldFunction = function;
 		function = newFunction;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BehaviorPackage.FUNCTION_TRIGGER__FUNCTION, oldFunction, function));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFunctionPrototype(FunctionPrototype newFunctionPrototype) {
 		FunctionPrototype oldFunctionPrototype = functionPrototype;
 		functionPrototype = newFunctionPrototype;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BehaviorPackage.FUNCTION_TRIGGER__FUNCTION_PROTOTYPE, oldFunctionPrototype, functionPrototype));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTriggerCondition(String newTriggerCondition) {
 		String oldTriggerCondition = triggerCondition;
 		triggerCondition = newTriggerCondition;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_CONDITION, oldTriggerCondition, triggerCondition));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class getBase_Class() {
-		if (base_Class != null && base_Class.eIsProxy()) {
+		if(base_Class != null && base_Class.eIsProxy()) {
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
-			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+			if(base_Class != oldBase_Class) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS, oldBase_Class, base_Class));
 			}
 		}
@@ -436,6 +467,7 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
@@ -445,35 +477,39 @@ public class FunctionTriggerImpl extends EAElementImpl implements FunctionTrigge
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BehaviorPackage.FUNCTION_TRIGGER__BASE_CLASS, oldBase_Class, base_Class));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTriggerPolicy(TriggerPolicyKind newTriggerPolicy) {
 		TriggerPolicyKind oldTriggerPolicy = triggerPolicy;
 		triggerPolicy = newTriggerPolicy == null ? TRIGGER_POLICY_EDEFAULT : newTriggerPolicy;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BehaviorPackage.FUNCTION_TRIGGER__TRIGGER_POLICY, oldTriggerPolicy, triggerPolicy));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (triggerCondition: ");

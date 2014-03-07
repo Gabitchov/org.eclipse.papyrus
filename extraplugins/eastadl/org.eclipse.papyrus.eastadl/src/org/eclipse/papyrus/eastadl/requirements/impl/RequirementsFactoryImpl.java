@@ -44,12 +44,14 @@ import org.eclipse.papyrus.eastadl.requirements.UseCase;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class RequirementsFactoryImpl extends EFactoryImpl implements RequirementsFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
@@ -61,16 +63,16 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static RequirementsFactory init() {
 		try {
 			RequirementsFactory theRequirementsFactory = (RequirementsFactory)EPackage.Registry.INSTANCE.getEFactory(RequirementsPackage.eNS_URI);
-			if (theRequirementsFactory != null) {
+			if(theRequirementsFactory != null) {
 				return theRequirementsFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RequirementsFactoryImpl();
@@ -79,6 +81,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsFactoryImpl() {
@@ -87,6 +90,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String convertQualityRequirementKindToString(EDataType eDataType, Object instanceValue) {
@@ -95,49 +99,68 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case RequirementsPackage.QUALITY_REQUIREMENT_KIND:
-				return convertQualityRequirementKindToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case RequirementsPackage.QUALITY_REQUIREMENT_KIND:
+			return convertQualityRequirementKindToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case RequirementsPackage.QUALITY_REQUIREMENT: return createQualityRequirement();
-			case RequirementsPackage.REQUIREMENT: return createRequirement();
-			case RequirementsPackage.REQUIREMENTS_CONTAINER: return createRequirementsContainer();
-			case RequirementsPackage.REQUIREMENTS_RELATED_INFORMATION: return createRequirementsRelatedInformation();
-			case RequirementsPackage.SATISFY: return createSatisfy();
-			case RequirementsPackage.USE_CASE: return createUseCase();
-			case RequirementsPackage.INCLUDE: return createInclude();
-			case RequirementsPackage.EXTEND: return createExtend();
-			case RequirementsPackage.EXTENSION_POINT: return createExtensionPoint();
-			case RequirementsPackage.REFINE: return createRefine();
-			case RequirementsPackage.DERIVE_REQUIREMENT: return createDeriveRequirement();
-			case RequirementsPackage.REQUIREMENTS_RELATION_GROUP: return createRequirementsRelationGroup();
-			case RequirementsPackage.REQUIREMENTS_LINK: return createRequirementsLink();
-			case RequirementsPackage.REQUIREMENTS_MODEL: return createRequirementsModel();
-			case RequirementsPackage.OPERATIONAL_SITUATION: return createOperationalSituation();
-			case RequirementsPackage.ACTOR: return createActor();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		switch(eClass.getClassifierID()) {
+		case RequirementsPackage.QUALITY_REQUIREMENT:
+			return createQualityRequirement();
+		case RequirementsPackage.REQUIREMENT:
+			return createRequirement();
+		case RequirementsPackage.REQUIREMENTS_CONTAINER:
+			return createRequirementsContainer();
+		case RequirementsPackage.REQUIREMENTS_RELATED_INFORMATION:
+			return createRequirementsRelatedInformation();
+		case RequirementsPackage.SATISFY:
+			return createSatisfy();
+		case RequirementsPackage.USE_CASE:
+			return createUseCase();
+		case RequirementsPackage.INCLUDE:
+			return createInclude();
+		case RequirementsPackage.EXTEND:
+			return createExtend();
+		case RequirementsPackage.EXTENSION_POINT:
+			return createExtensionPoint();
+		case RequirementsPackage.REFINE:
+			return createRefine();
+		case RequirementsPackage.DERIVE_REQUIREMENT:
+			return createDeriveRequirement();
+		case RequirementsPackage.REQUIREMENTS_RELATION_GROUP:
+			return createRequirementsRelationGroup();
+		case RequirementsPackage.REQUIREMENTS_LINK:
+			return createRequirementsLink();
+		case RequirementsPackage.REQUIREMENTS_MODEL:
+			return createRequirementsModel();
+		case RequirementsPackage.OPERATIONAL_SITUATION:
+			return createOperationalSituation();
+		case RequirementsPackage.ACTOR:
+			return createActor();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DeriveRequirement createDeriveRequirement() {
@@ -147,21 +170,23 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case RequirementsPackage.QUALITY_REQUIREMENT_KIND:
-				return createQualityRequirementKindFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		switch(eDataType.getClassifierID()) {
+		case RequirementsPackage.QUALITY_REQUIREMENT_KIND:
+			return createQualityRequirementKindFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OperationalSituation createOperationalSituation() {
@@ -172,6 +197,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor createActor() {
@@ -181,6 +207,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public QualityRequirement createQualityRequirement() {
@@ -190,17 +217,20 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public QualityRequirementKind createQualityRequirementKindFromString(EDataType eDataType, String initialValue) {
 		QualityRequirementKind result = QualityRequirementKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if(result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Refine createRefine() {
@@ -211,6 +241,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Requirement createRequirement() {
@@ -221,6 +252,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsContainer createRequirementsContainer() {
@@ -231,6 +263,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsLink createRequirementsLink() {
@@ -241,6 +274,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsModel createRequirementsModel() {
@@ -251,6 +285,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsRelatedInformation createRequirementsRelatedInformation() {
@@ -261,6 +296,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsRelationGroup createRequirementsRelationGroup() {
@@ -271,6 +307,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Satisfy createSatisfy() {
@@ -281,6 +318,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UseCase createUseCase() {
@@ -291,6 +329,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Include createInclude() {
@@ -301,6 +340,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Extend createExtend() {
@@ -311,6 +351,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ExtensionPoint createExtensionPoint() {
@@ -320,6 +361,7 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements Requirement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementsPackage getRequirementsPackage() {

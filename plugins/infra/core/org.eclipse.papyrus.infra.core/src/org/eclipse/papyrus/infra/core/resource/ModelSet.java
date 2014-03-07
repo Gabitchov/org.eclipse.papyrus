@@ -48,6 +48,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -136,6 +137,7 @@ public class ModelSet extends ResourceSetImpl {
 		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		getLoadOptions().put(XMIResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
 		getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+		getLoadOptions().put(XMLResource.OPTION_USE_PACKAGE_NS_URI_AS_LOCATION, Boolean.FALSE);
 
 		this.eAdapters.add(new ResourceAddRemoveTracker());
 	}
@@ -312,6 +314,13 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the same resource for convenience
 	 */
 	protected Resource setResourceOptions(Resource r) {
+
+		for(IModel model : models.values()) {
+			if(model instanceof IEMFModel) {
+				((IEMFModel)model).handle(r);
+			}
+		}
+
 		if(r != null && isTrackingModification() && !r.isTrackingModification()) {
 			r.setTrackingModification(true);
 		}
@@ -864,13 +873,17 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public void saveAs(URI uri) throws IOException {
 
+		EcoreUtil.resolveAll(this); //Save will not be consistent if we don't load all related resources first
+
 		// Get the file name, without extension.
-		uriWithoutExtension = uri.trimFileExtension();
+		URI newUriWithoutExtension = uri.trimFileExtension();
 
 		// Walk all registered models
 		for(IModel model : models.values()) {
-			model.setModelURI(uriWithoutExtension);
+			model.setModelURI(newUriWithoutExtension);
 		}
+
+		this.uriWithoutExtension = newUriWithoutExtension;
 
 		// Save with new paths
 		save(new NullProgressMonitor());
@@ -1136,5 +1149,20 @@ public class ModelSet extends ResourceSetImpl {
 			return false;
 		}
 
+	}
+
+	/**
+	 * Returns the IModel which handles the specified element, if any
+	 * 
+	 * @param container
+	 * @return
+	 */
+	public IModel getModelFor(Object element) {
+		for(IModel model : models.values()) {
+			if(model.isModelFor(element)) {
+				return model;
+			}
+		}
+		return null;
 	}
 }

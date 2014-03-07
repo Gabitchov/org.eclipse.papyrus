@@ -34,16 +34,17 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.AnalysisFunctionPrototypeImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.structure.functionmodeling.impl.AnalysisFunctionPrototypeImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class AnalysisFunctionPrototypeImpl extends FunctionPrototypeImpl implements AnalysisFunctionPrototype {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AnalysisFunctionPrototypeImpl() {
@@ -63,7 +64,7 @@ public class AnalysisFunctionPrototypeImpl extends FunctionPrototypeImpl impleme
 			// Retrieve the type of the ADLFunctionPrototype
 			Type basicType = getBase_Property().getType();
 
-			
+
 			if(basicType != null) {
 				type = (AnalysisFunctionType)UMLUtil.getStereotypeApplication(basicType, AnalysisFunctionType.class);
 			}
@@ -74,33 +75,37 @@ public class AnalysisFunctionPrototypeImpl extends FunctionPrototypeImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case FunctionmodelingPackage.ANALYSIS_FUNCTION_PROTOTYPE__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
+		switch(featureID) {
+		case FunctionmodelingPackage.ANALYSIS_FUNCTION_PROTOTYPE__TYPE:
+			if(resolve)
+				return getType();
+			return basicGetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case FunctionmodelingPackage.ANALYSIS_FUNCTION_PROTOTYPE__TYPE:
-				return basicGetType() != null;
+		switch(featureID) {
+		case FunctionmodelingPackage.ANALYSIS_FUNCTION_PROTOTYPE__TYPE:
+			return basicGetType() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,6 +146,7 @@ public class AnalysisFunctionPrototypeImpl extends FunctionPrototypeImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AnalysisFunctionType getType() {

@@ -37,35 +37,41 @@ import org.eclipse.papyrus.eastadl.timing.impl.EventImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionFlowPortImpl#getPort <em>Port</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionFlowPortImpl#getPort_path <em>Port path</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionFlowPortImpl#getPort <em>Port</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.events.impl.EventFunctionFlowPortImpl#getPort_path <em>Port path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EventFunctionFlowPortImpl extends EventImpl implements EventFunctionFlowPort {
+
 	/**
 	 * The cached value of the '{@link #getPort() <em>Port</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPort()
 	 * @generated
 	 * @ordered
 	 */
 	protected FunctionPort port;
+
 	/**
 	 * The cached value of the '{@link #getPort_path() <em>Port path</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPort_path()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<FunctionPrototype> port_path;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EventFunctionFlowPortImpl() {
@@ -75,6 +81,7 @@ public class EventFunctionFlowPortImpl extends EventImpl implements EventFunctio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionPort basicGetPort() {
@@ -84,16 +91,18 @@ public class EventFunctionFlowPortImpl extends EventImpl implements EventFunctio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT:
-				if (resolve) return getPort();
-				return basicGetPort();
-			case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT_PATH:
-				return getPort_path();
+		switch(featureID) {
+		case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT:
+			if(resolve)
+				return getPort();
+			return basicGetPort();
+		case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT_PATH:
+			return getPort_path();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -101,15 +110,16 @@ public class EventFunctionFlowPortImpl extends EventImpl implements EventFunctio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT:
-				return port != null;
-			case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT_PATH:
-				return port_path != null && !port_path.isEmpty();
+		switch(featureID) {
+		case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT:
+			return port != null;
+		case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT_PATH:
+			return port_path != null && !port_path.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -117,19 +127,20 @@ public class EventFunctionFlowPortImpl extends EventImpl implements EventFunctio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT:
-				setPort((FunctionPort)newValue);
-				return;
-			case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT_PATH:
-				getPort_path().clear();
-				getPort_path().addAll((Collection<? extends FunctionPrototype>)newValue);
-				return;
+		switch(featureID) {
+		case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT:
+			setPort((FunctionPort)newValue);
+			return;
+		case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT_PATH:
+			getPort_path().clear();
+			getPort_path().addAll((Collection<? extends FunctionPrototype>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -137,6 +148,7 @@ public class EventFunctionFlowPortImpl extends EventImpl implements EventFunctio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,17 +159,18 @@ public class EventFunctionFlowPortImpl extends EventImpl implements EventFunctio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT:
-				setPort((FunctionPort)null);
-				return;
-			case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT_PATH:
-				getPort_path().clear();
-				return;
+		switch(featureID) {
+		case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT:
+			setPort((FunctionPort)null);
+			return;
+		case EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT_PATH:
+			getPort_path().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -165,14 +178,15 @@ public class EventFunctionFlowPortImpl extends EventImpl implements EventFunctio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionPort getPort() {
-		if (port != null && port.eIsProxy()) {
+		if(port != null && port.eIsProxy()) {
 			InternalEObject oldPort = (InternalEObject)port;
 			port = (FunctionPort)eResolveProxy(oldPort);
-			if (port != oldPort) {
-				if (eNotificationRequired())
+			if(port != oldPort) {
+				if(eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT, oldPort, port));
 			}
 		}
@@ -182,22 +196,24 @@ public class EventFunctionFlowPortImpl extends EventImpl implements EventFunctio
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPort(FunctionPort newPort) {
 		FunctionPort oldPort = port;
 		port = newPort;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT, oldPort, port));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionPrototype> getPort_path() {
-		if (port_path == null) {
+		if(port_path == null) {
 			port_path = new EObjectResolvingEList<FunctionPrototype>(FunctionPrototype.class, this, EventsPackage.EVENT_FUNCTION_FLOW_PORT__PORT_PATH);
 		}
 		return port_path;

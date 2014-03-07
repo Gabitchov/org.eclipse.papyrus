@@ -52,7 +52,7 @@ public class AllocationsFactoryImpl extends EFactoryImpl implements AllocationsF
 	 */
 	public static AllocationsFactory init() {
 		try {
-			AllocationsFactory theAllocationsFactory = (AllocationsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/0.7.0/SysML/Allocations");
+			AllocationsFactory theAllocationsFactory = (AllocationsFactory)EPackage.Registry.INSTANCE.getEFactory(AllocationsPackage.eNS_URI);
 			if(theAllocationsFactory != null) {
 				return theAllocationsFactory;
 			}

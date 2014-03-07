@@ -22,14 +22,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.papyrus.eastadl.timing.timingconstraints.TimingconstraintsPackage
  * @generated
  */
 public interface TimingconstraintsFactory extends EFactory {
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	TimingconstraintsFactory eINSTANCE = org.eclipse.papyrus.eastadl.timing.timingconstraints.impl.TimingconstraintsFactoryImpl.init();
@@ -38,6 +41,7 @@ public interface TimingconstraintsFactory extends EFactory {
 	 * Returns a new object of class '<em>Age Timing Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Age Timing Constraint</em>'.
 	 * @generated
 	 */
@@ -47,6 +51,7 @@ public interface TimingconstraintsFactory extends EFactory {
 	 * Returns a new object of class '<em>Arbitrary Event Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Arbitrary Event Constraint</em>'.
 	 * @generated
 	 */
@@ -56,6 +61,7 @@ public interface TimingconstraintsFactory extends EFactory {
 	 * Returns a new object of class '<em>Input Synchronization Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Input Synchronization Constraint</em>'.
 	 * @generated
 	 */
@@ -65,6 +71,7 @@ public interface TimingconstraintsFactory extends EFactory {
 	 * Returns a new object of class '<em>Output Synchronization Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Output Synchronization Constraint</em>'.
 	 * @generated
 	 */
@@ -74,6 +81,7 @@ public interface TimingconstraintsFactory extends EFactory {
 	 * Returns a new object of class '<em>Pattern Event Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Pattern Event Constraint</em>'.
 	 * @generated
 	 */
@@ -83,6 +91,7 @@ public interface TimingconstraintsFactory extends EFactory {
 	 * Returns a new object of class '<em>Periodic Event Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Periodic Event Constraint</em>'.
 	 * @generated
 	 */
@@ -92,6 +101,7 @@ public interface TimingconstraintsFactory extends EFactory {
 	 * Returns a new object of class '<em>Reaction Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Reaction Constraint</em>'.
 	 * @generated
 	 */
@@ -101,6 +111,7 @@ public interface TimingconstraintsFactory extends EFactory {
 	 * Returns a new object of class '<em>Sporadic Event Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return a new object of class '<em>Sporadic Event Constraint</em>'.
 	 * @generated
 	 */
@@ -110,6 +121,7 @@ public interface TimingconstraintsFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

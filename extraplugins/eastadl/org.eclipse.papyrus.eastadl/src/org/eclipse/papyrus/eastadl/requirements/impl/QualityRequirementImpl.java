@@ -24,15 +24,14 @@ import org.eclipse.papyrus.eastadl.requirements.RequirementsPackage;
 
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Quality Requirement</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Quality Requirement</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.QualityRequirementImpl#getQualityRequirementType <em>Quality Requirement Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.requirements.impl.QualityRequirementImpl#getQualityRequirementType <em>Quality Requirement Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class QualityRequirementImpl extends RequirementImpl implements QualityRequirement {
@@ -40,6 +39,7 @@ public class QualityRequirementImpl extends RequirementImpl implements QualityRe
 	/**
 	 * The default value of the '{@link #getQualityRequirementType() <em>Quality Requirement Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getQualityRequirementType()
 	 * @generated
 	 * @ordered
@@ -49,6 +49,7 @@ public class QualityRequirementImpl extends RequirementImpl implements QualityRe
 	/**
 	 * The cached value of the '{@link #getQualityRequirementType() <em>Quality Requirement Type</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getQualityRequirementType()
 	 * @generated
 	 * @ordered
@@ -57,6 +58,7 @@ public class QualityRequirementImpl extends RequirementImpl implements QualityRe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected QualityRequirementImpl() {
@@ -65,46 +67,50 @@ public class QualityRequirementImpl extends RequirementImpl implements QualityRe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case RequirementsPackage.QUALITY_REQUIREMENT__QUALITY_REQUIREMENT_TYPE:
-				return getQualityRequirementType();
+		switch(featureID) {
+		case RequirementsPackage.QUALITY_REQUIREMENT__QUALITY_REQUIREMENT_TYPE:
+			return getQualityRequirementType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case RequirementsPackage.QUALITY_REQUIREMENT__QUALITY_REQUIREMENT_TYPE:
-				return qualityRequirementType != QUALITY_REQUIREMENT_TYPE_EDEFAULT;
+		switch(featureID) {
+		case RequirementsPackage.QUALITY_REQUIREMENT__QUALITY_REQUIREMENT_TYPE:
+			return qualityRequirementType != QUALITY_REQUIREMENT_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case RequirementsPackage.QUALITY_REQUIREMENT__QUALITY_REQUIREMENT_TYPE:
-				setQualityRequirementType((QualityRequirementKind)newValue);
-				return;
+		switch(featureID) {
+		case RequirementsPackage.QUALITY_REQUIREMENT__QUALITY_REQUIREMENT_TYPE:
+			setQualityRequirementType((QualityRequirementKind)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -114,20 +120,22 @@ public class QualityRequirementImpl extends RequirementImpl implements QualityRe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case RequirementsPackage.QUALITY_REQUIREMENT__QUALITY_REQUIREMENT_TYPE:
-				setQualityRequirementType(QUALITY_REQUIREMENT_TYPE_EDEFAULT);
-				return;
+		switch(featureID) {
+		case RequirementsPackage.QUALITY_REQUIREMENT__QUALITY_REQUIREMENT_TYPE:
+			setQualityRequirementType(QUALITY_REQUIREMENT_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public QualityRequirementKind getQualityRequirementType() {
@@ -136,22 +144,25 @@ public class QualityRequirementImpl extends RequirementImpl implements QualityRe
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setQualityRequirementType(QualityRequirementKind newQualityRequirementType) {
 		QualityRequirementKind oldQualityRequirementType = qualityRequirementType;
 		qualityRequirementType = newQualityRequirementType == null ? QUALITY_REQUIREMENT_TYPE_EDEFAULT : newQualityRequirementType;
-		if (eNotificationRequired())
+		if(eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RequirementsPackage.QUALITY_REQUIREMENT__QUALITY_REQUIREMENT_TYPE, oldQualityRequirementType, qualityRequirementType));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if(eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (qualityRequirementType: ");

@@ -95,6 +95,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DependabilityPackageImpl extends EPackageImpl implements DependabilityPackage {
@@ -102,6 +103,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass hazardousEventEClass = null;
@@ -109,6 +111,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass hazardEClass = null;
@@ -116,6 +119,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass featureFlawEClass = null;
@@ -123,6 +127,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass itemEClass = null;
@@ -130,6 +135,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass dependabilityEClass = null;
@@ -137,6 +143,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum controllabilityClassKindEEnum = null;
@@ -144,6 +151,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum exposureClassKindEEnum = null;
@@ -151,6 +159,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum severityClassKindEEnum = null;
@@ -158,6 +167,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum developmentCategoryKindEEnum = null;
@@ -165,6 +175,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -172,16 +183,18 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link DependabilityPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link DependabilityPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static DependabilityPackage init() {
-		if (isInited) return (DependabilityPackage)EPackage.Registry.INSTANCE.getEPackage(DependabilityPackage.eNS_URI);
+		if(isInited)
+			return (DependabilityPackage)EPackage.Registry.INSTANCE.getEPackage(DependabilityPackage.eNS_URI);
 
 		// Obtain or create and register package
 		DependabilityPackageImpl theDependabilityPackage = (DependabilityPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DependabilityPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DependabilityPackageImpl());
@@ -283,7 +296,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 		// Mark meta-data to indicate it can't be changed
 		theDependabilityPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(DependabilityPackage.eNS_URI, theDependabilityPackage);
 		return theDependabilityPackage;
@@ -292,6 +305,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -299,19 +313,19 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.dependability.DependabilityPackage#eNS_URI
 	 * @see #init()
@@ -322,14 +336,16 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -388,6 +404,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getControllabilityClassKind() {
@@ -397,6 +414,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDependability() {
@@ -406,6 +424,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_Base_Class() {
@@ -415,6 +434,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_Base_Package() {
@@ -424,6 +444,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_ErrorModelType() {
@@ -433,6 +454,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_FaultFailure() {
@@ -442,6 +464,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_FeatureFlaw() {
@@ -451,6 +474,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_FunctionalSafetyConcept() {
@@ -460,6 +484,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_HazardousEvent() {
@@ -469,6 +494,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_Item() {
@@ -478,6 +504,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_EADatatype() {
@@ -487,6 +514,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_QuantitativeSafetyConstraint() {
@@ -496,6 +524,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_SafetyCase() {
@@ -505,6 +534,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_SafetyConstraint() {
@@ -514,6 +544,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_SafetyGoal() {
@@ -523,6 +554,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependability_TechnicalSafetyConcept() {
@@ -532,6 +564,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DependabilityFactory getDependabilityFactory() {
@@ -541,6 +574,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getDevelopmentCategoryKind() {
@@ -550,6 +584,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getExposureClassKind() {
@@ -559,6 +594,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFeatureFlaw() {
@@ -568,6 +604,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureFlaw_Base_Class() {
@@ -577,6 +614,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureFlaw_Item() {
@@ -586,6 +624,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getFeatureFlaw_NonFulfilledRequirement() {
@@ -595,6 +634,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getHazard() {
@@ -604,6 +644,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazard_Base_Class() {
@@ -613,6 +654,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazard_Item() {
@@ -622,6 +664,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazard_Malfunction() {
@@ -631,6 +674,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getHazardousEvent() {
@@ -640,6 +684,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazardousEvent_Base_Class() {
@@ -649,6 +694,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHazardousEvent_ClassificationAssumptions() {
@@ -658,6 +704,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHazardousEvent_Controllability() {
@@ -667,6 +714,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazardousEvent_Environment() {
@@ -676,6 +724,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHazardousEvent_Exposure() {
@@ -685,6 +734,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazardousEvent_ExternalMeasures() {
@@ -694,6 +744,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazardousEvent_Hazard() {
@@ -703,6 +754,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHazardousEvent_HazardClassification() {
@@ -712,6 +764,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazardousEvent_OperatingMode() {
@@ -721,6 +774,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazardousEvent_OperationalSituationUseCase() {
@@ -730,6 +784,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getHazardousEvent_Severity() {
@@ -739,6 +794,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getHazardousEvent_Traffic() {
@@ -748,6 +804,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getItem() {
@@ -757,6 +814,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getItem_Base_Class() {
@@ -766,6 +824,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getItem_DevelopmentCategory() {
@@ -775,6 +834,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getItem_VehicleFeature() {
@@ -784,6 +844,7 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getSeverityClassKind() {
@@ -791,14 +852,16 @@ public class DependabilityPackageImpl extends EPackageImpl implements Dependabil
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

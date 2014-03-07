@@ -31,13 +31,13 @@ import org.eclipse.papyrus.eastadl.timing.TimingPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.EventChainImpl#getSegment <em>Segment</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.EventChainImpl#getStrand <em>Strand</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.EventChainImpl#getResponse <em>Response</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.timing.impl.EventChainImpl#getStimulus <em>Stimulus</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.EventChainImpl#getSegment <em>Segment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.EventChainImpl#getStrand <em>Strand</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.EventChainImpl#getResponse <em>Response</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.timing.impl.EventChainImpl#getStimulus <em>Stimulus</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EventChainImpl extends TimingDescriptionImpl implements EventChain {
@@ -84,6 +84,7 @@ public class EventChainImpl extends TimingDescriptionImpl implements EventChain 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected EventChainImpl() {
@@ -92,72 +93,76 @@ public class EventChainImpl extends TimingDescriptionImpl implements EventChain 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TimingPackage.EVENT_CHAIN__SEGMENT:
-				return getSegment();
-			case TimingPackage.EVENT_CHAIN__STRAND:
-				return getStrand();
-			case TimingPackage.EVENT_CHAIN__RESPONSE:
-				return getResponse();
-			case TimingPackage.EVENT_CHAIN__STIMULUS:
-				return getStimulus();
+		switch(featureID) {
+		case TimingPackage.EVENT_CHAIN__SEGMENT:
+			return getSegment();
+		case TimingPackage.EVENT_CHAIN__STRAND:
+			return getStrand();
+		case TimingPackage.EVENT_CHAIN__RESPONSE:
+			return getResponse();
+		case TimingPackage.EVENT_CHAIN__STIMULUS:
+			return getStimulus();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TimingPackage.EVENT_CHAIN__SEGMENT:
-				return segment != null && !segment.isEmpty();
-			case TimingPackage.EVENT_CHAIN__STRAND:
-				return strand != null && !strand.isEmpty();
-			case TimingPackage.EVENT_CHAIN__RESPONSE:
-				return response != null && !response.isEmpty();
-			case TimingPackage.EVENT_CHAIN__STIMULUS:
-				return stimulus != null && !stimulus.isEmpty();
+		switch(featureID) {
+		case TimingPackage.EVENT_CHAIN__SEGMENT:
+			return segment != null && !segment.isEmpty();
+		case TimingPackage.EVENT_CHAIN__STRAND:
+			return strand != null && !strand.isEmpty();
+		case TimingPackage.EVENT_CHAIN__RESPONSE:
+			return response != null && !response.isEmpty();
+		case TimingPackage.EVENT_CHAIN__STIMULUS:
+			return stimulus != null && !stimulus.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TimingPackage.EVENT_CHAIN__SEGMENT:
-				getSegment().clear();
-				getSegment().addAll((Collection<? extends EventChain>)newValue);
-				return;
-			case TimingPackage.EVENT_CHAIN__STRAND:
-				getStrand().clear();
-				getStrand().addAll((Collection<? extends EventChain>)newValue);
-				return;
-			case TimingPackage.EVENT_CHAIN__RESPONSE:
-				getResponse().clear();
-				getResponse().addAll((Collection<? extends Event>)newValue);
-				return;
-			case TimingPackage.EVENT_CHAIN__STIMULUS:
-				getStimulus().clear();
-				getStimulus().addAll((Collection<? extends Event>)newValue);
-				return;
+		switch(featureID) {
+		case TimingPackage.EVENT_CHAIN__SEGMENT:
+			getSegment().clear();
+			getSegment().addAll((Collection<? extends EventChain>)newValue);
+			return;
+		case TimingPackage.EVENT_CHAIN__STRAND:
+			getStrand().clear();
+			getStrand().addAll((Collection<? extends EventChain>)newValue);
+			return;
+		case TimingPackage.EVENT_CHAIN__RESPONSE:
+			getResponse().clear();
+			getResponse().addAll((Collection<? extends Event>)newValue);
+			return;
+		case TimingPackage.EVENT_CHAIN__STIMULUS:
+			getStimulus().clear();
+			getStimulus().addAll((Collection<? extends Event>)newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,33 +172,35 @@ public class EventChainImpl extends TimingDescriptionImpl implements EventChain 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TimingPackage.EVENT_CHAIN__SEGMENT:
-				getSegment().clear();
-				return;
-			case TimingPackage.EVENT_CHAIN__STRAND:
-				getStrand().clear();
-				return;
-			case TimingPackage.EVENT_CHAIN__RESPONSE:
-				getResponse().clear();
-				return;
-			case TimingPackage.EVENT_CHAIN__STIMULUS:
-				getStimulus().clear();
-				return;
+		switch(featureID) {
+		case TimingPackage.EVENT_CHAIN__SEGMENT:
+			getSegment().clear();
+			return;
+		case TimingPackage.EVENT_CHAIN__STRAND:
+			getStrand().clear();
+			return;
+		case TimingPackage.EVENT_CHAIN__RESPONSE:
+			getResponse().clear();
+			return;
+		case TimingPackage.EVENT_CHAIN__STIMULUS:
+			getStimulus().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Event> getResponse() {
-		if (response == null) {
+		if(response == null) {
 			response = new EObjectResolvingEList<Event>(Event.class, this, TimingPackage.EVENT_CHAIN__RESPONSE);
 		}
 		return response;
@@ -201,10 +208,11 @@ public class EventChainImpl extends TimingDescriptionImpl implements EventChain 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<EventChain> getSegment() {
-		if (segment == null) {
+		if(segment == null) {
 			segment = new EObjectResolvingEList<EventChain>(EventChain.class, this, TimingPackage.EVENT_CHAIN__SEGMENT);
 		}
 		return segment;
@@ -212,10 +220,11 @@ public class EventChainImpl extends TimingDescriptionImpl implements EventChain 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Event> getStimulus() {
-		if (stimulus == null) {
+		if(stimulus == null) {
 			stimulus = new EObjectResolvingEList<Event>(Event.class, this, TimingPackage.EVENT_CHAIN__STIMULUS);
 		}
 		return stimulus;
@@ -223,10 +232,11 @@ public class EventChainImpl extends TimingDescriptionImpl implements EventChain 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<EventChain> getStrand() {
-		if (strand == null) {
+		if(strand == null) {
 			strand = new EObjectResolvingEList<EventChain>(EventChain.class, this, TimingPackage.EVENT_CHAIN__STRAND);
 		}
 		return strand;

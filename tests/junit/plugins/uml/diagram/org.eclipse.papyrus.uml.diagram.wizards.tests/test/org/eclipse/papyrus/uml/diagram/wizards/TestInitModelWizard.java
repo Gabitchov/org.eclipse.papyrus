@@ -2,12 +2,12 @@ package org.eclipse.papyrus.uml.diagram.wizards;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
-import org.eclipse.papyrus.uml.diagram.wizards.InitModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRootElementPage;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.junit.Test;
 
 
 public class TestInitModelWizard extends TestNewModelWizardBase {
@@ -23,17 +23,17 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 				return true;
 			}
 
-			
+
 			@Override
 			protected String[] getDiagramCategoryIds() {
-				return new String[]{"uml"};
+				return new String[]{ "uml" };
 			}
 
-//			@Override
-//			public String getDiagramFileExtension(String categoryId, String defaultExtension) {
-//				return "test.uml";
-//			}
-			
+			//			@Override
+			//			public String getDiagramFileExtension(String categoryId, String defaultExtension) {
+			//				return "test.uml";
+			//			}
+
 			protected String getDiagramFileName(IFile domainModel) {
 				return "test.uml";
 			}
@@ -41,6 +41,7 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 		};
 	}
 
+	@Test
 	public void testDiagramFileExtentionLabel() {
 		final String expectedExtension = "test.xxx";
 		IWorkbenchWizard wizard = new InitModelWizard() {
@@ -49,7 +50,7 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 			public boolean isCreateFromExistingDomainModel() {
 				return isCreateFromExistingModel;
 			}
-			
+
 			protected String getDiagramFileName(IFile domainModel) {
 				return "tanya"; // arbitrary extension to avoid NPE
 			}
@@ -63,12 +64,13 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 
 
 	public void testOrderOfPages() {
-		Class[] expectedPages = new Class[]{ NewModelFilePage.class, SelectDiagramCategoryPage.class, SelectDiagramKindPage.class, SelectRootElementPage.class, };
+		Class<?>[] expectedPages = new Class[]{ NewModelFilePage.class, SelectDiagramCategoryPage.class, SelectDiagramKindPage.class, SelectRootElementPage.class, };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);
 	}
 
+	@Test
 	public void testDiagramFileExtenstionForUML() {
 		// 333849 - [Wizard] Init Diagram: Respect file extension of the UML model
 		final String expectedExtension = "di";
@@ -79,7 +81,7 @@ public class TestInitModelWizard extends TestNewModelWizardBase {
 				return isCreateFromExistingModel;
 			}
 
-			
+
 			protected String getDiagramFileName(IFile domainModel) {
 				return "tanya"; // arbitrary extension to avoid NPE
 			}

@@ -21,33 +21,35 @@ import org.eclipse.papyrus.eastadl.infrastructure.elements.TraceableSpecificatio
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Stakeholder</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <!-- begin-model-doc -->
- * The stakeholder represents various roles with regard to the creation and use of architectural descriptions. Stakeholders include clients, users, the architect, developers, and evaluators. [IEEE 1471]
+ * The stakeholder represents various roles with regard to the creation and use of architectural descriptions. Stakeholders include clients, users,
+ * the architect, developers, and evaluators. [IEEE 1471]
  * <!-- end-model-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.Stakeholder#getBase_Class <em>Base Class</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.Stakeholder#getResponsibilities <em>Responsibilities</em>}</li>
- *   <li>{@link org.eclipse.papyrus.eastadl.annex.needs.Stakeholder#getSuccessCriteria <em>Success Criteria</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.Stakeholder#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.Stakeholder#getResponsibilities <em>Responsibilities</em>}</li>
+ * <li>{@link org.eclipse.papyrus.eastadl.annex.needs.Stakeholder#getSuccessCriteria <em>Success Criteria</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage#getStakeholder()
  * @model
  * @generated
  */
 public interface Stakeholder extends TraceableSpecification {
+
 	/**
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Base Class</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage#getStakeholder_Base_Class()
@@ -60,7 +62,9 @@ public interface Stakeholder extends TraceableSpecification {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.annex.needs.Stakeholder#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Class</em>' reference.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */
@@ -70,10 +74,10 @@ public interface Stakeholder extends TraceableSpecification {
 	 * Returns the value of the '<em><b>Responsibilities</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Responsibilities</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Responsibilities</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Responsibilities</em>' attribute.
 	 * @see #setResponsibilities(String)
 	 * @see org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage#getStakeholder_Responsibilities()
@@ -86,10 +90,10 @@ public interface Stakeholder extends TraceableSpecification {
 	 * Returns the value of the '<em><b>Success Criteria</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Success Criteria</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Success Criteria</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Success Criteria</em>' attribute.
 	 * @see #setSuccessCriteria(String)
 	 * @see org.eclipse.papyrus.eastadl.annex.needs.NeedsPackage#getStakeholder_SuccessCriteria()
@@ -102,7 +106,9 @@ public interface Stakeholder extends TraceableSpecification {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.annex.needs.Stakeholder#getResponsibilities <em>Responsibilities</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Responsibilities</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Responsibilities</em>' attribute.
 	 * @see #getResponsibilities()
 	 * @generated
 	 */
@@ -112,7 +118,9 @@ public interface Stakeholder extends TraceableSpecification {
 	 * Sets the value of the '{@link org.eclipse.papyrus.eastadl.annex.needs.Stakeholder#getSuccessCriteria <em>Success Criteria</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Success Criteria</em>' attribute.
+	 * 
+	 * @param value
+	 *        the new value of the '<em>Success Criteria</em>' attribute.
 	 * @see #getSuccessCriteria()
 	 * @generated
 	 */

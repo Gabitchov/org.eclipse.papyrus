@@ -27,13 +27,15 @@ import org.eclipse.papyrus.eastadl.structure.functionmodeling.FunctionmodelingPa
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class AllocateableElementImpl extends EObjectImpl implements AllocateableElement {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AllocateableElementImpl() {
@@ -43,6 +45,7 @@ public abstract class AllocateableElementImpl extends EObjectImpl implements All
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

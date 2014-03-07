@@ -99,6 +99,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPackage {
@@ -106,6 +107,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eaDatatypeEClass = null;
@@ -113,6 +115,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass rangeableDatatypeEClass = null;
@@ -120,6 +123,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eaDatatypePrototypeEClass = null;
@@ -127,6 +131,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass valueTypeEClass = null;
@@ -134,6 +139,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass rangeableValueTypeEClass = null;
@@ -141,6 +147,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass enumerationValueTypeEClass = null;
@@ -148,6 +155,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass compositeDatatypeEClass = null;
@@ -155,6 +163,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eaStringEClass = null;
@@ -162,6 +171,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eaBooleanEClass = null;
@@ -169,6 +179,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eaFloatEClass = null;
@@ -176,6 +187,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass eaIntegerEClass = null;
@@ -183,6 +195,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass enumerationLiteralEClass = null;
@@ -190,6 +203,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass enumerationEClass = null;
@@ -197,6 +211,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EDataType javalangFloatEDataType = null;
@@ -204,6 +219,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -211,16 +227,18 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link DatatypesPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link DatatypesPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static DatatypesPackage init() {
-		if (isInited) return (DatatypesPackage)EPackage.Registry.INSTANCE.getEPackage(DatatypesPackage.eNS_URI);
+		if(isInited)
+			return (DatatypesPackage)EPackage.Registry.INSTANCE.getEPackage(DatatypesPackage.eNS_URI);
 
 		// Obtain or create and register package
 		DatatypesPackageImpl theDatatypesPackage = (DatatypesPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DatatypesPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DatatypesPackageImpl());
@@ -322,7 +340,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 		// Mark meta-data to indicate it can't be changed
 		theDatatypesPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(DatatypesPackage.eNS_URI, theDatatypesPackage);
 		return theDatatypesPackage;
@@ -331,6 +349,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEADatatype() {
@@ -340,6 +359,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEADatatype_Base_DataType() {
@@ -349,6 +369,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEADatatypePrototype() {
@@ -358,6 +379,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEADatatypePrototype_Type() {
@@ -367,6 +389,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEADatatypePrototype_Base_Property() {
@@ -376,6 +399,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEADatatypePrototype_Base_Parameter() {
@@ -385,6 +409,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -392,19 +417,19 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.eastadl.infrastructure.datatypes.DatatypesPackage#eNS_URI
 	 * @see #init()
@@ -415,14 +440,16 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	}
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
+	 * Creates the meta-model objects for the package. This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if(isCreated)
+			return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -478,6 +505,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getCompositeDatatype() {
@@ -487,6 +515,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getCompositeDatatype_DatatypePrototype() {
@@ -496,6 +525,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEAString() {
@@ -505,6 +535,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEABoolean() {
@@ -514,6 +545,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEAFloat() {
@@ -523,6 +555,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getEAFloat_Min() {
@@ -532,6 +565,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getEAFloat_Max() {
@@ -541,6 +575,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEAInteger() {
@@ -550,6 +585,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getEAInteger_Min() {
@@ -559,6 +595,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getEAInteger_Max() {
@@ -568,6 +605,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DatatypesFactory getDatatypesFactory() {
@@ -577,6 +615,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEnumerationLiteral() {
@@ -586,6 +625,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEnumeration() {
@@ -595,6 +635,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEnumeration_Literal() {
@@ -604,6 +645,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEnumerationValueType() {
@@ -613,6 +655,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getEnumerationValueType_IsMultiValued() {
@@ -622,6 +665,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getEnumerationValueType_LiteralSemantics() {
@@ -631,6 +675,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEnumerationValueType_Base_Enumeration() {
@@ -640,6 +685,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EDataType getjavalangFloat() {
@@ -649,6 +695,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRangeableDatatype() {
@@ -658,6 +705,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getRangeableValueType() {
@@ -667,6 +715,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getRangeableValueType_Accuracy() {
@@ -676,6 +725,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getRangeableValueType_Resolution() {
@@ -685,6 +735,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getRangeableValueType_SignificantDigits() {
@@ -694,6 +745,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getValueType() {
@@ -703,6 +755,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getValueType_Semantics() {
@@ -712,6 +765,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getValueType_Dimension() {
@@ -721,6 +775,7 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getValueType_Unit() {
@@ -728,14 +783,16 @@ public class DatatypesPackageImpl extends EPackageImpl implements DatatypesPacka
 	}
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
+	 * Complete the initialization of the package and its meta-model. This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if(isInitialized)
+			return;
 		isInitialized = true;
 
 		// Initialize package

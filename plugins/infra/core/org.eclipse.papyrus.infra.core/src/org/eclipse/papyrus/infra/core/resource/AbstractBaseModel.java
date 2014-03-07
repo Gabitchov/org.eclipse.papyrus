@@ -24,6 +24,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -37,7 +38,7 @@ import org.eclipse.papyrus.infra.core.Activator;
  * @author cedric dumoulin
  * 
  */
-public abstract class AbstractBaseModel extends AbstractModel implements IVersionableModel {
+public abstract class AbstractBaseModel extends AbstractModel implements IVersionableModel, IEMFModel {
 
 	/**
 	 * The associated resource.
@@ -52,6 +53,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	/**
 	 * @return the resource
 	 */
+	@Override
 	public Resource getResource() {
 		return resource;
 	}
@@ -85,12 +87,14 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	 * 
 	 * @param fullPath
 	 */
+	@Override
 	@Deprecated
 	public void createModel(IPath fullPath) {
 
 		createModel(getPlatformURI(fullPath));
 	}
 
+	@Override
 	public void createModel(URI uri) {
 		// Compute model URI
 		resourceURI = uri.appendFileExtension(getModelFileExtension());
@@ -156,6 +160,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	 * 
 	 * @param fullPathWithoutExtension
 	 */
+	@Override
 	@Deprecated
 	public void loadModel(IPath fullPathWithoutExtension) {
 		loadModel(getPlatformURI(fullPathWithoutExtension));
@@ -167,6 +172,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	 * 
 	 * @param fullPathWithoutExtension
 	 */
+	@Override
 	public void loadModel(URI uriWithoutExtension) {
 		// Compute model URI
 		resourceURI = uriWithoutExtension.appendFileExtension(getModelFileExtension());
@@ -181,17 +187,31 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	}
 
 	/**
+	 * Queries whether my resource (based on the given URI) exists in the current model set.
+	 * 
+	 * @param uriWithoutExtension
+	 *        the base resource URI to check
+	 * 
+	 * @return whether my resource based on this URI exists
+	 */
+	protected boolean exists(URI uriWithoutExtension) {
+		return modelSet.getURIConverter().exists(uriWithoutExtension.appendFileExtension(getModelFileExtension()), null);
+	}
+	
+	/**
 	 * Import the model by using the provided fullpath as a hint for the
 	 * resource URI. In this implementation, simply call {@link #loadModel(IPath)}
 	 * 
 	 * @param fullPathWithoutExtension
 	 */
+	@Override
 	@Deprecated
 	public void importModel(IPath fullPathWithoutExtension) {
 
 		loadModel(fullPathWithoutExtension);
 	}
 
+	@Override
 	public void importModel(URI uriWithoutExtension) {
 		loadModel(uriWithoutExtension);
 	}
@@ -201,6 +221,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	 * @see org.eclipse.papyrus.infra.core.resource.IModel#saveModel()
 	 * 
 	 */
+	@Override
 	public void saveModel() throws IOException {
 		if(!getModelManager().getTransactionalEditingDomain().isReadOnly(resource) && !ModelUtils.resourceFailedOnLoad(resource)) {
 			resource.save(null);
@@ -212,11 +233,13 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	 * 
 	 * @param nameWithoutExt
 	 */
+	@Override
 	@Deprecated
 	public void changeModelPath(IPath fullPath) {
 		setModelURI(getPlatformURI(fullPath));
 	}
 
+	@Override
 	public void setModelURI(URI uriWithoutExtension) {
 		// Compute model URI
 		resourceURI = uriWithoutExtension.appendFileExtension(getModelFileExtension());
@@ -228,6 +251,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	 * @see org.eclipse.papyrus.infra.core.resource.IModel#dispose()
 	 * 
 	 */
+	@Override
 	public void unload() {
 		// call registered snippets
 		snippets.performDispose(this);
@@ -237,6 +261,8 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 			resource.unload();
 			resource = null;
 		}
+
+		super.unload();
 	}
 
 
@@ -259,6 +285,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	}
 
 
+	@Override
 	public void saveCopy(IPath targetPathWithoutExtension, Map<Object, Object> targetMap) {
 		//		OutputStream targetStream = getOutputStream(targetPath);
 		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
@@ -275,6 +302,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 		//	resource.save(targetStream, options);
 	}
 
+	@Override
 	public void fillTargetMap(IPath targetPathWithoutExtension, Map<Object, Object> targetMap) {
 		targetMap.put(getResourceURI(), getTargetURI(targetPathWithoutExtension));
 	}
@@ -342,6 +370,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 
 	}
 
+	@Override
 	public Set<URI> getModifiedURIs() {
 		if(getResource() != null) {
 			if(!getResource().isTrackingModification() || getResource().isModified()) {
@@ -349,6 +378,45 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 			}
 		}
 		return Collections.emptySet();
+	}
+
+	@Override
+	public void handle(Resource resource) {
+		//Default: do nothing
+	}
+
+	@Override
+	public boolean isModelFor(Object element) {
+		return element != null && element == resource;
+	}
+
+	/**
+	 * For standard controlled resources, resources have a single root with a non-null eContainer
+	 * 
+	 * 
+	 * @param resource
+	 * @return
+	 */
+	@Override
+	public boolean isControlled(Resource resource) {
+		if(resource == this.resource || resource == null) {
+			return false;
+		}
+
+		if(resource.getContents().isEmpty()) {
+			return false;
+		}
+
+		EObject rootElement = resource.getContents().get(0);
+
+		boolean isControlled = rootElement.eContainer() != null;
+		if(isControlled) {
+			Resource parentResource = rootElement.eContainer().eResource();
+			boolean isChildOfMainResource = parentResource == this.resource || isControlled(parentResource);
+			return isChildOfMainResource;
+		}
+
+		return false;
 	}
 
 }

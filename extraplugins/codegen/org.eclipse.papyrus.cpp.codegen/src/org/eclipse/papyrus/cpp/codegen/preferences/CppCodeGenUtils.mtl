@@ -1,5 +1,5 @@
 [comment encoding = UTF-8 /]
-[module CppCodeGenUtils('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module CppCodeGenUtils('http://www.eclipse.org/uml2/5.0.0/UML')/]
 
 [query public getHeaderSuffix() : String
 	= invoke('org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils', 'getHeaderSuffix()', Sequence{}) /]
