@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 
@@ -28,7 +27,7 @@ import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 public class ValidateDelMarkersFromSubtreeCommand extends AbstractValidateCommand {
 
 	public ValidateDelMarkersFromSubtreeCommand(EObject selectedElement,IPapyrusDiagnostician diagnostician) {
-		super("Delete markers from subtree", TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
+		super(Messages.ValidateDelMarkersFromSubtreeCommand_DelMarkersFromSubtree, TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
 	}
 
 	/**

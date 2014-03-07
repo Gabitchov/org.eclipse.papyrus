@@ -161,13 +161,12 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			}
 			if(diagnostic != null) {
 				int markersToCreate = diagnostic.getChildren().size();
-				if((markersToCreate > 0) && PreferenceUtils.getAutoShowValidation()) {
+				if((markersToCreate > 0) && PreferenceUtils.getAutoShowValidation() && showUIfeedback) {
 					// activate model view, if activated in configuration
 					// IViewRegistry viewRegistry = PlatformUI.getWorkbench().getViewRegistry();
 					// IViewDescriptor desc = viewRegistry.find(modelValidationViewID);
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(modelValidationViewID);
 					// HandlerUtil.getActiveWorkbenchWindow(event).getActivePage().showView(modelValidationViewID);
-					
 				}
 				// don't fork this dialog, i.e. run it in the UI thread. This avoids that the diagrams are constantly refreshing *while*
 				// markers/decorations are changing. This greatly enhances update performance. See also bug 400593
@@ -226,12 +225,12 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 				ValidationTool vt = new ValidationTool(validateElement, resource);
 				int markersToCreate = diagnostic.getChildren().size();
 
-				sub.beginTask("Delete existing markers", 1);
+				sub.beginTask(Messages.AbstractValidateCommand_DeleteExistingMarkers, 1);
 				flushDisplayEvents(shell.getDisplay());
 
 				vt.deleteSubMarkers(sub.newChild(1));
 
-				monitor.setTaskName("Create markers (total: " + markersToCreate + " markers) and refresh diagrams"); //$NON-NLS-1$
+				monitor.setTaskName(String.format(Messages.AbstractValidateCommand_CreateNMarkers, markersToCreate));
 				flushDisplayEvents(shell.getDisplay());
 
 				vt.createMarkers(diagnostic, sub.newChild(1));

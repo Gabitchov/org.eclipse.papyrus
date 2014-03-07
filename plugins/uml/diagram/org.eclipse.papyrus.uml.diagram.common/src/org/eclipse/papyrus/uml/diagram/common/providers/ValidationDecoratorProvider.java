@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
@@ -41,9 +43,12 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.decoration.DecorationChange;
 import org.eclipse.papyrus.infra.services.decoration.DecorationChange.DecorationChangeKind;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
+import org.eclipse.papyrus.infra.services.decoration.util.Decoration;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * Generic validation decorator provider (for the case application == null)
@@ -176,7 +181,10 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			}
 			if(view.getElement() != null) {
 				diagramDecorationAdapter.removeDecorations();
-				List<IPapyrusDecoration> semanticDecorations = decorationService.getDecorations(view.getElement(), false);
+				List<IPapyrusDecoration> semanticDecorations = new BasicEList<IPapyrusDecoration>();
+				for (Object decoratedElement : getDecoratedElements(element)) {
+					semanticDecorations.addAll(decorationService.getDecorations(decoratedElement, false));
+				}
 				List<IPapyrusDecoration> graphicalDecorations = decorationService.getDecorations(view, false);
 
 				List<IPapyrusDecoration> decorations = new LinkedList<IPapyrusDecoration>(semanticDecorations);
@@ -266,11 +274,43 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			// check whether update is for this view
 			if(arg instanceof DecorationChange) {
 				DecorationChange change = (DecorationChange)arg;
-				if((change.getChangeKind() == DecorationChangeKind.RefreshAll) || (change.getDecoration().getElement() == element)) {
+				if((change.getChangeKind() == DecorationChangeKind.RefreshAll) || decorationMatches(element, change.getDecoration())) {
 					refresh(change);
 				}
 			}
 		}
+		
+		/**
+		 * Return the list of elements that correspond to a viewElement. In most cases, this list
+		 * contains just the view element. But some decorations need to apply to multiple elements.
+		 * In particular, decorations for a value specification of a constraint need to apply for the
+		 * constraint as well - see bug 427863 - Constraint does not show ValueSpecification error marker
+		 * @param viewElement
+		 * @return the list of observed decorations
+		 */
+		public EList<Object> getDecoratedElements(Object viewElement) {
+			EList<Object> decoratedElements = new BasicEList<Object>();
+			decoratedElements.add(viewElement);
+			/**
+			 * Add decorations of specification to constraint.
+			 */
+			if (element instanceof Constraint) {
+				ValueSpecification vs = ((Constraint) element).getSpecification();
+				if (vs != null) {
+					decoratedElements.add(vs);
+				}
+			}
+			return decoratedElements;
+		}
+		
+		/**
+		 * Does the viewElement match a decoration?
+		 * @param viewElement the element behind a view
+		 * @param decoration a decoration
+		 * @return true, if matches
+		 */
+		public boolean decorationMatches(Object viewElement, Decoration decoration) {
+			return getDecoratedElements(viewElement).contains(decoration.getElement());
+		}
 	}
-
 }

@@ -37,7 +37,8 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEd
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
-import org.eclipse.papyrus.infra.services.validation.commands.ValidateSubtreeCommand;
+import org.eclipse.papyrus.infra.services.validation.commands.AbstractValidateCommand;
+import org.eclipse.papyrus.infra.services.validation.commands.AsyncValidateSubtreeCommand;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
@@ -163,7 +164,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 				} else {
 					result.add(createInvalidStringCommand(newString, semanticObject));
 				}
-				ValidateSubtreeCommand validationCommand = new ValidateSubtreeCommand(semanticObject, new EcoreDiagnostician());
+				AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject, new EcoreDiagnostician());
 				validationCommand.disableUIFeedback();
 				result.add(validationCommand);
 				return result;
