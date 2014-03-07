@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,15 +9,13 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
  *
  *****************************************************************************/
 
 
 package org.eclipse.papyrus.uml.diagram.profile.custom.commands;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +32,6 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -46,7 +43,6 @@ import org.eclipse.papyrus.uml.diagram.profile.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.profile.custom.requests.CustomCreateElementRequestAdapter;
 import org.eclipse.papyrus.uml.tools.providers.UMLMetaclassContentProvider;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -125,6 +121,7 @@ public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {
 		//			}
 		//		}
 		final MultipleValueSelectorDialog dialog = new MultipleValueSelectorDialog(Display.getDefault().getActiveShell(), selector, Messages.CustomSemanticCreateCommand_SelectMetaclass, true, false, -1);
+		dialog.setContextElement(profile);
 		dialog.setLabelProvider(labelProvider);
 		dialog.setInitialElementSelections(alreadyImportedElement);
 

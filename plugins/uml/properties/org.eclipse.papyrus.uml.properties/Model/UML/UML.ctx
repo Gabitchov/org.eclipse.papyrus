@@ -1381,6 +1381,12 @@
     <sections name="MultiplePackageMerge" sectionFile="ui/MultiplePackageMerge.xwt">
       <widget href="ui/MultiplePackageMerge.xwt#/"/>
     </sections>
+    <sections name="SingleSignalEvent" sectionFile="ui/SingleSignalEvent.xwt">
+      <widget href="ui/SingleSignalEvent.xwt#/"/>
+    </sections>
+    <sections name="MultipleSignalEvent" sectionFile="ui/SingleSignalEvent.xwt">
+      <widget href="ui/SingleSignalEvent.xwt#/"/>
+    </sections>
   </tabs>
   <tabs label="Comments" id="comments" category="org.eclipse.papyrus" image="" priority="20">
     <sections name="SingleElementAppliedComments" sectionFile="ui/SingleElementAppliedComments.xwt">
@@ -4200,6 +4206,18 @@
         <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.5"/>
         <properties xsi:type="constraints:ValueProperty" name="annotationName" value="PapyrusVersion"/>
       </constraints>
+    </constraints>
+  </views>
+  <views name="SingleSignalEvent" sections="//@tabs.0/@sections.460">
+    <constraints xsi:type="constraints:SimpleConstraint" name="IsSingleSignalEvent">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="SignalEvent"/>
+    </constraints>
+  </views>
+  <views elementMultiplicity="-1" name="MultipleSignalEvent" sections="//@tabs.0/@sections.461">
+    <constraints xsi:type="constraints:SimpleConstraint" name="IsMultipleSignalEvent">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" name="umlClassName" value="SignalEvent"/>
     </constraints>
   </views>
   <dataContexts name="UML" label="UML">

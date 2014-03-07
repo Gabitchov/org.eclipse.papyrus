@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2007, 2009 Borland Software Corporation
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ package org.eclipse.papyrus.uml.diagram.common.providers;
 import static org.eclipse.papyrus.uml.diagram.common.Activator.log;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -55,26 +56,28 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 	/**
 	 * Refined by generated class
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider#createDecorators(org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget)
-	 * 
+	 *
 	 * @param decoratorTarget
 	 */
+	@Override
 	public abstract void createDecorators(IDecoratorTarget decoratorTarget);
 
 	/**
 	 * Refined by generated class
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.common.core.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
-	 * 
+	 *
 	 * @param operation
 	 * @return
 	 */
+	@Override
 	public abstract boolean provides(IOperation operation);
 
 	/**
 	 * Refresh the decorators of a specific view
-	 * 
+	 *
 	 * @param view
 	 */
 	public static void refreshDecorators(View view) {
@@ -91,10 +94,12 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		}
 		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					domain.runExclusive(new Runnable() {
 
+						@Override
 						public void run() {
 							decorator.refresh();
 						}
@@ -147,6 +152,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 				decorationService.addListener(this);
 				TransactionUtil.getEditingDomain(view).runExclusive(new Runnable() {
 
+					@Override
 					public void run() {
 						StatusDecorator.this.viewId = view != null ? ViewUtil.getIdStr(view) : null;
 						StatusDecorator.this.editingDomain = TransactionUtil.getEditingDomain(view);
@@ -159,9 +165,10 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 		/**
 		 * Completely refresh the decorators of a view
-		 * 
+		 *
 		 * @see org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecorator#refresh()
 		 */
+		@Override
 		public void refresh() {
 			View view = (View)getDecoratorTarget().getAdapter(View.class);
 			if(view == null || view.eResource() == null) {
@@ -169,11 +176,14 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			}
 			if(view.getElement() != null) {
 				diagramDecorationAdapter.removeDecorations();
-				List<IPapyrusDecoration> decorations = decorationService.getDecorations(view.getElement(), false);
+				List<IPapyrusDecoration> semanticDecorations = decorationService.getDecorations(view.getElement(), false);
+				List<IPapyrusDecoration> graphicalDecorations = decorationService.getDecorations(view, false);
+
+				List<IPapyrusDecoration> decorations = new LinkedList<IPapyrusDecoration>(semanticDecorations);
+				decorations.addAll(graphicalDecorations);
 				if(view instanceof Edge) {
 					diagramDecorationAdapter.setDecorationsEdge(decorations, 50, true);
-				}
-				else {
+				} else {
 					diagramDecorationAdapter.setDecorationsNode(decorations, 0, true);
 				}
 			}
@@ -181,15 +191,13 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 
 		/**
 		 * Refresh the decorators of a view when given a DecorationChange information.
-		 * 
+		 *
 		 * @param change
 		 *        A decoration change, e.g. addition or removal
 		 */
 		public void refresh(DecorationChange change) {
 
-			if(change.getChangeKind() == DecorationChangeKind.DecorationRemoved ||
-				change.getChangeKind() == DecorationChangeKind.DecorationModified ||
-				change.getChangeKind() == DecorationChangeKind.RefreshAll) {
+			if(change.getChangeKind() == DecorationChangeKind.DecorationRemoved || change.getChangeKind() == DecorationChangeKind.DecorationModified || change.getChangeKind() == DecorationChangeKind.RefreshAll) {
 				// always recreate all decorations, in case of a deletion (would require recalculation of positions) or
 				// if all decorations should be refreshed
 				refresh();
@@ -216,6 +224,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		 * activate the decorators of this view.
 		 * Register a listener for editing domain of the view
 		 */
+		@Override
 		public void activate() {
 			if(viewId == null) {
 				return;
@@ -252,12 +261,12 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		}
 
 		//Refresh when the decoration service adds a decoration
+		@Override
 		public void update(Observable o, Object arg) {
 			// check whether update is for this view
 			if(arg instanceof DecorationChange) {
 				DecorationChange change = (DecorationChange)arg;
-				if((change.getChangeKind() == DecorationChangeKind.RefreshAll) ||
-					(change.getDecoration().getElement() == element)) {
+				if((change.getChangeKind() == DecorationChangeKind.RefreshAll) || (change.getDecoration().getElement() == element)) {
 					refresh(change);
 				}
 			}

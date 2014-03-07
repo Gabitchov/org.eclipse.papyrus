@@ -47,6 +47,7 @@ public class DirectEditorEditingSupport extends EditingSupport {
 		ICustomDirectEditorConfiguration configuration = getConfigurationAE(element);
 		EObject semanticObject = EMFHelper.getEObject(element);
 		Composite parent = (Composite) getViewer().getControl();
+		configuration.preEditAction(semanticObject);
 		return configuration.createCellEditor(parent, semanticObject);
 	}
 

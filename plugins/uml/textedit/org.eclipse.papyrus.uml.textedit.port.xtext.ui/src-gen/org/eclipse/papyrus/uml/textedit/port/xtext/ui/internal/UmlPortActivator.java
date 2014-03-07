@@ -23,7 +23,7 @@ import com.google.inject.Module;
  */
 public class UmlPortActivator extends AbstractUIPlugin {
 	
-	public static final String ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_PORT_XTEXT_UMLPORT = "org.eclipse.papyrus.uml.textedit.port.xtext.UmlPort";
+	public static final String ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_PORT_XTEXT_UMLPORT = "org.eclipse.papyrus.uml.textedit.port.xtext.UmlPort"; //$NON-NLS-1$
 	
 	private static final Logger logger = Logger.getLogger(UmlPortActivator.class);
 	

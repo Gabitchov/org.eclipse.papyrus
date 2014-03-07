@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
+<!--
+ Copyright (c) 2012, 2014 CEA and others.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+   CEA - Initial API and implementation
+   Christian W. Damus (CEA) - bug 323802
+   
+-->
 <plugin>
    <extension
          point="org.eclipse.papyrus.infra.core.service">
@@ -16,6 +29,10 @@
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="110"
+            provider="org.eclipse.papyrus.infra.emf.providers.ResourceFilteredLabelProvider">
+      </labelProvider>
       <labelProvider
             priority="100"
             provider="org.eclipse.papyrus.infra.emf.providers.EMFFilteredLabelProvider">
@@ -41,6 +58,15 @@
                id="org.eclipse.papyrus.infra.emf.page">
          </metamodelType>
       </metamodel>
+      <metamodel
+            nsURI="http://www.eclipse.org/emf/2002/Ecore">
+         <adviceBinding
+               id="org.eclipse.papyrus.infra.emf.readOnlyAdvice"
+               class="org.eclipse.papyrus.infra.emf.advice.ReadOnlyObjectEditAdvice"
+               typeId="*"
+               inheritance="none">
+         </adviceBinding>
+      </metamodel>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
@@ -56,6 +82,16 @@
                ref="org.eclipse.papyrus.infra.emf.deletePageAdvice">
          </elementType>
       </binding>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.emf.ecore.EObject"
+            class="org.eclipse.papyrus.infra.emf.adapters.EObjectAdapterFactory">
+         <adapter
+               type="org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor">
+         </adapter>
+      </factory>
    </extension>
 
 </plugin>

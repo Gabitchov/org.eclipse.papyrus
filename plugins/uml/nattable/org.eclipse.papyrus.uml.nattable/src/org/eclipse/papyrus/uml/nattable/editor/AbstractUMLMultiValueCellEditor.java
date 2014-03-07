@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 402525
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.editor;
@@ -167,6 +168,7 @@ public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCell
 			}
 
 		};
+		dialog.setContextElement(realEditedObject);
 		dialog.setLabelProvider(new UMLLabelProvider());
 		if(value != null && value instanceof Collection) {
 			Collection<?> coll = (Collection<?>)value;

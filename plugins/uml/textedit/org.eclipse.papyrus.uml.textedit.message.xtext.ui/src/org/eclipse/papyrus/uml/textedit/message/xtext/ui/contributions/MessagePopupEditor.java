@@ -33,27 +33,22 @@ import com.google.inject.Injector;
 
 public class MessagePopupEditor extends DefaultXtextDirectEditorConfiguration {
 
-	public void init(EObject semanticObject) {
-
-	}
-
 	@Override
 	public Injector getInjector() {
-		return UmlMessageActivator.getInstance().getInjector(
-				UmlMessageActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_MESSAGE_XTEXT_UMLMESSAGE);
+		return UmlMessageActivator.getInstance().getInjector(UmlMessageActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_MESSAGE_XTEXT_UMLMESSAGE);
 	}
 
 	@Override
 	protected ICommand getParseCommand(EObject umlObject, EObject xtextObject) {
-		Message message = (Message) umlObject;
+		Message message = (Message)umlObject;
 		EObject modifiedObject = xtextObject;
-		while (xtextObject != null && !(xtextObject instanceof MessageRule)) {
+		while(xtextObject != null && !(xtextObject instanceof MessageRule)) {
 			modifiedObject = modifiedObject.eContainer();
 		}
-		if (modifiedObject == null) {
+		if(modifiedObject == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		MessageRule messageRuleObject = (MessageRule) xtextObject;
+		MessageRule messageRuleObject = (MessageRule)xtextObject;
 
 		// Retrieves the information to be populated in modelObject
 		String newName = "" + messageRuleObject.getName();
@@ -65,15 +60,15 @@ public class MessagePopupEditor extends DefaultXtextDirectEditorConfiguration {
 		String newSequenceTermList = "";
 		int i = 0;
 		String recurrence;
-		for (i = 0; i < messageRuleObject.getSequenceTerm().size(); i++) {
-			if (messageRuleObject.getSequenceTerm().get(i).getSequenceName() != null) {
+		for(i = 0; i < messageRuleObject.getSequenceTerm().size(); i++) {
+			if(messageRuleObject.getSequenceTerm().get(i).getSequenceName() != null) {
 				ocname = messageRuleObject.getSequenceTerm().get(i).getSequenceName().toString();
 			}
 			ocnumber = messageRuleObject.getSequenceTerm().get(i).getSequencialOrder();
-			if (messageRuleObject.getSequenceTerm().get(i).getRecurrence() != null) {
+			if(messageRuleObject.getSequenceTerm().get(i).getRecurrence() != null) {
 				recurrence = messageRuleObject.getSequenceTerm().get(i).getRecurrence().trim();
 			}
-			if ((i == 0)) {
+			if((i == 0)) {
 				newSequenceTermList = newSequenceTermList + ocnumber + ocname;
 			} else {
 				newSequenceTermList = newSequenceTermList + '.' + ocnumber + ocname;
@@ -94,17 +89,17 @@ public class MessagePopupEditor extends DefaultXtextDirectEditorConfiguration {
 	@Override
 	public String getTextToEdit(Object editedObject) {
 
-		if (editedObject instanceof Message) {
-			String texttoedit = ((Message) editedObject).getName().trim();
+		if(editedObject instanceof Message) {
+			String texttoedit = ((Message)editedObject).getName().trim();
 
-			Interaction interaction = ((Message) editedObject).getInteraction();
+			Interaction interaction = ((Message)editedObject).getInteraction();
 
 			int sequencenumber = 0;
-			for (Iterator it = interaction.getMessages().iterator(); it.hasNext();) {
+			for(Iterator it = interaction.getMessages().iterator(); it.hasNext();) {
 				sequencenumber++;
-				Message childElement = (Message) it.next();
-				if (childElement.equals(editedObject)) {
-					if ((texttoedit.charAt(0) >= 48) && (texttoedit.charAt(0) <= 57)) {
+				Message childElement = (Message)it.next();
+				if(childElement.equals(editedObject)) {
+					if((texttoedit.charAt(0) >= 48) && (texttoedit.charAt(0) <= 57)) {
 						return texttoedit;
 					} else {
 						return texttoedit = sequencenumber + ":" + texttoedit;
@@ -119,11 +114,12 @@ public class MessagePopupEditor extends DefaultXtextDirectEditorConfiguration {
 	/**
 	 * The Class UpdateUMLMessageCommand.
 	 */
-	protected static class UpdateUMLMessageCommand extends
-			org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand {
+	protected static class UpdateUMLMessageCommand extends org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand {
 
 		private Message message;
+
 		private String newName;
+
 		private String newSequenceTermList;
 
 		@Override

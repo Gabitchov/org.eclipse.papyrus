@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
@@ -23,6 +25,7 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
@@ -119,9 +122,9 @@ public class MemberEndModelElement extends AbstractModelElement {
 					return false;
 				}
 			}
-			return ((Property)source).getAssociation().getMemberEnds().size() <= 2;
+			return (((Property)source).getAssociation().getMemberEnds().size() <= 2) && !EMFHelper.isReadOnly(source);
 		}
-		return true;
+		return !EMFHelper.isReadOnly(source);
 	}
 
 	private boolean isAssociation(Property property) {

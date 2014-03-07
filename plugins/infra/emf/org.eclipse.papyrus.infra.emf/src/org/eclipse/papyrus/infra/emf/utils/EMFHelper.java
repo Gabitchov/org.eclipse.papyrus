@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
+ *  Christian W. Damus (CEA) - bug 323802
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -41,11 +42,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.emf.facet.custom.ui.CustomizedContentProviderUtils;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -500,6 +503,48 @@ public class EMFHelper {
 	}
 
 	/**
+	 * Tests if an object that is read only could possibly be made writable by some means (file system attributes, team provider hook, database
+	 * permissions, etc.)
+	 * 
+	 * @param eObject
+	 *        an object that is assumed to be read-only
+	 * @param domain
+	 *        the editing domain context of the {@link eObject}
+	 * @return
+	 *         whether the {@code eObject} could be made writable
+	 */
+	public static boolean canMakeWritable(final EObject eObject, final EditingDomain domain) {
+		if(domain != null) {
+			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
+			if(handler instanceof IReadOnlyHandler2) {
+				return ((IReadOnlyHandler2)handler).canMakeWritable(eObject).or(false);
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Tests if a resource that is read only could possibly be made writable by some means (file system attributes, team provider hook, database
+	 * permissions, etc.)
+	 * 
+	 * @param resource
+	 *        a resource that is assumed to be read-only
+	 * @param domain
+	 *        the editing domain context of the {@link resource}
+	 * @return
+	 *         whether the {@code resource} could be made writable
+	 */
+	public static boolean canMakeWritable(final Resource resource, final EditingDomain domain) {
+		if(domain != null) {
+			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
+			if(handler instanceof IReadOnlyHandler2) {
+				return ((IReadOnlyHandler2)handler).canMakeWritable(new URI[] { resource.getURI() }).or(false);
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Tests if the given EStructuralFeature is required (ie. should always
 	 * have a value)
 	 * 
@@ -740,5 +785,43 @@ public class EMFHelper {
 			result.add(element);
 		}
 		return result;
+	}
+
+	/**
+	 * Returns the given element, reloaded into the resource set of the context element,
+	 * or the source element itself if not possible.
+	 *
+	 * Use this method for e.g. loading an element from a shared resource set into another resource set
+	 * (Apply a registered profile/library, drop an element from the project explorer, ...)
+	 *
+	 * @param element
+	 * @param contextElement
+	 * @return
+	 */
+	public static <T extends EObject> T reloadIntoContext(T element, EObject contextElement) {
+		ResourceSet sourceResourceSet = getResourceSet(element);
+		ResourceSet loadingContext = getResourceSet(contextElement);
+
+		if(sourceResourceSet == loadingContext || loadingContext == null) {
+			return element;
+		}
+
+		URI sourceURI = EcoreUtil.getURI(element);
+		EObject result = loadingContext.getEObject(sourceURI, true);
+
+		return (T)result;
+	}
+
+	/**
+	 * Returns the resourceSet owning this eObject, or null if it is detached
+	 *
+	 * @param eObject
+	 */
+	public static ResourceSet getResourceSet(EObject eObject) {
+		if(eObject == null || eObject.eResource() == null) {
+			return null;
+		}
+
+		return eObject.eResource().getResourceSet();
 	}
 }

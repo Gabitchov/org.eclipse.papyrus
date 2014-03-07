@@ -201,7 +201,7 @@
             language="Advanced transition textual editor"
             objectToEdit="org.eclipse.uml2.uml.Transition">
          <popupeditor
-               editorConfiguration="org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contributions.TransitionPopupEditorConfigurationContribution">
+               editorConfiguration="org.eclipse.papyrus.uml.textedit.transition.xtext.ui.contributions.TransitionEditorConfigurationContribution">
          </popupeditor>
       </DirectEditor>
    </extension>

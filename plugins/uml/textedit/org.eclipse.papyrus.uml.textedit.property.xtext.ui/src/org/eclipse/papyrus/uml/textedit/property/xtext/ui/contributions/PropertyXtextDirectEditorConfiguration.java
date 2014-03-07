@@ -45,34 +45,32 @@ import com.google.inject.Injector;
  *         editor, for properties of UML classifiers.
  * 
  */
-public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEditorConfiguration implements
-		ICustomDirectEditorConfiguration {
+public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
 
 
 	@Override
 	public Injector getInjector() {
-		return UmlPropertyActivator.getInstance().getInjector(
-				UmlPropertyActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_PROPERTY_XTEXT_UMLPROPERTY);
+		return UmlPropertyActivator.getInstance().getInjector(UmlPropertyActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_PROPERTY_XTEXT_UMLPROPERTY);
 	}
 
+	@Override
 	public ICommand getParseCommand(EObject modelObject, EObject xtextObject) {
-		Property property = (Property) modelObject;
+		Property property = (Property)modelObject;
 		xtextObject = EcoreUtil2.getContainerOfType(xtextObject, PropertyRule.class);
-		PropertyRule propertyRuleObject = (PropertyRule) xtextObject;
+		PropertyRule propertyRuleObject = (PropertyRule)xtextObject;
 
 		// Retrieves the information to be populated in modelObject
-		boolean newIsDerived = propertyRuleObject.getIsDerived() != null
-				&& propertyRuleObject.getIsDerived().equals("/");
+		boolean newIsDerived = propertyRuleObject.getIsDerived() != null && propertyRuleObject.getIsDerived().equals("/");
 		boolean newIsReadOnly = false;
 		boolean newIsUnique = false;
 		boolean newIsUnion = false;
 		boolean newIsOrdered = false;
 		List<Property> newRedefines = new ArrayList<Property>();
 		List<Property> newSubsets = new ArrayList<Property>();
-		if (propertyRuleObject.getModifiers() != null) {
-			for (ModifierSpecification modifier : propertyRuleObject.getModifiers().getValues()) {
-				if (modifier.getRedefines() == null && modifier.getSubsets() == null) {
-					switch (modifier.getValue()) {
+		if(propertyRuleObject.getModifiers() != null) {
+			for(ModifierSpecification modifier : propertyRuleObject.getModifiers().getValues()) {
+				if(modifier.getRedefines() == null && modifier.getSubsets() == null) {
+					switch(modifier.getValue()) {
 					case ORDERED:
 						newIsOrdered = true;
 						break;
@@ -90,20 +88,20 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 					}
 				}
 			}
-			for (ModifierSpecification modifier : propertyRuleObject.getModifiers().getValues()) {
-				if (modifier.getRedefines() != null) {
+			for(ModifierSpecification modifier : propertyRuleObject.getModifiers().getValues()) {
+				if(modifier.getRedefines() != null) {
 					newRedefines.add(modifier.getRedefines().getProperty());
-				} else if (modifier.getSubsets() != null) {
+				} else if(modifier.getSubsets() != null) {
 					newSubsets.add(modifier.getSubsets().getProperty());
 				}
 			}
 		}
 		int newLowerBound = 1;
 		int newUpperBound = 1;
-		if (propertyRuleObject.getMultiplicity() != null) {
-			if (propertyRuleObject.getMultiplicity().getBounds().size() == 1) {
+		if(propertyRuleObject.getMultiplicity() != null) {
+			if(propertyRuleObject.getMultiplicity().getBounds().size() == 1) {
 				String tempBound = propertyRuleObject.getMultiplicity().getBounds().get(0).getValue();
-				if (tempBound.equals("*")) {
+				if(tempBound.equals("*")) {
 					newLowerBound = 0;
 					newUpperBound = -1;
 				} else {
@@ -114,7 +112,7 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 				String tempBound = propertyRuleObject.getMultiplicity().getBounds().get(0).getValue();
 				newLowerBound = new Integer(tempBound).intValue();
 				tempBound = propertyRuleObject.getMultiplicity().getBounds().get(1).getValue();
-				if (tempBound.equals("*")) {
+				if(tempBound.equals("*")) {
 					newUpperBound = -1;
 				} else {
 					newUpperBound = new Integer(tempBound).intValue();
@@ -123,7 +121,7 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 		}
 
 		String newDefault;
-		if (propertyRuleObject.getDefault() != null) {
+		if(propertyRuleObject.getDefault() != null) {
 			newDefault = propertyRuleObject.getDefault().getDefault();
 		} else {
 			newDefault = null;
@@ -131,7 +129,7 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 		String newName = ALFIDConverter.IDtoName(propertyRuleObject.getName());
 		Classifier newType;
 		TypeRule typeRule = propertyRuleObject.getType();
-		if (typeRule == null) {
+		if(typeRule == null) {
 			newType = null;
 		} else {
 			newType = typeRule.getType();
@@ -139,7 +137,7 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 
 		org.eclipse.uml2.uml.VisibilityKind newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
 
-		switch (propertyRuleObject.getVisibility()) {
+		switch(propertyRuleObject.getVisibility()) {
 		case PUBLIC:
 			newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
 			break;
@@ -156,42 +154,34 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 			break;
 		}
 
-		org.eclipse.gmf.runtime.common.core.command.CompositeCommand updateCommand = new CompositeCommand(
-				"Property update");
+		org.eclipse.gmf.runtime.common.core.command.CompositeCommand updateCommand = new CompositeCommand("Property update");
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(property);
 
-		SetRequest setIsDerivedRequest = new SetRequest(property, UMLPackage.eINSTANCE.getProperty_IsDerived(),
-				newIsDerived);
+		SetRequest setIsDerivedRequest = new SetRequest(property, UMLPackage.eINSTANCE.getProperty_IsDerived(), newIsDerived);
 		ICommand setIsDerivedCommand = provider.getEditCommand(setIsDerivedRequest);
 		updateCommand.add(setIsDerivedCommand);
 
-		SetRequest setIsReadOnlyRequest = new SetRequest(property,
-				UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly(), newIsReadOnly);
+		SetRequest setIsReadOnlyRequest = new SetRequest(property, UMLPackage.eINSTANCE.getStructuralFeature_IsReadOnly(), newIsReadOnly);
 		ICommand setIsReadOnlyCommand = provider.getEditCommand(setIsReadOnlyRequest);
 		updateCommand.add(setIsReadOnlyCommand);
 
-		SetRequest setIsUniqueRequest = new SetRequest(property,
-				UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique(), newIsUnique);
+		SetRequest setIsUniqueRequest = new SetRequest(property, UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique(), newIsUnique);
 		ICommand setIsUniqueCommand = provider.getEditCommand(setIsUniqueRequest);
 		updateCommand.add(setIsUniqueCommand);
 
-		SetRequest setIsDerivedUnionRequest = new SetRequest(property,
-				UMLPackage.eINSTANCE.getProperty_IsDerivedUnion(), newIsUnion);
+		SetRequest setIsDerivedUnionRequest = new SetRequest(property, UMLPackage.eINSTANCE.getProperty_IsDerivedUnion(), newIsUnion);
 		ICommand setIsDerivedUnionCommand = provider.getEditCommand(setIsDerivedUnionRequest);
 		updateCommand.add(setIsDerivedUnionCommand);
 
-		SetRequest setIsOrderedRequest = new SetRequest(property,
-				UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered(), newIsOrdered);
+		SetRequest setIsOrderedRequest = new SetRequest(property, UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered(), newIsOrdered);
 		ICommand setIsOrderedCommand = provider.getEditCommand(setIsOrderedRequest);
 		updateCommand.add(setIsOrderedCommand);
 
-		SetRequest setLowerRequest = new SetRequest(property, UMLPackage.eINSTANCE.getMultiplicityElement_Lower(),
-				newLowerBound);
+		SetRequest setLowerRequest = new SetRequest(property, UMLPackage.eINSTANCE.getMultiplicityElement_Lower(), newLowerBound);
 		ICommand setLowerCommand = provider.getEditCommand(setLowerRequest);
 		updateCommand.add(setLowerCommand);
 
-		SetRequest setUpperRequest = new SetRequest(property, UMLPackage.eINSTANCE.getMultiplicityElement_Upper(),
-				newUpperBound);
+		SetRequest setUpperRequest = new SetRequest(property, UMLPackage.eINSTANCE.getMultiplicityElement_Upper(), newUpperBound);
 		ICommand setUpperCommand = provider.getEditCommand(setUpperRequest);
 		updateCommand.add(setUpperCommand);
 
@@ -203,29 +193,25 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 		ICommand setTypeCommand = provider.getEditCommand(setTypeRequest);
 		updateCommand.add(setTypeCommand);
 
-		SetRequest setVisibilityRequest = new SetRequest(property, UMLPackage.eINSTANCE.getNamedElement_Visibility(),
-				newVisibility);
+		SetRequest setVisibilityRequest = new SetRequest(property, UMLPackage.eINSTANCE.getNamedElement_Visibility(), newVisibility);
 		ICommand setVisibilityCommand = provider.getEditCommand(setVisibilityRequest);
 		updateCommand.add(setVisibilityCommand);
-		
-		if (newDefault == null && property.getDefaultValue() != null) {
-			DestroyElementRequest destroyDefaultValueRequest = new DestroyElementRequest(property.getDefaultValue(), false) ;
-			ICommand destroyDefaultValueCommand = provider.getEditCommand(destroyDefaultValueRequest) ;
+
+		if(newDefault == null && property.getDefaultValue() != null) {
+			DestroyElementRequest destroyDefaultValueRequest = new DestroyElementRequest(property.getDefaultValue(), false);
+			ICommand destroyDefaultValueCommand = provider.getEditCommand(destroyDefaultValueRequest);
 			updateCommand.add(destroyDefaultValueCommand);
-		}
-		else {
+		} else {
 			SetRequest setDefaultValueRequest = new SetRequest(property, UMLPackage.eINSTANCE.getProperty_Default(), newDefault);
 			ICommand setDefaultValueCommand = provider.getEditCommand(setDefaultValueRequest);
 			updateCommand.add(setDefaultValueCommand);
 		}
 
-		SetRequest setRedefinedPropertiesRequest = new SetRequest(property,
-				UMLPackage.eINSTANCE.getProperty_RedefinedProperty(), newRedefines);
+		SetRequest setRedefinedPropertiesRequest = new SetRequest(property, UMLPackage.eINSTANCE.getProperty_RedefinedProperty(), newRedefines);
 		ICommand setRedefinedPropertiesCommand = provider.getEditCommand(setRedefinedPropertiesRequest);
 		updateCommand.add(setRedefinedPropertiesCommand);
 
-		SetRequest setSubsettedPropertiesRequest = new SetRequest(property,
-				UMLPackage.eINSTANCE.getProperty_SubsettedProperty(), newSubsets);
+		SetRequest setSubsettedPropertiesRequest = new SetRequest(property, UMLPackage.eINSTANCE.getProperty_SubsettedProperty(), newSubsets);
 		ICommand setSubsettedPropertiesCommand = provider.getEditCommand(setSubsettedPropertiesRequest);
 		updateCommand.add(setSubsettedPropertiesCommand);
 		return updateCommand;
@@ -241,8 +227,8 @@ public class PropertyXtextDirectEditorConfiguration extends DefaultXtextDirectEd
 	 */
 	@Override
 	public String getTextToEdit(Object editedObject) {
-		if (editedObject instanceof Property) {
-			return UMLPropertyEditorPropertyUtil.getLabel((Property) editedObject).trim();
+		if(editedObject instanceof Property) {
+			return UMLPropertyEditorPropertyUtil.getLabel((Property)editedObject).trim();
 			// TODO: default values not supported by the grammar
 			// TODO: either complete the grammar, or use another label provider
 		}

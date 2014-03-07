@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,20 +9,16 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.InternalTransaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -37,8 +33,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
@@ -96,36 +92,25 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 	}
 
 
-	protected void executeAppliedStereotypeCommentDeletion( final TransactionalEditingDomain domain, final View commentNode) {
-		try {
-			domain.runExclusive(new Runnable() {
+	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
+		if(commentNode != null) {
+			Display.getCurrent().asyncExec(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-							//because it is asynchrone the comment node maybe become s null
-							if( commentNode!= null&& TransactionUtil.getEditingDomain(commentNode)!=null){
-								DeleteCommand command= new DeleteCommand(commentNode);
-								 Map<String,Boolean> options = new HashMap<String,Boolean>();  
-									options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								try{
-									InternalTransaction it=((InternalTransactionalEditingDomain)  TransactionUtil.getEditingDomain(commentNode)).startTransaction(false, options);
-									GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
-									warpperCmd.execute();
-									it.commit();
-								}catch(Exception e){
-									Activator.log.error(e);
-								}
-								}
+					//because it is asynchronous the comment node's domain maybe become null
+					if(TransactionUtil.getEditingDomain(commentNode) == domain) {
+						DeleteCommand command = new DeleteCommand(commentNode);
+						try {
+							GMFUnsafe.write(domain, command);
+						} catch (Exception e) {
+							Activator.log.error(e);
 						}
-					});
+					}
 				}
 			});
-		} catch (Exception e) {
-			Activator.log.error(e);
 		}
 	}
+
 	protected int getvisibleAppliedStereotypeCompartment(View view, EObject eobject){
 		int nbVisibleCompartment=0;
 		Iterator<View> iteratorView= view.getChildren().iterator();

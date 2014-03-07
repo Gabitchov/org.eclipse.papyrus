@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin
+ * Copyright (c) 2011, 2014 Atos Origin, CEA, and others.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly.handlers;
@@ -23,11 +23,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
@@ -81,5 +83,12 @@ public class EnableWriteCommandHandler extends AbstractHandler {
 			return (EObject)businessObject;
 		}
 		return null;
+	}
+	
+	@Override
+	public void setEnabled(Object evaluationContext) {
+		EObject selected = getSelectedElement();
+		EditingDomain domain = (selected == null) ? null : EMFHelper.resolveEditingDomain(selected);
+		setBaseEnabled((domain != null) && EMFHelper.canMakeWritable(selected, domain));
 	}
 }

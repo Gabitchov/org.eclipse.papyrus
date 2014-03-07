@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2013 CEA LIST.
+ * Copyright (c) 2008, 2014 CEA LIST, Atos Origin, and others.
  *
  * 
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Emilien Perico (Atos Origin) - fix bug on refresh
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
@@ -300,6 +301,8 @@ public class AppliedProfileCompositeOnModel extends Composite {
 
 		profiles = createProfilesList();
 		profiles.setVisible(true);
+		
+		updateEnablement();
 	}
 
 	/**
@@ -500,6 +503,23 @@ public class AppliedProfileCompositeOnModel extends Composite {
 				}
 			}
 		}
+		
+		updateEnablement();
+	}
+	
+	protected boolean isEditable() {
+		Package currentPackage = getSelectedPackage();
+		return (currentPackage != null) && !EMFHelper.isReadOnly(currentPackage);
+	}
+	
+	protected void updateEnablement() {
+		boolean isEditable = isEditable();
+		
+		if((addButton != null) && !addButton.isDisposed()) {
+			addButton.setEnabled(isEditable);
+			removeButton.setEnabled(isEditable);
+			addRegisteredButton.setEnabled(isEditable);
+		}
 	}
 
 	/**
@@ -524,6 +544,8 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	 */
 	public void setSelection(ISelection selection) {
 		this.selectedElement = selection;
+		
+		updateEnablement();
 	}
 
 	/**

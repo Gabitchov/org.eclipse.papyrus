@@ -1,14 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
- *		CEA LIST - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.ui;
@@ -205,7 +205,7 @@ public class CreateUmlElementDialog extends ElementTreeSelectionDialog {
 		int max = 0;
 		do {
 
-			ArrayList<?> allInterface = Util.getInstancesFilteredByType(pack, Interface.class, null);
+			List<Interface> allInterface = Util.getInstancesFilteredByType(pack, Interface.class, null);
 			for(Object object : allInterface) {
 				String name = NamedElementUtil.getName((NamedElement)object);
 				if(name != null && name.startsWith(type)) {

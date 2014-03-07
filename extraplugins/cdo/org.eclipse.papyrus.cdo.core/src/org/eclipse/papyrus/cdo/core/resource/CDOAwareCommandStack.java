@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 402525
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource;
 
@@ -19,7 +20,7 @@ import org.eclipse.emf.cdo.eresource.EresourcePackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
-import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStack;
+import org.eclipse.papyrus.commands.NestingNotifyingWorkspaceCommandStack;
 
 import com.google.common.collect.Sets;
 
@@ -28,10 +29,19 @@ import com.google.common.collect.Sets;
  * A CDO-specific command-stack that attaches undo contexts describing object-level
  * details of the scope of a change.
  */
-public class CDOAwareCommandStack extends NotifyingWorkspaceCommandStack {
+public class CDOAwareCommandStack extends NestingNotifyingWorkspaceCommandStack {
 
 	public CDOAwareCommandStack(IOperationHistory history) {
 		super(history);
+	}
+
+	protected CDOAwareCommandStack(boolean nested, IOperationHistory history) {
+		super(nested, history);
+	}
+
+	@Override
+	protected NestingNotifyingWorkspaceCommandStack createNestedCommandStack(IOperationHistory history) {
+		return new CDOAwareCommandStack(true, history);
 	}
 
 	@Override

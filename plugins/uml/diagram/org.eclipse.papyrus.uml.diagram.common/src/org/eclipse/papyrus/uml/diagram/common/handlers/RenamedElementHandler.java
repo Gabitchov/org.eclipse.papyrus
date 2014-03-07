@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 350910
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.handlers;
@@ -20,13 +21,15 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -63,8 +66,10 @@ public class RenamedElementHandler extends AbstractHandler {
 		if(selection.size() == 1) {
 			IGraphicalEditPart editpart = selection.get(0);
 			DiagramEditPart diagramEP = DiagramEditPartsUtil.getDiagramEditPart(editpart);
-			// we don't rename the diagram
-			return editpart != diagramEP;
+			EObject modelElement = EMFHelper.getEObject(editpart);
+				
+			// we don't rename the diagram nor read-only objects
+			return (editpart != diagramEP) && ((modelElement == null) || !EMFHelper.isReadOnly(modelElement));
 		}
 		return false;
 	}

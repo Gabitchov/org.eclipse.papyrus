@@ -458,7 +458,6 @@
 				org.eclipse.jface.dialogs.Dialog dialog = null;
 				if (configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration) {
 					setManager(((org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
-					setParser(((org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration) configuration).createParser(this.resolveSemanticElement()));
 					initializeDirectEditManager(theRequest);
 					return;
 				} else if (configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration) {

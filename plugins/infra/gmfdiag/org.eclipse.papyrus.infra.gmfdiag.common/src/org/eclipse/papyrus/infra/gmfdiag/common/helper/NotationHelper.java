@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,5 +46,43 @@ public class NotationHelper {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Tests whether the given View is a reference to an external element.
+	 * A view is an external reference if its graphical container is different from its semantic
+	 * container (i.e. self.element.eContainer() != self.primaryView.eContainer().element)
+	 * 
+	 * @param diagramElement
+	 * @return
+	 */
+	public static boolean isExternalRef(View diagramElement) {
+		if(diagramElement == null) {
+			return false;
+		}
+
+		View primaryView = SemanticElementHelper.findTopView(diagramElement);
+		if(primaryView == null) {
+			return false;
+		}
+
+		EObject semanticElement = primaryView.getElement();
+
+		if(semanticElement == null) {
+			return false;
+		}
+
+		EObject parentView = primaryView.eContainer();
+		if(!(parentView instanceof View)) {
+			return false;
+		}
+
+		EObject parentSemanticElement = ((View)parentView).getElement();
+		if(parentSemanticElement == null) {
+			return false;
+		}
+
+		//Relax the constraints for elements displayed on themselves (e.g. Frame in Composite Structure Diagram)
+		return parentSemanticElement != semanticElement.eContainer() && parentSemanticElement != semanticElement;
 	}
 }

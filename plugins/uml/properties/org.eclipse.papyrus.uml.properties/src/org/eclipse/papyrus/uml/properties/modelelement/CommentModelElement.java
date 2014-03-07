@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Sebastien Poissonnet (CEA LIST) sebastien.poissonnet@cea.fr
+ *  Christian W. Damus (CEA) - bug 323802
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
@@ -68,11 +70,11 @@ public class CommentModelElement extends EMFModelElement {
 	}
 
 	@Override
-	public boolean isEditable(String propertyPath) {
+	protected boolean isFeatureEditable(String propertyPath) {
 		if(APPLIED_COMMENTS_PROPERTY.equals(propertyPath)) {
 			return true;
 		}
-		return super.isEditable(propertyPath);
+		return super.isFeatureEditable(propertyPath);
 	}
 
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,12 +9,14 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
+ *  Christian W. Damus (CEA) - 402525
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -29,7 +31,7 @@ import org.eclipse.uml2.uml.Extension;
  * @author Camille Letavernier
  * 
  */
-public class ExtensionRequiredObservableValue extends AbstractObservableValue implements IChangeListener {
+public class ExtensionRequiredObservableValue extends AbstractObservableValue implements IChangeListener, IObserving {
 
 	private Extension extension;
 
@@ -69,6 +71,10 @@ public class ExtensionRequiredObservableValue extends AbstractObservableValue im
 
 		observable.setValue(required ? MultiplicityParser.ONE : MultiplicityParser.OPTIONAL);
 		currentValue = required;
+	}
+	
+	public Object getObserved() {
+		return extension;
 	}
 
 	@Override

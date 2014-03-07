@@ -21,21 +21,6 @@
             rule="org.eclipse.papyrus.uml.diagram.navigation.TransitionRule"></navigationRule>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.gmfdiag.navigation.navigationDecoratorRules">
-      <decoratedClass
-            class="org.eclipse.uml2.uml.BehavioredClassifier">
-      </decoratedClass>
-      <decoratedClass
-            class="org.eclipse.uml2.uml.CallBehaviorAction">
-      </decoratedClass>
-      <decoratedClass
-            class="org.eclipse.uml2.uml.Transition">
-      </decoratedClass>
-      <decoratedClass
-            class="org.eclipse.uml2.uml.State">
-      </decoratedClass>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.infra.gmfdiag.navigation.navigationColorProviders">
       <navigationColorProvider
             provider="org.eclipse.papyrus.uml.diagram.navigation.UMLNavigationColorProvider">

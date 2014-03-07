@@ -39,7 +39,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBondyEditPartCN;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintNameEditPart;
@@ -686,7 +686,7 @@ public class UMLVisualIDRegistry {
 			if(ConstraintNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ConstraintBondyEditPartCN.VISUAL_ID == nodeVisualID) {
+			if(ConstraintBodyEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

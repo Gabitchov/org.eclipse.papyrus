@@ -21,7 +21,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.expressions;bundle-version="3.4.0",
  org.eclipse.uml2.uml,
  org.eclipse.papyrus.emf.facet.custom.core;bundle-version="0.4.0",
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0"
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="0.4.0",
+ org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.0.0",
+ org.eclipse.uml2.uml.validation;bundle-version="5.0.0"
 Export-Package: org.eclipse.papyrus.uml.tools,
  org.eclipse.papyrus.uml.tools.adapters,
  org.eclipse.papyrus.uml.tools.commands,

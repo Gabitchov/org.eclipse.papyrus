@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 Atos Origin, CEA, and others.
+ * Copyright (c) 2011, 2014 Atos Origin, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - support non-IFile resources and object-level permissions (CDO)
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -28,12 +29,13 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 
 import com.google.common.base.Optional;
 
 
 @SuppressWarnings("deprecation")
-public class ReadOnlyManager implements IReadOnlyHandler {
+public class ReadOnlyManager implements IReadOnlyHandler2 {
 
 	//Using a WeakHashMap leads to a Memory Leak, because only the Key is weak. 
 	//The IReadOnlyHandler typically has a reference to its editingDomain, 
@@ -184,10 +186,11 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 			Optional<Boolean> isRO = orderedHandlersArray[i].anyReadOnly(uris);
 			if(isRO.isPresent() && isRO.get()) {
 				Optional<Boolean> result = orderedHandlersArray[i].makeWritable(uris);
-				// makeWritable should provide an answer since anyReadOnly returned a positive value
-				// if no answer consider it fails
+				// makeWritable should provide an answer since anyReadOnly returned a positive value.
+				// If no answer consider it a failure
 				if(!result.isPresent() || !result.get()) {
 					finalResult = false;
+					break;
 				}
 			}
 		}
@@ -211,6 +214,46 @@ public class ReadOnlyManager implements IReadOnlyHandler {
 		}
 
 		return Optional.of(finalResult);
+	}
+	
+	public Optional<Boolean> canMakeWritable(URI[] uris) {
+		Boolean result = false;
+
+		for(int i = 0; (i < orderedHandlersArray.length); i++) {
+			if(orderedHandlersArray[i] instanceof IReadOnlyHandler2) {
+				IReadOnlyHandler2 h2 = (IReadOnlyHandler2)orderedHandlersArray[i];
+				if (h2.anyReadOnly(uris).or(false)) {
+					// Only ask a handler about making writable what it considers to be read-only
+					Optional<Boolean> canMakeWritable = h2.canMakeWritable(uris);
+					if(canMakeWritable.isPresent()) {
+						result = canMakeWritable.get();
+						break;
+					}
+				}
+			}
+		}
+
+		return Optional.of(result);
+	}
+	
+	public Optional<Boolean> canMakeWritable(EObject object) {
+		Boolean result = false;
+
+		for(int i = 0; (i < orderedHandlersArray.length); i++) {
+			if(orderedHandlersArray[i] instanceof IReadOnlyHandler2) {
+				IReadOnlyHandler2 h2 = (IReadOnlyHandler2)orderedHandlersArray[i];
+				if (h2.isReadOnly(object).or(false)) {
+					// Only ask a handler about making writable what it considers to be read-only
+					Optional<Boolean> canMakeWritable = h2.canMakeWritable(object);
+					if(canMakeWritable.isPresent()) {
+						result = canMakeWritable.get();
+						break;
+					}
+				}
+			}
+		}
+
+		return Optional.of(result);
 	}
 
 	private static final class HandlerAdapter extends AbstractReadOnlyHandler {

@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2009-2011 CEA LIST.
- *
  *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.ui;
@@ -59,6 +59,7 @@ import org.eclipse.papyrus.uml.diagram.composite.custom.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
+import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;
@@ -241,7 +242,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * This method fills the map {@link #requiredInterfacesMappedWithUsage}
 	 */
 	protected void buildRequiredInterfaces() {
-		List<?> allUsage = Util.getInstancesFilteredByType(this.model, Usage.class, null);
+		List<Usage> allUsage = ElementUtil.getInstancesFilteredByType(this.model, Usage.class, null);
 		List<Classifier> classifiers = new ArrayList<Classifier>();
 		classifiers.add((Classifier)this.port.getType());
 
@@ -274,7 +275,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 	 * This method fills the map {@link #providedInterfacesMappedWithRealization}
 	 */
 	protected void buildProvidedInterfaces() {
-		List<?> allRealization = Util.getInstancesFilteredByType(this.model, Realization.class, null);
+		List<Realization> allRealization = ElementUtil.getInstancesFilteredByType(this.model, Realization.class, null);
 		List<Classifier> classifiers = new ArrayList<Classifier>();
 		classifiers.add((Classifier)this.port.getType());
 
@@ -318,6 +319,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 			 * 
 			 * @return
 			 */
+			@Override
 			public Object[] getElements() {
 				List<Object> tmp = new ArrayList<Object>();
 				tmp.addAll(getAllAvailableInterfaces(model));
@@ -340,6 +342,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 			 * 
 			 * @return
 			 */
+			@Override
 			public Object[] getElements() {
 				List<Object> tmp = new ArrayList<Object>();
 				tmp.addAll(getAllAvailableInterfaces(model));
@@ -587,6 +590,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * 
 		 * @param e
 		 */
+		@Override
 		public void widgetSelected(SelectionEvent e) {
 			CreateUmlElementDialog dialog = new CreateUmlElementDialog(getShell(), domain, newElementLabelProvider, new CustomContentProvider(), model, UMLElementTypes.INTERFACE);
 			dialog.setTitle(Messages.InterfaceManagerDialog_CreateANewInterface);
@@ -617,6 +621,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * 
 		 * @param e
 		 */
+		@Override
 		public void widgetDefaultSelected(SelectionEvent e) {
 
 		}
@@ -640,6 +645,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * @param selection
 		 * @return
 		 */
+		@Override
 		public IStatus validate(Object[] selection) {
 
 			IStatus status = new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, Messages.NoSelectionFound);
@@ -734,6 +740,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 		 * 
 		 */
+		@Override
 		public void dispose() {
 		}
 
@@ -745,6 +752,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * @param oldInput
 		 * @param newInput
 		 */
+		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 
 		}
@@ -756,6 +764,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * @param inputElement
 		 * @return
 		 */
+		@Override
 		public Object[] getElements(Object inputElement) {
 			if(inputElement instanceof List<?>) {
 				return ((List<?>)inputElement).toArray();
@@ -770,6 +779,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * @param parentElement
 		 * @return
 		 */
+		@Override
 		public Object[] getChildren(Object parentElement) {
 			List<Object> children = new ArrayList<Object>();
 			List<?> tmp = null;
@@ -801,6 +811,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * @param element
 		 * @return
 		 */
+		@Override
 		public Object getParent(Object element) {
 			if(element == model) {
 				return model;
@@ -817,6 +828,7 @@ public class InterfaceManagerDialog extends SelectionDialog {
 		 * @param element
 		 * @return
 		 */
+		@Override
 		public boolean hasChildren(Object element) {
 			return getChildren(element).length != 0;
 		}

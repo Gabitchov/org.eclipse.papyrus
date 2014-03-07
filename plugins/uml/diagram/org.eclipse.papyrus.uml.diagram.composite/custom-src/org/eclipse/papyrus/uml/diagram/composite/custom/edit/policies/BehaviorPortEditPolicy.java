@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,23 +8,19 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *		Patrick Tessier (CEA LIST) - Initial API and implementation
+ *      Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.InternalTransaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
@@ -37,14 +33,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.command.CreateBehaviorPortCommand;
 import org.eclipse.papyrus.uml.diagram.composite.custom.locators.BehaviorPortLocator;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortLinkEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -86,34 +80,14 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 	}
 
 	protected void executeBehaviorPortDeletion( final TransactionalEditingDomain domain, final View behaviorNode) {
-		try {
-			domain.runExclusive(new Runnable() {
-
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-						public void run() {
-							//because it is asynchrone the comment node maybe become s null
-							if( behaviorNode!= null&& TransactionUtil.getEditingDomain(behaviorNode)!=null){
-								DeleteCommand command= new DeleteCommand(behaviorNode);
-								//use to avoid to put it in the command stack
-								Map<String,Boolean> options = new HashMap<String,Boolean>();  
-								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								try{
-									InternalTransaction it=((InternalTransactionalEditingDomain)  TransactionUtil.getEditingDomain(behaviorNode)).startTransaction(false, options);
-									GMFtoEMFCommandWrapper warpperCmd= new GMFtoEMFCommandWrapper (command);
-									warpperCmd.execute();
-									it.commit();
-								}catch(Exception e){
-									Activator.log.error(e);
-								}
-							}
-						}
-					});
-				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
+		if((behaviorNode != null) && (TransactionUtil.getEditingDomain(behaviorNode) == domain)) {
+			DeleteCommand command = new DeleteCommand(behaviorNode);
+			//use to avoid to put it in the command stack
+			try {
+				GMFUnsafe.write(domain, command);
+			} catch (Exception e) {
+				Activator.log.error(e);
+			}
 		}
 	}
 
@@ -154,33 +128,12 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 	}
 
 	protected  void executeBehaviorPortCreation(final EditPart editPart, final EditPart port,final TransactionalEditingDomain domain, final Rectangle position){
+		CreateBehaviorPortCommand command = new CreateBehaviorPortCommand(domain, (View)editPart.getModel(), (View)port.getModel(), position);
+		//use to avoid to put it in the command stack
 		try {
-			domain.runExclusive(new Runnable() {
-
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-						public void run() {
-							CreateBehaviorPortCommand command = new CreateBehaviorPortCommand(domain, (View)editPart.getModel(), (View)port.getModel(), position);
-							//use to avoid to put it in the command stack
-							Map<String,Boolean> options = new HashMap<String,Boolean>();  
-							options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-							try{
-								InternalTransaction it=((InternalTransactionalEditingDomain)  domain).startTransaction(false, options);
-								command.execute();
-								it.commit();
-							}catch(Exception e){
-								Activator.log.error(e);
-							}
-						}
-					}
-						);
-				}
-			}
-				);
-		}
-		catch(Exception e){
-
+			GMFUnsafe.write(domain, command);
+		} catch (Exception e) {
+			Activator.log.error(e);
 		}
 	}
 	/**

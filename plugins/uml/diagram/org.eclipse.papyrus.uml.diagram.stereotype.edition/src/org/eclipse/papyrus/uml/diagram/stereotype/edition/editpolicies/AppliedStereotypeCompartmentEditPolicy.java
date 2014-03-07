@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,30 +9,26 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.transaction.impl.InternalTransaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -131,23 +127,18 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 				public void run() {
 					Display.getCurrent().syncExec(new Runnable() {
-
+						
 						public void run() {
-
-							CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), appliedstereotype, hasToDisplayCompartment(appliedstereotype));
-							//use to avoid to put it in the command stack
-							Map<String, Boolean> options = new HashMap<String, Boolean>();
-							options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-							try {
-								InternalTransaction it = ((InternalTransactionalEditingDomain)editPart.getEditingDomain()).startTransaction(false, options);
-								command.execute();
-								it.commit();
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-
+					CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), appliedstereotype, hasToDisplayCompartment(appliedstereotype));
+					//use to avoid to put it in the command stack
+					try {
+						GMFUnsafe.write(editPart.getEditingDomain(), command);
+					} catch (Exception e) {
+						Activator.log.error(e);
+					}
 						}
 					});
+	
 				}
 			});
 		} catch (Exception e) {
@@ -229,22 +220,13 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 			editPart.getEditingDomain().runExclusive(new Runnable() {
 
 				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-						public void run() {
-							SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
-							//use to avoid to put it in the command stack
-							Map<String, Boolean> options = new HashMap<String, Boolean>();
-							options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-							try {
-								InternalTransaction it = ((InternalTransactionalEditingDomain)editPart.getEditingDomain()).startTransaction(false, options);
-								setCommand.execute();
-								it.commit();
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
+					SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
+					//use to avoid to put it in the command stack
+					try {
+						GMFUnsafe.write(editPart.getEditingDomain(), setCommand);
+					} catch (Exception e) {
+						Activator.log.error(e);
+					}
 				}
 			});
 		} catch (Exception e) {
@@ -301,23 +283,13 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 						editPart.getEditingDomain().runExclusive(new Runnable() {
 
 							public void run() {
-								Display.getCurrent().syncExec(new Runnable() {
-
-									public void run() {
-										DeleteCommand command = new DeleteCommand(currentNode);
-										//use to avoid to put it in the command stack
-										Map<String, Boolean> options = new HashMap<String, Boolean>();
-										options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-										try {
-											InternalTransaction it = ((InternalTransactionalEditingDomain)editPart.getEditingDomain()).startTransaction(false, options);
-											GMFtoEMFCommandWrapper warpperCmd = new GMFtoEMFCommandWrapper(command);
-											warpperCmd.execute();
-											it.commit();
-										} catch (Exception e) {
-											Activator.log.error(e);
-										}
-									}
-								});
+								DeleteCommand command = new DeleteCommand(currentNode);
+								//use to avoid to put it in the command stack
+								try {
+									GMFUnsafe.write(editPart.getEditingDomain(), command);
+								} catch (Exception e) {
+									Activator.log.error(e);
+								}
 							}
 						});
 					}
@@ -327,25 +299,15 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 						editPart.getEditingDomain().runExclusive(new Runnable() {
 
 							public void run() {
-								Display.getCurrent().syncExec(new Runnable() {
-
-									public void run() {
-										if(currentNode != null && editPart.getEditingDomain() != null) {
-											DeleteCommand command = new DeleteCommand(editPart.getEditingDomain(), currentNode);
-											//use to avoid to put it in the command stack
-											Map<String, Boolean> options = new HashMap<String, Boolean>();
-											options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-											try {
-												InternalTransaction it = ((InternalTransactionalEditingDomain)editPart.getEditingDomain()).startTransaction(false, options);
-												GMFtoEMFCommandWrapper warpperCmd = new GMFtoEMFCommandWrapper(command);
-												warpperCmd.execute();
-												it.commit();
-											} catch (Exception e) {
-												Activator.log.error(e);
-											}
-										}
+								if(currentNode != null && editPart.getEditingDomain() != null) {
+									DeleteCommand command = new DeleteCommand(editPart.getEditingDomain(), currentNode);
+									//use to avoid to put it in the command stack
+									try {
+										GMFUnsafe.write(editPart.getEditingDomain(), command);
+									} catch (Exception e) {
+										Activator.log.error(e);
 									}
-								});
+								}
 							}
 						});
 					}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA
+ * Copyright (c) 2013, 2014 Soyatec, CEA, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,24 +9,19 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 323802
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.InternalTransaction;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
@@ -46,6 +41,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
@@ -237,59 +233,46 @@ public class AppliedStereotypeCommentCreationEditPolicyEx extends AppliedStereot
 	}
 
 	protected void executeAppliedStereotypeCommentCreation(final EditPart editPart, final TransactionalEditingDomain domain, final EObject semanticElement) {
-		try {
-			domain.runExclusive(new Runnable() {
+		Display.getCurrent().asyncExec(new Runnable() {
 
-				public void run() {
-					Display.getCurrent().asyncExec(new Runnable() {
+			public void run() {
+				int x = 200;
+				int y = 100;
+				if(editPart.getModel() instanceof Node) {
+					LayoutConstraint constraint = ((Node)editPart.getModel()).getLayoutConstraint();
+					if(constraint instanceof Bounds) {
+						x = x + ((Bounds)constraint).getX();
+						y = ((Bounds)constraint).getY();
+					}
 
-						public void run() {
-							int x = 200;
-							int y = 100;
-							if(editPart.getModel() instanceof Node) {
-								LayoutConstraint constraint = ((Node)editPart.getModel()).getLayoutConstraint();
-								if(constraint instanceof Bounds) {
-									x = x + ((Bounds)constraint).getX();
-									y = ((Bounds)constraint).getY();
-								}
-
-							}
-							if(editPart.getModel() instanceof Edge && ((((Edge)editPart.getModel()).getSource()) instanceof Node)) {
-
-								LayoutConstraint constraint = ((Node)((Edge)editPart.getModel()).getSource()).getLayoutConstraint();
-								if(constraint instanceof Bounds) {
-									x = x + ((Bounds)constraint).getX();
-									y = ((Bounds)constraint).getY() - 100;
-								}
-
-							}
-							boolean isBorderElement = false;
-							if(!(editPart instanceof CustomDurationConstraintEditPart)) {
-								if(editPart instanceof BorderedBorderItemEditPart) {
-									isBorderElement = true;
-								}
-							}
-							if(getAppliedStereotypeCommentNode() == null) {
-								CreateAppliedStereotypeCommentViewCommandEx command = new CreateAppliedStereotypeCommentViewCommandEx(domain, (View)editPart.getModel(), x, y, semanticElement, isBorderElement);
-								//use to avoid to put it in the command stack
-								Map<String, Boolean> options = new HashMap<String, Boolean>();
-								options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-								try {
-									InternalTransaction it = ((InternalTransactionalEditingDomain)domain).startTransaction(false, options);
-									command.execute();
-									it.commit();
-								} catch (Exception e) {
-									Activator.log.error(e);
-								}
-							}
-						}
-
-					});
 				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
+				if(editPart.getModel() instanceof Edge && ((((Edge)editPart.getModel()).getSource()) instanceof Node)) {
+
+					LayoutConstraint constraint = ((Node)((Edge)editPart.getModel()).getSource()).getLayoutConstraint();
+					if(constraint instanceof Bounds) {
+						x = x + ((Bounds)constraint).getX();
+						y = ((Bounds)constraint).getY() - 100;
+					}
+
+				}
+				boolean isBorderElement = false;
+				if(!(editPart instanceof CustomDurationConstraintEditPart)) {
+					if(editPart instanceof BorderedBorderItemEditPart) {
+						isBorderElement = true;
+					}
+				}
+				if(getAppliedStereotypeCommentNode() == null) {
+					CreateAppliedStereotypeCommentViewCommandEx command = new CreateAppliedStereotypeCommentViewCommandEx(domain, (View)editPart.getModel(), x, y, semanticElement, isBorderElement);
+					//use to avoid to put it in the command stack
+					try {
+						GMFUnsafe.write(domain, command);
+					} catch (Exception e) {
+						Activator.log.error(e);
+					}
+				}
+			}
+
+		});
 	}
 
 	protected Node getAppliedStereotypeCommentNode() {

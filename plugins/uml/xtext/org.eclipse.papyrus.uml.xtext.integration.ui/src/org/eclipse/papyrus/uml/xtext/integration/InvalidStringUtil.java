@@ -21,7 +21,7 @@ import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -108,7 +108,8 @@ public class InvalidStringUtil {
 			RegisteredProfile registeredActionLanguageProfile = RegisteredProfile
 					.getRegisteredProfile(ACTION_LANGUAGE_PROFILE_NAME);
 			URI modelUri = registeredActionLanguageProfile.uri;
-			Model root = element.getModel();
+			Package root = PackageUtil.getRootPackage(element);
+	
 			Resource modelResource = root.eResource().getResourceSet()
 					.getResource(modelUri, true);
 			if (modelResource.getContents().get(0) instanceof Profile) {
@@ -116,7 +117,7 @@ public class InvalidStringUtil {
 						.get(0);
 			}
 		}
-		List<Profile> appliedProfiles = element.getModel().getAppliedProfiles();
+		List<Profile> appliedProfiles = PackageUtil.getRootPackage(element).getAppliedProfiles();
 		return appliedProfiles.contains(actionLanguageProfile);
 	}
 
@@ -128,7 +129,7 @@ public class InvalidStringUtil {
 		Comment textualRepresentationComment = element.createOwnedComment();
 		if (!isActionLanguageProfileApplied(element)) {
 			PackageUtil.applyProfile(
-					(org.eclipse.uml2.uml.Package) element.getModel(),
+					PackageUtil.getRootPackage(element),
 					actionLanguageProfile, true);
 		}
 		clean();

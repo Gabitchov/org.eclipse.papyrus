@@ -71,10 +71,15 @@ public class DirectEditorExtensionPoint {
 
 		// Read configuration elements for the current extension
 		for(IConfigurationElement configElement : configElements) {
-			DirectEditorExtensionPoint proxy = parseDirectEditorConfiguration(configElement);
+			try {
+				DirectEditorExtensionPoint proxy = parseDirectEditorConfiguration(configElement);
 
-			if(proxy != null) {
-				directEditorExtensionPoints.add(proxy);
+				if(proxy != null) {
+					directEditorExtensionPoints.add(proxy);
+				}
+			} catch (Throwable ex) {
+				Activator.log.error(ex);
+				continue;
 			}
 		} // end of configElements loop
 

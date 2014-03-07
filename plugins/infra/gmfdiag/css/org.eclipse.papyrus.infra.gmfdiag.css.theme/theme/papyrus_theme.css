@@ -123,3 +123,6 @@ ParametricDiagram [appliedStereotypes~=ConstraintProperty] {
 	elementIcon:false;
 }
 
+Label {
+	elementIcon: false;
+}

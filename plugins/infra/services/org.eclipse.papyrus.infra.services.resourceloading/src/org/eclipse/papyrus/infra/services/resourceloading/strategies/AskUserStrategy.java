@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010, 2013 ATOS ORIGIN, CEA LIST, and others.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *  Tristan Faure (ATOS ORIGIN INTEGRATION) tristan.faure@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *  Christian W. Damus (CEA LIST) - support control mode in CDO resources
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.strategies;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -53,9 +53,9 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * The strategy which ask user if the resource has to be loaded or not
- * 
+ *
  * @author tfaure
- * 
+ *
  */
 public class AskUserStrategy implements ILoadingStrategy {
 
@@ -97,7 +97,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 	/**
 	 * @see org.eclipse.papyrus.infra.services.resourceloading.ILoadingStrategy#loadResource(org.eclipse.papyrus.infra.core.resource.ModelSet,
 	 *      org.eclipse.emf.common.util.URI)
-	 * 
+	 *
 	 * @param modelSet
 	 * @param uri
 	 * @return
@@ -106,7 +106,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 		// pathmap resource are always loaded
 		boolean result = !modelSet.isUserModelResource(uri);
 		URI initialURI = modelSet.getURIWithoutExtension();
-		// if no listener is registered, a listener is added on the editor to remove the notifications 
+		// if no listener is registered, a listener is added on the editor to remove the notifications
 		// when the editor is closed the listener removes too the choices made by the user.
 		addClosingEditorListener(initialURI);
 
@@ -135,7 +135,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Create the ask notification to the user
-	 * 
+	 *
 	 * @param modelSet
 	 * @param initialURI
 	 * @param trimFragment
@@ -153,7 +153,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Add a listener closing the uri parameter
-	 * 
+	 *
 	 * @param initialURI
 	 */
 	private void addClosingEditorListener(URI initialURI) {
@@ -167,7 +167,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Remember that an uri has already be asked
-	 * 
+	 *
 	 * @param initialURI
 	 *        , the uri opened by the editor
 	 * @param guessed
@@ -183,7 +183,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Check if the uri is already asked
-	 * 
+	 *
 	 * @param initialURI
 	 *        , the uri opened by the editor
 	 * @param toLoad
@@ -201,7 +201,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 	/**
 	 * The extensions are saved to load all the specified resource if the user
 	 * wants to load a set of resources
-	 * 
+	 *
 	 * @param uri
 	 *        , the file to load
 	 * @param trimFragment
@@ -222,20 +222,20 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Get the current editor
-	 * 
+	 *
 	 * @return
 	 */
-	protected CoreMultiDiagramEditor getCurrentEditor() {
+	protected IMultiDiagramEditor getCurrentEditor() {
 		IEditorPart editor = getEditor();
-		if(editor instanceof CoreMultiDiagramEditor) {
-			return (CoreMultiDiagramEditor)editor;
+		if(editor instanceof IMultiDiagramEditor) {
+			return (IMultiDiagramEditor)editor;
 		}
 		return null;
 	}
 
 	/**
 	 * Create the notification with Yes/No/Yes For All/No For All option
-	 * 
+	 *
 	 * @param message
 	 *        , the message to display
 	 * @param uri
@@ -256,7 +256,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * NO for all registers the NoForAll URI and do nothing
-	 * 
+	 *
 	 * @param uri
 	 * @param modelSet
 	 * @param initialURI
@@ -295,7 +295,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Yes for All registers Yes For All URI and refresh the tabs to take in account the loaded elements
-	 * 
+	 *
 	 * @param uri
 	 * @param modelSet
 	 * @param initialURI
@@ -315,7 +315,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 				return new RefreshRunnable(modelSet, uri, initialURI, true, true) {
 
 					@Override
-					public void run(CoreMultiDiagramEditor editor) {
+					public void run(IMultiDiagramEditor editor) {
 						List<INotification> list = notifications.get(getInitialURI());
 						if(list != null) {
 							for(INotification n : notifications.get(getInitialURI())) {
@@ -355,7 +355,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * No runnable does not accept the URI asked
-	 * 
+	 *
 	 * @param uri
 	 * @param modelSet
 	 * @param initialURI
@@ -379,7 +379,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Yes registers the URI and refresh the tab to take in account the loaded elements
-	 * 
+	 *
 	 * @param uri
 	 * @param modelSet
 	 * @param initialURI
@@ -391,7 +391,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Register the notification created to the URI open by the editor
-	 * 
+	 *
 	 * @param initialURI
 	 * @param notification
 	 */
@@ -434,9 +434,9 @@ public class AskUserStrategy implements ILoadingStrategy {
 	/**
 	 * A basic runnable managing the load of a resource and a refresh of the tabs
 	 * If the editor is not opened or activated some listeners will be triggered to launch the refresh
-	 * 
+	 *
 	 * @author tfaure
-	 * 
+	 *
 	 */
 	private class LoadAndRefreshRunnable implements NotificationRunnable {
 
@@ -516,7 +516,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 		protected void manageRefresh(IEditorReference ref, IEditorPart part) {
 			addAuthorized(initialURI, uri);
 			if(part != null) {
-				getRunnable().run((CoreMultiDiagramEditor)part);
+				getRunnable().run((IMultiDiagramEditor)part);
 			} else {
 				addPageListener(new EditorActivateListener(ref, modelSet, uri, initialURI, getRunnable()));
 			}
@@ -535,7 +535,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Add a page listener
-	 * 
+	 *
 	 * @param listener
 	 * @return
 	 */
@@ -550,7 +550,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Register a listener of the perspective to know when the editor is finally closed
-	 * 
+	 *
 	 * @param listener
 	 * @return
 	 */
@@ -564,7 +564,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Unregister a perspective listener
-	 * 
+	 *
 	 * @param listener
 	 * @return
 	 */
@@ -592,20 +592,20 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	protected static URI getURI(final IEditorInput input) {
 		URI result;
-		
+
 		IFile file = (IFile)input.getAdapter(IFile.class);
 		if((file != null) && (file.getFullPath() != null)) {
 			result = URI.createPlatformResourceURI(file.getFullPath().removeFileExtension().toString(), true);
 		} else {
-			result = (URI) input.getAdapter(URI.class);
+			result = (URI)input.getAdapter(URI.class);
 		}
 
 		return result;
 	}
-	
+
 	/**
 	 * Notification containing the {@link URI} loaded
-	 * 
+	 *
 	 */
 	public class EncapsulatedNotification implements INotification {
 
@@ -633,9 +633,9 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * An empty {@link IPartListener} implementation
-	 * 
+	 *
 	 * @author tfaure
-	 * 
+	 *
 	 */
 	private class EditorAdapter implements IPartListener {
 
@@ -658,9 +658,9 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Listener which is notifid when an editor is activated
-	 * 
+	 *
 	 * @author tfaure
-	 * 
+	 *
 	 */
 	private class EditorActivateListener extends EditorAdapter {
 
@@ -675,8 +675,8 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 		@Override
 		public void partActivated(IWorkbenchPart part) {
-			if(reference.getPart(false) == part && part instanceof CoreMultiDiagramEditor) {
-				refreshRunnable.run((CoreMultiDiagramEditor)part);
+			if(reference.getPart(false) == part && part instanceof IMultiDiagramEditor) {
+				refreshRunnable.run((IMultiDiagramEditor)part);
 				removePageListener(this);
 			}
 		}
@@ -685,20 +685,20 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * Listener which is notifid when an editor is closed
-	 * 
+	 *
 	 * @author tfaure
-	 * 
+	 *
 	 */
 	private class EditorCloseListener extends EditorAdapter {
 
 		@Override
 		public void partClosed(IWorkbenchPart part) {
 			super.partClosed(part);
-			if(part instanceof CoreMultiDiagramEditor) {
-				CoreMultiDiagramEditor editor = (CoreMultiDiagramEditor)part;
-				
+			if(part instanceof IMultiDiagramEditor) {
+				IMultiDiagramEditor editor = (IMultiDiagramEditor)part;
+
 				URI uri = getURI(editor.getEditorInput());
-				if (uri != null) {
+				if(uri != null) {
 					uri = uri.trimFileExtension();
 					addPerspectiveListener(new EditorClosePerspectiveListener(uri));
 					removePageListener(this);
@@ -711,9 +711,9 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * A perspective listener which choices of an user
-	 * 
+	 *
 	 * @author tfaure
-	 * 
+	 *
 	 */
 	protected class EditorClosePerspectiveListener implements IPerspectiveListener {
 
@@ -744,9 +744,9 @@ public class AskUserStrategy implements ILoadingStrategy {
 
 	/**
 	 * A runnable refreshing resource and/or pages
-	 * 
+	 *
 	 * @author tfaure
-	 * 
+	 *
 	 */
 	public class RefreshRunnable {
 
@@ -770,7 +770,7 @@ public class AskUserStrategy implements ILoadingStrategy {
 			this.refreshTab = refreshTab;
 		}
 
-		public void run(CoreMultiDiagramEditor editor) {
+		public void run(IMultiDiagramEditor editor) {
 			final Set<URI> alreadyLoaded = new HashSet<URI>();
 			try {
 				pageMngr = editor.getServicesRegistry().getService(IPageManager.class);

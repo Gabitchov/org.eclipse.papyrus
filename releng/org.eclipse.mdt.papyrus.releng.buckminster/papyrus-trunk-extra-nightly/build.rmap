@@ -295,7 +295,7 @@
     <!-- M2T Acceleo -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("M2T ACCELEO",0) -->
-      <rm:uri format="{0}/modeling/m2t/acceleo/updates/milestones/3.5/S201401281458">
+      <rm:uri format="{0}/acceleo/updates/milestones/3.5/S201401281458">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>

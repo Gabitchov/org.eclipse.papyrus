@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,7 +24,6 @@ import java.util.Set;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -41,10 +40,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.emf.commands.IPapyrusDuplicateCommandConstants;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
@@ -70,7 +68,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 
 		Set<Object> duplicatedObjects = ((Set<Object>)additional);
 		EObject object = getDuplicatedEObject(request);
-		if(object == null || object.eResource()==null) {
+		if(object == null || object.eResource() == null) {
 			return super.getBeforeDuplicateCommand(request);
 		}
 
@@ -142,7 +140,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 
 	/**
 	 * Returns the EObject to be duplicated
-	 * 
+	 *
 	 * @return the EObject to be duplicated
 	 */
 	protected EObject getDuplicatedEObject(DuplicateElementsRequest request) {
@@ -168,7 +166,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 		/**
 		 * Constructs a new duplicate EObjects command with the specified label and
 		 * list of EObjects.
-		 * 
+		 *
 		 * @param editingDomain
 		 *        the editing domain through which model changes are made
 		 * @param label
@@ -184,7 +182,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 		/**
 		 * Constructs a new duplicate EObjects command with the specified label and
 		 * list of EObjects.
-		 * 
+		 *
 		 * @param editingDomain
 		 *        the editing domain through which model changes are made
 		 * @param label
@@ -204,7 +202,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 		 * list of EObjects. Also sets the list of affected files to be the files,
 		 * where the targetContainer is stored. Target container specifies the
 		 * eObject into which the duplicated eObjects will be added.
-		 * 
+		 *
 		 * @param editingDomain
 		 *        the editing domain through which model changes are made
 		 * @param label
@@ -235,15 +233,15 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 			EObject duplicateDiagram = copier.get(diagramToDuplicate);
 			Resource targetResource = getNotationResourceForDiagram(((Diagram)duplicateDiagram).getElement(), getEditingDomain());
 			Resource diTargetResource = getDiResourceForDiagram(((Diagram)duplicateDiagram).getElement(), getEditingDomain());
-				
+
 			if(targetResource != null) {
 				targetResource.getContents().add(duplicateDiagram);
-				
-				if(diTargetResource !=null) {
+
+				if(diTargetResource != null) {
 					try {
-						IPageManager pageManager = ServiceUtilsForResource.getInstance().getIPageManager(diTargetResource);	
-						pageManager.addPage(duplicateDiagram);	
-					} catch(ServiceException e) {
+						IPageManager pageManager = ServiceUtilsForResource.getInstance().getIPageManager(diTargetResource);
+						pageManager.addPage(duplicateDiagram);
+					} catch (ServiceException e) {
 						Activator.log.error(e);
 					}
 				} else {
@@ -255,11 +253,11 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 				if(targetResource != null) {
 					Activator.log.error("It was not possible to find the Resource with the source diagram", null);
 					targetResource.getContents().add(duplicateDiagram);
-					if(diTargetResource !=null) {
+					if(diTargetResource != null) {
 						try {
-							IPageManager pageManager = ServiceUtilsForResource.getInstance().getIPageManager(diTargetResource);	
-							pageManager.addPage(duplicateDiagram);	
-						} catch(ServiceException e) {
+							IPageManager pageManager = ServiceUtilsForResource.getInstance().getIPageManager(diTargetResource);
+							pageManager.addPage(duplicateDiagram);
+						} catch (ServiceException e) {
 							Activator.log.error(e);
 						}
 					} else {
@@ -279,7 +277,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 
 	/**
 	 * Returns the notation resource where to add the new diagram
-	 * 
+	 *
 	 * @param eObject
 	 *        the semantic object linked to the diagram or the diagram itself.
 	 * @param domain
@@ -295,25 +293,27 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 		} else {
 			semanticObject = (EObject)object;
 		}
-		
+
 		Resource containerResource = semanticObject.eResource();
-		if(containerResource == null) { 
+		if(containerResource == null) {
 			return null;
 		}
 		// retrieve the model set from the container resource
 		ResourceSet resourceSet = containerResource.getResourceSet();
-		
+
 		if(resourceSet instanceof ModelSet) {
 			ModelSet modelSet = (ModelSet)resourceSet;
 			Resource destinationResource = modelSet.getAssociatedResource(semanticObject, NotationModel.NOTATION_FILE_EXTENSION, true);
 			return destinationResource;
-		} else throw new RuntimeException("Resource Set is not a ModelSet or is null");
+		} else {
+			throw new RuntimeException("Resource Set is not a ModelSet or is null");
+		}
 	}
-	
+
 
 	/**
 	 * Returns the di resource where to add the new diagram
-	 * 
+	 *
 	 * @param eObject
 	 *        the semantic object linked to the diagram or the diagram itself.
 	 * @param domain
@@ -328,21 +328,23 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 		} else {
 			semanticObject = (EObject)object;
 		}
-		
+
 		Resource containerResource = semanticObject.eResource();
-		if(containerResource == null) { 
+		if(containerResource == null) {
 			return null;
 		}
 		// retrieve the model set from the container resource
 		ResourceSet resourceSet = containerResource.getResourceSet();
-		
+
 		if(resourceSet instanceof ModelSet) {
 			ModelSet modelSet = (ModelSet)resourceSet;
-			Resource destinationResource = modelSet.getAssociatedResource(semanticObject, DiModel.DI_FILE_EXTENSION, true);
+			Resource destinationResource = modelSet.getAssociatedResource(semanticObject, SashModel.MODEL_FILE_EXTENSION, true);
 			return destinationResource;
-		} else throw new RuntimeException("Resource Set is not a ModelSet or is null");
+		} else {
+			throw new RuntimeException("Resource Set is not a ModelSet or is null");
+		}
 	}
-	
+
 	/**
 	 * Copier for diagrams, where only views and internal references are duplicated, not the semantic elements themselves.
 	 */
@@ -356,7 +358,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 
 		/**
 		 * Creates a new {@link DiagramCopier}
-		 * 
+		 *
 		 * @param semanticObjects
 		 *        list of semantic objects already copied, to which new views should be related.
 		 */
@@ -366,7 +368,7 @@ public class GMFDiagramDuplicateEditHelperAdvice extends AbstractEditHelperAdvic
 
 		/**
 		 * Overrides the get to look in the map of duplicated semantic objects in case the element was not found in this map
-		 * 
+		 *
 		 * {@inheritDoc}
 		 */
 		@Override

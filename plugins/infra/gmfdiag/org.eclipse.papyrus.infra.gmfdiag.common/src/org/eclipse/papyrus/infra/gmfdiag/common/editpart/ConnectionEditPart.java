@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -44,6 +44,16 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 	 */
 	protected static final String LINE_DASH_GAP = "lineDashGap";
 
+	/**
+	 * Minimum length of dashes for dashed connectors
+	 */
+	protected static final int LINE_DASH_MIN_LENGTH = 2;
+
+	/**
+	 * Minimum length of the gapas between dashes
+	 */
+	protected static final int LINE_GAP_MIN_LENGTH = 2;
+
 	public ConnectionEditPart(View view) {
 		super(view);
 	}
@@ -56,14 +66,14 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 		super.refresh();
 		IFigure figure = this.getFigure();
 		Object model = this.getModel();
-		if (figure instanceof PapyrusEdgeFigure && model instanceof Connector) {
-			Connector connector = (Connector) model;
-			PapyrusEdgeFigure edge = (PapyrusEdgeFigure) figure;
-			String lineStyle = extract((StringValueStyle) connector.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), LINE_STYLE));
-			int lineDashLength = extract((IntValueStyle) connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_LENGTH));
-			int lineDashGap = extract((IntValueStyle) connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_GAP));
-			if (lineStyle != null) {
-				setupLineStyle(edge, lineStyle, connector.getLineWidth(), lineDashLength, lineDashGap);
+		if(figure instanceof PapyrusEdgeFigure && model instanceof Connector) {
+			Connector connector = (Connector)model;
+			PapyrusEdgeFigure edge = (PapyrusEdgeFigure)figure;
+			String lineStyle = extract((StringValueStyle)connector.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), LINE_STYLE));
+			int lineDashLength = extract((IntValueStyle)connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_LENGTH));
+			int lineDashGap = extract((IntValueStyle)connector.getNamedStyle(NotationPackage.eINSTANCE.getIntValueStyle(), LINE_DASH_GAP));
+			if(lineStyle != null) {
+				setupLineStyle(edge, lineStyle, connector.getLineWidth(), lineDashLength < LINE_DASH_MIN_LENGTH ? LINE_DASH_MIN_LENGTH : lineDashLength, lineDashGap < LINE_GAP_MIN_LENGTH ? LINE_GAP_MIN_LENGTH : lineDashGap);
 			} else {
 				edge.resetStyle();
 			}
@@ -72,13 +82,13 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 
 	/**
 	 * Extracts the primitive value from the given style
-	 * 
+	 *
 	 * @param style
-	 *            The style
+	 *        The style
 	 * @return The primitive value
 	 */
 	private String extract(StringValueStyle style) {
-		if (style == null || style.getStringValue() == null || style.getStringValue().isEmpty()) {
+		if(style == null || style.getStringValue() == null || style.getStringValue().isEmpty()) {
 			return null;
 		}
 		return style.getStringValue();
@@ -86,13 +96,13 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 
 	/**
 	 * Extracts the primitive value from the given style
-	 * 
+	 *
 	 * @param style
-	 *            The style
+	 *        The style
 	 * @return The primitive value
 	 */
 	private int extract(IntValueStyle style) {
-		if (style == null) {
+		if(style == null) {
 			return 0;
 		}
 		return style.getIntValue();
@@ -100,37 +110,37 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 
 	/**
 	 * Setups the line style of the edge according to the given CSS style
-	 * 
+	 *
 	 * @param edge
-	 *            The shape to setup
+	 *        The shape to setup
 	 * @param style
-	 *            The CSS style
+	 *        The CSS style
 	 * @param originalWidth
-	 *            Original width of the connector
+	 *        Original width of the connector
 	 * @param lineDashLength
-	 *            Length of the dashes
+	 *        Length of the dashes
 	 * @param lineDashGap
-	 *            Length of the gap between dashes
+	 *        Length of the gap between dashes
 	 */
 	private void setupLineStyle(PapyrusEdgeFigure edge, String style, int originalWidth, int lineDashLength, int lineDashGap) {
-		if ("none".equals(style)) {
+		if("none".equals(style)) {
 			edge.resetStyle();
 		} else {
-			if ("hidden".equals(style)) {
+			if("hidden".equals(style)) {
 				edge.setLineStyle(Graphics.LINE_SOLID);
 				edge.setLineWidth(0);
 				edge.setVisible(false);
-			} else if ("dotted".equals(style)) {
+			} else if("dotted".equals(style)) {
 				edge.setLineStyle(Graphics.LINE_DOT);
 				edge.setLineWidth(originalWidth);
-			} else if ("dashed".equals(style)) {
+			} else if("dashed".equals(style)) {
 				edge.setLineStyle(Graphics.LINE_CUSTOM);
 				edge.setLineWidth(originalWidth);
-				edge.setLineDash(new int[] { lineDashLength, lineDashGap });
-			} else if ("solid".equals(style)) {
+				edge.setLineDash(new int[]{ lineDashLength, lineDashGap });
+			} else if("solid".equals(style)) {
 				edge.setLineStyle(Graphics.LINE_SOLID);
 				edge.setLineWidth(originalWidth);
-			} else if ("double".equals(style)) {
+			} else if("double".equals(style)) {
 				edge.setLineWidth(originalWidth * 2);
 			}
 		}
@@ -139,9 +149,9 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart#createDefaultEditPolicies()
-	 * 
+	 *
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
@@ -149,4 +159,10 @@ public abstract class ConnectionEditPart extends ConnectionNodeEditPart implemen
 		installEditPolicy(EditPolicy.CONNECTION_ENDPOINTS_ROLE, new PapyrusConnectionEndEditPolicy());
 	}
 
+	@Override
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshLineWidth();
+		installRouter();
+	}
 }
