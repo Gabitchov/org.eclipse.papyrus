@@ -15,7 +15,7 @@
 -->
 <plugin> 
 
-    point="org.eclipse.ui.contexts" id="ui-context">
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
       <?gmfgen generated="true"?>
       <context
          description="%context.description"

@@ -18,12 +18,13 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.core.Activator;
 
 /**
  * An IModel which is an abstraction for a set of consistent EMF Resources
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public abstract class EMFLogicalModel extends AbstractBaseModel implements IEMFModel {
 
@@ -53,7 +54,11 @@ public abstract class EMFLogicalModel extends AbstractBaseModel implements IEMFM
 	public void saveModel() throws IOException {
 		for(Resource resource : getResources()) {
 			if(!getModelManager().getTransactionalEditingDomain().isReadOnly(resource) && !ModelUtils.resourceFailedOnLoad(resource)) {
-				resource.save(null);
+				try {
+					resource.save(null);
+				} catch (Exception ex) {
+					Activator.log.error(ex);
+				}
 			}
 		}
 	}
