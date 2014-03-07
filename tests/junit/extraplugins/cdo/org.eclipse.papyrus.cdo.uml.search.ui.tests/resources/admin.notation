@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_a6YuMBexEeOaDesjAlqXXw" type="PapyrusUMLClassDiagram" name="Classes" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_a6YuMBexEeOaDesjAlqXXw" type="PapyrusUMLClassDiagram" name="Classes" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_a6YuMRexEeOaDesjAlqXXw" type="2008">
     <children xmi:type="notation:DecorationNode" xmi:id="_a6YuMhexEeOaDesjAlqXXw" type="5029"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_a6YuMxexEeOaDesjAlqXXw" type="7017">
@@ -30,7 +30,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_a6YuRxexEeOaDesjAlqXXw"/>
     </children>
     <element xmi:type="uml:Class" href="admin.uml#_a62oQxexEeOaDesjAlqXXw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_a6YuSBexEeOaDesjAlqXXw" x="95" y="91"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_a6YuSBexEeOaDesjAlqXXw" x="80" y="89"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_a6YuSRexEeOaDesjAlqXXw"/>
   <element xmi:type="uml:Model" href="admin.uml#_a62oQBexEeOaDesjAlqXXw"/>

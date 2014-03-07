@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_a4w9kBexEeOaDesjAlqXXw" type="PapyrusUMLClassDiagram" name="NewDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_a4w9kRexEeOaDesjAlqXXw" type="2008">
       <children xmi:type="notation:DecorationNode" xmi:id="_a4w9khexEeOaDesjAlqXXw" type="5029"/>
@@ -38,7 +38,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_a4w9rBexEeOaDesjAlqXXw"/>
       </children>
       <element xmi:type="uml:Class" href="garage.uml#_a5Qs0RexEeOaDesjAlqXXw"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_a4w9rRexEeOaDesjAlqXXw" x="81" y="36"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_a4w9rRexEeOaDesjAlqXXw" x="63" y="50"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_a4w9rhexEeOaDesjAlqXXw" type="2008">
       <children xmi:type="notation:DecorationNode" xmi:id="_a4w9rxexEeOaDesjAlqXXw" type="5029"/>

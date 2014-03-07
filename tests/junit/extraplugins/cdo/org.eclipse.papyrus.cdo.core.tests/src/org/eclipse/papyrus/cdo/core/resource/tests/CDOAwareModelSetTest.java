@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource.tests;
 
@@ -85,15 +87,6 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		fixture.unload();
 
 		assertThat(fixture.getResources(), equalTo(Collections.EMPTY_LIST));
-
-		fixture.loadModels(getTestResourceURI(MODEL_FILENAME));
-
-		CDOTransaction transaction = getTransaction(fixture);
-		assertThat(transaction.isDirty(), is(false));
-
-		Resource resource = fixture.getResource(getTestResourceURI(MODEL_FILENAME), false);
-		assertThat(resource, notNullValue());
-		assertThat(resource.isLoaded(), is(true));
 	}
 
 	@Test
@@ -200,6 +193,7 @@ public class CDOAwareModelSetTest extends AbstractPapyrusCDOTest {
 		} catch (ServiceMultiException e) {
 			if(Iterables.any(Iterables.transform(e.getExceptions(), new Function<Throwable, Throwable>() {
 
+				@Override
 				public Throwable apply(Throwable input) {
 					return input.getCause();
 				}
