@@ -4,7 +4,7 @@
 <plugin>
 
 <extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
-  <modeldeclaration file="resources/PapyrusNotation.custom"/>
+  <modeldeclaration file="resources/PapyrusDiagram.custom"/>
 </extension>
 
    <!-- TODO: EMF-FACET
