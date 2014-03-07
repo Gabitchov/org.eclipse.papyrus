@@ -15,81 +15,95 @@ package org.eclipse.papyrus.infra.nattable.views.config.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
-import org.eclipse.papyrus.infra.core.sashwindows.di.PageList;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.emf.adapters.ResourceSetRootsAdapter;
 import org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.nattable.views.config.Activator;
 import org.eclipse.papyrus.infra.nattable.views.config.utils.Utils;
 
 /**
- * 
+ *
  * @author Vincent Lorenzo
- * 
+ *
  */
 public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOnEStructuralFeatureAxisManager {
 
-	/**
-	 * we keep it to be able to remove the listener during the destruction of the table
-	 */
-	private PageList pageList;
+	private IPageManager pageManager;
 
+	private ModelSet modelSet;
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager#addContextFeatureValueListener()
-	 * 
+	 *
 	 */
 	@Override
 	protected void addContextFeatureValueListener() {
-		this.featureListener = new AdapterImpl() {
+		this.featureListener = new ResourceSetRootsAdapter() {
 
 			@Override
-			public void notifyChanged(final Notification msg) {
-				if(msg.getFeature() == DiPackage.eINSTANCE.getPageList_AvailablePage()) {
+			protected void doNotify(Notification msg) {
+				switch(msg.getEventType()) {
+				case Notification.ADD:
+				case Notification.ADD_MANY:
+				case Notification.REMOVE:
+				case Notification.REMOVE_MANY:
 					featureValueHasChanged(msg);
 				}
 			}
 		};
-		getPageList().eAdapters().add(this.featureListener);
+
+		try {
+			modelSet = ServiceUtilsForEObject.getInstance().getModelSet(getTableManager().getTable());
+			this.featureListener.setTarget(modelSet);
+			//modelSet.eAdapters().add(this.featureListener);
+		} catch (Exception ex) {
+			Activator.log.error("An error occurred when trying to install a listener on the available pages", ex);
+		}
 	}
 
-	private PageList getPageList() {
-		if(this.pageList == null) {
-			this.pageList = Utils.getPageList(getTableManager().getTable());
+	@Override
+	protected void removeListeners() {
+		if(modelSet != null && featureListener != null) {
+			((ResourceSetRootsAdapter)featureListener).unsetTarget(modelSet);
 		}
-		return this.pageList;
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager#getFeaturesValue()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
 	protected List<Object> getFeaturesValue() {
-		final List<Object> pages = new ArrayList<Object>();
-		for(final PageRef current : getPageList().getAvailablePage()) {
-			final Object pageIdentifier = current.getPageIdentifier();
-			if(pageIdentifier != null) {
-				pages.add(pageIdentifier);
+		if(pageManager == null) {
+			try {
+				pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(getTableManager().getTable());
+			} catch (Exception ex) {
+				Activator.log.error("The page manager is not accessible", ex);
+				return Collections.emptyList();
 			}
 		}
-		return pages;
+		return new LinkedList<Object>(pageManager.allPages());
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager#verifyValues()
-	 * 
+	 *
 	 */
 	@Override
 	protected void verifyValues() {
@@ -97,9 +111,9 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#isAllowedContents(java.lang.Object)
-	 * 
+	 *
 	 * @param object
 	 * @return
 	 */
@@ -112,7 +126,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 *        a page
 	 * @return
@@ -134,24 +148,23 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#dispose()
-	 * 
+	 *
 	 */
 	@Override
 	public void dispose() {
-		if(getPageList() != null) {
-			getPageList().eAdapters().remove(this.featureListener);
-		}
-		this.pageList = null;
+		this.pageManager = null;
 		super.dispose();
+		this.modelSet = null;
+		this.featureListener = null;
 	}
 
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canEditAxisHeader()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -160,9 +173,9 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#canDestroyAxisElement(java.lang.Integer)
-	 * 
+	 *
 	 * @param axisPosition
 	 * @return
 	 */
@@ -172,9 +185,9 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getDestroyAxisElementCommand(TransactionalEditingDomain, java.lang.Integer)
-	 * 
+	 *
 	 * @param domain
 	 * @param axisPosition
 	 * @return
@@ -185,7 +198,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	}
 
 	/**
-	 * 
+	 *
 	 * @param notification
 	 *        update the list of the managed objects if its required
 	 */
