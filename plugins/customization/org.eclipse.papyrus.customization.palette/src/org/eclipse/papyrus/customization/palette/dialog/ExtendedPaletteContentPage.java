@@ -68,6 +68,7 @@ import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customizatio
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.customizationcatalog.CustomizationcatalogFactory;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedLabelProvider;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.papyrus.uml.diagram.common.part.PaletteUtil;
@@ -507,14 +508,14 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 				if(!(objectToTransfer instanceof IAdaptable)) {
 					return;
 				}
-				final EObject eobjectToTransfer = (EObject)((IAdaptable)objectToTransfer).getAdapter(EObject.class);
+				final EObject eobjectToTransfer = EMFHelper.getEObject(objectToTransfer);
 
 				Object targetObject = ((TreeItem)event.item).getData();
 				if(!(targetObject instanceof IAdaptable)) {
 					return;
 				}
 
-				final EObject targetEObject = (EObject)((IAdaptable)targetObject).getAdapter(EObject.class);
+				final EObject targetEObject =EMFHelper.getEObject(targetObject);
 				if(targetEObject == null) {
 					return;
 				}
@@ -662,7 +663,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 		if(!(objectToTransfer instanceof IAdaptable)) {
 			return;
 		}
-		final EObject eobjectToTransfer = (EObject)((IAdaptable)objectToTransfer).getAdapter(EObject.class);
+		final EObject eobjectToTransfer = EMFHelper.getEObject(objectToTransfer);
 		// handle only first selected element
 		if(item == null) {
 			// adding to the root, should only be a drawer
@@ -675,7 +676,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 				event.detail = DND.DROP_NONE;
 				return;
 			}
-			final EObject targetEObject = (EObject)((IAdaptable)targetObject).getAdapter(EObject.class);
+			final EObject targetEObject = EMFHelper.getEObject(targetObject);
 			if(targetEObject == null) {
 				event.detail = DND.DROP_NONE;
 				return;
@@ -841,7 +842,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 				while(it.hasNext()) {
 					Object o = it.next();
 					if(o instanceof IAdaptable) {
-						EObject eobject = (EObject)((IAdaptable)o).getAdapter(EObject.class);
+						EObject eobject = EMFHelper.getEObject(o);
 						if(eobject instanceof Configuration) {
 							PaletteConfigurationUtils.removeConfiguration((Configuration)eobject);
 						}
@@ -959,7 +960,7 @@ public class ExtendedPaletteContentPage extends WizardPage implements Listener {
 			} else {
 				Object object = selection.getFirstElement();
 				if(object instanceof IAdaptable) {
-					EObject eobject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+					EObject eobject = EMFHelper.getEObject(object);
 					if(eobject instanceof Configuration) {
 						return (Configuration)eobject;
 					}

@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.views.modelexplorer;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -31,6 +30,7 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEd
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -45,8 +45,7 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	@Override
 	protected CellEditor getCellEditor(final Object element) {
 		ICustomDirectEditorConfiguration configuration = getConfigurationAE(element);
-		EObject semanticObject = (EObject) ((IAdaptable) element)
-				.getAdapter(EObject.class);
+		EObject semanticObject = EMFHelper.getEObject(element);
 		Composite parent = (Composite) getViewer().getControl();
 		return configuration.createCellEditor(parent, semanticObject);
 	}
@@ -59,8 +58,7 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	@Override
 	protected Object getValue(Object element) {
 		ICustomDirectEditorConfiguration configuration = getConfigurationAE(element);
-		Object semanticObject = ((IAdaptable) element)
-				.getAdapter(EObject.class);
+		Object semanticObject = EMFHelper.getEObject(element);
 		return configuration.createParser((EObject) semanticObject)
 				.getEditString(new EObjectAdapter((EObject) semanticObject), 0);
 	}
@@ -68,8 +66,7 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	@Override
 	protected void setValue(Object element, Object value) {
 		ICustomDirectEditorConfiguration configuration = getConfigurationAE(element);
-		EObject semanticObject = (EObject) ((IAdaptable) element)
-				.getAdapter(EObject.class);
+		EObject semanticObject = EMFHelper.getEObject(element);
 		IParser parser = configuration.createParser(semanticObject);
 
 		ICommand command = parser.getParseCommand(new EObjectAdapter(
@@ -87,12 +84,8 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	 * @return The direct editor configuration, if it exists.
 	 */
 	public static ICustomDirectEditorConfiguration getConfigurationAE(Object element) {
-		if (element instanceof IAdaptable) {
-			EObject semanticObject = (EObject) ((IAdaptable) element)
-					.getAdapter(EObject.class);
+			EObject semanticObject = EMFHelper.getEObject(element);
 			return getConfiguration(semanticObject);
-		}
-		return null;
 	}
 	
 	/**

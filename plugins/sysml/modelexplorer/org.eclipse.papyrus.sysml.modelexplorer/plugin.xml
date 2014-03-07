@@ -2,15 +2,8 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-<!-- SysML ModelExplorer customization -->
-<!--extension point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
-	<browserCustomization
-       file="resources/SysMLDefaultExplorerCustomization.uiCustom"
-       loadByDefault="true"/>
-</extension>
-   
-<extension point="org.eclipse.papyrus.emf.facet.infra.query.registration">
-	<modelqueryset file="resources/SysMLDefaultExplorerQueries.querySet"/>
+<extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+  <modeldeclaration file="resources/SimpleSysML.custom"/>
 </extension>
 -->
 <!-- This declaration is added in order command (CommandHandler) status to be

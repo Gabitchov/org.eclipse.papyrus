@@ -57,7 +57,7 @@ public class ImageQuery implements IJavaQuery2<EObject, IImage> {
 		return result;
 	}
 
-	protected static IImage getEObjectImage(final EObject source) {
+	public static IImage getEObjectImage(final EObject source) {
 		IImage result = null;
 		final ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);

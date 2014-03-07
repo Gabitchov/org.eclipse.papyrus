@@ -24,7 +24,6 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.IEvaluationContext;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -88,9 +87,6 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 			// Get first element if the selection is an IStructuredSelection
 			Object first = selection.get(0);
 
-			if (first instanceof IAdaptable) {
-				first = ((IAdaptable)first).getAdapter(EObject.class);
-			}
 
 			EObject businessObject = EMFHelper.getEObject(first);
 			if(businessObject != null) {

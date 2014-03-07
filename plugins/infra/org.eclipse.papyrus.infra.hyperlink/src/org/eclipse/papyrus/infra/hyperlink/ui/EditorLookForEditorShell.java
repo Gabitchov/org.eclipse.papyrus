@@ -267,7 +267,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 				Object[] children = super.getChildren(parentElement);
 				for(Object current : children) {
 					if(current instanceof IAdaptable) {
-						EObject el = (EObject)((IAdaptable)current).getAdapter(EObject.class);
+						EObject el = EMFHelper.getEObject(current);
 						if(!alreadyVisited.contains(el)) {
 							returnedChildren.add(current);
 							alreadyVisited.add(el);

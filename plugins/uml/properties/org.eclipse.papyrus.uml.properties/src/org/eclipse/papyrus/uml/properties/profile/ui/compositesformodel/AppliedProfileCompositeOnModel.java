@@ -38,6 +38,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
@@ -628,8 +629,8 @@ public class AppliedProfileCompositeOnModel extends Composite {
 			return (EObject)object;
 		} else if(object instanceof IAdaptable) {
 			IAdaptable adaptable = (IAdaptable)object;
-			if(adaptable.getAdapter(EObject.class) != null) {
-				return (EObject)adaptable.getAdapter(EObject.class);
+			if(EMFHelper.getEObject(adaptable) != null) {
+				return EMFHelper.getEObject(adaptable);
 			}
 		}
 		return null;

@@ -29,6 +29,7 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
@@ -92,7 +93,7 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 			// Try as EObject if the expectedClasType is sub-type of EObject.
 			if(EObject.class.isAssignableFrom(expectedClassType)) {
 				// to EObject
-				EObject eobject = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+				EObject eobject = EMFHelper.getEObject(object);
 
 				if(eobject != null && expectedClassType.isInstance(eobject)) {
 					return (T)eobject;

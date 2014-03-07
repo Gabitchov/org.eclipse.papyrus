@@ -45,9 +45,7 @@ public class LinkItemMatchingItem implements IMatchingItem {
 
 	public int matchingItemHashcode() {
 		if(ref != null && parent != null) {
-			final int hashPrime1 = 47;
-			final int hashPrime2 = 13;
-			return ref.hashCode() * hashPrime1 + parent.hashCode() + hashPrime2;
+			return HashCodeCalculus.getHashCode(parent, ref);
 		}
 		return 0;
 	}

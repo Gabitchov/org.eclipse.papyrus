@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.decoration.util.Decoration;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
@@ -117,7 +117,7 @@ public class DecoratingLabelProviderWTooltips extends NavigatorDecoratingLabelPr
 		//Set the adapter decoration with position as indicated by decoration (from decoration service)
 		if(element != null) {
 			if(element instanceof EObject || element instanceof EReferenceTreeElement // fix for bug 391676
-				|| (element instanceof IAdaptable && ((IAdaptable)element).getAdapter(EObject.class) != null)) {
+				||  (EMFHelper.getEObject(element) != null)) {
 				List<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
 				if(decorations != null) {
 					adapter.setDecorations(decorations);

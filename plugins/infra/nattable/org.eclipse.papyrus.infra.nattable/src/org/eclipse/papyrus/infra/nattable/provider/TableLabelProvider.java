@@ -45,7 +45,7 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 		}
 		Object el = table;
 		if(table instanceof IAdaptable) {
-			el = ((IAdaptable)table).getAdapter(EObject.class);
+			el = EMFHelper.getEObject(table);
 		}
 		if(el != null && el instanceof Table) {
 			return ((Table)el).getName();
@@ -66,7 +66,7 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 			return getImage(((IStructuredSelection)table));
 		}
 		if(table instanceof IAdaptable) {
-			table = ((IAdaptable)table).getAdapter(EObject.class);
+			table = EMFHelper.getEObject(table);
 		}
 		if(table instanceof Table) {
 			final String iconPath = ((Table)table).getTableConfiguration().getIconPath();

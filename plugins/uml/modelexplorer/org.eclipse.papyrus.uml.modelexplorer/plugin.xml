@@ -27,25 +27,25 @@
             <or>
                <instanceof value="org.eclipse.emf.ecore.EObject">
                </instanceof>
-               <adapt type="org.eclipse.emf.ecore.EObject">
-               </adapt>
                <instanceof value="java.lang.Object">
                </instanceof>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-               <instanceof value="org.eclipse.papyrus.emf.facet.infra.browser.uicore.internal.model.ModelElementItem">
-               </instanceof>
                <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.emf.ecore.EObject">
                </instanceof>
             </or>
          </possibleChildren>
          <actionProvider class="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider" id="org.eclipse.papyrus.views.modelexplorer.actionprovider.GenericTransformActionProvider">
             <enablement>
                <or>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </or>
             </enablement>
          </actionProvider>
@@ -56,8 +56,9 @@
                      <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
                      </instanceof>
                   </not>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </and>
             </enablement>
          </actionProvider>
@@ -66,8 +67,9 @@
                <or>
                   <instanceof value="org.eclipse.gmf.runtime.notation.Diagram">
                   </instanceof>
-                  <adapt type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
+                  <instanceof
+                        value="org.eclipse.emf.ecore.EObject">
+                  </instanceof>
                </or>
             </possibleDropTargets>
          </dropAssistant>

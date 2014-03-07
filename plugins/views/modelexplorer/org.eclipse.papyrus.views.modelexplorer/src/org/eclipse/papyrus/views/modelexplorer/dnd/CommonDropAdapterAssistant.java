@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
@@ -366,13 +365,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		ArrayList<Command> result = new ArrayList<Command>();
 		EObject targetEObject = null;
 
-		//target is an EObject?
-		if(target instanceof EObject) {
-			targetEObject = ((EObject)target);
-		}
-		if(target instanceof IAdaptable) {
-			targetEObject = ((EObject)((IAdaptable)target).getAdapter(EObject.class));
-		}
+		targetEObject = EMFHelper.getEObject(target);
 		if(targetEObject == null) {
 			return result;
 		}
@@ -384,12 +377,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			Iterator<?> it = selectedElements.iterator();
 			while(it.hasNext()) {
 				Object object = it.next();
-				EObject eObjectchild = null;
-				if(object instanceof IAdaptable) {
-					eObjectchild = (EObject)((IAdaptable)object).getAdapter(EObject.class);
-				} else if(object instanceof EObject) {
-					eObjectchild = (EObject)object;
-				}
+				EObject eObjectchild =  EMFHelper.getEObject(object);
 
 				//				if(eObjectchild instanceof Diagram){
 				//					result.addAll(getDropDiagramIntoCommand(getEditingDomain(), targetEObject,(Diagram) eObjectchild));
@@ -440,10 +428,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 		EObject objectLocation = null;
 		EObject objectOwner = null;
 
-		//target is an EObject?
-		if(target instanceof IAdaptable) {
-			objectLocation = ((EObject)((IAdaptable)target).getAdapter(EObject.class));
-		}
+		objectLocation = EMFHelper.getEObject(target);
 		if(objectLocation == null) {
 			return result;
 		}
@@ -457,14 +442,12 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 			Iterator<?> it = selectedElements.iterator();
 			while(it.hasNext()) {
 				Object object = it.next();
-				if(object instanceof IAdaptable) {
-					EObject eObjectchild = (EObject)((IAdaptable)object).getAdapter(EObject.class);
+					EObject eObjectchild = EMFHelper.getEObject(object);
 					//test if object is an eobject
 					if(eObjectchild != null && objectOwner != null) {
 
 						result.addAll(getOrderChangeCommand(getEditingDomain(eObjectchild), objectOwner, objectLocation, eObjectchild, before));
 					}
-				}
 			}
 		}
 		return result;

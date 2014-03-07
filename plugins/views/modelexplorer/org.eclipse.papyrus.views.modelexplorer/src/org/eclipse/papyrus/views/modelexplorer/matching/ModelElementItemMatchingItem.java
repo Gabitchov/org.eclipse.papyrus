@@ -39,7 +39,7 @@ public class ModelElementItemMatchingItem implements IMatchingItem {
 
 	public int matchingItemHashcode() {
 		if(element != null) {
-			return element.hashCode();
+			return HashCodeCalculus.getHashCode(element);
 		}
 		return 0;
 	}

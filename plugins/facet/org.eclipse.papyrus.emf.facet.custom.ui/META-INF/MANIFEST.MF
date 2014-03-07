@@ -23,5 +23,6 @@ Export-Package: org.eclipse.papyrus.emf.facet.custom.ui,
  org.eclipse.papyrus.emf.facet.custom.ui.internal.custompt,
  org.eclipse.papyrus.emf.facet.custom.ui.internal.exported,
  org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.dialog,
- org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.exception
+ org.eclipse.papyrus.emf.facet.custom.ui.internal.exported.exception,
+ org.eclipse.papyrus.emf.facet.custom.ui.internal.query
 Service-Component: OSGI-INF/component.xml

@@ -26,7 +26,6 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -64,6 +63,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.providers.SemanticFromModelExplorer;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
@@ -237,12 +237,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					ArrayList<Object> semanticElementList = new ArrayList<Object>();
 					while(selectionIterator.hasNext()) {
 						Object currentSelection = selectionIterator.next();
-						if(currentSelection instanceof IAdaptable) {
-							Object semanticElement = ((IAdaptable)currentSelection).getAdapter(EObject.class);
+							Object semanticElement =EMFHelper.getEObject(currentSelection);
 							if(semanticElement != null) {
 								semanticElementList.add(semanticElement);
 							}
-						}
 
 					}
 					revealSemanticElement(semanticElementList);
@@ -280,9 +278,8 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		for(Object o : objects) {
 			// Search matches in this level
-			//			if(!(o instanceof Diagram) && o instanceof IAdaptable) {
-			if(!editors.contains(o) && o instanceof IAdaptable) {
-				if(eobject.equals(((IAdaptable)o).getAdapter(EObject.class))) {
+			if(!editors.contains(o)) {
+				if(eobject.equals(EMFHelper.getEObject(o))) {
 					path.add(o);
 					return path;
 				}
@@ -314,13 +311,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 				// if tmppath contains the wrapped eobject we have find the good path
 				if(tmppath.size() > 0) {
-					if(tmppath.get(tmppath.size() - 1) instanceof IAdaptable) {
-						if(eobject.equals(((IAdaptable)(tmppath.get(tmppath.size() - 1))).getAdapter(EObject.class))) {
+						if(eobject.equals((EMFHelper.getEObject((tmppath.get(tmppath.size() - 1)))))) {
 							path.add(o);
 							path.addAll(tmppath);
 							return path;
 						}
-					}
 				}
 			}
 		}
