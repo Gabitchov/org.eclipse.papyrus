@@ -8,7 +8,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.doc;singleton:=true
 Require-Bundle: org.apache.ant;bundle-version="1.7.1"
 Archiver-Version: Plexus Archiver
 Created-By: Apache Maven
-Bundle-Version: 0.4.0.201308190853
+Bundle-Version: 1.0.0.qualifier
 Bundle-ManifestVersion: 2
 
 Name: javadoc/org/eclipse/emf/facet/efacet/sdk/ui/internal/exported/wi

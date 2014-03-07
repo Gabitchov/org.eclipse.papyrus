@@ -22,7 +22,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.emf.facet.query.java.core,
  org.eclipse.papyrus.emf.facet.query.java.metamodel,
  org.eclipse.papyrus.emf.facet.query.ocl.metamodel
-Bundle-Version: 0.4.0.201308190853
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Build-Jdk: 1.6.0_27
 Bundle-ActivationPolicy: lazy

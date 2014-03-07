@@ -28,7 +28,7 @@ Export-Package: org.eclipse.papyrus.emf.facet.efacet.sdk.ui.dialog,
  org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.exported.wizard.page,
  org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.handler.creation,
  org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.query
-Bundle-Version: 0.4.0.201308190853
+Bundle-Version: 1.0.0.qualifier
 Build-Jdk: 1.6.0_27
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
