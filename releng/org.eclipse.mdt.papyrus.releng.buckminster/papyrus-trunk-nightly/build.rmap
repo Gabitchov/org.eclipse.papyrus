@@ -300,6 +300,13 @@
       </rm:uri>
     </rm:provider>
     
+    <!-- PAYURYS EMF FACET-->
+     <rm:provider componentTypes="osgi.bundle" readerType="local">
+      <rm:uri format="{0}/plugins/facet/{1}">
+        <bc:propertyRef key="local.repository"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
     <!-- EPF -->
     
     <rm:provider componentTypes="osgi.bundle" readerType="local">
