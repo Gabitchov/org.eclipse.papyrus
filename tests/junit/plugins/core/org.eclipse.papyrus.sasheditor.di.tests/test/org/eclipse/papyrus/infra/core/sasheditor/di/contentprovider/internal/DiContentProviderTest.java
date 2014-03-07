@@ -17,10 +17,11 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.swt.SWT;
 import org.junit.Before;
+import org.junit.Ignore;
 
 
 /**
- * 
+ *
  * @author cedric dumoulin
  */
 public class DiContentProviderTest extends TestCase {
@@ -35,7 +36,7 @@ public class DiContentProviderTest extends TestCase {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param name
 	 */
 	public DiContentProviderTest(String name) {
@@ -43,7 +44,7 @@ public class DiContentProviderTest extends TestCase {
 	}
 
 	/*
-	 * 
+	 *
 	 */
 	@Before
 	@Override
@@ -57,9 +58,9 @@ public class DiContentProviderTest extends TestCase {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see junit.framework.TestCase#tearDown()
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Override
@@ -69,7 +70,7 @@ public class DiContentProviderTest extends TestCase {
 
 	/**
 	 * Lookup for a folder in the SashModel. Return the first folder found.
-	 * 
+	 *
 	 * @return
 	 */
 	private ITabFolderModel lookupFolderModel() {
@@ -86,7 +87,7 @@ public class DiContentProviderTest extends TestCase {
 	/**
 	 * Recursively search in sash models for a FolderModel.
 	 * Return the first encountered folder.
-	 * 
+	 *
 	 * @param panelModel
 	 * @return
 	 */
@@ -209,6 +210,7 @@ public class DiContentProviderTest extends TestCase {
 	 * Check if {@link DiContentProvider#setCurrentFolder(Object)}.
 	 * Check if the method works and DO NO send any event.
 	 */
+	@Ignore("This test is currently deprecated; current folder cannot be set programmatically")
 	public void testSetCurrentFolder() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -254,7 +256,7 @@ public class DiContentProviderTest extends TestCase {
 
 	/**
 	 * Listener on ContentChange.
-	 * 
+	 *
 	 * @author dumoulin
 	 */
 	public class ContentChangeListener implements IContentChangedListener {
