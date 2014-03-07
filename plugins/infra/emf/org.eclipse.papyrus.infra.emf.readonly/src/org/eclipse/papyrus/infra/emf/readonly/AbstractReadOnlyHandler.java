@@ -10,15 +10,21 @@
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
+
+import static org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis.permissionAxes;
+
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 
 import com.google.common.base.Optional;
 
@@ -34,18 +40,38 @@ public abstract class AbstractReadOnlyHandler implements IReadOnlyHandler2 {
 		return editingDomain;
 	}
 
+	@Deprecated
+	public Optional<Boolean> anyReadOnly(URI[] uris) {
+		return anyReadOnly(permissionAxes(), uris);
+	}
+	
+	@Deprecated
 	public Optional<Boolean> isReadOnly(EObject eObject) {
+		return isReadOnly(permissionAxes(), eObject);
+	}
+
+	public Optional<Boolean> isReadOnly(Set<ReadOnlyAxis> axes, EObject eObject) {
 		Resource res = eObject.eResource();
 		if (res != null && res.getURI() != null) {
-			return anyReadOnly(new URI[] {res.getURI()});
+			return anyReadOnly(axes, new URI[] {res.getURI()});
 		}
 		return Optional.absent();
 	}
 
+	@Deprecated
+	public Optional<Boolean> makeWritable(URI[] uris) {
+		return makeWritable(permissionAxes(), uris);
+	}
+	
+	@Deprecated
 	public Optional<Boolean> makeWritable(EObject eObject) {
+		return makeWritable(permissionAxes(), eObject);
+	}
+
+	public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, EObject eObject) {
 		Resource res = eObject.eResource();
 		if (res != null && res.getURI() != null) {
-			return makeWritable(new URI[] {res.getURI()});
+			return makeWritable(axes, new URI[] {res.getURI()});
 		}
 		return Optional.absent();
 	}
@@ -53,14 +79,14 @@ public abstract class AbstractReadOnlyHandler implements IReadOnlyHandler2 {
 	/**
 	 * By default, we do not handle writability of these resources.
 	 */
-	public Optional<Boolean> canMakeWritable(URI[] uris) {
+	public Optional<Boolean> canMakeWritable(Set<ReadOnlyAxis> axes, URI[] uris) {
 		return Optional.absent();
 	}
 	
-	public Optional<Boolean> canMakeWritable(EObject object) {
+	public Optional<Boolean> canMakeWritable(Set<ReadOnlyAxis> axes, EObject object) {
 		Resource res = object.eResource();
 		if((res != null) && (res.getURI() != null)) {
-			return canMakeWritable(new URI[]{ res.getURI() });
+			return canMakeWritable(axes, new URI[]{ res.getURI() });
 		}
 		return Optional.absent();
 	}

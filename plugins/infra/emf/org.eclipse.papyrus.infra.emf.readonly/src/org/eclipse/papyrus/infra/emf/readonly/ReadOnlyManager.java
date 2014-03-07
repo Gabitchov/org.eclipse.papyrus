@@ -11,9 +11,12 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - support non-IFile resources and object-level permissions (CDO)
  *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
+
+import static org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis.permissionAxes;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -30,11 +34,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 
 import com.google.common.base.Optional;
 
 
-@SuppressWarnings("deprecation")
 public class ReadOnlyManager implements IReadOnlyHandler2 {
 
 	//Using a WeakHashMap leads to a Memory Leak, because only the Key is weak. 
@@ -42,10 +46,10 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 	//which prevents garbage collection of the EditingDomain
 	//Workaround: when the (Papyrus) editing domain is disposed, it removes itself from this map
 	//This won't work for non-papyrus editing domains, which are still leaked (But we do not use non-papyrus editing domains which this ReadOnlyManager)
-	protected static Map<EditingDomain, IReadOnlyHandler> roHandlers = new HashMap<EditingDomain, IReadOnlyHandler>();
+	protected static Map<EditingDomain, IReadOnlyHandler2> roHandlers = new HashMap<EditingDomain, IReadOnlyHandler2>();
 
-	public static IReadOnlyHandler getReadOnlyHandler(EditingDomain editingDomain) {
-		IReadOnlyHandler roHandler = roHandlers.get(editingDomain);
+	public static IReadOnlyHandler2 getReadOnlyHandler(EditingDomain editingDomain) {
+		IReadOnlyHandler2 roHandler = roHandlers.get(editingDomain);
 		if(roHandler == null) {
 			roHandler = new ReadOnlyManager(editingDomain);
 			roHandlers.put(editingDomain, roHandler);
@@ -121,7 +125,8 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 	}
 
 
-	protected static IReadOnlyHandler create(final Class<?> handlerClass, EditingDomain editingDomain) {
+	@SuppressWarnings("deprecation")
+	protected static IReadOnlyHandler2 create(final Class<?> handlerClass, EditingDomain editingDomain) {
 		boolean isEditingDomainConstructor = true;
 		Constructor<?> constructor = null;
 		try {
@@ -131,14 +136,20 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 				constructor = handlerClass.getConstructor();
 			}
 
-			if(IReadOnlyHandler.class.isAssignableFrom(constructor.getDeclaringClass())) {
+			if(IReadOnlyHandler2.class.isAssignableFrom(constructor.getDeclaringClass())) {
 				if(isEditingDomainConstructor) {
-					return (IReadOnlyHandler)constructor.newInstance(editingDomain);
+					return (IReadOnlyHandler2)constructor.newInstance(editingDomain);
 				} else {
-					return (IReadOnlyHandler)constructor.newInstance();
+					return (IReadOnlyHandler2)constructor.newInstance();
+				}
+			} else if(IReadOnlyHandler.class.isAssignableFrom(constructor.getDeclaringClass())) {
+				if(isEditingDomainConstructor) {
+					return new NewStyleHandlerAdapter((IReadOnlyHandler)constructor.newInstance(editingDomain), editingDomain);
+				} else {
+					return new NewStyleHandlerAdapter((IReadOnlyHandler)constructor.newInstance(), editingDomain);
 				}
 			} else if(org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler.class.isAssignableFrom(constructor.getDeclaringClass())) {
-				return new HandlerAdapter((org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler)constructor.newInstance(), editingDomain);
+				return new OldStyleHandlerAdapter((org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler)constructor.newInstance(), editingDomain);
 			}
 		} catch (Exception e) {
 		}
@@ -146,49 +157,49 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 		return null;
 	}
 
-	protected IReadOnlyHandler[] orderedHandlersArray;
+	protected IReadOnlyHandler2[] orderedHandlersArray;
 
 	public ReadOnlyManager(EditingDomain editingDomain) {
-		ArrayList<IReadOnlyHandler> handlers = new ArrayList<IReadOnlyHandler>();
+		ArrayList<IReadOnlyHandler2> handlers = new ArrayList<IReadOnlyHandler2>();
 		for(Class<?> roClass : orderedHandlerClassesArray) {
-			IReadOnlyHandler h = create(roClass, editingDomain);
+			IReadOnlyHandler2 h = create(roClass, editingDomain);
 			if(h != null) {
 				handlers.add(h);
 			}
 		}
-		orderedHandlersArray = handlers.toArray(new IReadOnlyHandler[handlers.size()]);
+		orderedHandlersArray = handlers.toArray(new IReadOnlyHandler2[handlers.size()]);
 	}
 
-	public Optional<Boolean> anyReadOnly(URI[] uris) {
+	public Optional<Boolean> anyReadOnly(Set<ReadOnlyAxis> axes, URI[] uris) {
 		Optional<Boolean> result = Optional.absent();
 
 		for(int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
-			result = orderedHandlersArray[i].anyReadOnly(uris);
+			result = orderedHandlersArray[i].anyReadOnly(axes, uris);
 		}
 
 		return result.isPresent() ? result : Optional.of(Boolean.FALSE);
 	}
 
-	public Optional<Boolean> isReadOnly(EObject eObject) {
+	public Optional<Boolean> isReadOnly(Set<ReadOnlyAxis> axes, EObject eObject) {
 		Optional<Boolean> result = Optional.absent();
 
 		for(int i = 0; (i < orderedHandlersArray.length) && !result.isPresent(); i++) {
-			result = orderedHandlersArray[i].isReadOnly(eObject);
+			result = orderedHandlersArray[i].isReadOnly(axes, eObject);
 		}
 
 		return result.isPresent() ? result : Optional.of(Boolean.FALSE);
 	}
 
-	public Optional<Boolean> makeWritable(URI[] uris) {
+	public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, URI[] uris) {
 		Boolean finalResult = true;
 
 		for(int i = 0; (i < orderedHandlersArray.length); i++) {
-			Optional<Boolean> isRO = orderedHandlersArray[i].anyReadOnly(uris);
-			if(isRO.isPresent() && isRO.get()) {
-				Optional<Boolean> result = orderedHandlersArray[i].makeWritable(uris);
+			Optional<Boolean> isRO = orderedHandlersArray[i].anyReadOnly(axes, uris);
+			if(isRO.or(Boolean.FALSE)) {
+				Optional<Boolean> result = orderedHandlersArray[i].makeWritable(axes, uris);
 				// makeWritable should provide an answer since anyReadOnly returned a positive value.
 				// If no answer consider it a failure
-				if(!result.isPresent() || !result.get()) {
+				if(!result.or(Boolean.FALSE)) {
 					finalResult = false;
 					break;
 				}
@@ -198,57 +209,35 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 		return Optional.of(finalResult);
 	}
 
-	public Optional<Boolean> makeWritable(EObject eObject) {
+	public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, EObject eObject) {
 		Boolean finalResult = true;
 
 		for(int i = 0; (i < orderedHandlersArray.length); i++) {
-			Optional<Boolean> isRO = orderedHandlersArray[i].isReadOnly(eObject);
-			if(isRO.isPresent() && isRO.get()) {
-				Optional<Boolean> result = orderedHandlersArray[i].makeWritable(eObject);
+			Optional<Boolean> isRO = orderedHandlersArray[i].isReadOnly(axes, eObject);
+			if(isRO.or(Boolean.FALSE)) {
+				Optional<Boolean> result = orderedHandlersArray[i].makeWritable(axes, eObject);
 				// makeWritable should provide an answer since anyReadOnly returned a positive value
-				// if no answer consider it fails
-				if(result.isPresent() && !result.get()) {
+				// if no answer consider it a failure
+				if(!result.or(Boolean.FALSE)) {
 					finalResult = false;
+					break;
 				}
 			}
 		}
 
 		return Optional.of(finalResult);
 	}
-	
-	public Optional<Boolean> canMakeWritable(URI[] uris) {
+
+	public Optional<Boolean> canMakeWritable(Set<ReadOnlyAxis> axes, URI[] uris) {
 		Boolean result = false;
 
 		for(int i = 0; (i < orderedHandlersArray.length); i++) {
-			if(orderedHandlersArray[i] instanceof IReadOnlyHandler2) {
-				IReadOnlyHandler2 h2 = (IReadOnlyHandler2)orderedHandlersArray[i];
-				if (h2.anyReadOnly(uris).or(false)) {
-					// Only ask a handler about making writable what it considers to be read-only
-					Optional<Boolean> canMakeWritable = h2.canMakeWritable(uris);
-					if(canMakeWritable.isPresent()) {
-						result = canMakeWritable.get();
-						break;
-					}
-				}
-			}
-		}
-
-		return Optional.of(result);
-	}
-	
-	public Optional<Boolean> canMakeWritable(EObject object) {
-		Boolean result = false;
-
-		for(int i = 0; (i < orderedHandlersArray.length); i++) {
-			if(orderedHandlersArray[i] instanceof IReadOnlyHandler2) {
-				IReadOnlyHandler2 h2 = (IReadOnlyHandler2)orderedHandlersArray[i];
-				if (h2.isReadOnly(object).or(false)) {
-					// Only ask a handler about making writable what it considers to be read-only
-					Optional<Boolean> canMakeWritable = h2.canMakeWritable(object);
-					if(canMakeWritable.isPresent()) {
-						result = canMakeWritable.get();
-						break;
-					}
+			if(orderedHandlersArray[i].anyReadOnly(axes, uris).or(false)) {
+				// Only ask a handler about making writable what it considers to be read-only
+				Optional<Boolean> canMakeWritable = orderedHandlersArray[i].canMakeWritable(axes, uris);
+				if(canMakeWritable.isPresent()) {
+					result = canMakeWritable.get();
+					break;
 				}
 			}
 		}
@@ -256,33 +245,111 @@ public class ReadOnlyManager implements IReadOnlyHandler2 {
 		return Optional.of(result);
 	}
 
-	private static final class HandlerAdapter extends AbstractReadOnlyHandler {
+	public Optional<Boolean> canMakeWritable(Set<ReadOnlyAxis> axes, EObject object) {
+		Boolean result = false;
+
+		for(int i = 0; (i < orderedHandlersArray.length); i++) {
+			if(orderedHandlersArray[i].isReadOnly(axes, object).or(false)) {
+				// Only ask a handler about making writable what it considers to be read-only
+				Optional<Boolean> canMakeWritable = orderedHandlersArray[i].canMakeWritable(axes, object);
+				if(canMakeWritable.isPresent()) {
+					result = canMakeWritable.get();
+					break;
+				}
+			}
+		}
+
+		return Optional.of(result);
+	}
+	
+	//
+	// Deprecated API
+	//
+	
+	@Deprecated
+	public Optional<Boolean> anyReadOnly(URI[] uris) {
+		return anyReadOnly(permissionAxes(), uris);
+	}
+	
+	@Deprecated
+	public Optional<Boolean> isReadOnly(EObject eObject) {
+		return isReadOnly(permissionAxes(), eObject);
+	}
+	
+	@Deprecated
+	public Optional<Boolean> makeWritable(URI[] uris) {
+		return makeWritable(permissionAxes(), uris);
+	}
+	
+	@Deprecated
+	public Optional<Boolean> makeWritable(EObject eObject) {
+		return makeWritable(permissionAxes(), eObject);
+	}
+	
+	//
+	// Legacy adapters
+	//
+
+	@SuppressWarnings("deprecation")
+	private static final class OldStyleHandlerAdapter extends AbstractReadOnlyHandler {
 
 		private final org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler delegate;
 
-		HandlerAdapter(org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler handler, EditingDomain editingDomain) {
+		OldStyleHandlerAdapter(org.eclipse.papyrus.infra.emf.readonly.IReadOnlyHandler handler, EditingDomain editingDomain) {
 			super(editingDomain);
 
 			this.delegate = handler;
 		}
 
-		public Optional<Boolean> anyReadOnly(URI[] uris) {
+		public Optional<Boolean> anyReadOnly(Set<ReadOnlyAxis> axes, URI[] uris) {
 
 			// the old API contract is that handlers only return true if they
 			// know it to be true, because the manager takes the first positive
-			// answer
-			boolean delegateResult = delegate.isReadOnly(uris, getEditingDomain());
+			// answer.  Moreover, they only dealt with permission-based read-only-ness
+			boolean delegateResult = axes.contains(ReadOnlyAxis.PERMISSION) && delegate.isReadOnly(uris, getEditingDomain());
 			return delegateResult ? Optional.of(Boolean.TRUE) : Optional.<Boolean> absent();
 		}
 
-		public Optional<Boolean> makeWritable(URI[] uris) {
+		public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, URI[] uris) {
 
 			// the old API contract is that handlers only return false if they
 			// tried to but could not make the resources writable, because the
 			// manager takes the first negative answer (this is opposite to the
-			// isReadOnly logic)
-			boolean delegateResult = delegate.enableWrite(uris, getEditingDomain());
+			// isReadOnly logic).  Moreover, they only dealt with permission-based
+			// read-only-ness
+			boolean delegateResult = axes.contains(ReadOnlyAxis.PERMISSION) && delegate.enableWrite(uris, getEditingDomain());
 			return delegateResult ? Optional.<Boolean> absent() : Optional.of(Boolean.FALSE);
+		}
+	}
+
+	private static final class NewStyleHandlerAdapter extends AbstractReadOnlyHandler {
+
+		private final IReadOnlyHandler delegate;
+
+		NewStyleHandlerAdapter(IReadOnlyHandler handler, EditingDomain editingDomain) {
+			super(editingDomain);
+
+			this.delegate = handler;
+		}
+
+		public Optional<Boolean> anyReadOnly(Set<ReadOnlyAxis> axes, URI[] uris) {
+			// these handlers implicitly only deal with permission-based read-only-ness
+			return !axes.contains(ReadOnlyAxis.PERMISSION) ? Optional.<Boolean> absent() : delegate.anyReadOnly(uris);
+		}
+		
+		@Override
+		public Optional<Boolean> isReadOnly(Set<ReadOnlyAxis> axes, EObject eObject) {
+			return !axes.contains(ReadOnlyAxis.PERMISSION) ? Optional.<Boolean> absent() : delegate.isReadOnly(eObject);
+		}
+
+		public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, URI[] uris) {
+			// these handlers implicitly only deal with permission-based read-only-ness
+			return !axes.contains(ReadOnlyAxis.PERMISSION) ? Optional.<Boolean> absent() : delegate.makeWritable(uris);
+		}
+		
+		@Override
+		public Optional<Boolean> makeWritable(Set<ReadOnlyAxis> axes, EObject eObject) {
+			return !axes.contains(ReadOnlyAxis.PERMISSION) ? Optional.<Boolean> absent() : delegate.makeWritable(eObject);
 		}
 	}
 }

@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
  *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus (CEA) - bug 429826
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -49,6 +50,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.facet.custom.ui.CustomizedContentProviderUtils;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.Activator;
@@ -431,33 +433,66 @@ public class EMFHelper {
 	}
 
 	/**
-	 * Tests if an EObject is read only
+	 * Tests if an EObject is read only on any {@linkplain ReadOnlyAxis axis}.
 	 * Delegates to the EObject's editing domain if it can be found
 	 * 
 	 * @param eObject
 	 * @return
-	 *         True if the EObject is read only
+	 *         True if the EObject is read only on any axis
+	 * @see #isReadOnly(Set, EObject, EditingDomain)
 	 */
 	public static boolean isReadOnly(final EObject eObject) {
-		EditingDomain domain = resolveEditingDomain(eObject);
-		return isReadOnly(eObject, domain);
+		return isReadOnly(ReadOnlyAxis.anyAxis(), eObject);
 	}
 
 	/**
-	 * Tests if an EObject is read only
+	 * Tests if an EObject is read only on any of the specified {@code axes}.
+	 * Delegates to the EObject's editing domain if it can be found
+	 * 
+	 * @param axes
+	 *        a set if orthogonal axes of read-only-ness to consider. May be empty, but that would not be especially useful
+	 * @param eObject
+	 * @return
+	 *         True if the EObject is read only on any of the given {@code axes}
+	 */
+	public static boolean isReadOnly(Set<ReadOnlyAxis> axes, final EObject eObject) {
+		EditingDomain domain = resolveEditingDomain(eObject);
+		return isReadOnly(axes, eObject, domain);
+	}
+
+	/**
+	 * Tests if an EObject is read only on any {@linkplain ReadOnlyAxis axis}.
 	 * Delegates to the given editing domain if it isn't null
 	 * 
+	 * @param eObject
+	 * @param domain
+	 * @return
+	 *         True if the EObject is read only on any axis
+	 */
+	public static boolean isReadOnly(final EObject eObject, final EditingDomain domain) {
+		return isReadOnly(ReadOnlyAxis.anyAxis(), eObject, domain);
+	}
+
+	/**
+	 * Tests if an EObject is read only on any of the specified {@code axes}.
+	 * Delegates to the given editing domain if it isn't null
+	 * 
+	 * @param axes
+	 *        a set if orthogonal axes of read-only-ness to consider. May be empty, but that would not be especially useful
 	 * @param eObject
 	 * 
 	 * @param domain
 	 * @return
 	 *         True if the EObject is read only
 	 */
-	public static boolean isReadOnly(final EObject eObject, final EditingDomain domain) {
+	public static boolean isReadOnly(Set<ReadOnlyAxis> axes, final EObject eObject, final EditingDomain domain) {
 		if(domain != null) {
 			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
-			if(handler instanceof IReadOnlyHandler) {
-				return ((IReadOnlyHandler)handler).isReadOnly(eObject).get();
+			if(handler instanceof IReadOnlyHandler2) {
+				return ((IReadOnlyHandler2)handler).isReadOnly(axes, eObject).get();
+			}else if(handler instanceof IReadOnlyHandler) {
+				// these handlers only deal with permission-based read-only-ness
+				return axes.contains(ReadOnlyAxis.PERMISSION) && ((IReadOnlyHandler)handler).isReadOnly(eObject).get();
 			}
 
 			if(eObject.eResource() != null) {
@@ -468,23 +503,41 @@ public class EMFHelper {
 	}
 
 	/**
-	 * Tests if the Resource is read only
+	 * Tests if the Resource is read only on any {@linkplain ReadOnlyAxis axis}.
 	 * Delegates to the given editing domain if it isn't null
 	 * 
 	 * @param resource
 	 * @param domain
 	 * @return
-	 *         True if the Resource is read only
+	 *         True if the Resource is read only on any axis
 	 */
 	public static boolean isReadOnly(final Resource resource, final EditingDomain domain) {
+		return isReadOnly(ReadOnlyAxis.anyAxis(), resource, domain);
+	}
+
+	/**
+	 * Tests if the Resource is read only on any of the given {@code axes}.
+	 * Delegates to the given editing domain if it isn't null
+	 * 
+	 * @param axes
+	 *        a set if orthogonal axes of read-only-ness to consider. May be empty, but that would not be especially useful
+	 * @param resource
+	 * @param domain
+	 * @return
+	 *         True if the Resource is read only on any of the given {@code axes}
+	 */
+	public static boolean isReadOnly(Set<ReadOnlyAxis> axes, final Resource resource, final EditingDomain domain) {
 		if(resource == null) {
 			return false;
 		}
 
 		if(domain != null && resource.getURI() != null) {
 			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
-			if(handler instanceof IReadOnlyHandler) {
-				return ((IReadOnlyHandler)handler).anyReadOnly(new URI[]{ resource.getURI() }).get();
+			if(handler instanceof IReadOnlyHandler2) {
+				return ((IReadOnlyHandler2)handler).anyReadOnly(axes, new URI[]{ resource.getURI() }).get();
+			} else if(handler instanceof IReadOnlyHandler) {
+				// these handlers only deal with permission-based read-only-ness
+				return axes.contains(ReadOnlyAxis.PERMISSION) && ((IReadOnlyHandler)handler).anyReadOnly(new URI[]{ resource.getURI() }).get();
 			}
 			return domain.isReadOnly(resource);
 		}
@@ -514,10 +567,27 @@ public class EMFHelper {
 	 *         whether the {@code eObject} could be made writable
 	 */
 	public static boolean canMakeWritable(final EObject eObject, final EditingDomain domain) {
+		return canMakeWritable(ReadOnlyAxis.anyAxis(), eObject, domain);
+	}
+
+	/**
+	 * Tests if an object that is read only could possibly be made writable according to any of
+	 * the specified {@code axes} of read-only-ness.
+	 * 
+	 * @param axes
+	 *        a set if orthogonal axes of read-only-ness to consider. May be empty, but that would not be especially useful
+	 * @param eObject
+	 *        an object that is assumed to be read-only
+	 * @param domain
+	 *        the editing domain context of the {@link eObject}
+	 * @return
+	 *         whether the {@code eObject} could be made writable
+	 */
+	public static boolean canMakeWritable(Set<ReadOnlyAxis> axes, final EObject eObject, final EditingDomain domain) {
 		if(domain != null) {
 			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
 			if(handler instanceof IReadOnlyHandler2) {
-				return ((IReadOnlyHandler2)handler).canMakeWritable(eObject).or(false);
+				return ((IReadOnlyHandler2)handler).canMakeWritable(axes, eObject).or(false);
 			}
 		}
 		return false;
@@ -535,10 +605,27 @@ public class EMFHelper {
 	 *         whether the {@code resource} could be made writable
 	 */
 	public static boolean canMakeWritable(final Resource resource, final EditingDomain domain) {
+		return canMakeWritable(ReadOnlyAxis.anyAxis(), resource, domain);
+	}
+
+	/**
+	 * Tests if a resource that is read only could possibly be made writable according to any of
+	 * the specified {@code axes} of read-only-ness.
+	 * 
+	 * @param axes
+	 *        a set if orthogonal axes of read-only-ness to consider. May be empty, but that would not be especially useful
+	 * @param resource
+	 *        a resource that is assumed to be read-only
+	 * @param domain
+	 *        the editing domain context of the {@link resource}
+	 * @return
+	 *         whether the {@code resource} could be made writable
+	 */
+	public static boolean canMakeWritable(Set<ReadOnlyAxis> axes, final Resource resource, final EditingDomain domain) {
 		if(domain != null) {
 			Object handler = PlatformHelper.getAdapter(domain, IReadOnlyHandler.class);
 			if(handler instanceof IReadOnlyHandler2) {
-				return ((IReadOnlyHandler2)handler).canMakeWritable(new URI[] { resource.getURI() }).or(false);
+				return ((IReadOnlyHandler2)handler).canMakeWritable(axes, new URI[] { resource.getURI() }).or(false);
 			}
 		}
 		return false;

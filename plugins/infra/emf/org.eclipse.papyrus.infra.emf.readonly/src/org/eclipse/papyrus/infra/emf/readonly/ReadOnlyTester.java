@@ -11,6 +11,7 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
  *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -19,12 +20,12 @@ import java.util.Iterator;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 import com.google.common.base.Objects;
 
@@ -59,9 +60,9 @@ public class ReadOnlyTester extends PropertyTester {
 
 			if(businessObject instanceof EObject) {
 				EObject eObject = (EObject)businessObject;
-				Resource resource = eObject.eResource();
-				if((resource != null) && (resource.getResourceSet() != null)) {
-					return Objects.equal(ReadOnlyManager.getReadOnlyHandler(WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(resource.getResourceSet())).isReadOnly(eObject).get(), expectedValue);
+				EditingDomain domain = EMFHelper.resolveEditingDomain(eObject);
+				if(domain != null) {
+					return Objects.equal(ReadOnlyManager.getReadOnlyHandler(domain).isReadOnly(ReadOnlyAxis.anyAxis(), eObject).or(false), expectedValue);
 				}
 			}
 		}
@@ -75,11 +76,13 @@ public class ReadOnlyTester extends PropertyTester {
 
 			if(businessObject instanceof EObject) {
 				EObject eObject = (EObject)businessObject;
-				Resource resource = eObject.eResource();
-				if((resource != null) && (resource.getResourceSet() != null)) {
-					IReadOnlyHandler handler = ReadOnlyManager.getReadOnlyHandler(WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(resource.getResourceSet()));
-					boolean isAlreadyOrCanMakeWritable = !handler.isReadOnly(eObject).or(false) //
-						|| ((handler instanceof IReadOnlyHandler2) && ((IReadOnlyHandler2)handler).canMakeWritable(eObject).or(false));
+				EditingDomain domain = EMFHelper.resolveEditingDomain(eObject);
+				if(domain != null) {
+					IReadOnlyHandler2 handler = ReadOnlyManager.getReadOnlyHandler(domain);
+					
+					boolean isAlreadyOrCanMakeWritable = handler.isReadOnly(ReadOnlyAxis.anyAxis(), eObject).or(false) //
+							|| handler.canMakeWritable(ReadOnlyAxis.anyAxis(), eObject).or(false);
+					
 					return Objects.equal(isAlreadyOrCanMakeWritable, expectedValue);
 				}
 			}

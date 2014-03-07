@@ -11,6 +11,7 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - Support object-level read/write controls (CDO)
  *  Christian W. Damus (CEA) - bug 323802
+ *  Christian W. Damus (CEA) - bug 429826
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -37,9 +38,9 @@ import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.InternalTransaction;
 import org.eclipse.emf.transaction.impl.TransactionChangeRecorder;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.IRollbackStatus;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.resource.RollbackStatus;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
@@ -54,14 +55,14 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 
 	@Override
 	public boolean isReadOnly(Resource resource) {
-		if(resource != null && resource.getURI() != null) {
-			return ReadOnlyManager.getReadOnlyHandler(this).anyReadOnly(new URI[]{ resource.getURI() }).get();
+		if((resource != null) && (resource.getURI() != null)) {
+			return ReadOnlyManager.getReadOnlyHandler(this).anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ resource.getURI() }).get();
 		}
 		return false;
 	}
 
 	public boolean isReadOnly(EObject eObject) {
-		return ReadOnlyManager.getReadOnlyHandler(this).isReadOnly(eObject).get();
+		return ReadOnlyManager.getReadOnlyHandler(this).isReadOnly(ReadOnlyAxis.anyAxis(), eObject).get();
 	}
 	
 	@Override
@@ -131,15 +132,13 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 	
 	protected boolean makeWritable(Resource resource) {
 		URI[] uris = getCompositeModelURIs(resource.getURI());
-		IReadOnlyHandler handler = ReadOnlyManager.getReadOnlyHandler(this);
+		IReadOnlyHandler2 handler = ReadOnlyManager.getReadOnlyHandler(this);
 
-		if(handler instanceof IReadOnlyHandler2) {
-			if(!((IReadOnlyHandler2)handler).canMakeWritable(uris).or(false)) {
-				return false;
-			}
+		if(!handler.canMakeWritable(ReadOnlyAxis.anyAxis(), uris).or(false)) {
+			return false;
 		}
 
-		return handler.makeWritable(uris).get();
+		return handler.makeWritable(ReadOnlyAxis.anyAxis(), uris).get();
 	}
 
 	protected boolean makeWritable(EObject object) {
@@ -151,12 +150,12 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 		if(uri.isPlatformResource()) {
 			result = makeWritable(object.eResource());
 		} else {
-			IReadOnlyHandler handler = ReadOnlyManager.getReadOnlyHandler(this);
+			IReadOnlyHandler2 handler = ReadOnlyManager.getReadOnlyHandler(this);
 
-			if((handler instanceof IReadOnlyHandler2) && !((IReadOnlyHandler2)handler).canMakeWritable(object).or(false)) {
+			if(!handler.canMakeWritable(ReadOnlyAxis.anyAxis(), object).or(false)) {
 				result = false;
 			} else {
-				result = handler.makeWritable(object).get();
+				result = handler.makeWritable(ReadOnlyAxis.anyAxis(), object).get();
 			}
 		}
 

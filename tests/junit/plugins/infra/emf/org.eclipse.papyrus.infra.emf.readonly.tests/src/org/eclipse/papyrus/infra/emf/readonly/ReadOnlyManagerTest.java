@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
 import org.eclipse.uml2.uml.Model;
 import org.junit.After;
@@ -55,27 +56,27 @@ public class ReadOnlyManagerTest {
 	@Test
 	public void testIsReadOnlyEObject() {
 		setReadOnly(project.getFile(model.eResource().getURI()));
-		assertThat(fixture.isReadOnly(model).or(false), is(true));
+		assertThat(fixture.isReadOnly(ReadOnlyAxis.anyAxis(), model).or(false), is(true));
 	}
 
 	@Test
 	public void testCanMakeWritableEObject() {
 		setReadOnly(project.getFile(model.eResource().getURI()));
-		assertThat(fixture.canMakeWritable(model).or(false), is(true));
+		assertThat(fixture.canMakeWritable(ReadOnlyAxis.anyAxis(), model).or(false), is(true));
 	}
 
 	@Test
 	public void testAnyReadOnlyURIs() {
 		URI uri = model.eResource().getURI();
 		setReadOnly(project.getFile(uri));
-		assertThat(fixture.anyReadOnly(new URI[]{ uri }).or(false), is(true));
+		assertThat(fixture.anyReadOnly(ReadOnlyAxis.anyAxis(), new URI[]{ uri }).or(false), is(true));
 	}
 
 	@Test
 	public void testCanMakeWritableURIs() {
 		URI uri = model.eResource().getURI();
 		setReadOnly(project.getFile(uri));
-		assertThat(fixture.canMakeWritable(new URI[]{ uri }).or(false), is(true));
+		assertThat(fixture.canMakeWritable(ReadOnlyAxis.anyAxis(), new URI[]{ uri }).or(false), is(true));
 	}
 
 	//
