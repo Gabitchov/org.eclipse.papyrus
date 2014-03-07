@@ -14,7 +14,14 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.swt.widgets.Display;
 
@@ -62,6 +69,29 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 		while(isOpen(pageIdentifier)) {
 			closePage(pageIdentifier);
 		}
+	}
+
+	@Override
+	public void addPage(Object pageIdentifier) {
+		//Nothing
+	}
+
+	@Override
+	public List<Object> allPages() {
+		//FIXME: Temporary, naive code. Need to implement a mechanism to contribute page providers
+		List<Object> result = new LinkedList<Object>();
+		for(Resource resource : diSashModel.eResource().getResourceSet().getResources()) {
+			if(resource != null && resource.isLoaded()) {
+				if("notation".equals(resource.getURI().fileExtension())) {
+					for(EObject content : resource.getContents()) {
+						if(Platform.getAdapterManager().getAdapter(content, IOpenable.class) != null) {
+							result.add(content);
+						}
+					}
+				}
+			}
+		}
+		return result;
 	}
 
 	@Override

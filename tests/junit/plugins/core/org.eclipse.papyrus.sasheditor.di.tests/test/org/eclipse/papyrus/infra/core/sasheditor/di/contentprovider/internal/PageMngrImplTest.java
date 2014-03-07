@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009 CEA LIST & LIFL
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.swt.SWT;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 
 
 /**
@@ -136,6 +137,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#addPage(org.eclipse.emf.ecore.EObject)}.
 	 */
+	@Ignore("This test is deprecated (Bug 429239)")
 	public void testAddPage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -375,6 +377,7 @@ public class PageMngrImplTest extends TestCase {
 	 * Test method for
 	 * {@link org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#removePage(org.eclipse.emf.ecore.EObject)}.
 	 */
+	@Ignore("This test is deprecated (Bug 429239)")
 	public void testRemovePage() {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
@@ -434,7 +437,7 @@ public class PageMngrImplTest extends TestCase {
 		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Create 3 editors, move one in another table
-		// Then remove the moved one.		
+		// Then remove the moved one.
 
 		// Add identifiers
 		// Use Object as identifiers.

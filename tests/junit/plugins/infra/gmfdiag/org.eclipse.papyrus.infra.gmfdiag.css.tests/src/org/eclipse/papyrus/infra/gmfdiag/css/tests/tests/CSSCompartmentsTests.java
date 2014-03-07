@@ -40,6 +40,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -110,7 +111,8 @@ public class CSSCompartmentsTests {
 
 	/* Test Enumeration1 */
 	@Test
-	//Currently fails. The EnumerationLiteral compartment is not defined in the NotationTypesMap
+	//Currently fails. The "case insensitive" attributes are not supported by Eclipse E4 CSS
+	@Ignore("The 'case insensitive' attributes are not supported by Eclipse E4 CSS")
 	public void testCaseInsensitiveForEnumeration() {
 		Shape enumeration = findShape("Enumeration1");
 		BasicCompartment compartment = findCompartment(enumeration, ENUMERATION_LITERAL_COMPARTMENT_TYPE);
