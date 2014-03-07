@@ -79,7 +79,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	 */
 	@Override
 	protected String getModelFileExtension() {
-		if(isLegacy(resourceURI)) {
+		if(isLegacy((resourceURI == null) ? resourceURI : resourceURI.trimFileExtension())) {
 			return MODEL_FILE_EXTENSION;
 		} else {
 			return SASH_MODEL_FILE_EXTENSION;
@@ -154,7 +154,7 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	@Override
 	public void setModelURI(URI uriWithoutExtension) {
 		URI newURI;
-		if(resourceURI != null && isLegacy(resourceURI)) {
+		if((resourceURI != null) && isLegacy(resourceURI.trimFileExtension())) {
 			newURI = getLegacyURI(uriWithoutExtension);
 		} else {
 			newURI = getSashModelStoreURI(uriWithoutExtension);
@@ -163,11 +163,11 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		super.setModelURI(newURI.trimFileExtension());
 	}
 
-	protected boolean isLegacy(URI uri) {
-		if(uri == null) {
+	protected boolean isLegacy(URI uriWithoutExtension) {
+		if(uriWithoutExtension == null) {
 			return false;
 		}
-		return Objects.equal(uri.trimFileExtension(), getModelManager().getURIWithoutExtension());
+		return Objects.equal(uriWithoutExtension, getModelManager().getURIWithoutExtension());
 	}
 
 	/**

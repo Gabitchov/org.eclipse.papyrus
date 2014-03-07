@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus (CEA) - bug 429242
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer;
 
@@ -23,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
@@ -59,6 +62,7 @@ public class ModelTransferNode implements IModelTransferNode {
 
 		context.run(new IModelTransferOperation() {
 
+			@Override
 			public Diagnostic run(IProgressMonitor monitor) {
 				SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelTransferNode_0, 2);
 
@@ -76,6 +80,7 @@ public class ModelTransferNode implements IModelTransferNode {
 		});
 	}
 
+	@Override
 	public String getName() {
 		if(name == null) {
 			URI uri = getPrimaryResourceURI();
@@ -92,14 +97,21 @@ public class ModelTransferNode implements IModelTransferNode {
 		return name;
 	}
 
+	@Override
+	public IModelTransferConfiguration getConfiguration() {
+		return config;
+	}
+
 	Resource getPrimaryResource() {
 		return resource;
 	}
 
+	@Override
 	public URI getPrimaryResourceURI() {
 		return resource.getURI();
 	}
 
+	@Override
 	public Collection<URI> getResourceURIs() {
 		ImmutableSet.Builder<URI> result = ImmutableSet.builder();
 
@@ -110,10 +122,12 @@ public class ModelTransferNode implements IModelTransferNode {
 		return result.build();
 	}
 
+	@Override
 	public Collection<IModelTransferNode> getDependencies() {
 		return Collections.unmodifiableSet(dependencies);
 	}
 
+	@Override
 	public Collection<IModelTransferNode> getDependents() {
 		return Collections.unmodifiableSet(dependents);
 	}
@@ -177,6 +191,7 @@ public class ModelTransferNode implements IModelTransferNode {
 		return result;
 	}
 
+	@Override
 	public boolean isModelParentUnit(IModelTransferNode other) {
 		boolean result = false;
 
@@ -200,6 +215,7 @@ public class ModelTransferNode implements IModelTransferNode {
 		return result;
 	}
 
+	@Override
 	public boolean isModelSubUnit(IModelTransferNode other) {
 		boolean result = false;
 

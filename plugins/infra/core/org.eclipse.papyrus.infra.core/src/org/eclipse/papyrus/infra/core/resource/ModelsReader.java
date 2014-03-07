@@ -17,7 +17,9 @@ package org.eclipse.papyrus.infra.core.resource;
 import static org.eclipse.papyrus.infra.core.Activator.log;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -25,6 +27,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.extension.ExtensionException;
 import org.eclipse.papyrus.infra.core.extension.ExtensionUtils;
+
+import com.google.common.collect.Sets;
 
 /**
  * A reader to read model from Eclipse extension and register them to the
@@ -138,6 +142,31 @@ public class ModelsReader extends ExtensionUtils {
 			for(int i = 0; !result && (i < configs.length); i++) {
 				String modelExtension = configs[i].getAttribute(EXTENSION_ATTRIBUTE);
 				result = (modelExtension != null) && modelExtension.equals(extension);
+			}
+		}
+
+		return result;
+	}
+	
+	/**
+	 * Queries the collection of distinct resource URIs that are recognized by Papyrus as model resources, based on the specified prototype.
+	 * 
+	 * @param prototypeURI
+	 *        an example of a URI of a component resource of a Papyrus model; it may be but is not required to be a *.di URI, but it must have a file
+	 *        extension
+	 * 
+	 * @return the collection of known model resource URIs that are related to the given prototype
+	 */
+	public Collection<URI> getKnownModelURIs(URI prototypeURI) {
+		Set<URI> result = Sets.newHashSet();
+
+		final URI uriWithoutExtension = prototypeURI.trimFileExtension();
+
+		IConfigurationElement[] configs = getExtensions();
+		for(int i = 0; i < configs.length; i++) {
+			String modelExtension = configs[i].getAttribute(EXTENSION_ATTRIBUTE);
+			if(modelExtension != null) {
+				result.add(uriWithoutExtension.appendFileExtension(modelExtension));
 			}
 		}
 
