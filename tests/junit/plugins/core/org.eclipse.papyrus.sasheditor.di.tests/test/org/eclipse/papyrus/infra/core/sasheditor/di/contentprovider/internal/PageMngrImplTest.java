@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IPageModelFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl;
@@ -68,6 +69,12 @@ public class PageMngrImplTest extends TestCase {
 		super.setUp();
 
 		SashWindowsMngr diSashModel = DiUtils.createDefaultSashWindowsMngr();
+
+		//Fix bug to match refactoring in Bug 429239. The current implementation computes allPages() dynamically,
+		//and doesn't support addPage() and removePage() anymore
+		//Because this test is used in a different context, where allPages() cannot be computed dynamically,
+		//we need to create a specific setup
+		diSashModel.setPageList(DiFactory.eINSTANCE.createPageList());
 		ContentChangedEventProvider eventProvider = new ContentChangedEventProvider(diSashModel);
 		pageMngr = new PageMngrImpl(diSashModel, eventProvider);
 

@@ -29,9 +29,9 @@ import org.eclipse.swt.widgets.Display;
 /**
  * This class provide high level method to manage the Sash pages through its DI
  * implementation.
- * 
+ *
  * @author cedric dumoulin
- * 
+ *
  */
 public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 
@@ -41,13 +41,13 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 	 * folder as the current folder. Futhermore, the default implementation doesn't
 	 * allow to set the active folder. <br>
 	 * Suitable for tests
-	 * 
+	 *
 	 * @param diSashModel
 	 *        The model onto which operation of this class act.
 	 * @param contentChangedEventProvider
 	 *        A class listening on changes on the internal model and delivering events to registered listeners. This implementation
 	 *        need the class in order to deactivate event triggering during the operations.
-	 * 
+	 *
 	 */
 	protected PageManagerImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider) {
 		super(diSashModel, contentChangedEventProvider);
@@ -55,7 +55,7 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param diSashModel
 	 * @param contentChangedEventProvider
 	 * @param folderAndPageMngr
@@ -92,6 +92,11 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public void openPage(Object pageIdentifier) {
+		diSashModel.getSashModel().addPage(getCurrentFolder(), pageIdentifier);
 	}
 
 	@Override

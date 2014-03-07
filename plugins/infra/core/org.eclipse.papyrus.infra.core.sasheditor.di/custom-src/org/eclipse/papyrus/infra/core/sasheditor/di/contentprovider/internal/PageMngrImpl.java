@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
@@ -27,7 +28,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
  * Implementation of the page manager.
  * The page manager provides basic methods to access the DiSashModel and its PageList.
  * This is the users interface to add, open, close and remove pages.
- * 
+ *
  * @author cedric dumoulin
  */
 public class PageMngrImpl implements IPageMngr {
@@ -59,9 +60,9 @@ public class PageMngrImpl implements IPageMngr {
 	/**
 	 * Add a page to the PageList. Do not open the corresponding editor.
 	 * The page will be visible in the list.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#addEditor(org.eclipse.emf.ecore.EObject)
-	 * 
+	 *
 	 * @param pageIdentifier
 	 */
 	@Override
@@ -76,16 +77,16 @@ public class PageMngrImpl implements IPageMngr {
 
 	/**
 	 * Get the folder model {@link TabFolder} of the current folder.
-	 * 
+	 *
 	 * @return
 	 */
-	private TabFolder getCurrentFolder() {
+	protected TabFolder getCurrentFolder() {
 		return folderAndPageMngr.getCurrentFolder();
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#allPages()
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -101,9 +102,9 @@ public class PageMngrImpl implements IPageMngr {
 
 	/**
 	 * Remove the page from the SashModel
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#closePage(org.eclipse.emf.ecore.EObject)
-	 * 
+	 *
 	 * @param pageIdentifier
 	 */
 	@Override
@@ -116,9 +117,9 @@ public class PageMngrImpl implements IPageMngr {
 
 	/**
 	 * Remove all pages from the SashModel. Left only the top level folder
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#closePage(org.eclipse.emf.ecore.EObject)
-	 * 
+	 *
 	 * @param pageIdentifier
 	 */
 	@Override
@@ -132,9 +133,9 @@ public class PageMngrImpl implements IPageMngr {
 
 	/**
 	 * Remove all pages from the SashModel. Left only the top level folder
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#closePage(org.eclipse.emf.ecore.EObject)
-	 * 
+	 *
 	 * @param pageIdentifier
 	 */
 	@Override
@@ -146,7 +147,7 @@ public class PageMngrImpl implements IPageMngr {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#openPage(org.eclipse.emf.ecore.EObject)
-	 * 
+	 *
 	 * @param pageIdentifier
 	 */
 	@Override
@@ -155,12 +156,24 @@ public class PageMngrImpl implements IPageMngr {
 
 		// We do not need to disable event delivering as the operation already fired
 		// one single event.
+
+		Iterator<PageRef> iterator = diSashModel.getPageList().getAvailablePage().iterator();
+		boolean found = false;
+		while(iterator.hasNext() && found == false) {
+			// Bug #288806 : the test should be inversed
+			if(pageIdentifier.equals(iterator.next().getPageIdentifier())) {
+				found = true;
+			}
+		}
+		if(!found) {
+			diSashModel.getPageList().addPage(pageIdentifier);
+		}
 		diSashModel.getSashModel().addPage(getCurrentFolder(), pageIdentifier);
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#removePage(org.eclipse.emf.ecore.EObject)
-	 * 
+	 *
 	 * @param pageIdentifier
 	 */
 	@Override
@@ -175,11 +188,11 @@ public class PageMngrImpl implements IPageMngr {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr#isOpen(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
-	 * 
+	 *
 	 */
 	@Override
 	public boolean isOpen(Object pageIdentifier) {
