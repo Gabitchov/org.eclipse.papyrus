@@ -33,9 +33,10 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class UMLDiagnostician extends EcoreDiagnostician {
 
 	public UMLDiagnostician() {
+		super(new OCLEValidatorAdapter());
 		validateStereotype = false;
 	}
-
+	
 	protected boolean doValidateStereotypeApplications(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (validateStereotype) {
 			// this function is called recursively. Avoid trying to obtain stereotype applications, if we are
